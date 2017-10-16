@@ -146,7 +146,7 @@ class Plugin {
 			$handle		=	'wbcom_elementor_login_module_js',
 			$src		=	plugin_dir_url( __FILE__ ) . 'assets/js/login-module.js',
 			$deps		=	array( 'jquery' ),
-			$ver		=	false,
+			$ver		=	time(),
 			$in_footer	=	true
 		);
 		wp_localize_script(
