@@ -37,13 +37,24 @@ final class Manager {
 			$modules = [
 				'query-control',
 				'posts',
-				'nav-menu',
-				'pricing',
-				'share-buttons',
-				'custom-css'
+				// 'nav-menu',
+				// 'pricing',
+				// 'share-buttons',
+				// 'custom-css'
 			];
 		}
-		array_push( $modules, 'forms' );
+
+		$new_modules = [
+			'nav-menu',
+			'forms',
+			'branding',
+			'notification-area'
+		];
+		// if ( class_exists( 'WooCommerce' ) ) {
+		// 	array_push( $new_modules, 'woo-cart' );
+		// }
+
+		$modules = array_merge( $modules, $new_modules );
 
 		foreach ( $modules as $module_name ) {
 			$class_name = str_replace( '-', ' ', $module_name );

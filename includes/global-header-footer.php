@@ -48,10 +48,10 @@ class WBCOM_Elementor_Global_Header_Footer {
 		self::$elementor_frontend = new \Elementor\Frontend();
 
 		// Add the default posts on plugin activation
-		register_activation_hook( WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE, array( $this, 'add_header_footer_post' ) );
+		// register_activation_hook( WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE, array( $this, 'add_header_footer_post' ) );
 
-		add_action( 'init', array( $this, 'header_posttype' ) );
-		add_action( 'init', array( $this, 'footer_posttype' ) );
+		// add_action( 'init', array( $this, 'header_posttype' ) );
+		// add_action( 'init', array( $this, 'footer_posttype' ) );
 
 		add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 50 );
 		add_action( 'add_meta_boxes', array( $this, 'ehf_register_metabox' ) );
@@ -63,116 +63,117 @@ class WBCOM_Elementor_Global_Header_Footer {
 		$footer_id	 = self::get_settings( 'type_footer', '' );
 
 		if ( '' !== $header_id ) {
-			add_action( 'template_redirect', array( $this, 'reign_setup_header' ), 10 );
-			add_action( 'reign_masthead', array( $this, 'add_header_markup' ) );
+			add_action( 'template_redirect', array( $this, 'wbcom_setup_header' ), 10 );
+			add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ) );
 		}
 
 		if ( '' !== $footer_id ) {
-			add_action( 'template_redirect', array( $this, 'reign_setup_footer' ), 10 );
-			add_action( 'reign_footer', array( $this, 'add_footer_markup' ) );
+			add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
+			add_action( 'wbcom_footer', array( $this, 'add_footer_markup' ) );
 		}
 
-		add_action( 'add_meta_boxes', array( $this, 'reign_default_page_template' ), 1 );
+		add_action( 'add_meta_boxes', array( $this, 'wbcom_default_page_template' ), 1 );
 		add_action( 'admin_head', array( $this, 'custom_menu_items' ), 1 );
 	}
 
 	/**
 	 * Register Post type for header footer templates
 	 */
-	public function header_posttype() {
+	// public function header_posttype() {
 
-		$labels = array(
-			'name'		 => __( 'Global Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-			'edit_item'	 => __( 'Edit Global Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-		);
+	// 	$labels = array(
+	// 		'name'		 => __( 'Global Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+	// 		'edit_item'	 => __( 'Edit Global Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+	// 	);
 
-		$args = array(
-			'labels'				 => $labels,
-			'public'				 => true,
-			'rewrite'				 => false,
-			'show_ui'				 => true,
-			'show_in_menu'			 => false,
-			'show_in_nav_menus'		 => false,
-			'exclude_from_search'	 => true,
-			'capability_type'		 => 'post',
-			'capabilities'			 => array(
-				'create_posts'			 => 'do_not_allow',
-				'delete_published_posts' => 'do_not_allow',
-				'delete_private_posts'	 => 'do_not_allow',
-				'delete_posts'			 => 'do_not_allow',
-			),
-			'map_meta_cap'			 => true,
-			'hierarchical'			 => false,
-			'menu_icon'				 => 'dashicons-editor-kitchensink',
-			'supports'				 => array( 'elementor' ),
-		);
+	// 	$args = array(
+	// 		'labels'				 => $labels,
+	// 		'public'				 => true,
+	// 		'rewrite'				 => false,
+	// 		'show_ui'				 => true,
+	// 		'show_in_menu'			 => false,
+	// 		'show_in_nav_menus'		 => false,
+	// 		'exclude_from_search'	 => true,
+	// 		'capability_type'		 => 'post',
+	// 		'capabilities'			 => array(
+	// 			'create_posts'			 => 'do_not_allow',
+	// 			'delete_published_posts' => 'do_not_allow',
+	// 			'delete_private_posts'	 => 'do_not_allow',
+	// 			'delete_posts'			 => 'do_not_allow',
+	// 		),
+	// 		'map_meta_cap'			 => true,
+	// 		'hierarchical'			 => false,
+	// 		'menu_icon'				 => 'dashicons-editor-kitchensink',
+	// 		'supports'				 => array( 'elementor' ),
+	// 	);
 
-		register_post_type( 'reign-elemtr-header', $args );
-	}
+	// 	register_post_type( 'reign-elemtr-header', $args );
+	// }
 
 	/**
 	 * Register Post type for header footer templates
 	 */
-	public function footer_posttype() {
+	// public function footer_posttype() {
 
-		$labels = array(
-			'name'		 => __( 'Global Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-			'edit_item'	 => __( 'Edit Global Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-		);
+	// 	$labels = array(
+	// 		'name'		 => __( 'Global Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+	// 		'edit_item'	 => __( 'Edit Global Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+	// 	);
 
-		$args = array(
-			'labels'				 => $labels,
-			'public'				 => true,
-			'rewrite'				 => false,
-			'show_ui'				 => true,
-			'show_in_menu'			 => false,
-			'show_in_nav_menus'		 => false,
-			'exclude_from_search'	 => true,
-			'capability_type'		 => 'post',
-			'capabilities'			 => array(
-				'create_posts'			 => 'do_not_allow',
-				'delete_published_posts' => 'do_not_allow',
-				'delete_private_posts'	 => 'do_not_allow',
-				'delete_posts'			 => 'do_not_allow',
-			),
-			'map_meta_cap'			 => true,
-			'hierarchical'			 => false,
-			'menu_icon'				 => 'dashicons-editor-kitchensink',
-			'supports'				 => array( 'elementor' ),
-		);
+	// 	$args = array(
+	// 		'labels'				 => $labels,
+	// 		'public'				 => true,
+	// 		'rewrite'				 => false,
+	// 		'show_ui'				 => true,
+	// 		'show_in_menu'			 => false,
+	// 		'show_in_nav_menus'		 => false,
+	// 		'exclude_from_search'	 => true,
+	// 		'capability_type'		 => 'post',
+	// 		'capabilities'			 => array(
+	// 			'create_posts'			 => 'do_not_allow',
+	// 			'delete_published_posts' => 'do_not_allow',
+	// 			'delete_private_posts'	 => 'do_not_allow',
+	// 			'delete_posts'			 => 'do_not_allow',
+	// 		),
+	// 		'map_meta_cap'			 => true,
+	// 		'hierarchical'			 => false,
+	// 		'menu_icon'				 => 'dashicons-editor-kitchensink',
+	// 		'supports'				 => array( 'elementor' ),
+	// 	);
 
-		register_post_type( 'reign-elemtr-footer', $args );
-	}
+	// 	register_post_type( 'reign-elemtr-footer', $args );
+	// }
 
 	/**
 	 * Add default posts when plugin is activated
 	 */
-	function add_header_footer_post() {
+	// function add_header_footer_post() {
 
-		// on activation first regsiter the post type
-		$this->header_posttype();
-		$this->footer_posttype();
+	// 	// on activation first regsiter the post type
+	// 	$this->header_posttype();
+	// 	$this->footer_posttype();
 
-		// add the first and only post
-		$post_data_header = array(
-			'post_type'		 => 'reign-elemtr-header',
-			'post_status'	 => 'publish',
-			'post_author'	 => 1
-		);
+	// 	// add the first and only post
+	// 	$post_data_header = array(
+	// 		'post_type'		 => 'reign-elemtr-header',
+	// 		'post_status'	 => 'publish',
+	// 		'post_author'	 => 1
+	// 	);
+	// 	$posts = get_posts( $post_data_header );
+	// 	if ( count( $posts ) == 0 ) { //check if posts exists
+	// 		wp_insert_post( $post_data_header );
+	// 	}
 
-		$post_data_footer = array(
-			'post_type'		 => 'reign-elemtr-footer',
-			'post_status'	 => 'publish',
-			'post_author'	 => 1
-		);
-
-		$posts = get_posts( $post_data_header );
-
-		if ( count( $posts ) == 0 ) { //check if posts exists
-			wp_insert_post( $post_data_header );
-			wp_insert_post( $post_data_footer );
-		}
-	}
+	// 	$post_data_footer = array(
+	// 		'post_type'		 => 'reign-elemtr-footer',
+	// 		'post_status'	 => 'publish',
+	// 		'post_author'	 => 1
+	// 	);
+	// 	$posts = get_posts( $post_data_footer );
+	// 	if ( count( $posts ) == 0 ) { //check if posts exists
+	// 		wp_insert_post( $post_data_footer );
+	// 	}
+	// }
 
 	/**
 	 * Register the admin menu for Header Footer builder.
@@ -345,8 +346,8 @@ class WBCOM_Elementor_Global_Header_Footer {
 	/**
 	 * Disable header from the theme.
 	 */
-	public function reign_setup_header() {
-		remove_action( 'reign_masthead', 'reign_header_masthead' );
+	public function wbcom_setup_header() {
+		remove_action( 'wbcom_masthead', 'wbcom_header_masthead' );
 	}
 
 	/**
@@ -365,8 +366,8 @@ class WBCOM_Elementor_Global_Header_Footer {
 	/**
 	 * Disable footer from the theme.
 	 */
-	public function reign_setup_footer() {
-		remove_action( 'reign_footer', 'reign_footer_html' );
+	public function wbcom_setup_footer() {
+		remove_action( 'wbcom_footer', 'wbcom_footer_html' );
 	}
 
 	/**
@@ -385,7 +386,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * 
 	 * @global type $post
 	 */
-	function reign_default_page_template() {
+	function wbcom_default_page_template() {
 		global $post;
 
 		if ( ('reign-elemtr-header' == $post->post_type || 'reign-elemtr-footer' == $post->post_type ) && 0 != count( get_page_templates( $post ) ) && get_option( 'page_for_posts' ) != $post->ID // Not the page for listing posts

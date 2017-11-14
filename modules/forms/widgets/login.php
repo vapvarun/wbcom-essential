@@ -814,9 +814,37 @@ class Login extends Base_Widget {
 
 		$this->form_fields_render_attributes();
 		?>
+		<style type="text/css">
+			/* The alert message box */
+			.wbcom-elementor-login-form .alert {
+				padding: 20px;
+				background-color: #f44336; /* Red */
+				color: white;
+				margin-bottom: 15px;
+			}
+			/* The close button */
+			.wbcom-elementor-login-form .closebtn {
+				margin-left: 15px;
+				color: white;
+				font-weight: bold;
+				float: right;
+				font-size: 22px;
+				line-height: 20px;
+				cursor: pointer;
+				transition: 0.3s;
+			}
+			/* When moving the mouse over the close button */
+			.wbcom-elementor-login-form .closebtn:hover {
+				color: black;
+			} 
+		</style>
 		<!-- Lost Your Password Form :: Start -->
 		<form class="elementor-login elementor-form wbcom-elementor-login-form wbcom-forgot-password-form" method="post" action="">
 			<input type="hidden" name="wbcom_action_to_to" value="forgot_password">
+			<div class="alert" style="display: none;">
+				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+				<span class="error-message">This is an alert box.</span>
+			</div>
 			<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 				<div <?php echo $this->get_render_attribute_string( 'field-group' ); ?>>
 					<?php
@@ -842,6 +870,10 @@ class Login extends Base_Widget {
 		<form class="elementor-login elementor-form wbcom-elementor-login-form" method="post" action="<?php echo wp_login_url(); ?>">
 			<input type="hidden" name="wbcom_action_to_to" value="login">
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_url );?>">
+			<div class="alert" style="display: none;">
+				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+				<span class="error-message">This is an alert box.</span>
+			</div>
 			<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 				<div <?php echo $this->get_render_attribute_string( 'field-group' ); ?>>
 					<?php
@@ -878,8 +910,15 @@ class Login extends Base_Widget {
 								<span class="elementor-button-text"><?php echo $settings['button_text']; ?></span>
 							<?php endif; ?>
 					</button>
+					<img id="wb-ele-ajax-loader" src="<?php echo WBCOM_ELEMENTOR_ADDONS_ASSETS_URL . 'ajax-loader.gif'; ?>">
 				</div>
-
+				<style type="text/css">
+				#wb-ele-ajax-loader {
+					width: 25px;
+					margin-left: 10px;
+					display: none;
+				}
+				</style>
 				<?php
 				$show_lost_password = 'yes' === $settings['show_lost_password'];
 				$show_register = get_option( 'users_can_register' ) && 'yes' === $settings['show_register'];

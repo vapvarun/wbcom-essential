@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: WBCOM Elementor Addons
- * Description: WBCOM Elementor Addons.
+ * Plugin Name: Wbcom Essential
+ * Description: Wbcom Essential Addons.
  * Plugin URI: https://wbcomdesigns.com/
- * Author: WBCOM
+ * Author: Wbcom Designs
  * Version: 1.0.0
  * Author URI: https://wbcomdesigns.com/
  *
@@ -129,4 +129,12 @@ if ( ! function_exists( '_is_elementor_installed' ) ) {
 
 		return isset( $installed_plugins[ $file_path ] );
 	}
+}
+
+// Add the default posts on plugin activation
+register_activation_hook( __FILE__, '_wb_create_elementor_custom_header_footer' );
+function _wb_create_elementor_custom_header_footer() {
+	require 'includes/global-header-footer-posttype.php';
+	$global_header_footer_posttype = WBCOM_Elementor_Global_Header_Footer_PostType::instance();
+	$global_header_footer_posttype->add_header_footer_post();
 }

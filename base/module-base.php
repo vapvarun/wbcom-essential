@@ -86,6 +86,9 @@ abstract class Module_Base {
 			$class_name = $this->reflection->getNamespaceName() . '\Widgets\\' . $widget;
 			$widget_manager->register_widget_type( new $class_name() );
 		}
+
+		// require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/wp-menu.php';
+	
 	}
 
 	public function add_component( $id, $instance ) {

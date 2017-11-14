@@ -1,17 +1,23 @@
 <?php
-namespace WbcomElementorAddons\Modules\NavMenu\Widgets;
+/**
+ * Reign Nav Menu Widget
+ *
+ */
 
-use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
-use Elementor\Widget_Base;
+namespace Elementor;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
-class Nav_Menu extends Widget_Base {
+/**
+ * Creates our custom Elementor widget
+ *
+ * Class Widget_Reign_WP_Menu
+ *
+ * @package Elementor
+ */
+class Widget_Reign_WP_Menu extends Widget_Base {
 
 	/**
 	 * Get Widgets name
@@ -19,7 +25,7 @@ class Nav_Menu extends Widget_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'wbcom-nav-menu';
+		return 'reign_wp_menu';
 	}
 
 	/**
@@ -28,7 +34,7 @@ class Nav_Menu extends Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Nav Menu', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN );
+		return __( 'WordPress Menu', 'reign' );
 	}
 
 	/**
@@ -37,6 +43,7 @@ class Nav_Menu extends Widget_Base {
 	 * @return string
 	 */
 	public function get_icon() {
+		//return 'reign-elementor-widget';
 		return 'eicon-bullet-list';
 	}
 
@@ -46,7 +53,7 @@ class Nav_Menu extends Widget_Base {
 	 * @return array
 	 */
 	public function get_categories() {
-		return [ 'wbcom-elements' ];
+		return [ 'reign-elementor' ];
 	}
 
 	/**
@@ -77,7 +84,7 @@ class Nav_Menu extends Widget_Base {
 		);
 
 		$menu_select = array(
-			'0' => esc_html__( ' - choose - ', 'reign' ),
+			'' => esc_html__( ' - choose - ', 'reign' ),
 		);
 
 		// we also show a list of users menues.
@@ -125,7 +132,7 @@ class Nav_Menu extends Widget_Base {
 			],
 			'prefix_class'	 => 'elementor-align-',
 			'selectors'		 => [
-				'{{WRAPPER}} .main-navigation ul' => 'text-align: {{VALUE}};',
+				'{{WRAPPER}} .main-navigation' => 'text-align: {{VALUE}};',
 			],
 		]
 		);
@@ -136,7 +143,7 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#f8f8f8',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li' => 'background-color: {{VALUE}};',
+				'{{WRAPPER}} .reign-main-navigation, {{WRAPPER}} .reign-main-navigation .reign-inside-navigation ul ul' => 'background-color: {{VALUE}};',
 			],
 		]
 		);
@@ -146,7 +153,7 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#eaeaea',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li:hover a' => 'background-color: {{VALUE}};',
+				'{{WRAPPER}} .reign-main-navigation .reign-inside-navigation ul li:hover a' => 'background-color: {{VALUE}};',
 			],
 		]
 		);
@@ -157,7 +164,7 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#000',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation .reign-menu-toggle, {{WRAPPER}} .main-navigation ul li a' => 'color: {{VALUE}};',
+				'{{WRAPPER}} .reign-main-navigation .reign-menu-toggle, {{WRAPPER}} .reign-main-navigation .reign-inside-navigation ul li a' => 'color: {{VALUE}};',
 			],
 		]
 		);
@@ -168,22 +175,10 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#000',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li a:hover' => 'color: {{VALUE}};',
+				'{{WRAPPER}} .reign-main-navigation .reign-inside-navigation ul li a:hover' => 'color: {{VALUE}};',
 			],
 		]
 		);
-
-		$this->add_control(
-		'font_color_active', [
-			'label'		 => __( 'Font Color (Active)', 'reign' ),
-			'type'		 => Controls_Manager::COLOR,
-			'default'	 => '#399dff',
-			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li.current-menu-item a' => 'color: {{VALUE}};',
-			],
-		]
-		);
-
 		$this->add_group_control(
 		Group_Control_Typography::get_type(), [
 			'name'	 => 'typography',
@@ -193,124 +188,28 @@ class Nav_Menu extends Widget_Base {
 
 		$this->end_controls_section();
 
-		/* Sub Menu Section */
 		$this->start_controls_section(
-		'section_reign_submenu_style', [
-			'label'	 => __( 'Sub Menu Style', 'reign' ),
-			'tab'	 => Controls_Manager::TAB_STYLE,
-		]
-		);
-
-		$this->add_responsive_control(
-		'submenu_align', [
-			'label'			 => __( 'Alignment', 'reign' ),
-			'type'			 => Controls_Manager::CHOOSE,
-			'options'		 => [
-				'left'	 => [
-					'title'	 => __( 'Left', 'reign' ),
-					'icon'	 => 'fa fa-align-left',
-				],
-				'center' => [
-					'title'	 => __( 'Center', 'reign' ),
-					'icon'	 => 'fa fa-align-center',
-				],
-				'right'	 => [
-					'title'	 => __( 'Right', 'reign' ),
-					'icon'	 => 'fa fa-align-right',
-				],
-			],
-			'prefix_class'	 => 'elementor-align-',
-			'selectors'		 => [
-				'{{WRAPPER}} .main-navigation ul li.menu-item-has-children ul' => 'text-align: {{VALUE}};',
-			],
+		'section_icon', [
+			'label' => __( 'Search Box', 'elementor' ),
 		]
 		);
 
 		$this->add_control(
-		'submenu_background', [
-			'label'		 => __( 'Background', 'reign' ),
-			'type'		 => Controls_Manager::COLOR,
-			'default'	 => '#f8f8f8',
-			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li.menu-item-has-children ul li' => 'background-color: {{VALUE}};',
-			],
-		]
-		);
-		$this->add_control(
-		'submenu_background_hover', [
-			'label'		 => __( 'Background (hover)', 'reign' ),
-			'type'		 => Controls_Manager::COLOR,
-			'default'	 => '#eaeaea',
-			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li.menu-item-has-children ul li:hover a' => 'background-color: {{VALUE}};',
-			],
-		]
-		);
-
-		$this->add_control(
-		'submenu_font_color', [
-			'label'		 => __( 'Font Color', 'reign' ),
-			'type'		 => Controls_Manager::COLOR,
-			'default'	 => '#000',
-			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation .reign-menu-toggle, {{WRAPPER}} .main-navigation ul li.menu-item-has-children ul li a' => 'color: {{VALUE}};',
-			],
-		]
-		);
-
-		$this->add_control(
-		'submenu_font_color_hover', [
-			'label'		 => __( 'Font Color (Hover)', 'reign' ),
-			'type'		 => Controls_Manager::COLOR,
-			'default'	 => '#000',
-			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li.menu-item-has-children ul li a:hover' => 'color: {{VALUE}};',
-			],
-		]
-		);
-
-		$this->add_control(
-		'submenu_font_color_active', [
-			'label'		 => __( 'Font Color (Active)', 'reign' ),
-			'type'		 => Controls_Manager::COLOR,
-			'default'	 => '#399dff',
-			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li.menu-item-has-children ul li.current-menu-item a' => 'color: {{VALUE}};',
-			],
-		]
-		);
-
-		$this->add_group_control(
-		Group_Control_Typography::get_type(), [
-			'name'	 => 'submenu_typography',
-			'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+		'searchbox_enabled', [
+			'label'			 => __( 'Enable Search Box', 'elementor' ),
+			'type'			 => \Elementor\Controls_Manager::SWITCHER,
+			'default'		 => '',
+			'label_on'		 => __( 'Yes', 'elementor' ),
+			'label_off'		 => __( 'No', 'elementor' ),
+			'return_value'	 => 'yes',
+			'separator'		 => 'before',
 		]
 		);
 
 		$this->end_controls_section();
 
-		// $this->start_controls_section(
-		// 'section_icon', [
-		// 	'label' => __( 'Search Box', 'elementor' ),
-		// ]
-		// );
 
-		// $this->add_control(
-		// 'searchbox_enabled', [
-		// 	'label'			 => __( 'Enable Search Box', 'elementor' ),
-		// 	'type'			 => \Elementor\Controls_Manager::SWITCHER,
-		// 	'default'		 => '',
-		// 	'label_on'		 => __( 'Yes', 'elementor' ),
-		// 	'label_off'		 => __( 'No', 'elementor' ),
-		// 	'return_value'	 => 'yes',
-		// 	'separator'		 => 'before',
-		// ]
-		// );
-
-		// $this->end_controls_section();
-
-
-		do_action( 'reign_wp_submenu_elementor_controls', $this );
+		do_action( 'reign_wp_menu_elementor_controls', $this );
 	}
 
 	/**
@@ -356,17 +255,17 @@ class Nav_Menu extends Widget_Base {
 					);
 				}
 
-				// if ( 'yes' == $settings[ 'searchbox_enabled' ] ) {
+				if ( 'yes' == $settings[ 'searchbox_enabled' ] ) {
 					?>
 
-					<!-- <div class="search-wrap">
+					<div class="search-wrap">
 						<span class="rg-search-icon rg-header-icon"></span>
-						<div class="search-content"> -->
-							<?php //get_search_form(); ?>
-						<!-- </div>
-					</div> -->
+						<div class="search-content">
+							<?php get_search_form(); ?>
+						</div>
+					</div>
 
-				<?php //} ?>
+				<?php } ?>
 			</nav><!-- #site-navigation -->
 			<?php
 			echo apply_filters( 'reign_menu_output', ob_get_clean(), $settings[ 'menu_location' ], $settings );
@@ -385,4 +284,8 @@ class Nav_Menu extends Widget_Base {
 		</div>
 		<?php
 	}
+
 }
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_Reign_WP_Menu() );
+
+
