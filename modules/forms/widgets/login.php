@@ -895,6 +895,8 @@ class Login extends Base_Widget {
 					?>
 				</div>
 
+				<?php do_action( 'login_form' ); ?>
+
 				<?php if ( 'yes' === $settings['show_remember_me'] ) : ?>
 					<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
 						<label for="elementor-login-remember-me">

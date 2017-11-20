@@ -223,12 +223,14 @@ class NotificationArea extends Widget_Base {
 					echo '</div>';
 				}
 			} else {
+				$wbcom_ele_login_url = apply_filters( 'wbcom_ele_notification_login_url', wp_login_url() );
+				$wbcom_ele_register_url = apply_filters( 'wbcom_ele_notification_registration_url', wp_registration_url() );
 				?>
-				<a href="<?php echo wp_login_url(); ?>" class="btn-login"><?php _e( 'Login', 'reign' ); ?></a>
+				<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login"><?php _e( 'Login', 'reign' ); ?></a>
 				<?php
 				if ( get_option( 'users_can_register' ) ) {
 					?>
-					<span class="sep">|</span><a href="<?php echo wp_registration_url(); ?>" class="btn-register"><?php _e( 'Register', 'reign' ); ?></a>
+					<span class="sep">|</span><a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register"><?php _e( 'Register', 'reign' ); ?></a>
 					<?php
 				}
 			}

@@ -59,9 +59,10 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 
 		// add the first and only post
 		$post_data_header = array(
+			'post_title' => 'Header' . time(),
 			'post_type'		 => 'reign-elemtr-header',
 			'post_status'	 => 'publish',
-			'post_author'	 => 1
+			'post_author'	 => get_current_user_id()
 		);
 		$posts = get_posts( $post_data_header );
 		if ( count( $posts ) == 0 ) { //check if posts exists
@@ -69,9 +70,10 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 		}
 
 		$post_data_footer = array(
+			'post_title' => 'Footer' . time(),
 			'post_type'		 => 'reign-elemtr-footer',
 			'post_status'	 => 'publish',
-			'post_author'	 => 1
+			'post_author'	 => get_current_user_id()
 		);
 		$posts = get_posts( $post_data_footer );
 		if ( count( $posts ) == 0 ) { //check if posts exists
