@@ -1,2 +1,26 @@
-# wb-elementor-addon
-Essential plugin for Wbcom Themes
+=== Wbcom Essential ===
+Contributors: wbcomdesigns
+Donate link: https://wbcomdesigns.com/contact/
+Tags: Theme Addon plugin for Wbcom Designs
+Requires at least: 4.0
+Tested up to: 4.9
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Required plugin for Wbcom Designs Theme
+== Description ==
+It will add aditional feature for Elementor to enhance the theme features.
+
+== Installation ==
+
+1. Upload `wbcom-essential` to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+
+== Frequently Asked Questions ==
+
+= Is this plugin requires another plugin? =
+This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
+
+== Changelog ==
+= 1.0.0 =
+* first version.
