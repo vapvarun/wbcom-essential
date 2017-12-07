@@ -22,5 +22,11 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+
+= 1.0.1 =
+* multiple header support using elementor is added.
+* multiple footer support using elementor is added.
+* multiple topbar support using elementor is added.
+
 = 1.0.0 =
 * first version.

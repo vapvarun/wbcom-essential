@@ -96,20 +96,22 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 			'public'				 => true,
 			'rewrite'				 => false,
 			'show_ui'				 => true,
-			'show_in_menu'			 => false,
+			// 'show_in_menu'			 => false,
+			'show_in_menu'			=>	'admin.php?page=reign-options',
 			'show_in_nav_menus'		 => false,
 			'exclude_from_search'	 => true,
 			'capability_type'		 => 'post',
-			'capabilities'			 => array(
-				'create_posts'			 => 'do_not_allow',
-				'delete_published_posts' => 'do_not_allow',
-				'delete_private_posts'	 => 'do_not_allow',
-				'delete_posts'			 => 'do_not_allow',
-			),
-			'map_meta_cap'			 => true,
+			// 'capabilities'			 => array(
+			// 	'create_posts'			 => 'do_not_allow',
+			// 	'delete_published_posts' => 'do_not_allow',
+			// 	'delete_private_posts'	 => 'do_not_allow',
+			// 	'delete_posts'			 => 'do_not_allow',
+			// ),
+			// 'map_meta_cap'			 => true,
 			'hierarchical'			 => false,
 			'menu_icon'				 => 'dashicons-editor-kitchensink',
-			'supports'				 => array( 'elementor' ),
+			// 'supports'				 => array( 'elementor' ),
+			'supports'				 => array( 'elementor', 'title' ),
 		);
 
 		register_post_type( 'reign-elemtr-header', $args );
@@ -130,20 +132,22 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 			'public'				 => true,
 			'rewrite'				 => false,
 			'show_ui'				 => true,
-			'show_in_menu'			 => false,
+			// 'show_in_menu'			 => false,
+			'show_in_menu'			=>	'admin.php?page=reign-options',
 			'show_in_nav_menus'		 => false,
 			'exclude_from_search'	 => true,
 			'capability_type'		 => 'post',
-			'capabilities'			 => array(
-				'create_posts'			 => 'do_not_allow',
-				'delete_published_posts' => 'do_not_allow',
-				'delete_private_posts'	 => 'do_not_allow',
-				'delete_posts'			 => 'do_not_allow',
-			),
-			'map_meta_cap'			 => true,
+			// 'capabilities'			 => array(
+			// 	'create_posts'			 => 'do_not_allow',
+			// 	'delete_published_posts' => 'do_not_allow',
+			// 	'delete_private_posts'	 => 'do_not_allow',
+			// 	'delete_posts'			 => 'do_not_allow',
+			// ),
+			// 'map_meta_cap'			 => true,
 			'hierarchical'			 => false,
 			'menu_icon'				 => 'dashicons-editor-kitchensink',
-			'supports'				 => array( 'elementor' ),
+			// 'supports'				 => array( 'elementor' ),
+			'supports'				 => array( 'elementor', 'title' ),
 		);
 
 		register_post_type( 'reign-elemtr-footer', $args );

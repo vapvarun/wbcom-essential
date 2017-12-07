@@ -44,20 +44,35 @@ class WBCOM_Elementor_Global_Header_Footer {
 		// add_action( 'init', array( $this, 'header_posttype' ) );
 		// add_action( 'init', array( $this, 'footer_posttype' ) );
 		add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 50 );
-		add_action( 'add_meta_boxes', array( $this, 'ehf_register_metabox' ) );
-		add_action( 'save_post', array( $this, 'ehf_save_meta' ) );
+		// add_action( 'add_meta_boxes', array( $this, 'ehf_register_metabox' ) );
+		// add_action( 'save_post', array( $this, 'ehf_save_meta' ) );
 		add_action( 'template_redirect', array( $this, 'block_template_frontend' ) );
 		add_filter( 'single_template', array( $this, 'load_canvas_template' ) );
-		$header_id	 = self::get_settings( 'type_header', '' );
-		$footer_id	 = self::get_settings( 'type_footer', '' );
-		if ( '' !== $header_id ) {
-			add_action( 'template_redirect', array( $this, 'wbcom_setup_header' ), 10 );
-			add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ) );
-		}
-		if ( '' !== $footer_id ) {
-			add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
-			add_action( 'wbcom_footer', array( $this, 'add_footer_markup' ) );
-		}
+		
+		// $header_id	 = self::get_settings( 'type_header', '' );
+		// $footer_id	 = self::get_settings( 'type_footer', '' );
+		
+		// if ( '' !== $header_id ) {
+		// 	add_action( 'template_redirect', array( $this, 'wbcom_setup_header' ), 10 );
+		// 	add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ) );
+		// }
+		// if ( '' !== $footer_id ) {
+		// 	add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
+		// 	add_action( 'wbcom_footer', array( $this, 'add_footer_markup' ) );
+		// }
+
+		add_action( 'template_redirect', array( $this, 'wbcom_setup_header' ), 10 );
+		add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ) );
+
+		/**
+		* support added for topbar
+		* @since 1.0.1
+		*/
+		add_action( 'wbcom_before_masthead', array( $this, 'add_header_topbar_markup' ), 10 );
+
+		add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
+		add_action( 'wbcom_footer', array( $this, 'add_footer_markup' ) );
+
 		add_action( 'add_meta_boxes', array( $this, 'wbcom_default_page_template' ), 1 );
 		add_action( 'admin_head', array( $this, 'custom_menu_items' ), 1 );
 	}
@@ -156,28 +171,45 @@ class WBCOM_Elementor_Global_Header_Footer {
 	public function register_admin_menu() {
 		$header_pid	 = $this->get_hf_post_id( 'reign-elemtr-header' );
 		$footer_pid	 = $this->get_hf_post_id( 'reign-elemtr-footer' );
+
 		add_submenu_page(
-		'reign-settings', __( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), __( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 'manage_options', basename( get_edit_post_link( $header_pid ) )
+			'reign-settings',
+			__( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 
+			__( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'manage_options',
+			'edit.php?post_type=reign-elemtr-header'
 		);
+
 		add_submenu_page(
-		'reign-settings', __( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), __( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 'manage_options', basename( get_edit_post_link( $footer_pid ) )
+			'reign-settings',
+			__( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 
+			__( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'manage_options',
+			'edit.php?post_type=reign-elemtr-footer'
 		);
+
+		// add_submenu_page(
+		// 'reign-settings', __( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), __( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 'manage_options', basename( get_edit_post_link( $header_pid ) )
+		// );
+		// add_submenu_page(
+		// 'reign-settings', __( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), __( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 'manage_options', basename( get_edit_post_link( $footer_pid ) )
+		// );
 	}
 	/**
 	 * Register meta box(es).
 	 */
-	function ehf_register_metabox() {
-		add_meta_box( 'ehf-meta-box', __( 'Elementor options', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), array(
-			$this,
-			'efh_metabox_render',
-		), array( 'reign-elemtr-header', 'reign-elemtr-footer' ), 'normal', 'high' );
-	}
+	// function ehf_register_metabox() {
+	// 	add_meta_box( 'ehf-meta-box', __( 'Elementor options', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), array(
+	// 		$this,
+	// 		'efh_metabox_render',
+	// 	), array( 'reign-elemtr-header', 'reign-elemtr-footer' ), 'normal', 'high' );
+	// }
 	/**
 	 * Render Meta field.
 	 *
 	 * @param  POST $post Current post object which is being displayed.
 	 */
-	function efh_metabox_render( $post ) {
+	function ___________efh_metabox_render( $post ) {
 		$values		 = get_post_custom( $post->ID );
 		$checked	 = isset( $values[ 'ehf_global' ] ) ? esc_attr( $values[ 'ehf_global' ][ 0 ] ) : '';
 		// We'll use this nonce field later on when saving.
@@ -196,25 +228,25 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 *
 	 * @return Void
 	 */
-	public function ehf_save_meta( $post_id ) {
-		// Bail if we're doing an auto save.
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-			return;
-		}
-		// if our nonce isn't there, or we can't verify it, bail.
-		if ( ! isset( $_POST[ 'ehf_meta_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'ehf_meta_nonce' ], 'ehf_meta_nonce' ) ) {
-			return;
-		}
-		// if our current user can't edit this post, bail.
-		if ( ! current_user_can( 'edit_posts' ) ) {
-			return;
-		}
-		if ( isset( $_POST[ 'ehf_global' ] ) ) {
-			update_post_meta( $post_id, 'ehf_global', esc_attr( $_POST[ 'ehf_global' ] ) );
-		} else {
-			update_post_meta( $post_id, 'ehf_global', '' );
-		}
-	}
+	// public function ehf_save_meta( $post_id ) {
+	// 	// Bail if we're doing an auto save.
+	// 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+	// 		return;
+	// 	}
+	// 	// if our nonce isn't there, or we can't verify it, bail.
+	// 	if ( ! isset( $_POST[ 'ehf_meta_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'ehf_meta_nonce' ], 'ehf_meta_nonce' ) ) {
+	// 		return;
+	// 	}
+	// 	// if our current user can't edit this post, bail.
+	// 	if ( ! current_user_can( 'edit_posts' ) ) {
+	// 		return;
+	// 	}
+	// 	if ( isset( $_POST[ 'ehf_global' ] ) ) {
+	// 		update_post_meta( $post_id, 'ehf_global', esc_attr( $_POST[ 'ehf_global' ] ) );
+	// 	} else {
+	// 		update_post_meta( $post_id, 'ehf_global', '' );
+	// 	}
+	// }
 	/**
 	 * Convert the Template name to be added in the notice.
 	 *
@@ -277,14 +309,32 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Prints the Header content.
 	 */
 	public function get_header_content() {
-		$header_id = $this->get_settings( 'type_header', '' );
+		// $header_id = $this->get_settings( 'type_header', '' );
+		global $post;
+		$reign_ele_header = get_post_meta( $post->ID , 'reign_ele_header', true );
+		if( !empty( $reign_ele_header ) && ( $reign_ele_header != "-1" ) ) {
+			$header_id = $reign_ele_header;
+		}
+		else {
+			$settings = get_option( 'reign_options', array() );
+			$header_id = isset( $settings[ 'reign_pages' ][ 'global_ele_header' ] ) ? $settings[ 'reign_pages' ][ 'global_ele_header' ] : '0';
+		}
 		echo self::$elementor_frontend->get_builder_content_for_display( $header_id );
 	}
 	/**
 	 * Prints the Footer content.
 	 */
 	public function get_footer_content() {
-		$footer_id = $this->get_settings( 'type_footer', '' );
+		// $footer_id = $this->get_settings( 'type_footer', '' );
+		global $post;
+		$reign_ele_footer = get_post_meta( $post->ID , 'reign_ele_footer', true );
+		if( !empty( $reign_ele_footer ) && ( $reign_ele_footer != "-1" ) ) {
+			$footer_id = $reign_ele_footer;
+		}
+		else {
+			$settings = get_option( 'reign_options', array() );
+			$footer_id = isset( $settings[ 'reign_pages' ][ 'global_ele_footer' ] ) ? $settings[ 'reign_pages' ][ 'global_ele_footer' ] : '0';
+		}
 		echo "<div class='footer-width-fixer'>";
 		echo self::$elementor_frontend->get_builder_content_for_display( $footer_id );
 		echo '</div>';
@@ -306,6 +356,29 @@ class WBCOM_Elementor_Global_Header_Footer {
 		</header>
 		<?php
 	}
+
+	/**
+	 * Display header topbar markup.
+	 */
+	public function add_header_topbar_markup() {
+		?>
+		<div id="wbcom-header-topbar">
+			<?php
+			global $post;
+			$reign_ele_topbar = get_post_meta( $post->ID , 'reign_ele_topbar', true );
+			if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar != "-1" ) ) {
+				$topbar_id = $reign_ele_topbar;
+			}
+			else {
+				$settings = get_option( 'reign_options', array() );
+				$topbar_id = isset( $settings[ 'reign_pages' ][ 'global_ele_topbar' ] ) ? $settings[ 'reign_pages' ][ 'global_ele_topbar' ] : '0';
+			}
+			echo self::$elementor_frontend->get_builder_content_for_display( $topbar_id );
+			?>
+		</div>
+		<?php
+	}
+
 	/**
 	 * Disable footer from the theme.
 	 */
