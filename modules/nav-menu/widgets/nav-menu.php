@@ -307,7 +307,7 @@ class Nav_Menu extends Widget_Base {
 
 		$this->add_control(
 		'submenu_height', [
-			'label'			 => __( 'Submenu Height (px)', 'reign' ),
+			'label'			 => __( 'Submenu Height', 'reign' ),
 			'type'			 => Controls_Manager::NUMBER,
 			'default'		 => 30,
 		]
@@ -347,8 +347,30 @@ class Nav_Menu extends Widget_Base {
 
 		if ( ! empty( $settings[ 'menu_location' ] ) ) {
 
+			$menu_height = isset( $settings[ 'menu_height' ] ) ? $settings[ 'menu_height' ] : 90;
+			$submenu_height = isset( $settings[ 'submenu_height' ] ) ? $settings[ 'submenu_height' ] : 90;
+
 			ob_start();
 			?>
+			<style type="text/css">
+				.primary-menu > li > a,
+				.header-right .search-wrap,
+				.rg-icon-wrap,
+				.elementor-branding,
+				.user-link-wrap {
+					height: <?php echo $menu_height; ?>px;
+					line-height: <?php echo $menu_height; ?>px;
+				}
+
+				.header-right .rg-search-form-wrap,
+				.user-profile-menu,
+				.primary-menu .children, .primary-menu .sub-menu,
+				.user-profile-menu,
+				.user-notifications .rg-dropdown, .user-notifications:hover .rg-dropdown {
+					top: <?php echo $submenu_height; ?>px;
+				}
+			</style>
+
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<span id="nav-icon1" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<span></span>
