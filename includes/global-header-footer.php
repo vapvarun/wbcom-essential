@@ -361,22 +361,20 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Display header topbar markup.
 	 */
 	public function add_header_topbar_markup() {
-		?>
-		<div id="wbcom-header-topbar">
-			<?php
-			global $post;
-			$reign_ele_topbar = get_post_meta( $post->ID , 'reign_ele_topbar', true );
-			if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar != "-1" ) ) {
-				$topbar_id = $reign_ele_topbar;
-			}
-			else {
-				$settings = get_option( 'reign_options', array() );
-				$topbar_id = isset( $settings[ 'reign_pages' ][ 'global_ele_topbar' ] ) ? $settings[ 'reign_pages' ][ 'global_ele_topbar' ] : '0';
-			}
-			echo self::$elementor_frontend->get_builder_content_for_display( $topbar_id );
-			?>
-		</div>
-		<?php
+		global $post;
+		$reign_ele_topbar = get_post_meta( $post->ID , 'reign_ele_topbar', true );
+		if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar != "-1" ) ) {
+			$topbar_id = $reign_ele_topbar;
+		}
+		else {
+			$settings = get_option( 'reign_options', array() );
+			$topbar_id = isset( $settings[ 'reign_pages' ][ 'global_ele_topbar' ] ) ? $settings[ 'reign_pages' ][ 'global_ele_topbar' ] : '0';
+		}
+		if ( !empty( $topbar_id ) && ( $topbar_id != "-1" ) ) {
+			echo '<div id="wbcom-header-topbar">';
+				echo self::$elementor_frontend->get_builder_content_for_display( $topbar_id );
+			echo '</div>';
+		}
 	}
 
 	/**

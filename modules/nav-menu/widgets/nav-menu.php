@@ -289,6 +289,32 @@ class Nav_Menu extends Widget_Base {
 
 		$this->end_controls_section();
 
+		/* Height Management Section */
+		$this->start_controls_section(
+		'section_reign_menu_height', [
+			'label'	 => __( 'Height Management', 'reign' ),
+			'tab'	 => Controls_Manager::TAB_STYLE,
+		]
+		);
+
+		$this->add_control(
+		'menu_height', [
+			'label'			 => __( 'Menu Height (px)', 'reign' ),
+			'type'			 => Controls_Manager::NUMBER,
+			'default'		 => 30,
+		]
+		);
+
+		$this->add_control(
+		'submenu_height', [
+			'label'			 => __( 'Submenu Height (px)', 'reign' ),
+			'type'			 => Controls_Manager::NUMBER,
+			'default'		 => 30,
+		]
+		);
+
+		$this->end_controls_section();
+
 		// $this->start_controls_section(
 		// 'section_icon', [
 		// 	'label' => __( 'Search Box', 'elementor' ),
