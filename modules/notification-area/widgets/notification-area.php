@@ -105,6 +105,28 @@ class NotificationArea extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'icon_color', [
+				'label'		 => __( 'Icon Color', 'reign' ),
+				'type'		 => \Elementor\Controls_Manager::COLOR,
+				'default'	 => '#ffffff',
+				'selectors'	 => [
+					'{{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-icon-wrap' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'icon_hover_color', [
+				'label'		 => __( 'Icon Hover Color', 'reign' ),
+				'type'		 => \Elementor\Controls_Manager::COLOR,
+				'default'	 => '#ffffff',
+				'selectors'	 => [
+					'{{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-icon-wrap:hover' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
 		$this->end_controls_section();
 
 		do_action( 'reign_wp_menu_elementor_controls', $this );

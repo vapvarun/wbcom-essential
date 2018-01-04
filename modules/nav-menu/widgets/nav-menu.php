@@ -88,12 +88,23 @@ class Nav_Menu extends Widget_Base {
 
 
 		$this->add_control(
-		'menu_location', [
-			'label'		 => esc_html__( 'Choose Menu', 'reign' ),
-			'type'		 => Controls_Manager::SELECT,
-			'default'	 => '',
-			'options'	 => $menu_select,
-		]
+			'menu_location', [
+				'label'		 => esc_html__( 'Choose Menu', 'reign' ),
+				'type'		 => Controls_Manager::SELECT,
+				'default'	 => '',
+				'options'	 => $menu_select,
+			]
+		);
+
+		$this->add_control(
+			'menu_toggle_color', [
+				'label'		 => __( 'Menu Toggle Color', 'reign' ),
+				'type'		 => \Elementor\Controls_Manager::COLOR,
+				'default'	 => '#ffffff',
+				'selectors'	 => [
+					'{{WRAPPER}} #site-navigation.main-navigation #nav-icon1 span' => 'background-color: {{VALUE}};',
+				],
+			]
 		);
 
 		$this->end_controls_section();
@@ -352,7 +363,7 @@ class Nav_Menu extends Widget_Base {
 
 			ob_start();
 			?>
-			<style type="text/css">
+			<!-- <style type="text/css">
 				.primary-menu > li > a,
 				.header-right .search-wrap,
 				.rg-icon-wrap,
@@ -369,7 +380,7 @@ class Nav_Menu extends Widget_Base {
 				.user-notifications .rg-dropdown, .user-notifications:hover .rg-dropdown {
 					top: <?php echo $submenu_height; ?>px;
 				}
-			</style>
+			</style> -->
 
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<span id="nav-icon1" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
