@@ -44,10 +44,12 @@ class WBCOM_Elementor_Global_Header_Footer {
 		// add_action( 'init', array( $this, 'header_posttype' ) );
 		// add_action( 'init', array( $this, 'footer_posttype' ) );
 		add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 50 );
-		// add_action( 'add_meta_boxes', array( $this, 'ehf_register_metabox' ) );
-		// add_action( 'save_post', array( $this, 'ehf_save_meta' ) );
+		
 		add_action( 'template_redirect', array( $this, 'block_template_frontend' ) );
 		add_filter( 'single_template', array( $this, 'load_canvas_template' ) );
+
+		add_action( 'add_meta_boxes', array( $this, 'ehf_register_metabox' ) );
+		add_action( 'save_post', array( $this, 'ehf_save_meta' ) );
 		
 		// $header_id	 = self::get_settings( 'type_header', '' );
 		// $footer_id	 = self::get_settings( 'type_footer', '' );
@@ -174,16 +176,16 @@ class WBCOM_Elementor_Global_Header_Footer {
 
 		add_submenu_page(
 			'reign-settings',
-			__( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 
-			__( 'Global Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			__( 'Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 
+			__( 'Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
 			'manage_options',
 			'edit.php?post_type=reign-elemtr-header'
 		);
 
 		add_submenu_page(
 			'reign-settings',
-			__( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), 
-			__( 'Global Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			__( 'Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			__( 'Footer', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
 			'manage_options',
 			'edit.php?post_type=reign-elemtr-footer'
 		);
@@ -198,28 +200,32 @@ class WBCOM_Elementor_Global_Header_Footer {
 	/**
 	 * Register meta box(es).
 	 */
-	// function ehf_register_metabox() {
-	// 	add_meta_box( 'ehf-meta-box', __( 'Elementor options', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), array(
-	// 		$this,
-	// 		'efh_metabox_render',
-	// 	), array( 'reign-elemtr-header', 'reign-elemtr-footer' ), 'normal', 'high' );
-	// }
+	function ehf_register_metabox() {
+		add_meta_box( 'ehf-meta-box', __( 'Header or Topbar ?', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), array(
+			$this,
+			'efh_metabox_render',
+		), array( 'reign-elemtr-header' ), 'side', 'default' );
+	}
 	/**
 	 * Render Meta field.
 	 *
 	 * @param  POST $post Current post object which is being displayed.
 	 */
-	function ___________efh_metabox_render( $post ) {
-		$values		 = get_post_custom( $post->ID );
-		$checked	 = isset( $values[ 'ehf_global' ] ) ? esc_attr( $values[ 'ehf_global' ][ 0 ] ) : '';
+	function efh_metabox_render( $post ) {
+		$selected_value = get_post_meta( $post->ID, 'reign_ele_header_topbar', true );
+		$options_array = array(
+			'header'	=> __( 'Header', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'topbar'	=> __( 'Topbar', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+		);
+		echo '<select name="reign_ele_header_topbar">';
+			foreach ( $options_array as $key => $value ) {
+				echo '<option value="' . $key  . '"' . selected( $selected = $selected_value, $current = $key, $echo = true ) . '>'. $value .'</option>';
+			}
+		echo '</select>';
+		// $values		 = get_post_custom( $post->ID );
+		// $checked	 = isset( $values[ 'ehf_global' ] ) ? esc_attr( $values[ 'ehf_global' ][ 0 ] ) : '';
 		// We'll use this nonce field later on when saving.
 		wp_nonce_field( 'ehf_meta_nonce', 'ehf_meta_nonce' );
-		?>
-		<p>
-			<label for="ehf_global"><?php _e( 'Make this Global ', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ); ?></label>&nbsp;&nbsp;
-			<input type="checkbox" name="ehf_global" value="yes" <?php checked( $checked ,'yes', true ); ?> />
-		</p>
-		<?php
 	}
 	/**
 	 * Save meta field.
@@ -228,25 +234,23 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 *
 	 * @return Void
 	 */
-	// public function ehf_save_meta( $post_id ) {
-	// 	// Bail if we're doing an auto save.
-	// 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-	// 		return;
-	// 	}
-	// 	// if our nonce isn't there, or we can't verify it, bail.
-	// 	if ( ! isset( $_POST[ 'ehf_meta_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'ehf_meta_nonce' ], 'ehf_meta_nonce' ) ) {
-	// 		return;
-	// 	}
-	// 	// if our current user can't edit this post, bail.
-	// 	if ( ! current_user_can( 'edit_posts' ) ) {
-	// 		return;
-	// 	}
-	// 	if ( isset( $_POST[ 'ehf_global' ] ) ) {
-	// 		update_post_meta( $post_id, 'ehf_global', esc_attr( $_POST[ 'ehf_global' ] ) );
-	// 	} else {
-	// 		update_post_meta( $post_id, 'ehf_global', '' );
-	// 	}
-	// }
+	public function ehf_save_meta( $post_id ) {
+		// Bail if we're doing an auto save.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		// if our nonce isn't there, or we can't verify it, bail.
+		if ( ! isset( $_POST[ 'ehf_meta_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'ehf_meta_nonce' ], 'ehf_meta_nonce' ) ) {
+			return;
+		}
+		// if our current user can't edit this post, bail.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return;
+		}
+		if ( isset( $_POST[ 'reign_ele_header_topbar' ] ) ) {
+			update_post_meta( $post_id, 'reign_ele_header_topbar', esc_attr( $_POST[ 'reign_ele_header_topbar' ] ) );
+		}
+	}
 	/**
 	 * Convert the Template name to be added in the notice.
 	 *

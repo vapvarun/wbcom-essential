@@ -87,8 +87,8 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 	public function header_posttype() {
 
 		$labels = array(
-			'name'		 => __( 'Global Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-			'edit_item'	 => __( 'Edit Global Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'name'		 => __( 'Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'edit_item'	 => __( 'Edit Header Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
 		);
 
 		$args = array(
@@ -123,8 +123,8 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 	public function footer_posttype() {
 
 		$labels = array(
-			'name'		 => __( 'Global Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-			'edit_item'	 => __( 'Edit Global Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'name'		 => __( 'Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'edit_item'	 => __( 'Edit Footer Template', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
 		);
 
 		$args = array(
