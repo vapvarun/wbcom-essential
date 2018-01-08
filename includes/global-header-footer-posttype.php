@@ -46,12 +46,25 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 	private function __construct() {
 		add_action( 'init', array( $this, 'header_posttype' ) );
 		add_action( 'init', array( $this, 'footer_posttype' ) );
+
+		add_filter( 'the_content_export', array( $this, 'remove_content' ), 10, 1 );
+	}
+
+	/**
+	 * Removing content for Elementor Header and Footer
+	 */
+	public function remove_content( $post_content ) {
+		global $post;
+		if( ( $post->post_type == 'reign-elemtr-header' ) || ( $post->post_type == 'reign-elemtr-footer' ) ) {
+			$post_content = '';
+		}
+		return $post_content;
 	}
 
 	/**
 	 * Add default posts when plugin is activated
 	 */
-	function add_header_footer_post() {
+	public function add_header_footer_post() {
 
 		// on activation first regsiter the post type
 		$this->header_posttype();
