@@ -47,13 +47,24 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 		add_action( 'init', array( $this, 'header_posttype' ) );
 		add_action( 'init', array( $this, 'footer_posttype' ) );
 
-		add_filter( 'the_content_export', array( $this, 'remove_content' ), 10, 1 );
+		add_filter( 'the_content_export', array( $this, 'remove_content_while_exporting' ), 10, 1 );
+		add_filter( 'wp_insert_post_data', array( $this, 'remove_content_while_saving' ), 10, 2 );
 	}
 
 	/**
-	 * Removing content for Elementor Header and Footer
+	 * Removing content for Elementor Header and Footer while saving data
 	 */
-	public function remove_content( $post_content ) {
+	public function remove_content_while_saving( $data = array(), $post_args = array() ) {
+		if( ( $data['post_type'] == 'reign-elemtr-header' ) || ( $data['post_type'] == 'reign-elemtr-footer' ) ) {
+			$data['post_content'] = '';
+		}
+		return $data;
+	}
+
+	/**
+	 * Removing content for Elementor Header and Footer while exporting data
+	 */
+	public function remove_content_while_exporting( $post_content ) {
 		global $post;
 		if( ( $post->post_type == 'reign-elemtr-header' ) || ( $post->post_type == 'reign-elemtr-footer' ) ) {
 			$post_content = '';
