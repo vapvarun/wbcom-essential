@@ -23,6 +23,9 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 
+= 1.0.3 =
+* Fix - Remove content area from header section
+
 = 1.0.2 =
 * Enhancement - Multiple header support
 * Enhancement - Multiple topbar support
