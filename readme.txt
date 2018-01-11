@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.0.1
+Stable tag: 4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,12 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+
+= 1.0.2 =
+* Enhancement - Multiple header support
+* Enhancement - Multiple topbar support
+* Enhancement - theme options for global header and top header
+* Enhancement - added option for each page to allow choose top header and topbar to override global parameters.
 
 = 1.0.1 =
 * multiple header support using elementor is added.
