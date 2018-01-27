@@ -49,6 +49,83 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 
 		add_filter( 'the_content_export', array( $this, 'remove_content_while_exporting' ), 10, 1 );
 		add_filter( 'wp_insert_post_data', array( $this, 'remove_content_while_saving' ), 10, 2 );
+
+		add_action( 'init', array( $this, 'export_elementor_dummy_data' ) );
+	}
+
+	public function export_elementor_dummy_data() {
+		return;
+		$export_data = array();
+		$args = array(
+			'posts_per_page'   => -1,
+			'orderby'          => 'date',
+			'order'            => 'DESC',
+			'post_type'        => 'reign-elemtr-header',
+			'post_status'      => 'publish',
+		);
+		$posts_array = get_posts( $args );
+		foreach ( $posts_array as $key => $value ) {
+			$meta_data = array();
+			$_meta_data = get_post_meta( $value->ID, '', true );
+			foreach ( $_meta_data as $meta_key => $meta_value ) {
+				$meta_data[$meta_key] = isset( $meta_value[0] ) ? $meta_value[0] : '';
+			}
+			$export_data[] = array(
+				'post_title'	=>	$value->post_title,
+				'post_content'	=>	'',
+				'post_type'        => 'reign-elemtr-header',
+				'post_meta'	=>	$meta_data,
+			);
+		}
+		$args = array(
+			'posts_per_page'   => -1,
+			'orderby'          => 'date',
+			'order'            => 'DESC',
+			'post_type'        => 'reign-elemtr-footer',
+			'post_status'      => 'publish',
+		);
+		$posts_array = get_posts( $args );
+		foreach ( $posts_array as $key => $value ) {
+			$meta_data = array();
+			$_meta_data = get_post_meta( $value->ID, '', true );
+			foreach ( $_meta_data as $meta_key => $meta_value ) {
+				$meta_data[$meta_key] = isset( $meta_value[0] ) ? $meta_value[0] : '';
+			}
+			$export_data[] = array(
+				'post_title'	=>	$value->post_title,
+				'post_content'	=>	'',
+				'post_type'        => 'reign-elemtr-footer',
+				'post_meta'	=>	$meta_data,
+			);
+		}
+		$export_data = json_encode( $export_data, JSON_PRETTY_PRINT );
+		echo ($export_data);
+	}
+
+	public function import_elementor_dummy_data() {
+		$json_string = include WBCOM_ELEMENTOR_ADDONS_PATH . 'dummy-data/reign.php';
+		$dummy_data = json_decode( $json_string, true );
+		foreach ( $dummy_data as $key => $value ) {
+			$existing_post_info = get_page_by_title( $page_title = $value['post_title'], $output = 'OBJECT', $post_type = 'reign-elemtr-header' );
+			if( is_null( $existing_post_info ) ) {
+				$existing_post_info = get_page_by_title( $page_title = $value['post_title'], $output = 'OBJECT', $post_type = 'reign-elemtr-footer' );
+			}
+			
+			if( is_null( $existing_post_info ) ) {
+				$postarr = array(
+					'post_title'	=>	$value['post_title'],
+					'post_content'	=>	$value['post_content'],
+					'post_type'        => $value['post_type'],
+					'post_status'      => 'publish'
+				);
+				$post_id = wp_insert_post( $postarr );
+				if( $post_id ) {
+					foreach ( $value['post_meta'] as $meta_key => $meta_value ) {
+						update_post_meta( $post_id, $meta_key, $meta_value );
+					}
+				}
+			}
+		}
 	}
 
 	/**
