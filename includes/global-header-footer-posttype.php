@@ -53,55 +53,6 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 		add_action( 'init', array( $this, 'export_elementor_dummy_data' ) );
 	}
 
-	public function export_elementor_dummy_data() {
-		return;
-		$export_data = array();
-		$args = array(
-			'posts_per_page'   => -1,
-			'orderby'          => 'date',
-			'order'            => 'DESC',
-			'post_type'        => 'reign-elemtr-header',
-			'post_status'      => 'publish',
-		);
-		$posts_array = get_posts( $args );
-		foreach ( $posts_array as $key => $value ) {
-			$meta_data = array();
-			$_meta_data = get_post_meta( $value->ID, '', true );
-			foreach ( $_meta_data as $meta_key => $meta_value ) {
-				$meta_data[$meta_key] = isset( $meta_value[0] ) ? $meta_value[0] : '';
-			}
-			$export_data[] = array(
-				'post_title'	=>	$value->post_title,
-				'post_content'	=>	'',
-				'post_type'        => 'reign-elemtr-header',
-				'post_meta'	=>	$meta_data,
-			);
-		}
-		$args = array(
-			'posts_per_page'   => -1,
-			'orderby'          => 'date',
-			'order'            => 'DESC',
-			'post_type'        => 'reign-elemtr-footer',
-			'post_status'      => 'publish',
-		);
-		$posts_array = get_posts( $args );
-		foreach ( $posts_array as $key => $value ) {
-			$meta_data = array();
-			$_meta_data = get_post_meta( $value->ID, '', true );
-			foreach ( $_meta_data as $meta_key => $meta_value ) {
-				$meta_data[$meta_key] = isset( $meta_value[0] ) ? $meta_value[0] : '';
-			}
-			$export_data[] = array(
-				'post_title'	=>	$value->post_title,
-				'post_content'	=>	'',
-				'post_type'        => 'reign-elemtr-footer',
-				'post_meta'	=>	$meta_data,
-			);
-		}
-		$export_data = json_encode( $export_data, JSON_PRETTY_PRINT );
-		echo ($export_data);
-	}
-
 	public function import_elementor_dummy_data() {
 		$json_string = include WBCOM_ELEMENTOR_ADDONS_PATH . 'dummy-data/reign.php';
 		$dummy_data = json_decode( $json_string, true );
@@ -123,7 +74,36 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 					foreach ( $value['post_meta'] as $meta_key => $meta_value ) {
 						update_post_meta( $post_id, $meta_key, $meta_value );
 					}
+
+					/** setting up default header/footer for first time installation :: start */
+					$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
+					$settings = get_option( $theme_slug . '_options', array() );
+
+					$selected_value = get_post_meta( $post_id, 'reign_ele_header_topbar', true );
+					
+					if( ( $postarr['post_type'] == 'reign-elemtr-header' ) && ( $selected_value == 'header' ) ) {
+						$header_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] : '0';
+						if( $header_id == '0' ) {
+							$settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] = $post_id;
+						}
+					}
+					else if( ( $postarr['post_type'] == 'reign-elemtr-header' ) && ( $selected_value == 'topbar' ) ) {
+						$topbar_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] : '0';
+						if( $topbar_id == '0' ) {
+							$settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] = $post_id;
+						}
+					}
+					else if( ( $postarr['post_type'] == 'reign-elemtr-footer' ) ) {
+						$footer_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] : '0';
+						if( $footer_id == '0' ) {
+							$settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] = $post_id;
+						}
+					}
+
+					update_option( $theme_slug . '_options', $settings );
+					/** setting up default header/footer for first time installation :: end */
 				}
+
 			}
 		}
 	}
