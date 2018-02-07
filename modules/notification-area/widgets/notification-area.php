@@ -137,6 +137,12 @@ class NotificationArea extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings();
+		if( !isset( $settings['user_message_bell_enabled'] ) ) {
+			$settings['user_message_bell_enabled'] = 'no';
+		}
+		if( !isset( $settings['notification_bell_enabled'] ) ) {
+			$settings['notification_bell_enabled'] = 'no';
+		}
 		ob_start();
 		?>
 

@@ -53,7 +53,9 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 
 	public function import_elementor_dummy_data() {
 		$json_string = include WBCOM_ELEMENTOR_ADDONS_PATH . 'dummy-data/reign.php';
+		$json_string = strip_tags( $json_string );
 		$dummy_data = json_decode( $json_string, true );
+		
 		foreach ( $dummy_data as $key => $value ) {
 			$existing_post_info = get_page_by_title( $page_title = $value['post_title'], $output = 'OBJECT', $post_type = 'reign-elemtr-header' );
 			if( is_null( $existing_post_info ) ) {
