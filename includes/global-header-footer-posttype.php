@@ -49,8 +49,6 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 
 		add_filter( 'the_content_export', array( $this, 'remove_content_while_exporting' ), 10, 1 );
 		add_filter( 'wp_insert_post_data', array( $this, 'remove_content_while_saving' ), 10, 2 );
-
-		add_action( 'init', array( $this, 'export_elementor_dummy_data' ) );
 	}
 
 	public function import_elementor_dummy_data() {
