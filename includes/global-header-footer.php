@@ -318,9 +318,18 @@ class WBCOM_Elementor_Global_Header_Footer {
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
 		global $post;
 		if( $post ) {
-			$reign_ele_header = get_post_meta( $post->ID , $theme_slug . '_ele_header', true );
+			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
+			$reign_ele_header = isset( $wbcom_metabox_data['header_footer']['elementor_header'] ) ? $wbcom_metabox_data['header_footer']['elementor_header'] : '';
+			// $reign_ele_header = get_post_meta( $post->ID , $theme_slug . '_ele_header', true );
 		}
-		if( !empty( $reign_ele_header ) && ( $reign_ele_header != "-1" ) ) {
+		// if( !empty( $reign_ele_header ) && ( $reign_ele_header != "-1" ) ) {
+		// 	$header_id = $reign_ele_header;
+		// }
+		if( !empty( $reign_ele_header ) && ( $reign_ele_header == "-1" ) ) {
+			return;
+		}
+		
+		if( !empty( $reign_ele_header ) && ( $reign_ele_header != "0" ) ) {
 			$header_id = $reign_ele_header;
 		}
 		else {
@@ -337,9 +346,18 @@ class WBCOM_Elementor_Global_Header_Footer {
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
 		global $post;
 		if( $post ) {
-			$reign_ele_footer = get_post_meta( $post->ID , $theme_slug . '_ele_footer', true );
+			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
+			$reign_ele_footer = isset( $wbcom_metabox_data['header_footer']['elementor_footer'] ) ? $wbcom_metabox_data['header_footer']['elementor_footer'] : '';
+			// $reign_ele_footer = get_post_meta( $post->ID , $theme_slug . '_ele_footer', true );
 		}
-		if( !empty( $reign_ele_footer ) && ( $reign_ele_footer != "-1" ) ) {
+		// if( !empty( $reign_ele_footer ) && ( $reign_ele_footer != "-1" ) ) {
+		// 	$footer_id = $reign_ele_footer;
+		// }
+		if( !empty( $reign_ele_footer ) && ( $reign_ele_footer == "-1" ) ) {
+			return;
+		}
+
+		if( !empty( $reign_ele_footer ) && ( $reign_ele_footer != "0" ) ) {
 			$footer_id = $reign_ele_footer;
 		}
 		else {
@@ -375,9 +393,18 @@ class WBCOM_Elementor_Global_Header_Footer {
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
 		global $post;
 		if( $post ) {
-			$reign_ele_topbar = get_post_meta( $post->ID , $theme_slug . '_ele_topbar', true );
+			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
+			$reign_ele_topbar = isset( $wbcom_metabox_data['header_footer']['elementor_topbar'] ) ? $wbcom_metabox_data['header_footer']['elementor_topbar'] : '';
+			// $reign_ele_topbar = get_post_meta( $post->ID , $theme_slug . '_ele_topbar', true );
 		}
-		if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar != "-1" ) ) {
+		// if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar != "-1" ) ) {
+		// 	$topbar_id = $reign_ele_topbar;
+		// }
+		if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar == "-1" ) ) {
+			return;
+		}
+
+		if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar != "0" ) ) {
 			$topbar_id = $reign_ele_topbar;
 		}
 		else {
