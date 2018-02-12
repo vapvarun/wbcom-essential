@@ -372,7 +372,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Disable header from the theme.
 	 */
 	public function wbcom_setup_header() {
-		remove_action( 'wbcom_masthead', 'wbcom_header_masthead' );
+		// remove_action( 'wbcom_masthead', 'wbcom_header_masthead' );
 	}
 	/**
 	 * Display header markup.
