@@ -383,7 +383,7 @@ class Nav_Menu extends Widget_Base {
 			</style> -->
 
 			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<span id="nav-icon1" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+				<span class="menu-toggle wbcom-nav-menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<span></span>
 					<span></span>
 					<span></span>
