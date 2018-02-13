@@ -23,6 +23,12 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 
+= 1.0.4 =
+* Enhancement - Added default headers after plugin activation
+* Fix - Added support for Jobmate
+* Fix - Mobile menu fixes
+* Enhancement - Meta options for custom post type and regular post for layout.
+
 = 1.0.3 =
 * Fix - Remove content area from header section
 
