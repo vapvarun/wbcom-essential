@@ -474,6 +474,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 */
 	function custom_menu_items() {
 		global $parent_file, $submenu_file, $current_screen;
+		if( !$current_screen ) { return; }
 		$screen_id = $current_screen->id;
 		if ( 'reign-elemtr-header' == $screen_id ) {
 			$header_pid	 = $this->get_hf_post_id( 'reign-elemtr-header' );
