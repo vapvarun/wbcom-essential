@@ -356,6 +356,26 @@ class Nav_Menu extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings();
 
+		/* setting default menu in elementor based header */
+		if ( empty( $settings[ 'menu_location' ] ) ) {
+			$menus = wp_get_nav_menus();
+			foreach ( $menus as $menu ) {
+				$settings[ 'menu_location' ] = $menu->term_id;
+				break;
+			}
+		}
+		else if ( is_numeric( $settings[ 'menu_location' ] ) ) {
+			$nav_menu = wp_get_nav_menu_object( $settings[ 'menu_location' ] );
+			if ( !$nav_menu ) {
+				$menus = wp_get_nav_menus();
+				foreach ( $menus as $menu ) {
+					$settings[ 'menu_location' ] = $menu->term_id;
+					break;
+				}
+			}
+		}
+		/* setting default menu in elementor based header */
+
 		if ( ! empty( $settings[ 'menu_location' ] ) ) {
 
 			$menu_height = isset( $settings[ 'menu_height' ] ) ? $settings[ 'menu_height' ] : 90;
