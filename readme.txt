@@ -23,6 +23,10 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 
+= 1.0.5 =
+* Fix - managing nav menu widget
+* Fix - Plugin update path
+
 = 1.0.4 =
 * Enhancement - Added default headers after plugin activation
 * Fix - Added support for Jobmate
