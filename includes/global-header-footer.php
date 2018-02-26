@@ -336,6 +336,20 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$settings = get_option( $theme_slug . '_options', array() );
 			$header_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] : '0';
 		}
+
+		/* code to convert slug to id */
+		$args = array(
+			'name'        => $header_id,
+			'post_type'   => 'reign-elemtr-header',
+			'post_status' => 'publish',
+			'numberposts' => 1
+		);
+		$topbar_posts = get_posts( $args );
+		if( !empty( $topbar_posts ) && is_array( $topbar_posts ) ) {
+			$header_id = $topbar_posts[0]->ID;
+		}
+		/* code to convert slug to id */
+			
 		echo self::$elementor_frontend->get_builder_content_for_display( $header_id );
 	}
 	/**
@@ -364,6 +378,20 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$settings = get_option( $theme_slug . '_options', array() );
 			$footer_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] : '0';
 		}
+
+		/* code to convert slug to id */
+		$args = array(
+			'name'        => $footer_id,
+			'post_type'   => 'reign-elemtr-footer',
+			'post_status' => 'publish',
+			'numberposts' => 1
+		);
+		$footer_posts = get_posts( $args );
+		if( !empty( $footer_posts ) && is_array( $footer_posts ) ) {
+			$footer_id = $footer_posts[0]->ID;
+		}
+		/* code to convert slug to id */
+		
 		echo "<div class='footer-width-fixer'>";
 		echo self::$elementor_frontend->get_builder_content_for_display( $footer_id );
 		echo '</div>';
@@ -412,6 +440,18 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$topbar_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] : '0';
 		}
 		if ( !empty( $topbar_id ) && ( $topbar_id != "-1" ) ) {
+			/* code to convert slug to id */
+			$args = array(
+				'name'        => $topbar_id,
+				'post_type'   => 'reign-elemtr-header',
+				'post_status' => 'publish',
+				'numberposts' => 1
+			);
+			$topbar_posts = get_posts( $args );
+			if( !empty( $topbar_posts ) && is_array( $topbar_posts ) ) {
+				$topbar_id = $topbar_posts[0]->ID;
+			}
+			/* code to convert slug to id */
 			echo '<div id="wbcom-header-topbar">';
 				echo self::$elementor_frontend->get_builder_content_for_display( $topbar_id );
 			echo '</div>';

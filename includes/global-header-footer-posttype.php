@@ -75,6 +75,9 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 						update_post_meta( $post_id, $meta_key, $meta_value );
 					}
 
+					$current_ele_post = get_post( $post_id );
+					$current_post_slug = $current_ele_post->post_name;
+
 					/** setting up default header/footer for first time installation :: start */
 					$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
 					$settings = get_option( $theme_slug . '_options', array() );
@@ -84,19 +87,19 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 					if( ( $postarr['post_type'] == 'reign-elemtr-header' ) && ( $selected_value == 'header' ) ) {
 						$header_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] : '0';
 						if( $header_id == '0' ) {
-							$settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] = $post_id;
+							$settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] = $current_post_slug;
 						}
 					}
 					else if( ( $postarr['post_type'] == 'reign-elemtr-header' ) && ( $selected_value == 'topbar' ) ) {
 						$topbar_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] : '0';
 						if( $topbar_id == '0' ) {
-							$settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] = $post_id;
+							$settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] = $current_post_slug;
 						}
 					}
 					else if( ( $postarr['post_type'] == 'reign-elemtr-footer' ) ) {
 						$footer_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] : '0';
 						if( $footer_id == '0' ) {
-							$settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] = $post_id;
+							$settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] = $current_post_slug;
 						}
 					}
 
