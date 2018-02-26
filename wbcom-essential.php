@@ -4,7 +4,7 @@
  * Description: Wbcom Essential Addons.
  * Plugin URI: https://wbcomdesigns.com/
  * Author: Wbcom Designs
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author URI: https://wbcomdesigns.com/
  *
  * Text Domain: wbcom-elementor-addons
@@ -12,8 +12,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-define( 'WBCOM_ELEMENTOR_ADDONS_VERSION', '1.0.5' );
-define( 'WBCOM_ELEMENTOR_ADDONS_PREVIOUS_STABLE_VERSION', '1.0.5' );
+define( 'WBCOM_ELEMENTOR_ADDONS_VERSION', '1.0.6' );
+define( 'WBCOM_ELEMENTOR_ADDONS_PREVIOUS_STABLE_VERSION', '1.0.6' );
 
 define( 'WBCOM_ELEMENTOR_ADDONS__FILE__', __FILE__ );
 define( 'WBCOM_ELEMENTOR_ADDONS_PLUGIN_BASE', plugin_basename( WBCOM_ELEMENTOR_ADDONS__FILE__ ) );
