@@ -258,7 +258,14 @@ class Branding extends Widget_Base {
 
 	protected function elementor_the_site_logo() {
 		if ( function_exists( 'the_custom_logo' ) ) {
-			the_custom_logo();
+			if(has_custom_logo()) {
+				the_custom_logo();
+			} else {
+				$this->render_title();
+			}
+		}
+		else {
+			$this->render_title();
 		}
 	}
 
