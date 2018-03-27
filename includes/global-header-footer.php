@@ -392,9 +392,22 @@ class WBCOM_Elementor_Global_Header_Footer {
 		}
 		/* code to convert slug to id */
 		
+
+		$custom_global_set = false;
+		if( $footer_id ) {
+			global $post;
+			if( !$post || !$post->ID ) {
+				$post = get_post( $footer_id );
+				$custom_global_set = true;
+			}
+		}
 		echo "<div class='footer-width-fixer'>";
-		echo self::$elementor_frontend->get_builder_content_for_display( $footer_id );
+		echo self::$elementor_frontend->get_builder_content( $footer_id, $with_css = true );
+		// echo self::$elementor_frontend->get_builder_content_for_display( $footer_id );
 		echo '</div>';
+		if( $custom_global_set ) {
+			unset( $post );
+		}
 	}
 	/**
 	 * Disable header from the theme.

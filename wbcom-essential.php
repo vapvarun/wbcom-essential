@@ -35,6 +35,8 @@ define( 'WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE', __FILE__ );
 function wbcom_elementor_addons_load_plugin() {
 	load_plugin_textdomain( 'wbcom-elementor-addons' );
 
+	// require( WBCOM_ELEMENTOR_ADDONS_PATH . 'class-wbtm-divi-support.php' );
+
 	if ( ! did_action( 'elementor/loaded' ) ) {
 		add_action( 'admin_notices', 'wbcom_elementor_addons_fail_load' );
 		return;
@@ -52,6 +54,7 @@ function wbcom_elementor_addons_load_plugin() {
 	}
 
 	require( WBCOM_ELEMENTOR_ADDONS_PATH . 'plugin.php' );
+
 }
 add_action( 'plugins_loaded', 'wbcom_elementor_addons_load_plugin' );
 
