@@ -316,7 +316,16 @@ class WBCOM_Elementor_Global_Header_Footer {
 	public function get_header_content() {
 		// $header_id = $this->get_settings( 'type_header', '' );
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
-		global $post;
+		
+		global $wp_query;	
+		if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
+			$post_id = get_option( 'page_for_posts' );
+			$post = get_post( $post_id );
+		}
+		else {
+			global $post;
+		}
+
 		if( $post ) {
 			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
 			$reign_ele_header = isset( $wbcom_metabox_data['header_footer']['elementor_header'] ) ? $wbcom_metabox_data['header_footer']['elementor_header'] : '';
@@ -358,7 +367,16 @@ class WBCOM_Elementor_Global_Header_Footer {
 	public function get_footer_content() {
 		// $footer_id = $this->get_settings( 'type_footer', '' );
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
-		global $post;
+		
+		global $wp_query;	
+		if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
+			$post_id = get_option( 'page_for_posts' );
+			$post = get_post( $post_id );
+		}
+		else {
+			global $post;
+		}
+		
 		if( $post ) {
 			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
 			$reign_ele_footer = isset( $wbcom_metabox_data['header_footer']['elementor_footer'] ) ? $wbcom_metabox_data['header_footer']['elementor_footer'] : '';
@@ -432,7 +450,16 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 */
 	public function add_header_topbar_markup() {
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
-		global $post;
+
+		global $wp_query;
+		if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
+			$post_id = get_option( 'page_for_posts' );
+			$post = get_post( $post_id );
+		}
+		else {
+			global $post;
+		}
+
 		if( $post ) {
 			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
 			$reign_ele_topbar = isset( $wbcom_metabox_data['header_footer']['elementor_topbar'] ) ? $wbcom_metabox_data['header_footer']['elementor_topbar'] : '';
