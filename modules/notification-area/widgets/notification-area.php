@@ -51,7 +51,7 @@ class NotificationArea extends Widget_Base {
 			]
 		);
 
-		if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		if ( class_exists( 'WooCommerce' ) ) {
 			$this->add_control(
 				'woo_cart_icon_enabled', [
 					'label'			 => __( 'Enable WooCommerce Cart Icon', 'elementor' ),
@@ -143,6 +143,9 @@ class NotificationArea extends Widget_Base {
 		if( !isset( $settings['notification_bell_enabled'] ) ) {
 			$settings['notification_bell_enabled'] = 'no';
 		}
+		if( !isset( $settings['woo_cart_icon_enabled'] ) ) {
+			$settings['woo_cart_icon_enabled'] = 'no';
+		}
 		ob_start();
 		?>
 
@@ -162,7 +165,9 @@ class NotificationArea extends Widget_Base {
 
 			<?php
 			if ( 'yes' == $settings['woo_cart_icon_enabled'] ) {
-				my_wc_cart_count();
+				if( function_exists( 'my_wc_cart_count' ) ) {
+					my_wc_cart_count();
+				}
 			}
 			?>
 
