@@ -51,12 +51,12 @@ class NotificationArea extends Widget_Base {
 			]
 		);
 
-		if ( class_exists( 'WooCommerce' ) ) {
+		if ( class_exists( 'WooCommerce' ) || class_exists( 'Easy_Digital_Downloads' ) ) {
 			$this->add_control(
-				'woo_cart_icon_enabled', [
-					'label'			 => __( 'Enable WooCommerce Cart Icon', 'elementor' ),
+				'rtm_cart_icon_enabled', [
+					'label'			 => __( 'Enable Cart Icon', 'elementor' ),
 					'type'			 => \Elementor\Controls_Manager::SWITCHER,
-					'default'		 => 'no',
+					'default'		 => 'yes',
 					'label_on'		 => __( 'Yes', 'elementor' ),
 					'label_off'		 => __( 'No', 'elementor' ),
 					'return_value'	 => 'yes',
@@ -143,8 +143,8 @@ class NotificationArea extends Widget_Base {
 		if( !isset( $settings['notification_bell_enabled'] ) ) {
 			$settings['notification_bell_enabled'] = 'no';
 		}
-		if( !isset( $settings['woo_cart_icon_enabled'] ) ) {
-			$settings['woo_cart_icon_enabled'] = 'no';
+		if( !isset( $settings['rtm_cart_icon_enabled'] ) ) {
+			$settings['rtm_cart_icon_enabled'] = 'no';
 		}
 		ob_start();
 		?>
@@ -164,7 +164,7 @@ class NotificationArea extends Widget_Base {
 			?>
 
 			<?php
-			if ( 'yes' == $settings['woo_cart_icon_enabled'] ) {
+			if ( 'yes' == $settings['rtm_cart_icon_enabled'] ) {
 				if( function_exists( 'my_wc_cart_count' ) ) {
 					my_wc_cart_count();
 				}
