@@ -202,6 +202,50 @@ class Nav_Menu extends Widget_Base {
 		]
 		);
 
+			/* added for advanced menu color options :: start */
+		$this->add_control(
+			'enable_border_top',
+			[
+				'label' => __( 'Enable Top Border',WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => '',
+				'label_off' => __( 'Off', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_on' => __( 'On', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'description' => __( 'Note: This will apply to active menu.', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN )
+			]
+		);
+
+		$this->add_control(
+		'color_border_top', [
+			'label'		 => __( 'Top Border Color', 'reign' ),
+			'type'		 => Controls_Manager::COLOR,
+			'default'	 => '#399dff',
+			'selectors'	 => [
+				'{{WRAPPER}} .main-navigation ul li' => 'border-top: 5px solid {{VALUE}};',
+			],
+			'condition' => [
+				'enable_border_top' => 'yes',
+			],
+		]
+		);
+
+		// $this->add_control(
+		// 	'enable_border_top',
+		// 	[
+		// 		'type' => Controls_Manager::URL,
+		// 		'show_label' => false,
+		// 		'show_external' => false,
+		// 		'separator' => false,
+		// 		'placeholder' => 'http://your-link.com/',
+		// 		'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+		// 		'condition' => [
+		// 			'redirect_after_login' => 'yes',
+		// 		],
+		// 	]
+		// );
+		/* added for advanced menu color options :: end */
+
+
 		$this->end_controls_section();
 
 		/* Sub Menu Section */
@@ -298,6 +342,7 @@ class Nav_Menu extends Widget_Base {
 		]
 		);
 
+
 		$this->end_controls_section();
 
 		/* Height Management Section */
@@ -381,28 +426,30 @@ class Nav_Menu extends Widget_Base {
 			$menu_height = isset( $settings[ 'menu_height' ] ) ? $settings[ 'menu_height' ] : 90;
 			$submenu_height = isset( $settings[ 'submenu_height' ] ) ? $settings[ 'submenu_height' ] : 90;
 
+			$identifier = time();
+
 			ob_start();
 			?>
-			<!-- <style type="text/css">
-				.primary-menu > li > a,
-				.header-right .search-wrap,
-				.rg-icon-wrap,
-				.elementor-branding,
-				.user-link-wrap {
+			<style type="text/css">
+				#site-navigation-<?php echo $identifier; ?> .primary-menu > li > a,
+				#site-navigation-<?php echo $identifier; ?> .header-right .search-wrap,
+				#site-navigation-<?php echo $identifier; ?> .rg-icon-wrap,
+				#site-navigation-<?php echo $identifier; ?> .elementor-branding,
+				#site-navigation-<?php echo $identifier; ?> .user-link-wrap {
 					height: <?php echo $menu_height; ?>px;
 					line-height: <?php echo $menu_height; ?>px;
 				}
 
-				.header-right .rg-search-form-wrap,
+				/*.header-right .rg-search-form-wrap,
 				.user-profile-menu,
 				.primary-menu .children, .primary-menu .sub-menu,
 				.user-profile-menu,
 				.user-notifications .rg-dropdown, .user-notifications:hover .rg-dropdown {
-					top: <?php echo $submenu_height; ?>px;
-				}
-			</style> -->
+					top: <?php //echo $submenu_height; ?>px;
+				}*/
+			</style>
 
-			<nav id="site-navigation" class="main-navigation" role="navigation">
+			<nav id="site-navigation-<?php echo $identifier; ?>" class="main-navigation" role="navigation">
 				<span class="menu-toggle wbcom-nav-menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<span></span>
 					<span></span>
