@@ -426,7 +426,8 @@ class Nav_Menu extends Widget_Base {
 			$menu_height = isset( $settings[ 'menu_height' ] ) ? $settings[ 'menu_height' ] : 90;
 			$submenu_height = isset( $settings[ 'submenu_height' ] ) ? $settings[ 'submenu_height' ] : 90;
 
-			$identifier = time();
+			$identifier = time() + rand( 10, 100 );
+
 
 			ob_start();
 			?>
