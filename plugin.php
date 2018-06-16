@@ -67,6 +67,7 @@ class Plugin {
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/global-header-footer.php';
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/global-header-footer-posttype.php';
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/global-settings-manager.php';
+		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/class-wbcom-reign-customizer-support.php';
 	}
 	public function autoload( $class ) {
 		if ( 0 !== strpos( $class, __NAMESPACE__ ) ) {
