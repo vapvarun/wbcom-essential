@@ -143,6 +143,7 @@ class Wbcom_Reign_Customizer_Support {
 		$posts = get_posts( $args );
 		$topbar_choices = array();
 		if( !empty( $posts ) && is_array( $posts ) ) {
+			$topbar_choices[''] = __( '-- Select --', 'wbcom-essential' );
 			foreach ( $posts as $key => $post ) {
 				$topbar_choices[$post->post_name] = $post->post_title;
 			}
@@ -198,6 +199,7 @@ class Wbcom_Reign_Customizer_Support {
 		$posts = get_posts( $args );
 		$header_choices = array();
 		if( !empty( $posts ) && is_array( $posts ) ) {
+			$header_choices[''] = __( '-- Select --', 'wbcom-essential' );
 			foreach ( $posts as $key => $post ) {
 				$header_choices[$post->post_name] = $post->post_title;
 			}
@@ -247,6 +249,7 @@ class Wbcom_Reign_Customizer_Support {
 		$posts = get_posts( $args );
 		$footer_choices = array();
 		if( !empty( $posts ) && is_array( $posts ) ) {
+			$footer_choices[''] = __( '-- Select --', 'wbcom-essential' );
 			foreach ( $posts as $key => $post ) {
 				$footer_choices[$post->post_name] = $post->post_title;
 			}
