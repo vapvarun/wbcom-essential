@@ -110,7 +110,7 @@ class Wbcom_Reign_Customizer_Support {
 		$fields[] = array(
 			'type'        => 'switch',
 			'settings'    => 'reign_header_topbar_type',
-			'label'       => esc_attr__( 'Footer Type', 'wbcom-essential' ),
+			'label'       => esc_attr__( 'Topbar Type', 'wbcom-essential' ),
 			'description'       => esc_attr__( 'Allows you to select default theme topbar or topbar made using Elementor.', 'wbcom-essential' ),
 			'section'     => 'reign_header_topbar',
 			'default'   => 0,
@@ -228,7 +228,7 @@ class Wbcom_Reign_Customizer_Support {
 		$fields[] = array(
 			'type'        => 'switch',
 			'settings'    => 'reign_footer_footer_type',
-			'label'       => esc_attr__( 'Topbar Type', 'wbcom-essential' ),
+			'label'       => esc_attr__( 'Footer Type', 'wbcom-essential' ),
 			'description'       => esc_attr__( 'Allows you to select default theme footer or footer made using Elementor.', 'wbcom-essential' ),
 			'section'     => 'reign_footer_select_footer',
 			'default'   => 0,
