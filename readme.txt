@@ -23,6 +23,9 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 
+= 1.0.7 =
+* Fix - Better control over Elementor header/topbar and footer.
+
 = 1.0.6 =
 * Fix - Default header with demo install
 
