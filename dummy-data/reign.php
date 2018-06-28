@@ -167,12 +167,6 @@ $json_string = '[
         }
     },
     {
-        "post_title": "Header1528197366",
-        "post_content": "",
-        "post_type": "reign-elemtr-header",
-        "post_meta": []
-    },
-    {
         "post_title": "Footer #2",
         "post_content": "",
         "post_type": "reign-elemtr-footer",
