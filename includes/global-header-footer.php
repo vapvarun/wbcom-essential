@@ -480,8 +480,9 @@ class WBCOM_Elementor_Global_Header_Footer {
 					$header_id = $reign_ele_header;
 				}
 				else {
-					$settings = get_option( $theme_slug . '_options', array() );
-					$header_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] : '0';
+					// $settings = get_option( $theme_slug . '_options', array() );
+					// $header_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] : '0';
+					$header_id = get_theme_mod( 'reign_elementor_header', '0' );
 				}
 
 				/* code to convert slug to id */
@@ -547,8 +548,9 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$topbar_id = $reign_ele_topbar;
 		}
 		else {
-			$settings = get_option( $theme_slug . '_options', array() );
-			$topbar_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] : '0';
+			// $settings = get_option( $theme_slug . '_options', array() );
+			// $topbar_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] : '0';
+			$topbar_id = get_theme_mod( 'reign_elementor_topbar', '0' );
 		}
 		if ( !empty( $topbar_id ) && ( $topbar_id != "-1" ) ) {
 			/* code to convert slug to id */
@@ -619,8 +621,9 @@ class WBCOM_Elementor_Global_Header_Footer {
 				$footer_id = $reign_ele_footer;
 			}
 			else {
-				$settings = get_option( $theme_slug . '_options', array() );
-				$footer_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] : '0';
+				// $settings = get_option( $theme_slug . '_options', array() );
+				// $footer_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] : '0';
+				$footer_id = get_theme_mod( 'reign_elementor_footer', '0' );
 			}
 
 			/* code to convert slug to id */

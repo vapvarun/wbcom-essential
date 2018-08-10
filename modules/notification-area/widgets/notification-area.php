@@ -250,7 +250,7 @@ class NotificationArea extends Widget_Base {
 					echo '<div class="user-link-wrap">';
 					echo '<a class="user-link" href="' . $user_link . '">';
 					?>
-					<span class="rg-user"><?php echo $current_user->display_name; ?></span>
+					<!-- <span class="rg-user"><?php echo $current_user->display_name; ?></span> -->
 					<?php
 					if ( 'yes' == $settings['avatar_enabled'] ) {
 						echo get_avatar( $current_user->user_email, 200 );
