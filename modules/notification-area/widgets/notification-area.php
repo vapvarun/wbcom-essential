@@ -156,7 +156,11 @@ class NotificationArea extends Widget_Base {
 				<div class="search-wrap">
 					<span class="rg-search-icon icon-search-interface-symbol"></span>
 					<div class="rg-search-form-wrap">
+						<span class="rg-search-close">x</span>
 						<?php get_search_form(); ?>
+						<span class="rg-form-instruction">
+							<?php _e( 'Hit enter to search', 'reign' ); ?>
+						</span>
 					</div>
 				</div>
 				<?php
