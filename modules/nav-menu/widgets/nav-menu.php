@@ -369,6 +369,14 @@ class Nav_Menu extends Widget_Base {
 		]
 		);
 
+		$this->add_control(
+			'submenu_width', [
+				'label'			 => __( 'Submenu Width', 'reign' ),
+				'type'			 => Controls_Manager::NUMBER,
+				'default'		 => 170,
+			]
+		);
+
 		$this->end_controls_section();
 
 		// $this->start_controls_section(
@@ -425,6 +433,7 @@ class Nav_Menu extends Widget_Base {
 
 			$menu_height = isset( $settings[ 'menu_height' ] ) ? $settings[ 'menu_height' ] : 90;
 			$submenu_height = isset( $settings[ 'submenu_height' ] ) ? $settings[ 'submenu_height' ] : 90;
+			$submenu_width = isset( $settings[ 'submenu_width' ] ) ? $settings[ 'submenu_width' ] : 170;
 
 			$identifier = time() + rand( 10, 100 );
 
@@ -443,6 +452,13 @@ class Nav_Menu extends Widget_Base {
 				#site-navigation-<?php echo $identifier; ?> .primary-menu .children, .primary-menu .sub-menu {
 					top: <?php echo $menu_height; ?>px;
 				}
+
+				@media screen and (min-width:768px) {
+					#site-navigation-<?php echo $identifier; ?> ul#primary-menu li > ul.sub-menu {
+						width: <?php echo $submenu_width; ?>px !important;
+					}
+				}
+				
 
 				/*.header-right .rg-search-form-wrap,
 				.user-profile-menu,
