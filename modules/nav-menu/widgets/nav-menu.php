@@ -440,6 +440,9 @@ class Nav_Menu extends Widget_Base {
 					height: <?php echo $menu_height; ?>px;
 					line-height: <?php echo $menu_height; ?>px;
 				}
+				#site-navigation-<?php echo $identifier; ?> .primary-menu .children, .primary-menu .sub-menu {
+					top: <?php echo $menu_height; ?>px;
+				}
 
 				/*.header-right .rg-search-form-wrap,
 				.user-profile-menu,
