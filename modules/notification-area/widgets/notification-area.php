@@ -127,6 +127,14 @@ class NotificationArea extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'notification_height', [
+				'label'			 => __( 'Menu Height (px)', 'reign' ),
+				'type'			 => Controls_Manager::NUMBER,
+				'default'		 => 90,
+			]
+		);
+
 		$this->end_controls_section();
 
 		do_action( 'reign_wp_menu_elementor_controls', $this );
@@ -146,10 +154,28 @@ class NotificationArea extends Widget_Base {
 		if( !isset( $settings['rtm_cart_icon_enabled'] ) ) {
 			$settings['rtm_cart_icon_enabled'] = 'no';
 		}
+
+		$notification_height = isset( $settings[ 'notification_height' ] ) ? $settings[ 'notification_height' ] : 90;
+
 		ob_start();
 		?>
 
-		<div class="header-right no-gutter grid-flex grid-center">
+		<style type="text/css">
+			.wbesntl-notification-area {
+				height: <?php echo $notification_height; ?>px;
+				line-height: <?php echo $notification_height; ?>px;
+			}
+
+			/*.header-right .rg-search-form-wrap,
+			.user-profile-menu,
+			.primary-menu .children, .primary-menu .sub-menu,
+			.user-profile-menu,
+			.user-notifications .rg-dropdown, .user-notifications:hover .rg-dropdown {
+				top: <?php //echo $submenu_height; ?>px;
+			}*/
+		</style>
+
+		<div class="header-right no-gutter grid-flex grid-center wbesntl-notification-area">
 			<?php
 			if ( 'yes' == $settings['search_form_enabled'] ) {
 				?>
