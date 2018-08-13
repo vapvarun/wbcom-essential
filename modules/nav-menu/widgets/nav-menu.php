@@ -297,7 +297,7 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#eaeaea',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li.menu-item-has-children ul li:hover a' => 'background-color: {{VALUE}};',
+				'{{WRAPPER}} .main-navigation ul li.menu-item-has-children ul li a:hover' => 'background-color: {{VALUE}};',
 			],
 		]
 		);
