@@ -1,23 +1,12 @@
 <?php
-// namespace WbcomElementorAddons\Modules\Posts\Skins;
-
-// use Elementor\Controls_Manager;
-// use Elementor\Group_Control_Image_Size;
-// use Elementor\Group_Control_Typography;
-// use Elementor\Scheme_Color;
-// use Elementor\Scheme_Typography;
-// use Elementor\Widget_Base;
-
 namespace WbcomElementorAddons\Modules\Posts\Skins;
 
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Color;
 use Elementor\Scheme_Typography;
 use Elementor\Widget_Base;
-use WbcomElementorAddons\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -32,7 +21,7 @@ class Skin_Cards extends Skin_Base {
 	}
 
 	public function get_id() {
-		return 'wbcom-cards';
+		return 'cards';
 	}
 
 	public function get_title() {

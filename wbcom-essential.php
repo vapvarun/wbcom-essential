@@ -12,8 +12,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-define( 'WBCOM_ELEMENTOR_ADDONS_VERSION', '1.0.6' );
-define( 'WBCOM_ELEMENTOR_ADDONS_PREVIOUS_STABLE_VERSION', '1.0.6' );
+define( 'WBCOM_ELEMENTOR_ADDONS_VERSION', '2.1.3' );
+define( 'WBCOM_ELEMENTOR_ADDONS_PREVIOUS_STABLE_VERSION', '2.0.18' );
 
 define( 'WBCOM_ELEMENTOR_ADDONS__FILE__', __FILE__ );
 define( 'WBCOM_ELEMENTOR_ADDONS_PLUGIN_BASE', plugin_basename( WBCOM_ELEMENTOR_ADDONS__FILE__ ) );
