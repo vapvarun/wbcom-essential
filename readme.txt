@@ -25,6 +25,7 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 = 1.0.9=
 * Fix - Search layout fixed to match Reign Theme.
+* Fix - Posts widget conflict fixed.
 
 = 1.0.8=
 * Fix - Default template-set modified for header/topbar and footer.
