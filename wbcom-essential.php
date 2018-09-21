@@ -7,7 +7,7 @@
  * Version: 1.0.9
  * Author URI: https://wbcomdesigns.com/
  *
- * Text Domain: wbcom-elementor-addons
+ * Text Domain: wbcom-essential
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -22,7 +22,6 @@ define( 'WBCOM_ELEMENTOR_ADDONS_MODULES_PATH', WBCOM_ELEMENTOR_ADDONS_PATH . 'mo
 define( 'WBCOM_ELEMENTOR_ADDONS_URL', plugins_url( '/', WBCOM_ELEMENTOR_ADDONS__FILE__ ) );
 define( 'WBCOM_ELEMENTOR_ADDONS_ASSETS_URL', WBCOM_ELEMENTOR_ADDONS_URL . 'assets/' );
 define( 'WBCOM_ELEMENTOR_ADDONS_MODULES_URL', WBCOM_ELEMENTOR_ADDONS_URL . 'modules/' );
-define( 'WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN', 'wbcom-elementor-addons' );
 define( 'WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE', __FILE__ );
 
 /**
@@ -32,8 +31,9 @@ define( 'WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE', __FILE__ );
  *
  * @return void
  */
+
 function wbcom_elementor_addons_load_plugin() {
-	load_plugin_textdomain( 'wbcom-elementor-addons' );
+	load_plugin_textdomain( 'wbcom-essential', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 
 	if ( ! did_action( 'elementor/loaded' ) ) {
 		add_action( 'admin_notices', 'wbcom_elementor_addons_fail_load' );
@@ -78,8 +78,8 @@ function wbcom_elementor_addons_fail_load() {
 
 		$activation_url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
 
-		$message = '<p>' . __( 'WBCOM Elementor Addons not working because you need to activate the Elementor plugin.', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) . '</p>';
-		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $activation_url, __( 'Activate Elementor Now', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) ) . '</p>';
+		$message = '<p>' . __( 'WBCOM Elementor Addons not working because you need to activate the Elementor plugin.', 'wbcom-essential' ) . '</p>';
+		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $activation_url, __( 'Activate Elementor Now', 'wbcom-essential' ) ) . '</p>';
 	} else {
 		if ( ! current_user_can( 'install_plugins' ) ) {
 			return;
@@ -87,8 +87,8 @@ function wbcom_elementor_addons_fail_load() {
 
 		$install_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
 
-		$message = '<p>' . __( 'WBCOM Elementor Addons not working because you need to install the Elementor plugin', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) . '</p>';
-		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, __( 'Install Elementor Now', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) ) . '</p>';
+		$message = '<p>' . __( 'WBCOM Elementor Addons not working because you need to install the Elementor plugin', 'wbcom-essential' ) . '</p>';
+		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, __( 'Install Elementor Now', 'wbcom-essential' ) ) . '</p>';
 	}
 
 	echo '<div class="error"><p>' . $message . '</p></div>';
@@ -102,8 +102,8 @@ function wbcom_elementor_addons_fail_load_out_of_date() {
 	$file_path = 'elementor/elementor.php';
 
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
-	$message = '<p>' . __( 'WBCOM Elementor Addons not working because you are using an old version of Elementor.', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) . '</p>';
-	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) ) . '</p>';
+	$message = '<p>' . __( 'WBCOM Elementor Addons not working because you are using an old version of Elementor.', 'wbcom-essential' ) . '</p>';
+	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', 'wbcom-essential' ) ) . '</p>';
 
 	echo '<div class="error">' . $message . '</div>';
 }
@@ -116,8 +116,8 @@ function wbcom_elementor_addons_admin_notice_upgrade_recommendation() {
 	$file_path = 'elementor/elementor.php';
 
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
-	$message = '<p>' . __( 'A new version of Elementor is available. For better performance and compatibility of WBCOM Elementor Addons, we recommend updating to the latest version.', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) . '</p>';
-	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) ) . '</p>';
+	$message = '<p>' . __( 'A new version of Elementor is available. For better performance and compatibility of WBCOM Elementor Addons, we recommend updating to the latest version.', 'wbcom-essential' ) . '</p>';
+	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', 'wbcom-essential' ) ) . '</p>';
 
 	echo '<div class="error">' . $message . '</div>';
 }
