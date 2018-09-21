@@ -47,14 +47,14 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'thumbnail',
 			[
-				'label' => __( 'Image Position', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Image Position', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'top',
 				'options' => [
-					'top' => __( 'Top', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'left' => __( 'Left', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'right' => __( 'Right', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'none' => __( 'None', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'top' => __( 'Top', 'wbcom-elementor-addons' ),
+					'left' => __( 'Left', 'wbcom-elementor-addons' ),
+					'right' => __( 'Right', 'wbcom-elementor-addons' ),
+					'none' => __( 'None', 'wbcom-elementor-addons' ),
 				],
 				'prefix_class' => 'elementor-posts--thumbnail-',
 			]
@@ -63,10 +63,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'masonry',
 			[
-				'label' => __( 'Masonry', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Masonry', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_off' => __( 'Off', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'label_on' => __( 'On', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_off' => __( 'Off', 'wbcom-elementor-addons' ),
+				'label_on' => __( 'On', 'wbcom-elementor-addons' ),
 				'condition' => [
 					$this->get_control_id( 'columns!' ) => '1',
 					$this->get_control_id( 'thumbnail' ) => 'top',
@@ -80,7 +80,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Image_Size::get_type(),
 			[
 				'name' => 'thumbnail_size',
-				'label' => __( 'Thumbnail Size', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Thumbnail Size', 'wbcom-elementor-addons' ),
 				'default' => 'medium',
 				'exclude' => [ 'custom' ],
 				'condition' => [
@@ -93,7 +93,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		// $this->add_responsive_control(
 		// 	'item_ratio',
 		// 	[
-		// 		'label' => __( 'Image Ratio', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+		// 		'label' => __( 'Image Ratio', 'wbcom-elementor-addons' ),
 		// 		'type' => Controls_Manager::SLIDER,
 		// 		'default' => [
 		// 			'size' => 0.66,
@@ -125,7 +125,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_responsive_control(
 			'image_width',
 			[
-				'label' => __( 'Image Width', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Image Width', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'%' => [
@@ -164,7 +164,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_responsive_control(
 			'columns',
 			[
-				'label' => __( 'Columns', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Columns', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '3',
 				'tablet_default' => '2',
@@ -187,7 +187,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'posts_per_page',
 			[
-				'label' => __( 'Posts Per Page', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Posts Per Page', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 6,
 			]
@@ -198,10 +198,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'show_title',
 			[
-				'label' => __( 'Title', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Title', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'label_off' => __( 'Hide', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before',
@@ -211,7 +211,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'title_tag',
 			[
-				'label' => __( 'Title HTML Tag', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Title HTML Tag', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -237,10 +237,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'show_excerpt',
 			[
-				'label' => __( 'Excerpt', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Excerpt', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'label_off' => __( 'Hide', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -249,7 +249,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'excerpt_length',
 			[
-				'label' => __( 'Excerpt Length', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Excerpt Length', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => apply_filters( 'excerpt_length', 25 ),
 				'condition' => [
@@ -263,10 +263,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'show_read_more',
 			[
-				'label' => __( 'Read More', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Read More', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'label_off' => __( 'Hide', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before',
@@ -276,10 +276,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'read_more_text',
 			[
-				'label' => __( 'Read More Text', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Read More Text', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Read More »', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'placeholder' => __( 'Read More »', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'default' => __( 'Read More »', 'wbcom-elementor-addons' ),
+				'placeholder' => __( 'Read More »', 'wbcom-elementor-addons' ),
 				'condition' => [
 					$this->get_control_id( 'show_read_more' ) => 'yes',
 				],
@@ -291,16 +291,16 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'meta_data',
 			[
-				'label' => __( 'Meta Data', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Meta Data', 'wbcom-elementor-addons' ),
 				'label_block' => true,
 				'type' => Controls_Manager::SELECT2,
 				'default' => [ 'date', 'comments' ],
 				'multiple' => true,
 				'options' => [
-					'author' => __( 'Author', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'date' => __( 'Date', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'time' => __( 'Time', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'comments' => __( 'Comments', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'author' => __( 'Author', 'wbcom-elementor-addons' ),
+					'date' => __( 'Date', 'wbcom-elementor-addons' ),
+					'time' => __( 'Time', 'wbcom-elementor-addons' ),
+					'comments' => __( 'Comments', 'wbcom-elementor-addons' ),
 				],
 				'separator' => 'before',
 			]
@@ -309,7 +309,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'meta_separator',
 			[
-				'label' => __( 'Separator Between', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Separator Between', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '///',
 				'selectors' => [
@@ -329,7 +329,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->start_controls_section(
 			'section_design_layout',
 			[
-				'label' => __( 'Layout', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Layout', 'wbcom-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -337,7 +337,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'column_gap',
 			[
-				'label'     => __( 'Columns Gap', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Columns Gap', 'wbcom-elementor-addons' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => [
 					'size' => 30,
@@ -358,7 +358,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'row_gap',
 			[
-				'label'     => __( 'Rows Gap', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Rows Gap', 'wbcom-elementor-addons' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => [
 					'size' => 35,
@@ -378,20 +378,20 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'alignment',
 			[
-				'label'        => __( 'Alignment', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'        => __( 'Alignment', 'wbcom-elementor-addons' ),
 				'type'         => Controls_Manager::CHOOSE,
 				'label_block'  => false,
 				'options'      => [
 					'left'   => [
-						'title' => __( 'Left', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Left', 'wbcom-elementor-addons' ),
 						'icon'  => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Center', 'wbcom-elementor-addons' ),
 						'icon'  => 'fa fa-align-center',
 					],
 					'right'  => [
-						'title' => __( 'Right', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Right', 'wbcom-elementor-addons' ),
 						'icon'  => 'fa fa-align-right',
 					],
 				],
@@ -406,7 +406,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->start_controls_section(
 			'section_design_image',
 			[
-				'label' => __( 'Image', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Image', 'wbcom-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					$this->get_control_id( 'thumbnail!' ) => 'none',
@@ -417,7 +417,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'img_border_radius',
 			[
-				'label'      => __( 'Border Radius', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'      => __( 'Border Radius', 'wbcom-elementor-addons' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -432,7 +432,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'image_spacing',
 			[
-				'label'     => __( 'Spacing', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Spacing', 'wbcom-elementor-addons' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [
 					'px' => [
@@ -461,7 +461,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->start_controls_section(
 			'section_design_content',
 			[
-				'label' => __( 'Content', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Content', 'wbcom-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -469,7 +469,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'heading_title_style',
 			[
-				'label' => __( 'Title', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Title', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'condition' => [
 					$this->get_control_id( 'show_title' ) => 'yes',
@@ -480,7 +480,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label'     => __( 'Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -499,7 +499,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'label'    => __( 'Typography', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'    => __( 'Typography', 'wbcom-elementor-addons' ),
 				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a',
 				'condition' => [
@@ -511,7 +511,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'title_spacing',
 			[
-				'label'     => __( 'Spacing', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Spacing', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -530,7 +530,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'heading_meta_style',
 			[
-				'label' => __( 'Meta', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Meta', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -542,7 +542,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'meta_color',
 			[
-				'label'     => __( 'Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__meta-data' => 'color: {{VALUE}};',
@@ -556,7 +556,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'meta_separator_color',
 			[
-				'label' => __( 'Separator Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Separator Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__meta-data span:before' => 'color: {{VALUE}};',
@@ -571,7 +571,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'meta_typography',
-				'label'    => __( 'Typography', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'    => __( 'Typography', 'wbcom-elementor-addons' ),
 				'scheme' => Scheme_Typography::TYPOGRAPHY_2,
 				'selector' => '{{WRAPPER}} .elementor-post__meta-data',
 				'condition' => [
@@ -583,7 +583,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'meta_spacing',
 			[
-				'label'     => __( 'Spacing', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Spacing', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -602,7 +602,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'heading_excerpt_style',
 			[
-				'label' => __( 'Excerpt', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Excerpt', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -614,7 +614,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'excerpt_color',
 			[
-				'label'     => __( 'Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__excerpt p' => 'color: {{VALUE}};',
@@ -629,7 +629,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'excerpt_typography',
-				'label'    => __( 'Typography', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'    => __( 'Typography', 'wbcom-elementor-addons' ),
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .elementor-post__excerpt p',
 				'condition' => [
@@ -641,7 +641,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'excerpt_spacing',
 			[
-				'label'     => __( 'Spacing', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Spacing', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -660,7 +660,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'heading_readmore_style',
 			[
-				'label' => __( 'Read More', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Read More', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -672,7 +672,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'read_more_color',
 			[
-				'label'     => __( 'Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -691,7 +691,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'read_more_typography',
-				'label'    => __( 'Typography', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'    => __( 'Typography', 'wbcom-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .elementor-post__read-more',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
 				'condition' => [
@@ -703,7 +703,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->add_control(
 			'read_more_spacing',
 			[
-				'label'     => __( 'Spacing', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'     => __( 'Spacing', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -890,7 +890,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'total' => $page_limit,
 				'prev_next' => false,
 				'show_all' => 'yes' !== $parent_settings['pagination_numbers_shorten'],
-				'before_page_number' => '<span class="elementor-screen-only">' . __( 'Page', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) . '</span>',
+				'before_page_number' => '<span class="elementor-screen-only">' . __( 'Page', 'wbcom-elementor-addons' ) . '</span>',
 			] );
 		}
 
@@ -901,7 +901,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		}
 
 		?>
-		<nav class="elementor-pagination" role="navigation" aria-label="<?php _e( 'Pagination', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ); ?>">
+		<nav class="elementor-pagination" role="navigation" aria-label="<?php _e( 'Pagination', 'wbcom-elementor-addons' ); ?>">
 			<?php echo implode( PHP_EOL, $links ); ?>
 		</nav>
 		<?php

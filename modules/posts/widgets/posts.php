@@ -28,7 +28,7 @@ class Posts extends Base_Widget {
 	}
 
 	public function get_title() {
-		return __( 'Posts', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN );
+		return __( 'Posts', 'wbcom-elementor-addons' );
 	}
 
 	public function get_icon() {
@@ -72,7 +72,7 @@ class Posts extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			[
-				'label' => __( 'Layout', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Layout', 'wbcom-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -82,7 +82,7 @@ class Posts extends Base_Widget {
 		$this->start_controls_section(
 			'section_query',
 			[
-				'label' => __( 'Query', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Query', 'wbcom-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -91,14 +91,14 @@ class Posts extends Base_Widget {
 			Group_Control_Posts::get_type(),
 			[
 				'name' => 'posts',
-				'label' => __( 'Posts', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Posts', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'advanced',
 			[
-				'label'   => __( 'Advanced', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'   => __( 'Advanced', 'wbcom-elementor-addons' ),
 				'type'    => Controls_Manager::HEADING,
 			]
 		);
@@ -106,14 +106,14 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'orderby',
 			[
-				'label'   => __( 'Order By', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'   => __( 'Order By', 'wbcom-elementor-addons' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'post_date',
 				'options' => [
-					'post_date'  => __( 'Date', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'post_title' => __( 'Title', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'menu_order' => __( 'Menu Order', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'rand'       => __( 'Random', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'post_date'  => __( 'Date', 'wbcom-elementor-addons' ),
+					'post_title' => __( 'Title', 'wbcom-elementor-addons' ),
+					'menu_order' => __( 'Menu Order', 'wbcom-elementor-addons' ),
+					'rand'       => __( 'Random', 'wbcom-elementor-addons' ),
 				],
 			]
 		);
@@ -121,12 +121,12 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'order',
 			[
-				'label'   => __( 'Order', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'   => __( 'Order', 'wbcom-elementor-addons' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'desc',
 				'options' => [
-					'asc'  => __( 'ASC', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'desc' => __( 'DESC', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'asc'  => __( 'ASC', 'wbcom-elementor-addons' ),
+					'desc' => __( 'DESC', 'wbcom-elementor-addons' ),
 				],
 			]
 		);
@@ -134,13 +134,13 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'offset',
 			[
-				'label'   => __( 'Offset', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label'   => __( 'Offset', 'wbcom-elementor-addons' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 0,
 				'condition' => [
 					'posts_post_type!' => 'by_id',
 				],
-				'description' => __( 'Use this setting to skip over posts (e.g. \'2\' to skip over 2 posts).', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'description' => __( 'Use this setting to skip over posts (e.g. \'2\' to skip over 2 posts).', 'wbcom-elementor-addons' ),
 			]
 		);
 
@@ -153,21 +153,21 @@ class Posts extends Base_Widget {
 		$this->start_controls_section(
 			'section_pagination',
 			[
-				'label' => __( 'Pagination', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Pagination', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'pagination_type',
 			[
-				'label' => __( 'Pagination', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Pagination', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
-					'' => __( 'None', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'numbers' => __( 'Numbers', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'prev_next' => __( 'Previous/Next', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'numbers_and_prev_next' => __( 'Numbers', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ) . ' + ' . __( 'Previous/Next', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'' => __( 'None', 'wbcom-elementor-addons' ),
+					'numbers' => __( 'Numbers', 'wbcom-elementor-addons' ),
+					'prev_next' => __( 'Previous/Next', 'wbcom-elementor-addons' ),
+					'numbers_and_prev_next' => __( 'Numbers', 'wbcom-elementor-addons' ) . ' + ' . __( 'Previous/Next', 'wbcom-elementor-addons' ),
 				],
 			]
 		);
@@ -175,7 +175,7 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'pagination_page_limit',
 			[
-				'label' => __( 'Page Limit', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Page Limit', 'wbcom-elementor-addons' ),
 				'default' => '5',
 				'condition' => [
 					'pagination_type!' => '',
@@ -186,7 +186,7 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'pagination_numbers_shorten',
 			[
-				'label' => __( 'Shorten', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Shorten', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
 				'return_value' => 'yes',
@@ -202,8 +202,8 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'pagination_prev_label',
 			[
-				'label' => __( 'Previous Label', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'default' => __( '&laquo; Previous', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Previous Label', 'wbcom-elementor-addons' ),
+				'default' => __( '&laquo; Previous', 'wbcom-elementor-addons' ),
 				'condition' => [
 					'pagination_type' => [
 						'prev_next',
@@ -216,8 +216,8 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'pagination_next_label',
 			[
-				'label' => __( 'Next Label', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'default' => __( 'Next &raquo;', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Next Label', 'wbcom-elementor-addons' ),
+				'default' => __( 'Next &raquo;', 'wbcom-elementor-addons' ),
 				'condition' => [
 					'pagination_type' => [
 						'prev_next',
@@ -230,19 +230,19 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'pagination_align',
 			[
-				'label' => __( 'Alignment', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Alignment', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Left', 'wbcom-elementor-addons' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Center', 'wbcom-elementor-addons' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Right', 'wbcom-elementor-addons' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -261,7 +261,7 @@ class Posts extends Base_Widget {
 		$this->start_controls_section(
 			'section_pagination_style',
 			[
-				'label' => __( 'Pagination', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Pagination', 'wbcom-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'pagination_type!' => '',
@@ -281,7 +281,7 @@ class Posts extends Base_Widget {
 		$this->add_control(
 			'pagination_color_heading',
 			[
-				'label' => __( 'Colors', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Colors', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -292,14 +292,14 @@ class Posts extends Base_Widget {
 		$this->start_controls_tab(
 			'pagination_color_normal',
 			[
-				'label' => __( 'Normal' , WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Normal' , 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'pagination_color',
 			[
-				'label' => __( 'Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-pagination .page-numbers:not(.dots)' => 'color: {{VALUE}};',
@@ -312,14 +312,14 @@ class Posts extends Base_Widget {
 		$this->start_controls_tab(
 			'pagination_color_hover',
 			[
-				'label' => __( 'Hover' , WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Hover' , 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'pagination_hover_color',
 			[
-				'label' => __( 'Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-pagination a.page-numbers:hover' => 'color: {{VALUE}};',
@@ -332,14 +332,14 @@ class Posts extends Base_Widget {
 		$this->start_controls_tab(
 			'pagination_color_active',
 			[
-				'label' => __( 'Active' , WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Active' , 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'pagination_active_color',
 			[
-				'label' => __( 'Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-pagination .page-numbers.current' => 'color: {{VALUE}};',
@@ -354,7 +354,7 @@ class Posts extends Base_Widget {
 		$this->add_responsive_control(
 			'pagination_spacing',
 			[
-				'label' => __( 'Space Between', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Space Between', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'before',
 				'default' => [

@@ -28,12 +28,12 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'exclude',
 			[
-				'label' => __( 'Exclude', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Exclude', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SELECT2,
 				'multiple' => true,
 				'options' => [
-					'current_post' => __( 'Current Post', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'manual_selection' => __( 'Manual Selection', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'current_post' => __( 'Current Post', 'wbcom-elementor-addons' ),
+					'manual_selection' => __( 'Manual Selection', 'wbcom-elementor-addons' ),
 				],
 				'label_block' => true,
 			]
@@ -42,7 +42,7 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'exclude_ids',
 			[
-				'label' => _x( 'Search & Select', 'Posts Query Control', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => _x( 'Search & Select', 'Posts Query Control', 'wbcom-elementor-addons' ),
 				'type' => Module::QUERY_CONTROL_ID,
 				'post_type' => '',
 				'options' => [],

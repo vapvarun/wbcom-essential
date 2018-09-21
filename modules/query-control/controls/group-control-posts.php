@@ -41,12 +41,12 @@ class Group_Control_Posts extends Group_Control_Base {
 		$fields = [];
 
 		$fields['post_type'] = [
-			'label' => _x( 'Source', 'Posts Query Control', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'label' => _x( 'Source', 'Posts Query Control', 'wbcom-elementor-addons' ),
 			'type' => Controls_Manager::SELECT,
 		];
 
 		$fields['posts_ids'] = [
-			'label' => _x( 'Search & Select', 'Posts Query Control', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'label' => _x( 'Search & Select', 'Posts Query Control', 'wbcom-elementor-addons' ),
 			'type' => Module::QUERY_CONTROL_ID,
 			'post_type' => '',
 			'options' => [],
@@ -59,7 +59,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		];
 
 		$author_args = [
-			'label' => _x( 'Author', 'Posts Query Control', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+			'label' => _x( 'Author', 'Posts Query Control', 'wbcom-elementor-addons' ),
 			'label_block' => true,
 			'multiple' => true,
 			'default' => [],
@@ -94,7 +94,7 @@ class Group_Control_Posts extends Group_Control_Base {
 
 		$post_types_options = $post_types;
 
-		$post_types_options['by_id'] = _x( 'Manual Selection', 'Posts Query Control', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN );
+		$post_types_options['by_id'] = _x( 'Manual Selection', 'Posts Query Control', 'wbcom-elementor-addons' );
 
 		$fields['post_type']['options'] = $post_types_options;
 

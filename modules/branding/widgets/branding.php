@@ -20,7 +20,7 @@ class Branding extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'Branding', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN );
+		return __( 'Branding', 'wbcom-elementor-addons' );
 	}
 
 	public function get_icon() {

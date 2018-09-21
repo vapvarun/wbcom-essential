@@ -18,7 +18,7 @@ class Registration extends Base_Widget {
 	}
 
 	public function get_title() {
-		return __( 'Registration', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN );
+		return __( 'Registration', 'wbcom-elementor-addons' );
 	}
 
 	public function get_icon() {
@@ -29,32 +29,32 @@ class Registration extends Base_Widget {
 		$this->start_controls_section(
 			'section_fields_content',
 			[
-				'label' => __( 'Form Fields', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Form Fields', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'show_labels',
 			[
-				'label' => __( 'Label', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Label', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				'label_off' => __( 'Hide', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'label_on' => __( 'Show', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
+				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'input_size',
 			[
-				'label' => __( 'Input Size', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Input Size', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'xs' => __( 'Extra Small', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'sm' => __( 'Small', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'md' => __( 'Medium', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'lg' => __( 'Large', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'xl' => __( 'Extra Large', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'xs' => __( 'Extra Small', 'wbcom-elementor-addons' ),
+					'sm' => __( 'Small', 'wbcom-elementor-addons' ),
+					'md' => __( 'Medium', 'wbcom-elementor-addons' ),
+					'lg' => __( 'Large', 'wbcom-elementor-addons' ),
+					'xl' => __( 'Extra Large', 'wbcom-elementor-addons' ),
 				],
 				'default' => 'sm',
 			]
@@ -65,30 +65,30 @@ class Registration extends Base_Widget {
 		$this->start_controls_section(
 			'section_button_content',
 			[
-				'label' => __( 'Register Button', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Register Button', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'button_text',
 			[
-				'label' => __( 'Text', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Text', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Register', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'default' => __( 'Register', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'button_size',
 			[
-				'label' => __( 'Size', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Size', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'xs' => __( 'Extra Small', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'sm' => __( 'Small', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'md' => __( 'Medium', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'lg' => __( 'Large', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-					'xl' => __( 'Extra Large', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+					'xs' => __( 'Extra Small', 'wbcom-elementor-addons' ),
+					'sm' => __( 'Small', 'wbcom-elementor-addons' ),
+					'md' => __( 'Medium', 'wbcom-elementor-addons' ),
+					'lg' => __( 'Large', 'wbcom-elementor-addons' ),
+					'xl' => __( 'Extra Large', 'wbcom-elementor-addons' ),
 				],
 				'default' => 'sm',
 			]
@@ -97,23 +97,23 @@ class Registration extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			[
-				'label' => __( 'Alignment', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Alignment', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'start' => [
-						'title' => __( 'Left', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Left', 'wbcom-elementor-addons' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Center', 'wbcom-elementor-addons' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'end' => [
-						'title' => __( 'Right', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Right', 'wbcom-elementor-addons' ),
 						'icon' => 'fa fa-align-right',
 					],
 					'stretch' => [
-						'title' => __( 'Justified', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+						'title' => __( 'Justified', 'wbcom-elementor-addons' ),
 						'icon' => 'fa fa-align-justify',
 					],
 				],
@@ -127,18 +127,18 @@ class Registration extends Base_Widget {
 		$this->start_controls_section(
 			'section_login_content',
 			[
-				'label' => __( 'Additional Options', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Additional Options', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'redirect_after_registration',
 			[
-				'label' => __( 'Redirect After Registration', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Redirect After Registration', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
-				'label_off' => __( 'Off', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'label_on' => __( 'On', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_off' => __( 'Off', 'wbcom-elementor-addons' ),
+				'label_on' => __( 'On', 'wbcom-elementor-addons' ),
 			]
 		);
 
@@ -150,7 +150,7 @@ class Registration extends Base_Widget {
 				'show_external' => false,
 				'separator' => false,
 				'placeholder' => 'http://your-link.com/',
-				'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'wbcom-elementor-addons' ),
 				'condition' => [
 					'redirect_after_registration' => 'yes',
 				],
@@ -160,18 +160,18 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'show_logged_in_message',
 			[
-				'label' => __( 'Logged in Message', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Logged in Message', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				'label_off' => __( 'Hide', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
-				'label_on' => __( 'Show', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
+				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'custom_labels',
 			[
-				'label' => __( 'Custom Label', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Custom Label', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'condition' => [
 					'show_labels' => 'yes',
@@ -182,9 +182,9 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'user_label',
 			[
-				'label' => __( 'Username Label', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Username Label', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( ' Username', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'default' => __( ' Username', 'wbcom-elementor-addons' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -195,9 +195,9 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'user_placeholder',
 			[
-				'label' => __( 'Username Placeholder', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Username Placeholder', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( ' Username', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'default' => __( ' Username', 'wbcom-elementor-addons' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -208,9 +208,9 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'email_label',
 			[
-				'label' => __( 'Email Label', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Email Label', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( ' Email', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'default' => __( ' Email', 'wbcom-elementor-addons' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -221,9 +221,9 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'email_placeholder',
 			[
-				'label' => __( 'Email Placeholder', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Email Placeholder', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( ' Email', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'default' => __( ' Email', 'wbcom-elementor-addons' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -236,7 +236,7 @@ class Registration extends Base_Widget {
 		$this->start_controls_section(
 			'section_style',
 			[
-				'label' => __( 'Form', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Form', 'wbcom-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -244,7 +244,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'row_gap',
 			[
-				'label' => __( 'Rows Gap', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Rows Gap', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => '10',
@@ -265,7 +265,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'links_color',
 			[
-				'label' => __( 'Links Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Links Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group > a' => 'color: {{VALUE}};',
@@ -280,7 +280,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'links_hover_color',
 			[
-				'label' => __( 'Links Hover Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Links Hover Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group > a:hover' => 'color: {{VALUE}};',
@@ -297,7 +297,7 @@ class Registration extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_labels',
 			[
-				'label' => __( 'Label', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Label', 'wbcom-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_labels!' => '',
@@ -308,7 +308,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'label_spacing',
 			[
-				'label' => __( 'Spacing', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Spacing', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => '0',
@@ -329,7 +329,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'label_color',
 			[
-				'label' => __( 'Text Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-form-fields-wrapper' => 'color: {{VALUE}};',
@@ -355,7 +355,7 @@ class Registration extends Base_Widget {
 		$this->start_controls_section(
 			'section_field_style',
 			[
-				'label' => __( 'Fields', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Fields', 'wbcom-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -363,7 +363,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'field_text_color',
 			[
-				'label' => __( 'Text Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group .elementor-field' => 'color: {{VALUE}};',
@@ -387,7 +387,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'field_background_color',
 			[
-				'label' => __( 'Background Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Background Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ffffff',
 				'selectors' => [
@@ -401,7 +401,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'field_border_color',
 			[
-				'label' => __( 'Border Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Border Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group .elementor-field:not(.elementor-select-wrapper)' => 'border-color: {{VALUE}};',
@@ -415,7 +415,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'field_border_width',
 			[
-				'label' => __( 'Border Width', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Border Width', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'placeholder' => '1',
 				'size_units' => [ 'px' ],
@@ -429,7 +429,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'field_border_radius',
 			[
-				'label' => __( 'Border Radius', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Border Radius', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -444,7 +444,7 @@ class Registration extends Base_Widget {
 		$this->start_controls_section(
 			'section_button_style',
 			[
-				'label' => __( 'Button', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Button', 'wbcom-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -454,14 +454,14 @@ class Registration extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_normal',
 			[
-				'label' => __( 'Normal', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Normal', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'button_text_color',
 			[
-				'label' => __( 'Text Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -474,7 +474,7 @@ class Registration extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'button_typography',
-				'label' => __( 'Typography', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Typography', 'wbcom-elementor-addons' ),
 				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
 				'selector' => '{{WRAPPER}} .elementor-button',
 			]
@@ -483,7 +483,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'button_background_color',
 			[
-				'label' => __( 'Background Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Background Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -498,7 +498,7 @@ class Registration extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Border::get_type(), [
 				'name' => 'button_border',
-				'label' => __( 'Border', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Border', 'wbcom-elementor-addons' ),
 				'placeholder' => '1px',
 				'default' => '1px',
 				'selector' => '{{WRAPPER}} .elementor-button',
@@ -509,7 +509,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'button_border_radius',
 			[
-				'label' => __( 'Border Radius', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Border Radius', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -521,7 +521,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'button_text_padding',
 			[
-				'label' => __( 'Text Padding', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Text Padding', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
@@ -535,14 +535,14 @@ class Registration extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_hover',
 			[
-				'label' => __( 'Hover', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Hover', 'wbcom-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'button_hover_color',
 			[
-				'label' => __( 'Text Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-button:hover' => 'color: {{VALUE}};',
@@ -553,7 +553,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'button_background_hover_color',
 			[
-				'label' => __( 'Background Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Background Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-button:hover' => 'background-color: {{VALUE}};',
@@ -564,7 +564,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'button_hover_border_color',
 			[
-				'label' => __( 'Border Color', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Border Color', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-button:hover' => 'border-color: {{VALUE}};',
@@ -578,7 +578,7 @@ class Registration extends Base_Widget {
 		$this->add_control(
 			'button_hover_animation',
 			[
-				'label' => __( 'Animation', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ),
+				'label' => __( 'Animation', 'wbcom-elementor-addons' ),
 				'type' => Controls_Manager::HOVER_ANIMATION,
 			]
 		);
@@ -696,7 +696,7 @@ class Registration extends Base_Widget {
 				$current_user = wp_get_current_user();
 
 				echo '<div class="elementor-login">' .
-					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', WBCOM_ELEMENTOR_ADDONS_TEXT_DOMAIN ), $current_user->display_name, wp_logout_url( $current_url ) ) .
+					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-elementor-addons' ), $current_user->display_name, wp_logout_url( $current_url ) ) .
 					'</div>';
 			}
 
