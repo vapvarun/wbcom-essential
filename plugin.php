@@ -33,7 +33,7 @@ class Plugin {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wbcom-elementor-addons' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wbcom-essential' ), '1.0.0' );
 	}
 	/**
 	 * Disable unserializing of the class
@@ -43,7 +43,7 @@ class Plugin {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wbcom-elementor-addons' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wbcom-essential' ), '1.0.0' );
 	}
 	/**
 	 * @return \Elementor\Plugin
@@ -89,7 +89,7 @@ class Plugin {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$direction_suffix = is_rtl() ? '-rtl' : '';
 		wp_enqueue_style(
-			'wbcom-elementor-addons',
+			'wbcom-essential',
 			WBCOM_ELEMENTOR_ADDONS_ASSETS_URL . 'css/frontend' . $direction_suffix . $suffix . '.css',
 			[],
 			WBCOM_ELEMENTOR_ADDONS_VERSION
@@ -135,7 +135,7 @@ class Plugin {
 	// public function enqueue_editor_scripts() {
 	// 	$suffix = Utils::is_script_debug() ? '' : '.min';
 	// 	wp_enqueue_script(
-	// 		'wbcom-elementor-addons',
+	// 		'wbcom-essential',
 	// 		WBCOM_ELEMENTOR_ADDONS_URL . 'assets/js/editor' . $suffix . '.js',
 	// 		[
 	// 			'backbone-marionette',
@@ -150,7 +150,7 @@ class Plugin {
 	// 		'isActive' => $is_license_active,
 	// 	];
 	// 	wp_localize_script(
-	// 		'wbcom-elementor-addons',
+	// 		'wbcom-essential',
 	// 		'WbcomElementorAddonsConfig',
 	// 		apply_filters( 'wbcom_elementor_addons/editor/localize_settings', $locale_settings )
 	// 	);
@@ -179,7 +179,7 @@ class Plugin {
 	// public function enqueue_editor_styles() {
 	// 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	// 	wp_enqueue_style(
-	// 		'wbcom-elementor-addons',
+	// 		'wbcom-essential',
 	// 		WBCOM_ELEMENTOR_ADDONS_URL . 'assets/css/editor' . $suffix . '.css',
 	// 		[
 	// 			'elementor-editor'
@@ -194,7 +194,7 @@ class Plugin {
 		$elementor->elements_manager->add_category(
 			'wbcom-elements',
 			[
-				'title' => __( 'WBCOM Elements', 'wbcom-elementor-addons' ),
+				'title' => __( 'WBCOM Elements', 'wbcom-essential' ),
 				'icon' => 'font',
 			],
 			1

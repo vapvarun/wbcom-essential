@@ -18,7 +18,7 @@ class Login extends Base_Widget {
 	}
 
 	public function get_title() {
-		return __( 'Login', 'wbcom-elementor-addons' );
+		return __( 'Login', 'wbcom-essential' );
 	}
 
 	public function get_icon() {
@@ -29,32 +29,32 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_fields_content',
 			[
-				'label' => __( 'Form Fields', 'wbcom-elementor-addons' ),
+				'label' => __( 'Form Fields', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'show_labels',
 			[
-				'label' => __( 'Label', 'wbcom-elementor-addons' ),
+				'label' => __( 'Label', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
-				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Hide', 'wbcom-essential' ),
+				'label_on' => __( 'Show', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'input_size',
 			[
-				'label' => __( 'Input Size', 'wbcom-elementor-addons' ),
+				'label' => __( 'Input Size', 'wbcom-essential' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'xs' => __( 'Extra Small', 'wbcom-elementor-addons' ),
-					'sm' => __( 'Small', 'wbcom-elementor-addons' ),
-					'md' => __( 'Medium', 'wbcom-elementor-addons' ),
-					'lg' => __( 'Large', 'wbcom-elementor-addons' ),
-					'xl' => __( 'Extra Large', 'wbcom-elementor-addons' ),
+					'xs' => __( 'Extra Small', 'wbcom-essential' ),
+					'sm' => __( 'Small', 'wbcom-essential' ),
+					'md' => __( 'Medium', 'wbcom-essential' ),
+					'lg' => __( 'Large', 'wbcom-essential' ),
+					'xl' => __( 'Extra Large', 'wbcom-essential' ),
 				],
 				'default' => 'sm',
 			]
@@ -65,30 +65,30 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_button_content',
 			[
-				'label' => __( 'Log In Button', 'wbcom-elementor-addons' ),
+				'label' => __( 'Log In Button', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'button_text',
 			[
-				'label' => __( 'Text', 'wbcom-elementor-addons' ),
+				'label' => __( 'Text', 'wbcom-essential' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Log In', 'wbcom-elementor-addons' ),
+				'default' => __( 'Log In', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'button_size',
 			[
-				'label' => __( 'Size', 'wbcom-elementor-addons' ),
+				'label' => __( 'Size', 'wbcom-essential' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'xs' => __( 'Extra Small', 'wbcom-elementor-addons' ),
-					'sm' => __( 'Small', 'wbcom-elementor-addons' ),
-					'md' => __( 'Medium', 'wbcom-elementor-addons' ),
-					'lg' => __( 'Large', 'wbcom-elementor-addons' ),
-					'xl' => __( 'Extra Large', 'wbcom-elementor-addons' ),
+					'xs' => __( 'Extra Small', 'wbcom-essential' ),
+					'sm' => __( 'Small', 'wbcom-essential' ),
+					'md' => __( 'Medium', 'wbcom-essential' ),
+					'lg' => __( 'Large', 'wbcom-essential' ),
+					'xl' => __( 'Extra Large', 'wbcom-essential' ),
 				],
 				'default' => 'sm',
 			]
@@ -97,23 +97,23 @@ class Login extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'wbcom-elementor-addons' ),
+				'label' => __( 'Alignment', 'wbcom-essential' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'start' => [
-						'title' => __( 'Left', 'wbcom-elementor-addons' ),
+						'title' => __( 'Left', 'wbcom-essential' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'wbcom-elementor-addons' ),
+						'title' => __( 'Center', 'wbcom-essential' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'end' => [
-						'title' => __( 'Right', 'wbcom-elementor-addons' ),
+						'title' => __( 'Right', 'wbcom-essential' ),
 						'icon' => 'fa fa-align-right',
 					],
 					'stretch' => [
-						'title' => __( 'Justified', 'wbcom-elementor-addons' ),
+						'title' => __( 'Justified', 'wbcom-essential' ),
 						'icon' => 'fa fa-align-justify',
 					],
 				],
@@ -189,18 +189,18 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_login_content',
 			[
-				'label' => __( 'Additional Options', 'wbcom-elementor-addons' ),
+				'label' => __( 'Additional Options', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'redirect_after_login',
 			[
-				'label' => __( 'Redirect After Login', 'wbcom-elementor-addons' ),
+				'label' => __( 'Redirect After Login', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
-				'label_off' => __( 'Off', 'wbcom-elementor-addons' ),
-				'label_on' => __( 'On', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Off', 'wbcom-essential' ),
+				'label_on' => __( 'On', 'wbcom-essential' ),
 			]
 		);
 
@@ -212,7 +212,7 @@ class Login extends Base_Widget {
 				'show_external' => false,
 				'separator' => false,
 				'placeholder' => 'http://your-link.com/',
-				'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'wbcom-elementor-addons' ),
+				'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'wbcom-essential' ),
 				'condition' => [
 					'redirect_after_login' => 'yes',
 				],
@@ -222,11 +222,11 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'show_lost_password',
 			[
-				'label' => __( 'Lost your password?', 'wbcom-elementor-addons' ),
+				'label' => __( 'Lost your password?', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
-				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Hide', 'wbcom-essential' ),
+				'label_on' => __( 'Show', 'wbcom-essential' ),
 			]
 		);
 
@@ -234,11 +234,11 @@ class Login extends Base_Widget {
 			$this->add_control(
 				'show_register',
 				[
-					'label' => __( 'Register', 'wbcom-elementor-addons' ),
+					'label' => __( 'Register', 'wbcom-essential' ),
 					'type' => Controls_Manager::SWITCHER,
 					'default' => 'yes',
-					'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
-					'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+					'label_off' => __( 'Hide', 'wbcom-essential' ),
+					'label_on' => __( 'Show', 'wbcom-essential' ),
 				]
 			);
 		}
@@ -246,29 +246,29 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'show_remember_me',
 			[
-				'label' => __( 'Remember Me', 'wbcom-elementor-addons' ),
+				'label' => __( 'Remember Me', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
-				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Hide', 'wbcom-essential' ),
+				'label_on' => __( 'Show', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'show_logged_in_message',
 			[
-				'label' => __( 'Logged in Message', 'wbcom-elementor-addons' ),
+				'label' => __( 'Logged in Message', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				'label_off' => __( 'Hide', 'wbcom-elementor-addons' ),
-				'label_on' => __( 'Show', 'wbcom-elementor-addons' ),
+				'label_off' => __( 'Hide', 'wbcom-essential' ),
+				'label_on' => __( 'Show', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'custom_labels',
 			[
-				'label' => __( 'Custom Label', 'wbcom-elementor-addons' ),
+				'label' => __( 'Custom Label', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'condition' => [
 					'show_labels' => 'yes',
@@ -279,9 +279,9 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'user_label',
 			[
-				'label' => __( 'Username Label', 'wbcom-elementor-addons' ),
+				'label' => __( 'Username Label', 'wbcom-essential' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( ' Username or Email Address', 'wbcom-elementor-addons' ),
+				'default' => __( 'Username or Email Address', 'wbcom-essential' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -292,9 +292,9 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'user_placeholder',
 			[
-				'label' => __( 'Username Placeholder', 'wbcom-elementor-addons' ),
+				'label' => __( 'Username Placeholder', 'wbcom-essential' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( ' Username or Email Address', 'wbcom-elementor-addons' ),
+				'default' => __( ' Username or Email Address', 'wbcom-essential' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -305,9 +305,9 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'password_label',
 			[
-				'label' => __( 'Password Label', 'wbcom-elementor-addons' ),
+				'label' => __( 'Password Label', 'wbcom-essential' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Password', 'wbcom-elementor-addons' ),
+				'default' => __( 'Password', 'wbcom-essential' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -318,9 +318,35 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'password_placeholder',
 			[
-				'label' => __( 'Password Placeholder', 'wbcom-elementor-addons' ),
+				'label' => __( 'Password Placeholder', 'wbcom-essential' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Password', 'wbcom-elementor-addons' ),
+				'default' => __( 'Password', 'wbcom-essential' ),
+				'condition' => [
+					'show_labels' => 'yes',
+					'custom_labels' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'register_label',
+			[
+				'label' => __( 'Register Label', 'wbcom-essential' ),
+				'type' => Controls_Manager::TEXT,
+				'default' => __( 'Register', 'wbcom-essential' ),
+				'condition' => [
+					'show_labels' => 'yes',
+					'custom_labels' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'remember_me_label',
+			[
+				'label' => __( 'Remember Me Label', 'wbcom-essential' ),
+				'type' => Controls_Manager::TEXT,
+				'default' => __( 'Remember Me', 'wbcom-essential' ),
 				'condition' => [
 					'show_labels' => 'yes',
 					'custom_labels' => 'yes',
@@ -333,7 +359,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_style',
 			[
-				'label' => __( 'Form', 'wbcom-elementor-addons' ),
+				'label' => __( 'Form', 'wbcom-essential' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -341,7 +367,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'row_gap',
 			[
-				'label' => __( 'Rows Gap', 'wbcom-elementor-addons' ),
+				'label' => __( 'Rows Gap', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => '10',
@@ -362,7 +388,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'links_color',
 			[
-				'label' => __( 'Links Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Links Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group > a' => 'color: {{VALUE}};',
@@ -377,7 +403,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'links_hover_color',
 			[
-				'label' => __( 'Links Hover Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Links Hover Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group > a:hover' => 'color: {{VALUE}};',
@@ -394,7 +420,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_labels',
 			[
-				'label' => __( 'Label', 'wbcom-elementor-addons' ),
+				'label' => __( 'Label', 'wbcom-essential' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_labels!' => '',
@@ -405,7 +431,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'label_spacing',
 			[
-				'label' => __( 'Spacing', 'wbcom-elementor-addons' ),
+				'label' => __( 'Spacing', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => '0',
@@ -426,7 +452,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'label_color',
 			[
-				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Text Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-form-fields-wrapper' => 'color: {{VALUE}};',
@@ -452,7 +478,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_field_style',
 			[
-				'label' => __( 'Fields', 'wbcom-elementor-addons' ),
+				'label' => __( 'Fields', 'wbcom-essential' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -460,7 +486,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_text_color',
 			[
-				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Text Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group .elementor-field' => 'color: {{VALUE}};',
@@ -484,7 +510,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_background_color',
 			[
-				'label' => __( 'Background Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Background Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ffffff',
 				'selectors' => [
@@ -498,7 +524,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_border_color',
 			[
-				'label' => __( 'Border Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Border Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-field-group .elementor-field:not(.elementor-select-wrapper)' => 'border-color: {{VALUE}};',
@@ -512,7 +538,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_border_width',
 			[
-				'label' => __( 'Border Width', 'wbcom-elementor-addons' ),
+				'label' => __( 'Border Width', 'wbcom-essential' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'placeholder' => '1',
 				'size_units' => [ 'px' ],
@@ -526,7 +552,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_border_radius',
 			[
-				'label' => __( 'Border Radius', 'wbcom-elementor-addons' ),
+				'label' => __( 'Border Radius', 'wbcom-essential' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -541,7 +567,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_button_style',
 			[
-				'label' => __( 'Button', 'wbcom-elementor-addons' ),
+				'label' => __( 'Button', 'wbcom-essential' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -551,14 +577,14 @@ class Login extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_normal',
 			[
-				'label' => __( 'Normal', 'wbcom-elementor-addons' ),
+				'label' => __( 'Normal', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'button_text_color',
 			[
-				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Text Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -571,7 +597,7 @@ class Login extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'button_typography',
-				'label' => __( 'Typography', 'wbcom-elementor-addons' ),
+				'label' => __( 'Typography', 'wbcom-essential' ),
 				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
 				'selector' => '{{WRAPPER}} .elementor-button',
 			]
@@ -580,7 +606,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_background_color',
 			[
-				'label' => __( 'Background Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Background Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -595,7 +621,7 @@ class Login extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Border::get_type(), [
 				'name' => 'button_border',
-				'label' => __( 'Border', 'wbcom-elementor-addons' ),
+				'label' => __( 'Border', 'wbcom-essential' ),
 				'placeholder' => '1px',
 				'default' => '1px',
 				'selector' => '{{WRAPPER}} .elementor-button',
@@ -606,7 +632,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_border_radius',
 			[
-				'label' => __( 'Border Radius', 'wbcom-elementor-addons' ),
+				'label' => __( 'Border Radius', 'wbcom-essential' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -618,7 +644,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_text_padding',
 			[
-				'label' => __( 'Text Padding', 'wbcom-elementor-addons' ),
+				'label' => __( 'Text Padding', 'wbcom-essential' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
@@ -632,14 +658,14 @@ class Login extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_hover',
 			[
-				'label' => __( 'Hover', 'wbcom-elementor-addons' ),
+				'label' => __( 'Hover', 'wbcom-essential' ),
 			]
 		);
 
 		$this->add_control(
 			'button_hover_color',
 			[
-				'label' => __( 'Text Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Text Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-button:hover' => 'color: {{VALUE}};',
@@ -650,7 +676,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_background_hover_color',
 			[
-				'label' => __( 'Background Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Background Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-button:hover' => 'background-color: {{VALUE}};',
@@ -661,7 +687,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_hover_border_color',
 			[
-				'label' => __( 'Border Color', 'wbcom-elementor-addons' ),
+				'label' => __( 'Border Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-button:hover' => 'border-color: {{VALUE}};',
@@ -675,7 +701,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_hover_animation',
 			[
-				'label' => __( 'Animation', 'wbcom-elementor-addons' ),
+				'label' => __( 'Animation', 'wbcom-essential' ),
 				'type' => Controls_Manager::HOVER_ANIMATION,
 			]
 		);
@@ -805,7 +831,7 @@ class Login extends Base_Widget {
 				$current_user = wp_get_current_user();
 
 				echo '<div class="elementor-login">' .
-					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-elementor-addons' ), $current_user->display_name, wp_logout_url( $current_url ) ) .
+					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-essential' ), $current_user->display_name, wp_logout_url( $current_url ) ) .
 					'</div>';
 			}
 
@@ -901,7 +927,8 @@ class Login extends Base_Widget {
 					<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
 						<label for="elementor-login-remember-me">
 							<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
-							<?php echo __( 'Remember Me', 'wbcom-elementor-addons' ); ?>
+							<?php echo $settings['remember_me_label']; ?>
+							<?php //echo __( 'Remember Me', 'wbcom-essential' ); ?>
 						</label>
 					</div>
 				<?php endif; ?>
@@ -929,7 +956,7 @@ class Login extends Base_Widget {
 					<div class="elementor-field-group elementor-column elementor-col-100">
 						<?php if ( $show_lost_password ) : ?>
 							<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url( $redirect_url ); ?>">
-								<?php echo __( 'Lost your password?', 'wbcom-elementor-addons' ); ?>
+								<?php echo __( 'Lost your password?', 'wbcom-essential' ); ?>
 							</a>
 						<?php endif; ?>
 
@@ -938,7 +965,8 @@ class Login extends Base_Widget {
 								<span class="elementor-login-separator"> | </span>
 							<?php endif; ?>
 							<a class="elementor-register" href="<?php echo wp_registration_url(); ?>">
-								<?php echo __( 'Register', 'wbcom-elementor-addons' ); ?>
+								<?php echo $settings['register_label']; ?>
+								<?php //echo __( 'Register', 'wbcom-essential' ); ?>
 							</a>
 						<?php endif; ?>
 					</div>
@@ -972,7 +1000,7 @@ class Login extends Base_Widget {
 					<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
 						<label for="elementor-login-remember-me">
 							<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
-							<?php echo __( 'Remember Me', 'wbcom-elementor-addons' ); ?>
+							<?php echo __( 'Remember Me', 'wbcom-essential' ); ?>
 						</label>
 					</div>
 				<# } #>
@@ -989,7 +1017,7 @@ class Login extends Base_Widget {
 					<div class="elementor-field-group elementor-column elementor-col-100">
 						<# if ( settings.show_lost_password ) { #>
 							<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url(); ?>">
-								<?php echo __( 'Lost your password?', 'wbcom-elementor-addons' ); ?>
+								<?php echo __( 'Lost your password?', 'wbcom-essential' ); ?>
 							</a>
 						<# } #>
 
@@ -999,7 +1027,7 @@ class Login extends Base_Widget {
 									<span class="elementor-login-separator"> | </span>
 								<# } #>
 								<a class="elementor-register" href="<?php echo wp_registration_url(); ?>">
-									<?php echo __( 'Register', 'wbcom-elementor-addons' ); ?>
+									<?php echo __( 'Register', 'wbcom-essential' ); ?>
 								</a>
 							<# } #>
 						<?php } ?>

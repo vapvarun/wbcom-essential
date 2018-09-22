@@ -57,7 +57,7 @@ class WBCOM_BuddyPress_Registration_Shortcode {
 				if ( is_user_logged_in() ) {
 					$current_user = wp_get_current_user();
 					echo '<div class="elementor-login">' .
-					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-elementor-addons' ), $current_user->display_name, wp_logout_url() ) .
+					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-essential' ), $current_user->display_name, wp_logout_url() ) .
 							'</div>';
 				}
 				else {
@@ -68,7 +68,7 @@ class WBCOM_BuddyPress_Registration_Shortcode {
 			
 		}
 		else {
-			_e( 'Please Activate BuddyPress To Use This Shortcode', '' );
+			_e( 'Please Activate BuddyPress To Use This Shortcode', 'wbcom-essential' );
 		}
 		$html = ob_get_clean();
 		return $html;

@@ -2,34 +2,34 @@
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Wbcom Essential\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-22 07:20:11+00:00\n"
+"POT-Creation-Date: 2018-09-22 06:51:56+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Wbcom-Essential\n"
-"Language-Team: Wbcom-Essential\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2018-09-22 07:16+0000\n"
+"Last-Translator: developer <developer@gmail.com>\n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-Country: United States\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
-"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
-"X-Generator: grunt-wp-i18n1.0.2\n"
+"X-Generator: Loco https://localise.biz/"
 
 #: base/module-base.php:33 base/module-base.php:44 plugin.php:36 plugin.php:46
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 #: includes/buddypress-registration-shortcode.php:60
-#: modules/forms/widgets/login.php:834
+#: modules/forms/widgets/login.php:808
 #: modules/forms/widgets/registration.php:699
 msgid "You are Logged in as %1$s (<a href=\"%2$s\">Logout</a>)"
 msgstr ""
@@ -63,7 +63,8 @@ msgid "Topbar Type"
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:114
-msgid "Allows you to select default theme topbar or topbar made using Elementor."
+msgid ""
+"Allows you to select default theme topbar or topbar made using Elementor."
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:119
@@ -89,7 +90,8 @@ msgid "Header Type"
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:177
-msgid "Allows you to select default theme header or header made using Elementor."
+msgid ""
+"Allows you to select default theme header or header made using Elementor."
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:182
@@ -109,7 +111,8 @@ msgid "Footer Type"
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:234
-msgid "Allows you to select default theme footer or footer made using Elementor."
+msgid ""
+"Allows you to select default theme footer or footer made using Elementor."
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:239
@@ -129,7 +132,8 @@ msgid "<strong>ERROR</strong>: Enter a username or email address."
 msgstr ""
 
 #: includes/form-ajax-handler.php:171
-msgid "<strong>ERROR</strong>: There is no user registered with that email address."
+msgid ""
+"<strong>ERROR</strong>: There is no user registered with that email address."
 msgstr ""
 
 #: includes/form-ajax-handler.php:189
@@ -152,8 +156,8 @@ msgstr ""
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#: includes/form-ajax-handler.php:215
 #. translators: Password reset email subject. 1: Site name
+#: includes/form-ajax-handler.php:215
 msgid "[%s] Password Reset"
 msgstr ""
 
@@ -243,8 +247,8 @@ msgstr ""
 
 #: includes/wp-menu.php:81 modules/nav-menu/widgets/nav-menu.php:74
 msgid ""
-"Choose the WordPress menu to output below. To change menu items please go "
-"to the <a href=\"%s\" target=\"_blank\">WordPress Menu Editor</a> page."
+"Choose the WordPress menu to output below. To change menu items please go to "
+"the <a href=\"%s\" target=\"_blank\">WordPress Menu Editor</a> page."
 msgstr ""
 
 #: includes/wp-menu.php:87 modules/nav-menu/widgets/nav-menu.php:80
@@ -521,7 +525,7 @@ msgstr ""
 msgid "Columns Gap"
 msgstr ""
 
-#: modules/__posts/skins/skin-base.php:359 modules/forms/widgets/login.php:370
+#: modules/__posts/skins/skin-base.php:359 modules/forms/widgets/login.php:344
 #: modules/forms/widgets/registration.php:247
 #: modules/posts/skins/skin-base.php:361
 msgid "Rows Gap"
@@ -537,7 +541,7 @@ msgstr ""
 #: modules/__posts/skins/skin-cards.php:401
 #: modules/__posts/skins/skin-classic.php:57
 #: modules/branding/widgets/branding.php:237
-#: modules/forms/widgets/login.php:555 modules/forms/widgets/login.php:635
+#: modules/forms/widgets/login.php:529 modules/forms/widgets/login.php:609
 #: modules/forms/widgets/registration.php:432
 #: modules/forms/widgets/registration.php:512
 #: modules/posts/skins/skin-base.php:420 modules/posts/skins/skin-cards.php:205
@@ -550,7 +554,7 @@ msgstr ""
 #: modules/__posts/skins/skin-base.php:548
 #: modules/__posts/skins/skin-base.php:619
 #: modules/__posts/skins/skin-base.php:676
-#: modules/__posts/skins/skin-base.php:737 modules/forms/widgets/login.php:434
+#: modules/__posts/skins/skin-base.php:737 modules/forms/widgets/login.php:408
 #: modules/forms/widgets/registration.php:311
 #: modules/posts/skins/skin-base.php:435 modules/posts/skins/skin-base.php:514
 #: modules/posts/skins/skin-base.php:586 modules/posts/skins/skin-base.php:644
@@ -560,7 +564,7 @@ msgstr ""
 
 #: modules/__posts/skins/skin-base.php:459
 #: modules/__posts/skins/skin-classic.php:113
-#: modules/forms/widgets/login.php:580
+#: modules/forms/widgets/login.php:554
 #: modules/forms/widgets/registration.php:457
 #: modules/posts/widgets/posts.php:295
 msgid "Normal"
@@ -569,7 +573,7 @@ msgstr ""
 #: modules/__posts/skins/skin-base.php:475
 #: modules/__posts/skins/skin-classic.php:151
 #: modules/branding/widgets/branding.php:106
-#: modules/forms/widgets/login.php:661
+#: modules/forms/widgets/login.php:635
 #: modules/forms/widgets/registration.php:538
 #: modules/posts/widgets/posts.php:315
 msgid "Hover"
@@ -633,8 +637,8 @@ msgstr ""
 #: modules/__posts/skins/skin-cards.php:361
 #: modules/__posts/skins/skin-classic.php:128
 #: modules/__posts/skins/skin-classic.php:166
-#: modules/forms/widgets/login.php:513 modules/forms/widgets/login.php:609
-#: modules/forms/widgets/login.php:679
+#: modules/forms/widgets/login.php:487 modules/forms/widgets/login.php:583
+#: modules/forms/widgets/login.php:653
 #: modules/forms/widgets/registration.php:390
 #: modules/forms/widgets/registration.php:486
 #: modules/forms/widgets/registration.php:556
@@ -643,9 +647,9 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: modules/__posts/skins/skin-cards.php:180 modules/forms/widgets/login.php:455
-#: modules/forms/widgets/login.php:489 modules/forms/widgets/login.php:587
-#: modules/forms/widgets/login.php:668
+#: modules/__posts/skins/skin-cards.php:180 modules/forms/widgets/login.php:429
+#: modules/forms/widgets/login.php:463 modules/forms/widgets/login.php:561
+#: modules/forms/widgets/login.php:642
 #: modules/forms/widgets/registration.php:332
 #: modules/forms/widgets/registration.php:366
 #: modules/forms/widgets/registration.php:464
@@ -689,7 +693,7 @@ msgstr ""
 #: modules/__posts/skins/skin-cards.php:372
 #: modules/__posts/skins/skin-classic.php:139
 #: modules/__posts/skins/skin-classic.php:177
-#: modules/forms/widgets/login.php:527 modules/forms/widgets/login.php:690
+#: modules/forms/widgets/login.php:501 modules/forms/widgets/login.php:664
 #: modules/forms/widgets/registration.php:404
 #: modules/forms/widgets/registration.php:567
 #: modules/posts/skins/skin-cards.php:383
@@ -698,7 +702,7 @@ msgstr ""
 
 #: modules/__posts/skins/skin-cards.php:383
 #: modules/__posts/skins/skin-classic.php:39
-#: modules/forms/widgets/login.php:541
+#: modules/forms/widgets/login.php:515
 #: modules/forms/widgets/registration.php:418
 #: modules/posts/skins/skin-cards.php:394
 #: modules/woo-cart/widgets/woo-cart.php:224
@@ -839,7 +843,7 @@ msgstr ""
 
 #: modules/branding/widgets/branding.php:138
 #: modules/branding/widgets/branding.php:207
-#: modules/forms/widgets/login.php:600
+#: modules/forms/widgets/login.php:574
 #: modules/forms/widgets/registration.php:477
 #: modules/posts/skins/skin-base.php:502 modules/posts/skins/skin-base.php:574
 #: modules/posts/skins/skin-base.php:632 modules/posts/skins/skin-base.php:694
@@ -863,7 +867,7 @@ msgid "Branding Border"
 msgstr ""
 
 #: modules/branding/widgets/branding.php:229
-#: modules/forms/widgets/login.php:624
+#: modules/forms/widgets/login.php:598
 #: modules/forms/widgets/registration.php:501
 msgid "Border"
 msgstr ""
@@ -877,7 +881,7 @@ msgstr ""
 msgid "Form Fields"
 msgstr ""
 
-#: modules/forms/widgets/login.php:39 modules/forms/widgets/login.php:423
+#: modules/forms/widgets/login.php:39 modules/forms/widgets/login.php:397
 #: modules/forms/widgets/registration.php:39
 #: modules/forms/widgets/registration.php:300
 msgid "Label"
@@ -960,26 +964,25 @@ msgstr ""
 #: modules/forms/widgets/login.php:215
 #: modules/forms/widgets/registration.php:153
 msgid ""
-"Note: Because of security reasons, you can ONLY use your current domain "
-"here."
+"Note: Because of security reasons, you can ONLY use your current domain here."
 msgstr ""
 
-#: modules/forms/widgets/login.php:225 modules/forms/widgets/login.php:959
-#: modules/forms/widgets/login.php:1020
+#: modules/forms/widgets/login.php:225 modules/forms/widgets/login.php:932
+#: modules/forms/widgets/login.php:992
 msgid "Lost your password?"
 msgstr ""
 
-#: modules/forms/widgets/login.php:237 modules/forms/widgets/login.php:336
-#: modules/forms/widgets/login.php:1030
+#: modules/forms/widgets/login.php:237 modules/forms/widgets/login.php:941
+#: modules/forms/widgets/login.php:1002
 #: modules/forms/widgets/registration.php:77
 #: modules/notification-area/widgets/notification-area.php:296
 msgid "Register"
 msgstr ""
 
-#: modules/forms/widgets/login.php:249 modules/forms/widgets/login.php:349
-#: modules/forms/widgets/login.php:1003
+#: modules/forms/widgets/login.php:249 modules/forms/widgets/login.php:904
+#: modules/forms/widgets/login.php:975
 msgid "Remember Me"
-msgstr ""
+msgstr "dsddsd"
 
 #: modules/forms/widgets/login.php:260
 #: modules/forms/widgets/registration.php:163
@@ -994,19 +997,15 @@ msgstr ""
 #: modules/forms/widgets/login.php:282
 #: modules/forms/widgets/registration.php:185
 msgid "Username Label"
-msgstr ""
+msgstr "USSSSS"
 
-#: modules/forms/widgets/login.php:284
-msgid "Username or Email Address"
-msgstr ""
+#: modules/forms/widgets/login.php:284 modules/forms/widgets/login.php:297
+msgid " Username or Email Address"
+msgstr "TEST USERNAME"
 
 #: modules/forms/widgets/login.php:295
 #: modules/forms/widgets/registration.php:198
 msgid "Username Placeholder"
-msgstr ""
-
-#: modules/forms/widgets/login.php:297
-msgid " Username or Email Address"
 msgstr ""
 
 #: modules/forms/widgets/login.php:308
@@ -1021,45 +1020,37 @@ msgstr ""
 msgid "Password Placeholder"
 msgstr ""
 
-#: modules/forms/widgets/login.php:334
-msgid "Register Label"
-msgstr ""
-
-#: modules/forms/widgets/login.php:347
-msgid "Remember Me Label"
-msgstr ""
-
-#: modules/forms/widgets/login.php:362
+#: modules/forms/widgets/login.php:336
 #: modules/forms/widgets/registration.php:239
 msgid "Form"
 msgstr ""
 
-#: modules/forms/widgets/login.php:391
+#: modules/forms/widgets/login.php:365
 #: modules/forms/widgets/registration.php:268
 msgid "Links Color"
 msgstr ""
 
-#: modules/forms/widgets/login.php:406
+#: modules/forms/widgets/login.php:380
 #: modules/forms/widgets/registration.php:283
 msgid "Links Hover Color"
 msgstr ""
 
-#: modules/forms/widgets/login.php:481
+#: modules/forms/widgets/login.php:455
 #: modules/forms/widgets/registration.php:358
 msgid "Fields"
 msgstr ""
 
-#: modules/forms/widgets/login.php:570
+#: modules/forms/widgets/login.php:544
 #: modules/forms/widgets/registration.php:447
 msgid "Button"
 msgstr ""
 
-#: modules/forms/widgets/login.php:647
+#: modules/forms/widgets/login.php:621
 #: modules/forms/widgets/registration.php:524
 msgid "Text Padding"
 msgstr ""
 
-#: modules/forms/widgets/login.php:704
+#: modules/forms/widgets/login.php:678
 #: modules/forms/widgets/registration.php:581
 #: modules/woo-cart/widgets/woo-cart.php:292
 msgid "Animation"
@@ -1313,41 +1304,41 @@ msgstr ""
 msgid "WBCOM Elements"
 msgstr ""
 
-#: wbcom-essential.php:82
+#: wbcom-essential.php:81
 msgid ""
 "WBCOM Elementor Addons not working because you need to activate the "
 "Elementor plugin."
 msgstr ""
 
-#: wbcom-essential.php:83
+#: wbcom-essential.php:82
 msgid "Activate Elementor Now"
 msgstr ""
 
-#: wbcom-essential.php:91
+#: wbcom-essential.php:90
 msgid ""
-"WBCOM Elementor Addons not working because you need to install the "
-"Elementor plugin"
+"WBCOM Elementor Addons not working because you need to install the Elementor "
+"plugin"
 msgstr ""
 
-#: wbcom-essential.php:92
+#: wbcom-essential.php:91
 msgid "Install Elementor Now"
 msgstr ""
 
-#: wbcom-essential.php:106
+#: wbcom-essential.php:105
 msgid ""
 "WBCOM Elementor Addons not working because you are using an old version of "
 "Elementor."
 msgstr ""
 
-#: wbcom-essential.php:107 wbcom-essential.php:121
+#: wbcom-essential.php:106 wbcom-essential.php:120
 msgid "Update Elementor Now"
 msgstr ""
 
-#: wbcom-essential.php:120
+#: wbcom-essential.php:119
 msgid ""
 "A new version of Elementor is available. For better performance and "
-"compatibility of WBCOM Elementor Addons, we recommend updating to the "
-"latest version."
+"compatibility of WBCOM Elementor Addons, we recommend updating to the latest "
+"version."
 msgstr ""
 
 #: modules/query-control/controls/group-control-posts.php:44

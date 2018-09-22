@@ -85,8 +85,8 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 */
 	// public function header_posttype() {
 	// 	$labels = array(
-	// 		'name'		 => __( 'Global Header Template', 'wbcom-elementor-addons' ),
-	// 		'edit_item'	 => __( 'Edit Global Header Template', 'wbcom-elementor-addons' ),
+	// 		'name'		 => __( 'Global Header Template', 'wbcom-essential' ),
+	// 		'edit_item'	 => __( 'Edit Global Header Template', 'wbcom-essential' ),
 	// 	);
 	// 	$args = array(
 	// 		'labels'				 => $labels,
@@ -115,8 +115,8 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 */
 	// public function footer_posttype() {
 	// 	$labels = array(
-	// 		'name'		 => __( 'Global Footer Template', 'wbcom-elementor-addons' ),
-	// 		'edit_item'	 => __( 'Edit Global Footer Template', 'wbcom-elementor-addons' ),
+	// 		'name'		 => __( 'Global Footer Template', 'wbcom-essential' ),
+	// 		'edit_item'	 => __( 'Edit Global Footer Template', 'wbcom-essential' ),
 	// 	);
 	// 	$args = array(
 	// 		'labels'				 => $labels,
@@ -179,32 +179,32 @@ class WBCOM_Elementor_Global_Header_Footer {
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
 		add_submenu_page(
 			$theme_slug . '-settings',
-			__( 'Header', 'wbcom-elementor-addons' ), 
-			__( 'Header', 'wbcom-elementor-addons' ),
+			__( 'Header', 'wbcom-essential' ), 
+			__( 'Header', 'wbcom-essential' ),
 			'manage_options',
 			'edit.php?post_type=reign-elemtr-header'
 		);
 
 		add_submenu_page(
 			$theme_slug . '-settings',
-			__( 'Footer', 'wbcom-elementor-addons' ),
-			__( 'Footer', 'wbcom-elementor-addons' ),
+			__( 'Footer', 'wbcom-essential' ),
+			__( 'Footer', 'wbcom-essential' ),
 			'manage_options',
 			'edit.php?post_type=reign-elemtr-footer'
 		);
 
 		// add_submenu_page(
-		// 'reign-settings', __( 'Global Header', 'wbcom-elementor-addons' ), __( 'Global Header', 'wbcom-elementor-addons' ), 'manage_options', basename( get_edit_post_link( $header_pid ) )
+		// 'reign-settings', __( 'Global Header', 'wbcom-essential' ), __( 'Global Header', 'wbcom-essential' ), 'manage_options', basename( get_edit_post_link( $header_pid ) )
 		// );
 		// add_submenu_page(
-		// 'reign-settings', __( 'Global Footer', 'wbcom-elementor-addons' ), __( 'Global Footer', 'wbcom-elementor-addons' ), 'manage_options', basename( get_edit_post_link( $footer_pid ) )
+		// 'reign-settings', __( 'Global Footer', 'wbcom-essential' ), __( 'Global Footer', 'wbcom-essential' ), 'manage_options', basename( get_edit_post_link( $footer_pid ) )
 		// );
 	}
 	/**
 	 * Register meta box(es).
 	 */
 	function ehf_register_metabox() {
-		add_meta_box( 'ehf-meta-box', __( 'Header or Topbar ?', 'wbcom-elementor-addons' ), array(
+		add_meta_box( 'ehf-meta-box', __( 'Header or Topbar ?', 'wbcom-essential' ), array(
 			$this,
 			'efh_metabox_render',
 		), array( 'reign-elemtr-header' ), 'side', 'default' );
@@ -217,8 +217,8 @@ class WBCOM_Elementor_Global_Header_Footer {
 	function efh_metabox_render( $post ) {
 		$selected_value = get_post_meta( $post->ID, 'reign_ele_header_topbar', true );
 		$options_array = array(
-			'header'	=> __( 'Header', 'wbcom-elementor-addons' ),
-			'topbar'	=> __( 'Topbar', 'wbcom-elementor-addons' ),
+			'header'	=> __( 'Header', 'wbcom-essential' ),
+			'topbar'	=> __( 'Topbar', 'wbcom-essential' ),
 		);
 		echo '<select name="reign_ele_header_topbar">';
 			foreach ( $options_array as $key => $value ) {

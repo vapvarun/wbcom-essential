@@ -20,7 +20,7 @@ class WooCart extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'Woo Cart Icon', 'wbcom-elementor-addons' );
+		return __( 'Woo Cart Icon', 'wbcom-essential' );
 	}
 
 	public function get_icon() {

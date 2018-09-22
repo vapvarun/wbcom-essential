@@ -28,7 +28,7 @@ class Nav_Menu extends Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Nav Menu', 'wbcom-elementor-addons' );
+		return __( 'Nav Menu', 'wbcom-essential' );
 	}
 
 	/**
@@ -206,12 +206,12 @@ class Nav_Menu extends Widget_Base {
 		$this->add_control(
 			'enable_border_top',
 			[
-				'label' => __( 'Enable Top Border','wbcom-elementor-addons' ),
+				'label' => __( 'Enable Top Border','wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
-				'label_off' => __( 'Off', 'wbcom-elementor-addons' ),
-				'label_on' => __( 'On', 'wbcom-elementor-addons' ),
-				'description' => __( 'Note: This will apply to active menu.', 'wbcom-elementor-addons' )
+				'label_off' => __( 'Off', 'wbcom-essential' ),
+				'label_on' => __( 'On', 'wbcom-essential' ),
+				'description' => __( 'Note: This will apply to active menu.', 'wbcom-essential' )
 			]
 		);
 
@@ -237,7 +237,7 @@ class Nav_Menu extends Widget_Base {
 		// 		'show_external' => false,
 		// 		'separator' => false,
 		// 		'placeholder' => 'http://your-link.com/',
-		// 		'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'wbcom-elementor-addons' ),
+		// 		'description' => __( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'wbcom-essential' ),
 		// 		'condition' => [
 		// 			'redirect_after_login' => 'yes',
 		// 		],

@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 4.9.8
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -23,11 +23,15 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 
-= 1.0.9=
+= 1.0.10 =
+* Fix - Login widget additional text options added.
+* Fix - Language file improved.
+
+= 1.0.9 =
 * Fix - Search layout fixed to match Reign Theme.
 * Fix - Posts widget conflict fixed.
 
-= 1.0.8=
+= 1.0.8 =
 * Fix - Default template-set modified for header/topbar and footer.
 
 = 1.0.7 =

@@ -164,11 +164,11 @@ class WBCOM_Elementor_Form_AJAX_Handler {
 	public function retrieve_password( $user_login = '' ) {
 		$errors = new WP_Error();
 		if ( empty( $user_login ) ) {
-			$errors->add('empty_username', __('<strong>ERROR</strong>: Enter a username or email address.'));
+			$errors->add('empty_username', __('<strong>ERROR</strong>: Enter a username or email address.', 'wbcom-essential' ));
 		} elseif ( strpos( $user_login, '@' ) ) {
 			$user_data = get_user_by( 'email', trim( wp_unslash( $user_login ) ) );
 			if ( empty( $user_data ) )
-				$errors->add('invalid_email', __('<strong>ERROR</strong>: There is no user registered with that email address.'));
+				$errors->add('invalid_email', __('<strong>ERROR</strong>: There is no user registered with that email address.', 'wbcom-essential' ));
 		} else {
 			$login = trim($user_login);
 			$user_data = get_user_by('login', $login);
@@ -186,7 +186,7 @@ class WBCOM_Elementor_Form_AJAX_Handler {
 		if ( $errors->get_error_code() )
 			return $errors;
 		if ( !$user_data ) {
-			$errors->add('invalidcombo', __('<strong>ERROR</strong>: Invalid username or email.'));
+			$errors->add('invalidcombo', __('<strong>ERROR</strong>: Invalid username or email.', 'wbcom-essential' ));
 			return $errors;
 		}
 		// Redefining user_login ensures we return the right case in the email.
@@ -196,11 +196,11 @@ class WBCOM_Elementor_Form_AJAX_Handler {
 		if ( is_wp_error( $key ) ) {
 			return $key;
 		}
-		$message = __('Someone has requested a password reset for the following account:') . "\r\n\r\n";
+		$message = __('Someone has requested a password reset for the following account:', 'wbcom-essential' ) . "\r\n\r\n";
 		$message .= network_home_url( '/' ) . "\r\n\r\n";
-		$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-		$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
-		$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
+		$message .= sprintf(__('Username: %s', 'wbcom-essential' ), $user_login) . "\r\n\r\n";
+		$message .= __('If this was a mistake, just ignore this email and nothing will happen.', 'wbcom-essential') . "\r\n\r\n";
+		$message .= __('To reset your password, visit the following address:', 'wbcom-essential') . "\r\n\r\n";
 		$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
 		if ( is_multisite() ) {
 			$blogname = get_network()->site_name;
@@ -212,7 +212,7 @@ class WBCOM_Elementor_Form_AJAX_Handler {
 			$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 		}
 		/* translators: Password reset email subject. 1: Site name */
-		$title = sprintf( __('[%s] Password Reset'), $blogname );
+		$title = sprintf( __('[%s] Password Reset','wbcom-essential'), $blogname );
 		/**
 		 * Filters the subject of the password reset email.
 		 *
@@ -239,7 +239,7 @@ class WBCOM_Elementor_Form_AJAX_Handler {
 		 */
 		$message = apply_filters( 'retrieve_password_message', $message, $key, $user_login, $user_data );
 		if ( $message && !wp_mail( $user_email, wp_specialchars_decode( $title ), $message ) )
-			wp_die( __('The email could not be sent.') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.') );
+			wp_die( __('The email could not be sent.','wbcom-essential') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.','wbcom-essential') );
 		return true;
 	}
 }

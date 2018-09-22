@@ -171,8 +171,8 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 	public function header_posttype() {
 
 		$labels = array(
-			'name'		 => __( 'Header Template', 'wbcom-elementor-addons' ),
-			'edit_item'	 => __( 'Edit Header Template', 'wbcom-elementor-addons' ),
+			'name'		 => __( 'Header Template', 'wbcom-essential' ),
+			'edit_item'	 => __( 'Edit Header Template', 'wbcom-essential' ),
 		);
 
 		$args = array(
@@ -207,8 +207,8 @@ class WBCOM_Elementor_Global_Header_Footer_PostType {
 	public function footer_posttype() {
 
 		$labels = array(
-			'name'		 => __( 'Footer Template', 'wbcom-elementor-addons' ),
-			'edit_item'	 => __( 'Edit Footer Template', 'wbcom-elementor-addons' ),
+			'name'		 => __( 'Footer Template', 'wbcom-essential' ),
+			'edit_item'	 => __( 'Edit Footer Template', 'wbcom-essential' ),
 		);
 
 		$args = array(

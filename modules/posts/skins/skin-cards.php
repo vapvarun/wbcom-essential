@@ -36,7 +36,7 @@ class Skin_Cards extends Skin_Base {
 	}
 
 	public function get_title() {
-		return __( 'Cards', 'elementor-pro' );
+		return __( 'Cards', 'wbcom-essential' );
 	}
 
 	public function start_controls_tab( $id, $args ) {
@@ -84,10 +84,10 @@ class Skin_Cards extends Skin_Base {
 		$this->update_control(
 			'thumbnail',
 			[
-				'label' => __( 'Show Image', 'elementor-pro' ),
+				'label' => __( 'Show Image', 'wbcom-essential' ),
 				'options' => [
-					'top' => __( 'Yes', 'elementor-pro' ),
-					'none' => __( 'No', 'elementor-pro' ),
+					'top' => __( 'Yes', 'wbcom-essential' ),
+					'none' => __( 'No', 'wbcom-essential' ),
 				],
 				'render_type' => 'template',
 			]
@@ -132,7 +132,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'heading_badge_style',
 			[
-				'label' => __( 'Badge', 'elementor-pro' ),
+				'label' => __( 'Badge', 'wbcom-essential' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -149,11 +149,11 @@ class Skin_Cards extends Skin_Base {
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'elementor-pro' ),
+						'title' => __( 'Left', 'wbcom-essential' ),
 						'icon' => 'eicon-h-align-left',
 					],
 					'right' => [
-						'title' => __( 'Right', 'elementor-pro' ),
+						'title' => __( 'Right', 'wbcom-essential' ),
 						'icon' => 'eicon-h-align-right',
 					],
 				],
@@ -170,7 +170,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'badge_bg_color',
 			[
-				'label' => __( 'Background Color', 'elementor-pro' ),
+				'label' => __( 'Background Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__card .elementor-post__badge' => 'background-color: {{VALUE}};',
@@ -188,7 +188,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'badge_color',
 			[
-				'label' => __( 'Text Color', 'elementor-pro' ),
+				'label' => __( 'Text Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__card .elementor-post__badge' => 'color: {{VALUE}};',
@@ -202,7 +202,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'badge_radius',
 			[
-				'label' => __( 'Border Radius', 'elementor-pro' ),
+				'label' => __( 'Border Radius', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -221,7 +221,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'badge_size',
 			[
-				'label' => __( 'Size', 'elementor-pro' ),
+				'label' => __( 'Size', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -241,7 +241,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'badge_margin',
 			[
-				'label' => __( 'Margin', 'elementor-pro' ),
+				'label' => __( 'Margin', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -276,7 +276,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'heading_avatar_style',
 			[
-				'label' => __( 'Avatar', 'elementor-pro' ),
+				'label' => __( 'Avatar', 'wbcom-essential' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -289,7 +289,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'avatar_size',
 			[
-				'label' => __( 'Size', 'elementor-pro' ),
+				'label' => __( 'Size', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -313,10 +313,10 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'show_badge',
 			[
-				'label' => __( 'Badge', 'elementor-pro' ),
+				'label' => __( 'Badge', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'elementor-pro' ),
-				'label_off' => __( 'Hide', 'elementor-pro' ),
+				'label_on' => __( 'Show', 'wbcom-essential' ),
+				'label_off' => __( 'Hide', 'wbcom-essential' ),
 				'default' => 'yes',
 				'separator' => 'before',
 			]
@@ -325,7 +325,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'badge_taxonomy',
 			[
-				'label' => __( 'Badge Taxonomy', 'elementor-pro' ),
+				'label' => __( 'Badge Taxonomy', 'wbcom-essential' ),
 				'type' => Controls_Manager::SELECT2,
 				'label_block' => true,
 				'default' => 'category',
@@ -341,10 +341,10 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'show_avatar',
 			[
-				'label' => __( 'Avatar', 'elementor-pro' ),
+				'label' => __( 'Avatar', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'elementor-pro' ),
-				'label_off' => __( 'Hide', 'elementor-pro' ),
+				'label_on' => __( 'Show', 'wbcom-essential' ),
+				'label_off' => __( 'Hide', 'wbcom-essential' ),
 				'return_value' => 'show-avatar',
 				'default' => 'show-avatar',
 				'separator' => 'before',
@@ -361,7 +361,7 @@ class Skin_Cards extends Skin_Base {
 		$this->start_controls_section(
 			'section_design_card',
 			[
-				'label' => __( 'Card', 'elementor-pro' ),
+				'label' => __( 'Card', 'wbcom-essential' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -369,7 +369,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'card_bg_color',
 			[
-				'label' => __( 'Background Color', 'elementor-pro' ),
+				'label' => __( 'Background Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__card' => 'background-color: {{VALUE}}',
@@ -380,7 +380,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'card_border_color',
 			[
-				'label' => __( 'Border Color', 'elementor-pro' ),
+				'label' => __( 'Border Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__card' => 'border-color: {{VALUE}}',
@@ -391,7 +391,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'card_border_width',
 			[
-				'label' => __( 'Border Width', 'elementor-pro' ),
+				'label' => __( 'Border Width', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -409,7 +409,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'card_border_radius',
 			[
-				'label' => __( 'Border Radius', 'elementor-pro' ),
+				'label' => __( 'Border Radius', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
 				'range' => [
@@ -427,7 +427,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'card_padding',
 			[
-				'label' => __( 'Horizontal Padding', 'elementor-pro' ),
+				'label' => __( 'Horizontal Padding', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -447,7 +447,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'card_vertical_padding',
 			[
-				'label' => __( 'Vertical Padding', 'elementor-pro' ),
+				'label' => __( 'Vertical Padding', 'wbcom-essential' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -465,7 +465,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'box_shadow_box_shadow_type', // The name of this control is like that, for future extensibility to group_control box shadow.
 			[
-				'label' => __( 'Box Shadow', 'elementor-pro' ),
+				'label' => __( 'Box Shadow', 'wbcom-essential' ),
 				'type' => Controls_Manager::SWITCHER,
 				'prefix_class' => 'elementor-card-shadow-',
 				'default' => 'yes',
@@ -475,14 +475,14 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'hover_effect',
 			[
-				'label' => __( 'Hover Effect', 'elementor-pro' ),
+				'label' => __( 'Hover Effect', 'wbcom-essential' ),
 				'type' => Controls_Manager::SELECT,
 				'label_block' => false,
 				'options' => [
-					'none' => __( 'None', 'elementor-pro' ),
-					'gradient' => __( 'Gradient', 'elementor-pro' ),
-					//'zoom-in' => __( 'Zoom In', 'elementor-pro' ),
-					//'zoom-out' => __( 'Zoom Out', 'elementor-pro' ),
+					'none' => __( 'None', 'wbcom-essential' ),
+					'gradient' => __( 'Gradient', 'wbcom-essential' ),
+					//'zoom-in' => __( 'Zoom In', 'wbcom-essential' ),
+					//'zoom-out' => __( 'Zoom Out', 'wbcom-essential' ),
 				],
 				'default' => 'gradient',
 				'separator' => 'before',
@@ -493,7 +493,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'meta_border_color',
 			[
-				'label' => __( 'Meta Border Color', 'elementor-pro' ),
+				'label' => __( 'Meta Border Color', 'wbcom-essential' ),
 				'type' => Controls_Manager::COLOR,
 				'separator' => 'before',
 				'selectors' => [

@@ -10,7 +10,7 @@ class Skin_Classic extends Skin_Base {
 	}
 
 	public function get_title() {
-		return __( 'Classic', 'wbcom-elementor-addons' );
+		return __( 'Classic', 'wbcom-essential' );
 	}
 
 	public function render_amp() {
