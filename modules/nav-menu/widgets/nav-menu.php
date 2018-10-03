@@ -190,7 +190,7 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#399dff',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li.current-menu-item a' => 'text-color: {{VALUE}};',
+				'{{WRAPPER}} .main-navigation ul li.current-menu-item a' => 'color: {{VALUE}};',
 			],
 		]
 		);
