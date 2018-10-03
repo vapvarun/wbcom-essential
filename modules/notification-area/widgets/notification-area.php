@@ -161,9 +161,15 @@ class NotificationArea extends Widget_Base {
 		?>
 
 		<style type="text/css">
-			.wbesntl-notification-area {
-				height: <?php echo $notification_height; ?>px;
-				line-height: <?php echo $notification_height; ?>px;
+			.header-right.wb-grid-flex.wbesntl-notification-area,
+			.header-right.wb-grid-flex.wbesntl-notification-area .search-wrap,
+			.header-right.wb-grid-flex.wbesntl-notification-area .woo-cart-wrap,
+			.header-right.wb-grid-flex.wbesntl-notification-area .rg-icon-wrap,
+			.header-right.wb-grid-flex.wbesntl-notification-area .woo-cart-wrap,
+			.header-right.wb-grid-flex.wbesntl-notification-area .user-notifications,
+			.header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap {
+				height: <?php echo $notification_height; ?>px !important;
+				line-height: <?php echo $notification_height; ?>px !important;
 			}
 
 			/*.header-right .rg-search-form-wrap,
