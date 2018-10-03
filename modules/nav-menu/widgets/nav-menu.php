@@ -371,13 +371,13 @@ class Nav_Menu extends Widget_Base {
 		]
 		);
 
-		$this->add_control(
-		'submenu_height', [
-			'label'			 => __( 'Submenu Height', 'reign' ),
-			'type'			 => Controls_Manager::NUMBER,
-			'default'		 => 30,
-		]
-		);
+		// $this->add_control(
+		// 'submenu_height', [
+		// 	'label'			 => __( 'Submenu Height', 'reign' ),
+		// 	'type'			 => Controls_Manager::NUMBER,
+		// 	'default'		 => 30,
+		// ]
+		// );
 
 		$this->add_control(
 			'submenu_width', [
@@ -468,7 +468,6 @@ class Nav_Menu extends Widget_Base {
 						width: <?php echo $submenu_width; ?>px !important;
 					}
 				}
-				
 
 				/*.header-right .rg-search-form-wrap,
 				.user-profile-menu,
