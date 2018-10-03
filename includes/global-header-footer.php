@@ -475,8 +475,12 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$header_id = $reign_ele_header;
 		}
 		else {
-			// $header_id = get_theme_mod( 'reign_elementor_header', '0' );
-			return;
+			if( $reign_header_header_type ) {
+				$header_id = get_theme_mod( 'reign_elementor_header', '0' );
+			}
+			else {
+				return;
+			}
 		}
 
 		?>
@@ -551,8 +555,12 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$topbar_id = $reign_ele_topbar;
 		}
 		else {
-			// $topbar_id = get_theme_mod( 'reign_elementor_topbar', '0' );
-			return;
+			if( $reign_header_topbar_type ) {
+				$topbar_id = get_theme_mod( 'reign_elementor_topbar', '0' );
+			}
+			else {
+				return;
+			}
 		}
 
 		if ( !empty( $topbar_id ) && ( $topbar_id != "-1" ) ) {
@@ -626,8 +634,12 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$footer_id = $reign_ele_footer;
 		}
 		else {
-			// $footer_id = get_theme_mod( 'reign_elementor_footer', '0' );
-			return;
+			if( $reign_footer_footer_type ) {
+				$footer_id = get_theme_mod( 'reign_elementor_footer', '0' );
+			}
+			else {
+				return;
+			}
 		}
 		?>
 		<footer itemscope="itemscope" itemtype="http://schema.org/WPFooter">
