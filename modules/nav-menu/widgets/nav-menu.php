@@ -161,6 +161,16 @@ class Nav_Menu extends Widget_Base {
 			],
 		]
 		);
+		$this->add_control(
+		'menu_background_active', [
+			'label'		 => __( 'Background (active)', 'reign' ),
+			'type'		 => Controls_Manager::COLOR,
+			'default'	 => '#eaeaea',
+			'selectors'	 => [
+				'{{WRAPPER}} .main-navigation ul li.current-menu-item a' => 'background-color: {{VALUE}};',
+			],
+		]
+		);
 
 		$this->add_control(
 		'font_color', [

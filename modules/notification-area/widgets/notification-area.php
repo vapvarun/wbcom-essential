@@ -111,7 +111,7 @@ class NotificationArea extends Widget_Base {
 				'type'		 => \Elementor\Controls_Manager::COLOR,
 				'default'	 => '#ffffff',
 				'selectors'	 => [
-					'{{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-icon-wrap' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -122,7 +122,7 @@ class NotificationArea extends Widget_Base {
 				'type'		 => \Elementor\Controls_Manager::COLOR,
 				'default'	 => '#ffffff',
 				'selectors'	 => [
-					'{{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.grid-flex.grid-center .rg-icon-wrap:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:hover' => 'color: {{VALUE}};',
 				],
 			]
 		);
