@@ -439,67 +439,69 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Display header markup.
 	 */
 	public function add_header_markup() {
+		
 		$reign_header_header_type = get_theme_mod( 'reign_header_header_type', false );
 		if( $reign_header_header_type ) {
 			if( class_exists( 'Reign_Theme_Structure' ) ) {
 				$theme_structure_ref = Reign_Theme_Structure::instance();
-				remove_action( 'wbcom_header', array( $theme_structure_ref, 'render_theme_header' ), 20 );
+				remove_action( 'wbcom_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
 			}
 		}
+
+		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
+		global $wp_query;	
+		if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
+			$post_id = get_option( 'page_for_posts' );
+			$post = get_post( $post_id );
+		}
 		else {
+			global $post;
+		}
+
+		if( $post ) {
+			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
+			$reign_ele_header = isset( $wbcom_metabox_data['header_footer']['elementor_header'] ) ? $wbcom_metabox_data['header_footer']['elementor_header'] : '';
+		}
+
+		if( !empty( $reign_ele_header ) && ( $reign_ele_header == "-1" ) ) {
+			if( class_exists( 'Reign_Theme_Structure' ) ) {
+				$theme_structure_ref = Reign_Theme_Structure::instance();
+				remove_action( 'wbcom_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
+			}
 			return;
 		}
+		
+		if( !empty( $reign_ele_header ) && ( $reign_ele_header != "0" ) ) {
+			$header_id = $reign_ele_header;
+		}
+		else {
+			$header_id = get_theme_mod( 'reign_elementor_header', '0' );
+		}
+
 		?>
 		<div id="wbcom-ele-masthead" class="wbcom-ele-masthead-wrapper">
-			<!-- <p class="main-title bhf-hidden" itemprop="headline"><a href="<?php echo bloginfo( 'url' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p> -->
-				<?php
-				$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
-		
-				global $wp_query;	
-				if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
-					$post_id = get_option( 'page_for_posts' );
-					$post = get_post( $post_id );
+			<?php
+			/* code to convert slug to id */
+			$args = array(
+				'name'        => $header_id,
+				'post_type'   => 'reign-elemtr-header',
+				'post_status' => 'publish',
+				'numberposts' => 1
+			);
+			$topbar_posts = get_posts( $args );
+			if( !empty( $topbar_posts ) && is_array( $topbar_posts ) ) {
+				$header_id = $topbar_posts[0]->ID;
+			}
+			/* code to convert slug to id */
+			
+			if( $header_id ) {
+				if( class_exists( 'Reign_Theme_Structure' ) ) {
+					$theme_structure_ref = Reign_Theme_Structure::instance();
+					remove_action( 'wbcom_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
 				}
-				else {
-					global $post;
-				}
-
-				if( $post ) {
-					$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
-					$reign_ele_header = isset( $wbcom_metabox_data['header_footer']['elementor_header'] ) ? $wbcom_metabox_data['header_footer']['elementor_header'] : '';
-					// $reign_ele_header = get_post_meta( $post->ID , $theme_slug . '_ele_header', true );
-				}
-				// if( !empty( $reign_ele_header ) && ( $reign_ele_header != "-1" ) ) {
-				// 	$header_id = $reign_ele_header;
-				// }
-				if( !empty( $reign_ele_header ) && ( $reign_ele_header == "-1" ) ) {
-					return;
-				}
-				
-				if( !empty( $reign_ele_header ) && ( $reign_ele_header != "0" ) ) {
-					$header_id = $reign_ele_header;
-				}
-				else {
-					// $settings = get_option( $theme_slug . '_options', array() );
-					// $header_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_header' ] : '0';
-					$header_id = get_theme_mod( 'reign_elementor_header', '0' );
-				}
-
-				/* code to convert slug to id */
-				$args = array(
-					'name'        => $header_id,
-					'post_type'   => 'reign-elemtr-header',
-					'post_status' => 'publish',
-					'numberposts' => 1
-				);
-				$topbar_posts = get_posts( $args );
-				if( !empty( $topbar_posts ) && is_array( $topbar_posts ) ) {
-					$header_id = $topbar_posts[0]->ID;
-				}
-				/* code to convert slug to id */
-					
 				echo self::$elementor_frontend->get_builder_content_for_display( $header_id );
-				?>
+			}
+			?>
 		</div>
 		<?php
 	}
@@ -520,12 +522,8 @@ class WBCOM_Elementor_Global_Header_Footer {
 				remove_action( 'wbcom_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
 			}
 		}
-		else {
-			return;
-		}
-
+		
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
-
 		global $wp_query;
 		if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
 			$post_id = get_option( 'page_for_posts' );
@@ -538,12 +536,13 @@ class WBCOM_Elementor_Global_Header_Footer {
 		if( $post ) {
 			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
 			$reign_ele_topbar = isset( $wbcom_metabox_data['header_footer']['elementor_topbar'] ) ? $wbcom_metabox_data['header_footer']['elementor_topbar'] : '';
-			// $reign_ele_topbar = get_post_meta( $post->ID , $theme_slug . '_ele_topbar', true );
 		}
-		// if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar != "-1" ) ) {
-		// 	$topbar_id = $reign_ele_topbar;
-		// }
+		
 		if( !empty( $reign_ele_topbar ) && ( $reign_ele_topbar == "-1" ) ) {
+			if( class_exists( 'Reign_Theme_Structure' ) ) {
+				$theme_structure_ref = Reign_Theme_Structure::instance();
+				remove_action( 'wbcom_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
+			}
 			return;
 		}
 
@@ -551,10 +550,10 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$topbar_id = $reign_ele_topbar;
 		}
 		else {
-			// $settings = get_option( $theme_slug . '_options', array() );
-			// $topbar_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_topbar' ] : '0';
-			$topbar_id = get_theme_mod( 'reign_elementor_topbar', '0' );
+			// $topbar_id = get_theme_mod( 'reign_elementor_topbar', '0' );
+			return;
 		}
+
 		if ( !empty( $topbar_id ) && ( $topbar_id != "-1" ) ) {
 			/* code to convert slug to id */
 			$args = array(
@@ -567,10 +566,17 @@ class WBCOM_Elementor_Global_Header_Footer {
 			if( !empty( $topbar_posts ) && is_array( $topbar_posts ) ) {
 				$topbar_id = $topbar_posts[0]->ID;
 			}
-			/* code to convert slug to id */
-			echo '<div id="wbcom-header-topbar">';
-				echo self::$elementor_frontend->get_builder_content_for_display( $topbar_id );
-			echo '</div>';
+
+			if( $topbar_id ) {
+				if( class_exists( 'Reign_Theme_Structure' ) ) {
+					$theme_structure_ref = Reign_Theme_Structure::instance();
+					remove_action( 'wbcom_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
+				}
+				/* code to convert slug to id */
+				echo '<div id="wbcom-header-topbar">';
+					echo self::$elementor_frontend->get_builder_content_for_display( $topbar_id );
+				echo '</div>';
+			}
 		}
 	}
 
