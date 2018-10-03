@@ -584,7 +584,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Disable footer from the theme.
 	 */
 	public function wbcom_setup_footer() {
-		remove_action( 'wbcom_footer', 'wbcom_footer_html' );
+		// remove_action( 'wbcom_footer', 'wbcom_footer_html' );
 	}
 	/**
 	 * Display footer markup.
@@ -597,44 +597,40 @@ class WBCOM_Elementor_Global_Header_Footer {
 				remove_action( 'wbcom_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
 			}
 		}
+		
+		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
+		global $wp_query;	
+		if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
+			$post_id = get_option( 'page_for_posts' );
+			$post = get_post( $post_id );
+		}
 		else {
+			global $post;
+		}
+		
+		if( $post ) {
+			$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
+			$reign_ele_footer = isset( $wbcom_metabox_data['header_footer']['elementor_footer'] ) ? $wbcom_metabox_data['header_footer']['elementor_footer'] : '';
+		}
+		
+		if( !empty( $reign_ele_footer ) && ( $reign_ele_footer == "-1" ) ) {
+			if( class_exists( 'Reign_Theme_Structure' ) ) {
+				$theme_structure_ref = Reign_Theme_Structure::instance();
+				remove_action( 'wbcom_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
+			}
+			return;
+		}
+
+		if( !empty( $reign_ele_footer ) && ( $reign_ele_footer != "0" ) ) {
+			$footer_id = $reign_ele_footer;
+		}
+		else {
+			// $footer_id = get_theme_mod( 'reign_elementor_footer', '0' );
 			return;
 		}
 		?>
 		<footer itemscope="itemscope" itemtype="http://schema.org/WPFooter">
 			<?php
-			$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
-		
-			global $wp_query;	
-			if ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) {
-				$post_id = get_option( 'page_for_posts' );
-				$post = get_post( $post_id );
-			}
-			else {
-				global $post;
-			}
-			
-			if( $post ) {
-				$wbcom_metabox_data = get_post_meta( $post->ID, $theme_slug . '_wbcom_metabox_data', true );
-				$reign_ele_footer = isset( $wbcom_metabox_data['header_footer']['elementor_footer'] ) ? $wbcom_metabox_data['header_footer']['elementor_footer'] : '';
-				// $reign_ele_footer = get_post_meta( $post->ID , $theme_slug . '_ele_footer', true );
-			}
-			// if( !empty( $reign_ele_footer ) && ( $reign_ele_footer != "-1" ) ) {
-			// 	$footer_id = $reign_ele_footer;
-			// }
-			if( !empty( $reign_ele_footer ) && ( $reign_ele_footer == "-1" ) ) {
-				return;
-			}
-
-			if( !empty( $reign_ele_footer ) && ( $reign_ele_footer != "0" ) ) {
-				$footer_id = $reign_ele_footer;
-			}
-			else {
-				// $settings = get_option( $theme_slug . '_options', array() );
-				// $footer_id = isset( $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] ) ? $settings[ $theme_slug . '_pages' ][ 'global_ele_footer' ] : '0';
-				$footer_id = get_theme_mod( 'reign_elementor_footer', '0' );
-			}
-
 			/* code to convert slug to id */
 			$args = array(
 				'name'        => $footer_id,
@@ -648,7 +644,6 @@ class WBCOM_Elementor_Global_Header_Footer {
 			}
 			/* code to convert slug to id */
 			
-
 			$custom_global_set = false;
 			if( $footer_id ) {
 				global $post;
@@ -656,10 +651,15 @@ class WBCOM_Elementor_Global_Header_Footer {
 					$post = get_post( $footer_id );
 					$custom_global_set = true;
 				}
+
+				if( class_exists( 'Reign_Theme_Structure' ) ) {
+					$theme_structure_ref = Reign_Theme_Structure::instance();
+					remove_action( 'wbcom_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
+				}
+			
 			}
 			echo "<div class='footer-width-fixer'>";
-			echo self::$elementor_frontend->get_builder_content( $footer_id, $with_css = true );
-			// echo self::$elementor_frontend->get_builder_content_for_display( $footer_id );
+				echo self::$elementor_frontend->get_builder_content( $footer_id, $with_css = true );
 			echo '</div>';
 			if( $custom_global_set ) {
 				unset( $post );
