@@ -475,7 +475,8 @@ class WBCOM_Elementor_Global_Header_Footer {
 			$header_id = $reign_ele_header;
 		}
 		else {
-			$header_id = get_theme_mod( 'reign_elementor_header', '0' );
+			// $header_id = get_theme_mod( 'reign_elementor_header', '0' );
+			return;
 		}
 
 		?>

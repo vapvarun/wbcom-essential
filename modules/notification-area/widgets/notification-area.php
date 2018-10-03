@@ -175,7 +175,7 @@ class NotificationArea extends Widget_Base {
 			}*/
 		</style>
 
-		<div class="header-right no-gutter grid-flex grid-center wbesntl-notification-area">
+		<div class="header-right no-gutter wb-grid-flex grid-center wbesntl-notification-area">
 			<?php
 			if ( 'yes' == $settings['search_form_enabled'] ) {
 				?>
