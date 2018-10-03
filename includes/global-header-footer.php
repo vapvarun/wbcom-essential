@@ -508,6 +508,10 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Display header topbar markup.
 	 */
 	public function add_header_topbar_markup() {
+		$topbar_enable = get_theme_mod( 'reign_header_topbar_enable', '1' );
+		if( ! $topbar_enable ) {
+			return;
+		}
 
 		$reign_header_topbar_type = get_theme_mod( 'reign_header_topbar_type', false );
 		if( $reign_header_topbar_type ) {
@@ -519,7 +523,6 @@ class WBCOM_Elementor_Global_Header_Footer {
 		else {
 			return;
 		}
-
 
 		$theme_slug = apply_filters( 'wbcom_essential_theme_slug', 'reign' );
 
