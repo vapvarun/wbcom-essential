@@ -170,6 +170,7 @@ class NotificationArea extends Widget_Base {
 			.header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap {
 				height: <?php echo $notification_height; ?>px !important;
 				line-height: <?php echo $notification_height; ?>px !important;
+				min-height: auto;
 			}
 
 			/*.header-right .rg-search-form-wrap,
