@@ -205,14 +205,23 @@ class Nav_Menu extends Widget_Base {
 		]
 		);
 
+		// $this->add_group_control(
+		// Group_Control_Typography::get_type(), [
+		// 	'name'	 => 'typography',
+		// 	'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+		// ]
+		// );
+
 		$this->add_group_control(
-		Group_Control_Typography::get_type(), [
-			'name'	 => 'typography',
-			'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-		]
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'menu_typography',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .main-navigation ul.primary-menu > li a',
+			]
 		);
 
-			/* added for advanced menu color options :: start */
+		/* added for advanced menu color options :: start */
 		$this->add_control(
 			'enable_border_top',
 			[
@@ -345,11 +354,20 @@ class Nav_Menu extends Widget_Base {
 		]
 		);
 
+		// $this->add_group_control(
+		// Group_Control_Typography::get_type(), [
+		// 	'name'	 => 'submenu_typography',
+		// 	'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+		// ]
+		// );
+
 		$this->add_group_control(
-		Group_Control_Typography::get_type(), [
-			'name'	 => 'submenu_typography',
-			'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-		]
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'submenu_typography',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .main-navigation ul.primary-menu ul.sub-menu > li a',
+			]
 		);
 
 
