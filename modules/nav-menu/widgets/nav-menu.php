@@ -96,16 +96,16 @@ class Nav_Menu extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'menu_toggle_color', [
-				'label'		 => __( 'Menu Toggle Color', 'reign' ),
-				'type'		 => \Elementor\Controls_Manager::COLOR,
-				'default'	 => '#ffffff',
-				'selectors'	 => [
-					'{{WRAPPER}} #site-navigation.main-navigation #nav-icon1 span' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
+		// $this->add_control(
+		// 	'menu_toggle_color', [
+		// 		'label'		 => __( 'Menu Toggle Color', 'reign' ),
+		// 		'type'		 => \Elementor\Controls_Manager::COLOR,
+		// 		'default'	 => '#ffffff',
+		// 		'selectors'	 => [
+		// 			'{{WRAPPER}} #site-navigation.main-navigation #nav-icon1 span' => 'background-color: {{VALUE}};',
+		// 		],
+		// 	]
+		// );
 
 		$this->end_controls_section();
 
@@ -222,31 +222,31 @@ class Nav_Menu extends Widget_Base {
 		);
 
 		/* added for advanced menu color options :: start */
-		$this->add_control(
-			'enable_border_top',
-			[
-				'label' => __( 'Enable Top Border','wbcom-essential' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => '',
-				'label_off' => __( 'Off', 'wbcom-essential' ),
-				'label_on' => __( 'On', 'wbcom-essential' ),
-				'description' => __( 'Note: This will apply to active menu.', 'wbcom-essential' )
-			]
-		);
+		// $this->add_control(
+		// 	'enable_border_top',
+		// 	[
+		// 		'label' => __( 'Enable Top Border','wbcom-essential' ),
+		// 		'type' => Controls_Manager::SWITCHER,
+		// 		'default' => '',
+		// 		'label_off' => __( 'Off', 'wbcom-essential' ),
+		// 		'label_on' => __( 'On', 'wbcom-essential' ),
+		// 		'description' => __( 'Note: This will apply to active menu.', 'wbcom-essential' )
+		// 	]
+		// );
 
-		$this->add_control(
-		'color_border_top', [
-			'label'		 => __( 'Top Border Color', 'reign' ),
-			'type'		 => Controls_Manager::COLOR,
-			'default'	 => '#399dff',
-			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li' => 'border-top: 5px solid {{VALUE}};',
-			],
-			'condition' => [
-				'enable_border_top' => 'yes',
-			],
-		]
-		);
+		// $this->add_control(
+		// 'color_border_top', [
+		// 	'label'		 => __( 'Top Border Color', 'reign' ),
+		// 	'type'		 => Controls_Manager::COLOR,
+		// 	'default'	 => '#399dff',
+		// 	'selectors'	 => [
+		// 		'{{WRAPPER}} .main-navigation ul li' => 'border-top: 5px solid {{VALUE}};',
+		// 	],
+		// 	'condition' => [
+		// 		'enable_border_top' => 'yes',
+		// 	],
+		// ]
+		// );
 
 		// $this->add_control(
 		// 	'enable_border_top',

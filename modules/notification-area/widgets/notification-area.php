@@ -111,7 +111,7 @@ class NotificationArea extends Widget_Base {
 				'type'		 => \Elementor\Controls_Manager::COLOR,
 				'default'	 => '#ffffff',
 				'selectors'	 => [
-					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -122,7 +122,7 @@ class NotificationArea extends Widget_Base {
 				'type'		 => \Elementor\Controls_Manager::COLOR,
 				'default'	 => '#ffffff',
 				'selectors'	 => [
-					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a:hover' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -153,6 +153,9 @@ class NotificationArea extends Widget_Base {
 		}
 		if( !isset( $settings['rtm_cart_icon_enabled'] ) ) {
 			$settings['rtm_cart_icon_enabled'] = 'no';
+		}
+		if( !isset( $settings['avatar_enabled'] ) ) {
+			$settings['avatar_enabled'] = 'no';
 		}
 
 		$notification_height = isset( $settings[ 'notification_height' ] ) ? $settings[ 'notification_height' ] : 90;
@@ -299,11 +302,22 @@ class NotificationArea extends Widget_Base {
 				$wbcom_ele_login_url = apply_filters( 'wbcom_ele_notification_login_url', wp_login_url() );
 				$wbcom_ele_register_url = apply_filters( 'wbcom_ele_notification_registration_url', wp_registration_url() );
 				?>
-				<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login"><?php _e( 'Login', 'reign' ); ?></a>
+				<!-- <a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login"><?php _e( 'Login', 'reign' ); ?></a> -->
+				<div class="rg-icon-wrap">
+					<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login" title="Login">	<span class="icon-login-square-arrow-button-outline"></span>
+					</a>
+				</div>
 				<?php
 				if ( get_option( 'users_can_register' ) ) {
 					?>
-					<span class="sep">|</span><a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register"><?php _e( 'Register', 'reign' ); ?></a>
+					<!-- <span class="sep">|</span><a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register"><?php _e( 'Register', 'reign' ); ?></a> -->
+					<span class="sep">|</span>
+					<div class="rg-icon-wrap">
+						<a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register" title="Register">
+							<span class="icon-user-info-interface-symbol-with-text-lines-at-right-side"></span>
+						</a>
+					</div>
+
 					<?php
 				}
 			}
