@@ -4,7 +4,7 @@
  * Description: Wbcom Essential Addons.
  * Plugin URI: https://wbcomdesigns.com/
  * Author: Wbcom Designs
- * Version: 1.0.10
+ * Version: 1.1.0
  * Author URI: https://wbcomdesigns.com/
  *
  * Text Domain: wbcom-essential
