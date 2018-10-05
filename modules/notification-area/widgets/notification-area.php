@@ -129,9 +129,23 @@ class NotificationArea extends Widget_Base {
 
 		$this->add_control(
 			'notification_height', [
-				'label'			 => __( 'Menu Height (px)', 'reign' ),
+				'label'			 => __( 'Line Height (px)', 'reign' ),
 				'type'			 => Controls_Manager::NUMBER,
 				'default'		 => 90,
+				'selectors'	 => [
+					'{{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .search-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .woo-cart-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .rg-icon-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .woo-cart-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .user-notifications, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap' => 'line-height: {{VALUE}}px;height: {{VALUE}}px;',
+				],
+			]
+		);
+
+		$this->add_control(
+			'counter_top', [
+				'label'			 => __( 'Counter Top Space (px)', 'reign' ),
+				'type'			 => Controls_Manager::NUMBER,
+				'default'		 => 20,
+				'selectors'	 => [
+					'{{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .rg-count' => 'top: {{VALUE}}px;',
+				],
 			]
 		);
 
@@ -171,21 +185,8 @@ class NotificationArea extends Widget_Base {
 			.header-right.wb-grid-flex.wbesntl-notification-area .woo-cart-wrap,
 			.header-right.wb-grid-flex.wbesntl-notification-area .user-notifications,
 			.header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap {
-				height: <?php echo $notification_height; ?>px !important;
-				line-height: <?php echo $notification_height; ?>px !important;
 				min-height: auto;
 			}
-			.header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap .user-profile-menu {
-				top: <?php echo $notification_height+5; ?>px;
-			}
-
-			/*.header-right .rg-search-form-wrap,
-			.user-profile-menu,
-			.primary-menu .children, .primary-menu .sub-menu,
-			.user-profile-menu,
-			.user-notifications .rg-dropdown, .user-notifications:hover .rg-dropdown {
-				top: <?php //echo $submenu_height; ?>px;
-			}*/
 		</style>
 
 		<div class="header-right no-gutter wb-grid-flex grid-center wbesntl-notification-area">
