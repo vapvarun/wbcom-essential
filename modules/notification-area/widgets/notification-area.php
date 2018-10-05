@@ -188,7 +188,8 @@ class NotificationArea extends Widget_Base {
 				min-height: auto;
 			}
 
-			.header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap .user-profile-menu {
+			.header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap .user-profile-menu,
+			.header-right.wb-grid-flex.wbesntl-notification-area .rg-header-submenu.rg-dropdown {
 				top: <?php echo $notification_height+5; ?>px;
 			}
 		</style>
