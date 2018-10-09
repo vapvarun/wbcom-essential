@@ -43,6 +43,7 @@ class WBCOM_BuddyPress_Registration_Shortcode {
 	 */
 	private function init_hooks() {
 		add_shortcode( 'wbcom_bbp_registration_form', array( $this, 'render_wbcom_bbp_registration_form' ) );
+		add_action( 'bp_screens', array( $this, 'wbcom_bp_core_screen_signup_clone' ) );
 
 	}
 
@@ -61,7 +62,11 @@ class WBCOM_BuddyPress_Registration_Shortcode {
 							'</div>';
 				}
 				else {
-					$this->wbcom_bp_core_screen_signup_clone();
+
+					global $wbcom_signup_step, $bp;
+					if( isset( $wbcom_signup_step ) ) {
+						$bp->signup->step = $wbcom_signup_step;
+					}
 					include BP_PLUGIN_DIR . 'bp-templates/bp-legacy/buddypress/members/register.php';
 				}
 			}
@@ -81,7 +86,7 @@ class WBCOM_BuddyPress_Registration_Shortcode {
 		bp_update_is_directory( false, 'register' );
 
 		// If the user is logged in, redirect away from here.
-		if ( is_user_logged_in() ) {
+		if ( FALSE && is_user_logged_in() ) {
 
 			$redirect_to = bp_is_component_front_page( 'register' )
 			? bp_get_members_directory_permalink()
@@ -155,7 +160,7 @@ class WBCOM_BuddyPress_Registration_Shortcode {
 
 					// This situation doesn't naturally occur so bounce to website root.
 				} else {
-					bp_core_redirect( bp_get_root_domain() );
+					// bp_core_redirect( bp_get_root_domain() );
 				}
 			}
 
@@ -276,6 +281,8 @@ class WBCOM_BuddyPress_Registration_Shortcode {
 		 * @since 1.5.0
 		 */
 		do_action( 'bp_core_screen_signup' );
+
+		$GLOBALS['wbcom_signup_step'] = $bp->signup->step;
 	}
 	
 }
