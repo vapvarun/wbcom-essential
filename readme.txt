@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 4.9.8
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,9 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+
+= 1.1.1 =
+* Fix - Icons color and hover color setting added.
 
 = 1.1.0 =
 * Fix - Default Header, Topbar & Footer for Elementor updated.
