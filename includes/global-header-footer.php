@@ -710,7 +710,10 @@ class WBCOM_Elementor_Global_Header_Footer {
 			'order'	=> 'DESC'
 		);
 		$post = get_posts( $args );
-		return $post[ 0 ]->ID;
+		if( !empty( $post ) && is_array( $post ) ) {
+			return $post[ 0 ]->ID;
+		}
+		return false;
 	}
 	/**
 	 * Custom menu items
