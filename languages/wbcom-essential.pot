@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 11:37:44+00:00\n"
+"POT-Creation-Date: 2019-01-09 07:31:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:146
 #: includes/class-wbcom-reign-customizer-support.php:202
-#: includes/class-wbcom-reign-customizer-support.php:252
+#: includes/class-wbcom-reign-customizer-support.php:278
 msgid "-- Select --"
 msgstr ""
 
@@ -104,23 +104,39 @@ msgstr ""
 msgid "Select Header "
 msgstr ""
 
-#: includes/class-wbcom-reign-customizer-support.php:233
-msgid "Footer Type"
-msgstr ""
-
 #: includes/class-wbcom-reign-customizer-support.php:234
-msgid "Allows you to select default theme footer or footer made using Elementor."
+msgid "Elementor Header in Mobile"
 msgstr ""
 
-#: includes/class-wbcom-reign-customizer-support.php:239
-msgid "Elementor Footer"
+#: includes/class-wbcom-reign-customizer-support.php:235
+msgid "Allows you enable/disable elementor heador in mobile view."
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:240
+msgid "Use Elementor"
+msgstr ""
+
+#: includes/class-wbcom-reign-customizer-support.php:241
+msgid "Use Default"
+msgstr ""
+
+#: includes/class-wbcom-reign-customizer-support.php:259
+msgid "Footer Type"
+msgstr ""
+
+#: includes/class-wbcom-reign-customizer-support.php:260
+msgid "Allows you to select default theme footer or footer made using Elementor."
+msgstr ""
+
+#: includes/class-wbcom-reign-customizer-support.php:265
+msgid "Elementor Footer"
+msgstr ""
+
+#: includes/class-wbcom-reign-customizer-support.php:266
 msgid "Theme Footer"
 msgstr ""
 
-#: includes/class-wbcom-reign-customizer-support.php:261
+#: includes/class-wbcom-reign-customizer-support.php:287
 msgid "Select Footer "
 msgstr ""
 

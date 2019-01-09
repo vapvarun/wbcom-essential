@@ -300,9 +300,9 @@ class NotificationArea extends Widget_Base {
 					echo '<div class="user-link-wrap">';
 					echo '<a class="user-link" href="' . $user_link . '">';
 					?>
-					<span class="rg-user"><?php echo $current_user->display_name; ?></span>
-					<?php
-					if ( 'yes' == $settings[ 'avatar_enabled' ] ) {
+					<?php if ( 'yes' == $settings[ 'avatar_enabled' ] ) { ?>
+						<span class="rg-user"><?php echo $current_user->display_name; ?></span>
+						<?php
 						echo get_avatar( $current_user->user_email, 200 );
 					}
 					echo '</a>';
@@ -321,7 +321,7 @@ class NotificationArea extends Widget_Base {
 				<?php
 				if ( get_option( 'users_can_register' ) ) {
 					?>
-												<!-- <span class="sep">|</span><a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register"><?php _e( 'Register', 'reign' ); ?></a> -->
+													<!-- <span class="sep">|</span><a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register"><?php _e( 'Register', 'reign' ); ?></a> -->
 					<span class="sep">|</span>
 					<div class="rg-icon-wrap">
 						<a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register" title="Register">
