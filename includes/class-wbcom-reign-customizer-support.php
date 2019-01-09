@@ -240,6 +240,13 @@ class Wbcom_Reign_Customizer_Support {
 				'on' => esc_attr__( 'Use Elementor', 'wbcom-essential' ),
 				'off'  => esc_attr__( 'Use Default', 'wbcom-essential' ),
 			),
+			'active_callback' => array(
+				array(
+					'setting'  => 'reign_header_header_type',
+					'operator' => '===',
+					'value'    => true,
+				),
+			),
 		);
 
 
