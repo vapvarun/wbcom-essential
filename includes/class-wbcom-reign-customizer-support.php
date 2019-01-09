@@ -223,6 +223,25 @@ class Wbcom_Reign_Customizer_Support {
 			),
 		);
 
+		/**
+		 *
+		 * Setting to enable/disable elementor header in mobile view.
+		 *
+		 */
+		$fields[] = array(
+			'type'        => 'switch',
+			'settings'    => 'reign_elementor_header_mobile',
+			'label'       => esc_attr__( 'Elementor Header in Mobile', 'wbcom-essential' ),
+			'description'       => esc_attr__( 'Allows you enable/disable elementor heador in mobile view.', 'wbcom-essential' ),
+			'section'     => 'reign_header_select_header',
+			'default'   => 0,
+			'priority'    => 16,
+			'choices'     => array(
+				'on' => esc_attr__( 'Use Elementor', 'wbcom-essential' ),
+				'off'  => esc_attr__( 'Use Default', 'wbcom-essential' ),
+			),
+		);
+
 
 		/**
 		* Fields for footer.
