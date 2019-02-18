@@ -997,7 +997,7 @@ msgstr ""
 #: modules/forms/widgets/login.php:282
 #: modules/forms/widgets/registration.php:185
 msgid "Username Label"
-msgstr "USSSSS"
+msgstr ""
 
 #: modules/forms/widgets/login.php:284 modules/forms/widgets/login.php:297
 msgid " Username or Email Address"
