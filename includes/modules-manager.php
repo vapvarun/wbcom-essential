@@ -48,7 +48,8 @@ final class Manager {
 			'nav-menu',
 			'forms',
 			'branding',
-			'notification-area'
+			'notification-area',
+			'members-carousel'
 		];
 		// if ( class_exists( 'WooCommerce' ) ) {
 		// 	array_push( $new_modules, 'woo-cart' );

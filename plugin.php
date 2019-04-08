@@ -131,6 +131,28 @@ class Plugin {
 			)
 		);
 		wp_enqueue_script( 'wbcom_elementor_login_module_js' );
+
+
+		wp_register_script(
+			$handle		=	'wbcom_elementor_main_min_js',
+			$src		=	plugin_dir_url( __FILE__ ) . 'assets/js/main.min.js',
+			$deps		=	array( 'jquery' ),
+			$ver		=	time(),
+			$in_footer	=	true
+		);
+		$reign_header_topbar_mobile_view_disable = get_theme_mod( 'reign_header_topbar_mobile_view_disable', false );
+
+		$rtl = false;
+		if ( is_rtl() ) {
+			$rtl = true;
+		}
+
+		wp_localize_script(
+		'wbcom_elementor_main_min_js', 'essential_js_obj', array(
+			'reign_rtl'				 => $rtl
+		)
+		);
+		wp_enqueue_script( 'wbcom_elementor_main_min_js' );
 	}
 	// public function enqueue_editor_scripts() {
 	// 	$suffix = Utils::is_script_debug() ? '' : '.min';

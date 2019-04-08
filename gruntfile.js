@@ -114,8 +114,8 @@ module.exports = function ( grunt ) {
     } );
 
     // register task
-    grunt.registerTask( 'default', [ 'checktextdomain', 'makepot' ] );
+    //grunt.registerTask( 'default', [ 'checktextdomain', 'makepot' ] );
 
-    // grunt.registerTask( 'default', [ 'sass', 'autoprefixer', 'uglify', 'checktextdomain', 'makepot', 'watch' ] );
+    grunt.registerTask( 'default', [ 'sass', 'autoprefixer', 'uglify', 'checktextdomain', 'makepot', 'watch' ] );
     // grunt.registerTask( 'default', [ 'checktextdomain' ] );
 };
