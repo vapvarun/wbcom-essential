@@ -73,6 +73,7 @@ class MembersGrid extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'rg-mem-grid-4',
 				'options' => [
+					'rg-mem-grid-3'  => '3',
 					'rg-mem-grid-4'  => '4',
 					'rg-mem-grid-5'  => '5',
 				]
@@ -141,7 +142,7 @@ class MembersGrid extends Widget_Base {
 						 */
 						do_action( 'bp_before_directory_members_list' );
 					?>
-					<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo $member_directory_type; echo $settings['columns'];?>" aria-live="assertive" aria-relevant="all">
+					<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo $member_directory_type.' '.$settings['columns'];?>" aria-live="assertive" aria-relevant="all">
 
 						<?php
 						while ( bp_members() ) :
@@ -243,7 +244,7 @@ class MembersGrid extends Widget_Base {
 		}elseif( 'nouveau' == $active_template ){ ?>
 			<div id="members-dir-list" class="members dir-list" data-bp-list="members"><?php 
 					if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
-						<ul id="members-list" class="members-list bp-list grid <?php echo $member_directory_type; echo $settings['columns']; ?> rg-member-list">
+						<ul id="members-list" class="members-list bp-list grid <?php echo $member_directory_type.' '.$settings['columns']; ?> rg-member-list">
 
 							<?php while ( bp_members() ) : bp_the_member(); ?>
 								<?php $user_id = bp_get_member_user_id(); ?>
