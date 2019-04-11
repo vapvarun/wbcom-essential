@@ -22,15 +22,15 @@
             	var visible_xs = $(this).data('xs-show-slides');
 
             	$(this).slick( {
-            		dots: false,
-            		infinite: false,
-            		prevArrow: '<a class="rg-arrow slick-prev"><i class="arrow-left fa fa-angle-left"></i></a>',
-            		nextArrow: '<a class="rg-arrow slick-next"><i class="arrow-right fa fa-angle-right"></i></a>',
-            		speed: 500,
+            		//dots: false,
+            		infinite: true,
+            		//prevArrow: '<a class="slick-prev slick-arrow"><i class="arrow-left fa fa-angle-left"></i></a>',
+            		//nextArrow: '<a class="slick-next slick-arrow"><i class="arrow-right fa fa-angle-right"></i></a>',
+            		//speed: 500,
             		slidesToShow: visible_dd,
-            		swipeToSlide: true,
+            		//swipeToSlide: true,
             		slidesToScroll: 4,
-            		rtl: rt,
+            		rtl: false,
             		responsive: [
             		{
             			breakpoint: 1224,
