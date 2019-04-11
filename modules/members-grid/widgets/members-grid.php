@@ -71,11 +71,10 @@ class MembersGrid extends Widget_Base {
 			[
 				'label'   => esc_html__( 'Columns', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'rg-mem-grid-4',
+				'default' => '4',
 				'options' => [
 					'3'  => '3',
 					'4'  => '4',
-					'5'  => '5',
 				]
 			]
 		);
@@ -249,9 +248,16 @@ class MembersGrid extends Widget_Base {
 				<?php endif; ?>
 			</div><?php
 		}elseif( 'nouveau' == $active_template ){ ?>
-			<div id="members-dir-list" class="members dir-list" data-bp-list="members"><?php 
-					if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
-						<ul id="members-list" class="members-list bp-list grid <?php echo $member_directory_type.' '.$settings['columns']; ?> rg-member-list">
+			<div id="members-dir-list" class="members dir-list"><?php 
+					if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : 
+						$col_class = $settings['columns'];
+						if( $col_class == '4' ){
+							$_col_class = 'four';
+						}elseif( $col_class == '3' ){
+							$_col_class = 'three';
+						}
+						?>
+						<ul id="members-list" class="rg-member-list members-list bp-list grid <?php echo $_col_class.' '.$member_directory_type;?>">
 
 							<?php while ( bp_members() ) : bp_the_member(); ?>
 								<?php $user_id = bp_get_member_user_id(); ?>
