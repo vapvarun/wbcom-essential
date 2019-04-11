@@ -73,8 +73,8 @@ class MembersGrid extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => '4',
 				'options' => [
-					'4'  => '4',
-					'5'  => '5',
+					'rg-mem-grid-4'  => '4',
+					'rg-mem-grid-5'  => '5',
 				]
 			]
 		);
@@ -114,18 +114,23 @@ class MembersGrid extends Widget_Base {
 
 		global $members_template;
 
-		if ($settings['columns'] == '5') {
-			$layout = 'full';
-		} else {
-			$layout = 'four';
+		// if ($settings['columns'] == '5') {
+		// 	$layout = 'full';
+		// } else {
+		// 	$layout = 'four';
+		// }
+
+		$member_directory_type = $settings['rg-mem-grid-layout'];
+		if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
+			$img_class = 'img-card';
 		}
+					
+		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
+
 		$active_template = get_option('_bp_theme_package_id');
 		if( 'legacy' == $active_template ){ ?>
 			<div id="members-dir-list" class="members dir-list">
-
 				<?php
-				$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
-
 				if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 
 					<?php
@@ -136,16 +141,7 @@ class MembersGrid extends Widget_Base {
 						 */
 						do_action( 'bp_before_directory_members_list' );
 					?>
-					<?php
-					global $wbtm_reign_settings;
-					$member_directory_type = $settings['rg-mem-grid-layout'];
-					?>
-					<?php
-					if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
-						$img_class = 'img-card';
-					}
-					?>
-					<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo $member_directory_type; ?>" aria-live="assertive" aria-relevant="all">
+					<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo $member_directory_type; echo $settings['columns'];?>" aria-live="assertive" aria-relevant="all">
 
 						<?php
 						while ( bp_members() ) :
@@ -244,9 +240,110 @@ class MembersGrid extends Widget_Base {
 						</div>
 				<?php endif; ?>
 			</div><?php
-		}elseif( 'nouveau' == $active_template ){
-			
-		}
+		}elseif( 'nouveau' == $active_template ){ ?>
+			<div id="members-dir-list" class="members dir-list" data-bp-list="members"><?php 
+					if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
+						<ul id="members-list" class="members-list bp-list grid <?php echo $member_directory_type; echo $settings['columns']; ?> rg-member-list">
+
+							<?php while ( bp_members() ) : bp_the_member(); ?>
+								<?php $user_id = bp_get_member_user_id(); ?>
+								<li <?php bp_member_class( array( 'item-entry' ) ); ?> data-bp-item-id="<?php bp_member_user_id(); ?>" data-bp-item-component="members">
+									<div class="list-wrap">
+
+										<?php do_action( 'wbtm_before_member_avatar_member_directory' ); ?>
+
+										<div class="item-avatar">
+											<?php
+											if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
+												echo '<figure class="img-dynamic aspect-ratio avatar">';
+											}
+											?>
+											<a class="<?php echo $img_class; ?>" href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar( bp_nouveau_avatar_args() ); ?><?php echo reign_get_online_status( $user_id ); ?></a>
+											<?php
+											if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
+												echo '</figure>';
+											}
+											?>
+										</div>
+
+										<?php
+										if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
+											echo '<div class="item-wrapper">';
+										}
+										?>
+										<div class="item">
+
+											<div class="item-block">
+
+												<h2 class="list-title member-name">
+													<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
+												</h2>
+
+												<?php if ( bp_nouveau_member_has_meta() ) : ?>
+													<p class="item-meta last-activity">
+														<?php bp_nouveau_member_meta(); ?>
+													</p><!-- #item-meta -->
+												<?php endif; ?>
+
+												<?php do_action( 'wbtm_bp_nouveau_directory_members_item' ); ?>
+
+												<!-- <div class="action-wrap">
+													<i class="fa fa-plus-circle"></i>
+													<div class="action rg-dropdown">
+												<?php
+												bp_nouveau_members_loop_buttons(
+												array(
+													'container'		 => 'ul',
+													'button_element' => 'button',
+												)
+												);
+												?>
+													</div>
+												</div> -->
+
+											</div>
+
+											<?php if ( FALSE && bp_get_member_latest_update() && !bp_nouveau_loop_is_grid() ) : ?>
+												<div class="user-update">
+													<p class="update"> <?php bp_member_latest_update(); ?></p>
+												</div>
+											<?php endif; ?>
+
+										</div><!-- // .item -->
+
+										<!-- Added actions buttons outside "item" section :: Start  -->
+										<div class="action-wrap">
+											<i class="fa fa-plus-circle"></i>
+											<?php
+											bp_nouveau_members_loop_buttons(
+											array(
+												'container'		 => 'ul',
+												'button_element' => 'button',
+											)
+											);
+											?>
+										</div>
+										<!-- Added actions buttons outside "item" section :: End  -->
+										<?php
+										if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
+											echo '</div>';
+										}
+										?>
+
+									</div>
+								</li>
+
+							<?php endwhile; ?>
+
+						</ul>
+						<?php
+					else :
+
+						bp_nouveau_user_feedback( 'members-loop-none' );
+
+					endif; ?>
+			</div>
+		<?php }
 
 	}
 	/**
