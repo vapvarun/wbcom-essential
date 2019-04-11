@@ -71,7 +71,7 @@ class MembersGrid extends Widget_Base {
 			[
 				'label'   => esc_html__( 'Columns', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => '4',
+				'default' => 'rg-mem-grid-4',
 				'options' => [
 					'rg-mem-grid-4'  => '4',
 					'rg-mem-grid-5'  => '5',
