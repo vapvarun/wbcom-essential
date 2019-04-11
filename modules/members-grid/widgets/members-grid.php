@@ -73,9 +73,9 @@ class MembersGrid extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'rg-mem-grid-4',
 				'options' => [
-					'rg-mem-grid-3'  => '3',
-					'rg-mem-grid-4'  => '4',
-					'rg-mem-grid-5'  => '5',
+					'3'  => '3',
+					'4'  => '4',
+					'5'  => '5',
 				]
 			]
 		);
@@ -142,17 +142,33 @@ class MembersGrid extends Widget_Base {
 						 */
 						do_action( 'bp_before_directory_members_list' );
 					?>
-					<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo $member_directory_type.' '.$settings['columns'];?>" aria-live="assertive" aria-relevant="all">
+					<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo $member_directory_type;?>" aria-live="assertive" aria-relevant="all">
 
 						<?php
 						while ( bp_members() ) :
 							bp_the_member();
 							?>
 							<?php $user_id = bp_get_member_user_id(); ?>
-							<li <?php bp_member_class( array( 'wb-grid-cell sm-wb-grid-1-1 md-wb-grid-1-2 lg-wb-grid-1-3' ) ); ?>>
+							<li <?php bp_member_class( array( 'wb-grid-cell sm-wb-grid-1-1 md-wb-grid-1-2 lg-wb-grid-1-'.$settings['columns'].'' ) ); ?>>
 								<div class="bp-inner-wrap">
 
-									<?php do_action( 'wbtm_before_member_avatar_member_directory' ); ?>
+									<?php  
+									if ( $member_directory_type == 'wbtm-member-directory-type-2' || $member_directory_type == 'wbtm-member-directory-type-3' ) {
+										$args			 = array(
+											'object_dir' => 'members',
+											'item_id'	 => $user_id	 = bp_get_member_user_id(),
+											'type'		 => 'cover-image',
+										);
+										$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
+										if ( empty( $cover_img_url ) ) {
+											$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+											if( empty( $cover_img_url ) ) {
+												$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+											}
+										}
+										echo '<div class="wbtm-mem-cover-img"><img src="' . $cover_img_url . '" /></div>';
+									}
+									?>
 
 									<div class="item-avatar">
 										<?php
@@ -193,18 +209,9 @@ class MembersGrid extends Widget_Base {
 										 *
 										 * @since 1.1.0
 										 */
-										do_action( 'bp_directory_members_item' );
-										?>
-
-										<?php
-										/*
-										 * *
-										 * If you want to show specific profile fields here you can,
-										 * but it'll add an extra query for each member in the loop
-										 * (only one regardless of the number of fields you show):
-										 *
-										 * bp_member_profile_data( 'field=the field name' );
-										 */
+										if ( $member_directory_type != 'wbtm-member-directory-type-1' ) {
+											do_action( 'bp_directory_members_item' );
+										}
 										?>
 									</div>
 
@@ -251,7 +258,24 @@ class MembersGrid extends Widget_Base {
 								<li <?php bp_member_class( array( 'item-entry' ) ); ?> data-bp-item-id="<?php bp_member_user_id(); ?>" data-bp-item-component="members">
 									<div class="list-wrap">
 
-										<?php do_action( 'wbtm_before_member_avatar_member_directory' ); ?>
+										<?php  
+										if ( $member_directory_type == 'wbtm-member-directory-type-2' || $member_directory_type == 'wbtm-member-directory-type-3' ) {
+											$args			 = array(
+												'object_dir' => 'members',
+												'item_id'	 => $user_id	 = bp_get_member_user_id(),
+												'type'		 => 'cover-image',
+											);
+											$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
+											if ( empty( $cover_img_url ) ) {
+												$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+												if( empty( $cover_img_url ) ) {
+													$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+												}
+											}
+											echo '<div class="wbtm-mem-cover-img"><img src="' . $cover_img_url . '" /></div>';
+										}
+
+										?>
 
 										<div class="item-avatar">
 											<?php
