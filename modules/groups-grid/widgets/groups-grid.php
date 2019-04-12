@@ -128,6 +128,9 @@ class GroupsGrid extends Widget_Base {
 		if ( $group_directory_type != 'wbtm-group-directory-type-1' ) {
 			$addition_class = 'lg-wb-grid-1-3';
 		}
+		if ( $group_directory_type == 'wbtm-group-directory-type-4' ) {
+			$img_class = 'img-card';
+		}
 					
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 
