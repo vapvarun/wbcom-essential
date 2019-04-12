@@ -126,7 +126,7 @@ class GroupsGrid extends Widget_Base {
 	
 		$addition_class			 = '';
 		if ( $group_directory_type != 'wbtm-group-directory-type-1' ) {
-			$addition_class = 'lg-wb-grid-1-3';
+			$addition_class = 'lg-wb-grid-1-'.$settings['columns'];
 		}
 		if ( $group_directory_type == 'wbtm-group-directory-type-4' ) {
 			$img_class = 'img-card';
@@ -153,7 +153,7 @@ class GroupsGrid extends Widget_Base {
 						bp_the_group();
 						?>
 
-						<li <?php bp_group_class( array( "wb-grid-cell sm-wb-grid-1-1 md-wb-grid-1-".$settings['columns']." '. $addition_class .'" ) ); ?>>
+						<li <?php bp_group_class( array( "wb-grid-cell sm-wb-grid-1-1 md-wb-grid-1-".$settings['columns']." ".$addition_class ) ); ?>>
 							<div class="bp-group-inner-wrap">
 
 								<?php
