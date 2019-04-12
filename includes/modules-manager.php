@@ -49,10 +49,18 @@ final class Manager {
 			'forms',
 			'branding',
 			'notification-area',
-			'members-grid',
-			'groups-grid'
 			//'members-carousel'
 		];
+
+		if( class_exists('BuddyPress') ){
+			if( bp_is_active('members') ) {
+				array_push( $new_modules, 'members-grid' );
+			}
+			if( bp_is_active('groups') ) {
+				array_push( $new_modules, 'groups-grid' );
+			}
+		}
+
 		// if ( class_exists( 'WooCommerce' ) ) {
 		// 	array_push( $new_modules, 'woo-cart' );
 		// }
