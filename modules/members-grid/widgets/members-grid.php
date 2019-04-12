@@ -318,19 +318,7 @@ class MembersGrid extends Widget_Base {
 
 												<?php do_action( 'wbtm_bp_nouveau_directory_members_item' ); ?>
 
-												<!-- <div class="action-wrap">
-													<i class="fa fa-plus-circle"></i>
-													<div class="action rg-dropdown">
-												<?php
-												bp_nouveau_members_loop_buttons(
-												array(
-													'container'		 => 'ul',
-													'button_element' => 'button',
-												)
-												);
-												?>
-													</div>
-												</div> -->
+												
 
 											</div>
 
@@ -350,6 +338,7 @@ class MembersGrid extends Widget_Base {
 											array(
 												'container'		 => 'ul',
 												'button_element' => 'button',
+												'container_classes' => array('members-button')
 											)
 											);
 											?>

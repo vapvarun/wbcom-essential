@@ -49,7 +49,8 @@ final class Manager {
 			'forms',
 			'branding',
 			'notification-area',
-			'members-grid'
+			'members-grid',
+			'groups-grid'
 			//'members-carousel'
 		];
 		// if ( class_exists( 'WooCommerce' ) ) {
