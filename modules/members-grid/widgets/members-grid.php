@@ -213,7 +213,6 @@ class MembersGrid extends Widget_Base {
 										}
 										?>
 									</div>
-
 									<div class="action-wrap">
 										<i class="fa fa-plus-circle"></i>
 										<div class="action rg-dropdown"><?php do_action( 'bp_directory_members_actions' ); ?></div>
@@ -263,26 +262,7 @@ class MembersGrid extends Widget_Base {
 								<?php $user_id = bp_get_member_user_id(); ?>
 								<li <?php bp_member_class( array( 'item-entry' ) ); ?> data-bp-item-id="<?php bp_member_user_id(); ?>" data-bp-item-component="members">
 									<div class="list-wrap">
-
-										<?php  
-										if ( $member_directory_type == 'wbtm-member-directory-type-2' || $member_directory_type == 'wbtm-member-directory-type-3' ) {
-											$args			 = array(
-												'object_dir' => 'members',
-												'item_id'	 => $user_id	 = bp_get_member_user_id(),
-												'type'		 => 'cover-image',
-											);
-											$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
-											if ( empty( $cover_img_url ) ) {
-												$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
-												if( empty( $cover_img_url ) ) {
-													$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
-												}
-											}
-											echo '<div class="wbtm-mem-cover-img"><img src="' . $cover_img_url . '" /></div>';
-										}
-
-										?>
-
+										<?php do_action( 'wbtm_before_member_avatar_member_directory' ); ?>
 										<div class="item-avatar">
 											<?php
 											if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
@@ -296,16 +276,13 @@ class MembersGrid extends Widget_Base {
 											}
 											?>
 										</div>
-
 										<?php
 										if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 											echo '<div class="item-wrapper">';
 										}
 										?>
 										<div class="item">
-
 											<div class="item-block">
-
 												<h2 class="list-title member-name">
 													<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
 												</h2>
@@ -317,9 +294,6 @@ class MembersGrid extends Widget_Base {
 												<?php endif; ?>
 
 												<?php do_action( 'wbtm_bp_nouveau_directory_members_item' ); ?>
-
-												
-
 											</div>
 
 											<?php if ( FALSE && bp_get_member_latest_update() && !bp_nouveau_loop_is_grid() ) : ?>
@@ -327,29 +301,23 @@ class MembersGrid extends Widget_Base {
 													<p class="update"> <?php bp_member_latest_update(); ?></p>
 												</div>
 											<?php endif; ?>
-
 										</div><!-- // .item -->
-
-										<!-- Added actions buttons outside "item" section :: Start  -->
 										<div class="action-wrap">
 											<i class="fa fa-plus-circle"></i>
 											<?php
 											bp_nouveau_members_loop_buttons(
-											array(
-												'container'		 => 'ul',
-												'button_element' => 'button',
-												'container_classes' => array('members-button')
-											)
+												array(
+													'container'		 => 'ul',
+													'button_element' => 'button',
+												)
 											);
 											?>
 										</div>
-										<!-- Added actions buttons outside "item" section :: End  -->
 										<?php
 										if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 											echo '</div>';
 										}
 										?>
-
 									</div>
 								</li>
 
@@ -358,9 +326,7 @@ class MembersGrid extends Widget_Base {
 						</ul>
 						<?php
 					else :
-
-						bp_nouveau_user_feedback( 'members-loop-none' );
-
+					bp_nouveau_user_feedback( 'members-loop-none' );
 					endif; ?>
 			</div>
 		<?php }
