@@ -25,6 +25,14 @@ class GroupsGrid extends Widget_Base {
 		return __( 'Groups Grid', 'wbcom-essential' );
 	}
 
+	protected function _register_skins() {
+		add_action( 'bp_enqueue_scripts', array( $this, 'reign_group_grid_enqueue_scripts' ) );
+	}
+
+	public function reign_group_grid_enqueue_scripts() {
+		wp_enqueue_script( 'bp-widget-members' );
+	}
+
 	public function get_icon() {
 		return 'eicon-posts-grid';
 	}

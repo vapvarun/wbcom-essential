@@ -22,10 +22,10 @@ class MembersGrid extends Widget_Base {
 	}
 
 	protected function _register_skins() {
-		add_action( 'bp_enqueue_scripts', array( $this, 'reign_mg_enqueue_scripts' ) );
+		add_action( 'bp_enqueue_scripts', array( $this, 'reign_member_grid_enqueue_scripts' ) );
 	}
 
-	public function reign_mg_enqueue_scripts() {
+	public function reign_member_grid_enqueue_scripts() {
 		wp_enqueue_script( 'bp-widget-members' );
 	}
 
