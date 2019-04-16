@@ -143,6 +143,7 @@ class GroupsGrid extends Widget_Base {
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 
 		$active_template = get_option('_bp_theme_package_id');
+		echo '<div id="buddypress" class="buddypress-wrap">';
 		if( 'legacy' == $active_template ){ ?>
 			<div class="groups dir-list">
 				<?php if ( bp_has_groups( bp_ajax_querystring( 'groups' ) . $query_string ) ) : ?>
@@ -388,6 +389,7 @@ class GroupsGrid extends Widget_Base {
 					<?php endif; ?>
 			</div>
 		<?php }
+		echo '</div>';
 	}
 	/**
 	 * This is outputted while rending the page.

@@ -214,6 +214,7 @@ class MembersGrid extends Widget_Base {
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 
 		$active_template = get_option('_bp_theme_package_id');
+		echo '<div id="buddypress" class="buddypress-wrap">';
 		if( 'legacy' == $active_template ){ ?>
 			<div id="members-dir-list" class="members dir-list">
 				<?php
@@ -431,6 +432,7 @@ class MembersGrid extends Widget_Base {
 					endif; ?>
 			</div>
 		<?php }
+		echo '</div>';
 
 	}
 	
