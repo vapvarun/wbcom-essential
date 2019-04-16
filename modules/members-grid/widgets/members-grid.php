@@ -107,6 +107,84 @@ class MembersGrid extends Widget_Base {
 		do_action( 'reign_wp_menu_elementor_controls', $this );
 	}
 
+	public function wbtm_get_members_directory_meta() {
+		$info_array	 = array();
+		$user_id	 = bp_get_member_user_id();
+
+		if ( bp_is_active( 'friends' ) ) {
+			$friends_count			 = friends_get_total_friend_count( $user_id );
+			$friends_count			 = friends_get_total_friend_count( $user_id );
+			$url_to_use				 = esc_url( bp_core_get_user_domain( $user_id ) . bp_get_friends_slug() );
+			$info_array[ 'friends' ] = array(
+				'tooltip_text'	 => sprintf( '%s Friends', $friends_count, 'reign' ),
+				'url'			 => $url_to_use,
+				'icon_class'	 => 'fa fa-user',
+				'color'			 => '#EC7063'
+			);
+		}
+
+		if ( class_exists( 'BP_Follow_Component' ) ) {
+			$followers					 = bp_follow_get_followers( array( 'user_id' => $user_id ) );
+			$url_to_use				 = esc_url( bp_core_get_user_domain( $user_id ) . 'followers' );
+			$info_array[ 'followers' ]	 = array(
+				'tooltip_text'	 => sprintf( '%s Followers', count( $followers ), 'reign' ),
+				'url'			 => $url_to_use,
+				'icon_class'	 => 'fa fa-users',
+				'color'			 => '#5DADE2'
+			);
+			$following					 = bp_follow_get_following( array( 'user_id' => $user_id ) );
+			$url_to_use				 = esc_url( bp_core_get_user_domain( $user_id ) . 'following' );
+			$info_array[ 'following' ]	 = array(
+				'tooltip_text'	 => sprintf( '%s Following', count( $following ), 'reign' ),
+				'url'			 => $url_to_use,
+				'icon_class'	 => 'fa fa-weixin',
+				'color'			 => '#F5B041'
+			);
+		}
+
+		if ( class_exists( 'BadgeOS' ) && class_exists( 'BadgeOS_Community' ) ) {
+			$user_points = get_user_meta( $user_id, $meta_key	 = '_badgeos_points', true );
+			$url_to_use				 = esc_url( bp_core_get_user_domain( $user_id ) . 'achievements' );
+			if ( empty( $user_points ) ) {
+				$user_points = 0;
+			}
+			$info_array[ 'badgeos_points' ] = array(
+				'tooltip_text'	 => sprintf( '%s Points', $user_points, 'reign' ),
+				'url'			 => $url_to_use,
+				'icon_class'	 => 'fa fa-trophy',
+				'color'			 => '#99A3A4'
+			);
+		}
+
+		if ( class_exists( 'myCRED_Core' ) ) {
+			global $mycred, $mycred_modules;
+			$myCRED_BuddyPress_Module_Obj	 = $mycred_modules[ 'type' ][ 'mycred_default' ][ 'buddypress' ];
+			$users_balance					 = $mycred->get_users_balance( $user_id );
+			$users_balance					 = $mycred->format_creds( $users_balance );
+			$url_to_use				 = esc_url( bp_core_get_user_domain( $user_id ) . 'mycred-history' );
+			$info_array[ 'mycred_points' ]	 = array(
+				'tooltip_text'	 => sprintf( '%s Points', $users_balance, 'reign' ),
+				'url'			 => $url_to_use,
+				'icon_class'	 => 'fa fa-tag',
+				'color'			 => '#DC7633'
+			);
+		}
+
+		echo '<div class="wbtm-member-directory-meta">';
+		foreach ( $info_array as $key => $info ) {
+			?>
+			<div class="rtm-tooltip" style="background: <?php echo $info[ 'color' ]; ?>">
+				<a href="<?php echo $info[ 'url' ]; ?>"><i class="<?php echo $info[ 'icon_class' ]; ?>"></i></a>
+				<span class="rtm-tooltiptext">
+					<?php echo $info[ 'tooltip_text' ]; ?>
+				</span>
+			</div>
+			<?php
+		}
+		echo '</div>';
+		do_action( 'wbtm_bp_nouveau_directory_members_widget_item' );
+	}
+
 	/**
 	 * Render our custom menu onto the page.
 	 */
@@ -132,7 +210,7 @@ class MembersGrid extends Widget_Base {
 		if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 			$img_class = 'img-card';
 		}
-					
+		
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 
 		$active_template = get_option('_bp_theme_package_id');
@@ -264,13 +342,27 @@ class MembersGrid extends Widget_Base {
 							$_col_class = 'three';
 						}
 						?>
-						<ul id="members-list" class="rg-member-list members-list bp-list grid <?php echo $_col_class.' '.$member_directory_type;?>">
+						<ul id="members-list" class="rg-member-list item-list members-list bp-list grid <?php echo $_col_class.' '.$member_directory_type;?>">
 
 							<?php while ( bp_members() ) : bp_the_member(); ?>
 								<?php $user_id = bp_get_member_user_id(); ?>
 								<li <?php bp_member_class( array( 'item-entry' ) ); ?> data-bp-item-id="<?php bp_member_user_id(); ?>" data-bp-item-component="members">
 									<div class="list-wrap">
-										<?php do_action( 'wbtm_before_member_avatar_member_directory' ); ?>
+										<?php if ( $member_directory_type == 'wbtm-member-directory-type-2' || $member_directory_type == 'wbtm-member-directory-type-3' ) {
+											$args			 = array(
+												'object_dir' => 'members',
+												'item_id'	 => $user_id	 = bp_get_member_user_id(),
+												'type'		 => 'cover-image',
+											);
+											$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
+											if ( empty( $cover_img_url ) ) {
+												$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+												if( empty( $cover_img_url ) ) {
+													$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+												}
+											}
+											echo '<div class="wbtm-mem-cover-img"><img src="' . $cover_img_url . '" /></div>';
+										} ?>
 										<div class="item-avatar">
 											<?php
 											if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
@@ -300,8 +392,9 @@ class MembersGrid extends Widget_Base {
 														<?php bp_nouveau_member_meta(); ?>
 													</p><!-- #item-meta -->
 												<?php endif; ?>
-
-												<?php do_action( 'wbtm_bp_nouveau_directory_members_item' ); ?>
+												<?php if ( $member_directory_type == 'wbtm-member-directory-type-2' || $member_directory_type == 'wbtm-member-directory-type-3' ) {
+                                                    $this->wbtm_get_members_directory_meta();
+                                                } ?>										
 											</div>
 
 											<?php if ( FALSE && bp_get_member_latest_update() && !bp_nouveau_loop_is_grid() ) : ?>
@@ -340,6 +433,7 @@ class MembersGrid extends Widget_Base {
 		<?php }
 
 	}
+	
 	/**
 	 * This is outputted while rending the page.
 	 */
