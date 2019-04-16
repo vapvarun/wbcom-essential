@@ -21,6 +21,14 @@ class MembersGrid extends Widget_Base {
 		return 'wbcom-members-grid';
 	}
 
+	protected function _register_skins() {
+		add_action( 'bp_enqueue_scripts', array( $this, 'reign_mg_enqueue_scripts' ) );
+	}
+
+	public function reign_mg_enqueue_scripts() {
+		wp_enqueue_script( 'bp-widget-members' );
+	}
+
 	public function get_title() {
 		return __( 'Members Grid', 'wbcom-essential' );
 	}
@@ -105,7 +113,7 @@ class MembersGrid extends Widget_Base {
 	protected function render() {
 
 		if ( ! function_exists( 'bp_is_active' ) ) {
-			esc_html_e( 'You need BuddyPress plugin to be active!', 'seeko' );
+			esc_html_e( 'You need BuddyPress plugin to be active!', 'wbcom-essential' );
 			return;
 		}
 
