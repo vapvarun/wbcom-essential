@@ -23,6 +23,10 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 
+= 2.0.0 =
+* Enhancement: added member/group layout shortcodes and widgets for elementor 
+* Fixed Login Widgets labels
+
 = 1.1.1 =
 * Fix - Icons color and hover color setting added.
 
