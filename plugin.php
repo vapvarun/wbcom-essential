@@ -1,19 +1,27 @@
 <?php
+
 namespace WbcomElementorAddons;
+
 use Elementor\Utils;
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+if ( !defined( 'ABSPATH' ) )
+	exit; // Exit if accessed directly
 /**
  * Main class plugin
  */
+
 class Plugin {
+
 	/**
 	 * @var Plugin
 	 */
 	private static $_instance;
+
 	/**
 	 * @var Manager
 	 */
 	public $modules_manager;
+
 	/**
 	 * @deprecated
 	 *
@@ -22,6 +30,7 @@ class Plugin {
 	public function get_version() {
 		return WBCOM_ELEMENTOR_ADDONS_VERSION;
 	}
+
 	/**
 	 * Throw error on object clone
 	 *
@@ -35,6 +44,7 @@ class Plugin {
 		// Cloning instances of the class is forbidden
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wbcom-essential' ), '1.0.0' );
 	}
+
 	/**
 	 * Disable unserializing of the class
 	 *
@@ -45,12 +55,14 @@ class Plugin {
 		// Unserializing instances of the class is forbidden
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wbcom-essential' ), '1.0.0' );
 	}
+
 	/**
 	 * @return \Elementor\Plugin
 	 */
 	public static function elementor() {
 		return \Elementor\Plugin::$instance;
 	}
+
 	/**
 	 * @return Plugin
 	 */
@@ -60,41 +72,39 @@ class Plugin {
 		}
 		return self::$_instance;
 	}
+
 	private function includes() {
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/modules-manager.php';
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/form-ajax-handler.php';
-		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/buddypress-registration-shortcode.php';
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/global-header-footer.php';
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/global-header-footer-posttype.php';
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/global-settings-manager.php';
 		require WBCOM_ELEMENTOR_ADDONS_PATH . 'includes/class-wbcom-reign-customizer-support.php';
 	}
+
 	public function autoload( $class ) {
 		if ( 0 !== strpos( $class, __NAMESPACE__ ) ) {
 			return;
 		}
-		$filename = strtolower(
-			preg_replace(
-				[ '/^' . __NAMESPACE__ . '\\\/', '/([a-z])([A-Z])/', '/_/', '/\\\/' ],
-				[ '', '$1-$2', '-', DIRECTORY_SEPARATOR ],
-				$class
-			)
+		$filename	 = strtolower(
+		preg_replace(
+		[ '/^' . __NAMESPACE__ . '\\\/', '/([a-z])([A-Z])/', '/_/', '/\\\/' ], [ '', '$1-$2', '-', DIRECTORY_SEPARATOR ], $class
+		)
 		);
-		$filename = WBCOM_ELEMENTOR_ADDONS_PATH . $filename . '.php';
+		$filename	 = WBCOM_ELEMENTOR_ADDONS_PATH . $filename . '.php';
 		if ( is_readable( $filename ) ) {
 			include( $filename );
 		}
 	}
+
 	public function enqueue_styles() {
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$direction_suffix = is_rtl() ? '-rtl' : '';
+		$suffix				 = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$direction_suffix	 = is_rtl() ? '-rtl' : '';
 		wp_enqueue_style(
-			'wbcom-essential',
-			WBCOM_ELEMENTOR_ADDONS_ASSETS_URL . 'css/frontend' . $direction_suffix . $suffix . '.css',
-			[],
-			WBCOM_ELEMENTOR_ADDONS_VERSION
+		'wbcom-essential', WBCOM_ELEMENTOR_ADDONS_ASSETS_URL . 'css/frontend' . $direction_suffix . $suffix . '.css', [], WBCOM_ELEMENTOR_ADDONS_VERSION
 		);
 	}
+
 	public function enqueue_frontend_scripts() {
 		// $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		// wp_enqueue_script(
@@ -117,28 +127,18 @@ class Plugin {
 		// );
 		/* Login Widget Script */
 		wp_register_script(
-			$handle		=	'wbcom_elementor_login_module_js',
-			$src		=	plugin_dir_url( __FILE__ ) . 'assets/js/login-module.js',
-			$deps		=	array( 'jquery' ),
-			$ver		=	time(),
-			$in_footer	=	true
+		$handle		 = 'wbcom_elementor_login_module_js', $src		 = plugin_dir_url( __FILE__ ) . 'assets/js/login-module.js', $deps		 = array( 'jquery' ), $ver		 = time(), $in_footer	 = true
 		);
 		wp_localize_script(
-			'wbcom_elementor_login_module_js',
-			'wbcom_elementor_login_module_params',
-			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' )
-			)
+		'wbcom_elementor_login_module_js', 'wbcom_elementor_login_module_params', array(
+			'ajax_url' => admin_url( 'admin-ajax.php' )
+		)
 		);
 		wp_enqueue_script( 'wbcom_elementor_login_module_js' );
 
 
 		wp_register_script(
-			$handle		=	'wbcom_elementor_main_min_js',
-			$src		=	plugin_dir_url( __FILE__ ) . 'assets/js/main.min.js',
-			$deps		=	array( 'jquery' ),
-			$ver		=	time(),
-			$in_footer	=	true
+		$handle									 = 'wbcom_elementor_main_min_js', $src									 = plugin_dir_url( __FILE__ ) . 'assets/js/main.min.js', $deps									 = array( 'jquery' ), $ver									 = time(), $in_footer								 = true
 		);
 		$reign_header_topbar_mobile_view_disable = get_theme_mod( 'reign_header_topbar_mobile_view_disable', false );
 
@@ -149,11 +149,12 @@ class Plugin {
 
 		wp_localize_script(
 		'wbcom_elementor_main_min_js', 'essential_js_obj', array(
-			'reign_rtl'				 => $rtl
+			'reign_rtl' => $rtl
 		)
 		);
 		wp_enqueue_script( 'wbcom_elementor_main_min_js' );
 	}
+
 	// public function enqueue_editor_scripts() {
 	// 	$suffix = Utils::is_script_debug() ? '' : '.min';
 	// 	wp_enqueue_script(
@@ -210,19 +211,18 @@ class Plugin {
 	// 	);
 	// }
 	public function elementor_init() {
-		$this->modules_manager = new Manager();
-		$elementor = \Elementor\Plugin::$instance;
+		$this->modules_manager	 = new Manager();
+		$elementor				 = \Elementor\Plugin::$instance;
 		// Add element category in panel
 		$elementor->elements_manager->add_category(
-			'wbcom-elements',
-			[
-				'title' => __( 'WBCOM Elements', 'wbcom-essential' ),
-				'icon' => 'font',
-			],
-			1
+		'wbcom-elements', [
+			'title'	 => __( 'WBCOM Elements', 'wbcom-essential' ),
+			'icon'	 => 'font',
+		], 1
 		);
 		do_action( 'wbcom_elementor_addons/init' );
 	}
+
 	private function setup_hooks() {
 		add_action( 'elementor/init', [ $this, 'elementor_init' ] );
 		// add_action( 'elementor/frontend/before_register_scripts', [ $this, 'register_frontend_scripts' ] );
@@ -231,6 +231,7 @@ class Plugin {
 		add_action( 'elementor/frontend/before_enqueue_scripts', [ $this, 'enqueue_frontend_scripts' ] );
 		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'enqueue_styles' ] );
 	}
+
 	/**
 	 * Plugin constructor.
 	 */
@@ -239,8 +240,10 @@ class Plugin {
 		$this->includes();
 		$this->setup_hooks();
 	}
+
 }
-if ( ! defined( 'WBCOM_ELEMENTOR_ADDONS_TESTS' ) ) {
+
+if ( !defined( 'WBCOM_ELEMENTOR_ADDONS_TESTS' ) ) {
 	// In tests we run the instance manually.
 	Plugin::instance();
 }
