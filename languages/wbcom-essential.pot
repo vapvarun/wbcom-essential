@@ -1,51 +1,31 @@
-#, fuzzy
+# Copyright (C) 2020
+# This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"Project-Id-Version: Wbcom Essential\n"
-"POT-Creation-Date: 2019-04-26 13:09+0530\n"
-"PO-Revision-Date: 2019-04-26 13:08+0530\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-18 07:43:56+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: wbcom-essential.php\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Wbcom-Essential\n"
+"Language-Team: Wbcom-Essential\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n1.0.2\n"
 
-#: base/module-base.php:33 base/module-base.php:44 plugin.php:36 plugin.php:46
+#: base/module-base.php:33 base/module-base.php:44 plugin.php:45 plugin.php:56
 msgid "Cheatin&#8217; huh?"
-msgstr ""
-
-#: includes/buddypress-registration-shortcode.php:61
-#: modules/forms/widgets/login.php:834
-#: modules/forms/widgets/registration.php:699
-#, php-format
-msgid "You are Logged in as %1$s (<a href=\"%2$s\">Logout</a>)"
-msgstr ""
-
-#: includes/buddypress-registration-shortcode.php:76
-msgid "Please Activate BuddyPress To Use This Shortcode"
-msgstr ""
-
-#: includes/buddypress-registration-shortcode.php:134
-msgid "Please make sure you enter your password twice"
-msgstr ""
-
-#: includes/buddypress-registration-shortcode.php:138
-msgid "The passwords you entered do not match."
-msgstr ""
-
-#: includes/buddypress-registration-shortcode.php:158
-msgid "This is a required field"
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:65
@@ -61,8 +41,7 @@ msgid "Topbar Type"
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:114
-msgid ""
-"Allows you to select default theme topbar or topbar made using Elementor."
+msgid "Allows you to select default theme topbar or topbar made using Elementor."
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:119
@@ -88,8 +67,7 @@ msgid "Header Type"
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:177
-msgid ""
-"Allows you to select default theme header or header made using Elementor."
+msgid "Allows you to select default theme header or header made using Elementor."
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:182
@@ -125,8 +103,7 @@ msgid "Footer Type"
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:260
-msgid ""
-"Allows you to select default theme footer or footer made using Elementor."
+msgid "Allows you to select default theme footer or footer made using Elementor."
 msgstr ""
 
 #: includes/class-wbcom-reign-customizer-support.php:265
@@ -146,8 +123,7 @@ msgid "<strong>ERROR</strong>: Enter a username or email address."
 msgstr ""
 
 #: includes/form-ajax-handler.php:171
-msgid ""
-"<strong>ERROR</strong>: There is no user registered with that email address."
+msgid "<strong>ERROR</strong>: There is no user registered with that email address."
 msgstr ""
 
 #: includes/form-ajax-handler.php:189
@@ -159,7 +135,6 @@ msgid "Someone has requested a password reset for the following account:"
 msgstr ""
 
 #: includes/form-ajax-handler.php:201
-#, php-format
 msgid "Username: %s"
 msgstr ""
 
@@ -171,9 +146,8 @@ msgstr ""
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#. translators: Password reset email subject. 1: Site name
 #: includes/form-ajax-handler.php:215
-#, php-format
+#. translators: Password reset email subject. 1: Site name
 msgid "[%s] Password Reset"
 msgstr ""
 
@@ -262,10 +236,9 @@ msgid "WordPress Menu"
 msgstr ""
 
 #: includes/wp-menu.php:81 modules/nav-menu/widgets/nav-menu.php:74
-#, php-format
 msgid ""
-"Choose the WordPress menu to output below. To change menu items please go to "
-"the <a href=\"%s\" target=\"_blank\">WordPress Menu Editor</a> page."
+"Choose the WordPress menu to output below. To change menu items please go "
+"to the <a href=\"%s\" target=\"_blank\">WordPress Menu Editor</a> page."
 msgstr ""
 
 #: includes/wp-menu.php:87 modules/nav-menu/widgets/nav-menu.php:80
@@ -590,7 +563,8 @@ msgstr ""
 #: modules/forms/widgets/login.php:215
 #: modules/forms/widgets/registration.php:153
 msgid ""
-"Note: Because of security reasons, you can ONLY use your current domain here."
+"Note: Because of security reasons, you can ONLY use your current domain "
+"here."
 msgstr ""
 
 #: modules/forms/widgets/login.php:225 modules/forms/widgets/login.php:959
@@ -748,6 +722,11 @@ msgstr ""
 msgid "Animation"
 msgstr ""
 
+#: modules/forms/widgets/login.php:834
+#: modules/forms/widgets/registration.php:699
+msgid "You are Logged in as %1$s (<a href=\"%2$s\">Logout</a>)"
+msgstr ""
+
 #: modules/forms/widgets/registration.php:21
 msgid "Registration"
 msgstr ""
@@ -782,79 +761,78 @@ msgstr ""
 msgid "Groups Grid"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:49
+#: modules/groups-grid/widgets/groups-grid.php:48
 #: modules/members-carousel/widgets/members-carousel.php:40
 #: modules/members-grid/widgets/members-grid.php:49
 msgid "Settings"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:56
+#: modules/groups-grid/widgets/groups-grid.php:54
 #: modules/members-carousel/widgets/members-carousel.php:60
 #: modules/members-grid/widgets/members-grid.php:56
 msgid "Sort"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:60
+#: modules/groups-grid/widgets/groups-grid.php:58
 #: modules/members-carousel/widgets/members-carousel.php:64
 #: modules/members-grid/widgets/members-grid.php:60
 msgid "Newest"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:61
+#: modules/groups-grid/widgets/groups-grid.php:59
 #: modules/members-carousel/widgets/members-carousel.php:65
 #: modules/members-grid/widgets/members-grid.php:61
 msgid "Most Active"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:62
+#: modules/groups-grid/widgets/groups-grid.php:60
 #: modules/members-carousel/widgets/members-carousel.php:66
 #: modules/members-grid/widgets/members-grid.php:62
 msgid "Most Popular"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:63
+#: modules/groups-grid/widgets/groups-grid.php:61
 #: modules/posts/widgets/posts.php:116
 msgid "Random"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:64
+#: modules/groups-grid/widgets/groups-grid.php:62
 msgid "Alphabetical"
 msgstr ""
 
+#: modules/groups-grid/widgets/groups-grid.php:69
 #: modules/groups-grid/widgets/groups-grid.php:72
-#: modules/groups-grid/widgets/groups-grid.php:75
 msgid "Total groups"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:82
+#: modules/groups-grid/widgets/groups-grid.php:78
 #: modules/members-grid/widgets/members-grid.php:80
 #: modules/posts/skins/skin-base.php:167
 msgid "Columns"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:95
+#: modules/groups-grid/widgets/groups-grid.php:90
 #: modules/members-grid/widgets/members-grid.php:93
 #: modules/posts/skins/skin-base.php:332 modules/posts/widgets/posts.php:75
 msgid "Layout"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:117
+#: modules/groups-grid/widgets/groups-grid.php:112
 #: modules/members-carousel/widgets/members-carousel.php:151
 #: modules/members-grid/widgets/members-grid.php:194
 msgid "You need BuddyPress plugin to be active!"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:123
+#: modules/groups-grid/widgets/groups-grid.php:118
 msgid "Groups component needs to be active!"
 msgstr ""
 
-#: modules/groups-grid/widgets/groups-grid.php:265
+#: modules/groups-grid/widgets/groups-grid.php:261
 msgid "There were no groups found."
 msgstr ""
 
+#: modules/groups-grid/widgets/groups-grid.php:344
 #. translators: %s = last activity timestamp (e.g. "active 1 hour ago")
-#: modules/groups-grid/widgets/groups-grid.php:347
-#, php-format
 msgid "active %s"
 msgstr ""
 
@@ -1253,27 +1231,6 @@ msgstr ""
 msgid "Space Between"
 msgstr ""
 
-#: modules/query-control/controls/group-control-posts.php:44
-msgctxt "Posts Query Control"
-msgid "Source"
-msgstr ""
-
-#: modules/query-control/controls/group-control-posts.php:49
-#: modules/query-control/module.php:45
-msgctxt "Posts Query Control"
-msgid "Search & Select"
-msgstr ""
-
-#: modules/query-control/controls/group-control-posts.php:62
-msgctxt "Posts Query Control"
-msgid "Author"
-msgstr ""
-
-#: modules/query-control/controls/group-control-posts.php:97
-msgctxt "Posts Query Control"
-msgid "Manual Selection"
-msgstr ""
-
 #: modules/query-control/module.php:31
 msgid "Exclude"
 msgstr ""
@@ -1350,7 +1307,7 @@ msgstr ""
 msgid "Icon Hover"
 msgstr ""
 
-#: plugin.php:219
+#: plugin.php:164
 msgid "WBCOM Elements"
 msgstr ""
 
@@ -1366,8 +1323,8 @@ msgstr ""
 
 #: wbcom-essential.php:91
 msgid ""
-"WBCOM Elementor Addons not working because you need to install the Elementor "
-"plugin"
+"WBCOM Elementor Addons not working because you need to install the "
+"Elementor plugin"
 msgstr ""
 
 #: wbcom-essential.php:92
@@ -1387,23 +1344,27 @@ msgstr ""
 #: wbcom-essential.php:120
 msgid ""
 "A new version of Elementor is available. For better performance and "
-"compatibility of WBCOM Elementor Addons, we recommend updating to the latest "
-"version."
+"compatibility of WBCOM Elementor Addons, we recommend updating to the "
+"latest version."
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "Wbcom Essential"
+#: modules/query-control/controls/group-control-posts.php:44
+msgctxt "Posts Query Control"
+msgid "Source"
 msgstr ""
 
-#. Plugin URI of the plugin/theme
-#. Author URI of the plugin/theme
-msgid "https://wbcomdesigns.com/"
+#: modules/query-control/controls/group-control-posts.php:49
+#: modules/query-control/module.php:45
+msgctxt "Posts Query Control"
+msgid "Search & Select"
 msgstr ""
 
-#. Description of the plugin/theme
-msgid "Wbcom Essential Addons."
+#: modules/query-control/controls/group-control-posts.php:62
+msgctxt "Posts Query Control"
+msgid "Author"
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "Wbcom Designs"
+#: modules/query-control/controls/group-control-posts.php:97
+msgctxt "Posts Query Control"
+msgid "Manual Selection"
 msgstr ""

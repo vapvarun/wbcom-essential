@@ -155,61 +155,6 @@ class Plugin {
 		wp_enqueue_script( 'wbcom_elementor_main_min_js' );
 	}
 
-	// public function enqueue_editor_scripts() {
-	// 	$suffix = Utils::is_script_debug() ? '' : '.min';
-	// 	wp_enqueue_script(
-	// 		'wbcom-essential',
-	// 		WBCOM_ELEMENTOR_ADDONS_URL . 'assets/js/editor' . $suffix . '.js',
-	// 		[
-	// 			'backbone-marionette',
-	// 		],
-	// 		WBCOM_ELEMENTOR_ADDONS_VERSION,
-	// 		true
-	// 	);
-	// 	$is_license_active = false;
-	// 	$is_license_active = true;
-	// 	$locale_settings = [
-	// 		'i18n' => [],
-	// 		'isActive' => $is_license_active,
-	// 	];
-	// 	wp_localize_script(
-	// 		'wbcom-essential',
-	// 		'WbcomElementorAddonsConfig',
-	// 		apply_filters( 'wbcom_elementor_addons/editor/localize_settings', $locale_settings )
-	// 	);
-	// }
-	// public function register_frontend_scripts() {
-	// 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	// 	wp_register_script(
-	// 		'smartmenus',
-	// 		WBCOM_ELEMENTOR_ADDONS_URL . 'assets/lib/smartmenus/jquery.smartmenus' . $suffix . '.js',
-	// 		[
-	// 			'jquery',
-	// 		],
-	// 		'1.0.1',
-	// 		true
-	// 	);
-	// 	wp_register_script(
-	// 		'social-share',
-	// 		WBCOM_ELEMENTOR_ADDONS_URL . 'assets/lib/social-share/social-share' . $suffix . '.js',
-	// 		[
-	// 			'jquery',
-	// 		],
-	// 		'0.2.17',
-	// 		true
-	// 	);
-	// }
-	// public function enqueue_editor_styles() {
-	// 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	// 	wp_enqueue_style(
-	// 		'wbcom-essential',
-	// 		WBCOM_ELEMENTOR_ADDONS_URL . 'assets/css/editor' . $suffix . '.css',
-	// 		[
-	// 			'elementor-editor'
-	// 		],
-	// 		WBCOM_ELEMENTOR_ADDONS_VERSION
-	// 	);
-	// }
 	public function elementor_init() {
 		$this->modules_manager	 = new Manager();
 		$elementor				 = \Elementor\Plugin::$instance;
