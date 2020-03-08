@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 5.3.2
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -23,6 +23,9 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 
+= 2.2.0 =
+* Fix: Fixed post widget excerpt typography issue
+* Fix: Fixed text domain, removed unwanted files and code
 
 = 2.1.0 =
 * Fix: BuddyPress Registration forrm conflict
