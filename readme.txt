@@ -22,6 +22,8 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 2.3.0 =
+* Fix : error message on updating plugin
 
 = 2.2.0 =
 * Fix: Fixed post widget excerpt typography issue
