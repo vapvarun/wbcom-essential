@@ -4,7 +4,7 @@
  * Description: Wbcom Essential Addons.
  * Plugin URI: https://wbcomdesigns.com/
  * Author: Wbcom Designs
- * Version: 2.2.0
+ * Version: 2.4.0
  * Author URI: https://wbcomdesigns.com/
  *
  * Text Domain: wbcom-essential
@@ -33,7 +33,7 @@ define( 'WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE', __FILE__ );
  */
 
 function wbcom_elementor_addons_load_plugin() {
-	
+
 	load_plugin_textdomain( 'wbcom-essential', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 
 	if ( ! did_action( 'elementor/loaded' ) ) {

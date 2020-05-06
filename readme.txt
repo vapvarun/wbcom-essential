@@ -3,8 +3,8 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
-Tested up to: 5.3.2
-Stable tag: 2.2.0
+Tested up to: 5.4.1
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,9 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 2.4.0 =
+* Fix : error message on updating plugin
+
 = 2.3.0 =
 * Fix : error message on updating plugin
 
@@ -33,7 +36,7 @@ This plugin does not require any specific plugin. Although this plugin supports 
 * Fix: BuddyPress Registration forrm conflict
 
 = 2.0.0 =
-* Enhancement: added member/group layout shortcodes and widgets for elementor 
+* Enhancement: added member/group layout shortcodes and widgets for elementor
 * Fixed Login Widgets labels
 
 = 1.1.1 =

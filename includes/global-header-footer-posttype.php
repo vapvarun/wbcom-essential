@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) or exit;
  *
  * @since 1.0
  */
-if ( ! class_exist( 'WBCOM_Elementor_Global_Header_Footer_PostType' ) ) :
+if ( ! class_exists( 'WBCOM_Elementor_Global_Header_Footer_PostType' ) ) :
 	class WBCOM_Elementor_Global_Header_Footer_PostType {
 
 		/**
