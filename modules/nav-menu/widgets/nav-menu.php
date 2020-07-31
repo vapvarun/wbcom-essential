@@ -217,7 +217,7 @@ class Nav_Menu extends Widget_Base {
 			[
 				'name' => 'menu_typography',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .main-navigation ul.primary-menu > li a',
+				'selector' => '{{WRAPPER}} .main-navigation ul.primary-menu > li a, .wbesntl-notification-area .user-link, #masthead .wbesntl-notification-area .user-link-wrap .user-link',
 			]
 		);
 

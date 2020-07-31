@@ -129,6 +129,28 @@ class NotificationArea extends Widget_Base {
 			],
 		]
 		);
+                
+                $this->add_control(
+		'user_name_font_color', [
+			'label'		 => __( 'User Name Font Color', 'reign' ),
+			'type'		 => Controls_Manager::COLOR,
+			'default'	 => '#000',
+			'selectors'	 => [
+				'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .user-link, #masthead .wbesntl-notification-area .user-link-wrap .user-link' => 'color: {{VALUE}};',
+			],
+		]
+		);
+
+		$this->add_control(
+		'user_name_font_color_hover', [
+			'label'		 => __( 'User Name Font Color (Hover)', 'reign' ),
+			'type'		 => Controls_Manager::COLOR,
+			'default'	 => '#000',
+			'selectors'	 => [
+				'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .user-link:hover, #masthead .wbesntl-notification-area .user-link-wrap .user-link:hover' => 'color: {{VALUE}};',
+			],
+		]
+		);
 
 		$this->add_control(
 		'notification_height', [
