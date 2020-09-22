@@ -348,7 +348,7 @@ class GroupsGrid extends Widget_Base {
 
 											</div>
 
-											<div class="group-desc"><p><?php bp_nouveau_group_description_excerpt(); ?></p></div>
+											<div class="group-desc"><p><?php bp_group_description_excerpt(); ?></p></div>
 
 											<?php bp_nouveau_groups_loop_item(); ?>
 
