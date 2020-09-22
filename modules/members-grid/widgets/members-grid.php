@@ -247,9 +247,9 @@ class MembersGrid extends Widget_Base {
 										);
 										$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
 										if ( empty( $cover_img_url ) ) {
-											$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+											$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 											if( empty( $cover_img_url ) ) {
-												$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+												$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 											}
 										}
 										echo '<div class="wbtm-mem-cover-img"><img src="' . $cover_img_url . '" /></div>';
@@ -357,9 +357,9 @@ class MembersGrid extends Widget_Base {
 											);
 											$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
 											if ( empty( $cover_img_url ) ) {
-												$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+												$cover_img_url	 = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_xprofile_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 												if( empty( $cover_img_url ) ) {
-													$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-mem-cover.jpg';
+													$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 												}
 											}
 											echo '<div class="wbtm-mem-cover-img"><img src="' . $cover_img_url . '" /></div>';

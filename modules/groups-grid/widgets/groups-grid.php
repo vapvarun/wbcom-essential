@@ -176,9 +176,9 @@ class GroupsGrid extends Widget_Base {
 										$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
 										if ( empty( $cover_img_url ) ) {
 											global $wbtm_reign_settings;
-											$cover_img_url = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-grp-cover.jpg';
+											$cover_img_url = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 											if ( empty( $cover_img_url ) ) {
-												$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-grp-cover.jpg';
+												$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 											}
 										}
 										echo '<div class="wbtm-group-cover-img"><img src="' . $cover_img_url . '" /></div>';
@@ -300,9 +300,9 @@ class GroupsGrid extends Widget_Base {
 										$cover_img_url	 = bp_attachments_get_attachment( 'url', $args );
 										if ( empty( $cover_img_url ) ) {
 											global $wbtm_reign_settings;
-											$cover_img_url = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-grp-cover.jpg';
+											$cover_img_url = isset( $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] ) ? $wbtm_reign_settings[ 'reign_buddyextender' ][ 'default_group_cover_image_url' ] : REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 											if ( empty( $cover_img_url ) ) {
-												$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-grp-cover.jpg';
+												$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 											}
 										}
 										echo '<div class="wbtm-group-cover-img"><img src="' . $cover_img_url . '" /></div>';
