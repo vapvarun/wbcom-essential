@@ -4,7 +4,7 @@
  * Description: Wbcom Essential Addons.
  * Plugin URI: https://wbcomdesigns.com/
  * Author: Wbcom Designs
- * Version: 2.5.0
+ * Version: 2.6.0
  * Author URI: https://wbcomdesigns.com/
  *
  * Text Domain: wbcom-essential
@@ -12,8 +12,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-define( 'WBCOM_ELEMENTOR_ADDONS_VERSION', '2.5.14' );
-define( 'WBCOM_ELEMENTOR_ADDONS_PREVIOUS_STABLE_VERSION', '2.5.14' );
+define( 'WBCOM_ELEMENTOR_ADDONS_VERSION', '3.0.0' );
+define( 'WBCOM_ELEMENTOR_ADDONS_PREVIOUS_STABLE_VERSION', '3.0.0' );
 
 define( 'WBCOM_ELEMENTOR_ADDONS__FILE__', __FILE__ );
 define( 'WBCOM_ELEMENTOR_ADDONS_PLUGIN_BASE', plugin_basename( WBCOM_ELEMENTOR_ADDONS__FILE__ ) );
@@ -41,13 +41,13 @@ function wbcom_elementor_addons_load_plugin() {
 		return;
 	}
 
-	$elementor_version_required = '2.5.0';
+	$elementor_version_required = '3.0.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
 		add_action( 'admin_notices', 'wbcom_elementor_addons_fail_load_out_of_date' );
 		return;
 	}
 
-	$elementor_version_recommendation = '2.5.0';
+	$elementor_version_recommendation = '3.0.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_recommendation, '>=' ) ) {
 		add_action( 'admin_notices', 'wbcom_elementor_addons_admin_notice_upgrade_recommendation' );
 	}
