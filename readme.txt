@@ -22,6 +22,11 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 2.6.0 =
+* Fix : Elementor Group Widgets and member widgets.
+* Fix : Update member and groups default cover image path
+* Fix : Removed unwanted files
+
 = 2.5.0 =
 * Fix : Updated notification-area.php
 
