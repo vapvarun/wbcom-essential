@@ -178,7 +178,7 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#000',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation .reign-menu-toggle, {{WRAPPER}} .main-navigation ul li a' => 'color: {{VALUE}};',
+				'{{WRAPPER}} .main-navigation .reign-menu-toggle, {{WRAPPER}} .main-navigation ul li a' => 'color: {{VALUE}} !important;',
 			],
 		]
 		);
@@ -189,7 +189,7 @@ class Nav_Menu extends Widget_Base {
 			'type'		 => Controls_Manager::COLOR,
 			'default'	 => '#000',
 			'selectors'	 => [
-				'{{WRAPPER}} .main-navigation ul li a:hover' => 'color: {{VALUE}};',
+				'{{WRAPPER}} .main-navigation ul li a:hover' => 'color: {{VALUE}} !important;',
 			],
 		]
 		);

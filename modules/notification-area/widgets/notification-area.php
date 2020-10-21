@@ -113,7 +113,7 @@ class NotificationArea extends Widget_Base {
 			'type'		 => \Elementor\Controls_Manager::COLOR,
 			'default'	 => '#ffffff',
 			'selectors'	 => [
-				'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap span:before, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon:before' => 'color: {{VALUE}};',
+				'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:not(.rg-login-btn-wrap):not(.rg-register-btn-wrap) a, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap span:before, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon:before' => 'color: {{VALUE}};',
 			],
 		]
 		);
@@ -124,7 +124,7 @@ class NotificationArea extends Widget_Base {
 			'type'		 => \Elementor\Controls_Manager::COLOR,
 			'default'	 => '#ffffff',
 			'selectors'	 => [
-				'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a:hover,
+				'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:not(.rg-login-btn-wrap):not(.rg-register-btn-wrap) a:hover,
 					{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap span:hover:before, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon:hover:before' => 'color: {{VALUE}};',
 			],
 		]
@@ -335,21 +335,18 @@ class NotificationArea extends Widget_Base {
 				$wbcom_ele_login_url	 = apply_filters( 'wbcom_ele_notification_login_url', wp_login_url() );
 				$wbcom_ele_register_url	 = apply_filters( 'wbcom_ele_notification_registration_url', wp_registration_url() );
 				?>
-			<!-- <a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login"><?php _e( 'Login', 'reign' ); ?></a> -->
-				<div class="rg-icon-wrap">
-					<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login" title="Login">	<span class="fa fa-sign-in"></span>
-					</a>
+			
+				<div class="rg-icon-wrap rg-login-btn-wrap">
+                                    <a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login button" title="<?php esc_attr_e( 'Login', 'reign' ); ?>"><?php esc_html_e( 'Login', 'reign' ); ?><span class="fa fa-sign-in"></span></a>
 				</div>
 				<?php
 				if ( get_option( 'users_can_register' ) ) {
 					?>
-														<!-- <span class="sep">|</span><a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register"><?php _e( 'Register', 'reign' ); ?></a> -->
+					
 					<span class="sep">|</span>
-					<div class="rg-icon-wrap">
-						<a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register" title="Register">
-							<span class="fa fa-address-book-o"></span>
-						</a>
-					</div>
+					<div class="rg-icon-wrap rg-register-btn-wrap">
+                                            <a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register button" title="<?php esc_attr_e( 'Register', 'reign' ); ?>"><?php esc_html_e( 'Register', 'reign' ); ?><span class="fa fa-address-book-o"></span></a>
+                                        </div>
 
 					<?php
 				}
