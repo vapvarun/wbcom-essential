@@ -333,7 +333,7 @@ class GroupsGrid extends Widget_Base {
 
 												<?php if ( bp_nouveau_group_has_meta() ) : ?>
 
-													<p class="item-meta group-details"><?php bp_nouveau_group_meta(); ?></p>
+													<p class="item-meta group-details"><?php bp_nouveau_the_group_meta(); ?></p>
 
 												<?php endif; ?>
 
