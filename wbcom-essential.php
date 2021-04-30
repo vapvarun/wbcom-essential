@@ -108,8 +108,8 @@ class WBCOM_ESSENTIAL {
 			define( 'WBCOM_ESSENTIAL_PATH', plugin_dir_path( WBCOM_ESSENTIAL_FILE ) );
 		}
 
-		if ( ! defined( 'WBCOM_ESSENTIAL_ELEMENTOR' ) ) {
-			define( 'WBCOM_ESSENTIAL_ELEMENTOR', WBCOM_ESSENTIAL_PATH . 'elementor/' );
+		if ( ! defined( 'WBCOM_ESSENTIAL_DEPENDENCIES' ) ) {
+			define( 'WBCOM_ESSENTIAL_DEPENDENCIES', WBCOM_ESSENTIAL_PATH . 'plugins/' );
 		}
 
 		if ( ! defined( 'WBCOM_ESSENTIAL_MODULES_PATH' ) ) {
@@ -141,7 +141,7 @@ class WBCOM_ESSENTIAL {
 		require WBCOM_ESSENTIAL_PATH . 'includes/class-wbcom-reign-customizer-support.php';
 
 		if ( did_action( 'elementor/loaded' ) ) {
-			require WBCOM_ESSENTIAL_PATH . 'elementor\class-wbcom-elementor-support.php';
+			require WBCOM_ESSENTIAL_PATH . 'plugins/elementor/class-wbcom-elementor-support.php';
 		}
 	}
 
@@ -211,7 +211,7 @@ class WBCOM_ESSENTIAL {
 
 		$plugin = 'elementor/elementor.php';
 
-		if ( function_exists( '_is_elementor_installed' ) &&  _is_elementor_installed() ) {
+		if ( function_exists( '_is_elementor_installed' ) && _is_elementor_installed() ) {
 			if ( ! current_user_can( 'activate_plugins' ) ) {
 				return;
 			}

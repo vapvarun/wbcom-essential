@@ -14,6 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Plugin {
 
 	/**
+	 * @var dependency
+	 */
+	private $dependency = 'elementor';
+
+	/**
 	 * @var Plugin
 	 */
 	private static $_instance;
@@ -75,8 +80,8 @@ class Plugin {
 	}
 
 	private function includes() {
-		require WBCOM_ESSENTIAL_PATH . 'includes/modules-manager.php';
-		require WBCOM_ESSENTIAL_PATH . 'includes/global-settings-manager.php';
+		require WBCOM_ESSENTIAL_PATH . 'plugins/elementor/includes/modules-manager.php';
+		require WBCOM_ESSENTIAL_PATH . 'plugins/elementor/includes/global-settings-manager.php';
 	}
 
 
@@ -102,7 +107,8 @@ class Plugin {
 			)
 		);
 
-		$filename = WBCOM_ESSENTIAL_ELEMENTOR . $filename . '.php';
+		$filename = WBCOM_ESSENTIAL_DEPENDENCIES . $this->dependency . '/' . $filename . '.php';
+
 		if ( is_readable( $filename ) ) {
 			include $filename;
 		}
