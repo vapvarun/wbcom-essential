@@ -1,68 +1,70 @@
 <?php
-namespace WbcomElementorAddons;
+namespace WBCOMESSENTIAL;
 
-use WbcomElementorAddons\Base\Module_Base;
+use WBCOMESSENTIAL\Base\Module_Base;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 final class Manager {
 	/**
 	 * @var Module_Base[]
 	 */
-	private $modules = [];
+	private $modules = array();
 
 	public function __construct() {
 		// $modules = [
-		// 	'query-control',
-		// 	'posts',
-		// 	'slides',
-		// 	'forms',
-		// 	'nav-menu',
-		// 	'animated-headline',
-		// 	'pricing',
-		// 	'flip-box',
-		// 	'carousel',
-		// 	'countdown',
-		// 	'woocommerce',
-		// 	'share-buttons',
-		// 	'custom-css',
-		// 	'global-widget',
-		// 	'blockquote',
-		// 	'social',
-		// 	'library',
+		// 'query-control',
+		// 'posts',
+		// 'slides',
+		// 'forms',
+		// 'nav-menu',
+		// 'animated-headline',
+		// 'pricing',
+		// 'flip-box',
+		// 'carousel',
+		// 'countdown',
+		// 'woocommerce',
+		// 'share-buttons',
+		// 'custom-css',
+		// 'global-widget',
+		// 'blockquote',
+		// 'social',
+		// 'library',
 		// ];
 
 		$modules = array();
 		if ( ! defined( 'ELEMENTOR_PRO_VERSION' ) ) {
-			$modules = [
+			$modules = array(
 				'query-control',
 				'posts',
 				// 'nav-menu',
 				// 'pricing',
 				// 'share-buttons',
 				// 'custom-css'
-			];
+			);
 		}
 
-		$new_modules = [
+		$new_modules = array(
 			'nav-menu',
 			'forms',
 			'branding',
 			'notification-area',
-			//'members-carousel'
-		];
+			// 'members-carousel'
+		);
 
-		if( class_exists('BuddyPress') ){
-			if( bp_is_active('members') ) {
+		if ( class_exists( 'BuddyPress' ) ) {
+			if ( bp_is_active( 'members' ) ) {
 				array_push( $new_modules, 'members-grid' );
 			}
-			if( bp_is_active('groups') ) {
+			if ( bp_is_active( 'groups' ) ) {
 				array_push( $new_modules, 'groups-grid' );
 			}
 		}
 
 		// if ( class_exists( 'WooCommerce' ) ) {
-		// 	array_push( $new_modules, 'woo-cart' );
+		// array_push( $new_modules, 'woo-cart' );
 		// }
 
 		$modules = array_merge( $modules, $new_modules );

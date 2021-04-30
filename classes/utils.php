@@ -1,12 +1,14 @@
 <?php
-namespace WbcomElementorAddons\Classes;
+namespace WBCOMESSENTIAL\Classes;
 
-if ( ! defined( 'ABSPATH' ) )  exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class Utils {
 
 	public static function get_client_ip() {
-		$server_ip_keys = [
+		$server_ip_keys = array(
 			'HTTP_CLIENT_IP',
 			'HTTP_X_FORWARDED_FOR',
 			'HTTP_X_FORWARDED',
@@ -14,7 +16,7 @@ class Utils {
 			'HTTP_FORWARDED_FOR',
 			'HTTP_FORWARDED',
 			'REMOTE_ADDR',
-		];
+		);
 
 		foreach ( $server_ip_keys as $key ) {
 			if ( isset( $_SERVER[ $key ] ) && filter_var( $_SERVER[ $key ], FILTER_VALIDATE_IP ) ) {
