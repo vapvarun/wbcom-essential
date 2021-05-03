@@ -350,20 +350,6 @@ class Wbcom_Reign_Customizer_Support {
 				'off'  => esc_attr__( 'Disable', 'wbcom-essential' ),
 			),
 		);
-                
-		$fields[] = array(
-			'type'        => 'switch',
-			'settings'    => 'reign_elementor_login_module',
-			'label'       => esc_attr__( 'Login ', 'wbcom-essential' ),
-			'description' => esc_attr__( '', 'wbcom-essential' ),
-			'section'     => 'reign_elementor_modules',
-			'default'  => '1',
-			'priority'    => 15,
-                        'choices'     => array(
-				'on' => esc_attr__( 'Enable', 'wbcom-essential' ),
-				'off'  => esc_attr__( 'Disable', 'wbcom-essential' ),
-			),
-		);
 
 		return $fields;
 
