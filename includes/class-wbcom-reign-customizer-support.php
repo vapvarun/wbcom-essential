@@ -79,6 +79,16 @@ class Wbcom_Reign_Customizer_Support {
 				'description' => __( '', 'reign' ),
 			)
 		);
+
+		$wp_customize->add_section(
+			'reign_elementor_modules',
+			array(
+				'title'       => __( 'Elementor Modules', 'reign' ),
+				'priority'    => 20,
+				'panel'       => 'reign_general_panel',
+				'description' => __( '', 'reign' ),
+			)
+		);
 	}
 
 	// public function render_theme_topbar() {
@@ -182,6 +192,13 @@ class Wbcom_Reign_Customizer_Support {
 				'on' => esc_attr__( 'Elementor Header', 'wbcom-essential' ),
 				'off'  => esc_attr__( 'Theme Header', 'wbcom-essential' ),
 			),
+                        'active_callback' => array(
+                                array(
+                                        'setting'  => 'reign_elementor_header_module',
+                                        'operator' => '===',
+                                        'value'    => true,
+                                ),
+                        ),
 		);
 
 		$args = array(
@@ -265,6 +282,13 @@ class Wbcom_Reign_Customizer_Support {
 				'on' => esc_attr__( 'Elementor Footer', 'wbcom-essential' ),
 				'off'  => esc_attr__( 'Theme Footer', 'wbcom-essential' ),
 			),
+                        'active_callback' => array(
+                                array(
+                                        'setting'  => 'reign_elementor_footer_module',
+                                        'operator' => '===',
+                                        'value'    => true,
+                                ),
+                        ),
 		);
 
 		$args = array(
@@ -296,6 +320,48 @@ class Wbcom_Reign_Customizer_Support {
 					'operator' => '===',
 					'value'    => true,
 				),
+			),
+		);
+                
+		$fields[] = array(
+			'type'        => 'switch',
+			'settings'    => 'reign_elementor_header_module',
+			'label'       => esc_attr__( 'Header ', 'wbcom-essential' ),
+			'description' => esc_attr__( '', 'wbcom-essential' ),
+			'section'     => 'reign_elementor_modules',
+			'default'  => '',
+			'priority'    => 15,
+                        'choices'     => array(
+				'on' => esc_attr__( 'Enable', 'wbcom-essential' ),
+				'off'  => esc_attr__( 'Disable', 'wbcom-essential' ),
+			),
+		);
+                
+		$fields[] = array(
+			'type'        => 'switch',
+			'settings'    => 'reign_elementor_footer_module',
+			'label'       => esc_attr__( 'Footer ', 'wbcom-essential' ),
+			'description' => esc_attr__( '', 'wbcom-essential' ),
+			'section'     => 'reign_elementor_modules',
+			'default'  => '',
+			'priority'    => 15,
+                        'choices'     => array(
+				'on' => esc_attr__( 'Enable', 'wbcom-essential' ),
+				'off'  => esc_attr__( 'Disable', 'wbcom-essential' ),
+			),
+		);
+                
+		$fields[] = array(
+			'type'        => 'switch',
+			'settings'    => 'reign_elementor_login_module',
+			'label'       => esc_attr__( 'Login ', 'wbcom-essential' ),
+			'description' => esc_attr__( '', 'wbcom-essential' ),
+			'section'     => 'reign_elementor_modules',
+			'default'  => '1',
+			'priority'    => 15,
+                        'choices'     => array(
+				'on' => esc_attr__( 'Enable', 'wbcom-essential' ),
+				'off'  => esc_attr__( 'Disable', 'wbcom-essential' ),
 			),
 		);
 
