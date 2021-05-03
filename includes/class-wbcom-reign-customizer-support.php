@@ -124,9 +124,9 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 					'on'  => esc_attr__( 'Elementor Topbar', 'wbcom-essential' ),
 					'off' => esc_attr__( 'Theme Default', 'wbcom-essential' ),
 				),
-				'active_callback' => array(
+                                'active_callback' => array(
 					array(
-						'setting'  => 'reign_header_topbar_enable',
+						'setting'  => 'reign_elementor_header_module',
 						'operator' => '===',
 						'value'    => true,
 					),
@@ -165,7 +165,7 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 				'choices'         => $topbar_choices,
 				'active_callback' => array(
 					array(
-						'setting'  => 'reign_header_topbar_type',
+						'setting'  => 'reign_elementor_header_module',
 						'operator' => '===',
 						'value'    => true,
 					),
@@ -228,7 +228,7 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 				'choices'         => $header_choices,
 				'active_callback' => array(
 					array(
-						'setting'  => 'reign_header_header_type',
+						'setting'  => 'reign_elementor_header_module',
 						'operator' => '===',
 						'value'    => true,
 					),
@@ -253,7 +253,7 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 				),
 				'active_callback' => array(
 					array(
-						'setting'  => 'reign_header_header_type',
+						'setting'  => 'reign_elementor_header_module',
 						'operator' => '===',
 						'value'    => true,
 					),
