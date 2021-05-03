@@ -82,6 +82,8 @@ class Plugin {
 	private function includes() {
 		require WBCOM_ESSENTIAL_PATH . 'plugins/elementor/includes/modules-manager.php';
 		require WBCOM_ESSENTIAL_PATH . 'plugins/elementor/includes/global-settings-manager.php';
+		require WBCOM_ESSENTIAL_PATH . 'plugins/elementor/includes/global-header-footer.php';
+		require WBCOM_ESSENTIAL_PATH . 'plugins/elementor/includes/global-header-footer-posttype.php';
 	}
 
 
