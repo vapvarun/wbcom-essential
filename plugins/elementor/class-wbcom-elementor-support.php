@@ -131,7 +131,7 @@ class Plugin {
 		/* Login Widget Script */
 		wp_register_script(
 			$handle    = 'wbcom_elementor_login_module_js',
-			$src       = plugin_dir_url( __FILE__ ) . 'assets/elementor/js/login-module.js',
+			$src       = WBCOM_ESSENTIAL_ASSETS_URL . 'elementor/js/login-module.js',
 			$deps      = array( 'jquery' ),
 			$ver       = time(),
 			$in_footer = true
@@ -147,7 +147,7 @@ class Plugin {
 
 		wp_register_script(
 			$handle    = 'wbcom_elementor_main_js',
-			$src       = plugin_dir_url( __FILE__ ) . 'assets/elementor/js/main.js',
+			$src       = WBCOM_ESSENTIAL_ASSETS_URL . 'elementor/js/main.js',
 			$deps      = array( 'jquery' ),
 			$ver       = time(),
 			$in_footer = true
@@ -203,9 +203,7 @@ class Plugin {
 		$this->includes();
 		$this->setup_hooks();
 	}
-
-
-
+        
 }
 
 if ( ! defined( 'WBCOM_ELEMENTOR_ADDONS_TESTS' ) ) {
