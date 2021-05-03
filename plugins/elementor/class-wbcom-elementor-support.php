@@ -121,7 +121,7 @@ class Plugin {
 		$direction_suffix = is_rtl() ? '-rtl' : '';
 		wp_enqueue_style(
 			'wbcom-essential',
-			WBCOM_ESSENTIAL_ASSETS_URL . 'css/frontend' . $direction_suffix . $suffix . '.css',
+			WBCOM_ESSENTIAL_ASSETS_URL . 'elementor/css/frontend' . $direction_suffix . $suffix . '.css',
 			array(),
 			WBCOM_ESSENTIAL_VERSION
 		);
