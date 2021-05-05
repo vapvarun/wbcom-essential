@@ -36,287 +36,69 @@ class MembersGrid extends \Elementor\Widget_Base {
 		do_action( 'wbcom_essential/widget/members-listing/settings', $this );
 
 		$this->start_controls_section(
-			'section_content',
+			'section_members_carousel',
 			array(
 				'label' => __( 'Settings', 'stax-buddy-builder' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
 
-		$this->add_responsive_control(
+		$this->add_control(
+			'type',
+			array(
+				'label'   => esc_html__( 'Sort', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'newest',
+				'options' => array(
+					'newest'  => esc_html__( 'Newest', 'wbcom-essential' ),
+					'active'  => esc_html__( 'Most Active', 'wbcom-essential' ),
+					'popular' => esc_html__( 'Most Popular', 'wbcom-essential' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'total',
+			array(
+				'label'       => __( 'Total members', 'wbcom-essential' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => '12',
+				'placeholder' => __( 'Total members', 'wbcom-essential' ),
+			)
+		);
+
+		$this->add_control(
 			'columns',
 			array(
-				'label'           => __( 'Columns', 'stax-buddy-builder' ),
-				'type'            => Controls_Manager::SELECT,
-				'options'         => array(
-					'1' => __( 'One', 'stax-buddy-builder' ),
-					'2' => __( 'Two', 'stax-buddy-builder' ),
-					'3' => __( 'Three', 'stax-buddy-builder' ),
-					'4' => __( 'Four', 'stax-buddy-builder' ),
-				),
-				'devices'         => array( 'desktop', 'tablet', 'mobile' ),
-				'desktop_default' => '3',
-				'tablet_default'  => '2',
-				'mobile_default'  => '1',
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_v_spacing_one',
-			array(
-				'label'      => __( 'Spacing', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 20,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .bp-list > li:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-				),
-				'condition'  => array(
-					'columns' => '1',
+				'label'   => esc_html__( 'Columns', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '4',
+				'options' => array(
+					'3' => '3',
+					'4' => '4',
 				),
 			)
 		);
 
-		$this->add_responsive_control(
-			'listing_v_spacing_two',
+		$this->add_control(
+			'rg-mem-grid-layout',
 			array(
-				'label'      => __( 'Vertical Spacing', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 20,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .grid-two > li' => 'padding-bottom: {{SIZE}}{{UNIT}};',
-				),
-				'condition'  => array(
-					'columns' => '2',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_h_spacing_two',
-			array(
-				'label'      => __( 'Horizontal Spacing', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 50,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 20,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .grid-two'      => 'margin-left: -{{SIZE}}{{UNIT}}; margin-right: -{{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .grid-two > li' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
-				),
-				'condition'  => array(
-					'columns' => '2',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_v_spacing_three',
-			array(
-				'label'      => __( 'Vertical Spacing', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 20,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .grid-three > li' => 'padding-bottom: {{SIZE}}{{UNIT}};',
-				),
-				'condition'  => array(
-					'columns' => '3',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_h_spacing_three',
-			array(
-				'label'      => __( 'Horizontal Spacing', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 75,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 20,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .grid-three'      => 'margin-left: -{{SIZE}}{{UNIT}}; margin-right: -{{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .grid-three > li' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
-				),
-				'condition'  => array(
-					'columns' => '3',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_v_spacing_four',
-			array(
-				'label'      => __( 'Vertical Spacing', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 20,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .grid-four > li' => 'padding-bottom: {{SIZE}}{{UNIT}};',
-				),
-				'condition'  => array(
-					'columns' => '4',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_h_spacing_four',
-			array(
-				'label'      => __( 'Horizontal Spacing', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 50,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 20,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .grid-four'      => 'margin-left: -{{SIZE}}{{UNIT}}; margin-right: -{{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .grid-four > li' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
-				),
-				'condition'  => array(
-					'columns' => '4',
+				'label'   => esc_html__( 'Layout', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'wbtm-member-directory-type-2',
+				'options' => array(
+					'wbtm-member-directory-type-1' => 'Layout 1',
+					'wbtm-member-directory-type-2' => 'Layout 2',
+					'wbtm-member-directory-type-3' => 'Layout 3',
+					'wbtm-member-directory-type-4' => 'Layout 4',
 				),
 			)
 		);
 
 		$this->end_controls_section();
 
-		$this->start_controls_section(
-			'section_style',
-			array(
-				'label' => __( 'Listing', 'stax-buddy-builder' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
+		do_action( 'reign_wp_menu_elementor_controls', $this );
 
-		$this->add_control(
-			'listing_no_border',
-			array(
-				'label'     => __( 'View', 'stax-buddy-builder' ),
-				'type'      => Controls_Manager::HIDDEN,
-				'default'   => '1',
-				'selectors' => array(
-					'{{WRAPPER}} #members-list' => 'border: 0;',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			array(
-				'name'     => 'list_item_background',
-				'label'    => __( 'Background', 'stax-buddy-builder' ),
-				'types'    => array( 'classic', 'gradient' ),
-				'selector' => '{{WRAPPER}} #members-list > li > .list-wrap',
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'listing_box_shadow',
-				'selector' => '{{WRAPPER}} #members-list > li > .list-wrap',
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => 'listing_border',
-				'selector' => '{{WRAPPER}} #members-list > li > .list-wrap',
-			)
-		);
-
-		$this->add_control(
-			'listing_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'em' ),
-				'selectors'  => array(
-					'{{WRAPPER}} #members-list > li > .list-wrap' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_margin',
-			array(
-				'label'      => __( 'Margin', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%' ),
-				'selectors'  => array(
-					'{{WRAPPER}} #members-list > li > .list-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'listing_padding',
-			array(
-				'label'      => __( 'Padding', 'stax-buddy-builder' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%' ),
-				'selectors'  => array(
-					'{{WRAPPER}} #members-list > li > .list-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->end_controls_section();
 	}
 
 	protected function render() {
@@ -329,48 +111,79 @@ class MembersGrid extends \Elementor\Widget_Base {
 
 		add_filter( 'wbcom_essential/has_template/pre', '__return_true' );
 
-		// $loop_classes = static function () use ( $settings ) {
-		// return array(
-		// 'item-list',
-		// 'members-list',
-		// 'bp-list',
-		// 'grid',
-		// bpb_get_column_class( $settings['columns'] ),
-		// bpb_get_column_class( $settings['columns_tablet'], 'tablet' ),
-		// bpb_get_column_class( $settings['columns_mobile'], 'mobile' ),
-		// );
-		// };
-
 		add_filter( 'bp_current_component', $current_component );
-		// add_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
 
 		apply_filters( 'wbcom_essential/members-loop/before/template', $settings );
 
 		add_filter( 'bp_members_pagination_count', '__return_zero' );
 		add_filter( 'bp_get_members_pagination_links', '__return_zero' );
+
+		$active_template       = get_option( '_bp_theme_package_id' );
+		$member_directory_type = $settings['rg-mem-grid-layout'];
+
+		if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
+			$img_class = 'img-card';
+		}
+
+		$col_class = $settings['columns'];
+		if ( $col_class == '4' ) {
+			$_col_class = 'four';
+		} elseif ( $col_class == '3' ) {
+			$_col_class = 'three';
+		}
+
+		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 		?>
 
 		<div id="buddypress" class="buddypress-wrap bp-dir-hori-nav members">
-			<?php bp_nouveau_before_members_directory_content(); ?>
-
-			<div class="screen-content">
-				<div id="members-dir-list" class="members dir-list" data-bp-list="">
-					<?php bp_get_template_part( 'members/members-loop' ); ?>
+			<?php if ( 'legacy' == $active_template ) : ?>
+				<div class="screen-content">
+					<div id="members-dir-list" class="members dir-list" data-bp-list="">
+						<?php
+						wbcom_essential_get_template(
+							'members/members-loop.php',
+							array(
+								'query_string'          => $query_string,
+								'column_class'          => $_col_class,
+								'member_directory_type' => $member_directory_type,
+							),
+							'reign/buddypress/legacy'
+						);
+						?>
+					</div>
 				</div>
+			<?php elseif ( 'nouveau' == $active_template ) : ?>
+				<?php bp_nouveau_before_members_directory_content(); ?>
 
-				<?php bp_nouveau_after_members_directory_content(); ?>
-			</div>
+				<div class="screen-content">
+					<div id="members-dir-list" class="members dir-list" data-bp-list="">
+						<?php
+						wbcom_essential_get_template(
+							'members/members-loop.php',
+							array(
+								'query_string'          => $query_string,
+								'column_class'          => $_col_class,
+								'member_directory_type' => $member_directory_type,
+							),
+							'reign/buddypress/nouveau'
+						);
+						?>
+					</div>
+
+					<?php bp_nouveau_after_members_directory_content(); ?>
+				</div>
+		<?php endif; ?>
 		</div>
 
-		<?php
-		// remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
-		remove_filter( 'bp_current_component', $current_component );
+				<?php
+				// remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
+				remove_filter( 'bp_current_component', $current_component );
 
-		apply_filters( 'wbcom_essential/members-loop/after/template', $settings );
+				apply_filters( 'wbcom_essential/members-loop/after/template', $settings );
 
-		remove_filter( 'bp_members_pagination_count', '__return_zero' );
-		remove_filter( 'bp_get_members_pagination_links', '__return_zero' );
-		remove_filter( 'wbcom_essential/has_template/pre', '__return_true' );
+				remove_filter( 'bp_members_pagination_count', '__return_zero' );
+				remove_filter( 'bp_get_members_pagination_links', '__return_zero' );
+				remove_filter( 'wbcom_essential/has_template/pre', '__return_true' );
 	}
 
 }

@@ -77,6 +77,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		 * Include plugin files
 		 */
 		public function includes() {
+			require __DIR__ . '/includes/wbcom-essential-function.php';
 			if ( did_action( 'elementor/loaded' ) ) {
 				require __DIR__ . '/plugins/elementor/Plugins.php';
 			}
