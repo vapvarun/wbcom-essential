@@ -240,9 +240,6 @@ class Plugin {
 		if ( false === strpos( $class, __NAMESPACE__ ) ) {
 			return;
 		}
-		// echo '<pre>';
-		// print_r( $class );
-		// echo '</pre>';
 		/**
 		 * Prepare filename.
 		 *
@@ -333,10 +330,10 @@ class Plugin {
 			'class' => 'General\NotificationArea',
 		);
 
-		// $elements['General/Posts'] = array(
-		// 'name'  => 'posts',
-		// 'class' => 'General\Posts',
-		// );
+		$elements['General/Posts'] = array(
+			'name'  => 'posts',
+			'class' => 'General\Posts',
+		);
 
 		$elements['Forms/Login'] = array(
 			'name'  => 'wbcom-login',

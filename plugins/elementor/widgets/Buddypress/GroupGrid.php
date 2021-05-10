@@ -105,7 +105,8 @@ class GroupGrid extends \Elementor\Widget_Base {
 		$settings             = $this->get_settings_for_display();
 		$active_template      = get_option( '_bp_theme_package_id' );
 		$group_directory_type = $settings['rg-grp-grid-layout'];
-		$addition_class       = '';
+		$addition_class       = $img_class = '';
+
 		if ( $group_directory_type != 'wbtm-group-directory-type-1' ) {
 			$addition_class = 'lg-wb-grid-1-' . $settings['columns'];
 		}
@@ -161,6 +162,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 				'column_class'         => $col_class,
 				'addition_class'       => $addition_class,
 				'group_directory_type' => $group_directory_type,
+				'img_class'            => $img_class,
 			),
 			'reign/buddypress/nouveau'
 		);

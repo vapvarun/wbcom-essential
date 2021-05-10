@@ -8,6 +8,10 @@
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR;
 
+use ELEMENTOR\Controls_Manager;
+use WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Group_Control_Posts;
+use WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Query;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -16,6 +20,8 @@ defined( 'ABSPATH' ) || die();
  * @package REIGNELEMENTOR
  */
 class ElementorHooks {
+
+		const QUERY_CONTROL_ID = 'query';
 
 	/**
 	 * Plugin instance.
@@ -59,6 +65,7 @@ class ElementorHooks {
 
 		add_action( 'elementor/elements/categories_registered', array( $this, 'categories_registered' ) );
 		add_action( 'elementor/widgets/widgets_registered', array( $this, 'widgets_registered' ) );
+		add_action( 'elementor/controls/controls_registered', array( $this, 'register_controls' ) );
 		// add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_css' ) );
 		// add_action( 'elementor/editor/after_save', array( $this, 'save_buddypress_options' ), 10, 2 );
 
@@ -217,6 +224,14 @@ class ElementorHooks {
 		}
 	}
 
+	public function register_controls() {
+		$controls_manager = \Elementor\Plugin::instance()->controls_manager;
+
+		$controls_manager->add_group_control( Group_Control_Posts::get_type(), new Group_Control_Posts() );
+
+		$controls_manager->register_control( self::QUERY_CONTROL_ID, new Query() );
+	}
+
 	/**
 	 * Sync elementor widget options with customizer
 	 *
@@ -324,5 +339,123 @@ class ElementorHooks {
 		}
 
 		return false;
+	}
+
+	/**
+	 *
+	 * @param Widget_Base $widget
+	 */
+	public static function add_exclude_controls( $widget ) {
+		$widget->add_control(
+			'exclude',
+			array(
+				'label'       => __( 'Exclude', 'wbcom-essential' ),
+				'type'        => Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'options'     => array(
+					'current_post'     => __( 'Current Post', 'wbcom-essential' ),
+					'manual_selection' => __( 'Manual Selection', 'wbcom-essential' ),
+				),
+				'label_block' => true,
+			)
+		);
+
+		$widget->add_control(
+			'exclude_ids',
+			array(
+				'label'       => _x( 'Search & Select', 'Posts Query Control', 'wbcom-essential' ),
+				'type'        => self::QUERY_CONTROL_ID,
+				'post_type'   => '',
+				'options'     => array(),
+				'label_block' => true,
+				'multiple'    => true,
+				'filter_type' => 'by_id',
+				'condition'   => array(
+					'exclude' => 'manual_selection',
+				),
+			)
+		);
+	}
+
+	public static function get_query_args( $control_id, $settings ) {
+		$defaults = array(
+			$control_id . '_post_type' => 'post',
+			$control_id . '_posts_ids' => array(),
+			'orderby'                  => 'date',
+			'order'                    => 'desc',
+			'posts_per_page'           => 3,
+			'offset'                   => 0,
+		);
+
+		$settings = wp_parse_args( $settings, $defaults );
+
+		$post_type = $settings[ $control_id . '_post_type' ];
+
+		$query_args = array(
+			'orderby'             => $settings['orderby'],
+			'order'               => $settings['order'],
+			'ignore_sticky_posts' => 1,
+			'post_status'         => 'publish', // Hide drafts/private posts for admins
+		);
+
+		if ( 'by_id' === $post_type ) {
+			$query_args['post_type'] = 'any';
+			$query_args['post__in']  = $settings[ $control_id . '_posts_ids' ];
+
+			if ( empty( $query_args['post__in'] ) ) {
+				// If no selection - return an empty query
+				$query_args['post__in'] = array( 0 );
+			}
+		} else {
+			$query_args['post_type']      = $post_type;
+			$query_args['posts_per_page'] = $settings['posts_per_page'];
+			$query_args['tax_query']      = array();
+
+			if ( 0 < $settings['offset'] ) {
+				/**
+				 * Due to a WordPress bug, the offset will be set later, in $this->fix_query_offset()
+				 *
+				 * @see https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
+				 */
+				$query_args['offset_to_fix'] = $settings['offset'];
+			}
+
+			$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+
+			foreach ( $taxonomies as $object ) {
+				$setting_key = $control_id . '_' . $object->name . '_ids';
+
+				if ( ! empty( $settings[ $setting_key ] ) ) {
+					$query_args['tax_query'][] = array(
+						'taxonomy' => $object->name,
+						'field'    => 'term_id',
+						'terms'    => $settings[ $setting_key ],
+					);
+				}
+			}
+		}
+
+		if ( ! empty( $settings[ $control_id . '_authors' ] ) ) {
+			$query_args['author__in'] = $settings[ $control_id . '_authors' ];
+		}
+
+		if ( ! empty( $settings['exclude'] ) ) {
+			$post__not_in = array();
+			if ( in_array( 'current_post', $settings['exclude'] ) ) {
+				if ( Utils::is_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
+					$post__not_in[] = $_REQUEST['post_id'];
+				} elseif ( is_singular() ) {
+					$post__not_in[] = get_queried_object_id();
+				}
+			}
+
+			if ( in_array( 'manual_selection', $settings['exclude'] ) && ! empty( $settings['exclude_ids'] ) ) {
+				$post__not_in = array_merge( $post__not_in, $settings['exclude_ids'] );
+			}
+
+			$query_args['post__not_in'] = $post__not_in;
+		}
+
+		return $query_args;
 	}
 }

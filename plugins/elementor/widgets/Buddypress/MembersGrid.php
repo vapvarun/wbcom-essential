@@ -120,7 +120,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 
 		$active_template       = get_option( '_bp_theme_package_id' );
 		$member_directory_type = $settings['rg-mem-grid-layout'];
-
+		$img_class             = '';
 		if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 			$img_class = 'img-card';
 		}
@@ -164,6 +164,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 								'query_string'          => $query_string,
 								'column_class'          => $_col_class,
 								'member_directory_type' => $member_directory_type,
+								'img_class'             => $img_class,
 							),
 							'reign/buddypress/nouveau'
 						);

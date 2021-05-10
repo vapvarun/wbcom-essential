@@ -1,17 +1,24 @@
 <?php
 
-namespace WBCOM_ESSENTIAL\ELEMENTOR\Helper\QueryControl;
+namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Base;
-use WBCOM_ESSENTIAL\ELEMENTOR\Helper\QueryControl\Query_Control_Module;
+use ElementorPro\Core\Utils;
+// use EWBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Module;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Group_Control_Posts extends Group_Control_Base {
 
+/**
+ * Class Group_Control_Posts
+ *
+ * @deprecated since 2.5.0, use class Group_Control_Query and Elementor_Post_Query
+ */
+class Group_Control_Posts extends Group_Control_Base {
 	const INLINE_MAX_RESULTS = 15;
 
 	protected static $fields;
@@ -50,7 +57,7 @@ class Group_Control_Posts extends Group_Control_Base {
 
 		$fields['posts_ids'] = array(
 			'label'       => _x( 'Search & Select', 'Posts Query Control', 'wbcom-essential' ),
-			'type'        => Query_Control_Module::QUERY_CONTROL_ID,
+			'type'        => Module::QUERY_CONTROL_ID,
 			'post_type'   => '',
 			'options'     => array(),
 			'label_block' => true,
@@ -81,7 +88,7 @@ class Group_Control_Posts extends Group_Control_Base {
 
 		// For large websites, use Ajax to search
 		if ( $user_query->get_total() > self::INLINE_MAX_RESULTS ) {
-			$author_args['type'] = Query_Control_Module::QUERY_CONTROL_ID;
+			$author_args['type'] = Module::QUERY_CONTROL_ID;
 
 			$author_args['filter_type'] = 'author';
 		} else {
@@ -123,7 +130,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		foreach ( $taxonomies as $taxonomy => $object ) {
 			$taxonomy_args = array(
 				'label'       => $object->label,
-				'type'        => Query_Control_Module::QUERY_CONTROL_ID,
+				'type'        => Module::QUERY_CONTROL_ID,
 				'label_block' => true,
 				'multiple'    => true,
 				'object_type' => $taxonomy,
@@ -139,7 +146,7 @@ class Group_Control_Posts extends Group_Control_Base {
 
 			// For large websites, use Ajax to search
 			if ( $count > self::INLINE_MAX_RESULTS ) {
-				$taxonomy_args['type'] = Query_Control_Module::QUERY_CONTROL_ID;
+				$taxonomy_args['type'] = Module::QUERY_CONTROL_ID;
 
 				$taxonomy_args['filter_type'] = 'taxonomy';
 			} else {
@@ -200,4 +207,6 @@ class Group_Control_Posts extends Group_Control_Base {
 
 		return $post_types;
 	}
+
+
 }

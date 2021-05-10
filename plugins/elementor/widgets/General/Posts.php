@@ -15,7 +15,10 @@ use Elementor\Core\Schemes\Color;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 use WBCOM_ESSENTIAL\ELEMENTOR\Helper\Skins;
-use WBCOM_ESSENTIAL\ELEMENTOR\Helper\QueryControl;
+use WBCOM_ESSENTIAL\ELEMENTOR\Helper\Control;
+use WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Group_Control_Posts;
+use WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks;
+
 
 
 class Posts extends \Elementor\Widget_Base {
@@ -67,6 +70,7 @@ class Posts extends \Elementor\Widget_Base {
 	public function render() {}
 
 	private function register_query_section_controls() {
+
 		$this->start_controls_section(
 			'section_layout',
 			array(
@@ -142,7 +146,7 @@ class Posts extends \Elementor\Widget_Base {
 			)
 		);
 
-		Module::add_exclude_controls( $this );
+		ElementorHooks::add_exclude_controls( $this );
 
 		$this->end_controls_section();
 	}
@@ -272,7 +276,7 @@ class Posts extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'pagination_typography',
 				'selector' => '{{WRAPPER}} .elementor-pagination',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_2,
+				'scheme'   => Typography::TYPOGRAPHY_2,
 			)
 		);
 
@@ -377,7 +381,7 @@ class Posts extends \Elementor\Widget_Base {
 	}
 
 	public function query_posts() {
-		$query_args = Module::get_query_args( 'posts', $this->get_settings() );
+		$query_args = ElementorHooks::get_query_args( 'posts', $this->get_settings() );
 
 		$query_args['posts_per_page'] = $this->get_current_skin()->get_instance_value( 'posts_per_page' );
 		$query_args['paged']          = $this->get_current_page();

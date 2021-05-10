@@ -11,6 +11,7 @@ use Elementor\Skin_Base as Elementor_Skin_Base;
 use Elementor\Widget_Base;
 use WBCOM_ESSENTIAL\Plugin;
 
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -485,8 +486,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'scheme'    => array(
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
+					'type'  => Color::get_type(),
+					'value' => Color::COLOR_2,
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a' => 'color: {{VALUE}};',
@@ -502,7 +503,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'name'      => 'title_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
-				'scheme'    => Scheme_Typography::TYPOGRAPHY_1,
+				'scheme'    => Typography::TYPOGRAPHY_1,
 				'selector'  => '{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a',
 				'condition' => array(
 					$this->get_control_id( 'show_title' ) => 'yes',
@@ -574,7 +575,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'name'      => 'meta_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
-				'scheme'    => Scheme_Typography::TYPOGRAPHY_2,
+				'scheme'    => Typography::TYPOGRAPHY_2,
 				'selector'  => '{{WRAPPER}} .elementor-post__meta-data',
 				'condition' => array(
 					$this->get_control_id( 'meta_data!' ) => array(),
@@ -632,7 +633,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'name'      => 'excerpt_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
-				'scheme'    => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme'    => Typography::TYPOGRAPHY_3,
 				'selector'  => '{{WRAPPER}} .elementor-post__excerpt',
 				'condition' => array(
 					$this->get_control_id( 'show_excerpt' ) => 'yes',
@@ -677,8 +678,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'scheme'    => array(
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
+					'type'  => Color::get_type(),
+					'value' => Color::COLOR_4,
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__read-more' => 'color: {{VALUE}};',
@@ -695,7 +696,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'name'      => 'read_more_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'selector'  => '{{WRAPPER}} .elementor-post__read-more',
-				'scheme'    => Scheme_Typography::TYPOGRAPHY_4,
+				'scheme'    => Typography::TYPOGRAPHY_4,
 				'condition' => array(
 					$this->get_control_id( 'show_read_more' ) => 'yes',
 				),
