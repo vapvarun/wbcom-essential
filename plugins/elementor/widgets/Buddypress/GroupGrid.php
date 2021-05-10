@@ -74,28 +74,31 @@ class GroupGrid extends \Elementor\Widget_Base {
 			array(
 				'label'   => esc_html__( 'Columns', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => '4',
+				'default' => 'three',
 				'options' => array(
-					'3' => '3',
-					'4' => '4',
+					'three' => '3',
+					'four'  => '4',
 				),
 			)
 		);
 
-		$this->add_control(
-			'rg-grp-grid-layout',
-			array(
-				'label'   => esc_html__( 'Layout', 'wbcom-essential' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'wbtm-group-directory-type-2',
-				'options' => array(
-					'wbtm-group-directory-type-1' => 'Layout 1',
-					'wbtm-group-directory-type-2' => 'Layout 2',
-					'wbtm-group-directory-type-3' => 'Layout 3',
-					'wbtm-group-directory-type-4' => 'Layout 4',
-				),
-			)
-		);
+		if ( _is_theme_active( 'reign' ) ) {
+
+			$this->add_control(
+				'rg-grp-grid-layout',
+				array(
+					'label'   => esc_html__( 'Layout', 'wbcom-essential' ),
+					'type'    => Controls_Manager::SELECT,
+					'default' => 'wbtm-group-directory-type-2',
+					'options' => array(
+						'wbtm-group-directory-type-1' => 'Layout 1',
+						'wbtm-group-directory-type-2' => 'Layout 2',
+						'wbtm-group-directory-type-3' => 'Layout 3',
+						'wbtm-group-directory-type-4' => 'Layout 4',
+					),
+				)
+			);
+		}
 
 		$this->end_controls_section();
 	}
@@ -104,7 +107,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 		parent::render();
 		$settings             = $this->get_settings_for_display();
 		$active_template      = get_option( '_bp_theme_package_id' );
-		$group_directory_type = $settings['rg-grp-grid-layout'];
+		$group_directory_type = isset( $settings['rg-grp-grid-layout'] ) ? $settings['rg-grp-grid-layout'] : '';
 		$addition_class       = $img_class = '';
 
 		if ( $group_directory_type != 'wbtm-group-directory-type-1' ) {
@@ -147,25 +150,48 @@ class GroupGrid extends \Elementor\Widget_Base {
 			?>
 	<?php elseif ( 'nouveau' === $active_template ) : ?>
 		<?php
-		$col_class = $settings['columns'];
-		if ( $col_class == '4' ) {
-			$_col_class = 'four';
-		} elseif ( $col_class == '3' ) {
-			$_col_class = 'three';
+		if ( _is_theme_active( 'buddyx' ) ) {
+
+			$loop_classes = static function () use ( $settings ) {
+				return array(
+					'item-list',
+					'groups-list',
+					'bp-list',
+					'grid',
+					_get_column_class( $settings['columns'] ),
+					_get_column_class( $settings['columns'], 'tablet' ),
+					_get_column_class( $settings['columns'], 'mobile' ),
+				);
+			};
+
+			add_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
+
+			wbcom_essential_get_template(
+				'groups/groups-loop.php',
+				array(
+					'query_string' => $query_string,
+				),
+				'buddyx/buddypress'
+			);
+
+			remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
+
+		} elseif ( _is_theme_active( 'reign' ) ) {
+			$col_class = isset( $settings['columns'] ) ? $settings['columns'] : 'three';
+
+			wbcom_essential_get_template(
+				'groups/groups-loop.php',
+				array(
+					'query_string'         => $query_string,
+					'column_class'         => $col_class,
+					'addition_class'       => $addition_class,
+					'group_directory_type' => $group_directory_type,
+					'img_class'            => $img_class,
+				),
+				'reign/buddypress/nouveau'
+			);
 		}
-		?>
-		<?php
-		wbcom_essential_get_template(
-			'groups/groups-loop.php',
-			array(
-				'query_string'         => $query_string,
-				'column_class'         => $col_class,
-				'addition_class'       => $addition_class,
-				'group_directory_type' => $group_directory_type,
-				'img_class'            => $img_class,
-			),
-			'reign/buddypress/nouveau'
-		);
+
 		?>
 	  <?php endif; ?>
 		</div>

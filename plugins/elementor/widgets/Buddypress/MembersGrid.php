@@ -72,28 +72,31 @@ class MembersGrid extends \Elementor\Widget_Base {
 			array(
 				'label'   => esc_html__( 'Columns', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => '4',
+				'default' => 'three',
 				'options' => array(
-					'3' => '3',
-					'4' => '4',
+					'three' => '3',
+					'four'  => '4',
 				),
 			)
 		);
 
-		$this->add_control(
-			'rg-mem-grid-layout',
-			array(
-				'label'   => esc_html__( 'Layout', 'wbcom-essential' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'wbtm-member-directory-type-2',
-				'options' => array(
-					'wbtm-member-directory-type-1' => 'Layout 1',
-					'wbtm-member-directory-type-2' => 'Layout 2',
-					'wbtm-member-directory-type-3' => 'Layout 3',
-					'wbtm-member-directory-type-4' => 'Layout 4',
-				),
-			)
-		);
+		if ( _is_theme_active( 'reign' ) ) {
+
+			$this->add_control(
+				'rg-mem-grid-layout',
+				array(
+					'label'   => esc_html__( 'Layout', 'wbcom-essential' ),
+					'type'    => Controls_Manager::SELECT,
+					'default' => 'wbtm-member-directory-type-2',
+					'options' => array(
+						'wbtm-member-directory-type-1' => 'Layout 1',
+						'wbtm-member-directory-type-2' => 'Layout 2',
+						'wbtm-member-directory-type-3' => 'Layout 3',
+						'wbtm-member-directory-type-4' => 'Layout 4',
+					),
+				)
+			);
+		}
 
 		$this->end_controls_section();
 
@@ -119,18 +122,13 @@ class MembersGrid extends \Elementor\Widget_Base {
 		add_filter( 'bp_get_members_pagination_links', '__return_zero' );
 
 		$active_template       = get_option( '_bp_theme_package_id' );
-		$member_directory_type = $settings['rg-mem-grid-layout'];
+		$member_directory_type = isset( $settings['rg-mem-grid-layout'] ) ? $settings['rg-mem-grid-layout'] : '';
 		$img_class             = '';
 		if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 			$img_class = 'img-card';
 		}
 
-		$col_class = $settings['columns'];
-		if ( $col_class == '4' ) {
-			$_col_class = 'four';
-		} elseif ( $col_class == '3' ) {
-			$_col_class = 'three';
-		}
+		$col_class = isset( $settings['columns'] ) ? $settings['columns'] : 'three';
 
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 		?>
@@ -144,7 +142,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 							'members/members-loop.php',
 							array(
 								'query_string'          => $query_string,
-								'column_class'          => $_col_class,
+								'column_class'          => $col_class,
 								'member_directory_type' => $member_directory_type,
 							),
 							'reign/buddypress/legacy'
@@ -154,25 +152,52 @@ class MembersGrid extends \Elementor\Widget_Base {
 				</div>
 			<?php elseif ( 'nouveau' == $active_template ) : ?>
 				<?php bp_nouveau_before_members_directory_content(); ?>
-
 				<div class="screen-content">
 					<div id="members-dir-list" class="members dir-list" data-bp-list="">
-						<?php
+				<?php
+
+				if ( _is_theme_active( 'buddyx' ) ) {
+
+					$loop_classes = static function () use ( $settings ) {
+						return array(
+							'item-list',
+							'members-list',
+							'bp-list',
+							'grid',
+							_get_column_class( $settings['columns'] ),
+							_get_column_class( $settings['columns'], 'tablet' ),
+							_get_column_class( $settings['columns'], 'mobile' ),
+						);
+					};
+
+					add_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
+
+					wbcom_essential_get_template(
+						'members/members-loop.php',
+						array(
+							'query_string' => $query_string,
+						),
+						'buddyx/buddypress'
+					);
+
+					remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
+
+				} else {
 						wbcom_essential_get_template(
 							'members/members-loop.php',
 							array(
 								'query_string'          => $query_string,
-								'column_class'          => $_col_class,
+								'column_class'          => $col_class,
 								'member_directory_type' => $member_directory_type,
 								'img_class'             => $img_class,
 							),
 							'reign/buddypress/nouveau'
 						);
-						?>
-					</div>
-
-					<?php bp_nouveau_after_members_directory_content(); ?>
-				</div>
+				}
+				?>
+			</div>
+				<?php bp_nouveau_after_members_directory_content(); ?>
+		</div>
 		<?php endif; ?>
 		</div>
 

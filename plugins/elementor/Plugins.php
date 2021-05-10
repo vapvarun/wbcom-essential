@@ -159,7 +159,7 @@ class Plugin {
 
 		add_action( 'plugins_loaded', array( $this, 'wbcom_essential_oad_plugin' ), 0 );
 		add_action( 'bp_enqueue_scripts', array( $this, 'wbcom_essential_elementor_scripts' ) );
-		// add_action( 'wp_enqueue_scripts', array( $this, 'front_css' ), 12 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'front_css' ), 12 );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_PATH', WBCOM_ESSENTIAL_PATH . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH', WBCOM_ESSENTIAL_ELEMENTOR_PATH . 'widgets/' );
 	}
@@ -300,20 +300,25 @@ class Plugin {
 	public function get_elements() {
 		$elements = array();
 
-		$elements['Buddypress/MembersGrid'] = array(
-			'name'  => 'wbcom-members-grid',
-			'class' => 'Buddypress\MembersGrid',
-		);
+		if ( class_exists( 'BuddyPress' ) ) {
 
-		$elements['Buddypress/GroupGrid'] = array(
-			'name'  => 'wbcom-groups-grid',
-			'class' => 'Buddypress\GroupGrid',
-		);
+			$elements['Buddypress/MembersGrid'] = array(
+				'name'  => 'wbcom-members-grid',
+				'class' => 'Buddypress\MembersGrid',
+			);
 
-		$elements['Buddypress/MemeberCarousel'] = array(
-			'name'  => 'wbcom-members-carousel',
-			'class' => 'Buddypress\MemeberCarousel',
-		);
+			$elements['Buddypress/MemeberCarousel'] = array(
+				'name'  => 'wbcom-members-carousel',
+				'class' => 'Buddypress\MemeberCarousel',
+			);
+
+			if ( bp_is_active( 'groups' ) ) {
+				$elements['Buddypress/GroupGrid'] = array(
+					'name'  => 'wbcom-groups-grid',
+					'class' => 'Buddypress\GroupGrid',
+				);
+			}
+		}
 
 		$elements['General/Branding'] = array(
 			'name'  => 'wbcom-branding',
@@ -357,40 +362,17 @@ class Plugin {
 	 * Enqueue Front CSS
 	 */
 	public function front_css() {
-		$min = '.min';
-
-		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
-			$min = '';
-		}
-
 		wp_register_style(
-			'stax-buddy-builder-front',
-			BPB_ASSETS_URL . 'css/index' . $min . '.css',
-			array( 'stax-buddy-builder-bp' ),
-			BPB_VERSION
+			'wbcom-essential-elementor-css',
+			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wbcom-essential-elementor.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
 		);
 
-		if ( bpb_is_elementor_editor() ) {
-			wp_enqueue_style(
-				'stax-buddy-builder-avatar',
-				buddypress()->plugin_url . 'bp-core/css/avatar' . $min . '.css',
-				array(),
-				BPB_VERSION
-			);
-		}
+		wp_enqueue_style( 'wbcom-essential-elementor-css' );
 
-		if ( ! bp_is_blog_page() ) {
-			wp_enqueue_style( 'dashicons' );
-		}
-
-		if ( isset( $_GET['elementor-preview'] ) ||
-			 bpb_is_edit_frame() ||
-			 bpb_is_preview_mode() ||
-			 bpb_is_front_library()
-		) {
-			wp_enqueue_style( 'stax-buddy-builder-front' );
-		}
 	}
+
 
 	/**
 	 * Enqueue Front CSS

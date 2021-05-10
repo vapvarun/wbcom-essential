@@ -186,7 +186,6 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 				'query_string' => $query_string,
 				'settings'     => $settings,
 			),
-			'reign/buddypress'
 		);
 		// remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
 		// remove_filter( 'bp_current_component', $current_component );
