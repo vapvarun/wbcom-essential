@@ -5,7 +5,7 @@ namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Base;
 use ElementorPro\Core\Utils;
-// use EWBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Module;
+use WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks;
 
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -57,7 +57,7 @@ class Group_Control_Posts extends Group_Control_Base {
 
 		$fields['posts_ids'] = array(
 			'label'       => _x( 'Search & Select', 'Posts Query Control', 'wbcom-essential' ),
-			'type'        => Module::QUERY_CONTROL_ID,
+			'type'        => ElementorHooks::QUERY_CONTROL_ID,
 			'post_type'   => '',
 			'options'     => array(),
 			'label_block' => true,
@@ -88,7 +88,7 @@ class Group_Control_Posts extends Group_Control_Base {
 
 		// For large websites, use Ajax to search
 		if ( $user_query->get_total() > self::INLINE_MAX_RESULTS ) {
-			$author_args['type'] = Module::QUERY_CONTROL_ID;
+			$author_args['type'] = ElementorHooks::QUERY_CONTROL_ID;
 
 			$author_args['filter_type'] = 'author';
 		} else {
@@ -130,7 +130,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		foreach ( $taxonomies as $taxonomy => $object ) {
 			$taxonomy_args = array(
 				'label'       => $object->label,
-				'type'        => Module::QUERY_CONTROL_ID,
+				'type'        => ElementorHooks::QUERY_CONTROL_ID,
 				'label_block' => true,
 				'multiple'    => true,
 				'object_type' => $taxonomy,
@@ -146,7 +146,7 @@ class Group_Control_Posts extends Group_Control_Base {
 
 			// For large websites, use Ajax to search
 			if ( $count > self::INLINE_MAX_RESULTS ) {
-				$taxonomy_args['type'] = Module::QUERY_CONTROL_ID;
+				$taxonomy_args['type'] = ElementorHooks::QUERY_CONTROL_ID;
 
 				$taxonomy_args['filter_type'] = 'taxonomy';
 			} else {

@@ -94,38 +94,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			)
 		);
 
-		// $this->add_responsive_control(
-		// 'item_ratio',
-		// [
-		// 'label' => __( 'Image Ratio', 'wbcom-essential' ),
-		// 'type' => Controls_Manager::SLIDER,
-		// 'default' => [
-		// 'size' => 0.66,
-		// ],
-		// 'tablet_default' => [
-		// 'size' => '',
-		// ],
-		// 'mobile_default' => [
-		// 'size' => 0.5,
-		// ],
-		// 'range' => [
-		// 'px' => [
-		// 'min' => 0.1,
-		// 'max' => 2,
-		// 'step' => 0.01,
-		// ],
-		// ],
-		// 'selectors' => [
-		// '{{WRAPPER}} .elementor-posts-container .elementor-post__thumbnail' => 'padding-bottom: calc( {{SIZE}} * 100% );',
-		// '{{WRAPPER}}:after' => 'content: "{{SIZE}}"; position: absolute; color: transparent;',
-		// ],
-		// 'condition' => [
-		// $this->get_control_id( 'thumbnail!' ) => 'none',
-		// $this->get_control_id( 'masonry' ) => '',
-		// ],
-		// ]
-		// );
-
 		$this->add_responsive_control(
 			'image_width',
 			array(
@@ -728,7 +696,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	public function render() {
 		$this->parent->query_posts();
 
-		$wp_query = $this->parent->query_posts();
+		$wp_query = $this->parent->get_query();
 
 		if ( ! $wp_query->found_posts ) {
 			return;
@@ -868,11 +836,13 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		</div>
 		<?php
 		$parent_settings = $this->parent->get_settings();
+
 		if ( '' === $parent_settings['pagination_type'] ) {
 			return;
 		}
 
-		$page_limit = $this->parent->query_posts()->max_num_pages;
+		$page_limit = $this->parent->get_query()->max_num_pages;
+
 		if ( '' !== $parent_settings['pagination_page_limit'] ) {
 			$page_limit = min( $parent_settings['pagination_page_limit'], $page_limit );
 		}

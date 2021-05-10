@@ -57,6 +57,10 @@ class Posts extends \Elementor\Widget_Base {
 		$this->add_skin( new Skins\Skin_Cards( $this ) );
 	}
 
+	public function get_query() {
+		return $this->query;
+	}
+
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
@@ -146,7 +150,7 @@ class Posts extends \Elementor\Widget_Base {
 			)
 		);
 
-		ElementorHooks::add_exclude_controls( $this );
+		// ElementorHooks::add_exclude_controls( $this );
 
 		$this->end_controls_section();
 	}
@@ -178,6 +182,7 @@ class Posts extends \Elementor\Widget_Base {
 			'pagination_page_limit',
 			array(
 				'label'     => __( 'Page Limit', 'wbcom-essential' ),
+				'type'      => Controls_Manager::NUMBER,
 				'default'   => '5',
 				'condition' => array(
 					'pagination_type!' => '',
@@ -386,7 +391,7 @@ class Posts extends \Elementor\Widget_Base {
 		$query_args['posts_per_page'] = $this->get_current_skin()->get_instance_value( 'posts_per_page' );
 		$query_args['paged']          = $this->get_current_page();
 
-		return $this->query = new \WP_Query( $query_args );
+		$this->query = new \WP_Query( $query_args );
 	}
 
 	public function get_current_page() {

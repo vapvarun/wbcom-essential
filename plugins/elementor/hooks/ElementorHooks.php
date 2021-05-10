@@ -8,6 +8,7 @@
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR;
 
+use Elementor\Utils;
 use ELEMENTOR\Controls_Manager;
 use WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Group_Control_Posts;
 use WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Query;
@@ -442,7 +443,7 @@ class ElementorHooks {
 		if ( ! empty( $settings['exclude'] ) ) {
 			$post__not_in = array();
 			if ( in_array( 'current_post', $settings['exclude'] ) ) {
-				if ( Utils::is_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
+				if ( wp_doing_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
 					$post__not_in[] = $_REQUEST['post_id'];
 				} elseif ( is_singular() ) {
 					$post__not_in[] = get_queried_object_id();
