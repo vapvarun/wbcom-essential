@@ -728,7 +728,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	public function render() {
 		$this->parent->query_posts();
 
-		$wp_query = $this->parent->get_query();
+		$wp_query = $this->parent->query_posts();
 
 		if ( ! $wp_query->found_posts ) {
 			return;
@@ -872,7 +872,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			return;
 		}
 
-		$page_limit = $this->parent->get_query()->max_num_pages;
+		$page_limit = $this->parent->query_posts()->max_num_pages;
 		if ( '' !== $parent_settings['pagination_page_limit'] ) {
 			$page_limit = min( $parent_settings['pagination_page_limit'], $page_limit );
 		}

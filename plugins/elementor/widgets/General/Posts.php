@@ -386,7 +386,7 @@ class Posts extends \Elementor\Widget_Base {
 		$query_args['posts_per_page'] = $this->get_current_skin()->get_instance_value( 'posts_per_page' );
 		$query_args['paged']          = $this->get_current_page();
 
-		$this->query = new \WP_Query( $query_args );
+		return $this->query = new \WP_Query( $query_args );
 	}
 
 	public function get_current_page() {
