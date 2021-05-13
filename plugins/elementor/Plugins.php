@@ -158,8 +158,8 @@ class Plugin {
 	private function __construct() {
 
 		add_action( 'plugins_loaded', array( $this, 'wbcom_essential_oad_plugin' ), 0 );
-		add_action( 'bp_enqueue_scripts', array( $this, 'wbcom_essential_elementor_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'front_css' ), 12 );
+		define( 'WBCOM_ESSENTIAL_ELEMENTOR_URL', WBCOM_ESSENTIAL_URL . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_PATH', WBCOM_ESSENTIAL_PATH . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH', WBCOM_ESSENTIAL_ELEMENTOR_PATH . 'widgets/' );
 	}
@@ -371,28 +371,6 @@ class Plugin {
 
 		wp_enqueue_style( 'wbcom-essential-elementor-css' );
 
-	}
-
-
-	/**
-	 * Enqueue Front CSS
-	 */
-	public function wbcom_essential_elementor_scripts() {
-		// $min = '.min';
-		//
-		// if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
-		// $min = '';
-		// }
-		// echo $min;
-		// die;
-		wp_register_script(
-			'wbcom-essential-elementor',
-			WBCOM_ESSENTIAL_ASSETS_URL . 'js/wbcom-essential-elementor.js',
-			array( 'jquery' ),
-			WBCOM_ESSENTIAL_VERSION
-		);
-
-		wp_enqueue_script( 'wbcom-essential-elementor' );
 	}
 
 }

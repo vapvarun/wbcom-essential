@@ -51,8 +51,8 @@ function wbcom_essential_locate_template( $template_name, $template_path, $defau
 }
 
 function _is_theme_active( $theme ) {
-	$current_theme = wp_get_theme( $theme );
-	if ( $current_theme->exists() ) {
+	$current_theme = wp_get_theme(); // gets the current theme
+	if ( $theme == $current_theme->name || $theme == $current_theme->parent_theme ) {
 		return true;
 	} else {
 		return false;

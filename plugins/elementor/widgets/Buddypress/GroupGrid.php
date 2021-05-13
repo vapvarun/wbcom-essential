@@ -82,7 +82,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 			)
 		);
 
-		if ( _is_theme_active( 'reign' ) ) {
+		if ( _is_theme_active( 'REIGN' ) ) {
 
 			$this->add_control(
 				'rg-grp-grid-layout',
@@ -150,7 +150,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 			?>
 	<?php elseif ( 'nouveau' === $active_template ) : ?>
 		<?php
-		if ( _is_theme_active( 'buddyx' ) ) {
+		if ( _is_theme_active( 'BuddyX' ) ) {
 
 			$loop_classes = static function () use ( $settings ) {
 				return array(
@@ -176,7 +176,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 
 			remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
 
-		} elseif ( _is_theme_active( 'reign' ) ) {
+		} elseif ( _is_theme_active( 'REIGN' ) ) {
 			$col_class = isset( $settings['columns'] ) ? $settings['columns'] : 'three';
 
 			wbcom_essential_get_template(

@@ -7,7 +7,7 @@
     },
 
     MemeberCarousel: function() {
-      const swiper = new Swiper('.wbcom-essential-member-carousel', {
+      const swiper = new Swiper('.elementor-member-carousel-wrapper', {
         // Optional parameters
         direction: 'horizontal',
         loop: true,

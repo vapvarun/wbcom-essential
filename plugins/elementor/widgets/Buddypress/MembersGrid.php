@@ -80,7 +80,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 			)
 		);
 
-		if ( _is_theme_active( 'reign' ) ) {
+		if ( _is_theme_active( 'REIGN' ) ) {
 
 			$this->add_control(
 				'rg-mem-grid-layout',
@@ -156,7 +156,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 					<div id="members-dir-list" class="members dir-list" data-bp-list="">
 				<?php
 
-				if ( _is_theme_active( 'buddyx' ) ) {
+				if ( _is_theme_active( 'BuddyX' ) ) {
 
 					$loop_classes = static function () use ( $settings ) {
 						return array(
@@ -182,7 +182,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 
 					remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
 
-				} else {
+				} elseif ( _is_theme_active( 'REIGN' ) ) {
 						wbcom_essential_get_template(
 							'members/members-loop.php',
 							array(
