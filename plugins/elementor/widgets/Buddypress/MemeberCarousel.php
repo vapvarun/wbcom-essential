@@ -123,8 +123,17 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 			// )
 			// );
 
-			$slides_to_show = range( 1, 10 );
-		$slides_to_show     = array_combine( $slides_to_show, $slides_to_show );
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'members_carousel_additional_options',
+			array(
+				'label' => __( 'Additional Options', 'wbcom-essential' ),
+			)
+		);
+
+		$slides_to_show = range( 1, 10 );
+		$slides_to_show = array_combine( $slides_to_show, $slides_to_show );
 
 		$this->add_responsive_control(
 			'slides_to_show',
@@ -167,15 +176,6 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 					'none'   => __( 'None', 'wbcom-essential' ),
 				),
 				'frontend_available' => true,
-			)
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'members_carousel_additional_options',
-			array(
-				'label' => __( 'Additional Options', 'wbcom-essential' ),
 			)
 		);
 
@@ -333,7 +333,7 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 					'class' => 'elementor-member-carousel swiper-wrapper',
 				),
 				'carousel-wrapper' => array(
-					'class' => 'elementor-member-carousel-wrapper swiper-container',
+					'class' => 'member-carousel-container swiper-container',
 					'dir'   => $settings['direction'],
 				),
 			)
