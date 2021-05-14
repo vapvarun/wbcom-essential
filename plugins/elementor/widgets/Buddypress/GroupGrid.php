@@ -14,6 +14,13 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 
 class GroupGrid extends \Elementor\Widget_Base {
+    
+        public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
+
+		wp_register_style( 'group-grid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/group-grid.css', array(), '3.0.0' );
+		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
+	}
 
 	public function get_name() {
 		return 'wbcom-groups-grid';
@@ -29,6 +36,10 @@ class GroupGrid extends \Elementor\Widget_Base {
 
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+        
+        public function get_style_depends() {
+		return array( 'group-grid' );
 	}
 
 	protected function _register_controls() {
@@ -134,7 +145,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 
 		?>
 
-		<div id="buddypress" class="buddypress-wrap reign-groups-grid-widget">
+		<div id="buddypress" class="buddypress-wrap wbcom-groups-grid-widget">
 		<?php if ( 'legacy' === $active_template ) : ?>
 			<?php
 			wbcom_essential_get_template(

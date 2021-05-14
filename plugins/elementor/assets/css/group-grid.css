@@ -7,16 +7,8 @@
 /*--------------------------------------------------------------
 # Global
 --------------------------------------------------------------*/
-.elementor-group-carousel .swiper-slide {
-    text-align: center;
-}
-
-.elementor-group-carousel .item-title {
-    margin-top: 15px;
-    margin-bottom: 30px;
-}
-
-.elementor-group-carousel .group-avatar img {
-    margin: auto;
-    border-radius: 100%;
+#buddypress.buddypress-wrap.wbcom-groups-grid-widget .grid.bp-list > li .action .generic-button a,
+#buddypress.buddypress-wrap.wbcom-groups-grid-widget .grid.bp-list > li .action .generic-button button {
+    font-size: initial;
+    font-weight: normal;
 }

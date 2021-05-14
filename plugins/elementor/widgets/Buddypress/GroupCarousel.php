@@ -401,18 +401,18 @@ class GroupCarousel extends \Elementor\Widget_Base {
 								<div <?php bp_group_class(); ?>>
 									<div class="item-container">
 										<div class="item-avatar">
-											<figure class="img-dynamic aspect-ratio avatar">
-												<a class="img-card" href="<?php bp_group_permalink(); ?>">
-													<?php bp_group_avatar( array( 'class' => 'swiper-slide-image' ) ); ?>
-												</a>
-											</figure>
+                                                                                    <figure class="swiper-slide-inner">
+                                                                                        <a class="group-avatar" href="<?php bp_group_permalink(); ?>">
+                                                                                                <?php bp_group_avatar( array( 'class' => 'swiper-slide-image' ) ); ?>
+                                                                                        </a>
+                                                                                    </figure>
 										</div>
 										<div class="item-card">
 											<div class="item">
 												<div class="item-meta">
-													<h4 class="item-title h5">
+													<h5 class="item-title">
 														<a href="<?php bp_group_permalink(); ?>"><?php bp_group_link(); ?></a>
-													</h4>
+													</h5>
 												</div>
 											</div>
 										</div>

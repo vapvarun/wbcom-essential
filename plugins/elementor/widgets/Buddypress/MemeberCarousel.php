@@ -402,24 +402,21 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 								<div <?php bp_member_class(); ?>>
 									<div class="item-container">
 										<div class="item-avatar">
-											<figure class="img-dynamic aspect-ratio avatar">
-												<a class="img-card" href="<?php bp_member_permalink(); ?>">
-													<?php bp_member_avatar( array( 'class' => 'swiper-slide-image' ) ); ?>
-												</a>
-											</figure>
+                                                                                    <figure class="swiper-slide-inner">
+                                                                                        <a class="member-avatar" href="<?php bp_member_permalink(); ?>">
+                                                                                                <?php bp_member_avatar( array( 'width' => '150', 'height' => '150' , 'class' => 'swiper-slide-image' ) ); ?>
+                                                                                        </a>
+                                                                                    </figure>
 										</div>
 										<div class="item-card">
 											<div class="item">
 												<div class="item-meta">
-													<span class="activity" data-livestamp="<?php bp_core_iso8601_date( bp_get_member_last_active( array( 'relative' => false ) ) ); ?>">
+													<h5 class="item-title">
+														<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
+													</h5>
+                                                                                                        <span class="last-activity" data-livestamp="<?php bp_core_iso8601_date( bp_get_member_last_active( array( 'relative' => false ) ) ); ?>">
 														<?php bp_member_last_active(); ?>
 													</span>
-													<h4 class="item-title h5">
-														<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
-													</h4>
-												</div>
-												<div class="action">
-													<?php do_action( 'bp_directory_members_actions' ); ?>
 												</div>
 											</div>
 										</div>

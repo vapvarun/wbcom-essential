@@ -14,6 +14,13 @@ use Elementor\Group_Control_Box_Shadow;
 
 
 class MembersGrid extends \Elementor\Widget_Base {
+    
+        public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
+
+		wp_register_style( 'member-grid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/member-grid.css', array(), '3.0.0' );
+		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
+	}
 
 	public function get_name() {
 		return 'wbcom-members-grid';
@@ -29,6 +36,10 @@ class MembersGrid extends \Elementor\Widget_Base {
 
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+        
+        public function get_style_depends() {
+		return array( 'member-grid' );
 	}
 
 	protected function _register_controls() {
@@ -133,7 +144,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 		?>
 
-		<div id="buddypress" class="buddypress-wrap bp-dir-hori-nav members">
+		<div id="buddypress" class="buddypress-wrap bp-dir-hori-nav members wbcom-members-grid-widget">
 			<?php if ( 'legacy' == $active_template ) : ?>
 				<div class="screen-content">
 					<div id="members-dir-list" class="members dir-list" data-bp-list="">
