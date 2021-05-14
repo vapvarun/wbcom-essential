@@ -44,7 +44,7 @@
 				};
 			  }
 			} else {
-				.slidesPerGroup = +elementSettings.slides_to_scroll || 1;
+				swiperOptions.slidesPerGroup = +elementSettings.slides_to_scroll || 1;
 			}
 
 			if (elementSettings.image_spacing_custom) {
