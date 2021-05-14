@@ -57,7 +57,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 	}
 
 	/**
-	 * Register members carousel widget controls.
+	 * Register groups carousel widget controls.
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
@@ -66,7 +66,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 	 */
 	protected function _register_controls() {
 
-		do_action( 'wbcom_essential/widget/members-listing/settings', $this );
+		do_action( 'wbcom_essential/widget/groups-listing/settings', $this );
 
 		$this->start_controls_section(
 			'section_group_carousel',
@@ -106,10 +106,10 @@ class GroupCarousel extends \Elementor\Widget_Base {
 			$this->add_control(
 				'total',
 				array(
-					'label'       => __( 'Total members', 'wbcom-essential' ),
+					'label'       => __( 'Total groups', 'wbcom-essential' ),
 					'type'        => Controls_Manager::NUMBER,
 					'default'     => '12',
-					'placeholder' => __( 'Total members', 'wbcom-essential' ),
+					'placeholder' => __( 'Total groups', 'wbcom-essential' ),
 				)
 			);
 
@@ -126,7 +126,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'members_carousel_additional_options',
+			'groups_carousel_additional_options',
 			array(
 				'label' => __( 'Additional Options', 'wbcom-essential' ),
 			)
@@ -307,7 +307,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		$current_component = static function () {
-			return 'members';
+			return 'groups';
 		};
 
 		// add_filter( 'bp_current_component', $current_component );
@@ -333,7 +333,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 					'class' => 'elementor-group-carousel swiper-wrapper',
 				),
 				'carousel-wrapper' => array(
-					'class' => 'member-carousel-container swiper-container',
+					'class' => 'group-carousel-container swiper-container',
 					'dir'   => $settings['direction'],
 				),
 			)
