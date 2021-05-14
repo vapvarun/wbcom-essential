@@ -5,8 +5,9 @@
 	var wbcom_memberCarousel = function() {
 		
 		jQuery( '.member-carousel-container' ).each( function() {			
+			//var elementSettings = $(this).parent().parent().data( 'settings' ),
 			
-			var elementSettings = $(this).parent().parent().data( 'settings' ),
+			var elementSettings = $(this).data( 'settings' ),
 				slidesToShow = +elementSettings.slides_to_show || 3,
 				isSingleSlide = 1 === slidesToShow,
 				defaultLGDevicesSlidesCount = isSingleSlide ? 1 : 2,
