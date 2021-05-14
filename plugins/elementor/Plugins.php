@@ -313,9 +313,13 @@ class Plugin {
 			);
 
 			if ( bp_is_active( 'groups' ) ) {
-				$elements['Buddypress/GroupGrid'] = array(
+				$elements['Buddypress/GroupGrid']     = array(
 					'name'  => 'wbcom-groups-grid',
 					'class' => 'Buddypress\GroupGrid',
+				);
+				$elements['Buddypress/GroupCarousel'] = array(
+					'name'  => 'wbcom-group-carousel',
+					'class' => 'Buddypress\GroupCarousel',
 				);
 			}
 		}
