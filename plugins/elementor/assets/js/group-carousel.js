@@ -6,7 +6,7 @@
 		
 		jQuery( '.group-carousel-container' ).each( function() {			
 			
-			var elementSettings = $(this).parent().parent().data( 'settings' ),
+			var elementSettings = $(this).data( 'settings' ),
 				slidesToShow = +elementSettings.slides_to_show || 3,
 				isSingleSlide = 1 === slidesToShow,
 				defaultLGDevicesSlidesCount = isSingleSlide ? 1 : 2,
@@ -87,7 +87,7 @@
 	}	
 	
 	jQuery(window).on('elementor/frontend/init', () => {	 
-		elementorFrontend.hooks.addAction('frontend/element_ready/wbcom-groups-carousel.default', wbcom_groupCarousel);
+		elementorFrontend.hooks.addAction('frontend/element_ready/wbcom-group-carousel.default', wbcom_groupCarousel);
 	});
 
 })( jQuery );

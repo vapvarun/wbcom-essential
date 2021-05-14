@@ -326,7 +326,47 @@ class GroupCarousel extends \Elementor\Widget_Base {
 				)
 			);
 		}
-
+		
+		if ( isset($settings['slides_to_show']) && $settings['slides_to_show'] !='' ) {
+			$swiper_options['slides_to_show'] = $settings['slides_to_show'];
+		}
+		if ( isset($settings['slides_to_show_tablet']) && $settings['slides_to_show_tablet'] !='' ) {
+			$swiper_options['slides_to_show_tablet'] = $settings['slides_to_show_tablet'];
+		}
+		if ( isset($settings['slides_to_show_mobile']) && $settings['slides_to_show_mobile'] !='' ) {
+			$swiper_options['slides_to_show_mobile'] = $settings['slides_to_show_mobile'];
+		}
+		if ( isset($settings['slides_to_scroll']) && $settings['slides_to_scroll'] !='' ) {
+			$swiper_options['slides_to_scroll']	= $settings['slides_to_scroll'];
+		}
+		if ( isset($settings['slides_to_scroll_tablet']) && $settings['slides_to_scroll_tablet'] !='' ) {
+			$swiper_options['slides_to_scroll_tablet'] = $settings['slides_to_scroll_tablet'];
+		}
+		if ( isset($settings['slides_to_scroll_mobile']) && $settings['slides_to_scroll_mobile'] !='' ) {
+			$swiper_options['slides_to_scroll_mobile'] = $settings['slides_to_scroll_mobile'];
+		}
+		if ( isset($settings['navigation']) && $settings['navigation'] !='' ) {
+			$swiper_options['navigation'] = $settings['navigation'];
+		}
+		if ( isset($settings['autoplay_speed']) && $settings['autoplay_speed'] !='' ) {
+			$swiper_options['autoplay_speed'] = $settings['autoplay_speed'];
+		}
+		if ( isset($settings['autoplay']) && $settings['autoplay'] !='' ) {
+			$swiper_options['autoplay'] = $settings['autoplay'];
+		}
+		if ( isset($settings['pause_on_hover']) && $settings['pause_on_hover'] !='' ) {
+			$swiper_options['pause_on_hover'] = $settings['pause_on_hover'];
+		}
+		if ( isset($settings['pause_on_interaction']) && $settings['pause_on_interaction'] !='' ) {
+			$swiper_options['pause_on_interaction'] = $settings['pause_on_interaction'];
+		}
+		if ( isset($settings['infinite']) && $settings['infinite'] !='' ) {
+			$swiper_options['infinite'] = $settings['infinite'];
+		}
+		if ( isset($settings['speed']) && $settings['speed'] !='' ) {
+			$swiper_options['speed'] = $settings['speed'];
+		}
+		
 		$this->add_render_attribute(
 			array(
 				'carousel'         => array(
@@ -335,6 +375,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 				'carousel-wrapper' => array(
 					'class' => 'group-carousel-container swiper-container',
 					'dir'   => $settings['direction'],
+					'data-settings' => wp_json_encode($swiper_options)
 				),
 			)
 		);
