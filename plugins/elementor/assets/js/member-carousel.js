@@ -55,7 +55,7 @@
 				showDots = 'dots' === elementSettings.navigation || 'both' === elementSettings.navigation;
 
 			if (showArrows) {
-				.navigation = {
+				swiperOptions.navigation = {
 					prevEl: '.elementor-swiper-button-prev',
 					nextEl: '.elementor-swiper-button-next'
 				};
