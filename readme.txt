@@ -22,6 +22,13 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 3.0.0 =
+* Enhancement : BuddyPress Member Carusol Widget for Elementor
+* Enhancement : BuddyPress Groupp Carusol Widget for Elementor
+* Enhancement : BuddyPress Member Grid widget for Elementor
+* Enhancement : BuddyPress Group Grid widget for Elementor
+
+
 = 2.7.0 =
 * Fix : BP 7.0 support
 
