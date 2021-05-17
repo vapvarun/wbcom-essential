@@ -157,7 +157,7 @@ class Plugin {
 	 */
 	private function __construct() {
 
-		add_action( 'plugins_loaded', array( $this, 'wbcom_essential_oad_plugin' ), 0 );
+		add_action( 'plugins_loaded', array( $this, 'wbcom_essential_load_plugin' ), 0 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'front_css' ), 12 );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_URL', WBCOM_ESSENTIAL_URL . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_PATH', WBCOM_ESSENTIAL_PATH . 'plugins/elementor/' );
@@ -173,7 +173,7 @@ class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function wbcom_essential_oad_plugin() {
+	public function wbcom_essential_load_plugin() {
 		if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
 			add_action( 'admin_notices', array( $this, 'wbcom_essential_elementor_notice' ) );
 			return;
@@ -184,6 +184,7 @@ class Plugin {
 		$this->define_constants();
 		// $this->load_components();
 		$this->add_hooks();
+		$this->includes();
 		do_action( 'wbcom_essential/init' );
 	}
 
@@ -290,6 +291,19 @@ class Plugin {
 		\WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks::get_instance();
 		// BuddypressHooks::get_instance();
 		// CustomizerHooks::get_instance();
+	}
+        
+        /**
+	 * Adds required hooks.
+	 *
+	 * @since 1.0.0
+	 * @access private
+	 */
+	private function includes() {
+		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
+		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
+		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
+		
 	}
 
 	/**
