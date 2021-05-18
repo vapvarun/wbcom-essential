@@ -199,7 +199,7 @@ class Plugin {
 		$plugin = 'elementor/elementor.php';
 
 		if ( current_user_can( 'activate_plugins' ) ) {
-			$action_url   = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
+			$action_url   = wp_nonce_url( 'plugin.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
 			$button_label = __( 'Activate Elementor', 'stax-buddy-builder' );
 		} elseif ( current_user_can( 'install_plugins' ) ) {
 			$action_url   = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
@@ -292,20 +292,20 @@ class Plugin {
 		// BuddypressHooks::get_instance();
 		// CustomizerHooks::get_instance();
 	}
-        
-        /**
-	 * Adds required hooks.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 */
+
+		/**
+		 * Adds required hooks.
+		 *
+		 * @since 1.0.0
+		 * @access private
+		 */
 	private function includes() {
-            if ( _is_theme_active( 'REIGN' ) ) {
-		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
-		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
-		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
-            }
-		
+		if ( _is_theme_active( 'REIGN' ) ) {
+			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
+			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
+			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
+		}
+
 	}
 
 	/**
