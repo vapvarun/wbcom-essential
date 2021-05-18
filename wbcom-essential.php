@@ -79,7 +79,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		public function includes() {
 			require __DIR__ . '/includes/wbcom-essential-function.php';
 			if ( did_action( 'elementor/loaded' ) ) {
-				require __DIR__ . '/plugins/elementor/Plugins.php';
+				require __DIR__ . '/plugins/elementor/plugins.php';
 			}
 		}
 
