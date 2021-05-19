@@ -22,6 +22,13 @@ use WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks;
 
 
 class Posts extends \Elementor\Widget_Base {
+    
+        public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
+
+		wp_register_style( 'wbcom-posts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-posts.css', array(), '3.0.0' );
+		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
+	}
 
 	public function get_name() {
 		return 'wbcom-posts';
@@ -68,6 +75,10 @@ class Posts extends \Elementor\Widget_Base {
 	protected function _register_controls() {
 		$this->register_query_section_controls();
 		$this->register_pagination_section_controls();
+	}
+        
+        public function get_style_depends() {
+		return array( 'wbcom-posts' );
 	}
 
 
