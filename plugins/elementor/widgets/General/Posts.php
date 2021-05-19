@@ -24,7 +24,7 @@ use WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks;
 class Posts extends \Elementor\Widget_Base {
 
 	public function get_name() {
-		return 'posts';
+		return 'wbcom-posts';
 	}
 
 	public function get_title() {

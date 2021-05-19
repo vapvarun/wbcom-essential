@@ -107,7 +107,7 @@ class Plugin {
 	 * @var string
 	 */
 	public static $widget_path;
-	
+
 	private $classes_aliases = array(
 		'WBCOM_ESSENTIAL\ELEMENTOR\PanelPostsControl\Controls\Group_Control_Posts' => 'WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Group_Control_Posts',
 		'WBCOM_ESSENTIAL\ELEMENTOR\PanelPostsControl\Controls\Query' => 'WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Query',
@@ -137,11 +137,11 @@ class Plugin {
 		// Unserializing instances of the class is forbidden.
 		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'stax-buddy-builder' ), BPB_VERSION );
 	}
-	
-	
-    /**
-    * @return \Elementor\Plugin
-    */
+
+
+	/**
+	 * @return \Elementor\Plugin
+	 */
 	public static function elementor() {
 		return \Elementor\Plugin::$instance;
 	}
@@ -268,14 +268,13 @@ class Plugin {
 			),
 			$class
 		);
-		
-		
+
 		$filename = __DIR__ . '/' . strtolower( $filename ) . '.php';
 		// Return if file is not found.
 		if ( ! is_readable( $filename ) ) {
-			//return;
+			// return;
 		}
-		
+
 		include $filename;
 	}
 
@@ -307,20 +306,20 @@ class Plugin {
 		// BuddypressHooks::get_instance();
 		// CustomizerHooks::get_instance();
 	}
-        
-        /**
-	 * Adds required hooks.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 */
+
+		/**
+		 * Adds required hooks.
+		 *
+		 * @since 1.0.0
+		 * @access private
+		 */
 	private function includes() {
-            if ( _is_theme_active( 'REIGN' ) ) {
-		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
-		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
-		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
-            }
-		
+		if ( _is_theme_active( 'REIGN' ) ) {
+			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
+			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
+			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
+		}
+
 	}
 
 	/**
@@ -371,7 +370,7 @@ class Plugin {
 		);
 
 		$elements['General/Posts'] = array(
-			'name'  => 'posts',
+			'name'  => 'wbcom-posts',
 			'class' => 'General\Posts',
 		);
 
