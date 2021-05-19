@@ -143,7 +143,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'slides_to_show',
 			array(
-				'label'              => __( 'Slides to Show', 'wbcom-essential' ),
+				'label'              => __( 'Groups to Show', 'wbcom-essential' ),
 				'type'               => Controls_Manager::SELECT,
 				'options'            => array(
 					'' => __( 'Default', 'wbcom-essential' ),
@@ -155,7 +155,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'slides_to_scroll',
 			array(
-				'label'              => __( 'Slides to Scroll', 'wbcom-essential' ),
+				'label'              => __( 'Groups to Scroll', 'wbcom-essential' ),
 				'type'               => Controls_Manager::SELECT,
 				'description'        => __( 'Set how many slides are scrolled per swipe.', 'wbcom-essential' ),
 				'options'            => array(
