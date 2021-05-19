@@ -81,19 +81,6 @@ class GroupCarousel extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
-			'full-width',
-			array(
-				'label'        => __( 'Carousel Style', 'wbcom-essential' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_off'    => esc_html__( 'Boxed', 'wbcom-essential' ),
-				'label_on'     => esc_html__( 'Full-Width', 'wbcom-essential' ),
-				'default'      => '',
-				'return_value' => '1',
-				'description'  => esc_html__( 'Enable Full width Carousel', 'wbcom-essential' ),
-			)
-		);
-
 			$this->add_control(
 				'type',
 				array(
@@ -314,23 +301,6 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		$current_component = static function () {
 			return 'groups';
 		};
-
-		// add_filter( 'bp_current_component', $current_component );
-		$this->add_render_attribute(
-			'wrapper',
-			array(
-				'class' => 'wbcom-sh-carousel',
-			)
-		);
-
-		if ( 1 === $settings['full-width'] ) {
-			$this->add_render_attribute(
-				'wrapper',
-				array(
-					'class' => 'wbcom-sh-carousel-full',
-				)
-			);
-		}
 		
 		if ( isset($settings['slides_to_show']) && $settings['slides_to_show'] !='' ) {
 			$swiper_options['slides_to_show'] = $settings['slides_to_show'];
