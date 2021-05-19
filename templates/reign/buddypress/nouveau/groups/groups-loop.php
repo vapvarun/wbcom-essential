@@ -61,7 +61,15 @@
 
 								<?php if ( bp_nouveau_group_has_meta() ) : ?>
 
-									<p class="item-meta group-details"><?php bp_nouveau_the_group_meta(); ?></p>
+									<p class="item-meta group-details">
+										<?php 
+											if (function_exists( 'bp_nouveau_the_group_meta' ) ) { 
+												bp_nouveau_the_group_meta();
+											}else if ( function_exists( 'bp_nouveau_group_meta') ) {
+												bp_nouveau_group_meta();
+											} 
+										?>
+									 </p>
 
 								<?php endif; ?>
 
