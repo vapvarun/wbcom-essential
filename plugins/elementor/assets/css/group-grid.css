@@ -12,3 +12,12 @@
     font-size: initial;
     font-weight: normal;
 }
+
+.elementor-widget-wrap .wbcom-groups-grid-widget #groups-list li {
+    display: block;
+    align-items: center;
+    padding: 0 15px;
+    margin-bottom: 30px;
+    flex: auto;
+    min-width: inherit;
+}
