@@ -4,7 +4,7 @@
  * Description: Wbcom Essential Addons.
  * Plugin URI: https://wbcomdesigns.com/
  * Author: Wbcom Designs
- * Version: 3.2.0
+ * Version: 3.2.1
  * Author URI: https://wbcomdesigns.com/
  *
  * Text Domain: wbcom-essential
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '3.2.0' );
+define( 'WBCOM_ESSENTIAL_VERSION', '3.2.1' );
 define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '2.7.0' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
