@@ -18,6 +18,13 @@ use Elementor\Group_Control_Typography;
 
 
 class NotificationArea extends \Elementor\Widget_Base {
+    
+        public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
+
+		wp_register_style( 'notification-area', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/notification-area.css', array(), '3.0.0' );
+		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
+	}
 
 	public function get_name() {
 		return 'wbcom-notification-area';
@@ -33,6 +40,10 @@ class NotificationArea extends \Elementor\Widget_Base {
 
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+        
+        public function get_style_depends() {
+		return array( 'notification-area' );
 	}
 
 	protected function _register_controls() {
@@ -266,7 +277,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 						?>
 						<div class="rg-msg">
 							<a class="rg-icon-wrap" href="<?php echo bp_loggedin_user_domain() . bp_get_messages_slug(); ?>">
-								<span class="fa fa-envelope-o"></span>
+								<span class="far fa-envelope"></span>
 								<?php
 								if ( function_exists( 'bp_total_unread_messages_count' ) ) {
 									$count = bp_get_total_unread_messages_count();
@@ -294,7 +305,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 						?>
 						<div class="user-notifications">
 							<a class="rg-icon-wrap" href="<?php echo esc_url( bp_loggedin_user_domain() . $bp->notifications->slug ); ?>" title="<?php _e( esc_attr( 'Notifications' ), 'reign' ); ?>">
-								<span class="fa fa-bell-o"></span>
+								<span class="far fa-bell"></span>
 								<?php
 								if ( function_exists( 'bp_notifications_get_unread_notification_count' ) ) {
 									$count = bp_notifications_get_unread_notification_count( get_current_user_id() );
