@@ -372,7 +372,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 				$wbcom_ele_register_url = apply_filters( 'wbcom_ele_notification_registration_url', wp_registration_url() );
 				?>
 				<div class="rg-icon-wrap">
-					<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login" title="Login">	<span class="fa fa-sign-in"></span>
+					<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login" title="Login">	<span class="fa fa-sign-in-alt"></span>
 					</a>
 				</div>
 				<?php
