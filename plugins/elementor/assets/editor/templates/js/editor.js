@@ -2,11 +2,11 @@
 
 	'use strict';
 
-	var WBComEssentialSectionsData = window.WBComEssentialSectionsData || {},
-		WBComEssentialSectionsEditor,
-		WBComEssentialSectionsEditorViews;
+	var WBcomEssentialelementorSectionsData = window.WBcomEssentialelementorSectionsData || {},
+		WBcomEssentialelementorSectionsEditor,
+		WBcomEssentialelementorSectionsEditorViews;
 
-	WBComEssentialSectionsEditorViews = {
+	WBcomEssentialelementorSectionsEditorViews = {
 
 		ModalLayoutView: null,
 		ModalHeaderView: null,
@@ -45,11 +45,11 @@
 
 			self.ModalHeaderView = Marionette.LayoutView.extend({
 
-				id: 'wbcom-essential-template-modal-header',
-				template: '#tmpl-wbcom-essential-template-modal-header',
+				id: 'wbcomessentialelementor-template-modal-header',
+				template: '#tmpl-wbcomessentialelementor-template-modal-header',
 
 				ui: {
-					closeModal: '#wbcom-essential-template-modal-header-close-modal'
+					closeModal: '#wbcomessentialelementor-template-modal-header-close-modal'
 				},
 
 				events: {
@@ -57,13 +57,13 @@
 				},
 
 				regions: {
-					headerLogo: '#wbcom-essential-template-modal-header-logo-area',
-					headerTabs: '#wbcom-essential-template-modal-header-tabs',
-					headerActions: '#wbcom-essential-template-modal-header-actions'
+					headerLogo: '#wbcomessentialelementor-template-modal-header-logo-area',
+					headerTabs: '#wbcomessentialelementor-template-modal-header-tabs',
+					headerActions: '#wbcomessentialelementor-template-modal-header-actions'
 				},
 
 				onCloseModalClick: function () {
-					WBComEssentialSectionsEditor.closeModal();
+					WBcomEssentialelementorSectionsEditor.closeModal();
 				}
 
 			});
@@ -96,25 +96,25 @@
 
 			self.ModalHeaderLogo = Marionette.ItemView.extend({
 
-				template: '#tmpl-wbcom-essential-template-modal-header-logo',
+				template: '#tmpl-wbcomessentialelementor-template-modal-header-logo',
 
-				id: 'wbcom-essential-template-modal-header-logo'
+				id: 'wbcomessentialelementor-template-modal-header-logo'
 
 			});
 
 			self.ModalBodyView = Marionette.LayoutView.extend({
 
-				id: 'wbcom-essential-template-library-content',
+				id: 'wbcomessentialelementor-template-library-content',
 
 				className: function () {
-					return 'library-tab-' + WBComEssentialSectionsEditor.getTab();
+					return 'library-tab-' + WBcomEssentialelementorSectionsEditor.getTab();
 				},
 
-				template: '#tmpl-wbcom-essential-template-modal-content',
+				template: '#tmpl-wbcomessentialelementor-template-modal-content',
 
 				regions: {
-					contentTemplates: '.wbcom-essential-templates-list',
-					contentFilters: '.wbcom-essential-filters-list',
+					contentTemplates: '.wbcomessentialelementor-templates-list',
+					contentFilters: '.wbcomessentialelementor-filters-list',
 					contentSearch: '#elementor-template-library-filter-text-wrapper',
 				}
 
@@ -122,17 +122,17 @@
 
 			self.TemplatesEmptyView = Marionette.LayoutView.extend({
 
-				id: 'wbcom-essential-template-modal-empty',
+				id: 'wbcomessentialelementor-template-modal-empty',
 
-				template: '#tmpl-wbcom-essential-template-modal-empty',
+				template: '#tmpl-wbcomessentialelementor-template-modal-empty',
 
 				ui: {
 					title: '.elementor-template-library-blank-title',
 				},
 
 				regions: {
-					contentTemplates: '.wbcom-essential-templates-list',
-					contentFilters: '.wbcom-essential-filters-list',
+					contentTemplates: '.wbcomessentialelementor-templates-list',
+					contentFilters: '.wbcomessentialelementor-filters-list',
 					contentSearch: '#elementor-template-library-filter-text-wrapper',
 				}
 
@@ -140,7 +140,7 @@
 
 			self.ModalInsertTemplateBehavior = Marionette.Behavior.extend({
 				ui: {
-					insertButton: '.wbcom-essential-template-insert'
+					insertButton: '.wbcomessentialelementor-template-insert'
 				},
 
 				events: {
@@ -152,15 +152,15 @@
 					var templateModel = this.view.model,
 						options = {};
 
-					WBComEssentialSectionsEditor.layout.showLoadingView();
+					WBcomEssentialelementorSectionsEditor.layout.showLoadingView();
 					$.ajax({
 						url: ajaxurl,
 						type: 'post',
 						dataType: 'json',
 						data: {
-							action: 'bb_elementor_sections_inner_template',
+							action: 'wbcom_essential_elementor_sections_inner_template',
 							template: templateModel.attributes,
-							tab: WBComEssentialSectionsEditor.getTab()
+							tab: WBcomEssentialelementorSectionsEditor.getTab()
 						}
 					});
 
@@ -169,30 +169,30 @@
 						templateModel.get('template_id'),
 						{
 							data: {
-								tab: WBComEssentialSectionsEditor.getTab(),
+								tab: WBcomEssentialelementorSectionsEditor.getTab(),
 								page_settings: false
 							},
 							success: function (data) {
 
 								console.log("%c Template Inserted Successfully!!", "color: #7a7a7a; background-color: #eee;");
 
-								WBComEssentialSectionsEditor.closeModal();
+								WBcomEssentialelementorSectionsEditor.closeModal();
 
 								elementor.channels.data.trigger('template:before:insert', templateModel);
 
-								if (null !== WBComEssentialSectionsEditor.atIndex) {
-									options.at = WBComEssentialSectionsEditor.atIndex;
+								if (null !== WBcomEssentialelementorSectionsEditor.atIndex) {
+									options.at = WBcomEssentialelementorSectionsEditor.atIndex;
 								}
 
 								elementor.previewView.addChildModel(data.content, options);
 
 								elementor.channels.data.trigger('template:after:insert', templateModel);
 
-								WBComEssentialSectionsEditor.atIndex = null;
+								WBcomEssentialelementorSectionsEditor.atIndex = null;
 								jQuery('.elementor-button-success').removeClass('elementor-disabled');
 							},
 							error: function (err) {
-								WBComEssentialSectionsEditor.closeModal();
+								WBcomEssentialelementorSectionsEditor.closeModal();
 							}
 						}
 					);
@@ -201,15 +201,15 @@
 
 			self.FiltersItemView = Marionette.ItemView.extend({
 
-				template: '#tmpl-wbcom-essential-template-modal-filters-item',
+				template: '#tmpl-wbcomessentialelementor-template-modal-filters-item',
 
 				className: function () {
-					return 'wbcom-essential-template-filter-item';
+					return 'wbcomessentialelementor-template-filter-item';
 				},
 
 				ui: function () {
 					return {
-						filterLabels: '.wbcom-essential-template-filter-label'
+						filterLabels: '.wbcomessentialelementor-template-filter-label'
 					};
 				},
 
@@ -222,15 +222,15 @@
 				onFilterClick: function (event) {
 
 					var $clickedInput = jQuery(event.target);
-					WBComEssentialSectionsEditor.setFilter('category', $clickedInput.val());
+					WBcomEssentialelementorSectionsEditor.setFilter('category', $clickedInput.val());
 				}
 
 			});
 
 			self.TemplateSearchCollectionView = Marionette.CompositeView.extend({
 
-				template: '#tmpl-wbcom-essential-template-modal-search-item',
-				id: 'wbcom-essential-template-modal-search-item',
+				template: '#tmpl-wbcomessentialelementor-template-modal-search-item',
+				id: 'wbcomessentialelementor-template-modal-search-item',
 
 				ui: function () {
 					return {
@@ -248,14 +248,14 @@
 
 					var searchText = this.ui.textFilter.val();
 
-					WBComEssentialSectionsEditor.setFilter('text', searchText);
+					WBcomEssentialelementorSectionsEditor.setFilter('text', searchText);
 				},
 
 			});
 
 			self.ModalTabsItemView = Marionette.ItemView.extend({
 
-				template: '#tmpl-wbcom-essential-template-modal-tabs-item',
+				template: '#tmpl-wbcomessentialelementor-template-modal-tabs-item',
 
 				className: function () {
 					return 'elementor-template-library-menu-item';
@@ -275,7 +275,7 @@
 				},
 
 				onRender: function () {
-					if (this.model.get('slug') === WBComEssentialSectionsEditor.getTab()) {
+					if (this.model.get('slug') === WBcomEssentialelementorSectionsEditor.getTab()) {
 						this.ui.tabsInput.attr('checked', 'checked');
 					}
 				},
@@ -283,18 +283,18 @@
 				onTabClick: function (event) {
 
 					var $clickedInput = jQuery(event.target);
-					WBComEssentialSectionsEditor.setTab($clickedInput.val());
+					WBcomEssentialelementorSectionsEditor.setTab($clickedInput.val());
 				}
 
 			});
 
 			self.FiltersCollectionView = Marionette.CompositeView.extend({
 
-				id: 'wbcom-essential-template-library-filters',
+				id: 'wbcomessentialelementor-template-library-filters',
 
-				template: '#tmpl-wbcom-essential-template-modal-filters',
+				template: '#tmpl-wbcomessentialelementor-template-modal-filters',
 
-				childViewContainer: '#wbcom-essential-modal-filters-container',
+				childViewContainer: '#wbcomessentialelementor-modal-filters-container',
 
 				getChildView: function (childModel) {
 					return self.FiltersItemView;
@@ -304,12 +304,12 @@
 
 			self.ModalTabsCollectionView = Marionette.CompositeView.extend({
 
-				template: '#tmpl-wbcom-essential-template-modal-tabs',
+				template: '#tmpl-wbcomessentialelementor-template-modal-tabs',
 
-				childViewContainer: '#wbcom-essential-modal-tabs-items',
+				childViewContainer: '#wbcomessentialelementor-modal-tabs-items',
 
 				initialize: function () {
-					this.listenTo(WBComEssentialSectionsEditor.channels.layout, 'tamplate:cloned', this._renderChildren);
+					this.listenTo(WBcomEssentialelementorSectionsEditor.channels.layout, 'tamplate:cloned', this._renderChildren);
 				},
 
 				getChildView: function (childModel) {
@@ -320,11 +320,11 @@
 
 			self.ModalTemplateItemView = Marionette.ItemView.extend({
 
-				template: '#tmpl-wbcom-essential-template-modal-item',
+				template: '#tmpl-wbcomessentialelementor-template-modal-item',
 
 				className: function () {
 
-					var urlClass = ' wbcom-essential-template-has-url',
+					var urlClass = ' wbcomessentialelementor-template-has-url',
 						sourceClass = ' elementor-template-library-template-';
 
 					sourceClass += 'remote';
@@ -347,11 +347,11 @@
 
 			self.ModalCollectionView = Marionette.CompositeView.extend({
 
-				template: '#tmpl-wbcom-essential-template-modal-templates',
+				template: '#tmpl-wbcomessentialelementor-template-modal-templates',
 
-				id: 'wbcom-essential-template-library-templates',
+				id: 'wbcomessentialelementor-template-library-templates',
 
-				childViewContainer: '#wbcom-essential-modal-templates-container',
+				childViewContainer: '#wbcomessentialelementor-modal-templates-container',
 
 				emptyView: function emptyView() {
 
@@ -360,13 +360,13 @@
 
 				initialize: function () {
 
-					this.listenTo(WBComEssentialSectionsEditor.channels.templates, 'filter:change', this._renderChildren);
+					this.listenTo(WBcomEssentialelementorSectionsEditor.channels.templates, 'filter:change', this._renderChildren);
 				},
 
 				filter: function (childModel) {
 
-					var filter = WBComEssentialSectionsEditor.getFilter('category');
-					var searchText = WBComEssentialSectionsEditor.getFilter('text');
+					var filter = WBcomEssentialelementorSectionsEditor.getFilter('category');
+					var searchText = WBcomEssentialelementorSectionsEditor.getFilter('text');
 
 					if (!filter && !searchText) {
 						return true;
@@ -396,9 +396,9 @@
 
 					var container = this.$childViewContainer,
 						items = this.$childViewContainer.children(),
-						tab = WBComEssentialSectionsEditor.getTab();
+						tab = WBcomEssentialelementorSectionsEditor.getTab();
 
-					if ('bb_elementor_sections_page' === tab || 'local' === tab) {
+					if ('wbcom_essential_elementor_sections_page' === tab || 'local' === tab) {
 						return;
 					}
 
@@ -415,20 +415,20 @@
 
 			self.ModalLayoutView = Marionette.LayoutView.extend({
 
-				el: '#wbcom-essential-template-modal',
+				el: '#wbcomessentialelementor-template-modal',
 
-				regions: WBComEssentialSectionsData.modalRegions,
+				regions: WBcomEssentialelementorSectionsData.modalRegions,
 
 				initialize: function () {
 
 					this.getRegion('modalHeader').show(new self.ModalHeaderView());
-					this.listenTo(WBComEssentialSectionsEditor.channels.tabs, 'filter:change', this.switchTabs);
+					this.listenTo(WBcomEssentialelementorSectionsEditor.channels.tabs, 'filter:change', this.switchTabs);
 
 				},
 
 				switchTabs: function () {
 					this.showLoadingView();
-					WBComEssentialSectionsEditor.requestTemplates(WBComEssentialSectionsEditor.getTab());
+					WBcomEssentialelementorSectionsEditor.requestTemplates(WBcomEssentialelementorSectionsEditor.getTab());
 				},
 
 				getHeaderView: function () {
@@ -454,10 +454,10 @@
 						var contentView = this.getContentView(),
 							header = this.getHeaderView();
 
-						WBComEssentialSectionsEditor.collections.tabs = new self.ModalTabsCollection(WBComEssentialSectionsEditor.getTabs());
+						WBcomEssentialelementorSectionsEditor.collections.tabs = new self.ModalTabsCollection(WBcomEssentialelementorSectionsEditor.getTabs());
 
 						header.headerTabs.show(new self.ModalTabsCollectionView({
-							collection: WBComEssentialSectionsEditor.collections.tabs
+							collection: WBcomEssentialelementorSectionsEditor.collections.tabs
 						}));
 
 						contentView.contentTemplates.show(new self.ModalCollectionView({
@@ -479,13 +479,13 @@
 			});
 
 			self.ModalLoadingView = Marionette.ItemView.extend({
-				id: 'wbcom-essential-template-modal-loading',
-				template: '#tmpl-wbcom-essential-template-modal-loading'
+				id: 'wbcomessentialelementor-template-modal-loading',
+				template: '#tmpl-wbcomessentialelementor-template-modal-loading'
 			});
 
 			self.ModalErrorView = Marionette.ItemView.extend({
-				id: 'wbcom-essential-template-modal-error',
-				template: '#tmpl-wbcom-essential-template-modal-error'
+				id: 'wbcomessentialelementor-template-modal-error',
+				template: '#tmpl-wbcomessentialelementor-template-modal-error'
 			});
 
 		},
@@ -562,7 +562,7 @@
 
 	};
 
-	WBComEssentialSectionsEditor = {
+	WBcomEssentialelementorSectionsEditor = {
 		modal: false,
 		layout: false,
 		collections: {},
@@ -575,47 +575,47 @@
 
 			window.elementor.on(
 				'document:loaded',
-				window._.bind(WBComEssentialSectionsEditor.onPreviewLoaded, WBComEssentialSectionsEditor)
+				window._.bind(WBcomEssentialelementorSectionsEditor.onPreviewLoaded, WBcomEssentialelementorSectionsEditor)
 			);
 
-			WBComEssentialSectionsEditorViews.init();
+			WBcomEssentialelementorSectionsEditorViews.init();
 
 		},
 
 		onPreviewLoaded: function () {
 
-			this.initWBComEssentialSectionsTempsButton();
+			this.initWBcomEssentialelementorSectionsTempsButton();
 
 			window.elementor.$previewContents.on(
-				'click.addWBComEssentialSectionsTemplate',
+				'click.addWBcomEssentialelementorSectionsTemplate',
 				'.wbcom-essential-add-section-btn',
 				_.bind(this.showTemplatesModal, this)
 			);
 
 			this.channels = {
-				templates: Backbone.Radio.channel('BBELEMENTOR_EDITOR:templates'),
-				tabs: Backbone.Radio.channel('BBELEMENTOR_EDITOR:tabs'),
-				layout: Backbone.Radio.channel('BBELEMENTOR_EDITOR:layout'),
+				templates: Backbone.Radio.channel('WBcomEssentialelementor_EDITOR:templates'),
+				tabs: Backbone.Radio.channel('WBcomEssentialelementor_EDITOR:tabs'),
+				layout: Backbone.Radio.channel('WBcomEssentialelementor_EDITOR:layout'),
 			};
 
-			this.tabs = WBComEssentialSectionsData.tabs;
-			this.defaultTab = WBComEssentialSectionsData.defaultTab;
+			this.tabs = WBcomEssentialelementorSectionsData.tabs;
+			this.defaultTab = WBcomEssentialelementorSectionsData.defaultTab;
 
 		},
 
-		initWBComEssentialSectionsTempsButton: function () {
+		initWBcomEssentialelementorSectionsTempsButton: function () {
 
 			setTimeout(function () {
 				var $addNewSection = window.elementor.$previewContents.find('.elementor-add-new-section'),
-					addWBComEssentialSectionsTemplate = "<div class='elementor-add-section-area-button wbcom-essential-add-section-btn' title='Add Elementor Sections Template'><img src='"+WBComEssentialSectionsData.icon+"'></div>",
-					$addWBComEssentialSectionsTemplate;
+					addWBcomEssentialelementorSectionsTemplate = "<div class='elementor-add-section-area-button wbcom-essential-add-section-btn' title='Add Elementor Sections Template'><img src='"+WBcomEssentialelementorSectionsData.icon+"'></div>",
+					$addWBcomEssentialelementorSectionsTemplate;
 
 				if ($addNewSection.length) {
-					$addWBComEssentialSectionsTemplate = $(addWBComEssentialSectionsTemplate).prependTo($addNewSection);
+					$addWBcomEssentialelementorSectionsTemplate = $(addWBcomEssentialelementorSectionsTemplate).prependTo($addNewSection);
 				}
 			
         window.elementor.$previewContents.on(
-            'click.addWBComEssentialSectionsTemplate',
+            'click.addWBcomEssentialelementorSectionsTemplate',
             '.elementor-editor-section-settings .elementor-editor-element-add',
             function () {
 
@@ -625,11 +625,11 @@
 
 
 
-	            if (-1 !== WBComEssentialSectionsData.Elementor_Version.indexOf('3.0.')) {
+	            if (-1 !== WBcomEssentialelementorSectionsData.Elementor_Version.indexOf('3.0.')) {
 		            if (window.elementor.previewView.collection.length) {
 			            $.each(window.elementor.previewView.collection.models, function (index, model) {
 				            if (modelID === model.cid) {
-					            WBComEssentialSectionsEditor.atIndex = index;
+					            WBcomEssentialelementorSectionsEditor.atIndex = index;
 				            }
 			            });
 		            }
@@ -637,7 +637,7 @@
 		            if (window.elementor.sections.currentView.collection.length) {
 			            $.each(window.elementor.sections.currentView.collection.models, function (index, model) {
 				            if (modelID === model.cid) {
-					            WBComEssentialSectionsEditor.atIndex = index;
+					            WBcomEssentialelementorSectionsEditor.atIndex = index;
 				            }
 			            });
 		            }
@@ -646,7 +646,7 @@
 
 								setTimeout(function () {
 									var $addNew = $section.prev('.elementor-add-section').find('.elementor-add-new-section');
-									$addNew.prepend(addWBComEssentialSectionsTemplate);
+									$addNew.prepend(addWBcomEssentialelementorSectionsTemplate);
 								}, 100);
 
             }
@@ -695,14 +695,14 @@
 		showTemplatesModal: function () {
 
 			this.getModal().show();
+
 			if (!this.layout) {
-				this.layout = new WBComEssentialSectionsEditorViews.ModalLayoutView();
+				this.layout = new WBcomEssentialelementorSectionsEditorViews.ModalLayoutView();
 				this.layout.showLoadingView();
 			}
 
 			this.setTab(this.defaultTab, true);
 			this.requestTemplates(this.defaultTab);
-			
 
 		},
 
@@ -725,14 +725,14 @@
 					type: 'get',
 					dataType: 'json',
 					data: {
-						action: 'bb_elementor_sections_get_templates',
+						action: 'wbcom_essential_elementor_sections_get_templates',
 						tab: tabName
 					},
 					success: function (response) {
 						console.log("%cTemplates Retrieved Successfully!!", "color: #7a7a7a; background-color: #eee;");
 
-						var templates = new WBComEssentialSectionsEditorViews.LibraryCollection(response.data.templates),
-							categories = new WBComEssentialSectionsEditorViews.CategoriesCollection(response.data.categories);
+						var templates = new WBcomEssentialelementorSectionsEditorViews.LibraryCollection(response.data.templates),
+							categories = new WBcomEssentialelementorSectionsEditorViews.CategoriesCollection(response.data.categories);
 
 						self.tabs[tabName].data = {
 							templates: templates,
@@ -743,7 +743,7 @@
 
 					},
 					error: function (err) {
-						WBComEssentialSectionsEditor.closeModal();
+						WBcomEssentialelementorSectionsEditor.closeModal();
 					}
 				});
 			}
@@ -758,7 +758,7 @@
 
 			if (!this.modal) {
 				this.modal = elementor.dialogsManager.createWidget('lightbox', {
-					id: 'wbcom-essential-template-modal',
+					id: 'wbcomessentialelementor-template-modal',
 					className: 'elementor-templates-modal',
 					closeButton: false
 				});
@@ -770,6 +770,6 @@
 
 	};
 
-	$(window).on('elementor:init', WBComEssentialSectionsEditor.init);
+	$(window).on('elementor:init', WBcomEssentialelementorSectionsEditor.init);
 
 })(jQuery);
