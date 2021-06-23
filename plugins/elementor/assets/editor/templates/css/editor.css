@@ -178,7 +178,7 @@
     display: inline-block;
     color: #fff;
     background-image: none;
-    background: #f47216;
+    background: #1d76da;
     font-size: 13px;
     font-weight: 400;
     font-style: normal;
@@ -245,7 +245,7 @@
 }
 
 #wbcomessentialelementor-modal-tabs-items .elementor-template-library-menu-item label input[type="radio"]:checked + span {
-    border-bottom: 3px solid #f47216;
+    border-bottom: 3px solid #1d76da;
 
     background-image: -webkit-gradient(linear, left top, left bottom, from(#f1f3f5), to(#fff));
     background-image: -webkit-linear-gradient(top, #f1f3f5, #fff);
@@ -399,7 +399,7 @@ div#elementor-template-library-filter-text-wrapper {
     .wbcomessentialelementor-template-filter-label
     input:checked
     + span {
-    color: #f47216;
+    color: #1d76da;
 }
 #wbcomessentialelementor-template-library-content .wbcomessentialelementor-template-filter-item {
     border-top: 1px solid rgba(213, 218, 223, 0.5);
@@ -451,9 +451,9 @@ div#elementor-template-library-filter-text-wrapper {
     color: #fff;
     font-weight: bold;
     box-shadow: 0px 1px 3px #888888;
-    background: #f47216;
-    border-top: 5px solid #f47216;
-    border-bottom: 5px solid #f47216;
+    background: #1d76da;
+    border-top: 5px solid #1d76da;
+    border-bottom: 5px solid #1d76da;
     -webkit-transform: rotate(35deg);
     transform: rotate(35deg);
 }
