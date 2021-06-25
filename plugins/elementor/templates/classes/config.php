@@ -47,8 +47,8 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Core_Config' ) ) {
 				'wbcom_essential_elementor_temps' => __( 'WBCom Essential Elementor Sections', 'wbcom-essential' ),
 				'api'              => array(
 					'enabled'   => true,
-					'base'      => 'https://wpex.in/',
-					'path'      => 'wp-json/wbcom-essential-elementor/v1',
+					'base'      => 'https://demos.wbcomdesigns.com/elementor/',
+					'path'      => 'wp-json/wp/v2/wbcom-essential-elementor',
 					'id'        => 9,
 					'endpoints' => array(
 						'templates'  => '/templates/',

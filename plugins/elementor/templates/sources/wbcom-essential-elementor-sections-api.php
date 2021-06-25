@@ -92,9 +92,9 @@ class WBcom_Essential_elementor_Templates_Source_Api extends WBcom_Essential_ele
 		// Bail out, if empty.
 		if ( empty( $api_url ) ) {
 			return false;
-		}
+		}		
 		
-		$response = wp_remote_get( $api_url . $tab . '.json', array(
+		$response = wp_remote_get( $api_url ."?type=". $tab, array(
 			'timeout'   => 60,
 			'sslverify' => false
 		) );
@@ -139,7 +139,7 @@ class WBcom_Essential_elementor_Templates_Source_Api extends WBcom_Essential_ele
 			return false;
 		}
 		
-		$response = wp_remote_get( $api_url . $tab . '.json', array(
+		$response = wp_remote_get( $api_url . "?type=". $tab, array(
 			'timeout'   => 60,
 			'sslverify' => false
 		) );
@@ -234,7 +234,8 @@ class WBcom_Essential_elementor_Templates_Source_Api extends WBcom_Essential_ele
 			) );
 		}
 		
-		$request = $api_url . $template_id . '.json';		
+		$request = $api_url . $template_id ;	
+		
 		
 		$response = wp_remote_get( $request, array(
 			'timeout'   => 60,

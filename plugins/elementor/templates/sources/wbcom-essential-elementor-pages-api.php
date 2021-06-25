@@ -94,7 +94,7 @@ class WBcom_Essential_elementor_Templates_Page_Api extends WBcom_Essential_eleme
 			return false;
 		}
 		
-		$response = wp_remote_get( $api_url . $tab . '.json', array(
+		$response = wp_remote_get( $api_url ."?type=". $tab , array(
 			'timeout'   => 60,
 			'sslverify' => false
 		) );
@@ -139,7 +139,7 @@ class WBcom_Essential_elementor_Templates_Page_Api extends WBcom_Essential_eleme
 			return false;
 		}
 		
-		$response = wp_remote_get( $api_url . $tab . '.json', array(
+		$response = wp_remote_get( $api_url ."?type=". $tab, array(
 			'timeout'   => 60,
 			'sslverify' => false
 		) );
@@ -234,7 +234,7 @@ class WBcom_Essential_elementor_Templates_Page_Api extends WBcom_Essential_eleme
 			) );
 		}
 		
-		$request = $api_url . $template_id . '.json';
+		$request = $api_url . $template_id;
 		
 		
 		$response = wp_remote_get( $request, array(
