@@ -249,9 +249,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 			if ( 'yes' == $settings['search_form_enabled'] ) {
 				?>
 				<div class="search-wrap rg-icon-wrap">
-					<span class="rg-search-icon fa fa-search"></span>
+					<span class="rg-search-icon far fa-search"></span>
 					<div class="rg-search-form-wrap">
-						<span class="rg-search-close fa fa-times-circle"></span>
+						<span class="rg-search-close far fa-times-circle"></span>
 						<?php get_search_form(); ?>
 					</div>
 				</div>
@@ -372,7 +372,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 				$wbcom_ele_register_url = apply_filters( 'wbcom_ele_notification_registration_url', wp_registration_url() );
 				?>
 				<div class="rg-icon-wrap">
-					<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login" title="Login">	<span class="fa fa-sign-in-alt"></span>
+					<a href="<?php echo $wbcom_ele_login_url; ?>" class="btn-login" title="Login">	<span class="far fa-sign-in-alt"></span>
 					</a>
 				</div>
 				<?php
@@ -381,7 +381,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 					<span class="sep">|</span>
 					<div class="rg-icon-wrap">
 						<a href="<?php echo $wbcom_ele_register_url; ?>" class="btn-register" title="Register">
-							<span class="fa fa-address-book"></span>
+							<span class="far fa-address-book"></span>
 						</a>
 					</div>
 
