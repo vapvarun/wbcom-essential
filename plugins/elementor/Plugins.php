@@ -363,11 +363,13 @@ class Plugin {
 			'name'  => 'wbcom-registration',
 			'class' => 'General\Menu',
 		);
-
-		$elements['General/NotificationArea'] = array(
-			'name'  => 'wbcom-notification-area',
-			'class' => 'General\NotificationArea',
-		);
+		
+		if ( _is_theme_active( 'REIGN' ) ) {
+			$elements['General/NotificationArea'] = array(
+				'name'  => 'wbcom-notification-area',
+				'class' => 'General\NotificationArea',
+			);
+		}
 
 		$elements['General/Posts'] = array(
 			'name'  => 'wbcom-posts',
