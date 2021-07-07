@@ -204,6 +204,30 @@ class MembersGrid extends \Elementor\Widget_Base {
 							),
 							'reign/buddypress/nouveau'
 						);
+				} else {
+					$loop_classes = static function () use ( $settings ) {
+						return array(
+							'item-list',
+							'members-list',
+							'bp-list',
+							'grid',
+							_get_column_class( $settings['columns'] ),
+							_get_column_class( $settings['columns'], 'tablet' ),
+							_get_column_class( $settings['columns'], 'mobile' ),
+						);
+					};
+
+					add_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
+
+					wbcom_essential_get_template(
+						'members/members-loop.php',
+						array(
+							'query_string' => $query_string,
+						),
+						'buddypress'
+					);
+
+					remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
 				}
 				?>
 			</div>
