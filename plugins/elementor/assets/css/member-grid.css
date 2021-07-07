@@ -14,6 +14,11 @@
     font-weight: normal;
 }
 
+body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-2 .list-wrap,
+body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-3 .list-wrap {
+    padding-bottom: 15px !important;
+}
+
 /*--------------------------------------------------------------
 # BuddyPress
 --------------------------------------------------------------*/
