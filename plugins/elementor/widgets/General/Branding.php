@@ -277,7 +277,7 @@ class Branding extends \Elementor\Widget_Base {
 		if ( $settings['el_site_branding'] == 'title' ) {
 			$this->render_title();
 		} elseif ( $settings['el_site_branding'] == 'logo' ) {
-			$this->render_logo();
+			$this->elementor_the_site_logo();
 		}
 	}
 

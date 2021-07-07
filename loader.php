@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '3.2.1' );
+define( 'WBCOM_ESSENTIAL_VERSION', '3.2.2' );
 define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '2.7.0' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
