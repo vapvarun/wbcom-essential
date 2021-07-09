@@ -25,6 +25,7 @@ define( 'WBCOM_ESSENTIAL_ASSETS_URL', WBCOM_ESSENTIAL_URL . 'assets/' );
 
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
+require_once(WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-elementor.php');
 
 /**
  * Returns the Plugin application instance.

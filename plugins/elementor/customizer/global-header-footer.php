@@ -37,8 +37,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	/**
 	 * Constructor
 	 */
-	private function __construct() {
-		self::$elementor_frontend = new \Elementor\Frontend();
+	private function __construct() {		
 		// Add the default posts on plugin activation
 		// register_activation_hook( WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE, array( $this, 'add_header_footer_post' ) );
 		// add_action( 'init', array( $this, 'header_posttype' ) );
@@ -516,7 +515,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 					$theme_structure_ref = Reign_Theme_Structure::instance();
 					remove_action( 'wbcom_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
 				}
-				echo self::$elementor_frontend->get_builder_content_for_display( $header_id );
+				echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $header_id );
 			}
 			?>
 		</div>
@@ -592,7 +591,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 				}
 				/* code to convert slug to id */
 				echo '<div id="wbcom-header-topbar">';
-					echo self::$elementor_frontend->get_builder_content_for_display( $topbar_id );
+					echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $topbar_id );
 				echo '</div>';
 			}
 		}
@@ -677,7 +676,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 				}
 			}
 			echo "<div class='footer-width-fixer'>";
-				echo self::$elementor_frontend->get_builder_content( $footer_id, $with_css = true );
+				echo \Elementor\Plugin::instance()->frontend->get_builder_content( $footer_id, $with_css = true );
 			echo '</div>';
 			if ( $custom_global_set ) {
 				unset( $post );
