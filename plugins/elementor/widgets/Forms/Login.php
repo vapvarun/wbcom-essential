@@ -950,16 +950,8 @@ class Login extends \Elementor\Widget_Base {
 							<?php if ( ! empty( $settings['button_text'] ) ) : ?>
 								<span class="elementor-button-text"><?php echo $settings['button_text']; ?></span>
 							<?php endif; ?>
-					</button>
-					<img id="wb-ele-ajax-loader" src="<?php echo WBCOM_ELEMENTOR_ADDONS_ASSETS_URL . 'ajax-loader.gif'; ?>">
-				</div>
-				<style type="text/css">
-				#wb-ele-ajax-loader {
-					width: 25px;
-					margin-left: 10px;
-					display: none;
-				}
-				</style>
+					</button>					
+				</div>				
 				<?php
 				$show_lost_password = 'yes' === $settings['show_lost_password'];
 				$show_register      = get_option( 'users_can_register' ) && 'yes' === $settings['show_register'];
