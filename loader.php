@@ -25,7 +25,7 @@ define( 'WBCOM_ESSENTIAL_ASSETS_URL', WBCOM_ESSENTIAL_URL . 'assets/' );
 
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
-require_once(WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-elementor.php');
+require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-elementor.php';
 
 /**
  * Returns the Plugin application instance.
@@ -44,6 +44,13 @@ function wbcom_essential_load_plugin_textdomain() {
 	load_plugin_textdomain( 'stax-buddy-builder', false, basename( __DIR__ ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'wbcom_essential_load_plugin_textdomain' );
+
+require plugin_dir_path( __FILE__ ) . 'wbcom-essential-update-checker\wbcom-essential-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://demos.wbcomdesigns.com/exporter/free-plugins/wbcom-essential.json',
+	__FILE__, // Full path to the main plugin file or functions.php.
+	'wbcom-essential'
+);
 
 /**
  * Initializes the Plugin application.
