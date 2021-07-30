@@ -135,68 +135,6 @@ class Login extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_new_pass_button_content',
-			array(
-				'label' => __( 'Get New Password Button', 'reign' ),
-			)
-		);
-
-		$this->add_control(
-			'new_pass_button_text',
-			array(
-				'label'   => __( 'Text', 'reign' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'Get New Password', 'reign' ),
-			)
-		);
-
-		$this->add_control(
-			'new_pass_button_size',
-			array(
-				'label'   => __( 'Size', 'reign' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'xs' => __( 'Extra Small', 'reign' ),
-					'sm' => __( 'Small', 'reign' ),
-					'md' => __( 'Medium', 'reign' ),
-					'lg' => __( 'Large', 'reign' ),
-					'xl' => __( 'Extra Large', 'reign' ),
-				),
-				'default' => 'sm',
-			)
-		);
-
-		$this->add_responsive_control(
-			'new_pass_button_align',
-			array(
-				'label'        => __( 'Alignment', 'reign' ),
-				'type'         => Controls_Manager::CHOOSE,
-				'options'      => array(
-					'start'   => array(
-						'title' => __( 'Left', 'reign' ),
-						'icon'  => 'fa fa-align-left',
-					),
-					'center'  => array(
-						'title' => __( 'Center', 'reign' ),
-						'icon'  => 'fa fa-align-center',
-					),
-					'end'     => array(
-						'title' => __( 'Right', 'reign' ),
-						'icon'  => 'fa fa-align-right',
-					),
-					'stretch' => array(
-						'title' => __( 'Justified', 'reign' ),
-						'icon'  => 'fa fa-align-justify',
-					),
-				),
-				'prefix_class' => 'elementor%s-button-align-',
-				'default'      => '',
-			)
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
 			'section_login_content',
 			array(
 				'label' => __( 'Additional Options', 'wbcom-essential' ),
@@ -852,59 +790,6 @@ class Login extends \Elementor\Widget_Base {
 
 		$this->form_fields_render_attributes();
 		?>
-		<style type="text/css">
-			/* The alert message box */
-			.wbcom-elementor-login-form .alert {
-				padding: 20px;
-				background-color: #f44336; /* Red */
-				color: white;
-				margin-bottom: 15px;
-			}
-			/* The close button */
-			.wbcom-elementor-login-form .closebtn {
-				margin-left: 15px;
-				color: white;
-				font-weight: bold;
-				float: right;
-				font-size: 22px;
-				line-height: 20px;
-				cursor: pointer;
-				transition: 0.3s;
-			}
-			/* When moving the mouse over the close button */
-			.wbcom-elementor-login-form .closebtn:hover {
-				color: black;
-			}
-		</style>
-		<!-- Lost Your Password Form :: Start -->
-		<form class="elementor-login elementor-form wbcom-elementor-login-form wbcom-forgot-password-form" method="post" action="">
-			<input type="hidden" name="wbcom_action_to_to" value="forgot_password">
-			<div class="alert" style="display: none;">
-				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-				<span class="error-message">This is an alert box.</span>
-			</div>
-			<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
-				<div <?php echo $this->get_render_attribute_string( 'field-group' ); ?>>
-					<?php
-					if ( $settings['show_labels'] ) {
-						echo '<label ' . $this->get_render_attribute_string( 'user_label' ) . '>' . $settings['user_label'] . '</label>';
-					}
-
-					echo '<input size="1" ' . $this->get_render_attribute_string( 'user_input' ) . '>';
-
-					?>
-				</div>
-				<div <?php echo $this->get_render_attribute_string( 'submit-group' ); ?>>
-					<button type="submit" <?php echo $this->get_render_attribute_string( 'new_pass_button' ); ?>>
-							<?php if ( ! empty( $settings['new_pass_button_text'] ) ) : ?>
-								<span class="elementor-button-text"><?php echo $settings['new_pass_button_text']; ?></span>
-							<?php endif; ?>
-					</button>
-				</div>
-			</div>
-		</form>
-		<!-- Lost Your Password Form :: End -->
-
 		<form class="elementor-login elementor-form wbcom-elementor-login-form" method="post" action="<?php echo wp_login_url(); ?>">
 			<input type="hidden" name="wbcom_action_to_to" value="login">
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_url ); ?>">
