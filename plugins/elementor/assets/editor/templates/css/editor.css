@@ -705,6 +705,10 @@ div.wbcomessentialelementor-template-has-url:hover .wbcomessentialelementor-clon
     background-color: #1c39bb;
 }
 
+.wbcomessentialelementor-template--tag.wbcomessentialelementor-template--reign {
+    background-color: #1d76da;
+}
+
 .wbcomessentialelementor-template--thumb .wbcomessentialelementor-template--sep {
     display: block;
     width: 100%;
