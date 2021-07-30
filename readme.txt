@@ -22,6 +22,9 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 3.4.1 =
+* Fix : Login widget fixes
+
 = 3.4.0 =
 * Fix : Fixed PHP Fatal error: Uncaught Error: Undefined constant
 
