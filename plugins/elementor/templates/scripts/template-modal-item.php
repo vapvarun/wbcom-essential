@@ -33,6 +33,9 @@
                 <# if ( is_woo ) { #>
                 <span class="wbcomessentialelementor-template--tag wbcomessentialelementor-template--woo"><?php echo __( 'WooCommerce', 'wbcom-essential' ); ?></span><span class="wbcomessentialelementor-template--sep"></span>
                 <# } #>
+				<# if ( is_reign ) { #>
+                <span class="wbcomessentialelementor-template--tag wbcomessentialelementor-template--reign"><?php echo __( 'Reign', 'wbcom-essential' ); ?></span><span class="wbcomessentialelementor-template--sep"></span>
+                <# } #>
                 <# if ( is_tec ) { #>
                 <span class="wbcomessentialelementor-template--tag wbcomessentialelementor-template--tec"><?php echo __( 'The Events Calendar', 'wbcom-essential' ); ?></span><span class="wbcomessentialelementor-template--sep"></span>
                 <# } #>
