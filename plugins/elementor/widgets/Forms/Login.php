@@ -790,6 +790,7 @@ class Login extends \Elementor\Widget_Base {
 
 		$this->form_fields_render_attributes();
 		remove_filter( 'login_url', 'reign_alter_login_url_at_frontend', 10, 3 );
+		remove_filter( 'login_url', 'buddyx_alter_login_url_at_frontend', 10, 3 );
 		?>
 		<form class="elementor-login elementor-form wbcom-elementor-login-form" method="post" action="<?php echo wp_login_url(); ?>">
 			<input type="hidden" name="wbcom_action_to_to" value="login">
