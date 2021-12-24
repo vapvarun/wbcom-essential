@@ -732,7 +732,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	protected function render_thumbnail() {
 		$thumbnail = $this->get_instance_value( 'thumbnail' );
 
-		if ( 'none' === $thumbnail && ! Plugin::elementor()->editor->is_edit_mode() ) {
+		if ( 'none' === $thumbnail ) {
 			return;
 		}
 
