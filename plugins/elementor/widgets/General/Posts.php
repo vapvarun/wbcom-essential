@@ -253,15 +253,15 @@ class Posts extends \Elementor\Widget_Base {
 				'options'   => array(
 					'left'   => array(
 						'title' => __( 'Left', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
 						'title' => __( 'Center', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
 						'title' => __( 'Right', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'default'   => 'center',
