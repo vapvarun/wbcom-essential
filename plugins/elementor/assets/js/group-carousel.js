@@ -9,7 +9,7 @@
 			var elementSettings = $(this).data( 'settings' ),
 				slidesToShow = +elementSettings.slides_to_show || 3,
 				isSingleSlide = 1 === slidesToShow,
-				defaultLGDevicesSlidesCount = isSingleSlide ? 1 : 2,
+				defaultLGDevicesSlidesCount = isSingleSlide ? 1 : slidesToShow,
 				elementorBreakpoints = elementorFrontend.config.responsive.activeBreakpoints;
 			
 			var swiperOptions = {
@@ -68,19 +68,16 @@
 					clickable: true
 				};
 			}
-			/* */
-			
+			/* */			
 			var group_swiper =	new Swiper($(this), swiperOptions );
 			
 			if ( elementSettings.pause_on_hover == 'yes' ) {
 				$( this ).mouseenter(function() {
-					group_swiper.autoplay.stop();
-					console.log('slider stopped');
+					//group_swiper.autoplay.stop();					
 				});
 
 				$( this ).mouseleave(function() {
-					group_swiper.autoplay.start();
-					console.log('slider started again');
+					//group_swiper.autoplay.start();					
 				});
 			}
 		});

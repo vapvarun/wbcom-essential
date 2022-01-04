@@ -451,17 +451,17 @@ class Menu extends \Elementor\Widget_Base {
 			<?php
 			echo apply_filters( 'reign_menu_output', ob_get_clean(), $settings['menu_location'], $settings );
 		} else {
-			$this->content_template();
+			$this->content_template_part();
 		}
 	}
 
 	/**
 	 * This is outputted while rending the page.
 	 */
-	protected function content_template() {
+	protected function content_template_part() {
 		?>
 		<div class="reign-wp-menu-content-area">
-			WordPress Menu Will Appear Here
+			<?php esc_html_e( 'WordPress Menu Will Appear Here', 'wbcom-essential' ); ?>
 		</div>
 		<?php
 	}
