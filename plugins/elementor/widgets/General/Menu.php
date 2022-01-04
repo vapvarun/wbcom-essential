@@ -102,15 +102,15 @@ class Menu extends \Elementor\Widget_Base {
 				'options'      => array(
 					'left'   => array(
 						'title' => __( 'Left', 'reign' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
 						'title' => __( 'Center', 'reign' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
 						'title' => __( 'Right', 'reign' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'prefix_class' => 'elementor-align-',
@@ -218,15 +218,15 @@ class Menu extends \Elementor\Widget_Base {
 				'options'      => array(
 					'left'   => array(
 						'title' => __( 'Left', 'reign' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
 						'title' => __( 'Center', 'reign' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
 						'title' => __( 'Right', 'reign' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'prefix_class' => 'elementor-align-',
