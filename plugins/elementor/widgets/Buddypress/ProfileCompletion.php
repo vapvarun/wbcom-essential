@@ -20,6 +20,8 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+		
+		wp_register_style( 'profile-completion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/profile-completion.css', array(), '3.5.0' );
 		wp_register_script( 'profile-completion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/profile-completion.js', array( 'elementor-frontend' ), '3.0.0', true );
 	}
 
@@ -35,6 +37,10 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 		return 'eicon-check-circle';
 	}
 	
+	public function get_style_depends() {
+		return array( 'profile-completion' );
+	}
+	
 	public function get_script_depends() {
 		return array( 'profile-completion' );
 	}
@@ -42,8 +48,6 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
-	
-	
 	
 	protected function _register_controls() {
 		$this->start_controls_section( 'section_content_layout', [
@@ -673,7 +677,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			$user_progress                         = $profile_percent;
 			
 
-			$progress_label = sprintf( __( '%s', 'buddyboss-theme' ), $user_progress['completion_percentage'] );
+			$progress_label = sprintf( __( '%s', 'wbcom-essential' ), $user_progress['completion_percentage'] );
 
 			if ( ( $settings['switch_hide_widget'] == 'yes' || !isset( $settings['switch_hide_widget'] ) ) && ( $user_progress['completion_percentage'] == 100 ) ) { ?>
                 <div class="profile_bit_wrapper profile_bit_wrapper--blank"></div>
@@ -693,27 +697,27 @@ class ProfileCompletion extends \Elementor\Widget_Base {
                                     <div class="progress_bit_linear">
                                         <div class="progress_bit__heading">
                                             <h3><?php echo $settings['heading_text']; ?></h3>
-                                            <i class="bb-icon-angle-right"></i></div>
+                                            <i class="eicon-chevron-right"></i></div>
                                         <div class="progress_bit__line <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'bb-completed' : 'bb-not-completed'; ?>">
                                             <div class="progress_bit__scale" style="width: <?php echo esc_attr( $user_progress['completion_percentage'] ); ?>%"></div>
                                         </div>
                                     </div>
                                     <div class="progress_bit__data">
-                                        <span class="progress_bit__data-num"><?php echo esc_html( $progress_label ); ?><span><?php _e( '%', 'buddyboss-theme' ); ?></span></span>
+                                        <span class="progress_bit__data-num"><?php echo esc_html( $progress_label ); ?><span><?php _e( '%', 'wbcom-essential' ); ?></span></span>
                                         <span class="progress_bit__data-remark"><?php echo $settings['completion_text']; ?></span>
 									</div>
 								</div>
 								<?php if ( $settings['switch_profile_btn'] &&  'linear' == $settings['skin_style'] ) { ?>
 									<div class="profile_bit_action">
 										<a class="profile_bit_action__link" href="<?php echo bp_loggedin_user_domain() . 'profile/edit/'; ?>"><?php echo ( $user_progress['completion_percentage'] == 100 ) ? $settings['edit_button_text'] : $settings['completion_button_text']; ?>
-											<i class="bb-icon-angle-right"></i></a>
+											<i class="eicon-chevron-right"></i></a>
 									</div>
 								<?php } ?>
                             </div>
                             <div class="profile_bit__details">
 								<?php if ( $settings['switch_heading'] ) : ?>
                                     <div class="profile_bit__heading">
-                                        <span class="progress-num"><?php echo esc_html( $progress_label ); ?><span><?php _e( '%', 'buddyboss-theme' ); ?></span></span>
+                                        <span class="progress-num"><?php echo esc_html( $progress_label ); ?><span><?php _e( '%', 'wbcom-essential' ); ?></span></span>
                                         <span class="progress-figure">
 										<div class="progress_bit_graph progress_bit_graph--sm">
 											<div class="progress-bit__ring <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'bb-completed' : 'bb-not-completed'; ?>" data-percentage="<?php echo esc_attr( $user_progress['completion_percentage'] ); ?>">
@@ -753,7 +757,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 						<?php if ( $settings['switch_profile_btn'] &&  'circle' == $settings['skin_style']) { ?>
                             <div class="profile_bit_action">
                                 <a class="profile_bit_action__link" href="<?php echo bp_loggedin_user_domain() . 'profile/edit/'; ?>"><?php echo ( $user_progress['completion_percentage'] == 100 ) ? $settings['edit_button_text'] : $settings['completion_button_text']; ?>
-                                    <i class="bb-icon-angle-right"></i></a>
+                                    <i class="eicon-chevron-right"></i></a>
                             </div>
 						<?php } ?>
                     </div>
