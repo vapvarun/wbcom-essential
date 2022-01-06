@@ -28,7 +28,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Group Carousel', 'stax-buddy-builder' );
+		return esc_html__( 'Group Carousel', 'wbcom-essential' );
 	}
 
 	public function get_icon() {
@@ -76,7 +76,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_group_carousel',
 			array(
-				'label' => __( 'Settings', 'stax-buddy-builder' ),
+				'label' => __( 'Settings', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);

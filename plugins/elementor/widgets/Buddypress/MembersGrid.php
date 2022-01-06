@@ -27,7 +27,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Members Grid', 'stax-buddy-builder' );
+		return esc_html__( 'Members Grid', 'wbcom-essential' );
 	}
 
 	public function get_icon() {
@@ -49,7 +49,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_members_carousel',
 			array(
-				'label' => __( 'Settings', 'stax-buddy-builder' ),
+				'label' => __( 'Settings', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);

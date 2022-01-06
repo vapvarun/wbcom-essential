@@ -32,7 +32,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		 */
 		public function __clone() {
 			// Cloning instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'stax-buddy-builder' ), BPB_VERSION );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
 		}
 
 		/**
@@ -43,7 +43,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		 */
 		public function __wakeup() {
 			// Unserializing instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'stax-buddy-builder' ), BPB_VERSION );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
 		}
 
 		/**

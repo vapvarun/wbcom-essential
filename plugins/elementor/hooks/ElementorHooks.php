@@ -158,7 +158,7 @@ class ElementorHooks {
 	// $element->add_responsive_control(
 	// 'column_order',
 	// array(
-	// 'label'     => esc_html__( 'Column Order', 'stax-buddy-builder' ),
+	// 'label'     => esc_html__( 'Column Order', 'wbcom-essential' ),
 	// 'type'      => \Elementor\Controls_Manager::NUMBER,
 	// 'min'       => 0,
 	// 'max'       => 100,
@@ -183,7 +183,7 @@ class ElementorHooks {
 	// $settings->add_tab(
 	// 'buddy-builder',
 	// array(
-	// 'label' => esc_html__( 'BuddyBuilder', 'stax-buddy-builder' ),
+	// 'label' => esc_html__( 'BuddyBuilder', 'wbcom-essential' ),
 	// )
 	// );
 	// }

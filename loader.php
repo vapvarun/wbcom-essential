@@ -41,7 +41,7 @@ function wbcom_essential() {
  * Load plugin text domain
  */
 function wbcom_essential_load_plugin_textdomain() {
-	load_plugin_textdomain( 'stax-buddy-builder', false, basename( __DIR__ ) . '/languages/' );
+	load_plugin_textdomain( 'wbcom-essential', false, basename( __DIR__ ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'wbcom_essential_load_plugin_textdomain' );
 

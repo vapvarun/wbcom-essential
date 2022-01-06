@@ -124,7 +124,7 @@ class Plugin {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'stax-buddy-builder' ), BPB_VERSION );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
 	}
 
 	/**
@@ -135,7 +135,7 @@ class Plugin {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'stax-buddy-builder' ), BPB_VERSION );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
 	}
 
 
@@ -207,16 +207,16 @@ class Plugin {
 	public function wbcom_essential_elementor_notice() {
 		$class = 'notice notice-warning';
 		/* translators: %s: html tags */
-		$message = sprintf( __( '%1$sBuddyBuilder%2$s requires %1$sElementor%2$s plugin installed & activated.', 'stax-buddy-builder' ), '<strong>', '</strong>' );
+		$message = sprintf( __( '%1$sBuddyBuilder%2$s requires %1$sElementor%2$s plugin installed & activated.', 'wbcom-essential' ), '<strong>', '</strong>' );
 
 		$plugin = 'elementor/elementor.php';
 
 		if ( current_user_can( 'activate_plugins' ) ) {
 			$action_url   = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
-			$button_label = __( 'Activate Elementor', 'stax-buddy-builder' );
+			$button_label = __( 'Activate Elementor', 'wbcom-essential' );
 		} elseif ( current_user_can( 'install_plugins' ) ) {
 			$action_url   = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
-			$button_label = __( 'Install Elementor', 'stax-buddy-builder' );
+			$button_label = __( 'Install Elementor', 'wbcom-essential' );
 		}
 
 		$button = '<p><a href="' . $action_url . '" class="button-primary">' . $button_label . '</a></p><p></p>';
@@ -331,6 +331,21 @@ class Plugin {
 		$elements = array();
 
 		if ( class_exists( 'BuddyPress' ) ) {
+			
+			$elements['Buddypress/HeaderBar'] = array(
+				'name'  => 'wbcom-header-bar',
+				'class' => 'Buddypress\HeaderBar',
+			);
+			
+			$elements['Buddypress/ProfileCompletion'] = array(
+				'name'  => 'wbcom-profile-completion',
+				'class' => 'Buddypress\ProfileCompletion',
+			);
+			
+			$elements['Buddypress/ActivityLists'] = array(
+				'name'  => 'wbcom-activity-lists',
+				'class' => 'Buddypress\ActivityLists',
+			);
 
 			$elements['Buddypress/MembersGrid'] = array(
 				'name'  => 'wbcom-members-grid',
