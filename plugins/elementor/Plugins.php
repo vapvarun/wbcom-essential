@@ -363,6 +363,12 @@ class Plugin {
 			);
 
 			if ( bp_is_active( 'groups' ) ) {
+				
+				$elements['Buddypress/GroupsLists'] = array(
+				'name'  => 'wbcom-groups-lists',
+				'class' => 'Buddypress\GroupsLists',
+			);
+				
 				$elements['Buddypress/GroupGrid']     = array(
 					'name'  => 'wbcom-groups-grid',
 					'class' => 'Buddypress\GroupGrid',
