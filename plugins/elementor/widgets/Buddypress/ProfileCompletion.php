@@ -20,6 +20,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+		wp_register_script( 'profile-completion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/profile-completion.js', array( 'elementor-frontend' ), '3.0.0', true );
 	}
 
 	public function get_name() {
@@ -33,7 +34,11 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 	public function get_icon() {
 		return 'eicon-check-circle';
 	}
-
+	
+	public function get_script_depends() {
+		return array( 'profile-completion' );
+	}
+	
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}

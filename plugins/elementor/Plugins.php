@@ -365,9 +365,9 @@ class Plugin {
 			if ( bp_is_active( 'groups' ) ) {
 				
 				$elements['Buddypress/GroupsLists'] = array(
-				'name'  => 'wbcom-groups-lists',
-				'class' => 'Buddypress\GroupsLists',
-			);
+					'name'  => 'wbcom-groups-lists',
+					'class' => 'Buddypress\GroupsLists',
+				);
 				
 				$elements['Buddypress/GroupGrid']     = array(
 					'name'  => 'wbcom-groups-grid',
@@ -377,6 +377,25 @@ class Plugin {
 					'name'  => 'wbcom-group-carousel',
 					'class' => 'Buddypress\GroupCarousel',
 				);
+			}
+			
+			$elements['Buddypress/DashboardIntro'] = array(
+				'name'  => 'wbcom-dashboard-intro',
+				'class' => 'Buddypress\DashboardIntro',
+			);
+			
+			if( class_exists('bbPress')) {
+				
+				$elements['Buddypress/Forums'] = array(
+					'name'  => 'wbcom-forums-activity',
+					'class' => 'Buddypress\Forums',
+				);
+				
+				$elements['Buddypress/ForumsActivity'] = array(
+					'name'  => 'wbcom-group-carousel',
+					'class' => 'Buddypress\ForumsActivity',
+				);
+			
 			}
 		}
 
