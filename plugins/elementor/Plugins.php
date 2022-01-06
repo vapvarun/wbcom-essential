@@ -346,6 +346,11 @@ class Plugin {
 				'name'  => 'wbcom-activity-lists',
 				'class' => 'Buddypress\ActivityLists',
 			);
+			
+			$elements['Buddypress/MembersLists'] = array(
+				'name'  => 'wbcom-members-lists',
+				'class' => 'Buddypress\MembersLists',
+			);
 
 			$elements['Buddypress/MembersGrid'] = array(
 				'name'  => 'wbcom-members-grid',
