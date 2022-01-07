@@ -33,13 +33,13 @@
 }
 
 /* widget */
-.wbcom-essential-members {
+.wbcom-essential-groups {
     border: 1px solid #e3e3e3;
     padding: 20px;
     background-color: #fff;
 }
 
-.wbcom-essential-members div.item-options {
+.wbcom-essential-groups div.item-options {
     border-bottom: 1px solid #e3e3e3;
     font-size: 0;
     line-height: 1;
@@ -47,7 +47,7 @@
     padding: 0;
 }
 
-.wbcom-essential-members div.item-options a {
+.wbcom-essential-groups div.item-options a {
     color: #9c9c9c;
     font-size: .875rem;
     font-weight: 500;
@@ -59,22 +59,22 @@
     animation: unset!important;
 }
 
-.wbcom-essential-members div.item-options a:hover {
+.wbcom-essential-groups div.item-options a:hover {
     color: #1d76da;
 }
 
-.wbcom-essential-members div.item-options .selected {
+.wbcom-essential-groups div.item-options .selected {
     color: #303030;
     border-bottom: 1px solid #1d76da;
     font-weight: 600;
     margin-bottom: -1px;
 }
 
-.wbcom-essential-members .wbcom-essential-members__tab {
+.wbcom-essential-groups .wbcom-essential-groups__tab {
     text-transform: capitalize;
 }
 
-.wbcom-essential-members .wbcom-essential-members-list:not(.active) {
+.wbcom-essential-groups .wbcom-essential-groups-list:not(.active) {
     display: none;
 }
 
@@ -85,56 +85,64 @@
     padding: 0 20px;
 }
 
-.wbcom-essential-members-list__item {
+.wbcom-essential-groups-list #groups-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wbcom-essential-groups-list #groups-list li {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    padding: 3px 0;
-    margin-bottom: 10px;
+    padding: 10px 0;
+    margin-bottom: 0;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 100%;
 }
 
-.wbcom-essential-members-list--align-left .wbcom-essential-members-list__item .wbcom-essential-members-list__avatar {
-    margin-right: 15px;
+.wbcom-essential-groups-list #groups-list li .item-avatar {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 40px;
+    flex: 0 0 40px;
+    margin-right: 12px;
 }
 
-.wbcom-essential-members-list__avatar a {
+.wbcom-essential-groups-list #groups-list .item-avatar a {
     display: inline-block;
 }
 
-.wbcom-essential-members-list__avatar .avatar {
-    border-radius: 100%;
+.wbcom-essential-groups-list #groups-list li .item-avatar img {
+    border-radius: 3px;
 }
 
-.wbcom-essential-members-list__name a {
+.wbcom-essential-groups-list__name a {
     font-size: 14px;
     font-weight: 500;
     color: #303030;
 }
 
-.wbcom-essential-members-list__item .member-status.online {
-    background: #1cd991;
-    border: 2px solid #fff;
-    border-radius: 100%;
-    width: 13px;
-    height: 13px;
-    margin-left: auto;
-    display: inline-block;
-    position: absolute;
-    margin-top: -30px;
+.wbcom-essential-groups-list #groups-list li .item {
+    line-height: 1;
 }
 
-.wbcom-essential-members-list--align-right .wbcom-essential-members-list__item {
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -ms-flex-flow: row-reverse;
-    flex-flow: row-reverse;
+.wbcom-essential-groups-list #groups-list li .item-title {
+    margin-bottom: 3px;
 }
 
-.wbcom-essential-members-list--align-right .wbcom-essential-members-list__item .wbcom-essential-members-list__avatar {
-    margin-left: 15px;
-    margin-right: 0;
+.wbcom-essential-groups-list #groups-list li .item-title a {
+    font-size: .9375rem;
+    font-weight: 500;
+    color: #303030;
+}
+
+.wbcom-essential-groups-list #groups-list li span.activity {
+    color: #a3a5a9;
+    font-size: 12px;
+    line-height: 1.2;
 }

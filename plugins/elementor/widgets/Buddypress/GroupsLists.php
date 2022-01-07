@@ -19,6 +19,7 @@ class GroupsLists extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 		
+		wp_register_style( 'groups-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/groups-lists.css', array(), '3.5.0' );
 		wp_register_script( 'groups-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/groups-lists.js', array( 'elementor-frontend' ), '3.0.0', true );
 	}
 
@@ -32,6 +33,10 @@ class GroupsLists extends \Elementor\Widget_Base {
 
 	public function get_icon() {
 		return 'eicon-toggle';
+	}
+	
+	public function get_style_depends() {
+		return array( 'groups-lists' );
 	}
 	
 	public function get_script_depends() {
@@ -539,7 +544,7 @@ class GroupsLists extends \Elementor\Widget_Base {
 							<?php if ( '' != $settings['groups_link_text'] ) { ?>
 								<a href="<?php bp_groups_directory_permalink(); ?>"
 								class="count-more"><?php echo esc_html( $settings['groups_link_text'] ); ?><i
-											class="wbcom-essential-icon-chevron-right"></i></a>
+											class="eicon-chevron-right"></i></a>
 							<?php } ?>
 						</div>
 					<?php endif; ?>
