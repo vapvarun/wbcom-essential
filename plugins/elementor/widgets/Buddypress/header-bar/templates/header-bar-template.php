@@ -36,16 +36,34 @@ $this->add_render_attribute( 'site-header', 'data-sidebartoggle-icon', esc_attr(
 
 $this->add_render_attribute( 'site-header-container', 'class', 'container site-header-container flex default-header' );
 $container = '<div ' . $this->get_render_attribute_string( 'site-header-container' ) . '>';
+
+$elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
+
 ?>
 
 <div <?php echo $this->get_render_attribute_string( 'site-header' ); ?>>
 
 	<?php echo ( $settings['switch_logo'] || $settings['switch_nav'] ) ? wp_kses_post( $container ) : ''; ?>
 
-	<?php if ( $settings['switch_logo'] ) : ?>
-		<?php get_template_part( 'template-parts/site-logo' ); ?>
+	<?php if ( $settings['switch_logo'] ) : ?>		
+		
+		<div id="site-logo" class="site-branding">
+			<<?php echo $elem; ?> class="site-title">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">					
+					<?php if ( has_custom_logo()  ) : ?>
+						<?php the_custom_logo(); ?>
+					<?php else: ?>
+						<?php echo get_bloginfo( 'name' ); ?>
+					<?php endif; ?>
+				</a>
+			</<?php echo $elem; ?>>
+		</div>
+
+		
 	<?php endif; ?>
+	
 	<?php if ( $settings['switch_nav'] ) : ?>
+	
 		<?php
 		$nav_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-bar-nav.php';
 
@@ -53,22 +71,22 @@ $container = '<div ' . $this->get_render_attribute_string( 'site-header-containe
 			require $nav_template_path;
 		}
 		?>
+		
 	<?php endif; ?>
-	<?php if ( $settings['switch_bar'] ) : ?>
-		<?php get_template_part( 'template-parts/header-aside' ); ?>
+	
+	<?php if ( $settings['switch_bar'] ) : ?>	
+		
+		<?php
+		$nheader_aside_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-aside.php';
+
+		if ( file_exists( $nheader_aside_template_path ) ) {
+			require $nheader_aside_template_path;
+		}
+		?>
+		
 	<?php endif; ?>
 
 	<?php echo ( $settings['switch_logo'] || $settings['switch_nav'] ) ? '</div>' : ''; ?>
-
-	<?php get_template_part( 'template-parts/header-mobile', apply_filters( 'buddyboss_header_mobile', '' ) ); ?>
-	<div class="header-search-wrap header-search-wrap--elementor">
-		<div class="container">
-			<?php
-			add_filter( 'search_placeholder', 'buddyboss_search_input_placeholder_text' );
-			get_search_form();
-			remove_filter( 'search_placeholder', 'buddyboss_search_input_placeholder_text' );
-			?>
-			<a href="#" class="close-search"><i class="bb-icon-close-circle"></i></a>
-		</div>
-	</div>
+	
+	
 </div>
