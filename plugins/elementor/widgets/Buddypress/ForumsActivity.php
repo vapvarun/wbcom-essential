@@ -18,6 +18,8 @@ class ForumsActivity extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+		
+		wp_register_style( 'forums-activity', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forums-activity.css', array(), '3.5.0' );
 	}
 
 	public function get_name() {
@@ -32,7 +34,9 @@ class ForumsActivity extends \Elementor\Widget_Base {
 		return 'eicon-archive';
 	}
 	
-	
+	public function get_style_depends() {
+		return array( 'forums-activity' );
+	}
 
 	public function get_categories() {
 		return array( 'wbcom-elements' );
@@ -816,7 +820,7 @@ class ForumsActivity extends \Elementor\Widget_Base {
 
 			<?php if ( $settings['switch_my_discussions'] && is_user_logged_in() ) { ?>
 				<div class="wbcom-essential-forums-activity-btn">
-					<a class="wbcom-essential-forums-activity-btn__link" href="<?php echo $my_discussions_link; ?>"><?php echo $settings['my_discussions_button_text']; ?><i class="wbcom-essential-icon-angle-right"></i></a>
+					<a class="wbcom-essential-forums-activity-btn__link" href="<?php echo $my_discussions_link; ?>"><?php echo $settings['my_discussions_button_text']; ?><i class="eicon-angle-right"></i></a>
 				</div>
 			<?php } ?>
 

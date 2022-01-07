@@ -33,6 +33,51 @@
 }
 
 /* widget */
+
+.wbcom-essential-no-data {
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 100%;
+}
+
+.wbcom-essential-no-data__image {
+    max-width: 50%;
+    margin: 0 0 25px;
+}
+
+.wbcom-essential-no-data .wbcom-essential-no-data__link {
+    display: inline-block;
+    font-size: 14px;
+    padding: 4px 20px;
+    border: 1px solid #e3e3e3;
+    border-radius: 30px;
+    margin: 10px 0 0;
+}
+
+.wbcom-essential-no-data .bbp-template-notice {
+    box-shadow: none;
+    margin: 0;
+    padding: 0 10%;
+    background: #fff;
+    border: 0;
+}
+
+.wbcom-essential-no-data .bbp-template-notice ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wbcom-essential-no-data .bbp-template-notice ul li {
+    font-size: 14px;
+}
+
 .bbel-list-flow {
     margin: 0 -20px;
     max-height: 900px;
