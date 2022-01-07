@@ -16,7 +16,8 @@ $wbcom_ele_register_url = apply_filters( 'wbcom_ele_notification_registration_ur
 				$user_link = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( get_current_user_id() ) : '#'; ?>
 				<div class="user-link-wrap">
 					<a class="user-link" href="<?php echo esc_url(  $user_link ) ;?>">						
-						<span class="rg-user"><?php echo $current_user->display_name; ?></span>						
+						<span class="rg-user"><?php echo $current_user->display_name; ?></span>
+						<?php echo get_avatar( $current_user->user_email, 200 ); ?>
 					</a>
 					<?php 
 						wp_nav_menu(
