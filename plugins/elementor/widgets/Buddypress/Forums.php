@@ -18,6 +18,8 @@ class Forums extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+		
+		wp_register_style( 'forum-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forum-lists.css', array(), '3.5.0' );
 	}
 
 	public function get_name() {
@@ -32,6 +34,9 @@ class Forums extends \Elementor\Widget_Base {
 		return 'eicon-post-list';
 	}	
 	
+	public function get_style_depends() {
+		return array( 'forum-lists' );
+	}
 
 	public function get_categories() {
 		return array( 'wbcom-elements' );
@@ -469,7 +474,7 @@ class Forums extends \Elementor\Widget_Base {
 					<?php if ($settings['switch_more']) : ?>
 						<div class="wbcom-essential-block-header__extra push-right">
 						<?php if( '' != $settings['forum_link_text'] ) { ?>
-							<a href="<?php echo home_url(bbp_get_root_slug()); ?>" class="count-more"><?php echo esc_html( $settings['forum_link_text'] ); ?><i class="wbcom-essential-icon-chevron-right"></i></a>
+							<a href="<?php echo home_url(bbp_get_root_slug()); ?>" class="count-more"><?php echo esc_html( $settings['forum_link_text'] ); ?><i class="eicon-chevron-right"></i></a>
 						<?php } ?>
 						</div>
 					<?php endif; ?>
