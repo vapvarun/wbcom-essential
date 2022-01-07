@@ -871,9 +871,9 @@ class ForumsActivity extends \Elementor\Widget_Base {
 							<div class="wbcom-essential-fa__topic-title"><h2><?php echo $topic_title; ?></h2></div>
 							<?php if ($settings['switch_meta']) : ?>
 								<div class="wbcom-essential-fa__meta">
-									<span class="wbcom-essential-fa__meta-count"><?php echo $topic_reply_count; ?> <?php _e( 'repl' . ($topic_reply_count != 1 ? 'ies' : 'y') . ' ', 'buddyboss-theme' ); ?></span>
+									<span class="wbcom-essential-fa__meta-count"><?php echo $topic_reply_count; ?> <?php _e( 'repl' . ($topic_reply_count != 1 ? 'ies' : 'y') . ' ', 'wbcom-essential' ); ?></span>
 									<span class="bs-separator">·</span>
-									<span class="wbcom-essential-fa__meta-who"><?php echo $get_last_reply_author_name; ?> <?php _e( 'replied', 'buddyboss-theme' ); ?> </span>
+									<span class="wbcom-essential-fa__meta-who"><?php echo $get_last_reply_author_name; ?> <?php _e( 'replied', 'wbcom-essential' ); ?> </span>
 									<span class="wbcom-essential-fa__meta-when"><?php echo $get_last_reply_since; ?></span>
 								</div>
 							<?php endif; ?>
@@ -928,7 +928,7 @@ class ForumsActivity extends \Elementor\Widget_Base {
 				
 				<div class="wbcom-essential-no-data wbcom-essential-no-data--fa-activity">
 					<img class="wbcom-essential-no-data__image" src="<?php echo get_template_directory_uri(); ?>/assets/images/svg/dfy-no-data-icon03.svg" alt="Forums Activity" />
-					<div class="wbcom-essential-no-data__msg"><?php _e( 'You are not logged in.', 'buddyboss-theme' ); ?></div>
+					<div class="wbcom-essential-no-data__msg"><?php _e( 'You are not logged in.', 'wbcom-essential' ); ?></div>
 					<?php if( '' !== $settings['no_forums_button_text']) { ?>
 						<a href="<?php echo home_url(bbp_get_root_slug()); ?>" class="wbcom-essential-no-data__link"><?php echo $settings['no_forums_button_text']; ?></a>
 					<?php } ?>

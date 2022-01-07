@@ -547,9 +547,9 @@ class GroupsLists extends \Elementor\Widget_Base {
 			<?php } ?>
 
 			<?php $groups_filter = array(
-				'active'  => esc_html__( 'active', 'buddyboss-theme' ),
-				'popular' => esc_html__( 'popular', 'buddyboss-theme' ),
-				'newest'  => esc_html__( 'newest', 'buddyboss-theme' ),
+				'active'  => esc_html__( 'active', 'wbcom-essential' ),
+				'popular' => esc_html__( 'popular', 'wbcom-essential' ),
+				'newest'  => esc_html__( 'newest', 'wbcom-essential' ),
 			); ?>
 
 			<?php if ( $settings['switch_filter'] ) : ?>
@@ -597,11 +597,11 @@ class GroupsLists extends \Elementor\Widget_Base {
 													<span class="activity">
 													<?php
 													if ( 'newest' == $k ) {
-														printf( esc_html__( 'created %s', 'buddyboss-theme' ), bp_get_group_date_created() );
+														printf( esc_html__( 'created %s', 'wbcom-essential' ), bp_get_group_date_created() );
 													} elseif ( 'popular' == $k ) {
 														bp_group_member_count();
 													} else {
-														printf( esc_html__( 'active %s', 'buddyboss-theme' ), bp_get_group_last_active() );
+														printf( esc_html__( 'active %s', 'wbcom-essential' ), bp_get_group_last_active() );
 													}
 													?>
 													</span>
@@ -621,9 +621,9 @@ class GroupsLists extends \Elementor\Widget_Base {
 							<img class="wbcom-essential-no-data__image"
 								 src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/svg/dfy-no-data-icon04.svg"
 								 alt="Groups"/>
-							<div><?php echo esc_html__( 'No groups matched the current filter.', 'buddyboss-theme' ); ?></div>
+							<div><?php echo esc_html__( 'No groups matched the current filter.', 'wbcom-essential' ); ?></div>
 							<a href="<?php echo trailingslashit( bp_get_groups_directory_permalink() . 'create' ); ?>"
-							   class="wbcom-essential-no-data__link"><?php echo esc_html__( 'Create a group', 'buddyboss-theme' ); ?></a>
+							   class="wbcom-essential-no-data__link"><?php echo esc_html__( 'Create a group', 'wbcom-essential' ); ?></a>
 						</div>
 
 					<?php endif; ?>
