@@ -661,6 +661,7 @@ class MembersLists extends \Elementor\Widget_Base {
 							<img class="wbcom-essential-no-data__image"
 								 src="<?php echo WBCOM_ESSENTIAL_ASSETS_URL; ?>images/no-data-found.svg"
 								 alt="Members"/>
+							<br />
 							<div><?php echo __( 'Sorry, no members were found.', 'wbcom-essential' ); ?></div>
 						</div>
 

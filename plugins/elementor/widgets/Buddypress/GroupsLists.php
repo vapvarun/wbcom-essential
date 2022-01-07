@@ -626,6 +626,7 @@ class GroupsLists extends \Elementor\Widget_Base {
 							<img class="wbcom-essential-no-data__image"
 								 src="<?php echo esc_url( WBCOM_ESSENTIAL_ASSETS_URL ); ?>images/no-data-found.svg"
 								 alt="Groups"/>
+							<br />
 							<div><?php echo esc_html__( 'No groups matched the current filter.', 'wbcom-essential' ); ?></div>
 							<a href="<?php echo trailingslashit( bp_get_groups_directory_permalink() . 'create' ); ?>"
 							   class="wbcom-essential-no-data__link"><?php echo esc_html__( 'Create a group', 'wbcom-essential' ); ?></a>
