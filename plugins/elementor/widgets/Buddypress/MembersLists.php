@@ -659,7 +659,7 @@ class MembersLists extends \Elementor\Widget_Base {
 
 						<div class="wbcom-essential-members-list wbcom-essential-members-list--<?php echo $mtype; ?> wbcom-essential-no-data wbcom-essential-no-data--members <?php echo $mtype == $type ? 'active' : ''; ?>">
 							<img class="wbcom-essential-no-data__image"
-								 src="<?php echo get_template_directory_uri(); ?>/assets/images/svg/dfy-no-data-icon03.svg"
+								 src="<?php echo WBCOM_ESSENTIAL_ASSETS_URL; ?>images/no-data-found.svg"
 								 alt="Members"/>
 							<div><?php echo __( 'Sorry, no members were found.', 'wbcom-essential' ); ?></div>
 						</div>

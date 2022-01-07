@@ -915,7 +915,7 @@ class ForumsActivity extends \Elementor\Widget_Base {
 				} else { ?>
 				
 					<div class="wbcom-essential-no-data wbcom-essential-no-data--fa-activity">
-						<img class="wbcom-essential-no-data__image" src="<?php echo get_template_directory_uri(); ?>/assets/images/svg/dfy-no-data-icon03.svg" alt="Forums Activity" />
+						<img class="wbcom-essential-no-data__image" src="<?php echo WBCOM_ESSENTIAL_ASSETS_URL; ?>images/no-data-found.svg" alt="Forums Activity" />
 						<div class="wbcom-essential-no-data__msg"><?php echo esc_html( $settings['no_forums_paragraph_text'] ); ?></div>
 						<?php if( '' !== $settings['no_forums_button_text']) { ?>
 							<a href="<?php echo home_url(bbp_get_root_slug()); ?>" class="wbcom-essential-no-data__link"><?php echo esc_html( $settings['no_forums_button_text'] ); ?></a>
@@ -927,7 +927,7 @@ class ForumsActivity extends \Elementor\Widget_Base {
 			} else { ?>
 				
 				<div class="wbcom-essential-no-data wbcom-essential-no-data--fa-activity">
-					<img class="wbcom-essential-no-data__image" src="<?php echo get_template_directory_uri(); ?>/assets/images/svg/dfy-no-data-icon03.svg" alt="Forums Activity" />
+					<img class="wbcom-essential-no-data__image" src="<?php echo WBCOM_ESSENTIAL_ASSETS_URL; ?>images/no-data-found.svg" alt="Forums Activity" />
 					<div class="wbcom-essential-no-data__msg"><?php _e( 'You are not logged in.', 'wbcom-essential' ); ?></div>
 					<?php if( '' !== $settings['no_forums_button_text']) { ?>
 						<a href="<?php echo home_url(bbp_get_root_slug()); ?>" class="wbcom-essential-no-data__link"><?php echo $settings['no_forums_button_text']; ?></a>
