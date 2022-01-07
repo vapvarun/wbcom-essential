@@ -18,6 +18,8 @@ class DashboardIntro extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+		
+		wp_register_style( 'dashboard-intro', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/dashboard-intro.css', array(), '3.5.0' );
 	}
 
 	public function get_name() {
@@ -30,8 +32,11 @@ class DashboardIntro extends \Elementor\Widget_Base {
 
 	public function get_icon() {
 		return 'eicon-icon-box';
-	}	
-	
+	}
+
+	public function get_style_depends() {
+		return array( 'dashboard-intro' );
+	}
 
 	public function get_categories() {
 		return array( 'wbcom-elements' );
