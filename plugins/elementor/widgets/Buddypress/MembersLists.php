@@ -19,6 +19,7 @@ class MembersLists extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 		
+		wp_register_style( 'members-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/members-lists.css', array(), '3.5.0' );
 		wp_register_script( 'members-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/members-lists.js', array( 'elementor-frontend' ), '3.0.0', true );
 	}
 
@@ -32,6 +33,10 @@ class MembersLists extends \Elementor\Widget_Base {
 
 	public function get_icon() {
 		return 'eicon-person';
+	}
+	
+	public function get_style_depends() {
+		return array( 'members-lists' );
 	}
 	
 	public function get_script_depends() {
@@ -121,11 +126,11 @@ class MembersLists extends \Elementor\Widget_Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'wbcom-essential' ),
-						'icon'  => 'fas fa-align-left',
+						'icon'  => 'eicon-h-align-left',
 					],
 					'right' => [
 						'title' => __( 'Right', 'wbcom-essential' ),
-						'icon'  => 'fas fa-align-right',
+						'icon'  => 'eicon-h-align-right',
 					],
 				],
 				'default' => 'left',
@@ -576,7 +581,7 @@ class MembersLists extends \Elementor\Widget_Base {
 							<?php if( '' != $settings['member_link_text'] ) { ?>
 								<a href="<?php bp_members_directory_permalink(); ?>"
 								   class="count-more"><?php echo esc_html( $settings['member_link_text'] ); ?><i
-											class="wbcom-essential-icon-chevron-right"></i></a>
+											class="eicon-chevron-right"></i></a>
 							<?php } ?>
 						</div>
 					<?php endif; ?>
