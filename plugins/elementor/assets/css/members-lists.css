@@ -33,6 +33,33 @@
 }
 
 /* widget */
+.wbcom-essential-no-data {
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 100%;
+}
+
+.wbcom-essential-no-data.wbcom-essential-no-data--members {
+    position: static;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    left: unset;
+    top: unset;
+    margin: 30px 0;
+}
+
+.wbcom-essential-no-data img.wbcom-essential-no-data__image {
+    max-width: 50%;
+    margin: 0 0 25px;
+}
+
 .wbcom-essential-members {
     border: 1px solid #e3e3e3;
     padding: 20px;
