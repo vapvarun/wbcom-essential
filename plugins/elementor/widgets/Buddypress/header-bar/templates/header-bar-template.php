@@ -88,5 +88,12 @@ $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
 
 	<?php echo ( $settings['switch_logo'] || $settings['switch_nav'] ) ? '</div>' : ''; ?>
 	
+	<div class="header-search-wrap header-search-wrap--elementor">
+		<div class="container">
+			<?php  get_search_form();?>
+			<a href="#" class="close-search"><i class="wbcom-essential-icon-close-circle"></i></a>
+		</div>
+	</div>
+	
 	
 </div>

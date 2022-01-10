@@ -18,12 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'menu_id'        => 'primary-menu',
 				'container'      => false,
 				'fallback_cb'    => '',
-				'menu_class'     => 'primary-menu bb-primary-overflow',
+				'menu_class'     => 'primary-menu wbcom-essential-primary-overflow',
 			)
 		);
 		?>
         <div id="navbar-collapse">
-            <a class="more-button" href="#"><i class="bb-icon-menu-dots-h"></i></a>
+            <a class="more-button" href="#"><i class="wbcom-essential-icon-menu-dots-h"></i></a>
             <ul id="navbar-extend" class="sub-menu"></ul>
         </div>
     </div>

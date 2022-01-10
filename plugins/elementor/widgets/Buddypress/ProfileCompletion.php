@@ -689,7 +689,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
                             <div class="progress_container">
                                 <div class="progress_bit">
                                     <div class="progress_bit_graph">
-                                        <div class="progress-bit__ring <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'bb-completed' : 'bb-not-completed'; ?>" data-percentage="<?php echo esc_attr( $user_progress['completion_percentage'] ); ?>">
+                                        <div class="progress-bit__ring <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'wbcom-essential-completed' : 'wbcom-essential-not-completed'; ?>" data-percentage="<?php echo esc_attr( $user_progress['completion_percentage'] ); ?>">
                                             <span class="progress-bit__left"><span class="progress-bit__disc"></span></span>
                                             <span class="progress-bit__right"><span class="progress-bit__disc"></span></span>
                                         </div>
@@ -698,7 +698,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
                                         <div class="progress_bit__heading">
                                             <h3><?php echo $settings['heading_text']; ?></h3>
                                             <i class="eicon-chevron-right"></i></div>
-                                        <div class="progress_bit__line <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'bb-completed' : 'bb-not-completed'; ?>">
+                                        <div class="progress_bit__line <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'wbcom-essential-completed' : 'wbcom-essential-not-completed'; ?>">
                                             <div class="progress_bit__scale" style="width: <?php echo esc_attr( $user_progress['completion_percentage'] ); ?>%"></div>
                                         </div>
                                     </div>
@@ -720,7 +720,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
                                         <span class="progress-num"><?php echo esc_html( $progress_label ); ?><span><?php _e( '%', 'wbcom-essential' ); ?></span></span>
                                         <span class="progress-figure">
 										<div class="progress_bit_graph progress_bit_graph--sm">
-											<div class="progress-bit__ring <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'bb-completed' : 'bb-not-completed'; ?>" data-percentage="<?php echo esc_attr( $user_progress['completion_percentage'] ); ?>">
+											<div class="progress-bit__ring <?php echo ( $user_progress['completion_percentage'] == 100 ) ? 'wbcom-essential-completed' : 'wbcom-essential-not-completed'; ?>" data-percentage="<?php echo esc_attr( $user_progress['completion_percentage'] ); ?>">
 												<span class="progress-bit__left"><span class="progress-bit__disc"></span></span>
 												<span class="progress-bit__right"><span class="progress-bit__disc"></span></span>
 											</div>

@@ -201,7 +201,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'return_value' => 'inline-block',
 				'default'      => 'inline-block',
 				'selectors'    => array(
-					'{{WRAPPER}} .bb-separator' => 'display: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-essential-separator' => 'display: {{VALUE}};',
 				),
 			)
 		);
@@ -274,40 +274,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			);
 		endif;
 
-		if ( class_exists( 'SFWD_LMS' ) ) :
-			$this->add_control(
-				'dark_icon_switch',
-				array(
-					'label'        => esc_html__( 'Dark Mode', 'wbcom-essential' ),
-					'description'  => esc_html__( 'Show "dark mode" toggle icon on a single lesson/topic page.', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-					'return_value' => 'inline-block',
-					'default'      => 'inline-block',
-					'selectors'    => array(
-						'{{WRAPPER}} #bb-toggle-theme' => 'display: {{VALUE}};',
-					),
-				)
-			);
 
-			$this->add_control(
-				'sidebartoggle_icon_switch',
-				array(
-					'label'        => esc_html__( 'Sidebar Toggle', 'wbcom-essential' ),
-					'description'  => esc_html__( 'Show "sidebar" toggle icon on a single lesson/topic page.', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-					'return_value' => 'inline-block',
-					'default'      => 'inline-block',
-					'selectors'    => array(
-						'{{WRAPPER}} .header-minimize-link' => 'display: {{VALUE}};',
-						'{{WRAPPER}} .header-maximize-link' => 'display: {{VALUE}};',
-					),
-				)
-			);
-		endif;
 
 		$this->end_controls_section();
 
@@ -637,7 +604,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'size' => 10,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .header-aside-inner > *:not(.bb-separator)' => 'padding: 0 {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .header-aside-inner > *:not(.wbcom-essential-separator)' => 'padding: 0 {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} #header-messages-dropdown-elem'             => 'padding: 0 {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} #header-notifications-dropdown-elem'        => 'padding: 0 {{SIZE}}{{UNIT}};',
 				),
@@ -671,7 +638,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'size' => 1,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .bb-separator' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-essential-separator' => 'width: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -683,7 +650,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => 'rgba(0, 0, 0, 0.1)',
 				'selectors' => array(
-					'{{WRAPPER}} .bb-separator' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .wbcom-essential-separator' => 'background-color: {{VALUE}}',
 				),
 			)
 		);
@@ -780,7 +747,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'icons_shadow',
 				'label'    => esc_html__( 'Icons Shadow', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .header-aside i:not(.bb-icon-angle-down)',
+				'selector' => '{{WRAPPER}} .header-aside i:not(.wbcom-essential-icon-angle-down)',
 			)
 		);
 
@@ -870,7 +837,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'type'      => \Elementor\Controls_Manager::COLOR,
 					'default'   => '',
 					'selectors' => array(
-						'{{WRAPPER}} .header-aside a#bb-toggle-theme i' => 'color: {{VALUE}} !important',
+						'{{WRAPPER}} .header-aside a#wbcom-essential-toggle-theme i' => 'color: {{VALUE}} !important',
 					),
 				)
 			);
@@ -1268,7 +1235,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'typography_sign_in',
 				'label'    => esc_html__( 'Typography Sign In', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .site-header--elementor .bb-header-buttons a.signin-button',
+				'selector' => '{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.signin-button',
 			)
 		);
 
@@ -1289,7 +1256,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Sign In Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}  .site-header--elementor .bb-header-buttons a.signin-button' => 'color: {{VALUE}}',
+					'{{WRAPPER}}  .site-header--elementor .wbcom-essential-header-buttons a.signin-button' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -1309,7 +1276,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Sign In Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}  .site-header--elementor .bb-header-buttons a.signin-button:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}}  .site-header--elementor .wbcom-essential-header-buttons a.signin-button:hover' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -1332,7 +1299,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'typography_sign_up',
 				'label'    => esc_html__( 'Typography Sign Up', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .site-header--elementor .bb-header-buttons a.singup',
+				'selector' => '{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.singup',
 			)
 		);
 
@@ -1353,7 +1320,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Sign Up Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .site-header--elementor .bb-header-buttons a.singup' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.singup' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -1364,7 +1331,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Sign Up Background Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .site-header--elementor .bb-header-buttons a.singup' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.singup' => 'background-color: {{VALUE}}',
 				),
 			)
 		);
@@ -1384,7 +1351,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Sign Up Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .site-header--elementor .bb-header-buttons a.singup:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.singup:hover' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -1395,7 +1362,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Sign Up Background Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .site-header--elementor .bb-header-buttons a.singup:hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.singup:hover' => 'background-color: {{VALUE}}',
 				),
 			)
 		);
@@ -1411,7 +1378,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Border', 'wbcom-essential' ),
 				'placeholder' => '1px',
 				'default'     => '1px',
-				'selector'    => '{{WRAPPER}} .site-header--elementor .bb-header-buttons a.singup',
+				'selector'    => '{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.singup',
 				'separator'   => 'before',
 			)
 		);
@@ -1423,7 +1390,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .site-header--elementor .bb-header-buttons a.singup' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .site-header--elementor .wbcom-essential-header-buttons a.singup' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
