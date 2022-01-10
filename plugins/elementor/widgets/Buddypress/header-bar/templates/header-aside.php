@@ -46,7 +46,7 @@ $search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_
 							if ( function_exists( 'bp_is_active' ) ) {
 								$menu = wp_nav_menu(
 									array(
-										'theme_location' => 'header-my-account',
+										'theme_location' => 'user_menu',
 										'echo'           => false,
 										'fallback_cb'    => '__return_false',
 									)
@@ -54,7 +54,7 @@ $search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_
 								if ( ! empty( $menu ) ) {
 									wp_nav_menu(
 										array(
-											'theme_location' => 'header-my-account',
+											'theme_location' => 'user_menu',
 											'menu_id'     => 'header-my-account-menu',
 											'container'   => false,
 											'fallback_cb' => '',
