@@ -33,6 +33,16 @@
 			}
 		});
 		
+		$( document ).on(
+				'click',
+				'.header-aside div.menu-item-has-children > a',
+				function ( e ) {
+					e.preventDefault();
+					var current = $( this ).closest( 'div.menu-item-has-children' );
+					current.siblings( '.selected' ).removeClass( 'selected' );
+					current.toggleClass( 'selected' );
+				}
+			);
 		
 	}	
 	
