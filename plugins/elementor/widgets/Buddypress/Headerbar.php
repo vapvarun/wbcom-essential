@@ -776,7 +776,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'All Icons', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#939597',
+				'default'   => '#303030',
 				'selectors' => array(
 					'{{WRAPPER}} #header-aside.header-aside .header-search-link i'                => 'color: {{VALUE}}',
 					'{{WRAPPER}} #header-aside.header-aside .messages-wrap > a i'                 => 'color: {{VALUE}}',
