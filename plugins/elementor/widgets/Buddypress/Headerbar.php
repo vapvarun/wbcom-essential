@@ -20,10 +20,16 @@ class HeaderBar extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+		
+		wp_register_script( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/header-bar.js', array( 'elementor-frontend' ), '3.0.0', true );
 	}
 
 	public function get_name() {
 		return 'wbcom-header-bar';
+	}
+	
+	public function get_script_depends() {
+		return array( 'header-bar' );
 	}
 
 	public function get_title() {

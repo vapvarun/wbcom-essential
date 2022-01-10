@@ -49,447 +49,437 @@ class ActivityLists extends \Elementor\Widget_Base {
 	}
 	
 	protected function _register_controls() {
+		
+		$this->start_controls_section(
+			'section_content_layout',
+			array(
+				'label' => esc_html__( 'Layout', 'wbcom-essential' ),
+			)
+		);
+
+		$this->add_control(
+			'activity_count',
+			array(
+				'label'   => esc_html__( 'Activity Count', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SLIDER,
+				'default' => array(
+					'size' => 5,
+				),
+				'range'   => array(
+					'px' => array(
+						'min'  => 1,
+						'max'  => 20,
+						'step' => 1,
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'row_space',
+			array(
+				'label'     => esc_html__( 'Row Space', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 15,
+				),
+				'range'     => array(
+					'px' => array(
+						'min'  => 0,
+						'max'  => 50,
+						'step' => 1,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} #buddypress .activity-lists.bp-list .activity-item' => 'margin-bottom: {{SIZE}}px; padding-bottom: {{SIZE}}px',
+					//'{{WRAPPER}} #buddypress .activity-lists.bp-list .activity-item' => 'padding-bottom: {{SIZE}}px',
+				),
+			)
+		);
+
+		$this->add_control(
+			'switch_more',
+			array(
+				'label'   => esc_html__( 'Show All Activity Link', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+			)
+		);
+
+		$this->add_control(
+			'switch_avatar',
+			array(
+				'label'   => esc_html__( 'Show Avatar', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+			)
+		);
+
+		$this->add_control(
+			'switch_content',
+			array(
+				'label'   => esc_html__( 'Show Content', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+			)
+		);
+
+		$this->add_control(
+			'switch_actions',
+			array(
+				'label'     => esc_html__( 'Show Actions', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => array(
+					'switch_content' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'switch_fav',
+			array(
+				'label'     => esc_html__( 'Like Button', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => array(
+					'switch_content' => 'yes',
+					'switch_actions' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'switch_comments',
+			array(
+				'label'     => esc_html__( 'Show Comments', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => array(
+					'switch_content' => 'yes',
+					'switch_actions' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'switch_edit',
+			array(
+				'label'     => esc_html__( 'Show Edit Activity', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => array(
+					'switch_content' => 'yes',
+					'switch_actions' => 'yes',
+				),
+			)
+		);
+
+
+		$this->add_control(
+			'switch_delete',
+			array(
+				'label'     => esc_html__( 'Show Delete Activity', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => array(
+					'switch_content' => 'yes',
+					'switch_actions' => 'yes',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => esc_html__( 'Query', 'wbcom-essential' ),
-			]
-		);
-		
-		$this->add_control(
-			'sfb_title',
-			[
-				'label'       => __( 'Title', 'wbcom-essential' ),
-				'type'        => Controls_Manager::TEXT,				
-				'default'     => __( 'Activity', 'wbcom-essential' ),
-				'description' => __( 'Add activity title', 'wbcom-essential' )
-			]
-		);
-		
-		$this->add_control(
-			'sfb_include',
-			[
-				'label'       => __( 'Activity Include', 'wbcom-essential' ),
-				'type'        => Controls_Manager::TEXT,				
-				'description' => __( 'pass an activity_id or string of IDs comma-separated', 'wbcom-essential' )
-			]
-		);
-		
-		$this->add_control(
-			'sfb_exclude',
-			[
-				'label'       => __( 'Activity exclude', 'wbcom-essential' ),
-				'type'        => Controls_Manager::TEXT,				
-				'description' => __( 'pass an activity_id or string of IDs comma-separated', 'wbcom-essential' )
-			]
-		);
-
-		
-		
-		$this->add_control(
-			'sfb_number',
-			[
-				'label'       => __( 'display number of activities', 'wbcom-essential' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 20,
-				'description' => __( 'How many activity items to display.', 'wbcom-essential' )
+				'label' => __( 'Content', 'wbcom-essential' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		$this->add_control(
-			'sfb_sort',
+			'heading_text',
 			[
-				'label'   => __( 'Sort order', 'wbcom-essential' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => [
-					'DESC'        => 'Descending',
-					'ASC'  		=> 'Ascending',
+				'label' => __( 'Heading Text', 'wbcom-essential' ),
+				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
 				],
-				'default' => 'DESC'
+				'default' => __( 'Activity', 'wbcom-essential' ),
+				'placeholder' => __( 'Enter heading text', 'wbcom-essential' ),
+				'label_block' => true
 			]
 		);
 
 		$this->add_control(
-			'sfb_search_terms',
+			'activity_link_text',
 			[
-				'label'       => __( 'Filter by search term', 'wbcom-essential' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => '',
-				'description' => 'Return only activity items that match the search term in content'
-			]
-		);
-
-		$this->add_control(
-			'sfb_object',
-			[
-				'label'   => __( 'Object Type', 'wbcom-essential' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => [
-					''        => 'All',
-					'groups'  => 'Groups',
-					'friends' => 'Friends',
-					'profile' => 'Profile',
-					'status'  => 'Status',
-					'blogs'   => 'Blogs',
-
+				'label' => __( 'Activity Link Text', 'wbcom-essential' ),
+				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
 				],
-				'default' => ''
+				'default' => __( 'All Activity', 'wbcom-essential' ),
+				'placeholder' => __( 'Enter activity link text', 'wbcom-essential' ),
+				'label_block' => true,
+				'condition' => [
+					'switch_more' => 'yes',
+				]
 			]
 		);
 
-		$this->add_control(
-			'sfb_action',
-			[
-				'label'       => __( 'Action Filter', 'wbcom-essential' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => '',
-				'description' => 'Example: activity_update<br> See action parameter from the filters section from https://codex.buddypress.org/developer/loops-reference/the-activity-stream-loop/'
-			]
-		);
-		$this->add_control(
-			'sfb_hide_load_more',
-			[
-				'label' 		=> esc_html__( 'Hide load more', 'wbcom-essential' ),				
-				'type' 			=> Controls_Manager::SWITCHER,
-				'default' 		=> 'yes',
-				'label_on' 		=> esc_html__( 'Show', 'wbcom-essential' ),
-				'label_off' 	=> esc_html__( 'Hide', 'wbcom-essential' ),
-			]
-		);
-		
-		$this->add_control(
-			'sfb_allow_posting',
-			[
-				'label' 		=> esc_html__( 'Allow Posting', 'wbcom-essential' ),
-				'type' 			=> Controls_Manager::SWITCHER,
-				'default' 		=> 'no',
-				'label_on' 		=> esc_html__( 'Show', 'wbcom-essential' ),
-				'label_off' 	=> esc_html__( 'Hide', 'wbcom-essential' ),
-			]
-		);
-		
-		$this->add_control(
-			'sfb_loggedin_user_activity',
-			[
-				'label' 		=> esc_html__( 'Display loggedin user activity', 'wbcom-essential' ),
-				'description' 		=> esc_html__( 'Display only particular loggedin user activity', 'wbcom-essential' ),
-				'type' 			=> Controls_Manager::SWITCHER,
-				'default' 		=> 'no',
-				'label_on' 		=> esc_html__( 'Show', 'wbcom-essential' ),
-				'label_off' 	=> esc_html__( 'Hide', 'wbcom-essential' ),
-			]
-		);
-		
 		$this->end_controls_section();
-		
+
 		$this->start_controls_section(
-			'activity_item_container_section',
-			[
-				'label' => __( 'Activity Item Container', 'wbcom-essential' ),
+			'section_style_box',
+			array(
+				'label' => esc_html__( 'Box', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name'     => 'container_background',
-				'label'    => __( 'Background', 'wbcom-essential' ),
-				'types'    => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .activity > ul.activity-list > li:not(.load-more)',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'container_box_shadow',
-				'selector' => '{{WRAPPER}} .activity > ul.activity-list > li:not(.load-more)',
-			]
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
-			[
-				'name'     => 'container_border',
-				'selector' => '{{WRAPPER}} .activity > ul.activity-list > li:not(.load-more)',
-			]
+			array(
+				'name'        => 'box_border',
+				'label'       => __( 'Border', 'wbcom-essential' ),
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .wbcom-essential-activity',
+				'separator'   => 'before',
+			)
 		);
 
 		$this->add_control(
-			'container_border_radius',
-			[
+			'box_border_radius',
+			array(
 				'label'      => __( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors'  => [
-					'{{WRAPPER}} .activity > ul.activity-list > li:not(.load-more)' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				'size_units' => array( 'px', '%' ),
+				'default'    => array(
+					'top'    => '4',
+					'right'  => '4',
+					'bottom' => '4',
+					'left'   => '4',
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .wbcom-essential-activity' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
 		);
 
-		$this->add_responsive_control(
-			'container_padding',
-			[
-				'label'      => __( 'Padding', 'wbcom-essential' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
-				'selectors'  => [
-					'{{WRAPPER}} .activity > ul.activity-list > li:not(.load-more)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			array(
+				'name'     => 'background_color',
+				'label'    => __( 'Background', 'wbcom-essential' ),
+				'types'    => array( 'classic', 'gradient' ),
+				'selector' => '{{WRAPPER}} .wbcom-essential-activity',
+			)
 		);
 
 		$this->add_control(
-			'spacing_items',
-			[
-				'label'     => __( 'Spacing items', 'wbcom-essential' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .activity > ul.activity-list > li:not(.load-more)'            => 'margin-top: 0; margin-bottom: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .activity > ul.activity-list > li:last-child' => 'margin-bottom: 0;',
-				],
-			]
+			'separator_all',
+			array(
+				'label'     => __( 'All Activity Link', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'extra_color',
+			array(
+				'label'     => __( 'All Activity Link Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-essential-block-header__extra a' => 'color: {{VALUE}};',
+				),
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'load_more_section',
-			[
-				'label'      => __( 'Load More Button', 'wbcom-essential' ),
-				'tab'        => Controls_Manager::TAB_STYLE,
-				'conditions' => [],
-			]
+			'section_style_avatar',
+			array(
+				'label' => esc_html__( 'Avatar', 'wbcom-essential' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
-			'base_style',
-			[
-				'label'     => __( 'Base Style', 'wbcom-essential' ),
-				'type'      => Controls_Manager::HIDDEN,
-				'default'   => '1',
-				'selectors' => [
-					'{{WRAPPER}} .load-more'   => 'background-color: transparent; border: none; margin: 0;',
-					'{{WRAPPER}} .load-newest' => 'background-color: transparent; border: none; margin: 0;',
-				],
-			]
+			'avatar_size',
+			array(
+				'label'     => __( 'Size', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 40,
+				),
+				'range'     => array(
+					'px' => array(
+						'min'  => 20,
+						'max'  => 100,
+						'step' => 1,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-essential-activity .activity-list.item-list .activity-item .activity-avatar' => 'flex: 0 0 {{SIZE}}px;',
+					'{{WRAPPER}} .wbcom-essential-activity .activity-list .activity-item div.item-avatar img' => 'max-width: {{SIZE}}px;',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'        => 'avatar_border',
+				'label'       => __( 'Border', 'wbcom-essential' ),
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .activity-list .activity-item div.item-avatar img',
+				'separator'   => 'before',
+			)
 		);
 
 		$this->add_control(
-			'load_more_btn_display_type',
-			[
-				'label'     => __( 'Display', 'wbcom-essential' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'block',
-				'options'   => [
-					'inline-block' => __( 'Inline', 'wbcom-essential' ),
-					'block'        => __( 'Block', 'wbcom-essential' ),
-				],
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a' => 'display: block;',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			'load_more_btn_align',
-			[
-				'label'     => __( 'Alignment', 'wbcom-essential' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => [
-					'left'   => [
-						'title' => __( 'Left', 'wbcom-essential' ),
-						'icon'  => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => __( 'Center', 'wbcom-essential' ),
-						'icon'  => 'eicon-text-align-center',
-					],
-					'right'  => [
-						'title' => __( 'Right', 'wbcom-essential' ),
-						'icon'  => 'eicon-text-align-right',
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a' => 'text-align: {{VALUE}};',
-				],
-				'condition' => [
-					'load_more_btn_display_type' => 'inline-block',
-				],
-				'default'   => '',
-			]
+			'avatar_border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'wbcom-essential' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .activity-list .activity-item div.item-avatar img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+				),
+			)
 		);
 
 		$this->add_control(
-			'load_more_btn_display_inline_block',
-			[
-				'label'     => __( 'Base Style', 'wbcom-essential' ),
-				'type'      => Controls_Manager::HIDDEN,
-				'default'   => '1',
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a' => 'display: inline-block;',
-				],
-				'condition' => [
-					'load_more_btn_display_type' => 'inline-block',
-				],
-			]
+			'avatar_opacity',
+			array(
+				'label'     => __( 'Opacity (%)', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 1,
+				),
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .activity-list .activity-item div.item-avatar img' => 'opacity: {{SIZE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'avatar_spacing',
+			array(
+				'label'     => __( 'Spacing', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 15,
+				),
+				'range'     => array(
+					'px' => array(
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-essential-activity .activity-list.item-list .activity-item .activity-avatar' => 'margin-right: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_content',
+			array(
+				'label' => __( 'Content', 'wbcom-essential' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'load_more_btn_typography',
-				'label'    => __( 'Typography', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} #buddypress .activity-list .load-more a, {{WRAPPER}} .load-newest a',
-			]
-		);
-
-		$this->start_controls_tabs( 'load_more_btn_style_tabs' );
-
-		$this->start_controls_tab(
-			'load_more_btn_style_normal_tab',
-			[
-				'label' => __( 'Normal', 'wbcom-essential' ),
-			]
-		);
-
-		$this->add_control(
-			'load_more_btn_background',
-			[
-				'label'     => __( 'Background', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a'   => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} #buddypress .activity-list .load-newest a' => 'background-color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'load_more_btn_text_color',
-			[
-				'label'     => __( 'Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a'   => 'color: {{VALUE}}',
-					'{{WRAPPER}} #buddypress .activity-list .load-newest a' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'load_more_btn_style_hover_tab',
-			[
-				'label' => __( 'Hover', 'wbcom-essential' ),
-			]
-		);
-
-		$this->add_control(
-			'load_more_btn_hover_background',
-			[
-				'label'     => __( 'Background', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a:hover'   => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} #buddypress .activity-list .load-newest a:hover' => 'background-color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'load_more_btn_hover_text_color',
-			[
-				'label'     => __( 'Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a:hover'   => 'color: {{VALUE}}',
-					'{{WRAPPER}} #buddypress .activity-list .load-newest a:hover' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'load_more_btn_hover_border',
-			[
-				'label'     => __( 'Border Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a:hover'   => 'border-color: {{VALUE}}',
-					'{{WRAPPER}} #buddypress .activity-list .load-newest a:hover' => 'border-color: {{VALUE}}',
-				],
-			]
+			array(
+				'name'     => 'typography_header',
+				'label'    => __( 'Typography Header', 'wbcom-essential' ),
+				'selector' => '{{WRAPPER}} .activity-header > p, {{WRAPPER}} .activity-header a, {{WRAPPER}} .activity-header .activity-date',
+			)
 		);
 
 		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'load_more_btn_hover_shadow',
-				'selector' => '{{WRAPPER}} #buddypress .activity-list .load-more a:hover, #buddypress {{WRAPPER}} .load-newest a:hover',
-			]
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name'      => 'load_more_btn_border',
-				'selector'  => '{{WRAPPER}} #buddypress .activity-list .load-more a, {{WRAPPER}} #buddypress .activity-list .load-newest a',
-				'separator' => 'before',
-			]
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'typography_content',
+				'label'    => __( 'Typography Content', 'wbcom-essential' ),
+				'selector' => '{{WRAPPER}} .activity-content .activity-inner',
+			)
 		);
 
 		$this->add_control(
-			'load_more_btn_border_radius',
-			[
-				'label'      => __( 'Border Radius', 'wbcom-essential' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors'  => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a'   => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} #buddypress .activity-list .load-newest a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'load_more_btn_shadow',
-				'selector' => '{{WRAPPER}} #buddypress .activity-list .load-more a, {{WRAPPER}} #buddypress .activity-list .load-newest a',
-			]
-		);
-
-		$this->add_responsive_control(
-			'load_more_btn_padding',
-			[
-				'label'      => __( 'Padding', 'wbcom-essential' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
-				'selectors'  => [
-					'{{WRAPPER}} #buddypress .activity-list .load-more a'   => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} #buddypress .activity-list .load-newest a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+			'content_color',
+			array(
+				'label'     => __( 'Content Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#4D5C6D',
+				'selectors' => array(
+					'{{WRAPPER}} .activity-content .activity-inner' => 'color: {{VALUE}};',
+				),
+			)
 		);
 
 		$this->end_controls_section();
-		
+	}
+	
+	public function wbcom_essential_theme_elementor_activity_default_scope( $scope = 'all', $user_id = 0, $group_id = 0 ) {
+		$new_scope = array();
+		if ( bp_loggedin_user_id() && ( 'all' === $scope || empty( $scope ) ) ) {
+			$new_scope[] = 'public';
+			if ( bp_is_active( 'group' ) && ! empty( $group_id ) ) {
+				$new_scope[] = 'groups';
+			} else {
+				$new_scope[] = 'just-me';
+				if ( empty( $user_id ) ) {
+					$new_scope[] = 'public';
+				}
+				if ( function_exists( 'bp_activity_do_mentions' ) && bp_activity_do_mentions() ) {
+					$new_scope[] = 'mentions';
+				}
+				if ( bp_is_active( 'friends' ) ) {
+					$new_scope[] = 'friends';
+				}
+				if ( bp_is_active( 'groups' ) ) {
+					$new_scope[] = 'groups';
+				}
+				if ( function_exists( 'bp_is_activity_follow_active' ) && bp_is_activity_follow_active() ) {
+					$new_scope[] = 'following';
+				}				
+			}
+		} elseif ( ! bp_loggedin_user_id() && ( 'all' === $scope || empty( $scope ) ) ) {
+			$new_scope[] = 'public';
+		}
+		$new_scope = array_unique( $new_scope );
+		if ( empty( $new_scope ) ) {
+			$new_scope = (array) $scope;
+		}
+		/**
+		 * Filter to update default scope.
+		 */
+		$new_scope = apply_filters( 'wbcom_essential_theme_elementor_activity_default_scope', $new_scope );
+		return implode( ',', $new_scope );
 	}
 	
 	protected function render() {
-		global $activity_args;
-		
+	    global $wbcom_essential_theme_elementor_activity;
+
 		$settings = $this->get_settings_for_display();
 		
 		$current_component = static function () {
@@ -497,93 +487,167 @@ class ActivityLists extends \Elementor\Widget_Base {
 		};
 		
 		add_filter( 'bp_current_component', $current_component );
-		//add_filter( 'bp_is_current_component', $current_component );
-		
-		$args = [ 
-					'title'  => $settings['sfb_title'],
-					'include'  => $settings['sfb_include'],
-					'exclude'  => $settings['sfb_exclude'],
-					'sort'     => $settings['sfb_sort'],
-					'per_page' => ( isset($settings['sfb_number']) ) ? $settings['sfb_number'] : 20,
-					'search_terms' => $settings['sfb_search_terms'],
-					'object' => $settings['sfb_object'],
-					'action' => $settings['sfb_action'],
-					'allow_posting' => ( $settings['sfb_allow_posting'] == 'yes' ) ? 'true': 'false',
-					'user_id' 	=> (is_user_logged_in() && $settings['sfb_loggedin_user_activity'] == 'yes' ) ? get_current_user_id() : false,
-					
-					'hide_load_more' 	=> (is_user_logged_in() && $settings['sfb_hide_load_more'] == 'yes' ) ? get_current_user_id() : false,
-					'display_comments'	=> 'threaded',
-					'container_class'	=> 'activity'
-				];
-				
 
+		add_filter( 'bp_excerpt_length', array( $this, 'wbcom_essential_elementor_change_activity_content_excerpt_length' ), 99, 1 );
+		// Override parameters for bp_has_activities().
+		$args = array(
+			'max'        => esc_attr( $settings['activity_count']['size'] ),
+			'per_page'   => esc_attr( $settings['activity_count']['size'] ),
+		);
+
+		$args['scope'] = $this->wbcom_essential_theme_elementor_activity_default_scope();
+
+		$has_activity = bp_has_activities( $args );
+
+		if ( bp_is_active( 'activity' ) ) {
+			wp_enqueue_script( 'bp-nouveau-activity' );
+			wp_enqueue_script( 'bp-nouveau-activity-post-form' );
+			bp_get_template_part( 'common/js-templates/activity/form' );
+		}
 		
-		$activity_args = $args;
-		unset($activity_args['title']);
-		
-		$activity_ajax_querystring = static function ( $ajax_querystring, $object ) {
-			global $activity_args;
-			$qs = array();
-			
-			if( !empty($activity_args) ) {
-				foreach( $activity_args as $key=>$value) {
-					if ( $value != '' ) {
-						$qs[] = $key . "=" . $value;
-					}
-				}
-			}
-			
-			$query_string = empty( $qs ) ? '' : join( '&', (array) $qs );
-			if ( $query_string != '' ) {
-				$ajax_querystring .= '&' . $query_string;
-			}
-			
-			return $ajax_querystring;
-		};
-		
-		add_filter( 'bp_ajax_querystring', $activity_ajax_querystring, 99, 2 );	
-		
+		$this->add_render_attribute( 'actions', 'class', 'activity-actions' );
+
+		if ( $settings['switch_actions'] ) {
+			$this->add_render_attribute( 'actions', 'class', 'activity-actions--show' );
+		}
+
+		if ( $settings['switch_fav'] ) {
+			$this->add_render_attribute( 'actions', 'class', 'activity-actions--fav' );
+		}
+
+		if ( $settings['switch_comments'] ) {
+			$this->add_render_attribute( 'actions', 'class', 'activity-actions--comment' );
+		}
+
+		if ( $settings['switch_edit'] ) {
+			$this->add_render_attribute( 'actions', 'class', 'activity-actions--edit' );
+		}
+
+		if ( $settings['switch_delete'] ) {
+			$this->add_render_attribute( 'actions', 'class', 'activity-actions--delete' );
+		}
+
+		$this->add_render_attribute( 'do-state', 'class', 'do-state' );
+
+		if ( $settings['switch_comments'] ) {
+			$this->add_render_attribute( 'do-state', 'class', 'is-activity-comments' );
+		}
+
+		if ( $settings['switch_fav'] ) {
+			$this->add_render_attribute( 'do-state', 'class', 'do-state--show' );
+		}
+
+		$wbcom_essential_theme_elementor_activity = true;
 		?>
-		
-		<div class="buddypress-activity-element">
-			<?php if ( $args['title'] ) : ?>
-				<h3 class="activity-shortcode-title"><?php echo $args['title']; ?></h3>
-			<?php endif; ?>
-		
-			<div id="buddypress" class="buddypress-wrap bp-dir-hori-nav activity">
-			
-				<?php if ( $args['allow_posting'] == 'true' && is_user_logged_in() ) : ?>
-					<div class="bpas-post-form-wrapper">
-						<?php bp_locate_template( array( 'activity/post-form.php' ), true ); ?>
-					</div>
-				<?php endif; ?>
-		
-		
-				<?php bp_nouveau_before_activity_directory_content(); ?>
+		<div class="wbcom-essential-activity <?php echo ( ! $has_activity ) ? 'wbcom-essential-forums--blank' : ''; ?>">
 
-				<div class="screen-content">
-					<?php bp_nouveau_activity_hook( 'before_directory', 'list' ); ?>
+			<?php if ( $has_activity ) : ?>
 
-					<div id="activity-stream" class="activity" data-bp-list="activity" data-ajax="false">
-						<?php bp_get_template_part( 'activity/activity-loop' ); ?>
-					</div>
-
-					<?php bp_nouveau_after_activity_directory_content(); ?>
-
+				<div class="wbcom-essential-block-header flex align-items-center">
+					<div class="wbcom-essential-block-header__title"><h3><?php echo esc_html( $settings['heading_text'] ); ?></h3></div>
+					<?php if ( $settings['switch_more'] ) : ?>
+						<div class="wbcom-essential-block-header__extra push-right">
+							<?php if( '' != $settings['activity_link_text'] ) { ?>
+								<a href="<?php echo bp_get_activity_root_slug(); ?>" class="count-more"><?php echo esc_html( $settings['activity_link_text'] ); ?><i class="wbcom-essential-icon-chevron-right"></i></a>
+							<?php } ?>
+						</div>
+					<?php endif; ?>
 				</div>
-			</div>
+
+				<div class="bbel-list-flow">
+					<div class="activity-list item-list">
+						<div id="buddypress" class="buddypress-wrap">
+							<div class="screen-content">
+								<div id="activity-stream" class="activity" data-ajax="false" data-bp-list="activity">
+									<ul class="activity-lists item-list bp-list elementor-activity-widget">
+										<?php while ( bp_activities() ) : bp_the_activity(); ?>
+											<li class="<?php bp_activity_css_class(); ?>" id="activity-<?php bp_activity_id(); ?>" data-bp-activity-id="<?php bp_activity_id(); ?>" data-bp-timestamp="<?php bp_nouveau_activity_timestamp(); ?>" data-bp-activity="<?php ( function_exists('bp_nouveau_edit_activity_data') ) ? bp_nouveau_edit_activity_data() : ''; ?>" >
+
+												<div class="bp-activity-head">
+													<?php if ($settings['switch_avatar']) : ?>
+														<div class="activity-avatar item-avatar">
+															<a href="<?php bp_activity_user_link(); ?>">
+																<?php bp_activity_avatar( array( 'type' => 'full' ) ); ?>
+															</a>
+														</div>
+													<?php endif; ?>
+													<div class="activity-header">
+														<?php bp_activity_action(); ?>
+														<p class="activity-date">
+                                                            <a href="<?php echo esc_url( bp_activity_get_permalink( bp_get_activity_id() ) ); ?>"><?php echo bp_core_time_since( bp_get_activity_date_recorded() ); ?></a>
+															<?php
+															if ( function_exists( 'bp_nouveau_activity_is_edited' ) ){
+																bp_nouveau_activity_is_edited();
+															}
+															?>
+                                                        </p>                                                        
+													</div>
+												</div>
+
+												<?php if ( bp_nouveau_activity_has_content() && $settings['switch_content'] ) : ?>
+													<div class="activity-content">
+														<?php bp_nouveau_activity_hook( 'before', 'activity_content' ); ?>
+														<?php if ( bp_nouveau_activity_has_content() ) : ?>
+															<div class="activity-inner"><?php bp_nouveau_activity_content(); ?></div>
+														<?php endif; ?>
+														
+														<?php bp_nouveau_activity_hook( 'after', 'activity_content' ); ?>
+														
+														<div <?php echo $this->get_render_attribute_string('actions'); ?>>
+															<?php bp_nouveau_activity_entry_buttons(); ?>
+														</div>
+													</div>
+												<?php endif; ?>
+
+												<?php if ( $settings['switch_comments'] ) { ?>
+
+													<?php bp_nouveau_activity_hook( 'before', 'entry_comments' ); ?>
+
+
+													<?php if ( bp_activity_get_comment_count() || ( is_user_logged_in() && ( bp_activity_can_comment() || bp_is_single_activity() ) ) ) : ?>
+
+														<div class="activity-comments">
+
+															<?php bp_activity_comments(); ?>
+
+															<?php bp_nouveau_activity_comment_form(); ?>
+
+														</div>
+
+													<?php endif; ?>
+
+													<?php bp_nouveau_activity_hook( 'after', 'entry_comments' ); ?>
+
+												<?php } ?>
+
+											</li>
+										<?php endwhile; ?>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<?php else : ?>
+
+				<div class="wbcom-essential-no-data wbcom-essential-no-data--activity">
+					<img class="wbcom-essential-no-data__image" src="<?php echo get_template_directory_uri(); ?>/assets/images/svg/dfy-no-data-icon01.svg" alt="Activity" />
+					<?php bp_nouveau_user_feedback( 'activity-loop-none' ); ?>
+					<a href="<?php echo bp_get_activity_root_slug(); ?>" class="wbcom-essential-no-data__link"><?php _e( 'Post an Update', 'wbcom-essential' ); ?></a>
+				</div>
+
+			<?php endif; ?>
+
 		</div>
 		<?php
 		remove_filter( 'bp_current_component', $current_component );
-		remove_filter( 'bp_ajax_querystring', $activity_ajax_querystring, 99, 2 );	
-		if ( isset($settings['sfb_hide_load_more']) && $settings['sfb_hide_load_more'] == 'yes') {	
-			?>
-			<style>
-			.elementor-element-<?php echo $this->get_id();?> #buddypress .load-more{ display:none}
-			</style>
-			<?php
-		}
-		
+		remove_filter( 'bp_excerpt_length', array( $this, 'wbcom_essential_elementor_change_activity_content_excerpt_length' ), 99, 1 );
+	}
+	
+	public function wbcom_essential_elementor_change_activity_content_excerpt_length( $length ) {
+		$length = 135;
+		return $length;
 	}
 
 }
