@@ -15,6 +15,7 @@ $search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_
 			<?php if ( $profile_dropdown ) : ?>
 			<div class="user-wrap user-wrap-container menu-item-has-children">
 				<?php
+				global $current_user;
 				$current_user = wp_get_current_user();
 				$user_link    = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( $current_user->ID ) : get_author_posts_url( $current_user->ID );
 				$display_name = function_exists( 'bp_core_get_user_displayname' ) ? bp_core_get_user_displayname( $current_user->ID ) : $current_user->display_name;
