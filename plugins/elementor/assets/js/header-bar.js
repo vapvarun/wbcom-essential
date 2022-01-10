@@ -34,15 +34,24 @@
 		});
 		
 		$( document ).on(
-				'click',
-				'.header-aside div.menu-item-has-children > a',
-				function ( e ) {
-					e.preventDefault();
-					var current = $( this ).closest( 'div.menu-item-has-children' );
-					current.siblings( '.selected' ).removeClass( 'selected' );
-					current.toggleClass( 'selected' );
+			'click',
+			'.header-aside div.menu-item-has-children > a',
+			function ( e ) {
+				e.preventDefault();
+				var current = $( this ).closest( 'div.menu-item-has-children' );
+				current.siblings( '.selected' ).removeClass( 'selected' );
+				current.toggleClass( 'selected' );
+			}
+		);
+			
+		$( 'body' ).mouseup(
+			function ( e ) {
+				var container = $( '.header-aside div.menu-item-has-children *' );
+				if ( !container.is( e.target ) ) {
+					$( '.header-aside div.menu-item-has-children' ).removeClass( 'selected' );
 				}
-			);
+			}
+		);
 		
 	}	
 	
