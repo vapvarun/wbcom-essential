@@ -3,7 +3,7 @@ $menu_link                 = trailingslashit( bp_loggedin_user_domain() . bp_get
 $notifications             = bp_notifications_get_unread_notification_count( bp_loggedin_user_id() );
 $unread_notification_count = ! empty( $notifications ) ? $notifications : 0;
 
-$notifications_icon = ( isset($settings['notifications_icon']['value']) &&  $settings['notifications_icon']['value'] != '') ? $settings['notifications_icon']['value'] : 'far fa-bell';
+$notifications_icon = ( isset($settings['notifications_icon']['value']) &&  $settings['notifications_icon']['value'] != '') ? $settings['notifications_icon']['value'] : 'wb-icon-bell';
 ?>
 <div id="header-notifications-dropdown-elem" class="notification-wrap menu-item-has-children">
     <a href="<?php echo $menu_link ?>"

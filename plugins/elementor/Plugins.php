@@ -451,6 +451,15 @@ class Plugin {
 		);
 
 		wp_enqueue_style( 'wbcom-essential-elementor-css' );
+                
+		wp_register_style(
+			'wbcom-essential-icons',
+			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wb-icons.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+
+		wp_enqueue_style( 'wbcom-essential-icons' );
 
 	}
 

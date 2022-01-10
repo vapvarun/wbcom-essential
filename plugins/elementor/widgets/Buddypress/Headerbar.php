@@ -21,7 +21,8 @@ class HeaderBar extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 		
-		wp_register_script( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/header-bar.js', array( 'elementor-frontend' ), '3.0.0', true );
+		wp_register_style( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/header-bar.css', array(), '3.5.0' );
+		wp_register_script( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/header-bar.js', array( 'elementor-frontend' ), '3.5.0', true );
 	}
 
 	public function get_name() {
@@ -38,6 +39,10 @@ class HeaderBar extends \Elementor\Widget_Base {
 
 	public function get_icon() {
 		return 'eicon-select';
+	}
+
+	public function get_style_depends() {
+		return array( 'header-bar' );
 	}
 
 	public function get_categories() {
@@ -693,7 +698,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Counter Background Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#EF3E46',
+				'default'   => '#1D76dA',
 				'selectors' => array(
 					'{{WRAPPER}} .notification-wrap span.count' => 'background-color: {{VALUE}}',
 				),

@@ -5,7 +5,7 @@ $show_messages      = isset($settings['messages_icon_switch']) ? true : false;
 $show_notifications = isset($settings['notifications_icon_switch']) ? true : false;
 $show_shopping_cart = isset($settings['cart_icon_switch']) ? true : false;
 
-$search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_icon']['value'] != '') ? $settings['search_icon']['value'] : 'fas fa-search';
+$search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_icon']['value'] != '') ? $settings['search_icon']['value'] : 'wb-icon-search';
 
 ?>
 
@@ -22,7 +22,7 @@ $search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_
 				?>
 
 				<a class="user-link" href="<?php echo esc_url( $user_link ); ?>">
-					<span class="user-name"><?php echo esc_html( $display_name ); ?></span><i class="wbcom-essential-icon-angle-down"></i>
+					<span class="user-name"><?php echo esc_html( $display_name ); ?></span><i class="wb-icon-angle-down"></i>
 					<?php echo get_avatar( get_current_user_id(), 100 ); ?>
 				</a>
 

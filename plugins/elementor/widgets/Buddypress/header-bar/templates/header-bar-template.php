@@ -91,7 +91,7 @@ $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
 	<div class="header-search-wrap header-search-wrap--elementor">
 		<div class="container">
 			<?php  get_search_form();?>
-			<a href="#" class="close-search"><i class="wbcom-essential-icon-close-circle"></i></a>
+			<a href="#" class="close-search"><i class="eicon-close-circle"></i></a>
 		</div>
 	</div>
 	
