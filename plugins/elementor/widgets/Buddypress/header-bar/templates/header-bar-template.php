@@ -21,12 +21,6 @@ $settings_avatar_border      = $settings['avatar_border_style'];
 $this->add_render_attribute( 'site-header', 'class', 'site-header site-header--elementor icon-fill-in' );
 $this->add_render_attribute( 'site-header', 'class', 'site-header--align-' . esc_attr( $settings_align ) . '' );
 $this->add_render_attribute( 'site-header', 'class', 'avatar-' . esc_attr( $settings_avatar_border ) . '' );
-if ( $settings['switch_logo'] ) {
-	$this->add_render_attribute( 'site-header', 'class', 'site-header--is-logo' );
-}
-if ( $settings['switch_nav'] ) {
-	$this->add_render_attribute( 'site-header', 'class', 'site-header--is-nav' );
-}
 $this->add_render_attribute( 'site-header', 'data-search-icon', esc_attr( $settings_search_ico ) );
 $this->add_render_attribute( 'site-header', 'data-messages-icon', esc_attr( $settings_messages_icon ) );
 $this->add_render_attribute( 'site-header', 'data-notifications-icon', esc_attr( $settings_notifications_icon ) );
@@ -42,51 +36,14 @@ $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
 ?>
 
 <div <?php echo $this->get_render_attribute_string( 'site-header' ); ?>>
-
-	<?php echo ( $settings['switch_logo'] || $settings['switch_nav'] ) ? wp_kses_post( $container ) : ''; ?>
-
-	<?php if ( $settings['switch_logo'] ) : ?>		
-		
-		<div id="site-logo" class="site-branding">
-			<<?php echo $elem; ?> class="site-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">					
-					<?php if ( has_custom_logo()  ) : ?>
-						<?php the_custom_logo(); ?>
-					<?php else: ?>
-						<?php echo get_bloginfo( 'name' ); ?>
-					<?php endif; ?>
-				</a>
-			</<?php echo $elem; ?>>
-		</div>
-
-		
-	<?php endif; ?>
 	
-	<?php if ( $settings['switch_nav'] ) : ?>
-	
-		<?php
-		$nav_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-bar-nav.php';
+	<?php
+	$nheader_aside_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-aside.php';
 
-		if ( file_exists( $nav_template_path ) ) {
-			require $nav_template_path;
-		}
-		?>
-		
-	<?php endif; ?>
-	
-	<?php if ( $settings['switch_bar'] ) : ?>	
-		
-		<?php
-		$nheader_aside_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-aside.php';
-
-		if ( file_exists( $nheader_aside_template_path ) ) {
-			require $nheader_aside_template_path;
-		}
-		?>
-		
-	<?php endif; ?>
-
-	<?php echo ( $settings['switch_logo'] || $settings['switch_nav'] ) ? '</div>' : ''; ?>
+	if ( file_exists( $nheader_aside_template_path ) ) {
+		require $nheader_aside_template_path;
+	}
+	?>
 	
 	<div class="header-search-wrap header-search-wrap--elementor">
 		<div class="container">

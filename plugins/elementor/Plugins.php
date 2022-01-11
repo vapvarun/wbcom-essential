@@ -425,11 +425,13 @@ class Plugin {
 			'name'  => 'wbcom-login',
 			'class' => 'Forms\Login',
 		);
-
+		
+		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
 			'class' => 'Forms\Registration',
 		);
+		*/
 
 		foreach ( $elements as &$element ) {
 			$element['template_base_path']   = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH;

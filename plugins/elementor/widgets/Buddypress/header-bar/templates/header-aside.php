@@ -28,20 +28,7 @@ $search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_
 
 				<div class="sub-menu">
 					<div class="wrapper">
-						<ul class="sub-menu-inner">
-							<li>
-								<a class="user-link" href="<?php echo esc_url( $user_link ); ?>">
-									<?php echo get_avatar( get_current_user_id(), 100 ); ?>
-									<span>
-										<span class="user-name"><?php echo esc_html( $display_name ); ?></span>
-										<?php if ( function_exists( 'bp_is_active' ) && function_exists( 'bp_activity_get_user_mentionname' ) ) : ?>
-											<span class="user-mention"><?php echo '@' . bp_activity_get_user_mentionname( $current_user->ID ); ?></span>
-										<?php else : ?>
-											<span class="user-mention"><?php echo '@' . $current_user->user_login; ?></span>
-										<?php endif; ?>
-									</span>
-								</a>
-							</li>
+						<ul class="sub-menu-inner">							
 							<?php
 							if ( function_exists( 'bp_is_active' ) ) {
 								$menu = wp_nav_menu(

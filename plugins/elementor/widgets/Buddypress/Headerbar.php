@@ -75,119 +75,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'switch_logo',
-			array(
-				'label' => esc_html__( 'Show Logo Image', 'wbcom-essential' ),
-				'type'  => Controls_Manager::SWITCHER,
-			)
-		);
-
-		$this->add_control(
-			'switch_nav',
-			array(
-				'label' => esc_html__( 'Show Navigation', 'wbcom-essential' ),
-				'type'  => Controls_Manager::SWITCHER,
-			)
-		);
-
-		$menus = $this->get_menus();
-
-		if ( ! empty( $menus ) ) {
-			$this->add_control(
-				'menu_marker',
-				array(
-					'label'        => __( 'Menu', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SELECT,
-					'options'      => $menus,
-					'default'      => array_keys( $menus )[0],
-					'save_default' => true,
-					'separator'    => 'after',
-					'condition'    => array(
-						'switch_nav' => 'yes',
-					),
-				)
-			);
-		} else {
-			$this->add_control(
-				'menu_marker',
-				array(
-					'type'            => Controls_Manager::RAW_HTML,
-					'raw'             => '<strong>' . __( 'There are no menus available.', 'wbcom-essential' ) . '</strong><br>' . sprintf( __( 'Start by creating one <a href="%s" target="_blank">here</a>.', 'wbcom-essential' ), admin_url( 'nav-menus.php?action=edit&menu=0' ) ),
-					'separator'       => 'after',
-					'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
-					'condition'       => array(
-						'switch_nav' => 'yes',
-					),
-				)
-			);
-		}
-
-		$this->add_control(
-			'switch_bar',
-			array(
-				'label'   => esc_html__( 'Show Header Bar', 'wbcom-essential' ),
-				'type'    => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-			)
-		);
-
-		$this->add_responsive_control(
-			'logo_position',
-			array(
-				'label'        => esc_html__( 'Logo Position', 'wbcom-essential' ),
-				'type'         => Controls_Manager::CHOOSE,
-				'label_block'  => false,
-				'options'      => array(
-					'left'  => array(
-						'title' => esc_html__( 'Left', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-left',
-					),
-					'right' => array(
-						'title' => esc_html__( 'Right', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-right',
-					),
-				),
-				'default'      => 'left',
-				'prefix_class' => 'elementor-element--logo-position-',
-				'condition'    => array(
-					'switch_logo' => 'yes',
-					'switch_nav'  => 'yes',
-					'switch_bar!' => 'yes',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'logo_position_full',
-			array(
-				'label'        => __( 'Logo Position', 'wbcom-essential' ),
-				'type'         => Controls_Manager::CHOOSE,
-				'label_block'  => false,
-				'options'      => array(
-					'left'   => array(
-						'title' => __( 'Left', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-left',
-					),
-					'center' => array(
-						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-center',
-					),
-					'right'  => array(
-						'title' => __( 'Right', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-right',
-					),
-				),
-				'default'      => 'left',
-				'prefix_class' => 'elementor-element--logo-position-full-',
-				'condition'    => array(
-					'switch_logo' => 'yes',
-					'switch_nav'  => 'yes',
-					'switch_bar'  => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
 			'profile_dropdown',
 			array(
 				'label'        => esc_html__( 'Profile Dropdown', 'wbcom-essential' ),
@@ -562,10 +449,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			'section_style_layout',
 			array(
 				'label'     => esc_html__( 'Header Bar Layout', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition' => array(
-					'switch_bar' => 'yes',
-				),
+				'tab'       => Controls_Manager::TAB_STYLE,				
 			)
 		);
 
@@ -589,11 +473,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					),
 				),
 				'default'   => 'right',
-				'toggle'    => true,
-				'condition' => array(
-					'switch_logo!' => 'yes',
-					'switch_nav!'  => 'yes',
-				),
+				'toggle'    => true,				
 			)
 		);
 
@@ -622,67 +502,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
-			'separator',
-			array(
-				'label'     => esc_html__( 'Separator', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_control(
-			'separator_width',
-			array(
-				'label'      => esc_html__( 'Separator Width', 'wbcom-essential' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'min'  => 1,
-						'max'  => 10,
-						'step' => 1,
-					),
-				),
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 1,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-essential-separator' => 'width: {{SIZE}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_control(
-			'separator_color',
-			array(
-				'label'     => esc_html__( 'Separator Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => 'rgba(0, 0, 0, 0.1)',
-				'selectors' => array(
-					'{{WRAPPER}} .wbcom-essential-separator' => 'background-color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->add_control(
-			'tooltips_options',
-			array(
-				'label'     => esc_html__( 'Tooltips', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'typography_tooltips',
-				'label'    => esc_html__( 'Typography Tooltips', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} [data-balloon]:after',
-			)
-		);
+		
 
 		$this->add_control(
 			'counter_options',
@@ -720,10 +540,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			'section_style_icons',
 			array(
 				'label'     => esc_html__( 'Icons', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition' => array(
-					'switch_bar' => 'yes',
-				),
+				'tab'       => Controls_Manager::TAB_STYLE,				
 			)
 		);
 
@@ -872,10 +689,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			'section_style_profile',
 			array(
 				'label'     => esc_html__( 'Profile Navigation', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition' => array(
-					'switch_bar' => 'yes',
-				),
+				'tab'       => Controls_Manager::TAB_STYLE,				
 			)
 		);
 
@@ -1225,10 +1039,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			'section_style_signout',
 			array(
 				'label'     => esc_html__( 'Logged Out', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition' => array(
-					'switch_bar' => 'yes',
-				),
+				'tab'       => Controls_Manager::TAB_STYLE,				
 			)
 		);
 
