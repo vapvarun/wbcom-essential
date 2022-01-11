@@ -20,7 +20,7 @@ $cart_icon = ( isset($settings['cart_icon']['value']) &&  $settings['cart_icon']
         <header class="notification-header">
             <h2 class="title"><?php _e( 'Cart', 'wbcom-essential' ); ?></h2>
         </header>
-        <div class="header-mini-cart">
+        <div class="header-mini-cart widget_shopping_cart_content">
             <?php
             if ( is_object( WC()->cart ) ) {
 	            woocommerce_mini_cart();
