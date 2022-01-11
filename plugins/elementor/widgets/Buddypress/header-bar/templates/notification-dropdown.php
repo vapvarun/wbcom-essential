@@ -40,12 +40,7 @@ $notifications_icon = ( isset($settings['notifications_icon']['value']) &&  $set
 							</span>
 							<span><?php bp_the_notification_description(); ?></span>
 							<span class="posted"><?php bp_the_notification_time_since(); ?></span>
-						</div>
-						<div class="actions">
-							<a class="mark-read action-unread primary" data-bp-tooltip-pos="left" data-bp-tooltip="<?php _e( 'Mark Read', 'wbcom-essential' ); ?>" data-notification-id="<?php bp_the_notification_id(); ?>">
-								<span class="dashicons dashicons-visibility" aria-hidden="true"></span>
-							</a>
-						</div>
+						</div>						
 					</li>
 				<?php endwhile; ?>
 			<?php else : ?>
