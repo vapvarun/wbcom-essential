@@ -32,10 +32,6 @@
     margin-left: auto;
 }
 
-/*.header-search-wrap.header-search-wrap--elementor {
-    display: none;
-}*/
-
 /* widget */
 .site-header.site-header--elementor {
     width: auto;
@@ -101,120 +97,6 @@
 
 .header-aside>:first-child {
     padding-left: 0;
-}
-
-.site-branding {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    height: 76px;
-    min-width: 60px;
-    padding-right: 30px;
-    -webkit-transition: all linear .1s;
-    transition: all linear .1s;
-}
-
-.site-title {
-    font-size: 1.375rem;
-    font-weight: 500;
-    margin: 0;
-}
-
-.site-title img {
-    max-height: 76px;
-    min-height: 60px;
-    width: auto;
-    padding: 10px 0;
-    object-fit: contain;
-}
-
-.site-header--elementor.site-header--is-logo:not(.site-header--is-nav) #site-logo {
-    margin-right: auto;
-}
-
-.site-header--elementor .main-navigation {
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-}
-
-.site-header--elementor .primary-menu {
-    margin: 0;
-    list-style: none;
-    vertical-align: middle;
-    height: 76px;
-    white-space: nowrap;
-}
-
-.site-header--elementor #primary-navbar {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    min-width: 130px;
-}
-
-.site-header--elementor #primary-menu.primary-menu>li:first-child {
-    padding-left: 0;
-}
-
-.site-header--elementor #primary-menu.primary-menu>li {
-    float: left;
-    display: inline-block;
-    height: 76px;
-    line-height: 76px;
-    padding: 0 16px;
-    position: relative;
-    vertical-align: middle;
-}
-
-.site-header--elementor #primary-menu.primary-menu>li>a {
-    color: #303030;
-    padding: 0;
-    height: 76px;
-    line-height: 76px;
-    display: block;
-}
-
-.site-header .sub-menu {
-    background: #fff;
-    box-shadow: 0 2px 7px 1px rgba(230, 230, 230, 0.5), 0 6px 32px 0 rgba(18, 43, 70, 0.1);
-    border-radius: 4px;
-    list-style: none;
-    padding: 10px 0;
-    position: absolute;
-    right: -20px;
-    top: -webkit-calc(100% - 15px);
-    top: calc(100% - 15px);
-    margin: 0;
-    min-width: 168px;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 100;
-}
-
-.site-header .main-navigation .menu-item-has-children:hover>.sub-menu {
-    opacity: 1;
-    visibility: visible;
-}
-
-.primary-menu .menu-item-has-children:after {
-    content: '\e807';
-    font-family: wb-icons;
-    font-weight: 400;
-    speak: none;
-    display: inline-block;
-    color: #939597;
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 22px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .site-header .menu-item-has-children>a {
@@ -441,6 +323,12 @@ a.user-link i {
     box-shadow: none;
     font-size: 14px;
     min-height: auto;
+}
+
+.header-mini-cart p.woocommerce-mini-cart__empty-message {
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 14px;
 }
 
 .notification-header {
@@ -679,7 +567,8 @@ a.user-link i {
     width: 100%;
 }
 
-.header-search-wrap--elementor #searchform {
+.header-search-wrap--elementor #searchform,
+.header-search-wrap--elementor .search-form {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -690,7 +579,8 @@ a.user-link i {
     align-items: center;
 }
 
-.header-search-wrap--elementor #searchform input[type=text] {
+.header-search-wrap--elementor #searchform input[type=text],
+.header-search-wrap--elementor .search-form input[type=search] {
     border: 0;
     background-size: 20px;
     outline: 0;
@@ -704,7 +594,8 @@ a.user-link i {
     text-overflow: ellipsis;
 }
 
-.header-search-wrap--elementor #searchform:after {
+.header-search-wrap--elementor #searchform:after,
+.header-search-wrap--elementor .search-form:after {
     content: '';
     background-repeat: no-repeat;
     background-position: 10px 50%;
@@ -717,7 +608,8 @@ a.user-link i {
     height: 22px;
 }
 
-.header-search-wrap--elementor #searchform input[type="submit"] {
+.header-search-wrap--elementor #searchform input[type="submit"],
+.header-search-wrap--elementor .search-form input[type="submit"] {
     display: none;
 }
 
