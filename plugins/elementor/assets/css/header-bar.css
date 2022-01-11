@@ -55,6 +55,18 @@
     flex: 0 0 auto;
 }
 
+.site-header--elementor.site-header--align-left .header-aside {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.site-header--elementor.site-header--align-center .header-aside {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
 .site-header--elementor.site-header--align-right .header-aside {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
@@ -178,7 +190,14 @@ a.user-link i {
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
-    z-index: 1001;
+    z-index: 99;
+}
+
+@media (min-width: 768px) {
+    .site-header--align-left .notification-dropdown {
+        right: auto;
+        left: -15px;
+    }
 }
 
 .menu-item-has-children.selected .notification-dropdown {
@@ -194,8 +213,48 @@ a.user-link i {
     top: 0;
     left: -180px;
     right: auto;
+    padding: 3px 0;
     z-index: 10;
     display: none;
+}
+
+.wbcom-essential-my-account-menu .menu-item-has-children .sub-menu:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    display: block;
+    box-shadow: 2px -2px 2px -1px rgba(230, 230, 230, 0.5);
+    position: absolute;
+    right: -5px;
+    top: 11px;
+    z-index: 1;
+    -webkit-transform: rotate( 
+        45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate( 
+        45deg);
+    background: #fff;
+}
+
+@media (min-width: 768px) {
+    .site-header--align-left .wbcom-essential-my-account-menu .menu-item-has-children .sub-menu {
+        right: -180px;
+        left: auto;
+    }
+
+    .site-header--align-left .wbcom-essential-my-account-menu .menu-item-has-children .sub-menu:before {
+        left: -5px;
+        right: auto;
+        -webkit-transform: rotate( 
+            230deg);
+        -ms-transform: rotate(230deg);
+        transform: rotate( 
+            230deg);
+    }
+}
+
+.wbcom-essential-my-account-menu .menu-item-has-children .sub-menu a {
+    border-radius: 12px;
 }
 
 .wbcom-essential-my-account-menu .menu-item-has-children:hover .sub-menu {
@@ -353,8 +412,52 @@ a.user-link i {
     max-height: 52vh;
     overflow: auto;
     padding-bottom: 0;
+    margin-left: 0;
     margin-bottom: 0;
+    list-style: none;
     overflow-x: hidden;
+}
+
+.notification-list li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+}
+
+.notification-list li:hover {
+    background: #F5F5F5;
+}
+
+.wbcom-essential--full-link {
+    font-size: 0;
+}
+
+.notification-list .unread {
+    background: #f7fafe;
+}
+
+.notification-avatar {
+    margin-right: 10px;
+    position: relative;
+}
+
+.messages-wrap .notification-dropdown .notification-avatar {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50px;
+    flex: 0 0 50px;
+}
+
+.notification-content .posted {
+    display: block;
+    margin-top: 5px;
+    font-size: 15px;
+    color: #888;
 }
 
 .notification-footer {
@@ -406,6 +509,20 @@ a.user-link i {
 .notification-wrap.menu-item-has-children.selected>a:before {
     opacity: 1;
     visibility: visible;
+}
+
+@media (max-width: 543px) {
+    .notification-dropdown,
+    .site-header .notification-list {
+        min-width: 330px;
+    } 
+}
+
+@media (max-width: 380px) {
+    .notification-dropdown,
+    .site-header .notification-list {
+        min-width: 280px;
+    } 
 }
 
 .site-header--elementor a.user-link {

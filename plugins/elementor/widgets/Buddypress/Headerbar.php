@@ -272,180 +272,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_style_nav',
-			array(
-				'label'     => __( 'Navigation', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition' => array(
-					'switch_nav' => 'yes',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'typography_nav',
-				'label'    => esc_html__( 'Typography', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .primary-menu > li > a',
-			)
-		);
-
-		$this->start_controls_tabs(
-			'nav_color_tabs'
-		);
-
-		$this->start_controls_tab(
-			'nav_color_normal_tab',
-			array(
-				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'nav_item_color',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .primary-menu > li > a' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .primary-menu > .menu-item-has-children:not(.hideshow):after' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'nav_color_active_tab',
-			array(
-				'label' => esc_html__( 'Active', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'nav_item_color_active',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .primary-menu > .current-menu-item > a' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .primary-menu .current_page_item > a'   => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'nav_color_hover_tab',
-			array(
-				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'nav_item_color_hover',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .primary-menu > li > a:hover' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
-		$this->add_control(
-			'sub_menu',
-			array(
-				'label'     => esc_html__( 'Sub Menu', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'typography_sub_nav',
-				'label'    => esc_html__( 'Typography', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .site-header .main-navigation .sub-menu a',
-			)
-		);
-
-		$this->start_controls_tabs(
-			'sub_nav_color_tabs'
-		);
-
-		$this->start_controls_tab(
-			'sub_nav_color_normal_tab',
-			array(
-				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'sub_nav_item_color',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .site-header .main-navigation .sub-menu a' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'sub_nav_color_active_tab',
-			array(
-				'label' => esc_html__( 'Active', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'sub_nav_item_color_active',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .site-header .sub-menu .main-navigation .current-menu-item > a' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'sub_nav_color_hover_tab',
-			array(
-				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'sub_nav_item_color_hover',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .site-header .main-navigation .sub-menu a:hover' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
 			'section_style_layout',
 			array(
 				'label'     => esc_html__( 'Header Bar Layout', 'wbcom-essential' ),
@@ -461,15 +287,15 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'options'   => array(
 					'left'   => array(
 						'title' => esc_html__( 'Left', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
 						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
 						'title' => esc_html__( 'Right', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'default'   => 'right',
@@ -502,7 +328,49 @@ class HeaderBar extends \Elementor\Widget_Base {
 			)
 		);
 
-		
+		$this->add_control(
+			'separator',
+			array(
+				'label'     => esc_html__( 'Separator', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'separator_width',
+			array(
+				'label'      => esc_html__( 'Separator Width', 'wbcom-essential' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min'  => 1,
+						'max'  => 10,
+						'step' => 1,
+					),
+				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 1,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .wbcom-essential-separator' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'separator_color',
+			array(
+				'label'     => esc_html__( 'Separator Color', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => 'rgba(0, 0, 0, 0.1)',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-essential-separator' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
 
 		$this->add_control(
 			'counter_options',
