@@ -25,7 +25,35 @@ $notifications_icon = ( isset($settings['notifications_icon']['value']) &&  $set
         </header>
 
         <ul class="notification-list wbcom-essential-nouveau-list">
-            <p class="wbcom-essential-header-loader"><i class="wbcom-essential-icon-loader animate-spin"></i></p>
+           <?php if ( bp_has_notifications( bp_ajax_querystring( 'notifications' ) . '&user_id=' . get_current_user_id() . '&is_new=1' ) ) : ?>
+				<?php while ( bp_the_notifications() ) : bp_the_notification(); ?>
+					<li class="read-item <?php echo isset( buddypress()->notifications->query_loop->notification->is_new ) && buddypress()->notifications->query_loop->notification->is_new ? 'unread' : ''; ?>">
+						<span class="wbcom-essential--full-link">
+							<?php bp_the_notification_description(); ?>
+						</span>
+						<div class="notification-avatar">
+							<?php wbcom_essential_notification_avatar(); ?>
+						</div>
+						<div class="notification-content">
+							<span class="wbcom-essential--full-link">
+								<?php bp_the_notification_description(); ?>
+							</span>
+							<span><?php bp_the_notification_description(); ?></span>
+							<span class="posted"><?php bp_the_notification_time_since(); ?></span>
+						</div>
+						<div class="actions">
+							<a class="mark-read action-unread primary" data-bp-tooltip-pos="left" data-bp-tooltip="<?php _e( 'Mark Read', 'wbcom-essential' ); ?>" data-notification-id="<?php bp_the_notification_id(); ?>">
+								<span class="dashicons dashicons-visibility" aria-hidden="true"></span>
+							</a>
+						</div>
+					</li>
+				<?php endwhile; ?>
+			<?php else : ?>
+				<li class="bs-item-wrap">
+					<div class="notification-content"><?php _e( 'No new notifications', 'wbcom-essential' ); ?>!</div>
+				</li>
+			<?php endif; ?>
+
         </ul>
 
 		<footer class="notification-footer">
