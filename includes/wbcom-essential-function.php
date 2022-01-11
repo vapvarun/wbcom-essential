@@ -273,3 +273,12 @@ function wbcom_essential_action_register_nav_menus() {
 			);
 			
 }
+
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'wbcom_essential_header_cart_fragment'  );
+function wbcom_essential_header_cart_fragment( $fragments ) {
+	
+	$fragments['span.header-cart-count'] = '<span class="count header-cart-count">' . WC()->cart->get_cart_contents_count() . '</span>';
+    
+    return $fragments;
+}

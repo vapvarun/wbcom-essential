@@ -10,7 +10,7 @@ $cart_icon = ( isset($settings['cart_icon']['value']) &&  $settings['cart_icon']
             if ( is_object( WC()->cart ) ) {
              $wc_cart_count = wc()->cart->get_cart_contents_count();
              if( $wc_cart_count != 0 ) { ?>
-                 <span class="count"><?php echo wc()->cart->get_cart_contents_count(); ?></span>
+                 <span class="count header-cart-count	"><?php echo wc()->cart->get_cart_contents_count(); ?></span>
              <?php }
             }
             ?>
