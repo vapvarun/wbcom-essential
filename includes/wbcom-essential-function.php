@@ -282,3 +282,15 @@ function wbcom_essential_header_cart_fragment( $fragments ) {
     
     return $fragments;
 }
+
+add_filter( 'bp_nouveau_register_scripts', 'wbcom_essential_bp_nouveau_register_scripts', 20 );
+function wbcom_essential_bp_nouveau_register_scripts( $scripts_args ) {
+	if ( function_exists('buddypress') && isset(buddypress()->buddyboss )) {			
+		return $scripts_args;
+	}
+	
+	if ( isset($scripts_args['bp-nouveau'])) {
+		$scripts_args['bp-nouveau']['file'] = WBCOM_ESSENTIAL_URL. 'assets/js/buddypress-nouveau%s.js';
+	}		
+	return $scripts_args;
+}

@@ -500,8 +500,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 		$has_activity = bp_has_activities( $args );
 
 		if ( bp_is_active( 'activity' ) ) {
-			wp_enqueue_script( 'bp-nouveau-activity' );
-			wp_enqueue_script( 'bp-nouveau-activity-post-form' );
+			wp_enqueue_script( 'bp-nouveau-activity' );			
 			bp_get_template_part( 'common/js-templates/activity/form' );
 		}
 		
