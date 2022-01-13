@@ -167,19 +167,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 				),
 			)
 		);
-
-		$this->add_control(
-			'switch_edit',
-			array(
-				'label'     => esc_html__( 'Show Edit Activity', 'wbcom-essential' ),
-				'type'      => Controls_Manager::SWITCHER,
-				'default'   => 'yes',
-				'condition' => array(
-					'switch_content' => 'yes',
-					'switch_actions' => 'yes',
-				),
-			)
-		);
+		
 
 
 		$this->add_control(
@@ -523,11 +511,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 		if ( $settings['switch_comments'] ) {
 			$this->add_render_attribute( 'actions', 'class', 'activity-actions--comment' );
 		}
-
-		if ( $settings['switch_edit'] ) {
-			$this->add_render_attribute( 'actions', 'class', 'activity-actions--edit' );
-		}
-
+		
 		if ( $settings['switch_delete'] ) {
 			$this->add_render_attribute( 'actions', 'class', 'activity-actions--delete' );
 		}
