@@ -18,6 +18,8 @@ class ActivityLists extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+                
+		wp_register_style( 'activity-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/activity-lists.css', array(), '3.5.0' );
 	}
 
 	public function get_name() {
@@ -30,6 +32,10 @@ class ActivityLists extends \Elementor\Widget_Base {
 
 	public function get_icon() {
 		return 'eicon-time-line';
+	}
+
+	public function get_style_depends() {
+		return array( 'activity-lists' );
 	}
 
 	public function get_categories() {
@@ -547,7 +553,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 					<?php if ( $settings['switch_more'] ) : ?>
 						<div class="wbcom-essential-block-header__extra push-right">
 							<?php if( '' != $settings['activity_link_text'] ) { ?>
-								<a href="<?php echo bp_get_activity_root_slug(); ?>" class="count-more"><?php echo esc_html( $settings['activity_link_text'] ); ?><i class="wbcom-essential-icon-chevron-right"></i></a>
+								<a href="<?php echo bp_get_activity_root_slug(); ?>" class="count-more"><?php echo esc_html( $settings['activity_link_text'] ); ?><i class="eicon-chevron-right"></i></a>
 							<?php } ?>
 						</div>
 					<?php endif; ?>
