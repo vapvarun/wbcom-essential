@@ -296,6 +296,10 @@ html .wbcom-essential-activity .activity-lists.item-list.elementor-activity-widg
     display: inline-block;
 }
 
+.wbcom-essential-activity #buddypress .activity-actions.activity-actions--show.activity-actions--comment .generic-button a.view {
+    display: inline-block;
+}
+
 .wbcom-essential-activity #buddypress .activity-actions.activity-actions--show.activity-actions--edit .generic-button a.edit-activity {
     display: inline-block;
 }
