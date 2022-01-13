@@ -632,7 +632,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 			<?php else : ?>
 
 				<div class="wbcom-essential-no-data wbcom-essential-no-data--activity">
-					<img class="wbcom-essential-no-data__image" src="<?php echo get_template_directory_uri(); ?>/assets/images/svg/dfy-no-data-icon01.svg" alt="Activity" />
+					<img class="wbcom-essential-no-data__image" src="<?php echo WBCOM_ESSENTIAL_ASSETS_URL; ?>images/no-data-found.svg"" alt="Activity" />
 					<?php bp_nouveau_user_feedback( 'activity-loop-none' ); ?>
 					<a href="<?php echo bp_get_activity_root_slug(); ?>" class="wbcom-essential-no-data__link"><?php _e( 'Post an Update', 'wbcom-essential' ); ?></a>
 				</div>
