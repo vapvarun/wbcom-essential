@@ -182,19 +182,6 @@ class MembersLists extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'switch_tooltips',
-			[
-				'label'   => esc_html__( 'Show Last Activity Tooltips', 'wbcom-essential' ),
-				'description'   => esc_html__( 'Tooltips will be shown on member avatar.', 'wbcom-essential' ),
-				'type'    => Controls_Manager::SWITCHER,
-				'default' => 'no',
-				'condition' => [
-					'switch_avatar' => 'yes',
-				],
-			]
-		);
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -631,9 +618,7 @@ class MembersLists extends \Elementor\Widget_Base {
 
 								<div <?php echo $this->get_render_attribute_string( 'wbcom-essential-member' ); ?>>
 									<?php if( $settings['switch_avatar'] ) : ?>
-										<div class="wbcom-essential-members-list__avatar"
-											 <?php if( $settings['switch_tooltips'] == 'yes' ) { ?>data-balloon-pos="<?php echo ( $settings['alignment'] == 'left' ) ? esc_attr( 'right' ) : esc_attr( 'left' ); ?>"
-											 data-balloon="<?php echo bp_get_member_last_active(); ?>"<?php } ?>>
+										<div class="wbcom-essential-members-list__avatar">
 											<a href="<?php bp_member_permalink(); ?>">
 												<?php bp_member_avatar( $avatar ); ?>
 											</a>
