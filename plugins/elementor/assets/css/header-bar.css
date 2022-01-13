@@ -115,6 +115,15 @@
     position: relative;
 }
 
+.site-header--elementor .user-wrap,
+.site-header--elementor .wbcom-essential-separator,
+.site-header--elementor .header-search-link,
+.site-header--elementor #header-messages-dropdown-elem,
+.site-header--elementor #header-notifications-dropdown-elem,
+.site-header--elementor .header-cart-link-wrap {
+  display: none; 
+}
+
 .site-header--elementor .count {
     line-height: 1.4;
     top: -webkit-calc(50% - 20px);
