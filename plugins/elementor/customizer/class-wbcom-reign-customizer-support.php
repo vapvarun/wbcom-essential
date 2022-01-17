@@ -1,4 +1,14 @@
 <?php
+/**
+ * Wbcom essential reign customizer support.
+ *
+ * @link       https://wbcomdesigns.com/plugins
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/customizer
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -6,7 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 
 	/**
-	 * @class Wbcom_Reign_Customizer_Support
+	 * Wbcom essential reign customizer support.
+	 *
+	 * @link       https://wbcomdesigns.com/plugins
+	 * @since      1.0.0
+	 *
+	 * @package    Wbcom_Essential
+	 * @subpackage Wbcom_Essential/plugins/elementor/customizer
 	 */
 	class Wbcom_Reign_Customizer_Support {
 
@@ -53,6 +69,12 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 		}
 
 
+		/**
+		 * Register the WP customizer panel and sections.
+		 *
+		 * @param  array $wp_customize WP Customizer instance.
+		 * @return void
+		 */
 		public function add_panels_and_sections( $wp_customize ) {
 
 			$wp_customize->add_section(
@@ -93,6 +115,11 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 		// }
 		// }
 
+		/**
+		 * Alter hold fields.
+		 *
+		 * @param array $fields_on_hold Hold Fields.
+		 */
 		public function manage_fields_on_hold( $fields_on_hold ) {
 			$_fields_on_hold = array();
 			foreach ( $fields_on_hold as $key => $value ) {
@@ -107,6 +134,11 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 			return $fields_on_hold;
 		}
 
+		/**
+		 * Add kirki Fields.
+		 *
+		 * @param  array $fields Fields to be added.
+		 */
 		public function add_fields( $fields ) {
 
 			/**
@@ -124,7 +156,7 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 					'on'  => esc_attr__( 'Elementor Topbar', 'wbcom-essential' ),
 					'off' => esc_attr__( 'Theme Default', 'wbcom-essential' ),
 				),
-                                'active_callback' => array(
+				'active_callback' => array(
 					array(
 						'setting'  => 'reign_elementor_header_module',
 						'operator' => '===',

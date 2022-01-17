@@ -1,4 +1,15 @@
 <?php
+/**
+ * WBcom_Essential_elementor_Templates Templates Core config.
+ *
+ * Templates core class is responsible for handling templates library.
+ *
+ * @link       https://wbcomdesigns.com/plugins
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/templates/classes
+ */
 
 namespace WBcomEssentialelementor\Templates\Classes;
 
@@ -7,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // No access of directly access.
 
 if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Core_Config' ) ) {
-	
+
 	/**
 	 *  WBcom_Essential_elementor_Templates Templates Core config.
 	 *
@@ -16,23 +27,25 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Core_Config' ) ) {
 	 * @since 1.4.7
 	 */
 	class WBcom_Essential_elementor_Templates_Core_Config {
-		
+
 		/**
 		 * Instance of the class
 		 *
 		 * @access private
 		 * @since  1.4.7
+		 * @var $instance
 		 */
 		private static $instance = null;
-		
+
 		/**
 		 * Holds config data.
 		 *
 		 * @access private
 		 * @since  1.4.7
+		 * @var $config
 		 */
 		private $config;
-		
+
 		/**
 		 * WBcom_Essential_elementor_Templates_Core_Config constructor.
 		 *
@@ -42,10 +55,10 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Core_Config' ) ) {
 		 * @access public
 		 */
 		public function __construct() {
-			
+
 			$this->config = array(
 				'wbcom_essential_elementor_temps' => __( 'WBCom Essential Elementor Sections', 'wbcom-essential' ),
-				'api'              => array(
+				'api'                             => array(
 					'enabled'   => true,
 					'base'      => 'https://demos.wbcomdesigns.com/elementor/',
 					'path'      => 'wp-json/wp/v2/wbcom-essential-elementor',
@@ -57,9 +70,9 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Core_Config' ) ) {
 					),
 				),
 			);
-			
+
 		}
-		
+
 		/**
 		 * Get
 		 *
@@ -73,11 +86,11 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Core_Config' ) ) {
 		 * @return string|array|false data or false if not set
 		 */
 		public function get( $key = '' ) {
-			
+
 			return isset( $this->config[ $key ] ) ? $this->config[ $key ] : false;
-			
+
 		}
-		
+
 		/**
 		 * Creates and returns an instance of the class.
 		 *
@@ -87,17 +100,17 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Core_Config' ) ) {
 		 * @return object
 		 */
 		public static function get_instance() {
-			
+
 			if ( null === self::$instance ) {
-				
-				self::$instance = new self;
-				
+
+				self::$instance = new self();
+
 			}
-			
+
 			return self::$instance;
-			
+
 		}
-		
+
 	}
-	
+
 }

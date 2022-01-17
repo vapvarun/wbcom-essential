@@ -1,4 +1,12 @@
 <?php
+/**
+ * Elementor header bar widget.
+ *
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
+ */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Buddypress;
 
@@ -16,39 +24,72 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Border;
 
+/**
+ * Elementor header bar widget.
+ *
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
+ */
 class HeaderBar extends \Elementor\Widget_Base {
 
+	/**
+	 * Construct.
+	 *
+	 * @param  array  $data Data.
+	 * @param  string $args Args.
+	 * @return void
+	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
-		
+
 		wp_register_style( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/header-bar.css', array(), '3.5.0' );
 		wp_register_script( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/header-bar.js', array( 'elementor-frontend' ), '3.5.0', true );
 	}
 
+	/**
+	 * Get Name.
+	 */
 	public function get_name() {
 		return 'wbcom-header-bar';
 	}
-	
+
+	/**
+	 * Get depends script.
+	 */
 	public function get_script_depends() {
 		return array( 'header-bar' );
 	}
 
+	/**
+	 * Get title.
+	 */
 	public function get_title() {
 		return esc_html__( 'Header Bar', 'wbcom-essential' );
 	}
 
+	/**
+	 * Get icon.
+	 */
 	public function get_icon() {
 		return 'eicon-select';
 	}
 
+	/**
+	 * Get depends style.
+	 */
 	public function get_style_depends() {
 		return array( 'header-bar' );
 	}
 
+	/**
+	 * Get categories.
+	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
-	
+
 	/**
 	 * Return nav menu items.
 	 *
@@ -65,7 +106,10 @@ class HeaderBar extends \Elementor\Widget_Base {
 
 		return $options;
 	}
-	
+
+	/**
+	 * Register elementor header bar widget controls.
+	 */
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'section_content',
@@ -104,7 +148,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 			)
 		);
 
-		
 		$this->add_control(
 			'search_icon_switch',
 			array(
@@ -119,7 +162,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 				),
 			)
 		);
-		
 
 		if ( function_exists( 'bp_is_active' ) && bp_is_active( 'messages' ) ) :
 			$this->add_control(
@@ -138,7 +180,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			);
 		endif;
 
-		if ( function_exists( 'bp_is_active' ) && bp_is_active( 'notifications' )  ) :
+		if ( function_exists( 'bp_is_active' ) && bp_is_active( 'notifications' ) ) :
 			$this->add_control(
 				'notifications_icon_switch',
 				array(
@@ -155,7 +197,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			);
 		endif;
 
-		if ( class_exists( 'WooCommerce' )  ) :
+		if ( class_exists( 'WooCommerce' ) ) :
 			$this->add_control(
 				'cart_icon_switch',
 				array(
@@ -171,8 +213,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 				)
 			);
 		endif;
-
-
 
 		$this->end_controls_section();
 
@@ -274,17 +314,17 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_style_layout',
 			array(
-				'label'     => esc_html__( 'Header Bar Layout', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,				
+				'label' => esc_html__( 'Header Bar Layout', 'wbcom-essential' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
 		$this->add_control(
 			'content_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::CHOOSE,
-				'options'   => array(
+				'label'   => esc_html__( 'Alignment', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::CHOOSE,
+				'options' => array(
 					'left'   => array(
 						'title' => esc_html__( 'Left', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-left',
@@ -298,8 +338,8 @@ class HeaderBar extends \Elementor\Widget_Base {
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
-				'default'   => 'right',
-				'toggle'    => true,				
+				'default' => 'right',
+				'toggle'  => true,
 			)
 		);
 
@@ -407,8 +447,8 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_style_icons',
 			array(
-				'label'     => esc_html__( 'Icons', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,				
+				'label' => esc_html__( 'Icons', 'wbcom-essential' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
@@ -556,8 +596,8 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_style_profile',
 			array(
-				'label'     => esc_html__( 'Profile Navigation', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,				
+				'label' => esc_html__( 'Profile Navigation', 'wbcom-essential' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
@@ -906,8 +946,8 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_style_signout',
 			array(
-				'label'     => esc_html__( 'Logged Out', 'wbcom-essential' ),
-				'tab'       => Controls_Manager::TAB_STYLE,				
+				'label' => esc_html__( 'Logged Out', 'wbcom-essential' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
@@ -1088,11 +1128,13 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 
 	}
-	
-	
+
+	/**
+	 * Render elementor header bar widget.
+	 */
 	protected function render() {
 		$settings = $this->get_settings();
-		
+
 		$template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-bar-template.php';
 
 		if ( file_exists( $template_path ) ) {
@@ -1100,5 +1142,5 @@ class HeaderBar extends \Elementor\Widget_Base {
 		}
 
 	}
-	
+
 }

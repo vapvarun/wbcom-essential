@@ -1,4 +1,12 @@
 <?php
+/**
+ * Elementor member grid widget.
+ *
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
+ */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Buddypress;
 
@@ -12,36 +20,68 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 
-
+/**
+ * Elementor member grid widget.
+ *
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
+ */
 class MembersGrid extends \Elementor\Widget_Base {
-    
-        public function __construct( $data = array(), $args = null ) {
+
+	/**
+	 * Construct.
+	 *
+	 * @param  array  $data Data.
+	 * @param  string $args Args.
+	 * @return void
+	 */
+	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'member-grid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/member-grid.css', array(), '3.0.0' );
 		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
 	}
 
+	/**
+	 * Get Name.
+	 */
 	public function get_name() {
 		return 'wbcom-members-grid';
 	}
 
+	/**
+	 * Get Title.
+	 */
 	public function get_title() {
 		return esc_html__( 'Members Grid', 'wbcom-essential' );
 	}
 
+	/**
+	 * Get icon.
+	 */
 	public function get_icon() {
 		return 'eicon-posts-grid';
 	}
 
+	/**
+	 * Get categories.
+	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
-        
-        public function get_style_depends() {
+
+	/**
+	 * Get dependent styles.
+	 */
+	public function get_style_depends() {
 		return array( 'member-grid' );
 	}
 
+	/**
+	 * Register elememnor members grid controls.
+	 */
 	protected function _register_controls() {
 
 		do_action( 'wbcom_essential/widget/members-listing/settings', $this );
@@ -115,6 +155,9 @@ class MembersGrid extends \Elementor\Widget_Base {
 
 	}
 
+	/**
+	 * Render elementor members grid widget.
+	 */
 	protected function render() {
 		parent::render();
 		$settings = $this->get_settings_for_display();
@@ -135,7 +178,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 		$active_template       = get_option( '_bp_theme_package_id' );
 		$member_directory_type = isset( $settings['rg-mem-grid-layout'] ) ? $settings['rg-mem-grid-layout'] : '';
 		$img_class             = '';
-		if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
+		if ( 'wbtm-member-directory-type-4' === $member_directory_type ) {
 			$img_class = 'img-card';
 		}
 
@@ -145,7 +188,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 		?>
 
 		<div id="buddypress" class="buddypress-wrap bp-dir-hori-nav members wbcom-members-grid-widget">
-			<?php if ( 'legacy' == $active_template ) : ?>
+			<?php if ( 'legacy' === $active_template ) : ?>
 				<div class="screen-content">
 					<div id="members-dir-list" class="members dir-list" data-bp-list="">
 						<?php
@@ -161,7 +204,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 						?>
 					</div>
 				</div>
-			<?php elseif ( 'nouveau' == $active_template ) : ?>
+			<?php elseif ( 'nouveau' === $active_template ) : ?>
 				<?php bp_nouveau_before_members_directory_content(); ?>
 				<div class="screen-content">
 					<div id="members-dir-list" class="members dir-list" data-bp-list="">

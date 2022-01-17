@@ -2,8 +2,11 @@
 /**
  * BuddyPress - Groups Loop
  *
- * @since 3.0.0
- * @version 3.1.0
+ * @link       https://wbcomdesigns.com/plugins
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/templates/buddyx/buddypress/groups
  */
 
 bp_nouveau_before_loop(); ?>

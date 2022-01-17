@@ -1,4 +1,12 @@
 <?php
+/**
+ * Elementor login widget.
+ *
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/widget/forums
+ */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Forms;
 
@@ -15,26 +23,47 @@ use Elementor\Core\Schemes\Color;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 
-
-
+/**
+ * Elementor login widget.
+ *
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/widget/forums/login
+ */
 class Login extends \Elementor\Widget_Base {
 
+	/**
+	 * Get name.
+	 */
 	public function get_name() {
 		return 'wbcom-login';
 	}
 
+	/**
+	 * Get title.
+	 */
 	public function get_title() {
 		return esc_html__( 'Login', 'wbcom-essential' );
 	}
 
+	/**
+	 * Get icon.
+	 */
 	public function get_icon() {
 		return 'eicon-lock-user';
 	}
 
+	/**
+	 * Get categories.
+	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
 
+	/**
+	 * Register elementor login widget controls.
+	 */
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'section_fields_content',
@@ -392,7 +421,7 @@ class Login extends \Elementor\Widget_Base {
 				),
 				'selectors' => array(
 					'body {{WRAPPER}} .elementor-field-group > label' => 'padding-bottom: {{SIZE}}{{UNIT}};',
-					// for the label position = above option
+					// for the label position = above option.
 				),
 			)
 		);
@@ -663,6 +692,9 @@ class Login extends \Elementor\Widget_Base {
 	}
 
 
+	/**
+	 * Elementor login widget forms attributes.
+	 */
 	private function form_fields_render_attributes() {
 		$settings = $this->get_settings();
 
@@ -743,7 +775,7 @@ class Login extends \Elementor\Widget_Base {
 						'elementor-size-' . $settings['input_size'],
 					),
 				),
-				// TODO: add unique ID
+				// TODO: add unique ID.
 				'label_user'      => array(
 					'for'   => 'user',
 					'class' => 'elementor-field-label',
@@ -766,6 +798,9 @@ class Login extends \Elementor\Widget_Base {
 
 	}
 
+	/**
+	 * Render elementor login widget.
+	 */
 	protected function render() {
 		$settings    = $this->get_settings();
 		$current_url = remove_query_arg( 'fake_arg' );
@@ -779,9 +814,9 @@ class Login extends \Elementor\Widget_Base {
 		if ( is_user_logged_in() && ! \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			if ( 'yes' === $settings['show_logged_in_message'] ) {
 				$current_user = wp_get_current_user();
-
 				echo '<div class="elementor-login">' .
-					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-essential' ), $current_user->display_name, wp_logout_url( $current_url ) ) .
+				/* translators: %1$s: Display current user name, %2$s: WP logout url */
+					sprintf( wp_kses_post( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-essential' ), esc_html( $current_user->display_name ), esc_html( wp_logout_url( $current_url ) ) ) .
 					'</div>';
 			}
 
@@ -792,31 +827,31 @@ class Login extends \Elementor\Widget_Base {
 		remove_filter( 'login_url', 'reign_alter_login_url_at_frontend', 10, 3 );
 		remove_filter( 'login_url', 'buddyx_alter_login_url_at_frontend', 10, 3 );
 		?>
-		<form class="elementor-login elementor-form wbcom-elementor-login-form" method="post" action="<?php echo wp_login_url(); ?>">
+		<form class="elementor-login elementor-form wbcom-elementor-login-form" method="post" action="<?php echo esc_url( wp_login_url() ); ?>">
 			<input type="hidden" name="wbcom_action_to_to" value="login">
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_url ); ?>">
 			<div class="alert" style="display: none;">
 				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 				<span class="error-message">This is an alert box.</span>
 			</div>
-			<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
-				<div <?php echo $this->get_render_attribute_string( 'field-group' ); ?>>
+			<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
+				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'field-group' ) ); ?>>
 					<?php
 					if ( $settings['show_labels'] ) {
-						echo '<label ' . $this->get_render_attribute_string( 'user_label' ) . '>' . $settings['user_label'] . '</label>';
+						echo '<label ' . esc_attr( $this->get_render_attribute_string( 'user_label' ) ) . '>' . esc_html( $settings['user_label'] ) . '</label>';
 					}
 
-					echo '<input size="1" ' . $this->get_render_attribute_string( 'user_input' ) . '>';
+					echo '<input size="1" ' . wp_kses_post( $this->get_render_attribute_string( 'user_input' ) ) . '>';
 
 					?>
 				</div>
-				<div <?php echo $this->get_render_attribute_string( 'field-group' ); ?>>
+				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'field-group' ) ); ?>>
 					<?php
 					if ( $settings['show_labels'] ) :
-						echo '<label ' . $this->get_render_attribute_string( 'password_label' ) . '>' . $settings['password_label'] . '</label>';
+						echo '<label ' . esc_attr( $this->get_render_attribute_string( 'password_label' ) ) . '>' . esc_html( $settings['password_label'] ) . '</label>';
 					endif;
 
-					echo '<input size="1" ' . $this->get_render_attribute_string( 'password_input' ) . '>';
+					echo '<input size="1" ' . wp_kses_post( $this->get_render_attribute_string( 'password_input' ) ) . '>';
 					?>
 				</div>
 
@@ -826,16 +861,15 @@ class Login extends \Elementor\Widget_Base {
 					<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
 						<label for="elementor-login-remember-me">
 							<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
-							<?php echo $settings['remember_me_label']; ?>
-							<?php // echo __( 'Remember Me', 'wbcom-essential' ); ?>
+							<?php echo esc_html( $settings['remember_me_label'] ); ?>
 						</label>
 					</div>
 				<?php endif; ?>
 
-				<div <?php echo $this->get_render_attribute_string( 'submit-group' ); ?>>
-					<button type="submit" <?php echo $this->get_render_attribute_string( 'button' ); ?>>
+				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'submit-group' ) ); ?>>
+					<button type="submit" <?php echo wp_kses_post( $this->get_render_attribute_string( 'button' ) ); ?>>
 							<?php if ( ! empty( $settings['button_text'] ) ) : ?>
-								<span class="elementor-button-text"><?php echo $settings['button_text']; ?></span>
+								<span class="elementor-button-text"><?php echo esc_html( $settings['button_text'] ); ?></span>
 							<?php endif; ?>
 					</button>					
 				</div>				
@@ -847,8 +881,8 @@ class Login extends \Elementor\Widget_Base {
 					?>
 					<div class="elementor-field-group elementor-column elementor-col-100">
 						<?php if ( $show_lost_password ) : ?>
-							<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url( $redirect_url ); ?>">
-								<?php echo __( 'Lost your password?', 'wbcom-essential' ); ?>
+							<a class="elementor-lost-password" href="<?php echo esc_url( wp_lostpassword_url( $redirect_url ) ); ?>">
+								<?php echo esc_html__( 'Lost your password?', 'wbcom-essential' ); ?>
 							</a>
 						<?php endif; ?>
 
@@ -856,9 +890,8 @@ class Login extends \Elementor\Widget_Base {
 							<?php if ( $show_lost_password ) : ?>
 								<span class="elementor-login-separator"> | </span>
 							<?php endif; ?>
-							<a class="elementor-register" href="<?php echo wp_registration_url(); ?>">
-								<?php echo $settings['register_label']; ?>
-								<?php // echo __( 'Register', 'wbcom-essential' ); ?>
+							<a class="elementor-register" href="<?php echo esc_url( wp_registration_url() ); ?>">
+								<?php echo esc_html( $settings['register_label'] ); ?>
 							</a>
 						<?php endif; ?>
 					</div>
@@ -868,6 +901,9 @@ class Login extends \Elementor\Widget_Base {
 		<?php
 	}
 
+	/**
+	 * Elementor login content template
+	 */
 	protected function _content_template() {
 		?>
 		<div class="elementor-login elementor-form">
@@ -892,7 +928,7 @@ class Login extends \Elementor\Widget_Base {
 					<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
 						<label for="elementor-login-remember-me">
 							<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
-							<?php echo __( 'Remember Me', 'wbcom-essential' ); ?>
+							<?php echo esc_html__( 'Remember Me', 'wbcom-essential' ); ?>
 						</label>
 					</div>
 				<# } #>
@@ -908,8 +944,8 @@ class Login extends \Elementor\Widget_Base {
 				<# if ( settings.show_lost_password || settings.show_register ) { #>
 					<div class="elementor-field-group elementor-column elementor-col-100">
 						<# if ( settings.show_lost_password ) { #>
-							<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url(); ?>">
-								<?php echo __( 'Lost your password?', 'wbcom-essential' ); ?>
+							<a class="elementor-lost-password" href="<?php echo esc_url( wp_lostpassword_url() ); ?>">
+								<?php echo esc_html__( 'Lost your password?', 'wbcom-essential' ); ?>
 							</a>
 						<# } #>
 
@@ -918,8 +954,8 @@ class Login extends \Elementor\Widget_Base {
 								<# if ( settings.show_lost_password ) { #>
 									<span class="elementor-login-separator"> | </span>
 								<# } #>
-								<a class="elementor-register" href="<?php echo wp_registration_url(); ?>">
-									<?php echo __( 'Register', 'wbcom-essential' ); ?>
+								<a class="elementor-register" href="<?php echo esc_url( wp_registration_url() ); ?>">
+									<?php echo esc_html__( 'Register', 'wbcom-essential' ); ?>
 								</a>
 							<# } #>
 						<?php } ?>

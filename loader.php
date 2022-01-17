@@ -1,17 +1,30 @@
 <?php
 /**
- * Plugin Name: Wbcom Essential
- * Description: Wbcom Essential Addons.
- * Plugin URI: https://wbcomdesigns.com/
- * Author: Wbcom Designs
- * Version: 3.4.2
- * Author URI: https://wbcomdesigns.com/
  *
- * Text Domain: wbcom-essential
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
+ *
+ * @link              https://wbcomdesigns.com/plugins
+ * @since             1.0.0
+ * @package           Wbcom_Essential
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Wbcom Essential
+ * Plugin URI:        https://wbcomdesigns.com
+ * Description:       Wbcom Essential Addons.
+ * Version:           3.4.2
+ * Author:            wbcomdesigns
+ * Author URI:        https://wbcomdesigns.com/plugins
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       wbcom-essential
+ * Domain Path:       /languages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 define( 'WBCOM_ESSENTIAL_VERSION', '3.4.2' );
