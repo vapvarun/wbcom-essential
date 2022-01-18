@@ -418,8 +418,7 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 														<?php
 														bp_member_avatar(
 															array(
-																'width'  => '150',
-																'height' => '150',
+																'type'  => 'full',
 																'class'  => 'swiper-slide-image',
 															)
 														);
