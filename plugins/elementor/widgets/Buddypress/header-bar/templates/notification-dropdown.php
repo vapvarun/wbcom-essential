@@ -58,7 +58,7 @@ $notifications_icon = ( isset( $settings['notifications_icon']['value'] ) && '' 
 				<?php endwhile; ?>
 			<?php else : ?>
 				<li class="bs-item-wrap">
-					<div class="notification-content"><?php esac_html_e( 'No new notifications', 'wbcom-essential' ); ?>!</div>
+					<div class="notification-content"><?php esc_html_e( 'No new notifications', 'wbcom-essential' ); ?>!</div>
 				</li>
 			<?php endif; ?>
 
