@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 5.8.3
-Stable tag: 3.5.0
+Stable tag: 3.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,8 +22,15 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 3.5.1 =
+* Fix: Fixed Popup issue for buddyx pro
+* Fix: Theme Specific Login register link
+* Fix: Managed search icons show in logout mode
+* Fix: Update forums reply icon alignment
+* Fix: Fixed profile completion hide widget option setting
+
 = 3.5.0 =
-* Fix : Fixed hide/show separator issue
+* Fix: Fixed hide/show separator issue
 * Fix : Managed activity list, forums lists, header bar UI fixes
 * Fix : Managed header bar elements hide/show
 * Fix : Delete Hide edit activity button
