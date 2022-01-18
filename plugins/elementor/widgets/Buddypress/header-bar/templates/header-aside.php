@@ -111,7 +111,7 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 		<?php else : ?>
 
 			<?php if ( $show_search ) : ?>
-				<a href="#" class="header-search-link" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Search', 'wbcom-essential' ); ?>"><i class="wbcom-essential-icon-search"></i></a>
+				<a href="#" class="header-search-link" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Search', 'wbcom-essential' ); ?>"><i class="wb-icon-search"></i></a>
 			<?php endif; ?>
 
 			<?php
