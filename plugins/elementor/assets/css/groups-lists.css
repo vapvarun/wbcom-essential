@@ -127,7 +127,8 @@
     padding: 0;
 }
 
-.wbcom-essential-groups-list #groups-list li {
+.wbcom-essential-groups-list #groups-list li,
+.wbcom-essential-groups-list #groups-list li.hidden {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
