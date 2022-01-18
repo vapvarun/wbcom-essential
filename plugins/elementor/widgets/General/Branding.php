@@ -1,12 +1,4 @@
 <?php
-/**
- * Elementor branding widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/general
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\General;
 
@@ -23,47 +15,26 @@ use Elementor\Core\Schemes\Color;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 
-/**
- * Elementor branding widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/forums
- */
+
+
 class Branding extends \Elementor\Widget_Base {
 
-	/**
-	 * Get name.
-	 */
 	public function get_name() {
 		return 'wbcom-branding';
 	}
 
-	/**
-	 * Get title.
-	 */
 	public function get_title() {
 		return esc_html__( 'Branding', 'wbcom-essential' );
 	}
 
-	/**
-	 * Get icon.
-	 */
 	public function get_icon() {
 		return 'eicon-banner';
 	}
 
-	/**
-	 * Get categories.
-	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
 
-	/**
-	 * Register elementor branding widget controls.
-	 */
 	protected function _register_controls() {
 
 		do_action( 'wbcom_essential/widget/branding/settings', $this );
@@ -300,22 +271,16 @@ class Branding extends \Elementor\Widget_Base {
 
 	}
 
-	/**
-	 * Elementor branding widget output.
-	 */
 	protected function branding_output() {
 		$settings = $this->get_settings();
 
-		if ( 'title' === $settings['el_site_branding'] ) {
+		if ( $settings['el_site_branding'] == 'title' ) {
 			$this->render_title();
-		} elseif ( 'logo' === $settings['el_site_branding'] ) {
+		} elseif ( $settings['el_site_branding'] == 'logo' ) {
 			$this->elementor_the_site_logo();
 		}
 	}
 
-	/**
-	 * Display site logo.
-	 */
 	protected function elementor_the_site_logo() {
 		if ( function_exists( 'the_custom_logo' ) ) {
 			if ( has_custom_logo() ) {
@@ -328,31 +293,25 @@ class Branding extends \Elementor\Widget_Base {
 		}
 	}
 
-	/**
-	 * Render site title.
-	 */
 	protected function render_title() {
 		?>
-		<span class="site-title">
-			<?php
-			$title = get_bloginfo( 'name' );
-			?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( $title ); ?>" alt="<?php echo esc_attr( $title ); ?>">
-				<?php bloginfo( 'name' ); ?>
-			</a>
-		</span>
+  <span class="site-title">
+		<?php
+		$title = get_bloginfo( 'name' );
+		?>
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( $title ); /* WPCS: xss ok. */ ?>" alt="<?php echo esc_attr( $title ); ?>">
+		<?php bloginfo( 'name' ); ?>
+	</a>
+  </span>
 		<?php
 		$description = get_bloginfo( 'description', 'display' );
 		if ( $description || is_customize_preview() ) :
 			?>
-	<p class="site-description"><?php echo wp_kses_post( $description ); ?></p>
+	<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
 			<?php
 	endif;
 	}
 
-	/**
-	 * Render branding widget output.
-	 */
 	protected function render() {
 
 		$settings = $this->get_settings();
@@ -365,7 +324,7 @@ class Branding extends \Elementor\Widget_Base {
 				?>
 			</div>
 		</div>
-		<?php
+		  <?php
 	}
 
 }

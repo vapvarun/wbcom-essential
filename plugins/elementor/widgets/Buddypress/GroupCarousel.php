@@ -1,12 +1,4 @@
 <?php
-/**
- * Elementor groups carousel widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Buddypress;
 
@@ -20,23 +12,9 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 
-/**
- * Elementor groups carousel widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
- */
+
 class GroupCarousel extends \Elementor\Widget_Base {
 
-	/**
-	 * Construct.
-	 *
-	 * @param  array  $data Data.
-	 * @param  string $args Args.
-	 * @return void
-	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
@@ -45,37 +23,22 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
 	}
 
-	/**
-	 * Get Name.
-	 */
 	public function get_name() {
 		return 'wbcom-group-carousel';
 	}
 
-	/**
-	 * Get Title.
-	 */
 	public function get_title() {
 		return esc_html__( 'Group Carousel', 'wbcom-essential' );
 	}
 
-	/**
-	 * Get Icon.
-	 */
 	public function get_icon() {
 		return 'eicon-slideshow';
 	}
 
-	/**
-	 * Get dependent script.
-	 */
 	public function get_script_depends() {
 		return array( 'group-carousel' );
 	}
 
-	/**
-	 * Get dependent style..
-	 */
 	public function get_style_depends() {
 		return array( 'group-carousel' );
 	}
@@ -94,9 +57,6 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		return array( 'group', 'groups', 'carousel', 'slider' );
 	}
 
-	/**
-	 * Get categories.
-	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
@@ -335,67 +295,62 @@ class GroupCarousel extends \Elementor\Widget_Base {
 
 	}
 
-	/**
-	 * Render Elementor groups carousel widget.
-	 *
-	 * @return void
-	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
 		$current_component = static function () {
 			return 'groups';
 		};
-
-		if ( isset( $settings['slides_to_show'] ) && '' !== $settings['slides_to_show'] ) {
+		
+		if ( isset($settings['slides_to_show']) && $settings['slides_to_show'] !='' ) {
 			$swiper_options['slides_to_show'] = $settings['slides_to_show'];
 		}
-		if ( isset( $settings['slides_to_show_tablet'] ) && '' !== $settings['slides_to_show_tablet'] ) {
+		if ( isset($settings['slides_to_show_tablet']) && $settings['slides_to_show_tablet'] !='' ) {
 			$swiper_options['slides_to_show_tablet'] = $settings['slides_to_show_tablet'];
 		}
-		if ( isset( $settings['slides_to_show_mobile'] ) && '' !== $settings['slides_to_show_mobile'] ) {
+		if ( isset($settings['slides_to_show_mobile']) && $settings['slides_to_show_mobile'] !='' ) {
 			$swiper_options['slides_to_show_mobile'] = $settings['slides_to_show_mobile'];
 		}
-		if ( isset( $settings['slides_to_scroll'] ) && '' !== $settings['slides_to_scroll'] ) {
-			$swiper_options['slides_to_scroll'] = $settings['slides_to_scroll'];
+		if ( isset($settings['slides_to_scroll']) && $settings['slides_to_scroll'] !='' ) {
+			$swiper_options['slides_to_scroll']	= $settings['slides_to_scroll'];
 		}
-		if ( isset( $settings['slides_to_scroll_tablet'] ) && '' !== $settings['slides_to_scroll_tablet'] ) {
+		if ( isset($settings['slides_to_scroll_tablet']) && $settings['slides_to_scroll_tablet'] !='' ) {
 			$swiper_options['slides_to_scroll_tablet'] = $settings['slides_to_scroll_tablet'];
 		}
-		if ( isset( $settings['slides_to_scroll_mobile'] ) && '' !== $settings['slides_to_scroll_mobile'] ) {
+		if ( isset($settings['slides_to_scroll_mobile']) && $settings['slides_to_scroll_mobile'] !='' ) {
 			$swiper_options['slides_to_scroll_mobile'] = $settings['slides_to_scroll_mobile'];
 		}
-		if ( isset( $settings['navigation'] ) && '' !== $settings['navigation'] ) {
+		if ( isset($settings['navigation']) && $settings['navigation'] !='' ) {
 			$swiper_options['navigation'] = $settings['navigation'];
 		}
-		if ( isset( $settings['autoplay_speed'] ) && '' !== $settings['autoplay_speed'] ) {
+		if ( isset($settings['autoplay_speed']) && $settings['autoplay_speed'] !='' ) {
 			$swiper_options['autoplay_speed'] = $settings['autoplay_speed'];
 		}
-		if ( isset( $settings['autoplay'] ) && '' !== $settings['autoplay'] ) {
+		if ( isset($settings['autoplay']) && $settings['autoplay'] !='' ) {
 			$swiper_options['autoplay'] = $settings['autoplay'];
 		}
-		if ( isset( $settings['pause_on_hover'] ) && '' !== $settings['pause_on_hover'] ) {
+		if ( isset($settings['pause_on_hover']) && $settings['pause_on_hover'] !='' ) {
 			$swiper_options['pause_on_hover'] = $settings['pause_on_hover'];
 		}
-		if ( isset( $settings['pause_on_interaction'] ) && '' !== $settings['pause_on_interaction'] ) {
+		if ( isset($settings['pause_on_interaction']) && $settings['pause_on_interaction'] !='' ) {
 			$swiper_options['pause_on_interaction'] = $settings['pause_on_interaction'];
 		}
-		if ( isset( $settings['infinite'] ) && '' !== $settings['infinite'] ) {
+		if ( isset($settings['infinite']) && $settings['infinite'] !='' ) {
 			$swiper_options['infinite'] = $settings['infinite'];
 		}
-		if ( isset( $settings['speed'] ) && '' !== $settings['speed'] ) {
+		if ( isset($settings['speed']) && $settings['speed'] !='' ) {
 			$swiper_options['speed'] = $settings['speed'];
 		}
-
+		
 		$this->add_render_attribute(
 			array(
 				'carousel'         => array(
 					'class' => 'elementor-group-carousel swiper-wrapper',
 				),
 				'carousel-wrapper' => array(
-					'class'         => 'group-carousel-container swiper-container',
-					'dir'           => $settings['direction'],
-					'data-settings' => wp_json_encode( $swiper_options ),
+					'class' => 'group-carousel-container swiper-container',
+					'dir'   => $settings['direction'],
+					'data-settings' => wp_json_encode($swiper_options)
 				),
 			)
 		);
@@ -405,8 +360,8 @@ class GroupCarousel extends \Elementor\Widget_Base {
 		$show_dots    = ( in_array( $settings['navigation'], array( 'dots', 'both' ) ) );
 		$show_arrows  = ( in_array( $settings['navigation'], array( 'arrows', 'both' ) ) );
 		?>
-		<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'carousel-wrapper' ) ); ?>>
-				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'carousel' ) ); ?>>
+		<div <?php echo $this->get_render_attribute_string( 'carousel-wrapper' ); ?>>
+				<div <?php echo $this->get_render_attribute_string( 'carousel' ); ?>>
 					<?php
 					if ( bp_has_groups( bp_ajax_querystring( 'groups' ) . $query_string ) ) {
 						while ( bp_groups() ) {
@@ -416,11 +371,11 @@ class GroupCarousel extends \Elementor\Widget_Base {
 								<div <?php bp_group_class(); ?>>
 									<div class="item-container">
 										<div class="item-avatar">
-											<figure class="swiper-slide-inner">
-												<a class="group-avatar" href="<?php bp_group_permalink(); ?>">
-														<?php bp_group_avatar( array( 'class' => 'swiper-slide-image' ) ); ?>
-												</a>
-											</figure>
+                                                                                    <figure class="swiper-slide-inner">
+                                                                                        <a class="group-avatar" href="<?php bp_group_permalink(); ?>">
+                                                                                                <?php bp_group_avatar( array( 'class' => 'swiper-slide-image' ) ); ?>
+                                                                                        </a>
+                                                                                    </figure>
 										</div>
 										<div class="item-card">
 											<div class="item">
@@ -446,11 +401,11 @@ class GroupCarousel extends \Elementor\Widget_Base {
 					<?php if ( $show_arrows ) : ?>
 					<div class="elementor-swiper-button elementor-swiper-button-prev">
 						<i class="eicon-chevron-left" aria-hidden="true"></i>
-						<span class="elementor-screen-only"><?php esc_html_e( 'Previous', 'elementor' ); ?></span>
+						<span class="elementor-screen-only"><?php _e( 'Previous', 'elementor' ); ?></span>
 					</div>
 					<div class="elementor-swiper-button elementor-swiper-button-next">
 						<i class="eicon-chevron-right" aria-hidden="true"></i>
-						<span class="elementor-screen-only"><?php esc_html_e( 'Next', 'elementor' ); ?></span>
+						<span class="elementor-screen-only"><?php _e( 'Next', 'elementor' ); ?></span>
 					</div>
 				<?php endif; ?>
 			<?php endif; ?>

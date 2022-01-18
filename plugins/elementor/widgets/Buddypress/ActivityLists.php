@@ -1,12 +1,4 @@
 <?php
-/**
- * Elementor widget activity lists.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Buddypress;
 
@@ -22,84 +14,48 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Core\Schemes;
 use Elementor\Group_Control_Typography;
 
-/**
- * Activity Lists.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
- */
 class ActivityLists extends \Elementor\Widget_Base {
 
-	/**
-	 * Construct.
-	 *
-	 * @param  array  $data Data.
-	 * @param  string $args Args.
-	 * @return void
-	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
-
+                
 		wp_register_style( 'activity-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/activity-lists.css', array(), '3.5.0' );
 	}
 
-	/**
-	 * Get Name.
-	 */
 	public function get_name() {
 		return 'wbcom-activity-lists';
 	}
 
-	/**
-	 * Get Title.
-	 */
 	public function get_title() {
 		return esc_html__( 'Activity Lists', 'wbcom-essential' );
 	}
 
-	/**
-	 * Get Icon.
-	 */
 	public function get_icon() {
 		return 'eicon-time-line';
 	}
 
-	/**
-	 * Get style depends.
-	 */
 	public function get_style_depends() {
 		return array( 'activity-lists' );
 	}
 
-	/**
-	 * Get categories.
-	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
 
-	/**
-	 * Check BuddyPress is plugin activated.
-	 */
 	public function is_buddypress_plugin_activate() {
-
+		
 		$plugin = 'buddypress/bp-loader.php';
-
+		
 		$plugins = get_site_option( 'active_sitewide_plugins' );
 		if ( isset( $plugins[ $plugin ] ) ) {
 			return true;
 		} else {
-			return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true );
+			return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) ;
 		}
 	}
-
-	/**
-	 * Register Controls.
-	 */
+	
 	protected function _register_controls() {
-
+		
 		$this->start_controls_section(
 			'section_content_layout',
 			array(
@@ -142,7 +98,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 				),
 				'selectors' => array(
 					'{{WRAPPER}} #buddypress .activity-lists.bp-list .activity-item' => 'margin-bottom: {{SIZE}}px; padding-bottom: {{SIZE}}px',
-					// '{{WRAPPER}} #buddypress .activity-lists.bp-list .activity-item' => 'padding-bottom: {{SIZE}}px',
+					//'{{WRAPPER}} #buddypress .activity-lists.bp-list .activity-item' => 'padding-bottom: {{SIZE}}px',
 				),
 			)
 		);
@@ -211,6 +167,8 @@ class ActivityLists extends \Elementor\Widget_Base {
 				),
 			)
 		);
+		
+
 
 		$this->add_control(
 			'switch_delete',
@@ -229,41 +187,41 @@ class ActivityLists extends \Elementor\Widget_Base {
 
 		$this->start_controls_section(
 			'section_content',
-			array(
+			[
 				'label' => __( 'Content', 'wbcom-essential' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			)
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
 		);
 
 		$this->add_control(
 			'heading_text',
-			array(
-				'label'       => __( 'Heading Text', 'wbcom-essential' ),
-				'type'        => Controls_Manager::TEXT,
-				'dynamic'     => array(
+			[
+				'label' => __( 'Heading Text', 'wbcom-essential' ),
+				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
 					'active' => true,
-				),
-				'default'     => __( 'Activity', 'wbcom-essential' ),
+				],
+				'default' => __( 'Activity', 'wbcom-essential' ),
 				'placeholder' => __( 'Enter heading text', 'wbcom-essential' ),
-				'label_block' => true,
-			)
+				'label_block' => true
+			]
 		);
 
 		$this->add_control(
 			'activity_link_text',
-			array(
-				'label'       => __( 'Activity Link Text', 'wbcom-essential' ),
-				'type'        => Controls_Manager::TEXT,
-				'dynamic'     => array(
+			[
+				'label' => __( 'Activity Link Text', 'wbcom-essential' ),
+				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
 					'active' => true,
-				),
-				'default'     => __( 'All Activity', 'wbcom-essential' ),
+				],
+				'default' => __( 'All Activity', 'wbcom-essential' ),
 				'placeholder' => __( 'Enter activity link text', 'wbcom-essential' ),
 				'label_block' => true,
-				'condition'   => array(
+				'condition' => [
 					'switch_more' => 'yes',
-				),
-			)
+				]
+			]
 		);
 
 		$this->end_controls_section();
@@ -474,14 +432,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 	}
-
-	/**
-	 * Elementor activity default scope.
-	 *
-	 * @param string $scope Activity Scope.
-	 * @param int    $user_id User ID.
-	 * @param Int    $group_id Group ID.
-	 */
+	
 	public function wbcom_essential_theme_elementor_activity_default_scope( $scope = 'all', $user_id = 0, $group_id = 0 ) {
 		$new_scope = array();
 		if ( bp_loggedin_user_id() && ( 'all' === $scope || empty( $scope ) ) ) {
@@ -504,7 +455,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 				}
 				if ( function_exists( 'bp_is_activity_follow_active' ) && bp_is_activity_follow_active() ) {
 					$new_scope[] = 'following';
-				}
+				}				
 			}
 		} elseif ( ! bp_loggedin_user_id() && ( 'all' === $scope || empty( $scope ) ) ) {
 			$new_scope[] = 'public';
@@ -519,26 +470,23 @@ class ActivityLists extends \Elementor\Widget_Base {
 		$new_scope = apply_filters( 'wbcom_essential_theme_elementor_activity_default_scope', $new_scope );
 		return implode( ',', $new_scope );
 	}
-
-	/**
-	 * Render BuddyPress Activity.
-	 */
+	
 	protected function render() {
-		global $wbcom_essential_theme_elementor_activity;
+	    global $wbcom_essential_theme_elementor_activity;
 
 		$settings = $this->get_settings_for_display();
-
+		
 		$current_component = static function () {
 			return 'activity';
 		};
-
+		
 		add_filter( 'bp_current_component', $current_component );
 
 		add_filter( 'bp_excerpt_length', array( $this, 'wbcom_essential_elementor_change_activity_content_excerpt_length' ), 99, 1 );
 		// Override parameters for bp_has_activities().
 		$args = array(
-			'max'      => esc_attr( $settings['activity_count']['size'] ),
-			'per_page' => esc_attr( $settings['activity_count']['size'] ),
+			'max'        => esc_attr( $settings['activity_count']['size'] ),
+			'per_page'   => esc_attr( $settings['activity_count']['size'] ),
 		);
 
 		$args['scope'] = $this->wbcom_essential_theme_elementor_activity_default_scope();
@@ -546,10 +494,10 @@ class ActivityLists extends \Elementor\Widget_Base {
 		$has_activity = bp_has_activities( $args );
 
 		if ( bp_is_active( 'activity' ) ) {
-			wp_enqueue_script( 'bp-nouveau-activity' );
+			wp_enqueue_script( 'bp-nouveau-activity' );			
 			bp_get_template_part( 'common/js-templates/activity/form' );
 		}
-
+		
 		$this->add_render_attribute( 'actions', 'class', 'activity-actions' );
 
 		if ( $settings['switch_actions'] ) {
@@ -563,7 +511,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 		if ( $settings['switch_comments'] ) {
 			$this->add_render_attribute( 'actions', 'class', 'activity-actions--comment' );
 		}
-
+		
 		if ( $settings['switch_delete'] ) {
 			$this->add_render_attribute( 'actions', 'class', 'activity-actions--delete' );
 		}
@@ -588,8 +536,8 @@ class ActivityLists extends \Elementor\Widget_Base {
 					<div class="wbcom-essential-block-header__title"><h3><?php echo esc_html( $settings['heading_text'] ); ?></h3></div>
 					<?php if ( $settings['switch_more'] ) : ?>
 						<div class="wbcom-essential-block-header__extra push-right">
-							<?php if ( '' !== $settings['activity_link_text'] ) { ?>
-								<a href="<?php echo esc_url( bp_get_activity_root_slug() ); ?>" class="count-more"><?php echo esc_html( $settings['activity_link_text'] ); ?><i class="eicon-chevron-right"></i></a>
+							<?php if( '' != $settings['activity_link_text'] ) { ?>
+								<a href="<?php echo bp_get_activity_root_slug(); ?>" class="count-more"><?php echo esc_html( $settings['activity_link_text'] ); ?><i class="eicon-chevron-right"></i></a>
 							<?php } ?>
 						</div>
 					<?php endif; ?>
@@ -601,14 +549,11 @@ class ActivityLists extends \Elementor\Widget_Base {
 							<div class="screen-content">
 								<div id="activity-stream" class="activity" data-ajax="false" data-bp-list="activity">
 									<ul class="activity-lists item-list bp-list elementor-activity-widget">
-										<?php
-										while ( bp_activities() ) :
-											bp_the_activity();
-											?>
-											<li class="<?php bp_activity_css_class(); ?>" id="activity-<?php bp_activity_id(); ?>" data-bp-activity-id="<?php bp_activity_id(); ?>" data-bp-timestamp="<?php bp_nouveau_activity_timestamp(); ?>" data-bp-activity="<?php ( function_exists( 'bp_nouveau_edit_activity_data' ) ) ? bp_nouveau_edit_activity_data() : ''; ?>" >
+										<?php while ( bp_activities() ) : bp_the_activity(); ?>
+											<li class="<?php bp_activity_css_class(); ?>" id="activity-<?php bp_activity_id(); ?>" data-bp-activity-id="<?php bp_activity_id(); ?>" data-bp-timestamp="<?php bp_nouveau_activity_timestamp(); ?>" data-bp-activity="<?php ( function_exists('bp_nouveau_edit_activity_data') ) ? bp_nouveau_edit_activity_data() : ''; ?>" >
 
 												<div class="bp-activity-head">
-													<?php if ( $settings['switch_avatar'] ) : ?>
+													<?php if ($settings['switch_avatar']) : ?>
 														<div class="activity-avatar item-avatar">
 															<a href="<?php bp_activity_user_link(); ?>">
 																<?php bp_activity_avatar( array( 'type' => 'full' ) ); ?>
@@ -618,23 +563,26 @@ class ActivityLists extends \Elementor\Widget_Base {
 													<div class="activity-header">
 														<?php bp_activity_action(); ?>
 														<p class="activity-date">
-															<a href="<?php echo esc_url( bp_activity_get_permalink( bp_get_activity_id() ) ); ?>"><?php echo wp_kses_post( bp_core_time_since( bp_get_activity_date_recorded() ) ); ?></a>
+                                                            <a href="<?php echo esc_url( bp_activity_get_permalink( bp_get_activity_id() ) ); ?>"><?php echo bp_core_time_since( bp_get_activity_date_recorded() ); ?></a>
 															<?php
-															if ( function_exists( 'bp_nouveau_activity_is_edited' ) ) {
+															if ( function_exists( 'bp_nouveau_activity_is_edited' ) ){
 																bp_nouveau_activity_is_edited();
 															}
 															?>
-														</p>                                                        
+                                                        </p>                                                        
 													</div>
 												</div>
+
 												<?php if ( bp_nouveau_activity_has_content() && $settings['switch_content'] ) : ?>
 													<div class="activity-content">
 														<?php bp_nouveau_activity_hook( 'before', 'activity_content' ); ?>
 														<?php if ( bp_nouveau_activity_has_content() ) : ?>
 															<div class="activity-inner"><?php bp_nouveau_activity_content(); ?></div>
 														<?php endif; ?>
+														
 														<?php bp_nouveau_activity_hook( 'after', 'activity_content' ); ?>
-														<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'actions' ) ); ?>>
+														
+														<div <?php echo $this->get_render_attribute_string('actions'); ?>>
 															<?php bp_nouveau_activity_entry_buttons(); ?>
 														</div>
 													</div>
@@ -673,9 +621,9 @@ class ActivityLists extends \Elementor\Widget_Base {
 			<?php else : ?>
 
 				<div class="wbcom-essential-no-data wbcom-essential-no-data--activity">
-					<img class="wbcom-essential-no-data__image" src="<?php echo esc_url( WBCOM_ESSENTIAL_ASSETS_URL ); ?>images/no-data-found.svg" alt="Activity" />
+					<img class="wbcom-essential-no-data__image" src="<?php echo WBCOM_ESSENTIAL_ASSETS_URL; ?>images/no-data-found.svg"" alt="Activity" />
 					<?php bp_nouveau_user_feedback( 'activity-loop-none' ); ?>
-					<a href="<?php echo esc_url( bp_get_activity_root_slug() ); ?>" class="wbcom-essential-no-data__link"><?php esc_html_e( 'Post an Update', 'wbcom-essential' ); ?></a>
+					<a href="<?php echo bp_get_activity_root_slug(); ?>" class="wbcom-essential-no-data__link"><?php _e( 'Post an Update', 'wbcom-essential' ); ?></a>
 				</div>
 
 			<?php endif; ?>
@@ -685,13 +633,7 @@ class ActivityLists extends \Elementor\Widget_Base {
 		remove_filter( 'bp_current_component', $current_component );
 		remove_filter( 'bp_excerpt_length', array( $this, 'wbcom_essential_elementor_change_activity_content_excerpt_length' ), 99, 1 );
 	}
-
-	/**
-	 * Changed activity content length.
-	 *
-	 * @param  string $length Activity Content Length.
-	 * @return string $length
-	 */
+	
 	public function wbcom_essential_elementor_change_activity_content_excerpt_length( $length ) {
 		$length = 135;
 		return $length;

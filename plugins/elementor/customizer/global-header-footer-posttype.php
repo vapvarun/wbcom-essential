@@ -2,13 +2,8 @@
 /**
  * Checks if Elementor is installed and activated and loads it's own files and actions.
  *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/customizer
+ * @package  reign header-footer-elementor
  */
-
 defined( 'ABSPATH' ) or exit;
 
 /**
@@ -17,15 +12,6 @@ defined( 'ABSPATH' ) or exit;
  * @since 1.0
  */
 if ( ! class_exists( 'WBCOM_Elementor_Global_Header_Footer_PostType' ) ) :
-	/**
-	 * Checks if Elementor is installed and activated and loads it's own files and actions.
-	 *
-	 * @link       https://wbcomdesigns.com/plugins
-	 * @since      1.0.0
-	 *
-	 * @package    Wbcom_Essential
-	 * @subpackage Wbcom_Essential/plugins/elementor/customizer
-	 */
 	class WBCOM_Elementor_Global_Header_Footer_PostType {
 
 		/**
@@ -67,10 +53,7 @@ if ( ! class_exists( 'WBCOM_Elementor_Global_Header_Footer_PostType' ) ) :
 		}
 
 		/**
-		 * Removing content for Elementor Header and Footer while saving data.
-		 *
-		 * @param array $data Data.
-		 * @param array $post_args Posts Arguments.
+		 * Removing content for Elementor Header and Footer while saving data
 		 */
 		public function remove_content_while_saving( $data = array(), $post_args = array() ) {
 			if ( ( $data['post_type'] == 'reign-elemtr-header' ) || ( $data['post_type'] == 'reign-elemtr-footer' ) ) {
@@ -81,8 +64,6 @@ if ( ! class_exists( 'WBCOM_Elementor_Global_Header_Footer_PostType' ) ) :
 
 		/**
 		 * Removing content for Elementor Header and Footer while exporting data
-		 *
-		 * @param string $post_content Post content.
 		 */
 		public function remove_content_while_exporting( $post_content ) {
 			global $post;

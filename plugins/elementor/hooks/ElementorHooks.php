@@ -2,11 +2,8 @@
 /**
  * Add Elementor Hooks
  *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/hooks
+ * @package REIGNELEMENTOR
+ * @since 1.0.0
  */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR;
@@ -19,13 +16,9 @@ use WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Query;
 defined( 'ABSPATH' ) || die();
 
 /**
- * Add Elementor Hooks
+ * Class ElementorHooks
  *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/hooks
+ * @package REIGNELEMENTOR
  */
 class ElementorHooks {
 
@@ -109,7 +102,7 @@ class ElementorHooks {
 	 * @return mixed
 	 */
 	public static function get_instance() {
-		if ( null === self::$instance ) {
+		if ( self::$instance === null ) {
 			self::$instance = new self();
 		}
 
@@ -220,9 +213,10 @@ class ElementorHooks {
 		if ( isset( $elementor->widgets_manager ) && method_exists( $elementor->widgets_manager, 'register_widget_type' ) ) {
 
 			$elements = \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::get_instance()->get_elements();
-			// include_once REIGN_INC_DIR . 'plugins/elementor/widgets/Base.php';.
+			// include_once REIGN_INC_DIR . 'plugins/elementor/widgets/Base.php';
 			foreach ( $elements as $k => $element ) {
 				if ( $template_file = $this->get_element_path( $element['template_base_path'] . $k ) ) {
+
 					require_once $template_file;
 					$class_name = $element['class_base_namespace'] . $element['class'];
 					$elementor->widgets_manager->register_widget_type( new $class_name() );
@@ -231,9 +225,6 @@ class ElementorHooks {
 		}
 	}
 
-	/**
-	 * Register Controls.
-	 */
 	public function register_controls() {
 		$controls_manager = \Elementor\Plugin::instance()->controls_manager;
 
@@ -245,8 +236,8 @@ class ElementorHooks {
 	/**
 	 * Sync elementor widget options with customizer
 	 *
-	 * @param int $post_id Post ID.
-	 * @param int $editor_data Editor Data.
+	 * @param $post_id
+	 * @param $editor_data
 	 */
 	public function save_buddypress_options( $post_id, $editor_data ) {
 		$settings = bpb_get_settings();
@@ -265,11 +256,11 @@ class ElementorHooks {
 				\Elementor\Plugin::$instance->db->iterate_data(
 					$document->get_elements_data(),
 					static function ( $element ) {
-						if ( empty( $element['widgetType'] ) || 'widget' !== $element['elType'] ) {
+						if ( empty( $element['widgetType'] ) || $element['elType'] !== 'widget' ) {
 							return $element;
 						}
 
-						if ( 'bpb-members-directory-list' === $element['widgetType'] ) {
+						if ( $element['widgetType'] === 'bpb-members-directory-list' ) {
 							$listing_columns = bpb_get_listing_columns();
 
 							$listing_columns['members_directory'] = array(
@@ -281,7 +272,7 @@ class ElementorHooks {
 							bpb_update_listing_columns( $listing_columns );
 						}
 
-						if ( 'bpb-groups-directory-list' === $element['widgetType'] ) {
+						if ( $element['widgetType'] === 'bpb-groups-directory-list' ) {
 							$listing_columns = bpb_get_listing_columns();
 
 							$listing_columns['groups_directory'] = array(
@@ -293,18 +284,18 @@ class ElementorHooks {
 							bpb_update_listing_columns( $listing_columns );
 						}
 
-						if ( 'bpb-profile-member-navigation' === $element['widgetType'] && isset( $element['settings']['show_home_tab'] ) ) {
+						if ( $element['widgetType'] === 'bpb-profile-member-navigation' && isset( $element['settings']['show_home_tab'] ) ) {
 							$bp_appearance = bpb_get_appearance();
 
-							$bp_appearance['user_front_page'] = 'yes' === $element['settings']['show_home_tab'] ? 1 : 0;
+							$bp_appearance['user_front_page'] = $element['settings']['show_home_tab'] === 'yes' ? 1 : 0;
 
 							bpb_update_appearance( $bp_appearance );
 						}
 
-						if ( 'bpb-profile-group-navigation' === $element['widgetType'] && isset( $element['settings']['show_home_tab'] ) ) {
+						if ( $element['widgetType'] === 'bpb-profile-group-navigation' && isset( $element['settings']['show_home_tab'] ) ) {
 							$bp_appearance = bpb_get_appearance();
 
-							$bp_appearance['group_front_page'] = 'yes' === $element['settings']['show_home_tab'] ? 1 : 0;
+							$bp_appearance['group_front_page'] = $element['settings']['show_home_tab'] === 'yes' ? 1 : 0;
 
 							bpb_update_appearance( $bp_appearance );
 						}
@@ -338,7 +329,7 @@ class ElementorHooks {
 	/**
 	 * Get widget template path
 	 *
-	 * @param string $file_path File Path.
+	 * @param $file_path
 	 *
 	 * @return bool|string
 	 */
@@ -352,9 +343,8 @@ class ElementorHooks {
 	}
 
 	/**
-	 * Added Exclude Controls.
 	 *
-	 * @param string Widget_Base $widget WP Widget.
+	 * @param Widget_Base $widget
 	 */
 	public static function add_exclude_controls( $widget ) {
 		$widget->add_control(
@@ -388,12 +378,6 @@ class ElementorHooks {
 		);
 	}
 
-	/**
-	 * Get query args.
-	 *
-	 * @param  int    $control_id Control ID.
-	 * @param  string $settings Settings.
-	 */
 	public static function get_query_args( $control_id, $settings ) {
 		$defaults = array(
 			$control_id . '_post_type' => 'post',
@@ -412,7 +396,7 @@ class ElementorHooks {
 			'orderby'             => $settings['orderby'],
 			'order'               => $settings['order'],
 			'ignore_sticky_posts' => 1,
-			'post_status'         => 'publish', // Hide drafts/private posts for admins.
+			'post_status'         => 'publish', // Hide drafts/private posts for admins
 		);
 
 		if ( 'by_id' === $post_type ) {
@@ -420,7 +404,7 @@ class ElementorHooks {
 			$query_args['post__in']  = $settings[ $control_id . '_posts_ids' ];
 
 			if ( empty( $query_args['post__in'] ) ) {
-				// If no selection - return an empty query.
+				// If no selection - return an empty query
 				$query_args['post__in'] = array( 0 );
 			}
 		} else {

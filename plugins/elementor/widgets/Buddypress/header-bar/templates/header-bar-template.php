@@ -1,12 +1,6 @@
 <?php
 /**
- * Header bar template.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
+ * @var array $settings
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -41,7 +35,8 @@ $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
 
 ?>
 
-<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'site-header' ) ); ?>>
+<div <?php echo $this->get_render_attribute_string( 'site-header' ); ?>>
+	
 	<?php
 	$nheader_aside_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-aside.php';
 
@@ -49,10 +44,13 @@ $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
 		require $nheader_aside_template_path;
 	}
 	?>
+	
 	<div class="header-search-wrap header-search-wrap--elementor">
 		<div class="container">
-			<?php get_search_form(); ?>
+			<?php  get_search_form();?>
 			<a href="#" class="close-search"><i class="eicon-close-circle"></i></a>
 		</div>
 	</div>
+	
+	
 </div>

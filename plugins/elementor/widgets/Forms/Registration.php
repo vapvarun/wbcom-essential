@@ -1,12 +1,4 @@
 <?php
-/**
- * Elementor registration widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/forums
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Forms;
 
@@ -22,47 +14,27 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Core\Schemes\Color;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
-/**
- * Elementor registration widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/forums
- */
+
+
+
 class Registration  extends \Elementor\Widget_Base {
 
-	/**
-	 * Get name.
-	 */
 	public function get_name() {
 		return 'wbcom-registration';
 	}
 
-	/**
-	 * Get title.
-	 */
 	public function get_title() {
 		return esc_html__( 'Registration', 'wbcom-essential' );
 	}
 
-	/**
-	 * Get icon.
-	 */
 	public function get_icon() {
 		return 'eicon-lock-user';
 	}
 
-	/**
-	 * Get categories.
-	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
 
-	/**
-	 * Register elementor registration widgets controls.
-	 */
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'section_fields_content',
@@ -98,7 +70,7 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->end_controls_section();
+		  $this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_button_content',
@@ -160,7 +132,7 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->end_controls_section();
+		  $this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_login_content',
@@ -269,7 +241,7 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->end_controls_section();
+		  $this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_style',
@@ -330,7 +302,7 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->end_controls_section();
+		  $this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_style_labels',
@@ -359,7 +331,7 @@ class Registration  extends \Elementor\Widget_Base {
 				),
 				'selectors' => array(
 					'body {{WRAPPER}} .elementor-field-group > label' => 'padding-bottom: {{SIZE}}{{UNIT}};',
-					// for the label position = above option.
+					// for the label position = above option
 				),
 			)
 		);
@@ -388,7 +360,7 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->end_controls_section();
+		  $this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_field_style',
@@ -487,7 +459,7 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->start_controls_tabs( 'tabs_button_style' );
+		  $this->start_controls_tabs( 'tabs_button_style' );
 
 		$this->start_controls_tab(
 			'tab_button_normal',
@@ -569,7 +541,7 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->end_controls_tab();
+		  $this->end_controls_tab();
 
 		$this->start_controls_tab(
 			'tab_button_hover',
@@ -622,16 +594,13 @@ class Registration  extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->end_controls_tab();
+		  $this->end_controls_tab();
 
-		$this->end_controls_tabs();
+		  $this->end_controls_tabs();
 
-		$this->end_controls_section();
+		  $this->end_controls_section();
 	}
 
-	/**
-	 * Elementor registration widget forms attributes.
-	 */
 	private function form_fields_render_attributes() {
 		$settings = $this->get_settings();
 
@@ -701,7 +670,7 @@ class Registration  extends \Elementor\Widget_Base {
 						'elementor-size-' . $settings['input_size'],
 					),
 				),
-				// TODO: add unique ID.
+				// TODO: add unique ID
 				'label_user'   => array(
 					'for'   => 'user',
 					'class' => 'elementor-field-label',
@@ -723,11 +692,6 @@ class Registration  extends \Elementor\Widget_Base {
 
 	}
 
-	/**
-	 * Render elementor registration widget.
-	 *
-	 * @return void
-	 */
 	protected function render() {
 		$settings    = $this->get_settings();
 		$current_url = remove_query_arg( 'fake_arg' );
@@ -743,8 +707,7 @@ class Registration  extends \Elementor\Widget_Base {
 				$current_user = wp_get_current_user();
 
 				echo '<div class="elementor-login">' .
-				/* translators: %1$s: Display current user name, %2$s: WP logout url */
-					sprintf( wp_kses_post( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-essential' ), esc_html( $current_user->display_name ), esc_html( wp_logout_url( $current_url ) ) ) .
+					sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'wbcom-essential' ), $current_user->display_name, wp_logout_url( $current_url ) ) .
 					'</div>';
 			}
 
@@ -777,39 +740,39 @@ class Registration  extends \Elementor\Widget_Base {
 				color: black;
 			}
 		</style>
-		<form class="elementor-login elementor-form wbcom-elementor-form wbcom-elementor-registration-form" method="post" action="<?php echo esc_url( wp_login_url() ); ?>">
+		<form class="elementor-login elementor-form wbcom-elementor-form wbcom-elementor-registration-form" method="post" action="<?php echo wp_login_url(); ?>">
 			<input type="hidden" name="wbcom_action_to_to" value="registration">
 			<div class="alert" style="display: none;">
 				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 				<span class="error-message">This is an alert box.</span>
 			</div>
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_url ); ?>">
-			<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
-				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'field-group' ) ); ?>>
+			<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+				<div <?php echo $this->get_render_attribute_string( 'field-group' ); ?>>
 					<?php
 					if ( $settings['show_labels'] ) {
-						echo '<label ' . esc_attr( $this->get_render_attribute_string( 'user_label' ) ) . '>' . esc_html( $settings['user_label'] ) . '</label>';
+						echo '<label ' . $this->get_render_attribute_string( 'user_label' ) . '>' . $settings['user_label'] . '</label>';
 					}
 
-					echo '<input size="1" ' . wp_kses_post( $this->get_render_attribute_string( 'user_input' ) ) . '>';
+					echo '<input size="1" ' . $this->get_render_attribute_string( 'user_input' ) . '>';
 
 					?>
 				</div>
-				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'field-group' ) ); ?>>
+				<div <?php echo $this->get_render_attribute_string( 'field-group' ); ?>>
 					<?php
 					if ( $settings['show_labels'] ) {
-						echo '<label ' . esc_attr( $this->get_render_attribute_string( 'email_label' ) ) . '>' . esc_html( $settings['email_label'] ) . '</label>';
+						echo '<label ' . $this->get_render_attribute_string( 'email_label' ) . '>' . $settings['email_label'] . '</label>';
 					}
 
-					echo '<input size="1" ' . wp_kses_post( $this->get_render_attribute_string( 'email_input' ) ) . '>';
+					echo '<input size="1" ' . $this->get_render_attribute_string( 'email_input' ) . '>';
 
 					?>
 				</div>
 
-				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'submit-group' ) ); ?>>
-					<button type="submit" <?php echo wp_kses_post( $this->get_render_attribute_string( 'button' ) ); ?>>
+				<div <?php echo $this->get_render_attribute_string( 'submit-group' ); ?>>
+					<button type="submit" <?php echo $this->get_render_attribute_string( 'button' ); ?>>
 							<?php if ( ! empty( $settings['button_text'] ) ) : ?>
-								<span class="elementor-button-text"><?php echo esc_html( $settings['button_text'] ); ?></span>
+								<span class="elementor-button-text"><?php echo $settings['button_text']; ?></span>
 							<?php endif; ?>
 					</button>					
 				</div>				
@@ -818,9 +781,6 @@ class Registration  extends \Elementor\Widget_Base {
 		<?php
 	}
 
-	/**
-	 * Elementor registration content template
-	 */
 	protected function _content_template() {
 		?>
 		<div class="elementor-login elementor-form">

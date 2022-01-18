@@ -2,13 +2,8 @@
 /**
  * Checks if Elementor is installed and activated and loads it's own files and actions.
  *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/customizer
+ * @package  reign header-footer-elementor
  */
-
 defined( 'ABSPATH' ) or exit;
 /**
  * WBCOM_Elementor_Global_Header_Footer setup
@@ -42,7 +37,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	/**
 	 * Constructor
 	 */
-	private function __construct() {
+	private function __construct() {		
 		// Add the default posts on plugin activation
 		// register_activation_hook( WBCOM_ELEMENTOR_ADDONS_PLUGIN_FILE, array( $this, 'add_header_footer_post' ) );
 		// add_action( 'init', array( $this, 'header_posttype' ) );
@@ -71,6 +66,11 @@ class WBCOM_Elementor_Global_Header_Footer {
 
 		add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ), 18 );
 
+		/**
+		* support added for topbar
+		 *
+		* @since 1.0.1
+		*/
 		add_action( 'wbcom_before_masthead', array( $this, 'add_header_topbar_markup' ), 18 );
 
 		add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
@@ -210,7 +210,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	/**
 	 * Register meta box(es).
 	 */
-	public function ehf_register_metabox() {
+	function ehf_register_metabox() {
 		add_meta_box(
 			'ehf-meta-box',
 			__( 'Header or Topbar ?', 'wbcom-essential' ),
@@ -228,7 +228,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 *
 	 * @param  POST $post Current post object which is being displayed.
 	 */
-	public function efh_metabox_render( $post ) {
+	function efh_metabox_render( $post ) {
 		$selected_value = get_post_meta( $post->ID, 'reign_ele_header_topbar', true );
 		$options_array  = array(
 			'header' => __( 'Header', 'wbcom-essential' ),
@@ -236,7 +236,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		);
 		echo '<select name="reign_ele_header_topbar">';
 		foreach ( $options_array as $key => $value ) {
-			echo '<option value="' . esc_attr( $key ) . '"' . selected( $selected = $selected_value, $current = $key, $echo = true ) . '>' . wp_kses_post( $value ) . '</option>';
+			echo '<option value="' . $key . '"' . selected( $selected = $selected_value, $current = $key, $echo = true ) . '>' . $value . '</option>';
 		}
 		echo '</select>';
 		// $values		 = get_post_custom( $post->ID );
@@ -299,7 +299,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 *
 	 * @param  String $single_template Single template.
 	 */
-	public function load_canvas_template( $single_template ) {
+	function load_canvas_template( $single_template ) {
 		global $post;
 		if ( 'reign-elementor-hf' == $post->post_type ) {
 			return ELEMENTOR_PATH . '/includes/page-templates/canvas.php';
@@ -690,7 +690,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 *
 	 * @global type $post
 	 */
-	public function wbcom_default_page_template() {
+	function wbcom_default_page_template() {
 		global $post;
 		if ( ( 'reign-elemtr-header' == $post->post_type || 'reign-elemtr-footer' == $post->post_type ) && 0 != count( get_page_templates( $post ) ) && get_option( 'page_for_posts' ) != $post->ID // Not the page for listing posts
 		&& '' == $post->page_template // Only when page_template is not set
@@ -705,7 +705,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * @param type $post_type
 	 * @return type int
 	 */
-	public function get_hf_post_id( $post_type ) {
+	function get_hf_post_id( $post_type ) {
 		$args = array(
 			'post_type'   => $post_type,
 			'post_status' => 'publish',
@@ -726,7 +726,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * @global type $submenu_file
 	 * @global type $current_screen
 	 */
-	public function custom_menu_items() {
+	function custom_menu_items() {
 		global $parent_file, $submenu_file, $current_screen;
 		if ( ! $current_screen ) {
 			return;

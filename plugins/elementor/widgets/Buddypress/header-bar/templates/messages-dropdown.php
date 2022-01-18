@@ -1,37 +1,27 @@
 <?php
-/**
- * Header bar message dropdown template.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
- */
-
 global $messages_template;
 $menu_link            = trailingslashit( bp_loggedin_user_domain() . bp_get_messages_slug() );
 $unread_message_count = messages_get_unread_count();
-$messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !== $settings['messages_icon']['value'] ) ? $settings['messages_icon']['value'] : 'wb-icon-envelope';
+$messages_icon = ( isset($settings['messages_icon']['value']) &&  $settings['messages_icon']['value'] != '') ? $settings['messages_icon']['value'] : 'wb-icon-envelope';
 ?>
 <div id="header-messages-dropdown-elem" class="dropdown-passive dropdown-right notification-wrap messages-wrap menu-item-has-children">
-	<a href="<?php echo esc_url( $menu_link ); ?>"
-		ref="notification_bell"
-		class="notification-link">
-		<span data-balloon-pos="down" data-balloon="<?php esc_html_e( 'Messages', 'wbcom-essential' ); ?>">
-			<i class="<?php echo esc_attr( $messages_icon ); ?>"></i>
-			<?php if ( $unread_message_count > 0 ) : ?>
-				<span class="count"><?php echo esc_html( $unread_message_count ); ?></span>
+    <a href="<?php echo $menu_link ?>"
+       ref="notification_bell"
+       class="notification-link">
+       <span data-balloon-pos="down" data-balloon="<?php _e( 'Messages', 'wbcom-essential' ); ?>">
+            <i class="<?php echo esc_attr($messages_icon);?>"></i>
+			<?php if ( $unread_message_count > 0 ): ?>
+                <span class="count"><?php echo $unread_message_count; ?></span>
 			<?php endif; ?>
-		</span>
-	</a>
-	<section class="notification-dropdown">
-		<header class="notification-header">
-			<h2 class="title"><?php esc_html_e( 'Messages', 'wbcom-essential' ); ?></h2>
-		</header>
+        </span>
+    </a>
+    <section class="notification-dropdown">
+        <header class="notification-header">
+            <h2 class="title"><?php _e( 'Messages', 'wbcom-essential' ); ?></h2>
+        </header>
 
-		<ul class="notification-list">
-			<?php
+        <ul class="notification-list">
+            <?php
 
 			global $messages_template;
 
@@ -109,7 +99,6 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 									'object'     => 'group',
 									'type'       => 'full',
 									'avatar_dir' => 'group-avatars',
-									/* translators: %s: Group Name */
 									'alt'        => sprintf( __( 'Group logo of %s', 'wbcom-essential' ), $group_name ),
 									'title'      => $group_name,
 									'html'       => false,
@@ -119,7 +108,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 
 							$prefix                   = apply_filters( 'bp_core_get_table_prefix', $wpdb->base_prefix );
 							$groups_table             = $prefix . 'bp_groups';
-							$group_name               = $wpdb->get_var( "SELECT `name` FROM `{$groups_table}` WHERE `id` = '{$group_id}';" ); // db call ok; no-cache ok;.
+							$group_name               = $wpdb->get_var( "SELECT `name` FROM `{$groups_table}` WHERE `id` = '{$group_id}';" ); // db call ok; no-cache ok;
 							$group_link               = 'javascript:void(0);';
 							$group_avatar             = buddypress()->plugin_url . 'bp-core/images/mystery-group.png';
 							$legacy_group_avatar_name = '-groupavatar-full';
@@ -192,11 +181,11 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 					if ( (int) $group_id > 0 ) {
 
 						$first_message           = BP_Messages_Thread::get_first_message( bp_get_message_thread_id() );
-						$group_message_thread_id = bp_messages_get_meta( $first_message->id, 'group_message_thread_id', true ); // group.
+						$group_message_thread_id = bp_messages_get_meta( $first_message->id, 'group_message_thread_id', true ); // group
 						$group_id                = (int) bp_messages_get_meta( $first_message->id, 'group_id', true );
-						$message_users           = bp_messages_get_meta( $first_message->id, 'group_message_users', true ); // all - individual.
-						$message_type            = bp_messages_get_meta( $first_message->id, 'group_message_type', true ); // open - private.
-						$message_from            = bp_messages_get_meta( $first_message->id, 'message_from', true ); // group.
+						$message_users           = bp_messages_get_meta( $first_message->id, 'group_message_users', true ); // all - individual
+						$message_type            = bp_messages_get_meta( $first_message->id, 'group_message_type', true ); // open - private
+						$message_from            = bp_messages_get_meta( $first_message->id, 'message_from', true ); // group
 
 						if ( 'group' === $message_from && bp_get_message_thread_id() === (int) $group_message_thread_id && 'all' === $message_users && 'open' === $message_type ) {
 							$is_group_thread = 1;
@@ -209,7 +198,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 					if ( is_array( $messages_template->thread->recipients ) ) {
 						foreach ( $messages_template->thread->recipients as $recipient ) {
 							if ( empty( $recipient->is_deleted ) ) {
-								$is_you         = bp_loggedin_user_id() === $recipient->user_id;
+								$is_you         = $recipient->user_id === bp_loggedin_user_id();
 								$recipient_data = array(
 									'avatar'    => esc_url(
 										bp_core_fetch_avatar(
@@ -284,7 +273,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								<?php
 								if ( count( $other_recipients ) > 1 ) {
 									?>
-									<a href="<?php echo esc_url( bp_core_get_user_domain( $messages_template->thread->last_sender_id ) ); ?>">
+									<a href="<?php echo bp_core_get_user_domain( $messages_template->thread->last_sender_id ); ?>">
 										<?php bp_message_thread_avatar(); ?>
 									</a>
 									<?php
@@ -314,7 +303,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								<span class="notification-users">
 									<a href="<?php bp_message_thread_view_link( bp_get_message_thread_id() ); ?>">
 										<?php
-										echo esc_html( ucwords( $group_name ) );
+										echo ucwords( $group_name );
 										?>
 									</a>
 								</span>
@@ -347,7 +336,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 											endif;
 										endforeach;
 
-										echo esc_html( ! empty( $recipient_names ) ? implode( ', ', $recipient_names ) : '' );
+										echo ( ! empty( $recipient_names ) ? implode( ', ', $recipient_names ) : '' );
 										?>
 									</a>
 								</span>
@@ -424,7 +413,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								}
 
 								if ( bp_loggedin_user_id() === $messages_template->thread->last_sender_id ) {
-									echo esc_html__( 'You', 'wbcom-essential' ) . ': ' . esc_html( stripslashes_deep( $exerpt ) );
+									echo esc_html__( 'You', 'wbcom-essential' ) . ': ' . stripslashes_deep( $exerpt );
 									// } else if ( 1 === count( $recipient_names) ) {
 									// echo stripslashes_deep( $exerpt );
 								} else {
@@ -437,7 +426,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 										}
 									}
 									if ( $last_sender ) {
-										echo esc_html( $last_sender ) . ': ' . esc_html( stripslashes_deep( $exerpt ) );
+										echo $last_sender . ': ' . stripslashes_deep( $exerpt );
 									}
 								}
 								?>
@@ -450,19 +439,18 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 			else :
 				?>
 				<li class="bs-item-wrap">
-					<div class="notification-content"><?php esc_html_e( 'No new messages!', 'wbcom-essential' ); ?></div>
+					<div class="notification-content"><?php _e( 'No new messages!', 'wbcom-essential' ); ?></div>
 				</li>
 				<?php
-			endif;
-			?>
+			endif; ?>
 
-		</ul>
+        </ul>
 
 		<footer class="notification-footer">
-			<a href="<?php echo esc_url( $menu_link ); ?>" class="delete-all">
-				<?php esc_html_e( 'View Inbox', 'wbcom-essential' ); ?>
+			<a href="<?php echo $menu_link ?>" class="delete-all">
+				<?php _e( 'View Inbox', 'wbcom-essential' ); ?>
 				<i class="wbcom-essential-icon-angle-right"></i>
 			</a>
 		</footer>
-	</section>
+    </section>
 </div>

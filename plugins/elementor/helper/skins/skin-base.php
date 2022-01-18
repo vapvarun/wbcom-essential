@@ -1,13 +1,4 @@
 <?php
-/**
- * Elementor skin base.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/helper/skins
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Helper\Skins;
 
@@ -24,41 +15,20 @@ use WBCOM_ESSENTIAL\Plugin;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-/**
- * Elementor skin base.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/helper/skins
- */
+
 abstract class Skin_Base extends Elementor_Skin_Base {
 
-	/**
-	 * Register controls actions.
-	 */
 	protected function _register_controls_actions() {
 		add_action( 'elementor/element/wbcom-posts/section_layout/before_section_end', array( $this, 'register_controls' ) );
 		add_action( 'elementor/element/wbcom-posts/section_query/after_section_end', array( $this, 'register_style_sections' ) );
 	}
 
-	/**
-	 * Register style actions.
-	 *
-	 * @param string Widget_Base $widget Elementor Widget.
-	 */
 	public function register_style_sections( Widget_Base $widget ) {
 		$this->parent = $widget;
 
 		$this->register_design_controls();
 	}
 
-	/**
-	 * Register controls.
-	 *
-	 * @param string Widget_Base $widget Elementor Widget.
-	 */
 	public function register_controls( Widget_Base $widget ) {
 		$this->parent = $widget;
 
@@ -71,18 +41,12 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->register_read_more_controls();
 	}
 
-	/**
-	 * Register design controls.
-	 */
 	public function register_design_controls() {
 		$this->register_design_layout_controls();
 		$this->register_design_image_controls();
 		$this->register_design_content_controls();
 	}
 
-	/**
-	 * Register thumbnail controls.
-	 */
 	protected function register_thumbnail_controls() {
 		$this->add_control(
 			'thumbnail',
@@ -168,9 +132,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		);
 	}
 
-	/**
-	 * Register columns controls.
-	 */
 	protected function register_columns_controls() {
 		$this->add_responsive_control(
 			'columns',
@@ -194,9 +155,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		);
 	}
 
-	/**
-	 * Register post count controls.
-	 */
 	protected function register_post_count_control() {
 		$this->add_control(
 			'posts_per_page',
@@ -208,9 +166,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		);
 	}
 
-	/**
-	 * Register title controls.
-	 */
 	protected function register_title_controls() {
 		$this->add_control(
 			'show_title',
@@ -249,9 +204,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		);
 	}
 
-	/**
-	 * Register excerpt controls.
-	 */
 	protected function register_excerpt_controls() {
 		$this->add_control(
 			'show_excerpt',
@@ -278,9 +230,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		);
 	}
 
-	/**
-	 * Register read more controls.
-	 */
 	protected function register_read_more_controls() {
 		$this->add_control(
 			'show_read_more',
@@ -309,9 +258,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		);
 	}
 
-	/**
-	 * Register meta data controls.
-	 */
 	protected function register_meta_data_controls() {
 		$this->add_control(
 			'meta_data',
@@ -427,9 +373,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Register design image controls.
-	 */
 	protected function register_design_image_controls() {
 		$this->start_controls_section(
 			'section_design_image',
@@ -484,9 +427,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Register design content controls.
-	 */
 	protected function register_design_content_controls() {
 
 		$this->start_controls_section(
@@ -753,9 +693,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Render the content.
-	 */
 	public function render() {
 		$this->parent->query_posts();
 
@@ -784,25 +721,14 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		remove_filter( 'excerpt_more', array( $this, 'filter_excerpt_more' ), 20 );
 	}
 
-	/**
-	 * Filter excerpt length.
-	 */
 	public function filter_excerpt_length() {
 		return $this->get_instance_value( 'excerpt_length' );
 	}
 
-	/**
-	 * Register excerpt more.
-	 *
-	 * @param string $more More Text.
-	 */
 	public function filter_excerpt_more( $more ) {
 		return '';
 	}
 
-	/**
-	 * Render Thumbnail.
-	 */
 	protected function render_thumbnail() {
 		$thumbnail = $this->get_instance_value( 'thumbnail' );
 
@@ -821,15 +747,12 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			return;
 		}
 		?>
-		<a class="elementor-post__thumbnail__link" href="<?php echo esc_url( get_permalink() ); ?>">
-			<div class="elementor-post__thumbnail"><?php echo wp_kses_post( $thumbnail_html ); ?></div>
+		<a class="elementor-post__thumbnail__link" href="<?php echo get_permalink(); ?>">
+			<div class="elementor-post__thumbnail"><?php echo $thumbnail_html; ?></div>
 		</a>
 		<?php
 	}
 
-	/**
-	 * Render Thumbnail.
-	 */
 	protected function render_title() {
 		if ( ! $this->get_instance_value( 'show_title' ) ) {
 			return;
@@ -837,17 +760,14 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 
 		$tag = $this->get_instance_value( 'title_tag' );
 		?>
-		<<?php echo esc_attr( $tag ); ?> class="elementor-post__title">
-		<a href="<?php echo esc_url( get_permalink() ); ?>">
+		<<?php echo $tag; ?> class="elementor-post__title">
+		<a href="<?php echo get_permalink(); ?>">
 			<?php the_title(); ?>
 		</a>
-		</<?php echo esc_attr( $tag ); ?>>
+		</<?php echo $tag; ?>>
 		<?php
 	}
 
-	/**
-	 * Render Excerpt.
-	 */
 	protected function render_excerpt() {
 		if ( ! $this->get_instance_value( 'show_excerpt' ) ) {
 			return;
@@ -859,59 +779,41 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render read more.
-	 */
 	protected function render_read_more() {
 		if ( ! $this->get_instance_value( 'show_read_more' ) ) {
 			return;
 		}
 		?>
-		<a class="elementor-post__read-more" href="<?php echo esc_url( get_permalink() ); ?>">
+		<a class="elementor-post__read-more" href="<?php echo get_permalink(); ?>">
 			<?php echo $this->get_instance_value( 'read_more_text' ); ?>
 		</a>
 		<?php
 	}
 
-	/**
-	 * Render post header.
-	 */
 	protected function render_post_header() {
 		?>
 		<article <?php post_class( array( 'elementor-post elementor-grid-item' ) ); ?>>
 			<?php
 	}
 
-	/**
-	 * Render post footer.
-	 */
 	protected function render_post_footer() {
 		?>
 		</article>
 		<?php
 	}
 
-	/**
-	 * Render header text.
-	 */
 	protected function render_text_header() {
 		?>
 		<div class="elementor-post__text">
 			<?php
 	}
 
-	/**
-	 * Render footer text.
-	 */
 	protected function render_text_footer() {
 		?>
 		</div>
 		<?php
 	}
 
-	/**
-	 * Render header loop.
-	 */
 	protected function render_loop_header() {
 		$this->parent->add_render_attribute(
 			'container',
@@ -925,13 +827,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			)
 		);
 		?>
-		<div <?php echo esc_attr( $this->parent->get_render_attribute_string( 'container' ) ); ?>>
+		<div <?php echo $this->parent->get_render_attribute_string( 'container' ); ?>>
 			<?php
 	}
 
-	/**
-	 * Render footer loop.
-	 */
 	protected function render_loop_footer() {
 		?>
 		</div>
@@ -978,17 +877,14 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			$links[] = $prev_next['next'];
 		}
 		?>
-		<nav class="elementor-pagination" role="navigation" aria-label="<?php esc_html__( 'Pagination', 'wbcom-essential' ); ?>">
+		<nav class="elementor-pagination" role="navigation" aria-label="<?php _e( 'Pagination', 'wbcom-essential' ); ?>">
 		<?php echo implode( PHP_EOL, $links ); ?>
 		</nav>
 		<?php
 	}
 
-	/**
-	 * Render meta data.
-	 */
 	protected function render_meta_data() {
-
+		/** @var array $settings. e.g. [ 'author', 'date', ... ] */
 		$settings = $this->get_instance_value( 'meta_data' );
 		if ( empty( $settings ) ) {
 			return;
@@ -1016,9 +912,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render author.
-	 */
 	protected function render_author() {
 		?>
 		<span class="elementor-post-author">
@@ -1027,9 +920,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render date.
-	 */
 	protected function render_date() {
 		?>
 		<span class="elementor-post-date">
@@ -1038,9 +928,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render time.
-	 */
 	protected function render_time() {
 		?>
 		<span class="elementor-post-time">
@@ -1049,9 +936,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render comments.
-	 */
 	protected function render_comments() {
 		?>
 		<span class="elementor-post-avatar">
@@ -1060,9 +944,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render post.
-	 */
 	protected function render_post() {
 		$this->render_post_header();
 		$this->render_thumbnail();

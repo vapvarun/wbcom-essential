@@ -1,12 +1,4 @@
 <?php
-/**
- * Elementor WordPress menu widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/general
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\General;
 
@@ -22,37 +14,23 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Core\Schemes\Color;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
-/**
- * Elementor WordPress menu widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/general
- */
+
+
+
 class Menu extends \Elementor\Widget_Base {
 
-	/**
-	 * Get name.
-	 */
 	public function get_name() {
 		return 'wbcom-nav-menu';
 	}
-	/**
-	 * Get title.
-	 */
+
 	public function get_title() {
 		return esc_html__( 'Nav Menu', 'wbcom-essential' );
 	}
-	/**
-	 * Get icon.
-	 */
+
 	public function get_icon() {
 		return 'eicon-bullet-list';
 	}
-	/**
-	 * Get categories.
-	 */
+
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
@@ -81,7 +59,6 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'desc',
 			array(
-				/* translators: %s: Admin Nav Menu url  */
 				'label' => sprintf( __( 'Choose the WordPress menu to output below. To change menu items please go to the <a href="%s" target="_blank">WordPress Menu Editor</a> page.', 'reign' ), admin_url( 'nav-menus.php' ) ),
 				'type'  => Controls_Manager::RAW_HTML,
 			)
@@ -393,24 +370,25 @@ class Menu extends \Elementor\Widget_Base {
 			$submenu_width  = isset( $settings['submenu_width'] ) ? $settings['submenu_width'] : 170;
 
 			$identifier = time() + rand( 10, 1000 );
+
 			ob_start();
 			?>
 			<style type="text/css">
-				#site-navigation-<?php echo esc_html( $identifier ); ?> .primary-menu > li > a,
-				#site-navigation-<?php echo esc_html( $identifier ); ?> .header-right .search-wrap,
-				#site-navigation-<?php echo esc_html( $identifier ); ?> .rg-icon-wrap,
-				#site-navigation-<?php echo esc_html( $identifier ); ?> .elementor-branding,
-				#site-navigation-<?php echo esc_html( $identifier ); ?> .user-link-wrap {
-					height: <?php echo esc_html( $menu_height ); ?>px;
-					line-height: <?php echo esc_html( $menu_height ); ?>px;
+				#site-navigation-<?php echo $identifier; ?> .primary-menu > li > a,
+				#site-navigation-<?php echo $identifier; ?> .header-right .search-wrap,
+				#site-navigation-<?php echo $identifier; ?> .rg-icon-wrap,
+				#site-navigation-<?php echo $identifier; ?> .elementor-branding,
+				#site-navigation-<?php echo $identifier; ?> .user-link-wrap {
+					height: <?php echo $menu_height; ?>px;
+					line-height: <?php echo $menu_height; ?>px;
 				}
-				#site-navigation-<?php echo esc_html( $identifier ); ?> .primary-menu .children, .primary-menu .sub-menu {
-					top: <?php echo esc_html( $menu_height ); ?>px;
+				#site-navigation-<?php echo $identifier; ?> .primary-menu .children, .primary-menu .sub-menu {
+					top: <?php echo $menu_height; ?>px;
 				}
 
 				@media screen and (min-width:768px) {
-					#site-navigation-<?php echo esc_html( $identifier ); ?> ul#primary-menu li > ul.sub-menu {
-						width: <?php echo esc_html( $submenu_width ); ?>px !important;
+					#site-navigation-<?php echo $identifier; ?> ul#primary-menu li > ul.sub-menu {
+						width: <?php echo $submenu_width; ?>px !important;
 					}
 				}
 
@@ -423,7 +401,7 @@ class Menu extends \Elementor\Widget_Base {
 				}*/
 			</style>
 
-			<nav id="site-navigation-<?php echo esc_attr( $identifier ); ?>" class="main-navigation" role="navigation">
+			<nav id="site-navigation-<?php echo $identifier; ?>" class="main-navigation" role="navigation">
 				<span class="menu-toggle wbcom-nav-menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<span></span>
 					<span></span>
@@ -457,22 +435,20 @@ class Menu extends \Elementor\Widget_Base {
 						)
 					);
 				}
+
+				// if ( 'yes' == $settings[ 'searchbox_enabled' ] ) {
 				?>
+
+					<!-- <div class="search-wrap">
+						<span class="rg-search-icon rg-header-icon"></span>
+						<div class="search-content"> -->
+							<?php // get_search_form(); ?>
+						<!-- </div>
+					</div> -->
+
+				<?php // } ?>
 			</nav><!-- #site-navigation -->
 			<?php
-			$allowed_atts              = array(
-				'type'              => array(),
-				'id'                => array(),
-				'src'               => array(),
-				'width'             => array(),
-				'height'            => array(),
-				'scrolling'         => array(),
-				'frameborder'       => array(),
-				'allowtransparency' => array(),
-				'allow'             => array(),
-				'allowfullscreen'   => array(),
-			);
-			$allowedposttags['script'] = $allowed_atts;
 			echo apply_filters( 'reign_menu_output', ob_get_clean(), $settings['menu_location'], $settings );
 		} else {
 			$this->content_template_part();

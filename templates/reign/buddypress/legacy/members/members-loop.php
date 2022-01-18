@@ -1,17 +1,4 @@
 <?php
-/**
- * Display BuddyPress members.
- *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/templates/reign/buddypress/legacy/members
- */
-
 if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 
 	<?php
@@ -22,7 +9,7 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 	 */
 	do_action( 'bp_before_directory_members_list' );
 	?>
-<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo esc_attr( $member_directory_type ); ?>" aria-live="assertive" aria-relevant="all">
+<ul id="members-list" class="item-list rg-member-list wb-grid <?php echo $member_directory_type; ?>" aria-live="assertive" aria-relevant="all">
 
 	<?php
 	while ( bp_members() ) :
@@ -33,7 +20,7 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 			<div class="bp-inner-wrap">
 
 		<?php
-		if ( 'wbtm-member-directory-type-2' === $member_directory_type || 'wbtm-member-directory-type-3' === $member_directory_type ) {
+		if ( $member_directory_type == 'wbtm-member-directory-type-2' || $member_directory_type == 'wbtm-member-directory-type-3' ) {
 			$args          = array(
 				'object_dir' => 'members',
 				'item_id'    => $user_id = bp_get_member_user_id(),
@@ -46,26 +33,26 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 					$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 				}
 			}
-			echo '<div class="wbtm-mem-cover-img"><img src="' . esc_url( $cover_img_url ) . '" /></div>';
+			echo '<div class="wbtm-mem-cover-img"><img src="' . $cover_img_url . '" /></div>';
 		}
 		?>
 
 				<div class="item-avatar">
 		<?php
-		if ( 'wbtm-member-directory-type-4' === $member_directory_type ) {
+		if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 			echo '<figure class="img-dynamic aspect-ratio avatar">';
 		}
 		?>
-					<a class="<?php echo esc_attr( $img_class ); ?>" href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar(); ?><?php echo wp_kses_post( reign_get_online_status( $user_id ) ); ?></a>
+					<a class="<?php echo $img_class; ?>" href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar(); ?><?php echo reign_get_online_status( $user_id ); ?></a>
 					<?php
-					if ( 'wbtm-member-directory-type-4' === $member_directory_type ) {
+					if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 						echo '</figure>';
 					}
 					?>
 				</div>
 
 					<?php
-					if ( 'wbtm-member-directory-type-4' === $member_directory_type ) {
+					if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 						echo '<div class="item-wrapper">';
 					}
 					?>
@@ -89,7 +76,7 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 		 *
 		 * @since 1.1.0
 		 */
-		if ( 'wbtm-member-directory-type-1' !== $member_directory_type ) {
+		if ( $member_directory_type != 'wbtm-member-directory-type-1' ) {
 			do_action( 'bp_directory_members_item' );
 		}
 		?>
@@ -100,7 +87,7 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 				</div>
 
 				<?php
-				if ( 'wbtm-member-directory-type-4' === $member_directory_type ) {
+				if ( $member_directory_type == 'wbtm-member-directory-type-4' ) {
 					echo '</div>';
 				}
 				?>
@@ -122,6 +109,6 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 <?php else : ?>
 
 	<div id="message" class="info">
-		<p><?php esc_html_e( 'Sorry, no members were found.', 'buddypress' ); ?></p>
+		<p><?php _e( 'Sorry, no members were found.', 'buddypress' ); ?></p>
 	</div>
 <?php endif; ?>

@@ -1,13 +1,4 @@
 <?php
-/**
- * Elementor skin cards.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/helper/skins
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Helper\Skins;
 
@@ -23,24 +14,12 @@ use Elementor\Widget_Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-	// Exit if accessed directly.
+	// Exit if accessed directly
 }
 
-/**
- * Elementor skin base.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/helper/skins
- */
 class Skin_Cards extends Skin_Base {
 
 
-	/**
-	 * Register control actions.
-	 */
 	protected function _register_controls_actions() {
 
 		parent::_register_controls_actions();
@@ -48,97 +27,61 @@ class Skin_Cards extends Skin_Base {
 		add_action( 'elementor/element/wbcom-posts/cards_section_design_image/before_section_end', array( $this, 'register_additional_design_image_controls' ) );
 	}
 
-
-	/**
-	 * Get card ID.
-	 */
 	public function get_id() {
 
 		return 'wbcom-cards';
 	}
 
-	/**
-	 * Get cart titile.
-	 */
 	public function get_title() {
 
-		return __( 'Cards', 'wbcom-essential' );
+		 return __( 'Cards', 'wbcom-essential' );
 	}
 
-	/**
-	 * Starts the control tab.
-	 *
-	 * @param int   $id Tab ID.
-	 * @param array $args Agruments.
-	 */
 	public function start_controls_tab( $id, $args ) {
 
 		$args['condition']['_skin'] = $this->get_id();
 		$this->parent->start_controls_tab( $this->get_control_id( $id ), $args );
 	}
 
-	/**
-	 * End the control tab.
-	 */
 	public function end_controls_tab() {
 
-		$this->parent->end_controls_tab();
+		  $this->parent->end_controls_tab();
 	}
 
-	/**
-	 * Start control tab.
-	 *
-	 * @param int $id Tab ID.
-	 */
 	public function start_controls_tabs( $id ) {
 
-		$args['condition']['_skin'] = $this->get_id();
+		  $args['condition']['_skin'] = $this->get_id();
 		$this->parent->start_controls_tabs( $this->get_control_id( $id ) );
 	}
 
-	/**
-	 * End the Control tab.
-	 */
 	public function end_controls_tabs() {
 
-		$this->parent->end_controls_tabs();
+		 $this->parent->end_controls_tabs();
 	}
 
-
-	/**
-	 * Register controls.
-	 *
-	 * @param string Widget_Base $widget Elementor widget.
-	 */
 	public function register_controls( Widget_Base $widget ) {
 
 		$this->parent = $widget;
 
-		$this->register_columns_controls();
+		 $this->register_columns_controls();
 		$this->register_post_count_control();
-		$this->register_thumbnail_controls();
-		$this->register_title_controls();
-		$this->register_excerpt_controls();
+		 $this->register_thumbnail_controls();
+		 $this->register_title_controls();
+		 $this->register_excerpt_controls();
 		$this->register_meta_data_controls();
-		$this->register_read_more_controls();
-		$this->register_badge_controls();
-		$this->register_avatar_controls();
+		 $this->register_read_more_controls();
+		 $this->register_badge_controls();
+		 $this->register_avatar_controls();
 	}
 
-	/**
-	 * Register design controls.
-	 */
 	public function register_design_controls() {
 
-		$this->register_design_layout_controls();
-		$this->register_design_card_controls();
+		  $this->register_design_layout_controls();
+		 $this->register_design_card_controls();
 		$this->register_design_image_controls();
-		$this->register_design_content_controls();
+		  $this->register_design_content_controls();
 	}
 
-	/**
-	 * Register thumbnail controls.
-	 */
 	protected function register_thumbnail_controls() {
 
 		parent::register_thumbnail_controls();
@@ -156,9 +99,6 @@ class Skin_Cards extends Skin_Base {
 		);
 	}
 
-	/**
-	 * Register meta data controls.
-	 */
 	protected function register_meta_data_controls() {
 
 		parent::register_meta_data_controls();
@@ -170,9 +110,6 @@ class Skin_Cards extends Skin_Base {
 		);
 	}
 
-	/**
-	 * Register additional design image controls.
-	 */
 	public function register_additional_design_image_controls() {
 
 		$this->update_control(
@@ -378,9 +315,6 @@ class Skin_Cards extends Skin_Base {
 		);
 	}
 
-	/**
-	 * Register badge controls.
-	 */
 	public function register_badge_controls() {
 
 		$this->add_control(
@@ -410,9 +344,6 @@ class Skin_Cards extends Skin_Base {
 		);
 	}
 
-	/**
-	 * Register avatar controls.
-	 */
 	public function register_avatar_controls() {
 
 		$this->add_control(
@@ -434,9 +365,6 @@ class Skin_Cards extends Skin_Base {
 		);
 	}
 
-	/**
-	 * Register design card controls.
-	 */
 	public function register_design_card_controls() {
 
 		$this->start_controls_section(
@@ -562,8 +490,8 @@ class Skin_Cards extends Skin_Base {
 				'options'      => array(
 					'none'     => __( 'None', 'wbcom-essential' ),
 					'gradient' => __( 'Gradient', 'wbcom-essential' ),
-					// 'zoom-in' => __( 'Zoom In', 'wbcom-essential' ),
-					// 'zoom-out' => __( 'Zoom Out', 'wbcom-essential' ),
+				  // 'zoom-in' => __( 'Zoom In', 'wbcom-essential' ),
+					 // 'zoom-out' => __( 'Zoom Out', 'wbcom-essential' ),
 				),
 				'default'      => 'gradient',
 				'separator'    => 'before',
@@ -589,9 +517,6 @@ class Skin_Cards extends Skin_Base {
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Register design content controls.
-	 */
 	protected function register_design_content_controls() {
 
 		parent::register_design_content_controls();
@@ -607,14 +532,11 @@ class Skin_Cards extends Skin_Base {
 		);
 	}
 
-	/**
-	 * Get taxonomies.
-	 */
 	protected function get_taxonomies() {
 
-		$taxonomies = get_taxonomies( array( 'show_in_nav_menus' => true ), 'objects' );
+		 $taxonomies = get_taxonomies( array( 'show_in_nav_menus' => true ), 'objects' );
 
-		$options = array( '' => '' );
+		 $options = array( '' => '' );
 
 		foreach ( $taxonomies as $taxonomy ) {
 			$options[ $taxonomy->name ] = $taxonomy->label;
@@ -623,9 +545,6 @@ class Skin_Cards extends Skin_Base {
 		return $options;
 	}
 
-	/**
-	 * Render post header.
-	 */
 	protected function render_post_header() {
 		?>
 		<article <?php post_class( array( 'elementor-post elementor-grid-item' ) ); ?>>
@@ -633,9 +552,6 @@ class Skin_Cards extends Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render the footer of post.
-	 */
 	protected function render_post_footer() {
 		?>
 			</div>
@@ -643,9 +559,6 @@ class Skin_Cards extends Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render avatar.
-	 */
 	protected function render_avatar() {
 		?>
 		<div class="elementor-post__avatar">
@@ -654,9 +567,6 @@ class Skin_Cards extends Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render badge.
-	 */
 	protected function render_badge() {
 
 		$taxonomy = $this->get_instance_value( 'badge_taxonomy' );
@@ -673,9 +583,6 @@ class Skin_Cards extends Skin_Base {
 		<?php
 	}
 
-	/**
-	 * Render thumbnail.
-	 */
 	protected function render_thumbnail() {
 
 		if ( 'none' === $this->get_instance_value( 'thumbnail' ) ) {
@@ -707,19 +614,16 @@ class Skin_Cards extends Skin_Base {
 		}
 	}
 
-	/**
-	 * Render Posts.
-	 */
 	protected function render_post() {
 
 		$this->render_post_header();
-		$this->render_thumbnail();
+		  $this->render_thumbnail();
 		$this->render_text_header();
-		$this->render_title();
+		  $this->render_title();
 		$this->render_excerpt();
-		$this->render_read_more();
+		  $this->render_read_more();
 		$this->render_text_footer();
-		$this->render_meta_data();
+		  $this->render_meta_data();
 		$this->render_post_footer();
 	}
 }

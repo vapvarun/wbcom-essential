@@ -1,12 +1,4 @@
 <?php
-/**
- * Elementor groups grid widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
- */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Buddypress;
 
@@ -20,68 +12,36 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-/**
- * Elementor groups grid widget.
- *
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
- */
-class GroupGrid extends \Elementor\Widget_Base {
 
-	/**
-	 * Construct.
-	 *
-	 * @param  array  $data Data.
-	 * @param  string $args Args.
-	 * @return void
-	 */
-	public function __construct( $data = array(), $args = null ) {
+class GroupGrid extends \Elementor\Widget_Base {
+    
+        public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'group-grid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/group-grid.css', array(), '3.0.0' );
 		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
 	}
 
-	/**
-	 * Get Name.
-	 */
 	public function get_name() {
 		return 'wbcom-groups-grid';
 	}
 
-	/**
-	 * Get Title.
-	 */
 	public function get_title() {
 		return esc_html__( 'Groups Grid', 'wbcom-essential' );
 	}
 
-	/**
-	 * Get Icon.
-	 */
 	public function get_icon() {
 		return 'eicon-posts-grid';
 	}
 
-	/**
-	 * Get Categories.
-	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
-
-	/**
-	 * Get Style depends.
-	 */
-	public function get_style_depends() {
+        
+        public function get_style_depends() {
 		return array( 'group-grid' );
 	}
 
-	/**
-	 * Register controls.
-	 */
 	protected function _register_controls() {
 
 		do_action( 'wbcom_essential/widget/groups-grid/settings', $this );
@@ -154,9 +114,6 @@ class GroupGrid extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Render Elementor groups grid widget.
-	 */
 	protected function render() {
 		parent::render();
 		$settings             = $this->get_settings_for_display();
@@ -164,10 +121,10 @@ class GroupGrid extends \Elementor\Widget_Base {
 		$group_directory_type = isset( $settings['rg-grp-grid-layout'] ) ? $settings['rg-grp-grid-layout'] : '';
 		$addition_class       = $img_class = '';
 
-		if ( 'wbtm-group-directory-type-1' !== $group_directory_type ) {
+		if ( $group_directory_type != 'wbtm-group-directory-type-1' ) {
 			$addition_class = 'lg-wb-grid-1-' . $settings['columns'];
 		}
-		if ( 'wbtm-group-directory-type-4' === $group_directory_type ) {
+		if ( $group_directory_type == 'wbtm-group-directory-type-4' ) {
 			$img_class = 'img-card';
 		}
 
@@ -272,7 +229,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 		}
 
 		?>
-		<?php endif; ?>
+	  <?php endif; ?>
 		</div>
 
 			<?php

@@ -18,8 +18,8 @@ use Elementor\Group_Control_Typography;
 
 
 class NotificationArea extends \Elementor\Widget_Base {
-
-	public function __construct( $data = array(), $args = null ) {
+    
+        public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'notification-area', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/notification-area.css', array(), '3.0.0' );
@@ -41,8 +41,8 @@ class NotificationArea extends \Elementor\Widget_Base {
 	public function get_categories() {
 		return array( 'wbcom-elements' );
 	}
-
-	public function get_style_depends() {
+        
+        public function get_style_depends() {
 		return array( 'notification-area' );
 	}
 

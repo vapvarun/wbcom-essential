@@ -1,21 +1,11 @@
 <?php
-/**
- * Header aside template.
- *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
- */
+$profile_dropdown   = isset($settings['profile_dropdown']) ? true : false;
+$show_search        = isset($settings['search_icon_switch']) ? true : false;
+$show_messages      = isset($settings['messages_icon_switch']) ? true : false;
+$show_notifications = isset($settings['notifications_icon_switch']) ? true : false;
+$show_shopping_cart = isset($settings['cart_icon_switch']) ? true : false;
 
-$profile_dropdown   = isset( $settings['profile_dropdown'] ) ? true : false;
-$show_search        = isset( $settings['search_icon_switch'] ) ? true : false;
-$show_messages      = isset( $settings['messages_icon_switch'] ) ? true : false;
-$show_notifications = isset( $settings['notifications_icon_switch'] ) ? true : false;
-$show_shopping_cart = isset( $settings['cart_icon_switch'] ) ? true : false;
-
-$search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings['search_icon']['value'] ) ? $settings['search_icon']['value'] : 'wb-icon-search';
+$search_icon = ( isset($settings['search_icon']['value']) &&  $settings['search_icon']['value'] != '') ? $settings['search_icon']['value'] : 'wb-icon-search';
 
 ?>
 
@@ -55,7 +45,7 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 											'menu_id'     => 'header-my-account-menu',
 											'container'   => false,
 											'fallback_cb' => '',
-											'walker'      => '', // add walker.
+											'walker'      => '', // add walker
 											'menu_class'  => 'wbcom-essential-my-account-menu',
 										)
 									);
@@ -63,7 +53,7 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 									do_action( 'wbcom_essential_header_user_menu_items' );
 								}
 							} else {
-								do_action( 'wbcom_essential_header_user_menu_items' );
+								do_action(  'wbcom_essential_header_user_menu_items' );
 							}
 							?>
 						</ul>
@@ -71,62 +61,63 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 				</div>
 			</div>
 			<?php endif; ?>
+			
 			<!-- Separator -->
-			<?php if ( $show_search || $show_messages || $show_notifications || $show_shopping_cart ) : ?>
+			<?php if ( $show_search || $show_messages || $show_notifications || $show_shopping_cart ) :?>
 					<span class="wbcom-essential-separator"></span>
 			<?php endif; ?>
+			
 			<?php if ( $show_search ) : ?>
-				<a href="#" class="header-search-link" data-balloon-pos="down" data-balloon="<?php esc_html_e( 'Search', 'wbcom-essential' ); ?>"><i class="<?php echo esc_attr( $search_icon ); ?>"></i></a>
+				<a href="#" class="header-search-link" data-balloon-pos="down" data-balloon="<?php esc_html_e( 'Search', 'wbcom-essential' ); ?>"><i class="<?php echo esc_attr($search_icon);?>"></i></a>
 				<?php
 			endif;
 
-			if ( $show_messages && function_exists( 'bp_is_active' ) && bp_is_active( 'messages' ) ) :
-
+			if ( $show_messages && function_exists( 'bp_is_active' ) && bp_is_active( 'messages' ) ) : 				
+				
 				$messages_dropdown_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/messages-dropdown.php';
 
 				if ( file_exists( $messages_dropdown_template_path ) ) {
 					require $messages_dropdown_template_path;
 				}
-
+				
 			endif;
 
 			if ( $show_notifications && function_exists( 'bp_is_active' ) && bp_is_active( 'notifications' ) ) :
-
+				
 				$notification_dropdown_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/notification-dropdown.php';
 
 				if ( file_exists( $notification_dropdown_template_path ) ) {
 					require $notification_dropdown_template_path;
 				}
-
-			endif;
+				
+			endif;			
 			if ( $show_shopping_cart && class_exists( 'WooCommerce' ) ) :
-
-
+			
+				
 				$cart_dropdown_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/cart-dropdown.php';
 
 				if ( file_exists( $cart_dropdown_template_path ) ) {
 					require $cart_dropdown_template_path;
 				}
-
-			endif;
-			?>
+				
+			endif; ?>
+			
 		<?php else : ?>
 
 			<?php if ( $show_search ) : ?>
 				<a href="#" class="header-search-link" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Search', 'wbcom-essential' ); ?>"><i class="wbcom-essential-icon-search"></i></a>
 			<?php endif; ?>
 
-			<?php
-			if ( $show_shopping_cart && class_exists( 'WooCommerce' ) ) :
-
+			<?php if ( $show_shopping_cart && class_exists( 'WooCommerce' ) ) : 
+			
 				$cart_dropdown_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/cart-dropdown.php';
 
 				if ( file_exists( $cart_dropdown_template_path ) ) {
 					require $cart_dropdown_template_path;
-				}
-
-			endif;
-			?>
+				} 
+				
+			endif; ?>
+			
 			<span class="search-separator wbcom-essential-separator"></span>
 			<div class="wbcom-essential-header-buttons">
 				<a href="<?php echo esc_url( wp_login_url() ); ?>" class="button small outline signin-button link"><?php esc_html_e( 'Sign in', 'wbcom-essential' ); ?></a>
@@ -135,6 +126,9 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 					<a href="<?php echo esc_url( wp_registration_url() ); ?>" class="button small singup"><?php esc_html_e( 'Sign up', 'wbcom-essential' ); ?></a>
 				<?php endif; ?>
 			</div>
+		
 		<?php endif; ?>
+		
+		
 	</div>
 </div>

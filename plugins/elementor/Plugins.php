@@ -2,11 +2,8 @@
 /**
  * Add plugin main class.
  *
- * @link       https://wbcomdesigns.com/plugins
- * @since      1.0.0
- *
- * @package    Wbcom_Essential
- * @subpackage Wbcom_Essential/plugins/elementor
+ * @package WBCOM_ESSENTIAL
+ * @since 1.0.0
  */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR;
@@ -111,14 +108,6 @@ class Plugin {
 	 */
 	public static $widget_path;
 
-	/**
-	 * The plugin classes.
-	 *
-	 * @since 3.0.0
-	 * @access public
-	 *
-	 * @var string
-	 */
 	private $classes_aliases = array(
 		'WBCOM_ESSENTIAL\ELEMENTOR\PanelPostsControl\Controls\Group_Control_Posts' => 'WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Group_Control_Posts',
 		'WBCOM_ESSENTIAL\ELEMENTOR\PanelPostsControl\Controls\Query' => 'WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl\Query',
@@ -135,7 +124,7 @@ class Plugin {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( BPB_VERSION ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
 	}
 
 	/**
@@ -146,13 +135,11 @@ class Plugin {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( BPB_VERSION ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
 	}
 
 
 	/**
-	 * Elementor.
-	 *
 	 * @return \Elementor\Plugin
 	 */
 	public static function elementor() {
@@ -168,7 +155,7 @@ class Plugin {
 	 * @static
 	 */
 	public static function get_instance() {
-		if ( null === self::$instance ) {
+		if ( self::$instance === null ) {
 			self::$instance = new self();
 		}
 
@@ -234,7 +221,7 @@ class Plugin {
 
 		$button = '<p><a href="' . $action_url . '" class="button-primary">' . $button_label . '</a></p><p></p>';
 
-		printf( '<div class="%1$s"><p>%2$s</p>%3$s</div>', esc_attr( $class ), wp_kses_post( $message ), wp_kses_post( $button ) );
+		printf( '<div class="%1$s"><p>%2$s</p>%3$s</div>', esc_attr( $class ), $message, $button );
 	}
 
 	/**
@@ -344,22 +331,22 @@ class Plugin {
 		$elements = array();
 
 		if ( class_exists( 'BuddyPress' ) ) {
-
+			
 			$elements['Buddypress/HeaderBar'] = array(
 				'name'  => 'wbcom-header-bar',
 				'class' => 'Buddypress\HeaderBar',
 			);
-
+			
 			$elements['Buddypress/ProfileCompletion'] = array(
 				'name'  => 'wbcom-profile-completion',
 				'class' => 'Buddypress\ProfileCompletion',
 			);
-
+			
 			$elements['Buddypress/ActivityLists'] = array(
 				'name'  => 'wbcom-activity-lists',
 				'class' => 'Buddypress\ActivityLists',
 			);
-
+			
 			$elements['Buddypress/MembersLists'] = array(
 				'name'  => 'wbcom-members-lists',
 				'class' => 'Buddypress\MembersLists',
@@ -376,12 +363,12 @@ class Plugin {
 			);
 
 			if ( bp_is_active( 'groups' ) ) {
-
+				
 				$elements['Buddypress/GroupsLists'] = array(
 					'name'  => 'wbcom-groups-lists',
 					'class' => 'Buddypress\GroupsLists',
 				);
-
+				
 				$elements['Buddypress/GroupGrid']     = array(
 					'name'  => 'wbcom-groups-grid',
 					'class' => 'Buddypress\GroupGrid',
@@ -391,24 +378,24 @@ class Plugin {
 					'class' => 'Buddypress\GroupCarousel',
 				);
 			}
-
+			
 			$elements['Buddypress/DashboardIntro'] = array(
 				'name'  => 'wbcom-dashboard-intro',
 				'class' => 'Buddypress\DashboardIntro',
 			);
-
-			if ( class_exists( 'bbPress' ) ) {
-
+			
+			if( class_exists('bbPress')) {
+				
 				$elements['Buddypress/Forums'] = array(
 					'name'  => 'wbcom-forums-activity',
 					'class' => 'Buddypress\Forums',
 				);
-
+				
 				$elements['Buddypress/ForumsActivity'] = array(
 					'name'  => 'wbcom-group-carousel',
 					'class' => 'Buddypress\ForumsActivity',
 				);
-
+			
 			}
 		}
 
@@ -421,7 +408,7 @@ class Plugin {
 			'name'  => 'wbcom-registration',
 			'class' => 'General\Menu',
 		);
-
+		
 		if ( _is_theme_active( 'REIGN' ) ) {
 			$elements['General/NotificationArea'] = array(
 				'name'  => 'wbcom-notification-area',
@@ -438,7 +425,7 @@ class Plugin {
 			'name'  => 'wbcom-login',
 			'class' => 'Forms\Login',
 		);
-
+		
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
@@ -466,7 +453,7 @@ class Plugin {
 		);
 
 		wp_enqueue_style( 'wbcom-essential-elementor-css' );
-
+                
 		wp_register_style(
 			'wbcom-essential-icons',
 			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wb-icons.css',
