@@ -1,4 +1,15 @@
 <?php
+/**
+ * Wbcom essential include plugin files.
+ *
+ * A class definition that includes attributes and functions used across both the
+ * public-facing side of the site and the admin area.
+ *
+ * @link       https://wbcomdesigns.com/plugins
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ */
 
 namespace WBCOM_ESSENTIAL;
 
@@ -8,7 +19,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
-
+	/**
+	 * Wbcom essential include plugin files.
+	 *
+	 * A class definition that includes attributes and functions used across both the
+	 * public-facing side of the site and the admin area.
+	 *
+	 * @link       https://wbcomdesigns.com/plugins
+	 * @since      1.0.0
+	 *
+	 * @package    Wbcom_Essential
+	 */
 	final class WBCOMESSENTIAL {
 
 		/**
@@ -32,7 +53,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		 */
 		public function __clone() {
 			// Cloning instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( BPB_VERSION ) );
 		}
 
 		/**
@@ -43,7 +64,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		 */
 		public function __wakeup() {
 			// Unserializing instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), BPB_VERSION );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( BPB_VERSION ) );
 		}
 
 		/**
@@ -55,7 +76,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		 * @static
 		 */
 		public static function get_instance() {
-			if ( self::$instance === null ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 

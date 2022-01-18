@@ -2,8 +2,11 @@
 /**
  * BuddyPress - Members Loop
  *
- * @since 3.0.0
- * @version 3.0.0
+ * @link       https://wbcomdesigns.com/plugins
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/templates/buddyx/buddypress/members
  */
 
 bp_nouveau_before_loop(); ?>
@@ -48,7 +51,7 @@ bp_nouveau_before_loop(); ?>
 							<?php
 							if ( is_plugin_active( 'buddyboss-platform/bp-loader.php' ) ) {
 								if ( true === bp_member_type_enable_disable() && true === bp_member_type_display_on_profile() ) {
-									echo '<p class="item-meta member-type-wrap">' . bp_get_user_member_type( bp_get_member_user_id() ) . '</p>';
+									echo '<p class="item-meta member-type-wrap">' . esc_html( bp_get_user_member_type( bp_get_member_user_id() ) ) . '</p>';
 								}
 							}
 							?>

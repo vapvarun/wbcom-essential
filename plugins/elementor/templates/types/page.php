@@ -1,4 +1,13 @@
 <?php
+/**
+ * Define WBcom_Essential_elementor_Structure_Page class.
+ *
+ * @link       https://wbcomdesigns.com/plugins
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/templates/types
+ */
 
 namespace WBcomEssentialelementor\Templates\Types;
 
@@ -7,12 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 if ( ! class_exists( 'WBcom_Essential_elementor_Structure_Page' ) ) {
-	
+
 	/**
 	 * Define WBcom_Essential_elementor_Structure_Page class
 	 */
 	class WBcom_Essential_elementor_Structure_Page extends WBcom_Essential_elementor_Structure_Base {
-		
+
 		/**
 		 * Get Section id.
 		 *
@@ -23,7 +32,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Structure_Page' ) ) {
 		public function get_id() {
 			return 'wbcom_essential_elementor_pages';
 		}
-		
+
 		/**
 		 * Get Section Label.
 		 *
@@ -34,7 +43,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Structure_Page' ) ) {
 		public function get_single_label() {
 			return __( 'Page', 'wbcom-essential' );
 		}
-		
+
 		/**
 		 * Get Section Plural Label.
 		 *
@@ -45,7 +54,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Structure_Page' ) ) {
 		public function get_plural_label() {
 			return __( 'Pages', 'wbcom-essential' );
 		}
-		
+
 		/**
 		 * Get Sources.
 		 *
@@ -56,7 +65,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Structure_Page' ) ) {
 		public function get_sources() {
 			return array( 'wbcom-essential-elementor-pages-api' );
 		}
-		
+
 		/**
 		 * Get Document Types.
 		 *
@@ -70,7 +79,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Structure_Page' ) ) {
 				'file'  => require ELEMENTOR_WBCOMESSENTIAL__DIR__ . '/templates/documents/page.php',
 			);
 		}
-		
+
 		/**
 		 * Library settings for current structure.
 		 *
@@ -79,13 +88,13 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Structure_Page' ) ) {
 		 * @return array
 		 */
 		public function library_settings() {
-			
+
 			return array(
 				'show_title' => false,
 			);
-			
+
 		}
-		
+
 	}
-	
+
 }

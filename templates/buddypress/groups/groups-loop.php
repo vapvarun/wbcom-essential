@@ -2,8 +2,11 @@
 /**
  * BuddyPress - Groups Loop
  *
- * @since 3.0.0
- * @version 7.0.0
+ * @link       https://wbcomdesigns.com/plugins
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/templates/buddypress/groups
  */
 
 bp_nouveau_before_loop(); ?>
@@ -18,7 +21,10 @@ bp_nouveau_before_loop(); ?>
 
 	<ul id="groups-list" class="<?php bp_nouveau_loop_classes(); ?>">
 
-		<?php while ( bp_groups() ) : bp_the_group(); ?>
+		<?php
+		while ( bp_groups() ) :
+			bp_the_group();
+			?>
 
 			<li <?php bp_group_class( array( 'item-entry' ) ); ?> data-bp-item-id="<?php bp_group_id(); ?>" data-bp-item-component="groups">
 				<div class="list-wrap">
@@ -48,7 +54,7 @@ bp_nouveau_before_loop(); ?>
 										esc_html__( 'Active %s', 'buddypress' ),
 										sprintf(
 											'<span data-livestamp="%1$s">%2$s</span>',
-											bp_core_get_iso8601_date( bp_get_group_last_active( 0, array( 'relative' => false ) ) ),
+											bp_core_get_iso8601_date( bp_get_group_last_active( 0, array( 'relative' => false ) ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 											esc_html( bp_get_group_last_active() )
 										)
 									);
