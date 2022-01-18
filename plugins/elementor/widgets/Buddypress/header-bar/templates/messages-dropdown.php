@@ -364,7 +364,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								$exerpt = wp_strip_all_tags( bp_create_excerpt( $messages_template->thread->last_message_content, 50, array( 'ending' => '&hellip;' ) ) );
 
 								if ( function_exists( 'buddypress' ) && bp_is_active( 'media' ) ) :
-									if ( bp_is_messages_media_support_enabled() ) :
+									if ( function_exists( 'bp_is_messages_media_support_enabled' ) && bp_is_messages_media_support_enabled() ) :
 										$media_ids = bp_messages_get_meta( $last_message_id, 'bp_media_ids', true );
 
 										if ( ! empty( $media_ids ) ) :
