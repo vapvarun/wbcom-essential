@@ -127,7 +127,7 @@ $template = get_option( 'template' );
 			endif;
 			?>
 			<span class="search-separator wbcom-essential-separator"></span>
-			<div class="wbcom-essential-header-buttons">
+			<div class="wbcom-essential-header-buttons buddypress-icons-wrapper">
 				<?php 
 				
 				if ( $template == 'reign-theme' ) {
