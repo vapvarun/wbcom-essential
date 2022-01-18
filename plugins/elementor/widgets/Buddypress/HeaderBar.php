@@ -117,7 +117,9 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Content', 'wbcom-essential' ),
 			)
 		);
-
+		
+		$menus = $this->get_menus();
+		
 		$this->add_control(
 			'profile_dropdown',
 			array(
@@ -132,7 +134,38 @@ class HeaderBar extends \Elementor\Widget_Base {
 				),
 			)
 		);
-
+		
+		
+		if ( ! empty( $menus ) ) {
+			$this->add_control(
+				'profile_dropdown_menu',
+				array(
+					'label'        => __( 'Menu', 'wbcom-essential' ),
+					'type'         => Controls_Manager::SELECT,
+					'options'      => $menus,
+					'default'      => array_keys( $menus )[0],
+					'save_default' => true,
+					'separator'    => 'after',
+					'condition'    => array(
+						'profile_dropdown' => 'inline-block',
+					),
+				)
+			);
+		} else {
+			$this->add_control(
+				'profile_dropdown_menu',
+				array(
+					'type'            => Controls_Manager::RAW_HTML,
+					'raw'             => '<strong>' . __( 'There are no menus available.', 'wbcom-essential' ) . '</strong><br>' . sprintf( __( 'Start by creating one <a href="%s" target="_blank">here</a>.', 'wbcom-essential' ), admin_url( 'nav-menus.php?action=edit&menu=0' ) ),
+					'separator'       => 'after',
+					'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+					'condition'       => array(
+						'profile_dropdown' => 'inline-block',
+					),
+				)
+			);
+		}
+		
 		$this->add_control(
 			'element_separator',
 			array(
@@ -596,7 +629,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_style_profile',
 			array(
-				'label' => esc_html__( 'Profile Navigation', 'wbcom-essential' ),
+				'label' => esc_html__( 'Profile Dropdown', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);

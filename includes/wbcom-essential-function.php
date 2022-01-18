@@ -300,20 +300,6 @@ if ( ! function_exists( 'wbcom_essential_theme_elementor_reply_link_attribute_ch
 	}
 }
 
-/**
- * Register Nav Menus.
- *
- * @return void
- */
-function wbcom_essential_action_register_nav_menus() {
-	register_nav_menus(
-		array(
-			'user_menu' => esc_html__( 'User Menu', 'buddyx' ),
-		)
-	);
-
-}
-add_action( 'init', 'wbcom_essential_action_register_nav_menus' );
 
 /**
  * Get a refreshed cart fragment, including the mini cart HTML.

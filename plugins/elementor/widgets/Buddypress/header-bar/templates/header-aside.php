@@ -10,13 +10,14 @@
  */
 
 $profile_dropdown   = isset( $settings['profile_dropdown'] ) ? true : false;
+$profile_dropdown_menu   = isset( $settings['profile_dropdown_menu'] ) ? $settings['profile_dropdown_menu'] : '';
 $show_search        = isset( $settings['search_icon_switch'] ) ? true : false;
 $show_messages      = isset( $settings['messages_icon_switch'] ) ? true : false;
 $show_notifications = isset( $settings['notifications_icon_switch'] ) ? true : false;
 $show_shopping_cart = isset( $settings['cart_icon_switch'] ) ? true : false;
 
 $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings['search_icon']['value'] ) ? $settings['search_icon']['value'] : 'wb-icon-search';
-
+echo $profile_dropdown_menu;
 ?>
 
 <div id="header-aside" class="header-aside">
@@ -37,36 +38,34 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 				</a>
 
 				<div class="sub-menu">
-					<div class="wrapper">
-						<ul class="sub-menu-inner">							
-							<?php
-							if ( function_exists( 'bp_is_active' ) ) {
-								$menu = wp_nav_menu(
+					<div class="wrapper">						
+						<?php
+						if ( function_exists( 'bp_is_active' ) && $profile_dropdown_menu != '' ) {
+							$menu = wp_nav_menu(
+								array(
+									'menu' => $profile_dropdown_menu,
+									'echo'           => false,
+									'fallback_cb'    => '__return_false',
+								)
+							);
+							if ( ! empty( $menu ) ) {
+								wp_nav_menu(
 									array(
-										'theme_location' => 'user_menu',
-										'echo'           => false,
-										'fallback_cb'    => '__return_false',
+										'menu' => $profile_dropdown_menu,
+										'menu_id'     => 'header-my-account-menu',
+										'container'   => false,
+										'fallback_cb' => '',
+										'walker'      => '', // add walker.
+										'menu_class'  => 'wbcom-essential-my-account-menu',
 									)
 								);
-								if ( ! empty( $menu ) ) {
-									wp_nav_menu(
-										array(
-											'theme_location' => 'user_menu',
-											'menu_id'     => 'header-my-account-menu',
-											'container'   => false,
-											'fallback_cb' => '',
-											'walker'      => '', // add walker.
-											'menu_class'  => 'wbcom-essential-my-account-menu',
-										)
-									);
-								} else {
-									do_action( 'wbcom_essential_header_user_menu_items' );
-								}
 							} else {
 								do_action( 'wbcom_essential_header_user_menu_items' );
 							}
-							?>
-						</ul>
+						} else {
+							do_action( 'wbcom_essential_header_user_menu_items' );
+						}
+						?>						
 					</div>
 				</div>
 			</div>
