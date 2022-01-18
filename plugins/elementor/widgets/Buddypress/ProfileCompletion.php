@@ -886,7 +886,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			/* translators: $s: User Progress Percentage */
 			$progress_label = sprintf( __( '%s', 'wbcom-essential' ), $user_progress['completion_percentage'] );
 
-			if ( ( 'yes' === $settings['switch_hide_widget'] || ! isset( $settings['switch_hide_widget'] ) ) && ( 100 === $user_progress['completion_percentage'] ) ) { ?>
+			if ( ( 'yes' == $settings['switch_hide_widget'] || ! isset( $settings['switch_hide_widget'] ) ) && ( 100 == $user_progress['completion_percentage'] ) ) { ?>
 				<div class="profile_bit_wrapper profile_bit_wrapper--blank"></div>
 				<?php
 			} else {
