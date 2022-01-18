@@ -137,8 +137,8 @@
 }
 
 .wbcom-essential-forums .wbcom-essential-forums__avatar+.item .wbcom-essential-forums__ww+.wbcom-essential-forums__last-reply .bs-last-reply a.bbp-reply-to-link {
-    left: -24px;
-    top: -4px;
+    left: -32px;
+    top: -3px;
 }
 
 .wbcom-essential-forums .bs-last-reply {
@@ -165,7 +165,7 @@
 }
 
 .wbcom-essential-forums .bs-last-reply i {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.4;
     opacity: 0.5;
 }

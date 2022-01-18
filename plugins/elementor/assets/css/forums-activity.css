@@ -175,7 +175,8 @@
 }
 
 .wbcom-essential-fa__excerpt a.bbp-reply-to-link i {
-    font-size: 24px;
+    font-size: 14px;
+    line-height: 1.4;
     opacity: 0.5;
 }
 
