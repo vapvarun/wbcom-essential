@@ -17,7 +17,6 @@ $show_notifications = isset( $settings['notifications_icon_switch'] ) ? true : f
 $show_shopping_cart = isset( $settings['cart_icon_switch'] ) ? true : false;
 
 $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings['search_icon']['value'] ) ? $settings['search_icon']['value'] : 'wb-icon-search';
-echo $profile_dropdown_menu;
 ?>
 
 <div id="header-aside" class="header-aside">
