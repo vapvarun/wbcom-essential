@@ -354,11 +354,13 @@ class Plugin {
 				'name'  => 'wbcom-profile-completion',
 				'class' => 'Buddypress\ProfileCompletion',
 			);
-
+			
+			/*
 			$elements['Buddypress/ActivityLists'] = array(
 				'name'  => 'wbcom-activity-lists',
 				'class' => 'Buddypress\ActivityLists',
 			);
+			*/
 
 			$elements['Buddypress/MembersLists'] = array(
 				'name'  => 'wbcom-members-lists',
