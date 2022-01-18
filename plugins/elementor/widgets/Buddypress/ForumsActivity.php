@@ -928,26 +928,23 @@ class ForumsActivity extends \Elementor\Widget_Base {
 										$get_last_reply_id = bbp_get_topic_last_reply_id( bbp_get_topic_id() );
 										if ( bbp_is_topic( $get_last_reply_id ) ) {
 											add_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
-											echo esc_url(
-												bbp_get_topic_reply_link(
+											echo bbp_get_topic_reply_link(
 													array(
 														'id' => $get_last_reply_id,
 														'reply_text' => '',
 													)
-												)
-											);
+												);	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped Message Nitin Patil
+										
 											remove_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
 											// If post is a reply, print the reply admin links instead.
 										} else {
 											add_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
-											echo esc_url(
-												bbp_get_reply_to_link(
+											echo bbp_get_reply_to_link(
 													array(
 														'id' => $get_last_reply_id,
 														'reply_text' => '',
 													)
-												)
-											);
+												); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped Message Nitin Patil
 											remove_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
 										}
 									endif;
