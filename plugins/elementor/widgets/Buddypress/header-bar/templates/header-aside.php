@@ -17,6 +17,7 @@ $show_notifications = isset( $settings['notifications_icon_switch'] ) ? true : f
 $show_shopping_cart = isset( $settings['cart_icon_switch'] ) ? true : false;
 
 $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings['search_icon']['value'] ) ? $settings['search_icon']['value'] : 'wb-icon-search';
+$template = get_option( 'template' );
 ?>
 
 <div id="header-aside" class="header-aside">
@@ -111,7 +112,7 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 		<?php else : ?>
 
 			<?php if ( $show_search ) : ?>
-				<a href="#" class="header-search-link" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Search', 'wbcom-essential' ); ?>"><i class="wb-icon-search"></i></a>
+				<a href="#" class="header-search-link" data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Search', 'wbcom-essential' ); ?>"><i class="<?php echo esc_attr( $search_icon ); ?>"></i></a>
 			<?php endif; ?>
 
 			<?php
@@ -127,11 +128,28 @@ $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings[
 			?>
 			<span class="search-separator wbcom-essential-separator"></span>
 			<div class="wbcom-essential-header-buttons">
-				<a href="<?php echo esc_url( wp_login_url() ); ?>" class="button small outline signin-button link"><?php esc_html_e( 'Sign in', 'wbcom-essential' ); ?></a>
+				<?php 
+				
+				if ( $template == 'reign-theme' ) {
+					get_template_part( 'template-parts/header-icons/login','' );
+					
+					if ( get_option( 'users_can_register' ) ) : 
+						get_template_part( 'template-parts/header-icons/register-menu','' );
+					endif;
+				} elseif ( $template == 'buddyx' || $template == 'buddyx-pro') {
+					
+					get_template_part( 'template-parts/header/buddypress-profile','' );
+				
+				} else {
+				?>
+			
+					<a href="<?php echo esc_url( wp_login_url() ); ?>" class="button small outline signin-button link btn-login"><?php esc_html_e( 'Sign in', 'wbcom-essential' ); ?></a>
 
-				<?php if ( get_option( 'users_can_register' ) ) : ?>
-					<a href="<?php echo esc_url( wp_registration_url() ); ?>" class="button small singup"><?php esc_html_e( 'Sign up', 'wbcom-essential' ); ?></a>
-				<?php endif; ?>
+					<?php if ( get_option( 'users_can_register' ) ) : ?>
+						<a href="<?php echo esc_url( wp_registration_url() ); ?>" class="button small singup btn-register"><?php esc_html_e( 'Sign up', 'wbcom-essential' ); ?></a>
+					<?php endif;
+				}
+				?>
 			</div>
 		<?php endif; ?>
 	</div>
