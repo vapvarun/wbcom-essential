@@ -43,8 +43,8 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'profile-completion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/profile-completion.css', array(), '3.5.0' );
-		wp_register_script( 'profile-completion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/profile-completion.js', array( 'elementor-frontend' ), '3.0.0', true );
+		wp_register_style( 'profile-completion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/profile-completion.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_script( 'profile-completion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/profile-completion.js', array( 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

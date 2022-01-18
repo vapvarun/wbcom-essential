@@ -42,7 +42,7 @@ class DashboardIntro extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'dashboard-intro', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/dashboard-intro.css', array(), '3.5.0' );
+		wp_register_style( 'dashboard-intro', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/dashboard-intro.css', array(), WBCOM_ESSENTIAL_VERSION );
 	}
 
 	/**

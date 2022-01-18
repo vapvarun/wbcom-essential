@@ -40,8 +40,8 @@ class GroupCarousel extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'group-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/group-carousel.css', array(), '3.0.0' );
-		wp_register_script( 'group-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/group-carousel.js', array( 'elementor-frontend' ), '3.0.0', true );
+		wp_register_style( 'group-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/group-carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_script( 'group-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/group-carousel.js', array( 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
 	}
 

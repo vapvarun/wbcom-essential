@@ -44,8 +44,8 @@ class HeaderBar extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/header-bar.css', array(), '3.5.0' );
-		wp_register_script( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/header-bar.js', array( 'elementor-frontend' ), '3.5.0', true );
+		wp_register_style( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/header-bar.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_script( 'header-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/header-bar.js', array( 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
