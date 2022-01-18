@@ -14,7 +14,7 @@
  * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com
  * Description:       Wbcom Essential Addons.
- * Version:           3.5.0
+ * Version:           3.5.1
  * Author:            wbcomdesigns
  * Author URI:        https://wbcomdesigns.com/plugins
  * License:           GPL-2.0+
@@ -27,8 +27,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '3.5.0' );
-define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '3.4.20' );
+define( 'WBCOM_ESSENTIAL_VERSION', '3.5.1' );
+define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '3.4.2' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASE', plugin_basename( WBCOM_ESSENTIAL_FILE ) );
