@@ -3,8 +3,8 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
-Tested up to: 5.8.0
-Stable tag: 3.4.2
+Tested up to: 5.8.3
+Stable tag: 3.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,8 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 3.5.0 =
+
 = 3.4.2 =
 * Fix : Fixed login url update issue with BuddyX theme
 * Fix : Fixed login url update issue with Reign theme
