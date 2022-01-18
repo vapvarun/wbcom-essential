@@ -23,6 +23,23 @@ This plugin does not require any specific plugin. Although this plugin supports 
 
 == Changelog ==
 = 3.5.0 =
+* Fix : Fixed hide/show separator issue
+* Fix : Managed activity list, forums lists, header bar UI fixes
+* Fix : Managed header bar elements hide/show
+* Fix : Delete Hide edit activity button
+* Fix : Managed activity lists widget UI
+* Fix : Managed activity lists widget UI
+* Fix : Managed header bar notifications and messages UI
+* Fix : Managed header bar woocommerce mini cart UI
+* Fix : Update #965 - Update cart count when remove and when add
+* Fix : Added #965 - added Menu Location in Header Sidebar
+* Fix : Added #965 - remove selected when click out side
+* Fix : Fixed Member and group Carousel Slider issue.
+* Fix : Managed forums activity widget UI
+* Fix : Managed buddypress members list widget UI
+* Fix : Managed buddypress groups list widget UI
+* Fix : Managed profile completion widget UI
+* Fix : Fixed fatal error issue in post widget option
 
 = 3.4.2 =
 * Fix : Fixed login url update issue with BuddyX theme
