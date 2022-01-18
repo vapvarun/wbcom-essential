@@ -25,4 +25,5 @@
 .elementor-member-carousel .member-avatar img {
     margin: auto;
     border-radius: 100%;
+    max-width: 150px;
 }
