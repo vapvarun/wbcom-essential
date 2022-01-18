@@ -33,6 +33,10 @@
 }
 
 /* widget */
+.site-header.site-header--elementor .button.singup {
+    margin-left: 10px;
+}
+
 .site-header.site-header--elementor {
     width: auto;
     background-color: transparent;
@@ -680,6 +684,7 @@
     transition: all linear .2s;
     z-index: 2;
     border-radius: 12px;
+    display: none;
 }
 
 .header-search-wrap--elementor label {
@@ -689,6 +694,7 @@
 .search-visible-el .header-search-wrap--elementor {
     opacity: 1;
     visibility: visible;
+    display: block;
 }
 
 .header-search-wrap--elementor .container {
