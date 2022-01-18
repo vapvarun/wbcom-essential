@@ -406,7 +406,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 										endif;
 									endif;
 
-									if ( bp_is_messages_gif_support_enabled() ) :
+									if ( function_exists( 'bp_is_messages_gif_support_enabled' ) && bp_is_messages_gif_support_enabled() ) :
 										$gif_data = bp_messages_get_meta( $last_message_id, '_gif_data', true );
 
 										if ( ! empty( $gif_data ) ) :
