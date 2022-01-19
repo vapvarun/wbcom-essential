@@ -170,7 +170,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Assets' ) ) {
 					$name = basename( $file, '.php' );
 					ob_start();
 					include $file;
-					printf( '<script type="text/html" id="tmpl-wbcomessentialelementor-%1$s">%2$s</script>', esc_attr( $name ), esc_attr( ob_get_clean() ) );
+					printf( '<script type="text/html" id="tmpl-wbcomessentialelementor-%1$s">%2$s</script>', esc_html( $name ), ob_get_clean() );
 
 				},
 				$scripts
