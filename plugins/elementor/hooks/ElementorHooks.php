@@ -222,6 +222,11 @@ class ElementorHooks {
 			$elements = \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::get_instance()->get_elements();
 			// include_once REIGN_INC_DIR . 'plugins/elementor/widgets/Base.php';.
 			foreach ( $elements as $k => $element ) {
+				if ( class_exists( 'Youzify' ) ) {
+					if ( strpos( $k, 'Buddypress/MembersGrid' ) !== false || strpos( $k, 'Buddypress/GroupGrid' ) !== false ) {
+						continue;
+					}
+				}
 				if ( $template_file = $this->get_element_path( $element['template_base_path'] . $k ) ) {
 					require_once $template_file;
 					$class_name = $element['class_base_namespace'] . $element['class'];
