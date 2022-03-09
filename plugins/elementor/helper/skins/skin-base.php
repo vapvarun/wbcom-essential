@@ -925,7 +925,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			)
 		);
 		?>
-		<div <?php echo esc_attr( $this->parent->get_render_attribute_string( 'container' ) ); ?>>
+		<div <?php echo $this->parent->get_render_attribute_string( 'container' ); ?>>
 			<?php
 	}
 
