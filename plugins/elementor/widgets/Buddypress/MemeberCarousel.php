@@ -41,7 +41,7 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 
 		wp_register_style( 'member-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/member-carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_script( 'member-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/member-carousel.js', array( 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
+		wp_enqueue_script( 'swiper' );
 	}
 
 	/**

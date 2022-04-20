@@ -13,6 +13,8 @@ namespace WBCOM_ESSENTIAL\ELEMENTOR;
 
 defined( 'ABSPATH' ) || die();
 
+use Elementor\Plugin AS Elelmentor_Plugin;
+
 /**
  * Plugin class.
  *
@@ -185,6 +187,7 @@ class Plugin {
 
 		add_action( 'plugins_loaded', array( $this, 'wbcom_essential_load_plugin' ), 0 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'front_css' ), 12 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_URL', WBCOM_ESSENTIAL_URL . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_PATH', WBCOM_ESSENTIAL_PATH . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH', WBCOM_ESSENTIAL_ELEMENTOR_PATH . 'widgets/' );
@@ -354,7 +357,7 @@ class Plugin {
 				'name'  => 'wbcom-profile-completion',
 				'class' => 'Buddypress\ProfileCompletion',
 			);
-			
+
 			/*
 			$elements['Buddypress/ActivityLists'] = array(
 				'name'  => 'wbcom-activity-lists',
@@ -477,7 +480,12 @@ class Plugin {
 		);
 
 		wp_enqueue_style( 'wbcom-essential-icons' );
+	}
 
+	public function enqueue_scripts() {
+		if ( Elelmentor_Plugin::$instance->experiments->is_feature_active( 'e_optimized_assets_loading' ) ) {
+			wp_register_script( 'swiper', WBCOM_ESSENTIAL_ASSETS_URL . 'js/swiper/swiper.min.js', array(), WBCOM_ESSENTIAL_VERSION, true );
+		}
 	}
 
 }
