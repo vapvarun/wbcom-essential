@@ -41,9 +41,9 @@ class Skin_Cards extends Skin_Base {
 	/**
 	 * Register control actions.
 	 */
-	protected function _register_controls_actions() {
+	protected function register_controls_actions() {
 
-		parent::_register_controls_actions();
+		parent::register_controls_actions();
 
 		add_action( 'elementor/element/wbcom-posts/cards_section_design_image/before_section_end', array( $this, 'register_additional_design_image_controls' ) );
 	}

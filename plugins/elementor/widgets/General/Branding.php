@@ -64,7 +64,7 @@ class Branding extends \Elementor\Widget_Base {
 	/**
 	 * Register elementor branding widget controls.
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		do_action( 'wbcom_essential/widget/branding/settings', $this );
 

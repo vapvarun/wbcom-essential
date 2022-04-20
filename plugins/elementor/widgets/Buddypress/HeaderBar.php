@@ -110,7 +110,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 	/**
 	 * Register elementor header bar widget controls.
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_content',
 			array(

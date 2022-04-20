@@ -82,7 +82,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 	/**
 	 * Register elememnor members grid controls.
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		do_action( 'wbcom_essential/widget/members-listing/settings', $this );
 

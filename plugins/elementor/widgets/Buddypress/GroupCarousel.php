@@ -109,7 +109,7 @@ class GroupCarousel extends \Elementor\Widget_Base {
 	 * @since 3.0.0
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		do_action( 'wbcom_essential/widget/groups-listing/settings', $this );
 

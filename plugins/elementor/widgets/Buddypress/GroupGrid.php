@@ -82,7 +82,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 	/**
 	 * Register controls.
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		do_action( 'wbcom_essential/widget/groups-grid/settings', $this );
 

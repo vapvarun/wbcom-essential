@@ -63,7 +63,7 @@ class Registration  extends \Elementor\Widget_Base {
 	/**
 	 * Register elementor registration widgets controls.
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_fields_content',
 			array(

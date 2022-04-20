@@ -69,7 +69,7 @@ class Menu extends \Elementor\Widget_Base {
 	/**
 	 * This registers our controls for the widget. Currently there are none but we may add options down the track.
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_reign_wp_menu',

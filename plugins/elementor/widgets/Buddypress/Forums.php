@@ -83,7 +83,7 @@ class Forums extends \Elementor\Widget_Base {
 	/**
 	 * Register Controls.
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_content_layout',
 			array(

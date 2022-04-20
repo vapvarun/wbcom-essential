@@ -22,8 +22,8 @@ use WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks;
 
 
 class Posts extends \Elementor\Widget_Base {
-    
-        public function __construct( $data = array(), $args = null ) {
+
+	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'wbcom-posts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-posts.css', array(), WBCOM_ESSENTIAL_VERSION );
@@ -59,7 +59,7 @@ class Posts extends \Elementor\Widget_Base {
 		return $element;
 	}
 
-	protected function _register_skins() {
+	protected function register_skins() {
 		$this->add_skin( new Skins\Skin_Classic( $this ) );
 		$this->add_skin( new Skins\Skin_Cards( $this ) );
 	}
@@ -72,12 +72,12 @@ class Posts extends \Elementor\Widget_Base {
 		return array( 'wbcom-elements' );
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->register_query_section_controls();
 		$this->register_pagination_section_controls();
 	}
-        
-        public function get_style_depends() {
+
+	public function get_style_depends() {
 		return array( 'wbcom-posts' );
 	}
 
