@@ -22,7 +22,7 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
-= 3.5.4 =
+= 3.5.5 =
 * Fix: (#108) Fixed elementor deprecated errors
 
 = 3.5.4 =
