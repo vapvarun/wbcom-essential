@@ -38,7 +38,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	/**
 	 * Register controls actions.
 	 */
-	protected function register_controls_actions() {
+	protected function _register_controls_actions() {
 		add_action( 'elementor/element/wbcom-posts/section_layout/before_section_end', array( $this, 'register_controls' ) );
 		add_action( 'elementor/element/wbcom-posts/section_query/after_section_end', array( $this, 'register_style_sections' ) );
 	}
