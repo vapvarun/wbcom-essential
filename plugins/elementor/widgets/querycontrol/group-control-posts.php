@@ -168,16 +168,17 @@ class Group_Control_Posts extends Group_Control_Base {
 	}
 
 	private function get_authors() {
-		$user_query = new \WP_User_Query(
-			array(
-				'who'                 => 'authors',
-				'has_published_posts' => true,
-				'fields'              => array(
-					'ID',
-					'display_name',
-				),
-			)
+		$args ['fields'] = array(
+			'ID',
+			'display_name',
 		);
+
+		if ( version_compare( $GLOBALS['wp_version'], '5.9', '<' ) ) {
+			$args['who'] = 'authors';
+		} else {
+			$args['capability'] = array( 'edit_posts' );
+		}
+		$user_query = new \WP_User_Query( $args );
 
 		$authors = array();
 
