@@ -65,7 +65,7 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 
 			add_filter( 'reign_header_topbar_fields_on_hold', array( $this, 'manage_fields_on_hold' ), 10, 1 );
 
-			// add_action( 'wbcom_before_masthead', array( $this, 'render_theme_topbar' ), 18 );
+			// add_action( 'reign_before_masthead', array( $this, 'render_theme_topbar' ), 18 );
 		}
 
 
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 		// public function render_theme_topbar() {
 		// $reign_header_topbar_type = get_theme_mod( 'reign_header_topbar_type', false );
 		// if( $reign_header_topbar_type ) {
-		// remove_action( 'wbcom_before_masthead', array( $this, 'render_theme_topbar' ), 20 );
+		// remove_action( 'reign_before_masthead', array( $this, 'render_theme_topbar' ), 20 );
 		// }
 		// }
 

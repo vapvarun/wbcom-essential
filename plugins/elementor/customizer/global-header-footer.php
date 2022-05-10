@@ -71,7 +71,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 
 		add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ), 18 );
 
-		add_action( 'wbcom_before_masthead', array( $this, 'add_header_topbar_markup' ), 18 );
+		add_action( 'reign_before_masthead', array( $this, 'add_header_topbar_markup' ), 18 );
 
 		add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
 
@@ -535,7 +535,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		if ( $reign_header_topbar_type ) {
 			if ( class_exists( 'Reign_Theme_Structure' ) ) {
 				$theme_structure_ref = Reign_Theme_Structure::instance();
-				remove_action( 'wbcom_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
+				remove_action( 'reign_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
 			}
 		}
 
@@ -556,7 +556,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		if ( ! empty( $reign_ele_topbar ) && ( $reign_ele_topbar == '-1' ) ) {
 			if ( class_exists( 'Reign_Theme_Structure' ) ) {
 				$theme_structure_ref = Reign_Theme_Structure::instance();
-				remove_action( 'wbcom_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
+				remove_action( 'reign_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
 			}
 			return;
 		}
@@ -587,7 +587,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 			if ( $topbar_id ) {
 				if ( class_exists( 'Reign_Theme_Structure' ) ) {
 					$theme_structure_ref = Reign_Theme_Structure::instance();
-					remove_action( 'wbcom_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
+					remove_action( 'reign_before_masthead', array( $theme_structure_ref, 'render_theme_topbar' ), 20 );
 				}
 				/* code to convert slug to id */
 				echo '<div id="wbcom-header-topbar">';
