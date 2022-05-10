@@ -64,7 +64,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		// }
 		// if ( '' !== $footer_id ) {
 		// add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
-		// add_action( 'wbcom_footer', array( $this, 'add_footer_markup' ) );
+		// add_action( 'reign_footer', array( $this, 'add_footer_markup' ) );
 		// }
 
 		add_action( 'template_redirect', array( $this, 'wbcom_setup_header' ), 10 );
@@ -75,7 +75,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 
 		add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
 
-		add_action( 'wbcom_footer', array( $this, 'add_footer_markup' ), 18 );
+		add_action( 'reign_footer', array( $this, 'add_footer_markup' ), 18 );
 
 		add_action( 'add_meta_boxes', array( $this, 'wbcom_default_page_template' ), 1 );
 		add_action( 'admin_head', array( $this, 'custom_menu_items' ), 1 );
@@ -601,7 +601,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Disable footer from the theme.
 	 */
 	public function wbcom_setup_footer() {
-		// remove_action( 'wbcom_footer', 'wbcom_footer_html' );
+		// remove_action( 'reign_footer', 'wbcom_footer_html' );
 	}
 	/**
 	 * Display footer markup.
@@ -611,7 +611,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		if ( $reign_footer_footer_type ) {
 			if ( class_exists( 'Reign_Theme_Structure' ) ) {
 				$theme_structure_ref = Reign_Theme_Structure::instance();
-				remove_action( 'wbcom_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
+				remove_action( 'reign_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
 			}
 		}
 
@@ -632,7 +632,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		if ( ! empty( $reign_ele_footer ) && ( $reign_ele_footer == '-1' ) ) {
 			if ( class_exists( 'Reign_Theme_Structure' ) ) {
 				$theme_structure_ref = Reign_Theme_Structure::instance();
-				remove_action( 'wbcom_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
+				remove_action( 'reign_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
 			}
 			return;
 		}
@@ -672,7 +672,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 
 				if ( class_exists( 'Reign_Theme_Structure' ) ) {
 					$theme_structure_ref = Reign_Theme_Structure::instance();
-					remove_action( 'wbcom_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
+					remove_action( 'reign_footer', array( $theme_structure_ref, 'render_theme_footer' ), 20 );
 				}
 			}
 			echo "<div class='footer-width-fixer'>";
