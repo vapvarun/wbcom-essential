@@ -60,7 +60,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 
 		// if ( '' !== $header_id ) {
 		// add_action( 'template_redirect', array( $this, 'wbcom_setup_header' ), 10 );
-		// add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ) );
+		// add_action( 'reign_masthead', array( $this, 'add_header_markup' ) );
 		// }
 		// if ( '' !== $footer_id ) {
 		// add_action( 'template_redirect', array( $this, 'wbcom_setup_footer' ), 10 );
@@ -69,7 +69,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 
 		add_action( 'template_redirect', array( $this, 'wbcom_setup_header' ), 10 );
 
-		add_action( 'wbcom_masthead', array( $this, 'add_header_markup' ), 18 );
+		add_action( 'reign_masthead', array( $this, 'add_header_markup' ), 18 );
 
 		add_action( 'reign_before_masthead', array( $this, 'add_header_topbar_markup' ), 18 );
 
@@ -447,7 +447,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 	 * Disable header from the theme.
 	 */
 	public function wbcom_setup_header() {
-		// remove_action( 'wbcom_masthead', 'wbcom_header_masthead' );
+		// remove_action( 'reign_masthead', 'wbcom_header_masthead' );
 	}
 	/**
 	 * Display header markup.
@@ -458,7 +458,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		if ( $reign_header_header_type ) {
 			if ( class_exists( 'Reign_Theme_Structure' ) ) {
 				$theme_structure_ref = Reign_Theme_Structure::instance();
-				remove_action( 'wbcom_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
+				remove_action( 'reign_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
 			}
 		}
 
@@ -479,7 +479,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 		if ( ! empty( $reign_ele_header ) && ( $reign_ele_header == '-1' ) ) {
 			if ( class_exists( 'Reign_Theme_Structure' ) ) {
 				$theme_structure_ref = Reign_Theme_Structure::instance();
-				remove_action( 'wbcom_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
+				remove_action( 'reign_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
 			}
 			return;
 		}
@@ -513,7 +513,7 @@ class WBCOM_Elementor_Global_Header_Footer {
 			if ( $header_id ) {
 				if ( class_exists( 'Reign_Theme_Structure' ) ) {
 					$theme_structure_ref = Reign_Theme_Structure::instance();
-					remove_action( 'wbcom_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
+					remove_action( 'reign_masthead', array( $theme_structure_ref, 'render_theme_header_desktop' ), 20 );
 				}
 				echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $header_id );
 			}
