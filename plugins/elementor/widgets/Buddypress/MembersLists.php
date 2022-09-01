@@ -566,7 +566,7 @@ class MembersLists extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'name_typography',
 				'selector' => '{{WRAPPER}} .wbcom-essential-members-list__name a',
-				'scheme'   => Schemes\Typography::TYPOGRAPHY_4,
+				'scheme'   => Schemes\\Elementor\Core\Schemes\Typography::TYPOGRAPHY_4,
 			)
 		);
 

@@ -245,8 +245,8 @@ class Skin_Cards extends Skin_Base {
 					'{{WRAPPER}} .elementor-post__card .elementor-post__badge' => 'background-color: {{VALUE}};',
 				),
 				'scheme'    => array(
-					'type'  => Color::get_type(),
-					'value' => Color::COLOR_4,
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_4,
 				),
 				'condition' => array(
 					$this->get_control_id( 'show_badge' ) => 'yes',
@@ -333,7 +333,7 @@ class Skin_Cards extends Skin_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'      => 'badge_typography',
-				'scheme'    => Typography::TYPOGRAPHY_4,
+				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_4,
 				'selector'  => '{{WRAPPER}} .elementor-post__card .elementor-post__badge',
 				'exclude'   => array( 'font_size', 'line-height' ),
 				'condition' => array(

@@ -217,7 +217,7 @@ class Menu extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'menu_typography',
-				'scheme'   => Typography::TYPOGRAPHY_1,
+				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .main-navigation ul.primary-menu > li a, .wbesntl-notification-area .user-link, #masthead .wbesntl-notification-area .user-link-wrap .user-link',
 			)
 		);
@@ -322,7 +322,7 @@ class Menu extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'submenu_typography',
-				'scheme'   => Typography::TYPOGRAPHY_1,
+				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .main-navigation ul.primary-menu ul.sub-menu > li a',
 			)
 		);

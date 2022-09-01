@@ -371,8 +371,8 @@ class Login extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .elementor-field-group > a' => 'color: {{VALUE}};',
 				),
 				'scheme'    => array(
-					'type'  => Color::get_type(),
-					'value' => Color::COLOR_3,
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_3,
 				),
 			)
 		);
@@ -386,8 +386,8 @@ class Login extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .elementor-field-group > a:hover' => 'color: {{VALUE}};',
 				),
 				'scheme'    => array(
-					'type'  => Color::get_type(),
-					'value' => Color::COLOR_4,
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_4,
 				),
 			)
 		);
@@ -435,8 +435,8 @@ class Login extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .elementor-form-fields-wrapper' => 'color: {{VALUE}};',
 				),
 				'scheme'    => array(
-					'type'  => Color::get_type(),
-					'value' => Color::COLOR_3,
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_3,
 				),
 			)
 		);
@@ -446,7 +446,7 @@ class Login extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'label_typography',
 				'selector' => '{{WRAPPER}} .elementor-form-fields-wrapper',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_3,
 			)
 		);
 
@@ -469,8 +469,8 @@ class Login extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .elementor-field-group .elementor-field' => 'color: {{VALUE}};',
 				),
 				'scheme'    => array(
-					'type'  => Color::get_type(),
-					'value' => Color::COLOR_3,
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_3,
 				),
 			)
 		);
@@ -480,7 +480,7 @@ class Login extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'field_typography',
 				'selector' => '{{WRAPPER}} .elementor-field-group .elementor-field, {{WRAPPER}} .elementor-field-subgroup label',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_3,
 			)
 		);
 
@@ -575,7 +575,7 @@ class Login extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'button_typography',
 				'label'    => __( 'Typography', 'wbcom-essential' ),
-				'scheme'   => Typography::TYPOGRAPHY_4,
+				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_4,
 				'selector' => '{{WRAPPER}} .elementor-button',
 			)
 		);
@@ -586,8 +586,8 @@ class Login extends \Elementor\Widget_Base {
 				'label'     => __( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'scheme'    => array(
-					'type'  => Color::get_type(),
-					'value' => Color::COLOR_4,
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_4,
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button' => 'background-color: {{VALUE}};',
@@ -904,7 +904,7 @@ class Login extends \Elementor\Widget_Base {
 	/**
 	 * Elementor login content template
 	 */
-	protected function _content_template() {
+	protected function content_template() {
 		?>
 		<div class="elementor-login elementor-form">
 			<div class="elementor-form-fields-wrapper">

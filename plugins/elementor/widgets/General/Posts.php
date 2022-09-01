@@ -292,7 +292,7 @@ class Posts extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'pagination_typography',
 				'selector' => '{{WRAPPER}} .elementor-pagination',
-				'scheme'   => Typography::TYPOGRAPHY_2,
+				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_2,
 			)
 		);
 
