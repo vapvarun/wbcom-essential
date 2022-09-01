@@ -19,7 +19,8 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Core\Schemes;
+use Elementor\Core\Schemes\Color;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 /**
  * Elementor member lists widget.
@@ -566,7 +567,7 @@ class MembersLists extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'name_typography',
 				'selector' => '{{WRAPPER}} .wbcom-essential-members-list__name a',
-				'scheme'   => Schemes\\Elementor\Core\Schemes\Typography::TYPOGRAPHY_4,
+				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_4,
 			)
 		);
 
