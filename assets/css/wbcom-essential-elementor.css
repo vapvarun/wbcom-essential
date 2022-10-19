@@ -394,7 +394,7 @@
 }
 
 .site-header--elementor .wbcom-essential--full-link {
-  font-size: 0;
+  display: none;
 }
 
 .site-header--elementor .notification-avatar {
