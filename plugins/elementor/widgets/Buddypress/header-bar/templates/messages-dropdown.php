@@ -205,7 +205,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 
 					$recipients       = array();
 					$other_recipients = array();
-					$current_user     = false;
+					$currentuser     = false;
 					if ( is_array( $messages_template->thread->recipients ) ) {
 						foreach ( $messages_template->thread->recipients as $recipient ) {
 							if ( empty( $recipient->is_deleted ) ) {
@@ -232,7 +232,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								if ( ! $is_you ) {
 									$other_recipients[] = $recipient_data;
 								} else {
-									$current_user = (!isset($_REQUEST['customize_theme']))? $recipient_data : '';
+									$currentuser = (!isset($_REQUEST['customize_theme']))? $recipient_data : '';
 								}
 							}
 						}
@@ -289,7 +289,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 									</a>
 									<?php
 								} else {
-									$recipient = ! empty( $first_three[0] ) ? $first_three[0] : $current_user;
+									$recipient = ! empty( $first_three[0] ) ? $first_three[0] : $currentuser;
 									?>
 									<a href="<?php echo esc_url( $recipient['user_link'] ); ?>">
 										<img class="avatar" src="<?php echo esc_url( $recipient['avatar'] ); ?>" alt="<?php echo esc_attr( $recipient['user_name'] ); ?>" />
