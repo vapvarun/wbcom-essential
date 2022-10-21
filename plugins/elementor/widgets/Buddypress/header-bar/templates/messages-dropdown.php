@@ -232,7 +232,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								if ( ! $is_you ) {
 									$other_recipients[] = $recipient_data;
 								} else {
-									$current_user = $recipient_data;
+									$current_user = (!isset($_REQUEST['customize_theme']))? $recipient_data : '';
 								}
 							}
 						}
