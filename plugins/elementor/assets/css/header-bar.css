@@ -352,7 +352,8 @@
     color: #939597;
     font-size: 16px;
     line-height: 1;
-    width: auto;
+    width: 1em;
+    height: 1em;
 }
 
 .site-header--elementor .header-mini-cart ul.cart_list li.mini_cart_item>a:not(.remove) {
