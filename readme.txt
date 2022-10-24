@@ -3,8 +3,8 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
-Tested up to: 6.0.2
-Stable tag: 3.5.8
+Tested up to: 6.0.3
+Stable tag: 3.5.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,13 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 3.5.9 =
+* Fix: Update cart product remove button UI
+* Fix: Fixed #1065 - Fixed Notification display issue
+* Fix: Fixed #1065 - client site- elementor editing issue
+* Fix: Header bar UI fixes
+* Fix: Fixed header bar flickering when page reload
+
 = 3.5.8 =
 * Fix: #1050 - Fixed Member & Group Slider issue
 * Fix: #1050 - Warning and errors
