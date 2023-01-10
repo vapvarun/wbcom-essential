@@ -244,7 +244,7 @@ class ElementorHooks {
 
 		$controls_manager->add_group_control( Group_Control_Posts::get_type(), new Group_Control_Posts() );
 
-		$controls_manager->register_control( self::QUERY_CONTROL_ID, new Query() );
+		$controls_manager->register_control( '', new Query() );
 	}
 
 	/**
