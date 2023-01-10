@@ -72,7 +72,7 @@ class ElementorHooks {
 		// }
 
 		add_action( 'elementor/elements/categories_registered', array( $this, 'categories_registered' ) );
-		add_action( 'elementor/widgets/widgets_registered', array( $this, 'widgets_registered' ) );
+		add_action( 'elementor/widgets/register', array( $this, 'widgets_registered' ) );
 		add_action( 'elementor/controls/controls_registered', array( $this, 'register_controls' ) );
 		// add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_css' ) );
 		// add_action( 'elementor/editor/after_save', array( $this, 'save_buddypress_options' ), 10, 2 );
@@ -230,7 +230,7 @@ class ElementorHooks {
 				if ( $template_file = $this->get_element_path( $element['template_base_path'] . $k ) ) {
 					require_once $template_file;
 					$class_name = $element['class_base_namespace'] . $element['class'];
-					$elementor->widgets_manager->register_widget_type( new $class_name() );
+					$elementor->widgets_manager->register( new $class_name() );
 				}
 			}
 		}
