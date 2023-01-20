@@ -151,6 +151,14 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 					'placeholder' => __( 'Total members', 'wbcom-essential' ),
 				)
 			);
+			
+		$this->add_control(
+			'hide_member_last_active',
+			array(
+				'label'   => esc_html__( 'Hide member last active info', 'wbcom-essential' ),
+				'type'    => Controls_Manager::SWITCHER,				
+			)
+		);
 
 			// $this->add_control(
 			// 'scroll',
@@ -408,7 +416,8 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 		$slides_count = isset( $settings['total'] ) ? $settings['total'] : 0;
 		$show_dots    = ( in_array( $settings['navigation'], array( 'dots', 'both' ) ) );
-		$show_arrows  = ( in_array( $settings['navigation'], array( 'arrows', 'both' ) ) );
+		$show_arrows  = ( in_array( $settings['navigation'], array( 'arrows', 'both' ) ) );		
+		
 		?>
 		<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'carousel-wrapper' ) ); ?>>
 				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'carousel' ) ); ?>>
@@ -440,9 +449,11 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 													<h5 class="item-title">
 														<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
 													</h5>
+													<?php if ( $settings['hide_member_last_active'] != 'yes'): ?>
 														<span class="last-activity" data-livestamp="<?php bp_core_iso8601_date( bp_get_member_last_active( array( 'relative' => false ) ) ); ?>">
-														<?php bp_member_last_active(); ?>
-													</span>
+															<?php bp_member_last_active(); ?>
+														</span>
+													<?php endif;?>
 												</div>
 											</div>
 										</div>
