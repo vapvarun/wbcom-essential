@@ -163,24 +163,7 @@ class PostsRevolution extends Widget_Base {
 
 		return $options;
 	}
-
-
-
-	/**
-	 * Retrieve the list of scripts the widget depended on.
-	 *
-	 * Used to set scripts dependencies required to run the widget.
-	 *
-	 * @since 3.6.0
-	 *
-	 * @access public
-	 *
-	 * @return array Widget scripts dependencies.
-	 */
-	public function get_script_depends() {
-		return [ 'wbcom-essential' ];
-	}
-
+	
 	/**
 	 * Register the widget controls.
 	 *
