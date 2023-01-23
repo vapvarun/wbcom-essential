@@ -20,7 +20,39 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @since 3.6.0
  */
 class PostsRevolution extends Widget_Base {
+	
+	/**
+	 * Construct.
+	 *
+	 * @param  array  $data Data.
+	 * @param  string $args Args.
+	 * @return void
+	 */
+	public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
 
+		wp_register_style( 'wbcom-animations', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/animations.min.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-posts-revolutions', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-posts-revolutions.css', array(), WBCOM_ESSENTIAL_VERSION );
+		
+		
+		wp_register_script( 'wbcom-appear', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-appear.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-animate', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-animate.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		
+	}
+	
+	/**
+	 * Get dependent script.
+	 */
+	public function get_script_depends() {
+		return array( 'wbcom-appear', 'wbcom-animate' );
+	}
+
+	/**
+	 * Get dependent style.
+	 */
+	public function get_style_depends() {
+		return array( 'wbcom-posts-revolutions', 'wbcom-animations' );
+	}
 	/**
 	 * Retrieve the widget name.
 	 *
@@ -597,15 +629,7 @@ class PostsRevolution extends Widget_Base {
 		$wbcom_animate 						= esc_html($settings['wbcom_animate']);
 		$wbcom_animate_effect 				= esc_html($settings['wbcom_animate_effect']);
 		$wbcom_delay 						= esc_html($settings['wbcom_delay']);
-
-		/* LOAD CSS && JS */
-		wp_enqueue_style( 'normalize' );
-		wp_enqueue_style( 'animations' );
-		wp_enqueue_style( 'fonts-vc' );
-		wp_enqueue_style( 'minimal-posts-revolution-posts' );
-		wp_enqueue_style( 'minimal-posts-revolution-style' );
-		wp_enqueue_script( 'appear' );
-		wp_enqueue_script( 'animate' );
+		
 
 		/* CHECK VALUE EMPTY */
 		if($wbcom_post_display_excerpt_number == '') { 
@@ -727,9 +751,9 @@ class PostsRevolution extends Widget_Base {
 
 
 
-		/**********************************************************************/
-		/******************************** TYPE 1 ******************************/
-		/**********************************************************************/
+		/*/
+		 * TYPE 1
+		 */
 
 		if($wbcom_post_display_type == 'posts_type1') {
 
@@ -767,9 +791,9 @@ class PostsRevolution extends Widget_Base {
 			}
 
 
-			/**********************************************************************/
-			/******************************** TYPE 2 ******************************/
-			/**********************************************************************/
+			/*
+			 * TYPE 2
+			 */
 
 		} elseif($wbcom_post_display_type == 'posts_type2') {
 
@@ -807,9 +831,9 @@ class PostsRevolution extends Widget_Base {
 
 			}
 
-			/**********************************************************************/
-			/******************************** TYPE 3 ******************************/
-			/**********************************************************************/
+			/*
+			 * TYPE 3
+			 */
 
 		} elseif($wbcom_post_display_type == 'posts_type3') {
 
@@ -834,9 +858,9 @@ class PostsRevolution extends Widget_Base {
 				//$return .= '<br class="adclear">';
 			}
 
-			/**********************************************************************/
-			/******************************** TYPE 4 ******************************/
-			/**********************************************************************/
+			/*
+			 * TYPE 4
+			 */
 
 		} elseif($wbcom_post_display_type == 'posts_type4') {
 
@@ -856,9 +880,9 @@ class PostsRevolution extends Widget_Base {
 			$return .= '<div class="adclear"></div></div>';
 
 
-			/**********************************************************************/
-			/******************************** TYPE 5 ******************************/
-			/**********************************************************************/
+			/*
+			 * TYPE 5
+			 */
 
 
 		} elseif($wbcom_post_display_type == 'posts_type5') {
@@ -901,9 +925,9 @@ class PostsRevolution extends Widget_Base {
 		endwhile;
 		}
 
-		/**********************************************************************/
-		/****************************** PAGINATION ****************************/
-		/**********************************************************************/
+		/*
+		 ** PAGINATION 
+		 */
 		if($wbcom_query_pagination == 'yes') {
 			$return .= '<div class="adclear"></div><div class="vcmp-post-display-'.$instance.' vcmp-pagination">';
 			if($wbcom_query_pagination_type == 'numeric') {
@@ -914,17 +938,18 @@ class PostsRevolution extends Widget_Base {
 			}
 			$return .= '</div>';
 		}
-		/**********************************************************************/
-		/***************************** #PAGINATION ****************************/
-		/**********************************************************************/
+		
+		/*
+		 * #PAGINATION 
+		 */
 
 
 		$return .= '</div>'; // CLOSE MAIN DIV
 
 
-		/**********************************************************************/
-		/******************************** TYPE 2 ******************************/
-		/**********************************************************************/
+		/*
+		 * TYPE 2
+		 */
 
 
 		if($wbcom_animate == 'on') {
@@ -934,15 +959,5 @@ class PostsRevolution extends Widget_Base {
 		}
 		echo $return;
 	}
-
-	/**
-	 * Render the widget output in the editor.
-	 *
-	 * Written as a Backbone JavaScript template and used to generate the live preview.
-	 *
-	 * @since 3.6.0
-	 *
-	 * @access protected
-	 */
-	protected function _content_template() {}
+	
 }

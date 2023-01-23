@@ -435,6 +435,10 @@ class Plugin {
 			'name'  => 'wbcom-posts-revolution',
 			'class' => 'General\PostsRevolution',
 		);
+		$elements['General/PostsCarousel'] = array(
+			'name'  => 'wbcom-posts-carousel',
+			'class' => 'General\PostsCarousel',
+		);
 		
 		$elements['General/Posts'] = array(
 			'name'  => 'wbcom-posts',
