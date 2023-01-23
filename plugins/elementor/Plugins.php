@@ -431,6 +431,11 @@ class Plugin {
 			);
 		}
 
+		$elements['General/PostsRevolution'] = array(
+			'name'  => 'wbcom-posts-revolution',
+			'class' => 'General\PostsRevolution',
+		);
+		
 		$elements['General/Posts'] = array(
 			'name'  => 'wbcom-posts',
 			'class' => 'General\Posts',
