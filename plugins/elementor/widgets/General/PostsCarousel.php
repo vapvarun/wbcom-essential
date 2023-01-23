@@ -544,7 +544,7 @@ class PostsCarousel extends Widget_Base {
 			[
 				'label' => esc_html__( 'Main Color', 'wbcom-essential' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'default' => '#7FB1C5',
+				'default' => '#1d76da',
 				'condition'	=> [
 					'wbcom_custom_style'	=> 'on'
 				]
@@ -556,7 +556,7 @@ class PostsCarousel extends Widget_Base {
 			[
 				'label' => esc_html__( 'Hover Color', 'wbcom-essential' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'default' => '#7FB1C5',
+				'default' => '#1d76da',
 				'condition'	=> [
 					'wbcom_custom_style'	=> 'on'
 				]
@@ -648,16 +648,16 @@ class PostsCarousel extends Widget_Base {
 		$return = '<style type="text/css">';
 		if($wbcom_custom_style == 'on') {
 			if($wbcom_carousel_type == 'type1') {
-				$return .=  '#wbcom-carousel-'.$instance.' .owl-item .item .wbcom-info-left {
+				$return .=  '#wb-carousel-'.$instance.' .owl-item .item .wb-info-left {
 							background:'.$wbcom_background_hover.'!important;
 						}';
-				$return .=  '.wbcom-posts-revolution-elementor.posts_carousel_type1.wbcom-selector-'.$instance.' .wbcom-category a {
+				$return .=  '.wb-posts-revolution-elementor.posts_carousel_type1.wb-selector-'.$instance.' .wb-category a {
 													color:'.$wbcom_main_color.'!important;
 									}
-									.wbcom-posts-revolution-elementor.posts_carousel_type1.wbcom-selector-'.$instance.' .wbcom-category a:hover {
+									.wb-posts-revolution-elementor.posts_carousel_type1.wb-selector-'.$instance.' .wb-category a:hover {
 										color:'.$wbcom_hover_color.'!important;
 									}
-									.wbcom-posts-revolution-elementor.posts_carousel_type1.wbcom-selector-'.$instance.' .wbcom-title a:hover {
+									.wb-posts-revolution-elementor.posts_carousel_type1.wb-selector-'.$instance.' .wb-title a:hover {
 										color:'.$wbcom_hover_color.'!important;
 									}';
 				$return .=  '.owl-theme .owl-controls .owl-page span {
@@ -678,16 +678,16 @@ class PostsCarousel extends Widget_Base {
 
 
 			if($wbcom_carousel_type == 'type2') {
-				$return .=  '#wbcom-carousel-'.$instance.' .wbcom-posts-revolution-elementor-thumbs-container:hover .wbcom-info-left {
+				$return .=  '#wb-carousel-'.$instance.' .wb-posts-revolution-elementor-thumbs-container:hover .wb-info-left {
 							background:'.$wbcom_background_hover.'!important;
 				}';
-				$return .=  '.wbcom-posts-revolution-elementor.posts_carousel_type2.wbcom-selector-'.$instance.' .wbcom-category a {
+				$return .=  '.wb-posts-revolution-elementor.posts_carousel_type2.wb-selector-'.$instance.' .wb-category a {
 														color:'.$wbcom_main_color.'!important;
 										}
-										.wbcom-posts-revolution-elementor.posts_carousel_type2.wbcom-selector-'.$instance.' .wbcom-category a:hover {
+										.wb-posts-revolution-elementor.posts_carousel_type2.wb-selector-'.$instance.' .wb-category a:hover {
 											color:'.$wbcom_hover_color.'!important;
 										}
-										.wbcom-posts-revolution-elementor.posts_carousel_type2.wbcom-selector-'.$instance.' .wbcom-title a:hover {
+										.wb-posts-revolution-elementor.posts_carousel_type2.wb-selector-'.$instance.' .wb-title a:hover {
 											color:'.$wbcom_hover_color.'!important;
 										}';
 				$return .=  '.owl-theme .owl-controls .owl-page span {
@@ -712,7 +712,7 @@ class PostsCarousel extends Widget_Base {
 
 			$return .= '<script type="text/javascript">
 						  jQuery(document).ready(function($){
-								$("#wbcom-carousel-'.$instance.'").owlCarousel({
+								$("#wb-carousel-'.$instance.'").owlCarousel({
 									items : '.$wbcom_carousel_item.',
 									navigation: '.$wbcom_carousel_navigation.',
 									pagination: '.$wbcom_carousel_pagination.',
@@ -726,7 +726,7 @@ class PostsCarousel extends Widget_Base {
 
 			$return .= '<script type="text/javascript">
 						  jQuery(document).ready(function($){
-								$("#wbcom-carousel-'.$instance.'").owlCarousel({
+								$("#wb-carousel-'.$instance.'").owlCarousel({
 									items : '.$wbcom_carousel_item.',
 									navigation: '.$wbcom_carousel_navigation.',
 									pagination: '.$wbcom_carousel_pagination.',
@@ -751,7 +751,7 @@ class PostsCarousel extends Widget_Base {
 							$wbcom_query_posts_for_page);
 
 
-			$return .= '<div class="adclear"></div>';
+			$return .= '<div class="wbclear"></div>';
 
 		if($wbcom_animate == 'on') { // ANIMATION ON
 			$return .= '<div class="animate-in" data-anim-type="'.$wbcom_animate_effect.'" data-anim-delay="'.$wbcom_delay.'">';
@@ -765,7 +765,7 @@ class PostsCarousel extends Widget_Base {
 
 		if($wbcom_carousel_type == 'type1') {
 
-			$return .= '<div id="wbcom-carousel-'.$instance.'" class="owl-carousel'.$instance.' wbcom-posts-revolution-elementor posts_carousel_type1 wbcom-selector-'.$instance.'">'; // OPEN MAIN DIV
+			$return .= '<div id="wb-carousel-'.$instance.'" class="owl-carousel'.$instance.' wb-posts-revolution-elementor posts_carousel_type1 wb-selector-'.$instance.'">'; // OPEN MAIN DIV
 
 			$count = 0;
 			$loop = new \WP_Query($query);
@@ -777,17 +777,17 @@ class PostsCarousel extends Widget_Base {
 
 			$return .= '<div class="item">';
 
-							$return .= '<div class="wbcom-posts-revolution-elementor-thumbs-container">'. wbcom_essential_posts_revolution_elementor_thumbs();
+							$return .= '<div class="wb-posts-revolution-elementor-thumbs-container">'. wbcom_essential_posts_revolution_elementor_thumbs();
 							$return .= '</div>';
 
-							$return .= '<div class="wbcom-info-left">';
-									$return .= '<span class="wbcom-category">'. wbcom_essential_posts_revolution_elementor_category($wbcom_query_source,$wbcom_query_posts_type).'</span>';
-									$return .= '<span class="wbcom-title"><a href="'.$link.'">'.get_the_title().'</a></span>';
+							$return .= '<div class="wb-info-left">';
+									$return .= '<span class="wb-category">'. wbcom_essential_posts_revolution_elementor_category($wbcom_query_source,$wbcom_query_posts_type).'</span>';
+									$return .= '<span class="wb-title"><a href="'.$link.'">'.get_the_title().'</a></span>';
 									if($wbcom_carousel_excerpt == 'true') {
-										$return .= '<span class="wbcom-content">' . wbcom_essential_posts_revolution_elementor_excerpt($wbcom_carousel_excerpt_number).'</span>';
+										$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt($wbcom_carousel_excerpt_number).'</span>';
 									}
-									$return .= '<span class="wbcom-author">'.get_the_author().'</span>';
-									$return .= '<span class="wbcom-date">'.get_the_date($wbcom_carousel_date_format).'</span>';
+									$return .= '<span class="wb-author">'.get_the_author().'</span>';
+									$return .= '<span class="wb-date">'.get_the_date($wbcom_carousel_date_format).'</span>';
 							$return .= '</div>';
 
 
@@ -807,7 +807,7 @@ class PostsCarousel extends Widget_Base {
 
 		} elseif($wbcom_carousel_type == 'type2') {
 
-			$return .= '<div id="wbcom-carousel-'.$instance.'" class="owl-carousel'.$instance.' wbcom-posts-revolution-elementor posts_carousel_type2 wbcom-selector-'.$instance.'">'; // OPEN MAIN DIV
+			$return .= '<div id="wb-carousel-'.$instance.'" class="owl-carousel'.$instance.' wb-posts-revolution-elementor posts_carousel_type2 wb-selector-'.$instance.'">'; // OPEN MAIN DIV
 
 			$count = 0;
 			$loop = new \WP_Query($query);
@@ -818,16 +818,16 @@ class PostsCarousel extends Widget_Base {
 
 			$return .= '<div class="item">';
 
-						$return .= '<div class="wbcom-posts-revolution-elementor-thumbs-container">' . wbcom_essential_posts_revolution_elementor_thumbs();
+						$return .= '<div class="wb-posts-revolution-elementor-thumbs-container">' . wbcom_essential_posts_revolution_elementor_thumbs();
 
-									$return .= '<div class="wbcom-info-left">';
-											$return .= '<span class="wbcom-category">'. wbcom_essential_posts_revolution_elementor_category($wbcom_query_source,$wbcom_query_posts_type).'</span>';
-											$return .= '<span class="wbcom-title"><a href="'.$link.'">'.get_the_title().'</a></span>';
+									$return .= '<div class="wb-info-left">';
+											$return .= '<span class="wb-category">'. wbcom_essential_posts_revolution_elementor_category($wbcom_query_source,$wbcom_query_posts_type).'</span>';
+											$return .= '<span class="wb-title"><a href="'.$link.'">'.get_the_title().'</a></span>';
 											if($wbcom_carousel_excerpt == 'true') {
-												$return .= '<span class="wbcom-content">'. wbcom_essential_posts_revolution_elementor_excerpt($wbcom_carousel_excerpt_number).'</span>';
+												$return .= '<span class="wb-content">'. wbcom_essential_posts_revolution_elementor_excerpt($wbcom_carousel_excerpt_number).'</span>';
 											}
-											$return .= '<span class="wbcom-author">'.get_the_author().'</span>';
-											$return .= '<span class="wbcom-date">'.get_the_date($wbcom_carousel_date_format).'</span>';
+											$return .= '<span class="wb-author">'.get_the_author().'</span>';
+											$return .= '<span class="wb-date">'.get_the_date($wbcom_carousel_date_format).'</span>';
 									$return .= '</div>';
 
 

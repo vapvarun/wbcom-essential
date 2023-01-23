@@ -352,7 +352,7 @@ function wbcom_essential_posts_revolution_elementor_thumbs() {
 		$single_image[0] = WBCOM_ESSENTIAL_ELEMENTOR_URL .'assets/images/no-img.png';
     }
 
-	$return =	'<img class="megaposts-thumbs" src="'.$single_image[0].'" alt="'.get_the_title().'">';
+	$return =	'<img class="wb-megaposts-thumbs" src="'.$single_image[0].'" alt="'.get_the_title().'">';
 	return apply_filters( 'wbcom_essential_posts_revolution_elementor_thumbs', $return,  $post );
 }
 
@@ -436,26 +436,26 @@ function wbcom_essential_posts_revolution_elementor_post_info($ad_postpreview_di
    $return = '';
    if($ad_postpreview_display_date == 'true') {
 
-		$return .= '<span class="admp-date"><i class="fa fa-calendar"></i>' . get_the_date($date_format) . '</span>';
+		$return .= '<span class="wb-date"><i class="fa fa-calendar"></i>' . get_the_date($date_format) . '</span>';
 
    }
 
    if($ad_postpreview_display_author == 'true') {
-		$return .= '<span class="admp-author"><i class="fa fa-user"></i><a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.get_the_author_meta( 'display_name' ).'</a></span>';
+		$return .= '<span class="wb-author"><i class="fa fa-user"></i><a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.get_the_author_meta( 'display_name' ).'</a></span>';
    }
 
    if($ad_postpreview_display_comments == 'true') {
 
-		$return .= '<span class="admp-comments"><i class="fa fa-comments"></i><a href="'.get_comments_link().'">'.get_comments_number().'</a></span>';
+		$return .= '<span class="wb-comments"><i class="fa fa-comments"></i><a href="'.get_comments_link().'">'.get_comments_number().'</a></span>';
 
    }
 
    if($ad_postpreview_display_category == 'true') {
-		$return .= '<span class="admp-category"><i class="fa fa-tags"></i>'.wbcom_essential_posts_revolution_elementor_category($wbcom_query_source,$wbcom_query_posts_type).'</span>';
+		$return .= '<span class="wb-category"><i class="fa fa-tags"></i>'.wbcom_essential_posts_revolution_elementor_category($wbcom_query_source,$wbcom_query_posts_type).'</span>';
    }
 
    if($ad_postpreview_display_views == 'true') {
-   $return .= '<span class="admp-views"><i class="fa fa-eye"></i>'.wbcom_essential_posts_revolution_elementor_get_post_views(get_the_ID()).'</span>';
+   $return .= '<span class="wb-views"><i class="fa fa-eye"></i>'.wbcom_essential_posts_revolution_elementor_get_post_views(get_the_ID()).'</span>';
    }
 
    return $return;
