@@ -271,7 +271,7 @@ class PostsTicker extends Widget_Base {
 			[
 				'label' => esc_html__( 'Ticker Direction', 'wbcom-essential' ),
 				'type' => Controls_Manager::SELECT,
-				'default' => 'Right',
+				'default' => 'right',
 				'options' => [
 				  	'up'	=> esc_html__( 'Up','wbcom-essential'),
 					'right'	=> esc_html__( 'Right','wbcom-essential'),					
