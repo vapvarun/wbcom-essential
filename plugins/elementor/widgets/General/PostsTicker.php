@@ -265,41 +265,6 @@ class PostsTicker extends Widget_Base {
 				]
 			]
 		);
-		$this->add_control(
-			'wbcom_newsticker_direction',
-			[
-				'label' => esc_html__( 'Ticker Direction', 'wbcom-essential' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'right',
-				'options' => [				  	
-					'right'	=> esc_html__( 'Right','wbcom-essential'),									  	
-					'left'	=> esc_html__( 'Left','wbcom-essential'),
-				  	
-				],
-				'condition'	=> [
-					'wbcom_newsticker_type'	=> 'newsticker2',
-					'wbcom_news_ticker_type!'	=> 'vertical'
-				],				
-			]
-		);
-		
-			$this->add_control(
-			'wbcom_newsticker_direction_2',
-			[
-				'label' => esc_html__( 'Ticker Direction', 'wbcom-essential' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'up',
-				'options' => [
-				  	'up'	=> esc_html__( 'Up','wbcom-essential'),					
-				  	'down'	=> esc_html__( 'Down','wbcom-essential'),					
-				  	
-				],
-				'condition'	=> [
-					'wbcom_newsticker_type'	=> 'newsticker2',
-					'wbcom_news_ticker_type'	=> 'vertical'
-				],				
-			]
-		);
 		
 		$this->add_control(
 			'wbcom_newsticker_speed',
@@ -611,15 +576,9 @@ class PostsTicker extends Widget_Base {
 		$wbcom_newsticker_type 				= esc_html($settings['wbcom_newsticker_type']);
 		$wbcom_newsticker_excerpt_number 	= '50';
 		$wbcom_newsticker_date_format 		= esc_html($settings['wbcom_newsticker_date_format']);
-		$wbcom_newsticker_item_show			= esc_html($settings['wbcom_newsticker_item_show']);
+		$wbcom_newsticker_item_show			= esc_html($settings['wbcom_newsticker_item_show']);		
 		
-		$wbcom_news_ticker_type				= esc_html($settings['wbcom_news_ticker_type']);
-		$wbcom_newsticker_direction			= esc_html($settings['wbcom_newsticker_direction']);
-		$wbcom_newsticker_direction_2		= esc_html($settings['wbcom_newsticker_direction_2']);
-		
-		if ( $wbcom_news_ticker_type == 'vertical' ) {
-			$wbcom_newsticker_direction = $wbcom_newsticker_direction_2;
-		}
+		$wbcom_news_ticker_type				= esc_html($settings['wbcom_news_ticker_type']);		
 		$wbcom_newsticker_label				= esc_html($settings['wbcom_newsticker_label']);
 		$wbcom_newsticker_speed				= esc_html($settings['wbcom_newsticker_speed']);
 
@@ -776,7 +735,7 @@ class PostsTicker extends Widget_Base {
 					jQuery(document).ready(function($){
             			$(\'#wb-newsticker-type2-'.$instance.'\').AcmeTicker({
 								type: "' . $wbcom_news_ticker_type . '",
-								direction: "' . $wbcom_newsticker_direction . '",
+								direction: "right",
 								speed: '. $wbcom_newsticker_speed . ',
 								controls: {
 									prev: $(".acme-news-ticker-prev"),
