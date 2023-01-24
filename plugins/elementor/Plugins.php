@@ -440,6 +440,11 @@ class Plugin {
 			'class' => 'General\PostsCarousel',
 		);
 		
+		$elements['General/PostsTicker'] = array(
+			'name'  => 'wbcom-posts-ticker',
+			'class' => 'General\PostsTicker',
+		);
+		
 		$elements['General/Posts'] = array(
 			'name'  => 'wbcom-posts',
 			'class' => 'General\Posts',
