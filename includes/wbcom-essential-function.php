@@ -720,7 +720,7 @@ function wbcom_essential_posts_revolution_elementor_numeric_pagination($pages = 
 
      if(1 != $pages)
      {
-         $return .= "<div class='wbcom-pagination numeric'>";
+         $return .= "<div class='wb-pagination numeric'>";
          if($paged > 2 && $paged > $range+1 && $showitems < $pages) $return .=  "<a href='".get_pagenum_link(1)."'>&laquo;</a>";
          if($paged > 1 && $showitems < $pages) $return .=  "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo;</a>";
 

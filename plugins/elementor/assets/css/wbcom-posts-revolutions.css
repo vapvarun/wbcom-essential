@@ -1,4 +1,3 @@
-
 /*--------------------------------------------------------------
 # Style 2
 --------------------------------------------------------------*/
@@ -368,6 +367,7 @@
 
 .wbcom-essential-posts-revolution-elementor.posts_type1 img.wb-megaposts-thumbs {
     height: 100%;
+    object-fit: cover;
 }
 
 .wbcom-essential-posts-revolution-elementor img.wb-megaposts-thumbs:hover {
@@ -787,6 +787,7 @@
 .wbcom-essential-posts-revolution-elementor.posts_type5 .wb-info-left {
     padding: 25px;
     display: inline-block;
+    width: 100%;
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type5 .wb-info-left .wb-title {
@@ -889,20 +890,20 @@
 /*--------------------------------------------------------------
 # Pagination
 --------------------------------------------------------------*/
-.vcmp-pagination {
+.wb-pagination {
     text-align: center;
     margin: 50px 0;
 }
 
-.vcmp-pagination a {
+.wb-pagination a {
     margin: 0 15px;
 }
 
-.vcmp-pagination a:hover {
+.wb-pagination a:hover {
     color: #1d76da;
 }
 
-.vcmp-pagination.numeric a {
+.wb-pagination.numeric a {
     background: #fff;
     display: inline-block;
     width: 40px;
@@ -914,13 +915,13 @@
     font-weight: 300;
 }
 
-.vcmp-pagination.numeric a:hover {
+.wb-pagination.numeric a:hover {
     background-color: #1d76da;
     border: 1px solid #1d76da;
     color: #fff;
 }
 
-.vcmp-pagination.numeric .current {
+.wb-pagination.numeric .current {
     background-color: #1d76da;
     border: 1px solid #1d76da;
     color: #fff;
@@ -933,9 +934,9 @@
     letter-spacing: 0;
 }
 
-.vcmp-pagination .vcmp-pagination .current,
-.vcmp-pagination .vcmp-pagination a {
-    margin: 0 2% 0 0;
+.wb-pagination .wb-pagination .current,
+.wb-pagination .wb-pagination a {
+    margin: 5px;
 }
 
 /*--------------------------------------------------------------

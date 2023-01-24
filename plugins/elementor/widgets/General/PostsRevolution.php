@@ -675,17 +675,17 @@ class PostsRevolution extends Widget_Base {
 
 		if ( $wbcom_custom_style == 'on' ) {
 			if ( $wbcom_query_pagination_type == 'numeric' ) {
-				$return .= '.vcmp-pagination.numeric .current {
+				$return .= '.wb-pagination.numeric .current {
 								background-color:' . $wbcom_main_color . '!important;
 								border-color:' . $wbcom_main_color . '!important;
 							}
-							.vcmp-pagination.numeric a:hover {
+							.wb-pagination.numeric a:hover {
 								background-color:' . $wbcom_main_color . '!important;
 								border-color:' . $wbcom_main_color . '!important;
 							}';
 			}
 			if ( $wbcom_query_pagination_type == 'normal' ) {
-				$return .= '.vcmp-pagination a:hover {
+				$return .= '.wb-pagination a:hover {
 									color:' . $wbcom_hover_color . '!important;
 								}';
 			}
@@ -902,7 +902,7 @@ class PostsRevolution extends Widget_Base {
 		 ** PAGINATION
 		 */
 		if ( $wbcom_query_pagination == 'yes' ) {
-			$return .= '<div class="wbclear"></div><div class="vcmp-post-display-' . $instance . ' vcmp-pagination">';
+			$return .= '<div class="wbclear"></div><div class="wb-post-display-' . $instance . ' wb-pagination">';
 			if ( $wbcom_query_pagination_type == 'numeric' ) {
 				$return .= wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages = '', $range = 2, $loop );
 			} else {
