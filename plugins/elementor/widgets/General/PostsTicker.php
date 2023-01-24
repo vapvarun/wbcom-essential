@@ -509,7 +509,7 @@ class PostsTicker extends Widget_Base {
 			[
 				'label' => esc_html__( 'Main Color', 'wbcom-essential' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'default' => '#21759b',
+				'default' => '#1d76da',
 				'condition'	=> [
 					'wbcom_custom_style'	=> 'on'
 				]
@@ -521,7 +521,7 @@ class PostsTicker extends Widget_Base {
 			[
 				'label' => esc_html__( 'Hover Color', 'wbcom-essential' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'default' => '#0f3647',
+				'default' => '#1d76da',
 				'condition'	=> [
 					'wbcom_custom_style'	=> 'on'
 				]

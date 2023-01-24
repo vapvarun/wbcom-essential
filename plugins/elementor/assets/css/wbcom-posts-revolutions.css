@@ -1096,3 +1096,126 @@
     margin-top: 10px;
     display: block;
 }
+
+/*--------------------------------------------------------------
+# Posts Sticker Type 1
+--------------------------------------------------------------*/
+.mega-thumb {
+    float: left;
+}
+
+ul#wb-newsticker-type1-1 {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+.posts_newsticker_type1 a {
+    text-decoration: none;
+}
+
+.posts_newsticker_type1 #wb-newsticker-1 {
+    margin-bottom: 0px;
+}
+
+.posts_newsticker_type1 .mega-thumb {
+    width: 180px;
+    height: 114px;
+    margin-right: 25px;
+}
+
+.posts_newsticker_type1 .mega-title {
+    display: block;
+    margin: 12px 0 22px;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 600;
+    color: #000;
+}
+
+.posts_newsticker_type1 li {
+    list-style: none;
+    margin-bottom: 35px;
+    height: 114px;
+    box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
+    margin-right: 10px;
+    padding-right: 25px;
+}
+
+.posts_newsticker_type1 .mega-thumb a:hover img {
+    border-radius: 0px;
+    transform: none;
+}
+
+.posts_newsticker_type1 .mega-info .mega-date span {
+    margin-right: 15px;
+}
+
+.posts_newsticker_type1 .mega-info .mega-date span.icon-bubble,
+.posts_newsticker_type1 .mega-info .mega-date span.icon-eye {
+    margin-right: 5px;
+}
+
+.posts_newsticker_type1 i {
+    margin-right: 8px;
+}
+
+.posts_newsticker_type1 img.megaposts-thumbs:hover {
+    transform: scale(1.0);
+    -moz-transform: scale(1.0);
+    /* Firefox */
+    -webkit-transform: scale(1.0);
+    /* Webkit */
+    -o-transform: scale(1.0);
+    /* Opera */
+    -ms-transform: scale(1.0);
+    /* IE 9 */
+}
+
+.elementor-column.elementor-col-50 .posts_newsticker_type1 .mega-info .wb-author {
+    display: none;
+}
+
+.elementor-column.elementor-col-50 .posts_newsticker_type1 .mega-info .wb-date {
+    display: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+@media screen and (max-width: 700px) {
+    .posts_newsticker_type1 .mega-info .wb-author {
+        display: none;
+    }
+
+    .posts_newsticker_type1 .mega-info .wb-date {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .posts_newsticker_type1 li {
+        padding-right: 0;
+    }
+
+    .posts_newsticker_type1 .mega-thumb {
+        width: 100%;
+        margin-right: 0;
+        overflow: hidden;
+    }
+
+    .posts_newsticker_type1 .wb-category {
+        display: none;
+    }
+
+    .posts_newsticker_type1 .mega-title {
+        display: none;
+    }
+}
