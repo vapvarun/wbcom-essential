@@ -194,6 +194,8 @@ class PostsRevolution extends Widget_Base {
 					'posts_type3' => 'Post Display 3',
 					'posts_type4' => 'Post Display 4',
 					'posts_type5' => 'Post Display 5',
+					'posts_type6' => 'Post Display 6',
+					'posts_type7' => 'Post Display 7',
 				),
 			)
 		);
@@ -885,6 +887,98 @@ class PostsRevolution extends Widget_Base {
 						$return .= '<div class="wb_two_fifth wb_last">';
 
 						$return         .= '<div class="wb-info-right wb_last">';
+								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+						$return         .= '</div><div class="wbclear"></div>';
+
+						$return .= '</div>';
+
+					}
+				} elseif ( $wbcom_post_display_type == 'posts_type6' ) {
+					
+					if ( $count == '0' ) {
+						$return .= '<div class="wb_two_half">';
+
+						$return .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container">' . wbcom_essential_posts_revolution_elementor_thumbs();
+						$return .= '</div>';
+
+						$return         .= '<div class="wb-info-left">';
+								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+						if ( $wbcom_post_display_excerpt == 'true' ) {
+							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+						}
+								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
+								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+						$return         .= '</div>';
+
+						$return .= '</div>';
+					} elseif( $count == '1' || $count == '2' || $count == '3') {
+						if ( $count == '1') {
+							$return .= '<div class="wb_two_half">';
+						}
+						
+						$return .= '<div class="wbcom-essential-posts-second-half">';
+						$return .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container">' . wbcom_essential_posts_revolution_elementor_thumbs();
+						$return .= '</div>';
+
+						$return         .= '<div class="wb-info-left">';
+								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+						if ( $wbcom_post_display_excerpt == 'true' ) {
+							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+						}
+								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
+								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+						$return         .= '</div>';
+						$return .= '</div>';
+						
+						if ( $count == '3') {
+							$return .= '</div>';
+						}
+						
+					} else {
+						
+						$return .= '<div class="wb_two_fifth wb_last">';
+
+						$return         .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container wb_one_third">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</div>';
+						$return         .= '<div class="wb-info-right wb_two_third wb_last">';
+								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+						$return         .= '</div><div class="wbclear"></div>';
+
+						$return .= '</div>';
+					}
+				
+				
+					
+				} elseif ( $wbcom_post_display_type == 'posts_type7' ) {
+					
+					if ( $count == '0' || $count == '1' ) {
+
+						$return .= '<div class="wb_two_half">';
+
+						$return .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container">' . wbcom_essential_posts_revolution_elementor_thumbs();
+						$return .= '</div>';
+
+						$return         .= '<div class="wb-info-left">';
+								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+						if ( $wbcom_post_display_excerpt == 'true' ) {
+							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+						}
+								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
+								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+						$return         .= '</div>';
+
+						$return .= '</div>';
+
+					} else {
+
+						$return .= '<div class="wb_two_fifth wb_last">';
+
+						$return         .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container wb_one_third">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</div>';
+						$return         .= '<div class="wb-info-right wb_two_third wb_last">';
 								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
 								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
 						$return         .= '</div><div class="wbclear"></div>';
