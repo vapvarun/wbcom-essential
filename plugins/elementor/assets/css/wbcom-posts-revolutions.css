@@ -887,6 +887,388 @@
     line-height: 0;
 }
 
+
+/*--------------------------------------------------------------
+# Type 6
+--------------------------------------------------------------*/
+.wbcom-essential-posts-revolution-elementor.posts_type6>.wb_last {
+    padding: 0 2px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half {
+    width: 50%;
+    position: relative;
+    float: left;
+    margin-bottom: 30px;
+    padding-bottom: 0;
+    border-width: 0 2px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:first-child {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half {
+    width: 50%;
+    position: relative;
+    float: left;
+    padding-bottom: 0;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:nth-child(2) {
+    border: 0;
+    border-right-width: 4px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    padding-bottom: 192px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-revolution-elementor-thumbs-container::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+
+    content: '';
+    background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0));
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0));
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:first-child .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    padding-bottom: 254px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half:first-child .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    padding-bottom: 450px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half img.wb-megaposts-thumbs {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 0;
+    min-height: 100%;
+    width: auto;
+    min-width: 100%;
+    object-fit: cover;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half:first-child:hover img.wb-megaposts-thumbs,
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wbcom-essential-posts-second-half:hover img.wb-megaposts-thumbs {
+    transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    /* Firefox */
+    -webkit-transform: scale(1.2);
+    /* Webkit */
+    -o-transform: scale(1.2);
+    /* Opera */
+    -ms-transform: scale(1.2);
+    /* IE 9 */
+    -webkit-transition: all .55s ease-in;
+    -moz-transition: all .55s ease-in;
+    -ms-transition: all .55s ease-in;
+    -o-transition: all .55s ease-in;
+    transition: all .55s ease-in;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    padding: 14px 19px;
+    width: 100%;
+    /* pointer-events: none; */
+    z-index: 1;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-category {
+    margin: 0 0 5px;
+    display: block;
+    font-size: 0;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-category a {
+    transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    margin: 0 5px 5px 0;
+    padding: 3px 7px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    pointer-events: auto;
+    letter-spacing: 0;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half:first-child:hover .wb-category a,
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wbcom-essential-posts-second-half:hover .wb-category a {
+    background-color: #1d76da;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-title {
+    display: block;
+    margin: 0 0 12px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-title a {
+    color: #fff;
+    margin: 0;
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 500;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half:first-child .wb-info-left .wb-title a {
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 34px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:first-child .wb-info-left .wb-title a {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 500;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-content {
+    display: none;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-author {
+    color: #fff;
+    font-weight: 700;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-date {
+    color: #fff;
+    float: left;
+    margin-left: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half .wb-author,
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half .wb-date {
+    display: none;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb-title a {
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 600;
+    color: #000;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_last .wb-category {
+    display: block;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type6 .wb_last .wb-category a {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+@media screen and (max-width: 767px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half {
+        width: 100%;
+        margin: 0;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:first-child {
+        margin-top: 4px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half {
+        width: 100%;
+        margin: 15px 0 0;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:first-child {
+        margin: 15px 0 0;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:nth-child(2) {
+        border: 0;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-title a {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half:first-child .wb-info-left .wb-title a {
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wbcom-essential-posts-second-half:first-child .wb-info-left .wb-title a {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Type 7
+--------------------------------------------------------------*/
+.wbcom-essential-posts-revolution-elementor.posts_type7 {
+    margin: 0 -24px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half {
+    width: 50%;
+    float: left;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 10.5px;
+    margin-bottom: 10.5px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last {
+    width: 50%;
+    float: left;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 13px;
+    margin-bottom: 13px;
+    box-shadow: none;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    padding-bottom: 50%;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half img.wb-megaposts-thumbs {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 0;
+    min-height: 100%;
+    width: auto;
+    min-width: 100%;
+    object-fit: cover;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wb-info-left .wb-category {
+    display: block;
+    margin: 10px 0;
+    font-size: 0;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wb-info-left .wb-category a {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    background-color: #222;
+    color: #fff;
+    letter-spacing: 0;
+    margin-right: 5px;
+    padding: 4px 6px 4px;
+    display: inline-block;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wb-info-left .wb-title {
+    display: block;
+    margin: 0 0 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wb-info-left .wb-author {
+    color: #111;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wb-info-left .wb-author:after {
+    content: "";
+    display: inline-block;
+    background: #999;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wb-info-left .wb-content {
+    display: block;
+    margin: 10px 0;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half .wb-info-left .wb-date {
+    float: left;
+    margin-left: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last .wb-title a {
+    display: block;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last .wb-date {
+    float: none;
+}
+
+@media screen and (max-width: 767px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type7 {
+        margin: 0;
+    }
+    
+    .wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last {
+        width: 50% !important;
+        float: left !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last {
+        width: 100% !important;
+        float: none !important;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_half,
+    .wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last .wb-title {
+        display: block;
+        margin-top: 10px;
+    }
+}
+
 /*--------------------------------------------------------------
 # Pagination
 --------------------------------------------------------------*/
