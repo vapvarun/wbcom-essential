@@ -97,7 +97,7 @@
 	jQuery( window ).on(
 		'elementor/frontend/init',
 		() => {
-			elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-group-carousel.default', wbcom_groupCarousel );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-group-carousel.default', wbcom_groupCarousel );
 		}
 	);
 

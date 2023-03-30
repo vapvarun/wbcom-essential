@@ -62,7 +62,7 @@
 	jQuery( window ).on(
 		'elementor/frontend/init',
 		() => {
-			elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-profile-completion.default', wbcom_profilecompletion );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-profile-completion.default', wbcom_profilecompletion );
 		}
 	);
 
