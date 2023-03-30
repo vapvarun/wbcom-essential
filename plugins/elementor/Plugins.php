@@ -455,6 +455,11 @@ class Plugin {
 			'class' => 'Forms\Login',
 		);
 
+		$elements['General/Heading'] = array(
+			'name'  => 'wbcom-heading',
+			'class' => 'General\Heading',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
