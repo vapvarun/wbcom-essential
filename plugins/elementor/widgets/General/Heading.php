@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Heading extends \Elementor\Widget_Base {
 
-    /**
+	/**
 	 * Construct.
 	 *
 	 * @param  array  $data Data.

@@ -98,7 +98,7 @@
 	jQuery( window ).on(
 		'elementor/frontend/init',
 		() => {
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-members-carousel.default', wbcom_memberCarousel );
+			elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-members-carousel.default', wbcom_memberCarousel );
 		}
 	);
 

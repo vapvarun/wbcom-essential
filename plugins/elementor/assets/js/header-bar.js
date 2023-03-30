@@ -70,7 +70,7 @@
 	jQuery( window ).on(
 		'elementor/frontend/init',
 		() => {
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-header-bar.default', wbcom_headerbar );
+			elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-header-bar.default', wbcom_headerbar );
 		}
 	);
 

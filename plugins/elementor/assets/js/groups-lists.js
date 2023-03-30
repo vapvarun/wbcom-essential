@@ -22,7 +22,7 @@
 	jQuery( window ).on(
 		'elementor/frontend/init',
 		() => {
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-groups-lists.default', wbcom_groupslists );
+			elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-groups-lists.default', wbcom_groupslists );
 		}
 	);
 
