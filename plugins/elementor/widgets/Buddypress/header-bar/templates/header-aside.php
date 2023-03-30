@@ -9,15 +9,15 @@
  * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
  */
 
-$profile_dropdown   = isset( $settings['profile_dropdown'] ) ? true : false;
-$profile_dropdown_menu   = isset( $settings['profile_dropdown_menu'] ) ? $settings['profile_dropdown_menu'] : '';
-$show_search        = isset( $settings['search_icon_switch'] ) ? true : false;
-$show_messages      = isset( $settings['messages_icon_switch'] ) ? true : false;
-$show_notifications = isset( $settings['notifications_icon_switch'] ) ? true : false;
-$show_shopping_cart = isset( $settings['cart_icon_switch'] ) ? true : false;
+$profile_dropdown      = isset( $settings['profile_dropdown'] ) ? true : false;
+$profile_dropdown_menu = isset( $settings['profile_dropdown_menu'] ) ? $settings['profile_dropdown_menu'] : '';
+$show_search           = isset( $settings['search_icon_switch'] ) ? true : false;
+$show_messages         = isset( $settings['messages_icon_switch'] ) ? true : false;
+$show_notifications    = isset( $settings['notifications_icon_switch'] ) ? true : false;
+$show_shopping_cart    = isset( $settings['cart_icon_switch'] ) ? true : false;
 
 $search_icon = ( isset( $settings['search_icon']['value'] ) && '' !== $settings['search_icon']['value'] ) ? $settings['search_icon']['value'] : 'wb-icon-search';
-$template = get_option( 'template' );
+$template    = get_option( 'template' );
 ?>
 
 <div id="header-aside" class="header-aside">
@@ -43,15 +43,15 @@ $template = get_option( 'template' );
 						if ( function_exists( 'bp_is_active' ) && $profile_dropdown_menu != '' ) {
 							$menu = wp_nav_menu(
 								array(
-									'menu' => $profile_dropdown_menu,
-									'echo'           => false,
-									'fallback_cb'    => '__return_false',
+									'menu'        => $profile_dropdown_menu,
+									'echo'        => false,
+									'fallback_cb' => '__return_false',
 								)
 							);
 							if ( ! empty( $menu ) ) {
 								wp_nav_menu(
 									array(
-										'menu' => $profile_dropdown_menu,
+										'menu'        => $profile_dropdown_menu,
 										'menu_id'     => 'header-my-account-menu',
 										'container'   => false,
 										'fallback_cb' => '',
@@ -65,7 +65,8 @@ $template = get_option( 'template' );
 						} else {
 							do_action( 'wbcom_essential_header_user_menu_items' );
 						}
-						?>						
+						?>
+												
 					</div>
 				</div>
 			</div>
@@ -128,26 +129,27 @@ $template = get_option( 'template' );
 			?>
 			<span class="search-separator wbcom-essential-separator"></span>
 			<div class="wbcom-essential-header-buttons buddypress-icons-wrapper">
-				<?php 
-				
+				<?php
+
 				if ( $template == 'reign-theme' ) {
-					get_template_part( 'template-parts/header-icons/login','' );
-					
-					if ( get_option( 'users_can_register' ) ) : 
-						get_template_part( 'template-parts/header-icons/register-menu','' );
+					get_template_part( 'template-parts/header-icons/login', '' );
+
+					if ( get_option( 'users_can_register' ) ) :
+						get_template_part( 'template-parts/header-icons/register-menu', '' );
 					endif;
-				} elseif ( $template == 'buddyx' || $template == 'buddyx-pro') {
-					
-					get_template_part( 'template-parts/header/buddypress-profile','' );
-				
+				} elseif ( $template == 'buddyx' || $template == 'buddyx-pro' ) {
+
+					get_template_part( 'template-parts/header/buddypress-profile', '' );
+
 				} else {
-				?>
+					?>
 			
 					<a href="<?php echo esc_url( wp_login_url() ); ?>" class="button small outline signin-button link btn-login"><?php esc_html_e( 'Sign in', 'wbcom-essential' ); ?></a>
 
 					<?php if ( get_option( 'users_can_register' ) ) : ?>
 						<a href="<?php echo esc_url( wp_registration_url() ); ?>" class="button small singup btn-register"><?php esc_html_e( 'Sign up', 'wbcom-essential' ); ?></a>
-					<?php endif;
+						<?php
+					endif;
 				}
 				?>
 			</div>

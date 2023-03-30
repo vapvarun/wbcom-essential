@@ -117,9 +117,9 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Content', 'wbcom-essential' ),
 			)
 		);
-		
+
 		$menus = $this->get_menus();
-		
+
 		$this->add_control(
 			'profile_dropdown',
 			array(
@@ -134,8 +134,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				),
 			)
 		);
-		
-		
+
 		if ( ! empty( $menus ) ) {
 			$this->add_control(
 				'profile_dropdown_menu',
@@ -165,7 +164,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				)
 			);
 		}
-		
+
 		$this->add_control(
 			'element_separator',
 			array(

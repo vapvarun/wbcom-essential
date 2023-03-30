@@ -354,7 +354,7 @@ class Plugin {
 				'name'  => 'wbcom-profile-completion',
 				'class' => 'Buddypress\ProfileCompletion',
 			);
-			
+
 			/*
 			$elements['Buddypress/ActivityLists'] = array(
 				'name'  => 'wbcom-activity-lists',
@@ -435,16 +435,16 @@ class Plugin {
 			'name'  => 'wbcom-posts-revolution',
 			'class' => 'General\PostsRevolution',
 		);
-		$elements['General/PostsCarousel'] = array(
+		$elements['General/PostsCarousel']   = array(
 			'name'  => 'wbcom-posts-carousel',
 			'class' => 'General\PostsCarousel',
 		);
-		
+
 		$elements['General/PostsTicker'] = array(
 			'name'  => 'wbcom-posts-ticker',
 			'class' => 'General\PostsTicker',
 		);
-		
+
 		$elements['General/Posts'] = array(
 			'name'  => 'wbcom-posts',
 			'class' => 'General\Posts',

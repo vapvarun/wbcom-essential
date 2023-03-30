@@ -40,14 +40,14 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'member-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/member-carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
-		
+
 		wp_register_script(
-				'swiper',
-				WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js',
-				['jquery'],
-				WBCOM_ESSENTIAL_VERSION,
-				true
-			);
+			'swiper',
+			WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js',
+			array( 'jquery' ),
+			WBCOM_ESSENTIAL_VERSION,
+			true
+		);
 		wp_register_script( 'member-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/member-carousel.js', array( 'jquery', 'elementor-frontend', 'swiper' ), WBCOM_ESSENTIAL_VERSION, true );
 		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
 	}
@@ -151,12 +151,12 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 					'placeholder' => __( 'Total members', 'wbcom-essential' ),
 				)
 			);
-			
+
 		$this->add_control(
 			'hide_member_last_active',
 			array(
-				'label'   => esc_html__( 'Hide member last active info', 'wbcom-essential' ),
-				'type'    => Controls_Manager::SWITCHER,				
+				'label' => esc_html__( 'Hide member last active info', 'wbcom-essential' ),
+				'type'  => Controls_Manager::SWITCHER,
 			)
 		);
 
@@ -416,8 +416,8 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 		$query_string = '&type=' . $settings['type'] . '&per_page=' . $settings['total'] . '&max=' . $settings['total'];
 		$slides_count = isset( $settings['total'] ) ? $settings['total'] : 0;
 		$show_dots    = ( in_array( $settings['navigation'], array( 'dots', 'both' ) ) );
-		$show_arrows  = ( in_array( $settings['navigation'], array( 'arrows', 'both' ) ) );		
-		
+		$show_arrows  = ( in_array( $settings['navigation'], array( 'arrows', 'both' ) ) );
+
 		?>
 		<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'carousel-wrapper' ) ); ?>>
 				<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'carousel' ) ); ?>>
@@ -449,11 +449,11 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 													<h5 class="item-title">
 														<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
 													</h5>
-													<?php if ( $settings['hide_member_last_active'] != 'yes'): ?>
+													<?php if ( $settings['hide_member_last_active'] != 'yes' ) : ?>
 														<span class="last-activity" data-livestamp="<?php bp_core_iso8601_date( bp_get_member_last_active( array( 'relative' => false ) ) ); ?>">
 															<?php bp_member_last_active(); ?>
 														</span>
-													<?php endif;?>
+													<?php endif; ?>
 												</div>
 											</div>
 										</div>

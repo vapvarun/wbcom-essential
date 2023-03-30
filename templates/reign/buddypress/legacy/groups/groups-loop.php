@@ -41,7 +41,7 @@
 						 * @since 1.0.7
 						 */
 						if ( 'wbtm-group-directory-type-1' !== $group_directory_type ) {
-							$args          = array(
+							$args = array(
 								'object_dir' => 'groups',
 								'item_id'    => $group_id = bp_get_group_id(),
 								'type'       => 'cover-image',

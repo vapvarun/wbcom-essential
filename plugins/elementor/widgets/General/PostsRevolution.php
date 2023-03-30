@@ -997,7 +997,7 @@ class PostsRevolution extends Widget_Base {
 						if ( $wbcom_post_display_excerpt == 'true' ) {
 							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
-						$return         .= '</div>';
+						$return .= '</div>';
 
 						$return .= '</div>';
 

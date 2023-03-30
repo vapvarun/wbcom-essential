@@ -205,7 +205,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 
 					$recipients       = array();
 					$other_recipients = array();
-					$currentuser     = false;
+					$currentuser      = false;
 					if ( is_array( $messages_template->thread->recipients ) ) {
 						foreach ( $messages_template->thread->recipients as $recipient ) {
 							if ( empty( $recipient->is_deleted ) ) {
@@ -232,7 +232,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								if ( ! $is_you ) {
 									$other_recipients[] = $recipient_data;
 								} else {
-									$currentuser = (!isset($_REQUEST['customize_theme']))? $recipient_data : '';
+									$currentuser = ( ! isset( $_REQUEST['customize_theme'] ) ) ? $recipient_data : '';
 								}
 							}
 						}

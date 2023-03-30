@@ -2,10 +2,10 @@
   font-family: 'wb-icons';
   src: url('../icons/wb-icons.eot?4192890');
   src: url('../icons/wb-icons.eot?4192890#iefix') format('embedded-opentype'),
-       url('../icons/wb-icons.woff2?4192890') format('woff2'),
-       url('../icons/wb-icons.woff?4192890') format('woff'),
-       url('../icons/wb-icons.ttf?4192890') format('truetype'),
-       url('../icons/wb-icons.svg?4192890#wb-icons') format('svg');
+	   url('../icons/wb-icons.woff2?4192890') format('woff2'),
+	   url('../icons/wb-icons.woff?4192890') format('woff'),
+	   url('../icons/wb-icons.ttf?4192890') format('truetype'),
+	   url('../icons/wb-icons.svg?4192890#wb-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,8 +14,8 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'wb-icons';
-    src: url('../font/wb-icons.svg?4192890#wb-icons') format('svg');
+	font-family: 'wb-icons';
+	src: url('../font/wb-icons.svg?4192890#wb-icons') format('svg');
   }
 }
 */

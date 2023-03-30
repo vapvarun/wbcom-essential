@@ -104,11 +104,11 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 				require __DIR__ . '/plugins/elementor/Plugins.php';
 			}
 		}
-		
+
 		public function wbcom_essential_elementor_add_image_sizes() {
 			add_image_size( 'wbcom-essential-elementor-masonry', 500 );
-			add_image_size( 'wbcom-essential-elementor-normal', 800 , 800 , true);
-			add_image_size( 'wbcom-essential-elementor-type1', 800 , 500 , true);
+			add_image_size( 'wbcom-essential-elementor-normal', 800, 800, true );
+			add_image_size( 'wbcom-essential-elementor-type1', 800, 500, true );
 		}
 
 	}

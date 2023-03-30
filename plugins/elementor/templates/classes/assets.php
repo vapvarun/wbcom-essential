@@ -76,8 +76,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Assets' ) ) {
 				1.0,
 				'all'
 			);
-			
-			
 
 		}
 
@@ -100,7 +98,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Assets' ) ) {
 				1.0,
 				'all'
 			);
-			
+
 			wp_enqueue_style(
 				'wbcom-posts-revolutions',
 				WBCOM_ESSENTIAL_URL . '/plugins/elementor/assets/wbcom-posts-revolutions.css',

@@ -34,7 +34,7 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 
 		<?php
 		if ( 'wbtm-member-directory-type-2' === $member_directory_type || 'wbtm-member-directory-type-3' === $member_directory_type ) {
-			$args          = array(
+			$args = array(
 				'object_dir' => 'members',
 				'item_id'    => $user_id = bp_get_member_user_id(),
 				'type'       => 'cover-image',

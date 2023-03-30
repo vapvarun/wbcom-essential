@@ -42,12 +42,12 @@ class GroupCarousel extends \Elementor\Widget_Base {
 
 		wp_register_style( 'group-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/group-carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_script(
-				'swiper',
-				WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js',
-				['jquery'],
-				WBCOM_ESSENTIAL_VERSION,
-				true
-			);
+			'swiper',
+			WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js',
+			array( 'jquery' ),
+			WBCOM_ESSENTIAL_VERSION,
+			true
+		);
 		wp_register_script( 'group-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/group-carousel.js', array( 'jquery', 'elementor-frontend', 'swiper' ), WBCOM_ESSENTIAL_VERSION, true );
 		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
 	}
