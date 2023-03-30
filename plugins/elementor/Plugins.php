@@ -328,9 +328,9 @@ class Plugin {
 		 */
 	private function includes() {
 		if ( _is_theme_active( 'REIGN' ) ) {
-			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
-			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
-			include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
+			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
+			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
+			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
 		}
 
 	}

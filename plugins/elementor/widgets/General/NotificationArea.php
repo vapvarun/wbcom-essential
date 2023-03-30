@@ -131,7 +131,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Icon Color', 'reign' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => '#000000',
 				'selectors' => array(
 					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap span:before, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon:before' => 'color: {{VALUE}};',
 				),
@@ -143,7 +143,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Icon Hover Color', 'reign' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => '#000000',
 				'selectors' => array(
 					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a:hover,
 					{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap span:hover:before, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon:hover:before' => 'color: {{VALUE}};',
@@ -151,17 +151,17 @@ class NotificationArea extends \Elementor\Widget_Base {
 			)
 		);
 
-				$this->add_control(
-					'user_name_font_color',
-					array(
-						'label'     => __( 'User Name Font Color', 'reign' ),
-						'type'      => Controls_Manager::COLOR,
-						'default'   => '#000',
-						'selectors' => array(
-							'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .user-link, #masthead .wbesntl-notification-area .user-link-wrap .user-link' => 'color: {{VALUE}};',
-						),
-					)
-				);
+		$this->add_control(
+			'user_name_font_color',
+			array(
+				'label'     => __( 'User Name Font Color', 'reign' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#000',
+				'selectors' => array(
+					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .user-link, #masthead .wbesntl-notification-area .user-link-wrap .user-link' => 'color: {{VALUE}};',
+				),
+			)
+		);
 
 		$this->add_control(
 			'user_name_font_color_hover',
