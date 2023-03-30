@@ -21,7 +21,7 @@ $cart_icon = ( isset( $settings['cart_icon']['value'] ) && '' !== $settings['car
 				$wc_cart_count = wc()->cart->get_cart_contents_count();
 				if ( 0 !== $wc_cart_count ) {
 					?>
-				<span class="count header-cart-count	"><?php echo esc_html__( wc()->cart->get_cart_contents_count() ); ?></span>
+				<span class="count header-cart-count"><?php echo esc_html__( wc()->cart->get_cart_contents_count() ); ?></span>
 					<?php
 				}
 			}
