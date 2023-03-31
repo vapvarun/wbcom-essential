@@ -291,3 +291,16 @@ function WBA_excerpt( $charlength ) {
 		return $excerpt;
 	}
 }
+
+/**
+ * Get Image Sizes
+ */
+function WBA_get_image_sizes() {
+	$output_sizes         = array();
+	$img_sizes            = get_intermediate_image_sizes();
+	$output_sizes['full'] = esc_html__( 'Full', 'wbcom-essential' );
+	foreach ( $img_sizes as $size_name ) {
+		$output_sizes[ $size_name ] = $size_name;
+	}
+	return $output_sizes;
+}

@@ -260,15 +260,15 @@ class Slider extends \Elementor\Widget_Base {
 				'options'   => array(
 					'left'   => array(
 						'title' => esc_html__( 'Left', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
 						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
 						'title' => esc_html__( 'Right', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'default'   => 'left',
@@ -854,15 +854,15 @@ class Slider extends \Elementor\Widget_Base {
 				'options'   => array(
 					'left'   => array(
 						'title' => esc_html__( 'Left', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
 						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
 						'title' => esc_html__( 'Right', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'default'   => '',

@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Elementor Slider
+ * Elementor Post Slider
  *
- * Elementor widget for Slider
+ * Elementor widget for Post Slider
  *
  * @since 3.6.0
  */
@@ -49,7 +49,7 @@ class PostSlider extends \Elementor\Widget_Base {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Slider', 'wbcom-essential' );
+		return esc_html__( 'Post Slider', 'wbcom-essential' );
 	}
 
 	/**
@@ -945,15 +945,15 @@ class PostSlider extends \Elementor\Widget_Base {
 				'options'   => array(
 					'left'   => array(
 						'title' => esc_html__( 'Left', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
 						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
 						'title' => esc_html__( 'Right', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'default'   => 'left',

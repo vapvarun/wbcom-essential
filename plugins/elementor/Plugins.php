@@ -490,6 +490,11 @@ class Plugin {
 			'class' => 'General\PostSlider',
 		);
 
+		$elements['General/PostCarousel'] = array(
+			'name'  => 'wbcom-post-carousel',
+			'class' => 'General\PostCarousel',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
