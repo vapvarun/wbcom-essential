@@ -35,7 +35,7 @@ class Accordion extends \Elementor\Widget_Base {
 
 		wp_register_style( 'wb-accordion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/accordion.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/tabs.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-lib-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/lib-tabs.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 		wp_register_script( 'wb-accordion', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/accordion.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
@@ -71,7 +71,7 @@ class Accordion extends \Elementor\Widget_Base {
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {
-		return array( 'wb-tabs', 'wb-accordion' );
+		return array( 'wb-lib-tabs', 'wb-accordion' );
 	}
 
 	/**

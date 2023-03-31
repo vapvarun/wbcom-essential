@@ -475,6 +475,11 @@ class Plugin {
 			'class' => 'General\SmartMenu',
 		);
 
+		$elements['General/Tabs'] = array(
+			'name'  => 'wbcom-tabs',
+			'class' => 'General\Tabs',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
