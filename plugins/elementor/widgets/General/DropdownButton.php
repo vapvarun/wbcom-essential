@@ -310,7 +310,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 			array(
 				'label'         => esc_html__( 'Link to', 'wbcom-essential' ),
 				'type'          => \Elementor\Controls_Manager::URL,
-				'placeholder'   => esc_html__( 'https://www.thememasters.club', 'wbcom-essential' ),
+				'placeholder'   => esc_html__( 'https://wbcomdesigns.com/', 'wbcom-essential' ),
 				'show_external' => true,
 				'default'       => array(
 					'url'         => '',

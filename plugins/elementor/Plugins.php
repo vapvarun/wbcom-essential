@@ -480,6 +480,11 @@ class Plugin {
 			'class' => 'General\Tabs',
 		);
 
+		$elements['General/Slider'] = array(
+			'name'  => 'wbcom-slider',
+			'class' => 'General\Slider',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
