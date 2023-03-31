@@ -470,6 +470,11 @@ class Plugin {
 			'class' => 'General\Accordion',
 		);
 
+		$elements['General/SmartMenu'] = array(
+			'name'  => 'wbcom-smart-menu',
+			'class' => 'General\SmartMenu',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
