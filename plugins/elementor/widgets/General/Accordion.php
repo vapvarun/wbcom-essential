@@ -94,7 +94,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			array(
-				'label' => esc_html__( 'Content', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Content', 'wbcom-essential' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -104,15 +104,15 @@ class Accordion extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'icon_txt_switcher',
 			array(
-				'label'   => esc_html__( 'Prefix', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Prefix', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::CHOOSE,
 				'options' => array(
 					'icon' => array(
-						'title' => esc_html__( 'Icon', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Icon', 'wbcom-essential' ),
 						'icon'  => 'eicon-star',
 					),
 					'text' => array(
-						'title' => esc_html__( 'Text', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Text', 'wbcom-essential' ),
 						'icon'  => 'eicon-heading',
 					),
 				),
@@ -124,7 +124,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'title_icon',
 			array(
-				'label'     => esc_html__( 'Icon', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Icon', 'wbcom-essential' ),
 				'condition' => array( 'icon_txt_switcher' => 'icon' ),
 				'type'      => \Elementor\Controls_Manager::ICONS,
 			)
@@ -133,7 +133,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'title_icon_txt',
 			array(
-				'label'     => esc_html__( 'Text', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Text', 'wbcom-essential' ),
 				'condition' => array( 'icon_txt_switcher' => 'text' ),
 				'type'      => \Elementor\Controls_Manager::TEXT,
 				'default'   => '1',
@@ -143,7 +143,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'title',
 			array(
-				'label'       => esc_html__( 'Title', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Title', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'default'     => '',
 				'label_block' => true,
@@ -153,7 +153,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'text',
 			array(
-				'label'      => esc_html__( 'Content', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Content', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::WYSIWYG,
 				'default'    => '',
 				'show_label' => false,
@@ -163,15 +163,15 @@ class Accordion extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'status',
 			array(
-				'label'   => esc_html__( 'Opened by default', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Opened by default', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::CHOOSE,
 				'options' => array(
 					'is-open'    => array(
-						'title' => esc_html__( 'On', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'On', 'wbcom-essential' ),
 						'icon'  => 'fas fa-check',
 					),
 					'is-default' => array(
-						'title' => esc_html__( 'Off', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Off', 'wbcom-essential' ),
 						'icon'  => 'fas fa-times',
 					),
 				),
@@ -183,15 +183,15 @@ class Accordion extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'self_block',
 			array(
-				'label'   => esc_html__( 'Block close event on click', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Block close event on click', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::CHOOSE,
 				'options' => array(
 					'true'  => array(
-						'title' => esc_html__( 'On', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'On', 'wbcom-essential' ),
 						'icon'  => 'fas fa-check',
 					),
 					'false' => array(
-						'title' => esc_html__( 'Off', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Off', 'wbcom-essential' ),
 						'icon'  => 'fas fa-times',
 					),
 				),
@@ -203,22 +203,22 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'list',
 			array(
-				'label'       => esc_html__( 'Accordion Items', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Accordion Items', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
 				'default'     => array(
 					array(
 						'title_icon' => '',
-						'title'      => esc_html__( 'Title #1', 'theme-masters-elementor' ),
-						'text'       => esc_html__( 'Item content...', 'theme-masters-elementor' ),
+						'title'      => esc_html__( 'Title #1', 'wbcom-essential' ),
+						'text'       => esc_html__( 'Item content...', 'wbcom-essential' ),
 						'status'     => 'is-default',
 						'self_block' => 'false',
 					),
 					array(
 						'title_icon' => '',
-						'title'      => esc_html__( 'Title #2', 'theme-masters-elementor' ),
-						'text'       => esc_html__( 'Item content...', 'theme-masters-elementor' ),
+						'title'      => esc_html__( 'Title #2', 'wbcom-essential' ),
+						'text'       => esc_html__( 'Item content...', 'wbcom-essential' ),
 						'status'     => 'is-default',
 						'self_block' => 'false',
 					),
@@ -232,7 +232,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_settings',
 			array(
-				'label' => esc_html__( 'Settings', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Settings', 'wbcom-essential' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -240,7 +240,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'html_tag',
 			array(
-				'label'   => esc_html__( 'Title HTML Tag', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Title HTML Tag', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'h1'  => 'H1',
@@ -259,10 +259,10 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'hash',
 			array(
-				'label'        => esc_html__( 'Url Sharing', 'theme-masters-elementor' ),
+				'label'        => esc_html__( 'Url Sharing', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'On', 'theme-masters-elementor' ),
-				'label_off'    => esc_html__( 'Off', 'theme-masters-elementor' ),
+				'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
 				'return_value' => 'on',
 				'default'      => '',
 				'show_label'   => true,
@@ -272,20 +272,20 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'open_single',
 			array(
-				'label'       => esc_html__( 'Open Single', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Open Single', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::CHOOSE,
 				'options'     => array(
 					'true'  => array(
-						'title' => esc_html__( 'On', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'On', 'wbcom-essential' ),
 						'icon'  => 'fas fa-check',
 					),
 					'false' => array(
-						'title' => esc_html__( 'Off', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Off', 'wbcom-essential' ),
 						'icon'  => 'fas fa-times',
 					),
 				),
 				'default'     => 'false',
-				'description' => esc_html__( 'Open just one accordion at once.', 'theme-masters-elementor' ),
+				'description' => esc_html__( 'Open just one accordion at once.', 'wbcom-essential' ),
 				'toggle'      => false,
 			)
 		);
@@ -293,20 +293,20 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'self_close',
 			array(
-				'label'       => esc_html__( 'Self Close', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Self Close', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::CHOOSE,
 				'options'     => array(
 					'true'  => array(
-						'title' => esc_html__( 'On', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'On', 'wbcom-essential' ),
 						'icon'  => 'fas fa-check',
 					),
 					'false' => array(
-						'title' => esc_html__( 'Off', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Off', 'wbcom-essential' ),
 						'icon'  => 'fas fa-times',
 					),
 				),
 				'default'     => 'false',
-				'description' => esc_html__( 'Close accordion on click outside.', 'theme-masters-elementor' ),
+				'description' => esc_html__( 'Close accordion on click outside.', 'wbcom-essential' ),
 				'toggle'      => false,
 			)
 		);
@@ -314,20 +314,20 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'scroll',
 			array(
-				'label'       => esc_html__( 'Auto Scroll', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Auto Scroll', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::CHOOSE,
 				'options'     => array(
 					'true'  => array(
-						'title' => esc_html__( 'On', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'On', 'wbcom-essential' ),
 						'icon'  => 'fas fa-check',
 					),
 					'false' => array(
-						'title' => esc_html__( 'Off', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Off', 'wbcom-essential' ),
 						'icon'  => 'fas fa-times',
 					),
 				),
 				'default'     => 'false',
-				'description' => esc_html__( 'Scroll to accordion on open.', 'theme-masters-elementor' ),
+				'description' => esc_html__( 'Scroll to accordion on open.', 'wbcom-essential' ),
 				'toggle'      => false,
 			)
 		);
@@ -335,7 +335,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'scroll_offset',
 			array(
-				'label'   => esc_html__( 'Scroll Offset', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Scroll Offset', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0,
 				'max'     => 2000,
@@ -347,7 +347,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'scroll_speed',
 			array(
-				'label'   => esc_html__( 'Scroll Speed', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Scroll Speed', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0,
 				'max'     => 10000,
@@ -359,7 +359,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'open_speed',
 			array(
-				'label'   => esc_html__( 'Open Speed', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Open Speed', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0,
 				'max'     => 2000,
@@ -371,7 +371,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'close_speed',
 			array(
-				'label'   => esc_html__( 'Close Speed', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Close Speed', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0,
 				'max'     => 2000,
@@ -385,7 +385,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_accordion_style',
 			array(
-				'label' => esc_html__( 'Accordion', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Accordion', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -395,7 +395,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_accordion_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
@@ -403,7 +403,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'accordion_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbaccordion',
 			)
 		);
@@ -411,7 +411,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'accordion_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -424,7 +424,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'accordion_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion',
 			)
 		);
@@ -433,7 +433,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'accordion_background',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'classic', 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion',
 			)
@@ -444,7 +444,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_accordion_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
 			)
 		);
 
@@ -452,7 +452,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'accordion_hover_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion:hover,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open',
 			)
 		);
@@ -460,7 +460,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'accordion_hover_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -474,7 +474,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'accordion_hover_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion:hover,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open',
 			)
 		);
@@ -483,7 +483,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'accordion_hover_background',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'classic', 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion:hover,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open',
 			)
@@ -502,7 +502,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'accordion_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -516,7 +516,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			array(
-				'label' => esc_html__( 'Title', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Title', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -533,7 +533,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'arrow_size',
 			array(
-				'label'     => esc_html__( 'Arrow Size', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Arrow Size', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 2,
 				'max'       => 100,
@@ -548,7 +548,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'arrow_thickness',
 			array(
-				'label'     => esc_html__( 'Arrow Thickness', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Arrow Thickness', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 2,
 				'max'       => 100,
@@ -572,14 +572,14 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_title_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -591,7 +591,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button' => 'background-color: {{VALUE}};',
@@ -602,7 +602,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'arrow_color',
 			array(
-				'label'     => esc_html__( 'Arrow Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Arrow Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -615,7 +615,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'accordion_title_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__head',
 			)
 		);
@@ -625,14 +625,14 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_title_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'title_hover_color',
 			array(
-				'label'     => esc_html__( 'Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -644,7 +644,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_hover_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head:hover,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button:hover,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head button' => 'background-color: {{VALUE}};',
@@ -655,7 +655,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'arrow_hover_color',
 			array(
-				'label'     => esc_html__( 'Arrow Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Arrow Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -668,7 +668,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'accordion_title_hover_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head',
 			)
 		);
@@ -686,7 +686,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'title_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Padding', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -701,7 +701,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_icon_style',
 			array(
-				'label' => esc_html__( 'Prefix', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Prefix', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -709,7 +709,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			array(
-				'label'     => esc_html__( 'Size', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Size', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 2,
 				'max'       => 100,
@@ -723,7 +723,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'icon_width',
 			array(
-				'label'     => esc_html__( 'Container Width', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Container Width', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 2,
 				'max'       => 100,
@@ -737,7 +737,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'icon_height',
 			array(
-				'label'     => esc_html__( 'Container Height', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Container Height', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 2,
 				'max'       => 100,
@@ -760,14 +760,14 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_icon_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'icon_color',
 			array(
-				'label'     => esc_html__( 'Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -780,7 +780,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'icon_bg',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'classic', 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button .wbaccordion-prefix',
 			)
@@ -791,14 +791,14 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_icon_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'icon_hover_color',
 			array(
-				'label'     => esc_html__( 'Icon Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Icon Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -812,7 +812,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'icon_bg_hover',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'classic', 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__head:hover i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button:hover i,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head button i',
 				'{{WRAPPER}} .wbcom-accordions .wbaccordion__head:hover .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button:hover .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head button .wbaccordion-prefix' => 'color: {{VALUE}};',
@@ -832,7 +832,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'icon_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -844,7 +844,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'icon_padding',
 			array(
-				'label'      => esc_html__( 'Margin', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -858,7 +858,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_content_style',
 			array(
-				'label' => esc_html__( 'Content', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Content', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -875,7 +875,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'content_color',
 			array(
-				'label'     => esc_html__( 'Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -887,7 +887,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_control(
 			'content_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__body,{{WRAPPER}} .wbaccordion__body p' => 'background-color: {{VALUE}};',
@@ -899,7 +899,7 @@ class Accordion extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'content_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__body',
 			)
 		);
@@ -914,7 +914,7 @@ class Accordion extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Padding', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
