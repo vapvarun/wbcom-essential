@@ -460,10 +460,10 @@ class Plugin {
 			'class' => 'General\Heading',
 		);
 
-		// $elements['General/DropdownButton'] = array(
-		// 	'name'  => 'wbcom-dropdown-button',
-		// 	'class' => 'General\DropdownButton',
-		// );
+		$elements['General/DropdownButton'] = array(
+			'name'  => 'wbcom-dropdown-button',
+			'class' => 'General\DropdownButton',
+		);
 
 		$elements['General/Accordion'] = array(
 			'name'  => 'wbcom-accordion',

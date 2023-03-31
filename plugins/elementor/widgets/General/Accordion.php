@@ -15,9 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Elementor Minimal Posts Revolution
+ * Elementor Accordion
  *
- * Elementor widget for Minimal Posts Revolution
+ * Elementor widget for Accordion
  *
  * @since 3.6.0
  */
@@ -928,23 +928,30 @@ class Accordion extends \Elementor\Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$rand = '-' . rand();
-        if ( $settings['list'] ) { ?>
-            <div class="wbcom-accordions" data-selfclose="<?php echo $settings['self_close']; ?>" data-opensingle="<?php echo $settings['open_single']; ?>" data-openspeed="<?php echo $settings['open_speed']; ?>" data-closespeed="<?php echo $settings['close_speed']; ?>" data-autoscroll="<?php echo $settings['scroll']; ?>" data-scrollspeed="<?php echo $settings['scroll_speed']; ?>" data-scrolloffset="<?php echo $settings['scroll_offset']; ?>">
-            <?php foreach ( $settings['list'] as $item ) { ?>   
-                <div id="wbcom-<?php echo $item['_id'] . $rand; ?>" <?php if ($settings['hash']) { ?>data-hash="#wbcom-<?php echo $item['_id'] . $rand; ?>"<?php } ?> class="wbaccordion <?php echo $item['status']; ?>" data-wbaccordion-options='{"selfBlock": <?php echo $item['self_block']; ?>}'>
-                    <?php echo '<' . $settings['html_tag'] . ' class="wbaccordion__head">'; ?>
-						<?php \Elementor\Icons_Manager::render_icon( $item['title_icon'], [ 'aria-hidden' => 'true' ] ); ?>
-						<?php if ($item['title_icon_txt']) { echo '<span class="wbaccordion-prefix">' . $item['title_icon_txt'] . '</span>'; } ?>
+		$rand     = '-' . rand();
+		if ( $settings['list'] ) { ?>
+			<div class="wbcom-accordions" data-selfclose="<?php echo $settings['self_close']; ?>" data-opensingle="<?php echo $settings['open_single']; ?>" data-openspeed="<?php echo $settings['open_speed']; ?>" data-closespeed="<?php echo $settings['close_speed']; ?>" data-autoscroll="<?php echo $settings['scroll']; ?>" data-scrollspeed="<?php echo $settings['scroll_speed']; ?>" data-scrolloffset="<?php echo $settings['scroll_offset']; ?>">
+			<?php foreach ( $settings['list'] as $item ) { ?>   
+				<div id="wbcom-<?php echo $item['_id'] . $rand; ?>" 
+										  <?php
+											if ( $settings['hash'] ) {
+												?>
+					data-hash="#wbcom-<?php echo $item['_id'] . $rand; ?>"<?php } ?> class="wbaccordion <?php echo $item['status']; ?>" data-wbaccordion-options='{"selfBlock": <?php echo $item['self_block']; ?>}'>
+					<?php echo '<' . $settings['html_tag'] . ' class="wbaccordion__head">'; ?>
+						<?php \Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) ); ?>
+						<?php
+						if ( $item['title_icon_txt'] ) {
+							echo '<span class="wbaccordion-prefix">' . $item['title_icon_txt'] . '</span>'; }
+						?>
 						<?php echo $item['title']; ?>
-                    <?php echo '</' . $settings['html_tag'] . '>'; ?>
-                    <div class="wbaccordion__body">
-                        <?php echo $item['text']; ?>
-                    </div>
-                </div>
-            <?php } ?>    
-            </div>
-            <?php
+					<?php echo '</' . $settings['html_tag'] . '>'; ?>
+					<div class="wbaccordion__body">
+						<?php echo $item['text']; ?>
+					</div>
+				</div>
+			<?php } ?>    
+			</div>
+			<?php
 		}
 	}
 }

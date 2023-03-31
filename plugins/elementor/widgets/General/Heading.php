@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Elementor Minimal Posts Revolution
+ * Elementor Heading
  *
- * Elementor widget for Minimal Posts Revolution
+ * Elementor widget for Heading
  *
  * @since 3.6.0
  */
