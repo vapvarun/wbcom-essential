@@ -485,6 +485,11 @@ class Plugin {
 			'class' => 'General\Slider',
 		);
 
+		$elements['General/PostSlider'] = array(
+			'name'  => 'wbcom-post-slider',
+			'class' => 'General\PostSlider',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',

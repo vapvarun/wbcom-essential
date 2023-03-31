@@ -205,3 +205,89 @@ if ( ! function_exists( 'wbcombtn' ) ) {
 		return '<a href="' . esc_url( $url ) . '" target="' . esc_attr( $target ) . '" class="wbcombtn wbcombtn-' . esc_attr( $style ) . '">' . esc_html( $content ) . '</a>';
 	}
 }
+
+
+/**
+ * Get post types.
+ */
+function WBA_get_post_types() {
+	$output_post_types   = array();
+	$args                = array( 'public' => true );
+	$output              = 'names';
+	$operator            = 'and';
+	$selected_post_types = get_post_types( $args, $output, $operator );
+	foreach ( $selected_post_types as $type ) {
+		$output_post_types[ $type ] = $type;
+	}
+	return $output_post_types;
+}
+
+/**
+ * Get post categories.
+ */
+function WBA_get_categories() {
+	$output_terms = array();
+	$args         = array(
+		'taxonomy'   => array( 'category' ),
+		'hide_empty' => 1,
+	);
+	$terms        = get_terms( $args );
+	foreach ( $terms as $term ) {
+		$output_terms[ $term->term_id ] = $term->name;
+	}
+	return $output_terms;
+}
+
+/**
+ * Get post tags.
+ */
+function WBA_get_tags() {
+	$output_terms = array();
+	$args         = array(
+		'taxonomy'   => array( 'post_tag' ),
+		'hide_empty' => 1,
+	);
+	$terms        = get_terms( $args );
+	foreach ( $terms as $term ) {
+		$output_terms[ $term->term_id ] = $term->name;
+	}
+	return $output_terms;
+}
+
+/**
+ * Get post authors.
+ */
+function WBA_get_authors() {
+	$output_authors = array();
+	$args           = array(
+		'role__in' => array( 'Administrator', 'Editor', 'Author' ),
+		'orderby'  => 'post_count',
+		'order'    => 'DESC',
+	);
+	$users          = get_users( $args );
+	foreach ( $users as $user ) {
+		$output_authors[ $user->ID ] = $user->display_name;
+	}
+	return $output_authors;
+}
+
+/**
+ * Get post excerpt.
+ */
+function WBA_excerpt( $charlength ) {
+	$excerpt = get_the_excerpt();
+	$charlength++;
+
+	if ( mb_strlen( $excerpt ) > $charlength ) {
+		$subex   = mb_substr( $excerpt, 0, $charlength );
+		$exwords = explode( ' ', $subex );
+		$excut   = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+		if ( $excut < 0 ) {
+			return mb_substr( $subex, 0, $excut ) . ' ...';
+		} else {
+			return $subex . ' ...';
+		}
+	} else {
+		return $excerpt;
+	}
+}

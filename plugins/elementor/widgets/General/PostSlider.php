@@ -6,7 +6,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Repeater;
+use WP_Query;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 3.6.0
  */
-class Slider extends \Elementor\Widget_Base {
+class PostSlider extends \Elementor\Widget_Base {
 
 	/**
 	 * Construct.
@@ -34,15 +34,15 @@ class Slider extends \Elementor\Widget_Base {
 		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/lib-slick.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/slider.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/slider.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/lib-slick.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-post-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/post-slider.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );	
 	}
 
 	/**
 	 * Get Name.
 	 */
 	public function get_name() {
-		return 'wbcom-slider';
+		return 'wbcom-post-slider';
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Slider extends \Elementor\Widget_Base {
 	 * Get Icon.
 	 */
 	public function get_icon() {
-		return 'eicon-slides';
+		return 'eicon-post-slider';
 	}
 
 	/**
@@ -70,7 +70,7 @@ class Slider extends \Elementor\Widget_Base {
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {
-		return array( 'wb-lib-slick', 'wb-slider' );
+		return array( 'wb-lib-slick', 'wb-post-slider' );
 	}
 
 	/**
@@ -93,196 +93,179 @@ class Slider extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			array(
-				'label' => esc_html__( 'Slides', 'wbcom-essential' ),
+				'label' => esc_html__( 'Posts', 'wbcom-essential' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
 
-		$repeater = new \Elementor\Repeater();
-
-		$repeater->add_control(
-			'image',
+		$this->add_control(
+			'post_type',
 			array(
-				'label'   => esc_html__( 'Background Image', 'wbcom-essential' ),
-				'type'    => \Elementor\Controls_Manager::MEDIA,
-				'default' => array(
-					'url' => \Elementor\Utils::get_placeholder_image_src(),
-				),
-			)
-		);
-
-		$repeater->add_control(
-			'image_position',
-			array(
-				'label'   => esc_html__( 'Background Image Position', 'wbcom-essential' ),
+				'label'   => esc_html__( 'Post Type', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
-				'default' => 'center center',
-				'options' => array(
-					'top left'      => esc_html__( 'Top Left', 'wbcom-essential' ),
-					'top center'    => esc_html__( 'Top Center', 'wbcom-essential' ),
-					'top right'     => esc_html__( 'Top Right', 'wbcom-essential' ),
-					'center left'   => esc_html__( 'Center Left', 'wbcom-essential' ),
-					'center center' => esc_html__( 'Center Center', 'wbcom-essential' ),
-					'center right'  => esc_html__( 'Center Right', 'wbcom-essential' ),
-					'bottom left'   => esc_html__( 'Bottom Left', 'wbcom-essential' ),
-					'bottom center' => esc_html__( 'Bottom Center', 'wbcom-essential' ),
-					'bottom right'  => esc_html__( 'Bottom Right', 'wbcom-essential' ),
-				),
+				'default' => 'post',
+				'options' => WBA_get_post_types(),
 			)
 		);
 
-		$repeater->add_control(
-			'image_repeat',
+		$this->add_control(
+			'order',
 			array(
-				'label'   => esc_html__( 'Background Image Repeat', 'wbcom-essential' ),
+				'label'   => esc_html__( 'Order', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
-				'default' => 'no-repeat',
+				'default' => 'DESC',
 				'options' => array(
-					'no-repeat' => esc_html__( 'No Repeat', 'wbcom-essential' ),
-					'repeat'    => esc_html__( 'Repeat', 'wbcom-essential' ),
-					'repeat-x'  => esc_html__( 'Repeat-x', 'wbcom-essential' ),
-					'repeat-y'  => esc_html__( 'Repeat-y', 'wbcom-essential' ),
+					'DESC' => esc_html__( 'Descending', 'wbcom-essential' ),
+					'ASC'  => esc_html__( 'Ascending', 'wbcom-essential' ),
 				),
 			)
 		);
 
-		$repeater->add_control(
-			'image_bg_size',
+		$this->add_control(
+			'orderby',
 			array(
-				'label'   => esc_html__( 'Background Image Size', 'wbcom-essential' ),
+				'label'   => esc_html__( 'Order By', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
-				'default' => 'cover',
+				'default' => 'post_date',
 				'options' => array(
-					'cover'   => esc_html__( 'Cover', 'wbcom-essential' ),
-					'contain' => esc_html__( 'Contain', 'wbcom-essential' ),
-					'auto'    => esc_html__( 'Auto (Not recommended)', 'wbcom-essential' ),
+					'post_date'     => esc_html__( 'Date', 'wbcom-essential' ),
+					'title'         => esc_html__( 'Title', 'wbcom-essential' ),
+					'rand'          => esc_html__( 'Random', 'wbcom-essential' ),
+					'comment_count' => esc_html__( 'Comment Count', 'wbcom-essential' ),
 				),
 			)
 		);
 
-		$repeater->add_control(
-			'title',
+		$this->add_control(
+			'taxonomy',
 			array(
-				'label'   => esc_html__( 'Title', 'wbcom-essential' ),
-				'type'    => \Elementor\Controls_Manager::TEXT,
-				'default' => '',
-			)
-		);
-
-		$repeater->add_control(
-			'desc',
-			array(
-				'label'       => esc_html__( 'Content', 'wbcom-essential' ),
-				'type'        => \Elementor\Controls_Manager::WYSIWYG,
+				'label'       => esc_html__( 'Categories', 'wbcom-essential' ),
+				'type'        => \Elementor\Controls_Manager::SELECT2,
+				'label_block' => 'true',
+				'multiple'    => true,
 				'default'     => '',
-				'label_block' => true,
-				'description' => 'Button Shortcode: [wbcombtn url="https://wbcomdesigns.com/" style="primary" target="_self"]CLICK HERE[/wbcombtn]',
+				'options'     => WBA_get_categories(),
+				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
 
-		$repeater->add_control(
-			'website_link',
+		$this->add_control(
+			'tags',
 			array(
-				'label'         => esc_html__( 'Link to', 'wbcom-essential' ),
-				'type'          => \Elementor\Controls_Manager::URL,
-				'placeholder'   => esc_html__( 'https://your-link.com', 'wbcom-essential' ),
-				'show_external' => true,
-				'default'       => array(
-					'url'         => '',
-					'is_external' => true,
-					'nofollow'    => true,
-				),
-				'dynamic'       => array(
-					'active' => true,
-				),
+				'label'       => esc_html__( 'Tags', 'wbcom-essential' ),
+				'type'        => \Elementor\Controls_Manager::SELECT2,
+				'label_block' => 'true',
+				'multiple'    => true,
+				'default'     => '',
+				'options'     => WBA_get_tags(),
+				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
 
-		$repeater->add_responsive_control(
-			'text_box_align',
+		$this->add_control(
+			'authors',
 			array(
-				'label'     => esc_html__( 'Horizontal Alignment', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::CHOOSE,
-				'options'   => array(
-					'flex-start' => array(
-						'title' => esc_html__( 'Start', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-left',
-					),
-					'center'     => array(
-						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-center',
-					),
-					'flex-end'   => array(
-						'title' => esc_html__( 'End', 'wbcom-essential' ),
-						'icon'  => 'eicon-h-align-right',
-					),
-				),
-				'default'   => 'center',
-				'selectors' => array(
-					'{{WRAPPER}} {{CURRENT_ITEM}}' => 'justify-content: {{VALUE}};',
-				),
-				'toggle'    => false,
+				'label'       => esc_html__( 'Authors', 'wbcom-essential' ),
+				'type'        => \Elementor\Controls_Manager::SELECT2,
+				'label_block' => 'true',
+				'multiple'    => true,
+				'default'     => '',
+				'options'     => WBA_get_authors(),
+				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
 
-		$repeater->add_responsive_control(
-			'text_box_valign',
+		$this->add_control(
+			'max',
 			array(
-				'label'     => esc_html__( 'Vertical Alignment', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::CHOOSE,
-				'options'   => array(
-					'flex-start' => array(
-						'title' => esc_html__( 'Start', 'wbcom-essential' ),
-						'icon'  => 'eicon-v-align-top',
-					),
-					'center'     => array(
-						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'eicon-v-align-middle',
-					),
-					'flex-end'   => array(
-						'title' => esc_html__( 'End', 'wbcom-essential' ),
-						'icon'  => 'eicon-v-align-bottom',
-					),
-				),
-				'default'   => 'center',
-				'selectors' => array(
-					'{{WRAPPER}} {{CURRENT_ITEM}}' => 'align-items: {{VALUE}};',
-				),
-				'toggle'    => false,
+				'label'   => esc_html__( 'Maximum number of posts', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::NUMBER,
+				'min'     => 1,
+				'max'     => 99,
+				'step'    => 1,
+				'default' => 6,
 			)
 		);
 
-		$repeater->add_responsive_control(
-			'text_align',
+		$this->add_control(
+			'include',
 			array(
-				'label'     => esc_html__( 'Text Alignment', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::CHOOSE,
-				'options'   => array(
-					'left'   => array(
-						'title' => esc_html__( 'Left', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-left',
-					),
-					'center' => array(
-						'title' => esc_html__( 'Center', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-center',
-					),
-					'right'  => array(
-						'title' => esc_html__( 'Right', 'wbcom-essential' ),
-						'icon'  => 'fa fa-align-right',
-					),
-				),
-				'default'   => 'left',
-				'selectors' => array(
-					'{{WRAPPER}} {{CURRENT_ITEM}} .wbcom-slider-text-box' => 'text-align: {{VALUE}};',
-				),
-				'toggle'    => false,
+				'label'       => esc_html__( 'Include posts by ID', 'wbcom-essential' ),
+				'description' => esc_html__( 'To include multiple posts, add comma between IDs.', 'wbcom-essential' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'default'     => '',
 			)
 		);
 
-		$repeater->add_control(
+		$this->add_control(
+			'exclude',
+			array(
+				'label'       => esc_html__( 'Exclude posts by ID', 'wbcom-essential' ),
+				'description' => esc_html__( 'To exclude multiple posts, add comma between IDs.', 'wbcom-essential' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'default'     => '',
+			)
+		);
+
+		$this->add_control(
+			'display_date',
+			array(
+				'label'        => esc_html__( 'Display date', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'show_label'   => true,
+			)
+		);
+
+		$this->add_control(
+			'display_btn',
+			array(
+				'label'        => esc_html__( 'Display button', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'show_label'   => true,
+			)
+		);
+
+		$this->add_control(
+			'btn_txt',
+			array(
+				'label'     => esc_html__( 'Button Text', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::TEXT,
+				'default'   => esc_html__( 'Read More', 'wbcom-essential' ),
+				'condition' => array( 'display_btn' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'excerpt_length',
+			array(
+				'label'   => esc_html__( 'Excerpt length (To remove excerpt, enter "0")', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::NUMBER,
+				'min'     => 0,
+				'max'     => 1000,
+				'step'    => 1,
+				'default' => 140,
+			)
+		);
+
+		$this->add_control(
+			'posts_hr_2',
+			array(
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			)
+		);
+
+		$this->add_control(
 			'bg_entrance_animation',
 			array(
-				'label'       => esc_html__( 'Bg Image Animation', 'wbcom-essential' ),
+				'label'       => esc_html__( 'Background Image Animation', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'default'     => 'none',
 				'label_block' => 'true',
@@ -301,10 +284,10 @@ class Slider extends \Elementor\Widget_Base {
 			)
 		);
 
-		$repeater->add_control(
+		$this->add_control(
 			'bg_entrance_animation_duration',
 			array(
-				'label'   => esc_html__( 'Bg Image Animation Duration', 'wbcom-essential' ),
+				'label'   => esc_html__( 'Animation Duration (second)', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0.1,
 				'max'     => 10,
@@ -313,7 +296,7 @@ class Slider extends \Elementor\Widget_Base {
 			)
 		);
 
-		$repeater->add_control(
+		$this->add_control(
 			'entrance_animation',
 			array(
 				'label' => esc_html__( 'Text Animation', 'wbcom-essential' ),
@@ -321,7 +304,7 @@ class Slider extends \Elementor\Widget_Base {
 			)
 		);
 
-		$repeater->add_control(
+		$this->add_control(
 			'entrance_animation_duration',
 			array(
 				'label'       => esc_html__( 'Text Animation Duration', 'wbcom-essential' ),
@@ -338,41 +321,6 @@ class Slider extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
-			'list',
-			array(
-				'label'       => esc_html__( 'Slides', 'wbcom-essential' ),
-				'type'        => \Elementor\Controls_Manager::REPEATER,
-				'fields'      => $repeater->get_controls(),
-				'show_label'  => false,
-				'default'     => array(
-					array(
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'image_position'  => 'center center',
-						'image_repeat'    => 'no-repeat',
-						'image_img_size'  => 'cover',
-						'title'           => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'desc'            => esc_html__( 'Content here...', 'wbcom-essential' ),
-						'text_box_align'  => 'center',
-						'text_box_valign' => 'center',
-						'text_align'      => 'left',
-					),
-					array(
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'image_position'  => 'center center',
-						'image_repeat'    => 'no-repeat',
-						'image_img_size'  => 'cover',
-						'title'           => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'desc'            => esc_html__( 'Content here...', 'wbcom-essential' ),
-						'text_box_align'  => 'center',
-						'text_box_valign' => 'center',
-						'text_align'      => 'left',
-					),
-				),
-				'title_field' => '{{{ title }}}',
-			)
-		);
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -380,6 +328,17 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label' => esc_html__( 'Slider Settings', 'wbcom-essential' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'default_image',
+			array(
+				'label'   => esc_html__( 'Default Image', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::MEDIA,
+				'default' => array(
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				),
 			)
 		);
 
@@ -406,10 +365,10 @@ class Slider extends \Elementor\Widget_Base {
 					'size' => 700,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-slider-inner'  => 'height: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .slick-slide'         => 'min-height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-slider-inner'        => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .slick-slide'             => 'min-height: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .wbcom-slider-text-wrapper' => 'height: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .wbcom-slider-loader' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-slider-loader'       => 'height: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -659,6 +618,55 @@ class Slider extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'image_position',
+			array(
+				'label'   => esc_html__( 'Background Image Position', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'center center',
+				'options' => array(
+					'top left'      => esc_html__( 'Top Left', 'wbcom-essential' ),
+					'top center'    => esc_html__( 'Top Center', 'wbcom-essential' ),
+					'top right'     => esc_html__( 'Top Right', 'wbcom-essential' ),
+					'center left'   => esc_html__( 'Center Left', 'wbcom-essential' ),
+					'center center' => esc_html__( 'Center Center', 'wbcom-essential' ),
+					'center right'  => esc_html__( 'Center Right', 'wbcom-essential' ),
+					'bottom left'   => esc_html__( 'Bottom Left', 'wbcom-essential' ),
+					'bottom center' => esc_html__( 'Bottom Center', 'wbcom-essential' ),
+					'bottom right'  => esc_html__( 'Bottom Right', 'wbcom-essential' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'image_repeat',
+			array(
+				'label'   => esc_html__( 'Background Image Repeat', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'no-repeat',
+				'options' => array(
+					'no-repeat' => esc_html__( 'No Repeat', 'wbcom-essential' ),
+					'repeat'    => esc_html__( 'Repeat', 'wbcom-essential' ),
+					'repeat-x'  => esc_html__( 'Repeat-x', 'wbcom-essential' ),
+					'repeat-y'  => esc_html__( 'Repeat-y', 'wbcom-essential' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'image_bg_size',
+			array(
+				'label'   => esc_html__( 'Background Image Size', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'cover',
+				'options' => array(
+					'cover'   => esc_html__( 'Cover', 'wbcom-essential' ),
+					'contain' => esc_html__( 'Contain', 'wbcom-essential' ),
+					'auto'    => esc_html__( 'Auto (Not recommended)', 'wbcom-essential' ),
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -846,10 +854,93 @@ class Slider extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_responsive_control(
-			'text_align_general',
+		$this->add_control(
+			'date_color',
 			array(
-				'label'     => esc_html__( 'Default Text Alignment', 'wbcom-essential' ),
+				'label'     => esc_html__( 'Date Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#333333',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-date' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'date_typography',
+				'label'    => esc_html__( 'Date Typography', 'wbcom-essential' ),
+
+				'selector' => '{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-date',
+			)
+		);
+
+		$this->add_control(
+			'posts_hr_1',
+			array(
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			)
+		);
+
+		$this->add_control(
+			'text_box_align',
+			array(
+				'label'     => esc_html__( 'Horizontal Alignment', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::CHOOSE,
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'wbcom-essential' ),
+						'icon'  => 'eicon-h-align-left',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'wbcom-essential' ),
+						'icon'  => 'eicon-h-align-center',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'wbcom-essential' ),
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-slider-text-wrapper' => 'justify-content: {{VALUE}};',
+				),
+				'toggle'    => false,
+			)
+		);
+
+		$this->add_control(
+			'text_box_valign',
+			array(
+				'label'     => esc_html__( 'Vertical Alignment', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::CHOOSE,
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'wbcom-essential' ),
+						'icon'  => 'eicon-v-align-top',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'wbcom-essential' ),
+						'icon'  => 'eicon-v-align-middle',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'wbcom-essential' ),
+						'icon'  => 'eicon-v-align-bottom',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-slider-text-wrapper' => 'align-items: {{VALUE}};',
+				),
+				'toggle'    => false,
+			)
+		);
+
+		$this->add_control(
+			'text_align',
+			array(
+				'label'     => esc_html__( 'Text Alignment', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
@@ -865,11 +956,11 @@ class Slider extends \Elementor\Widget_Base {
 						'icon'  => 'fa fa-align-right',
 					),
 				),
-				'default'   => '',
-				'toggle'    => true,
+				'default'   => 'left',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider-text-box' => 'text-align: {{VALUE}} !important;',
+					'{{WRAPPER}} .wbcom-slider-text-wrapper .wbcom-slider-text-box' => 'text-align: {{VALUE}};',
 				),
+				'toggle'    => false,
 			)
 		);
 
@@ -878,8 +969,9 @@ class Slider extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_button',
 			array(
-				'label' => esc_html__( 'Button (Primary)', 'wbcom-essential' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'Button', 'wbcom-essential' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array( 'display_btn' => 'yes' ),
 			)
 		);
 
@@ -1063,200 +1155,6 @@ class Slider extends \Elementor\Widget_Base {
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} .wbcombtn-primary' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'section_s_button',
-			array(
-				'label' => esc_html__( 'Button (Secondary)', 'wbcom-essential' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'btn_s_typography',
-				'label'    => esc_html__( 'Typography', 'wbcom-essential' ),
-
-				'selector' => '{{WRAPPER}} .wbcombtn-secondary',
-			)
-		);
-
-		$this->start_controls_tabs( 'tabs_btn_s_primary_style' );
-
-		$this->start_controls_tab(
-			'tab_btn_s_primary_normal',
-			array(
-				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'btn_s_color',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ffffff',
-				'selectors' => array(
-					'{{WRAPPER}} .wbcombtn-secondary' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_control(
-			'btn_s_bg_color',
-			array(
-				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#222222',
-				'selectors' => array(
-					'{{WRAPPER}} .wbcombtn-secondary' => 'background-color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => 'btn_s_border',
-				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcombtn-secondary',
-			)
-		);
-
-		$this->add_responsive_control(
-			'btn_s_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .wbcombtn-secondary' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'btn_s_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcombtn-secondary',
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'tab_btn_s_primary_hover',
-			array(
-				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'btn_s_hover_color',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ffffff',
-				'selectors' => array(
-					'{{WRAPPER}} .wbcombtn-secondary:hover' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_control(
-			'btn_s_bg_hover_color',
-			array(
-				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
-				'selectors' => array(
-					'{{WRAPPER}} .wbcombtn-secondary:hover' => 'background-color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => 'btn_s_hover_border',
-				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcombtn-secondary:hover',
-			)
-		);
-
-		$this->add_responsive_control(
-			'btn_s_hover_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .wbcombtn-secondary:hover' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'btn_s_hover_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcombtn-secondary:hover',
-			)
-		);
-
-		$this->end_controls_tab();
-		$this->end_controls_tabs();
-
-		$this->add_control(
-			'btn_s_hr_2',
-			array(
-				'type' => \Elementor\Controls_Manager::DIVIDER,
-			)
-		);
-
-		$this->add_responsive_control(
-			'btn_s_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'rem' ),
-				'default'    => array(
-					'top'      => '0',
-					'right'    => '0',
-					'bottom'   => '0',
-					'left'     => '0',
-					'isLinked' => false,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .wbcombtn-secondary' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'btn_s_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'wbcom-essential' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'rem' ),
-				'default'    => array(
-					'top'      => '15',
-					'right'    => '20',
-					'bottom'   => '15',
-					'left'     => '20',
-					'isLinked' => false,
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .wbcombtn-secondary' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1701,9 +1599,9 @@ class Slider extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'nav_thumbnail_width',
 			array(
-				'label'      => esc_html__( 'Thumbnail Max. Height', 'wbcom-essential' ),
+				'label'      => esc_html__( 'Thumbnail Max. Width', 'wbcom-essential' ),
 				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'rem' ),
+				'size_units' => array( 'px', 'rem', '%' ),
 				'range'      => array(
 					'px'  => array(
 						'min'  => 10,
@@ -1715,14 +1613,18 @@ class Slider extends \Elementor\Widget_Base {
 						'max'  => 100,
 						'step' => 1,
 					),
+					'%'   => array(
+						'min'  => 1,
+						'max'  => 100,
+						'step' => 1,
+					),
 				),
 				'default'    => array(
 					'unit' => 'px',
-					'size' => 80,
+					'size' => 100,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-dots-inside .wbcom-thumbnail-dots' => 'height: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .wbcom-thumbnail-dots li img' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots li' => 'width: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1906,7 +1808,7 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Dots Bottom Margin (px)', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
-				'min'       => -100,
+				'min'       => 0,
 				'max'       => 100,
 				'step'      => 1,
 				'default'   => 20,
@@ -2025,7 +1927,7 @@ class Slider extends \Elementor\Widget_Base {
 		$this->add_control(
 			'loader_image_size',
 			array(
-				'label'     => esc_html__( 'Image Size', 'wbcom-essential' ),
+				'label'     => esc_html__( 'Loading Image Size', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 5,
 				'max'       => 500,
@@ -2051,129 +1953,222 @@ class Slider extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$wbcomslider_slider_id = $this->get_id();
-		$settings = $this->get_settings_for_display();
-		if ( $settings['list'] ) { ?>
-		<div class="wbcom-slider-wrapper <?php if ($settings['hide_nav']) { echo 'hide-nav'; } ?>">
-			<div class="wbcom-slider-loader <?php if (empty($settings['loader_image']['url'])) { ?>wbcom-css3-loader<?php } ?>" style="<?php if (!empty($settings['loader_image']['url'])) { echo 'background-image:url(' . $settings['loader_image']['url'] . ');'; } ?>"></div>
-			<div id="wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?>" class="wbcom-slider" data-prv="<?php echo $settings['arrow_prev_icon']['value']; ?>" data-nxt="<?php echo $settings['arrow_next_icon']['value']; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-nav="<?php if ($settings['nav_arrows']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['nav_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-navthumbnails="<?php echo esc_attr($settings['nav_thumbnails']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>" data-slideanim="<?php echo esc_attr($settings['slide_anim']); ?>" data-speed="<?php echo esc_attr($settings['slide_anim_duration']); ?>">
-				<?php foreach ( $settings['list'] as $item ) { ?>
-				<?php $slide_thumbnail = wp_get_attachment_image_url( $item['image']['id'], $settings['nav_thumbnail_size'] ); ?>
-				<div class="wbcom-slick-thumb" data-thumbnail="<?php echo esc_url($slide_thumbnail); ?>" data-alt="<?php echo esc_attr($item['title']); ?>">
-					<div class="wbcom-slider-inner animated none <?php echo $item['bg_entrance_animation']; ?>" style="background-image:url(<?php echo $item['image']['url']; ?>);background-position:<?php echo $item['image_position']; ?>;background-repeat:<?php echo $item['image_repeat']; ?>;background-size:<?php echo $item['image_bg_size']; ?>;transition-duration:<?php echo $item['bg_entrance_animation_duration']; ?>s;"></div>
-					<?php if ($item['website_link']['url']) { ?>
-					<a class="wbcom-slider-url" href="<?php echo esc_url($item['website_link']['url']); ?>" <?php if ($item['website_link']['is_external']) { ?>target="_blank"<?php } ?> <?php if ($item['website_link']['nofollow']) { ?>rel="nofollow"<?php } ?>></a>
-					<?php } ?>
-					<div class="wbcom-slider-overlay"></div>
-						<div class="wbcom-slider-text-wrapper elementor-repeater-item-<?php echo $item['_id']; ?>">
-							<div class="wbcom-slider-text-box noanim animated <?php echo $item['entrance_animation_duration']; ?> <?php echo $item['entrance_animation']; ?>">
-								<?php 
-								if ($item['title']) { 
-									echo '<' . $settings['title_html_tag'] . ' class="wbcom-slider-title">' . $item['title'] . '</' . $settings['title_html_tag'] . '>';
-								}
-								?>
-								<?php if ($settings['divider_hide'] != 'yes') { ?>
-								<div class="wbcom-slider-divider-wrapper">
-									<div class="wbcom-slider-divider"></div>
-								</div>
-								<?php } ?>
-								<?php 
-								if ($item['desc']) { 
-									echo '<div class="wbcom-slider-desc">' . do_shortcode($item['desc']) . '</div>';
-								}
-								?>
+		$settings            = $this->get_settings_for_display();
+		$postype             = $settings['post_type'];
+		$order               = $settings['order'];
+		$orderby             = $settings['orderby'];
+		$max                 = $settings['max'];
+		$authors             = $settings['authors'];
+		$categories          = $settings['taxonomy'];
+		$tags                = $settings['tags'];
+
+		$terms = array();
+		if ( empty( $authors ) ) {
+			$authors = array();
+		}
+
+		if ( $categories && $tags ) {
+			$terms = array(
+				'relation' => 'AND',
+				array(
+					'taxonomy' => 'category',
+					'field'    => 'term_id',
+					'terms'    => $categories,
+				),
+				array(
+					'taxonomy' => 'post_tag',
+					'field'    => 'term_id',
+					'terms'    => $tags,
+				),
+			);
+		} elseif ( $categories ) {
+			$terms = array(
+				array(
+					'taxonomy' => 'category',
+					'field'    => 'term_id',
+					'terms'    => $categories,
+				),
+			);
+		} elseif ( $tags ) {
+			$terms = array(
+				array(
+					'taxonomy' => 'post_tag',
+					'field'    => 'term_id',
+					'terms'    => $tags,
+				),
+			);
+		}
+
+		if ( $settings['exclude'] ) {
+			$exclude = explode( ',', $settings['exclude'] );
+		} else {
+			$exclude = array();
+		}
+
+		if ( $settings['include'] ) {
+			$include = explode( ',', $settings['include'] );
+		} else {
+			$include = array();
+		}
+
+		$custom_query = new WP_Query(
+			array(
+				'post_type'           => $postype,
+				'post_status'         => 'publish',
+				'posts_per_page'      => $max,
+				'order'               => $order,
+				'orderby'             => $orderby,
+				'post__in'            => $include,
+				'post__not_in'        => $exclude,
+				'author__in'          => $authors,
+				'ignore_sticky_posts' => true,
+				'tax_query'           => $terms,
+			)
+		);
+
+		if ($custom_query->have_posts()) { ?>
+			<div class="wbcom-slider-wrapper <?php if ($settings['hide_nav']) { echo 'hide-nav'; } ?>">
+				<div class="wbcom-slider-loader <?php if (empty($settings['loader_image']['url'])) { ?>wbcom-css3-loader<?php } ?>" style="<?php if (!empty($settings['loader_image']['url'])) { echo 'background-image:url(' . $settings['loader_image']['url'] . ');'; } ?>"></div>
+				<div id="wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?>" class="wbcom-slider" data-prv="<?php echo $settings['arrow_prev_icon']['value']; ?>" data-nxt="<?php echo $settings['arrow_next_icon']['value']; ?>"  data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-nav="<?php if ($settings['nav_arrows']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['nav_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-navthumbnails="<?php echo esc_attr($settings['nav_thumbnails']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>" data-slideanim="<?php echo esc_attr($settings['slide_anim']); ?>" data-speed="<?php echo esc_attr($settings['slide_anim_duration']); ?>">
+					<?php while($custom_query->have_posts()) : $custom_query->the_post(); ?>
+					<?php 
+					if (has_post_thumbnail()) {
+						$image_id = get_post_thumbnail_id();
+						$thumb_url_array = wp_get_attachment_image_src($image_id, $settings['nav_thumbnail_size'], true);
+						$thumb_url = $thumb_url_array[0];
+						$image_url_array = wp_get_attachment_image_src($image_id, 'full', true);
+						$image_url = $image_url_array[0];
+					} else {
+						$thumb_url = wp_get_attachment_image_url( $settings['default_image']['id'], 'nav_thumbnail_size' );
+						$image_url = wp_get_attachment_image_url( $settings['default_image']['id'], 'full' );
+					}
+					?>
+					<div class="wbcom-slick-thumb" data-thumbnail="<?php echo esc_url($thumb_url); ?>" data-alt="<?php the_title_attribute(); ?>>">
+						<div class="wbcom-slider-inner animated none <?php echo $settings['bg_entrance_animation']; ?>" style="background-image:url(<?php echo esc_url($image_url); ?>);background-position:<?php echo $settings['image_position']; ?>;background-repeat:<?php echo $settings['image_repeat']; ?>;background-size:<?php echo $settings['image_bg_size']; ?>;transition-duration:<?php echo $settings['bg_entrance_animation_duration']; ?>s;"></div>
+						<?php if($settings['display_btn'] != 'yes') { ?>
+						<a class="wbcom-slider-url" href="<?php the_permalink(); ?>"></a>
+						<?php } ?>
+						<div class="wbcom-slider-overlay"></div>
+						<div class="wbcom-slider-text-wrapper">
+							<div class="wbcom-slider-text-box noanim animated <?php echo $settings['entrance_animation_duration']; ?> <?php echo $settings['entrance_animation']; ?>">
+							<?php if ($settings['display_date'] == 'yes') { ?>
+							<div class="wbcom-slider-date"><?php the_time(get_option('date_format')); ?></div>
+							<?php } ?>
+							<?php 
+							if (get_the_title()) {
+								echo '<' . $settings['title_html_tag'] . ' class="wbcom-slider-title">' . get_the_title() . '</' . $settings['title_html_tag'] . '>';
+							}
+							?>
+							<?php if ($settings['divider_hide'] != 'yes') { ?>
+							<div class="wbcom-slider-divider-wrapper">
+								<div class="wbcom-slider-divider"></div>
+							</div>
+							<?php } ?>
+							<?php 
+							if ((get_the_excerpt()) && (!empty($settings['excerpt_length'])) && ($settings['excerpt_length'] != 0)) {
+								echo '<div class="wbcom-slider-desc"><p>' . WBA_excerpt($settings['excerpt_length']) . '</p></div>';
+							}
+							if($settings['display_btn']) {
+								echo '<a href="' . get_the_permalink() . '" class="wbcombtn wbcombtn-primary">' . $settings['btn_txt'] . '</a>';
+							}
+							?>
 							</div>
 						</div>
-				</div>    
+					</div>    
+					<?php endwhile; ?>
+					<?php wp_reset_postdata(); ?>
+				</div>
+				<?php if ( ( $settings['nav_dots'] ) && ( $settings['nav_thumbnails'] ) ) { ?>
+				<div id="wbcom-slider-thumbnails-<?php echo esc_js( $wbcomslider_slider_id ); ?>" class="wbcom-slider-thumbnails <?php echo $settings['nav_thumbnails_position']; ?>"></div>
 				<?php } ?>
 			</div>
-			<?php if (($settings['nav_dots']) && ($settings['nav_thumbnails'])) { ?>
-			<div id="wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?>" class="wbcom-slider-thumbnails <?php echo $settings['nav_thumbnails_position']; ?>"></div>
-			<?php } ?>
-		</div>
-			<style type="text/css">
-				<?php
-				$viewport_lg = get_option('elementor_viewport_lg', true);
-				if (empty($viewport_lg)) {
-					$viewport_lg = 1025;
-				}                              
-				$viewport_md = get_option('elementor_viewport_md', true);
-				if (empty($viewport_md)) {
-					$viewport_md = 768;
-				} 
-				?>
-				@media screen and (min-width: <?php echo ($viewport_lg + 1) . 'px'; ?>) {
-					<?php if ($settings['nav_arrows_desktop']) { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
-						display: none !important;
-					}
-					<?php } else { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
-						display: block !important;
-					}
-					<?php } ?>
-					<?php if ($settings['nav_dots_desktop']) { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-dots,
-					#wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?> {
-						display: none !important;
-					}
-					<?php } else { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-dots,
-					#wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?> {
-						display: block !important;
-					}
-					<?php } ?>
+		<style type="text/css">
+			<?php
+			$viewport_lg = get_option( 'elementor_viewport_lg', true );
+			if ( empty( $viewport_lg ) ) {
+				$viewport_lg = 1025;
+			}
+			$viewport_md = get_option( 'elementor_viewport_md', true );
+			if ( empty( $viewport_md ) ) {
+				$viewport_md = 768;
+			}
+			?>
+			@media screen and (min-width: <?php echo ( $viewport_lg + 1 ) . 'px'; ?>) {
+				<?php if ( $settings['nav_arrows_desktop'] ) { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+					display: none !important;
 				}
-				@media only screen and (max-width: <?php echo $viewport_lg . 'px'; ?>) {
-					<?php if ($settings['nav_arrows_tablet']) { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
-						display: none !important;
-					}
-					<?php } else { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
-						display: block !important;
-					}
-					<?php } ?>
-					<?php if ($settings['nav_dots_tablet']) { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-dots,
-					#wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?> {
-						display: none !important;
-					}
-					<?php } else { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-dots,
-					#wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?> {
-						display: block !important;
-					}
-					<?php } ?>
+				<?php } else { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+					display: block !important;
 				}
-				@media screen and (max-width: <?php echo $viewport_md . 'px'; ?>) {
-					<?php if ($settings['nav_arrows_mobile']) { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
-						display: none !important;
-					}
-					<?php } else { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
-						display: block !important;
-					}
-					<?php } ?>
-					<?php if ($settings['nav_dots_mobile']) { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-dots,
-					#wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?> {
-						display: none !important;
-					}
-					<?php } else { ?>
-					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-dots,
-					#wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?> {
-						display: block !important;
-					}
-					<?php } ?>
+				<?php } ?>
+				<?php if ( $settings['nav_dots_desktop'] ) { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
+					display: none !important;
 				}
-			</style>
-		<?php }
+				<?php } else { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
+					display: block !important;
+				}
+				<?php } ?>
+			}
+			@media only screen and (max-width: <?php echo $viewport_lg . 'px'; ?>) {
+				<?php if ( $settings['nav_arrows_tablet'] ) { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+					display: none !important;
+				}
+				<?php } else { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+					display: block !important;
+				}
+				<?php } ?>
+				<?php if ( $settings['nav_dots_tablet'] ) { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
+					display: none !important;
+				}
+				<?php } else { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
+					display: block !important;
+				}
+				<?php } ?>
+			}
+			@media screen and (max-width: <?php echo $viewport_md . 'px'; ?>) {
+				<?php if ( $settings['nav_arrows_mobile'] ) { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+					display: none !important;
+				}
+				<?php } else { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+					display: block !important;
+				}
+				<?php } ?>
+				<?php if ( $settings['nav_dots_mobile'] ) { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
+					display: none !important;
+				}
+				<?php } else { ?>
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
+					display: block !important;
+				}
+				<?php } ?>
+			}
+	</style>
+	<?php } else { ?>
+		<div class="wbcom-danger"><?php esc_html_e( 'No post found!', 'wbcom-essential' ); ?></div>
+			<?php
+	}
 	}
 }
