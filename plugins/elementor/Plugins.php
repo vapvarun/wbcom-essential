@@ -495,6 +495,11 @@ class Plugin {
 			'class' => 'General\PostCarousel',
 		);
 
+		$elements['General/PostTimeline'] = array(
+			'name'  => 'wbcom-post-timeline',
+			'class' => 'General\PostTimeline',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
