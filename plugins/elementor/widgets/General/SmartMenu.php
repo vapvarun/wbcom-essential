@@ -103,7 +103,7 @@ class SmartMenu extends \Elementor\Widget_Base {
 			array(
 				'label'   => esc_html__( 'Select a Menu', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
-				'options' => WBA_get_menus(),
+				'options' => wba_get_menus(),
 			)
 		);
 
@@ -1136,7 +1136,7 @@ class SmartMenu extends \Elementor\Widget_Base {
 		if ( $settings['menu_rtl_sub_menus'] ) {
 			echo 'wba-smart-menu-rtl-submenu'; }
 		?>
-		" data-animin="<?php echo $settings['menu_sub_menu_animation']; ?>" data-animout="<?php echo WBA_get_anim_exits( $settings['menu_sub_menu_animation'] ); ?>" data-collapsiblebehavior="<?php echo esc_attr( $settings['menu_collapsible_behavior'] ); ?>" data-mainmenusuboffsetx="<?php echo esc_attr( $settings['mainMenuSubOffsetX'] ); ?>" data-mainmenusuboffsety="<?php echo esc_attr( $settings['mainMenuSubOffsetY'] ); ?>" data-submenussuboffsetx="<?php echo esc_attr( $settings['subMenusSubOffsetX'] ); ?>" data-submenussuboffsety="<?php echo esc_attr( $settings['subMenusSubOffsetY'] ); ?>" data-submenumin="<?php echo esc_attr( $settings['menu_sub_menu_min_width']['size'] . $settings['menu_sub_menu_min_width']['unit'] ); ?>"  data-submenumax="<?php echo esc_attr( $settings['menu_sub_menu_max_width']['size'] . $settings['menu_sub_menu_max_width']['unit'] ); ?>" data-rtlsubmenu="<?php echo esc_attr( $settings['menu_rtl_sub_menus'] ); ?>" data-mtoggle="<?php echo esc_attr( $settings['menu_toggle'] ); ?>" data-bpoint="<?php echo esc_attr( $settings['menu_breakpoint'] ); ?>">
+		" data-animin="<?php echo $settings['menu_sub_menu_animation']; ?>" data-animout="<?php echo wba_get_anim_exits( $settings['menu_sub_menu_animation'] ); ?>" data-collapsiblebehavior="<?php echo esc_attr( $settings['menu_collapsible_behavior'] ); ?>" data-mainmenusuboffsetx="<?php echo esc_attr( $settings['mainMenuSubOffsetX'] ); ?>" data-mainmenusuboffsety="<?php echo esc_attr( $settings['mainMenuSubOffsetY'] ); ?>" data-submenussuboffsetx="<?php echo esc_attr( $settings['subMenusSubOffsetX'] ); ?>" data-submenussuboffsety="<?php echo esc_attr( $settings['subMenusSubOffsetY'] ); ?>" data-submenumin="<?php echo esc_attr( $settings['menu_sub_menu_min_width']['size'] . $settings['menu_sub_menu_min_width']['unit'] ); ?>"  data-submenumax="<?php echo esc_attr( $settings['menu_sub_menu_max_width']['size'] . $settings['menu_sub_menu_max_width']['unit'] ); ?>" data-rtlsubmenu="<?php echo esc_attr( $settings['menu_rtl_sub_menus'] ); ?>" data-mtoggle="<?php echo esc_attr( $settings['menu_toggle'] ); ?>" data-bpoint="<?php echo esc_attr( $settings['menu_breakpoint'] ); ?>">
 		<?php if ( $settings['menu_toggle'] ) { ?>
 			<div class="wba-smart-menu-toggle-container">
 				<div class="wbcom-smart-menu-toggle">

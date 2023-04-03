@@ -106,7 +106,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 				'label'   => esc_html__( 'Post Type', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'post',
-				'options' => WBA_get_post_types(),
+				'options' => wba_get_post_types(),
 			)
 		);
 
@@ -146,7 +146,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 				'label_block' => 'true',
 				'multiple'    => true,
 				'default'     => '',
-				'options'     => WBA_get_categories(),
+				'options'     => wba_get_categories(),
 				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
@@ -159,7 +159,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 				'label_block' => 'true',
 				'multiple'    => true,
 				'default'     => '',
-				'options'     => WBA_get_tags(),
+				'options'     => wba_get_tags(),
 				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
@@ -172,7 +172,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 				'label_block' => 'true',
 				'multiple'    => true,
 				'default'     => '',
-				'options'     => WBA_get_authors(),
+				'options'     => wba_get_authors(),
 				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
@@ -366,7 +366,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 				'label'   => esc_html__( 'Thumbnail Size', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'large',
-				'options' => WBA_get_image_sizes(),
+				'options' => wba_get_image_sizes(),
 			)
 		);
 
@@ -2227,7 +2227,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 						<<?php echo esc_attr($settings['card_title_html']); ?> class="wbcom-posts-card-title <?php echo esc_attr($settings['card_title_ellipsis']); ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></<?php echo esc_attr($settings['card_title_html']); ?>>
 						<?php 
 						if ((get_the_excerpt()) && (!empty($settings['excerpt_length'])) && ($settings['excerpt_length'] != 0)) {
-							echo '<div class="wbcom-posts-excerpt">' . wpautop(WBA_excerpt($settings['excerpt_length'])) . '</div>';
+							echo '<div class="wbcom-posts-excerpt">' . wpautop(wba_excerpt($settings['excerpt_length'])) . '</div>';
 						}
 						?>
 						<?php if (( has_category() ) && ($settings['display_category']) && ($settings['card_category_position'] == 'bottom')) { ?> 

@@ -104,7 +104,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'label'   => esc_html__( 'Post Type', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'post',
-				'options' => WBA_get_post_types(),
+				'options' => wba_get_post_types(),
 			)
 		);
 
@@ -144,7 +144,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'label_block' => 'true',
 				'multiple'    => true,
 				'default'     => '',
-				'options'     => WBA_get_categories(),
+				'options'     => wba_get_categories(),
 				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
@@ -157,7 +157,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'label_block' => 'true',
 				'multiple'    => true,
 				'default'     => '',
-				'options'     => WBA_get_tags(),
+				'options'     => wba_get_tags(),
 				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
@@ -170,7 +170,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'label_block' => 'true',
 				'multiple'    => true,
 				'default'     => '',
-				'options'     => WBA_get_authors(),
+				'options'     => wba_get_authors(),
 				'condition'   => array( 'post_type' => 'post' ),
 			)
 		);
@@ -2066,7 +2066,7 @@ class PostSlider extends \Elementor\Widget_Base {
 							<?php } ?>
 							<?php 
 							if ((get_the_excerpt()) && (!empty($settings['excerpt_length'])) && ($settings['excerpt_length'] != 0)) {
-								echo '<div class="wbcom-slider-desc"><p>' . WBA_excerpt($settings['excerpt_length']) . '</p></div>';
+								echo '<div class="wbcom-slider-desc"><p>' . wba_excerpt($settings['excerpt_length']) . '</p></div>';
 							}
 							if($settings['display_btn']) {
 								echo '<a href="' . get_the_permalink() . '" class="wbcombtn wbcombtn-primary">' . $settings['btn_txt'] . '</a>';

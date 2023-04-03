@@ -101,7 +101,7 @@ function wbcom_essential_elementor_fail_load_out_of_date() {
  *
  * Get menus
  */
-function WBA_get_menus() {
+function wba_get_menus() {
 	$output_menus = array();
 	$menus        = wp_get_nav_menus();
 	foreach ( $menus as $menu ) {
@@ -114,7 +114,7 @@ function WBA_get_menus() {
  *
  * Get Exit Animations
  */
-function WBA_get_anim_exits( $animation ) {
+function wba_get_anim_exits( $animation ) {
 	if ( $animation ) {
 		$animation_array = array(
 			'bounce'            => 'fadeOut',
@@ -210,7 +210,7 @@ if ( ! function_exists( 'wbcombtn' ) ) {
 /**
  * Get post types.
  */
-function WBA_get_post_types() {
+function wba_get_post_types() {
 	$output_post_types   = array();
 	$args                = array( 'public' => true );
 	$output              = 'names';
@@ -225,7 +225,7 @@ function WBA_get_post_types() {
 /**
  * Get post categories.
  */
-function WBA_get_categories() {
+function wba_get_categories() {
 	$output_terms = array();
 	$args         = array(
 		'taxonomy'   => array( 'category' ),
@@ -241,7 +241,7 @@ function WBA_get_categories() {
 /**
  * Get post tags.
  */
-function WBA_get_tags() {
+function wba_get_tags() {
 	$output_terms = array();
 	$args         = array(
 		'taxonomy'   => array( 'post_tag' ),
@@ -257,7 +257,7 @@ function WBA_get_tags() {
 /**
  * Get post authors.
  */
-function WBA_get_authors() {
+function wba_get_authors() {
 	$output_authors = array();
 	$args           = array(
 		'role__in' => array( 'Administrator', 'Editor', 'Author' ),
@@ -274,7 +274,7 @@ function WBA_get_authors() {
 /**
  * Get post excerpt.
  */
-function WBA_excerpt( $charlength ) {
+function wba_excerpt( $charlength ) {
 	$excerpt = get_the_excerpt();
 	$charlength++;
 
@@ -295,7 +295,7 @@ function WBA_excerpt( $charlength ) {
 /**
  * Get Image Sizes
  */
-function WBA_get_image_sizes() {
+function wba_get_image_sizes() {
 	$output_sizes         = array();
 	$img_sizes            = get_intermediate_image_sizes();
 	$output_sizes['full'] = esc_html__( 'Full', 'wbcom-essential' );
