@@ -500,6 +500,11 @@ class Plugin {
 			'class' => 'General\PostTimeline',
 		);
 
+		$elements['General/PortfolioGrid'] = array(
+			'name'  => 'wbcom-portfolio-grid',
+			'class' => 'General\PortfolioGrid',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',

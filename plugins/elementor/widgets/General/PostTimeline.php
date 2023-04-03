@@ -87,15 +87,15 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$output_skins = apply_filters(
 			'wbcom_btn_skins',
 			array(
-				''            => esc_html__( 'None', 'theme-masters-elementor' ),
-				'wbcom-btn-1' => esc_html__( 'Animation 1', 'theme-masters-elementor' ),
-				'wbcom-btn-2' => esc_html__( 'Animation 2', 'theme-masters-elementor' ),
-				'wbcom-btn-3' => esc_html__( 'Animation 3', 'theme-masters-elementor' ),
-				'wbcom-btn-4' => esc_html__( 'Animation 4', 'theme-masters-elementor' ),
-				'wbcom-btn-5' => esc_html__( 'Animation 5', 'theme-masters-elementor' ),
-				'wbcom-btn-6' => esc_html__( 'Animation 6', 'theme-masters-elementor' ),
-				'wbcom-btn-7' => esc_html__( 'Animation 7', 'theme-masters-elementor' ),
-				'wbcom-btn-8' => esc_html__( 'Animation 8', 'theme-masters-elementor' ),
+				''            => esc_html__( 'None', 'wbcom-essential' ),
+				'wbcom-btn-1' => esc_html__( 'Animation 1', 'wbcom-essential' ),
+				'wbcom-btn-2' => esc_html__( 'Animation 2', 'wbcom-essential' ),
+				'wbcom-btn-3' => esc_html__( 'Animation 3', 'wbcom-essential' ),
+				'wbcom-btn-4' => esc_html__( 'Animation 4', 'wbcom-essential' ),
+				'wbcom-btn-5' => esc_html__( 'Animation 5', 'wbcom-essential' ),
+				'wbcom-btn-6' => esc_html__( 'Animation 6', 'wbcom-essential' ),
+				'wbcom-btn-7' => esc_html__( 'Animation 7', 'wbcom-essential' ),
+				'wbcom-btn-8' => esc_html__( 'Animation 8', 'wbcom-essential' ),
 
 			)
 		);
@@ -115,7 +115,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_posts',
 			array(
-				'label' => esc_html__( 'Posts', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Posts', 'wbcom-essential' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -123,7 +123,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'post_type',
 			array(
-				'label'   => esc_html__( 'Post Type', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Post Type', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'post',
 				'options' => wba_get_post_types(),
@@ -133,12 +133,12 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'order',
 			array(
-				'label'   => esc_html__( 'Order', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Order', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'DESC',
 				'options' => array(
-					'DESC' => esc_html__( 'Descending', 'theme-masters-elementor' ),
-					'ASC'  => esc_html__( 'Ascending', 'theme-masters-elementor' ),
+					'DESC' => esc_html__( 'Descending', 'wbcom-essential' ),
+					'ASC'  => esc_html__( 'Ascending', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -146,14 +146,14 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'orderby',
 			array(
-				'label'   => esc_html__( 'Order By', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Order By', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'post_date',
 				'options' => array(
-					'post_date'     => esc_html__( 'Date', 'theme-masters-elementor' ),
-					'title'         => esc_html__( 'Title', 'theme-masters-elementor' ),
-					'rand'          => esc_html__( 'Random', 'theme-masters-elementor' ),
-					'comment_count' => esc_html__( 'Comment Count', 'theme-masters-elementor' ),
+					'post_date'     => esc_html__( 'Date', 'wbcom-essential' ),
+					'title'         => esc_html__( 'Title', 'wbcom-essential' ),
+					'rand'          => esc_html__( 'Random', 'wbcom-essential' ),
+					'comment_count' => esc_html__( 'Comment Count', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -161,7 +161,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'taxonomy',
 			array(
-				'label'       => esc_html__( 'Categories', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Categories', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => 'true',
 				'multiple'    => true,
@@ -174,7 +174,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'tags',
 			array(
-				'label'       => esc_html__( 'Tags', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Tags', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => 'true',
 				'multiple'    => true,
@@ -187,7 +187,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'authors',
 			array(
-				'label'       => esc_html__( 'Authors', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Authors', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => 'true',
 				'multiple'    => true,
@@ -200,8 +200,8 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'max',
 			array(
-				'label'       => esc_html__( 'Maximum number of posts', 'theme-masters-elementor' ),
-				'description' => esc_html__( 'Load more button loads this number of posts each time.', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Maximum number of posts', 'wbcom-essential' ),
+				'description' => esc_html__( 'Load more button loads this number of posts each time.', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::NUMBER,
 				'min'         => 1,
 				'max'         => 99,
@@ -213,8 +213,8 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'include',
 			array(
-				'label'       => esc_html__( 'Include posts by ID', 'theme-masters-elementor' ),
-				'description' => esc_html__( 'To include multiple posts, add comma between IDs.', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Include posts by ID', 'wbcom-essential' ),
+				'description' => esc_html__( 'To include multiple posts, add comma between IDs.', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'default'     => '',
 			)
@@ -223,8 +223,8 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'exclude',
 			array(
-				'label'       => esc_html__( 'Exclude posts by ID', 'theme-masters-elementor' ),
-				'description' => esc_html__( 'To exclude multiple posts, add comma between IDs.', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Exclude posts by ID', 'wbcom-essential' ),
+				'description' => esc_html__( 'To exclude multiple posts, add comma between IDs.', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'default'     => '',
 			)
@@ -240,7 +240,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'excerpt_length',
 			array(
-				'label'   => esc_html__( 'Excerpt length (To remove excerpt, enter "0")', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Excerpt length (To remove excerpt, enter "0")', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0,
 				'max'     => 1000,
@@ -252,10 +252,10 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'display_thumbnail',
 			array(
-				'label'        => esc_html__( 'Display post thumbnail', 'theme-masters-elementor' ),
+				'label'        => esc_html__( 'Display post thumbnail', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'theme-masters-elementor' ),
-				'label_off'    => esc_html__( 'No', 'theme-masters-elementor' ),
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 				'show_label'   => true,
@@ -265,10 +265,10 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'display_only_thumbnail',
 			array(
-				'label'        => esc_html__( 'Display only posts with thumbnail', 'theme-masters-elementor' ),
+				'label'        => esc_html__( 'Display only posts with thumbnail', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'theme-masters-elementor' ),
-				'label_off'    => esc_html__( 'No', 'theme-masters-elementor' ),
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
 				'return_value' => 'yes',
 				'default'      => '',
 				'show_label'   => true,
@@ -279,10 +279,10 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'display_btn',
 			array(
-				'label'        => esc_html__( 'Display Read More Button', 'theme-masters-elementor' ),
+				'label'        => esc_html__( 'Display Read More Button', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'theme-masters-elementor' ),
-				'label_off'    => esc_html__( 'No', 'theme-masters-elementor' ),
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 				'show_label'   => true,
@@ -293,9 +293,9 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'button_text',
 			array(
-				'label'       => esc_html__( 'Button Text', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Button Text', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Read More', 'theme-masters-elementor' ),
+				'default'     => esc_html__( 'Read More', 'wbcom-essential' ),
 				'label_block' => true,
 				'condition'   => array( 'display_btn' => 'yes' ),
 			)
@@ -304,10 +304,10 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'load_more',
 			array(
-				'label'        => esc_html__( 'Load More', 'theme-masters-elementor' ),
+				'label'        => esc_html__( 'Load More', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'theme-masters-elementor' ),
-				'label_off'    => esc_html__( 'No', 'theme-masters-elementor' ),
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 				'show_label'   => true,
@@ -318,9 +318,9 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'load_more_text',
 			array(
-				'label'       => esc_html__( 'Button Text', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Button Text', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
-				'default'     => esc_html__( 'LOAD MORE', 'theme-masters-elementor' ),
+				'default'     => esc_html__( 'LOAD MORE', 'wbcom-essential' ),
 				'label_block' => true,
 				'condition'   => array( 'load_more' => 'yes' ),
 			)
@@ -329,9 +329,9 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'loading_text',
 			array(
-				'label'       => esc_html__( 'Disabled Button Text', 'theme-masters-elementor' ),
+				'label'       => esc_html__( 'Disabled Button Text', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
-				'default'     => esc_html__( 'LOADING...', 'theme-masters-elementor' ),
+				'default'     => esc_html__( 'LOADING...', 'wbcom-essential' ),
 				'label_block' => true,
 				'condition'   => array( 'load_more' => 'yes' ),
 			)
@@ -343,7 +343,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_timeline_style',
 			array(
-				'label' => esc_html__( 'Timeline', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Timeline', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -351,12 +351,12 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'layout',
 			array(
-				'label'   => esc_html__( 'Layout', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Layout', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'wbcom-post-timeline-2-col',
 				'options' => array(
-					'wbcom-post-timeline-2-col' => esc_html__( 'Two Column', 'theme-masters-elementor' ),
-					'wbcom-post-timeline-1-col' => esc_html__( 'One Column', 'theme-masters-elementor' ),
+					'wbcom-post-timeline-2-col' => esc_html__( 'Two Column', 'wbcom-essential' ),
+					'wbcom-post-timeline-1-col' => esc_html__( 'One Column', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -364,7 +364,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'bar_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Padding', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -383,7 +383,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'bar_thickness',
 			array(
-				'label'     => esc_html__( 'Bar Thickness', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Bar Thickness', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 1,
 				'max'       => 100,
@@ -398,7 +398,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'bar_color',
 			array(
-				'label'     => esc_html__( 'Bar Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Bar Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#eeeeee',
 				'selectors' => array(
@@ -412,7 +412,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_card_img',
 			array(
-				'label'     => esc_html__( 'Post Image', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Post Image', 'wbcom-essential' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array( 'display_thumbnail' => 'yes' ),
 			)
@@ -421,7 +421,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'img_size',
 			array(
-				'label'   => esc_html__( 'Thumbnail Size', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Thumbnail Size', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'large',
 				'options' => wba_get_image_sizes(),
@@ -433,14 +433,14 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_thumbnail_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'thumbnail_opacity',
 			array(
-				'label'     => esc_html__( 'Opacity', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Opacity', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 0,
 				'max'       => 1,
@@ -456,7 +456,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Css_Filter::get_type(),
 			array(
 				'name'     => 'thumbnail_css_filter',
-				'label'    => esc_html__( 'CSS Filters', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'CSS Filters', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-img img',
 			)
 		);
@@ -466,14 +466,14 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_thumbnail_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'thumbnail_hover_opacity',
 			array(
-				'label'     => esc_html__( 'Opacity', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Opacity', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 0,
 				'max'       => 1,
@@ -489,7 +489,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Css_Filter::get_type(),
 			array(
 				'name'     => 'thumbnail_css_filter_hover',
-				'label'    => esc_html__( 'CSS Filters', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'CSS Filters', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-img:hover img',
 			)
 		);
@@ -508,7 +508,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'card_img_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-img img',
 			)
 		);
@@ -516,7 +516,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'card_img_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -529,7 +529,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'card_img_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-img img',
 			)
 		);
@@ -544,7 +544,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'card_img_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -559,7 +559,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_content_style',
 			array(
-				'label' => esc_html__( 'Content', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Content', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -567,19 +567,19 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'content_text_align',
 			array(
-				'label'     => esc_html__( 'Text Align', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Text Align', 'wbcom-essential' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Start', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Start', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Center', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'End', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'End', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -593,10 +593,10 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'display_arrow',
 			array(
-				'label'        => esc_html__( 'Display arrow', 'theme-masters-elementor' ),
+				'label'        => esc_html__( 'Display arrow', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'theme-masters-elementor' ),
-				'label_off'    => esc_html__( 'No', 'theme-masters-elementor' ),
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
 				'return_value' => 'show-arrow',
 				'default'      => 'show-arrow',
 				'show_label'   => true,
@@ -606,7 +606,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'content_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#eeeeee',
 				'selectors' => array(
@@ -621,7 +621,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'content_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline__content',
 			)
 		);
@@ -629,7 +629,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'content_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -642,7 +642,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'content_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline__content',
 			)
 		);
@@ -657,7 +657,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Padding', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -669,7 +669,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'content_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -681,7 +681,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'content_heading_2',
 			array(
-				'label'     => esc_html__( 'Title', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Title', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -690,7 +690,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_html_tag',
 			array(
-				'label'   => esc_html__( 'HTML Tag', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'HTML Tag', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'h1'  => 'H1',
@@ -709,7 +709,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-title' => 'color: {{VALUE}};',
@@ -721,7 +721,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_hover_color',
 			array(
-				'label'     => esc_html__( 'Hover Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Hover Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-title a:hover' => 'color: {{VALUE}};',
@@ -741,7 +741,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'title_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -753,7 +753,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'content_heading_3',
 			array(
-				'label'     => esc_html__( 'Paragraph', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Paragraph', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -762,7 +762,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'text_color',
 			array(
-				'label'     => esc_html__( 'Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline__content p' => 'color: {{VALUE}};',
@@ -782,7 +782,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'text_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -797,7 +797,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'date_style_section',
 			array(
-				'label' => esc_html__( 'Date', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Date', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -805,7 +805,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'date_color',
 			array(
-				'label'     => esc_html__( 'Font Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Font Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline__date' => 'color: {{VALUE}};',
@@ -832,7 +832,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'icon',
 			array(
-				'label'   => esc_html__( 'Date Icon', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Date Icon', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::ICONS,
 				'default' => array(
 					'value'   => 'far fa-calendar-alt',
@@ -844,7 +844,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Icon Size', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 1,
 				'max'       => 500,
@@ -860,7 +860,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'icon_container_size',
 			array(
-				'label'     => esc_html__( 'Icon Container Size', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Icon Container Size', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 1,
 				'max'       => 500,
@@ -879,7 +879,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'icon_color',
 			array(
-				'label'     => esc_html__( 'Icon Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Icon Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
@@ -893,7 +893,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'icon_container_bg',
-				'label'    => esc_html__( 'Icon Container Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Icon Container Background', 'wbcom-essential' ),
 				'types'    => array( 'classic', 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline__img',
 			)
@@ -903,7 +903,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'icon_container_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline__img',
 			)
 		);
@@ -911,7 +911,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'icon_container_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -924,7 +924,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'icon_container_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline__img',
 			)
 		);
@@ -939,7 +939,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'date_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Margin', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -954,7 +954,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'btn_style_section',
 			array(
-				'label'     => esc_html__( 'Read More Button', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Read More Button', 'wbcom-essential' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array( 'display_btn' => 'yes' ),
 			)
@@ -980,7 +980,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_skin',
 			array(
-				'label'   => esc_html__( 'Animation', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Animation', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => '',
 				'options' => $this->get_btn_skins(),
@@ -999,14 +999,14 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_button_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'btn_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
@@ -1018,7 +1018,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -1031,7 +1031,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'btn_bg_color_gradient',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-read-more a',
 			)
@@ -1041,7 +1041,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'btn_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-read-more a',
 			)
 		);
@@ -1049,7 +1049,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -1062,7 +1062,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'btn_border_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-read-more a',
 			)
 		);
@@ -1072,14 +1072,14 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_button_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'btn_text_hover_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-read-more a:hover' => 'color: {{VALUE}};',
@@ -1090,7 +1090,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_bg_hover_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-read-more a:hover' => 'background-color: {{VALUE}};',
@@ -1102,7 +1102,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'btn_bg_color_hover_gradient',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-read-more a:hover',
 			)
@@ -1111,7 +1111,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_animation_color',
 			array(
-				'label'     => esc_html__( 'Animation Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Animation Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-read-more a:before' => 'background-color: {{VALUE}};',
@@ -1123,7 +1123,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'btn_hover_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-read-more a:hover',
 			)
 		);
@@ -1131,7 +1131,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_border_hover_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -1144,7 +1144,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'btn_border_hover_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-read-more a:hover',
 			)
 		);
@@ -1162,7 +1162,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Padding', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -1174,7 +1174,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_width',
 			array(
-				'label'      => esc_html__( 'Button Width', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Button Width', 'wbcom-essential' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'range'      => array(
@@ -1207,13 +1207,13 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_size',
 			array(
-				'label'   => esc_html__( 'Size', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Size', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'wbcom-btn-md',
 				'options' => array(
-					'wbcom-btn-md' => esc_html__( 'Normal', 'theme-masters-elementor' ),
-					'wbcom-btn-lg' => esc_html__( 'Large', 'theme-masters-elementor' ),
-					'wbcom-btn-sm' => esc_html__( 'Small', 'theme-masters-elementor' ),
+					'wbcom-btn-md' => esc_html__( 'Normal', 'wbcom-essential' ),
+					'wbcom-btn-lg' => esc_html__( 'Large', 'wbcom-essential' ),
+					'wbcom-btn-sm' => esc_html__( 'Small', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -1221,19 +1221,19 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_text_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Left', 'wbcom-essential' ),
 						'icon'  => 'fa fa-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Center', 'wbcom-essential' ),
 						'icon'  => 'fa fa-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Right', 'wbcom-essential' ),
 						'icon'  => 'fa fa-align-right',
 					),
 				),
@@ -1247,7 +1247,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_heading_1',
 			array(
-				'label'     => esc_html__( 'Button Icon', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Button Icon', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -1256,7 +1256,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_icon',
 			array(
-				'label' => esc_html__( 'Icon', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Icon', 'wbcom-essential' ),
 				'type'  => \Elementor\Controls_Manager::ICONS,
 			)
 		);
@@ -1264,12 +1264,12 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_icon_position',
 			array(
-				'label'   => esc_html__( 'Icon Position', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Icon Position', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'before',
 				'options' => array(
-					'after'  => esc_html__( 'After', 'theme-masters-elementor' ),
-					'before' => esc_html__( 'Before', 'theme-masters-elementor' ),
+					'after'  => esc_html__( 'After', 'wbcom-essential' ),
+					'before' => esc_html__( 'Before', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -1277,7 +1277,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_icon_spacing',
 			array(
-				'label'      => esc_html__( 'Icon Padding', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Icon Padding', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -1292,7 +1292,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'btn_ajax_style_section',
 			array(
-				'label'     => esc_html__( 'Load More Button', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Load More Button', 'wbcom-essential' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array( 'load_more' => 'yes' ),
 			)
@@ -1318,7 +1318,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_ajax_skin',
 			array(
-				'label'   => esc_html__( 'Animation', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Animation', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => '',
 				'options' => $this->get_btn_skins(),
@@ -1337,14 +1337,14 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_load_more_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'btn_ajax_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
@@ -1356,7 +1356,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_ajax_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -1369,7 +1369,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'btn_ajax_bg_color_gradient',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-ajax button',
 			)
@@ -1379,7 +1379,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'btn_ajax_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-ajax button',
 			)
 		);
@@ -1387,7 +1387,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_ajax_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -1400,7 +1400,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'btn_ajax_border_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-ajax button',
 			)
 		);
@@ -1410,14 +1410,14 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_load_more_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'theme-masters-elementor' ),
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'btn_ajax_text_hover_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-ajax button:hover' => 'color: {{VALUE}};',
@@ -1428,7 +1428,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_ajax_bg_hover_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-ajax button:hover' => 'background-color: {{VALUE}};',
@@ -1440,7 +1440,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'btn_ajax_bg_color_hover_gradient',
-				'label'    => esc_html__( 'Background', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Background', 'wbcom-essential' ),
 				'types'    => array( 'gradient' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-ajax button:hover',
 			)
@@ -1449,7 +1449,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_ajax_animation_color',
 			array(
-				'label'     => esc_html__( 'Animation Color', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Animation Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline-ajax button:before' => 'background-color: {{VALUE}};',
@@ -1461,7 +1461,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'btn_ajax_hover_border',
-				'label'    => esc_html__( 'Border', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-ajax button:hover',
 			)
 		);
@@ -1469,7 +1469,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_ajax_border_hover_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -1482,7 +1482,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'btn_ajax_border_hover_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'theme-masters-elementor' ),
+				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
 				'selector' => '{{WRAPPER}} .wbcom-post-timeline-ajax button:hover',
 			)
 		);
@@ -1500,7 +1500,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_ajax_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Padding', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
@@ -1512,7 +1512,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_ajax_width',
 			array(
-				'label'      => esc_html__( 'Button Width', 'theme-masters-elementor' ),
+				'label'      => esc_html__( 'Button Width', 'wbcom-essential' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'range'      => array(
@@ -1545,13 +1545,13 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_ajax_size',
 			array(
-				'label'   => esc_html__( 'Size', 'theme-masters-elementor' ),
+				'label'   => esc_html__( 'Size', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'wbcom-btn-md',
 				'options' => array(
-					'wbcom-btn-md' => esc_html__( 'Normal', 'theme-masters-elementor' ),
-					'wbcom-btn-lg' => esc_html__( 'Large', 'theme-masters-elementor' ),
-					'wbcom-btn-sm' => esc_html__( 'Small', 'theme-masters-elementor' ),
+					'wbcom-btn-md' => esc_html__( 'Normal', 'wbcom-essential' ),
+					'wbcom-btn-lg' => esc_html__( 'Large', 'wbcom-essential' ),
+					'wbcom-btn-sm' => esc_html__( 'Small', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -1559,19 +1559,19 @@ class PostTimeline extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'btn_ajax_text_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'theme-masters-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Left', 'wbcom-essential' ),
 						'icon'  => 'fa fa-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Center', 'wbcom-essential' ),
 						'icon'  => 'fa fa-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'theme-masters-elementor' ),
+						'title' => esc_html__( 'Right', 'wbcom-essential' ),
 						'icon'  => 'fa fa-align-right',
 					),
 				),
@@ -1746,7 +1746,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			<?php
 		} else {
 			?>
-			<div class="wbcom-danger"><?php esc_html_e( 'Nothing was found!', 'theme-masters-elementor' ); ?></div>    
+			<div class="wbcom-danger"><?php esc_html_e( 'Nothing was found!', 'wbcom-essential' ); ?></div>    
 			<?php
 		}
 	}
