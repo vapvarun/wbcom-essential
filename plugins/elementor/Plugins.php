@@ -525,6 +525,11 @@ class Plugin {
 			'class' => 'General\SiteLogo',
 		);
 
+		$elements['General/Testimonial'] = array(
+			'name'  => 'wbcom-testimonial',
+			'class' => 'General\Testimonial',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
