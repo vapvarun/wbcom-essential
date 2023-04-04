@@ -510,6 +510,11 @@ class Plugin {
 			'class' => 'General\TeamCarousel',
 		);
 
+		$elements['General/PricingTable'] = array(
+			'name'  => 'wbcom-pricing-table',
+			'class' => 'General\PricingTable',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
