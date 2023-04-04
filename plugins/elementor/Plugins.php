@@ -505,6 +505,11 @@ class Plugin {
 			'class' => 'General\PortfolioGrid',
 		);
 
+		$elements['General/TeamCarousel'] = array(
+			'name'  => 'wbcom-team-carousel',
+			'class' => 'General\TeamCarousel',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
