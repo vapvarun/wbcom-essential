@@ -31,10 +31,10 @@ class PostSlider extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/lib-slick.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/lib-slick.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/slider.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/lib-slick.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/lib-slick.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 		wp_register_script( 'wb-post-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/post-slider.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );	
 	}
 
@@ -74,7 +74,7 @@ class PostSlider extends \Elementor\Widget_Base {
 	}
 
 	/**
-	 * Get dependent style..
+	 * Get dependent style.
 	 */
 	public function get_style_depends() {
 		return array( 'wb-lib-slick', 'wb-slider', 'elementor-icons-fa-solid', 'elementor-icons-fa-regular' );

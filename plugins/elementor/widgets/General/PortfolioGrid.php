@@ -72,7 +72,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 	}
 
 	/**
-	 * Get dependent style..
+	 * Get dependent style.
 	 */
 	public function get_style_depends() {
 		return array( 'wb-portfolio-grid', 'dashicons' );
