@@ -515,6 +515,11 @@ class Plugin {
 			'class' => 'General\PricingTable',
 		);
 
+		$elements['General/FlipBox'] = array(
+			'name'  => 'wbcom-flip-box',
+			'class' => 'General\FlipBox',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
