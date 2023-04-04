@@ -13,13 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Elementor Testimonial
+ * Elementor TestimonialCarousel
  *
- * Elementor widget for Testimonial
+ * Elementor widget for TestimonialCarousel
  *
  * @since 3.6.0
  */
-class Testimonial extends \Elementor\Widget_Base {
+class TestimonialCarousel extends \Elementor\Widget_Base {
 
 	/**
 	 * Construct.
@@ -31,28 +31,32 @@ class Testimonial extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
+		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-testimonial', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/testimonial.css', array(), WBCOM_ESSENTIAL_VERSION );
+
+		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-testimonial-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/testimonial-carousel.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
 	 * Get Name.
 	 */
 	public function get_name() {
-		return 'wbcom-testimonial';
+		return 'wbcom-testimonial-carousel';
 	}
 
 	/**
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Testimonial', 'wbcom-essential' );
+		return esc_html__( 'Testimonial Carousel', 'wbcom-essential' );
 	}
 
 	/**
 	 * Get Icon.
 	 */
 	public function get_icon() {
-		return 'eicon-testimonial';
+		return 'eicon-testimonial-carousel';
 	}
 
 	/**
@@ -63,10 +67,17 @@ class Testimonial extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get dependent script.
+	 */
+	public function get_script_depends() {
+		return array( 'wb-lib-slick', 'wb-testimonial-carousel' );
+	}
+
+	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {
-		return array( 'wb-testimonial' );
+		return array( 'wb-lib-slick', 'wb-testimonial', 'elementor-icons-fa-solid', 'elementor-icons-fa-regular' );
 	}
 
 	/**
@@ -87,27 +98,27 @@ class Testimonial extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
+		$repeater = new \Elementor\Repeater();
+
+		$repeater->add_control(
 			'title',
 			array(
-				'label'       => esc_html__( 'Name', 'wbcom-essential' ),
+				'label'       => esc_html__( 'Title', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'John Doe', 'wbcom-essential' ),
 			)
 		);
 
-		$this->add_control(
+		$repeater->add_control(
 			'subtitle',
 			array(
-				'label'       => esc_html__( 'Info', 'wbcom-essential' ),
+				'label'       => esc_html__( 'Subtitle', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Web Designer', 'wbcom-essential' ),
 			)
 		);
 
-		$this->add_control(
+		$repeater->add_control(
 			'image',
 			array(
 				'label' => esc_html__( 'Thumbnail', 'wbcom-essential' ),
@@ -115,13 +126,141 @@ class Testimonial extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
+		$repeater->add_control(
 			'content',
 			array(
 				'label'       => esc_html__( 'Content', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::WYSIWYG,
+				'default'     => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
 				'label_block' => true,
-				'default'     => esc_html__( 'Enim ad commodo do est proident excepteur nulla enim pariatur. Proident et laborum reprehenderit voluptate velit Lorem culpa ullamco.', 'wbcom-essential' ),
+			)
+		);
+
+		$this->add_control(
+			'testimonials',
+			array(
+				'label'       => esc_html__( 'Testimonials', 'wbcom-essential' ),
+				'type'        => \Elementor\Controls_Manager::REPEATER,
+				'fields'      => $repeater->get_controls(),
+				'show_label'  => false,
+				'default'     => array(
+					array(
+						'title'    => esc_html__( 'Title #1', 'wbcom-essential' ),
+						'subtitle' => esc_html__( 'Subtitle #1', 'wbcom-essential' ),
+						'image'    => '',
+						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
+					),
+					array(
+						'title'    => esc_html__( 'Title #2', 'wbcom-essential' ),
+						'subtitle' => esc_html__( 'Subtitle #2', 'wbcom-essential' ),
+						'image'    => '',
+						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
+					),
+					array(
+						'title'    => esc_html__( 'Title #3', 'wbcom-essential' ),
+						'subtitle' => esc_html__( 'Subtitle #3', 'wbcom-essential' ),
+						'image'    => '',
+						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
+					),
+					array(
+						'title'    => esc_html__( 'Title #4', 'wbcom-essential' ),
+						'subtitle' => esc_html__( 'Subtitle #4', 'wbcom-essential' ),
+						'image'    => '',
+						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
+					),
+				),
+				'title_field' => '{{{ title }}}',
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'carousel_settings',
+			array(
+				'label' => esc_html__( 'Carousel Settings', 'wbcom-essential' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'columns',
+			array(
+				'label'   => esc_html__( 'Columns', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'three',
+				'options' => array(
+					'one'   => esc_html__( '1 Column', 'wbcom-essential' ),
+					'two'   => esc_html__( '2 Column', 'wbcom-essential' ),
+					'three' => esc_html__( '3 Column', 'wbcom-essential' ),
+					'four'  => esc_html__( '4 Column', 'wbcom-essential' ),
+					'five'  => esc_html__( '5 Column', 'wbcom-essential' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'display_nav',
+			array(
+				'label'        => esc_html__( 'Display Navigation Arrows', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'show_label'   => true,
+			)
+		);
+
+		$this->add_control(
+			'display_dots',
+			array(
+				'label'        => esc_html__( 'Display Navigation Dots', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+				'show_label'   => true,
+			)
+		);
+
+		$this->add_control(
+			'infinite',
+			array(
+				'label'        => esc_html__( 'Infinite Loop', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'show_label'   => true,
+			)
+		);
+
+		$this->add_control(
+			'autoplay',
+			array(
+				'label'        => esc_html__( 'Autoplay', 'wbcom-essential' ),
+				'description'  => esc_html__( 'Infinite loop should be on.', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'show_label'   => true,
+			)
+		);
+
+		$this->add_control(
+			'autoplay_duration',
+			array(
+				'label'   => esc_html__( 'Autoplay Duration (Second)', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::NUMBER,
+				'min'     => 1,
+				'max'     => 120,
+				'step'    => 1,
+				'default' => 5,
 			)
 		);
 
@@ -223,6 +362,32 @@ class Testimonial extends \Elementor\Widget_Base {
 			'item_hr_2',
 			array(
 				'type' => \Elementor\Controls_Manager::DIVIDER,
+			)
+		);
+
+		$this->add_control(
+			'carousel_overflow_hidden',
+			array(
+				'label'        => esc_html__( 'Overflow Hidden', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'wbcom-essential' ),
+				'label_off'    => esc_html__( 'No', 'wbcom-essential' ),
+				'return_value' => 'wbcom-overflow-hidden',
+				'default'      => '',
+				'show_label'   => true,
+			)
+		);
+
+		$this->add_responsive_control(
+			'carousel_spacing',
+			array(
+				'label'      => esc_html__( 'Spacing', 'wbcom-essential' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .slick-slide' => 'margin-left: {{LEFT}}{{UNIT}};margin-right: {{RIGHT}}{{UNIT}};margin-top: {{TOP}}{{UNIT}};margin-bottom: {{BOTTOM}}{{UNIT}};',
+					'{{WRAPPER}} .slick-list'  => 'margin-left: -{{LEFT}}{{UNIT}};margin-right: -{{RIGHT}}{{UNIT}};',
+				),
 			)
 		);
 
@@ -1093,6 +1258,251 @@ class Testimonial extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_navigation',
+			array(
+				'label'     => esc_html__( 'Navigation Arrows', 'wbcom-essential' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array( 'display_nav' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'nav_arrow_next_icon',
+			array(
+				'label'   => esc_html__( 'Next Icon', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::ICONS,
+				'default' => array(
+					'value'   => 'fas fa-arrow-right',
+					'library' => 'solid',
+				),
+			)
+		);
+
+		$this->add_control(
+			'nav_arrow_prev_icon',
+			array(
+				'label'   => esc_html__( 'Previous Icon', 'wbcom-essential' ),
+				'type'    => \Elementor\Controls_Manager::ICONS,
+				'default' => array(
+					'value'   => 'fas fa-arrow-left',
+					'library' => 'solid',
+				),
+			)
+		);
+
+		$this->start_controls_tabs( 'tabs_arrow_style' );
+
+		$this->start_controls_tab(
+			'tab_arrow_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
+			)
+		);
+
+		$this->add_control(
+			'nav_arrow_color',
+			array(
+				'label'     => esc_html__( 'Icon Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#000000',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'nav_arrow_bg_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => 'rgba(0,0,0,0)',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_arrow_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
+			)
+		);
+
+		$this->add_control(
+			'nav_arrow_hover_color',
+			array(
+				'label'     => esc_html__( 'Icon Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#000000',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'nav_arrow_bg_hover_color',
+			array(
+				'label'     => esc_html__( 'Background Hover Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => 'rgba(0,0,0,0)',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_control(
+			'nav_arrow_hr_1',
+			array(
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			)
+		);
+
+		$this->add_responsive_control(
+			'nav_arrow_size',
+			array(
+				'label'     => esc_html__( 'Icon Size (px)', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::NUMBER,
+				'min'       => 5,
+				'max'       => 100,
+				'step'      => 1,
+				'default'   => 30,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev' => 'font-size: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next' => 'font-size: {{VALUE}}px;',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'nav_arrow_box_size',
+			array(
+				'label'     => esc_html__( 'Box Size (px)', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::NUMBER,
+				'min'       => 10,
+				'max'       => 200,
+				'step'      => 1,
+				'default'   => 60,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'nav_arrow_radius',
+			array(
+				'label'      => esc_html__( 'Box Border Radius', 'wbcom-essential' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'nav_arrow_box_margin',
+			array(
+				'label'     => esc_html__( 'Box Right/Left Margin (px)', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::NUMBER,
+				'min'       => -100,
+				'max'       => 100,
+				'step'      => 1,
+				'default'   => 0,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-next' => 'right: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-prev' => 'left: {{VALUE}}px;',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_navigation_dots',
+			array(
+				'label'     => esc_html__( 'Navigation Dots', 'wbcom-essential' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array( 'display_dots' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'dots_color',
+			array(
+				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#000000',
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-dots li button:before' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'dots_size',
+			array(
+				'label'     => esc_html__( 'Dot Size (px)', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::NUMBER,
+				'min'       => 5,
+				'max'       => 100,
+				'step'      => 1,
+				'default'   => 20,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-dots li button:before' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-dots li button' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'dot_margin',
+			array(
+				'label'     => esc_html__( 'Dot Right/Left Padding (px)', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::NUMBER,
+				'min'       => 0,
+				'max'       => 10,
+				'step'      => 1,
+				'default'   => 2,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-dots li' => 'margin-left: {{VALUE}}px !important;margin-right: {{VALUE}}px !important;',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'dots_bottom_margin',
+			array(
+				'label'     => esc_html__( 'Dots Bottom Margin (px)', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::NUMBER,
+				'min'       => -100,
+				'max'       => 100,
+				'step'      => 1,
+				'default'   => -40,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-testimonials-carousel .slick-dots' => 'bottom: {{VALUE}}px;',
+				),
+			)
+		);
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -1107,26 +1517,30 @@ class Testimonial extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
-		<?php
-		$img_url = wp_get_attachment_image_url( $settings['image']['id'], $settings['img_size'] );
-		?>
-		<div class="wbcom-testimonials-item">
-			<div class="wbcom-testimonials-content <?php echo $settings['content_arrow']; ?>">
-				<?php echo wp_kses_post( $settings['content'] ); ?>
-			</div>
-			<div class="wbcom-testimonials-person">
-				<?php if ( $img_url ) { ?>
-				<div class="wbcom-testimonials-thumb"><img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $settings['title'] ); ?>" /></div>
-				<?php } ?>
-				<div class="wbcom-testimonials-info">
-					<?php if ( $settings['title'] ) { ?>
-					<span class="wbcom-testimonials-title"><?php echo wp_kses_post( $settings['title'] ); ?></span>
-					<?php } ?>
-					<?php if ( $settings['subtitle'] ) { ?>
-					<span class="wbcom-testimonials-subtitle"><?php echo wp_kses_post( $settings['subtitle'] ); ?></span>
-					<?php } ?>
+		<div id="wbcom-testimonials-carousel-<?php echo esc_attr( $this->get_id() ); ?>" class="wbcom-testimonials-carousel <?php echo esc_attr( $settings['carousel_overflow_hidden'] ); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? $settings['nav_arrow_prev_icon']['value'] : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? $settings['nav_arrow_next_icon']['value'] : ''; ?>" data-autoplay="<?php if ( $settings['autoplay'] ) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr( $settings['autoplay_duration'] ); ?>000" data-infinite="<?php if ( $settings['infinite'] ) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ( $settings['display_nav'] ) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ( $settings['display_dots'] ) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr( $settings['columns'] ); ?>" data-rtl="<?php if ( is_rtl() ) { echo 'true'; } else { echo 'false'; } ?>">
+		<?php foreach ( $settings['testimonials'] as $item ) { ?>
+			<?php $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] ); ?>
+			<div class="wbcom-testimonials-slide">
+				<div class="wbcom-testimonials-item">
+					<div class="wbcom-testimonials-content <?php echo $settings['content_arrow']; ?>">
+						<?php echo wp_kses_post( $item['content'] ); ?>
+					</div>
+					<div class="wbcom-testimonials-person">
+						<?php if ( $img_url ) { ?>
+						<div class="wbcom-testimonials-thumb"><img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" /></div>
+						<?php } ?>
+						<div class="wbcom-testimonials-info">
+							<?php if ( $item['title'] ) { ?>
+							<span class="wbcom-testimonials-title"><?php echo wp_kses_post( $item['title'] ); ?></span>
+							<?php } ?>
+							<?php if ( $item['subtitle'] ) { ?>
+							<span class="wbcom-testimonials-subtitle"><?php echo wp_kses_post( $item['subtitle'] ); ?></span>
+							<?php } ?>
+						</div>
+					</div>
 				</div>
 			</div>
+		<?php } ?>
 		</div>
 		<?php
 	}

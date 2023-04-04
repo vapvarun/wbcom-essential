@@ -530,6 +530,11 @@ class Plugin {
 			'class' => 'General\Testimonial',
 		);
 
+		$elements['General/TestimonialCarousel'] = array(
+			'name'  => 'wbcom-testimonial-carousel',
+			'class' => 'General\TestimonialCarousel',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
