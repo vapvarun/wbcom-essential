@@ -520,6 +520,11 @@ class Plugin {
 			'class' => 'General\FlipBox',
 		);
 
+		$elements['General/SiteLogo'] = array(
+			'name'  => 'wbcom-site-logo',
+			'class' => 'General\SiteLogo',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
