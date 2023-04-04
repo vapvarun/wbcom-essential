@@ -31,7 +31,7 @@ class Tabs extends \Elementor\Widget_Base {
 
 		wp_register_style( 'wb-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/tabs.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/lib-tabs.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-lib-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/tabs.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 		wp_register_script( 'wb-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/tabs.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
