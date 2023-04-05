@@ -545,6 +545,11 @@ class Plugin {
 			'class' => 'General\TextRotator',
 		);
 
+		$elements['General/ProgressBar'] = array(
+			'name'  => 'wbcom-progress-bar',
+			'class' => 'General\ProgressBar',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
