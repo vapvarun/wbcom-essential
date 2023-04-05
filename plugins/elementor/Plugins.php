@@ -535,6 +535,11 @@ class Plugin {
 			'class' => 'General\TestimonialCarousel',
 		);
 
+		$elements['General/Countdown'] = array(
+			'name'  => 'wbcom-countdown',
+			'class' => 'General\Countdown',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
