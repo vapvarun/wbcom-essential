@@ -540,6 +540,11 @@ class Plugin {
 			'class' => 'General\Countdown',
 		);
 
+		$elements['General/TextRotator'] = array(
+			'name'  => 'wbcom-text-rotator',
+			'class' => 'General\TextRotator',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
