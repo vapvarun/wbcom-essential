@@ -550,6 +550,11 @@ class Plugin {
 			'class' => 'General\ProgressBar',
 		);
 
+		$elements['General/Timeline'] = array(
+			'name'  => 'wbcom-timeline',
+			'class' => 'General\Timeline',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
