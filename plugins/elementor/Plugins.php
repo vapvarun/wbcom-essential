@@ -555,6 +555,11 @@ class Plugin {
 			'class' => 'General\Timeline',
 		);
 
+		$elements['General/Shape'] = array(
+			'name'  => 'wbcom-shape',
+			'class' => 'General\Shape',
+		);
+
 		/*
 		$elements['Forms/Registration'] = array(
 			'name'  => 'wbcom-registration',
