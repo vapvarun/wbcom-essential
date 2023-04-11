@@ -19,6 +19,10 @@ body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-3 .list-wrap {
 	padding-bottom: 15px !important;
 }
 
+.bp-nouveau #buddypress .item-list.rg-member-list.grid.bp-list.wbtm-member-directory-type-2>li .action {
+	border-top: 0 !important;
+}
+
 /*--------------------------------------------------------------
 # BuddyPress
 --------------------------------------------------------------*/
@@ -119,7 +123,10 @@ body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-3 .list-wrap {
 }
 
 @media screen and (min-width: 73.2em) {
+	.buddypress-wrap .grid.bp-list.four>li,
 	.grid.four>li {
 		width: 25%;
+		flex: 0 0 25%;
+    	max-width: 25%;
 	}
 }
