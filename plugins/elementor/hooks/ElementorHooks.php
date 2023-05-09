@@ -204,7 +204,7 @@ class ElementorHooks {
 		\Elementor\Plugin::instance()->elements_manager->add_category(
 			'wbcom-elements',
 			array(
-				'title' => __( 'WBCOM Elements', 'wbcom-essential' ),
+				'title' => __( 'Wbcom Essential', 'wbcom-essential' ),
 				'icon'  => 'font',
 			),
 			1

@@ -1356,7 +1356,7 @@ msgid "Icon Hover"
 msgstr ""
 
 #: plugin.php:219
-msgid "WBCOM Elements"
+msgid "Wbcom Essential"
 msgstr ""
 
 #: wbcom-essential.php:82

@@ -1378,7 +1378,7 @@ msgid "Icon Hover"
 msgstr "Icône au survol"
 
 #: plugin.php:219
-msgid "WBCOM Elements"
+msgid "Wbcom Essential"
 msgstr "Éléments WBCOM"
 
 #: wbcom-essential.php:82
