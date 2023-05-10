@@ -694,7 +694,7 @@ function wbcom_essential_posts_revolution_elementor_query( $wbcom_query_source,
  * @since 3.6.0
  */
 
-function wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages = '', $range = 2, $loop ) {
+function wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages = '', $range = 2, $loop = '' ) {
 	$showitems = ( $range * 2 ) + 1;
 
 	global $paged;
