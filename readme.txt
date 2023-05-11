@@ -22,6 +22,29 @@ It will add aditional feature for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
 
 == Changelog ==
+= 3.6.0 =
+* Fix: (#1102) Required parameter warning fixes
+* Enhancement: (#1117) Managed grid columns four with bb platform
+* Enhancement: (#1117) Added login form widget
+* Enhancement: (#1117) Added shape widget
+* Enhancement: (#1117) Added timeline widget
+* Enhancement: (#1117) Added progress bar widget
+* Enhancement: (#1117) Added text rotator widget
+* Enhancement: (#1117) Added countdown widget
+* Enhancement: (#1117) Added testimonial carousel widget
+* Enhancement: (#1117) Added testimonial widget
+* Enhancement: (#1117) Added site logo widget
+* Enhancement: (#1117) Added flip box widget
+* Enhancement: (#1117) Added pricing table widget
+* Enhancement: (#1117) Added team carousel widget
+* Enhancement: (#1117) Added portfolio grid widget
+* Enhancement: (#1117) Added post timeline widget
+* Enhancement: (#1117) Added post slider widget
+* Enhancement: (#1117) Added tabs widget
+* Enhancement: (#1117) Added accordion widget
+* Enhancement: (#1117) Added heading layout widget
+
+
 = 3.5.9 =
 * Fix: Update cart product remove button UI
 * Fix: Fixed #1065 - Fixed Notification display issue
