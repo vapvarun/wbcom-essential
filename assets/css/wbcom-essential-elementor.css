@@ -617,8 +617,8 @@
   display: none;
 }
 
-.header-search-wrap--elementor label {
-  display: none;
+.header-search-wrap--elementor form label {
+  width: 100%;
 }
 
 .search-visible-el .header-search-wrap--elementor {
