@@ -47,7 +47,7 @@ bp_nouveau_before_loop(); ?>
 							</p><!-- .item-meta -->
 						<?php endif; ?>
 
-						<?php if ( bp_nouveau_member_has_extra_content() ) : ?>
+						<?php if ( function_exists( 'bp_nouveau_member_has_extra_content' ) && bp_nouveau_member_has_extra_content() ) : ?>
 							<div class="item-extra-content">
 								<?php bp_nouveau_member_extra_content(); ?>
 							</div><!-- .item-extra-content -->
