@@ -735,15 +735,18 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->add_control(
 			'avatar_border_style',
 			array(
-				'label'   => esc_html__( 'Border Style', 'wbcom-essential' ),
-				'type'    => \Elementor\Controls_Manager::SELECT,
-				'default' => 'none',
-				'options' => array(
+				'label'     => esc_html__( 'Border Style', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'default'   => 'none',
+				'options'   => array(
 					'solid'  => __( 'Solid', 'wbcom-essential' ),
 					'dashed' => __( 'Dashed', 'wbcom-essential' ),
 					'dotted' => __( 'Dotted', 'wbcom-essential' ),
 					'double' => __( 'Double', 'wbcom-essential' ),
 					'none'   => __( 'None', 'wbcom-essential' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .user-link img' => 'border-style: {{UNIT}};',
 				),
 			)
 		);
@@ -815,15 +818,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
-			'separator_dropdown_user_name',
-			array(
-				'label'     => esc_html__( 'Display Name', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
 		$this->start_controls_tabs(
 			'color_dropdown_name_tabs'
 		);
@@ -832,18 +826,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 			'color_dropdown_name_normal_tab',
 			array(
 				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
-			)
-		);
-
-		$this->add_control(
-			'dropdown_user_name_item_color',
-			array(
-				'label'     => esc_html__( 'Display Name Color', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#122b46',
-				'selectors' => array(
-					'{{WRAPPER}}  .site-header--elementor .user-wrap .sub-menu a.user-link span.user-name' => 'color: {{VALUE}}',
-				),
 			)
 		);
 
@@ -915,7 +897,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => 'transparent',
 				'selectors' => array(
-					'{{WRAPPER}} .site-header .header-aside .sub-menu a' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .site-header .header-aside .sub-menu a, .site-header.site-header--elementor .wbcom-essential-my-account-menu .menu-item-has-children .sub-menu:before' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .site-header .sub-menu .ab-submenu a'   => 'background-color: transparent',
 				),
 			)
@@ -950,7 +932,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
-					'{{WRAPPER}} .site-header .header-aside .sub-menu a:hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .site-header .header-aside .sub-menu a:hover, .site-header.site-header--elementor .wbcom-essential-my-account-menu .menu-item-has-children .sub-menu:hover:before' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .site-header .sub-menu .ab-submenu a:hover'   => 'background-color: transparent',
 				),
 			)
