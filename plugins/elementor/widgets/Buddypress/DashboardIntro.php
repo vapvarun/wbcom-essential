@@ -116,6 +116,31 @@ class DashboardIntro extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
+			'content_align',
+			array(
+				'label'        => esc_html__( 'Alignment', 'wbcom-essential' ),
+				'type'         => \Elementor\Controls_Manager::CHOOSE,
+				'options'      => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'wbcom-essential' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'wbcom-essential' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'wbcom-essential' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'      => 'left',
+				'toggle'       => true,
+				'prefix_class' => 'elementor-cta-dash-intro-content-',
+			)
+		);
+
+		$this->add_control(
 			'separator_content',
 			array(
 				'label'     => __( 'Description', 'wbcom-essential' ),
@@ -251,7 +276,7 @@ class DashboardIntro extends \Elementor\Widget_Base {
 				'label'     => __( 'Spacing', 'wbcom-essential' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
-					'size' => 15,
+					'gap' => 15,
 				),
 				'range'     => array(
 					'px' => array(
@@ -259,7 +284,7 @@ class DashboardIntro extends \Elementor\Widget_Base {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-essential-dash__avatar'  => 'margin-right: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .wbcom-essential-dash>.flex'  => 'gap: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
