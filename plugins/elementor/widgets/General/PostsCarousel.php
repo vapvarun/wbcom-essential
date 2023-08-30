@@ -556,6 +556,30 @@ class PostsCarousel extends Widget_Base {
 		);
 
 		$this->add_control(
+			'wbcom_heading_color',
+			array(
+				'label'     => esc_html__( 'Heading Color', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '#000',
+				'condition' => array(
+					'wbcom_custom_style' => 'on',
+				),
+			)
+		);
+
+		$this->add_control(
+			'wbcom_content_color',
+			array(
+				'label'     => esc_html__( 'Content Color', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '#808291',
+				'condition' => array(
+					'wbcom_custom_style' => 'on',
+				),
+			)
+		);
+
+		$this->add_control(
 			'wbcom_background_hover',
 			array(
 				'label'     => esc_html__( 'Backgound Hover Color', 'wbcom-essential' ),
@@ -571,15 +595,15 @@ class PostsCarousel extends Widget_Base {
 	}
 
 
-	 /**
-	  * Render the widget output on the frontend.
-	  *
-	  * Written in PHP and used to generate the final HTML.
-	  *
-	  * @since 3.6.0
-	  *
-	  * @access protected
-	  */
+	/**
+	 * Render the widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 3.6.0
+	 *
+	 * @access protected
+	 */
 	protected function render() {
 		static $instance = 0;
 		$instance++;
@@ -622,6 +646,8 @@ class PostsCarousel extends Widget_Base {
 		$wbcom_custom_style     = esc_html( $settings['wbcom_custom_style'] );
 		$wbcom_main_color       = esc_html( $settings['wbcom_main_color'] );
 		$wbcom_hover_color      = esc_html( $settings['wbcom_hover_color'] );
+		$wbcom_heading_color    = esc_html( $settings['wbcom_heading_color'] );
+		$wbcom_content_color    = esc_html( $settings['wbcom_content_color'] );
 		$wbcom_background_hover = esc_html( $settings['wbcom_background_hover'] );
 
 		$wbcom_animate        = esc_html( $settings['wbcom_animate'] );
@@ -640,6 +666,12 @@ class PostsCarousel extends Widget_Base {
 				$return .= '#wb-carousel-' . $instance . ' .owl-item .item .wb-info-left {
 							background:' . $wbcom_background_hover . '!important;
 						}';
+				$return .= '.wbcom-essential-posts-revolution-elementor .wb-title a {
+							color:' . $wbcom_heading_color . '!important;
+						}';
+				$return .= '.wbcom-essential-posts-revolution-elementor .wb-content, .wbcom-essential-posts-revolution-elementor .wb-date, .wbcom-essential-posts-revolution-elementor .wb-author {
+					color:' . $wbcom_content_color . '!important;
+				}';
 				$return .= '.wbcom-essential-posts-revolution-elementor.posts_carousel_type1.wb-selector-' . $instance . ' .wb-category a {
 													color:' . $wbcom_main_color . '!important;
 									}
@@ -660,14 +692,26 @@ class PostsCarousel extends Widget_Base {
 										color:' . $wbcom_main_color . '!important;
 									}
 									.owl-theme .owl-controls.clickable .owl-buttons div:hover{
-										background: ' . $wbcom_main_color . '!important;
+										background: ' . $wbcom_hover_color . '!important;
 										color:#ffffff !important;
+										border-color:' . $wbcom_hover_color . '!important;
+									}
+									.owl-theme .owl-controls.clickable .owl-page:hover span{
+										background: ' . $wbcom_hover_color . '!important;
+										color:#ffffff !important;
+										border-color:' . $wbcom_hover_color . '!important;
 									}';
 			}
 
 			if ( $wbcom_carousel_type == 'type2' ) {
 				$return .= '#wb-carousel-' . $instance . ' .wbcom-essential-posts-revolution-elementor-thumbs-container:hover .wb-info-left {
 							background:' . $wbcom_background_hover . '!important;
+				}';
+				$return .= '.wbcom-essential-posts-revolution-elementor .wb-title a {
+							color:' . $wbcom_heading_color . '!important;
+				}';
+				$return .= '.wbcom-essential-posts-revolution-elementor .wb-content, .wbcom-essential-posts-revolution-elementor .wb-date, .wbcom-essential-posts-revolution-elementor .wb-author {
+							color:' . $wbcom_content_color . '!important;
 				}';
 				$return .= '.wbcom-essential-posts-revolution-elementor.posts_carousel_type2.wb-selector-' . $instance . ' .wb-category a {
 														color:' . $wbcom_main_color . '!important;
@@ -689,8 +733,14 @@ class PostsCarousel extends Widget_Base {
 											color:' . $wbcom_main_color . '!important;
 										}
 										.owl-theme .owl-controls.clickable .owl-buttons div:hover{
-											background: ' . $wbcom_main_color . '!important;
+											background: ' . $wbcom_hover_color . '!important;
 											color:#ffffff !important;
+											border-color:' . $wbcom_hover_color . '!important;
+										}
+										.owl-theme .owl-controls.clickable .owl-page:hover span{
+											background: ' . $wbcom_hover_color . '!important;
+											color:#ffffff !important;
+											border-color:' . $wbcom_hover_color . '!important;
 										}';
 			}
 		}
