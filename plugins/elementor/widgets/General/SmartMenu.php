@@ -835,6 +835,18 @@ class SmartMenu extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'main_sub_menu_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'wbcom-essential' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .wba-sm-skin li ul li a' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
