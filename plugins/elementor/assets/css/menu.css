@@ -1,0 +1,25 @@
+.elementor-widget-wbcom-nav-menu ul.primary-menu {
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+}
+
+.elementor-widget-wbcom-nav-menu ul.primary-menu .sub-menu {
+    padding: 5px;
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+    visibility: hidden;
+    margin-top: 0;
+    z-index: 1;
+}
+
+.elementor-widget-wbcom-nav-menu ul.primary-menu li:hover .sub-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.main-navigation ul#primary-menu>li>a {
+    display: flex;
+    align-items: center;
+}

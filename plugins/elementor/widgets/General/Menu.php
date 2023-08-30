@@ -33,6 +33,20 @@ use Elementor\Group_Control_Typography;
 class Menu extends \Elementor\Widget_Base {
 
 	/**
+	 * Construct.
+	 *
+	 * @param  array  $data Data.
+	 * @param  string $args Args.
+	 * @return void
+	 */
+	public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
+
+		wp_register_style( 'wb-menu', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/menu.css', array(), WBCOM_ESSENTIAL_VERSION );
+
+	}
+
+	/**
 	 * Get name.
 	 */
 	public function get_name() {
@@ -55,6 +69,13 @@ class Menu extends \Elementor\Widget_Base {
 	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+
+	/**
+	 * Get dependent style.
+	 */
+	public function get_style_depends() {
+		return array( 'wb-menu' );
 	}
 
 	/**
@@ -138,7 +159,7 @@ class Menu extends \Elementor\Widget_Base {
 				),
 				'prefix_class' => 'elementor-align-',
 				'selectors'    => array(
-					'{{WRAPPER}} .main-navigation ul' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .main-navigation ul' => 'justify-content: {{VALUE}};',
 				),
 			)
 		);
@@ -150,7 +171,7 @@ class Menu extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#f8f8f8',
 				'selectors' => array(
-					'{{WRAPPER}} .main-navigation ul li' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .main-navigation>ul>li' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -161,7 +182,7 @@ class Menu extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#eaeaea',
 				'selectors' => array(
-					'{{WRAPPER}} .main-navigation ul li a:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .main-navigation>ul>li a:hover' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -172,7 +193,7 @@ class Menu extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#eaeaea',
 				'selectors' => array(
-					'{{WRAPPER}} .main-navigation ul li.current-menu-item a' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .main-navigation>ul>li.current-menu-item a' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -184,7 +205,7 @@ class Menu extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
-					'{{WRAPPER}} .main-navigation .reign-menu-toggle, {{WRAPPER}} .main-navigation ul li a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .main-navigation .reign-menu-toggle, {{WRAPPER}} .main-navigation>ul>li a' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -196,7 +217,7 @@ class Menu extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
-					'{{WRAPPER}} .main-navigation ul li a:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .main-navigation>ul>li a:hover' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -208,7 +229,7 @@ class Menu extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#399dff',
 				'selectors' => array(
-					'{{WRAPPER}} .main-navigation ul li.current-menu-item a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .main-navigation>ul>li.current-menu-item a' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -402,7 +423,6 @@ class Menu extends \Elementor\Widget_Base {
 				#site-navigation-<?php echo esc_html( $identifier ); ?> .elementor-branding,
 				#site-navigation-<?php echo esc_html( $identifier ); ?> .user-link-wrap {
 					height: <?php echo esc_html( $menu_height ); ?>px;
-					line-height: <?php echo esc_html( $menu_height ); ?>px;
 				}
 				#site-navigation-<?php echo esc_html( $identifier ); ?> .primary-menu .children, .primary-menu .sub-menu {
 					top: <?php echo esc_html( $menu_height ); ?>px;
@@ -410,7 +430,7 @@ class Menu extends \Elementor\Widget_Base {
 
 				@media screen and (min-width:768px) {
 					#site-navigation-<?php echo esc_html( $identifier ); ?> ul#primary-menu li > ul.sub-menu {
-						width: <?php echo esc_html( $submenu_width ); ?>px !important;
+						min-width: <?php echo esc_html( $submenu_width ); ?>px !important;
 					}
 				}
 
@@ -489,8 +509,4 @@ class Menu extends \Elementor\Widget_Base {
 		</div>
 		<?php
 	}
-
-
-
-
 }
