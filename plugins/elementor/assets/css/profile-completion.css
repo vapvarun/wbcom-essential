@@ -64,12 +64,32 @@
 	text-align: center;
 }
 
-@media (max-width: 768px) {
-	.elementor-cta--completion-right,
-	.elementor-cta--completion-left,
-	.elementor-cta--completion-center {
-		text-align: center;
-	}
+@media (max-width: 1024px) {
+    .elementor-cta--tablet-completion-right {
+        text-align: right;
+    }
+
+    .elementor-cta--tablet-completion-left {
+        text-align: left;
+    }
+
+    .elementor-cta--tablet-completion-center {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .elementor-cta--mobile-completion-right {
+        text-align: right;
+    }
+
+    .elementor-cta--mobile-completion-left {
+        text-align: left;
+    }
+
+    .elementor-cta--mobile-completion-center {
+        text-align: center;
+    }
 }
 
 .progress_bit {
