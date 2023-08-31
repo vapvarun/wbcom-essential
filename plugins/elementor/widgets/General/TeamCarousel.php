@@ -615,7 +615,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'thumb_border',
 				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcom-team-member a',
+				'selector' => '{{WRAPPER}} .wbcom-team-member',
 			)
 		);
 
