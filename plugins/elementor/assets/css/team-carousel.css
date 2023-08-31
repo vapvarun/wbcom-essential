@@ -76,6 +76,10 @@
     transform: scale(1, 1)
 }
 
+.wbcom-team-carousel.noanim {
+    opacity: 1 !important;
+}
+
 .wbcom-team-carousel.noanim .slick-slide {
     opacity: 1;
     -webkit-transform: none;

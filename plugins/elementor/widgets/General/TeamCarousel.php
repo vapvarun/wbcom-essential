@@ -1715,7 +1715,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
                 'width' => $settings['box_width']
             );
             ?>
-            <?php $oembed = wp_oembed_get( $settings['oembed'], $args ); ?>
+            <?php $oembed = wp_oembed_get( $item['oembed'], $args ); ?>
             <?php echo ( $oembed ) ? $oembed : $settings['oembed']; ?>
             </div>
             <?php } elseif (($item['lightbox_image']['url']) && ($item['lightbox_style'] == 'img')) { ?>
