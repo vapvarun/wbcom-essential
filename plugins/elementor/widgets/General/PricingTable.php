@@ -236,10 +236,6 @@ class PricingTable extends \Elementor\Widget_Base {
 							'name'  => 'ribbon_style',
 							'value' => 'wbcom-price-table-vertical',
 						),
-						array(
-							'name'  => 'ribbon_style',
-							'value' => 'wbcom-price-table-horizontal',
-						),
 					),
 				),
 				'default'    => 'v-right',
