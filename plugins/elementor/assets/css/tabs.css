@@ -75,7 +75,7 @@
 }
 
 .wbcom_tab_head li {
-	z-index: 100;
+	z-index: 99;
 	font-weight: 700;
 	margin-bottom: -1px;
 	border: 1px solid transparent;
