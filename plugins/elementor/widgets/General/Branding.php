@@ -34,6 +34,19 @@ use Elementor\Group_Control_Typography;
 class Branding extends \Elementor\Widget_Base {
 
 	/**
+	 * Construct.
+	 *
+	 * @param  array  $data Data.
+	 * @param  string $args Args.
+	 * @return void
+	 */
+	public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
+
+		wp_register_style( 'wb-branding', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/branding.css', array(), WBCOM_ESSENTIAL_VERSION );
+	}
+
+	/**
 	 * Get name.
 	 */
 	public function get_name() {
@@ -59,6 +72,13 @@ class Branding extends \Elementor\Widget_Base {
 	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+
+	/**
+	 * Get dependent style.
+	 */
+	public function get_style_depends() {
+		return array( 'wb-branding' );
 	}
 
 	/**
