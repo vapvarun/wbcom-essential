@@ -80,13 +80,13 @@
 				if ( elementSettings.pause_on_hover == 'yes' ) {
 					$( this ).mouseenter(
 						function() {
-							//group_swiper.autoplay.stop();
+							group_swiper.autoplay.stop();
 						}
 					);
 
 					$( this ).mouseleave(
 						function() {
-							//group_swiper.autoplay.start();
+							group_swiper.autoplay.start();
 						}
 					);
 				}
