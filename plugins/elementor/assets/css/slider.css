@@ -366,7 +366,7 @@ a.wbcombtn:before {
 .noanim {
     -webkit-animation-name: none !important;
     animation-name: none !important;
-    opacity: 0 !important;
+    /* opacity: 0 !important; */
     -webkit-transition: opacity .2s ease-in-out !important;
     transition: opacity .2s ease-in-out !important
 }
