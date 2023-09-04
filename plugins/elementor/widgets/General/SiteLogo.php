@@ -397,8 +397,8 @@ class SiteLogo extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$target   = $settings['link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target   = isset( $settings['link']['is_external'] ) ? ' target="_blank"' : '';
+		$nofollow = isset( $settings['link']['nofollow'] ) ? ' rel="nofollow"' : '';
 		?>
 		<div class="wba-site-logo-container" style="display:flex;flex-direction:column;">
 		<?php
@@ -427,7 +427,7 @@ class SiteLogo extends \Elementor\Widget_Base {
 		}
 		?>
 		</div>
-		<?php if ( $settings['after_image']['url'] && $settings['breakpoint'] ) { ?>
+		<?php if ( isset( $settings['after_image']['url'] ) && $settings['breakpoint'] ) { ?>
 		<style>
 		@media screen and (min-width: <?php echo ( $settings['breakpoint'] + 1 ) . 'px'; ?>) {
 			.wba-logo-desktop span {display:block;}
