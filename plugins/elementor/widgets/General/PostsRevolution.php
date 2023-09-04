@@ -1025,9 +1025,9 @@ class PostsRevolution extends Widget_Base {
 		 ** PAGINATION
 		 */
 		if ( $wbcom_query_pagination == 'yes' ) {
-			$return .= '<div class="wbclear"></div><div class="wb-post-display-' . $instance . ' wb-pagination">';
+			$return .= '<div class="wbclear"></div><div class="wb-post-display-'.$instance.' wb-pagination">';
 			if ( $wbcom_query_pagination_type == 'numeric' ) {
-				$return .= wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages = '', $range = 2, $loop = '' );
+				$return .= wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages = '', $range = 2, $loop );
 			} else {
 				$return .= get_next_posts_link( 'Older posts', $loop->max_num_pages );
 				$return .= get_previous_posts_link( 'Newer posts' );
