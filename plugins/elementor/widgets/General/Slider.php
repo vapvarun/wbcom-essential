@@ -2092,13 +2092,13 @@ class Slider extends \Elementor\Widget_Base {
 		</div>
 			<style type="text/css">
 				<?php
-				$viewport_lg = get_option('elementor_viewport_lg', true);
+				$viewport_lg = '';
 				if (empty($viewport_lg)) {
-					$viewport_lg = 1025;
+					$viewport_lg = 1024;
 				}                              
-				$viewport_md = get_option('elementor_viewport_md', true);
+				$viewport_md = '';
 				if (empty($viewport_md)) {
-					$viewport_md = 768;
+					$viewport_md = 767;
 				} 
 				?>
 				@media screen and (min-width: <?php echo ($viewport_lg + 1) . 'px'; ?>) {
