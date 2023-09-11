@@ -3,13 +3,13 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
-Tested up to: 6.2.0
-Stable tag: 3.6.0
+Tested up to: 6.3.1
+Stable tag: 3.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
 == Description ==
-It will add aditional feature for Elementor to enhance the theme features.
+It will add additional features for Elementor to enhance the theme features.
 
 == Installation ==
 
@@ -18,8 +18,8 @@ It will add aditional feature for Elementor to enhance the theme features.
 
 == Frequently Asked Questions ==
 
-= Is this plugin requires another plugin? =
-This plugin does not require any specific plugin. Although this plugin supports Elementor, if active.
+= Does this plugin require another plugin? =
+This plugin does not require any specific plugin. However, this plugin supports Elementor, if active.
 
 == Changelog ==
 = 3.6.0 =
