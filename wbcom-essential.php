@@ -1,6 +1,6 @@
 <?php
 /**
- * Wbcom essential include plugin files.
+ * Wbcom essential includes plugin files.
  *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 	/**
-	 * Wbcom essential include plugin files.
+	 * Wbcom essential includes plugin files.
 	 *
 	 * A class definition that includes attributes and functions used across both the
 	 * public-facing side of the site and the admin area.
@@ -43,7 +43,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		public static $instance;
 
 		/**
-		 * Disables class cloning and throw an error on object clone.
+		 * Disables class cloning and throws an error on object clone.
 		 *
 		 * The whole idea of the singleton design pattern is that there is a single
 		 * object. Therefore, we don't want the object to be cloned.
@@ -68,7 +68,7 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		}
 
 		/**
-		 * Ensures only one instance of the plugin class is loaded or can be loaded.
+		 * Ensures only one plugin class instance is loaded or can be loaded.
 		 *
 		 * @return Plugin An instance of the class.
 		 * @since 1.0.0
