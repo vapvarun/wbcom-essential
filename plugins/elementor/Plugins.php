@@ -419,10 +419,10 @@ class Plugin {
 			'class' => 'General\Branding',
 		);
 
-		$elements['General/Menu'] = array(
-			'name'  => 'wbcom-registration',
-			'class' => 'General\Menu',
-		);
+		// $elements['General/Menu'] = array(
+		// 	'name'  => 'wbcom-registration',
+		// 	'class' => 'General\Menu',
+		// );
 
 		if ( _is_theme_active( 'REIGN' ) ) {
 			$elements['General/NotificationArea'] = array(
@@ -435,6 +435,7 @@ class Plugin {
 			'name'  => 'wbcom-posts-revolution',
 			'class' => 'General\PostsRevolution',
 		);
+
 		$elements['General/PostsCarousel']   = array(
 			'name'  => 'wbcom-posts-carousel',
 			'class' => 'General\PostsCarousel',
@@ -445,15 +446,15 @@ class Plugin {
 			'class' => 'General\PostsTicker',
 		);
 
-		$elements['General/Posts'] = array(
-			'name'  => 'wbcom-posts',
-			'class' => 'General\Posts',
-		);
+		// $elements['General/Posts'] = array(
+		// 	'name'  => 'wbcom-posts',
+		// 	'class' => 'General\Posts',
+		// );
 
-		$elements['Forms/Login'] = array(
-			'name'  => 'wbcom-login',
-			'class' => 'Forms\Login',
-		);
+		// $elements['Forms/Login'] = array(
+		// 	'name'  => 'wbcom-login',
+		// 	'class' => 'Forms\Login',
+		// );
 
 		$elements['General/LoginForm'] = array(
 			'name'  => 'wbcom-login-form',
