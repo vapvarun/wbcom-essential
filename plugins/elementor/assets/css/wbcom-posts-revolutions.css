@@ -22,6 +22,7 @@
 }
 
 .wbcom-essential-posts-revolution-elementor .wb-columns-2 {
+    width: 100%;
     max-width: calc(50% - 18px);
     margin-right: 36px;
     float: left;
@@ -40,6 +41,25 @@
 .wbcom-essential-posts-revolution-elementor .wb-columns-1 {
     box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
     margin-bottom: 36px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type2 .wb-columns-1 {
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type2 .wb-columns-1.firstpost .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    border-radius: 10px 10px 0 0;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type2 .wb-columns-1.moreposts .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    border-radius: 10px 0 0 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type2 .wb-columns-1.moreposts .wbcom-essential-posts-revolution-elementor-thumbs-container {
+        border-radius: 10px 10px 0 0;
+    }
 }
 
 .wbcom-essential-posts-revolution-elementor .wb-columns-3 {
@@ -345,26 +365,32 @@
 /*--------------------------------------------------------------
 # Style
 --------------------------------------------------------------*/
-.wbcom-essential-posts-revolution-elementor img.wb-megaposts-thumbs {
+.wbcom-essential-posts-revolution-elementor.posts_newsticker_type1 img.wb-megaposts-thumbs {
     width: 180px;
     height: 114px;
 	object-fit: cover;
+}
+
+.wbcom-essential-posts-revolution-elementor img.wb-megaposts-thumbs {
+    width: 100%;
     border: 0;
     border-radius: 0;
     transform: scale(1.0);
     -moz-transform: scale(1);
-    /* Firefox */
     -webkit-transform: scale(1);
-    /* Webkit */
     -o-transform: scale(1);
-    /* Opera */
     -ms-transform: scale(1);
-    /* IE 9 */
     -webkit-transition: all .55s ease-in;
     -moz-transition: all .55s ease-in;
     -ms-transition: all .55s ease-in;
     -o-transition: all .55s ease-in;
     transition: all .55s ease-in;
+}
+
+.posts_newsticker_type1 .mega-thumb {
+	width: 180px;
+	height: 114px;
+	margin-right: 25px;
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type1 img.wb-megaposts-thumbs {
@@ -459,8 +485,14 @@
 # Type 1
 --------------------------------------------------------------*/
 .wbcom-essential-posts-revolution-elementor.posts_type1 .wb_three_fifth {
+    border: 1px solid #e3e3e3;
     box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
     margin-bottom: 36px;
+    border-radius: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type1 .wb_three_fifth .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    border-radius: 10px 10px 0 0;
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type1 .wb-info-left {
@@ -493,6 +525,15 @@
 .wbcom-essential-posts-revolution-elementor .wb_two_fifth.wb_last {
     box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
     margin-bottom: 26px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type1 .wb_two_fifth.wb_last {
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type1 .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    border-radius: 10px 0 0 10px;
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type1 .wb_two_fifth.wb_last {
@@ -644,6 +685,35 @@
 /*--------------------------------------------------------------
 # Type 3
 --------------------------------------------------------------*/
+.wbcom-essential-posts-revolution-elementor.posts_type3 {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-1,
+.wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-2,
+.wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-3 {
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-1 .wbcom-essential-posts-revolution-elementor-thumbs-container,
+.wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-2 .wbcom-essential-posts-revolution-elementor-thumbs-container,
+.wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-3 .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    border-radius: 10px 10px 0 0;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-1 {
+    width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-2,
+    .wbcom-essential-posts-revolution-elementor.posts_type3 .wb-columns-3 {
+        margin-right: 0;
+    }
+}
+
 .wbcom-essential-posts-revolution-elementor.posts_type3 a {
     text-decoration: none;
 }
@@ -698,14 +768,15 @@
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type3 .wb-info-left {
+    width: 100%;
     padding: 25px;
     display: inline-block;
 }
 
-
 /*--------------------------------------------------------------
 # Type 4
 --------------------------------------------------------------*/
+
 .wbcom-essential-posts-revolution-elementor.posts_type4 a {
     text-decoration: none;
 }
@@ -717,6 +788,18 @@
 .wbcom-essential-posts-revolution-elementor.posts_type4 .container-display4 {
     box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
     margin-bottom: 36px;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type4 .container-display4 .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    border-radius: 10px 0 0 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type4 .container-display4 .wbcom-essential-posts-revolution-elementor-thumbs-container {
+        border-radius: 10px 10px 0 0;
+    }
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type4 .container-display4 .wb_last {
@@ -779,11 +862,19 @@
 .wbcom-essential-posts-revolution-elementor.posts_type5 .wb_three_fifth {
     box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
     margin-bottom: 36px;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+}
+
+.wbcom-essential-posts-revolution-elementor.posts_type5 .wb_three_fifth .wbcom-essential-posts-revolution-elementor-thumbs-container {
+    border-radius: 10px 10px 0 0;
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type5 .wb_two_fifth.wb_last {
     margin-bottom: 20px;
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type5 .wb-info-left {
@@ -893,8 +984,25 @@
 /*--------------------------------------------------------------
 # Type 6
 --------------------------------------------------------------*/
+.wbcom-essential-posts-revolution-elementor.posts_type6 {
+    display: flex;
+    flex-flow: wrap;
+}
+
 .wbcom-essential-posts-revolution-elementor.posts_type6>.wb_last {
     padding: 0 2px;
+    width: 50%;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 767px) {
+    .wbcom-essential-posts-revolution-elementor.posts_type6>.wb_last {
+        margin-top: 26px;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type6>.wb_last .wb-info-right {
+        margin-top: 15px;
+    }
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half {
@@ -1007,6 +1115,7 @@
 }
 
 .wbcom-essential-posts-revolution-elementor.posts_type6 .wb_two_half .wb-info-left .wb-category a {
+    display: inline-block;
     transition: background-color 0.2s ease;
     -webkit-transition: background-color 0.2s ease;
     margin: 0 5px 5px 0;
@@ -1132,6 +1241,8 @@
 # Type 7
 --------------------------------------------------------------*/
 .wbcom-essential-posts-revolution-elementor.posts_type7 {
+    display: flex;
+    flex-flow: wrap;
     margin: 0 -24px;
 }
 
@@ -1249,6 +1360,10 @@
     .wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last {
         width: 50% !important;
         float: left !important;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_type7 .wb_two_fifth.wb_last .wb-info-right {
+        margin-top: 10px;
     }
 }
 
@@ -1525,6 +1640,16 @@ ul#wb-newsticker-type1-1 {
     box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
     margin-right: 10px;
     padding-right: 25px;
+    border: 1px solid #e3e3e3;
+}
+
+.posts_newsticker_type1 li:last-child {
+    margin-bottom: 5px;
+}
+
+.posts_newsticker_type1 .wb-category {
+    margin-top: 10px;
+    display: block;
 }
 
 .posts_newsticker_type1 .mega-thumb a:hover img {
@@ -1583,6 +1708,14 @@ ul#wb-newsticker-type1-1 {
     .posts_newsticker_type1 .mega-info .wb-date {
         display: none;
     }
+
+    .posts_newsticker_type1 .wb-category a {
+        font-size: 12px;
+    }
+
+    .posts_newsticker_type1 .mega-title {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -1602,5 +1735,9 @@ ul#wb-newsticker-type1-1 {
 
     .posts_newsticker_type1 .mega-title {
         display: none;
+    }
+
+    .wbcom-essential-posts-revolution-elementor.posts_newsticker_type1 img.wb-megaposts-thumbs {
+        width: 100%;
     }
 }

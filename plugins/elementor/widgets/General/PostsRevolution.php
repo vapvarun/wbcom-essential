@@ -379,7 +379,7 @@ class PostsRevolution extends Widget_Base {
 			array(
 				'label'     => esc_html__( 'Number Posts', 'wbcom-essential' ),
 				'type'      => Controls_Manager::TEXT,
-				'default'   => '10',
+				'default'   => '5',
 				'condition' => array(
 					'wbcom_query_pagination' => 'no',
 				),
@@ -864,7 +864,7 @@ class PostsRevolution extends Widget_Base {
 					$return .= '</div>';
 
 					if ( $count % $columns == '0' ) {
-						// $return .= '<br class="wbclear">';
+						$return .= '<br class="wbclear">';
 					}
 
 					/*
