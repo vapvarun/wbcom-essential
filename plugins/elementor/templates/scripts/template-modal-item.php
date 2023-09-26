@@ -48,6 +48,9 @@
 				<# } #>
 			</div>
 			<img src="{{ thumbnail }}" alt="{{ title }}">
+			<div class="elementor-template-library-template-preview">
+				<i class="eicon-zoom-in-bold" aria-hidden="true"></i>
+			</div>
 		</div>
 	</div>
 </div>
