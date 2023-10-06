@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 6.3.1
-Stable tag: 3.6.1
+Stable tag: 3.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -19,9 +19,32 @@ It will add additional features for Elementor to enhance the theme features.
 == Frequently Asked Questions ==
 
 = Does this plugin require another plugin? =
-This plugin does not require any specific plugin. However, this plugin supports Elementor, if active.
+This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
 
 == Changelog ==
+= 3.7.0 =
+* Fix: Managed wbcom template popup dark mode and popup UI
+* Fix: (#1193) Managed post-revolution widget layouts UI
+* Fix: Hide Menu, Posts and Login widgets
+* Fix: (#1193) Managed slider responsive options
+* Fix: (#1193) Managed post-carousel responsive options
+* Fix: (#1193) Site logo warning fixes
+* Fix: (#1193) Managed site branding alignment
+* Fix: (#1193) Managed group carousel pause on hover
+* Fix: (#1193) Managed post-revolution pagination
+* Fix: (#1193) Managed post-slider responsive options
+* Fix: (#1193) Update price table horizontal text style
+* Fix: (#1193) Managed team carousel video visible
+* Fix: (#1193) Managed team carousel widget border
+* Fix: (#1193) Added posts carousel heading and content color controls
+* Fix: (#1193) Managed timeline widget data margin
+* Fix: (#1193) Added dashboard intro content alignment control
+* Fix: (#1193) Added imaginative menu widget submenu border-radius control
+* Fix: (#1193) Managed profile completion widget alignment
+* Fix: (#1193) Managed header bar widget border
+* Fix: (#1193) Managed menu widget alignment issue
+* Fix: (#1157) Undefined function warning with bb platform
+
 = 3.6.0 =
 * Fix: (#1102) Required parameter warning fixes
 * Enhancement: (#1117) Managed grid columns four with bb platform
