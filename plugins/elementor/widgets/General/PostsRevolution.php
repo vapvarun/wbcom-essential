@@ -834,6 +834,9 @@ class PostsRevolution extends Widget_Base {
 						$return .= '<div class="wb-info-right wb_two_third wb_last">';
 						$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
 						$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+						if ( $wbcom_post_display_excerpt == 'true' ) {
+							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+						}
 						$return .= '</div><div class="wbclear"></div>';
 
 						$return .= '</div>';
