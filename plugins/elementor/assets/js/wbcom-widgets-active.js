@@ -176,16 +176,12 @@
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-related-product-custom.default', WidgetProductSliderHandler);
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-related-product-custom.default', WidgetWoolentorTooltipHandler);
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-related-product-custom.default', WidgetThumbnaisImagesHandler);
-    
-            elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-product-video-gallery.default', WidgetProductVideoGallery );
             
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-brand-logo.default', WidgetProductSliderHandler );
-            elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-faq.default', WoolentorAccordion );
             
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-category-grid.default', WidgetProductSliderHandler );
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-testimonial.default', WidgetProductSliderHandler );
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-product-grid.default', WidgetProductSliderHandler );
-            elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-onepage-slider.default', WoolentorOnePageSlider );
     
             elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-customer-veview.default', WidgetProductSliderHandler );
     

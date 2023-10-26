@@ -332,7 +332,6 @@ class Plugin {
 			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
 			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
 		}
-
 	}
 
 	/**
@@ -420,8 +419,8 @@ class Plugin {
 		);
 
 		// $elements['General/Menu'] = array(
-		// 	'name'  => 'wbcom-registration',
-		// 	'class' => 'General\Menu',
+		// 'name'  => 'wbcom-registration',
+		// 'class' => 'General\Menu',
 		// );
 
 		if ( _is_theme_active( 'REIGN' ) ) {
@@ -436,7 +435,7 @@ class Plugin {
 			'class' => 'General\PostsRevolution',
 		);
 
-		$elements['General/PostsCarousel']   = array(
+		$elements['General/PostsCarousel'] = array(
 			'name'  => 'wbcom-posts-carousel',
 			'class' => 'General\PostsCarousel',
 		);
@@ -447,13 +446,13 @@ class Plugin {
 		);
 
 		// $elements['General/Posts'] = array(
-		// 	'name'  => 'wbcom-posts',
-		// 	'class' => 'General\Posts',
+		// 'name'  => 'wbcom-posts',
+		// 'class' => 'General\Posts',
 		// );
 
 		// $elements['Forms/Login'] = array(
-		// 	'name'  => 'wbcom-login',
-		// 	'class' => 'Forms\Login',
+		// 'name'  => 'wbcom-login',
+		// 'class' => 'Forms\Login',
 		// );
 
 		$elements['General/LoginForm'] = array(
@@ -595,6 +594,15 @@ class Plugin {
 		wp_enqueue_style( 'wbcom-essential-elementor-css' );
 
 		wp_register_style(
+			'wbcom-animation-icons',
+			WBCOM_ESSENTIAL_ASSETS_URL . 'css/animation.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+
+		wp_enqueue_style( 'wbcom-animation-icons' );
+
+		wp_register_style(
 			'wbcom-essential-icons',
 			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wb-icons.css',
 			array(),
@@ -603,15 +611,13 @@ class Plugin {
 
 		wp_enqueue_style( 'wbcom-essential-icons' );
 
-		//Localize Scripts
-        $localizeargs = array(
-            'woolentorajaxurl' => admin_url( 'admin-ajax.php' ),
-            'ajax_nonce'       => wp_create_nonce( 'woolentor_psa_nonce' ),
-        );
-        wp_localize_script( 'wbcom-widgets-scripts', 'woolentor_addons', $localizeargs );
-
+		// Localize Scripts.
+		$localizeargs = array(
+			'woolentorajaxurl' => admin_url( 'admin-ajax.php' ),
+			'ajax_nonce'       => wp_create_nonce( 'woolentor_psa_nonce' ),
+		);
+		wp_localize_script( 'wbcom-widgets-scripts', 'woolentor_addons', $localizeargs );
 	}
-
 }
 
 return Plugin::get_instance();

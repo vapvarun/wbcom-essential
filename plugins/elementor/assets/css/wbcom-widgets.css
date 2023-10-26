@@ -324,14 +324,29 @@
 
 .product-item a.button.added::after,
 .product-item a.button.loading::after {
-    color: #fff;
-    content: "";
+    color: inherit;
+    content: '\e838';
     display: block;
-    font-family: "fontawesome";
-    margin: 0 auto;
+    font-family: "wb-icons";
+    font-weight: 900;
+    height: 100%;
+    left: 0;
     position: absolute;
     text-indent: 0;
-    top: 5px;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 2s infinite linear;
+}
+
+.product-item a.button.loading::before {
+    display: none;
+}
+
+.product-item .product-inner .actions.style_two a.loading {
+    text-indent: -999999px;
 }
 
 /* Tab Menu */
