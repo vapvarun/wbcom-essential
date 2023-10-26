@@ -566,12 +566,12 @@ class Plugin {
 			'class' => 'General\Shape',
 		);
 
-		/*
-		$elements['Forms/Registration'] = array(
-			'name'  => 'wbcom-registration',
-			'class' => 'Forms\Registration',
-		);
-		*/
+		if ( class_exists( 'WooCommerce' ) ) {
+			$elements['WooCommerce/ProductTab'] = array(
+				'name'  => 'wbcom-product-tab',
+				'class' => 'WooCommerce\ProductTab',
+			);
+		}
 
 		foreach ( $elements as &$element ) {
 			$element['template_base_path']   = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH;
@@ -602,6 +602,13 @@ class Plugin {
 		);
 
 		wp_enqueue_style( 'wbcom-essential-icons' );
+
+		//Localize Scripts
+        $localizeargs = array(
+            'woolentorajaxurl' => admin_url( 'admin-ajax.php' ),
+            'ajax_nonce'       => wp_create_nonce( 'woolentor_psa_nonce' ),
+        );
+        wp_localize_script( 'wbcom-widgets-scripts', 'woolentor_addons', $localizeargs );
 
 	}
 
