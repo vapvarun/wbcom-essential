@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'wb-icons';
-  src: url('../icons/wb-icons.eot?82870068');
-  src: url('../icons/wb-icons.eot?82870068#iefix') format('embedded-opentype'),
-       url('../icons/wb-icons.woff2?82870068') format('woff2'),
-       url('../icons/wb-icons.woff?82870068') format('woff'),
-       url('../icons/wb-icons.ttf?82870068') format('truetype'),
-       url('../icons/wb-icons.svg?82870068#wb-icons') format('svg');
+  src: url('../icons/wb-icons.eot?48614116');
+  src: url('../icons/wb-icons.eot?48614116#iefix') format('embedded-opentype'),
+       url('../icons/wb-icons.woff2?48614116') format('woff2'),
+       url('../icons/wb-icons.woff?48614116') format('woff'),
+       url('../icons/wb-icons.ttf?48614116') format('truetype'),
+       url('../icons/wb-icons.svg?48614116#wb-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'wb-icons';
-    src: url('../font/wb-icons.svg?82870068#wb-icons') format('svg');
+    src: url('../font/wb-icons.svg?48614116#wb-icons') format('svg');
   }
 }
 */
@@ -54,13 +54,16 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
+.wb-icon-check-circle:before { content: '\e800'; } /* '' */
 .wb-icon-bell:before { content: '\e801'; } /* '' */
 .wb-icon-search:before { content: '\e802'; } /* '' */
 .wb-icon-shopping-cart:before { content: '\e803'; } /* '' */
 .wb-icon-envelope:before { content: '\e804'; } /* '' */
+.wb-icon-check:before { content: '\e805'; } /* '' */
 .wb-icon-angle-down:before { content: '\e807'; } /* '' */
 .wb-icon-angle-up:before { content: '\e808'; } /* '' */
 .wb-icon-angle-right:before { content: '\e809'; } /* '' */
 .wb-icon-angle-left:before { content: '\e80a'; } /* '' */
+.wb-icon-shopping-bag:before { content: '\e80b'; } /* '' */
 .wb-icon-reply:before { content: '\e80c'; } /* '' */
 .wb-icon-spin5:before { content: '\e838'; } /* '' */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Elementor widget dashboard intro.
+ * Elementor widget product tab.
  *
  * @since      1.0.0
  *
@@ -39,10 +39,6 @@ class ProductTab extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		if ( ! wp_style_is( 'font-awesome', 'enqueued' ) ) {
-			wp_enqueue_style( 'font-awesome', '//use.fontawesome.com/releases/v5.5.0/css/all.css', array(), WBCOM_ESSENTIAL_VERSION );
-		}
-
 		wp_register_style( 'wbflexboxgrid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbflexboxgrid.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array(), WBCOM_ESSENTIAL_VERSION );
@@ -78,8 +74,6 @@ class ProductTab extends \Elementor\Widget_Base {
 	public function get_style_depends() {
 		return array(
 			'wbflexboxgrid',
-			// 'font-awesome',
-			// 'simple-line-icons',
 			'wb-lib-slick',
 			'wbcom-widgets',
 		);

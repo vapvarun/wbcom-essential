@@ -566,51 +566,6 @@ li.wbcom-cart .button:before {
     height: 100% !important;
 }
 
-.wb-products .wb-product .wb-product-inner .wb-product-countdown-wrap {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    bottom: 0;
-}
-
-.wb-products .wb-product .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown {
-    max-width: 370px;
-    padding: 8px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin: auto;
-}
-
-.wb-products .wb-product .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 25%;
-    -ms-flex: 1 0 25%;
-    flex: 1 0 25%;
-    max-width: 25%;
-    padding: 2px;
-}
-
-.wb-products .wb-product .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner {
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.75);
-    text-align: center;
-}
-
-.wb-products .wb-product .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner h3 {
-    font-size: 14px;
-    font-weight: 700;
-    margin: 0 0 2px;
-    color: #ffffff;
-}
-
-.wb-products .wb-product .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner p {
-    font-size: 12px;
-    color: #ffffff;
-    margin: 0;
-}
-
 .wb-products .wb-product .wb-product-inner .wb-product-image-wrap {
     position: relative;
     overflow: hidden;
@@ -901,9 +856,9 @@ li.wbcom-cart .button:before {
 
 .wbcom-compare.compare::before,
 .wb-product-action ul li.wbcom-cart a::before {
-    content: "";
+    content: '\e838';
     display: flex;
-    font-family: simple-line-icons !important;
+    font-family: "wb-icons" !important;
     font-size: 20px;
     height: 100%;
     justify-content: center;
@@ -915,7 +870,7 @@ li.wbcom-cart .button:before {
 }
 
 .wb-product-action ul li.wbcom-cart a::before {
-    content: "";
+    content: '\e80b';
     font-weight: normal;
 }
 
@@ -928,7 +883,7 @@ li.wbcom-cart .button:before {
 
 .wb-product-action ul li.wbcom-cart a.wc-forward::before,
 .wbcom-compare.compare.added::before {
-    content: "";
+    content: "\e800";
 }
 
 .wb-products.woocommerce a.added_to_cart {
@@ -1008,12 +963,12 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-action ul li a:hover {
-    color: #dc9a0e;
+    color: #1d76da;
 }
 
 .wb-product-action .yith-wcwl-wishlistaddedbrowse a,
 .wb-product-action .yith-wcwl-wishlistexistsbrowse a {
-    color: #dc9a0e !important;
+    color: #1d76da !important;
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-action ul li a:hover .wb-product-action-tooltip,
@@ -1075,7 +1030,7 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-categories a:hover {
-    color: #dc9a0e;
+    color: #1d76da;
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-title {
@@ -1099,7 +1054,7 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-title a:hover {
-    color: #dc9a0e;
+    color: #1d76da;
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-price {
@@ -1184,144 +1139,12 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-ratting-wrap .wb-product-ratting .wb-product-user-ratting i {
-    color: #dc9a0e;
-}
-
-.wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-countdown-wrap {
-    position: static;
-    display: none;
-    margin-top: 20px;
-}
-
-.wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-countdown-wrap .wb-product-countdown {
-    padding: 0;
-    margin: -2px;
+    color: #1d76da;
 }
 
 .wb-products .wb-product .wb-product-inner:hover {
     -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.wb-products .wb-product.wb-product-countdown-fill .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown {
-    background-color: rgba(0, 0, 0, 0.75);
-}
-
-.wb-products .wb-product.wb-product-countdown-fill .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner {
-    background-color: transparent;
-    padding: 0;
-}
-
-.wb-products .wb-product.wb-product-countdown-fill .wb-product-inner .wb-product-content .wb-product-countdown-wrap {
-    display: block;
-    margin-bottom: -30px;
-    margin-left: -30px;
-    margin-right: -30px;
-    margin-top: 30px;
-    width: auto;
-}
-
-.wb-products .wb-product.wb-product-countdown-fill .wb-product-inner .wb-product-content .wb-product-countdown-wrap .wb-product-countdown .cd-single {
-    padding: 10px 5px;
-}
-
-.wb-products .wb-product.wb-product-countdown-fill.wb-product-countdown-left .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner,
-.wb-products .wb-product.wb-product-countdown-fill.wb-product-countdown-right .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner {
-    padding: 5px 3px;
-}
-
-.wb-products .wb-product.wb-product-countdown-left .wb-product-inner .wb-product-countdown-wrap {
-    bottom: auto;
-    top: 10px;
-    width: auto;
-    height: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-.wb-products .wb-product.wb-product-countdown-left .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    height: auto;
-}
-
-.wb-products .wb-product.wb-product-countdown-left .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single {
-    max-width: 100%;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 auto;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-}
-
-.wb-products .wb-product.wb-product-countdown-left .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner {
-    padding: 7px 10px;
-}
-
-.wb-products .wb-product.wb-product-countdown-right .wb-product-inner .wb-product-countdown-wrap {
-    bottom: auto;
-    top: 10px;
-    left: auto;
-    right: 0;
-    width: auto;
-    height: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-.wb-products .wb-product.wb-product-countdown-right .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    height: auto;
-}
-
-.wb-products .wb-product.wb-product-countdown-right .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single {
-    max-width: 100%;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 auto;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-}
-
-.wb-products .wb-product.wb-product-countdown-right .wb-product-inner .wb-product-countdown-wrap .wb-product-countdown .cd-single .cd-single-inner {
-    padding: 7px 10px;
-}
-
-.wb-products .wb-product.wb-product-countdown-middle .wb-product-inner .wb-product-countdown-wrap {
-    bottom: auto;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-.wb-products .wb-product.wb-product-countdown-content-bottom .wb-product-inner .wb-product-countdown-wrap {
-    display: none;
-}
-
-.wb-products .wb-product.wb-product-countdown-content-bottom .wb-product-inner .wb-product-content .wb-product-countdown-wrap {
-    display: block;
-}
-
-.wb-products .wb-product.wb-product-countdown-content-bottom .wb-product-inner .wb-product-content .wb-product-countdown-wrap .wb-product-countdown .cd-single {
-    padding: 10px 5px;
 }
 
 .wb-products .wb-product.wb-product-action-right .wb-product-inner .wb-product-action {
@@ -1571,11 +1394,11 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product.wb-product-action-style-2 .wb-product-inner .wb-product-action ul li:first-child {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .wb-products .wb-product.wb-product-action-style-2 .wb-product-inner .wb-product-action ul li:last-child {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .wb-products .wb-product.wb-product-action-style-2.wb-product-action-bottom-content .wb-product-inner .wb-product-action ul li:first-child,
@@ -1603,11 +1426,11 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product.wb-product-action-style-2.wb-product-action-bottom .wb-product-inner .wb-product-action ul li:first-child {
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .wb-products .wb-product.wb-product-action-style-2.wb-product-action-bottom .wb-product-inner .wb-product-action ul li:last-child {
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .wb-products .wb-product.wb-product-action-style-2.wb-product-action-middle .wb-product-inner .wb-product-action ul li {
@@ -1618,11 +1441,11 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product.wb-product-action-style-2.wb-product-action-middle .wb-product-inner .wb-product-action ul li:first-child {
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .wb-products .wb-product.wb-product-action-style-2.wb-product-action-middle .wb-product-inner .wb-product-action ul li:last-child {
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .wb-products .wb-product.wb-product-action-style-2.wb-product-action-on-hover .wb-product-inner .wb-product-action ul {
@@ -5536,7 +5359,7 @@ only screen and (max-width: 767px) {
 
 .wb-products .wl_single-product-item .product-content .product-content-top .reading .top-rated-rating .wb-product-ratting .wb-product-user-ratting i,
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-ratting-wrap .wb-product-ratting .wb-product-user-ratting i {
-    color: #dc9a0e;
+    color: #1d76da;
 }
 
 .wb-products .wl_single-product-item .product-content .product-content-top .reading .top-rated-rating .wb-product-ratting i,
@@ -6245,7 +6068,7 @@ div[class*="wbcom-single-select-drop"] .select2-results__option::before {
 }
 
 .wbcom-recently-view-title a:hover {
-    color: #dc9a0e;
+    color: #1d76da;
 }
 
 .wbcom-recently-view-price span {

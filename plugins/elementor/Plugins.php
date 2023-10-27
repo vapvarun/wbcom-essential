@@ -566,6 +566,11 @@ class Plugin {
 		);
 
 		if ( class_exists( 'WooCommerce' ) ) {
+			$elements['WooCommerce/UniversalProduct'] = array(
+				'name'  => 'wbcom-universal-product',
+				'class' => 'WooCommerce\UniversalProduct',
+			);
+
 			$elements['WooCommerce/ProductTab'] = array(
 				'name'  => 'wbcom-product-tab',
 				'class' => 'WooCommerce\ProductTab',
