@@ -67,7 +67,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 	 * Get Icon.
 	 */
 	public function get_icon() {
-		return 'eicon-comments';
+		return 'eicon-review';
 	}
 
 	/**
@@ -106,7 +106,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 	 * Get keywords.
 	 */
 	public function get_keywords() {
-		return array( 'woolentor', 'review', 'testimonial', 'product review', 'customer review', 'client say' );
+		return array( 'review', 'testimonial', 'product review', 'customer review', 'client say' );
 	}
 
 	/**
@@ -279,7 +279,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 						'10' => esc_html__( 'Ten', 'wbcom-essential' ),
 					),
 					'label_block'  => true,
-					'prefix_class' => 'wbt-columns%s-',
+					'prefix_class' => 'wb-columns%s-',
 				)
 			);
 
@@ -320,7 +320,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 						'no_gutters!' => 'yes',
 					),
 					'selectors'  => array(
-						'{{WRAPPER}} .wbt-row > [class*="col-"]' => 'padding: 0  {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} .wb-row > [class*="col-"]' => 'padding: 0  {{SIZE}}{{UNIT}};',
 					),
 				)
 			);
@@ -350,7 +350,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 						'no_gutters!' => 'yes',
 					),
 					'selectors'  => array(
-						'{{WRAPPER}} .wbt-row > [class*="col-"]' => 'margin-bottom:{{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} .wb-row > [class*="col-"]' => 'margin-bottom:{{SIZE}}{{UNIT}};',
 					),
 				)
 			);
@@ -1139,9 +1139,9 @@ class WcTestimonial extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$column   = $this->get_settings_for_display( 'column' );
 
-		$collumval = 'wbt-col-1';
+		$collumval = 'wb-col-1';
 		if ( $column != '' ) {
-			$collumval = 'wbt-col-' . $column;
+			$collumval = 'wb-col-' . $column;
 		}
 
 		// Generate review.
@@ -1191,10 +1191,10 @@ class WcTestimonial extends \Elementor\Widget_Base {
 			$slider_settings = '';
 		}
 
-		$this->add_render_attribute( 'area_attr', 'class', 'wbt-row wbt-testimonial-style-' . $settings['testimonial_layout'] );
+		$this->add_render_attribute( 'area_attr', 'class', 'wb-row wb-testimonial-style-' . $settings['testimonial_layout'] );
 
 		if ( $settings['no_gutters'] === 'yes' ) {
-			$this->add_render_attribute( 'area_attr', 'class', 'wlno-gutters' );
+			$this->add_render_attribute( 'area_attr', 'class', 'wb-gutters' );
 		}
 		if ( $settings['slider_on'] === 'yes' ) {
 			$this->add_render_attribute( 'area_attr', 'class', 'product-slider' );

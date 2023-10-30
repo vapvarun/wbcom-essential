@@ -6,19 +6,19 @@
     padding: 0 15px;
 }
 
-.wbcom-testimonial-style-4 .wb-single-testimonial-wrap {
+.wb-testimonial-style-4 .wb-single-testimonial-wrap {
     border: 1px solid #e7e9ec;
     padding: 50px 30px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .wbcom-testimonial-style-4 .wb-single-testimonial-wrap {
+    .wb-testimonial-style-4 .wb-single-testimonial-wrap {
         padding: 50px 12px;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    .wbcom-testimonial-style-4 .wb-single-testimonial-wrap {
+    .wb-testimonial-style-4 .wb-single-testimonial-wrap {
         padding: 50px 20px;
     }
 }
@@ -93,7 +93,6 @@
 
 .wb-single-testimonial-wrap .wb-client-info {
     align-items: center;
-    background-color: #fff;
     display: flex;
     float: left;
     margin-left: 32px;
@@ -101,6 +100,10 @@
     padding-right: 18px;
     position: relative;
     z-index: 99;
+}
+
+.product-slider .wb-single-testimonial-wrap .wb-client-info {
+    width: 100%;
 }
 
 @media only screen and (max-width: 767px) {
@@ -112,6 +115,10 @@
 
 .wb-single-testimonial-wrap .wb-client-info img {
     max-width: 100%;
+}
+
+.product-slider .slick-slide .wb-single-testimonial-wrap img {
+    width: auto;
 }
 
 @media only screen and (max-width: 767px) {
@@ -205,8 +212,8 @@
     display: block;
 }
 
-.wbcom-testimonial-style-2 .wb-single-testimonial-wrap,
-.wbcom-testimonial-style-4 .wb-single-testimonial-wrap {
+.wb-testimonial-style-2 .wb-single-testimonial-wrap,
+.wb-testimonial-style-4 .wb-single-testimonial-wrap {
     text-align: center;
 }
 
@@ -350,41 +357,41 @@
 }
 
 /* Testimonial Style Two */
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-2 {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-2 {
     display: flex;
     gap: 20px;
     flex-flow: inherit;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-thumb {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-thumb {
     overflow: hidden;
     flex: 0 0 100px;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .wl-has-thumb .woolentor-testimonial-thumb {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .wl-has-thumb .woolentor-testimonial-thumb {
     overflow: hidden;
     flex: 0 0 100px;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-thumb img {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-thumb img {
     width: 100%;
     height: auto;
     border-radius: 50%;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-content {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-content {
     width: 100%;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .wl-has-thumb .woolentor-testimonial-content {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .wl-has-thumb .woolentor-testimonial-content {
     width: 100%;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .wl-has-thumb .woolentor-testimonial-content {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .wl-has-thumb .woolentor-testimonial-content {
     width: calc(100% - 100px);
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-rating {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-rating {
     line-height: 1;
     display: flex;
     width: 90px;
@@ -392,23 +399,23 @@
     margin-bottom: 15px;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-rating-inner {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-rating-inner {
     line-height: 1;
     display: flex;
     overflow: hidden;
     width: 100%;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-rating-star {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-rating-star {
     line-height: 1;
     flex: 1 0 auto;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-rating-star:not(:last-child) {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-rating-star:not(:last-child) {
     margin-right: 5px;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-text {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-text {
     font-size: 18px;
     font-weight: 500;
     font-style: italic;
@@ -417,7 +424,7 @@
     color: #595959;
 }
 
-:is(.wbcom-testimonial-style-5, .wbcom-testimonial-style-6) .woolentor-testimonial-name {
+:is(.wb-testimonial-style-5, .wb-testimonial-style-6) .woolentor-testimonial-name {
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 0;

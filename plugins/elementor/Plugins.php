@@ -585,6 +585,11 @@ class Plugin {
 				'name'  => 'wbcom-wc-testimonial',
 				'class' => 'WooCommerce\WcTestimonial',
 			);
+
+			$elements['WooCommerce/CustomerReview'] = array(
+				'name'  => 'wbcom-customer-review',
+				'class' => 'WooCommerce\CustomerReview',
+			);
 		}
 
 		foreach ( $elements as &$element ) {

@@ -143,7 +143,7 @@ function wbcom_product_query( $query_args = array() ) {
 
 	// Tex Query
 	//
-	// Categories wise
+	// Categories wise.
 	if ( isset( $query_args['categories'] ) ) {
 		$field_name  = 'slug';
 		$tax_query[] = array(
@@ -154,7 +154,7 @@ function wbcom_product_query( $query_args = array() ) {
 		);
 	}
 
-	// Tag wise
+	// Tag wise.
 	if ( isset( $query_args['tags'] ) ) {
 		$field_name  = 'slug';
 		$tax_query[] = array(
@@ -165,7 +165,7 @@ function wbcom_product_query( $query_args = array() ) {
 		);
 	}
 
-	// Feature Product
+	// Feature Product.
 	if ( $query_args['product_type'] == 'featured' ) {
 		$tax_query[] = array(
 			'taxonomy' => 'product_visibility',
@@ -175,7 +175,7 @@ function wbcom_product_query( $query_args = array() ) {
 		);
 	}
 
-	// Hide Hidden Item
+	// Hide Hidden Item.
 	if ( isset( $query_args['hidden'] ) && $query_args['hidden'] === true ) {
 		$tax_query[] = array(
 			'taxonomy'         => 'product_visibility',
@@ -186,7 +186,7 @@ function wbcom_product_query( $query_args = array() ) {
 		);
 	}
 
-	// Meta Query
+	// Meta Query.
 	/**
 	 * [$hide_out_of_stock] Check ( WooCommerce > Settings > Products > Inventory )
 	 */
@@ -208,7 +208,7 @@ function wbcom_product_query( $query_args = array() ) {
 		'tax_query'           => $tax_query,
 	);
 
-	// Product Type Check
+	// Product Type Check.
 	switch ( $query_args['product_type'] ) {
 
 		case 'sale':
@@ -335,7 +335,7 @@ function wbcom_get_product_category_list( $id = null, $taxonomy = 'product_cat',
 	}
 }
 
-// Customize rating html
+// Customize rating html.
 if ( ! function_exists( 'wbcom_wc_get_rating_html' ) ) {
 	function wbcom_wc_get_rating_html( $block = '' ) {
 		if ( get_option( 'woocommerce_enable_review_rating' ) === 'no' ) {
