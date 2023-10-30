@@ -575,6 +575,11 @@ class Plugin {
 				'name'  => 'wbcom-product-tab',
 				'class' => 'WooCommerce\ProductTab',
 			);
+
+			$elements['WooCommerce/AddBanner'] = array(
+				'name'  => 'wbcom-add-banner',
+				'class' => 'WooCommerce\AddBanner',
+			);
 		}
 
 		foreach ( $elements as &$element ) {
