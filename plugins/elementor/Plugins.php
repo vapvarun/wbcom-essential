@@ -580,6 +580,11 @@ class Plugin {
 				'name'  => 'wbcom-add-banner',
 				'class' => 'WooCommerce\AddBanner',
 			);
+
+			$elements['WooCommerce/WcTestimonial'] = array(
+				'name'  => 'wbcom-wc-testimonial',
+				'class' => 'WooCommerce\WcTestimonial',
+			);
 		}
 
 		foreach ( $elements as &$element ) {

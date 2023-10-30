@@ -5,11 +5,11 @@
     * Product Slider 
     */
     var WidgetProductSliderHandler = function ($scope, $) {
-    
+
         var slider_elem = $scope.find('.product-slider').eq(0);
 
         if (slider_elem.length > 0) {
-
+            
             slider_elem[0].style.display='block';
 
             var settings = slider_elem.data('settings');
@@ -155,26 +155,8 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-universal-product.default', WidgetProductSliderHandler);
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-universal-product.default', WidgetWoolentorTooltipHandler);
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-universal-product.default', WidgetThumbnaisImagesHandler);
-
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-cross-sell-product-custom.default', WidgetProductSliderHandler);
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-cross-sell-product-custom.default', WidgetWoolentorTooltipHandler);
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-cross-sell-product-custom.default', WidgetThumbnaisImagesHandler);
-
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-upsell-product-custom.default', WidgetProductSliderHandler);
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-upsell-product-custom.default', WidgetWoolentorTooltipHandler);
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-upsell-product-custom.default', WidgetThumbnaisImagesHandler);
-
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-related-product-custom.default', WidgetProductSliderHandler);
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-related-product-custom.default', WidgetWoolentorTooltipHandler);
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-related-product-custom.default', WidgetThumbnaisImagesHandler);
         
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-brand-logo.default', WidgetProductSliderHandler );
-        
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-category-grid.default', WidgetProductSliderHandler );
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-testimonial.default', WidgetProductSliderHandler );
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-product-grid.default', WidgetProductSliderHandler );
-
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-customer-veview.default', WidgetProductSliderHandler );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-wc-testimonial.default', WidgetProductSliderHandler );
 
     });
 

@@ -2,7 +2,7 @@
 /**
  * Elementor widget product tab.
  *
- * @since      1.0.0
+ * @since      3.7.1
  *
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/plugins/elementor/widget/woocommerce
@@ -20,9 +20,9 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
 
 /**
- * Dashboard Intro.
+ * Product Tab.
  *
- * @since      1.0.0
+ * @since      3.7.1
  *
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/plugins/elementor/widget/woocommerce
@@ -1622,7 +1622,7 @@ class ProductTab extends \Elementor\Widget_Base {
 				?>
 
 			<?php else : ?>
-				<div class="wb-row">
+				<div class="wb-row product-slider-row">
 					<?php
 						$slider_main_div_style = '';
 					if ( $proslider == 'yes' ) {

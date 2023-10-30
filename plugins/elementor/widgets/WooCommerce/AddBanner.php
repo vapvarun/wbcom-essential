@@ -2,7 +2,7 @@
 /**
  * Elementor widget add banner.
  *
- * @since      1.0.0
+ * @since      3.7.1
  *
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/plugins/elementor/widget/woocommerce
@@ -20,9 +20,9 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Image_Size;
 
 /**
- * Dashboard Intro.
+ * Add Banner.
  *
- * @since      1.0.0
+ * @since      3.7.1
  *
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/plugins/elementor/widget/woocommerce

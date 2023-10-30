@@ -2,7 +2,7 @@
 /**
  * Elementor widget universal product.
  *
- * @since      1.0.0
+ * @since      3.7.1
  *
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/plugins/elementor/widget/woocommerce
@@ -22,9 +22,9 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 
 /**
- * Dashboard Intro.
+ * Universal Product.
  *
- * @since      1.0.0
+ * @since      3.7.1
  *
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/plugins/elementor/widget/woocommerce
