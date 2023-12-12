@@ -328,7 +328,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 									foreach ( $notifications as $notification ) {
 										?>
 										<li><?php echo $notification; ?></li>
-													   <?php
+											<?php
 									}
 									?>
 									<li class="rg-view-all">
@@ -346,7 +346,11 @@ class NotificationArea extends \Elementor\Widget_Base {
 				$current_user = wp_get_current_user();
 
 				if ( $current_user || ( $current_user instanceof WP_User ) ) {
-					$user_link = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( get_current_user_id() ) : '#';
+					if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
+						$user_link = function_exists( 'bp_members_get_user_url' ) ? bp_members_get_user_url( get_current_user_id() ) : '#';
+					} else {
+						$user_link = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( get_current_user_id() ) : '#';
+					}
 					echo '<div class="user-link-wrap">';
 					echo '<a class="user-link" href="' . $user_link . '">';
 					?>

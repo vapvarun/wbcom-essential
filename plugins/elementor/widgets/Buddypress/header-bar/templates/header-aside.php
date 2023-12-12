@@ -28,7 +28,11 @@ $template    = get_option( 'template' );
 				<?php
 				global $current_user;
 				$current_user = wp_get_current_user();
-				$user_link    = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( $current_user->ID ) : get_author_posts_url( $current_user->ID );
+				if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
+					$user_link = function_exists( 'bp_members_get_user_url' ) ? bp_members_get_user_url( $current_user->ID ) : get_author_posts_url( $current_user->ID );
+				} else {
+					$user_link = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( $current_user->ID ) : get_author_posts_url( $current_user->ID );
+				}
 				$display_name = function_exists( 'bp_core_get_user_displayname' ) ? bp_core_get_user_displayname( $current_user->ID ) : $current_user->display_name;
 				?>
 

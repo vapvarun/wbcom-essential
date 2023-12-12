@@ -101,7 +101,11 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 							if ( empty( $group_name ) ) {
 								$group_link = 'javascript:void(0);';
 							} else {
-								$group_link = bp_get_group_permalink( groups_get_group( $group_id ) );
+								if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
+									$group_link = bp_get_group_url( groups_get_group( $group_id ) );
+								} else {
+									$group_link = bp_get_group_permalink( groups_get_group( $group_id ) );
+								}
 							}
 							$group_avatar = bp_core_fetch_avatar(
 								array(
@@ -284,9 +288,15 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								<?php
 								if ( count( $other_recipients ) > 1 ) {
 									?>
-									<a href="<?php echo esc_url( bp_core_get_user_domain( $messages_template->thread->last_sender_id ) ); ?>">
-										<?php bp_message_thread_avatar(); ?>
-									</a>
+									<?php if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) : ?>
+										<a href="<?php echo esc_url( bp_members_get_user_url( $messages_template->thread->last_sender_id ) ); ?>">
+											<?php bp_message_thread_avatar(); ?>
+										</a>
+									<?php else : ?>
+										<a href="<?php echo esc_url( bp_core_get_user_domain( $messages_template->thread->last_sender_id ) ); ?>">
+											<?php bp_message_thread_avatar(); ?>
+										</a>
+									<?php endif; ?>
 									<?php
 								} else {
 									$recipient = ! empty( $first_three[0] ) ? $first_three[0] : $currentuser;

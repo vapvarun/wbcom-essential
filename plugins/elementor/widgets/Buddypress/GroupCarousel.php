@@ -424,16 +424,26 @@ class GroupCarousel extends \Elementor\Widget_Base {
 									<div class="item-container">
 										<div class="item-avatar">
 											<figure class="swiper-slide-inner">
-												<a class="group-avatar" href="<?php bp_group_permalink(); ?>">
+												<?php if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) : ?>
+													<a class="group-avatar" href="<?php bp_group_url(); ?>">
 														<?php bp_group_avatar( array( 'class' => 'swiper-slide-image' ) ); ?>
-												</a>
+													</a>
+												<?php else : ?>
+													<a class="group-avatar" href="<?php bp_group_permalink(); ?>">
+														<?php bp_group_avatar( array( 'class' => 'swiper-slide-image' ) ); ?>
+													</a>
+												<?php endif; ?>
 											</figure>
 										</div>
 										<div class="item-card">
 											<div class="item">
 												<div class="item-meta">
 													<h5 class="item-title">
-														<a href="<?php bp_group_permalink(); ?>"><?php bp_group_link(); ?></a>
+														<?php if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) : ?>
+															<a href="<?php bp_group_url(); ?>"><?php bp_group_link(); ?></a>
+														<?php else : ?>
+															<a href="<?php bp_group_permalink(); ?>"><?php bp_group_link(); ?></a>
+														<?php endif; ?>
 													</h5>
 												</div>
 											</div>

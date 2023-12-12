@@ -589,9 +589,11 @@ class GroupsLists extends \Elementor\Widget_Base {
 					<?php if ( $settings['switch_more'] ) : ?>
 						<div class="wbcom-essential-block-header__extra push-right">
 							<?php if ( '' !== $settings['groups_link_text'] ) { ?>
-								<a href="<?php bp_groups_directory_permalink(); ?>"
-								class="count-more"><?php echo esc_html( $settings['groups_link_text'] ); ?><i
-											class="eicon-chevron-right"></i></a>
+								<?php if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) : ?>
+									<a href="<?php bp_groups_directory_url(); ?>" class="count-more"><?php echo esc_html( $settings['groups_link_text'] ); ?><i class="eicon-chevron-right"></i></a>
+								<?php else : ?>
+									<a href="<?php bp_groups_directory_permalink(); ?>" class="count-more"><?php echo esc_html( $settings['groups_link_text'] ); ?><i class="eicon-chevron-right"></i></a>
+								<?php endif; ?>
 							<?php } ?>
 						</div>
 					<?php endif; ?>
@@ -641,7 +643,11 @@ class GroupsLists extends \Elementor\Widget_Base {
 									<li <?php bp_group_class(); ?>>
 										<?php if ( $settings['switch_avatar'] ) : ?>
 											<div class="item-avatar">
-												<a href="<?php bp_group_permalink(); ?>"><?php bp_group_avatar_thumb(); ?></a>
+												<?php if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) : ?>
+													<a href="<?php bp_group_url(); ?>"><?php bp_group_avatar_thumb(); ?></a>
+												<?php else : ?>
+													<a href="<?php bp_group_permalink(); ?>"><?php bp_group_avatar_thumb(); ?></a>
+												<?php endif; ?>
 											</div>
 										<?php endif; ?>
 
@@ -680,8 +686,11 @@ class GroupsLists extends \Elementor\Widget_Base {
 								alt="Groups"/>
 							<br />
 							<div><?php echo esc_html__( 'No groups matched the current filter.', 'wbcom-essential' ); ?></div>
-							<a href="<?php echo esc_url( trailingslashit( bp_get_groups_directory_permalink() . 'create' ) ); ?>"
-								class="wbcom-essential-no-data__link"><?php echo esc_html__( 'Create a group', 'wbcom-essential' ); ?></a>
+							<?php if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) : ?>
+								<a href="<?php echo esc_url( trailingslashit( bp_get_groups_directory_url() . 'create' ) ); ?>" class="wbcom-essential-no-data__link"><?php echo esc_html__( 'Create a group', 'wbcom-essential' ); ?></a>
+							<?php else : ?>
+								<a href="<?php echo esc_url( trailingslashit( bp_get_groups_directory_permalink() . 'create' ) ); ?>" class="wbcom-essential-no-data__link"><?php echo esc_html__( 'Create a group', 'wbcom-essential' ); ?></a>
+							<?php endif; ?>
 						</div>
 
 					<?php endif; ?>
