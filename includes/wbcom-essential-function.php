@@ -147,10 +147,18 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 
 			if ( 'group' === $object ) {
 				$group = new BP_Groups_Group( $item_id );
-				$link  = bp_get_group_permalink( $group );
+				if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
+					$link = bp_get_group_url( $group );
+				} else {
+					$link = bp_get_group_permalink( $group );
+				}
 			} else {
 				$user = new WP_User( $item_id );
-				$link = bp_core_get_user_domain( $user->ID, $user->user_nicename, $user->user_login );
+				if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
+					$link = bp_members_get_user_url( $user->ID );
+				} else {
+					$link = bp_core_get_user_domain( $user->ID, $user->user_nicename, $user->user_login );
+				}
 			}
 
 			?>
