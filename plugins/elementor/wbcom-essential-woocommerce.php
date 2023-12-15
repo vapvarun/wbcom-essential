@@ -387,3 +387,52 @@ if ( ! function_exists( 'wbcom_wc_get_rating_html' ) ) {
 			return $html;
 	}
 }
+
+/**
+ * Enqueue scripts based on Elementor widget usage
+ */
+function wbcom_direct_check_elementor_data() {
+    global $post;
+
+    if ( ! is_a( $post, 'WP_Post' ) ) {
+        return;
+    }
+
+    $elementor_data = get_post_meta( $post->ID, '_elementor_data', true );
+    if ( ! empty( $elementor_data ) ) {
+        // Decode the Elementor data as it's stored in a JSON encoded format
+        $elementor_data_decoded = json_decode( $elementor_data, true );
+        // Check if the heading widget is used
+        if ( wbcom_check_for_heading_widget($elementor_data_decoded) ) {
+            // Enqueue css          
+			add_filter(
+				'bp_enqueue_assets_in_bp_pages_only',
+				function () {
+					return false;
+				}
+			);
+        } 
+    }
+}
+add_action( 'wp', 'wbcom_direct_check_elementor_data' );
+
+/**
+ * Check if the Elementor widget is used
+ *
+ * @param string $widget_name The widget name to check.
+ * @return bool Whether the widget is used or not.
+ */
+function wbcom_check_for_heading_widget($elementor_data) {
+    if (is_array($elementor_data)) {
+        foreach ($elementor_data as $element) {
+            if (isset($element['widgetType']) && ( $element['widgetType'] === 'wbcom-members-grid' || $element['widgetType'] === 'wbcom-groups-grid') ) {
+                return true;
+            }
+            // Check nested elements if they exist
+            if (isset($element['elements']) && wbcom_check_for_heading_widget($element['elements'])) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
