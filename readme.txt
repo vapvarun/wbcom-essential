@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 6.3.1
-Stable tag: 3.7.0
+Stable tag: 3.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,16 @@ It will add additional features for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
 
 == Changelog ==
+= 3.7.1 =
+* Fix: Bp 12.0.0 fixes
+* Added: (#1178) Woocommerce customer review widget and fixes
+* Added: (#1178) Woocommerce testimonial widget and fixes
+* Added: (#1178) Woocommerce add banner widget
+* Added: (#1178) Woocommerce universal product widget and fixes
+* Added: (#1178) Product add to card loading animation
+* Added: (#1178) Woocommerce product tab widget
+* Added: Excerpt in posts revolution layout2
+
 = 3.7.0 =
 * Fix: Managed wbcom template popup dark mode and popup UI
 * Fix: (#1193) Managed post-revolution widget layouts UI
