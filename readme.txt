@@ -23,6 +23,9 @@ This plugin does not require any specific plugin. However, this plugin supports 
 
 == Changelog ==
 = 3.7.1 =
+* Fix: (#1251) Fixed fatal error
+
+= 3.7.1 =
 * Fix: Bp 12.0.0 fixes
 * Added: (#1178) Woocommerce customer review widget and fixes
 * Added: (#1178) Woocommerce testimonial widget and fixes
