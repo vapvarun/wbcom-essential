@@ -14,7 +14,7 @@
  * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com
  * Description:       Wbcom Essential Addons.
- * Version:           3.7.1
+ * Version:           3.7.2
  * Author:            wbcomdesigns
  * Author URI:        https://wbcomdesigns.com/plugins
  * License:           GPL-2.0+
