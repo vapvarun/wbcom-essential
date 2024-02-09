@@ -22,7 +22,7 @@ It will add additional features for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
 
 == Changelog ==
-= 3.7.1 =
+= 3.7.2 =
 * Fix: (#1251) Fixed fatal error
 
 = 3.7.1 =
