@@ -52,22 +52,6 @@ function wbcom_essential() {
 }
 
 /**
- * Load plugin text domain
- */
-function wbcom_essential_load_plugin_textdomain() {
-	load_plugin_textdomain( 'wbcom-essential', false, basename( __DIR__ ) . '/languages/' );
-}
-add_action( 'plugins_loaded', 'wbcom_essential_load_plugin_textdomain' );
-
-require WBCOM_ESSENTIAL_PATH . 'plugin-update-checker/plugin-update-checker.php';
-use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
-$myUpdateChecker = PucFactory::buildUpdateChecker(
-	'https://demos.wbcomdesigns.com/exporter/free-plugins/wbcom-essential.json',
-	__FILE__, // Full path to the main plugin file or functions.php.
-	'wbcom-essential'
-);
-
-/**
  * Initializes the Plugin application.
  *
  * @since 3.0.0

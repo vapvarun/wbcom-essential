@@ -431,14 +431,7 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 	return $return;
 }
 
-function wbcom_essential_posts_revolution_elementor_post_info( $ad_postpreview_display_date,
-								$ad_postpreview_display_comments,
-								$ad_postpreview_display_author,
-								$ad_postpreview_display_category,
-								$ad_postpreview_display_views,
-								$wbcom_query_source,
-								$wbcom_query_posts_type,
-								$date_format ) {
+function wbcom_essential_posts_revolution_elementor_post_info( $ad_postpreview_display_date, $ad_postpreview_display_comments, $ad_postpreview_display_author, $ad_postpreview_display_category, $ad_postpreview_display_views, $wbcom_query_source, $wbcom_query_posts_type, $date_format ) {
 
 	global $post;
 	$return = '';
@@ -597,16 +590,7 @@ function wbcom_essential_all_post_types() {
  * @since 3.6.0
  */
 
-function wbcom_essential_posts_revolution_elementor_query( $wbcom_query_source,
-					$wbcom_query_sticky_posts,
-					$wbcom_query_posts_type,
-					$wbcom_query_categories,
-					$wbcom_query_order,
-					$wbcom_query_orderby,
-					$wbcom_query_pagination,
-					$wbcom_query_pagination_type,
-					$wbcom_query_number,
-					$wbcom_query_posts_for_page ) {
+function wbcom_essential_posts_revolution_elementor_query( $wbcom_query_source, $wbcom_query_sticky_posts, $wbcom_query_posts_type, $wbcom_query_categories, $wbcom_query_order, $wbcom_query_orderby, $wbcom_query_pagination, $wbcom_query_pagination_type, $wbcom_query_number, $wbcom_query_posts_for_page ) {
 
 	if ( $wbcom_query_source == 'wp_custom_posts_type' ) {
 		$wbcom_query_sticky_posts = 'allposts';
