@@ -145,7 +145,11 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			$is_profile_photo_disabled = $steps_options['is_profile_photo_disabled'];
 			$is_cover_photo_disabled   = $steps_options['is_cover_photo_disabled'];
 		} else {
-			$profile_groups            = bp_xprofile_get_groups();
+			if ( function_exists( 'bp_xprofile_get_groups' ) ) {
+				$profile_groups = bp_xprofile_get_groups();
+			} else {
+				$profile_groups = array(); // Set an empty array if BuddyPress extended fields are disabled
+			}
 			$is_profile_photo_disabled = bp_disable_avatar_uploads();
 			$is_cover_photo_disabled   = bp_disable_cover_image_uploads();
 		}
