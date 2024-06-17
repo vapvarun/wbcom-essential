@@ -53,6 +53,11 @@ body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-3 .list-wrap {
 	padding: 0 15px;
 }
 
+.elementor-widget-wbcom-members-grid #buddypress .members-list > li {
+	min-width: auto;
+}
+
+
 .grid>li {
 	width: 100%;
 }
