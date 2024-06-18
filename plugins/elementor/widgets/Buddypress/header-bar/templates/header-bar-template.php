@@ -22,7 +22,7 @@ $settings_notifications_icon = ( function_exists( 'bp_is_active' ) && bp_is_acti
 $settings_cart_icon          = ( class_exists( 'WooCommerce' ) ) ? $settings['cart_icon']['value'] : '';
 $settings_dark_icon          = ( class_exists( 'SFWD_LMS' ) ) ? $settings['dark_icon']['value'] : '';
 $settings_sidebartoggle_icon = ( class_exists( 'SFWD_LMS' ) ) ? $settings['sidebartoggle_icon']['value'] : '';
-$settings_avatar_border      = $settings['avatar_border_style'];
+$settings_avatar_border      = isset( $settings['avatar_border_style'] ) ? $settings['avatar_border_style'] : '';
 
 $this->add_render_attribute( 'site-header', 'class', 'site-header site-header--elementor icon-fill-in' );
 $this->add_render_attribute( 'site-header', 'class', 'site-header--align-' . esc_attr( $settings_align ) . '' );
