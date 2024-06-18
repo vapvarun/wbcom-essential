@@ -253,14 +253,14 @@ class PostsCarousel extends Widget_Base {
 		$this->start_controls_section(
 			'section_carousel_settings',
 			array(
-				'label' => esc_html__( 'Carousel Settings', 'essential-addons-elementor' ),
+				'label' => esc_html__( 'Carousel Settings', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'wbcom_carousel_item',
 			array(
-				'label'   => esc_html__( 'Number Item Show', 'elementor-fast-gallery' ),
+				'label'   => esc_html__( 'Number Item Show', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '3',
 				'options' => array(
@@ -312,7 +312,7 @@ class PostsCarousel extends Widget_Base {
 		$this->start_controls_section(
 			'section_query',
 			array(
-				'label' => esc_html__( 'QUERY', 'essential-addons-elementor' ),
+				'label' => esc_html__( 'QUERY', 'wbcom-essential' ),
 			)
 		);
 
@@ -323,8 +323,8 @@ class PostsCarousel extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'wp_posts',
 				'options' => array(
-					'wp_posts'             => esc_html__( 'Wordpress Posts', 'essential-addons-elementor' ),
-					'wp_custom_posts_type' => esc_html__( 'Custom Posts Type', 'essential-addons-elementor' ),
+					'wp_posts'             => esc_html__( 'Wordpress Posts', 'wbcom-essential' ),
+					'wp_custom_posts_type' => esc_html__( 'Custom Posts Type', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -336,8 +336,8 @@ class PostsCarousel extends Widget_Base {
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'allposts',
 				'options'   => array(
-					'allposts'        => esc_html__( 'All Posts', 'essential-addons-elementor' ),
-					'onlystickyposts' => esc_html__( 'Only Sticky Posts', 'essential-addons-elementor' ),
+					'allposts'        => esc_html__( 'All Posts', 'wbcom-essential' ),
+					'onlystickyposts' => esc_html__( 'Only Sticky Posts', 'wbcom-essential' ),
 				),
 				'condition' => array(
 					'wbcom_query_source' => 'wp_posts',

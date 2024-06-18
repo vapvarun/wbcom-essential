@@ -91,19 +91,19 @@ class Branding extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => __( 'Branding', 'reign' ),
+				'label' => __( 'Branding', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'el_site_branding',
 			array(
-				'label'       => __( 'Branding Type', 'reign' ),
-				'description' => __( 'Your theme must declare the "add_theme_support( \'custom-logo\')" for the logo to work', 'reign' ),
+				'label'       => __( 'Branding Type', 'wbcom-essential' ),
+				'description' => __( 'Your theme must declare the "add_theme_support( \'custom-logo\')" for the logo to work', 'wbcom-essential' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => array(
-					'title' => __( 'Title', 'elementor' ),
-					'logo'  => __( 'Logo', 'elementor' ),
+					'title' => __( 'Title', 'wbcom-essential' ),
+					'logo'  => __( 'Logo', 'wbcom-essential' ),
 				),
 				'default'     => 'title',
 			)
@@ -112,19 +112,19 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'align',
 			array(
-				'label'        => __( 'Alignment', 'reign' ),
+				'label'        => __( 'Alignment', 'wbcom-essential' ),
 				'type'         => Controls_Manager::CHOOSE,
 				'options'      => array(
 					'left'   => array(
-						'title' => __( 'Left', 'reign' ),
+						'title' => __( 'Left', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'reign' ),
+						'title' => __( 'Center', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => __( 'Right', 'reign' ),
+						'title' => __( 'Right', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -138,7 +138,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			array(
-				'label' => __( 'Brand', 'reign' ),
+				'label' => __( 'Brand', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -146,7 +146,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_control(
 			'branding_title_color',
 			array(
-				'label'     => __( 'Title Color', 'reign' ),
+				'label'     => __( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => array(
 					'el_site_branding' => 'title',
@@ -165,7 +165,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_control(
 			'branding_title_hover',
 			array(
-				'label'     => __( 'Hover', 'reign' ),
+				'label'     => __( 'Hover', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => array(
 					'el_site_branding' => 'title',
@@ -183,7 +183,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_padding',
 			array(
-				'label'      => __( 'Title Padding - Default 1em', 'reign' ),
+				'label'      => __( 'Title Padding - Default 1em', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'condition'  => array(
 					'el_site_branding' => 'title',
@@ -199,7 +199,7 @@ class Branding extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'      => 'title_typography',
-				'label'     => __( 'Typography', 'reign' ),
+				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
@@ -211,7 +211,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_control(
 			'logo_padding',
 			array(
-				'label'      => __( 'Title Padding - Default 1em', 'reign' ),
+				'label'      => __( 'Title Padding - Default 1em', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'condition'  => array(
 					'el_site_branding' => 'logo',
@@ -228,7 +228,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_desc_style',
 			array(
-				'label'     => __( 'Description Options', 'reign' ),
+				'label'     => __( 'Description Options', 'wbcom-essential' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'el_site_branding' => 'title',
@@ -239,7 +239,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_control(
 			'branding_description_color',
 			array(
-				'label'     => __( 'Description Color', 'reign' ),
+				'label'     => __( 'Description Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => array(
 					'el_site_branding' => 'title',
@@ -257,7 +257,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_control(
 			'desc_padding',
 			array(
-				'label'      => __( 'Description Padding - Default 1em', 'reign' ),
+				'label'      => __( 'Description Padding - Default 1em', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'condition'  => array(
 					'el_site_branding' => 'title',
@@ -273,7 +273,7 @@ class Branding extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'      => 'desc_typography',
-				'label'     => __( 'Typography', 'reign' ),
+				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
@@ -287,7 +287,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_branding_borders',
 			array(
-				'label' => __( 'Branding Border', 'reign' ),
+				'label' => __( 'Branding Border', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -296,7 +296,7 @@ class Branding extends \Elementor\Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'border',
-				'label'    => __( 'Border', 'reign' ),
+				'label'    => __( 'Border', 'wbcom-essential' ),
 				'default'  => '1px',
 				'selector' => '{{WRAPPER}} .elementor-branding',
 			)
@@ -305,7 +305,7 @@ class Branding extends \Elementor\Widget_Base {
 		$this->add_control(
 			'border_radius',
 			array(
-				'label'      => __( 'Border Radius', 'reign' ),
+				'label'      => __( 'Border Radius', 'wbcom-essential' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(

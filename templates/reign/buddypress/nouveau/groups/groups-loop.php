@@ -96,7 +96,7 @@
 									<?php
 									printf(
 									/* translators: %s = last activity timestamp (e.g. "active 1 hour ago") */
-										esc_html__( 'active %s', 'buddypress' ),
+										esc_html__( 'active %s', 'wbcom-essential' ),
 										esc_attr( bp_get_group_last_active() )
 									);
 									?>

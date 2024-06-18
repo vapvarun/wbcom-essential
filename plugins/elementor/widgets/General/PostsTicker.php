@@ -285,7 +285,7 @@ class PostsTicker extends Widget_Base {
 		$this->start_controls_section(
 			'section_query',
 			array(
-				'label' => esc_html__( 'QUERY', 'essential-addons-elementor' ),
+				'label' => esc_html__( 'QUERY', 'wbcom-essential' ),
 			)
 		);
 
@@ -296,8 +296,8 @@ class PostsTicker extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'wp_posts',
 				'options' => array(
-					'wp_posts'             => esc_html__( 'Wordpress Posts', 'essential-addons-elementor' ),
-					'wp_custom_posts_type' => esc_html__( 'Custom Posts Type', 'essential-addons-elementor' ),
+					'wp_posts'             => esc_html__( 'Wordpress Posts', 'wbcom-essential' ),
+					'wp_custom_posts_type' => esc_html__( 'Custom Posts Type', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -309,8 +309,8 @@ class PostsTicker extends Widget_Base {
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'allposts',
 				'options'   => array(
-					'allposts'        => esc_html__( 'All Posts', 'essential-addons-elementor' ),
-					'onlystickyposts' => esc_html__( 'Only Sticky Posts', 'essential-addons-elementor' ),
+					'allposts'        => esc_html__( 'All Posts', 'wbcom-essential' ),
+					'onlystickyposts' => esc_html__( 'Only Sticky Posts', 'wbcom-essential' ),
 				),
 				'condition' => array(
 					'wbcom_query_source' => 'wp_posts',

@@ -135,7 +135,7 @@
 	<?php else : ?>
 
 		<div id="message" class="info">
-			<p><?php esc_html_e( 'There were no groups found.', 'buddypress' ); ?></p>
+			<p><?php esc_html_e( 'There were no groups found.', 'wbcom-essential' ); ?></p>
 		</div>
 
 	<?php endif; ?>

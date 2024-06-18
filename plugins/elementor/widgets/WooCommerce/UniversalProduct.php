@@ -248,7 +248,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			$this->add_control(
 				'hidden_outofstock',
 				array(
-					'label'        => esc_html__( 'Exclude Out Of Stock Item', 'wbcom-pro' ),
+					'label'        => esc_html__( 'Exclude Out Of Stock Item', 'wbcom-essential' ),
 					'type'         => Controls_Manager::SWITCHER,
 					'return_value' => 'yes',
 					'default'      => 'no',
@@ -257,7 +257,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			$this->add_control(
 				'hidden_item',
 				array(
-					'label'        => esc_html__( 'Exclude Hidden Item', 'wbcom-pro' ),
+					'label'        => esc_html__( 'Exclude Hidden Item', 'wbcom-essential' ),
 					'type'         => Controls_Manager::SWITCHER,
 					'return_value' => 'yes',
 					'default'      => 'no',
@@ -382,7 +382,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			$this->add_control(
 				'hide_category_before_border',
 				array(
-					'label'     => __( 'Hide category before border', 'wbcom-pro' ),
+					'label'     => __( 'Hide category before border', 'wbcom-essential' ),
 					'type'      => Controls_Manager::SWITCHER,
 					'selectors' => array(
 						'{{WRAPPER}} .wb-product-inner .wb-product-categories::before' => 'display: none !important;',
@@ -922,7 +922,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			$this->add_control(
 				'product_badge_bg_color',
 				array(
-					'label'     => __( 'Badge Background Color', 'wbcom-pro' ),
+					'label'     => __( 'Badge Background Color', 'wbcom-essential' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-label' => 'background-color: {{VALUE}};',
@@ -941,7 +941,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			$this->add_responsive_control(
 				'product_badge_padding',
 				array(
-					'label'      => __( 'Padding', 'wbcom-pro' ),
+					'label'      => __( 'Padding', 'wbcom-essential' ),
 					'type'       => Controls_Manager::DIMENSIONS,
 					'size_units' => array( 'px', '%', 'em' ),
 					'selectors'  => array(

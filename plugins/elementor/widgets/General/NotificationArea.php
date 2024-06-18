@@ -51,18 +51,18 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_reign_notification_area',
 			array(
-				'label' => __( 'Notification Area', 'elementor' ),
+				'label' => __( 'Notification Area', 'wbcom-essential' ),
 			)
 		);
 
 		$this->add_control(
 			'search_form_enabled',
 			array(
-				'label'        => __( 'Enable Search Form', 'elementor' ),
+				'label'        => __( 'Enable Search Form', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'default'      => 'yes',
-				'label_on'     => __( 'Yes', 'elementor' ),
-				'label_off'    => __( 'No', 'elementor' ),
+				'label_on'     => __( 'Yes', 'wbcom-essential' ),
+				'label_off'    => __( 'No', 'wbcom-essential' ),
 				'return_value' => 'yes',
 				'separator'    => 'before',
 			)
@@ -72,11 +72,11 @@ class NotificationArea extends \Elementor\Widget_Base {
 			$this->add_control(
 				'rtm_cart_icon_enabled',
 				array(
-					'label'        => __( 'Enable Cart Icon', 'elementor' ),
+					'label'        => __( 'Enable Cart Icon', 'wbcom-essential' ),
 					'type'         => \Elementor\Controls_Manager::SWITCHER,
 					'default'      => 'yes',
-					'label_on'     => __( 'Yes', 'elementor' ),
-					'label_off'    => __( 'No', 'elementor' ),
+					'label_on'     => __( 'Yes', 'wbcom-essential' ),
+					'label_off'    => __( 'No', 'wbcom-essential' ),
 					'return_value' => 'yes',
 					'separator'    => 'before',
 				)
@@ -87,11 +87,11 @@ class NotificationArea extends \Elementor\Widget_Base {
 			$this->add_control(
 				'user_message_bell_enabled',
 				array(
-					'label'        => __( 'Enable User Message Icon', 'elementor' ),
+					'label'        => __( 'Enable User Message Icon', 'wbcom-essential' ),
 					'type'         => \Elementor\Controls_Manager::SWITCHER,
 					'default'      => 'yes',
-					'label_on'     => __( 'Yes', 'elementor' ),
-					'label_off'    => __( 'No', 'elementor' ),
+					'label_on'     => __( 'Yes', 'wbcom-essential' ),
+					'label_off'    => __( 'No', 'wbcom-essential' ),
 					'return_value' => 'yes',
 					'separator'    => 'before',
 				)
@@ -102,11 +102,11 @@ class NotificationArea extends \Elementor\Widget_Base {
 			$this->add_control(
 				'notification_bell_enabled',
 				array(
-					'label'        => __( 'Enable Notification Bell Icon', 'elementor' ),
+					'label'        => __( 'Enable Notification Bell Icon', 'wbcom-essential' ),
 					'type'         => \Elementor\Controls_Manager::SWITCHER,
 					'default'      => 'yes',
-					'label_on'     => __( 'Yes', 'elementor' ),
-					'label_off'    => __( 'No', 'elementor' ),
+					'label_on'     => __( 'Yes', 'wbcom-essential' ),
+					'label_off'    => __( 'No', 'wbcom-essential' ),
 					'return_value' => 'yes',
 					'separator'    => 'before',
 				)
@@ -116,11 +116,11 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_control(
 			'avatar_enabled',
 			array(
-				'label'        => __( 'Display User Avatar', 'elementor' ),
+				'label'        => __( 'Display User Avatar', 'wbcom-essential' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'default'      => 'yes',
-				'label_on'     => __( 'Yes', 'elementor' ),
-				'label_off'    => __( 'No', 'elementor' ),
+				'label_on'     => __( 'Yes', 'wbcom-essential' ),
+				'label_off'    => __( 'No', 'wbcom-essential' ),
 				'return_value' => 'yes',
 				'separator'    => 'before',
 			)
@@ -129,7 +129,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_control(
 			'icon_color',
 			array(
-				'label'     => __( 'Icon Color', 'reign' ),
+				'label'     => __( 'Icon Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -141,7 +141,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_control(
 			'icon_hover_color',
 			array(
-				'label'     => __( 'Icon Hover Color', 'reign' ),
+				'label'     => __( 'Icon Hover Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
@@ -154,7 +154,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_control(
 			'user_name_font_color',
 			array(
-				'label'     => __( 'User Name Font Color', 'reign' ),
+				'label'     => __( 'User Name Font Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
@@ -166,7 +166,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_control(
 			'user_name_font_color_hover',
 			array(
-				'label'     => __( 'User Name Font Color (Hover)', 'reign' ),
+				'label'     => __( 'User Name Font Color (Hover)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
@@ -178,7 +178,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_control(
 			'notification_height',
 			array(
-				'label'     => __( 'Line Height (px)', 'reign' ),
+				'label'     => __( 'Line Height (px)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 90,
 				'selectors' => array(
@@ -190,7 +190,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_control(
 			'counter_top',
 			array(
-				'label'     => __( 'Counter Top Space (px)', 'reign' ),
+				'label'     => __( 'Counter Top Space (px)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 20,
 				'selectors' => array(
@@ -304,7 +304,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 						global $bp;
 						?>
 						<div class="user-notifications">
-							<a class="rg-icon-wrap" href="<?php echo esc_url( bp_loggedin_user_domain() . $bp->notifications->slug ); ?>" title="<?php _e( esc_attr( 'Notifications' ), 'reign' ); ?>">
+							<a class="rg-icon-wrap" href="<?php echo esc_url( bp_loggedin_user_domain() . $bp->notifications->slug ); ?>" title="<?php esc_attr_e( 'Notifications', 'wbcom-essential' ); ?>">
 								<span class="far fa-bell"></span>
 								<?php
 								if ( function_exists( 'bp_notifications_get_unread_notification_count' ) ) {
@@ -313,8 +313,8 @@ class NotificationArea extends \Elementor\Widget_Base {
 									// if ( $count > 0 ) {
 									?>
 									<span class="rg-count"> <?php echo esc_html( $count ); ?></span>
-																	   <?php
-																		// }
+										<?php
+										// }
 								}
 								?>
 							</a>
@@ -332,7 +332,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 									}
 									?>
 									<li class="rg-view-all">
-										<a href="<?php echo esc_url( bp_loggedin_user_domain() . $bp->notifications->slug ); ?>"><?php _e( 'View all notifications', 'reign' ); ?></a>
+										<a href="<?php echo esc_url( bp_loggedin_user_domain() . $bp->notifications->slug ); ?>"><?php esc_html_e( 'View all notifications', 'wbcom-essential' ); ?></a>
 									</li>
 								</ul>
 								<?php
