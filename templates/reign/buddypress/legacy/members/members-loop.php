@@ -122,6 +122,6 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 <?php else : ?>
 
 	<div id="message" class="info">
-		<p><?php esc_html_e( 'Sorry, no members were found.', 'buddypress' ); ?></p>
+		<p><?php esc_html_e( 'Sorry, no members were found.', 'wbcom-essential' ); ?></p>
 	</div>
 <?php endif; ?>

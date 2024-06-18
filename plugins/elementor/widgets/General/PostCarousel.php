@@ -1095,7 +1095,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_card_body_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'wpbits' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
@@ -1126,7 +1126,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_card_body_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'wpbits' ),
+				'label' => esc_html__( 'Hover', 'wbcom-essential' ),
 			)
 		);
 

@@ -80,30 +80,30 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 			$wp_customize->add_section(
 				'reign_header_select_header',
 				array(
-					'title'       => __( 'Select Header', 'reign' ),
+					'title'       => __( 'Select Header', 'wbcom-essential' ),
 					'priority'    => 8,
 					'panel'       => 'reign_header_panel',
-					'description' => __( '', 'reign' ),
+					'description' => __( '', 'wbcom-essential' ),
 				)
 			);
 
 			$wp_customize->add_section(
 				'reign_footer_select_footer',
 				array(
-					'title'       => __( 'Select Footer', 'reign' ),
+					'title'       => __( 'Select Footer', 'wbcom-essential' ),
 					'priority'    => 8,
 					'panel'       => 'reign_footer_panel',
-					'description' => __( '', 'reign' ),
+					'description' => __( '', 'wbcom-essential' ),
 				)
 			);
 
 			$wp_customize->add_section(
 				'reign_elementor_modules',
 				array(
-					'title'       => __( 'Elementor Modules', 'reign' ),
+					'title'       => __( 'Elementor Modules', 'wbcom-essential' ),
 					'priority'    => 20,
 					'panel'       => 'reign_general_panel',
-					'description' => __( '', 'reign' ),
+					'description' => __( '', 'wbcom-essential' ),
 				)
 			);
 		}
@@ -377,9 +377,7 @@ if ( ! class_exists( 'Wbcom_Reign_Customizer_Support' ) ) :
 			);
 
 			return $fields;
-
 		}
-
 	}
 
 endif;

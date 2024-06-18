@@ -472,11 +472,11 @@ class MemeberCarousel extends \Elementor\Widget_Base {
 					<?php if ( $show_arrows ) : ?>
 					<div class="elementor-swiper-button elementor-swiper-button-prev">
 						<i class="eicon-chevron-left" aria-hidden="true"></i>
-						<span class="elementor-screen-only"><?php esc_html_e( 'Previous', 'elementor' ); ?></span>
+						<span class="elementor-screen-only"><?php esc_html_e( 'Previous', 'wbcom-essential' ); ?></span>
 					</div>
 					<div class="elementor-swiper-button elementor-swiper-button-next">
 						<i class="eicon-chevron-right" aria-hidden="true"></i>
-						<span class="elementor-screen-only"><?php esc_html_e( 'Next', 'elementor' ); ?></span>
+						<span class="elementor-screen-only"><?php esc_html_e( 'Next', 'wbcom-essential' ); ?></span>
 					</div>
 				<?php endif; ?>
 			<?php endif; ?>

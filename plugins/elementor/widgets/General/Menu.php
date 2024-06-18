@@ -95,7 +95,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_reign_wp_menu',
 			array(
-				'label' => __( 'WordPress Menu', 'reign' ),
+				'label' => __( 'WordPress Menu', 'wbcom-essential' ),
 			)
 		);
 
@@ -103,13 +103,13 @@ class Menu extends \Elementor\Widget_Base {
 			'desc',
 			array(
 				/* translators: %s: Admin Nav Menu url  */
-				'label' => sprintf( __( 'Choose the WordPress menu to output below. To change menu items please go to the <a href="%s" target="_blank">WordPress Menu Editor</a> page.', 'reign' ), admin_url( 'nav-menus.php' ) ),
+				'label' => sprintf( __( 'Choose the WordPress menu to output below. To change menu items please go to the <a href="%s" target="_blank">WordPress Menu Editor</a> page.', 'wbcom-essential' ), admin_url( 'nav-menus.php' ) ),
 				'type'  => Controls_Manager::RAW_HTML,
 			)
 		);
 
 		$menu_select = array(
-			'0' => esc_html__( ' - choose - ', 'reign' ),
+			'0' => esc_html__( ' - choose - ', 'wbcom-essential' ),
 		);
 
 		// we also show a list of users menues.
@@ -121,7 +121,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'menu_location',
 			array(
-				'label'   => esc_html__( 'Choose Menu', 'reign' ),
+				'label'   => esc_html__( 'Choose Menu', 'wbcom-essential' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => $menu_select,
@@ -133,7 +133,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_reign_menu_style',
 			array(
-				'label' => __( 'Menu Style', 'reign' ),
+				'label' => __( 'Menu Style', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -141,19 +141,19 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'menu_align',
 			array(
-				'label'        => __( 'Alignment', 'reign' ),
+				'label'        => __( 'Alignment', 'wbcom-essential' ),
 				'type'         => Controls_Manager::CHOOSE,
 				'options'      => array(
 					'left'   => array(
-						'title' => __( 'Left', 'reign' ),
+						'title' => __( 'Left', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'reign' ),
+						'title' => __( 'Center', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => __( 'Right', 'reign' ),
+						'title' => __( 'Right', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -167,7 +167,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'menu_background',
 			array(
-				'label'     => __( 'Background', 'reign' ),
+				'label'     => __( 'Background', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#f8f8f8',
 				'selectors' => array(
@@ -178,7 +178,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'menu_background_hover',
 			array(
-				'label'     => __( 'Background (hover)', 'reign' ),
+				'label'     => __( 'Background (hover)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#eaeaea',
 				'selectors' => array(
@@ -189,7 +189,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'menu_background_active',
 			array(
-				'label'     => __( 'Background (active)', 'reign' ),
+				'label'     => __( 'Background (active)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#eaeaea',
 				'selectors' => array(
@@ -201,7 +201,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'font_color',
 			array(
-				'label'     => __( 'Font Color', 'reign' ),
+				'label'     => __( 'Font Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
@@ -213,7 +213,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'font_color_hover',
 			array(
-				'label'     => __( 'Font Color (Hover)', 'reign' ),
+				'label'     => __( 'Font Color (Hover)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
@@ -225,7 +225,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'font_color_active',
 			array(
-				'label'     => __( 'Font Color (Active)', 'reign' ),
+				'label'     => __( 'Font Color (Active)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#399dff',
 				'selectors' => array(
@@ -249,7 +249,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_reign_submenu_style',
 			array(
-				'label' => __( 'Sub Menu Style', 'reign' ),
+				'label' => __( 'Sub Menu Style', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -257,19 +257,19 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'submenu_align',
 			array(
-				'label'        => __( 'Alignment', 'reign' ),
+				'label'        => __( 'Alignment', 'wbcom-essential' ),
 				'type'         => Controls_Manager::CHOOSE,
 				'options'      => array(
 					'left'   => array(
-						'title' => __( 'Left', 'reign' ),
+						'title' => __( 'Left', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'reign' ),
+						'title' => __( 'Center', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => __( 'Right', 'reign' ),
+						'title' => __( 'Right', 'wbcom-essential' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -283,7 +283,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'submenu_background',
 			array(
-				'label'     => __( 'Background', 'reign' ),
+				'label'     => __( 'Background', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#f8f8f8',
 				'selectors' => array(
@@ -294,7 +294,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'submenu_background_hover',
 			array(
-				'label'     => __( 'Background (hover)', 'reign' ),
+				'label'     => __( 'Background (hover)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#eaeaea',
 				'selectors' => array(
@@ -306,7 +306,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'submenu_font_color',
 			array(
-				'label'     => __( 'Font Color', 'reign' ),
+				'label'     => __( 'Font Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
@@ -318,7 +318,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'submenu_font_color_hover',
 			array(
-				'label'     => __( 'Font Color (Hover)', 'reign' ),
+				'label'     => __( 'Font Color (Hover)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
@@ -330,7 +330,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'submenu_font_color_active',
 			array(
-				'label'     => __( 'Font Color (Active)', 'reign' ),
+				'label'     => __( 'Font Color (Active)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#399dff',
 				'selectors' => array(
@@ -354,7 +354,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_reign_menu_height',
 			array(
-				'label' => __( 'Height Management', 'reign' ),
+				'label' => __( 'Height Management', 'wbcom-essential' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -362,7 +362,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'menu_height',
 			array(
-				'label'   => __( 'Menu Height (px)', 'reign' ),
+				'label'   => __( 'Menu Height (px)', 'wbcom-essential' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 30,
 			)
@@ -371,7 +371,7 @@ class Menu extends \Elementor\Widget_Base {
 		$this->add_control(
 			'submenu_width',
 			array(
-				'label'   => __( 'Submenu Width', 'reign' ),
+				'label'   => __( 'Submenu Width', 'wbcom-essential' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 170,
 			)

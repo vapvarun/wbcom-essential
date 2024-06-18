@@ -414,7 +414,7 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 		$categories = get_the_category();
 		if ( $categories ) {
 			foreach ( $categories as $category ) {
-				$output .= '<a href="' . get_category_link( $category->term_id ) . '" title="' . esc_attr( sprintf( __( 'View all posts in %s', 'vconepage' ), $category->name ) ) . '">' . $category->cat_name . '</a>' . $separator;
+				$output .= '<a href="' . get_category_link( $category->term_id ) . '" title="' . esc_attr( sprintf( __( 'View all posts in %s', 'wbcom-essential' ), $category->name ) ) . '">' . $category->cat_name . '</a>' . $separator;
 			}
 		}
 	} elseif ( $wbcom_query_source == 'wp_custom_posts_type' ) {
@@ -423,7 +423,7 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 		$term_list      = wp_get_post_terms( $post->ID, $taxonomy_names );
 		if ( $term_list ) {
 			foreach ( $term_list as $tax_term ) {
-				$output .= '<a href="' . esc_attr( get_term_link( $tax_term, $wbcom_query_posts_type ) ) . '" title="' . sprintf( __( 'View all posts in %s' ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '</a>' . $separator;
+				$output .= '<a href="' . esc_attr( get_term_link( $tax_term, $wbcom_query_posts_type ) ) . '" title="' . sprintf( __( 'View all posts in %s', 'wbcom-essential' ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '</a>' . $separator;
 			}
 		}
 	}
@@ -432,13 +432,13 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 }
 
 function wbcom_essential_posts_revolution_elementor_post_info( $ad_postpreview_display_date,
-								$ad_postpreview_display_comments,
-								$ad_postpreview_display_author,
-								$ad_postpreview_display_category,
-								$ad_postpreview_display_views,
-								$wbcom_query_source,
-								$wbcom_query_posts_type,
-								$date_format ) {
+	$ad_postpreview_display_comments,
+	$ad_postpreview_display_author,
+	$ad_postpreview_display_category,
+	$ad_postpreview_display_views,
+	$wbcom_query_source,
+	$wbcom_query_posts_type,
+	$date_format ) {
 
 	global $post;
 	$return = '';

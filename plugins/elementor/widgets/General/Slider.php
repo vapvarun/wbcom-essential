@@ -1739,7 +1739,7 @@ class Slider extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_thumbnail_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'wpbits' ),
+				'label' => esc_html__( 'Normal', 'wbcom-essential' ),
 			)
 		);
 
@@ -1793,7 +1793,7 @@ class Slider extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'tab_thumbnail_hover',
 			array(
-				'label' => esc_html__( 'Active', 'wpbits' ),
+				'label' => esc_html__( 'Active', 'wbcom-essential' ),
 			)
 		);
 
