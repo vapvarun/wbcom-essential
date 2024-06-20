@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-18 05:48:26+00:00\n"
+"POT-Creation-Date: 2024-06-20 14:01:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1963,8 +1963,8 @@ msgstr ""
 #: plugins/elementor/scripts/template-modal-search-item.php:14
 #: plugins/elementor/templates/scripts/template-modal-search-item.php:14
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:186
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:83
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:120
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:91
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:124
 msgid "Search"
 msgstr ""
 

@@ -128,7 +128,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
 				'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
 				'return_value' => 'inline-block',
-				'default'      => 'inline-block',
+				'default'      => 'yes',
 				'selectors'    => array(
 					'{{WRAPPER}} .user-wrap' => 'display: {{VALUE}};',
 				),
@@ -146,7 +146,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'save_default' => true,
 					'separator'    => 'after',
 					'condition'    => array(
-						'profile_dropdown' => 'inline-block',
+						'profile_dropdown' => 'yes',
 					),
 				)
 			);
@@ -159,7 +159,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'separator'       => 'after',
 					'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 					'condition'       => array(
-						'profile_dropdown' => 'inline-block',
+						'profile_dropdown' => 'yes',
 					),
 				)
 			);
@@ -173,7 +173,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
 				'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
 				'return_value' => 'inline-block',
-				'default'      => 'inline-block',
+				'default'      => 'yes',
 				'selectors'    => array(
 					'{{WRAPPER}} .wbcom-essential-separator' => 'display: {{VALUE}};',
 				),
@@ -188,7 +188,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
 				'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
 				'return_value' => 'flex',
-				'default'      => 'flex',
+				'default'      => 'yes',
 				'selectors'    => array(
 					'{{WRAPPER}} .header-search-link' => 'display: {{VALUE}};',
 				),
@@ -204,7 +204,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
 					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
 					'return_value' => 'inline-block',
-					'default'      => 'inline-block',
+					'default'      => 'yes',
 					'selectors'    => array(
 						'{{WRAPPER}} #header-messages-dropdown-elem' => 'display: {{VALUE}};',
 					),
@@ -221,7 +221,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
 					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
 					'return_value' => 'inline-block',
-					'default'      => 'inline-block',
+					'default'      => 'yes',
 					'selectors'    => array(
 						'{{WRAPPER}} #header-notifications-dropdown-elem' => 'display: {{VALUE}};',
 					),
@@ -238,7 +238,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
 					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
 					'return_value' => 'inline-block',
-					'default'      => 'inline-block',
+					'default'      => 'yes',
 					'selectors'    => array(
 						'{{WRAPPER}} .header-cart-link-wrap' => 'display: {{VALUE}};',
 					),
