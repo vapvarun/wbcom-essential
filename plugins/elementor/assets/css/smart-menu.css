@@ -335,6 +335,8 @@
 	animation-duration: 0.2s;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .wba-smart-menu-desktop .wba-sm-skin ul li {
@@ -388,6 +390,11 @@
 
 .wba-smart-menu-desktop .wba-sm-skin.sm-horizontal-justified {
 	width: 100%;
+	margin: 0;
+}
+
+.elementor-widget-wbcom-smart-menu .wba-smart-menu {
+	margin-left: 0;
 }
 
 .wba-smart-menu-desktop .wba-sm-skin.sm-horizontal-justified>li {
