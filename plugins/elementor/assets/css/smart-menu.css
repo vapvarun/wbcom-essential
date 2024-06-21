@@ -390,6 +390,11 @@
 
 .wba-smart-menu-desktop .wba-sm-skin.sm-horizontal-justified {
 	width: 100%;
+	margin: 0;
+}
+
+.elementor-widget-wbcom-smart-menu .wba-smart-menu {
+	margin-left: 0;
 }
 
 .wba-smart-menu-desktop .wba-sm-skin.sm-horizontal-justified>li {
