@@ -83,7 +83,6 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 			return self::$instance;
 		}
 
-
 		/**
 		 * Constructor.
 		 *
@@ -103,13 +102,24 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 			if ( did_action( 'elementor/loaded' ) ) {
 				require __DIR__ . '/plugins/elementor/Plugins.php';
 			}
+
+			require __DIR__ . '/blocks/blocks.php';
 		}
 
+		/**
+		 * Adds custom image sizes for WBCom Essential Elementor.
+		 *
+		 * This function registers custom image sizes that are specifically used
+		 * within the WBCom Essential Elementor plugin. These sizes can be utilized
+		 * for various design and layout purposes to ensure images are displayed
+		 * appropriately across different sections and devices.
+		 *
+		 * @return void
+		 */
 		public function wbcom_essential_elementor_add_image_sizes() {
 			add_image_size( 'wbcom-essential-elementor-masonry', 500 );
 			add_image_size( 'wbcom-essential-elementor-normal', 800, 800, true );
 			add_image_size( 'wbcom-essential-elementor-type1', 800, 500, true );
 		}
-
 	}
 }
