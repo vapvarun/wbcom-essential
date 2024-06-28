@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 10:45:28+00:00\n"
+"POT-Creation-Date: 2024-06-28 11:18:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1963,8 +1963,8 @@ msgstr ""
 #: plugins/elementor/scripts/template-modal-search-item.php:14
 #: plugins/elementor/templates/scripts/template-modal-search-item.php:14
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:178
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:91
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:124
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:92
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:125
 msgid "Search"
 msgstr ""
 
@@ -3770,11 +3770,11 @@ msgstr ""
 msgid "Profile Fields"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:151
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:152
 msgid "Sign in"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:154
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:155
 msgid "Sign up"
 msgstr ""
 

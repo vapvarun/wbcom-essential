@@ -11,6 +11,7 @@
 
 $profile_dropdown      = ! empty( $settings['profile_dropdown'] );
 $profile_dropdown_menu = isset( $settings['profile_dropdown_menu'] ) ? $settings['profile_dropdown_menu'] : '';
+$element_separator     = ! empty( $settings['element_separator'] );
 $show_search           = ! empty( $settings['search_icon_switch'] );
 $show_messages         = ! empty( $settings['messages_icon_switch'] );
 $show_notifications    = ! empty( $settings['notifications_icon_switch'] );
@@ -83,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php endif; ?>
 
 			<!-- Separator -->
-			<?php if ( $show_search || $show_messages || $show_notifications || $show_shopping_cart ) : ?>
+			<?php if ( $element_separator ) : ?>
 				<span class="wbcom-essential-separator"></span>
 			<?php endif; ?>
 
