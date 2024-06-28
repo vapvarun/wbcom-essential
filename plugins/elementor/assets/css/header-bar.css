@@ -777,14 +777,14 @@
 	font-size: 22px;
 }
 
-.site-header--elementor .user-wrap,
+/* .site-header--elementor .user-wrap,
 .site-header--elementor .wbcom-essential-separator,
 .site-header--elementor .header-search-link,
 .site-header--elementor #header-messages-dropdown-elem,
 .site-header--elementor #header-notifications-dropdown-elem,
 .site-header--elementor .header-cart-link-wrap {
 	display: none;
-}
+} */
 
 /* BuddyX */
 .wbcom-essential-header-buttons .bp-icon-wrap {

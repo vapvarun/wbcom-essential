@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 05:35:24+00:00\n"
+"POT-Creation-Date: 2024-06-28 10:45:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -324,7 +324,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:613
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:681
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:333
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:361
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:337
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:172
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:341
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:124
@@ -374,7 +374,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:621
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:689
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:334
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:369
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:345
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:176
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:342
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:132
@@ -419,7 +419,7 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:97
 #: plugins/elementor/helper/skins/skin-cards.php:563
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:215
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:746
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:722
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:360
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:223
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:346
@@ -443,11 +443,11 @@ msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:108
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:129
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:174
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:189
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:205
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:222
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:239
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:170
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:181
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:193
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:206
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:219
 #: plugins/elementor/widgets/Forms/Login.php:179
 #: plugins/elementor/widgets/Forms/Registration.php:178
 #: plugins/elementor/widgets/General/Accordion.php:174
@@ -467,11 +467,11 @@ msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:109
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:128
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:173
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:188
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:204
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:221
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:238
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:169
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:180
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:192
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:205
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:218
 #: plugins/elementor/widgets/Forms/Login.php:180
 #: plugins/elementor/widgets/Forms/Registration.php:179
 #: plugins/elementor/widgets/General/Accordion.php:170
@@ -782,7 +782,7 @@ msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:406
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:121
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:357
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:333
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:168
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:119
 #: plugins/elementor/widgets/Forms/Login.php:139
@@ -808,7 +808,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:129
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:617
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:685
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:365
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:341
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:128
 #: plugins/elementor/widgets/Forms/Login.php:147
 #: plugins/elementor/widgets/Forms/Registration.php:146
@@ -931,8 +931,8 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:240
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:245
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:348
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:792
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1133
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:768
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1109
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:295
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:422
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:389
@@ -1293,7 +1293,7 @@ msgid "Meta"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:590
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:438
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:414
 msgid "Separator Color"
 msgstr ""
 
@@ -1739,7 +1739,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:188
 #: plugins/elementor/widgets/Buddypress/Forums.php:297
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:295
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:706
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:682
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:381
 msgid "Avatar"
 msgstr ""
@@ -1759,7 +1759,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:734
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:776
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:522
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:780
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:756
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:368
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:377
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:734
@@ -1777,7 +1777,7 @@ msgid "Border Color"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:475
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:757
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:733
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:354
 #: plugins/elementor/widgets/Forms/Login.php:518
 #: plugins/elementor/widgets/Forms/Registration.php:456
@@ -1962,7 +1962,7 @@ msgstr ""
 
 #: plugins/elementor/scripts/template-modal-search-item.php:14
 #: plugins/elementor/templates/scripts/template-modal-search-item.php:14
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:186
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:178
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:91
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:124
 msgid "Search"
@@ -2173,7 +2173,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:234
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:337
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:460
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1122
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1098
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:284
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:411
 #: plugins/elementor/widgets/Forms/Login.php:602
@@ -2615,11 +2615,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:513
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:705
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:484
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:661
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:828
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:889
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:993
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1057
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:637
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:804
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:865
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:969
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1033
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:705
 #: plugins/elementor/widgets/Forms/Login.php:557
 #: plugins/elementor/widgets/Forms/Registration.php:495
@@ -2682,11 +2682,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:555
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:747
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:535
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:682
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:837
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:924
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1013
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1088
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:658
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:813
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:900
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:989
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1064
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:747
 #: plugins/elementor/widgets/Forms/Login.php:639
 #: plugins/elementor/widgets/Forms/Registration.php:577
@@ -3216,166 +3216,166 @@ msgid "Header Bar"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:126
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:631
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:607
 msgid "Profile Dropdown"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:142
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:138
 msgid "Menu"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:158
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:154
 msgid "There are no menus available."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:158
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:154
 msgid "Start by creating one <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:171
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:406
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:167
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:382
 msgid "Separator"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:202
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:190
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:21
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:30
 msgid "Messages"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:219
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:203
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:22
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:31
 msgid "Notifications"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:236
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:216
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:17
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:33
 msgid "Cart"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:254
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:482
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:230
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:458
 msgid "Icons"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:261
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:549
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:237
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:525
 msgid "Search Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:262
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:238
 msgid "Replace default search icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:275
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:562
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:251
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:538
 msgid "Messages Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:276
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:252
 msgid "Replace default messages icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:290
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:576
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:266
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:552
 msgid "Notifications Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:291
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:267
 msgid "Replace default notifications icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:305
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:590
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:281
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:566
 msgid "Cart Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:306
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:282
 msgid "Replace default cart icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:320
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:296
 msgid "Dark Mode Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:321
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:297
 msgid "Replace default dark mode icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:333
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:309
 msgid "Toggle Sidebar Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:334
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:310
 msgid "Replace default toggle sidebar icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:349
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:325
 msgid "Header Bar Layout"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:381
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:357
 #: plugins/elementor/widgets/General/Posts.php:375
 msgid "Space Between"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:415
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:391
 msgid "Separator Width"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:450
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:426
 msgid "Counter"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:459
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:435
 msgid "Counter Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:472
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:448
 msgid "Counter Shadow"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:490
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:466
 msgid "Icons Size"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:517
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:493
 msgid "Icons Shadow"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:525
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:501
 msgid "Icons Colors"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:534
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:510
 msgid "All Icons"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:604
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:580
 msgid "Dark Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:616
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:592
 msgid "Sidebar Toggle Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:639
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:615
 msgid "Display Name"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:649
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:625
 msgid "Typography Display Name"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:668
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:689
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:844
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:644
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:665
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:820
 msgid "Display Name Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:715
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:691
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:304
 #: plugins/elementor/widgets/General/FlipBox.php:691
 #: plugins/elementor/widgets/General/FlipBox.php:1128
@@ -3394,93 +3394,93 @@ msgstr ""
 msgid "Width"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:738
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:714
 msgid "Border Style"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:742
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:718
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:356
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:342
 #: plugins/elementor/widgets/General/PricingTable.php:1735
 msgid "Solid"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:743
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:719
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:357
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:343
 #: plugins/elementor/widgets/General/PricingTable.php:1736
 msgid "Dashed"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:744
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:720
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:358
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:344
 #: plugins/elementor/widgets/General/PricingTable.php:1737
 msgid "Dotted"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:745
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:721
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:359
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:345
 #: plugins/elementor/widgets/General/PricingTable.php:1738
 msgid "Double"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:815
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:791
 #: plugins/elementor/widgets/General/DropdownButton.php:641
 msgid "Dropdown"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:861
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:837
 msgid "Typography Menu"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:869
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:845
 msgid "Dropdown Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:896
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:931
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:872
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:907
 msgid "Menu Item Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:909
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:944
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:885
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:920
 msgid "Menu Item Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:963
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:939
 msgid "Logged Out"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:971
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:947
 msgid "Sign In"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:981
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:957
 msgid "Typography Sign In"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1000
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1020
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:976
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:996
 msgid "Sign In Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1035
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1011
 msgid "Sign Up"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1045
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1021
 msgid "Typography Sign Up"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1064
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1095
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1040
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1071
 msgid "Sign Up Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1075
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1106
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1051
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1082
 msgid "Sign Up Background Color"
 msgstr ""
 

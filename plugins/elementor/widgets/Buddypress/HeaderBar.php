@@ -123,15 +123,11 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->add_control(
 			'profile_dropdown',
 			array(
-				'label'        => esc_html__( 'Profile Dropdown', 'wbcom-essential' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-				'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-				'return_value' => 'inline-block',
-				'default'      => 'yes',
-				'selectors'    => array(
-					'{{WRAPPER}} .user-wrap' => 'display: {{VALUE}};',
-				),
+				'label'     => esc_html__( 'Profile Dropdown', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'On', 'wbcom-essential' ),
+				'label_off' => esc_html__( 'Off', 'wbcom-essential' ),
+				'default'   => 'yes',
 			)
 		);
 
@@ -168,30 +164,22 @@ class HeaderBar extends \Elementor\Widget_Base {
 		$this->add_control(
 			'element_separator',
 			array(
-				'label'        => esc_html__( 'Separator', 'wbcom-essential' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-				'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-				'return_value' => 'inline-block',
-				'default'      => 'yes',
-				'selectors'    => array(
-					'{{WRAPPER}} .wbcom-essential-separator' => 'display: {{VALUE}};',
-				),
+				'label'     => esc_html__( 'Separator', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'On', 'wbcom-essential' ),
+				'label_off' => esc_html__( 'Off', 'wbcom-essential' ),
+				'default'   => 'yes',
 			)
 		);
 
 		$this->add_control(
 			'search_icon_switch',
 			array(
-				'label'        => esc_html__( 'Search', 'wbcom-essential' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-				'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-				'return_value' => 'flex',
-				'default'      => 'yes',
-				'selectors'    => array(
-					'{{WRAPPER}} .header-search-link' => 'display: {{VALUE}};',
-				),
+				'label'     => esc_html__( 'Search', 'wbcom-essential' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'On', 'wbcom-essential' ),
+				'label_off' => esc_html__( 'Off', 'wbcom-essential' ),
+				'default'   => 'yes',
 			)
 		);
 
@@ -199,15 +187,11 @@ class HeaderBar extends \Elementor\Widget_Base {
 			$this->add_control(
 				'messages_icon_switch',
 				array(
-					'label'        => esc_html__( 'Messages', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-					'return_value' => 'inline-block',
-					'default'      => 'yes',
-					'selectors'    => array(
-						'{{WRAPPER}} #header-messages-dropdown-elem' => 'display: {{VALUE}};',
-					),
+					'label'     => esc_html__( 'Messages', 'wbcom-essential' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'label_on'  => esc_html__( 'On', 'wbcom-essential' ),
+					'label_off' => esc_html__( 'Off', 'wbcom-essential' ),
+					'default'   => 'yes',
 				)
 			);
 		endif;
@@ -216,15 +200,11 @@ class HeaderBar extends \Elementor\Widget_Base {
 			$this->add_control(
 				'notifications_icon_switch',
 				array(
-					'label'        => esc_html__( 'Notifications', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-					'return_value' => 'inline-block',
-					'default'      => 'yes',
-					'selectors'    => array(
-						'{{WRAPPER}} #header-notifications-dropdown-elem' => 'display: {{VALUE}};',
-					),
+					'label'     => esc_html__( 'Notifications', 'wbcom-essential' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'label_on'  => esc_html__( 'On', 'wbcom-essential' ),
+					'label_off' => esc_html__( 'Off', 'wbcom-essential' ),
+					'default'   => 'yes',
 				)
 			);
 		endif;
@@ -233,15 +213,11 @@ class HeaderBar extends \Elementor\Widget_Base {
 			$this->add_control(
 				'cart_icon_switch',
 				array(
-					'label'        => esc_html__( 'Cart', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'label_on'     => esc_html__( 'On', 'wbcom-essential' ),
-					'label_off'    => esc_html__( 'Off', 'wbcom-essential' ),
-					'return_value' => 'inline-block',
-					'default'      => 'yes',
-					'selectors'    => array(
-						'{{WRAPPER}} .header-cart-link-wrap' => 'display: {{VALUE}};',
-					),
+					'label'     => esc_html__( 'Cart', 'wbcom-essential' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'label_on'  => esc_html__( 'On', 'wbcom-essential' ),
+					'label_off' => esc_html__( 'Off', 'wbcom-essential' ),
+					'default'   => 'yes',
 				)
 			);
 		endif;
@@ -1140,7 +1116,6 @@ class HeaderBar extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	/**
@@ -1154,7 +1129,5 @@ class HeaderBar extends \Elementor\Widget_Base {
 		if ( file_exists( $template_path ) ) {
 			require $template_path;
 		}
-
 	}
-
 }
