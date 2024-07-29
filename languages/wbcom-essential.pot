@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-28 11:18:39+00:00\n"
+"POT-Creation-Date: 2024-07-29 05:41:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -5295,8 +5295,12 @@ msgstr ""
 msgid "Counter Top Space (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:335
-msgid "View all notifications"
+#: plugins/elementor/widgets/General/NotificationArea.php:344
+msgid "No notifications found."
+msgstr ""
+
+#: plugins/elementor/widgets/General/NotificationArea.php:348
+msgid "All Notifications"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PortfolioGrid.php:50

@@ -10,16 +10,58 @@
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
+# Notifications
+--------------------------------------------------------------*/
+.user-notifications .rg-dropdown {
+	line-height: normal;
+}
+
+.user-notifications #rg-notify .bp-dropdown-inner {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 15px;
+}
+
+.user-notifications #rg-notify .bp-dropdown-inner .dropdown-item {
+	padding: 10px;
+}
+
+.user-notifications #rg-notify .bp-dropdown-inner .dropdown-item p {
+	margin: 0;
+}
+
+.user-notifications #rg-notify .alert-message {
+    padding: 15px;
+}
+
+.user-notifications #rg-notify .dropdown-footer {
+    padding: 15px;
+    border-top: 1px solid #e3e3e3;
+}
+
+.user-notifications #rg-notify p.mute {
+    margin: 0;
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+/*--------------------------------------------------------------
 # WooCommerce Cart
 --------------------------------------------------------------*/
 .woo-cart-wrapper {
 	position: relative;
 }
 
+.wbesntl-notification-area .rg-woocommerce_mini_cart{
+	transform: translateY(0px);
+}
+
 .woo-cart-wrapper:hover .rg-woocommerce_mini_cart {
 	opacity: 1 !important;
 	visibility: visible;
 	top: 100%;
+	pointer-events: auto;
 }
 
 .rg-woocommerce_mini_cart {
@@ -61,13 +103,11 @@
 	border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-
 .rg-woocommerce_mini_cart {
 	max-height: 0;
 	z-index: 100;
-	padding: 20px 0 20px;
+	padding: 0;
 	margin: 0;
-	padding: 20px;
 	transition: all .3s;
 	text-align: left;
 	display: table;

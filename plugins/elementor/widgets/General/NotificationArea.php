@@ -318,26 +318,36 @@ class NotificationArea extends \Elementor\Widget_Base {
 								}
 								?>
 							</a>
-							<?php
-							$notifications = bp_notifications_get_notifications_for_user( bp_loggedin_user_id() );
-							if ( $notifications ) {
-								?>
-								<ul id="rg-notify" class="rg-header-submenu rg-dropdown">
-									<?php
-									rsort( $notifications );
-									foreach ( $notifications as $notification ) {
-										?>
-										<li><?php echo $notification; ?></li>
-											<?php
-									}
-									?>
-									<li class="rg-view-all">
-										<a href="<?php echo esc_url( bp_loggedin_user_domain() . $bp->notifications->slug ); ?>"><?php _e( 'View all notifications', 'wbcom-essential' ); ?></a>
-									</li>
-								</ul>
+							<div id="rg-notify" class="rg-header-submenu rg-dropdown">
 								<?php
-							}
-							?>
+								if ( bp_has_notifications(
+									array(
+										'user_id'  => bp_loggedin_user_id(),
+										'per_page' => 10,
+										'max'      => 10,
+									)
+								) ) :
+									?>
+									<div class="bp-dropdown-inner">
+										<?php
+										while ( bp_the_notifications() ) :
+											bp_the_notification();
+											?>
+											<div class="dropdown-item">
+												<div class="dropdown-item-title notification ellipsis"><?php bp_the_notification_description(); ?></div>
+												<p class="mute"><?php bp_the_notification_time_since(); ?></p>
+											</div>
+										<?php endwhile; ?>
+									</div>
+								<?php else : ?>
+									<div class="alert-message">
+										<div class="alert alert-warning" role="alert"><?php esc_html_e( 'No notifications found.', 'wbcom-essential' ); ?></div>
+									</div>
+								<?php endif; ?>
+								<div class="dropdown-footer">
+									<a href="<?php echo esc_url( trailingslashit( bp_loggedin_user_domain() . bp_get_notifications_slug() . '/unread' ) ); ?>" class="button"><?php esc_html_e( 'All Notifications', 'wbcom-essential' ); ?></a>
+								</div>
+							</div>
 						</div>
 						<?php
 					}
