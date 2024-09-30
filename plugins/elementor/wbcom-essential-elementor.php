@@ -187,7 +187,6 @@ function wbcom_content_filter( $content ) {
 	$rep = preg_replace( "/(<p>)?\[\/($block)](<\/p>|<br \/>)?/", '[/$2]', $rep );
 
 	return $rep;
-
 }
 
 if ( ! function_exists( 'wbcombtn' ) ) {
@@ -206,68 +205,95 @@ if ( ! function_exists( 'wbcombtn' ) ) {
 	}
 }
 
-
 /**
  * Get post types.
  */
 function wba_get_post_types() {
-	$output_post_types   = array();
-	$args                = array( 'public' => true );
-	$output              = 'names';
-	$operator            = 'and';
-	$selected_post_types = get_post_types( $args, $output, $operator );
-	foreach ( $selected_post_types as $type ) {
-		$output_post_types[ $type ] = $type;
+	// Check if cached data is available.
+	$output_post_types = wp_cache_get( 'wba_post_types', 'wba_cache' );
+
+	if ( false === $output_post_types ) {
+		$output_post_types   = array();
+		$args                = array( 'public' => true );
+		$output              = 'names';
+		$operator            = 'and';
+		$selected_post_types = get_post_types( $args, $output, $operator );
+		foreach ( $selected_post_types as $type ) {
+			$output_post_types[ $type ] = $type;
+		}
+
+		// Cache the results.
+		wp_cache_set( 'wba_post_types', $output_post_types, 'wba_cache', HOUR_IN_SECONDS );
 	}
+
 	return $output_post_types;
+}
+
+/**
+ * General function to get terms.
+ */
+function wba_get_terms( $taxonomy ) {
+	$output_terms = wp_cache_get( "wba_{$taxonomy}", 'wba_cache' );
+
+	if ( false === $output_terms ) {
+		$output_terms = array();
+		$args         = array(
+			'taxonomy'   => array( $taxonomy ),
+			'hide_empty' => 1,
+		);
+		$terms        = get_terms( $args );
+		foreach ( $terms as $term ) {
+			$output_terms[ $term->term_id ] = $term->name;
+		}
+
+		// Cache the results.
+		wp_cache_set( "wba_{$taxonomy}", $output_terms, 'wba_cache', HOUR_IN_SECONDS );
+	}
+
+	return $output_terms;
 }
 
 /**
  * Get post categories.
  */
 function wba_get_categories() {
-	$output_terms = array();
-	$args         = array(
-		'taxonomy'   => array( 'category' ),
-		'hide_empty' => 1,
-	);
-	$terms        = get_terms( $args );
-	foreach ( $terms as $term ) {
-		$output_terms[ $term->term_id ] = $term->name;
-	}
-	return $output_terms;
+	return wba_get_terms( 'category' );
 }
 
 /**
  * Get post tags.
  */
 function wba_get_tags() {
-	$output_terms = array();
-	$args         = array(
-		'taxonomy'   => array( 'post_tag' ),
-		'hide_empty' => 1,
-	);
-	$terms        = get_terms( $args );
-	foreach ( $terms as $term ) {
-		$output_terms[ $term->term_id ] = $term->name;
-	}
-	return $output_terms;
+	return wba_get_terms( 'post_tag' );
 }
 
 /**
- * Get post authors.
+ * Get post authors with a filter for limiting the number of users retrieved.
+ * Returns a list of authors for use in the Elementor control options.
  */
 function wba_get_authors() {
 	$output_authors = array();
-	$args           = array(
+
+	// Allow filtering the number of users per query (default to 50).
+	$number_of_users = apply_filters( 'wba_number_of_users_per_query', 50 );
+
+	$args = array(
 		'role__in' => array( 'Administrator', 'Editor', 'Author' ),
 		'orderby'  => 'post_count',
 		'order'    => 'DESC',
+		'fields'   => array( 'ID', 'display_name' ), // Fetch only necessary fields.
+		'number'   => $number_of_users,  // The number of users per page.
 	);
-	$users          = get_users( $args );
-	foreach ( $users as $user ) {
-		$output_authors[ $user->ID ] = $user->display_name;
+
+	$user_query = new WP_User_Query( $args );
+	$users      = $user_query->get_results();
+
+	if ( ! empty( $users ) ) {
+		foreach ( $users as $user ) {
+			$output_authors[ $user->ID ] = $user->display_name;
+		}
 	}
+
 	return $output_authors;
 }
 
@@ -276,7 +302,7 @@ function wba_get_authors() {
  */
 function wba_excerpt( $charlength ) {
 	$excerpt = get_the_excerpt();
-	$charlength++;
+	++$charlength;
 
 	if ( mb_strlen( $excerpt ) > $charlength ) {
 		$subex   = mb_substr( $excerpt, 0, $charlength );
