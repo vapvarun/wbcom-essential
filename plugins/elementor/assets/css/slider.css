@@ -57,6 +57,7 @@ a.wbcombtn:before {
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     z-index: 10;
+    border: 0;
     border-radius: 0;
     color: #fff;
     font-size: 30px;
