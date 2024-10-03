@@ -204,7 +204,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 			?>
 	<?php elseif ( 'nouveau' === $active_template ) : ?>
 		<?php
-		if ( _is_theme_active( 'BuddyX' ) ) {
+		if ( _is_theme_active( 'BuddyX' ) || _is_theme_active( 'BuddyxPro' ) ) {
 
 			$loop_classes = static function () use ( $settings ) {
 				return array(

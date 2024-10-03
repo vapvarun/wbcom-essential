@@ -210,7 +210,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 					<div id="members-dir-list" class="members dir-list" data-bp-list="">
 				<?php
 
-				if ( _is_theme_active( 'BuddyX' ) ) {
+				if ( _is_theme_active( 'BuddyX' ) || _is_theme_active( 'BuddyxPro' ) ) {
 
 					$loop_classes = static function () use ( $settings ) {
 						return array(
