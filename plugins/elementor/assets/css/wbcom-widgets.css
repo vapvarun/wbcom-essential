@@ -828,6 +828,14 @@ li.wbcom-cart .button:before {
     margin-top: 0;
 }
 
+.wb-product-action ul li.wbcom-cart a {
+    border: 0;
+}
+
+.wb-product-action ul li.wbcom-cart a:hover {
+    border: 0;
+}
+
 .wbcom-compare.compare::before,
 .wb-product-action ul li.wbcom-cart a::before {
     content: '\e838';
@@ -1008,11 +1016,14 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-title {
-    font-size: 18px;
     line-height: 1.2;
     font-weight: 400;
     margin-bottom: 10px;
     margin-top: 0;
+}
+
+.wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner h4.wb-product-title {
+    font-size: 18px;
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner span.wb-product-title {

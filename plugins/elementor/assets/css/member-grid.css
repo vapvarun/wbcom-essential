@@ -37,6 +37,7 @@ body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-3 .list-wrap {
 	margin-bottom: 0;
 	width: auto;
 	margin: 0 -15px;
+	list-style: none;
 }
 
 .buddypress-wrap .grid.bp-list:after,
@@ -98,6 +99,7 @@ body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-3 .list-wrap {
 	top: 0;
 	margin: auto;
 	margin-top: 20px;
+	list-style: none;
 }
 
 .buddypress-wrap .grid.bp-list>li .item-avatar img.avatar {
