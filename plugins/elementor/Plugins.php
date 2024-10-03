@@ -208,7 +208,6 @@ class Plugin {
 		spl_autoload_register( array( $this, 'autoload' ) );
 
 		$this->define_constants();
-		// $this->load_components();
 		$this->add_hooks();
 		$this->includes();
 		do_action( 'wbcom_essential/init' );
@@ -236,23 +235,6 @@ class Plugin {
 
 		printf( '<div class="%1$s"><p>%2$s</p>%3$s</div>', esc_attr( $class ), wp_kses_post( $message ), wp_kses_post( $button ) );
 	}
-
-	/**
-	 * Load compatibility
-	 */
-	// public function load_compat() {
-	// require_once self::$plugin_path . 'compat/index.php';
-	// }
-
-	/**
-	 * Load components
-	 */
-	// public function load_components() {
-	// require_once self::$plugin_path . 'functions.php';
-	//
-	// Admin pages
-	// include_once self::$plugin_path . '/admin/Admin.php';
-	// }
 
 	/**
 	 * Autoload classes based on namespace.
@@ -312,12 +294,8 @@ class Plugin {
 	 */
 	private function add_hooks() {
 		include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/hooks/ElementorHooks.php';
-		// include_once BPB_BASE_PATH . 'core/hooks/BuddypressHooks.php';
-		// include_once BPB_BASE_PATH . 'core/hooks/CustomizerHooks.php';
 
 		\WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks::get_instance();
-		// BuddypressHooks::get_instance();
-		// CustomizerHooks::get_instance();
 	}
 
 		/**
@@ -326,13 +304,7 @@ class Plugin {
 		 * @since 1.0.0
 		 * @access private
 		 */
-	private function includes() {
-		if ( _is_theme_active( 'REIGN' ) ) {
-			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/class-wbcom-reign-customizer-support.php';
-			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer-posttype.php';
-			// include_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/customizer/global-header-footer.php';
-		}
-	}
+	private function includes() {}
 
 	/**
 	 * Elements
@@ -353,13 +325,6 @@ class Plugin {
 				'name'  => 'wbcom-profile-completion',
 				'class' => 'Buddypress\ProfileCompletion',
 			);
-
-			/*
-			$elements['Buddypress/ActivityLists'] = array(
-				'name'  => 'wbcom-activity-lists',
-				'class' => 'Buddypress\ActivityLists',
-			);
-			*/
 
 			$elements['Buddypress/MembersLists'] = array(
 				'name'  => 'wbcom-members-lists',
@@ -418,11 +383,6 @@ class Plugin {
 			'class' => 'General\Branding',
 		);
 
-		// $elements['General/Menu'] = array(
-		// 'name'  => 'wbcom-registration',
-		// 'class' => 'General\Menu',
-		// );
-
 		if ( _is_theme_active( 'REIGN' ) ) {
 			$elements['General/NotificationArea'] = array(
 				'name'  => 'wbcom-notification-area',
@@ -444,16 +404,6 @@ class Plugin {
 			'name'  => 'wbcom-posts-ticker',
 			'class' => 'General\PostsTicker',
 		);
-
-		// $elements['General/Posts'] = array(
-		// 'name'  => 'wbcom-posts',
-		// 'class' => 'General\Posts',
-		// );
-
-		// $elements['Forms/Login'] = array(
-		// 'name'  => 'wbcom-login',
-		// 'class' => 'Forms\Login',
-		// );
 
 		$elements['General/LoginForm'] = array(
 			'name'  => 'wbcom-login-form',
