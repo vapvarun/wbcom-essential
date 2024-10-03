@@ -309,6 +309,12 @@
     font-size: 40px
 }
 
+.wbcom-price-table-header svg {
+    fill: #fff;
+    width: 40px;
+    height: 40px;
+}
+
 .wbcom-price-table-title {
     text-align: center;
     display: block;
@@ -394,8 +400,15 @@ ul.wbcom-price-table-features li:last-child {
 }
 
 ul.wbcom-price-table-features li i,
+ul.wbcom-price-table-features li svg,
 ul.wbcom-price-table-features li span {
     vertical-align: middle
+}
+
+ul.wbcom-price-table-features li svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
 }
 
 .wbcom-price-table-footer {

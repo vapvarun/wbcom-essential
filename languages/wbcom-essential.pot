@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 11:19:25+00:00\n"
+"POT-Creation-Date: 2024-10-03 12:10:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -651,12 +651,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1570
 #: plugins/elementor/widgets/General/PricingTable.php:506
 #: plugins/elementor/widgets/General/PricingTable.php:653
-#: plugins/elementor/widgets/General/PricingTable.php:1038
-#: plugins/elementor/widgets/General/PricingTable.php:1305
-#: plugins/elementor/widgets/General/PricingTable.php:1361
-#: plugins/elementor/widgets/General/PricingTable.php:1388
-#: plugins/elementor/widgets/General/PricingTable.php:1443
-#: plugins/elementor/widgets/General/PricingTable.php:1499
+#: plugins/elementor/widgets/General/PricingTable.php:1040
+#: plugins/elementor/widgets/General/PricingTable.php:1307
+#: plugins/elementor/widgets/General/PricingTable.php:1363
+#: plugins/elementor/widgets/General/PricingTable.php:1390
+#: plugins/elementor/widgets/General/PricingTable.php:1445
+#: plugins/elementor/widgets/General/PricingTable.php:1501
 #: plugins/elementor/widgets/General/ProgressBar.php:336
 #: plugins/elementor/widgets/General/Shape.php:411
 #: plugins/elementor/widgets/General/SiteLogo.php:238
@@ -773,13 +773,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1472
 #: plugins/elementor/widgets/General/PricingTable.php:582
 #: plugins/elementor/widgets/General/PricingTable.php:690
-#: plugins/elementor/widgets/General/PricingTable.php:874
-#: plugins/elementor/widgets/General/PricingTable.php:1105
-#: plugins/elementor/widgets/General/PricingTable.php:1213
-#: plugins/elementor/widgets/General/PricingTable.php:1635
-#: plugins/elementor/widgets/General/PricingTable.php:1837
-#: plugins/elementor/widgets/General/PricingTable.php:1909
-#: plugins/elementor/widgets/General/PricingTable.php:2040
+#: plugins/elementor/widgets/General/PricingTable.php:875
+#: plugins/elementor/widgets/General/PricingTable.php:1107
+#: plugins/elementor/widgets/General/PricingTable.php:1215
+#: plugins/elementor/widgets/General/PricingTable.php:1638
+#: plugins/elementor/widgets/General/PricingTable.php:1840
+#: plugins/elementor/widgets/General/PricingTable.php:1912
+#: plugins/elementor/widgets/General/PricingTable.php:2043
 #: plugins/elementor/widgets/General/ProgressBar.php:256
 #: plugins/elementor/widgets/General/ProgressBar.php:380
 #: plugins/elementor/widgets/General/ProgressBar.php:532
@@ -958,13 +958,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:723
 #: plugins/elementor/widgets/General/PricingTable.php:772
 #: plugins/elementor/widgets/General/PricingTable.php:823
-#: plugins/elementor/widgets/General/PricingTable.php:966
-#: plugins/elementor/widgets/General/PricingTable.php:1277
-#: plugins/elementor/widgets/General/PricingTable.php:1333
-#: plugins/elementor/widgets/General/PricingTable.php:1415
-#: plugins/elementor/widgets/General/PricingTable.php:1471
-#: plugins/elementor/widgets/General/PricingTable.php:1527
-#: plugins/elementor/widgets/General/PricingTable.php:1699
+#: plugins/elementor/widgets/General/PricingTable.php:968
+#: plugins/elementor/widgets/General/PricingTable.php:1279
+#: plugins/elementor/widgets/General/PricingTable.php:1335
+#: plugins/elementor/widgets/General/PricingTable.php:1417
+#: plugins/elementor/widgets/General/PricingTable.php:1473
+#: plugins/elementor/widgets/General/PricingTable.php:1529
+#: plugins/elementor/widgets/General/PricingTable.php:1702
 #: plugins/elementor/widgets/General/ProgressBar.php:431
 #: plugins/elementor/widgets/General/ProgressBar.php:469
 #: plugins/elementor/widgets/General/Slider.php:908
@@ -1302,9 +1302,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1359
 #: plugins/elementor/widgets/General/PostTimeline.php:1431
 #: plugins/elementor/widgets/General/PricingTable.php:835
-#: plugins/elementor/widgets/General/PricingTable.php:979
-#: plugins/elementor/widgets/General/PricingTable.php:1816
-#: plugins/elementor/widgets/General/PricingTable.php:1878
+#: plugins/elementor/widgets/General/PricingTable.php:981
+#: plugins/elementor/widgets/General/PricingTable.php:1819
+#: plugins/elementor/widgets/General/PricingTable.php:1881
 #: plugins/elementor/widgets/General/ProgressBar.php:219
 #: plugins/elementor/widgets/General/ProgressBar.php:298
 #: plugins/elementor/widgets/General/ProgressBar.php:481
@@ -1372,10 +1372,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1082
 #: plugins/elementor/widgets/General/PostTimeline.php:1347
 #: plugins/elementor/widgets/General/PostTimeline.php:1420
-#: plugins/elementor/widgets/General/PricingTable.php:1558
-#: plugins/elementor/widgets/General/PricingTable.php:1804
-#: plugins/elementor/widgets/General/PricingTable.php:1867
-#: plugins/elementor/widgets/General/PricingTable.php:2001
+#: plugins/elementor/widgets/General/PricingTable.php:1560
+#: plugins/elementor/widgets/General/PricingTable.php:1807
+#: plugins/elementor/widgets/General/PricingTable.php:1870
+#: plugins/elementor/widgets/General/PricingTable.php:2004
 #: plugins/elementor/widgets/General/TextRotator.php:248
 #: plugins/elementor/widgets/General/TextRotator.php:345
 msgid "Text Color"
@@ -1438,9 +1438,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:785
 #: plugins/elementor/widgets/General/PostTimeline.php:942
 #: plugins/elementor/widgets/General/PricingTable.php:622
-#: plugins/elementor/widgets/General/PricingTable.php:943
-#: plugins/elementor/widgets/General/PricingTable.php:1157
-#: plugins/elementor/widgets/General/PricingTable.php:1952
+#: plugins/elementor/widgets/General/PricingTable.php:945
+#: plugins/elementor/widgets/General/PricingTable.php:1159
+#: plugins/elementor/widgets/General/PricingTable.php:1955
 #: plugins/elementor/widgets/General/ProgressBar.php:558
 #: plugins/elementor/widgets/General/SiteLogo.php:377
 #: plugins/elementor/widgets/General/Slider.php:1035
@@ -1583,10 +1583,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1403
 #: plugins/elementor/widgets/General/PostTimeline.php:1485
 #: plugins/elementor/widgets/General/PricingTable.php:595
-#: plugins/elementor/widgets/General/PricingTable.php:887
-#: plugins/elementor/widgets/General/PricingTable.php:1002
-#: plugins/elementor/widgets/General/PricingTable.php:1850
-#: plugins/elementor/widgets/General/PricingTable.php:1922
+#: plugins/elementor/widgets/General/PricingTable.php:888
+#: plugins/elementor/widgets/General/PricingTable.php:1004
+#: plugins/elementor/widgets/General/PricingTable.php:1853
+#: plugins/elementor/widgets/General/PricingTable.php:1925
 #: plugins/elementor/widgets/General/ProgressBar.php:248
 #: plugins/elementor/widgets/General/ProgressBar.php:372
 #: plugins/elementor/widgets/General/Shape.php:395
@@ -1937,12 +1937,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1464
 #: plugins/elementor/widgets/General/PricingTable.php:574
 #: plugins/elementor/widgets/General/PricingTable.php:682
-#: plugins/elementor/widgets/General/PricingTable.php:866
-#: plugins/elementor/widgets/General/PricingTable.php:1205
-#: plugins/elementor/widgets/General/PricingTable.php:1627
-#: plugins/elementor/widgets/General/PricingTable.php:1829
-#: plugins/elementor/widgets/General/PricingTable.php:1901
-#: plugins/elementor/widgets/General/PricingTable.php:2032
+#: plugins/elementor/widgets/General/PricingTable.php:867
+#: plugins/elementor/widgets/General/PricingTable.php:1207
+#: plugins/elementor/widgets/General/PricingTable.php:1630
+#: plugins/elementor/widgets/General/PricingTable.php:1832
+#: plugins/elementor/widgets/General/PricingTable.php:1904
+#: plugins/elementor/widgets/General/PricingTable.php:2035
 #: plugins/elementor/widgets/General/ProgressBar.php:239
 #: plugins/elementor/widgets/General/ProgressBar.php:363
 #: plugins/elementor/widgets/General/Shape.php:386
@@ -2048,12 +2048,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:702
 #: plugins/elementor/widgets/General/PricingTable.php:751
 #: plugins/elementor/widgets/General/PricingTable.php:800
-#: plugins/elementor/widgets/General/PricingTable.php:931
-#: plugins/elementor/widgets/General/PricingTable.php:1131
-#: plugins/elementor/widgets/General/PricingTable.php:1225
-#: plugins/elementor/widgets/General/PricingTable.php:1654
-#: plugins/elementor/widgets/General/PricingTable.php:1940
-#: plugins/elementor/widgets/General/PricingTable.php:2052
+#: plugins/elementor/widgets/General/PricingTable.php:933
+#: plugins/elementor/widgets/General/PricingTable.php:1133
+#: plugins/elementor/widgets/General/PricingTable.php:1227
+#: plugins/elementor/widgets/General/PricingTable.php:1657
+#: plugins/elementor/widgets/General/PricingTable.php:1943
+#: plugins/elementor/widgets/General/PricingTable.php:2055
 #: plugins/elementor/widgets/General/ProgressBar.php:275
 #: plugins/elementor/widgets/General/ProgressBar.php:399
 #: plugins/elementor/widgets/General/ProgressBar.php:545
@@ -2241,9 +2241,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1443
 #: plugins/elementor/widgets/General/PricingTable.php:564
 #: plugins/elementor/widgets/General/PricingTable.php:672
-#: plugins/elementor/widgets/General/PricingTable.php:1195
-#: plugins/elementor/widgets/General/PricingTable.php:1617
-#: plugins/elementor/widgets/General/PricingTable.php:2022
+#: plugins/elementor/widgets/General/PricingTable.php:1197
+#: plugins/elementor/widgets/General/PricingTable.php:1620
+#: plugins/elementor/widgets/General/PricingTable.php:2025
 #: plugins/elementor/widgets/General/Shape.php:376
 #: plugins/elementor/widgets/General/SmartMenu.php:295
 #: plugins/elementor/widgets/General/SmartMenu.php:1000
@@ -2314,7 +2314,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1340
 #: plugins/elementor/widgets/General/PostTimeline.php:1552
 #: plugins/elementor/widgets/General/PricingTable.php:438
-#: plugins/elementor/widgets/General/PricingTable.php:1797
+#: plugins/elementor/widgets/General/PricingTable.php:1800
 #: plugins/elementor/widgets/General/Slider.php:901
 #: plugins/elementor/widgets/General/Slider.php:1095
 #: plugins/elementor/widgets/General/Slider.php:1428
@@ -2371,7 +2371,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:469
 #: plugins/elementor/widgets/General/PostTimeline.php:1075
 #: plugins/elementor/widgets/General/PostTimeline.php:1413
-#: plugins/elementor/widgets/General/PricingTable.php:1860
+#: plugins/elementor/widgets/General/PricingTable.php:1863
 #: plugins/elementor/widgets/General/Slider.php:964
 #: plugins/elementor/widgets/General/Slider.php:1158
 #: plugins/elementor/widgets/General/Slider.php:1463
@@ -2527,7 +2527,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:218
 #: plugins/elementor/widgets/General/FlipBox.php:1392
 #: plugins/elementor/widgets/General/PostSlider.php:972
-#: plugins/elementor/widgets/General/PricingTable.php:1753
+#: plugins/elementor/widgets/General/PricingTable.php:1756
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:283
 msgid "Button"
 msgstr ""
@@ -3042,7 +3042,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:546
 #: plugins/elementor/widgets/General/LoginForm.php:956
 #: plugins/elementor/widgets/General/PostSlider.php:1200
-#: plugins/elementor/widgets/General/PricingTable.php:902
+#: plugins/elementor/widgets/General/PricingTable.php:903
 #: plugins/elementor/widgets/General/Shape.php:323
 #: plugins/elementor/widgets/General/SiteLogo.php:283
 #: plugins/elementor/widgets/General/Slider.php:1302
@@ -3060,28 +3060,28 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:718
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:356
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:342
-#: plugins/elementor/widgets/General/PricingTable.php:1735
+#: plugins/elementor/widgets/General/PricingTable.php:1738
 msgid "Solid"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:719
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:357
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:343
-#: plugins/elementor/widgets/General/PricingTable.php:1736
+#: plugins/elementor/widgets/General/PricingTable.php:1739
 msgid "Dashed"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:720
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:358
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:344
-#: plugins/elementor/widgets/General/PricingTable.php:1737
+#: plugins/elementor/widgets/General/PricingTable.php:1740
 msgid "Dotted"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:721
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:359
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:345
-#: plugins/elementor/widgets/General/PricingTable.php:1738
+#: plugins/elementor/widgets/General/PricingTable.php:1741
 msgid "Double"
 msgstr ""
 
@@ -3806,8 +3806,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:450
 #: plugins/elementor/widgets/General/Heading.php:574
 #: plugins/elementor/widgets/General/PostSlider.php:1228
-#: plugins/elementor/widgets/General/PricingTable.php:916
-#: plugins/elementor/widgets/General/PricingTable.php:1710
+#: plugins/elementor/widgets/General/PricingTable.php:917
+#: plugins/elementor/widgets/General/PricingTable.php:1713
 #: plugins/elementor/widgets/General/ProgressBar.php:310
 #: plugins/elementor/widgets/General/Shape.php:349
 #: plugins/elementor/widgets/General/Slider.php:1330
@@ -3878,12 +3878,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:574
 #: plugins/elementor/widgets/General/PricingTable.php:502
 #: plugins/elementor/widgets/General/PricingTable.php:649
-#: plugins/elementor/widgets/General/PricingTable.php:1034
-#: plugins/elementor/widgets/General/PricingTable.php:1301
-#: plugins/elementor/widgets/General/PricingTable.php:1357
-#: plugins/elementor/widgets/General/PricingTable.php:1384
-#: plugins/elementor/widgets/General/PricingTable.php:1439
-#: plugins/elementor/widgets/General/PricingTable.php:1495
+#: plugins/elementor/widgets/General/PricingTable.php:1036
+#: plugins/elementor/widgets/General/PricingTable.php:1303
+#: plugins/elementor/widgets/General/PricingTable.php:1359
+#: plugins/elementor/widgets/General/PricingTable.php:1386
+#: plugins/elementor/widgets/General/PricingTable.php:1441
+#: plugins/elementor/widgets/General/PricingTable.php:1497
 #: plugins/elementor/widgets/General/ProgressBar.php:332
 #: plugins/elementor/widgets/General/Shape.php:407
 #: plugins/elementor/widgets/General/SiteLogo.php:234
@@ -3946,12 +3946,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:582
 #: plugins/elementor/widgets/General/PricingTable.php:510
 #: plugins/elementor/widgets/General/PricingTable.php:657
-#: plugins/elementor/widgets/General/PricingTable.php:1042
-#: plugins/elementor/widgets/General/PricingTable.php:1309
-#: plugins/elementor/widgets/General/PricingTable.php:1365
-#: plugins/elementor/widgets/General/PricingTable.php:1392
-#: plugins/elementor/widgets/General/PricingTable.php:1447
-#: plugins/elementor/widgets/General/PricingTable.php:1503
+#: plugins/elementor/widgets/General/PricingTable.php:1044
+#: plugins/elementor/widgets/General/PricingTable.php:1311
+#: plugins/elementor/widgets/General/PricingTable.php:1367
+#: plugins/elementor/widgets/General/PricingTable.php:1394
+#: plugins/elementor/widgets/General/PricingTable.php:1449
+#: plugins/elementor/widgets/General/PricingTable.php:1505
 #: plugins/elementor/widgets/General/ProgressBar.php:340
 #: plugins/elementor/widgets/General/Shape.php:415
 #: plugins/elementor/widgets/General/SiteLogo.php:242
@@ -4230,7 +4230,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1417
 #: plugins/elementor/widgets/General/PostTimeline.php:983
 #: plugins/elementor/widgets/General/PostTimeline.php:1321
-#: plugins/elementor/widgets/General/PricingTable.php:1778
+#: plugins/elementor/widgets/General/PricingTable.php:1781
 #: plugins/elementor/widgets/General/SmartMenu.php:622
 #: plugins/elementor/widgets/General/TeamCarousel.php:803
 #: plugins/elementor/widgets/General/TeamCarousel.php:1222
@@ -4242,7 +4242,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1548
 #: plugins/elementor/widgets/General/PostTimeline.php:1114
 #: plugins/elementor/widgets/General/PostTimeline.php:1452
-#: plugins/elementor/widgets/General/PricingTable.php:1889
+#: plugins/elementor/widgets/General/PricingTable.php:1892
 msgid "Animation Color"
 msgstr ""
 
@@ -4256,7 +4256,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1735
 #: plugins/elementor/widgets/General/PostCarousel.php:1838
 #: plugins/elementor/widgets/General/PostTimeline.php:1280
-#: plugins/elementor/widgets/General/PricingTable.php:1597
+#: plugins/elementor/widgets/General/PricingTable.php:1600
 msgid "Icon Padding"
 msgstr ""
 
@@ -4269,7 +4269,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:1379
 #: plugins/elementor/widgets/General/PostTimeline.php:1177
 #: plugins/elementor/widgets/General/PostTimeline.php:1515
-#: plugins/elementor/widgets/General/PricingTable.php:1964
+#: plugins/elementor/widgets/General/PricingTable.php:1967
 msgid "Button Width"
 msgstr ""
 
@@ -4406,10 +4406,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:553
 #: plugins/elementor/widgets/General/FlipBox.php:990
 #: plugins/elementor/widgets/General/PostCarousel.php:795
-#: plugins/elementor/widgets/General/PricingTable.php:1297
-#: plugins/elementor/widgets/General/PricingTable.php:1353
-#: plugins/elementor/widgets/General/PricingTable.php:1435
-#: plugins/elementor/widgets/General/PricingTable.php:1491
+#: plugins/elementor/widgets/General/PricingTable.php:1299
+#: plugins/elementor/widgets/General/PricingTable.php:1355
+#: plugins/elementor/widgets/General/PricingTable.php:1437
+#: plugins/elementor/widgets/General/PricingTable.php:1493
 #: plugins/elementor/widgets/General/ProgressBar.php:328
 #: plugins/elementor/widgets/General/Tabs.php:548
 #: plugins/elementor/widgets/General/TeamCarousel.php:749
@@ -4434,8 +4434,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:570
 #: plugins/elementor/widgets/General/PricingTable.php:498
 #: plugins/elementor/widgets/General/PricingTable.php:645
-#: plugins/elementor/widgets/General/PricingTable.php:1030
-#: plugins/elementor/widgets/General/PricingTable.php:1380
+#: plugins/elementor/widgets/General/PricingTable.php:1032
+#: plugins/elementor/widgets/General/PricingTable.php:1382
 #: plugins/elementor/widgets/General/SmartMenu.php:1035
 #: plugins/elementor/widgets/General/TextRotator.php:181
 #: plugins/elementor/widgets/General/Timeline.php:123
@@ -4450,7 +4450,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:765
 #: plugins/elementor/widgets/General/FlipBox.php:1202
 #: plugins/elementor/widgets/General/PostTimeline.php:847
-#: plugins/elementor/widgets/General/PricingTable.php:1585
+#: plugins/elementor/widgets/General/PricingTable.php:1587
 #: plugins/elementor/widgets/General/Shape.php:456
 #: plugins/elementor/widgets/General/Timeline.php:365
 msgid "Icon Size"
@@ -5341,7 +5341,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostsRevolution.php:518
 #: plugins/elementor/widgets/General/PostsTicker.php:489
 #: plugins/elementor/widgets/General/PricingTable.php:206
-#: plugins/elementor/widgets/General/PricingTable.php:1732
+#: plugins/elementor/widgets/General/PricingTable.php:1735
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:103
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:192
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:112
@@ -5767,7 +5767,7 @@ msgid "Vertical Alignment"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostSlider.php:1167
-#: plugins/elementor/widgets/General/PricingTable.php:1690
+#: plugins/elementor/widgets/General/PricingTable.php:1693
 #: plugins/elementor/widgets/General/Slider.php:1269
 msgid "Divider"
 msgstr ""
@@ -6233,7 +6233,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:173
 #: plugins/elementor/widgets/General/PricingTable.php:210
-#: plugins/elementor/widgets/General/PricingTable.php:958
+#: plugins/elementor/widgets/General/PricingTable.php:960
 msgid "Ribbon"
 msgstr ""
 
@@ -6254,12 +6254,12 @@ msgid "Horizontal Text"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:252
-#: plugins/elementor/widgets/General/PricingTable.php:1186
+#: plugins/elementor/widgets/General/PricingTable.php:1188
 msgid "Pricing"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:260
-#: plugins/elementor/widgets/General/PricingTable.php:1268
+#: plugins/elementor/widgets/General/PricingTable.php:1270
 msgid "Price Prefix"
 msgstr ""
 
@@ -6268,12 +6268,12 @@ msgid "$"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:273
-#: plugins/elementor/widgets/General/PricingTable.php:1324
+#: plugins/elementor/widgets/General/PricingTable.php:1326
 msgid "Price"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:286
-#: plugins/elementor/widgets/General/PricingTable.php:1406
+#: plugins/elementor/widgets/General/PricingTable.php:1408
 msgid "Price Suffix"
 msgstr ""
 
@@ -6282,17 +6282,17 @@ msgid ".99"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:299
-#: plugins/elementor/widgets/General/PricingTable.php:1462
+#: plugins/elementor/widgets/General/PricingTable.php:1464
 msgid "Original Price"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:311
-#: plugins/elementor/widgets/General/PricingTable.php:1518
+#: plugins/elementor/widgets/General/PricingTable.php:1520
 msgid "Period"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:326
-#: plugins/elementor/widgets/General/PricingTable.php:1550
+#: plugins/elementor/widgets/General/PricingTable.php:1552
 msgid "Features"
 msgstr ""
 
@@ -6309,7 +6309,7 @@ msgid "List Item #2"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:396
-#: plugins/elementor/widgets/General/PricingTable.php:1993
+#: plugins/elementor/widgets/General/PricingTable.php:1996
 msgid "Footer"
 msgstr ""
 
@@ -6325,23 +6325,23 @@ msgstr ""
 msgid "Header Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PricingTable.php:1070
+#: plugins/elementor/widgets/General/PricingTable.php:1072
 #: plugins/elementor/widgets/General/Testimonial.php:284
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:449
 msgid "Min Width (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PricingTable.php:1237
+#: plugins/elementor/widgets/General/PricingTable.php:1239
 msgid "Inner Spacing"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PricingTable.php:1666
+#: plugins/elementor/widgets/General/PricingTable.php:1669
 #: plugins/elementor/widgets/General/Testimonial.php:244
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:409
 msgid "Item Padding"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PricingTable.php:1678
+#: plugins/elementor/widgets/General/PricingTable.php:1681
 #: plugins/elementor/widgets/General/Testimonial.php:232
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:397
 msgid "Item Margin"

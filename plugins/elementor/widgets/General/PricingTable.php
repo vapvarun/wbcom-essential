@@ -848,6 +848,7 @@ class PricingTable extends \Elementor\Widget_Base {
 				'size_units' => array( 'px', 'rem' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .wbcom-price-table-header-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-price-table-header-icon svg' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -921,6 +922,7 @@ class PricingTable extends \Elementor\Widget_Base {
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-price-table-header-icon' => 'height: {{VALUE}}px;',
 					'{{WRAPPER}} .wbcom-price-table-header-icon i' => 'line-height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-price-table-header-icon svg' => 'line-height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1587,6 +1589,7 @@ class PricingTable extends \Elementor\Widget_Base {
 				'size_units' => array( 'px', 'rem' ),
 				'selectors'  => array(
 					'{{WRAPPER}} ul.wbcom-price-table-features li i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} ul.wbcom-price-table-features li svg' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1598,7 +1601,7 @@ class PricingTable extends \Elementor\Widget_Base {
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} ul.wbcom-price-table-features li i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} ul.wbcom-price-table-features li i,{{WRAPPER}} ul.wbcom-price-table-features li svg' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2075,65 +2078,83 @@ class PricingTable extends \Elementor\Widget_Base {
 		$target   = $settings['btn_link']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['btn_link']['nofollow'] ? ' rel="nofollow"' : '';
 		?>    
-		<div class="wbcom-price-table" <?php if ( $settings['show_ribbon'] ) { echo 'style="overflow:hidden;"'; } ?>>
-			<?php if ( $settings['show_ribbon'] ) { ?>
-			<div class="wbcom-price-table-ribbon-wrapper"><div class="<?php echo esc_attr( $settings['ribbon_style'] ); ?> <?php echo esc_attr( $settings['ribbon_align'] ); ?>"><?php echo esc_html( $settings['ribbon_text'] ); ?></div></div>
-			<?php } ?>
+		<div class="wbcom-price-table" <?php echo $settings['show_ribbon'] ? 'style="overflow:hidden;"' : ''; ?>>
+			<?php if ( $settings['show_ribbon'] ) : ?>
+				<div class="wbcom-price-table-ribbon-wrapper">
+					<div class="<?php echo esc_attr( $settings['ribbon_style'] ); ?> <?php echo esc_attr( $settings['ribbon_align'] ); ?>">
+						<?php echo esc_html( $settings['ribbon_text'] ); ?>
+					</div>
+				</div>
+			<?php endif; ?>
+			
 			<div class="wbcom-price-table-header">
 				<div class="wbcom-price-table-header-icon">
-				<?php \Elementor\Icons_Manager::render_icon( $settings['header_icon'], array( 'aria-hidden' => 'true' ) ); ?>
+					<?php \Elementor\Icons_Manager::render_icon( $settings['header_icon'], array( 'aria-hidden' => 'true' ) ); ?>
 				</div>
-				<?php
-				if ( $settings['title'] ) {
-					echo '<' . $settings['html_tag'] . ' class="wbcom-price-table-title">';
-					echo esc_html( $settings['title'] );
-					echo '</' . $settings['html_tag'] . '>';
-				}
-				?>
-				<?php if ( $settings['desc'] ) { ?>
-				<span class="wbcom-price-table-desc"><?php echo esc_html( $settings['desc'] ); ?></span>    
-				<?php } ?>
+	
+				<?php if ( ! empty( $settings['title'] ) ) : ?>
+					<<?php echo esc_attr( $settings['html_tag'] ); ?> class="wbcom-price-table-title">
+						<?php echo esc_html( $settings['title'] ); ?>
+					</<?php echo esc_attr( $settings['html_tag'] ); ?>>
+				<?php endif; ?>
+	
+				<?php if ( ! empty( $settings['desc'] ) ) : ?>
+					<span class="wbcom-price-table-desc"><?php echo esc_html( $settings['desc'] ); ?></span>
+				<?php endif; ?>
 			</div>
+	
 			<div class="wbcom-price-table-subheader">
 				<div class="wbcom-price-table-price">
-					<?php if ( $settings['original_price'] ) { ?> 
-					<div class="wbcom-price-table-original-price"><del><?php echo esc_html( $settings['original_price'] ); ?></del></div>
-					<?php } ?>
-					<?php if ( $settings['price_prefix'] ) { ?> 
-					<div class="wbcom-price-table-price-prefix"><?php echo esc_html( $settings['price_prefix'] ); ?></div>
-					<?php } ?>
-					<?php if ( $settings['price'] || $settings['price'] == '0' ) { ?> 
-					<div class="wbcom-price-table-price-value"><?php echo esc_html( $settings['price'] ); ?></div>
-					<?php } ?>
-					<?php if ( $settings['price_suffix'] ) { ?> 
-					<div class="wbcom-price-table-price-suffix"><?php echo esc_html( $settings['price_suffix'] ); ?></div>
-					<?php } ?>
+					<?php if ( ! empty( $settings['original_price'] ) ) : ?>
+						<div class="wbcom-price-table-original-price"><del><?php echo esc_html( $settings['original_price'] ); ?></del></div>
+					<?php endif; ?>
+	
+					<?php if ( ! empty( $settings['price_prefix'] ) ) : ?>
+						<div class="wbcom-price-table-price-prefix"><?php echo esc_html( $settings['price_prefix'] ); ?></div>
+					<?php endif; ?>
+	
+					<?php if ( isset( $settings['price'] ) ) : ?>
+						<div class="wbcom-price-table-price-value"><?php echo esc_html( $settings['price'] ); ?></div>
+					<?php endif; ?>
+	
+					<?php if ( ! empty( $settings['price_suffix'] ) ) : ?>
+						<div class="wbcom-price-table-price-suffix"><?php echo esc_html( $settings['price_suffix'] ); ?></div>
+					<?php endif; ?>
 				</div>
-				<?php if ( $settings['period'] ) { ?> 
-				<div class="wbcom-price-table-period">
-					<span><?php echo esc_html( $settings['period'] ); ?></span>
-				</div>
-				<?php } ?>
+	
+				<?php if ( ! empty( $settings['period'] ) ) : ?>
+					<div class="wbcom-price-table-period">
+						<span><?php echo esc_html( $settings['period'] ); ?></span>
+					</div>
+				<?php endif; ?>
 			</div>
+	
 			<div class="wbcom-price-table-content">
 				<ul class="wbcom-price-table-features">
-					<?php foreach ( $settings['list'] as $item ) { ?> 
-					<li class="elementor-repeater-item-<?php echo $item['_id']; ?>"><?php \Elementor\Icons_Manager::render_icon( $item['item_icon'], array( 'aria-hidden' => 'true' ) ); ?><span><?php echo wp_kses_post( $item['item_text'] ); ?></span></li>
-					<?php } ?>
+					<?php foreach ( $settings['list'] as $item ) : ?>
+						<li class="elementor-repeater-item-<?php echo esc_attr( $item['_id'] ); ?>">
+							<?php \Elementor\Icons_Manager::render_icon( $item['item_icon'], array( 'aria-hidden' => 'true' ) ); ?>
+							<span><?php echo wp_kses_post( $item['item_text'] ); ?></span>
+						</li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
+	
 			<div class="wbcom-price-table-footer">
 				<div class="wbcom-btn-wrapper">
-					<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>" class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>" href="<?php echo esc_url( $settings['btn_link']['url'] ); ?>" <?php echo $target; ?> <?php echo $nofollow; ?>>
+					<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>" 
+						class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>" 
+						href="<?php echo esc_url( $settings['btn_link']['url'] ); ?>" <?php echo $target; ?> <?php echo $nofollow; ?>>
 						<?php echo esc_html( $settings['btn_text'] ); ?>
 					</a>
 				</div>
-				<?php if ( $settings['footer_info'] ) { ?> 
+	
+				<?php if ( ! empty( $settings['footer_info'] ) ) : ?>
 					<span class="wbcom-price-table-footer-desc"><?php echo wp_kses_post( $settings['footer_info'] ); ?></span>
-				<?php } ?>
+				<?php endif; ?>
 			</div>
 		</div>
-
+	
 		<?php
 	}
 }
