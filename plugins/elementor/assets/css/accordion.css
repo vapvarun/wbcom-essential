@@ -97,6 +97,13 @@
 	text-align: center;
 }
 
+.wbcom-accordions .wbaccordion__head>button svg {
+    width: 18px;
+    height: 18px;
+    font-size: inherit;
+    margin-right: 10px;
+}
+
 .wbcom-accordions .wbaccordion__head>button .wbaccordion-prefix {
 	text-align: center;
 	font-weight: 700;

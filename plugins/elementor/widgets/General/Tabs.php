@@ -470,6 +470,8 @@ class Tabs extends \Elementor\Widget_Base {
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_head li.is-open i' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbaccordion-mobile-title.is-open i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom_tab_head li.is-open svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .wbaccordion-mobile-title.is-open svg' => 'fill: {{VALUE}};',
 				),
 			)
 		);
@@ -481,8 +483,10 @@ class Tabs extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom_tab_head li i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom_tab_head li i'   => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .wbaccordion-mobile-title i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom_tab_head li svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .wbaccordion-mobile-title svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
@@ -763,68 +767,66 @@ class Tabs extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$rand     = '-' . rand();
-		if ( $settings['list'] ) { ?>
-			<div class="wbcom-tabs <?php echo $settings['tab_layout']; ?>">
-				<ul class="wbcom_tab_head 
-				<?php
-				if ( $settings['icon_block'] == 'true' ) {
-					?>
-					wbcom-tabs-block-icon<?php } ?>">
-					<?php $menu_count = 0; ?>
-					<?php $tab_count = 0; ?>
-					<?php foreach ( $settings['list'] as $item ) { ?> 
-					<li 
-						<?php
-						if ( $menu_count == 0 ) {
+
+		if ( ! empty( $settings['list'] ) ) { ?>
+			<div class="wbcom-tabs <?php echo esc_attr( $settings['tab_layout'] ); ?>">
+				<ul class="wbcom_tab_head <?php echo esc_attr( $settings['icon_block'] === 'true' ? 'wbcom-tabs-block-icon' : '' ); ?>">
+					<?php
+					$menu_count = 0;
+					$tab_count  = 0;
+					foreach ( $settings['list'] as $item ) {
+						?>
+						<li 
+							class="<?php echo $menu_count === 0 ? 'is-open' : ''; ?>" 
+							data-opentab="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>">
+							<?php
+							\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );
+							echo esc_html( $item['title'] );
 							?>
-						class="is-open"<?php } ?> data-opentab="wbcom-<?php echo $item['_id'] . $rand; ?>">
-						<?php \Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) ); ?><?php echo $item['title']; ?>
-					</li>
-						<?php $menu_count++; ?>
-					<?php } ?>
+						</li>
+						<?php
+						++$menu_count;
+					}
+					?>
 				</ul>
+	
 				<?php foreach ( $settings['list'] as $item ) { ?>	
-				<div class="wbaccordion-mobile-title 
-					<?php
-					if ( $tab_count == 0 ) {
+					<div class="wbaccordion-mobile-title <?php echo esc_attr( $tab_count === 0 ? 'is-open' : '' ); ?>" data-opentab="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>">
+						<?php
+						\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );
+						echo esc_html( $item['title'] );
 						?>
-					is-open<?php } ?>" data-opentab="wbcom-<?php echo $item['_id'] . $rand; ?>">
-					<?php \Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) ); ?><?php echo $item['title']; ?>
-				</div>	
-				<div class="wbaccordion wbcom_tab_item 
-					<?php
-					if ( $tab_count == 0 ) {
-						?>
-					is-open<?php } ?>" id="wbcom-<?php echo $item['_id'] . $rand; ?>" 
-					<?php
-					if ( $settings['hash'] ) {
-						?>
-					data-hash="#wbcom-<?php echo $item['_id'] . $rand; ?>"<?php } ?>>
-					<div class="wbaccordion__body">
-						<div class="wbaccordion-inner">
-							<?php if ( $item['image']['url'] ) { ?>
-							<div class="wbaccordion-img">
-								<img src="<?php echo esc_url( $item['image']['url'] ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" />
+					</div>	
+	
+					<div class="wbaccordion wbcom_tab_item <?php echo esc_attr( $tab_count === 0 ? 'is-open' : '' ); ?>" id="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>" <?php echo $settings['hash'] ? 'data-hash="#wbcom-' . esc_attr( $item['_id'] . $rand ) . '"' : ''; ?>>
+						<div class="wbaccordion__body">
+							<div class="wbaccordion-inner">
+								<?php if ( ! empty( $item['image']['url'] ) ) { ?>
+									<div class="wbaccordion-img">
+										<img src="<?php echo esc_url( $item['image']['url'] ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" />
+									</div>
+								<?php } ?>
+								<div class="wbaccordion-text"><?php echo wp_kses_post( $item['text'] ); ?></div>
 							</div>
-							<?php } ?>
-							<div class="wbaccordion-text"><?php echo $item['text']; ?></div>
 						</div>
 					</div>
-				</div>
-					<?php $tab_count++; ?>
-				<?php } ?>
+					<?php
+					++$tab_count;
+				}
+				?>
 			</div>
 			<?php
 			$breakpoint = get_option( 'elementor_viewport_md' );
 			if ( empty( $breakpoint ) ) {
-				$breakpoint = '768'; }
+				$breakpoint = '768';
+			}
 			?>
 			<style>
-				@media screen and (max-width: <?php echo $breakpoint; ?>px) {
-					.wbaccordion-mobile-title {display:block !important;}
-					ul.wbcom_tab_head {display:none !important;}
-					.wbcom_tab_item.wbaccordion {margin-bottom:-1px !important;}
-					.wbcom-tabs.t-vertical,.wbcom-tabs.t-vertical-reverse {flex-direction: column !important;}
+				@media screen and (max-width: <?php echo esc_attr( $breakpoint ); ?>px) {
+					.wbaccordion-mobile-title { display: block !important; }
+					ul.wbcom_tab_head { display: none !important; }
+					.wbcom_tab_item.wbaccordion { margin-bottom: -1px !important; }
+					.wbcom-tabs.t-vertical, .wbcom-tabs.t-vertical-reverse { flex-direction: column !important; }
 				}
 			</style>
 			<?php

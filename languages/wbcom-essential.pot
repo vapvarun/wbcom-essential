@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 08:42:51+00:00\n"
+"POT-Creation-Date: 2024-10-03 11:19:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -285,7 +285,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:249
 #: plugins/elementor/widgets/General/LoginForm.php:335
 #: plugins/elementor/widgets/General/Tabs.php:174
-#: plugins/elementor/widgets/General/Tabs.php:501
+#: plugins/elementor/widgets/General/Tabs.php:505
 msgid "Off"
 msgstr ""
 
@@ -307,7 +307,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:248
 #: plugins/elementor/widgets/General/LoginForm.php:334
 #: plugins/elementor/widgets/General/Tabs.php:173
-#: plugins/elementor/widgets/General/Tabs.php:497
+#: plugins/elementor/widgets/General/Tabs.php:501
 msgid "On"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:1043
 #: plugins/elementor/widgets/General/Tabs.php:325
 #: plugins/elementor/widgets/General/Tabs.php:381
-#: plugins/elementor/widgets/General/Tabs.php:552
+#: plugins/elementor/widgets/General/Tabs.php:556
 #: plugins/elementor/widgets/General/TeamCarousel.php:487
 #: plugins/elementor/widgets/General/TeamCarousel.php:730
 #: plugins/elementor/widgets/General/TeamCarousel.php:757
@@ -701,7 +701,7 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:437
 #: plugins/elementor/widgets/General/PortfolioGrid.php:105
 #: plugins/elementor/widgets/General/Tabs.php:121
-#: plugins/elementor/widgets/General/Tabs.php:642
+#: plugins/elementor/widgets/General/Tabs.php:646
 #: plugins/elementor/widgets/General/TeamCarousel.php:216
 #: plugins/elementor/widgets/General/Timeline.php:115
 #: plugins/elementor/widgets/General/Timeline.php:493
@@ -728,7 +728,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:389
 #: plugins/elementor/widgets/General/Accordion.php:414
 #: plugins/elementor/widgets/General/Accordion.php:463
-#: plugins/elementor/widgets/General/Accordion.php:835
+#: plugins/elementor/widgets/General/Accordion.php:836
 #: plugins/elementor/widgets/General/Branding.php:308
 #: plugins/elementor/widgets/General/Countdown.php:360
 #: plugins/elementor/widgets/General/DropdownButton.php:451
@@ -796,8 +796,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:841
 #: plugins/elementor/widgets/General/SmartMenu.php:1077
 #: plugins/elementor/widgets/General/Tabs.php:406
-#: plugins/elementor/widgets/General/Tabs.php:607
-#: plugins/elementor/widgets/General/Tabs.php:721
+#: plugins/elementor/widgets/General/Tabs.php:611
+#: plugins/elementor/widgets/General/Tabs.php:725
 #: plugins/elementor/widgets/General/TeamCarousel.php:625
 #: plugins/elementor/widgets/General/TeamCarousel.php:873
 #: plugins/elementor/widgets/General/TeamCarousel.php:928
@@ -870,7 +870,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:234
 #: plugins/elementor/widgets/General/Accordion.php:97
 #: plugins/elementor/widgets/General/Accordion.php:156
-#: plugins/elementor/widgets/General/Accordion.php:861
+#: plugins/elementor/widgets/General/Accordion.php:862
 #: plugins/elementor/widgets/General/Countdown.php:415
 #: plugins/elementor/widgets/General/FlipBox.php:152
 #: plugins/elementor/widgets/General/FlipBox.php:207
@@ -883,7 +883,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:175
 #: plugins/elementor/widgets/General/Tabs.php:93
 #: plugins/elementor/widgets/General/Tabs.php:129
-#: plugins/elementor/widgets/General/Tabs.php:527
+#: plugins/elementor/widgets/General/Tabs.php:531
 #: plugins/elementor/widgets/General/Testimonial.php:121
 #: plugins/elementor/widgets/General/Testimonial.php:569
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:132
@@ -915,8 +915,8 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:754
 #: plugins/elementor/widgets/General/Accordion.php:582
 #: plugins/elementor/widgets/General/Accordion.php:635
-#: plugins/elementor/widgets/General/Accordion.php:770
-#: plugins/elementor/widgets/General/Accordion.php:878
+#: plugins/elementor/widgets/General/Accordion.php:771
+#: plugins/elementor/widgets/General/Accordion.php:879
 #: plugins/elementor/widgets/General/Countdown.php:527
 #: plugins/elementor/widgets/General/Countdown.php:565
 #: plugins/elementor/widgets/General/Countdown.php:615
@@ -984,7 +984,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Tabs.php:212
 #: plugins/elementor/widgets/General/Tabs.php:257
 #: plugins/elementor/widgets/General/Tabs.php:452
-#: plugins/elementor/widgets/General/Tabs.php:571
+#: plugins/elementor/widgets/General/Tabs.php:575
 #: plugins/elementor/widgets/General/TeamCarousel.php:974
 #: plugins/elementor/widgets/General/TeamCarousel.php:1092
 #: plugins/elementor/widgets/General/TeamCarousel.php:1245
@@ -1260,7 +1260,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:765
 #: plugins/elementor/widgets/General/Accordion.php:594
 #: plugins/elementor/widgets/General/Accordion.php:647
-#: plugins/elementor/widgets/General/Accordion.php:890
+#: plugins/elementor/widgets/General/Accordion.php:891
 #: plugins/elementor/widgets/General/DropdownButton.php:420
 #: plugins/elementor/widgets/General/DropdownButton.php:492
 #: plugins/elementor/widgets/General/DropdownButton.php:715
@@ -1325,7 +1325,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:921
 #: plugins/elementor/widgets/General/Tabs.php:236
 #: plugins/elementor/widgets/General/Tabs.php:281
-#: plugins/elementor/widgets/General/Tabs.php:595
+#: plugins/elementor/widgets/General/Tabs.php:599
 #: plugins/elementor/widgets/General/TeamCarousel.php:506
 #: plugins/elementor/widgets/General/TeamCarousel.php:1005
 #: plugins/elementor/widgets/General/TeamCarousel.php:1123
@@ -1395,13 +1395,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:1548
 #: plugins/elementor/widgets/General/PricingTable.php:846
 #: plugins/elementor/widgets/General/Slider.php:1983
-#: plugins/elementor/widgets/General/Tabs.php:480
+#: plugins/elementor/widgets/General/Tabs.php:482
 msgid "Size"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:313
 #: plugins/elementor/widgets/General/Accordion.php:505
-#: plugins/elementor/widgets/General/Accordion.php:847
+#: plugins/elementor/widgets/General/Accordion.php:848
 #: plugins/elementor/widgets/General/Countdown.php:400
 #: plugins/elementor/widgets/General/DropdownButton.php:865
 #: plugins/elementor/widgets/General/FlipBox.php:873
@@ -1521,7 +1521,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:776
 #: plugins/elementor/widgets/General/Tabs.php:224
 #: plugins/elementor/widgets/General/Tabs.php:269
-#: plugins/elementor/widgets/General/Tabs.php:583
+#: plugins/elementor/widgets/General/Tabs.php:587
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:575
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:830
 msgid "Border Color"
@@ -1600,8 +1600,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:326
 #: plugins/elementor/widgets/General/SmartMenu.php:773
 #: plugins/elementor/widgets/General/SmartMenu.php:1090
-#: plugins/elementor/widgets/General/Tabs.php:620
-#: plugins/elementor/widgets/General/Tabs.php:734
+#: plugins/elementor/widgets/General/Tabs.php:624
+#: plugins/elementor/widgets/General/Tabs.php:738
 #: plugins/elementor/widgets/General/TeamCarousel.php:640
 #: plugins/elementor/widgets/General/TeamCarousel.php:1329
 #: plugins/elementor/widgets/General/Timeline.php:350
@@ -1894,7 +1894,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:455
 #: plugins/elementor/widgets/General/Accordion.php:618
 #: plugins/elementor/widgets/General/Accordion.php:671
-#: plugins/elementor/widgets/General/Accordion.php:902
+#: plugins/elementor/widgets/General/Accordion.php:903
 #: plugins/elementor/widgets/General/Branding.php:299
 #: plugins/elementor/widgets/General/Countdown.php:352
 #: plugins/elementor/widgets/General/DropdownButton.php:443
@@ -2006,7 +2006,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:230
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:268
 #: plugins/elementor/widgets/General/Accordion.php:689
-#: plugins/elementor/widgets/General/Accordion.php:917
+#: plugins/elementor/widgets/General/Accordion.php:918
 #: plugins/elementor/widgets/General/Countdown.php:388
 #: plugins/elementor/widgets/General/Countdown.php:594
 #: plugins/elementor/widgets/General/DropdownButton.php:599
@@ -2065,9 +2065,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:955
 #: plugins/elementor/widgets/General/SmartMenu.php:1105
 #: plugins/elementor/widgets/General/Tabs.php:418
-#: plugins/elementor/widgets/General/Tabs.php:513
-#: plugins/elementor/widgets/General/Tabs.php:628
-#: plugins/elementor/widgets/General/Tabs.php:742
+#: plugins/elementor/widgets/General/Tabs.php:517
+#: plugins/elementor/widgets/General/Tabs.php:632
+#: plugins/elementor/widgets/General/Tabs.php:746
 #: plugins/elementor/widgets/General/TeamCarousel.php:1056
 #: plugins/elementor/widgets/General/TeamCarousel.php:1174
 #: plugins/elementor/widgets/General/TeamCarousel.php:1381
@@ -2217,8 +2217,8 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:314
 #: plugins/elementor/widgets/General/Accordion.php:436
 #: plugins/elementor/widgets/General/Accordion.php:486
-#: plugins/elementor/widgets/General/Accordion.php:783
-#: plugins/elementor/widgets/General/Accordion.php:815
+#: plugins/elementor/widgets/General/Accordion.php:784
+#: plugins/elementor/widgets/General/Accordion.php:816
 #: plugins/elementor/widgets/General/Countdown.php:335
 #: plugins/elementor/widgets/General/Countdown.php:656
 #: plugins/elementor/widgets/General/Countdown.php:759
@@ -2291,7 +2291,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:705
 #: plugins/elementor/widgets/General/Accordion.php:398
 #: plugins/elementor/widgets/General/Accordion.php:575
-#: plugins/elementor/widgets/General/Accordion.php:763
+#: plugins/elementor/widgets/General/Accordion.php:764
 #: plugins/elementor/widgets/General/DropdownButton.php:141
 #: plugins/elementor/widgets/General/DropdownButton.php:401
 #: plugins/elementor/widgets/General/DropdownButton.php:696
@@ -2355,7 +2355,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:747
 #: plugins/elementor/widgets/General/Accordion.php:447
 #: plugins/elementor/widgets/General/Accordion.php:628
-#: plugins/elementor/widgets/General/Accordion.php:794
+#: plugins/elementor/widgets/General/Accordion.php:795
 #: plugins/elementor/widgets/General/Branding.php:168
 #: plugins/elementor/widgets/General/DropdownButton.php:474
 #: plugins/elementor/widgets/General/DropdownButton.php:740
@@ -3662,15 +3662,15 @@ msgstr ""
 msgid "Arrow Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:726
+#: plugins/elementor/widgets/General/Accordion.php:727
 msgid "Container Width"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:740
+#: plugins/elementor/widgets/General/Accordion.php:741
 msgid "Container Height"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:801
+#: plugins/elementor/widgets/General/Accordion.php:802
 #: plugins/elementor/widgets/General/FlipBox.php:752
 #: plugins/elementor/widgets/General/FlipBox.php:1189
 #: plugins/elementor/widgets/General/NotificationArea.php:132
@@ -3834,7 +3834,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1677
 #: plugins/elementor/widgets/General/SmartMenu.php:127
 #: plugins/elementor/widgets/General/Tabs.php:317
-#: plugins/elementor/widgets/General/Tabs.php:698
+#: plugins/elementor/widgets/General/Tabs.php:702
 #: plugins/elementor/widgets/General/TeamCarousel.php:479
 #: plugins/elementor/widgets/General/TeamCarousel.php:722
 #: plugins/elementor/widgets/General/Testimonial.php:321
@@ -3894,8 +3894,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:131
 #: plugins/elementor/widgets/General/SmartMenu.php:241
 #: plugins/elementor/widgets/General/Tabs.php:321
-#: plugins/elementor/widgets/General/Tabs.php:548
-#: plugins/elementor/widgets/General/Tabs.php:702
+#: plugins/elementor/widgets/General/Tabs.php:552
+#: plugins/elementor/widgets/General/Tabs.php:706
 #: plugins/elementor/widgets/General/TeamCarousel.php:483
 #: plugins/elementor/widgets/General/TeamCarousel.php:726
 #: plugins/elementor/widgets/General/TeamCarousel.php:753
@@ -3962,8 +3962,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:139
 #: plugins/elementor/widgets/General/SmartMenu.php:249
 #: plugins/elementor/widgets/General/Tabs.php:329
-#: plugins/elementor/widgets/General/Tabs.php:556
-#: plugins/elementor/widgets/General/Tabs.php:706
+#: plugins/elementor/widgets/General/Tabs.php:560
+#: plugins/elementor/widgets/General/Tabs.php:710
 #: plugins/elementor/widgets/General/TeamCarousel.php:491
 #: plugins/elementor/widgets/General/TeamCarousel.php:734
 #: plugins/elementor/widgets/General/TeamCarousel.php:761
@@ -4411,7 +4411,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:1435
 #: plugins/elementor/widgets/General/PricingTable.php:1491
 #: plugins/elementor/widgets/General/ProgressBar.php:328
-#: plugins/elementor/widgets/General/Tabs.php:544
+#: plugins/elementor/widgets/General/Tabs.php:548
 #: plugins/elementor/widgets/General/TeamCarousel.php:749
 #: plugins/elementor/widgets/General/Testimonial.php:363
 #: plugins/elementor/widgets/General/Testimonial.php:467
@@ -5328,7 +5328,7 @@ msgid "Inner Background Color"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:1222
-#: plugins/elementor/widgets/General/Tabs.php:493
+#: plugins/elementor/widgets/General/Tabs.php:497
 msgid "Block"
 msgstr ""
 
@@ -6659,11 +6659,11 @@ msgstr ""
 msgid "Active Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Tabs.php:650
+#: plugins/elementor/widgets/General/Tabs.php:654
 msgid "Maximum Container Width"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Tabs.php:676
+#: plugins/elementor/widgets/General/Tabs.php:680
 msgid "Maximum Image Width"
 msgstr ""
 

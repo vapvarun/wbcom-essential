@@ -91,6 +91,13 @@
 	vertical-align: middle;
 }
 
+.wbcom_tab_head li svg {
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
 .wbcom_tab_head li.is-open {
 	border: 1px solid #eee;
 	background: #fff;

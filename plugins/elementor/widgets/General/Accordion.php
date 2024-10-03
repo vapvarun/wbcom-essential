@@ -716,6 +716,7 @@ class Accordion extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button .wbaccordion-prefix' => 'font-size: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head svg' => 'width: {{VALUE}}px; height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -729,7 +730,7 @@ class Accordion extends \Elementor\Widget_Base {
 				'max'       => 100,
 				'step'      => 1,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button .wbaccordion-prefix' => 'width: {{VALUE}}px;min-width: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head svg,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button .wbaccordion-prefix' => 'width: {{VALUE}}px;min-width: {{VALUE}}px;',
 				),
 			)
 		);
@@ -743,7 +744,7 @@ class Accordion extends \Elementor\Widget_Base {
 				'max'       => 100,
 				'step'      => 1,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button .wbaccordion-prefix' => 'height: {{VALUE}}px;line-height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head svg,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button .wbaccordion-prefix' => 'height: {{VALUE}}px;line-height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -929,27 +930,48 @@ class Accordion extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$rand     = '-' . rand();
-		if ( $settings['list'] ) { ?>
-			<div class="wbcom-accordions" data-selfclose="<?php echo $settings['self_close']; ?>" data-opensingle="<?php echo $settings['open_single']; ?>" data-openspeed="<?php echo $settings['open_speed']; ?>" data-closespeed="<?php echo $settings['close_speed']; ?>" data-autoscroll="<?php echo $settings['scroll']; ?>" data-scrollspeed="<?php echo $settings['scroll_speed']; ?>" data-scrolloffset="<?php echo $settings['scroll_offset']; ?>">
-			<?php foreach ( $settings['list'] as $item ) { ?>   
-				<div id="wbcom-<?php echo $item['_id'] . $rand; ?>" 
-										  <?php
-											if ( $settings['hash'] ) {
-												?>
-					data-hash="#wbcom-<?php echo $item['_id'] . $rand; ?>"<?php } ?> class="wbaccordion <?php echo $item['status']; ?>" data-wbaccordion-options='{"selfBlock": <?php echo $item['self_block']; ?>}'>
-					<?php echo '<' . $settings['html_tag'] . ' class="wbaccordion__head">'; ?>
-						<?php \Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) ); ?>
+
+		if ( ! empty( $settings['list'] ) ) { ?>
+			<div class="wbcom-accordions" 
+				data-selfclose="<?php echo esc_attr( $settings['self_close'] ); ?>" 
+				data-opensingle="<?php echo esc_attr( $settings['open_single'] ); ?>" 
+				data-openspeed="<?php echo esc_attr( $settings['open_speed'] ); ?>" 
+				data-closespeed="<?php echo esc_attr( $settings['close_speed'] ); ?>" 
+				data-autoscroll="<?php echo esc_attr( $settings['scroll'] ); ?>" 
+				data-scrollspeed="<?php echo esc_attr( $settings['scroll_speed'] ); ?>" 
+				data-scrolloffset="<?php echo esc_attr( $settings['scroll_offset'] ); ?>">
+				<?php foreach ( $settings['list'] as $item ) { ?>
+					<div id="wbcom-<?php echo esc_attr( $item['_id'] ) . esc_attr( $rand ); ?>" 
+						<?php if ( ! empty( $settings['hash'] ) ) { ?>
+							data-hash="#wbcom-<?php echo esc_attr( $item['_id'] ) . esc_attr( $rand ); ?>"
+						<?php } ?>
+						class="wbaccordion <?php echo esc_attr( $item['status'] ); ?>" 
+						data-wbaccordion-options='{"selfBlock": <?php echo esc_attr( $item['self_block'] ); ?>}'>
 						<?php
-						if ( $item['title_icon_txt'] ) {
-							echo '<span class="wbaccordion-prefix">' . $item['title_icon_txt'] . '</span>'; }
+						echo '<' . esc_html( $settings['html_tag'] ) . ' class="wbaccordion__head">';
+
+						// Render the icon and capture the output.
+						ob_start();
+						\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );
+						$icon_html = ob_get_clean();
+
+						// Modify the icon HTML to include width and height.
+						$icon_html = str_replace( '<svg', '<svg width="18" height="18"', $icon_html );
+
+						echo $icon_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+						if ( ! empty( $item['title_icon_txt'] ) ) {
+							echo '<span class="wbaccordion-prefix">' . esc_html( $item['title_icon_txt'] ) . '</span>';
+						}
+
+						echo esc_html( $item['title'] );
+						echo '</' . esc_html( $settings['html_tag'] ) . '>';
 						?>
-						<?php echo $item['title']; ?>
-					<?php echo '</' . $settings['html_tag'] . '>'; ?>
-					<div class="wbaccordion__body">
-						<?php echo $item['text']; ?>
+						<div class="wbaccordion__body">
+							<?php echo wp_kses_post( $item['text'] ); ?>
+						</div>
 					</div>
-				</div>
-			<?php } ?>    
+				<?php } ?>
 			</div>
 			<?php
 		}
