@@ -3,8 +3,8 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
-Tested up to: 6.4.3
-Stable tag: 3.7.3
+Tested up to: 6.6.2
+Stable tag: 3.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,18 @@ It will add additional features for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
 
 == Changelog ==
+= 3.8.0 =
+* Managed: Member and grid view count with BuddyX Pro integration.
+* Fixed: Pricing table icon issue.
+* Fixed: Accordion and tabs widget issue.
+* Improved: WooCommerce functions in `wbcom-essential-woocommerce.php`.
+* Managed: Group grid widget UI fixes.
+* Removed: Commented code and unwanted files for cleaner codebase.
+* Fixed: Post slider arrow visibility issue.
+* Fixed: Memory size issue.
+* Fixed: Notification area widget warnings.
+* Updated: `loader.php` file for better performance.
+
 = 3.7.3 =
 * Fix: (#1280) Fatal error when extended fields are disabled
 * Fix: Warnings
