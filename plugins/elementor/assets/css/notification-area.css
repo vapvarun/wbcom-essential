@@ -7,57 +7,40 @@
 /*--------------------------------------------------------------
 # Global
 --------------------------------------------------------------*/
-.wbesntl-notification-area .user-link-wrap .user-link,
-.wbesntl-notification-area .user-link-wrap .user-link .rg-user{
-	display: flex;
-	align-items: center;
-}
-
 .wbesntl-notification-area.header-right{
 	padding-right: 0px;
 }
 
-.wbesntl-notification-area .user-link-wrap .user-link .rg-user .rg-user-name{
-	white-space: nowrap;
-    max-width: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+#masthead.wbcom-notification-area {
+    height: auto;
 }
 
-/*--------------------------------------------------------------
-# Notifications
---------------------------------------------------------------*/
-.user-notifications .rg-dropdown {
-	line-height: normal;
+#masthead.wbcom-notification-area .wbcom-notification-area-navbar {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
 }
 
-.wbesntl-notification-area.header-right .user-notifications:hover .rg-dropdown,
-.wbesntl-notification-area.header-right .user-link-wrap:hover .user-profile-menu{
-	opacity: 0;
-	visibility: hidden;
+#masthead.wbcom-notification-area .user-link-wrap {
+	flex: 0 0 auto;
 }
 
-.wbesntl-notification-area.header-right .user-notifications.selected .rg-dropdown,
-.wbesntl-notification-area.header-right .user-link-wrap.selected .user-profile-menu{
-	opacity: 1;
-	visibility: visible;
-	margin-top: -4px;
+#masthead.wbcom-notification-area .user-profile-menu.header-notifications-dropdown-menu {
+	max-width: 250px;
+	padding: 10px;
 }
 
-.wbesntl-notification-area .user-notifications .rg-dropdown:after, 
-.wbesntl-notification-area .user-notifications:hover .rg-dropdown:after,
-.wbesntl-notification-area .user-link-wrap .rg-dropdown:after, 
-.wbesntl-notification-area .user-link-wrap:hover .rg-dropdown:after,
-.wbesntl-notification-area .user-profile-menu:after{
-	display: none;
-}
-
-.wbesntl-notification-area .user-notifications .header-notifications-dropdown-menu .dropdown-footer{
-	padding:0px !important;
-}
-
-.wbesntl-notification-area .header-notifications-dropdown-menu .dropdown-title,
-.wbesntl-notification-area .header-notifications-dropdown-menu .alert-message,
-.wbesntl-notification-area .header-notifications-dropdown-menu .dropdown-item-wrapper{
-	line-height: normal;
+@media screen and (max-width: 960px) {
+    .wbcom-notification-area-navbar>div {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        text-align: center;
+        position: static !important;
+    }
 }
