@@ -710,3 +710,10 @@
 .wbcom-essential-header-buttons .bp-icon-wrap .fas {
   margin-right: 6px;
 }
+
+/* Reign Theme  */
+
+.theme-reign-theme #masthead .elementor-location-header .menu-item-has-children>a:hover:after,
+.theme-reign-theme #masthead .elementor-location-header .menu-item-has-children>a:after{
+  font-size: 0px;
+}
