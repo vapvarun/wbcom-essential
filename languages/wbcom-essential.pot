@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-15 14:34:37+00:00\n"
+"POT-Creation-Date: 2024-10-16 04:37:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1097,11 +1097,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:268
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:299
 #: plugins/elementor/widgets/General/LoginForm.php:310
-#: plugins/elementor/widgets/General/NotificationArea.php:64
-#: plugins/elementor/widgets/General/NotificationArea.php:78
-#: plugins/elementor/widgets/General/NotificationArea.php:93
-#: plugins/elementor/widgets/General/NotificationArea.php:108
-#: plugins/elementor/widgets/General/NotificationArea.php:122
+#: plugins/elementor/widgets/General/NotificationArea.php:63
+#: plugins/elementor/widgets/General/NotificationArea.php:77
+#: plugins/elementor/widgets/General/NotificationArea.php:92
+#: plugins/elementor/widgets/General/NotificationArea.php:107
+#: plugins/elementor/widgets/General/NotificationArea.php:121
 #: plugins/elementor/widgets/General/PortfolioGrid.php:312
 #: plugins/elementor/widgets/General/PortfolioGrid.php:364
 #: plugins/elementor/widgets/General/PortfolioGrid.php:414
@@ -1174,11 +1174,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:269
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:300
 #: plugins/elementor/widgets/General/LoginForm.php:311
-#: plugins/elementor/widgets/General/NotificationArea.php:65
-#: plugins/elementor/widgets/General/NotificationArea.php:79
-#: plugins/elementor/widgets/General/NotificationArea.php:94
-#: plugins/elementor/widgets/General/NotificationArea.php:109
-#: plugins/elementor/widgets/General/NotificationArea.php:123
+#: plugins/elementor/widgets/General/NotificationArea.php:64
+#: plugins/elementor/widgets/General/NotificationArea.php:78
+#: plugins/elementor/widgets/General/NotificationArea.php:93
+#: plugins/elementor/widgets/General/NotificationArea.php:108
+#: plugins/elementor/widgets/General/NotificationArea.php:122
 #: plugins/elementor/widgets/General/PortfolioGrid.php:313
 #: plugins/elementor/widgets/General/PortfolioGrid.php:365
 #: plugins/elementor/widgets/General/PortfolioGrid.php:415
@@ -3673,7 +3673,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:802
 #: plugins/elementor/widgets/General/FlipBox.php:752
 #: plugins/elementor/widgets/General/FlipBox.php:1189
-#: plugins/elementor/widgets/General/NotificationArea.php:132
+#: plugins/elementor/widgets/General/NotificationArea.php:141
 #: plugins/elementor/widgets/General/PostCarousel.php:1894
 #: plugins/elementor/widgets/General/PostCarousel.php:1929
 #: plugins/elementor/widgets/General/PostSlider.php:1333
@@ -4649,51 +4649,52 @@ msgstr ""
 msgid "(Logout)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:34
+#: plugins/elementor/widgets/General/NotificationArea.php:33
 msgid "Header Notification Area"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:54
+#: plugins/elementor/widgets/General/NotificationArea.php:53
+#: plugins/elementor/widgets/General/NotificationArea.php:133
 msgid "Notification Area"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:61
+#: plugins/elementor/widgets/General/NotificationArea.php:60
 msgid "Enable Search Form"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:75
+#: plugins/elementor/widgets/General/NotificationArea.php:74
 msgid "Enable Cart Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:90
+#: plugins/elementor/widgets/General/NotificationArea.php:89
 msgid "Enable User Message Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:105
+#: plugins/elementor/widgets/General/NotificationArea.php:104
 msgid "Enable Notification Bell Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:119
+#: plugins/elementor/widgets/General/NotificationArea.php:118
 msgid "Display User Avatar"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:144
+#: plugins/elementor/widgets/General/NotificationArea.php:153
 msgid "Icon Hover Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:157
+#: plugins/elementor/widgets/General/NotificationArea.php:166
 msgid "User Name Font Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:169
+#: plugins/elementor/widgets/General/NotificationArea.php:178
 msgid "User Name Font Color (Hover)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:181
+#: plugins/elementor/widgets/General/NotificationArea.php:190
 msgid "Line Height (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:193
+#: plugins/elementor/widgets/General/NotificationArea.php:202
 msgid "Counter Top Space (px)"
 msgstr ""
 

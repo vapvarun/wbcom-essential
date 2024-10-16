@@ -23,7 +23,6 @@ class NotificationArea extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'notification-area', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/notification-area.css', array(), WBCOM_ESSENTIAL_VERSION );
-		// wp_register_style( 'style-handle', 'path/to/file.CSS' );
 	}
 
 	public function get_name() {
@@ -123,6 +122,16 @@ class NotificationArea extends \Elementor\Widget_Base {
 				'label_off'    => __( 'No', 'wbcom-essential' ),
 				'return_value' => 'yes',
 				'separator'    => 'before',
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_notification_area_style',
+			array(
+				'label' => esc_html__( 'Notification Area', 'wbcom-essential' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
