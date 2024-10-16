@@ -15,8 +15,6 @@ use Elementor\Core\Schemes\Color;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 
-
-
 class NotificationArea extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
@@ -54,74 +52,110 @@ class NotificationArea extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'search_form_enabled',
 			array(
-				'label'        => __( 'Enable Search Form', 'wbcom-essential' ),
-				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'default'      => 'yes',
-				'label_on'     => __( 'Yes', 'wbcom-essential' ),
-				'label_off'    => __( 'No', 'wbcom-essential' ),
-				'return_value' => 'yes',
-				'separator'    => 'before',
+				'label'   => esc_html__( 'Enable Search Form', 'wbcom-essential' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'options' => array(
+					'yes' => array(
+						'title' => esc_html__( 'Show', 'wbcom-essential' ),
+						'icon'  => 'eicon-check',
+					),
+					'no'  => array(
+						'title' => esc_html__( 'Hide', 'wbcom-essential' ),
+						'icon'  => 'eicon-close',
+					),
+				),
+				'default' => 'yes',
+				'toggle'  => true,
 			)
 		);
 
 		if ( class_exists( 'WooCommerce' ) || class_exists( 'Easy_Digital_Downloads' ) ) {
-			$this->add_control(
+			$this->add_responsive_control(
 				'rtm_cart_icon_enabled',
 				array(
-					'label'        => __( 'Enable Cart Icon', 'wbcom-essential' ),
-					'type'         => \Elementor\Controls_Manager::SWITCHER,
-					'default'      => 'yes',
-					'label_on'     => __( 'Yes', 'wbcom-essential' ),
-					'label_off'    => __( 'No', 'wbcom-essential' ),
-					'return_value' => 'yes',
-					'separator'    => 'before',
+					'label'   => esc_html__( 'Enable Cart Icon', 'wbcom-essential' ),
+					'type'    => Controls_Manager::CHOOSE,
+					'options' => array(
+						'yes' => array(
+							'title' => esc_html__( 'Show', 'wbcom-essential' ),
+							'icon'  => 'eicon-check',
+						),
+						'no'  => array(
+							'title' => esc_html__( 'Hide', 'wbcom-essential' ),
+							'icon'  => 'eicon-close',
+						),
+					),
+					'default' => 'yes',
+					'toggle'  => true,
 				)
 			);
 		}
 
 		if ( class_exists( 'BuddyPress' ) && bp_is_active( 'messages' ) ) {
-			$this->add_control(
+			$this->add_responsive_control(
 				'user_message_bell_enabled',
 				array(
-					'label'        => __( 'Enable User Message Icon', 'wbcom-essential' ),
-					'type'         => \Elementor\Controls_Manager::SWITCHER,
-					'default'      => 'yes',
-					'label_on'     => __( 'Yes', 'wbcom-essential' ),
-					'label_off'    => __( 'No', 'wbcom-essential' ),
-					'return_value' => 'yes',
-					'separator'    => 'before',
+					'label'   => esc_html__( 'Enable User Message Icon', 'wbcom-essential' ),
+					'type'    => Controls_Manager::CHOOSE,
+					'options' => array(
+						'yes' => array(
+							'title' => esc_html__( 'Show', 'wbcom-essential' ),
+							'icon'  => 'eicon-check',
+						),
+						'no'  => array(
+							'title' => esc_html__( 'Hide', 'wbcom-essential' ),
+							'icon'  => 'eicon-close',
+						),
+					),
+					'default' => 'yes',
+					'toggle'  => true,
 				)
 			);
 		}
 
 		if ( class_exists( 'BuddyPress' ) && bp_is_active( 'notifications' ) ) {
-			$this->add_control(
+
+			$this->add_responsive_control(
 				'notification_bell_enabled',
 				array(
-					'label'        => __( 'Enable Notification Bell Icon', 'wbcom-essential' ),
-					'type'         => \Elementor\Controls_Manager::SWITCHER,
-					'default'      => 'yes',
-					'label_on'     => __( 'Yes', 'wbcom-essential' ),
-					'label_off'    => __( 'No', 'wbcom-essential' ),
-					'return_value' => 'yes',
-					'separator'    => 'before',
+					'label'   => esc_html__( 'Enable Notification Icon', 'wbcom-essential' ),
+					'type'    => Controls_Manager::CHOOSE,
+					'options' => array(
+						'yes' => array(
+							'title' => esc_html__( 'Show', 'wbcom-essential' ),
+							'icon'  => 'eicon-check',
+						),
+						'no'  => array(
+							'title' => esc_html__( 'Hide', 'wbcom-essential' ),
+							'icon'  => 'eicon-close',
+						),
+					),
+					'default' => 'yes',
+					'toggle'  => true,
 				)
 			);
 		}
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'avatar_enabled',
 			array(
-				'label'        => __( 'Display User Avatar', 'wbcom-essential' ),
-				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'default'      => 'yes',
-				'label_on'     => __( 'Yes', 'wbcom-essential' ),
-				'label_off'    => __( 'No', 'wbcom-essential' ),
-				'return_value' => 'yes',
-				'separator'    => 'before',
+				'label'   => esc_html__( 'Display User Avatar', 'wbcom-essential' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'options' => array(
+					'yes' => array(
+						'title' => esc_html__( 'Show', 'wbcom-essential' ),
+						'icon'  => 'eicon-check',
+					),
+					'no'  => array(
+						'title' => esc_html__( 'Hide', 'wbcom-essential' ),
+						'icon'  => 'eicon-close',
+					),
+				),
+				'default' => 'yes',
+				'toggle'  => true,
 			)
 		);
 
@@ -227,9 +261,33 @@ class NotificationArea extends \Elementor\Widget_Base {
 		if ( ! isset( $settings['rtm_cart_icon_enabled'] ) ) {
 			$settings['rtm_cart_icon_enabled'] = 'no';
 		}
-		if ( ! isset( $settings['avatar_enabled'] ) ) {
-			$settings['avatar_enabled'] = 'no';
-		}
+
+		$settings = $this->get_settings_for_display();
+
+		// Get search form visibility settings per device.
+		$search_form_visibility_desktop = isset( $settings['search_form_enabled'] ) ? $settings['search_form_enabled'] : 'yes';
+		$search_form_visibility_tablet  = isset( $settings['search_form_enabled_tablet'] ) ? $settings['search_form_enabled_tablet'] : 'yes';
+		$search_form_visibility_mobile  = isset( $settings['search_form_enabled_mobile'] ) ? $settings['search_form_enabled_mobile'] : 'yes';
+
+		// Get search form visibility settings per device.
+		$cart_icon_visibility_desktop = isset( $settings['rtm_cart_icon_enabled'] ) ? $settings['rtm_cart_icon_enabled'] : 'yes';
+		$cart_icon_visibility_tablet  = isset( $settings['rtm_cart_icon_enabled_tablet'] ) ? $settings['rtm_cart_icon_enabled_tablet'] : 'yes';
+		$cart_icon_visibility_mobile  = isset( $settings['rtm_cart_icon_enabled_mobile'] ) ? $settings['rtm_cart_icon_enabled_mobile'] : 'yes';
+
+		// Get message visibility settings per device.
+		$message_visibility_desktop = isset( $settings['user_message_bell_enabled'] ) ? $settings['user_message_bell_enabled'] : 'yes';
+		$message_visibility_tablet  = isset( $settings['user_message_bell_enabled_tablet'] ) ? $settings['user_message_bell_enabled_tablet'] : 'yes';
+		$message_visibility_mobile  = isset( $settings['user_message_bell_enabled_mobile'] ) ? $settings['user_message_bell_enabled_mobile'] : 'yes';
+
+		// Get notification visibility settings per device.
+		$notification_visibility_desktop = isset( $settings['notification_bell_enabled'] ) ? $settings['notification_bell_enabled'] : 'yes';
+		$notification_visibility_tablet  = isset( $settings['notification_bell_enabled_tablet'] ) ? $settings['notification_bell_enabled_tablet'] : 'yes';
+		$notification_visibility_mobile  = isset( $settings['notification_bell_enabled_mobile'] ) ? $settings['notification_bell_enabled_mobile'] : 'yes';
+
+		// Get avatar visibility settings per device.
+		$avatar_visibility_desktop = isset( $settings['avatar_enabled'] ) ? $settings['avatar_enabled'] : 'yes';
+		$avatar_visibility_tablet  = isset( $settings['avatar_enabled_tablet'] ) ? $settings['avatar_enabled_tablet'] : 'yes';
+		$avatar_visibility_mobile  = isset( $settings['avatar_enabled_mobile'] ) ? $settings['avatar_enabled_mobile'] : 'yes';
 
 		$notification_height = isset( $settings['notification_height'] ) ? $settings['notification_height'] : 90;
 
@@ -248,45 +306,156 @@ class NotificationArea extends \Elementor\Widget_Base {
 				<div class="wbcom-notification-area-navbar">
 				<?php
 				// Display search form if enabled.
-				if ( 'yes' == $settings['search_form_enabled'] ) {
-					?>
-						<div class="search-wrap rg-icon-wrap">
-							<span class="rg-search-icon far fa-search"></span>
-							<div class="rg-search-form-wrap">
-								<span class="rg-search-close far fa-times-circle"></span>
-							<?php get_search_form(); ?>
-							</div>
-						</div>
-						<?php
+				$search_form_classes = '';
+
+				if ( 'yes' === $search_form_visibility_desktop ) {
+					$search_form_classes .= 'elementor-hidden-tablet elementor-hidden-mobile';
 				}
 
-				// Display cart icon, even in Elementor editor mode.
-				if ( 'yes' == $settings['rtm_cart_icon_enabled'] ) {
-					if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
-						// In Elementor editor, show a placeholder or a static cart icon.
-						?>
-							<div class="woo-cart-wrap rg-icon-wrap">
-								<span class="far fa-shopping-cart"></span>
-							</div>
-						<?php
-					} elseif ( function_exists( 'my_wc_cart_count' ) ) {
-						my_wc_cart_count();
-					}
+				if ( 'yes' === $search_form_visibility_tablet ) {
+					$search_form_classes .= 'elementor-hidden-desktop elementor-hidden-mobile';
 				}
+
+				if ( 'yes' === $search_form_visibility_mobile ) {
+					$search_form_classes .= 'elementor-hidden-desktop elementor-hidden-tablet';
+				}
+
+				if ( ! empty( $search_form_classes ) ) {
+					?>
+					<div class="search-wrap rg-icon-wrap <?php echo esc_attr( trim( $search_form_classes ) ); ?>">
+						<span class="rg-search-icon far fa-search"></span>
+						<div class="rg-search-form-wrap">
+							<span class="rg-search-close far fa-times-circle"></span>
+							<?php get_search_form(); ?>
+						</div>
+					</div>
+					<?php
+				}
+
+				// Display cart if enabled.
+				$cart_classes = '';
+
+				if ( 'yes' === $cart_icon_visibility_desktop ) {
+					$cart_classes .= 'elementor-hidden-tablet elementor-hidden-mobile';
+				}
+
+				if ( 'yes' === $cart_icon_visibility_tablet ) {
+					$cart_classes .= 'elementor-hidden-desktop elementor-hidden-mobile';
+				}
+
+				if ( 'yes' === $cart_icon_visibility_mobile ) {
+					$cart_classes .= 'elementor-hidden-desktop elementor-hidden-tablet';
+				}
+
+				// Loop through devices and display cart icon based on visibility.
+				?>
+				<div class="<?php echo esc_attr( $cart_classes ); ?>">
+				<?php
+				if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+					// In Elementor editor, show a placeholder or a static cart icon.
+					?>
+						<div class="woo-cart-wrap rg-icon-wrap">
+							<span class="far fa-shopping-cart"></span>
+						</div>
+					<?php
+				} elseif ( function_exists( 'my_wc_cart_count' ) ) {
+					my_wc_cart_count();
+				}
+				?>
+				</div>
+				<?php
 
 				// Display user message bell and notifications if logged in.
 				if ( is_user_logged_in() ) {
 
-					if ( 'yes' == $settings['user_message_bell_enabled'] ) {
-						get_template_part( 'template-parts/header-icons/message' );
+					// Start output buffering to capture the template part output.
+					ob_start();
+					get_template_part( 'template-parts/header-icons/message' );
+					$message_output = ob_get_clean(); // Store the output in a variable.
+
+					$devices = array(
+						'desktop' => array(
+							'visible'            => $message_visibility_desktop,
+							'class'              => 'message-desktop',
+							'additional_classes' => 'elementor-hidden-tablet elementor-hidden-mobile',
+						),
+						'tablet'  => array(
+							'visible'            => $message_visibility_tablet,
+							'class'              => 'message-tablet',
+							'additional_classes' => 'elementor-hidden-desktop elementor-hidden-mobile',
+						),
+						'mobile'  => array(
+							'visible'            => $message_visibility_mobile,
+							'class'              => 'message-mobile',
+							'additional_classes' => 'elementor-hidden-desktop elementor-hidden-tablet',
+						),
+					);
+
+					// Loop through devices and display message based on visibility.
+					foreach ( $devices as $device ) {
+						if ( 'yes' === $device['visible'] ) {
+							echo '<div class="' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">' . wp_kses_post( $message_output ) . '</div>';
+						}
 					}
 
-					if ( 'yes' == $settings['notification_bell_enabled'] ) {
-						get_template_part( 'template-parts/header-icons/notification' );
+					// Start output buffering to capture the template part output.
+					ob_start();
+					get_template_part( 'template-parts/header-icons/notification' );
+					$notification_output = ob_get_clean(); // Store the output in a variable.
+
+					$devices = array(
+						'desktop' => array(
+							'visible'            => $notification_visibility_desktop,
+							'class'              => 'notification-desktop',
+							'additional_classes' => 'elementor-hidden-tablet elementor-hidden-mobile',
+						),
+						'tablet'  => array(
+							'visible'            => $notification_visibility_tablet,
+							'class'              => 'notification-tablet',
+							'additional_classes' => 'elementor-hidden-desktop elementor-hidden-mobile',
+						),
+						'mobile'  => array(
+							'visible'            => $notification_visibility_mobile,
+							'class'              => 'notification-mobile',
+							'additional_classes' => 'elementor-hidden-desktop elementor-hidden-tablet',
+						),
+					);
+
+					// Loop through devices and display notification based on visibility.
+					foreach ( $devices as $device ) {
+						if ( 'yes' === $device['visible'] ) {
+							echo '<div class="' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">' . wp_kses_post( $notification_output ) . '</div>';
+						}
 					}
 
-					if ( 'yes' == $settings['avatar_enabled'] ) {
-						get_template_part( 'template-parts/header-icons/user-menu' );
+					// Start output buffering to capture the template part output.
+					ob_start();
+					get_template_part( 'template-parts/header-icons/user-menu' );
+					$avatar_output = ob_get_clean(); // Store the output in a variable.
+
+					$devices = array(
+						'desktop' => array(
+							'visible'            => $avatar_visibility_desktop,
+							'class'              => 'avatar-desktop',
+							'additional_classes' => 'elementor-hidden-tablet elementor-hidden-mobile',
+						),
+						'tablet'  => array(
+							'visible'            => $avatar_visibility_tablet,
+							'class'              => 'avatar-tablet',
+							'additional_classes' => 'elementor-hidden-desktop elementor-hidden-mobile',
+						),
+						'mobile'  => array(
+							'visible'            => $avatar_visibility_mobile,
+							'class'              => 'avatar-mobile',
+							'additional_classes' => 'elementor-hidden-desktop elementor-hidden-tablet',
+						),
+					);
+
+					// Loop through devices and display avatars based on visibility.
+					foreach ( $devices as $device ) {
+						if ( 'yes' === $device['visible'] ) {
+							echo '<div class="' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">' . wp_kses_post( $avatar_output ) . '</div>';
+						}
 					}
 				} else {
 					// Login/Register Links.

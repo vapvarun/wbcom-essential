@@ -44,3 +44,21 @@
         position: static !important;
     }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .wbcom-notification-area .elementor-hidden-tablet {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 99999px) {
+    .wbcom-notification-area .elementor-hidden-desktop {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .wbcom-notification-area .elementor-hidden-mobile {
+        display: none !important;
+    }
+}
