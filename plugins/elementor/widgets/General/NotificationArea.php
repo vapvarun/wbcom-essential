@@ -191,7 +191,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 90,
 				'selectors' => array(
-					'{{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .search-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .woo-cart-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .rg-icon-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .woo-cart-wrap, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .user-notifications, {{WRAPPER}} .header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap' => 'line-height: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-icon-wrap' => 'line-height: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -237,8 +237,8 @@ class NotificationArea extends \Elementor\Widget_Base {
 		?>
 
 		<style type="text/css">
-			.header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap .user-profile-menu,
-			.header-right.wb-grid-flex.wbesntl-notification-area .rg-header-submenu.rg-dropdown {
+			#masthead .header-right.wb-grid-flex.wbesntl-notification-area .user-link-wrap .user-profile-menu,
+			#masthead .header-right.wb-grid-flex.wbesntl-notification-area .rg-header-submenu.rg-dropdown {
 				top: <?php echo esc_attr( $notification_height ); ?>px;
 			}
 		</style>
