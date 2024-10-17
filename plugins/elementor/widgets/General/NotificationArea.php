@@ -382,7 +382,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 
 				// Loop through devices and display cart icon based on visibility.
 				foreach ( $devices as $device ) {
-					if ( 'yes' === $device['visible'] ) {
+					if ( class_exists( 'WooCommerce' ) && 'yes' === $device['visible'] ) {
 						echo '<div class="woo-cart-wrap rg-icon-wrap ' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">';
 						echo wp_kses_post( $cart_output );
 						echo '</div>';
