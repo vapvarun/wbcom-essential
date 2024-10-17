@@ -15,6 +15,10 @@
     height: auto;
 }
 
+#masthead.wbcom-notification-area .header-notifications-dropdown-toggle a.rg-icon-wrap span::before {
+    color: inherit;
+}
+
 #masthead.wbcom-notification-area .wbcom-notification-area-navbar {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -26,8 +30,28 @@
 	justify-content: space-around;
 }
 
+#masthead.wbcom-notification-area .wbcom-notification-area-navbar>div {
+    flex: auto;
+}
+
+#masthead.wbcom-notification-area .header-notifications-dropdown-toggle {
+    position: static;
+}
+
+#masthead.wbcom-notification-area .user-link-main-wrap {
+    position: static;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
 #masthead.wbcom-notification-area .user-link-wrap {
 	flex: 0 0 auto;
+    position: static;
 }
 
 #masthead.wbcom-notification-area .user-profile-menu.header-notifications-dropdown-menu {
@@ -37,11 +61,32 @@
 
 @media screen and (max-width: 960px) {
     .wbcom-notification-area-navbar>div {
-        -webkit-box-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-        text-align: center;
         position: static !important;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    #masthead.wbcom-notification-area .rg-icon-wrap {
+        width: 36px;
+    }
+
+    #masthead.wbcom-notification-area .user-link.dropdown-toggle .rg-user{
+        display: none;
+    }
+
+    #masthead.wbcom-notification-area .user-link.dropdown-toggle:after {
+        color: inherit;
+        content: "\f107";
+        font-family: "Font Awesome 6 Pro", reign-icons;
+        font-weight: 400;
+        display: inline-block;
+        position: relative;
+        right: -5px;
+        font-size: inherit;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        margin-right: 10px;
     }
 }
 

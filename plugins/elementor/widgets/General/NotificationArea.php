@@ -55,9 +55,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'search_form_enabled',
 			array(
-				'label'   => esc_html__( 'Enable Search Form', 'wbcom-essential' ),
-				'type'    => Controls_Manager::CHOOSE,
-				'options' => array(
+				'label'          => esc_html__( 'Enable Search Form', 'wbcom-essential' ),
+				'type'           => Controls_Manager::CHOOSE,
+				'options'        => array(
 					'yes' => array(
 						'title' => esc_html__( 'Show', 'wbcom-essential' ),
 						'icon'  => 'eicon-check',
@@ -67,8 +67,10 @@ class NotificationArea extends \Elementor\Widget_Base {
 						'icon'  => 'eicon-close',
 					),
 				),
-				'default' => 'yes',
-				'toggle'  => true,
+				'default'        => 'yes',
+				'tablet_default' => 'yes',
+				'mobile_default' => 'yes',
+				'toggle'         => true,
 			)
 		);
 
@@ -76,9 +78,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 			$this->add_responsive_control(
 				'rtm_cart_icon_enabled',
 				array(
-					'label'   => esc_html__( 'Enable Cart Icon', 'wbcom-essential' ),
-					'type'    => Controls_Manager::CHOOSE,
-					'options' => array(
+					'label'          => esc_html__( 'Enable Cart Icon', 'wbcom-essential' ),
+					'type'           => Controls_Manager::CHOOSE,
+					'options'        => array(
 						'yes' => array(
 							'title' => esc_html__( 'Show', 'wbcom-essential' ),
 							'icon'  => 'eicon-check',
@@ -88,8 +90,10 @@ class NotificationArea extends \Elementor\Widget_Base {
 							'icon'  => 'eicon-close',
 						),
 					),
-					'default' => 'yes',
-					'toggle'  => true,
+					'default'        => 'yes',
+					'tablet_default' => 'yes',
+					'mobile_default' => 'yes',
+					'toggle'         => true,
 				)
 			);
 		}
@@ -98,9 +102,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 			$this->add_responsive_control(
 				'user_message_bell_enabled',
 				array(
-					'label'   => esc_html__( 'Enable User Message Icon', 'wbcom-essential' ),
-					'type'    => Controls_Manager::CHOOSE,
-					'options' => array(
+					'label'          => esc_html__( 'Enable User Message Icon', 'wbcom-essential' ),
+					'type'           => Controls_Manager::CHOOSE,
+					'options'        => array(
 						'yes' => array(
 							'title' => esc_html__( 'Show', 'wbcom-essential' ),
 							'icon'  => 'eicon-check',
@@ -110,8 +114,10 @@ class NotificationArea extends \Elementor\Widget_Base {
 							'icon'  => 'eicon-close',
 						),
 					),
-					'default' => 'yes',
-					'toggle'  => true,
+					'default'        => 'yes',
+					'tablet_default' => 'yes',
+					'mobile_default' => 'yes',
+					'toggle'         => true,
 				)
 			);
 		}
@@ -121,9 +127,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 			$this->add_responsive_control(
 				'notification_bell_enabled',
 				array(
-					'label'   => esc_html__( 'Enable Notification Icon', 'wbcom-essential' ),
-					'type'    => Controls_Manager::CHOOSE,
-					'options' => array(
+					'label'          => esc_html__( 'Enable Notification Icon', 'wbcom-essential' ),
+					'type'           => Controls_Manager::CHOOSE,
+					'options'        => array(
 						'yes' => array(
 							'title' => esc_html__( 'Show', 'wbcom-essential' ),
 							'icon'  => 'eicon-check',
@@ -133,8 +139,10 @@ class NotificationArea extends \Elementor\Widget_Base {
 							'icon'  => 'eicon-close',
 						),
 					),
-					'default' => 'yes',
-					'toggle'  => true,
+					'default'        => 'yes',
+					'tablet_default' => 'yes',
+					'mobile_default' => 'yes',
+					'toggle'         => true,
 				)
 			);
 		}
@@ -142,9 +150,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'avatar_enabled',
 			array(
-				'label'   => esc_html__( 'Display User Avatar', 'wbcom-essential' ),
-				'type'    => Controls_Manager::CHOOSE,
-				'options' => array(
+				'label'          => esc_html__( 'Display User Avatar', 'wbcom-essential' ),
+				'type'           => Controls_Manager::CHOOSE,
+				'options'        => array(
 					'yes' => array(
 						'title' => esc_html__( 'Show', 'wbcom-essential' ),
 						'icon'  => 'eicon-check',
@@ -154,8 +162,10 @@ class NotificationArea extends \Elementor\Widget_Base {
 						'icon'  => 'eicon-close',
 					),
 				),
-				'default' => 'yes',
-				'toggle'  => true,
+				'default'        => 'yes',
+				'tablet_default' => 'yes',
+				'mobile_default' => 'yes',
+				'toggle'         => true,
 			)
 		);
 
@@ -176,7 +186,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
-					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap span:before, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .header-notifications-dropdown-toggle a.rg-icon-wrap' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-search-icon:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-icon-wrap span:before' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -188,8 +200,9 @@ class NotificationArea extends \Elementor\Widget_Base {
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
-					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon.icon-search-interface-symbol:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap:hover, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap a:hover,
-					{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-icon-wrap span:hover:before, {{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .rg-search-icon:hover:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .header-notifications-dropdown-toggle a.rg-icon-wrap:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-search-icon:hover:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-icon-wrap span:hover:before' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -201,7 +214,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
-					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .user-link, #masthead .wbesntl-notification-area .user-link-wrap .user-link' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area a.user-link' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -213,7 +226,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
-					'{{WRAPPER}} .header-right.no-gutter.wb-grid-flex.grid-center .user-link:hover, #masthead .wbesntl-notification-area .user-link-wrap .user-link:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} #masthead.wbcom-notification-area a.user-link:hover' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -225,7 +238,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 90,
 				'selectors' => array(
-					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-icon-wrap' => 'line-height: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-icon-wrap, {{WRAPPER}} #masthead.wbcom-notification-area .user-link-main-wrap' => 'line-height: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -251,16 +264,6 @@ class NotificationArea extends \Elementor\Widget_Base {
 	 * Render our custom menu onto the page.
 	 */
 	protected function render() {
-		$settings = $this->get_settings();
-		if ( ! isset( $settings['user_message_bell_enabled'] ) ) {
-			$settings['user_message_bell_enabled'] = 'no';
-		}
-		if ( ! isset( $settings['notification_bell_enabled'] ) ) {
-			$settings['notification_bell_enabled'] = 'no';
-		}
-		if ( ! isset( $settings['rtm_cart_icon_enabled'] ) ) {
-			$settings['rtm_cart_icon_enabled'] = 'no';
-		}
 
 		$settings = $this->get_settings_for_display();
 
@@ -306,64 +309,85 @@ class NotificationArea extends \Elementor\Widget_Base {
 				<div class="wbcom-notification-area-navbar">
 				<?php
 				// Display search form if enabled.
-				$search_form_classes = '';
+				$search_form_output = '';
 
-				if ( 'yes' === $search_form_visibility_desktop ) {
-					$search_form_classes .= 'elementor-hidden-tablet elementor-hidden-mobile';
+				// Start output buffering to capture the search form output.
+				ob_start();
+				if ( function_exists( 'get_search_form' ) ) {
+					get_search_form();
 				}
+				$search_form_output = ob_get_clean();
 
-				if ( 'yes' === $search_form_visibility_tablet ) {
-					$search_form_classes .= 'elementor-hidden-desktop elementor-hidden-mobile';
-				}
+				$devices = array(
+					'desktop' => array(
+						'visible'            => $search_form_visibility_desktop,
+						'class'              => 'search-desktop',
+						'additional_classes' => 'elementor-hidden-tablet elementor-hidden-mobile',
+					),
+					'tablet'  => array(
+						'visible'            => $search_form_visibility_tablet,
+						'class'              => 'search-tablet',
+						'additional_classes' => 'elementor-hidden-desktop elementor-hidden-mobile',
+					),
+					'mobile'  => array(
+						'visible'            => $search_form_visibility_mobile,
+						'class'              => 'search-mobile',
+						'additional_classes' => 'elementor-hidden-desktop elementor-hidden-tablet',
+					),
+				);
 
-				if ( 'yes' === $search_form_visibility_mobile ) {
-					$search_form_classes .= 'elementor-hidden-desktop elementor-hidden-tablet';
-				}
-
-				if ( ! empty( $search_form_classes ) ) {
-					?>
-					<div class="search-wrap rg-icon-wrap <?php echo esc_attr( trim( $search_form_classes ) ); ?>">
-						<span class="rg-search-icon far fa-search"></span>
-						<div class="rg-search-form-wrap">
-							<span class="rg-search-close far fa-times-circle"></span>
-							<?php get_search_form(); ?>
-						</div>
-					</div>
-					<?php
+				// Loop through devices and display search form based on visibility.
+				foreach ( $devices as $device ) {
+					if ( 'yes' === $device['visible'] ) {
+						echo '<div class="search-wrap rg-icon-wrap ' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">';
+						echo '<span class="rg-search-icon far fa-search"></span>';
+						echo '<div class="rg-search-form-wrap">';
+						echo '<span class="rg-search-close far fa-times-circle"></span>';
+						echo $search_form_output; // phpcs:ignore
+						echo '</div>';
+						echo '</div>';
+					}
 				}
 
 				// Display cart if enabled.
-				$cart_classes = '';
+				$cart_output = '';
 
-				if ( 'yes' === $cart_icon_visibility_desktop ) {
-					$cart_classes .= 'elementor-hidden-tablet elementor-hidden-mobile';
+				// Check if Elementor editor is active or the cart count function is available.
+				if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+					$cart_output = '<div class="woo-cart-wrap rg-icon-wrap"><span class="far fa-shopping-cart"></span></div>';
+				} elseif ( function_exists( 'my_wc_cart_count' ) ) {
+					// Capture the WooCommerce cart count output.
+					ob_start();
+					my_wc_cart_count();
+					$cart_output = ob_get_clean();
 				}
 
-				if ( 'yes' === $cart_icon_visibility_tablet ) {
-					$cart_classes .= 'elementor-hidden-desktop elementor-hidden-mobile';
-				}
-
-				if ( 'yes' === $cart_icon_visibility_mobile ) {
-					$cart_classes .= 'elementor-hidden-desktop elementor-hidden-tablet';
-				}
+				$devices = array(
+					'desktop' => array(
+						'visible'            => $cart_icon_visibility_desktop,
+						'class'              => 'cart-desktop',
+						'additional_classes' => 'elementor-hidden-tablet elementor-hidden-mobile',
+					),
+					'tablet'  => array(
+						'visible'            => $cart_icon_visibility_tablet,
+						'class'              => 'cart-tablet',
+						'additional_classes' => 'elementor-hidden-desktop elementor-hidden-mobile',
+					),
+					'mobile'  => array(
+						'visible'            => $cart_icon_visibility_mobile,
+						'class'              => 'cart-mobile',
+						'additional_classes' => 'elementor-hidden-desktop elementor-hidden-tablet',
+					),
+				);
 
 				// Loop through devices and display cart icon based on visibility.
-				?>
-				<div class="<?php echo esc_attr( $cart_classes ); ?>">
-				<?php
-				if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
-					// In Elementor editor, show a placeholder or a static cart icon.
-					?>
-						<div class="woo-cart-wrap rg-icon-wrap">
-							<span class="far fa-shopping-cart"></span>
-						</div>
-					<?php
-				} elseif ( function_exists( 'my_wc_cart_count' ) ) {
-					my_wc_cart_count();
+				foreach ( $devices as $device ) {
+					if ( 'yes' === $device['visible'] ) {
+						echo '<div class="woo-cart-wrap rg-icon-wrap ' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">';
+						echo wp_kses_post( $cart_output );
+						echo '</div>';
+					}
 				}
-				?>
-				</div>
-				<?php
 
 				// Display user message bell and notifications if logged in.
 				if ( is_user_logged_in() ) {
@@ -371,7 +395,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 					// Start output buffering to capture the template part output.
 					ob_start();
 					get_template_part( 'template-parts/header-icons/message' );
-					$message_output = ob_get_clean(); // Store the output in a variable.
+					$message_output = ob_get_clean();
 
 					$devices = array(
 						'desktop' => array(
@@ -401,7 +425,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 					// Start output buffering to capture the template part output.
 					ob_start();
 					get_template_part( 'template-parts/header-icons/notification' );
-					$notification_output = ob_get_clean(); // Store the output in a variable.
+					$notification_output = ob_get_clean();
 
 					$devices = array(
 						'desktop' => array(
@@ -431,7 +455,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 					// Start output buffering to capture the template part output.
 					ob_start();
 					get_template_part( 'template-parts/header-icons/user-menu' );
-					$avatar_output = ob_get_clean(); // Store the output in a variable.
+					$avatar_output = ob_get_clean();
 
 					$devices = array(
 						'desktop' => array(
@@ -454,7 +478,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 					// Loop through devices and display avatars based on visibility.
 					foreach ( $devices as $device ) {
 						if ( 'yes' === $device['visible'] ) {
-							echo '<div class="' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">' . wp_kses_post( $avatar_output ) . '</div>';
+							echo '<div class="' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '"><div class="user-link-main-wrap">' . wp_kses_post( $avatar_output ) . '</div></div>';
 						}
 					}
 				} else {
