@@ -289,7 +289,17 @@ class Accordion extends \Elementor\Widget_Base {
 				'toggle'      => false,
 			)
 		);
-
+		
+		$this->add_control(
+			'faq_schema',
+			[
+				'label' => esc_html__( 'Enable FAQ Schema', 'wbcom-essential' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'description' => esc_html__( 'Generate FAQ schema for SEO optimization.', 'wbcom-essential' ),
+				'default' => '',
+			]
+		);
+		
 		$this->add_control(
 			'self_close',
 			array(
@@ -521,14 +531,33 @@ class Accordion extends \Elementor\Widget_Base {
 			)
 		);
 
+		// Add global typography setting.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'title_typography',
-
-				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__head,{{WRAPPER}} .wbaccordion__head button',
-			)
+			[
+				'name' => 'content_global_typography',
+				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__body',
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+				],
+			]
 		);
+
+		// Add global color setting.
+		$this->add_control(
+			'content_global_color',
+			[
+				'label' => esc_html__( 'Global Content Color', 'wbcom-essential' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .wbcom-accordions .wbaccordion__body' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
 
 		$this->add_responsive_control(
 			'arrow_size',
@@ -940,6 +969,28 @@ class Accordion extends \Elementor\Widget_Base {
 				data-autoscroll="<?php echo esc_attr( $settings['scroll'] ); ?>" 
 				data-scrollspeed="<?php echo esc_attr( $settings['scroll_speed'] ); ?>" 
 				data-scrolloffset="<?php echo esc_attr( $settings['scroll_offset'] ); ?>">
+				<?php
+				if ( isset( $settings['faq_schema'] ) && 'yes' === $settings['faq_schema'] ) {
+					$json = [
+						'@context' => 'https://schema.org',
+						'@type' => 'FAQPage',
+						'mainEntity' => [],
+					];
+
+					foreach ( $settings['list'] as $item ) {
+						$json['mainEntity'][] = [
+							'@type' => 'Question',
+							'name' => wp_strip_all_tags( $item['title'] ),
+							'acceptedAnswer' => [
+								'@type' => 'Answer',
+								'text' => wp_kses_post( $item['text'] ),
+							],
+						];
+					}
+					echo '<script type="application/ld+json">' . wp_json_encode( $json ) . '</script>';
+				}
+				?>
+
 				<?php foreach ( $settings['list'] as $item ) { ?>
 					<div id="wbcom-<?php echo esc_attr( $item['_id'] ) . esc_attr( $rand ); ?>" 
 						<?php if ( ! empty( $settings['hash'] ) ) { ?>
