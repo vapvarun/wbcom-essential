@@ -531,23 +531,24 @@ class Accordion extends \Elementor\Widget_Base {
 			)
 		);
 
-		// Add global typography setting.
+		// Add Title Typography setting.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'content_global_typography',
-				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__body',
+				'name' => 'title_typography',
+				'label' => esc_html__( 'Title Typography', 'wbcom-essential' ),
+				'selector' => '{{WRAPPER}} .wbcom-accordions .wbaccordion__head',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
 			]
 		);
 
-		// Add global color setting.
+		// Add Content Color setting.
 		$this->add_control(
-			'content_global_color',
+			'content_color',
 			[
-				'label' => esc_html__( 'Global Content Color', 'wbcom-essential' ),
+				'label' => esc_html__( 'Content Color', 'wbcom-essential' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
@@ -557,6 +558,7 @@ class Accordion extends \Elementor\Widget_Base {
 				],
 			]
 		);
+
 
 
 		$this->add_responsive_control(
