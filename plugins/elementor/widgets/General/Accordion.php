@@ -544,21 +544,6 @@ class Accordion extends \Elementor\Widget_Base {
 			]
 		);
 
-		// Add Content Color setting.
-		$this->add_control(
-			'content_color',
-			[
-				'label' => esc_html__( 'Content Color', 'wbcom-essential' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .wbcom-accordions .wbaccordion__body' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
 
 
 		$this->add_responsive_control(
@@ -906,15 +891,18 @@ class Accordion extends \Elementor\Widget_Base {
 
 		$this->add_control(
 			'content_color',
-			array(
-				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
-				'selectors' => array(
-					'{{WRAPPER}} .wbcom-accordions .wbaccordion__body,{{WRAPPER}} .wbaccordion__body p' => 'color: {{VALUE}};',
-				),
-			)
-		);
+			[
+				'label' => esc_html__( 'Content Color', 'wbcom-essential' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#000000',
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .wbcom-accordions .wbaccordion__body, {{WRAPPER}} .wbaccordion__body p' => 'color: {{VALUE}};',
+				],
+			]
+		);		
 
 		$this->add_control(
 			'content_bg_color',
