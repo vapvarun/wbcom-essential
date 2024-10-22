@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
 Tested up to: 6.6.2
-Stable tag: 3.8.0
+Stable tag: 3.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,23 @@ It will add additional features for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
 
 == Changelog ==
+= 3.9.0 =
+* Fix: Removed duplicate color control to prevent styling conflicts.
+* Improvement: Integrated global color support for consistent styling across the theme.
+* Update: Refined labels to enhance clarity and user experience.
+* Update: Added FAQ schema support to the WBCOM Accordion widget for better SEO.
+* Improvement: Applied global styling to the Accordion widget for uniform appearance.
+* Improvement: Managed dropdown position and icon click selection for smoother user interaction.
+* Update: Adjusted `notification-area.css` to enhance visual presentation.
+* Fix: Added conditional logic to properly load WooCommerce-specific settings.
+* Improvement: Introduced device control for the notification area for improved responsiveness.
+* Improvement: Added device-level control for notification area fields.
+* Update: Optimized line-height settings for better readability.
+* Update: Separated CSS styles for easier maintenance and better performance.
+* Fix: Reverted unwanted code to maintain code stability.
+* Fix: Resolved user dropdown issues by removing outdated cart CSS.
+* Fix: Fixed mobile dropdown functionality for notifications, messages, and cart display.
+
 = 3.8.0 =
 * Managed: Member and grid view count with BuddyX Pro integration.
 * Fixed: Pricing table icon issue.
