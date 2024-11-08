@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-17 12:52:21+00:00\n"
+"POT-Creation-Date: 2024-11-08 13:22:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -278,8 +278,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:194
 #: plugins/elementor/widgets/General/Accordion.php:265
 #: plugins/elementor/widgets/General/Accordion.php:283
-#: plugins/elementor/widgets/General/Accordion.php:304
-#: plugins/elementor/widgets/General/Accordion.php:325
+#: plugins/elementor/widgets/General/Accordion.php:314
+#: plugins/elementor/widgets/General/Accordion.php:335
 #: plugins/elementor/widgets/General/Heading.php:349
 #: plugins/elementor/widgets/General/Heading.php:379
 #: plugins/elementor/widgets/General/LoginForm.php:249
@@ -300,8 +300,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:190
 #: plugins/elementor/widgets/General/Accordion.php:264
 #: plugins/elementor/widgets/General/Accordion.php:279
-#: plugins/elementor/widgets/General/Accordion.php:300
-#: plugins/elementor/widgets/General/Accordion.php:321
+#: plugins/elementor/widgets/General/Accordion.php:310
+#: plugins/elementor/widgets/General/Accordion.php:331
 #: plugins/elementor/widgets/General/Heading.php:348
 #: plugins/elementor/widgets/General/Heading.php:378
 #: plugins/elementor/widgets/General/LoginForm.php:248
@@ -349,7 +349,7 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:218
 #: plugins/elementor/helper/skins/skin-base.php:503
 #: plugins/elementor/widgets/General/Accordion.php:146
-#: plugins/elementor/widgets/General/Accordion.php:519
+#: plugins/elementor/widgets/General/Accordion.php:529
 #: plugins/elementor/widgets/General/Branding.php:105
 #: plugins/elementor/widgets/General/DropdownButton.php:301
 #: plugins/elementor/widgets/General/FlipBox.php:142
@@ -736,9 +736,9 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:295
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:422
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:389
-#: plugins/elementor/widgets/General/Accordion.php:414
-#: plugins/elementor/widgets/General/Accordion.php:463
-#: plugins/elementor/widgets/General/Accordion.php:836
+#: plugins/elementor/widgets/General/Accordion.php:424
+#: plugins/elementor/widgets/General/Accordion.php:473
+#: plugins/elementor/widgets/General/Accordion.php:852
 #: plugins/elementor/widgets/General/Branding.php:308
 #: plugins/elementor/widgets/General/Countdown.php:360
 #: plugins/elementor/widgets/General/DropdownButton.php:451
@@ -880,7 +880,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:234
 #: plugins/elementor/widgets/General/Accordion.php:97
 #: plugins/elementor/widgets/General/Accordion.php:156
-#: plugins/elementor/widgets/General/Accordion.php:862
+#: plugins/elementor/widgets/General/Accordion.php:878
 #: plugins/elementor/widgets/General/Countdown.php:415
 #: plugins/elementor/widgets/General/FlipBox.php:152
 #: plugins/elementor/widgets/General/FlipBox.php:207
@@ -923,10 +923,9 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:556
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:712
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:754
-#: plugins/elementor/widgets/General/Accordion.php:582
-#: plugins/elementor/widgets/General/Accordion.php:635
-#: plugins/elementor/widgets/General/Accordion.php:771
-#: plugins/elementor/widgets/General/Accordion.php:879
+#: plugins/elementor/widgets/General/Accordion.php:598
+#: plugins/elementor/widgets/General/Accordion.php:651
+#: plugins/elementor/widgets/General/Accordion.php:787
 #: plugins/elementor/widgets/General/Countdown.php:527
 #: plugins/elementor/widgets/General/Countdown.php:565
 #: plugins/elementor/widgets/General/Countdown.php:615
@@ -1258,9 +1257,9 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:325
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:723
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:765
-#: plugins/elementor/widgets/General/Accordion.php:594
-#: plugins/elementor/widgets/General/Accordion.php:647
-#: plugins/elementor/widgets/General/Accordion.php:891
+#: plugins/elementor/widgets/General/Accordion.php:610
+#: plugins/elementor/widgets/General/Accordion.php:663
+#: plugins/elementor/widgets/General/Accordion.php:910
 #: plugins/elementor/widgets/General/DropdownButton.php:420
 #: plugins/elementor/widgets/General/DropdownButton.php:492
 #: plugins/elementor/widgets/General/DropdownButton.php:715
@@ -1388,7 +1387,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:306
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:392
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:496
-#: plugins/elementor/widgets/General/Accordion.php:712
+#: plugins/elementor/widgets/General/Accordion.php:728
 #: plugins/elementor/widgets/General/FlipBox.php:256
 #: plugins/elementor/widgets/General/PostSlider.php:1885
 #: plugins/elementor/widgets/General/PostTimeline.php:1210
@@ -1400,8 +1399,8 @@ msgid "Size"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:313
-#: plugins/elementor/widgets/General/Accordion.php:505
-#: plugins/elementor/widgets/General/Accordion.php:848
+#: plugins/elementor/widgets/General/Accordion.php:515
+#: plugins/elementor/widgets/General/Accordion.php:864
 #: plugins/elementor/widgets/General/Countdown.php:400
 #: plugins/elementor/widgets/General/DropdownButton.php:865
 #: plugins/elementor/widgets/General/FlipBox.php:873
@@ -1542,8 +1541,8 @@ msgid "Vertical Padding"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:549
-#: plugins/elementor/widgets/General/Accordion.php:427
-#: plugins/elementor/widgets/General/Accordion.php:477
+#: plugins/elementor/widgets/General/Accordion.php:437
+#: plugins/elementor/widgets/General/Accordion.php:487
 #: plugins/elementor/widgets/General/Countdown.php:373
 #: plugins/elementor/widgets/General/DropdownButton.php:464
 #: plugins/elementor/widgets/General/DropdownButton.php:546
@@ -1890,11 +1889,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:1098
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:284
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:411
-#: plugins/elementor/widgets/General/Accordion.php:406
-#: plugins/elementor/widgets/General/Accordion.php:455
-#: plugins/elementor/widgets/General/Accordion.php:618
-#: plugins/elementor/widgets/General/Accordion.php:671
-#: plugins/elementor/widgets/General/Accordion.php:903
+#: plugins/elementor/widgets/General/Accordion.php:416
+#: plugins/elementor/widgets/General/Accordion.php:465
+#: plugins/elementor/widgets/General/Accordion.php:634
+#: plugins/elementor/widgets/General/Accordion.php:687
+#: plugins/elementor/widgets/General/Accordion.php:922
 #: plugins/elementor/widgets/General/Branding.php:299
 #: plugins/elementor/widgets/General/Countdown.php:352
 #: plugins/elementor/widgets/General/DropdownButton.php:443
@@ -2005,8 +2004,8 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:230
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:268
-#: plugins/elementor/widgets/General/Accordion.php:689
-#: plugins/elementor/widgets/General/Accordion.php:918
+#: plugins/elementor/widgets/General/Accordion.php:705
+#: plugins/elementor/widgets/General/Accordion.php:937
 #: plugins/elementor/widgets/General/Countdown.php:388
 #: plugins/elementor/widgets/General/Countdown.php:594
 #: plugins/elementor/widgets/General/DropdownButton.php:599
@@ -2215,10 +2214,10 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:259
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:264
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:314
-#: plugins/elementor/widgets/General/Accordion.php:436
-#: plugins/elementor/widgets/General/Accordion.php:486
-#: plugins/elementor/widgets/General/Accordion.php:784
-#: plugins/elementor/widgets/General/Accordion.php:816
+#: plugins/elementor/widgets/General/Accordion.php:446
+#: plugins/elementor/widgets/General/Accordion.php:496
+#: plugins/elementor/widgets/General/Accordion.php:800
+#: plugins/elementor/widgets/General/Accordion.php:832
 #: plugins/elementor/widgets/General/Countdown.php:335
 #: plugins/elementor/widgets/General/Countdown.php:656
 #: plugins/elementor/widgets/General/Countdown.php:759
@@ -2289,9 +2288,9 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:969
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:1033
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:705
-#: plugins/elementor/widgets/General/Accordion.php:398
-#: plugins/elementor/widgets/General/Accordion.php:575
-#: plugins/elementor/widgets/General/Accordion.php:764
+#: plugins/elementor/widgets/General/Accordion.php:408
+#: plugins/elementor/widgets/General/Accordion.php:591
+#: plugins/elementor/widgets/General/Accordion.php:780
 #: plugins/elementor/widgets/General/DropdownButton.php:141
 #: plugins/elementor/widgets/General/DropdownButton.php:401
 #: plugins/elementor/widgets/General/DropdownButton.php:696
@@ -2353,9 +2352,9 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:989
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:1064
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:747
-#: plugins/elementor/widgets/General/Accordion.php:447
-#: plugins/elementor/widgets/General/Accordion.php:628
-#: plugins/elementor/widgets/General/Accordion.php:795
+#: plugins/elementor/widgets/General/Accordion.php:457
+#: plugins/elementor/widgets/General/Accordion.php:644
+#: plugins/elementor/widgets/General/Accordion.php:811
 #: plugins/elementor/widgets/General/Branding.php:168
 #: plugins/elementor/widgets/General/DropdownButton.php:474
 #: plugins/elementor/widgets/General/DropdownButton.php:740
@@ -3520,13 +3519,13 @@ msgid "View Notifications"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Accordion.php:53
-#: plugins/elementor/widgets/General/Accordion.php:388
+#: plugins/elementor/widgets/General/Accordion.php:398
 #: plugins/elementor/widgets/General/SmartMenu.php:273
 msgid "Accordion"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Accordion.php:107
-#: plugins/elementor/widgets/General/Accordion.php:704
+#: plugins/elementor/widgets/General/Accordion.php:720
 msgid "Prefix"
 msgstr ""
 
@@ -3616,61 +3615,77 @@ msgid "Open just one accordion at once."
 msgstr ""
 
 #: plugins/elementor/widgets/General/Accordion.php:296
+msgid "Enable FAQ Schema"
+msgstr ""
+
+#: plugins/elementor/widgets/General/Accordion.php:298
+msgid "Generate FAQ schema for SEO optimization."
+msgstr ""
+
+#: plugins/elementor/widgets/General/Accordion.php:306
 msgid "Self Close"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:309
+#: plugins/elementor/widgets/General/Accordion.php:319
 msgid "Close accordion on click outside."
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:317
+#: plugins/elementor/widgets/General/Accordion.php:327
 msgid "Auto Scroll"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:330
+#: plugins/elementor/widgets/General/Accordion.php:340
 msgid "Scroll to accordion on open."
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:338
+#: plugins/elementor/widgets/General/Accordion.php:348
 msgid "Scroll Offset"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:350
+#: plugins/elementor/widgets/General/Accordion.php:360
 msgid "Scroll Speed"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:362
+#: plugins/elementor/widgets/General/Accordion.php:372
 msgid "Open Speed"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:374
+#: plugins/elementor/widgets/General/Accordion.php:384
 msgid "Close Speed"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:536
+#: plugins/elementor/widgets/General/Accordion.php:539
+#: plugins/elementor/widgets/General/PortfolioGrid.php:748
+#: plugins/elementor/widgets/General/PortfolioGrid.php:957
+#: plugins/elementor/widgets/General/PostSlider.php:829
+#: plugins/elementor/widgets/General/Slider.php:821
+msgid "Title Typography"
+msgstr ""
+
+#: plugins/elementor/widgets/General/Accordion.php:552
 msgid "Arrow Size"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:551
+#: plugins/elementor/widgets/General/Accordion.php:567
 msgid "Arrow Thickness"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:605
-#: plugins/elementor/widgets/General/Accordion.php:658
+#: plugins/elementor/widgets/General/Accordion.php:621
+#: plugins/elementor/widgets/General/Accordion.php:674
 #: plugins/elementor/widgets/General/Testimonial.php:836
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1001
 msgid "Arrow Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:727
+#: plugins/elementor/widgets/General/Accordion.php:743
 msgid "Container Width"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:741
+#: plugins/elementor/widgets/General/Accordion.php:757
 msgid "Container Height"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Accordion.php:802
+#: plugins/elementor/widgets/General/Accordion.php:818
 #: plugins/elementor/widgets/General/FlipBox.php:752
 #: plugins/elementor/widgets/General/FlipBox.php:1189
 #: plugins/elementor/widgets/General/NotificationArea.php:191
@@ -3689,6 +3704,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1342
 #: plugins/elementor/widgets/General/Timeline.php:381
 msgid "Icon Color"
+msgstr ""
+
+#: plugins/elementor/widgets/General/Accordion.php:895
+#: plugins/elementor/widgets/General/PostSlider.php:838
+#: plugins/elementor/widgets/General/PostsCarousel.php:573
+#: plugins/elementor/widgets/General/Slider.php:830
+msgid "Content Color"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Branding.php:60
@@ -4905,13 +4927,6 @@ msgstr ""
 msgid "Overlay Hover"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PortfolioGrid.php:748
-#: plugins/elementor/widgets/General/PortfolioGrid.php:957
-#: plugins/elementor/widgets/General/PostSlider.php:829
-#: plugins/elementor/widgets/General/Slider.php:821
-msgid "Title Typography"
-msgstr ""
-
 #: plugins/elementor/widgets/General/PortfolioGrid.php:769
 #: plugins/elementor/widgets/General/PortfolioGrid.php:978
 msgid "Title Margin"
@@ -5726,12 +5741,6 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:683
 #: plugins/elementor/widgets/General/Slider.php:675
 msgid "Text Box Width"
-msgstr ""
-
-#: plugins/elementor/widgets/General/PostSlider.php:838
-#: plugins/elementor/widgets/General/PostsCarousel.php:573
-#: plugins/elementor/widgets/General/Slider.php:830
-msgid "Content Color"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostSlider.php:851
