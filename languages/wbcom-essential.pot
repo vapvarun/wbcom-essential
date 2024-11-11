@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 13:22:08+00:00\n"
+"POT-Creation-Date: 2024-11-11 07:04:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -956,7 +956,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1554
 #: plugins/elementor/widgets/General/PostCarousel.php:1655
 #: plugins/elementor/widgets/General/PostCarousel.php:1758
-#: plugins/elementor/widgets/General/PostCarousel.php:2037
+#: plugins/elementor/widgets/General/PostCarousel.php:2053
 #: plugins/elementor/widgets/General/PostSlider.php:1000
 #: plugins/elementor/widgets/General/PostSlider.php:1063
 #: plugins/elementor/widgets/General/PostSlider.php:1188
@@ -1289,7 +1289,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1137
 #: plugins/elementor/widgets/General/PostCarousel.php:1231
 #: plugins/elementor/widgets/General/PostCarousel.php:1378
-#: plugins/elementor/widgets/General/PostCarousel.php:1907
+#: plugins/elementor/widgets/General/PostCarousel.php:1923
 #: plugins/elementor/widgets/General/PostSlider.php:710
 #: plugins/elementor/widgets/General/PostSlider.php:1012
 #: plugins/elementor/widgets/General/PostSlider.php:1075
@@ -2303,7 +2303,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1382
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1578
 #: plugins/elementor/widgets/General/PostCarousel.php:1098
-#: plugins/elementor/widgets/General/PostCarousel.php:1887
+#: plugins/elementor/widgets/General/PostCarousel.php:1903
 #: plugins/elementor/widgets/General/PostSlider.php:993
 #: plugins/elementor/widgets/General/PostSlider.php:1326
 #: plugins/elementor/widgets/General/PostSlider.php:1644
@@ -2364,7 +2364,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1445
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1641
 #: plugins/elementor/widgets/General/PostCarousel.php:1129
-#: plugins/elementor/widgets/General/PostCarousel.php:1922
+#: plugins/elementor/widgets/General/PostCarousel.php:1938
 #: plugins/elementor/widgets/General/PostSlider.php:1056
 #: plugins/elementor/widgets/General/PostSlider.php:1361
 #: plugins/elementor/widgets/General/PostTimeline.php:469
@@ -3689,8 +3689,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:752
 #: plugins/elementor/widgets/General/FlipBox.php:1189
 #: plugins/elementor/widgets/General/NotificationArea.php:191
-#: plugins/elementor/widgets/General/PostCarousel.php:1894
-#: plugins/elementor/widgets/General/PostCarousel.php:1929
+#: plugins/elementor/widgets/General/PostCarousel.php:1910
+#: plugins/elementor/widgets/General/PostCarousel.php:1945
 #: plugins/elementor/widgets/General/PostSlider.php:1333
 #: plugins/elementor/widgets/General/PostSlider.php:1368
 #: plugins/elementor/widgets/General/PostTimeline.php:882
@@ -4276,7 +4276,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:841
 #: plugins/elementor/widgets/General/FlipBox.php:317
 #: plugins/elementor/widgets/General/PostCarousel.php:1735
-#: plugins/elementor/widgets/General/PostCarousel.php:1838
+#: plugins/elementor/widgets/General/PostCarousel.php:1854
 #: plugins/elementor/widgets/General/PostTimeline.php:1280
 #: plugins/elementor/widgets/General/PricingTable.php:1600
 msgid "Icon Padding"
@@ -4979,7 +4979,8 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1356
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1552
-#: plugins/elementor/widgets/General/PostCarousel.php:1965
+#: plugins/elementor/widgets/General/PostCarousel.php:1838
+#: plugins/elementor/widgets/General/PostCarousel.php:1981
 #: plugins/elementor/widgets/General/PostSlider.php:1404
 #: plugins/elementor/widgets/General/Slider.php:1506
 #: plugins/elementor/widgets/General/TeamCarousel.php:1508
@@ -5213,7 +5214,7 @@ msgid "Responsive"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:464
-#: plugins/elementor/widgets/General/PostCarousel.php:1852
+#: plugins/elementor/widgets/General/PostCarousel.php:1868
 #: plugins/elementor/widgets/General/PostSlider.php:528
 #: plugins/elementor/widgets/General/PostSlider.php:1291
 #: plugins/elementor/widgets/General/Slider.php:569
@@ -5260,7 +5261,7 @@ msgid "Hide On Mobile"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:512
-#: plugins/elementor/widgets/General/PostCarousel.php:2028
+#: plugins/elementor/widgets/General/PostCarousel.php:2044
 #: plugins/elementor/widgets/General/PostSlider.php:453
 #: plugins/elementor/widgets/General/PostSlider.php:1757
 #: plugins/elementor/widgets/General/Slider.php:494
@@ -5405,7 +5406,7 @@ msgstr ""
 msgid "Avatar Border Radius"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:1861
+#: plugins/elementor/widgets/General/PostCarousel.php:1877
 #: plugins/elementor/widgets/General/PostSlider.php:1300
 #: plugins/elementor/widgets/General/Slider.php:1402
 #: plugins/elementor/widgets/General/TeamCarousel.php:1404
@@ -5413,7 +5414,7 @@ msgstr ""
 msgid "Next Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:1873
+#: plugins/elementor/widgets/General/PostCarousel.php:1889
 #: plugins/elementor/widgets/General/PostSlider.php:1312
 #: plugins/elementor/widgets/General/Slider.php:1414
 #: plugins/elementor/widgets/General/TeamCarousel.php:1416
@@ -5421,7 +5422,7 @@ msgstr ""
 msgid "Previous Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:1942
+#: plugins/elementor/widgets/General/PostCarousel.php:1958
 #: plugins/elementor/widgets/General/PostSlider.php:1381
 #: plugins/elementor/widgets/General/Slider.php:1483
 #: plugins/elementor/widgets/General/TeamCarousel.php:1485
@@ -5429,7 +5430,7 @@ msgstr ""
 msgid "Background Hover Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:1981
+#: plugins/elementor/widgets/General/PostCarousel.php:1997
 #: plugins/elementor/widgets/General/PostSlider.php:1420
 #: plugins/elementor/widgets/General/Slider.php:1522
 #: plugins/elementor/widgets/General/TeamCarousel.php:1524
@@ -5437,7 +5438,7 @@ msgstr ""
 msgid "Box Size (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:1997
+#: plugins/elementor/widgets/General/PostCarousel.php:2013
 #: plugins/elementor/widgets/General/PostSlider.php:1445
 #: plugins/elementor/widgets/General/Slider.php:1547
 #: plugins/elementor/widgets/General/TeamCarousel.php:1540
@@ -5445,7 +5446,7 @@ msgstr ""
 msgid "Box Border Radius"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:2010
+#: plugins/elementor/widgets/General/PostCarousel.php:2026
 #: plugins/elementor/widgets/General/PostSlider.php:1458
 #: plugins/elementor/widgets/General/Slider.php:1560
 #: plugins/elementor/widgets/General/TeamCarousel.php:1553
@@ -5453,7 +5454,7 @@ msgstr ""
 msgid "Box Right/Left Margin (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:2049
+#: plugins/elementor/widgets/General/PostCarousel.php:2065
 #: plugins/elementor/widgets/General/PostSlider.php:1778
 #: plugins/elementor/widgets/General/Slider.php:1876
 #: plugins/elementor/widgets/General/TeamCarousel.php:1592
@@ -5461,7 +5462,7 @@ msgstr ""
 msgid "Dot Size (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:2065
+#: plugins/elementor/widgets/General/PostCarousel.php:2081
 #: plugins/elementor/widgets/General/PostSlider.php:1794
 #: plugins/elementor/widgets/General/Slider.php:1892
 #: plugins/elementor/widgets/General/TeamCarousel.php:1608
@@ -5469,7 +5470,7 @@ msgstr ""
 msgid "Dot Right/Left Padding (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:2080
+#: plugins/elementor/widgets/General/PostCarousel.php:2096
 #: plugins/elementor/widgets/General/PostSlider.php:1809
 #: plugins/elementor/widgets/General/Slider.php:1907
 #: plugins/elementor/widgets/General/TeamCarousel.php:1623
@@ -5477,7 +5478,7 @@ msgstr ""
 msgid "Dots Bottom Margin (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:2440
+#: plugins/elementor/widgets/General/PostCarousel.php:2456
 #: plugins/elementor/widgets/General/PostTimeline.php:1749
 msgid "Nothing was found!"
 msgstr ""

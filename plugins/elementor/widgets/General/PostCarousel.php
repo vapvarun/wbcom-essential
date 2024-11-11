@@ -1832,6 +1832,22 @@ class PostCarousel extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'card_date_icon_size',
+			array(
+				'label'     => esc_html__( 'Icon Size (px)', 'wbcom-essential' ),
+				'type'      => \Elementor\Controls_Manager::NUMBER,
+				'min'       => 10,
+				'max'       => 50,
+				'step'      => 1,
+				'default'   => 16,
+				'selectors' => array(
+					'{{WRAPPER}} .wbcom-posts-card-date-link svg' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-posts-card-date-link i' => 'font-size: {{VALUE}}px;',
+				),
+			)
+		);
+
 		$this->add_responsive_control(
 			'card_date_icon_padding',
 			array(
