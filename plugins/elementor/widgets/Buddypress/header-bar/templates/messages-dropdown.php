@@ -12,7 +12,7 @@
 global $messages_template;
 $menu_link            = trailingslashit( bp_loggedin_user_domain() . bp_get_messages_slug() );
 $unread_message_count = messages_get_unread_count();
-$messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !== $settings['messages_icon']['value'] ) ? $settings['messages_icon']['value'] : 'wb-icon-envelope';
+$messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !== $settings['messages_icon']['value'] ) ? $settings['messages_icon']['value'] : 'wbe-icon-envelope';
 ?>
 <div id="header-messages-dropdown-elem" class="dropdown-passive dropdown-right notification-wrap messages-wrap menu-item-has-children">
 	<a href="<?php echo esc_url( $menu_link ); ?>"

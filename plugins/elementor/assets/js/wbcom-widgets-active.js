@@ -32,8 +32,8 @@
 
             slider_elem.not('.slick-initialized').slick({
                 arrows: arrows,
-                prevArrow: '<button type="button" class="slick-prev"><i class="wb-icons wb-icon-angle-left"></i></button>',
-                nextArrow: '<button type="button" class="slick-next"><i class="wb-icons wb-icon-angle-right"></i></button>',
+                prevArrow: '<button type="button" class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
+                nextArrow: '<button type="button" class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
                 dots: dots,
                 infinite: true,
                 autoplay: autoplay,
@@ -91,8 +91,8 @@
         $slider.slick({
             dots: true,
             arrows: true,
-            prevArrow: '<button class="slick-prev"><i class="wb-icons wb-icon-angle-left"></i></button>',
-            nextArrow: '<button class="slick-next"><i class="wb-icons wb-icon-angle-right"></i></button>',
+            prevArrow: '<button class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
+            nextArrow: '<button class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
         });
 
         

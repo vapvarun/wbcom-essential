@@ -156,7 +156,7 @@
 .product-item .actions a::before {
     color: #fff;
     content: '\e803';
-    font-family: "wb-icons";
+    font-family: "wbe-icons";
     font-weight: 900;
     height: 100%;
     left: 0;
@@ -301,7 +301,7 @@
     color: inherit;
     content: '\e838';
     display: block;
-    font-family: "wb-icons";
+    font-family: "wbe-icons";
     font-weight: 900;
     height: 100%;
     left: 0;
@@ -840,7 +840,7 @@ li.wbcom-cart .button:before {
 .wb-product-action ul li.wbcom-cart a::before {
     content: '\e838';
     display: flex;
-    font-family: "wb-icons" !important;
+    font-family: "wbe-icons" !important;
     font-size: 20px;
     height: 100%;
     justify-content: center;

@@ -1,10 +1,10 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2023 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2024 by original authors @ fontello.com</metadata>
 <defs>
-<font id="wb-icons" horiz-adv-x="1000" >
-<font-face font-family="wb-icons" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<font id="wbe-icons" horiz-adv-x="1000" >
+<font-face font-family="wbe-icons" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
 <glyph glyph-name="check-circle" unicode="&#xe800;" d="M500 834c-267 0-484-216-484-484s217-484 484-484 484 217 484 484-216 484-484 484z m0-906c-232 0-422 188-422 422 0 232 188 422 422 422 232 0 422-188 422-422 0-232-188-422-422-422z m277 537l-353-349c-9-10-24-10-33 0l-168 169c-9 9-9 24 0 33l17 16c9 10 24 9 33 0l135-136 319 317c9 9 24 9 33 0l17-17c9-9 9-24 0-33z" horiz-adv-x="1000" />
 

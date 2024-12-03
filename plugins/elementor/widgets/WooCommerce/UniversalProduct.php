@@ -2264,8 +2264,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                                         wbcom_compare_button(
                                                                             array(
                                                                                 'style'=>2,
-                                                                                'btn_text'=>'<i class="wb-icons wb-icon-spin5"></i>',
-                                                                                'btn_added_txt'=>'<i class="wb-icons wb-icon-check-circle"></i>'
+                                                                                'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
+                                                                                'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
                                                                             )
                                                                         );
                                                                     echo '</li>';
@@ -2298,8 +2298,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                                             wbcom_compare_button(
                                                                                 array(
                                                                                     'style'=>2,
-                                                                                    'btn_text'=>'<i class="wb-icons wb-icon-spin5"></i>',
-                                                                                    'btn_added_txt'=>'<i class="wb-icons wb-icon-check-circle"></i>'
+                                                                                    'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
+                                                                                    'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
                                                                                 )
                                                                             );
                                                                         echo '</li>';
@@ -2415,8 +2415,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                                 wbcom_compare_button(
                                                                     array(
                                                                         'style'=>2,
-                                                                        'btn_text'=>'<i class="wb-icons wb-icon-spin5"></i>',
-                                                                        'btn_added_txt'=>'<i class="wb-icons wb-icon-check-circle"></i>'
+                                                                        'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
+                                                                        'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
                                                                     )
                                                                 );
                                                             echo '</li>';
@@ -2449,8 +2449,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                                     wbcom_compare_button(
                                                                         array(
                                                                             'style'=>2,
-                                                                            'btn_text'=>'<i class="wb-icons wb-icon-spin5"></i>',
-                                                                            'btn_added_txt'=>'<i class="wb-icons wb-icon-check-circle"></i>'
+                                                                            'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
+                                                                            'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
                                                                         )
                                                                     );
                                                                 echo '</li>';
@@ -2479,8 +2479,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
                         $(".wb-product-image-thumbnaisl-<?php echo $tabuniqid; ?>").slick({
                             dots: true,
                             arrows: true,
-                            prevArrow: '<button class="slick-prev"><i class="wb-icons wb-icon-angle-left"></i></button>',
-                            nextArrow: '<button class="slick-next"><i class="wb-icons wb-icon-angle-right"></i></button>',
+                            prevArrow: '<button class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
+                            nextArrow: '<button class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
                         });
                     });
                 </script>

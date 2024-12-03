@@ -574,7 +574,7 @@ class Plugin {
 
 		wp_register_style(
 			'wbcom-essential-icons',
-			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wb-icons.css',
+			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wbe-icons.css',
 			array(),
 			WBCOM_ESSENTIAL_VERSION
 		);

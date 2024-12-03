@@ -1,6 +1,6 @@
 {
-  "name": "wb-icons",
-  "css_prefix_text": "wb-icon-",
+  "name": "wbe-icons",
+  "css_prefix_text": "wbe-icon-",
   "css_use_suffix": false,
   "hinting": true,
   "units_per_em": 1000,

@@ -17,7 +17,7 @@ $show_messages         = ! empty( $settings['messages_icon_switch'] );
 $show_notifications    = ! empty( $settings['notifications_icon_switch'] );
 $show_shopping_cart    = ! empty( $settings['cart_icon_switch'] );
 
-$search_icon = ! empty( $settings['search_icon']['value'] ) ? $settings['search_icon']['value'] : 'wb-icon-search';
+$search_icon = ! empty( $settings['search_icon']['value'] ) ? $settings['search_icon']['value'] : 'wbe-icon-search';
 $template    = get_option( 'template' );
 
 // Make sure the WordPress environment is loaded
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 
 					<a class="user-link" href="<?php echo esc_url( $user_link ); ?>">
-						<span class="user-name"><?php echo esc_html( $display_name ); ?></span><i class="wb-icon-angle-down"></i>
+						<span class="user-name"><?php echo esc_html( $display_name ); ?></span><i class="wbe-icon-angle-down"></i>
 						<?php echo get_avatar( get_current_user_id(), 100 ); ?>
 					</a>
 

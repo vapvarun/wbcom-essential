@@ -9,7 +9,7 @@
  * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
  */
 
-$cart_icon = ( isset( $settings['cart_icon']['value'] ) && '' !== $settings['cart_icon']['value'] ) ? $settings['cart_icon']['value'] : 'wb-icon-shopping-cart';
+$cart_icon = ( isset( $settings['cart_icon']['value'] ) && '' !== $settings['cart_icon']['value'] ) ? $settings['cart_icon']['value'] : 'wbe-icon-shopping-cart';
 ?>
 
 <div class="notification-wrap header-cart-link-wrap cart-wrap menu-item-has-children">
