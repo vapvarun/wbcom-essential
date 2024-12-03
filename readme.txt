@@ -3,8 +3,8 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
-Tested up to: 6.6.2
-Stable tag: 3.9.0
+Tested up to: 6.7.1
+Stable tag: 3.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,11 @@ It will add additional features for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
 
 == Changelog ==
+= 3.9.1 =
+* Updated icons library for enhanced design flexibility.
+* Managed icon size in the posts carousel widget.
+* Added slider dots and arrow icons for improved navigation.
+
 = 3.9.0 =
 * Fix: Removed duplicate color control to prevent styling conflicts.
 * Improvement: Integrated global color support for consistent styling across the theme.
