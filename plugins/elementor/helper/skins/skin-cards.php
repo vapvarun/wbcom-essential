@@ -244,10 +244,9 @@ class Skin_Cards extends Skin_Base {
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__card .elementor-post__badge' => 'background-color: {{VALUE}};',
 				),
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_4,
-				),
+				'global' => [
+		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+		+		],
 				'condition' => array(
 					$this->get_control_id( 'show_badge' ) => 'yes',
 				),

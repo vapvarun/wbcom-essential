@@ -709,10 +709,9 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_4,
-				),
+				'global' => [
+		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+		+		],
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__read-more' => 'color: {{VALUE}};',
 				),
