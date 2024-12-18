@@ -151,10 +151,9 @@ class Branding extends \Elementor\Widget_Base {
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_1,
-				),
+				'global' => [
+		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+		+		],
 				'default'   => '#333333',
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-title a' => 'color: {{VALUE}};',
@@ -170,10 +169,9 @@ class Branding extends \Elementor\Widget_Base {
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_1,
-				),
+				'global' => [
+		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+		+		],
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-title a:hover' => 'color: {{VALUE}};',
 				),
@@ -244,10 +242,9 @@ class Branding extends \Elementor\Widget_Base {
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_1,
-				),
+				'global' => [
+		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+		+		],
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-description' => 'color: {{VALUE}};',
 				),
