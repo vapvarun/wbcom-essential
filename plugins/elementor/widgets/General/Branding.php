@@ -151,6 +151,10 @@ class Branding extends \Elementor\Widget_Base {
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
+				'scheme'    => array(
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_1,
+				),
 				'default'   => '#333333',
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-title a' => 'color: {{VALUE}};',
@@ -165,6 +169,10 @@ class Branding extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'condition' => array(
 					'el_site_branding' => 'title',
+				),
+				'scheme'    => array(
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_1,
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-title a:hover' => 'color: {{VALUE}};',
@@ -194,7 +202,8 @@ class Branding extends \Elementor\Widget_Base {
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'condition' => array(
 					'el_site_branding' => 'title',
-				),				
+				),
+				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 				'selector'  => '{{WRAPPER}} .elementor-branding .site-title',
 			)
 		);
@@ -235,6 +244,10 @@ class Branding extends \Elementor\Widget_Base {
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
+				'scheme'    => array(
+					'type'  => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_1,
+				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-description' => 'color: {{VALUE}};',
 				),
@@ -263,7 +276,8 @@ class Branding extends \Elementor\Widget_Base {
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'condition' => array(
 					'el_site_branding' => 'title',
-				),				
+				),
+				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 				'selector'  => '{{WRAPPER}} .elementor-branding .site-description',
 			)
 		);
