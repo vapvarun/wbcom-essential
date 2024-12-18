@@ -329,7 +329,9 @@ class Skin_Cards extends Skin_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'      => 'badge_typography',
-				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_4,
+				'global' => [
++			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
++		],
 				'selector'  => '{{WRAPPER}} .elementor-post__card .elementor-post__badge',
 				'exclude'   => array( 'font_size', 'line-height' ),
 				'condition' => array(

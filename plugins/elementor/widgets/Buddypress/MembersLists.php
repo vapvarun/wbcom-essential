@@ -567,7 +567,9 @@ class MembersLists extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'name_typography',
 				'selector' => '{{WRAPPER}} .wbcom-essential-members-list__name a',
-				'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_4,
+				'global' => [
++			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
++		],
 			)
 		);
 
