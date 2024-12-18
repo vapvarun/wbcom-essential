@@ -513,10 +513,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_2,
-				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a' => 'color: {{VALUE}};',
 				),
@@ -531,7 +527,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'name'      => 'title_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
-				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 				'selector'  => '{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a',
 				'condition' => array(
 					$this->get_control_id( 'show_title' ) => 'yes',
@@ -705,10 +700,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_4,
-				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__read-more' => 'color: {{VALUE}};',
 				),
