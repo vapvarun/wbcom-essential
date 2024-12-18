@@ -152,8 +152,8 @@ class Branding extends \Elementor\Widget_Base {
 					'el_site_branding' => 'title',
 				),
 				'global' => [
-		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-		+		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				],
 				'default'   => '#333333',
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-title a' => 'color: {{VALUE}};',
@@ -170,8 +170,8 @@ class Branding extends \Elementor\Widget_Base {
 					'el_site_branding' => 'title',
 				),
 				'global' => [
-		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-		+		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				],
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-title a:hover' => 'color: {{VALUE}};',
 				),
@@ -201,7 +201,9 @@ class Branding extends \Elementor\Widget_Base {
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
-				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector'  => '{{WRAPPER}} .elementor-branding .site-title',
 			)
 		);
@@ -243,8 +245,8 @@ class Branding extends \Elementor\Widget_Base {
 					'el_site_branding' => 'title',
 				),
 				'global' => [
-		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-		+		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				],
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-description' => 'color: {{VALUE}};',
 				),
@@ -274,7 +276,9 @@ class Branding extends \Elementor\Widget_Base {
 				'condition' => array(
 					'el_site_branding' => 'title',
 				),
-				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector'  => '{{WRAPPER}} .elementor-branding .site-description',
 			)
 		);

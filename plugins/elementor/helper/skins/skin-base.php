@@ -513,10 +513,9 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'scheme'    => array(
-					'type'  => \Elementor\Core\Schemes\Color::get_type(),
-					'value' => \Elementor\Core\Schemes\Color::COLOR_2,
-				),
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+				],
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a' => 'color: {{VALUE}};',
 				),
@@ -531,7 +530,9 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			array(
 				'name'      => 'title_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
-				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector'  => '{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a',
 				'condition' => array(
 					$this->get_control_id( 'show_title' ) => 'yes',
@@ -604,8 +605,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'name'      => 'meta_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'global' => [
-+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
-+		],
+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
+		],
 				'selector'  => '{{WRAPPER}} .elementor-post__meta-data',
 				'condition' => array(
 					$this->get_control_id( 'meta_data!' ) => array(),
@@ -664,8 +665,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'name'      => 'excerpt_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'global' => [
-+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
-+		],
+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+		],
 				'selector'  => '{{WRAPPER}} .elementor-post__excerpt',
 				'condition' => array(
 					$this->get_control_id( 'show_excerpt' ) => 'yes',
@@ -710,8 +711,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'global' => [
-		+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
-		+		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+				],
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__read-more' => 'color: {{VALUE}};',
 				),
@@ -728,8 +729,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'selector'  => '{{WRAPPER}} .elementor-post__read-more',
 				'global' => [
-+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
-+		],
+			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+		],
 				'condition' => array(
 					$this->get_control_id( 'show_read_more' ) => 'yes',
 				),
