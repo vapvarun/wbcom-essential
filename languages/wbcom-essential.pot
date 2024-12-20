@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-03 05:07:01+00:00\n"
+"POT-Creation-Date: 2024-12-20 10:29:16+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -129,7 +129,7 @@ msgid "Install Elementor"
 msgstr ""
 
 #: plugins/elementor/documents/page.php:45
-#: plugins/elementor/helper/skins/skin-base.php:970
+#: plugins/elementor/helper/skins/skin-base.php:976
 #: plugins/elementor/templates/documents/page.php:45
 #: plugins/elementor/templates/types/page.php:44
 msgid "Page"
@@ -244,7 +244,7 @@ msgid "Right"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:97
-#: plugins/elementor/helper/skins/skin-cards.php:563
+#: plugins/elementor/helper/skins/skin-cards.php:564
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:215
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:722
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:360
@@ -386,8 +386,8 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:220
 #: plugins/elementor/helper/skins/skin-base.php:261
 #: plugins/elementor/helper/skins/skin-base.php:290
-#: plugins/elementor/helper/skins/skin-cards.php:391
-#: plugins/elementor/helper/skins/skin-cards.php:423
+#: plugins/elementor/helper/skins/skin-cards.php:392
+#: plugins/elementor/helper/skins/skin-cards.php:424
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:176
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:191
 #: plugins/elementor/widgets/General/Countdown.php:117
@@ -442,8 +442,8 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:221
 #: plugins/elementor/helper/skins/skin-base.php:262
 #: plugins/elementor/helper/skins/skin-base.php:291
-#: plugins/elementor/helper/skins/skin-cards.php:392
-#: plugins/elementor/helper/skins/skin-cards.php:424
+#: plugins/elementor/helper/skins/skin-cards.php:393
+#: plugins/elementor/helper/skins/skin-cards.php:425
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:177
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:192
 #: plugins/elementor/widgets/General/Countdown.php:118
@@ -503,7 +503,7 @@ msgid "Title HTML Tag"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:259
-#: plugins/elementor/helper/skins/skin-base.php:636
+#: plugins/elementor/helper/skins/skin-base.php:639
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:446
 #: plugins/elementor/widgets/General/PostCarousel.php:608
 #: plugins/elementor/widgets/General/PostCarousel.php:1546
@@ -515,7 +515,7 @@ msgid "Excerpt Length"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:288
-#: plugins/elementor/helper/skins/skin-base.php:694
+#: plugins/elementor/helper/skins/skin-base.php:699
 #: plugins/elementor/widgets/General/PostSlider.php:241
 #: plugins/elementor/widgets/General/PostTimeline.php:298
 msgid "Read More"
@@ -723,8 +723,8 @@ msgid "Image"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:448
-#: plugins/elementor/helper/skins/skin-cards.php:274
-#: plugins/elementor/helper/skins/skin-cards.php:493
+#: plugins/elementor/helper/skins/skin-cards.php:273
+#: plugins/elementor/helper/skins/skin-cards.php:494
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:249
 #: plugins/elementor/widgets/Buddypress/Forums.php:247
 #: plugins/elementor/widgets/Buddypress/Forums.php:343
@@ -739,7 +739,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:424
 #: plugins/elementor/widgets/General/Accordion.php:473
 #: plugins/elementor/widgets/General/Accordion.php:852
-#: plugins/elementor/widgets/General/Branding.php:308
+#: plugins/elementor/widgets/General/Branding.php:309
 #: plugins/elementor/widgets/General/Countdown.php:360
 #: plugins/elementor/widgets/General/DropdownButton.php:451
 #: plugins/elementor/widgets/General/DropdownButton.php:533
@@ -847,10 +847,10 @@ msgid "Border Radius"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:463
-#: plugins/elementor/helper/skins/skin-base.php:545
-#: plugins/elementor/helper/skins/skin-base.php:617
-#: plugins/elementor/helper/skins/skin-base.php:675
-#: plugins/elementor/helper/skins/skin-base.php:737
+#: plugins/elementor/helper/skins/skin-base.php:546
+#: plugins/elementor/helper/skins/skin-base.php:620
+#: plugins/elementor/helper/skins/skin-base.php:680
+#: plugins/elementor/helper/skins/skin-base.php:743
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:276
 #: plugins/elementor/widgets/Buddypress/Forums.php:376
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:325
@@ -905,9 +905,9 @@ msgid "Content"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:514
-#: plugins/elementor/helper/skins/skin-base.php:576
-#: plugins/elementor/helper/skins/skin-base.php:648
-#: plugins/elementor/helper/skins/skin-base.php:706
+#: plugins/elementor/helper/skins/skin-base.php:577
+#: plugins/elementor/helper/skins/skin-base.php:651
+#: plugins/elementor/helper/skins/skin-base.php:711
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:305
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:355
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:405
@@ -1034,10 +1034,10 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-base.php:533
-#: plugins/elementor/helper/skins/skin-base.php:605
-#: plugins/elementor/helper/skins/skin-base.php:663
-#: plugins/elementor/helper/skins/skin-base.php:725
+#: plugins/elementor/helper/skins/skin-base.php:532
+#: plugins/elementor/helper/skins/skin-base.php:606
+#: plugins/elementor/helper/skins/skin-base.php:666
+#: plugins/elementor/helper/skins/skin-base.php:729
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:317
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:367
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:417
@@ -1046,8 +1046,8 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:792
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:472
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:792
-#: plugins/elementor/widgets/General/Branding.php:202
-#: plugins/elementor/widgets/General/Branding.php:276
+#: plugins/elementor/widgets/General/Branding.php:200
+#: plugins/elementor/widgets/General/Branding.php:275
 #: plugins/elementor/widgets/General/PostCarousel.php:1360
 #: plugins/elementor/widgets/General/PostCarousel.php:1504
 #: plugins/elementor/widgets/General/PostCarousel.php:1567
@@ -1073,16 +1073,16 @@ msgstr ""
 msgid "Typography"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-base.php:564
+#: plugins/elementor/helper/skins/skin-base.php:565
 msgid "Meta"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-base.php:590
+#: plugins/elementor/helper/skins/skin-base.php:591
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:414
 msgid "Separator Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-base.php:981
+#: plugins/elementor/helper/skins/skin-base.php:987
 #: plugins/elementor/widgets/General/PostsCarousel.php:290
 #: plugins/elementor/widgets/General/PostsRevolution.php:367
 msgid "Pagination"
@@ -1242,14 +1242,14 @@ msgid "No"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:204
-#: plugins/elementor/helper/skins/skin-cards.php:389
+#: plugins/elementor/helper/skins/skin-cards.php:390
 #: plugins/elementor/widgets/General/PostCarousel.php:1280
 #: plugins/elementor/widgets/General/PostCarousel.php:1369
 msgid "Badge"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:242
-#: plugins/elementor/helper/skins/skin-cards.php:453
+#: plugins/elementor/helper/skins/skin-cards.php:454
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:531
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:573
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:723
@@ -1353,7 +1353,7 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:260
+#: plugins/elementor/helper/skins/skin-cards.php:259
 #: plugins/elementor/widgets/General/DropdownButton.php:408
 #: plugins/elementor/widgets/General/DropdownButton.php:481
 #: plugins/elementor/widgets/General/DropdownButton.php:703
@@ -1380,8 +1380,8 @@ msgstr ""
 msgid "Text Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:293
-#: plugins/elementor/helper/skins/skin-cards.php:361
+#: plugins/elementor/helper/skins/skin-cards.php:292
+#: plugins/elementor/helper/skins/skin-cards.php:362
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:196
 #: plugins/elementor/widgets/Buddypress/Forums.php:308
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:306
@@ -1398,7 +1398,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:313
+#: plugins/elementor/helper/skins/skin-cards.php:312
 #: plugins/elementor/widgets/General/Accordion.php:515
 #: plugins/elementor/widgets/General/Accordion.php:864
 #: plugins/elementor/widgets/General/Countdown.php:400
@@ -1488,8 +1488,8 @@ msgstr ""
 msgid "Margin"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:348
-#: plugins/elementor/helper/skins/skin-cards.php:421
+#: plugins/elementor/helper/skins/skin-cards.php:349
+#: plugins/elementor/helper/skins/skin-cards.php:422
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:188
 #: plugins/elementor/widgets/Buddypress/Forums.php:297
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:295
@@ -1498,16 +1498,16 @@ msgstr ""
 msgid "Avatar"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:401
+#: plugins/elementor/helper/skins/skin-cards.php:402
 msgid "Badge Taxonomy"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:445
+#: plugins/elementor/helper/skins/skin-cards.php:446
 #: plugins/elementor/widgets/General/PostCarousel.php:706
 msgid "Card"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:464
+#: plugins/elementor/helper/skins/skin-cards.php:465
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:542
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:584
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:734
@@ -1526,21 +1526,21 @@ msgstr ""
 msgid "Border Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:475
+#: plugins/elementor/helper/skins/skin-cards.php:476
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:733
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:354
 msgid "Border Width"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:511
+#: plugins/elementor/helper/skins/skin-cards.php:512
 msgid "Horizontal Padding"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:531
+#: plugins/elementor/helper/skins/skin-cards.php:532
 msgid "Vertical Padding"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:549
+#: plugins/elementor/helper/skins/skin-cards.php:550
 #: plugins/elementor/widgets/General/Accordion.php:437
 #: plugins/elementor/widgets/General/Accordion.php:487
 #: plugins/elementor/widgets/General/Countdown.php:373
@@ -1609,15 +1609,15 @@ msgstr ""
 msgid "Box Shadow"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:559
+#: plugins/elementor/helper/skins/skin-cards.php:560
 msgid "Hover Effect"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:564
+#: plugins/elementor/helper/skins/skin-cards.php:565
 msgid "Gradient"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-cards.php:577
+#: plugins/elementor/helper/skins/skin-cards.php:578
 msgid "Meta Border Color"
 msgstr ""
 
@@ -1894,7 +1894,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:634
 #: plugins/elementor/widgets/General/Accordion.php:687
 #: plugins/elementor/widgets/General/Accordion.php:922
-#: plugins/elementor/widgets/General/Branding.php:299
+#: plugins/elementor/widgets/General/Branding.php:300
 #: plugins/elementor/widgets/General/Countdown.php:352
 #: plugins/elementor/widgets/General/DropdownButton.php:443
 #: plugins/elementor/widgets/General/DropdownButton.php:525
@@ -2355,7 +2355,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:457
 #: plugins/elementor/widgets/General/Accordion.php:644
 #: plugins/elementor/widgets/General/Accordion.php:811
-#: plugins/elementor/widgets/General/Branding.php:168
+#: plugins/elementor/widgets/General/Branding.php:167
 #: plugins/elementor/widgets/General/DropdownButton.php:474
 #: plugins/elementor/widgets/General/DropdownButton.php:740
 #: plugins/elementor/widgets/General/FlipBox.php:1509
@@ -2834,17 +2834,17 @@ msgid "Filter Types"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:605
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:629
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:631
 msgid "active"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:606
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:630
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:632
 msgid "popular"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:607
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:631
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:633
 msgid "newest"
 msgstr ""
 
@@ -3232,7 +3232,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:704
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:706
 #: templates/reign/buddypress/legacy/members/members-loop.php:125
 msgid "Sorry, no members were found."
 msgstr ""
@@ -3740,7 +3740,7 @@ msgstr ""
 msgid "Brand"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Branding.php:186
+#: plugins/elementor/widgets/General/Branding.php:184
 #: plugins/elementor/widgets/General/Branding.php:214
 msgid "Title Padding - Default 1em"
 msgstr ""
@@ -3749,11 +3749,11 @@ msgstr ""
 msgid "Description Options"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Branding.php:260
+#: plugins/elementor/widgets/General/Branding.php:259
 msgid "Description Padding - Default 1em"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Branding.php:290
+#: plugins/elementor/widgets/General/Branding.php:291
 msgid "Branding Border"
 msgstr ""
 
@@ -7741,6 +7741,10 @@ msgstr ""
 
 #: templates/reign/buddypress/legacy/groups/groups-loop.php:138
 msgid "There were no groups found."
+msgstr ""
+
+#: templates/reign/buddypress/nouveau/members/members-loop.php:118
+msgid "More Options"
 msgstr ""
 
 #: plugin-update-checker/Puc/v5p0/Plugin/Ui.php:217

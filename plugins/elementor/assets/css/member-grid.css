@@ -23,6 +23,10 @@ body:not(.logged-in) .grid.bp-list.wbtm-member-directory-type-3 .list-wrap {
 	border-top: 0 !important;
 }
 
+.bp-nouveau #buddypress.buddypress-wrap.wbcom-members-grid-widget .grid.bp-list>li .item {
+	margin-bottom: 15px;
+}
+
 /*--------------------------------------------------------------
 # BuddyPress
 --------------------------------------------------------------*/

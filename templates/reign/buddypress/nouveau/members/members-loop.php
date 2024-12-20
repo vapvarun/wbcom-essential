@@ -88,15 +88,23 @@ bp_nouveau_before_loop(); ?>
 						</div>
 						<?php endif; ?>
 				</div><!-- // .item -->
+				<?php
+				if ( $member_directory_type == 'wbtm-member-directory-type-3' ) {
+					reign_buddypress_member_primary_actions();
+				}
+				?>
+
 				<div class="action-wrap">
 					<i class="fa fa-plus-circle"></i>
 					<?php
-					bp_nouveau_members_loop_buttons(
-						array(
-							'container'      => 'ul',
-							'button_element' => 'button',
-						)
-					);
+					if ( $member_directory_type !== 'wbtm-member-directory-type-3' ) {
+						bp_nouveau_members_loop_buttons(
+							array(
+								'container'      => 'ul',
+								'button_element' => 'button',
+							)
+						);
+					}
 					?>
 				</div>
 					<?php
@@ -104,6 +112,17 @@ bp_nouveau_before_loop(); ?>
 						echo '</div>';
 					}
 					?>
+
+					<?php if ( $member_directory_type == 'wbtm-member-directory-type-3' ) : ?>
+						<div class="bp-activity-more-options-wrap">
+							<a href="#" class="bp-activity-more-options-action bp-members-more-options-action bp-tooltip" data-bp-tooltip-pos="up" data-bp-tooltip="<?php esc_html_e( 'More Options', 'wbcom-essential' ); ?>">
+								<i class="fa fa-ellipsis-h"></i>
+							</a>
+							<div class="bp-activity-more-options">
+								<?php reign_additional_member_actions(); ?>
+							</div>
+						</div><!-- .bb_more_options -->
+					<?php endif; ?>
 			</div>
 		</li>
 		<?php endwhile; ?>
