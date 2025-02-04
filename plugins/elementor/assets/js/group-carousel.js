@@ -1,104 +1,81 @@
-( function( $ ) {
-	"use strict";
+(function($) {
+    "use strict";
 
-	var wbcom_groupCarousel = function() {
+    var wbcom_groupCarousel = function() {
+        $('.group-carousel-container').each(function() {
+            var elementSettings = $(this).data('settings');
+            
+            if (!elementSettings) {
+                console.warn('No settings found for the carousel.');
+                return;
+            }
 
-		jQuery( '.group-carousel-container' ).each(
-			function() {
+            var slidesToShow = +elementSettings.slides_to_show || 3,
+                isSingleSlide = (slidesToShow === 1),
+                elementorBreakpoints = elementorFrontend.config.responsive.activeBreakpoints;
 
-				var elementSettings         = $( this ).data( 'settings' ),
-				slidesToShow                = +elementSettings.slides_to_show || 3,
-				isSingleSlide               = 1 === slidesToShow,
-				defaultLGDevicesSlidesCount = isSingleSlide ? 1 : slidesToShow,
-				elementorBreakpoints        = elementorFrontend.config.responsive.activeBreakpoints;
+            var swiperOptions = {
+                slidesPerView: slidesToShow,
+                loop: elementSettings.infinite === 'yes',
+                speed: elementSettings.speed || 300,
+                autoplay: elementSettings.autoplay === 'yes' ? {
+                    delay: elementSettings.autoplay_speed || 5000,
+                    disableOnInteraction: elementSettings.pause_on_interaction === 'yes'
+                } : false,
+                breakpoints: {
+                    0: {
+                        slidesPerView: +elementSettings.slides_to_show_mobile || 1,
+                        slidesPerGroup: +elementSettings.slides_to_scroll_mobile || 1
+                    },
+                    [elementorBreakpoints.mobile.value]: {
+                        slidesPerView: +elementSettings.slides_to_show_tablet || 1,
+                        slidesPerGroup: +elementSettings.slides_to_scroll_tablet || 1
+                    },
+                    [elementorBreakpoints.tablet.value]: {
+                        slidesPerView: slidesToShow,
+                        slidesPerGroup: +elementSettings.slides_to_scroll || 1
+                    }
+                }
+            };
 
-				var swiperOptions            = {
-					slidesPerView: slidesToShow,
-					loop: 'yes' === elementSettings.infinite,
-					speed: elementSettings.speed,
-					handleElementorBreakpoints: true
-				};
-				swiperOptions.breakpoints    = {};
-				swiperOptions.breakpoints[0] = {
-					slidesPerView: +elementSettings.slides_to_show_mobile || 1,
-					slidesPerGroup: +elementSettings.slides_to_scroll_mobile || 1
-				};
+            // Navigation Arrows
+            if (elementSettings.navigation === 'arrows' || elementSettings.navigation === 'both') {
+                swiperOptions.navigation = {
+                    prevEl: $(this).find('.elementor-swiper-button-prev').get(0),
+                    nextEl: $(this).find('.elementor-swiper-button-next').get(0)
+                };
+            }
 
-				swiperOptions.breakpoints[elementorBreakpoints.mobile.value] = {
-					slidesPerView: +elementSettings.slides_to_show_tablet || 1,
-					slidesPerGroup: +elementSettings.slides_to_scroll_tablet || 1
-				};
-				swiperOptions.breakpoints[elementorBreakpoints.tablet.value] = {
-					slidesPerView: +elementSettings.slidesToShow || defaultLGDevicesSlidesCount,
-					slidesPerGroup: +elementSettings.slides_to_scroll || 1
-				};
+            // Dots Pagination
+            if (elementSettings.navigation === 'dots' || elementSettings.navigation === 'both') {
+                swiperOptions.pagination = {
+                    el: $(this).find('.swiper-pagination').get(0),
+                    type: 'bullets',
+                    clickable: true
+                };
+            }
 
-				if ('yes' === elementSettings.autoplay) {
-					  swiperOptions.autoplay = {
-							delay: elementSettings.autoplay_speed,
-							disableOnInteraction: 'yes' === elementSettings.pause_on_interaction
-					};
-				}
+            // Space Between Slides
+            if (elementSettings.image_spacing_custom) {
+                swiperOptions.spaceBetween = elementSettings.image_spacing_custom.size;
+            }
 
-				if (isSingleSlide) {
-					swiperOptions.effect = elementSettings.effect;
+            // Initialize Swiper (Fix)
+            var swiperInstance = new Swiper($(this).get(0), swiperOptions);
 
-					if ('fade' === elementSettings.effect) {
-						swiperOptions.fadeEffect = {
-							crossFade: true
-						};
-					}
-				} else {
-					swiperOptions.slidesPerGroup = +elementSettings.slides_to_scroll || 1;
-				}
+            // Pause on Hover (Fix)
+            if (elementSettings.pause_on_hover === 'yes' && swiperInstance.autoplay) {
+                $(this).on('mouseenter', function() {
+                    swiperInstance.autoplay.stop();
+                }).on('mouseleave', function() {
+                    swiperInstance.autoplay.start();
+                });
+            }
+        });
+    };
 
-				if (elementSettings.image_spacing_custom) {
-					swiperOptions.spaceBetween = elementSettings.image_spacing_custom.size;
-				}
+    $(window).on('elementor/frontend/init', function() {
+        elementorFrontend.hooks.addAction('frontend/element_ready/wbcom-group-carousel.default', wbcom_groupCarousel);
+    });
 
-				var showArrows = 'arrows' === elementSettings.navigation || 'both' === elementSettings.navigation,
-				showDots       = 'dots' === elementSettings.navigation || 'both' === elementSettings.navigation;
-
-				if (showArrows) {
-					swiperOptions.navigation = {
-						prevEl: '.elementor-swiper-button-prev',
-						nextEl: '.elementor-swiper-button-next'
-					};
-				}
-
-				if (showDots) {
-					swiperOptions.pagination = {
-						el: '.swiper-pagination',
-						type: 'bullets',
-						clickable: true
-					};
-				}
-
-				/* */
-				var group_swiper = new Swiper( $( this ), swiperOptions );
-
-				if ( elementSettings.pause_on_hover == 'yes' ) {
-					$( this ).mouseenter(
-						function() {
-							group_swiper.autoplay.stop();
-						}
-					);
-
-					$( this ).mouseleave(
-						function() {
-							group_swiper.autoplay.start();
-						}
-					);
-				}
-			}
-		);
-	}
-
-	jQuery( window ).on(
-		'elementor/frontend/init',
-		() => {
-			elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-group-carousel.default', wbcom_groupCarousel );
-		}
-	);
-
-})( jQuery );
+})(jQuery);
