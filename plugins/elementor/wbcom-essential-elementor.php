@@ -330,3 +330,57 @@ function wba_get_image_sizes() {
 	}
 	return $output_sizes;
 }
+
+/**
+ * Handles the AJAX login process for users.
+ *
+ * @return void
+ */
+function wbcom_ajax_login() {
+	check_ajax_referer( 'wbcom-ajax-login-nonce', 'security' );
+
+	$info = array(
+		'user_login'    => sanitize_text_field( $_POST['log'] ),
+		'user_password' => sanitize_text_field( $_POST['pwd'] ),
+		'remember'      => ! empty( $_POST['rememberme'] ) ? true : false,
+	);
+
+	$user_signon = wp_signon( $info, false );
+
+	if ( is_wp_error( $user_signon ) ) {
+		$error_codes = $user_signon->get_error_codes();
+
+		if ( in_array( 'invalid_username', $error_codes ) ) {
+			$message = __( 'Invalid username. Please try again.', 'wbcom-essential' );
+		} elseif ( in_array( 'incorrect_password', $error_codes ) ) {
+			$message = __( 'Incorrect password. Please try again.', 'wbcom-essential' );
+		} elseif ( in_array( 'empty_username', $error_codes ) ) {
+			$message = __( 'Username field is empty. Please enter your username.', 'wbcom-essential' );
+		} elseif ( in_array( 'empty_password', $error_codes ) ) {
+			$message = __( 'Password field is empty. Please enter your password.', 'wbcom-essential' );
+		} else {
+			$message = __( 'Login failed. Please check your credentials.', 'wbcom-essential' );
+		}
+
+		echo wp_json_encode(
+			array(
+				'loggedin' => false,
+				'message'  => $message,
+			)
+		);
+	} else {
+		$redirect_url = ! empty( $_POST['redirect_to'] ) ? esc_url( $_POST['redirect_to'] ) : home_url();
+
+		echo wp_json_encode(
+			array(
+				'loggedin' => true,
+				'message'  => __( 'Login successful, redirecting...', 'wbcom-essential' ),
+				'redirect' => $redirect_url,
+			)
+		);
+	}
+
+	wp_die();
+}
+
+add_action( 'wp_ajax_nopriv_wbcom_ajax_login', 'wbcom_ajax_login' );

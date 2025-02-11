@@ -33,6 +33,17 @@ class LoginForm extends \Elementor\Widget_Base {
 
 		wp_register_style( 'wb-login-form', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/login-form.css', array(), WBCOM_ESSENTIAL_VERSION );
 
+		wp_register_script( 'wbcom-ajax-login', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-ajax-login.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+
+		wp_localize_script(
+			'wbcom-ajax-login',
+			'wbcom_ajax_login_params',
+			array(
+				'ajax_url'     => admin_url( 'admin-ajax.php' ),
+				'redirect_url' => home_url(),
+				'security'     => wp_create_nonce( 'wbcom-ajax-login-nonce' ),
+			)
+		);
 	}
 
 	/**
@@ -61,6 +72,13 @@ class LoginForm extends \Elementor\Widget_Base {
 	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+
+	/**
+	 * Get dependent script.
+	 */
+	public function get_script_depends() {
+		return array( 'wbcom-ajax-login' );
 	}
 
 	/**
@@ -1204,7 +1222,7 @@ class LoginForm extends \Elementor\Widget_Base {
 				),
 				'default'   => 'flex-start',
 				'selectors' => array(
-					'{{WRAPPER}} p.login-submit' => 'justify-content: {{VALUE}};',
+					'{{WRAPPER}} #wp-submit' => 'justify-content: {{VALUE}};',
 				),
 				'toggle'    => false,
 			)
@@ -1368,7 +1386,7 @@ class LoginForm extends \Elementor\Widget_Base {
 				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}}  p.login-submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}  #wp-submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1599,79 +1617,78 @@ class LoginForm extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings      = $this->get_settings_for_display();
 		$logo_url      = wp_get_attachment_image_url( $settings['logo']['id'], 'full' );
-		$redirect_link = '';
-		$remember      = false;
-		if ( $settings['remember_switcher'] ) {
-			$remember = true;
-		}
-		if ( isset( $settings['redirect_link']['url'] ) ) {
-			$redirect_link = $settings['redirect_link']['url'];
-		} else {
-			$redirect_link = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-		}
-		$login_form_args = array(
-			'echo'           => true,
-			'redirect'       => $redirect_link,
-			'form_id'        => 'wb_login_form',
-			'label_username' => $settings['label_username'],
-			'label_password' => $settings['label_password'],
-			'label_remember' => $settings['label_remember'],
-			'label_log_in'   => $settings['label_log_in'],
-			'remember'       => $remember,
-			'value_username' => '',
-			// Set 'value_remember' to true to default the "Remember me" checkbox to checked.
-			'value_remember' => false,
-		); ?>
+		$redirect_link = isset( $settings['redirect_link']['url'] ) ? esc_url( $settings['redirect_link']['url'] ) : home_url();
+		$remember      = ! empty( $settings['remember_switcher'] ) ? true : false;
+		?>
+		
 		<?php if ( ( ! is_user_logged_in() ) || ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) || ( $settings['test_mode'] ) ) { ?>
 			<div class="wbcom-login-form-wrapper">
 				<div class="wbcom-login-form-inner">
 					<?php if ( $logo_url ) { ?>
-					<div class="wbcom-login-form-logo-container">
-						<img class="wbcom-login-form-logo" src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $settings['title'] ); ?>" />
-					</div>
-					<?php } ?>	
-					<?php
-					if ( $settings['title'] ) {
-						echo '<' . $settings['title_html_tag'] . ' class="wbcom-login-form-title">';
-						echo esc_html( $settings['title'] );
-						echo '</' . $settings['title_html_tag'] . '>';
-					}
-					?>
-					<?php
-					if ( $settings['subtitle'] ) {
-						echo '<' . $settings['subtitle_html_tag'] . ' class="wbcom-login-form-subtitle">';
-						echo esc_html( $settings['subtitle'] );
-						echo '</' . $settings['subtitle_html_tag'] . '>';
-					}
-					?>
-					<?php wp_login_form( $login_form_args ); ?>
+						<div class="wbcom-login-form-logo-container">
+							<img class="wbcom-login-form-logo" src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $settings['title'] ); ?>" />
+						</div>
+					<?php } ?>
+	
+					<?php if ( $settings['title'] ) { ?>
+						<<?php echo esc_attr( $settings['title_html_tag'] ); ?> class="wbcom-login-form-title">
+							<?php echo esc_html( $settings['title'] ); ?>
+						</<?php echo esc_attr( $settings['title_html_tag'] ); ?>>
+					<?php } ?>
+	
+					<?php if ( $settings['subtitle'] ) { ?>
+						<<?php echo esc_attr( $settings['subtitle_html_tag'] ); ?> class="wbcom-login-form-subtitle">
+							<?php echo esc_html( $settings['subtitle'] ); ?>
+						</<?php echo esc_attr( $settings['subtitle_html_tag'] ); ?>>
+					<?php } ?>
+	
+					<div id="wbcom-login-error" style="display:none; color:red; margin-bottom:10px;"></div>
+	
+					<form id="wb_login_form">
+						<p>
+							<label><?php echo esc_html( $settings['label_username'] ); ?></label>
+							<input type="text" name="log" required>
+						</p>
+						<p>
+							<label><?php echo esc_html( $settings['label_password'] ); ?></label>
+							<input type="password" name="pwd" required>
+						</p>
+						<?php if ( $remember ) { ?>
+							<p>
+								<label>
+									<input type="checkbox" name="rememberme" value="forever"> <?php echo esc_html( $settings['label_remember'] ); ?>
+								</label>
+							</p>
+						<?php } ?>
+						<p>
+							<button id="wp-submit" type="submit"><?php echo esc_html( $settings['label_log_in'] ); ?></button>
+						</p>
+						<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_link ); ?>">
+						<input type="hidden" name="action" value="wbcom_ajax_login">
+						<?php wp_nonce_field( 'wbcom-ajax-login-nonce', 'security' ); ?>
+					</form>
+	
 					<ul class="wbcom-login-form-links">
-						<?php if ( ( get_option( 'users_can_register' ) == '1' ) && ( $settings['register_switcher'] ) ) { ?>    
-						<li>
-							<a href="<?php echo esc_url( wp_registration_url() ); ?>"><?php echo esc_html( $settings['label_register'] ); ?></a>
-						</li>
-						<?php } ?> 
+						<?php if ( get_option( 'users_can_register' ) == '1' && $settings['register_switcher'] ) { ?>
+							<li><a href="<?php echo esc_url( wp_registration_url() ); ?>"><?php echo esc_html( $settings['label_register'] ); ?></a></li>
+						<?php } ?>
 						<?php if ( $settings['links_seperator'] ) { ?>
-						<li>
-							<?php echo esc_html( $settings['links_seperator'] ); ?>
-						</li>
+							<li><?php echo esc_html( $settings['links_seperator'] ); ?></li>
 						<?php } ?>
 						<?php if ( $settings['lost_password_switcher'] ) { ?>
-						<li>
-							<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php echo esc_html( $settings['label_lost_password'] ); ?></a>
-						</li>
+							<li><a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php echo esc_html( $settings['label_lost_password'] ); ?></a></li>
 						<?php } ?>
 					</ul>
 				</div>
 			</div>
 			<?php
 		} elseif ( $settings['loggedin_msg_switcher'] ) {
-			$current_user    = wp_get_current_user();
-			$redirect_logout = get_permalink();
+			$current_user = wp_get_current_user();
 			?>
-
-			<div class="wbcom-loggedout-msg"><?php echo esc_html( $settings['loggedin_msg'] ) . esc_html( $current_user->user_login ); ?> <a href="<?php echo esc_url( wp_logout_url( $redirect_logout ) ); ?>"><?php esc_html_e( '(Logout)', 'wbcom-essential' ); ?></a></div>
-		<?php } ?>
-		<?php
+			<div class="wbcom-loggedout-msg"><?php echo esc_html( $settings['loggedin_msg'] ) . ' ' . esc_html( $current_user->user_login ); ?>
+				<a href="<?php echo esc_url( wp_logout_url( get_permalink() ) ); ?>"><?php esc_html_e( '(Logout)', 'wbcom-essential' ); ?></a>
+			</div>
+			<?php
+		}
 	}
 }
