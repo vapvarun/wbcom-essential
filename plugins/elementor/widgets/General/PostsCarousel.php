@@ -40,9 +40,9 @@ class PostsCarousel extends Widget_Base {
 		wp_register_style( 'owlcarousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/owl.carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'owltheme', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/owl.theme.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wbcom-appear', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-appear.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wbcom-animate', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-animate.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'owlcarousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/owl.carousel.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-appear', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-appear.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-animate', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-animate.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'owlcarousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/owl.carousel.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 
 	}
 

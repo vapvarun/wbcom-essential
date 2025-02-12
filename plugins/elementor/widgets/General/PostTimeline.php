@@ -35,7 +35,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 		wp_register_style( 'wb-post-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/post-timeline.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-post-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/post-timeline.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-post-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/post-timeline.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

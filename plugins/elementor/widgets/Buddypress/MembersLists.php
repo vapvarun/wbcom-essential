@@ -43,7 +43,7 @@ class MembersLists extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'members-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/members-lists.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_script( 'members-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/members-lists.js', array( 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'members-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/members-lists.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

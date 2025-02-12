@@ -35,7 +35,7 @@ class Countdown extends \Elementor\Widget_Base {
 
 		wp_register_style( 'wb-countdown', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/countdown.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-countdown', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/countdown.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-countdown', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/countdown.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

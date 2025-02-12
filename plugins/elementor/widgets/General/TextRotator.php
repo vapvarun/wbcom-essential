@@ -33,7 +33,7 @@ class TextRotator extends \Elementor\Widget_Base {
 		wp_register_style( 'wbcom-animations', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/animations.min.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-text-rotator', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/text-rotator.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-text-rotator', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/text-rotator.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-text-rotator', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/text-rotator.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

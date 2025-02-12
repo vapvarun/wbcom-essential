@@ -34,7 +34,7 @@ class SmartMenu extends \Elementor\Widget_Base {
 		wp_register_style( 'wbcom-animations', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/animations.min.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-smart-menu', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/smart-menu.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-smart-menu', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/smart-menu.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-smart-menu', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/smart-menu.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

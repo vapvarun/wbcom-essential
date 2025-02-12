@@ -38,9 +38,9 @@ class TeamCarousel extends \Elementor\Widget_Base {
 		wp_register_style( 'wb-lib-lightbox', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/featherlight.min.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-team-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/team-carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wb-lib-lightbox', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/featherlight.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wb-team-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/team-carousel.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-lib-lightbox', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/featherlight.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-team-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/team-carousel.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

@@ -37,11 +37,11 @@ class PostsTicker extends Widget_Base {
 		wp_register_style( 'wbcom-posts-revolutions', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-posts-revolutions.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wbcom-acmeticker', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/acmeticker.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wbcom-appear', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-appear.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wbcom-animate', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-animate.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wbcom-newsTicker', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/jquery.newsTicker.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-appear', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-appear.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-animate', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-animate.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-newsTicker', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/jquery.newsTicker.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 
-		wp_register_script( 'wbcom-acmeticker', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/acmeticker.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-acmeticker', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/acmeticker.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 
 	}
 

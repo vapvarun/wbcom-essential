@@ -32,7 +32,7 @@ class Timeline extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 		wp_register_style( 'wb-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/timeline.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/timeline.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/timeline.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

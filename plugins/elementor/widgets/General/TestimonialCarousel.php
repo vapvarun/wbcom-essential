@@ -34,8 +34,8 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-testimonial', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/testimonial.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wb-testimonial-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/testimonial-carousel.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-testimonial-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/testimonial-carousel.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

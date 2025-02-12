@@ -22,7 +22,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 
 		wp_register_style( 'notification-area', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/notification-area.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'notification-area', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/notification-area.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'notification-area', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/notification-area.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	public function get_name() {

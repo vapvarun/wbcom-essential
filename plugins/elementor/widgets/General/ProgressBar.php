@@ -33,7 +33,7 @@ class ProgressBar extends \Elementor\Widget_Base {
 
 		wp_register_style( 'wb-progress-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/progress-bar.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-progress-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/progress-bar.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-progress-bar', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/progress-bar.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

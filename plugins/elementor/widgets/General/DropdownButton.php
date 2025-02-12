@@ -36,7 +36,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 
 		wp_register_style( 'wb-dropdown-button', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/dropdown-button.css', array(), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-dropdown-button', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/dropdown-button.min.js', array( 'jquery', 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-dropdown-button', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/dropdown-button.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**

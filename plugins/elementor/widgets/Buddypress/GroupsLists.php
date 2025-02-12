@@ -42,7 +42,7 @@ class GroupsLists extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'groups-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/groups-lists.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_script( 'groups-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/groups-lists.js', array( 'elementor-frontend' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'groups-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/groups-lists.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
