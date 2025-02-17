@@ -383,4 +383,6 @@ function wbcom_ajax_login() {
 	wp_die();
 }
 
-add_action( 'wp_ajax_nopriv_wbcom_ajax_login', 'wbcom_ajax_login' );
+if ( ! defined( 'PMPRO_VERSION' ) ) {
+	add_action( 'wp_ajax_nopriv_wbcom_ajax_login', 'wbcom_ajax_login' );
+}

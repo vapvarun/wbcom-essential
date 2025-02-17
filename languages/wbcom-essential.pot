@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 08:44:25+00:00\n"
+"POT-Creation-Date: 2025-02-17 07:38:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -282,8 +282,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:335
 #: plugins/elementor/widgets/General/Heading.php:349
 #: plugins/elementor/widgets/General/Heading.php:379
-#: plugins/elementor/widgets/General/LoginForm.php:267
-#: plugins/elementor/widgets/General/LoginForm.php:353
+#: plugins/elementor/widgets/General/LoginForm.php:269
+#: plugins/elementor/widgets/General/LoginForm.php:355
 #: plugins/elementor/widgets/General/Tabs.php:174
 #: plugins/elementor/widgets/General/Tabs.php:505
 msgid "Off"
@@ -304,8 +304,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:331
 #: plugins/elementor/widgets/General/Heading.php:348
 #: plugins/elementor/widgets/General/Heading.php:378
-#: plugins/elementor/widgets/General/LoginForm.php:266
-#: plugins/elementor/widgets/General/LoginForm.php:352
+#: plugins/elementor/widgets/General/LoginForm.php:268
+#: plugins/elementor/widgets/General/LoginForm.php:354
 #: plugins/elementor/widgets/General/Tabs.php:173
 #: plugins/elementor/widgets/General/Tabs.php:501
 msgid "On"
@@ -356,8 +356,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:197
 #: plugins/elementor/widgets/General/FlipBox.php:823
 #: plugins/elementor/widgets/General/FlipBox.php:1260
-#: plugins/elementor/widgets/General/LoginForm.php:128
-#: plugins/elementor/widgets/General/LoginForm.php:664
+#: plugins/elementor/widgets/General/LoginForm.php:130
+#: plugins/elementor/widgets/General/LoginForm.php:666
 #: plugins/elementor/widgets/General/PortfolioGrid.php:116
 #: plugins/elementor/widgets/General/PostCarousel.php:134
 #: plugins/elementor/widgets/General/PostCarousel.php:1437
@@ -394,9 +394,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Countdown.php:141
 #: plugins/elementor/widgets/General/Countdown.php:165
 #: plugins/elementor/widgets/General/Countdown.php:189
-#: plugins/elementor/widgets/General/LoginForm.php:291
-#: plugins/elementor/widgets/General/LoginForm.php:304
-#: plugins/elementor/widgets/General/LoginForm.php:316
+#: plugins/elementor/widgets/General/LoginForm.php:293
+#: plugins/elementor/widgets/General/LoginForm.php:306
+#: plugins/elementor/widgets/General/LoginForm.php:318
 #: plugins/elementor/widgets/General/NotificationArea.php:68
 #: plugins/elementor/widgets/General/NotificationArea.php:91
 #: plugins/elementor/widgets/General/NotificationArea.php:115
@@ -450,9 +450,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Countdown.php:142
 #: plugins/elementor/widgets/General/Countdown.php:166
 #: plugins/elementor/widgets/General/Countdown.php:190
-#: plugins/elementor/widgets/General/LoginForm.php:292
-#: plugins/elementor/widgets/General/LoginForm.php:305
-#: plugins/elementor/widgets/General/LoginForm.php:317
+#: plugins/elementor/widgets/General/LoginForm.php:294
+#: plugins/elementor/widgets/General/LoginForm.php:307
+#: plugins/elementor/widgets/General/LoginForm.php:319
 #: plugins/elementor/widgets/General/NotificationArea.php:72
 #: plugins/elementor/widgets/General/NotificationArea.php:95
 #: plugins/elementor/widgets/General/NotificationArea.php:119
@@ -496,7 +496,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:243
 #: plugins/elementor/widgets/General/FlipBox.php:124
 #: plugins/elementor/widgets/General/FlipBox.php:179
-#: plugins/elementor/widgets/General/LoginForm.php:136
+#: plugins/elementor/widgets/General/LoginForm.php:138
 #: plugins/elementor/widgets/General/PortfolioGrid.php:242
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:342
 msgid "Title HTML Tag"
@@ -588,7 +588,7 @@ msgid "Columns Gap"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:386
-#: plugins/elementor/widgets/General/LoginForm.php:430
+#: plugins/elementor/widgets/General/LoginForm.php:432
 msgid "Rows Gap"
 msgstr ""
 
@@ -636,15 +636,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:263
 #: plugins/elementor/widgets/General/Heading.php:488
 #: plugins/elementor/widgets/General/Heading.php:612
-#: plugins/elementor/widgets/General/LoginForm.php:411
-#: plugins/elementor/widgets/General/LoginForm.php:586
-#: plugins/elementor/widgets/General/LoginForm.php:700
-#: plugins/elementor/widgets/General/LoginForm.php:788
-#: plugins/elementor/widgets/General/LoginForm.php:876
-#: plugins/elementor/widgets/General/LoginForm.php:954
-#: plugins/elementor/widgets/General/LoginForm.php:1215
-#: plugins/elementor/widgets/General/LoginForm.php:1476
-#: plugins/elementor/widgets/General/LoginForm.php:1577
+#: plugins/elementor/widgets/General/LoginForm.php:413
+#: plugins/elementor/widgets/General/LoginForm.php:588
+#: plugins/elementor/widgets/General/LoginForm.php:702
+#: plugins/elementor/widgets/General/LoginForm.php:790
+#: plugins/elementor/widgets/General/LoginForm.php:878
+#: plugins/elementor/widgets/General/LoginForm.php:956
+#: plugins/elementor/widgets/General/LoginForm.php:1217
+#: plugins/elementor/widgets/General/LoginForm.php:1478
+#: plugins/elementor/widgets/General/LoginForm.php:1579
 #: plugins/elementor/widgets/General/PortfolioGrid.php:593
 #: plugins/elementor/widgets/General/PortfolioGrid.php:621
 #: plugins/elementor/widgets/General/PortfolioGrid.php:919
@@ -752,12 +752,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1568
 #: plugins/elementor/widgets/General/Heading.php:514
 #: plugins/elementor/widgets/General/Heading.php:638
-#: plugins/elementor/widgets/General/LoginForm.php:485
-#: plugins/elementor/widgets/General/LoginForm.php:621
-#: plugins/elementor/widgets/General/LoginForm.php:1065
-#: plugins/elementor/widgets/General/LoginForm.php:1129
-#: plugins/elementor/widgets/General/LoginForm.php:1281
-#: plugins/elementor/widgets/General/LoginForm.php:1342
+#: plugins/elementor/widgets/General/LoginForm.php:487
+#: plugins/elementor/widgets/General/LoginForm.php:623
+#: plugins/elementor/widgets/General/LoginForm.php:1067
+#: plugins/elementor/widgets/General/LoginForm.php:1131
+#: plugins/elementor/widgets/General/LoginForm.php:1283
+#: plugins/elementor/widgets/General/LoginForm.php:1344
 #: plugins/elementor/widgets/General/PortfolioGrid.php:457
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1085
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1200
@@ -943,8 +943,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1340
 #: plugins/elementor/widgets/General/Heading.php:473
 #: plugins/elementor/widgets/General/Heading.php:597
-#: plugins/elementor/widgets/General/LoginForm.php:848
-#: plugins/elementor/widgets/General/LoginForm.php:1547
+#: plugins/elementor/widgets/General/LoginForm.php:850
+#: plugins/elementor/widgets/General/LoginForm.php:1549
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1167
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1230
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1389
@@ -1105,7 +1105,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:250
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:268
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:299
-#: plugins/elementor/widgets/General/LoginForm.php:328
+#: plugins/elementor/widgets/General/LoginForm.php:330
 #: plugins/elementor/widgets/General/PortfolioGrid.php:312
 #: plugins/elementor/widgets/General/PortfolioGrid.php:364
 #: plugins/elementor/widgets/General/PortfolioGrid.php:414
@@ -1177,7 +1177,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:251
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:269
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:300
-#: plugins/elementor/widgets/General/LoginForm.php:329
+#: plugins/elementor/widgets/General/LoginForm.php:331
 #: plugins/elementor/widgets/General/PortfolioGrid.php:313
 #: plugins/elementor/widgets/General/PortfolioGrid.php:365
 #: plugins/elementor/widgets/General/PortfolioGrid.php:415
@@ -1272,10 +1272,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1351
 #: plugins/elementor/widgets/General/FlipBox.php:1455
 #: plugins/elementor/widgets/General/FlipBox.php:1527
-#: plugins/elementor/widgets/General/LoginForm.php:1044
-#: plugins/elementor/widgets/General/LoginForm.php:1108
-#: plugins/elementor/widgets/General/LoginForm.php:1261
-#: plugins/elementor/widgets/General/LoginForm.php:1322
+#: plugins/elementor/widgets/General/LoginForm.php:1046
+#: plugins/elementor/widgets/General/LoginForm.php:1110
+#: plugins/elementor/widgets/General/LoginForm.php:1263
+#: plugins/elementor/widgets/General/LoginForm.php:1324
 #: plugins/elementor/widgets/General/PortfolioGrid.php:436
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1179
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1243
@@ -1361,12 +1361,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1443
 #: plugins/elementor/widgets/General/FlipBox.php:1516
 #: plugins/elementor/widgets/General/Heading.php:152
-#: plugins/elementor/widgets/General/LoginForm.php:672
-#: plugins/elementor/widgets/General/LoginForm.php:760
-#: plugins/elementor/widgets/General/LoginForm.php:1020
-#: plugins/elementor/widgets/General/LoginForm.php:1096
-#: plugins/elementor/widgets/General/LoginForm.php:1250
-#: plugins/elementor/widgets/General/LoginForm.php:1311
+#: plugins/elementor/widgets/General/LoginForm.php:674
+#: plugins/elementor/widgets/General/LoginForm.php:762
+#: plugins/elementor/widgets/General/LoginForm.php:1022
+#: plugins/elementor/widgets/General/LoginForm.php:1098
+#: plugins/elementor/widgets/General/LoginForm.php:1252
+#: plugins/elementor/widgets/General/LoginForm.php:1313
 #: plugins/elementor/widgets/General/PostTimeline.php:1009
 #: plugins/elementor/widgets/General/PostTimeline.php:1082
 #: plugins/elementor/widgets/General/PostTimeline.php:1347
@@ -1410,14 +1410,14 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:315
 #: plugins/elementor/widgets/General/Heading.php:502
 #: plugins/elementor/widgets/General/Heading.php:626
-#: plugins/elementor/widgets/General/LoginForm.php:525
-#: plugins/elementor/widgets/General/LoginForm.php:649
-#: plugins/elementor/widgets/General/LoginForm.php:725
-#: plugins/elementor/widgets/General/LoginForm.php:813
-#: plugins/elementor/widgets/General/LoginForm.php:914
-#: plugins/elementor/widgets/General/LoginForm.php:1174
-#: plugins/elementor/widgets/General/LoginForm.php:1385
-#: plugins/elementor/widgets/General/LoginForm.php:1523
+#: plugins/elementor/widgets/General/LoginForm.php:527
+#: plugins/elementor/widgets/General/LoginForm.php:651
+#: plugins/elementor/widgets/General/LoginForm.php:727
+#: plugins/elementor/widgets/General/LoginForm.php:815
+#: plugins/elementor/widgets/General/LoginForm.php:916
+#: plugins/elementor/widgets/General/LoginForm.php:1176
+#: plugins/elementor/widgets/General/LoginForm.php:1387
+#: plugins/elementor/widgets/General/LoginForm.php:1525
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1125
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1332
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1528
@@ -1553,12 +1553,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1581
 #: plugins/elementor/widgets/General/Heading.php:527
 #: plugins/elementor/widgets/General/Heading.php:651
-#: plugins/elementor/widgets/General/LoginForm.php:498
-#: plugins/elementor/widgets/General/LoginForm.php:634
-#: plugins/elementor/widgets/General/LoginForm.php:1079
-#: plugins/elementor/widgets/General/LoginForm.php:1143
-#: plugins/elementor/widgets/General/LoginForm.php:1294
-#: plugins/elementor/widgets/General/LoginForm.php:1355
+#: plugins/elementor/widgets/General/LoginForm.php:500
+#: plugins/elementor/widgets/General/LoginForm.php:636
+#: plugins/elementor/widgets/General/LoginForm.php:1081
+#: plugins/elementor/widgets/General/LoginForm.php:1145
+#: plugins/elementor/widgets/General/LoginForm.php:1296
+#: plugins/elementor/widgets/General/LoginForm.php:1357
 #: plugins/elementor/widgets/General/PortfolioGrid.php:470
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1098
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1213
@@ -1926,13 +1926,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1092
 #: plugins/elementor/widgets/General/FlipBox.php:1478
 #: plugins/elementor/widgets/General/FlipBox.php:1560
-#: plugins/elementor/widgets/General/LoginForm.php:477
-#: plugins/elementor/widgets/General/LoginForm.php:613
-#: plugins/elementor/widgets/General/LoginForm.php:1057
-#: plugins/elementor/widgets/General/LoginForm.php:1121
-#: plugins/elementor/widgets/General/LoginForm.php:1273
-#: plugins/elementor/widgets/General/LoginForm.php:1334
-#: plugins/elementor/widgets/General/LoginForm.php:1515
+#: plugins/elementor/widgets/General/LoginForm.php:479
+#: plugins/elementor/widgets/General/LoginForm.php:615
+#: plugins/elementor/widgets/General/LoginForm.php:1059
+#: plugins/elementor/widgets/General/LoginForm.php:1123
+#: plugins/elementor/widgets/General/LoginForm.php:1275
+#: plugins/elementor/widgets/General/LoginForm.php:1336
+#: plugins/elementor/widgets/General/LoginForm.php:1517
 #: plugins/elementor/widgets/General/PortfolioGrid.php:449
 #: plugins/elementor/widgets/General/PortfolioGrid.php:640
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1077
@@ -2042,14 +2042,14 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1362
 #: plugins/elementor/widgets/General/FlipBox.php:1599
 #: plugins/elementor/widgets/General/Heading.php:327
-#: plugins/elementor/widgets/General/LoginForm.php:513
-#: plugins/elementor/widgets/General/LoginForm.php:737
-#: plugins/elementor/widgets/General/LoginForm.php:825
-#: plugins/elementor/widgets/General/LoginForm.php:902
-#: plugins/elementor/widgets/General/LoginForm.php:1161
-#: plugins/elementor/widgets/General/LoginForm.php:1373
-#: plugins/elementor/widgets/General/LoginForm.php:1502
-#: plugins/elementor/widgets/General/LoginForm.php:1596
+#: plugins/elementor/widgets/General/LoginForm.php:515
+#: plugins/elementor/widgets/General/LoginForm.php:739
+#: plugins/elementor/widgets/General/LoginForm.php:827
+#: plugins/elementor/widgets/General/LoginForm.php:904
+#: plugins/elementor/widgets/General/LoginForm.php:1163
+#: plugins/elementor/widgets/General/LoginForm.php:1375
+#: plugins/elementor/widgets/General/LoginForm.php:1504
+#: plugins/elementor/widgets/General/LoginForm.php:1598
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1113
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1320
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1516
@@ -2254,7 +2254,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1468
 #: plugins/elementor/widgets/General/FlipBox.php:1539
 #: plugins/elementor/widgets/General/Heading.php:359
-#: plugins/elementor/widgets/General/LoginForm.php:460
+#: plugins/elementor/widgets/General/LoginForm.php:462
 #: plugins/elementor/widgets/General/PortfolioGrid.php:706
 #: plugins/elementor/widgets/General/PortfolioGrid.php:727
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1067
@@ -2321,8 +2321,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:260
 #: plugins/elementor/widgets/General/FlipBox.php:1436
 #: plugins/elementor/widgets/General/Heading.php:183
-#: plugins/elementor/widgets/General/LoginForm.php:1013
-#: plugins/elementor/widgets/General/LoginForm.php:1243
+#: plugins/elementor/widgets/General/LoginForm.php:1015
+#: plugins/elementor/widgets/General/LoginForm.php:1245
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1160
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1382
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1578
@@ -2383,7 +2383,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:474
 #: plugins/elementor/widgets/General/DropdownButton.php:740
 #: plugins/elementor/widgets/General/FlipBox.php:1509
-#: plugins/elementor/widgets/General/LoginForm.php:1304
+#: plugins/elementor/widgets/General/LoginForm.php:1306
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1223
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1445
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1641
@@ -2482,7 +2482,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:145
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:172
 #: plugins/elementor/widgets/General/DropdownButton.php:128
-#: plugins/elementor/widgets/General/LoginForm.php:244
+#: plugins/elementor/widgets/General/LoginForm.php:246
 #: plugins/elementor/widgets/General/PostSlider.php:239
 #: plugins/elementor/widgets/General/PostTimeline.php:296
 #: plugins/elementor/widgets/General/PostTimeline.php:321
@@ -2628,7 +2628,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:170
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:178
-#: plugins/elementor/widgets/General/LoginForm.php:256
+#: plugins/elementor/widgets/General/LoginForm.php:258
 msgid "Additional Options"
 msgstr ""
 
@@ -3063,7 +3063,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1128
 #: plugins/elementor/widgets/General/Heading.php:422
 #: plugins/elementor/widgets/General/Heading.php:546
-#: plugins/elementor/widgets/General/LoginForm.php:974
+#: plugins/elementor/widgets/General/LoginForm.php:976
 #: plugins/elementor/widgets/General/PostSlider.php:1200
 #: plugins/elementor/widgets/General/PricingTable.php:903
 #: plugins/elementor/widgets/General/Shape.php:323
@@ -3753,8 +3753,8 @@ msgid ""
 msgstr ""
 
 #: plugins/elementor/widgets/General/Branding.php:106
-#: plugins/elementor/widgets/General/LoginForm.php:113
-#: plugins/elementor/widgets/General/LoginForm.php:540
+#: plugins/elementor/widgets/General/LoginForm.php:115
+#: plugins/elementor/widgets/General/LoginForm.php:542
 #: plugins/elementor/widgets/General/SiteLogo.php:98
 #: plugins/elementor/widgets/General/SiteLogo.php:134
 msgid "Logo"
@@ -3834,8 +3834,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Countdown.php:230
 #: plugins/elementor/widgets/General/FlipBox.php:453
 #: plugins/elementor/widgets/General/Heading.php:289
-#: plugins/elementor/widgets/General/LoginForm.php:373
-#: plugins/elementor/widgets/General/LoginForm.php:548
+#: plugins/elementor/widgets/General/LoginForm.php:375
+#: plugins/elementor/widgets/General/LoginForm.php:550
 #: plugins/elementor/widgets/General/PricingTable.php:526
 #: plugins/elementor/widgets/General/SiteLogo.php:257
 #: plugins/elementor/widgets/General/SmartMenu.php:630
@@ -3867,10 +3867,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:151
 #: plugins/elementor/widgets/General/FlipBox.php:526
 #: plugins/elementor/widgets/General/FlipBox.php:963
-#: plugins/elementor/widgets/General/LoginForm.php:403
-#: plugins/elementor/widgets/General/LoginForm.php:578
-#: plugins/elementor/widgets/General/LoginForm.php:1207
-#: plugins/elementor/widgets/General/LoginForm.php:1468
+#: plugins/elementor/widgets/General/LoginForm.php:405
+#: plugins/elementor/widgets/General/LoginForm.php:580
+#: plugins/elementor/widgets/General/LoginForm.php:1209
+#: plugins/elementor/widgets/General/LoginForm.php:1470
 #: plugins/elementor/widgets/General/PostCarousel.php:767
 #: plugins/elementor/widgets/General/PostSlider.php:1575
 #: plugins/elementor/widgets/General/PricingTable.php:220
@@ -3905,15 +3905,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:259
 #: plugins/elementor/widgets/General/Heading.php:487
 #: plugins/elementor/widgets/General/Heading.php:611
-#: plugins/elementor/widgets/General/LoginForm.php:407
-#: plugins/elementor/widgets/General/LoginForm.php:582
-#: plugins/elementor/widgets/General/LoginForm.php:696
-#: plugins/elementor/widgets/General/LoginForm.php:784
-#: plugins/elementor/widgets/General/LoginForm.php:872
-#: plugins/elementor/widgets/General/LoginForm.php:950
-#: plugins/elementor/widgets/General/LoginForm.php:1211
-#: plugins/elementor/widgets/General/LoginForm.php:1472
-#: plugins/elementor/widgets/General/LoginForm.php:1573
+#: plugins/elementor/widgets/General/LoginForm.php:409
+#: plugins/elementor/widgets/General/LoginForm.php:584
+#: plugins/elementor/widgets/General/LoginForm.php:698
+#: plugins/elementor/widgets/General/LoginForm.php:786
+#: plugins/elementor/widgets/General/LoginForm.php:874
+#: plugins/elementor/widgets/General/LoginForm.php:952
+#: plugins/elementor/widgets/General/LoginForm.php:1213
+#: plugins/elementor/widgets/General/LoginForm.php:1474
+#: plugins/elementor/widgets/General/LoginForm.php:1575
 #: plugins/elementor/widgets/General/PortfolioGrid.php:589
 #: plugins/elementor/widgets/General/PostCarousel.php:771
 #: plugins/elementor/widgets/General/PostCarousel.php:799
@@ -3973,15 +3973,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:267
 #: plugins/elementor/widgets/General/Heading.php:489
 #: plugins/elementor/widgets/General/Heading.php:613
-#: plugins/elementor/widgets/General/LoginForm.php:415
-#: plugins/elementor/widgets/General/LoginForm.php:590
-#: plugins/elementor/widgets/General/LoginForm.php:704
-#: plugins/elementor/widgets/General/LoginForm.php:792
-#: plugins/elementor/widgets/General/LoginForm.php:880
-#: plugins/elementor/widgets/General/LoginForm.php:958
-#: plugins/elementor/widgets/General/LoginForm.php:1219
-#: plugins/elementor/widgets/General/LoginForm.php:1480
-#: plugins/elementor/widgets/General/LoginForm.php:1581
+#: plugins/elementor/widgets/General/LoginForm.php:417
+#: plugins/elementor/widgets/General/LoginForm.php:592
+#: plugins/elementor/widgets/General/LoginForm.php:706
+#: plugins/elementor/widgets/General/LoginForm.php:794
+#: plugins/elementor/widgets/General/LoginForm.php:882
+#: plugins/elementor/widgets/General/LoginForm.php:960
+#: plugins/elementor/widgets/General/LoginForm.php:1221
+#: plugins/elementor/widgets/General/LoginForm.php:1482
+#: plugins/elementor/widgets/General/LoginForm.php:1583
 #: plugins/elementor/widgets/General/PortfolioGrid.php:597
 #: plugins/elementor/widgets/General/PostCarousel.php:779
 #: plugins/elementor/widgets/General/PostCarousel.php:807
@@ -4091,7 +4091,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Countdown.php:812
 #: plugins/elementor/widgets/General/Countdown.php:915
 #: plugins/elementor/widgets/General/Countdown.php:1018
-#: plugins/elementor/widgets/General/LoginForm.php:840
+#: plugins/elementor/widgets/General/LoginForm.php:842
 msgid "Labels"
 msgstr ""
 
@@ -4312,7 +4312,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:611
 #: plugins/elementor/widgets/General/FlipBox.php:1611
-#: plugins/elementor/widgets/General/LoginForm.php:1397
+#: plugins/elementor/widgets/General/LoginForm.php:1399
 #: plugins/elementor/widgets/General/PostTimeline.php:1177
 #: plugins/elementor/widgets/General/PostTimeline.php:1515
 #: plugins/elementor/widgets/General/PricingTable.php:1967
@@ -4470,11 +4470,11 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1017
 #: plugins/elementor/widgets/General/Heading.php:228
 #: plugins/elementor/widgets/General/Heading.php:255
-#: plugins/elementor/widgets/General/LoginForm.php:692
-#: plugins/elementor/widgets/General/LoginForm.php:780
-#: plugins/elementor/widgets/General/LoginForm.php:868
-#: plugins/elementor/widgets/General/LoginForm.php:946
-#: plugins/elementor/widgets/General/LoginForm.php:1569
+#: plugins/elementor/widgets/General/LoginForm.php:694
+#: plugins/elementor/widgets/General/LoginForm.php:782
+#: plugins/elementor/widgets/General/LoginForm.php:870
+#: plugins/elementor/widgets/General/LoginForm.php:948
+#: plugins/elementor/widgets/General/LoginForm.php:1571
 #: plugins/elementor/widgets/General/PortfolioGrid.php:613
 #: plugins/elementor/widgets/General/PortfolioGrid.php:911
 #: plugins/elementor/widgets/General/PostTimeline.php:570
@@ -4567,72 +4567,72 @@ msgstr ""
 msgid "Rotate"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:60
-#: plugins/elementor/widgets/General/LoginForm.php:105
+#: plugins/elementor/widgets/General/LoginForm.php:62
+#: plugins/elementor/widgets/General/LoginForm.php:107
 msgid "Login Form"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:156
-#: plugins/elementor/widgets/General/LoginForm.php:752
+#: plugins/elementor/widgets/General/LoginForm.php:158
+#: plugins/elementor/widgets/General/LoginForm.php:754
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:241
 msgid "Sub Title"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:164
+#: plugins/elementor/widgets/General/LoginForm.php:166
 msgid "Sub Title HTML Tag"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:191
+#: plugins/elementor/widgets/General/LoginForm.php:193
 msgid "Username"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:193
+#: plugins/elementor/widgets/General/LoginForm.php:195
 msgid "Username or Email Address"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:200
 #: plugins/elementor/widgets/General/LoginForm.php:202
+#: plugins/elementor/widgets/General/LoginForm.php:204
 msgid "Password"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:209
 #: plugins/elementor/widgets/General/LoginForm.php:211
-#: plugins/elementor/widgets/General/LoginForm.php:314
+#: plugins/elementor/widgets/General/LoginForm.php:213
+#: plugins/elementor/widgets/General/LoginForm.php:316
 msgid "Remember Me"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:218
 #: plugins/elementor/widgets/General/LoginForm.php:220
-#: plugins/elementor/widgets/General/LoginForm.php:301
+#: plugins/elementor/widgets/General/LoginForm.php:222
+#: plugins/elementor/widgets/General/LoginForm.php:303
 msgid "Register"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:227
+#: plugins/elementor/widgets/General/LoginForm.php:229
 msgid "Link Seperator"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:235
 #: plugins/elementor/widgets/General/LoginForm.php:237
-#: plugins/elementor/widgets/General/LoginForm.php:289
+#: plugins/elementor/widgets/General/LoginForm.php:239
+#: plugins/elementor/widgets/General/LoginForm.php:291
 msgid "Lost Password"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:246
+#: plugins/elementor/widgets/General/LoginForm.php:248
 msgid "Log In"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:264
-#: plugins/elementor/widgets/General/LoginForm.php:276
+#: plugins/elementor/widgets/General/LoginForm.php:266
+#: plugins/elementor/widgets/General/LoginForm.php:278
 msgid "Redirect After Login"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:277
+#: plugins/elementor/widgets/General/LoginForm.php:279
 msgid ""
 "Note: Because of security reasons, you can ONLY use your current domain "
 "here."
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:280
+#: plugins/elementor/widgets/General/LoginForm.php:282
 #: plugins/elementor/widgets/General/PricingTable.php:418
 #: plugins/elementor/widgets/General/SiteLogo.php:173
 #: plugins/elementor/widgets/General/Slider.php:188
@@ -4641,57 +4641,57 @@ msgstr ""
 msgid "https://your-link.com"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:302
+#: plugins/elementor/widgets/General/LoginForm.php:304
 msgid "You must enable \"membership\" from WordPress settings."
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:326
-#: plugins/elementor/widgets/General/LoginForm.php:338
-#: plugins/elementor/widgets/General/LoginForm.php:1538
+#: plugins/elementor/widgets/General/LoginForm.php:328
+#: plugins/elementor/widgets/General/LoginForm.php:340
+#: plugins/elementor/widgets/General/LoginForm.php:1540
 msgid "Logged in Message"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:340
+#: plugins/elementor/widgets/General/LoginForm.php:342
 msgid "You are logged in as "
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:350
+#: plugins/elementor/widgets/General/LoginForm.php:352
 msgid "Test Mode"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:365
+#: plugins/elementor/widgets/General/LoginForm.php:367
 msgid "Form Container"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:929
+#: plugins/elementor/widgets/General/LoginForm.php:931
 msgid "Input & Textarea"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1032
+#: plugins/elementor/widgets/General/LoginForm.php:1034
 msgid "Placeholder Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1089
+#: plugins/elementor/widgets/General/LoginForm.php:1091
 msgid "Focus"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1190
+#: plugins/elementor/widgets/General/LoginForm.php:1192
 msgid "Submit Button"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1426
+#: plugins/elementor/widgets/General/LoginForm.php:1428
 msgid "Links"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1434
+#: plugins/elementor/widgets/General/LoginForm.php:1436
 msgid "Link Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1447
+#: plugins/elementor/widgets/General/LoginForm.php:1449
 msgid "Link Hover Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1689
+#: plugins/elementor/widgets/General/LoginForm.php:1712
 msgid "(Logout)"
 msgstr ""
 
