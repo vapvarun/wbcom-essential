@@ -3,8 +3,8 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: Theme Addon plugin for Wbcom Designs
 Requires at least: 4.0
-Tested up to: 6.7.1
-Stable tag: 3.9.3
+Tested up to: 6.7.2
+Stable tag: 3.9.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Required plugin for Wbcom Designs Theme
@@ -22,6 +22,14 @@ It will add additional features for Elementor to enhance the theme features.
 This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
 
 == Changelog ==
+= 3.9.4 =
+* Added support to show member and group carousel arrows in logout mode.
+* Updated the login widget for improved user experience.
+* Fixed plugin conflicts with Elementor Pro for better compatibility.
+* Managed login error messages to appear on the same page when incorrect credentials are entered.
+* Resolved issues with members and groups carousel not working.
+* Improved member directory layout 3 compatibility with the Reign theme.
+
 = 3.9.3 =
 * Fix:Schemes to Globals
 
