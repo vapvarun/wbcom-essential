@@ -830,6 +830,7 @@ class PostsCarousel extends Widget_Base {
 
 					$count++;
 			endwhile;
+				wp_reset_postdata();
 			}
 
 			$return .= '</div>'; // CLOSE MAIN DIV
@@ -870,6 +871,7 @@ class PostsCarousel extends Widget_Base {
 
 					$count++;
 			endwhile;
+				wp_reset_postdata();
 			}
 
 			$return .= '</div>'; // CLOSE MAIN DIV
