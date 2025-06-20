@@ -187,6 +187,10 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		 * @access public
 		 */
 		public function get_templates() {
+			
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'template-nonce' ) ) {
+				return false;
+			}
 
 			if ( ! current_user_can( 'edit_posts' ) ) {
 				wp_send_json_error();
@@ -235,6 +239,10 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		 * @access public
 		 */
 		public function insert_inner_template() {
+						
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'template-nonce' ) ) {
+				return false;
+			}
 
 			if ( ! current_user_can( 'edit_posts' ) ) {
 				wp_send_json_error();

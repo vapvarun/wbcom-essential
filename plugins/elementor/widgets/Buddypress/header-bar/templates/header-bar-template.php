@@ -41,7 +41,7 @@ $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
 
 ?>
 
-<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'site-header' ) ); ?>>
+<div <?php $this->print_render_attribute_string( 'site-header' ); ?>>
 	<?php
 	$nheader_aside_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/header-aside.php';
 

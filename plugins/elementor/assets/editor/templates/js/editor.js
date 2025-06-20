@@ -160,7 +160,8 @@
 						data: {
 							action: 'wbcom_essential_elementor_sections_inner_template',
 							template: templateModel.attributes,
-							tab: WBcomEssentialelementorSectionsEditor.getTab()
+							tab: WBcomEssentialelementorSectionsEditor.getTab(),
+							nonce: WBcomEssentialelementorSectionsData.nonce
 						}
 					});
 
@@ -726,7 +727,8 @@
 					dataType: 'json',
 					data: {
 						action: 'wbcom_essential_elementor_sections_get_templates',
-						tab: tabName
+						tab: tabName,
+						nonce: WBcomEssentialelementorSectionsData.nonce,
 					},
 					success: function (response) {
 						console.log("%cTemplates Retrieved Successfully!!", "color: #7a7a7a; background-color: #eee;");

@@ -250,7 +250,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 
 					<li class="read-item <?php echo bp_message_thread_has_unread() ? 'unread' : ''; ?>">
 						<span class="wbcom-essential--full-link">
-							<a href="<?php bp_message_thread_view_link( bp_get_message_thread_id() ); ?>">
+							<a href="<?php echo esc_url( bp_message_thread_view_link( bp_get_message_thread_id() ) ); ?>">
 								<?php bp_message_thread_subject(); ?>
 							</a>
 						</span>
@@ -260,7 +260,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 							$avatars = bp_messages_get_avatars( bp_get_message_thread_id(), get_current_user_id() );
 							?>
 							<div class="notification-avatar">
-								<a href="<?php bp_message_thread_view_link( bp_get_message_thread_id() ); ?>">
+								<a href="<?php  echo esc_url( bp_message_thread_view_link( bp_get_message_thread_id() ) ); ?>">
 									<?php
 									if ( count( $avatars ) > 1 ) {
 										echo '<div class="thread-multiple-avatar">';
@@ -278,7 +278,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 						} elseif ( $is_group_thread ) {
 							?>
 							<div class="notification-avatar">
-								<a href="<?php bp_message_thread_view_link( bp_get_message_thread_id() ); ?>">
+								<a href="<?php  echo esc_url( bp_message_thread_view_link( bp_get_message_thread_id() ) ); ?>">
 									<img src="<?php echo esc_url( $group_avatar ); ?>"> </a>
 							</div>
 							<?php
@@ -313,7 +313,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 						?>
 						<div class="notification-content">
 							<span class="wbcom-essential--full-link">
-								<a href="<?php bp_message_thread_view_link( bp_get_message_thread_id() ); ?>">
+								<a href="<?php  echo esc_url( bp_message_thread_view_link( bp_get_message_thread_id() ) ); ?>">
 									<?php bp_message_thread_subject(); ?>
 								</a>
 							</span>
@@ -322,7 +322,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 							if ( $is_group_thread ) {
 								?>
 								<span class="notification-users">
-									<a href="<?php bp_message_thread_view_link( bp_get_message_thread_id() ); ?>">
+									<a href="<?php  echo esc_url( bp_message_thread_view_link( bp_get_message_thread_id() ) ); ?>">
 										<?php
 										echo esc_html( ucwords( $group_name ) );
 										?>
@@ -332,7 +332,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 							} else {
 								?>
 								<span class="notification-users">
-									<a href="<?php bp_message_thread_view_link( bp_get_message_thread_id() ); ?>">
+									<a href="<?php  echo esc_url( bp_message_thread_view_link( bp_get_message_thread_id() ) ); ?>">
 										<?php
 										$recipients      = (array) $messages_template->thread->recipients;
 										$recipient_names = array();

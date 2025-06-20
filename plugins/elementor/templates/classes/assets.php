@@ -139,6 +139,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Assets' ) ) {
 						'modalRegions'      => $this->get_modal_region(),
 						'Elementor_Version' => ELEMENTOR_VERSION,
 						'icon'              => WBCOM_ESSENTIAL_URL . '/plugins/elementor/assets/editor/templates/img/wbcom-icon.jpg',
+						'nonce' 			=> wp_create_nonce( 'template-nonce' ),
 					)
 				)
 			);
