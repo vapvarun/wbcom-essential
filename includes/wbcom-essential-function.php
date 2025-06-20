@@ -23,8 +23,8 @@
  */
 function wbcom_essential_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 	if ( $args && is_array( $args ) ) {
-		// phpcs:ignore WordPress.PHP.DontExtract.extract_extract -- Please, forgive us.
-		extract( $args );
+		 // Don't use extract - pass args to the template properly
+    	$wbcom_template_args = $args;
 	}
 
 	include wbcom_essential_locate_template( $template_name, $template_path, $default_path );
@@ -67,12 +67,13 @@ function wbcom_essential_locate_template( $template_name, $template_path, $defau
  * @param string $theme Required Theme Name.
  */
 function _is_theme_active( $theme ) {
-	$current_theme = wp_get_theme(); // gets the current theme.
-	if ( $theme == $current_theme->name || $theme == $current_theme->parent_theme ) {
-		return true;
-	} else {
-		return false;
-	}
+    static $current_theme = null;
+    
+    if ( null === $current_theme ) {
+        $current_theme = wp_get_theme();
+    }
+    
+    return ( $theme == $current_theme->name || $theme == $current_theme->parent_theme );
 }
 
 /**
@@ -192,7 +193,7 @@ if ( ! function_exists( 'wbcom_essential_is_user_online' ) ) {
 	function wbcom_essential_is_user_online( $user_id ) {
 
 		if ( ! function_exists( 'bp_get_user_last_activity' ) ) {
-			return;
+			return false;
 		}
 
 		$last_activity = strtotime( bp_get_user_last_activity( $user_id ) );
@@ -514,20 +515,20 @@ function wbcom_essential_posts_revolution_elementor_get_post_views( $postID ) {
 }
 
 function wbcom_essential_posts_revolution_elementor_set_post_views() {
-	if ( is_single() ) {
-		global $post;
-		$postID    = $post->ID;
-		$count_key = 'wpb_post_views_count';
-		$count     = get_post_meta( $postID, $count_key, true );
-		if ( $count == '' ) {
-			$count = 0;
-			delete_post_meta( $postID, $count_key );
-			add_post_meta( $postID, $count_key, '0' );
-		} else {
-			$count++;
-			update_post_meta( $postID, $count_key, $count );
-		}
-	}
+	if ( ! is_single() ) {
+        return;
+    }
+	
+	global $post;
+	if ( ! $post ) {
+        return;
+    }
+	$postID    = $post->ID;
+	$count_key = 'wpb_post_views_count';
+	$count     = (int) get_post_meta( $postID, $count_key, true );	
+	
+	update_post_meta( $postID, $count_key, $count+1 );
+	
 }
 add_filter( 'wp_footer', 'wbcom_essential_posts_revolution_elementor_set_post_views', 9999 );
 
@@ -542,12 +543,33 @@ add_filter( 'wp_footer', 'wbcom_essential_posts_revolution_elementor_set_post_vi
 function wbcom_essential_posts_revolution_elementor_share() {
 	global $post;
 	$pinterestimage = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-
+	$pinterest_url = isset( $pinterestimage[0] ) ? $pinterestimage[0] : '';
+	// Properly escape all URLs and text
+    $permalink = esc_url( get_the_permalink() );
+    $title = esc_attr( get_the_title() );
+    $encoded_permalink = urlencode( $permalink );
+    $encoded_title = urlencode( get_the_title() );
 	$return = '<div class="adpostsnp-share">
-        <div class="adpostsnp-share-item"><a target="_blank" class="fa fa-facebook-official " href="http://www.facebook.com/sharer.php?u=' . get_the_permalink() . '&amp;t=' . get_the_title() . '" title="' . esc_html__( 'Click to share this post on Facebook', 'wbcom-essential' ) . '"></a></div>
-		<div class="adpostsnp-share-item"><a target="_blank" class="fa fa-twitter-square" href="http://twitter.com/home?status=' . get_the_permalink() . '" title="' . esc_html__( 'Click to share this post on Twitter', 'wbcom-essential' ) . '"></a></div>
-        <div class="adpostsnp-share-item"><a target="_blank" class="fa fa-linkedin-square" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=' . get_the_permalink() . '" title="' . esc_html__( 'Click to share this post on Linkedin', 'wbcom-essential' ) . '"></a></div>
-    	<div class="adpostsnp-share-item"><a target="_blank" class="fa fa-pinterest-square" href="http://pinterest.com/pin/create/button/?url=' . urlencode( get_permalink( $post->ID ) ) . '&media=' . $pinterestimage[0] . '&description=' . get_the_title() . '" title="' . esc_html__( 'Click to share this post on Pinterest', 'wbcom-essential' ) . '"></a></div>
+        <div class="adpostsnp-share-item">
+            <a target="_blank" class="fa fa-facebook-official" 
+               href="' . esc_url( "https://www.facebook.com/sharer.php?u={$encoded_permalink}&t={$encoded_title}" ) . '" 
+               title="' . esc_attr__( 'Click to share this post on Facebook', 'wbcom-essential' ) . '"></a>
+        </div>
+        <div class="adpostsnp-share-item">
+            <a target="_blank" class="fa fa-twitter-square" 
+               href="' . esc_url( "https://twitter.com/home?status={$encoded_permalink}" ) . '" 
+               title="' . esc_attr__( 'Click to share this post on Twitter', 'wbcom-essential' ) . '"></a>
+        </div>
+        <div class="adpostsnp-share-item">
+            <a target="_blank" class="fa fa-linkedin-square" 
+               href="' . esc_url( "https://www.linkedin.com/shareArticle?mini=true&url={$encoded_permalink}" ) . '" 
+               title="' . esc_attr__( 'Click to share this post on Linkedin', 'wbcom-essential' ) . '"></a>
+        </div>
+        <div class="adpostsnp-share-item">
+            <a target="_blank" class="fa fa-pinterest-square" 
+               href="' . esc_url( "https://pinterest.com/pin/create/button/?url={$encoded_permalink}&media=" . urlencode( $pinterest_url ) . "&description={$encoded_title}" ) . '" 
+               title="' . esc_attr__( 'Click to share this post on Pinterest', 'wbcom-essential' ) . '"></a>
+        </div>
     </div>';
 
 	return $return;
