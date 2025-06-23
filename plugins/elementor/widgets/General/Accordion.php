@@ -954,11 +954,11 @@ class Accordion extends \Elementor\Widget_Base {
 			<div class="wbcom-accordions" 
 				data-selfclose="<?php echo esc_attr( $settings['self_close'] ); ?>" 
 				data-opensingle="<?php echo esc_attr( $settings['open_single'] ); ?>" 
-				data-openspeed="<?php echo esc_attr( $settings['open_speed'] ); ?>" 
-				data-closespeed="<?php echo esc_attr( $settings['close_speed'] ); ?>" 
+				data-openspeed="<?php echo absint( $settings['open_speed'] ); ?>" 
+				data-closespeed="<?php echo absint( $settings['close_speed'] ); ?>" 
 				data-autoscroll="<?php echo esc_attr( $settings['scroll'] ); ?>" 
-				data-scrollspeed="<?php echo esc_attr( $settings['scroll_speed'] ); ?>" 
-				data-scrolloffset="<?php echo esc_attr( $settings['scroll_offset'] ); ?>">
+				data-scrollspeed="<?php echo absint( $settings['scroll_speed'] ); ?>" 
+				data-scrolloffset="<?php echo absint( $settings['scroll_offset'] ); ?>">
 				<?php
 				if ( isset( $settings['faq_schema'] ) && 'yes' === $settings['faq_schema'] ) {
 					$json = [
@@ -977,7 +977,10 @@ class Accordion extends \Elementor\Widget_Base {
 							],
 						];
 					}
-					echo '<script type="application/ld+json">' . wp_json_encode( $json ) . '</script>';
+					printf(
+						'<script type="application/ld+json">%s</script>',
+						wp_json_encode( $json, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
+					);
 				}
 				?>
 

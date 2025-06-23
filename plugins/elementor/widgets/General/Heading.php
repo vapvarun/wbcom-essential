@@ -668,13 +668,12 @@ class Heading extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 
-		$settings = $this->get_settings_for_display();
-
+		$settings = $this->get_settings_for_display();		
 		if ( '' === $settings['heading_text'] ) {
 			return;
 		}
 
-		$heading_output = $settings['heading_text'];
+		$heading_output = esc_html( $settings['heading_text'] );
 		$this->add_render_attribute( 'heading_text', 'class', 'wbcom-heading' );
 
 		if ( $settings['gradient_heading'] === 'yes' ) {
@@ -684,7 +683,7 @@ class Heading extends \Elementor\Widget_Base {
 		// link.
 		if ( ! empty( $settings['link']['url'] ) ) {
 
-			$this->add_render_attribute( 'url', 'href', $settings['link']['url'] );
+			$this->add_render_attribute( 'url', 'href', esc_url( $settings['link']['url'] ) );
 
 			if ( $settings['link']['is_external'] ) {
 				$this->add_render_attribute( 'url', 'target', '_blank' );
@@ -698,7 +697,7 @@ class Heading extends \Elementor\Widget_Base {
 		}
 
 		// heading tag.
-		printf( '<%1$s %2$s><span>%3$s</span></%1$s>', $settings['html_tag'], $this->get_render_attribute_string( 'heading_text' ), $heading_output );
+		printf( '<%1$s %2$s><span>%3$s</span></%1$s>', esc_attr( $settings['html_tag'] ), $this->get_render_attribute_string( 'heading_text' ), $heading_output ); //phpcs:ignore
 
 	}
 

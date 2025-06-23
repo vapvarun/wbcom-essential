@@ -515,6 +515,6 @@ class NotificationArea extends \Elementor\Widget_Base {
 		</div>
 
 		<?php
-		echo apply_filters( 'reign_notification_area_output', ob_get_clean(), $settings['notification_bell_enabled'], $settings['notification_bell_enabled'], $settings );
+		echo apply_filters( 'reign_notification_area_output', ob_get_clean(), $settings['notification_bell_enabled'], $settings['notification_bell_enabled'], $settings ); //phpcs:ignore
 	}
 }
