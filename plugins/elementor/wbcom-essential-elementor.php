@@ -272,29 +272,37 @@ function wba_get_tags() {
  * Returns a list of authors for use in the Elementor control options.
  */
 function wba_get_authors() {
-	$output_authors = array();
+    $cache_key = 'wba_authors_list';
+    $output_authors = wp_cache_get( $cache_key );
 
-	// Allow filtering the number of users per query (default to 50).
-	$number_of_users = apply_filters( 'wba_number_of_users_per_query', 50 );
+    if ( false === $output_authors ) {
+        $output_authors = array();
 
-	$args = array(
-		'role__in' => array( 'Administrator', 'Editor', 'Author' ),
-		'orderby'  => 'post_count',
-		'order'    => 'DESC',
-		'fields'   => array( 'ID', 'display_name' ), // Fetch only necessary fields.
-		'number'   => $number_of_users,  // The number of users per page.
-	);
+        // Allow filtering the number of users per query (default to 50).
+        $number_of_users = apply_filters( 'wba_number_of_users_per_query', 50 );
 
-	$user_query = new WP_User_Query( $args );
-	$users      = $user_query->get_results();
+        $args = array(
+            'role__in' => array( 'Administrator', 'Editor', 'Author' ),
+            'orderby'  => 'post_count',
+            'order'    => 'DESC',
+            'fields'   => array( 'ID', 'display_name' ),
+            'number'   => $number_of_users,
+        );
 
-	if ( ! empty( $users ) ) {
-		foreach ( $users as $user ) {
-			$output_authors[ $user->ID ] = $user->display_name;
-		}
-	}
+        $user_query = new WP_User_Query( $args );
+        $users      = $user_query->get_results();
 
-	return $output_authors;
+        if ( ! empty( $users ) ) {
+            foreach ( $users as $user ) {
+                $output_authors[ $user->ID ] = $user->display_name;
+            }
+        }
+
+        // Set cache for 1 hour
+        wp_cache_set( $cache_key, $output_authors, '', HOUR_IN_SECONDS );
+    }
+
+    return $output_authors;
 }
 
 /**
@@ -341,7 +349,7 @@ function wbcom_ajax_login() {
 
 	$info = array(
 		'user_login'    => sanitize_text_field( $_POST['log'] ),
-		'user_password' => sanitize_text_field( $_POST['pwd'] ),
+		'user_password' => $_POST['pwd'], //phpcs:ignore
 		'remember'      => ! empty( $_POST['rememberme'] ) ? true : false,
 	);
 

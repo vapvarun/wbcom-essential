@@ -269,8 +269,12 @@ class Plugin {
 		if ( ! is_readable( $filename ) ) {
 			// return;
 		}
-
-		include $filename;
+		
+		if ( file_exists( $filename ) && is_readable( $filename ) ) {
+			include $filename;
+		} else {
+			error_log( 'WBCOM Essential: Unable to load file ' . $filename );
+		}
 	}
 
 	/**

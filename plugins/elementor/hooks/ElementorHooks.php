@@ -465,7 +465,7 @@ class ElementorHooks {
 			$post__not_in = array();
 			if ( in_array( 'current_post', $settings['exclude'] ) ) {
 				if ( wp_doing_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
-					$post__not_in[] = $_REQUEST['post_id'];
+					$post__not_in[] = absint( $_REQUEST['post_id'] );
 				} elseif ( is_singular() ) {
 					$post__not_in[] = get_queried_object_id();
 				}
