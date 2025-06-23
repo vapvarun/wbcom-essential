@@ -338,10 +338,10 @@ class AddBanner extends \Elementor\Widget_Base {
 				<div class="wbcom-content">
 					<?php
 					if ( ! empty( $settings['bannersubtitle'] ) ) {
-						echo '<h3 class="banner_subtitle">' . $settings['bannersubtitle'] . '</h3>';
+						echo '<h3 class="banner_subtitle">' . esc_html( $settings['bannersubtitle'] ) . '</h3>';
 					}
 					if ( ! empty( $settings['bannertitle'] ) ) {
-						echo '<h2 class="banner_title">' . $settings['bannertitle'] . '</h2>';
+						echo '<h2 class="banner_title">' . esc_html( $settings['bannertitle'] ) . '</h2>';
 					}
 					if ( ! empty( $settings['buttontxt'] ) ) {
 						echo '<a class="banner_button" href="' . esc_url( $settings['buttonlink']['url'] ) . '" ' . $target . $nofollow . '>' . esc_html__( $settings['buttontxt'], 'wbcom-essential' ) . '</a>';

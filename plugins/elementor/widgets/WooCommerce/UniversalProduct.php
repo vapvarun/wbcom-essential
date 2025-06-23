@@ -2103,14 +2103,14 @@ class UniversalProduct extends \Elementor\Widget_Base {
                             $m=0;
                             if( is_array( $product_cats ) && count( $product_cats ) > 0 ){
 
-                                // Category retrive.
-                                $catargs = array(
-                                    'orderby'    => 'name',
-                                    'order'      => 'ASC',
-                                    'hide_empty' => true,
-                                    'slug'       => $product_cats,
-                                );
-                                $prod_categories = get_terms( 'product_cat', $catargs );
+                                // Category retrive.                                
+								$prod_categories = get_terms( array(
+									'taxonomy' => 'product_cat',
+									'orderby' => 'name',
+									'order' => 'ASC',
+									'hide_empty' => true,
+									'slug' => $product_cats,
+								) );
 
                                 foreach( $prod_categories as $prod_cats ){
                                     $m++;
