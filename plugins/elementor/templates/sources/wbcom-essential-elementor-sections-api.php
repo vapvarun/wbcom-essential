@@ -123,7 +123,7 @@ class WBcom_Essential_elementor_Templates_Source_Api extends WBcom_Essential_ele
 			$api_url . '?type=' . $tab,
 			array(
 				'timeout'   => 60,
-				'sslverify' => false,
+				'sslverify' => true,
 			)
 		);
 

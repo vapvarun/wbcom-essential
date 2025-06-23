@@ -196,7 +196,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				wp_send_json_error();
 			}
 
-			$tab     = $_GET['tab'];
+			$tab     = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
 			$tabs    = $this->get_template_tabs();
 			$sources = $tabs[ $tab ]['sources'];
 
