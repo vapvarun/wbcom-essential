@@ -483,7 +483,6 @@ ul.profile_bit__list li .section_number:before {
 }
 
 ul.profile_bit__list li.completed .section_number:before {
-	content: '';
 	content: '\e90e';
 	font-family: 'eicons';
 	border: 0;

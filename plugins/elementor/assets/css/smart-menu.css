@@ -149,6 +149,7 @@
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
+	text-decoration: none !important;
 }
 
 .wba-sm-skin li.current-menu-item>a,

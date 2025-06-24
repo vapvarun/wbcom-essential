@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-19 08:22:57+00:00\n"
+"POT-Creation-Date: 2025-06-24 11:58:11+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -58,33 +58,33 @@ msgstr ""
 msgid "49"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:243
-#: includes/wbcom-essential-function.php:305
+#: includes/wbcom-essential-function.php:244
+#: includes/wbcom-essential-function.php:306
 msgid "Reply"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:417
-#: includes/wbcom-essential-function.php:426
+#: includes/wbcom-essential-function.php:418
+#: includes/wbcom-essential-function.php:427
 msgid "View all posts in %s"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:509
+#: includes/wbcom-essential-function.php:510
 msgid "Views"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:547
+#: includes/wbcom-essential-function.php:556
 msgid "Click to share this post on Facebook"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:548
+#: includes/wbcom-essential-function.php:561
 msgid "Click to share this post on Twitter"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:549
+#: includes/wbcom-essential-function.php:566
 msgid "Click to share this post on Linkedin"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:550
+#: includes/wbcom-essential-function.php:571
 msgid "Click to share this post on Pinterest"
 msgstr ""
 
@@ -179,7 +179,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:224
 #: plugins/elementor/widgets/General/Slider.php:262
 #: plugins/elementor/widgets/General/Slider.php:856
-#: plugins/elementor/widgets/General/SmartMenu.php:1039
+#: plugins/elementor/widgets/General/SmartMenu.php:1048
 #: plugins/elementor/widgets/General/Tabs.php:377
 #: plugins/elementor/widgets/General/TeamCarousel.php:780
 #: plugins/elementor/widgets/General/Testimonial.php:513
@@ -224,7 +224,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:228
 #: plugins/elementor/widgets/General/Slider.php:270
 #: plugins/elementor/widgets/General/Slider.php:864
-#: plugins/elementor/widgets/General/SmartMenu.php:1047
+#: plugins/elementor/widgets/General/SmartMenu.php:1056
 #: plugins/elementor/widgets/General/Tabs.php:385
 #: plugins/elementor/widgets/General/TeamCarousel.php:788
 #: plugins/elementor/widgets/General/Testimonial.php:521
@@ -676,9 +676,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:860
 #: plugins/elementor/widgets/General/Slider.php:1353
 #: plugins/elementor/widgets/General/Slider.php:1685
-#: plugins/elementor/widgets/General/SmartMenu.php:135
-#: plugins/elementor/widgets/General/SmartMenu.php:245
-#: plugins/elementor/widgets/General/SmartMenu.php:1043
+#: plugins/elementor/widgets/General/SmartMenu.php:144
+#: plugins/elementor/widgets/General/SmartMenu.php:254
+#: plugins/elementor/widgets/General/SmartMenu.php:1052
 #: plugins/elementor/widgets/General/Tabs.php:325
 #: plugins/elementor/widgets/General/Tabs.php:381
 #: plugins/elementor/widgets/General/Tabs.php:556
@@ -801,10 +801,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1198
 #: plugins/elementor/widgets/General/Slider.php:1773
 #: plugins/elementor/widgets/General/Slider.php:1828
-#: plugins/elementor/widgets/General/SmartMenu.php:313
-#: plugins/elementor/widgets/General/SmartMenu.php:760
-#: plugins/elementor/widgets/General/SmartMenu.php:841
-#: plugins/elementor/widgets/General/SmartMenu.php:1077
+#: plugins/elementor/widgets/General/SmartMenu.php:322
+#: plugins/elementor/widgets/General/SmartMenu.php:769
+#: plugins/elementor/widgets/General/SmartMenu.php:850
+#: plugins/elementor/widgets/General/SmartMenu.php:1086
 #: plugins/elementor/widgets/General/Tabs.php:406
 #: plugins/elementor/widgets/General/Tabs.php:611
 #: plugins/elementor/widgets/General/Tabs.php:725
@@ -983,13 +983,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1290
 #: plugins/elementor/widgets/General/Slider.php:1864
 #: plugins/elementor/widgets/General/Slider.php:1944
-#: plugins/elementor/widgets/General/SmartMenu.php:466
-#: plugins/elementor/widgets/General/SmartMenu.php:506
-#: plugins/elementor/widgets/General/SmartMenu.php:550
-#: plugins/elementor/widgets/General/SmartMenu.php:810
-#: plugins/elementor/widgets/General/SmartMenu.php:862
-#: plugins/elementor/widgets/General/SmartMenu.php:906
-#: plugins/elementor/widgets/General/SmartMenu.php:988
+#: plugins/elementor/widgets/General/SmartMenu.php:475
+#: plugins/elementor/widgets/General/SmartMenu.php:515
+#: plugins/elementor/widgets/General/SmartMenu.php:559
+#: plugins/elementor/widgets/General/SmartMenu.php:819
+#: plugins/elementor/widgets/General/SmartMenu.php:871
+#: plugins/elementor/widgets/General/SmartMenu.php:915
+#: plugins/elementor/widgets/General/SmartMenu.php:997
 #: plugins/elementor/widgets/General/Tabs.php:212
 #: plugins/elementor/widgets/General/Tabs.php:257
 #: plugins/elementor/widgets/General/Tabs.php:452
@@ -1056,9 +1056,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:982
 #: plugins/elementor/widgets/General/Slider.php:890
 #: plugins/elementor/widgets/General/Slider.php:1084
-#: plugins/elementor/widgets/General/SmartMenu.php:391
-#: plugins/elementor/widgets/General/SmartMenu.php:792
-#: plugins/elementor/widgets/General/SmartMenu.php:979
+#: plugins/elementor/widgets/General/SmartMenu.php:400
+#: plugins/elementor/widgets/General/SmartMenu.php:801
+#: plugins/elementor/widgets/General/SmartMenu.php:988
 #: plugins/elementor/widgets/General/TeamCarousel.php:987
 #: plugins/elementor/widgets/General/TeamCarousel.php:1105
 #: plugins/elementor/widgets/General/Testimonial.php:591
@@ -1146,8 +1146,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:518
 #: plugins/elementor/widgets/General/Slider.php:580
 #: plugins/elementor/widgets/General/Slider.php:1279
-#: plugins/elementor/widgets/General/SmartMenu.php:214
-#: plugins/elementor/widgets/General/SmartMenu.php:722
+#: plugins/elementor/widgets/General/SmartMenu.php:223
+#: plugins/elementor/widgets/General/SmartMenu.php:731
 #: plugins/elementor/widgets/General/TeamCarousel.php:380
 #: plugins/elementor/widgets/General/TeamCarousel.php:393
 #: plugins/elementor/widgets/General/TeamCarousel.php:406
@@ -1219,8 +1219,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:519
 #: plugins/elementor/widgets/General/Slider.php:581
 #: plugins/elementor/widgets/General/Slider.php:1280
-#: plugins/elementor/widgets/General/SmartMenu.php:215
-#: plugins/elementor/widgets/General/SmartMenu.php:723
+#: plugins/elementor/widgets/General/SmartMenu.php:224
+#: plugins/elementor/widgets/General/SmartMenu.php:732
 #: plugins/elementor/widgets/General/TeamCarousel.php:381
 #: plugins/elementor/widgets/General/TeamCarousel.php:394
 #: plugins/elementor/widgets/General/TeamCarousel.php:407
@@ -1315,13 +1315,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1177
 #: plugins/elementor/widgets/General/Slider.php:1448
 #: plugins/elementor/widgets/General/Slider.php:1956
-#: plugins/elementor/widgets/General/SmartMenu.php:477
-#: plugins/elementor/widgets/General/SmartMenu.php:519
-#: plugins/elementor/widgets/General/SmartMenu.php:565
-#: plugins/elementor/widgets/General/SmartMenu.php:740
-#: plugins/elementor/widgets/General/SmartMenu.php:821
-#: plugins/elementor/widgets/General/SmartMenu.php:875
-#: plugins/elementor/widgets/General/SmartMenu.php:921
+#: plugins/elementor/widgets/General/SmartMenu.php:486
+#: plugins/elementor/widgets/General/SmartMenu.php:528
+#: plugins/elementor/widgets/General/SmartMenu.php:574
+#: plugins/elementor/widgets/General/SmartMenu.php:749
+#: plugins/elementor/widgets/General/SmartMenu.php:830
+#: plugins/elementor/widgets/General/SmartMenu.php:884
+#: plugins/elementor/widgets/General/SmartMenu.php:930
 #: plugins/elementor/widgets/General/Tabs.php:236
 #: plugins/elementor/widgets/General/Tabs.php:281
 #: plugins/elementor/widgets/General/Tabs.php:599
@@ -1445,8 +1445,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1035
 #: plugins/elementor/widgets/General/Slider.php:1229
 #: plugins/elementor/widgets/General/Slider.php:1372
-#: plugins/elementor/widgets/General/SmartMenu.php:368
-#: plugins/elementor/widgets/General/SmartMenu.php:1117
+#: plugins/elementor/widgets/General/SmartMenu.php:377
+#: plugins/elementor/widgets/General/SmartMenu.php:1126
 #: plugins/elementor/widgets/General/Tabs.php:430
 #: plugins/elementor/widgets/General/TeamCarousel.php:950
 #: plugins/elementor/widgets/General/TeamCarousel.php:1068
@@ -1596,9 +1596,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1148
 #: plugins/elementor/widgets/General/Slider.php:1211
 #: plugins/elementor/widgets/General/Slider.php:1539
-#: plugins/elementor/widgets/General/SmartMenu.php:326
-#: plugins/elementor/widgets/General/SmartMenu.php:773
-#: plugins/elementor/widgets/General/SmartMenu.php:1090
+#: plugins/elementor/widgets/General/SmartMenu.php:335
+#: plugins/elementor/widgets/General/SmartMenu.php:782
+#: plugins/elementor/widgets/General/SmartMenu.php:1099
 #: plugins/elementor/widgets/General/Tabs.php:624
 #: plugins/elementor/widgets/General/Tabs.php:738
 #: plugins/elementor/widgets/General/TeamCarousel.php:640
@@ -1716,7 +1716,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: plugins/elementor/templates/classes/manager.php:217
+#: plugins/elementor/templates/classes/manager.php:221
 #: plugins/elementor/widgets/General/PortfolioGrid.php:381
 msgid "All"
 msgstr ""
@@ -1763,31 +1763,31 @@ msgstr ""
 msgid "Update Elementor Now"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:327
+#: plugins/elementor/wbcom-essential-elementor.php:335
 msgid "Full"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:354
+#: plugins/elementor/wbcom-essential-elementor.php:362
 msgid "Invalid username. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:356
+#: plugins/elementor/wbcom-essential-elementor.php:364
 msgid "Incorrect password. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:358
+#: plugins/elementor/wbcom-essential-elementor.php:366
 msgid "Username field is empty. Please enter your username."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:360
+#: plugins/elementor/wbcom-essential-elementor.php:368
 msgid "Password field is empty. Please enter your password."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:362
+#: plugins/elementor/wbcom-essential-elementor.php:370
 msgid "Login failed. Please check your credentials."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:377
+#: plugins/elementor/wbcom-essential-elementor.php:385
 msgid "Login successful, redirecting..."
 msgstr ""
 
@@ -1977,15 +1977,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1190
 #: plugins/elementor/widgets/General/Slider.php:1765
 #: plugins/elementor/widgets/General/Slider.php:1820
-#: plugins/elementor/widgets/General/SmartMenu.php:305
-#: plugins/elementor/widgets/General/SmartMenu.php:489
-#: plugins/elementor/widgets/General/SmartMenu.php:533
-#: plugins/elementor/widgets/General/SmartMenu.php:581
-#: plugins/elementor/widgets/General/SmartMenu.php:752
-#: plugins/elementor/widgets/General/SmartMenu.php:833
-#: plugins/elementor/widgets/General/SmartMenu.php:889
-#: plugins/elementor/widgets/General/SmartMenu.php:937
-#: plugins/elementor/widgets/General/SmartMenu.php:1069
+#: plugins/elementor/widgets/General/SmartMenu.php:314
+#: plugins/elementor/widgets/General/SmartMenu.php:498
+#: plugins/elementor/widgets/General/SmartMenu.php:542
+#: plugins/elementor/widgets/General/SmartMenu.php:590
+#: plugins/elementor/widgets/General/SmartMenu.php:761
+#: plugins/elementor/widgets/General/SmartMenu.php:842
+#: plugins/elementor/widgets/General/SmartMenu.php:898
+#: plugins/elementor/widgets/General/SmartMenu.php:946
+#: plugins/elementor/widgets/General/SmartMenu.php:1078
 #: plugins/elementor/widgets/General/TeamCarousel.php:617
 #: plugins/elementor/widgets/General/TeamCarousel.php:865
 #: plugins/elementor/widgets/General/TeamCarousel.php:920
@@ -2083,10 +2083,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/SiteLogo.php:365
 #: plugins/elementor/widgets/General/Slider.php:1054
 #: plugins/elementor/widgets/General/Slider.php:1248
-#: plugins/elementor/widgets/General/SmartMenu.php:356
-#: plugins/elementor/widgets/General/SmartMenu.php:599
-#: plugins/elementor/widgets/General/SmartMenu.php:955
-#: plugins/elementor/widgets/General/SmartMenu.php:1105
+#: plugins/elementor/widgets/General/SmartMenu.php:365
+#: plugins/elementor/widgets/General/SmartMenu.php:608
+#: plugins/elementor/widgets/General/SmartMenu.php:964
+#: plugins/elementor/widgets/General/SmartMenu.php:1114
 #: plugins/elementor/widgets/General/Tabs.php:418
 #: plugins/elementor/widgets/General/Tabs.php:517
 #: plugins/elementor/widgets/General/Tabs.php:632
@@ -2268,8 +2268,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:1620
 #: plugins/elementor/widgets/General/PricingTable.php:2025
 #: plugins/elementor/widgets/General/Shape.php:376
-#: plugins/elementor/widgets/General/SmartMenu.php:295
-#: plugins/elementor/widgets/General/SmartMenu.php:1000
+#: plugins/elementor/widgets/General/SmartMenu.php:304
+#: plugins/elementor/widgets/General/SmartMenu.php:1009
 #: plugins/elementor/widgets/General/TeamCarousel.php:855
 #: plugins/elementor/widgets/General/TeamCarousel.php:910
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:388
@@ -2342,8 +2342,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1095
 #: plugins/elementor/widgets/General/Slider.php:1428
 #: plugins/elementor/widgets/General/Slider.php:1742
-#: plugins/elementor/widgets/General/SmartMenu.php:459
-#: plugins/elementor/widgets/General/SmartMenu.php:803
+#: plugins/elementor/widgets/General/SmartMenu.php:468
+#: plugins/elementor/widgets/General/SmartMenu.php:812
 #: plugins/elementor/widgets/General/Tabs.php:205
 #: plugins/elementor/widgets/General/TeamCarousel.php:542
 #: plugins/elementor/widgets/General/TeamCarousel.php:832
@@ -2398,8 +2398,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:964
 #: plugins/elementor/widgets/General/Slider.php:1158
 #: plugins/elementor/widgets/General/Slider.php:1463
-#: plugins/elementor/widgets/General/SmartMenu.php:499
-#: plugins/elementor/widgets/General/SmartMenu.php:855
+#: plugins/elementor/widgets/General/SmartMenu.php:508
+#: plugins/elementor/widgets/General/SmartMenu.php:864
 #: plugins/elementor/widgets/General/TeamCarousel.php:575
 #: plugins/elementor/widgets/General/TeamCarousel.php:887
 #: plugins/elementor/widgets/General/TeamCarousel.php:1465
@@ -2642,7 +2642,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:204
 #: plugins/elementor/widgets/General/PostSlider.php:315
 #: plugins/elementor/widgets/General/Slider.php:332
-#: plugins/elementor/widgets/General/SmartMenu.php:270
+#: plugins/elementor/widgets/General/SmartMenu.php:279
 #: plugins/elementor/widgets/General/TeamCarousel.php:1037
 #: plugins/elementor/widgets/General/TeamCarousel.php:1155
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:133
@@ -2791,8 +2791,8 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:111
 #: plugins/elementor/widgets/General/PostSlider.php:1698
 #: plugins/elementor/widgets/General/Slider.php:1796
-#: plugins/elementor/widgets/General/SmartMenu.php:543
-#: plugins/elementor/widgets/General/SmartMenu.php:899
+#: plugins/elementor/widgets/General/SmartMenu.php:552
+#: plugins/elementor/widgets/General/SmartMenu.php:908
 #: plugins/elementor/widgets/General/Tabs.php:250
 msgid "Active"
 msgstr ""
@@ -3069,8 +3069,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Shape.php:323
 #: plugins/elementor/widgets/General/SiteLogo.php:283
 #: plugins/elementor/widgets/General/Slider.php:1302
-#: plugins/elementor/widgets/General/SmartMenu.php:167
-#: plugins/elementor/widgets/General/SmartMenu.php:1009
+#: plugins/elementor/widgets/General/SmartMenu.php:176
+#: plugins/elementor/widgets/General/SmartMenu.php:1018
 #: plugins/elementor/widgets/General/Tabs.php:347
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1369
 msgid "Width"
@@ -3544,7 +3544,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/Accordion.php:53
 #: plugins/elementor/widgets/General/Accordion.php:398
-#: plugins/elementor/widgets/General/SmartMenu.php:273
+#: plugins/elementor/widgets/General/SmartMenu.php:282
 msgid "Accordion"
 msgstr ""
 
@@ -3838,7 +3838,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:550
 #: plugins/elementor/widgets/General/PricingTable.php:526
 #: plugins/elementor/widgets/General/SiteLogo.php:257
-#: plugins/elementor/widgets/General/SmartMenu.php:630
+#: plugins/elementor/widgets/General/SmartMenu.php:639
 msgid "Maximum Width"
 msgstr ""
 
@@ -3878,7 +3878,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Shape.php:403
 #: plugins/elementor/widgets/General/SiteLogo.php:230
 #: plugins/elementor/widgets/General/Slider.php:1677
-#: plugins/elementor/widgets/General/SmartMenu.php:127
+#: plugins/elementor/widgets/General/SmartMenu.php:136
 #: plugins/elementor/widgets/General/Tabs.php:317
 #: plugins/elementor/widgets/General/Tabs.php:702
 #: plugins/elementor/widgets/General/TeamCarousel.php:479
@@ -3937,8 +3937,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:235
 #: plugins/elementor/widgets/General/Slider.php:1349
 #: plugins/elementor/widgets/General/Slider.php:1681
-#: plugins/elementor/widgets/General/SmartMenu.php:131
-#: plugins/elementor/widgets/General/SmartMenu.php:241
+#: plugins/elementor/widgets/General/SmartMenu.php:140
+#: plugins/elementor/widgets/General/SmartMenu.php:250
 #: plugins/elementor/widgets/General/Tabs.php:321
 #: plugins/elementor/widgets/General/Tabs.php:552
 #: plugins/elementor/widgets/General/Tabs.php:706
@@ -4005,8 +4005,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:243
 #: plugins/elementor/widgets/General/Slider.php:1357
 #: plugins/elementor/widgets/General/Slider.php:1689
-#: plugins/elementor/widgets/General/SmartMenu.php:139
-#: plugins/elementor/widgets/General/SmartMenu.php:249
+#: plugins/elementor/widgets/General/SmartMenu.php:148
+#: plugins/elementor/widgets/General/SmartMenu.php:258
 #: plugins/elementor/widgets/General/Tabs.php:329
 #: plugins/elementor/widgets/General/Tabs.php:560
 #: plugins/elementor/widgets/General/Tabs.php:710
@@ -4030,7 +4030,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:215
 #: plugins/elementor/widgets/General/PostCarousel.php:719
 #: plugins/elementor/widgets/General/PostsTicker.php:259
-#: plugins/elementor/widgets/General/SmartMenu.php:116
+#: plugins/elementor/widgets/General/SmartMenu.php:125
 #: plugins/elementor/widgets/General/Tabs.php:307
 msgid "Horizontal"
 msgstr ""
@@ -4044,7 +4044,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:214
 #: plugins/elementor/widgets/General/PostCarousel.php:718
 #: plugins/elementor/widgets/General/PostsTicker.php:260
-#: plugins/elementor/widgets/General/SmartMenu.php:118
+#: plugins/elementor/widgets/General/SmartMenu.php:127
 #: plugins/elementor/widgets/General/Tabs.php:308
 msgid "Vertical"
 msgstr ""
@@ -4277,7 +4277,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:983
 #: plugins/elementor/widgets/General/PostTimeline.php:1321
 #: plugins/elementor/widgets/General/PricingTable.php:1781
-#: plugins/elementor/widgets/General/SmartMenu.php:622
+#: plugins/elementor/widgets/General/SmartMenu.php:631
 #: plugins/elementor/widgets/General/TeamCarousel.php:803
 #: plugins/elementor/widgets/General/TeamCarousel.php:1222
 #: plugins/elementor/widgets/General/TextRotator.php:207
@@ -4482,7 +4482,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:645
 #: plugins/elementor/widgets/General/PricingTable.php:1032
 #: plugins/elementor/widgets/General/PricingTable.php:1382
-#: plugins/elementor/widgets/General/SmartMenu.php:1035
+#: plugins/elementor/widgets/General/SmartMenu.php:1044
 #: plugins/elementor/widgets/General/TextRotator.php:181
 #: plugins/elementor/widgets/General/Timeline.php:123
 msgid "Text Align"
@@ -4541,7 +4541,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/Heading.php:126
 #: plugins/elementor/widgets/General/SiteLogo.php:171
-#: plugins/elementor/widgets/General/SmartMenu.php:272
+#: plugins/elementor/widgets/General/SmartMenu.php:281
 msgid "Link"
 msgstr ""
 
@@ -6492,7 +6492,7 @@ msgid "Mobile"
 msgstr ""
 
 #: plugins/elementor/widgets/General/SiteLogo.php:207
-#: plugins/elementor/widgets/General/SmartMenu.php:203
+#: plugins/elementor/widgets/General/SmartMenu.php:212
 msgid "Mobile Breakpoint"
 msgstr ""
 
@@ -6543,137 +6543,137 @@ msgstr ""
 msgid "Thumbnail Max. Height"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:51
-#: plugins/elementor/widgets/General/SmartMenu.php:96
+#: plugins/elementor/widgets/General/SmartMenu.php:60
+#: plugins/elementor/widgets/General/SmartMenu.php:105
 msgid "Smart Menu"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:104
+#: plugins/elementor/widgets/General/SmartMenu.php:113
 msgid "Select a Menu"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:113
+#: plugins/elementor/widgets/General/SmartMenu.php:122
 msgid "Menu Layout"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:117
+#: plugins/elementor/widgets/General/SmartMenu.php:126
 msgid "Horizontal-Justified"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:212
-#: plugins/elementor/widgets/General/SmartMenu.php:970
+#: plugins/elementor/widgets/General/SmartMenu.php:221
+#: plugins/elementor/widgets/General/SmartMenu.php:979
 msgid "Mobile Menu Toggle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:225
+#: plugins/elementor/widgets/General/SmartMenu.php:234
 msgid "Mobile Menu Toggle Text"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:227
+#: plugins/elementor/widgets/General/SmartMenu.php:236
 msgid "MENU"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:237
+#: plugins/elementor/widgets/General/SmartMenu.php:246
 msgid "Mobile Menu Toggle Alignment"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:267
+#: plugins/elementor/widgets/General/SmartMenu.php:276
 msgid "Collapsible Behavior"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:271
+#: plugins/elementor/widgets/General/SmartMenu.php:280
 msgid "Toggle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:274
+#: plugins/elementor/widgets/General/SmartMenu.php:283
 msgid "Accordion-Toggle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:275
+#: plugins/elementor/widgets/General/SmartMenu.php:284
 msgid "Accordion-Link"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:286
+#: plugins/elementor/widgets/General/SmartMenu.php:295
 msgid "Menu Container"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:334
+#: plugins/elementor/widgets/General/SmartMenu.php:343
 msgid "Transition Duration (ms)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:382
+#: plugins/elementor/widgets/General/SmartMenu.php:391
 msgid "Main Menu Items"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:400
+#: plugins/elementor/widgets/General/SmartMenu.php:409
 msgid "Dropdown Menu Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:403
+#: plugins/elementor/widgets/General/SmartMenu.php:412
 msgid "Caret"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:404
+#: plugins/elementor/widgets/General/SmartMenu.php:413
 msgid "Caret-Square"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:405
+#: plugins/elementor/widgets/General/SmartMenu.php:414
 msgid "Chevron"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:406
+#: plugins/elementor/widgets/General/SmartMenu.php:415
 msgid "Chevron-Circle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:407
+#: plugins/elementor/widgets/General/SmartMenu.php:416
 msgid "Plus"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:408
+#: plugins/elementor/widgets/General/SmartMenu.php:417
 msgid "Plus-Circle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:417
+#: plugins/elementor/widgets/General/SmartMenu.php:426
 msgid "Dropdown Menu Icon Size"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:428
+#: plugins/elementor/widgets/General/SmartMenu.php:437
 msgid "Icon Color (Mobile)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:439
+#: plugins/elementor/widgets/General/SmartMenu.php:448
 msgid "Icon Background Color (Mobile)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:614
+#: plugins/elementor/widgets/General/SmartMenu.php:623
 msgid "Sub Menus"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:657
+#: plugins/elementor/widgets/General/SmartMenu.php:666
 msgid "Minimum Width"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:684
+#: plugins/elementor/widgets/General/SmartMenu.php:693
 msgid "First-level Offset X"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:693
+#: plugins/elementor/widgets/General/SmartMenu.php:702
 msgid "First-level Offset Y"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:702
+#: plugins/elementor/widgets/General/SmartMenu.php:711
 msgid "Second-level Offset X"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:711
+#: plugins/elementor/widgets/General/SmartMenu.php:720
 msgid "Second-level Offset Y"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:720
+#: plugins/elementor/widgets/General/SmartMenu.php:729
 msgid "Right to Left"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:783
+#: plugins/elementor/widgets/General/SmartMenu.php:792
 msgid "Sub Menu Items"
 msgstr ""
 

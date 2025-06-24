@@ -31,6 +31,15 @@ class SmartMenu extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
+		if ( ! wp_style_is( 'font-awesome-5', 'enqueued' ) ) {
+			wp_register_style(
+				'font-awesome-5',
+				'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
+				array(),
+				'5.15.4'
+			);
+		}
+
 		wp_register_style( 'wbcom-animations', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/animations.min.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-smart-menu', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/smart-menu.css', array(), WBCOM_ESSENTIAL_VERSION );
 
@@ -69,7 +78,7 @@ class SmartMenu extends \Elementor\Widget_Base {
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {
-		return array( 'wbcom-animations', 'elementor-icons-fa-solid', 'wb-smart-menu' );
+		return array( 'wbcom-animations', 'font-awesome-5', 'wb-smart-menu' );
 	}
 
 	/**
