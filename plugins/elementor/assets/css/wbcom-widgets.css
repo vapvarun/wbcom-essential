@@ -784,7 +784,7 @@ li.wbcom-cart .button:before {
     position: relative;
 }
 
-.wb-products .wb-product .wb-product-inner .wb-product-action ul li a {
+.wb-products .wb-product .wb-product-inner .wb-product-action ul:not(.wbcom-btn-text-cart) li a {
     color: #000000;
     text-decoration: none;
     display: block;
@@ -826,7 +826,7 @@ li.wbcom-cart .button:before {
 }
 
 .wbcom-compare.compare,
-.wb-product-action ul li.wbcom-cart a {
+.wb-product-action ul:not(.wbcom-btn-text-cart) li.wbcom-cart a {
     -webkit-text-indent: -99999px;
     text-indent: -99999px;
 }
@@ -894,6 +894,26 @@ li.wbcom-cart .button:before {
 
 .elementor-widget-wbcom-cross-sell-product-custom .wb-product-action ul li.wbcom-cart a.added::before {
     display: none;
+}
+
+.wb-products .wb-product .wb-product-inner .wb-product-action ul.wbcom-btn-text-cart li a {
+    width: auto !important;
+    padding: 0 10px;
+}
+
+.wb-products .wb-product .wb-product-inner .wb-product-action ul.wbcom-btn-text-cart li a:focus {
+    border: 0;
+    outline: none;
+}
+
+.wb-product-action ul.wbcom-btn-text-cart li.wbcom-cart a::before {
+    position: static;
+    display: inline;
+    margin-right: 10px;
+}
+
+.wb-product-action ul.wbcom-btn-text-cart li.wbcom-cart a {
+
 }
 
 .woocommerce .elementor-widget-wbcom-cross-sell-product-custom a.button.added::after {
