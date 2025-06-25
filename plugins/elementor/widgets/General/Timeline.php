@@ -30,6 +30,16 @@ class Timeline extends \Elementor\Widget_Base {
 	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+
+		if ( ! wp_style_is( 'font-awesome-5', 'enqueued' ) ) {
+			wp_register_style(
+				'font-awesome-5',
+				'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
+				array(),
+				'5.15.4'
+			);
+		}
+
 		wp_register_style( 'wb-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/timeline.css', array(), WBCOM_ESSENTIAL_VERSION );
 
 		wp_register_script( 'wb-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/timeline.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
@@ -74,7 +84,7 @@ class Timeline extends \Elementor\Widget_Base {
 	 * Get dependent style..
 	 */
 	public function get_style_depends() {
-		return array( 'wb-timeline' );
+		return array( 'wb-timeline', 'font-awesome-5' );
 	}
 
 	/**

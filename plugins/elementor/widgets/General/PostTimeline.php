@@ -33,6 +33,16 @@ class PostTimeline extends \Elementor\Widget_Base {
 	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+
+		if ( ! wp_style_is( 'font-awesome-5', 'enqueued' ) ) {
+			wp_register_style(
+				'font-awesome-5',
+				'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
+				array(),
+				'5.15.4'
+			);
+		}
+		
 		wp_register_style( 'wb-post-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/post-timeline.css', array(), WBCOM_ESSENTIAL_VERSION );
 
 		wp_register_script( 'wb-post-timeline', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/post-timeline.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
@@ -77,7 +87,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 	 * Get dependent style..
 	 */
 	public function get_style_depends() {
-		return array( 'wb-post-timeline', 'elementor-icons-fa-regular' );
+		return array( 'wb-post-timeline', 'elementor-icons-fa-regular', 'font-awesome-5' );
 	}
 
 	/**
