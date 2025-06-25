@@ -445,6 +445,13 @@
     border-color: #282828;
 }
 
+.product-slider .slick-dots li button:before,
+.product-slider .slick-dots li.slick-active button:before,
+.product-slider .slick-dots li button:focus:before,
+.product-slider .slick-dots li button:hover:before {
+    content: none;
+}
+
 .col2-set .col-1,
 .col2-set .col-2 {
     flex: 0 0 100%;

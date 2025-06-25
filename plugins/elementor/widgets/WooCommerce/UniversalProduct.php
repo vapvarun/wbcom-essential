@@ -1605,7 +1605,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 								),
 								'default'    => array(
 									'unit' => '%',
-									'size' => 50,
+									'size' => 0,
 								),
 								'selectors'  => array(
 									'{{WRAPPER}} .product-slider .slick-dots' => 'left: {{SIZE}}{{UNIT}};',
