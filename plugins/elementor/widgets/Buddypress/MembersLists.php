@@ -597,12 +597,12 @@ class MembersLists extends \Elementor\Widget_Base {
 	 * Render elementor member lists widget.
 	 */
 	protected function render() {
-		$settings = $this->get_settings_for_display();
+		$settings = $this->get_settings_for_display();		
 		$type     = $settings['members_order'];
 
 		$avatar = array(
-			'type'  => 'full',
-			'width' => esc_attr( $settings['avatar_width']['size'] ),
+			'type'  => 'full',			
+			'width' => ( ! empty( $settings['avatar_width']['size'] ) ) ? esc_attr( $settings['avatar_width']['size'] ) : '',
 			'class' => 'avatar',
 		);
 
