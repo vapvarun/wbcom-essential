@@ -23,8 +23,8 @@
  */
 function wbcom_essential_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 	if ( $args && is_array( $args ) ) {
-		 // Don't use extract - pass args to the template properly
-    	$wbcom_template_args = $args;
+		// phpcs:ignore WordPress.PHP.DontExtract.extract_extract -- Please, forgive us.
+		extract( $args );
 	}
 
 	include wbcom_essential_locate_template( $template_name, $template_path, $default_path );
