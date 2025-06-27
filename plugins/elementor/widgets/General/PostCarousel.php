@@ -2260,7 +2260,8 @@ class PostCarousel extends \Elementor\Widget_Base {
 						<?php if ($settings['display_author_avatar']) { ?>
 						<div class="wbcom-posts-card-author-img">
 							<?php if ($settings['display_author_url']) { ?>
-							<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), $settings['avatar_size'] ); ?></a>
+							<?php $avatar_size = ( ! empty( $settings['avatar_size'] ) ) ? esc_attr( $settings['avatar_size'] ) : ''; ?>
+							<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), $avatar_size ); ?></a>
 							<?php } else { ?>
 							<?php echo get_avatar( get_the_author_meta( 'ID' ), $settings['avatar_size'] ); ?>
 							<?php } ?>
