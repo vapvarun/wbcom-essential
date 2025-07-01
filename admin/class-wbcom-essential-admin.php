@@ -59,8 +59,8 @@ class Wbcom_Essential_Admin {
 		$this->plugin_name = 'wbcom-essential';
 		$this->version     = '3.9.5';
 
-		add_action( 'admin_init', array($this, 'woo_document_preview_init_plugin_settings' ) );
-		add_action( 'admin_menu', array($this, 'woo_document_preview_views_add_admin_settings' ) );
+		add_action( 'admin_init', array($this, 'wbcom_essential_init_plugin_settings' ) );
+		add_action( 'admin_menu', array($this, 'wbcom_essential_views_add_admin_settings' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' )  );		
 		add_action( 'admin_init', array( $this, 'wbcom_hide_all_admin_notices_from_setting_page' ) );
@@ -143,7 +143,7 @@ class Wbcom_Essential_Admin {
 				<div class="wbcom-admin-settings-page">
 					<?php
 					settings_errors();
-					$this->woo_document_preview_plugin_settings_tabs();
+					$this->wbcom_essential_plugin_settings_tabs();
 					settings_fields( $tab );
 					do_settings_sections( $tab );
 					?>
@@ -160,13 +160,13 @@ class Wbcom_Essential_Admin {
 	 * @access   public
 	 * @author   Wbcom Designs
 	 */
-	public function woo_document_preview_init_plugin_settings() {
+	public function wbcom_essential_init_plugin_settings() {
         
 		$this->plugin_settings_tabs['wbcom-essential-welcome'] = esc_html__( 'Welcome', 'wbcom-essential' );
-		add_settings_section( 'wbcom-essential-welcome', ' ', array( $this, 'woo_document_preview_admin_welcome_content' ), 'wbcom-essential-welcome' );
+		add_settings_section( 'wbcom-essential-welcome', ' ', array( $this, 'wbcom_essential_admin_welcome_content' ), 'wbcom-essential-welcome' );
 
-		$this->plugin_settings_tabs['woo-document-preview-faq'] = esc_html__( 'FAQ', 'wbcom-essential' );
-		add_settings_section( 'woo-document-preview-faq', ' ', array( $this, 'woo_document_preview_general_options_content' ), 'woo-document-preview-faq' );
+		$this->plugin_settings_tabs['wbcom-essential-faq'] = esc_html__( 'FAQ', 'wbcom-essential' );
+		add_settings_section( 'wbcom-essential-faq', ' ', array( $this, 'wbcom_essential_general_options_content' ), 'wbcom-essential-faq' );
 	}
 
 	/**
@@ -174,7 +174,7 @@ class Wbcom_Essential_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function woo_document_preview_plugin_settings_tabs() {
+	public function wbcom_essential_plugin_settings_tabs() {
 		
 		$current_tab = filter_input( INPUT_GET, 'tab' ) ? filter_input( INPUT_GET, 'tab' ) : 'wbcom-essential-welcome';
 		echo '<div class="wbcom-tabs-section"><div class="nav-tab-wrapper"><div class="wb-responsive-menu"><span>' . esc_html( 'Menu' ) . '</span><input class="wb-toggle-btn" type="checkbox" id="wb-toggle-btn"><label class="wb-toggle-icon" for="wb-toggle-btn"><span class="wb-icon-bars"></span></label></div><ul>';
@@ -191,7 +191,7 @@ class Wbcom_Essential_Admin {
 	 * @since    1.0.0
 	 * @return   void
 	 */
-	public function woo_document_preview_admin_welcome_content() {
+	public function wbcom_essential_admin_welcome_content() {
 		include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/wbcom-essential-welcome-page.php';
 	}
 
@@ -201,7 +201,7 @@ class Wbcom_Essential_Admin {
 	 * @since    1.0.0
 	 * @return   void
 	 */
-	public function woo_document_preview_general_options_content() {
+	public function wbcom_essential_general_options_content() {
 		include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/wbcom-essential-faq-content.php';
 	}
 
@@ -213,7 +213,7 @@ class Wbcom_Essential_Admin {
 	 * @access   public
 	 * @author   Wbcom Designs
 	 */
-	public function woo_document_preview_views_add_admin_settings() {
+	public function wbcom_essential_views_add_admin_settings() {
 		if ( empty( $GLOBALS['admin_page_hooks']['wbcomplugins'] ) && class_exists( 'WooCommerce' ) ) {
 			add_menu_page( 
 				esc_html__( 'WB Plugins', 'wbcom-essential' ), 

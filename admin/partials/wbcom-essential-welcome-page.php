@@ -2,7 +2,7 @@
 /**
  * This file is used for rendering and saving plugin welcome settings.
  *
- * @package bp_stats
+ * @package Wbcom_Essential
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<div class="wbcom-support-inner">
 						<h3><span class="dashicons dashicons-book"></span><?php esc_html_e( 'Documentation', 'wbcom-essential' ); ?></h3>
 						<p><?php esc_html_e( 'Explore our detailed guide on Wbcom Essential to understand all the features and how to make the most of them.', 'wbcom-essential' ); ?></p>
-						<a href="<?php echo esc_url( 'https://docs.wbcomdesigns.com/doc_category/woo-document-preview/' ); ?>" class="button button-primary button-welcome-support" target="_blank"><?php esc_html_e( 'Read Documentation', 'wbcom-essential' ); ?></a>
+						<a href="<?php echo esc_url( 'https://docs.wbcomdesigns.com/docs/buddyx-theme/wbcom-essentials/import-templates/' ); ?>" class="button button-primary button-welcome-support" target="_blank"><?php esc_html_e( 'Read Documentation', 'wbcom-essential' ); ?></a>
 						</div>
 					</div>
 

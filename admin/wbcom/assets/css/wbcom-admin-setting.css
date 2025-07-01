@@ -1646,3 +1646,7 @@ div.wbcom-faq-panel p {
         display: none;
     }
 }
+
+.nav-tab-wrapper ul li a#wbcom-essential-faq-tab.nav-tab:before {
+    content: "\f125";
+}

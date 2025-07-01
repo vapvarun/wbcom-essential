@@ -99,14 +99,13 @@ if ( ! class_exists( WBCOMESSENTIAL::class ) ) {
 		 * Include plugin files
 		 */
 		public function includes() {
-			
-			require WBCOM_ESSENTIAL_PATH . '/includes/wbcom-essential-function.php';
-			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-admin.php';
-			new Wbcom_Essential_Admin();
-			require_once WBCOM_ESSENTIAL_PATH . '/admin/wbcom/wbcom-admin-settings.php';
-			require_once WBCOM_ESSENTIAL_PATH . '/admin/wbcom/wbcom-paid-plugin-settings.php';
-			require_once WBCOM_ESSENTIAL_PATH . '/edd-license/edd-plugin-license.php';
 			if ( did_action( 'elementor/loaded' ) ) {
+				require WBCOM_ESSENTIAL_PATH . '/includes/wbcom-essential-function.php';
+				require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-admin.php';
+				new Wbcom_Essential_Admin();
+				require_once WBCOM_ESSENTIAL_PATH . '/admin/wbcom/wbcom-admin-settings.php';
+				require_once WBCOM_ESSENTIAL_PATH . '/admin/wbcom/wbcom-paid-plugin-settings.php';
+				require_once WBCOM_ESSENTIAL_PATH . '/edd-license/edd-plugin-license.php';
 				require WBCOM_ESSENTIAL_PATH . '/plugins/elementor/Plugins.php';
 			}
 		}
