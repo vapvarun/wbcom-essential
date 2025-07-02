@@ -1,7 +1,7 @@
 (function ($) {
 
 	'use strict';
-
+	
 	var WBcomEssentialelementorSectionsData = window.WBcomEssentialelementorSectionsData || {},
 		WBcomEssentialelementorSectionsEditor,
 		WBcomEssentialelementorSectionsEditorViews;
@@ -246,9 +246,9 @@
 				},
 
 				onTextFilterInput: function onTextFilterInput( childModel ) {
-
+					
 					var searchText = this.ui.textFilter.val();
-
+					searchText = searchText.replace(/[<>]/g, '').trim(); //explicitly remove angle brackets to prevent XSS attacks.
 					WBcomEssentialelementorSectionsEditor.setFilter('text', searchText);
 				},
 
@@ -615,43 +615,43 @@
 					$addWBcomEssentialelementorSectionsTemplate = $(addWBcomEssentialelementorSectionsTemplate).prependTo($addNewSection);
 				}
 			
-        window.elementor.$previewContents.on(
-            'click.addWBcomEssentialelementorSectionsTemplate',
-            '.elementor-editor-section-settings .elementor-editor-element-add',
-            function () {
+				window.elementor.$previewContents.on(
+					'click.addWBcomEssentialelementorSectionsTemplate',
+					'.elementor-editor-section-settings .elementor-editor-element-add',
+					function () {
 
-                var $this = $(this),
-                    $section = $this.closest('.elementor-top-section'),
-                    modelID = $section.data('model-cid');
-
-
-
-	            if (-1 !== WBcomEssentialelementorSectionsData.Elementor_Version.indexOf('3.0.')) {
-		            if (window.elementor.previewView.collection.length) {
-			            $.each(window.elementor.previewView.collection.models, function (index, model) {
-				            if (modelID === model.cid) {
-					            WBcomEssentialelementorSectionsEditor.atIndex = index;
-				            }
-			            });
-		            }
-	            } else {
-		            if (window.elementor.sections.currentView.collection.length) {
-			            $.each(window.elementor.sections.currentView.collection.models, function (index, model) {
-				            if (modelID === model.cid) {
-					            WBcomEssentialelementorSectionsEditor.atIndex = index;
-				            }
-			            });
-		            }
-	            }
+						var $this = $(this),
+							$section = $this.closest('.elementor-top-section'),
+							modelID = $section.data('model-cid');
 
 
-								setTimeout(function () {
-									var $addNew = $section.prev('.elementor-add-section').find('.elementor-add-new-section');
-									$addNew.prepend(addWBcomEssentialelementorSectionsTemplate);
-								}, 100);
 
-            }
-        );
+						if (-1 !== WBcomEssentialelementorSectionsData.Elementor_Version.indexOf('3.0.')) {
+							if (window.elementor.previewView.collection.length) {
+								$.each(window.elementor.previewView.collection.models, function (index, model) {
+									if (modelID === model.cid) {
+										WBcomEssentialelementorSectionsEditor.atIndex = index;
+									}
+								});
+							}
+						} else {
+							if (window.elementor.sections.currentView.collection.length) {
+								$.each(window.elementor.sections.currentView.collection.models, function (index, model) {
+									if (modelID === model.cid) {
+										WBcomEssentialelementorSectionsEditor.atIndex = index;
+									}
+								});
+							}
+						}
+
+
+						setTimeout(function () {
+							var $addNew = $section.prev('.elementor-add-section').find('.elementor-add-new-section');
+							$addNew.prepend(addWBcomEssentialelementorSectionsTemplate);
+						}, 100);
+
+					}
+				);
             }, 100);
 		},
 
@@ -708,7 +708,7 @@
 		},
 
 		requestTemplates: function (tabName) {
-
+			
 			if( '' === tabName ) {
 				return;
 			}
@@ -717,7 +717,7 @@
 				tab = self.tabs[tabName];
 
 			self.setFilter('category', false);
-
+			
 			if (tab.data.templates && tab.data.categories) {
 				self.layout.showTemplatesView(tab.data.templates, tab.data.categories);
 			} else {
