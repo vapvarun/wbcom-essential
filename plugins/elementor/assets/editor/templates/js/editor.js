@@ -368,24 +368,16 @@
 
 					var filter = WBcomEssentialelementorSectionsEditor.getFilter('category');
 					var searchText = WBcomEssentialelementorSectionsEditor.getFilter('text');
-
+					
+					// Early return for no filters
 					if (!filter && !searchText) {
 						return true;
 					}
 
-					if (filter && !searchText) {
-						return _.contains(childModel.get('categories'), filter);
-					}
-
-					if (searchText && !filter) {
-						if (childModel.get('title').toLowerCase().indexOf(searchText) >= 0) {
-							return true;
-						}
-					}
-
-					if (searchText && filter) {
-						return _.contains(childModel.get('categories'), filter) && childModel.get('title').toLowerCase().indexOf(searchText) >= 0;
-					}
+					var matchesCategory = !filter || _.contains(childModel.get('categories'), filter);
+					var matchesSearch = !searchText || childModel.get('title').toLowerCase().indexOf(searchText.toLowerCase()) >= 0;
+					console.log(matchesSearch);
+					return matchesCategory && matchesSearch;
 
 				},
 
