@@ -306,6 +306,11 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				return;
 			}
 
+			// Verify user capabilities
+			if ( ! current_user_can( 'edit_posts' ) ) {
+				return;
+			}
+
 			$actions = json_decode( stripslashes( $_REQUEST['actions'] ), true );
 			$data    = false;
 

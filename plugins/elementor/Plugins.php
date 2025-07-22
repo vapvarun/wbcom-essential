@@ -265,16 +265,17 @@ class Plugin {
 		);
 
 		$filename = __DIR__ . '/' . strtolower( $filename ) . '.php';
-		// Return if file is not found.
-		if ( ! is_readable( $filename ) ) {
-			// return;
+		
+		// Check if file exists and is readable
+		if ( ! file_exists( $filename ) || ! is_readable( $filename ) ) {
+			// Log error only in development/debug mode
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBCOM Essential Autoloader: Unable to load class file: ' . $filename . ' for class: ' . $class );
+			}
+			return;
 		}
 		
-		if ( file_exists( $filename ) && is_readable( $filename ) ) {
-			include $filename;
-		} else {
-			error_log( 'WBCOM Essential: Unable to load file ' . $filename );
-		}
+		require_once $filename;
 	}
 
 	/**
@@ -370,12 +371,12 @@ class Plugin {
 			if ( class_exists( 'bbPress' ) ) {
 
 				$elements['Buddypress/Forums'] = array(
-					'name'  => 'wbcom-forums-activity',
+					'name'  => 'wbcom-forums',
 					'class' => 'Buddypress\Forums',
 				);
 
 				$elements['Buddypress/ForumsActivity'] = array(
-					'name'  => 'wbcom-group-carousel',
+					'name'  => 'wbcom-forums-activity',
 					'class' => 'Buddypress\ForumsActivity',
 				);
 

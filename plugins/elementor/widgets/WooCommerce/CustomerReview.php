@@ -681,16 +681,16 @@ class CustomerReview extends \Elementor\Widget_Base {
 					<div class="content">
 						<?php
 						if ( ! empty( $review['message'] ) ) {
-							echo '<p>' . esc_html__( $review['message'], 'wbcom-essential' ) . '</p>';
+							echo '<p>' . esc_html( $review['message'] ) . '</p>';
 						}
 						?>
 						<div class="clint-info">
 							<?php
 							if ( ! empty( $review['name'] ) ) {
-								echo '<h4>' . esc_html__( $review['name'], 'wbcom-essential' ) . '</h4>';
+								echo '<h4>' . esc_html( $review['name'] ) . '</h4>';
 							}
 							if ( ! empty( $review['designation'] ) ) {
-								echo '<span>' . esc_html__( $review['designation'], 'wbcom-essential' ) . '</span>';
+								echo '<span>' . esc_html( $review['designation'] ) . '</span>';
 							}
 
 								// Rating
@@ -707,7 +707,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 					<div class="content">
 						<?php
 						if ( ! empty( $review['message'] ) ) {
-							echo '<p>' . esc_html__( $review['message'], 'wbcom-essential' ) . '</p>';
+							echo '<p>' . esc_html( $review['message'] ) . '</p>';
 						}
 						?>
 						<div class="triangle"></div>
@@ -719,11 +719,11 @@ class CustomerReview extends \Elementor\Widget_Base {
 						}
 
 						if ( ! empty( $review['name'] ) ) {
-							echo '<h4>' . esc_html__( $review['name'], 'wbcom-essential' ) . '</h4>';
+							echo '<h4>' . esc_html( $review['name'] ) . '</h4>';
 						}
 
 						if ( ! empty( $review['designation'] ) ) {
-							echo '<span>' . esc_html__( $review['designation'], 'wbcom-essential' ) . '</span>';
+							echo '<span>' . esc_html( $review['designation'] ) . '</span>';
 						}
 
 							// Rating
@@ -746,10 +746,10 @@ class CustomerReview extends \Elementor\Widget_Base {
 						<div class="clint-info">
 							<?php
 							if ( ! empty( $review['name'] ) ) {
-								echo '<h4>' . esc_html__( $review['name'], 'wbcom-essential' ) . '</h4>';
+								echo '<h4>' . esc_html( $review['name'] ) . '</h4>';
 							}
 							if ( ! empty( $review['designation'] ) ) {
-								echo '<span>' . esc_html__( $review['designation'], 'wbcom-essential' ) . '</span>';
+								echo '<span>' . esc_html( $review['designation'] ) . '</span>';
 							}
 
 								// Rating
@@ -762,7 +762,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 					</div>
 					<?php
 					if ( ! empty( $review['message'] ) ) {
-						echo '<p>' . esc_html__( $review['message'], 'wbcom-essential' ) . '</p>';
+						echo '<p>' . esc_html( $review['message'] ) . '</p>';
 					}
 					?>
 				</div>

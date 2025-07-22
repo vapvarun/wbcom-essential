@@ -123,7 +123,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 
 							$prefix                   = apply_filters( 'bp_core_get_table_prefix', $wpdb->base_prefix );
 							$groups_table             = $prefix . 'bp_groups';
-							$group_name               = $wpdb->get_var( "SELECT `name` FROM `{$groups_table}` WHERE `id` = '{$group_id}';" ); // db call ok; no-cache ok;.
+							$group_name               = $wpdb->get_var( $wpdb->prepare( "SELECT `name` FROM `{$groups_table}` WHERE `id` = %d", absint( $group_id ) ) ); // db call ok; no-cache ok;.
 							$group_link               = 'javascript:void(0);';
 							$group_avatar             = buddypress()->plugin_url . 'bp-core/images/mystery-group.png';
 							$legacy_group_avatar_name = '-groupavatar-full';

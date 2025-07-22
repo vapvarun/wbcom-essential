@@ -14,8 +14,6 @@ namespace WBCOM_ESSENTIAL\ELEMENTOR\Helper\Skins;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Color;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Skin_Base as Elementor_Skin_Base;
 use Elementor\Widget_Base;
 use WBCOM_ESSENTIAL\Plugin;
@@ -41,6 +39,13 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	protected function _register_controls_actions() {
 		add_action( 'elementor/element/wbcom-posts/section_layout/before_section_end', array( $this, 'register_controls' ) );
 		add_action( 'elementor/element/wbcom-posts/section_query/after_section_end', array( $this, 'register_style_sections' ) );
+	}
+	
+	/**
+	 * Register controls actions - new method for Elementor 3.1.0+
+	 */
+	protected function register_controls_actions() {
+		$this->_register_controls_actions();
 	}
 
 	/**
@@ -874,7 +879,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 		}
 		?>
 		<a class="elementor-post__read-more" href="<?php echo esc_url( get_permalink() ); ?>">
-			<?php echo $this->get_instance_value( 'read_more_text' ); ?>
+			<?php echo esc_html( $this->get_instance_value( 'read_more_text' ) ); ?>
 		</a>
 		<?php
 	}
