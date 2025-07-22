@@ -36,6 +36,13 @@ define( 'WBCOM_ESSENTIAL_PATH', plugin_dir_path( WBCOM_ESSENTIAL_FILE ) );
 define( 'WBCOM_ESSENTIAL_URL', plugins_url( '/', WBCOM_ESSENTIAL_FILE ) );
 define( 'WBCOM_ESSENTIAL_ASSETS_URL', WBCOM_ESSENTIAL_URL . 'assets/' );
 
+// License constants
+define( 'WBCOM_ESSENTIAL_STORE_URL', 'https://wbcomdesigns.com' );
+define( 'WBCOM_ESSENTIAL_ITEM_ID', 1545975 );
+define( 'WBCOM_ESSENTIAL_ITEM_NAME', 'Wbcom Essential' );
+define( 'WBCOM_ESSENTIAL_PLUGIN_DIR', WBCOM_ESSENTIAL_PATH );
+define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', plugin_basename( WBCOM_ESSENTIAL_FILE ) );
+
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-elementor.php';

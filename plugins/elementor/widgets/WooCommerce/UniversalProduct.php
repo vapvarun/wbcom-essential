@@ -2472,7 +2472,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                 <?php if( $settings['product_layout_style'] == 'slider' ){ echo '</div>'; } ?>
             <?php endif; ?>
 
-            <?php if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) { ?>
+            <?php if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) { ?>
                 <script>
                     ;jQuery(document).ready(function($) {
                         'use strict';

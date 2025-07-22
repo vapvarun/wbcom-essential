@@ -1640,7 +1640,7 @@ class LoginForm extends \Elementor\Widget_Base {
 
 		?>
 		
-		<?php if ( ( ! is_user_logged_in() ) || ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) || ( $settings['test_mode'] ) ) { ?>
+		<?php if ( ( ! is_user_logged_in() ) || ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) || ( $settings['test_mode'] ) ) { ?>
 			<div class="wbcom-login-form-wrapper">
 				<div class="wbcom-login-form-inner">
 					<?php if ( $logo_url ) { ?>

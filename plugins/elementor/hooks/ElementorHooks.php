@@ -217,7 +217,7 @@ class ElementorHooks {
 	public function widgets_registered() {
 		$elementor = \Elementor\Plugin::instance();
 
-		if ( isset( $elementor->widgets_manager ) && method_exists( $elementor->widgets_manager, 'register_widget_type' ) ) {
+		if ( isset( $elementor->widgets_manager ) && method_exists( $elementor->widgets_manager, 'register' ) ) {
 
 			$elements = \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::get_instance()->get_elements();
 			// include_once REIGN_INC_DIR . 'plugins/elementor/widgets/Base.php';.
@@ -244,7 +244,7 @@ class ElementorHooks {
 
 		$controls_manager->add_group_control( Group_Control_Posts::get_type(), new Group_Control_Posts() );
 
-		$controls_manager->register_control( '', new Query() );
+		$controls_manager->register( Query::get_type(), new Query() );
 	}
 
 	/**
@@ -264,10 +264,10 @@ class ElementorHooks {
 		}
 
 		if ( $save ) {
-			$document = \Elementor\Plugin::$instance->documents->get( $post_id );
+			$document = \Elementor\Plugin::instance()->documents->get( $post_id );
 
 			if ( $document ) {
-				\Elementor\Plugin::$instance->db->iterate_data(
+				\Elementor\Plugin::instance()->db->iterate_data(
 					$document->get_elements_data(),
 					static function ( $element ) {
 						if ( empty( $element['widgetType'] ) || 'widget' !== $element['elType'] ) {

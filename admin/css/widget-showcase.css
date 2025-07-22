@@ -1,0 +1,410 @@
+/**
+ * WBcom Essential Widget Showcase Styles
+ */
+
+/* Tab content wrapper */
+.tab-content {
+	margin-top: 15px;
+}
+
+.wbcom-widget-showcase {
+	max-width: 1200px;
+	margin: 0;
+	padding: 20px 0;
+}
+
+.wbcom-widget-showcase > .description {
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 40px;
+}
+
+/* License and FAQ tab styles */
+.wbcom-license-content,
+.wbcom-faq-content {
+	background: #fff;
+	padding: 30px;
+	border: 1px solid #e5e5e5;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+	margin-top: 15px;
+}
+
+.wbcom-license-content h2,
+.wbcom-faq-content h2 {
+	margin-top: 0;
+	font-size: 24px;
+	color: #23282d;
+}
+
+/* FAQ Styles */
+.wbcom-faq-items {
+	margin-top: 30px;
+}
+
+.wbcom-faq-item {
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.wbcom-faq-item:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.wbcom-faq-item h3 {
+	margin: 0 0 15px;
+	font-size: 18px;
+	color: #0073aa;
+}
+
+.wbcom-faq-item p {
+	margin: 0 0 10px;
+	font-size: 15px;
+	line-height: 1.6;
+	color: #555;
+}
+
+.wbcom-faq-item ul {
+	margin: 10px 0 0 20px;
+	list-style: disc;
+}
+
+.wbcom-faq-item ul li {
+	margin: 5px 0;
+	font-size: 15px;
+	color: #555;
+}
+
+.wbcom-faq-item a {
+	color: #0073aa;
+	text-decoration: none;
+}
+
+.wbcom-faq-item a:hover {
+	text-decoration: underline;
+}
+
+.wbcom-faq-footer {
+	margin-top: 40px;
+	padding: 30px;
+	background: #f9f9f9;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.wbcom-faq-footer h3 {
+	margin: 0 0 15px;
+	font-size: 20px;
+	color: #23282d;
+}
+
+.wbcom-faq-footer p {
+	margin: 0;
+	font-size: 16px;
+	color: #555;
+}
+
+/* License Section Styles */
+.wbcom-essential-license-section {
+	max-width: 800px;
+}
+
+.wbcom-essential-license-info {
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
+
+.wbcom-essential-license-info h3 {
+	margin-top: 0;
+	color: #0073aa;
+}
+
+.wbcom-essential-license-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 5px 15px;
+	border-radius: 4px;
+	font-weight: 500;
+}
+
+.wbcom-essential-license-valid {
+	background: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+.wbcom-essential-license-expired {
+	background: #fff3cd;
+	color: #856404;
+	border: 1px solid #ffeeba;
+}
+
+.wbcom-essential-license-invalid {
+	background: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+.wbcom-essential-license-inactive {
+	background: #e2e3e5;
+	color: #383d41;
+	border: 1px solid #d6d8db;
+}
+
+.wbcom-essential-license-actions {
+	margin: 20px 0;
+}
+
+.wbcom-essential-license-actions .button {
+	margin-right: 10px;
+}
+
+.wbcom-essential-license-message {
+	margin: 15px 0;
+	padding: 10px;
+	border-radius: 4px;
+	display: none;
+}
+
+.wbcom-essential-license-message.success {
+	background: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+.wbcom-essential-license-message.error {
+	background: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+.wbcom-essential-license-message.info {
+	background: #d1ecf1;
+	color: #0c5460;
+	border: 1px solid #bee5eb;
+}
+
+.wbcom-essential-license-info-box {
+	background: #fff;
+	border: 1px solid #ddd;
+	padding: 20px;
+	margin-top: 30px;
+	border-radius: 4px;
+}
+
+.wbcom-essential-license-info-box h4 {
+	margin-top: 0;
+	color: #0073aa;
+}
+
+.wbcom-essential-license-info-box ul {
+	list-style: none;
+	padding: 0;
+}
+
+.wbcom-essential-license-info-box li {
+	padding: 5px 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.wbcom-essential-license-info-box .dashicons {
+	color: #0073aa;
+}
+
+/* License key display */
+.wbcom-license-key-display {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 5px;
+}
+
+.wbcom-license-key-display code {
+	background: #f0f0f1;
+	padding: 5px 10px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 14px;
+	font-family: monospace;
+}
+
+#wbcom-essential-license-input-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+#wbcom-essential-cancel-change {
+	margin-left: 5px;
+}
+
+/* Widget Categories */
+.widget-categories {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.widget-category {
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: 8px;
+	padding: 30px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.category-header {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 10px;
+}
+
+.category-header .dashicons {
+	font-size: 36px;
+	width: 36px;
+	height: 36px;
+	color: #0073aa;
+}
+
+.category-header h2 {
+	margin: 0;
+	flex: 1;
+	font-size: 24px;
+	color: #23282d;
+}
+
+.widget-count {
+	background: #f0f0f1;
+	padding: 5px 15px;
+	border-radius: 20px;
+	font-size: 14px;
+	color: #666;
+}
+
+.category-description {
+	color: #666;
+	margin-bottom: 25px;
+	font-size: 15px;
+}
+
+/* Widgets Grid */
+.widgets-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 20px;
+}
+
+.widget-card {
+	background: #f8f8f8;
+	border: 1px solid #e5e5e5;
+	border-radius: 6px;
+	padding: 20px;
+	text-align: center;
+	transition: all 0.3s ease;
+}
+
+.widget-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	border-color: #0073aa;
+}
+
+.widget-icon {
+	margin-bottom: 15px;
+}
+
+.widget-icon .dashicons {
+	font-size: 48px;
+	width: 48px;
+	height: 48px;
+	color: #0073aa;
+}
+
+.widget-card h3 {
+	margin: 0 0 10px;
+	font-size: 18px;
+	color: #23282d;
+}
+
+.widget-card p {
+	margin: 0;
+	font-size: 14px;
+	color: #666;
+	line-height: 1.5;
+}
+
+/* Category specific colors */
+#buddypress .category-header .dashicons,
+#buddypress .widget-icon .dashicons {
+	color: #d84800;
+}
+
+#buddypress .widget-card:hover {
+	border-color: #d84800;
+}
+
+#woocommerce .category-header .dashicons,
+#woocommerce .widget-icon .dashicons {
+	color: #96588a;
+}
+
+#woocommerce .widget-card:hover {
+	border-color: #96588a;
+}
+
+/* Footer */
+.widget-showcase-footer {
+	margin-top: 50px;
+	padding: 30px;
+	background: #f1f1f1;
+	border-radius: 8px;
+}
+
+.widget-showcase-footer h3 {
+	margin-top: 0;
+	font-size: 20px;
+	color: #23282d;
+}
+
+.widget-showcase-footer ol {
+	margin: 15px 0 0 20px;
+	font-size: 15px;
+	line-height: 1.8;
+	color: #555;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+	.wbcom-widget-showcase {
+		padding: 10px;
+	}
+	
+	.widget-category {
+		padding: 20px;
+	}
+	
+	.widgets-grid {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+	
+	.category-header {
+		flex-wrap: wrap;
+	}
+	
+	.category-header h2 {
+		font-size: 20px;
+		width: 100%;
+		margin-top: 10px;
+	}
+}

@@ -156,7 +156,7 @@ class Plugin {
 	 * @return \Elementor\Plugin
 	 */
 	public static function elementor() {
-		return \Elementor\Plugin::$instance;
+		return \Elementor\Plugin::instance();
 	}
 
 	/**
