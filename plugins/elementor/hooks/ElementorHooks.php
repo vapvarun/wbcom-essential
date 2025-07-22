@@ -244,7 +244,7 @@ class ElementorHooks {
 
 		$controls_manager->add_group_control( Group_Control_Posts::get_type(), new Group_Control_Posts() );
 
-		$controls_manager->register( Query::get_type(), new Query() );
+		$controls_manager->register( new Query() );
 	}
 
 	/**
@@ -327,16 +327,16 @@ class ElementorHooks {
 	public function editor_css() {
 		wp_enqueue_style(
 			'stax-elementor-panel-style',
-			BPB_ADMIN_ASSETS_URL . 'css/icons.css',
+			WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/icons.css',
 			null,
-			BPB_VERSION
+			WBCOM_ESSENTIAL_VERSION
 		);
 
 		wp_enqueue_style(
 			'stax-elementor-panel-label-style',
-			BPB_ADMIN_ASSETS_URL . 'css/label.css',
+			WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/label.css',
 			null,
-			BPB_VERSION
+			WBCOM_ESSENTIAL_VERSION
 		);
 	}
 

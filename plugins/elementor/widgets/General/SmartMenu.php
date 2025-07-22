@@ -1,7 +1,7 @@
 <?php
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\General;
 
-use WBCOM_ESSENTIAL\Plugin;
+use WBCOM_ESSENTIAL\ELEMENTOR\Plugin;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;

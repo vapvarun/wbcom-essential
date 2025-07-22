@@ -34,12 +34,18 @@ class Wbcom_Essential_Widget_Showcase {
 	 */
 	public function init_license_components() {
 		// Initialize license manager
-		require_once WBCOM_ESSENTIAL_PATH . '/license/class-license-manager.php';
-		$this->license_manager = \WBCOM_ESSENTIAL_License_Manager::get_instance();
+		$license_manager_file = WBCOM_ESSENTIAL_PATH . '/license/class-license-manager.php';
+		if ( file_exists( $license_manager_file ) ) {
+			require_once $license_manager_file;
+			$this->license_manager = \WBCOM_ESSENTIAL_License_Manager::get_instance();
+		}
 		
 		// Initialize license updater
-		require_once WBCOM_ESSENTIAL_PATH . '/license/class-license-updater.php';
-		\WBCOM_ESSENTIAL_License_Updater::get_instance();
+		$license_updater_file = WBCOM_ESSENTIAL_PATH . '/license/class-license-updater.php';
+		if ( file_exists( $license_updater_file ) ) {
+			require_once $license_updater_file;
+			\WBCOM_ESSENTIAL_License_Updater::get_instance();
+		}
 	}
 
 	/**

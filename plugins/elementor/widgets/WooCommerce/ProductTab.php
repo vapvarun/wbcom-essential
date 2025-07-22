@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-use WBCOM_ESSENTIAL\Plugin;
+use WBCOM_ESSENTIAL\ELEMENTOR\Plugin;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;

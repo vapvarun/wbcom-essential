@@ -16,7 +16,7 @@ use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Skin_Base as Elementor_Skin_Base;
 use Elementor\Widget_Base;
-use WBCOM_ESSENTIAL\Plugin;
+use WBCOM_ESSENTIAL\ELEMENTOR\Plugin;
 
 
 if ( ! defined( 'ABSPATH' ) ) {
