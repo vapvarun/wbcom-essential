@@ -40,8 +40,9 @@ define( 'WBCOM_ESSENTIAL_ASSETS_URL', WBCOM_ESSENTIAL_URL . 'assets/' );
 define( 'WBCOM_ESSENTIAL_STORE_URL', 'https://wbcomdesigns.com' );
 define( 'WBCOM_ESSENTIAL_ITEM_ID', 1545975 );
 define( 'WBCOM_ESSENTIAL_ITEM_NAME', 'Wbcom Essential' );
+// Backward compatibility aliases (deprecated - use WBCOM_ESSENTIAL_PATH and WBCOM_ESSENTIAL_PLUGIN_BASE instead)
 define( 'WBCOM_ESSENTIAL_PLUGIN_DIR', WBCOM_ESSENTIAL_PATH );
-define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', plugin_basename( WBCOM_ESSENTIAL_FILE ) );
+define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', WBCOM_ESSENTIAL_PLUGIN_BASE );
 
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
@@ -58,13 +59,7 @@ function wbcom_essential() {
 	return \WBCOM_ESSENTIAL\WBCOMESSENTIAL::get_instance();
 }
 
-/**
- * Load plugin text domain
- */
-function wbcom_essential_load_plugin_textdomain() {
-	load_plugin_textdomain( 'wbcom-essential', false, basename( __DIR__ ) . '/languages/' );
-}
-add_action( 'plugins_loaded', 'wbcom_essential_load_plugin_textdomain' );
+// Text domain loading is handled by the main plugin class in wbcom-essential.php
 
 /**
  * Initializes the Plugin application.

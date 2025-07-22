@@ -91,27 +91,161 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 * @access private
 		 */
 		private function __construct() {
-			$this->includes();
+			add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 5 );
 			add_action( 'init', array( $this, 'wbcom_essential_elementor_add_image_sizes' ) );
+			add_action( 'init', array( $this, 'load_textdomain' ) );
+		}
+
+		/**
+		 * Runs on plugins_loaded hook
+		 */
+		public function plugins_loaded() {
+			$this->includes();
+			$this->init_wbcom_wrapper();
+		}
+		
+		/**
+		 * Load plugin textdomain
+		 */
+		public function load_textdomain() {
+			load_plugin_textdomain(
+				'wbcom-essential',
+				false,
+				dirname( plugin_basename( WBCOM_ESSENTIAL_FILE ) ) . '/languages/'
+			);
 		}
 
 		/**
 		 * Include plugin files
 		 */
 		public function includes() {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: includes() method called' );
+			}
+			
 			if ( did_action( 'elementor/loaded' ) ) {
 				require WBCOM_ESSENTIAL_PATH . '/includes/wbcom-essential-function.php';
 				require WBCOM_ESSENTIAL_PATH . '/plugins/elementor/Plugins.php';
 			}
 			
-			// Include widget showcase
+			// Include and initialize widget showcase
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: About to instantiate widget showcase' );
+			}
+			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: Widget showcase instantiated' );
+			}
 		}
 
 		public function wbcom_essential_elementor_add_image_sizes() {
 			add_image_size( 'wbcom-essential-elementor-masonry', 500 );
 			add_image_size( 'wbcom-essential-elementor-normal', 800, 800, true );
 			add_image_size( 'wbcom-essential-elementor-type1', 800, 500, true );
+		}
+		
+		/**
+		 * Initialize Advanced WBcom Shared Admin System
+		 */
+		public function init_wbcom_wrapper() {
+			// Register with the shared system EARLY - before admin_menu hook fires
+			add_action( 'plugins_loaded', array( $this, 'register_with_shared_system' ), 15 );
+			
+			// Fallback to old integration system if advanced doesn't work
+			add_action( 'init', array( $this, 'init_fallback_integration' ) );
+		}
+		
+		/**
+		 * Initialize fallback integration after init
+		 */
+		public function init_fallback_integration() {
+			// Only use fallback if the shared loader registration didn't work
+			if ( ! class_exists( 'Wbcom_Shared_Loader' ) && function_exists( 'wbcom_integrate_plugin' ) ) {
+				wbcom_integrate_plugin( 
+					WBCOM_ESSENTIAL_FILE,
+					array(
+						'menu_title'   => __( 'Essential Widgets', 'wbcom-essential' ),
+						'slug'         => 'essential',
+						'priority'     => 5,
+						'icon'         => 'dashicons-screenoptions',
+						'callback'     => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),
+						'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
+					)
+				);
+			}
+		}
+		
+		/**
+		 * Register with the shared system
+		 */
+		public function register_with_shared_system() {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: register_with_shared_system() called' );
+			}
+			
+			// Try to load the shared loader if not already loaded
+			if ( ! class_exists( 'Wbcom_Shared_Loader' ) ) {
+				$shared_loader_file = WBCOM_ESSENTIAL_PATH . '/includes/shared-admin/class-wbcom-shared-loader.php';
+				if ( file_exists( $shared_loader_file ) ) {
+					require_once $shared_loader_file;
+				}
+			}
+			
+			if ( ! class_exists( 'Wbcom_Shared_Loader' ) ) {
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+					error_log( 'WBcom Essential: Wbcom_Shared_Loader class not available' );
+				}
+				return;
+			}
+			
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: Registering with shared system' );
+				error_log( 'WBcom Essential: About to call quick_register' );
+			}
+			
+			// Use the advanced quick registration system
+			\Wbcom_Shared_Loader::quick_register( 
+				WBCOM_ESSENTIAL_FILE,
+				array(
+					'menu_title'    => 'Essential Widgets',
+					'slug'          => 'wbcom-essential',
+					'priority'      => 5,
+					'icon'          => 'dashicons-screenoptions',
+					'description'   => '43+ premium Elementor widgets for BuddyPress, WooCommerce, and general purpose websites.',
+					'settings_url'  => admin_url( 'admin.php?page=wbcom-essential' ),
+					'status'        => 'active',
+					'version'       => WBCOM_ESSENTIAL_VERSION,
+					'license_key'   => '', // Temporarily remove license key to test
+					'callback'      => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),
+				)
+			);
+			
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: Registration completed' );
+			}
+		}
+		
+		/**
+		 * Get license key for display purposes
+		 */
+		private function get_license_key() {
+			// Try to get from new license system first
+			if ( class_exists( '\WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager' ) ) {
+				$license_manager = \WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager::get_instance();
+				$license_key = $license_manager->get_license_key();
+				if ( ! empty( $license_key ) ) {
+					return $license_key;
+				}
+			}
+			
+			// Fallback to old option names
+			$license_key = get_option( 'wbcom_essential_license_key' );
+			if ( empty( $license_key ) ) {
+				$license_key = get_option( 'edd-wbcom-essential-license-key' );
+			}
+			
+			return $license_key;
 		}
 
 	}

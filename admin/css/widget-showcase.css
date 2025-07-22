@@ -4,7 +4,12 @@
 
 /* Tab content wrapper */
 .tab-content {
-	margin-top: 15px;
+	margin-top: 0;
+}
+
+/* Remove extra spacing for first elements in tab content */
+.tab-content > *:first-child {
+	margin-top: 0;
 }
 
 .wbcom-widget-showcase {
@@ -22,11 +27,9 @@
 /* License and FAQ tab styles */
 .wbcom-license-content,
 .wbcom-faq-content {
-	background: #fff;
-	padding: 30px;
-	border: 1px solid #e5e5e5;
-	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
-	margin-top: 15px;
+	/* Remove redundant styling - content is already in white box */
+	padding: 0;
+	margin-top: 0;
 }
 
 .wbcom-license-content h2,
@@ -114,7 +117,7 @@
 
 .wbcom-essential-license-info {
 	background: #f9f9f9;
-	border: 1px solid #ddd;
+	border: 1px solid #e5e5e5;
 	padding: 20px;
 	margin-bottom: 20px;
 	border-radius: 4px;
@@ -192,8 +195,8 @@
 }
 
 .wbcom-essential-license-info-box {
-	background: #fff;
-	border: 1px solid #ddd;
+	background: #f9f9f9;
+	border: 1px solid #e5e5e5;
 	padding: 20px;
 	margin-top: 30px;
 	border-radius: 4px;
@@ -255,11 +258,11 @@
 }
 
 .widget-category {
-	background: #fff;
+	background: #f9f9f9;
 	border: 1px solid #e5e5e5;
 	border-radius: 8px;
 	padding: 30px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+	box-shadow: none;
 }
 
 .category-header {
@@ -305,7 +308,7 @@
 }
 
 .widget-card {
-	background: #f8f8f8;
+	background: #fff;
 	border: 1px solid #e5e5e5;
 	border-radius: 6px;
 	padding: 20px;
@@ -366,7 +369,8 @@
 .widget-showcase-footer {
 	margin-top: 50px;
 	padding: 30px;
-	background: #f1f1f1;
+	background: #f9f9f9;
+	border: 1px solid #e5e5e5;
 	border-radius: 8px;
 }
 

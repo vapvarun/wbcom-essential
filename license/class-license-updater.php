@@ -1,11 +1,13 @@
 <?php
 /**
- * License Updater class
- * Handles EDD Software Licensing integration
+ * WBCOM_ESSENTIAL_License_Updater Class.
+ * 
+ * This class acts as a bridge to the new standardized license updater system
+ * while maintaining backward compatibility with the existing license system.
  */
 class WBCOM_ESSENTIAL_License_Updater {
     private static $instance = null;
-    private $updater_wrapper;
+    private $updater_instance;
     
     public static function get_instance() {
         if ( null === self::$instance ) {
@@ -19,62 +21,84 @@ class WBCOM_ESSENTIAL_License_Updater {
     }
     
     /**
-     * Initialize EDD Software Licensing updater
+     * Initialize the license updater system
      */
     private function init_updater() {
+        add_action( 'admin_init', array( $this, 'setup_updater' ), 0 );
+    }
+    
+    /**
+     * Set up the plugin updater using the new standardized system
+     */
+    public function setup_updater() {
         // To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
         $doing_cron = defined( 'DOING_CRON' ) && DOING_CRON;
         if ( ! current_user_can( 'manage_options' ) && ! $doing_cron ) {
             return;
         }
 
-        // Load our wrapper class
-        require_once WBCOM_ESSENTIAL_PLUGIN_DIR . 'license/class-edd-updater-wrapper.php';
+        // Get license key from the new standardized license system
+        if ( class_exists( '\WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager' ) ) {
+            $license_manager = \WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager::get_instance();
+            $license_key = $license_manager->get_license_key();
+        } else {
+            // Fallback to old option names for backward compatibility
+            $license_key = trim( get_option( 'wbcom_essential_license_key' ) );
+            if ( empty( $license_key ) ) {
+                $license_key = trim( get_option( 'edd-wbcom-essential-license-key' ) );
+            }
+        }
 
-        // retrieve our license key from the DB
-        $license_key = trim( get_option( 'wbcom_essential_license_key' ) );
-
-        // setup the updater through our wrapper
-        $this->updater_wrapper = new WBCOM_ESSENTIAL_EDD_Updater_Wrapper(
-            WBCOM_ESSENTIAL_STORE_URL,
-            WBCOM_ESSENTIAL_PLUGIN_DIR . 'wbcom-essential.php',
-            array(
-                'version'   => WBCOM_ESSENTIAL_VERSION,
-                'license'   => $license_key,
-                'item_id'   => WBCOM_ESSENTIAL_ITEM_ID,
-                'item_name' => WBCOM_ESSENTIAL_ITEM_NAME,
-                'author'    => 'Wbcom Designs',
-                'beta'      => false,
-            )
-        );
+        if ( ! empty( $license_key ) ) {
+            // Use the EDD updater wrapper directly
+            $updater_wrapper_file = WBCOM_ESSENTIAL_PATH . '/license/class-edd-updater-wrapper.php';
+            if ( file_exists( $updater_wrapper_file ) ) {
+                require_once $updater_wrapper_file;
+                
+                if ( class_exists( 'WBCOM_ESSENTIAL_EDD_Updater_Wrapper' ) ) {
+                    $this->updater_instance = new WBCOM_ESSENTIAL_EDD_Updater_Wrapper(
+                        'https://wbcomdesigns.com',
+                        WBCOM_ESSENTIAL_FILE,
+                        array(
+                            'version'   => WBCOM_ESSENTIAL_VERSION,
+                            'license'   => $license_key,
+                            'item_id'   => 1545975,
+                            'item_name' => 'Wbcom Essential',
+                            'author'    => 'WBcom Designs',
+                            'beta'      => false,
+                        )
+                    );
+                }
+            }
+        }
     }
     
     /**
      * Get updater instance
      */
     public function get_updater() {
-        if ( $this->updater_wrapper ) {
-            return $this->updater_wrapper->get_updater();
+        if ( $this->updater_instance && method_exists( $this->updater_instance, 'get_updater' ) ) {
+            return $this->updater_instance->get_updater();
         }
-        return null;
+        return $this->updater_instance;
     }
     
     /**
      * Check if updates are available
      */
     public function has_update() {
-        $updater = $this->get_updater();
-        if ( ! $updater ) {
+        if ( ! $this->updater_instance ) {
             return false;
         }
         
         $update_cache = get_site_transient( 'update_plugins' );
+        $plugin_basename = plugin_basename( WBCOM_ESSENTIAL_FILE );
         
-        if ( ! isset( $update_cache->response[ WBCOM_ESSENTIAL_PLUGIN_BASENAME ] ) ) {
+        if ( ! isset( $update_cache->response[ $plugin_basename ] ) ) {
             return false;
         }
         
-        $plugin_data = $update_cache->response[ WBCOM_ESSENTIAL_PLUGIN_BASENAME ];
+        $plugin_data = $update_cache->response[ $plugin_basename ];
         
         return version_compare( WBCOM_ESSENTIAL_VERSION, $plugin_data->new_version, '<' );
     }
@@ -88,6 +112,8 @@ class WBCOM_ESSENTIAL_License_Updater {
         }
         
         $update_cache = get_site_transient( 'update_plugins' );
-        return $update_cache->response[ WBCOM_ESSENTIAL_PLUGIN_BASENAME ];
+        $plugin_basename = plugin_basename( WBCOM_ESSENTIAL_FILE );
+        
+        return $update_cache->response[ $plugin_basename ];
     }
 }

@@ -22,55 +22,254 @@ class Wbcom_Essential_Widget_Showcase {
 	 * Initialize the class
 	 */
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'add_widget_showcase_menu' ) );
+		// Check if we should use the WBcom wrapper
+		if ( ! $this->should_use_wrapper() ) {
+			add_action( 'admin_menu', array( $this, 'add_widget_showcase_menu' ) );
+		}
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		
 		// Initialize license components after WordPress is loaded
 		add_action( 'init', array( $this, 'init_license_components' ) );
+		
+		// Register with the advanced shared system
+		add_action( 'admin_init', array( $this, 'register_with_shared_system' ) );
+	}
+	
+	/**
+	 * Check if we should use the WBcom wrapper
+	 */
+	private function should_use_wrapper() {
+		// Debug logging
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'WBcom Essential: Checking wrapper availability' );
+		}
+		
+		// Check if WBcom shared system is already available
+		if ( class_exists( 'Wbcom_Shared_Loader' ) ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: Using existing shared loader' );
+			}
+			return true;
+		}
+		
+		// Try to load our own shared system
+		$shared_loader_file = WBCOM_ESSENTIAL_PATH . '/includes/shared-admin/class-wbcom-shared-loader.php';
+		if ( file_exists( $shared_loader_file ) ) {
+			require_once $shared_loader_file;
+			if ( class_exists( 'Wbcom_Shared_Loader' ) ) {
+				// We can use the wrapper - the shared system will be initialized
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+					error_log( 'WBcom Essential: Loaded our own shared system' );
+				}
+				return true;
+			}
+		}
+		
+		// Check if another WBcom plugin has a shared system available
+		if ( function_exists( 'wbcom_integrate_plugin' ) ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'WBcom Essential: Using legacy integration' );
+			}
+			return true;
+		}
+		
+		// No wrapper available - we'll create our own standalone menu
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'WBcom Essential: Creating standalone menu' );
+		}
+		return false;
+	}
+	
+	/**
+	 * Register with the advanced shared system if available
+	 */
+	public function register_with_shared_system() {
+		// Try to load our shared system if not already loaded
+		if ( ! class_exists( 'Wbcom_Shared_Loader' ) ) {
+			$shared_loader_file = WBCOM_ESSENTIAL_PATH . '/includes/shared-admin/class-wbcom-shared-loader.php';
+			if ( file_exists( $shared_loader_file ) ) {
+				require_once $shared_loader_file;
+			}
+		}
+		
+		// If we still don't have the class, we're in standalone mode
+		if ( ! class_exists( 'Wbcom_Shared_Loader' ) ) {
+			return;
+		}
+		
+		// The main plugin class will handle registration
+		// This is just a placeholder for any additional registration logic
 	}
 	
 	/**
 	 * Initialize license components
 	 */
 	public function init_license_components() {
-		// Initialize license manager
+		// Use the original license manager that works with the existing UI
 		$license_manager_file = WBCOM_ESSENTIAL_PATH . '/license/class-license-manager.php';
 		if ( file_exists( $license_manager_file ) ) {
 			require_once $license_manager_file;
 			$this->license_manager = \WBCOM_ESSENTIAL_License_Manager::get_instance();
 		}
 		
-		// Initialize license updater
+		// Initialize license updater if needed
 		$license_updater_file = WBCOM_ESSENTIAL_PATH . '/license/class-license-updater.php';
 		if ( file_exists( $license_updater_file ) ) {
 			require_once $license_updater_file;
 			\WBCOM_ESSENTIAL_License_Updater::get_instance();
 		}
 	}
+	
+	/**
+	 * Static method to render admin page (for wrapper callback)
+	 */
+	public static function render_admin_page() {
+		$instance = new self();
+		// Initialize license components immediately for static calls
+		$instance->init_license_components();
+		$instance->render_widget_showcase_page();
+	}
 
 	/**
-	 * Add widget showcase menu
+	 * Add widget showcase menu (standalone mode when no WBcom wrapper is available)
 	 */
 	public function add_widget_showcase_menu() {
+		// Create a WBcom Designs menu that matches the shared system
 		add_menu_page(
-			esc_html__( 'WBcom Widgets', 'wbcom-essential' ),
-			esc_html__( 'WBcom Widgets', 'wbcom-essential' ),
+			esc_html__( 'WBcom Designs', 'wbcom-essential' ),
+			esc_html__( 'WBcom Designs', 'wbcom-essential' ),
 			'manage_options',
-			'wbcom-widgets',
-			array( $this, 'render_widget_showcase_page' ),
-			'dashicons-screenoptions',
-			58
+			'wbcom-designs',
+			array( $this, 'render_wbcom_dashboard' ),
+			$this->get_wbcom_menu_icon(),
+			58.5
 		);
+		
+		// Add Essential Widgets as a submenu
+		add_submenu_page(
+			'wbcom-designs',
+			esc_html__( 'Essential Widgets', 'wbcom-essential' ),
+			esc_html__( 'Essential Widgets', 'wbcom-essential' ),
+			'manage_options',
+			'wbcom-essential',
+			array( $this, 'render_widget_showcase_page' )
+		);
+	}
+	
+	/**
+	 * Get WBcom menu icon (matches the shared system)
+	 */
+	private function get_wbcom_menu_icon() {
+		$svg = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M10 2L13.09 8.26L20 9L14 12L15 20L10 17L5 20L6 12L0 9L6.91 8.26L10 2Z" fill="#a7aaad"/>
+		</svg>';
+		
+		return 'data:image/svg+xml;base64,' . base64_encode($svg);
+	}
+	
+	/**
+	 * Render WBcom dashboard for standalone mode
+	 */
+	public function render_wbcom_dashboard() {
+		// If we have the shared dashboard class available, use it
+		if ( class_exists( 'Wbcom_Shared_Dashboard' ) ) {
+			$plugins = array(
+				'wbcom-essential' => array(
+					'name' => 'WBcom Essential',
+					'version' => WBCOM_ESSENTIAL_VERSION,
+					'description' => '43+ premium Elementor widgets for BuddyPress, WooCommerce, and general purpose websites.',
+					'status' => 'active',
+					'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
+					'icon' => 'dashicons-screenoptions'
+				)
+			);
+			$dashboard = new Wbcom_Shared_Dashboard( $plugins );
+			$dashboard->render_dashboard();
+		} else {
+			// Fallback to simple dashboard
+			$this->render_simple_dashboard();
+		}
+	}
+	
+	/**
+	 * Render simple dashboard fallback
+	 */
+	private function render_simple_dashboard() {
+		?>
+		<div class="wrap">
+			<h1>
+				🌟 WBcom Designs
+				<span class="wbcom-version">v<?php echo esc_html( WBCOM_ESSENTIAL_VERSION ); ?></span>
+			</h1>
+			
+			<div class="notice notice-info">
+				<p><strong>Welcome to WBcom Designs!</strong> Manage your WBcom plugins from this centralized dashboard.</p>
+			</div>
+			
+			<div class="card">
+				<h2>Installed WBcom Plugins</h2>
+				<ul>
+					<li>
+						<strong>WBcom Essential</strong> (v<?php echo esc_html( WBCOM_ESSENTIAL_VERSION ); ?>)
+						- <a href="<?php echo esc_url( admin_url( 'admin.php?page=wbcom-essential' ) ); ?>">Essential Widgets</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="card">
+				<h2>Quick Links</h2>
+				<p>
+					<a href="https://wbcomdesigns.com/support/" target="_blank" class="button button-secondary">Get Support</a>
+					<a href="https://wbcomdesigns.com/downloads/" target="_blank" class="button button-secondary">Browse Premium Plugins</a>
+					<a href="https://docs.wbcomdesigns.com/" target="_blank" class="button button-secondary">Documentation</a>
+				</p>
+			</div>
+		</div>
+		
+		<style>
+		.wbcom-version {
+			font-size: 14px;
+			font-weight: normal;
+			color: #666;
+			background: #f0f0f1;
+			padding: 2px 8px;
+			border-radius: 12px;
+			margin-left: auto;
+		}
+		.card {
+			background: #fff;
+			border: 1px solid #c3c4c7;
+			padding: 20px;
+			margin: 20px 0;
+			border-radius: 4px;
+		}
+		.card h2 {
+			margin-top: 0;
+		}
+		</style>
+		<?php
 	}
 
 	/**
 	 * Enqueue admin styles
 	 */
 	public function enqueue_admin_styles( $hook ) {
-		if ( 'toplevel_page_wbcom-widgets' !== $hook ) {
+		// Check for both possible hooks (with and without wrapper)
+		$allowed_hooks = array(
+			'toplevel_page_wbcom-designs',     // Standalone dashboard
+			'toplevel_page_wbcom-widgets',      // Legacy standalone menu
+			'wbcom-designs_page_wbcom-essential', // Shared wrapper submenu
+			'admin_page_wbcom-essential',       // Other wrapper scenarios
+		);
+		
+		// Also check if we're on our page by checking the page parameter
+		$current_page = isset( $_GET['page'] ) ? $_GET['page'] : '';
+		
+		if ( ! in_array( $hook, $allowed_hooks ) && $current_page !== 'wbcom-essential' ) {
 			return;
 		}
 
+		// Load basic widget showcase styles first
 		wp_enqueue_style(
 			'wbcom-widget-showcase',
 			plugin_dir_url( __FILE__ ) . 'css/widget-showcase.css',
@@ -78,28 +277,70 @@ class Wbcom_Essential_Widget_Showcase {
 			'1.0.0'
 		);
 		
-		// License scripts
+		// Load plugin-specific admin styles for the WBcom Essential page
+		wp_enqueue_style(
+			'wbcom-essential-admin',
+			WBCOM_ESSENTIAL_URL . 'includes/shared-admin/wbcom-shared-admin.css',
+			array( 'wbcom-widget-showcase' ),
+			WBCOM_ESSENTIAL_VERSION
+		);
+		
+		// Load plugin-specific admin scripts
 		wp_enqueue_script(
-			'wbcom-essential-license',
-			plugin_dir_url( __FILE__ ) . 'js/license.js',
+			'wbcom-essential-admin',
+			WBCOM_ESSENTIAL_URL . 'includes/shared-admin/wbcom-shared-admin.js',
 			array( 'jquery' ),
-			'1.0.0',
+			WBCOM_ESSENTIAL_VERSION,
 			true
 		);
 		
+		// Localize the script
 		wp_localize_script(
-			'wbcom-essential-license',
-			'wbcomEssentialLicense',
+			'wbcom-essential-admin',
+			'wbcomShared',
 			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'wbcom_essential_license_nonce' ),
-				'strings'  => array(
-					'activating'   => esc_html__( 'Activating...', 'wbcom-essential' ),
-					'deactivating' => esc_html__( 'Deactivating...', 'wbcom-essential' ),
-					'checking'     => esc_html__( 'Checking...', 'wbcom-essential' ),
+				'version'     => WBCOM_ESSENTIAL_VERSION,
+				'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
+				'nonce'       => wp_create_nonce( 'wbcom_essential_nonce' ),
+				'pluginCount' => 1,
+				'currentPage' => 'wbcom-essential',
+				'strings'     => array(
+					'loading' => esc_html__( 'Loading...', 'wbcom-essential' ),
+					'error'   => esc_html__( 'Error loading content.', 'wbcom-essential' ),
+					'success' => esc_html__( 'Settings saved successfully.', 'wbcom-essential' ),
 				),
 			)
 		);
+		
+		// Note: License-specific assets are now handled by the WBcom_License_Base class
+		// This reduces duplication and ensures consistent license functionality
+		
+		// Also enqueue license-specific assets if we're on the license tab
+		if ( isset( $_GET['tab'] ) && $_GET['tab'] === 'license' ) {
+			// Enqueue the original license JS
+			wp_enqueue_script(
+				'wbcom-essential-license',
+				plugin_dir_url( __FILE__ ) . 'js/license.js',
+				array( 'jquery' ),
+				WBCOM_ESSENTIAL_VERSION,
+				true
+			);
+			
+			// Localize script for AJAX
+			wp_localize_script(
+				'wbcom-essential-license',
+				'wbcomEssentialLicense',
+				array(
+					'ajax_url' => admin_url( 'admin-ajax.php' ),
+					'nonce'    => wp_create_nonce( 'wbcom_essential_license_nonce' ),
+					'strings'  => array(
+						'activating'   => esc_html__( 'Activating...', 'wbcom-essential' ),
+						'deactivating' => esc_html__( 'Deactivating...', 'wbcom-essential' ),
+						'checking'     => esc_html__( 'Checking...', 'wbcom-essential' ),
+					),
+				)
+			);
+		}
 	}
 
 	/**
@@ -347,39 +588,122 @@ class Wbcom_Essential_Widget_Showcase {
 	public function render_widget_showcase_page() {
 		$widgets = $this->get_widgets_list();
 		$current_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'widgets';
+		$current_page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : 'wbcom-essential';
 		?>
-		<div class="wrap">
-			<h1><?php esc_html_e( 'WBcom Essential', 'wbcom-essential' ); ?></h1>
+		<div class="wrap wbcom-essential-admin">
+			<h1>
+				<span class="dashicons dashicons-screenoptions" style="margin-right: 10px; color: #0073aa;"></span>
+				<?php esc_html_e( 'WBcom Essential', 'wbcom-essential' ); ?>
+			</h1>
 			
-			<nav class="nav-tab-wrapper wp-clearfix">
-				<a href="?page=wbcom-widgets&tab=widgets" class="nav-tab <?php echo $current_tab === 'widgets' ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Widgets', 'wbcom-essential' ); ?>
-				</a>
-				<a href="?page=wbcom-widgets&tab=license" class="nav-tab <?php echo $current_tab === 'license' ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'License', 'wbcom-essential' ); ?>
-				</a>
-				<a href="?page=wbcom-widgets&tab=faq" class="nav-tab <?php echo $current_tab === 'faq' ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'FAQ', 'wbcom-essential' ); ?>
-				</a>
-			</nav>
+			<div class="tab-content-wrapper">
+				<nav class="nav-tab-wrapper" role="tablist">
+					<a href="?page=<?php echo esc_attr( $current_page ); ?>&tab=widgets" 
+					   class="nav-tab <?php echo $current_tab === 'widgets' ? 'nav-tab-active' : ''; ?>"
+					   role="tab"
+					   aria-selected="<?php echo $current_tab === 'widgets' ? 'true' : 'false'; ?>">
+						<span class="dashicons dashicons-screenoptions"></span>
+						<?php esc_html_e( 'Widgets', 'wbcom-essential' ); ?>
+					</a>
+					<a href="?page=<?php echo esc_attr( $current_page ); ?>&tab=license" 
+					   class="nav-tab <?php echo $current_tab === 'license' ? 'nav-tab-active' : ''; ?>"
+					   role="tab"
+					   aria-selected="<?php echo $current_tab === 'license' ? 'true' : 'false'; ?>">
+						<span class="dashicons dashicons-admin-network"></span>
+						<?php esc_html_e( 'License', 'wbcom-essential' ); ?>
+					</a>
+					<a href="?page=<?php echo esc_attr( $current_page ); ?>&tab=faq" 
+					   class="nav-tab <?php echo $current_tab === 'faq' ? 'nav-tab-active' : ''; ?>"
+					   role="tab"
+					   aria-selected="<?php echo $current_tab === 'faq' ? 'true' : 'false'; ?>">
+						<span class="dashicons dashicons-editor-help"></span>
+						<?php esc_html_e( 'FAQ', 'wbcom-essential' ); ?>
+					</a>
+				</nav>
 
-			<div class="tab-content">
-				<?php
-				switch ( $current_tab ) {
-					case 'license':
-						$this->render_license_tab();
-						break;
-					case 'faq':
-						$this->render_faq_tab();
-						break;
-					case 'widgets':
-					default:
-						$this->render_widgets_tab( $widgets );
-						break;
-				}
-				?>
+				<div class="tab-content" role="tabpanel">
+					<?php
+					switch ( $current_tab ) {
+						case 'license':
+							$this->render_license_tab();
+							break;
+						case 'faq':
+							$this->render_faq_tab();
+							break;
+						case 'widgets':
+						default:
+							$this->render_widgets_tab( $widgets );
+							break;
+					}
+					?>
+				</div>
 			</div>
 		</div>
+		
+		<style>
+		.wbcom-essential-admin .nav-tab-wrapper {
+			margin: 0;
+			padding: 0;
+			border-bottom: 1px solid #c3c4c7;
+			background: #f8f9fa;
+			display: flex;
+			align-items: stretch;
+		}
+		
+		.wbcom-essential-admin .nav-tab {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 12px 16px;
+			border: none;
+			border-bottom: 2px solid transparent;
+			background: transparent;
+			color: #646970;
+			text-decoration: none;
+			margin: 0;
+			font-size: 14px;
+			line-height: 1.4;
+		}
+		
+		.wbcom-essential-admin .nav-tab:hover {
+			background: #fff;
+			color: #0073aa;
+		}
+		
+		.wbcom-essential-admin .nav-tab-active {
+			background: #fff;
+			color: #0073aa;
+			border-bottom-color: #0073aa;
+		}
+		
+		.wbcom-essential-admin .nav-tab .dashicons {
+			font-size: 16px;
+			line-height: 1;
+			width: 16px;
+			height: 16px;
+		}
+		
+		.wbcom-essential-admin .tab-content-wrapper {
+			background: #fff;
+			border: 1px solid #c3c4c7;
+			border-radius: 0 0 4px 4px;
+			border-top: none;
+			margin-top: 0;
+		}
+		
+		.wbcom-essential-admin .tab-content {
+			padding: 20px;
+		}
+		
+		.wbcom-essential-admin h1 {
+			display: flex;
+			align-items: center;
+			font-size: 23px;
+			font-weight: 400;
+			margin: 20px 0;
+			line-height: 1.3;
+		}
+		</style>
 		<?php
 	}
 
@@ -435,13 +759,17 @@ class Wbcom_Essential_Widget_Showcase {
 	 * Render license tab content
 	 */
 	private function render_license_tab() {
+		// Ensure license components are initialized
+		if ( ! $this->license_manager ) {
+			$this->init_license_components();
+		}
 		?>
 		<div class="wbcom-license-content">
 			<?php 
 			if ( $this->license_manager ) {
 				$this->license_manager->render_license_tab(); 
 			} else {
-				echo '<p>' . esc_html__( 'License system is initializing...', 'wbcom-essential' ) . '</p>';
+				echo '<p>' . esc_html__( 'License system is not available.', 'wbcom-essential' ) . '</p>';
 			}
 			?>
 		</div>
@@ -537,6 +865,3 @@ class Wbcom_Essential_Widget_Showcase {
 		<?php
 	}
 }
-
-// Initialize the widget showcase
-new Wbcom_Essential_Widget_Showcase();

@@ -5,7 +5,7 @@
  * This wrapper class handles text domain issues with the EDD updater
  * and provides a clean interface for our plugin.
  *
- * @package RestrictEmailDomainWP
+ * @package WBCOM_ESSENTIAL
  */
 
 // Exit if accessed directly
@@ -124,7 +124,7 @@ class WBCOM_ESSENTIAL_EDD_Updater_Wrapper {
         
         // Check if we're on our settings page
         $screen = get_current_screen();
-        if ( $screen && strpos( $screen->id, 'restrict-email-domain' ) !== false ) {
+        if ( $screen && strpos( $screen->id, 'wbcom-essential' ) !== false ) {
             return true;
         }
         

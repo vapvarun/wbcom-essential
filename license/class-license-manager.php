@@ -26,8 +26,24 @@ class WBCOM_ESSENTIAL_License_Manager {
         // Handle form submissions
         add_action( 'admin_init', array( $this, 'handle_license_actions' ) );
         
-        // Remove the enqueue scripts action since it's handled by widget showcase
-        // add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_license_scripts' ) );
+        // License asset enqueuing (handled by widget showcase, but method needed for hook compatibility)
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_license_assets' ) );
+    }
+    
+    /**
+     * Enqueue license assets only when needed
+     * This method is required by the admin_enqueue_scripts hook but assets are handled by widget showcase
+     */
+    public function enqueue_license_assets() {
+        // Assets are handled by the widget showcase class, so this method is empty
+        // but exists to prevent fatal errors from the hook
+    }
+    
+    /**
+     * Get license key
+     */
+    public function get_license_key() {
+        return get_option( 'wbcom_essential_license_key' );
     }
     
     /**
