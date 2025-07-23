@@ -256,7 +256,6 @@ class Wbcom_Shared_Loader {
         // Validate required fields
         if (empty($plugin_data['slug']) || empty($plugin_data['name'])) {
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('Wbcom Shared: Plugin registration failed - missing slug or name');
             }
             return false;
         }
@@ -330,13 +329,11 @@ class Wbcom_Shared_Loader {
      */
     private function init_shared_system() {
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('WBcom Shared: init_shared_system() called, is_primary_loader: ' . ($this->is_primary_loader ? 'true' : 'false'));
         }
         
         if (!$this->is_primary_loader) return;
         
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('WBcom Shared: Initializing shared system');
         }
         
         // Load required classes
@@ -346,7 +343,6 @@ class Wbcom_Shared_Loader {
         if (did_action('admin_menu')) {
             // admin_menu hook has already fired, create menu immediately
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('WBcom Shared: admin_menu hook already fired, creating menu immediately');
             }
             $this->create_main_menu();
             $this->add_plugin_submenus();
@@ -355,7 +351,6 @@ class Wbcom_Shared_Loader {
             add_action('admin_menu', array($this, 'create_main_menu'), 5);
             add_action('admin_menu', array($this, 'add_plugin_submenus'), 10);
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('WBcom Shared: Admin menu hooks added for future firing');
             }
         }
         
@@ -374,7 +369,6 @@ class Wbcom_Shared_Loader {
         
         if (empty($base_path) || !is_dir($base_path)) {
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('Wbcom Shared: Could not find shared-admin directory at: ' . $base_path);
             }
             return;
         }
@@ -389,7 +383,6 @@ class Wbcom_Shared_Loader {
                 require_once $file_path;
             } else {
                 if (defined('WP_DEBUG') && WP_DEBUG) {
-                    error_log('Wbcom Shared: Could not load class file: ' . $file_path);
                 }
             }
         }
@@ -400,19 +393,16 @@ class Wbcom_Shared_Loader {
      */
     public function create_main_menu() {
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('WBcom Shared: create_main_menu() called - current_action: ' . current_action() . ', current_filter: ' . current_filter());
         }
         
         // Check if menu already exists
         if ($this->menu_exists()) {
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('WBcom Shared: Menu already exists, skipping');
             }
             return;
         }
         
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('WBcom Shared: Creating main menu');
         }
         
         add_menu_page(
@@ -426,7 +416,6 @@ class Wbcom_Shared_Loader {
         );
         
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('WBcom Shared: Main menu created');
         }
         
         // Add dashboard as first submenu
@@ -440,7 +429,6 @@ class Wbcom_Shared_Loader {
         );
         
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('WBcom Shared: Dashboard submenu added');
         }
     }
     
@@ -658,7 +646,6 @@ class Wbcom_Shared_Loader {
             }
         } catch (Exception $e) {
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('Wbcom Shared Dashboard Error: ' . $e->getMessage());
             }
             $this->show_fallback_dashboard();
         }

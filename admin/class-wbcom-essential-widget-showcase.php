@@ -39,16 +39,9 @@ class Wbcom_Essential_Widget_Showcase {
 	 * Check if we should use the WBcom wrapper
 	 */
 	private function should_use_wrapper() {
-		// Debug logging
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'WBcom Essential: Checking wrapper availability' );
-		}
 		
 		// Check if WBcom shared system is already available
 		if ( class_exists( 'Wbcom_Shared_Loader' ) ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: Using existing shared loader' );
-			}
 			return true;
 		}
 		
@@ -58,25 +51,16 @@ class Wbcom_Essential_Widget_Showcase {
 			require_once $shared_loader_file;
 			if ( class_exists( 'Wbcom_Shared_Loader' ) ) {
 				// We can use the wrapper - the shared system will be initialized
-				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-					error_log( 'WBcom Essential: Loaded our own shared system' );
-				}
 				return true;
 			}
 		}
 		
 		// Check if another WBcom plugin has a shared system available
 		if ( function_exists( 'wbcom_integrate_plugin' ) ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: Using legacy integration' );
-			}
 			return true;
 		}
 		
 		// No wrapper available - we'll create our own standalone menu
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'WBcom Essential: Creating standalone menu' );
-		}
 		return false;
 	}
 	

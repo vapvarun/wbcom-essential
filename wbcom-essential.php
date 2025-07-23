@@ -104,6 +104,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			$this->init_wbcom_wrapper();
 		}
 		
+		
 		/**
 		 * Load plugin textdomain
 		 */
@@ -119,24 +120,12 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 * Include plugin files
 		 */
 		public function includes() {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: includes() method called' );
-			}
 			
-			if ( did_action( 'elementor/loaded' ) ) {
-				require WBCOM_ESSENTIAL_PATH . '/includes/wbcom-essential-function.php';
-				require WBCOM_ESSENTIAL_PATH . '/plugins/elementor/Plugins.php';
-			}
+			// Elementor components are now loaded via the elementor/loaded hook
 			
 			// Include and initialize widget showcase
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: About to instantiate widget showcase' );
-			}
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: Widget showcase instantiated' );
-			}
 		}
 
 		public function wbcom_essential_elementor_add_image_sizes() {
@@ -181,7 +170,6 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 */
 		public function register_with_shared_system() {
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: register_with_shared_system() called' );
 			}
 			
 			// Try to load the shared loader if not already loaded
@@ -194,14 +182,11 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			
 			if ( ! class_exists( 'Wbcom_Shared_Loader' ) ) {
 				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-					error_log( 'WBcom Essential: Wbcom_Shared_Loader class not available' );
 				}
 				return;
 			}
 			
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: Registering with shared system' );
-				error_log( 'WBcom Essential: About to call quick_register' );
 			}
 			
 			// Use the advanced quick registration system
@@ -222,7 +207,6 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			);
 			
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBcom Essential: Registration completed' );
 			}
 		}
 		

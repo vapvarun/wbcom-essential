@@ -270,7 +270,6 @@ class Plugin {
 		if ( ! file_exists( $filename ) || ! is_readable( $filename ) ) {
 			// Log error only in development/debug mode
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WBCOM Essential Autoloader: Unable to load class file: ' . $filename . ' for class: ' . $class );
 			}
 			return;
 		}

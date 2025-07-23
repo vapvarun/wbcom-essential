@@ -47,7 +47,6 @@ class ElementorHooks {
 	 * ElementorHooks constructor.
 	 */
 	public function __construct() {
-
 		// add_action( 'elementor/init', array( $this, 'early_init' ), 0 );
 
 		// add_action(
