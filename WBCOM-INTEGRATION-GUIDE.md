@@ -235,17 +235,39 @@ class Your_Admin_Class {
 
 If your plugin requires license activation:
 
-### Step 1: Copy License Files
+### Step 1: Use Unique File and Class Names
 
-Copy the `license/` folder from wbcom-essential (excluding plugin-specific files):
+**RECOMMENDED APPROACH**: Use unique file names and class names for each plugin:
 
 ```
 your-plugin/
 ├── license/
-│   ├── class-license-manager.php (modify for your plugin)
-│   ├── class-license-updater.php (modify for your plugin)
-│   ├── class-edd-updater-wrapper.php
-│   └── EDD_SL_Plugin_Updater.php
+│   ├── class-your-plugin-license-manager.php (unique name)
+│   ├── class-your-plugin-license-updater.php (unique name)
+│   ├── class-your-plugin-edd-updater-wrapper.php (unique name)
+│   └── EDD_SL_Plugin_Updater.php (shared - load with class_exists check)
+```
+
+**Only the base EDD file needs a class_exists check:**
+
+```php
+// Only check for the shared EDD class
+if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+    require_once plugin_dir_path( __FILE__ ) . 'license/EDD_SL_Plugin_Updater.php';
+}
+
+// Your plugin-specific files have unique names, so load them directly
+require_once plugin_dir_path( __FILE__ ) . 'license/class-your-plugin-license-manager.php';
+require_once plugin_dir_path( __FILE__ ) . 'license/class-your-plugin-edd-updater-wrapper.php';
+
+// Enqueue license JavaScript from license folder
+wp_enqueue_script(
+    'your-plugin-license',
+    plugin_dir_url( __FILE__ ) . 'license/license.js',
+    array( 'jquery' ),
+    YOUR_PLUGIN_VERSION,
+    true
+);
 ```
 
 ### Step 2: Define License Constants
@@ -260,6 +282,8 @@ define( 'YOUR_PLUGIN_ITEM_NAME', 'Your Plugin Name' ); // Exact name on store
 ```
 
 ### Step 3: Create Your License Manager
+
+**IMPORTANT**: Use unique class names or namespaces to avoid conflicts:
 
 Modify the license manager class:
 
@@ -283,23 +307,66 @@ class YOUR_PLUGIN_License_Manager {
         add_action( 'wp_ajax_your_plugin_activate_license', array( $this, 'ajax_activate_license' ) );
         add_action( 'wp_ajax_your_plugin_deactivate_license', array( $this, 'ajax_deactivate_license' ) );
         add_action( 'wp_ajax_your_plugin_check_license', array( $this, 'ajax_check_license' ) );
+        add_action( 'wp_ajax_save_license_key', array( $this, 'ajax_save_license_key' ) );
+        
+        // Handle form submissions
+        add_action( 'admin_init', array( $this, 'handle_license_actions' ) );
     }
     
     public function get_license_key() {
         return get_option( 'your_plugin_license_key' );
     }
     
+    /**
+     * AJAX handler for saving license key
+     * This method avoids form submission conflicts
+     */
+    public function ajax_save_license_key() {
+        check_ajax_referer( 'your_plugin_license_nonce', 'nonce' );
+        
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'your-text-domain' ) ) );
+        }
+        
+        $license_key = isset( $_POST['your_plugin_license_key'] ) ? trim( sanitize_text_field( $_POST['your_plugin_license_key'] ) ) : '';
+        $old_license = get_option( 'your_plugin_license_key', '' );
+        
+        // Clear status when key changes
+        if ( $old_license !== $license_key ) {
+            delete_option( 'your_plugin_license_status' );
+            delete_option( 'your_plugin_license_data' );
+        }
+        
+        // Force update the option
+        delete_option( 'your_plugin_license_key' );
+        add_option( 'your_plugin_license_key', $license_key, '', 'no' );
+        
+        wp_send_json_success( array( 'message' => __( 'License key saved successfully', 'your-text-domain' ) ) );
+    }
+    
     // ... rest of license methods
 }
 ```
 
-### Step 4: Initialize License System
+### Step 4: Initialize License System Safely
 
 In your admin class:
 
 ```php
 private function init_license_components() {
-    $license_manager_file = plugin_dir_path( __FILE__ ) . 'license/class-license-manager.php';
+    // Load shared EDD files with class existence checks
+    $edd_updater_file = plugin_dir_path( __FILE__ ) . 'license/EDD_SL_Plugin_Updater.php';
+    if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) && file_exists( $edd_updater_file ) ) {
+        require_once $edd_updater_file;
+    }
+    
+    $wrapper_file = plugin_dir_path( __FILE__ ) . 'license/class-edd-updater-wrapper.php';
+    if ( ! class_exists( 'WBCOM_EDD_SL_Plugin_Updater_Wrapper' ) && file_exists( $wrapper_file ) ) {
+        require_once $wrapper_file;
+    }
+    
+    // Load your plugin-specific license manager
+    $license_manager_file = plugin_dir_path( __FILE__ ) . 'license/class-your-plugin-license-manager.php';
     if ( file_exists( $license_manager_file ) ) {
         require_once $license_manager_file;
         $this->license_manager = \YOUR_PLUGIN_License_Manager::get_instance();
@@ -377,6 +444,55 @@ private function should_use_wrapper() {
 }
 ```
 
+## Recent Updates and Fixes
+
+### License System Improvements (v3.9.4)
+
+1. **Fixed License Key Saving Issues**
+   - Switched from form submission to AJAX-based saving to avoid conflicts with hidden fields
+   - Implemented force update by deleting and re-adding options
+   - Added proper status clearing when license key changes
+
+2. **Improved UI/UX**
+   - Added "Change License Key" button with save/cancel options
+   - License key is now masked for security (shows first 5 characters only)
+   - Better error handling and user feedback
+
+3. **JavaScript Enhancements**
+   - Proper scope management for license operations
+   - Consistent AJAX handling across all license actions
+   - Auto-reload after successful save to reflect changes
+
+### Implementation Example
+
+```javascript
+// Handle save change button
+$('#your-plugin-save-change').on('click', function(e) {
+    e.preventDefault();
+    
+    const newKey = $('#your_plugin_license_key').val().trim();
+    
+    // Use AJAX to save the license key directly
+    $.ajax({
+        url: yourPluginLicense.ajax_url,
+        type: 'POST',
+        data: {
+            action: 'save_license_key',
+            your_plugin_license_key: newKey,
+            nonce: yourPluginLicense.nonce
+        },
+        success: function(response) {
+            if (response.success) {
+                // Reload to show updated license
+                const url = new URL(window.location.href);
+                url.searchParams.set('updated', 'true');
+                window.location.href = url.toString();
+            }
+        }
+    });
+});
+```
+
 ## Troubleshooting
 
 ### Common Issues
@@ -385,12 +501,20 @@ private function should_use_wrapper() {
    - Ensure you're not instantiating admin classes multiple times
    - Check that fallback integration only runs if primary fails
 
-2. **License not saving**
+2. **Fatal error: Class already declared**
+   - Always use `class_exists()` checks before including shared files
+   - Use unique class names for plugin-specific classes
+   - Consider using namespaces for all your classes
+
+3. **License not saving**
    - Verify license constants are defined
    - Check AJAX handlers are registered
    - Ensure nonces match in JS and PHP
+   - Use AJAX-based save method instead of form submission to avoid conflicts
+   - Force update options by deleting and re-adding them
+   - Clear license status when key changes
 
-3. **Styles not loading**
+4. **Styles not loading**
    - Enqueue styles only on your admin pages
    - Check for hook priority conflicts
 
@@ -411,10 +535,55 @@ your-plugin/
 ├── includes/
 │   └── shared-admin/ (shared system files)
 ├── license/ (for premium plugins only)
-│   ├── class-license-manager.php
-│   └── ...
+│   ├── class-your-plugin-license-manager.php (unique name!)
+│   ├── class-your-plugin-license-updater.php (unique name!)
+│   ├── class-your-plugin-edd-updater-wrapper.php (unique name!)
+│   ├── license.js (license JavaScript functionality)
+│   └── EDD_SL_Plugin_Updater.php (shared - load with class_exists check)
 └── admin/
     └── class-your-admin.php
+```
+
+### Safe License File Loading Example
+
+```php
+// In your main plugin file or loader
+namespace YOUR_PLUGIN_NAMESPACE;
+
+class License_Loader {
+    
+    public static function init() {
+        // Only load if not already loaded by another plugin
+        add_action( 'plugins_loaded', array( __CLASS__, 'load_license_files' ), 5 );
+    }
+    
+    public static function load_license_files() {
+        $license_path = plugin_dir_path( __FILE__ ) . 'license/';
+        
+        // Load shared EDD updater (used by multiple plugins)
+        if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+            $edd_file = $license_path . 'EDD_SL_Plugin_Updater.php';
+            if ( file_exists( $edd_file ) ) {
+                require_once $edd_file;
+            }
+        }
+        
+        // Load shared wrapper (used by multiple plugins)
+        if ( ! class_exists( 'WBCOM_EDD_SL_Plugin_Updater_Wrapper' ) ) {
+            $wrapper_file = $license_path . 'class-edd-updater-wrapper.php';
+            if ( file_exists( $wrapper_file ) ) {
+                require_once $wrapper_file;
+            }
+        }
+        
+        // Load plugin-specific files (always unique names)
+        require_once $license_path . 'class-your-plugin-license-manager.php';
+        require_once $license_path . 'class-your-plugin-license-updater.php';
+    }
+}
+
+// Initialize the license loader
+License_Loader::init();
 ```
 
 ## Best Practices
@@ -424,13 +593,32 @@ your-plugin/
 3. **Lazy Loading**: Initialize components only when needed
 4. **Version Checking**: Handle compatibility with older WBcom systems
 5. **Consistent Styling**: Use the provided CSS classes for uniform appearance
+6. **Prevent Class Conflicts**: Always check `class_exists()` before including shared files
+7. **Unique Class Names**: Prefix all classes with your plugin identifier
 
 ## Example Implementation
 
 See `wbcom-essential` plugin for a complete implementation example:
 - Main plugin file: `wbcom-essential.php`
 - Admin class: `admin/class-wbcom-essential-widget-showcase.php`
-- License system: `license/` folder
+- License system: `license/` folder with properly named files:
+  - `class-wbcom-essential-license-manager.php`
+  - `class-wbcom-essential-license-updater.php`
+  - `class-wbcom-essential-edd-updater-wrapper.php`
+  - `license.js` (JavaScript functionality)
+  - `EDD_SL_Plugin_Updater.php` (shared)
+
+## Version History
+
+### v3.9.4
+- Fixed license key saving issues with AJAX implementation
+- Improved license UI with change/save/cancel workflow
+- Added proper option force update mechanism
+- Enhanced error handling and user feedback
+
+### v3.9.3
+- Initial shared wrapper system
+- Basic license integration
 
 ## Support
 

@@ -14,9 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Load the EDD updater class
+ * Load the EDD updater class with class existence check
  */
-require_once WBCOM_ESSENTIAL_PLUGIN_DIR . 'license/EDD_SL_Plugin_Updater.php';
+if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+    require_once WBCOM_ESSENTIAL_PLUGIN_DIR . 'license/EDD_SL_Plugin_Updater.php';
+}
 
 /**
  * Wrapper class for EDD_SL_Plugin_Updater

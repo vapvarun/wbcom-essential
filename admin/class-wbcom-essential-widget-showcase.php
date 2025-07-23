@@ -89,18 +89,34 @@ class Wbcom_Essential_Widget_Showcase {
 	 * Initialize license components
 	 */
 	public function init_license_components() {
+		error_log('WBCOM DEBUG: init_license_components called');
 		// Use the original license manager that works with the existing UI
-		$license_manager_file = WBCOM_ESSENTIAL_PATH . '/license/class-license-manager.php';
+		$license_manager_file = WBCOM_ESSENTIAL_PATH . '/license/class-wbcom-essential-license-manager.php';
+		error_log('WBCOM DEBUG: Looking for license manager file: ' . $license_manager_file);
+		
 		if ( file_exists( $license_manager_file ) ) {
+			error_log('WBCOM DEBUG: License manager file exists, requiring it');
 			require_once $license_manager_file;
-			$this->license_manager = \WBCOM_ESSENTIAL_License_Manager::get_instance();
+			
+			if ( class_exists( 'WBCOM_ESSENTIAL_License_Manager' ) ) {
+				error_log('WBCOM DEBUG: WBCOM_ESSENTIAL_License_Manager class exists, creating instance');
+				$this->license_manager = \WBCOM_ESSENTIAL_License_Manager::get_instance();
+				error_log('WBCOM DEBUG: License manager instance created successfully');
+			} else {
+				error_log('WBCOM DEBUG: WBCOM_ESSENTIAL_License_Manager class does NOT exist');
+			}
+		} else {
+			error_log('WBCOM DEBUG: License manager file does NOT exist');
 		}
 		
 		// Initialize license updater if needed
-		$license_updater_file = WBCOM_ESSENTIAL_PATH . '/license/class-license-updater.php';
+		$license_updater_file = WBCOM_ESSENTIAL_PATH . '/license/class-wbcom-essential-license-updater.php';
 		if ( file_exists( $license_updater_file ) ) {
 			require_once $license_updater_file;
-			\WBCOM_ESSENTIAL_License_Updater::get_instance();
+			
+			if ( class_exists( 'WBCOM_ESSENTIAL_License_Updater' ) ) {
+				\WBCOM_ESSENTIAL_License_Updater::get_instance();
+			}
 		}
 	}
 	
@@ -261,6 +277,14 @@ class Wbcom_Essential_Widget_Showcase {
 			'1.0.0'
 		);
 		
+		// Load modern shared tab styles
+		wp_enqueue_style(
+			'wbcom-shared-tabs',
+			WBCOM_ESSENTIAL_URL . 'includes/shared-admin/wbcom-shared-tabs.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+		
 		// Load plugin-specific admin styles for the WBcom Essential page
 		wp_enqueue_style(
 			'wbcom-essential-admin',
@@ -301,10 +325,10 @@ class Wbcom_Essential_Widget_Showcase {
 		
 		// Also enqueue license-specific assets if we're on the license tab
 		if ( isset( $_GET['tab'] ) && $_GET['tab'] === 'license' ) {
-			// Enqueue the original license JS
+			// Enqueue the license JS from license folder
 			wp_enqueue_script(
 				'wbcom-essential-license',
-				plugin_dir_url( __FILE__ ) . 'js/license.js',
+				WBCOM_ESSENTIAL_URL . 'license/license.js',
 				array( 'jquery' ),
 				WBCOM_ESSENTIAL_VERSION,
 				true
@@ -580,24 +604,24 @@ class Wbcom_Essential_Widget_Showcase {
 				<?php esc_html_e( 'WBcom Essential', 'wbcom-essential' ); ?>
 			</h1>
 			
-			<div class="tab-content-wrapper">
-				<nav class="nav-tab-wrapper" role="tablist">
+			<div class="wbcom-tab-wrapper">
+				<nav class="wbcom-nav-tab-wrapper nav-tab-wrapper" role="tablist">
 					<a href="?page=<?php echo esc_attr( $current_page ); ?>&tab=widgets" 
-					   class="nav-tab <?php echo $current_tab === 'widgets' ? 'nav-tab-active' : ''; ?>"
+					   class="wbcom-nav-tab nav-tab <?php echo $current_tab === 'widgets' ? 'nav-tab-active' : ''; ?>"
 					   role="tab"
 					   aria-selected="<?php echo $current_tab === 'widgets' ? 'true' : 'false'; ?>">
 						<span class="dashicons dashicons-screenoptions"></span>
 						<?php esc_html_e( 'Widgets', 'wbcom-essential' ); ?>
 					</a>
 					<a href="?page=<?php echo esc_attr( $current_page ); ?>&tab=license" 
-					   class="nav-tab <?php echo $current_tab === 'license' ? 'nav-tab-active' : ''; ?>"
+					   class="wbcom-nav-tab nav-tab <?php echo $current_tab === 'license' ? 'nav-tab-active' : ''; ?>"
 					   role="tab"
 					   aria-selected="<?php echo $current_tab === 'license' ? 'true' : 'false'; ?>">
 						<span class="dashicons dashicons-admin-network"></span>
 						<?php esc_html_e( 'License', 'wbcom-essential' ); ?>
 					</a>
 					<a href="?page=<?php echo esc_attr( $current_page ); ?>&tab=faq" 
-					   class="nav-tab <?php echo $current_tab === 'faq' ? 'nav-tab-active' : ''; ?>"
+					   class="wbcom-nav-tab nav-tab <?php echo $current_tab === 'faq' ? 'nav-tab-active' : ''; ?>"
 					   role="tab"
 					   aria-selected="<?php echo $current_tab === 'faq' ? 'true' : 'false'; ?>">
 						<span class="dashicons dashicons-editor-help"></span>
@@ -605,7 +629,7 @@ class Wbcom_Essential_Widget_Showcase {
 					</a>
 				</nav>
 
-				<div class="tab-content" role="tabpanel">
+				<div class="wbcom-tab-content tab-content" role="tabpanel">
 					<?php
 					switch ( $current_tab ) {
 						case 'license':
@@ -620,8 +644,8 @@ class Wbcom_Essential_Widget_Showcase {
 							break;
 					}
 					?>
-				</div>
-			</div>
+				</div><!-- .wbcom-tab-content -->
+			</div><!-- .wbcom-tab-wrapper -->
 		</div>
 		
 		<style>

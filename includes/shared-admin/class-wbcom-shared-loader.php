@@ -449,10 +449,13 @@ class Wbcom_Shared_Loader {
             
             // Only add if submenu doesn't already exist
             if (!$this->submenu_exists($menu_slug)) {
+                // Apply filter to allow customization of menu label
+                $menu_label = apply_filters('wbcom_submenu_label', $plugin['name'], $plugin['slug'], $plugin);
+                
                 add_submenu_page(
                     'wbcom-designs',
-                    $plugin['name'],
-                    $plugin['name'],
+                    $plugin['name'],  // Page title
+                    $menu_label,      // Menu label (filtered)
                     'manage_options',
                     $menu_slug,
                     array($this, 'show_plugin_page')

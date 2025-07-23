@@ -38,8 +38,8 @@ class WBCOM_ESSENTIAL_License_Updater {
         }
 
         // Get license key from the new standardized license system
-        if ( class_exists( '\WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager' ) ) {
-            $license_manager = \WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager::get_instance();
+        if ( class_exists( 'WBCOM_ESSENTIAL_License_Manager' ) ) {
+            $license_manager = WBCOM_ESSENTIAL_License_Manager::get_instance();
             $license_key = $license_manager->get_license_key();
         } else {
             // Fallback to old option names for backward compatibility
@@ -51,7 +51,7 @@ class WBCOM_ESSENTIAL_License_Updater {
 
         if ( ! empty( $license_key ) ) {
             // Use the EDD updater wrapper directly
-            $updater_wrapper_file = WBCOM_ESSENTIAL_PATH . '/license/class-edd-updater-wrapper.php';
+            $updater_wrapper_file = WBCOM_ESSENTIAL_PATH . '/license/class-wbcom-essential-edd-updater-wrapper.php';
             if ( file_exists( $updater_wrapper_file ) ) {
                 require_once $updater_wrapper_file;
                 

@@ -356,6 +356,7 @@ class WBCOM_ESSENTIAL_License_Manager {
         }
         
         $license_key = isset( $_POST['wbcom_essential_license_key'] ) ? trim( sanitize_text_field( $_POST['wbcom_essential_license_key'] ) ) : '';
+        
         $old_license = get_option( 'wbcom_essential_license_key', '' );
         
         // Always update when using AJAX save

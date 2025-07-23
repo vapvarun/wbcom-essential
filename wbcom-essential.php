@@ -219,8 +219,8 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 */
 		private function get_license_key() {
 			// Try to get from new license system first
-			if ( class_exists( '\WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager' ) ) {
-				$license_manager = \WBCOM_ESSENTIAL\WBCOM_ESSENTIAL_License_Manager::get_instance();
+			if ( class_exists( 'WBCOM_ESSENTIAL_License_Manager' ) ) {
+				$license_manager = WBCOM_ESSENTIAL_License_Manager::get_instance();
 				$license_key = $license_manager->get_license_key();
 				if ( ! empty( $license_key ) ) {
 					return $license_key;
