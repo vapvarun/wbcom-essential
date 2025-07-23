@@ -132,11 +132,12 @@ class WBCOM_ESSENTIAL_License_Manager {
                                            value="" 
                                            class="regular-text" 
                                            placeholder="<?php esc_attr_e( 'Enter your license key', 'wbcom-essential' ); ?>" />
-                                    <?php if ( $has_key ) : ?>
-                                        <button type="button" id="wbcom-essential-cancel-change" class="button button-small">
-                                            <?php esc_html_e( 'Cancel', 'wbcom-essential' ); ?>
-                                        </button>
-                                    <?php endif; ?>
+                                    <button type="button" id="wbcom-essential-save-change" class="button button-primary button-small" <?php echo $has_key ? 'style="margin-left: 10px;"' : 'style="display:none;"'; ?>>
+                                        <?php esc_html_e( 'Save', 'wbcom-essential' ); ?>
+                                    </button>
+                                    <button type="button" id="wbcom-essential-cancel-change" class="button button-small" <?php echo $has_key ? 'style="margin-left: 5px;"' : 'style="display:none;"'; ?>>
+                                        <?php esc_html_e( 'Cancel', 'wbcom-essential' ); ?>
+                                    </button>
                                 </div>
                                 
                                 <!-- Hidden field to store actual key for AJAX operations -->
@@ -163,7 +164,7 @@ class WBCOM_ESSENTIAL_License_Manager {
                     </tr>
                 </table>
                 
-                <div class="wbcom-essential-license-actions">
+                <div class="wbcom-essential-license-actions" id="wbcom-essential-license-actions">
                     <?php if ( $license_status['status'] === 'valid' ) : ?>
                         <button type="button" id="wbcom-essential-deactivate-license" class="button button-secondary">
                             <?php _e( 'Deactivate License', 'wbcom-essential' ); ?>
@@ -178,9 +179,11 @@ class WBCOM_ESSENTIAL_License_Manager {
                         <?php _e( 'Check License', 'wbcom-essential' ); ?>
                     </button>
                     
-                    <button type="submit" name="wbcom_essential_save_license" class="button">
-                        <?php _e( 'Save License Key', 'wbcom-essential' ); ?>
-                    </button>
+                    <?php if ( ! $has_key ) : ?>
+                        <button type="submit" name="wbcom_essential_save_license" class="button button-primary">
+                            <?php _e( 'Save License Key', 'wbcom-essential' ); ?>
+                        </button>
+                    <?php endif; ?>
                 </div>
                 
                 <div id="wbcom-essential-license-message" class="wbcom-essential-license-message"></div>
@@ -279,27 +282,65 @@ class WBCOM_ESSENTIAL_License_Manager {
         }
         
         // Handle license key save
-        if ( isset( $_POST['wbcom_essential_save_license'] ) && isset( $_POST['wbcom_essential_license_nonce'] ) ) {
-            if ( wp_verify_nonce( $_POST['wbcom_essential_license_nonce'], 'wbcom_essential_license_nonce' ) ) {
-                $license_key = sanitize_text_field( $_POST['wbcom_essential_license_key'] );
+        if ( isset( $_POST['wbcom_essential_save_license'] ) ) {
+            // Check if we're on the right page
+            if ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'wbcom-widgets' ) {
+                return;
+            }
+            
+            // Verify nonce
+            if ( ! isset( $_POST['wbcom_essential_license_nonce'] ) || ! wp_verify_nonce( $_POST['wbcom_essential_license_nonce'], 'wbcom_essential_license_nonce' ) ) {
+                wp_die( __( 'Security check failed', 'wbcom-essential' ) );
+            }
+            
+            // Check permissions
+            if ( ! current_user_can( 'manage_options' ) ) {
+                wp_die( __( 'You do not have permission to manage licenses', 'wbcom-essential' ) );
+            }
+            
+            try {
+                $visible_key = isset( $_POST['wbcom_essential_license_key'] ) ? trim( sanitize_text_field( $_POST['wbcom_essential_license_key'] ) ) : '';
+                $hidden_key = isset( $_POST['wbcom_essential_license_key_hidden'] ) ? trim( sanitize_text_field( $_POST['wbcom_essential_license_key_hidden'] ) ) : '';
+                $is_new_key = isset( $_POST['wbcom_essential_new_license_key'] ) && $_POST['wbcom_essential_new_license_key'] === 'true';
                 
-                // If the visible field is empty or contains masked value, check hidden field
-                if ( empty( $license_key ) || strpos( $license_key, '*' ) !== false ) {
-                    $license_key = sanitize_text_field( $_POST['wbcom_essential_license_key_hidden'] ?? '' );
+                // Determine which key to save
+                $license_key = '';
+                
+                // If explicitly marked as new key, always use visible field
+                if ( $is_new_key && ! empty( $visible_key ) ) {
+                    $license_key = $visible_key;
+                }
+                // Otherwise follow normal priority
+                elseif ( ! empty( $visible_key ) && strpos( $visible_key, '*' ) === false ) {
+                    $license_key = $visible_key;
+                } 
+                elseif ( ! empty( $hidden_key ) && strpos( $hidden_key, '*' ) === false ) {
+                    $license_key = $hidden_key;
                 }
                 
-                $old_license = get_option( 'wbcom_essential_license_key' );
+                $old_license = get_option( 'wbcom_essential_license_key', '' );
                 
-                if ( $old_license && $old_license !== $license_key ) {
+                // Always clear status when explicitly updating with new key
+                if ( $is_new_key || $old_license !== $license_key ) {
                     delete_option( 'wbcom_essential_license_status' );
                     delete_option( 'wbcom_essential_license_data' );
                 }
                 
-                update_option( 'wbcom_essential_license_key', $license_key );
+                // Force update the option
+                delete_option( 'wbcom_essential_license_key' );
+                add_option( 'wbcom_essential_license_key', $license_key, '', 'no' );
                 
                 // Redirect after save
-                wp_safe_redirect( admin_url( 'admin.php?page=wbcom-widgets&tab=license&updated=true' ) );
-                exit;
+                $redirect_url = add_query_arg( array(
+                    'page' => 'wbcom-widgets',
+                    'tab' => 'license',
+                    'updated' => 'true'
+                ), admin_url( 'admin.php' ) );
+                
+                wp_safe_redirect( $redirect_url );
+                exit();
+            } catch ( Exception $e ) {
+                wp_die( sprintf( __( 'Error saving license: %s', 'wbcom-essential' ), $e->getMessage() ) );
             }
         }
     }
@@ -314,15 +355,18 @@ class WBCOM_ESSENTIAL_License_Manager {
             wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ) );
         }
         
-        $license_key = sanitize_text_field( $_POST['wbcom_essential_license_key'] ?? '' );
-        $old_license = get_option( 'wbcom_essential_license_key' );
+        $license_key = isset( $_POST['wbcom_essential_license_key'] ) ? trim( sanitize_text_field( $_POST['wbcom_essential_license_key'] ) ) : '';
+        $old_license = get_option( 'wbcom_essential_license_key', '' );
         
-        if ( $old_license && $old_license !== $license_key ) {
+        // Always update when using AJAX save
+        if ( $old_license !== $license_key ) {
             delete_option( 'wbcom_essential_license_status' );
             delete_option( 'wbcom_essential_license_data' );
         }
         
-        update_option( 'wbcom_essential_license_key', $license_key );
+        // Force update the option
+        delete_option( 'wbcom_essential_license_key' );
+        add_option( 'wbcom_essential_license_key', $license_key, '', 'no' );
         
         wp_send_json_success( array( 'message' => __( 'License key saved successfully', 'wbcom-essential' ) ) );
     }

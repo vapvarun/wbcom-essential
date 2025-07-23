@@ -1,14 +1,6 @@
 jQuery(document).ready(function($) {
     'use strict';
     
-    console.log('License JS loaded');
-    if (typeof wbcomEssentialLicense !== 'undefined') {
-        console.log('Ajax URL:', wbcomEssentialLicense.ajax_url);
-        console.log('Nonce:', wbcomEssentialLicense.nonce);
-    } else {
-        console.error('wbcomEssentialLicense object not found');
-    }
-    
     // Show license message
     function showLicenseMessage(message, type) {
         const messageDiv = $('#wbcom-essential-license-message');
@@ -25,6 +17,13 @@ jQuery(document).ready(function($) {
         $('#wbcom-essential-license-display').hide();
         $('#wbcom-essential-license-input-wrapper').show();
         $('#wbcom_essential_license_key').focus();
+        
+        // Hide the main action buttons
+        $('#wbcom-essential-license-actions').hide();
+        
+        // Store original key
+        const originalKey = $('#wbcom_essential_license_key_hidden').val();
+        $('#wbcom_essential_license_key_hidden').data('original-key', originalKey);
     });
     
     // Handle cancel change button
@@ -32,6 +31,54 @@ jQuery(document).ready(function($) {
         $('#wbcom-essential-license-display').show();
         $('#wbcom-essential-license-input-wrapper').hide();
         $('#wbcom_essential_license_key').val('');
+        
+        // Show the main action buttons
+        $('#wbcom-essential-license-actions').show();
+        
+        // Restore the original key to hidden field
+        const originalKey = $('#wbcom_essential_license_key_hidden').data('original-key');
+        $('#wbcom_essential_license_key_hidden').val(originalKey);
+    });
+    
+    // Handle save change button
+    $('#wbcom-essential-save-change').on('click', function(e) {
+        e.preventDefault();
+        
+        const newKey = $('#wbcom_essential_license_key').val().trim();
+        
+        if (!newKey) {
+            showLicenseMessage('Please enter a license key', 'error');
+            return;
+        }
+        
+        // Show saving message
+        $(this).text('Saving...');
+        
+        // Use AJAX to save the license key directly
+        $.ajax({
+            url: wbcomEssentialLicense.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'save_license_key',
+                wbcom_essential_license_key: newKey,
+                nonce: wbcomEssentialLicense.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Reload the page to show the updated license
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('updated', 'true');
+                    window.location.href = url.toString();
+                } else {
+                    showLicenseMessage(response.data.message || 'Error saving license key', 'error');
+                    $('#wbcom-essential-save-change').text('Save');
+                }
+            },
+            error: function() {
+                showLicenseMessage('Error saving license key', 'error');
+                $('#wbcom-essential-save-change').text('Save');
+            }
+        });
     });
     
     // Get the actual license key for AJAX operations
@@ -49,7 +96,6 @@ jQuery(document).ready(function($) {
     
     // Activate license
     $('#wbcom-essential-activate-license').on('click', function() {
-        console.log('Activate button clicked');
         const button = $(this);
         const licenseKey = getActualLicenseKey();
         const messageDiv = $('#wbcom-essential-license-message');
@@ -180,4 +226,29 @@ jQuery(document).ready(function($) {
             }, 3000);
         }
     }
+    
+    // No need for form submission handler - let it submit normally
+    
+    // Handle save button click (for new installations)
+    $('button[name="wbcom_essential_save_license"]').on('click', function(e) {
+        const newKey = $('#wbcom_essential_license_key').val().trim();
+        
+        if (!newKey) {
+            e.preventDefault();
+            showLicenseMessage('Please enter a license key', 'error');
+            return;
+        }
+        
+        // Show saving message
+        $(this).text('Saving...');
+        // Form will submit normally
+    });
+    
+    // Prevent form submission on enter key in license field
+    $('#wbcom_essential_license_key').on('keypress', function(e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            $('button[name="wbcom_essential_save_license"]').click();
+        }
+    });
 });
