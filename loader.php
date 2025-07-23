@@ -40,7 +40,11 @@ define( 'WBCOM_ESSENTIAL_ASSETS_URL', WBCOM_ESSENTIAL_URL . 'assets/' );
 define( 'WBCOM_ESSENTIAL_STORE_URL', 'https://wbcomdesigns.com' );
 define( 'WBCOM_ESSENTIAL_ITEM_ID', 1545975 );
 define( 'WBCOM_ESSENTIAL_ITEM_NAME', 'Wbcom Essential' );
-// Backward compatibility aliases (deprecated - use WBCOM_ESSENTIAL_PATH and WBCOM_ESSENTIAL_PLUGIN_BASE instead)
+/**
+ * Backward compatibility constants
+ *
+ * @deprecated Use WBCOM_ESSENTIAL_PATH and WBCOM_ESSENTIAL_PLUGIN_BASE instead
+ */
 define( 'WBCOM_ESSENTIAL_PLUGIN_DIR', WBCOM_ESSENTIAL_PATH );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', WBCOM_ESSENTIAL_PLUGIN_BASE );
 
@@ -60,8 +64,6 @@ require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-woocommer
 function wbcom_essential() {
 	return \WBCOM_ESSENTIAL\WBCOMESSENTIAL::get_instance();
 }
-
-// Text domain loading is handled by the main plugin class in wbcom-essential.php
 
 /**
  * Initializes the Plugin application.

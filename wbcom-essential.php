@@ -120,14 +120,18 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 * Include plugin files
 		 */
 		public function includes() {
-			
-			// Elementor components are now loaded via the elementor/loaded hook
-			
-			// Include and initialize widget showcase
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
 		}
 
+		/**
+		 * Register custom image sizes for Elementor widgets
+		 *
+		 * @since 1.0.0
+		 * @access public
+		 * 
+		 * @return void
+		 */
 		public function wbcom_essential_elementor_add_image_sizes() {
 			add_image_size( 'wbcom-essential-elementor-masonry', 500 );
 			add_image_size( 'wbcom-essential-elementor-normal', 800, 800, true );

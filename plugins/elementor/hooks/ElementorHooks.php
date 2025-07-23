@@ -29,54 +29,39 @@ defined( 'ABSPATH' ) || die();
  */
 class ElementorHooks {
 
-		const QUERY_CONTROL_ID = 'query';
+	/**
+	 * Query control ID constant.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @var string
+	 */
+	const QUERY_CONTROL_ID = 'query';
 
 	/**
 	 * Plugin instance.
 	 *
 	 * @since 1.0.0
 	 * @access public
+	 * @static
 	 *
-	 * @var Plugin
+	 * @var ElementorHooks
 	 */
 	public static $instance;
 
-
-
 	/**
 	 * ElementorHooks constructor.
+	 *
+	 * @since 1.0.0
+	 * @access public
 	 */
 	public function __construct() {
-		// add_action( 'elementor/init', array( $this, 'early_init' ), 0 );
-
-		// add_action(
-		// 'elementor/element/column/layout/before_section_end',
-		// array(
-		// $this,
-		// 'add_column_order_control',
-		// ),
-		// 12,
-		// 2
-		// );
-
-		// if ( is_admin() ) {
-		// add_action(
-		// 'elementor/admin/after_create_settings/' . \Elementor\Settings::PAGE_ID,
-		// array(
-		// $this,
-		// 'register_admin_fields',
-		// ),
-		// 20
-		// );
-		// }
-
 		add_action( 'elementor/elements/categories_registered', array( $this, 'categories_registered' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'widgets_registered' ) );
 		add_action( 'elementor/controls/controls_registered', array( $this, 'register_controls' ) );
-		// add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_css' ) );
-		// add_action( 'elementor/editor/after_save', array( $this, 'save_buddypress_options' ), 10, 2 );
-
-		// add_filter( 'template_include', array( $this, 'change_preview_and_edit_tpl' ) );
+		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_css' ) );
+		add_action( 'elementor/editor/after_save', array( $this, 'save_buddypress_options' ), 10, 2 );
 
 		add_action(
 			'wp',
@@ -101,11 +86,14 @@ class ElementorHooks {
 		);
 	}
 
-
 	/**
-	 * Get instance
+	 * Get instance.
 	 *
-	 * @return mixed
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 *
+	 * @return ElementorHooks The single instance of the class.
 	 */
 	public static function get_instance() {
 		if ( null === self::$instance ) {
@@ -116,86 +104,12 @@ class ElementorHooks {
 	}
 
 	/**
-	 * Change the template when editing and previewing to buddybuilder one
-	 *
-	 * @param $template
-	 *
-	 * @return string
-	 */
-	// public function change_preview_and_edit_tpl( $template ) {
-	// if ( bpb_is_preview_mode() || bpb_is_front_library() || bpb_is_edit_frame() ) {
-	// $template = BPB_BASE_PATH . 'templates/buddypress/buddypress.php';
-	// }
-	//
-	// return $template;
-	// }
-
-	/**
-	 * Adds actions after Elementor init.
+	 * Register elementor category.
 	 *
 	 * @since 1.0.0
 	 * @access public
-	 */
-	public function early_init() {
-		// Register modules .
-		// new Library\Module();
-
-		// Template library .
-		// new Template\Module();
-	}
-
-	/**
-	 * Add order control to column settings.
 	 *
-	 * @param object $element Element instance.
-	 * @param array  $args Element arguments.
-	 */
-	// public function add_column_order_control( $element, $args ) {
-	// $existing_control = \Elementor\Plugin::$instance->controls_manager->get_control_from_stack( $element->get_unique_name(), 'column_order' );
-	//
-	// if ( is_wp_error( $existing_control ) ) {
-	// $args = array(
-	// 'position' => array(
-	// 'at' => 'before',
-	// 'of' => 'content_position',
-	// ),
-	// );
-	//
-	// $element->add_responsive_control(
-	// 'column_order',
-	// array(
-	// 'label'     => esc_html__( 'Column Order', 'wbcom-essential' ),
-	// 'type'      => \Elementor\Controls_Manager::NUMBER,
-	// 'min'       => 0,
-	// 'max'       => 100,
-	// 'selectors' => array(
-	// '{{WRAPPER}}.elementor-column' => 'order: {{VALUE}}',
-	// ),
-	// ),
-	// $args
-	// );
-	// }
-	// }
-
-	/**
-	 * Add REIGNELEMENTOR tab in Elementor Settings page.
-	 *
-	 * @param object $settings Settings.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	// public function register_admin_fields( $settings ) {
-	// $settings->add_tab(
-	// 'buddy-builder',
-	// array(
-	// 'label' => esc_html__( 'BuddyBuilder', 'wbcom-essential' ),
-	// )
-	// );
-	// }
-
-	/**
-	 * Register elementor category
+	 * @return void
 	 */
 	public function categories_registered() {
 		global $post;
@@ -211,7 +125,12 @@ class ElementorHooks {
 	}
 
 	/**
-	 * Register elementor widgets
+	 * Register elementor widgets.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return void
 	 */
 	public function widgets_registered() {
 		$elementor = \Elementor\Plugin::instance();
@@ -219,7 +138,6 @@ class ElementorHooks {
 		if ( isset( $elementor->widgets_manager ) && method_exists( $elementor->widgets_manager, 'register' ) ) {
 
 			$elements = \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::get_instance()->get_elements();
-			// include_once REIGN_INC_DIR . 'plugins/elementor/widgets/Base.php';.
 			foreach ( $elements as $k => $element ) {
 				if ( class_exists( 'Youzify' ) ) {
 					if ( strpos( $k, 'Buddypress/MembersGrid' ) !== false || strpos( $k, 'Buddypress/GroupGrid' ) !== false ) {
@@ -237,6 +155,11 @@ class ElementorHooks {
 
 	/**
 	 * Register Controls.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return void
 	 */
 	public function register_controls() {
 		$controls_manager = \Elementor\Plugin::instance()->controls_manager;
@@ -247,10 +170,15 @@ class ElementorHooks {
 	}
 
 	/**
-	 * Sync elementor widget options with customizer
+	 * Sync elementor widget options with customizer.
 	 *
-	 * @param int $post_id Post ID.
-	 * @param int $editor_data Editor Data.
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @param int   $post_id     Post ID.
+	 * @param array $editor_data Editor Data.
+	 *
+	 * @return void
 	 */
 	public function save_buddypress_options( $post_id, $editor_data ) {
 		$settings = bpb_get_settings();
@@ -321,7 +249,12 @@ class ElementorHooks {
 	}
 
 	/**
-	 * Enqueue Elementor Editor CSS
+	 * Enqueue Elementor Editor CSS.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return void
 	 */
 	public function editor_css() {
 		wp_enqueue_style(
@@ -340,11 +273,14 @@ class ElementorHooks {
 	}
 
 	/**
-	 * Get widget template path
+	 * Get widget template path.
+	 *
+	 * @since 1.0.0
+	 * @access public
 	 *
 	 * @param string $file_path File Path.
 	 *
-	 * @return bool|string
+	 * @return bool|string Returns the template file path if readable, false otherwise.
 	 */
 	public function get_element_path( $file_path ) {
 		$template_file = $file_path . '.php';
@@ -358,7 +294,13 @@ class ElementorHooks {
 	/**
 	 * Added Exclude Controls.
 	 *
-	 * @param string Widget_Base $widget WP Widget.
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 *
+	 * @param \Elementor\Widget_Base $widget Widget instance.
+	 *
+	 * @return void
 	 */
 	public static function add_exclude_controls( $widget ) {
 		$widget->add_control(
@@ -395,8 +337,14 @@ class ElementorHooks {
 	/**
 	 * Get query args.
 	 *
-	 * @param  int    $control_id Control ID.
-	 * @param  string $settings Settings.
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 *
+	 * @param string $control_id Control ID.
+	 * @param array  $settings   Widget settings.
+	 *
+	 * @return array Query arguments.
 	 */
 	public static function get_query_args( $control_id, $settings ) {
 		$defaults = array(
@@ -433,11 +381,8 @@ class ElementorHooks {
 			$query_args['tax_query']      = array();
 
 			if ( 0 < $settings['offset'] ) {
-				/**
-				 * Due to a WordPress bug, the offset will be set later, in $this->fix_query_offset()
-				 *
-				 * @see https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
-				 */
+				// Due to a WordPress bug, the offset will be set later.
+				// @see https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
 				$query_args['offset_to_fix'] = $settings['offset'];
 			}
 

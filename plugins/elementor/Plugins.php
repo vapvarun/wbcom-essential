@@ -250,9 +250,7 @@ class Plugin {
 			return;
 		}
 		/**
-		 * Prepare filename.
-		 *
-		 * @todo Refactor to use preg_replace.
+		 * Prepare filename from class name
 		 */
 		$filename = str_replace(
 			array( __NAMESPACE__ . '\\', '\\', '_' ),
@@ -266,15 +264,9 @@ class Plugin {
 
 		$filename = __DIR__ . '/' . strtolower( $filename ) . '.php';
 		
-		// Check if file exists and is readable
-		if ( ! file_exists( $filename ) || ! is_readable( $filename ) ) {
-			// Log error only in development/debug mode
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			}
-			return;
+		if ( file_exists( $filename ) && is_readable( $filename ) ) {
+			require_once $filename;
 		}
-		
-		require_once $filename;
 	}
 
 	/**
