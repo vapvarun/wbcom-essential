@@ -39,15 +39,15 @@ class CustomerReview extends \Elementor\Widget_Base {
 	 * @param  string $args Args.
 	 * @return void
 	 */
-	public function __construct( $data = array(), $args = null ) {
+	public function __construct( $data = [], $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wb-wc-testimonial', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wc-testimonial.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', [], WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wb-wc-testimonial', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wc-testimonial.css', [], WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', [], WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', [ 'jquery' ], WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', [ 'jquery' ], WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -75,23 +75,23 @@ class CustomerReview extends \Elementor\Widget_Base {
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {
-		return array(
+		return [
 			'wbcom-widgets',
-		);
+		];
 	}
 
 	/**
 	 * Get categories.
 	 */
 	public function get_categories() {
-		return array( 'wbcom-elements' );
+		return [ 'wbcom-elements' ];
 	}
 
 	/**
 	 * Get keywords.
 	 */
 	public function get_keywords() {
-		return array( 'review', 'customer', 'product review', 'customer review' );
+		return [ 'review', 'customer', 'product review', 'customer review' ];
 	}
 
 	/**
@@ -654,13 +654,13 @@ class CustomerReview extends \Elementor\Widget_Base {
 		$review_list = array();
 		if ( $settings['review_type'] === 'custom' ) {
 			foreach ( $settings['review_list'] as $review ) {
-				$review_list[] = array(
+				$review_list[] = [
 					'image'       => Group_Control_Image_Size::get_attachment_image_html( $review, 'client_imagesize', 'client_image' ),
 					'name'        => $review['client_name'],
 					'designation' => $review['client_designation'],
 					'ratting'     => $review['client_rating'],
 					'message'     => $review['client_say'],
-				);
+				];
 			}
 		}
 
@@ -668,14 +668,14 @@ class CustomerReview extends \Elementor\Widget_Base {
 		echo '<div class="wb-row ' . ( $settings['no_gutters'] === 'yes' ? 'wb-gutters' : '' ) . '">';
 		?>
 			<?php foreach ( $review_list as $review ) : ?>
-			<div class="<?php echo esc_attr( esc_attr( $collumval ) ); ?>">
+			<div class="<?php echo esc_attr( $collumval ); ?>">
 
 				<?php if ( $settings['review_layout'] == 2 || $settings['review_layout'] == 3 ) : ?>
 
 				<div class="wb-customer-testimonal">
 					<?php
 					if ( $review['image'] ) {
-						echo $review['image'];
+						echo wp_kses_post( $review['image'] );
 					}
 					?>
 					<div class="content">

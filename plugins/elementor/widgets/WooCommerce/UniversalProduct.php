@@ -1976,11 +1976,11 @@ class UniversalProduct extends \Elementor\Widget_Base {
 		$query_args = array(
 			'per_page'     => $per_page,
 			'product_type' => $product_type,
-			'product_ids'  => $product_type === '' ? : $settings['wbcom_product_id'],
+			'product_ids'  => $product_type === 'show_byid' && isset( $settings['wbcom_product_id'] ) ? $settings['wbcom_product_id'] : array(),
 		);
 
 		// Category Wise.
-		$product_cats = $settings['wbcom_product_grid_categories'];
+		$product_cats = isset( $settings['wbcom_product_grid_categories'] ) ? $settings['wbcom_product_grid_categories'] : array();
 		if ( is_array( $product_cats ) && count( $product_cats ) > 0 ) {
 			$query_args['categories'] = $product_cats;
 		}
@@ -1988,9 +1988,9 @@ class UniversalProduct extends \Elementor\Widget_Base {
 		/**
 		 * Show by IDs.
 		 */
-		if ( 'show_byid' == $product_type ) {
+		if ( 'show_byid' == $product_type && isset( $settings['wbcom_product_id'] ) ) {
 			$query_args['product_ids'] = $settings['wbcom_product_id'];
-		} elseif ( 'show_byid_manually' == $product_type ) {
+		} elseif ( 'show_byid_manually' == $product_type && isset( $settings['wbcom_product_ids_manually'] ) ) {
 			$query_args['product_ids'] = explode( ',', $settings['wbcom_product_ids_manually'] );
 		} else {
 			$query_args['product_ids'] = array();
@@ -2282,7 +2282,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                 <div class="wb-product-content-inner">
                                                     <div class="wb-product-categories"><?php wbcom_get_product_category_list(); ?></div>
                                                     <?php do_action( 'wbcom_universal_before_title' ); ?>
-                                                    <?php echo sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", $title_html_tag, get_the_permalink(), get_the_title(), $title_html_tag ); ?>
+                                                    <?php echo wp_kses_post( sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", esc_html( $title_html_tag ), esc_url( get_the_permalink() ), esc_html( get_the_title() ), esc_html( $title_html_tag ) ) ); ?>
                                                     <?php do_action( 'wbcom_universal_after_title' ); ?>
                                                     <?php do_action( 'wbcom_universal_before_price' ); ?>
                                                     <div class="wb-product-price"><?php woocommerce_template_loop_price();?></div>
@@ -2433,7 +2433,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                         <div class="wb-product-content-inner">
                                             <div class="wb-product-categories"><?php wbcom_get_product_category_list(); ?></div>
                                             <?php do_action( 'wbcom_universal_before_title' ); ?>
-                                            <?php echo sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", $title_html_tag, get_the_permalink(), get_the_title(), $title_html_tag ); ?>
+                                            <?php echo wp_kses_post( sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", esc_html( $title_html_tag ), esc_url( get_the_permalink() ), esc_html( get_the_title() ), esc_html( $title_html_tag ) ) ); ?>
                                             <?php do_action( 'wbcom_universal_after_title' ); ?>
                                             <?php do_action( 'wbcom_universal_before_price' ); ?>
                                             <div class="wb-product-price"><?php woocommerce_template_loop_price();?></div>

@@ -236,7 +236,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 								if ( ! $is_you ) {
 									$other_recipients[] = $recipient_data;
 								} else {
-									$currentuser = ( ! isset( $_REQUEST['customize_theme'] ) ) ? $recipient_data : '';
+									$currentuser = ( ! isset( $_REQUEST['customize_theme'] ) || ! sanitize_text_field( wp_unslash( $_REQUEST['customize_theme'] ) ) ) ? $recipient_data : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Used for display context only
 								}
 							}
 						}

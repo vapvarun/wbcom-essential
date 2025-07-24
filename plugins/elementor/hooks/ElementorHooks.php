@@ -181,6 +181,11 @@ class ElementorHooks {
 	 * @return void
 	 */
 	public function save_buddypress_options( $post_id, $editor_data ) {
+		// Check if function exists to prevent fatal error
+		if ( ! function_exists( 'bpb_get_settings' ) ) {
+			return;
+		}
+		
 		$settings = bpb_get_settings();
 		$save     = false;
 

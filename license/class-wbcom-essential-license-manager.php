@@ -18,16 +18,16 @@ class WBCOM_ESSENTIAL_License_Manager {
     
     private function init_hooks() {
         // License AJAX handlers
-        add_action( 'wp_ajax_wbcom_essential_activate_license', array( $this, 'ajax_activate_license' ) );
-        add_action( 'wp_ajax_wbcom_essential_deactivate_license', array( $this, 'ajax_deactivate_license' ) );
-        add_action( 'wp_ajax_wbcom_essential_check_license', array( $this, 'ajax_check_license' ) );
-        add_action( 'wp_ajax_save_license_key', array( $this, 'ajax_save_license_key' ) );
+        add_action( 'wp_ajax_wbcom_essential_activate_license', [ $this, 'ajax_activate_license' ] );
+        add_action( 'wp_ajax_wbcom_essential_deactivate_license', [ $this, 'ajax_deactivate_license' ] );
+        add_action( 'wp_ajax_wbcom_essential_check_license', [ $this, 'ajax_check_license' ] );
+        add_action( 'wp_ajax_save_license_key', [ $this, 'ajax_save_license_key' ] );
         
         // Handle form submissions
-        add_action( 'admin_init', array( $this, 'handle_license_actions' ) );
+        add_action( 'admin_init', [ $this, 'handle_license_actions' ] );
         
         // License asset enqueuing (handled by widget showcase, but method needed for hook compatibility)
-        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_license_assets' ) );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_license_assets' ] );
     }
     
     /**
@@ -54,13 +54,13 @@ class WBCOM_ESSENTIAL_License_Manager {
         $license_status = get_option( 'wbcom_essential_license_status' );
         $license_data = get_option( 'wbcom_essential_license_data' );
         
-        return array(
+        return [
             'key' => $license_key,
             'status' => $license_status,
             'data' => $license_data,
             'is_valid' => $license_status === 'valid',
             'has_key' => ! empty( $license_key )
-        );
+        ];
     }
     
     /**
@@ -283,14 +283,15 @@ class WBCOM_ESSENTIAL_License_Manager {
         
         // Handle license key save
         if ( isset( $_POST['wbcom_essential_save_license'] ) ) {
-            // Check if we're on the right page
-            if ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'wbcom-widgets' ) {
-                return;
-            }
-            
-            // Verify nonce
+            // Verify nonce first
             if ( ! isset( $_POST['wbcom_essential_license_nonce'] ) || ! wp_verify_nonce( $_POST['wbcom_essential_license_nonce'], 'wbcom_essential_license_nonce' ) ) {
                 wp_die( __( 'Security check failed', 'wbcom-essential' ) );
+            }
+            
+            // Check if we're on the right page
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is verified above
+            if ( ! isset( $_GET['page'] ) || sanitize_text_field( wp_unslash( $_GET['page'] ) ) !== 'wbcom-widgets' ) {
+                return;
             }
             
             // Check permissions
@@ -299,9 +300,9 @@ class WBCOM_ESSENTIAL_License_Manager {
             }
             
             try {
-                $visible_key = isset( $_POST['wbcom_essential_license_key'] ) ? trim( sanitize_text_field( $_POST['wbcom_essential_license_key'] ) ) : '';
-                $hidden_key = isset( $_POST['wbcom_essential_license_key_hidden'] ) ? trim( sanitize_text_field( $_POST['wbcom_essential_license_key_hidden'] ) ) : '';
-                $is_new_key = isset( $_POST['wbcom_essential_new_license_key'] ) && $_POST['wbcom_essential_new_license_key'] === 'true';
+                $visible_key = isset( $_POST['wbcom_essential_license_key'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['wbcom_essential_license_key'] ) ) ) : '';
+                $hidden_key = isset( $_POST['wbcom_essential_license_key_hidden'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['wbcom_essential_license_key_hidden'] ) ) ) : '';
+                $is_new_key = isset( $_POST['wbcom_essential_new_license_key'] ) && sanitize_text_field( wp_unslash( $_POST['wbcom_essential_new_license_key'] ) ) === 'true';
                 
                 // Determine which key to save
                 $license_key = '';
@@ -331,11 +332,11 @@ class WBCOM_ESSENTIAL_License_Manager {
                 add_option( 'wbcom_essential_license_key', $license_key, '', 'no' );
                 
                 // Redirect after save
-                $redirect_url = add_query_arg( array(
+                $redirect_url = add_query_arg( [
                     'page' => 'wbcom-widgets',
                     'tab' => 'license',
                     'updated' => 'true'
-                ), admin_url( 'admin.php' ) );
+                ], admin_url( 'admin.php' ) );
                 
                 wp_safe_redirect( $redirect_url );
                 exit();
@@ -352,10 +353,10 @@ class WBCOM_ESSENTIAL_License_Manager {
         check_ajax_referer( 'wbcom_essential_license_nonce', 'nonce' );
         
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ) );
+            wp_send_json_error( [ 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ] );
         }
         
-        $license_key = isset( $_POST['wbcom_essential_license_key'] ) ? trim( sanitize_text_field( $_POST['wbcom_essential_license_key'] ) ) : '';
+        $license_key = isset( $_POST['wbcom_essential_license_key'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['wbcom_essential_license_key'] ) ) ) : '';
         
         $old_license = get_option( 'wbcom_essential_license_key', '' );
         
@@ -369,7 +370,7 @@ class WBCOM_ESSENTIAL_License_Manager {
         delete_option( 'wbcom_essential_license_key' );
         add_option( 'wbcom_essential_license_key', $license_key, '', 'no' );
         
-        wp_send_json_success( array( 'message' => __( 'License key saved successfully', 'wbcom-essential' ) ) );
+        wp_send_json_success( [ 'message' => __( 'License key saved successfully', 'wbcom-essential' ) ] );
     }
     
     /**
@@ -379,25 +380,25 @@ class WBCOM_ESSENTIAL_License_Manager {
         check_ajax_referer( 'wbcom_essential_license_nonce', 'nonce' );
         
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ) );
+            wp_send_json_error( [ 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ] );
         }
         
-        $license = trim( $_POST['license_key'] ?? '' );
+        $license = isset( $_POST['license_key'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['license_key'] ) ) ) : '';
         
         if ( empty( $license ) ) {
-            wp_send_json_error( array( 'message' => __( 'Please enter a license key', 'wbcom-essential' ) ) );
+            wp_send_json_error( [ 'message' => __( 'Please enter a license key', 'wbcom-essential' ) ] );
         }
         
         $result = $this->activate_license_api( $license );
         
         if ( is_wp_error( $result ) ) {
-            wp_send_json_error( array( 'message' => $result->get_error_message() ) );
+            wp_send_json_error( [ 'message' => $result->get_error_message() ] );
         }
         
-        wp_send_json_success( array( 
+        wp_send_json_success( [ 
             'message' => __( 'License activated successfully!', 'wbcom-essential' ),
             'status_html' => $this->render_license_status_display( $this->get_license_status() )
-        ) );
+        ] );
     }
     
     /**
@@ -407,19 +408,19 @@ class WBCOM_ESSENTIAL_License_Manager {
         check_ajax_referer( 'wbcom_essential_license_nonce', 'nonce' );
         
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ) );
+            wp_send_json_error( [ 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ] );
         }
         
         $result = $this->deactivate_license_api();
         
         if ( is_wp_error( $result ) ) {
-            wp_send_json_error( array( 'message' => $result->get_error_message() ) );
+            wp_send_json_error( [ 'message' => $result->get_error_message() ] );
         }
         
-        wp_send_json_success( array( 
+        wp_send_json_success( [ 
             'message' => __( 'License deactivated successfully!', 'wbcom-essential' ),
             'status_html' => $this->render_license_status_display( $this->get_license_status() )
-        ) );
+        ] );
     }
     
     /**
@@ -429,33 +430,34 @@ class WBCOM_ESSENTIAL_License_Manager {
         check_ajax_referer( 'wbcom_essential_license_nonce', 'nonce' );
         
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ) );
+            wp_send_json_error( [ 'message' => __( 'Insufficient permissions', 'wbcom-essential' ) ] );
         }
         
-        $license = trim( get_option( 'wbcom_essential_license_key' ) );
+        $license_option = get_option( 'wbcom_essential_license_key' );
+        $license = is_string( $license_option ) ? trim( $license_option ) : '';
         
         if ( empty( $license ) ) {
-            wp_send_json_error( array( 'message' => __( 'No license key found', 'wbcom-essential' ) ) );
+            wp_send_json_error( [ 'message' => __( 'No license key found', 'wbcom-essential' ) ] );
         }
         
         $result = $this->check_license_api( $license );
         
         if ( is_wp_error( $result ) ) {
-            wp_send_json_error( array( 'message' => $result->get_error_message() ) );
+            wp_send_json_error( [ 'message' => $result->get_error_message() ] );
         }
         
         $license_data = $result;
         
         if ( 'valid' === $license_data->license ) {
-            wp_send_json_success( array( 
+            wp_send_json_success( [ 
                 'message' => __( 'License is valid!', 'wbcom-essential' ),
                 'status_html' => $this->render_license_status_display( $this->get_license_status() )
-            ) );
+            ] );
         } else {
-            wp_send_json_success( array( 
+            wp_send_json_success( [ 
                 'message' => __( 'License is not valid.', 'wbcom-essential' ),
                 'status_html' => $this->render_license_status_display( $this->get_license_status() )
-            ) );
+            ] );
         }
     }
     
@@ -464,23 +466,23 @@ class WBCOM_ESSENTIAL_License_Manager {
      */
     private function activate_license_api( $license ) {
         // data to send in our API request
-        $api_params = array(
+        $api_params = [
             'edd_action' => 'activate_license',
             'license'    => $license,
             'item_id'    => WBCOM_ESSENTIAL_ITEM_ID,
             'item_name'  => rawurlencode( WBCOM_ESSENTIAL_ITEM_NAME ),
             'url'        => home_url(),
             'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
-        );
+        ];
         
         // Call the custom API.
         $response = wp_remote_post(
             WBCOM_ESSENTIAL_STORE_URL,
-            array(
+            [
                 'timeout'   => 15,
                 'sslverify' => false,
                 'body'      => $api_params,
-            )
+            ]
         );
         
         if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -537,26 +539,27 @@ class WBCOM_ESSENTIAL_License_Manager {
      * Deactivate license via API
      */
     private function deactivate_license_api() {
-        $license = trim( get_option( 'wbcom_essential_license_key' ) );
+        $license_option = get_option( 'wbcom_essential_license_key' );
+        $license = is_string( $license_option ) ? trim( $license_option ) : '';
         
         // data to send in our API request
-        $api_params = array(
+        $api_params = [
             'edd_action' => 'deactivate_license',
             'license'    => $license,
             'item_id'    => WBCOM_ESSENTIAL_ITEM_ID,
             'item_name'  => rawurlencode( WBCOM_ESSENTIAL_ITEM_NAME ),
             'url'        => home_url(),
             'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
-        );
+        ];
         
         // Call the custom API.
         $response = wp_remote_post(
             WBCOM_ESSENTIAL_STORE_URL,
-            array(
+            [
                 'timeout'   => 15,
                 'sslverify' => false,
                 'body'      => $api_params,
-            )
+            ]
         );
         
         if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -581,23 +584,23 @@ class WBCOM_ESSENTIAL_License_Manager {
      * Check license via API
      */
     private function check_license_api( $license ) {
-        $api_params = array(
+        $api_params = [
             'edd_action' => 'check_license',
             'license'    => $license,
             'item_id'    => WBCOM_ESSENTIAL_ITEM_ID,
             'item_name'  => rawurlencode( WBCOM_ESSENTIAL_ITEM_NAME ),
             'url'        => home_url(),
             'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
-        );
+        ];
         
         // Call the custom API.
         $response = wp_remote_post(
             WBCOM_ESSENTIAL_STORE_URL,
-            array(
+            [
                 'timeout'   => 15,
                 'sslverify' => false,
                 'body'      => $api_params,
-            )
+            ]
         );
         
         if ( is_wp_error( $response ) ) {
@@ -622,9 +625,10 @@ class WBCOM_ESSENTIAL_License_Manager {
         }
         
         // Retrieve the license from the database
-        $license = trim( get_option( 'wbcom_essential_license_key' ) );
+        $license_option = get_option( 'wbcom_essential_license_key' );
+        $license = is_string( $license_option ) ? trim( $license_option ) : '';
         if ( ! $license ) {
-            $license = ! empty( $_POST['wbcom_essential_license_key'] ) ? sanitize_text_field( $_POST['wbcom_essential_license_key'] ) : '';
+            $license = ! empty( $_POST['wbcom_essential_license_key'] ) ? sanitize_text_field( wp_unslash( $_POST['wbcom_essential_license_key'] ) ) : '';
         }
         if ( ! $license ) {
             return;
@@ -634,12 +638,12 @@ class WBCOM_ESSENTIAL_License_Manager {
         
         if ( is_wp_error( $result ) ) {
             $redirect = add_query_arg(
-                array(
+                [
                     'page'          => 'wbcom-widgets',
                     'tab'           => 'license',
                     'sl_activation' => 'false',
                     'message'       => rawurlencode( $result->get_error_message() ),
-                ),
+                ],
                 admin_url( 'admin.php' )
             );
             
@@ -664,12 +668,12 @@ class WBCOM_ESSENTIAL_License_Manager {
         
         if ( is_wp_error( $result ) ) {
             $redirect = add_query_arg(
-                array(
+                [
                     'page'          => 'wbcom-widgets',
                     'tab'           => 'license',
                     'sl_activation' => 'false',
                     'message'       => rawurlencode( $result->get_error_message() ),
-                ),
+                ],
                 admin_url( 'admin.php' )
             );
             
