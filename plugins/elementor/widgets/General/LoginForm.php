@@ -226,7 +226,7 @@ class LoginForm extends \Elementor\Widget_Base {
 		$this->add_control(
 			'links_seperator',
 			array(
-				'label' => esc_html__( 'Link Seperator', 'wbcom-essential' ),
+				'label' => esc_html__( 'Link Separator', 'wbcom-essential' ),
 				'type'  => \Elementor\Controls_Manager::TEXT,
 			)
 		);

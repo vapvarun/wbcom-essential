@@ -205,7 +205,7 @@ class Wbcom_Essential_Widget_Showcase
 			</h1>
 
 			<div class="notice notice-info">
-				<p><strong>Welcome to WBcom Designs!</strong> Manage your WBcom plugins from this centralized dashboard.</p>
+				<p><strong>Welcome to WBcom Essential!</strong> Unlock the full potential of your website with our premium Elementor widgets and professional integrations. Manage all your WBcom plugins from this centralized dashboard.</p>
 			</div>
 
 			<div class="card">

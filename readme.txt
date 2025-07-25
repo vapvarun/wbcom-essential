@@ -1,15 +1,67 @@
-=== Wbcom Essential ===
+=== WBcom Essential ===
 Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
-Tags: Theme Addon plugin for Wbcom Designs
-Requires at least: 4.0
+Tags: elementor, buddypress, woocommerce, widgets, page builder
+Requires at least: 5.0
 Tested up to: 6.7.2
 Stable tag: 3.9.4
+Requires PHP: 7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Required plugin for Wbcom Designs Theme
+
+Premium Elementor widgets for BuddyPress, WooCommerce, and WordPress. Create stunning websites with 40+ professional widgets.
+
 == Description ==
-It will add additional features for Elementor to enhance the theme features.
+
+WBcom Essential is a comprehensive addon plugin that extends Elementor with 40+ premium widgets specifically designed for BuddyPress, WooCommerce, and WordPress websites. Build beautiful, feature-rich websites with our professionally crafted widgets.
+
+**Key Features:**
+
+* **40+ Premium Widgets** - Extensive collection of widgets for every need
+* **BuddyPress Integration** - Member grids, group carousels, activity feeds, and more
+* **WooCommerce Support** - Product tabs, customer reviews, promotional banners
+* **Professional Design** - Stunning pre-built templates and customizable layouts
+* **Performance Optimized** - Lightweight code with minimal impact on site speed
+* **Regular Updates** - Continuous improvements and new features
+
+**Widget Categories:**
+
+**BuddyPress Widgets:**
+* Member Grid & List
+* Member Carousel
+* Group Grid & List
+* Group Carousel
+* Activity Feed
+* Profile Completion
+* Header Bar
+* Forum Activity
+
+**WooCommerce Widgets:**
+* Universal Product Display
+* Product Tabs
+* Customer Reviews
+* Promotional Banners
+* Testimonials
+
+**General Widgets:**
+* Advanced Slider
+* Post Carousel
+* Post Timeline
+* Portfolio Grid
+* Team Carousel
+* Pricing Tables
+* Login Form
+* Countdown Timer
+* Progress Bar
+* And many more...
+
+**Perfect For:**
+* Community Websites
+* Online Stores
+* Membership Sites
+* Corporate Websites
+* Portfolio Sites
+* Blog & Magazine Sites
 
 == Installation ==
 
@@ -19,7 +71,27 @@ It will add additional features for Elementor to enhance the theme features.
 == Frequently Asked Questions ==
 
 = Does this plugin require another plugin? =
-This plugin does not require any specific plugin. However, this plugin supports Elementor if active.
+
+WBcom Essential requires Elementor Page Builder (free version) to be installed and activated. The plugin provides additional functionality when used with:
+* BuddyPress - Unlocks community-focused widgets
+* WooCommerce - Enables e-commerce widgets
+* bbPress - Activates forum-related widgets
+
+= Is this plugin compatible with my theme? =
+
+Yes! WBcom Essential works with any WordPress theme that supports Elementor. For the best experience, we recommend using it with Reign Theme or BuddyX Theme.
+
+= How many widgets are included? =
+
+WBcom Essential includes 40+ premium widgets covering various needs from social community features to e-commerce functionality.
+
+= Do I need coding knowledge to use this plugin? =
+
+No coding knowledge is required. All widgets come with an intuitive drag-and-drop interface and comprehensive customization options.
+
+= Is there documentation available? =
+
+Yes, comprehensive documentation is available at https://wbcomdesigns.com/docs/
 
 == Changelog ==
 = 3.9.4 =

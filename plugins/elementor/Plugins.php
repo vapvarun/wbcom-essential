@@ -135,7 +135,7 @@ class Plugin {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Security error: Direct cloning of this class is not allowed.', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
 	}
 
 	/**
@@ -146,7 +146,7 @@ class Plugin {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Security error: Unserializing of this class is not allowed.', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
 	}
 
 
@@ -201,7 +201,7 @@ class Plugin {
 	 */
 	public function wbcom_essential_load_plugin() {
 		if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
-			add_action( 'admin_notices', array( $this, 'wbcom_essential_elementor_notice' ) );
+			// Use the consolidated notice from wbcom-essential-elementor.php
 			return;
 		}
 
@@ -211,29 +211,6 @@ class Plugin {
 		$this->add_hooks();
 		$this->includes();
 		do_action( 'wbcom_essential/init' );
-	}
-
-	/**
-	 * Elementor not installed notice
-	 */
-	public function wbcom_essential_elementor_notice() {
-		$class = 'notice notice-warning';
-		/* translators: %s: html tags */
-		$message = sprintf( __( '%1$sBuddyBuilder%2$s requires %1$sElementor%2$s plugin installed & activated.', 'wbcom-essential' ), '<strong>', '</strong>' );
-
-		$plugin = 'elementor/elementor.php';
-
-		if ( current_user_can( 'activate_plugins' ) ) {
-			$action_url   = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
-			$button_label = __( 'Activate Elementor', 'wbcom-essential' );
-		} elseif ( current_user_can( 'install_plugins' ) ) {
-			$action_url   = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
-			$button_label = __( 'Install Elementor', 'wbcom-essential' );
-		}
-
-		$button = '<p><a href="' . $action_url . '" class="button-primary">' . $button_label . '</a></p><p></p>';
-
-		printf( '<div class="%1$s"><p>%2$s</p>%3$s</div>', esc_attr( $class ), wp_kses_post( $message ), wp_kses_post( $button ) );
 	}
 
 	/**

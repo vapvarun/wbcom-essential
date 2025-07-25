@@ -53,7 +53,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 */
 		public function __clone() {
 			// Cloning instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Security error: Direct cloning of this class is not allowed.', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
 		}
 
 		/**
@@ -64,7 +64,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 */
 		public function __wakeup() {
 			// Unserializing instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Security error: Unserializing of this class is not allowed.', 'wbcom-essential' ), esc_attr( WBCOM_ESSENTIAL_VERSION ) );
 		}
 
 		/**

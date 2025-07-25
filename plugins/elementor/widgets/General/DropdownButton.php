@@ -724,7 +724,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 		$this->add_control(
 			'seperator_color',
 			array(
-				'label'     => esc_html__( 'Seperator Color', 'wbcom-essential' ),
+				'label'     => esc_html__( 'Separator Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-dd-menu li' => 'border-bottom-color: {{VALUE}};',
@@ -767,7 +767,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 		$this->add_control(
 			'seperator_hover_color',
 			array(
-				'label'     => esc_html__( 'Seperator Color', 'wbcom-essential' ),
+				'label'     => esc_html__( 'Separator Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-dd-menu li:hover' => 'border-bottom-color: {{VALUE}};',
