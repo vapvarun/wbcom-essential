@@ -2131,12 +2131,14 @@ class PricingTable extends \Elementor\Widget_Base {
 	
 			<div class="wbcom-price-table-content">
 				<ul class="wbcom-price-table-features">
-					<?php foreach ( $settings['list'] as $item ) : ?>
-						<li class="elementor-repeater-item-<?php echo esc_attr( $item['_id'] ); ?>">
-							<?php \Elementor\Icons_Manager::render_icon( $item['item_icon'], array( 'aria-hidden' => 'true' ) ); ?>
-							<span><?php echo wp_kses_post( $item['item_text'] ); ?></span>
-						</li>
-					<?php endforeach; ?>
+					<?php if ( ! empty( $settings['list'] ) && is_array( $settings['list'] ) ) : ?>
+						<?php foreach ( $settings['list'] as $item ) : ?>
+							<li class="elementor-repeater-item-<?php echo esc_attr( $item['_id'] ); ?>">
+								<?php \Elementor\Icons_Manager::render_icon( $item['item_icon'], array( 'aria-hidden' => 'true' ) ); ?>
+								<span><?php echo wp_kses_post( $item['item_text'] ); ?></span>
+							</li>
+						<?php endforeach; ?>
+					<?php endif; ?>
 				</ul>
 			</div>
 	

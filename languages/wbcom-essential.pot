@@ -1,29 +1,63 @@
-#, fuzzy
+# Copyright (C) 2025 
+# This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WBcom Essential\n"
-"POT-Creation-Date: 2025-07-29 02:03+0530\n"
-"PO-Revision-Date: 2025-07-29 02:03+0530\n"
-"Last-Translator: Varun Dubey <vapvarun@gmail.com>\n"
-"Language-Team: Varun Dubey <vapvarun@gmail.com>\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-05 10:24:13+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.5\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: loader.php\n"
+"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Varun Dubey\n"
+"Language-Team: Wbcom Designs\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.min.js\n"
-"X-Poedit-SearchPathExcluded-1: node_modules\n"
-"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#. Author of the plugin/theme
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:156
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:157
+msgid "1"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:157
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:158
+msgid "2"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:158
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:159
+msgid "3"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:159
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:160
+msgid "4"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:160
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:161
+msgid "5"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:161
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:162
+msgid "6"
+msgstr ""
+
+#: plugins/elementor/widgets/General/PricingTable.php:275
+msgid "49"
+msgstr ""
+
 #: admin/class-wbcom-essential-widget-showcase.php:138
 #: admin/class-wbcom-essential-widget-showcase.php:139
 msgid "WBcom Designs"
@@ -488,7 +522,6 @@ msgstr ""
 msgid "Product testimonials display"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
 #: admin/class-wbcom-essential-widget-showcase.php:615
 msgid "WBcom Essential"
 msgstr ""
@@ -549,9 +582,9 @@ msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:812
 msgid ""
-"To use WBcom Essential widgets, edit any page or post with Elementor. In the "
-"widgets panel, search for \"WBcom\" to see all available widgets. Simply "
-"drag and drop any widget onto your page and customize its settings."
+"To use WBcom Essential widgets, edit any page or post with Elementor. In "
+"the widgets panel, search for \"WBcom\" to see all available widgets. "
+"Simply drag and drop any widget onto your page and customize its settings."
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:816
@@ -626,11 +659,10 @@ msgid "How do I get support?"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:849
-#, php-format
 msgid ""
-"License holders can get premium support through our support portal. Visit %s "
-"to submit a ticket. Make sure to include your license key when requesting "
-"support."
+"License holders can get premium support through our support portal. Visit "
+"%s to submit a ticket. Make sure to include your license key when "
+"requesting support."
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:856
@@ -661,10 +693,10 @@ msgid "How do I report a bug or request a feature?"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:869
-#, php-format
 msgid ""
-"We welcome your feedback! Report bugs or request features through our GitHub "
-"repository at %s or through our support portal if you have an active license."
+"We welcome your feedback! Report bugs or request features through our "
+"GitHub repository at %s or through our support portal if you have an active "
+"license."
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:877
@@ -672,7 +704,6 @@ msgid "Still have questions?"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:880
-#, php-format
 msgid "Check out our %s or %s for more help."
 msgstr ""
 
@@ -722,11 +753,11 @@ msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:191
 msgid ""
-"Your central hub for managing premium WordPress and BuddyPress solutions. At "
-"Wbcom Designs, we specialize in creating powerful community plugins, custom "
-"development services, and comprehensive support solutions. Our Care Plan "
-"ensures your site stays optimized and secure with priority support, regular "
-"updates, and expert maintenance."
+"Your central hub for managing premium WordPress and BuddyPress solutions. "
+"At Wbcom Designs, we specialize in creating powerful community plugins, "
+"custom development services, and comprehensive support solutions. Our Care "
+"Plan ensures your site stays optimized and secure with priority support, "
+"regular updates, and expert maintenance."
 msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:204
@@ -886,8 +917,7 @@ msgid "Welcome to Wbcom Designs!"
 msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:844
-msgid ""
-"No Wbcom plugins are currently active. Activate plugins to see them here."
+msgid "No Wbcom plugins are currently active. Activate plugins to see them here."
 msgstr ""
 
 #: includes/wbcom-essential-function.php:244
@@ -897,7 +927,6 @@ msgstr ""
 
 #: includes/wbcom-essential-function.php:418
 #: includes/wbcom-essential-function.php:427
-#, php-format
 msgid "View all posts in %s"
 msgstr ""
 
@@ -921,10 +950,9 @@ msgstr ""
 msgid "Click to share this post on Pinterest"
 msgstr ""
 
-#. translators: the plugin name.
 #: license/EDD_SL_Plugin_Updater.php:288
 #: license/class-wbcom-essential-edd-updater-wrapper.php:80
-#, php-format
+#. translators: the plugin name.
 msgid "There is a new version of %1$s available."
 msgstr ""
 
@@ -933,14 +961,13 @@ msgstr ""
 msgid "Contact your network administrator to install the update."
 msgstr ""
 
-#. translators: 1. opening anchor tag, do not translate 2. the new plugin version 3. closing anchor tag, do not translate.
 #: license/EDD_SL_Plugin_Updater.php:299
-#, php-format
+#. translators: 1. opening anchor tag, do not translate 2. the new plugin
+#. version 3. closing anchor tag, do not translate.
 msgid "%1$sView version %2$s details%3$s."
 msgstr ""
 
 #: license/EDD_SL_Plugin_Updater.php:307
-#, php-format
 msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
 msgstr ""
 
@@ -960,7 +987,6 @@ msgid "Error"
 msgstr ""
 
 #: license/class-wbcom-essential-edd-updater-wrapper.php:82
-#, php-format
 msgid "View version %2$s details"
 msgstr ""
 
@@ -969,8 +995,7 @@ msgid "Plugin License"
 msgstr ""
 
 #: license/class-wbcom-essential-license-manager.php:91
-msgid ""
-"Enter your license key to receive automatic updates and premium support."
+msgid "Enter your license key to receive automatic updates and premium support."
 msgstr ""
 
 #: license/class-wbcom-essential-license-manager.php:100
@@ -1046,7 +1071,6 @@ msgid "License never expires"
 msgstr ""
 
 #: license/class-wbcom-essential-license-manager.php:231
-#, php-format
 msgid "License expires: %s"
 msgstr ""
 
@@ -1079,7 +1103,6 @@ msgid "You do not have permission to manage licenses"
 msgstr ""
 
 #: license/class-wbcom-essential-license-manager.php:344
-#, php-format
 msgid "Error saving license: %s"
 msgstr ""
 
@@ -1125,7 +1148,6 @@ msgid "An error occurred, please try again."
 msgstr ""
 
 #: license/class-wbcom-essential-license-manager.php:499
-#, php-format
 msgid "Your license key expired on %s."
 msgstr ""
 
@@ -1142,7 +1164,6 @@ msgid "Your license is not active for this URL."
 msgstr ""
 
 #: license/class-wbcom-essential-license-manager.php:515
-#, php-format
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
@@ -2681,12 +2702,6 @@ msgstr ""
 msgid "Manual Selection"
 msgstr ""
 
-#: plugins/elementor/hooks/ElementorHooks.php:328
-#: plugins/elementor/widgets/querycontrol/group-control-posts.php:59
-msgctxt "Posts Query Control"
-msgid "Search & Select"
-msgstr ""
-
 #: plugins/elementor/scripts/template-modal-empty.php:16
 #: plugins/elementor/templates/scripts/template-modal-empty.php:16
 msgid "No Templates Found"
@@ -2779,9 +2794,8 @@ msgstr ""
 msgid "Sections"
 msgstr ""
 
-#. translators: %1$s: Plugin name, %2$s: Required plugin name
 #: plugins/elementor/wbcom-essential-elementor.php:75
-#, php-format
+#. translators: %1$s: Plugin name, %2$s: Required plugin name
 msgid "%1$s requires %2$s to be activated to unlock its full functionality."
 msgstr ""
 
@@ -2789,9 +2803,8 @@ msgstr ""
 msgid "Activate Elementor"
 msgstr ""
 
-#. translators: %1$s: Plugin name, %2$s: Required plugin name
 #: plugins/elementor/wbcom-essential-elementor.php:96
-#, php-format
+#. translators: %1$s: Plugin name, %2$s: Required plugin name
 msgid "%1$s requires %2$s to be installed to unlock its full functionality."
 msgstr ""
 
@@ -2803,9 +2816,9 @@ msgstr ""
 msgid "Learn More"
 msgstr ""
 
-#. translators: %1$s: Plugin name, %2$s: Required plugin name, %3$s: Required version
 #: plugins/elementor/wbcom-essential-elementor.php:143
-#, php-format
+#. translators: %1$s: Plugin name, %2$s: Required plugin name, %3$s: Required
+#. version
 msgid ""
 "%1$s requires %2$s version %3$s or higher. Please update to continue using "
 "all features."
@@ -3611,10 +3624,6 @@ msgstr ""
 msgid "Button Border"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:918
-msgid "repl"
-msgstr ""
-
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:983
 msgid "You are not logged in."
 msgstr ""
@@ -3883,18 +3892,16 @@ msgstr ""
 msgid "newest"
 msgstr ""
 
-#. translators: %s: Get group date created
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:662
-#, php-format
+#. translators: %s: Get group date created
 msgid "created %s"
 msgstr ""
 
-#. translators: %s: Get group last active
-#. translators: %s = last activity timestamp (e.g. "active 1 hour ago")
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:667
 #: templates/buddyx/buddypress/groups/groups-loop.php:62
 #: templates/reign/buddypress/nouveau/groups/groups-loop.php:99
-#, php-format
+#. translators: %s: Get group last active
+#. translators: %s = last activity timestamp (e.g. "active 1 hour ago")
 msgid "active %s"
 msgstr ""
 
@@ -3921,7 +3928,6 @@ msgid "There are no menus available."
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:152
-#, php-format
 msgid "Start by creating one <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 
@@ -4431,9 +4437,8 @@ msgstr ""
 msgid "Details Container Shadow"
 msgstr ""
 
-#. translators: $s: User Progress Percentage
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:889
-#, php-format
+#. translators: $s: User Progress Percentage
 msgid "%s"
 msgstr ""
 
@@ -4454,9 +4459,8 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
-#. translators: %s: Group Name
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:117
-#, php-format
+#. translators: %s: Group Name
 msgid "Group logo of %s"
 msgstr ""
 
@@ -4771,7 +4775,6 @@ msgid "Due Date"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Countdown.php:106
-#, php-format
 msgid "Date set according to your timezone: %s."
 msgstr ""
 
@@ -5585,7 +5588,8 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/LoginForm.php:279
 msgid ""
-"Note: Because of security reasons, you can ONLY use your current domain here."
+"Note: Because of security reasons, you can ONLY use your current domain "
+"here."
 msgstr ""
 
 #: plugins/elementor/widgets/General/LoginForm.php:282
@@ -7216,10 +7220,6 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PricingTable.php:275
-msgid "49"
-msgstr ""
-
 #: plugins/elementor/widgets/General/PricingTable.php:286
 #: plugins/elementor/widgets/General/PricingTable.php:1408
 msgid "Price Suffix"
@@ -8105,36 +8105,6 @@ msgstr ""
 msgid "Mixed order Products"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:156
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:157
-msgid "1"
-msgstr ""
-
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:157
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:158
-msgid "2"
-msgstr ""
-
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:158
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:159
-msgid "3"
-msgstr ""
-
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:159
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:160
-msgid "4"
-msgstr ""
-
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:160
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:161
-msgid "5"
-msgstr ""
-
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:161
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:162
-msgid "6"
-msgstr ""
-
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:172
 msgid "Rows"
 msgstr ""
@@ -8600,8 +8570,8 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:233
 msgid ""
 "“ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
-"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
-"laboris consequat. ”"
+"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim "
+"veniam, laboris consequat. ”"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:225
@@ -8635,6 +8605,25 @@ msgstr ""
 msgid "Image Area Border Color"
 msgstr ""
 
+#: templates/buddypress/groups/groups-loop.php:58
+#. translators: %s: last activity timestamp (e.g. "Active 1 hour ago")
+msgid "Active %s"
+msgstr ""
+
+#: templates/reign/buddypress/legacy/groups/groups-loop.php:138
+msgid "There were no groups found."
+msgstr ""
+
+#: templates/reign/buddypress/nouveau/members/members-loop.php:118
+msgid "More Options"
+msgstr ""
+
+#: plugins/elementor/hooks/ElementorHooks.php:328
+#: plugins/elementor/widgets/querycontrol/group-control-posts.php:59
+msgctxt "Posts Query Control"
+msgid "Search & Select"
+msgstr ""
+
 #: plugins/elementor/widgets/querycontrol/group-control-posts.php:54
 msgctxt "Posts Query Control"
 msgid "Source"
@@ -8648,32 +8637,4 @@ msgstr ""
 #: plugins/elementor/widgets/querycontrol/group-control-posts.php:112
 msgctxt "Posts Query Control"
 msgid "Manual Selection"
-msgstr ""
-
-#. translators: %s: last activity timestamp (e.g. "Active 1 hour ago")
-#: templates/buddypress/groups/groups-loop.php:58
-#, php-format
-msgid "Active %s"
-msgstr ""
-
-#: templates/reign/buddypress/legacy/groups/groups-loop.php:138
-msgid "There were no groups found."
-msgstr ""
-
-#: templates/reign/buddypress/nouveau/members/members-loop.php:118
-msgid "More Options"
-msgstr ""
-
-#. Plugin URI of the plugin/theme
-msgid "https://wbcomdesigns.com"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid ""
-"Premium Elementor widgets for BuddyPress, WooCommerce, and WordPress. Create "
-"stunning websites with 40+ professional widgets and seamless integrations."
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "https://wbcomdesigns.com/plugins"
 msgstr ""
