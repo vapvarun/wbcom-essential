@@ -2052,10 +2052,32 @@ class Slider extends \Elementor\Widget_Base {
 	protected function render() {
 		$wbcomslider_slider_id = $this->get_id();
 		$settings = $this->get_settings_for_display();
+
+		$data_prv   = isset( $settings['arrow_prev_icon']['value'] ) ? $settings['arrow_prev_icon']['value'] : '';
+		$data_nxt   = isset( $settings['arrow_next_icon']['value'] ) ? $settings['arrow_next_icon']['value'] : '';
+		$autoplay   = ! empty( $settings['autoplay'] ) ? 'true' : 'false';
+		$duration   = isset( $settings['autoplay_duration'] ) ? esc_attr( $settings['autoplay_duration'] ) . '000' : '5000';
+		$nav        = ! empty( $settings['nav_arrows'] ) ? 'true' : 'false';
+		$dots       = ! empty( $settings['nav_dots'] ) ? 'true' : 'false';
+		$thumbnails = isset( $settings['nav_thumbnails'] ) ? esc_attr( $settings['nav_thumbnails'] ) : '';
+		$slideanim  = isset( $settings['slide_anim'] ) ? esc_attr( $settings['slide_anim'] ) : '';
+		$speed      = isset( $settings['slide_anim_duration'] ) ? esc_attr( $settings['slide_anim_duration'] ) : '600';
+
 		if ( $settings['list'] ) { ?>
 		<div class="wbcom-slider-wrapper <?php if ($settings['hide_nav']) { echo 'hide-nav'; } ?>">
 			<div class="wbcom-slider-loader <?php if (empty($settings['loader_image']['url'])) { ?>wbcom-css3-loader<?php } ?>" style="<?php if (!empty($settings['loader_image']['url'])) { echo 'background-image:url(' . $settings['loader_image']['url'] . ');'; } ?>"></div>
-			<div id="wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?>" class="wbcom-slider" data-prv="<?php echo $settings['arrow_prev_icon']['value']; ?>" data-nxt="<?php echo $settings['arrow_next_icon']['value']; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-nav="<?php if ($settings['nav_arrows']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['nav_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-navthumbnails="<?php echo esc_attr($settings['nav_thumbnails']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>" data-slideanim="<?php echo esc_attr($settings['slide_anim']); ?>" data-speed="<?php echo esc_attr($settings['slide_anim_duration']); ?>">
+				<div id="wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?>"
+				class="wbcom-slider"
+				data-prv="<?php echo esc_attr( $data_prv ); ?>"
+				data-nxt="<?php echo esc_attr( $data_nxt ); ?>"
+				data-autoplay="<?php echo esc_attr( $autoplay ); ?>"
+				data-duration="<?php echo esc_attr( $duration ); ?>"
+				data-nav="<?php echo esc_attr( $nav ); ?>"
+				data-dots="<?php echo esc_attr( $dots ); ?>"
+				data-navthumbnails="<?php echo esc_attr( $thumbnails ); ?>"
+				data-rtl="<?php echo is_rtl() ? 'true' : 'false'; ?>"
+				data-slideanim="<?php echo esc_attr( $slideanim ); ?>"
+				data-speed="<?php echo esc_attr( $speed ); ?>">
 				<?php foreach ( $settings['list'] as $item ) { ?>
 				<?php $slide_thumbnail = wp_get_attachment_image_url( $item['image']['id'], $settings['nav_thumbnail_size'] ); ?>
 				<div class="wbcom-slick-thumb" data-thumbnail="<?php echo esc_url($slide_thumbnail); ?>" data-alt="<?php echo esc_attr($item['title']); ?>">
