@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-05 10:38:09+00:00\n"
+"POT-Creation-Date: 2025-10-31 12:17:46+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -5651,7 +5651,7 @@ msgstr ""
 msgid "Link Hover Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:1712
+#: plugins/elementor/widgets/General/LoginForm.php:1718
 msgid "(Logout)"
 msgstr ""
 

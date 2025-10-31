@@ -1682,6 +1682,11 @@ class LoginForm extends \Elementor\Widget_Base {
 									</label>
 								</p>
 							<?php } ?>
+
+							<p>
+							<?php do_action( 'wbcom_recaptcha_login_form' ); ?>
+							</p>
+
 							<p>
 								<button id="wp-submit" type="submit"><?php echo esc_html( $settings['label_log_in'] ); ?></button>
 							</p>
@@ -1689,6 +1694,7 @@ class LoginForm extends \Elementor\Widget_Base {
 							<input type="hidden" name="action" value="wbcom_ajax_login">
 							<?php wp_nonce_field( 'wbcom-ajax-login-nonce', 'security' ); ?>
 						</form>
+
 					<?php } ?>
 	
 					<ul class="wbcom-login-form-links">
