@@ -153,6 +153,10 @@
     border-radius: 20px 0 0 20px;
 }
 
+.product-item .actions.style_two a {
+    border-radius: 0;
+}
+
 .product-item .actions a::before {
     color: #fff;
     content: '\e803';
