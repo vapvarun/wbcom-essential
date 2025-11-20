@@ -4,6 +4,9 @@ module.exports = function (grunt) {
 	// load all grunt tasks matching the `grunt-*` pattern
 	// Ref. https://npmjs.org/package/load-grunt-tasks
 	require( 'load-grunt-tasks' )( grunt );
+
+	// Load webpack task
+	grunt.loadNpmTasks('grunt-webpack');
 	grunt.initConfig(
 		{
 			// Check text domain
@@ -60,10 +63,83 @@ module.exports = function (grunt) {
 						updateTimestamp: true // Whether the POT-Creation-Date should be updated without other changes.
 					}
 				}
+			},
+			// Webpack for Gutenberg blocks
+			webpack: {
+				blocks: {
+					mode: 'production',
+					entry: {
+						'index': './plugins/gutenberg/blocks/branding/src/index.js',
+						'style': './plugins/gutenberg/blocks/branding/src/style.scss',
+						'editor': './plugins/gutenberg/blocks/branding/src/editor.scss',
+					},
+					output: {
+						path: require('path').resolve(__dirname, 'plugins/gutenberg/blocks/branding/build'),
+						filename: (pathData) => {
+							const name = pathData.chunk.name;
+							if (name === 'index') return 'index.js';
+							return '[name].js'; // This shouldn't happen for CSS-only entries
+						},
+					},
+					module: {
+						rules: [
+							{
+								test: /\.js$/,
+								exclude: /node_modules/,
+								use: {
+									loader: 'babel-loader',
+									options: {
+										presets: ['@babel/preset-env', '@babel/preset-react'],
+									},
+								},
+							},
+							{
+								test: /\.scss$/,
+								use: [
+									require('mini-css-extract-plugin').loader,
+									'css-loader',
+									'sass-loader',
+								],
+							},
+							{
+								test: /\.css$/,
+								use: [
+									require('mini-css-extract-plugin').loader,
+									'css-loader',
+								],
+							},
+						],
+					},
+					plugins: [
+						new (require('mini-css-extract-plugin'))({
+							filename: (pathData) => {
+								const name = pathData.chunk.name;
+								if (name === 'editor') return 'editor.css';
+								if (name === 'style') return 'style.css';
+								return '[name].css';
+							},
+						}),
+						new (require('clean-webpack-plugin').CleanWebpackPlugin)({
+							cleanOnceBeforeBuildPatterns: ['**/*'],
+						}),
+					],
+					externals: {
+						'react': 'React',
+						'react-dom': 'ReactDOM',
+						'@wordpress/blocks': 'wp.blocks',
+						'@wordpress/i18n': 'wp.i18n',
+						'@wordpress/element': 'wp.element',
+						'@wordpress/block-editor': 'wp.blockEditor',
+						'@wordpress/components': 'wp.components',
+						'@wordpress/data': 'wp.data',
+						'@wordpress/api-fetch': 'wp.apiFetch',
+					},
+				}
 			}
 		}
 	);
 
-	// register task  'checktextdomain', 'makepot',
+	// register tasks
 	grunt.registerTask( 'default', ['checktextdomain', 'makepot'] );
+	grunt.registerTask( 'build-blocks', ['webpack:blocks'] );
 };

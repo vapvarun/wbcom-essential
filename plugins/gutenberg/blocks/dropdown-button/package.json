@@ -1,0 +1,12 @@
+{
+    "name": "block-dropdown-button",
+    "version": "0.1.0",
+    "description": "A customizable dropdown button with menu items",
+    "author": "WBCOM Essential",
+    "license": "GPL-2.0-or-later",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "wp-scripts build --webpack-copy-php",
+        "start": "wp-scripts start --blocks-manifest"
+    }
+}

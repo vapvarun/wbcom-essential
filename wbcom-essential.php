@@ -122,6 +122,9 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		public function includes() {
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
+
+			// Include Gutenberg blocks
+			require_once WBCOM_ESSENTIAL_PATH . '/plugins/gutenberg/wbcom-gutenberg.php';
 		}
 
 		/**

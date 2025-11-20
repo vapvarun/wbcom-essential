@@ -1,0 +1,102 @@
+
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/block-dropdown-button",
+	"category": "wbcom-essential",
+	"version": "0.1.0",
+	"title": "Dropdown Button",
+	"icon": "menu-alt",
+	"description": "A customizable dropdown button with menu items",
+	"example": {},
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": "Click Here"
+		},
+		"size": {
+			"type": "string",
+			"default": "medium"
+		},
+		"buttonIcon": {
+			"type": "object",
+			"default": {
+				"icon": "arrow-down-alt2"
+			}
+		},
+		"iconPosition": {
+			"type": "string",
+			"default": "after"
+		},
+		"buttonId": {
+			"type": "string",
+			"default": ""
+		},
+		"dropdownItems": {
+			"type": "array",
+			"default": [
+				{
+					"title": "Menu Item #1",
+					"url": "",
+					"icon": {},
+					"iconPosition": "before"
+				},
+				{
+					"title": "Menu Item #2",
+					"url": "",
+					"icon": {},
+					"iconPosition": "before"
+				}
+			]
+		},
+		"animationStyle": {
+			"type": "string",
+			"default": "none"
+		},
+		"dropdownPosition": {
+			"type": "string",
+			"default": "bottom"
+		},
+		"buttonTextColor": {
+			"type": "string"
+		},
+		"buttonBgColor": {
+			"type": "string"
+		},
+		"buttonHoverTextColor": {
+			"type": "string"
+		},
+		"buttonHoverBgColor": {
+			"type": "string"
+		},
+		"dropdownTextColor": {
+			"type": "string"
+		},
+		"dropdownBgColor": {
+			"type": "string"
+		},
+		"dropdownHoverTextColor": {
+			"type": "string"
+		},
+		"dropdownHoverBgColor": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": true,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"textdomain": "dropdown-button",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,23 @@
+.wp-block-wbcom-essential-branding {
+	border: 1px dashed #ccc;
+	padding: 1em;
+	background: #f9f9f9;
+}
+
+.wp-block-wbcom-essential-branding .header-title {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.wp-block-wbcom-essential-branding.aligncenter .header-title {
+	align-items: center;
+}
+
+.wp-block-wbcom-essential-branding.alignright .header-title {
+	align-items: flex-end;
+}
+
+.wp-block-wbcom-essential-branding .site-title a {
+	pointer-events: none;
+}

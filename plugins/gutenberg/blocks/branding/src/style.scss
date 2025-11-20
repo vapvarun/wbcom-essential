@@ -1,0 +1,38 @@
+.wp-block-wbcom-essential-branding {
+	display: block;
+	border: none;
+
+	.header-title {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	&.aligncenter .header-title {
+		align-items: center;
+	}
+
+	&.alignright .header-title {
+		align-items: flex-end;
+	}
+
+	.site-title {
+		margin: 0;
+
+		a {
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+	}
+
+	.site-description {
+		margin: 0;
+		font-size: 0.9em;
+		opacity: 0.8;
+	}
+
+	.custom-logo {
+		max-width: 100%;
+		height: auto;
+	}
+}
