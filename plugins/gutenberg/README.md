@@ -32,8 +32,7 @@ This project uses **npm workspaces** to manage multiple blocks efficiently:
 wbcom-essential/
 ├── build/blocks/                    # 🏗️ Centralized build outputs
 │   ├── branding/                    # Built branding block files
-│   ├── dropdown-button/             # Built dropdown-button block files
-│   └── heading/                     # Built heading block files
+│   └── dropdown-button/             # Built dropdown-button block files
 ├── plugins/gutenberg/
 │   ├── blocks/                      # 📦 Block source directories
 │   │   ├── branding/
@@ -47,28 +46,17 @@ wbcom-essential/
 │   │   │   ├── branding.php         # PHP registration & render
 │   │   │   ├── package.json         # Minimal block config
 │   │   │   └── render.php           # Server-side rendering
-│   │   ├── dropdown-button/
-│   │   │   ├── src/                 # Source files
-│   │   │   │   ├── block.json
-│   │   │   │   ├── index.js
-│   │   │   │   ├── edit.js
-│   │   │   │   ├── save.js
-│   │   │   │   ├── style.scss
-│   │   │   │   ├── editor.scss
-│   │   │   │   └── view.js          # Frontend JavaScript
-│   │   │   ├── dropdown-button.php  # PHP registration
-│   │   │   └── package.json         # Minimal block config
-│   │   └── heading/
+│   │   └── dropdown-button/
 │   │       ├── src/                 # Source files
 │   │       │   ├── block.json
 │   │       │   ├── index.js
 │   │       │   ├── edit.js
 │   │       │   ├── save.js
 │   │       │   ├── style.scss
-│   │       │   └── editor.scss
-│   │       ├── heading.php          # PHP registration & render
-│   │       ├── package.json         # Minimal block config
-│   │       └── render.php           # Server-side rendering
+│   │       │   ├── editor.scss
+│   │       │   └── view.js          # Frontend JavaScript
+│   │       ├── dropdown-button.php  # PHP registration
+│   │       └── package.json         # Minimal block config
 │   ├── wbcom-gutenberg.php          # Main Gutenberg integration
 │   └── README.md                    # This documentation
 └── package.json                     # 🏠 Root workspace config
@@ -120,9 +108,10 @@ npm run build
 
 ### How It Works
 1. **Source Files**: All development happens in `blocks/[name]/src/`
-2. **Build Process**: `npm run build:blocks` compiles all blocks
-3. **Centralized Output**: Built files go to `build/blocks/[name]/`
-4. **PHP Registration**: Blocks register from the centralized build location
+2. **Build Process**: `npm run build:blocks` compiles all blocks individually
+3. **File Copying**: Built files are copied to centralized `build/blocks/[name]/` location
+4. **Cleanup**: Individual block build directories are automatically removed
+5. **PHP Registration**: Blocks register from the centralized build location
 
 ### Build Process Details
 Each block uses `@wordpress/scripts` which provides:
@@ -131,6 +120,7 @@ Each block uses `@wordpress/scripts` which provides:
 - **RTL Support**: Automatic right-to-left stylesheet generation
 - **Asset Management**: WordPress dependency tracking via `.asset.php` files
 - **Optimization**: Minification and code splitting for production
+- **Clean Builds**: Individual build artifacts are automatically cleaned up after copying to centralized location
 
 ### Build Output Structure
 ```
@@ -712,15 +702,7 @@ This section lists all currently available blocks. New blocks are automatically 
 - Comprehensive styling controls
 **Files**: `dropdown-button.php`, `view.js`
 
-### 📝 Heading Block
-**Purpose**: Customizable heading with typography and link support
-**Type**: Dynamic (server-side rendering)
-**Key Features**:
-- Customizable heading text
-- Link support with external/nofollow options
-- Heading tag selection (H1-H6, P, Div)
-- Typography and color controls
-**Files**: `heading.php`, `render.php`
+
 
 ### ➕ Adding Your Block to This List
 

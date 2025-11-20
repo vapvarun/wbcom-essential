@@ -5,7 +5,7 @@
   "category": "wbcom-essential",
   "version": "0.1.0",
   "title": "Dropdown Button",
-  "icon": "menu-alt",
+  "icon": "menu",
   "description": "A customizable dropdown button with menu items",
   "example": {},
   "attributes": {

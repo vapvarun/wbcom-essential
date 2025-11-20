@@ -28,13 +28,30 @@ export default function save( { attributes } ) {
 		dropdownPosition,
 		buttonTextColor,
 		buttonBgColor,
+		buttonHoverTextColor,
+		buttonHoverBgColor,
 		dropdownTextColor,
-		dropdownBgColor
+		dropdownBgColor,
+		dropdownHoverTextColor,
+		dropdownHoverBgColor
 	} = attributes;
 
-	const blockProps = useBlockProps.save( {
-		className: `dropdown-button-wrapper size-${ size } animation-${ animationStyle }`
-	} );
+	const wrapperStyle = {
+		'--dropdown-hover-text-color': dropdownHoverTextColor || '#2271b1',
+		'--dropdown-hover-bg-color': dropdownHoverBgColor || '#f5f5f5'
+	};
+
+	const buttonStyle = {
+		'--normal-text-color': buttonTextColor || '#ffffff',
+		'--normal-bg-color': buttonBgColor || '#2271b1',
+		'--hover-text-color': buttonHoverTextColor || 'currentColor',
+		'--hover-bg-color': buttonHoverBgColor || 'rgba(0, 0, 0, 0.1)'
+	};
+
+	const dropdownStyle = {
+		color: dropdownTextColor,
+		backgroundColor: dropdownBgColor
+	};
 
 	const renderIcon = ( iconName ) => {
 		const iconMap = {
@@ -48,15 +65,10 @@ export default function save( { attributes } ) {
 		return iconMap[ iconName ] || '▼';
 	};
 
-	const buttonStyle = {
-		color: buttonTextColor,
-		backgroundColor: buttonBgColor
-	};
-
-	const dropdownStyle = {
-		color: dropdownTextColor,
-		backgroundColor: dropdownBgColor
-	};
+	const blockProps = useBlockProps.save( {
+		className: `dropdown-button-wrapper size-${ size } animation-${ animationStyle }`,
+		style: wrapperStyle
+	} );
 
 	return (
 		<div { ...blockProps }>

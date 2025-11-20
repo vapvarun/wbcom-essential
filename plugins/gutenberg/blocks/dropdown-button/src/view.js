@@ -23,34 +23,25 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			// Close other dropdowns
 			document.querySelectorAll( '.dropdown-menu' ).forEach( function( otherMenu ) {
 				if ( otherMenu !== menu ) {
-					otherMenu.style.opacity = '0';
-					otherMenu.style.visibility = 'hidden';
+					otherMenu.classList.remove( 'is-open' );
 				}
 			} );
 
 			// Toggle current dropdown
-			if ( menu.style.opacity === '1' ) {
-				menu.style.opacity = '0';
-				menu.style.visibility = 'hidden';
-			} else {
-				menu.style.opacity = '1';
-				menu.style.visibility = 'visible';
-			}
+			menu.classList.toggle( 'is-open' );
 		} );
 
 		// Close dropdown when clicking outside
 		document.addEventListener( 'click', function( e ) {
 			if ( ! container.contains( e.target ) ) {
-				menu.style.opacity = '0';
-				menu.style.visibility = 'hidden';
+				menu.classList.remove( 'is-open' );
 			}
 		} );
 
 		// Close dropdown on escape key
 		document.addEventListener( 'keydown', function( e ) {
 			if ( e.key === 'Escape' ) {
-				menu.style.opacity = '0';
-				menu.style.visibility = 'hidden';
+				menu.classList.remove( 'is-open' );
 			}
 		} );
 	} );

@@ -76,6 +76,10 @@ blockDirs.forEach(blockName => {
             });
 
             console.log(`   📋 Copied build files to centralized location`);
+
+            // Clean up individual block build directory
+            fs.rmSync(blockBuildDir, { recursive: true, force: true });
+            console.log(`   🧹 Cleaned up individual build directory`);
         }
 
         console.log(`   ✅ ${blockName} built successfully`);

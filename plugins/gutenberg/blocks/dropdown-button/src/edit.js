@@ -67,8 +67,21 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const [ isOpen, setIsOpen ] = useState( false );
 
+	const wrapperStyle = {
+		'--dropdown-hover-text-color': dropdownHoverTextColor || '#2271b1',
+		'--dropdown-hover-bg-color': dropdownHoverBgColor || '#f5f5f5'
+	};
+
+	const buttonStyle = {
+		'--normal-text-color': buttonTextColor || '#ffffff',
+		'--normal-bg-color': buttonBgColor || '#2271b1',
+		'--hover-text-color': buttonHoverTextColor || 'currentColor',
+		'--hover-bg-color': buttonHoverBgColor || 'rgba(0, 0, 0, 0.1)'
+	};
+
 	const blockProps = useBlockProps( {
-		className: `dropdown-button-wrapper size-${ size } animation-${ animationStyle }`
+		className: `dropdown-button-wrapper size-${ size } animation-${ animationStyle }`,
+		style: wrapperStyle
 	} );
 
 	const addDropdownItem = () => {
@@ -104,11 +117,6 @@ export default function Edit( { attributes, setAttributes } ) {
 			'ellipsis': '⋯'
 		};
 		return iconMap[ iconName ] || '▼';
-	};
-
-	const buttonStyle = {
-		color: buttonTextColor,
-		backgroundColor: buttonBgColor
 	};
 
 	const dropdownStyle = {
