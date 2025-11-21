@@ -1,0 +1,21 @@
+{
+    "name": "block-heading",
+    "version": "0.1.0",
+    "description": "A comprehensive heading block for displaying headings with advanced styling options",
+    "author": "Wbcom Essential",
+    "license": "GPL-2.0-or-later",
+    "main": "build/index.js",
+    "keywords": [
+        "wordpress",
+        "block",
+        "heading",
+        "gutenberg"
+    ],
+    "scripts": {
+        "build": "wp-scripts build --webpack-copy-php",
+        "start": "wp-scripts start --blocks-manifest"
+    },
+    "devDependencies": {
+        "@wordpress/scripts": "^26.0.0"
+    }
+}
