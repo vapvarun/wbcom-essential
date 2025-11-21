@@ -31,16 +31,7 @@
 			box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.1);
 		}
 
-		&.is-open {
 
-			.accordion-content-preview {
-				display: block;
-			}
-
-			.accordion-arrow::before {
-				transform: rotate(-135deg);
-			}
-		}
 	}
 
 	.accordion-header-preview {
@@ -76,6 +67,10 @@
 				border-bottom: 2px solid currentcolor;
 				transform: rotate(45deg);
 				transition: transform 0.3s ease;
+
+				.accordion-item-preview.is-open & {
+					transform: rotate(-135deg);
+				}
 			}
 		}
 	}
@@ -87,6 +82,10 @@
 		border-top: 1px solid #e0e0e0;
 		white-space: pre-wrap;
 		word-wrap: break-word;
+
+		.accordion-item-preview.is-open & {
+			display: block;
+		}
 	}
 
 	.selected-indicator {

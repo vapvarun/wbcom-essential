@@ -702,6 +702,20 @@ This section lists all currently available blocks. New blocks are automatically 
 - Comprehensive styling controls
 **Files**: `dropdown-button.php`, `view.js`
 
+### 📋 Accordion Block
+**Purpose**: Create expandable accordion sections with rich content and customization options
+**Type**: Dynamic (server-side rendering)
+**Key Features**:
+- Multiple accordion items with titles and content
+- Single/multiple item expansion modes
+- Auto-scroll to opened items
+- Customizable animations and timing
+- Full typography controls for titles and content
+- Advanced color and styling options
+- FAQ schema markup support for SEO
+- Responsive design with mobile optimization
+**Files**: `accordion.php`, `render.php`, `view.js`
+
 
 
 ### ➕ Adding Your Block to This List

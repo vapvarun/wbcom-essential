@@ -11,7 +11,7 @@ import {
 	TextareaControl,
 	Notice,
 } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element'; // Added useEffect
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -46,12 +46,25 @@ export default function Edit( { attributes, setAttributes } ) {
 		items.length > 0 ? items[ 0 ].id : null
 	);
 
+	// Fix: Ensure all items have valid IDs
+	useEffect( () => {
+		const itemsWithValidIds = items.map( ( item, index ) => ( {
+			...item,
+			id: item.id && item.id !== 'undefined' ? item.id : `item-${ Date.now() }-${ index }`,
+		} ) );
+		
+		// Only update if there are changes to avoid infinite loop
+		if ( JSON.stringify( itemsWithValidIds ) !== JSON.stringify( items ) ) {
+			setAttributes( { items: itemsWithValidIds } );
+		}
+	}, [ items ] );
+
 	const blockProps = useBlockProps( {
 		className: 'wp-block-wbcom-essential-accordion',
 	} );
 
 	const addItem = () => {
-		const newId = Date.now().toString();
+		const newId = `item-${ Date.now() }-${ items.length }`; // More robust ID generation
 		const newItems = [
 			...items,
 			{
@@ -89,8 +102,14 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const selectedItem = items.find( ( item ) => item.id === selectedItemId );
 
+	// Fix: Safe key generation function
+	const getSafeKey = ( item, prefix = 'item' ) => {
+		const itemId = item.id && item.id !== 'undefined' ? item.id : `temp-${ Date.now() }-${ Math.random() }`;
+		return `${ prefix }-${ itemId }`;
+	};
+
 	return (
-		<>
+		<div>
 			<InspectorControls>
 				<PanelBody
 					title={ __( 'Accordion Items', 'accordion-block' ) }
@@ -99,7 +118,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<div className="accordion-items-list">
 						{ items.map( ( item, index ) => (
 							<div
-								key={ item.id }
+								key={ getSafeKey( item, 'sidebar' ) } // Fixed: Using safe key function
 								className={ `accordion-item-selector ${
 									selectedItemId === item.id
 										? 'is-selected'
@@ -585,7 +604,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						const headerStyle = {
 							color: titleColor,
 							backgroundColor: titleBgColor || '#f8f9fa',
-							fontSize: `${titleFontSize}px`,
+							fontSize: `${ titleFontSize }px`,
 							fontWeight: titleFontWeight,
 							lineHeight: titleLineHeight,
 						};
@@ -593,16 +612,18 @@ export default function Edit( { attributes, setAttributes } ) {
 						const contentStyle = {
 							color: contentColor,
 							backgroundColor: contentBgColor || '#fff',
-							fontSize: `${contentFontSize}px`,
+							fontSize: `${ contentFontSize }px`,
 							fontWeight: contentFontWeight,
 							lineHeight: contentLineHeight,
+							padding: '20px',
+							borderTop: '1px solid #e0e0e0',
 						};
 
 						const isSelected = selectedItemId === item.id;
 
 						return (
 							<div
-								key={ item.id }
+								key={ getSafeKey( item, 'preview' ) } // Fixed: Using safe key function
 								className={ `accordion-item-preview ${
 									isSelected ? 'is-selected' : ''
 								} ${ item.isOpen ? 'is-open' : '' }` }
@@ -624,18 +645,21 @@ export default function Edit( { attributes, setAttributes } ) {
 									className="accordion-header-preview"
 									style={ headerStyle }
 								>
-									{ item.iconType === 'text' &&
-										item.iconText && (
-											<span key="icon-text" className="accordion-icon">
-												{ item.iconText }
-											</span>
-										) }
-									{ item.iconType === 'icon' && item.icon && (
+									<span className="accordion-icon">
 										<span
-											key="icon-dashicon"
-											className={ `accordion-icon dashicons ${ item.icon }` }
-										></span>
-									) }
+											className={
+												item.iconType === 'icon' && item.icon
+													? `dashicons ${ item.icon }`
+													: item.iconType === 'text'
+													? 'accordion-text-icon'
+													: ''
+											}
+										>
+											{ item.iconType === 'text' && item.iconText
+												? item.iconText
+												: '' }
+										</span>
+									</span>
 									<span className="accordion-title-preview">
 										{ item.title ||
 											__(
@@ -647,7 +671,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								</div>
 								{ item.isOpen && (
 									<div
-										key="content-preview"
+										key={ getSafeKey( item, 'content' ) } // Fixed: Using safe key function
 										className="accordion-content-preview"
 										style={ contentStyle }
 									>
@@ -659,7 +683,10 @@ export default function Edit( { attributes, setAttributes } ) {
 									</div>
 								) }
 								{ isSelected && (
-									<div key="selected-indicator" className="selected-indicator">
+									<div
+										key={ getSafeKey( item, 'selected' ) } // Fixed: Using safe key function
+										className="selected-indicator"
+									>
 										{ __(
 											'✓ Selected - Edit in sidebar',
 											'accordion-block'
@@ -671,6 +698,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					} ) }
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
