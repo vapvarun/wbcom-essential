@@ -370,10 +370,10 @@ export default function Edit( { attributes, setAttributes } ) {
 									href="#"
 									style={ {
 										color: titleColor,
-										padding: `${ titlePadding.top } ${ titlePadding.right } ${ titlePadding.bottom } ${ titlePadding.left }`,
+										padding: `${ logoPadding.top } ${ logoPadding.right } ${ logoPadding.bottom } ${ logoPadding.left }`,
 									} }
 								>
-									{ siteTitle }
+									{ 'Site Logo' }
 								</a>
 							</span>
 						)
