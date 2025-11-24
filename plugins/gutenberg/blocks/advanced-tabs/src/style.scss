@@ -1,0 +1,250 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
+.wp-block-wbcom-essential-advanced-tabs {
+    display: flex;
+    gap: 0;
+    width: 100%;
+
+    &.layout-horizontal {
+        flex-direction: column;
+    }
+
+    &.layout-vertical {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    &.layout-vertical-reverse {
+        flex-direction: row-reverse;
+        align-items: stretch;
+    }
+
+    .tabs-header {
+        display: flex;
+        gap: 0;
+    }
+
+    &.layout-horizontal .tabs-header {
+        flex-direction: row;
+    }
+
+    &.layout-vertical .tabs-header,
+    &.layout-vertical-reverse .tabs-header {
+        flex-direction: column;
+        min-width: 200px;
+    }
+
+    @media (max-width: 1024px) {
+        &.layout-vertical .tabs-header,
+        &.layout-vertical-reverse .tabs-header {
+            min-width: 150px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        &.layout-vertical .tabs-header,
+        &.layout-vertical-reverse .tabs-header {
+            min-width: 120px;
+        }
+    }
+
+    &.layout-vertical-reverse .tabs-header {
+        border-left: 1px solid #fff;
+    }
+
+    .tab-title {
+        padding: 15px 20px;
+        cursor: pointer;
+        border: 1px solid #e0e0e0;
+        border-bottom: none;
+        background-color: #f5f5f5;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+
+        .layout-horizontal & {
+            margin-right: -1px;
+        }
+
+        .layout-vertical &,
+        .layout-vertical-reverse & {
+            border-bottom: 1px solid #e0e0e0;
+            border-right: none;
+        }
+
+        .layout-vertical-reverse & {
+            border-left: none;
+        }
+
+        &:hover {
+            background-color: #efefef;
+        }
+
+        &.active {
+            background-color: #ffffff;
+            border-bottom-color: #ffffff;
+            position: relative;
+            z-index: 1;
+
+            .layout-vertical & {
+                border-right-color: #ffffff;
+            }
+
+            .layout-vertical-reverse & {
+                border-left-color: #ffffff;
+            }
+        }
+
+        .dashicon {
+            display: inline-block;
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .tab-content {
+        display: none;
+        flex: 1;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        background-color: #ffffff;
+        min-height: 200px;
+
+        .layout-horizontal & {
+            border-top: none;
+        }
+
+        .layout-vertical &,
+        .layout-vertical-reverse & {
+            border-left: none;
+            border-right: none;
+            height: 100%;
+        }
+    }
+
+    &.layout-vertical {
+        .tab-title {
+            &:last-child {
+                border-bottom: 1px solid #e0e0e0;
+            }
+        }
+
+        .tab-content {
+            border-left: 0;
+        }
+    }
+
+    &.layout-vertical-reverse {
+        .tab-title {
+            &:last-child {
+                border-bottom: 1px solid #e0e0e0;
+            }
+        }
+
+        .tab-content {
+            border-right: 0;
+        }
+    }
+
+    .tab-content-wrapper {
+        display: none;
+    }
+
+    .tab-content-wrapper.active {
+        display: block;
+        flex: 1;
+    }
+
+    .tab-content-wrapper.active .tab-content {
+        display: block;
+        height: 100%;
+    }
+
+    .tab-content-inner {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .tab-image {
+        flex-shrink: 0;
+        max-width: 300px;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+    }
+
+    .tab-text {
+        flex: 1;
+    }
+
+    .accordion-mobile-title {
+        display: none;
+    }
+}
+
+/* Mobile accordion styles */
+@media (max-width: 768px) {
+    .wp-block-wbcom-essential-advanced-tabs {
+        flex-direction: column !important;
+
+        .tabs-header {
+            display: none !important;
+        }
+
+        .accordion-mobile-title {
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            font-weight: 500;
+            margin-bottom: -1px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #efefef;
+            }
+
+            &.active {
+                background-color: #ffffff;
+				margin-bottom: 0;
+            }
+
+            .dashicon {
+                display: inline-block;
+            }
+        }
+
+        .tab-content {
+            border-top: none;
+        }
+
+        .tab-content-inner {
+            flex-direction: column;
+        }
+
+        .tab-image {
+            max-width: 100%;
+        }
+
+		&.layout-vertical .tab-content {
+			border-left: 1px solid #e0e0e0;
+		}
+
+		&.layout-vertical-reverse .tab-content {
+			border-right: 1px solid #e0e0e0;
+		}
+    }
+}

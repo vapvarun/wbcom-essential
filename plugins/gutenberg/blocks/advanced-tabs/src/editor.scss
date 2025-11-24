@@ -1,0 +1,26 @@
+
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-wbcom-essential-advanced-tabs {
+	.tab-title {
+		user-select: none;
+		
+		&:focus {
+			outline: 2px solid #2271b1;
+			outline-offset: -2px;
+		}
+	}
+
+	.tab-content {
+		display: block;
+		min-height: 200px;
+	}
+
+	.tab-text {
+		[contenteditable] {
+			outline: none;
+		}
+	}
+}

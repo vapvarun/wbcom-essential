@@ -53,4 +53,13 @@ module.exports = [
 			filename: 'index.js',
 		},
 	},
+	{
+		...baseConfig,
+		name: 'advanced-tabs',
+		entry: './plugins/gutenberg/blocks/advanced-tabs/src/index.js',
+		output: {
+			path: path.resolve(__dirname, 'plugins/gutenberg/blocks/advanced-tabs/build'),
+			filename: 'index.js',
+		},
+	},
 ];
