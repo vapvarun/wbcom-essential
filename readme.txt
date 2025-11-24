@@ -13,11 +13,12 @@ Premium Elementor widgets for BuddyPress, WooCommerce, and WordPress. Create stu
 
 == Description ==
 
-WBcom Essential is a comprehensive addon plugin that extends Elementor with 40+ premium widgets specifically designed for BuddyPress, WooCommerce, and WordPress websites. Build beautiful, feature-rich websites with our professionally crafted widgets.
+WBcom Essential is a comprehensive addon plugin that extends both Elementor and Gutenberg with premium widgets and blocks specifically designed for BuddyPress, WooCommerce, and WordPress websites. Build beautiful, feature-rich websites with our professionally crafted widgets and modern Gutenberg blocks.
 
 **Key Features:**
 
-* **40+ Premium Widgets** - Extensive collection of widgets for every need
+* **40+ Premium Widgets** - Extensive collection of Elementor widgets for every need
+* **Modern Gutenberg Blocks** - Native WordPress blocks with advanced functionality
 * **BuddyPress Integration** - Member grids, group carousels, activity feeds, and more
 * **WooCommerce Support** - Product tabs, customer reviews, promotional banners
 * **Professional Design** - Stunning pre-built templates and customizable layouts
@@ -54,6 +55,11 @@ WBcom Essential is a comprehensive addon plugin that extends Elementor with 40+ 
 * Countdown Timer
 * Progress Bar
 * And many more...
+
+**Gutenberg Blocks:**
+* Accordion Block - Expandable content sections with rich customization
+* Branding Block - Site branding with title, description, and logo options
+* Dropdown Button Block - Interactive dropdown menus with animations
 
 **Perfect For:**
 * Community Websites

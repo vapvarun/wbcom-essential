@@ -24,6 +24,7 @@ class WBCOM_Essential_Gutenberg {
 	public function __construct() {
 		$this->load_blocks();
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 2 );
+		add_filter( 'style_loader_src', array( $this, 'filter_kirki_style_src' ), 10, 2 );
 	}
 
 	/**
@@ -84,6 +85,16 @@ class WBCOM_Essential_Gutenberg {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Filter Kirki style src to prevent loading in editor
+	 */
+	public function filter_kirki_style_src( $src, $handle ) {
+		if ( strpos( $src, 'action=kirki-styles' ) !== false ) {
+			return false;
+		}
+		return $src;
 	}
 }
 
