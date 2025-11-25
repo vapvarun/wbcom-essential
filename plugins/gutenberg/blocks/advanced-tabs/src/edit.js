@@ -79,6 +79,21 @@ export default function Edit( { attributes, setAttributes } ) {
 	);
 
 	/**
+	 * Ensures all tabs have valid IDs
+	 */
+	const ensureTabIds = (tabsArray) => {
+		return tabsArray.map((tab, index) => {
+			if (!tab.id || tab.id === 'undefined') {
+				return {
+					...tab,
+					id: `tab-${Date.now()}-${index}-${Math.random().toString(36).substr(2, 9)}`
+				};
+			}
+			return tab;
+		});
+	};
+
+	/**
 	 * Updates a specific field of a tab at the given index
 	 *
 	 * @param {number} index - The index of the tab to update
@@ -86,8 +101,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	 * @param {any} value - The new value for the field
 	 */
 	const updateTab = ( index, field, value ) => {
-		const newTabs = [ ...tabs ];
-		newTabs[ index ][ field ] = value;
+		const newTabs = tabs.map( ( tab, i ) => i === index ? { ...tab, [field]: value } : tab );
 		setAttributes( { tabs: newTabs } );
 	};
 
@@ -95,10 +109,10 @@ export default function Edit( { attributes, setAttributes } ) {
 	 * Adds a new tab to the tabs array
 	 */
 	const addTab = () => {
-		const newTabs = [ ...tabs ];
+		const newTabs = ensureTabIds([ ...tabs ]);
 		newTabs.push(
 			{
-				id: `tab-${Date.now()}`,
+				id: `tab-${Date.now()}-${tabs.length}-${Math.random().toString(36).substr(2, 9)}`,
 				title: `Tab ${tabs.length + 1}`,
 				icon: '',
 				content: 'New tab content',
@@ -139,6 +153,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 	};
 
+	// Ensure all tabs have valid IDs
+	const safeTabs = ensureTabIds(tabs);
+
 	const colors = [
 		{ name: 'Black', color: '#000000' },
 		{ name: 'White', color: '#ffffff' },
@@ -172,25 +189,28 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title= { __( 'Manage Tabs', 'advanced-tabs-block' ) } initialOpen= { false }>
-					{ tabs.map(
+					{ safeTabs.map(
 						( tab, index ) => (
-						<VStack key= { tab.id } spacing= { 2 } style= { { marginBottom: '20px', padding: '10px', border: '1px solid #ddd' } }>
-							<HStack>
+						<VStack key= { `tab-manage-${tab.id}` } spacing= { 2 } style= { { marginBottom: '20px', padding: '10px', border: '1px solid #ddd' } }>
+							<HStack key= { `header-${tab.id}` }>
 								<strong> { __( 'Tab', 'advanced-tabs-block' ) } { index + 1 } </strong>
 							</HStack>
 							<TextControl
+								key= { `title-control-${tab.id}` }
 								label= { __( 'Title', 'advanced-tabs-block' ) }
 								value= { tab.title }
 								onChange= { ( value ) => updateTab( index, 'title', value ) }
 							/>
 							<TextControl
+								key= { `icon-control-${tab.id}` }
 								label= { __( 'Dashicon Name', 'advanced-tabs-block' ) }
 								help= { __( 'e.g., star-filled, admin-post, format-aside', 'advanced-tabs-block' ) }
 								value= { tab.icon }
 								onChange= { ( value ) => updateTab( index, 'icon', value ) }
 							/>
-							<MediaUploadCheck>
+							<MediaUploadCheck key= { `media-check-${tab.id}` }>
 								<MediaUpload
+									key= { `media-upload-${tab.id}` }
 									onSelect= { ( media ) => {
 										updateTab( index, 'imageUrl', media.url );
 										updateTab( index, 'imageId', media.id );
@@ -198,12 +218,12 @@ export default function Edit( { attributes, setAttributes } ) {
 									allowedTypes= { [ 'image' ] }
 									value= { tab.imageId }
 									render= { ( { open } ) => (
-										<>
+										<div key= { `media-render-${tab.id}` }>
 											<Button onClick= { open } variant = "secondary" style= { { textAlign: 'center', width: '100%' } }>
 												{ tab.imageUrl ? __( 'Change Image', 'advanced-tabs-block' ) : __( 'Select Image', 'advanced-tabs-block' ) }
 											</Button>
 											{ tab.imageUrl && (
-												<>
+												<div key= { `media-preview-${tab.id}` }>
 													<img src= { tab.imageUrl } alt = "" style= { { maxWidth: '100%', marginTop: '10px' } } />
 													<Button
 														onClick= { () => {
@@ -216,16 +236,17 @@ export default function Edit( { attributes, setAttributes } ) {
 													>
 														{ __( 'Remove Image', 'advanced-tabs-block' ) }
 													</Button>
-												</>
+												</div>
 											) }
-										</>
+										</div>
 									) }
 								/>
 							</MediaUploadCheck>
-							<VStack spacing= { 1 }>
-								<HStack spacing= { 1 }>
+							<VStack key= { `actions-${tab.id}` } spacing= { 1 }>
+								<HStack key= { `move-buttons-${tab.id}` } spacing= { 1 }>
 									{ index > 0 && (
 										<Button
+											key= { `up-${tab.id}` }
 											onClick= { () => moveTab( index, -1 ) }
 											variant = "secondary"
 											icon = "arrow-up-alt2"
@@ -233,8 +254,9 @@ export default function Edit( { attributes, setAttributes } ) {
 											{ __( 'Move Up', 'advanced-tabs-block' ) }
 										</Button>
 									) }
-									{ index < tabs.length - 1 && (
+									{ index < safeTabs.length - 1 && (
 										<Button
+											key= { `down-${tab.id}` }
 											onClick= { () => moveTab( index, 1 ) }
 											variant = "secondary"
 											icon = "arrow-down-alt2"
@@ -243,8 +265,9 @@ export default function Edit( { attributes, setAttributes } ) {
 										</Button>
 									) }
 								</HStack>
-								{ tabs.length> 1 && (
+								{ safeTabs.length> 1 && (
 									<Button
+										key= { `remove-${tab.id}` }
 										onClick= { () => removeTab( index ) }
 										variant = "secondary"
 										isDestructive
@@ -412,10 +435,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						` }
 				</style>
 				<div className = "tabs-header">
-					{ tabs.map(
+					{ safeTabs.map(
 						( tab, index ) => (
 						<div
-							key= { tab.id }
+							key= { `tab-header-${tab.id}` }
 							className= { `tab-title ${index === activeTab ? 'active' : ''}` }
 							onClick= { () => setActiveTab( index ) }
 							role = "button"
@@ -428,17 +451,18 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				</div>
 				<div className = "tab-content">
-					{ tabs[ activeTab ] && (
+					{ safeTabs[ activeTab ] && (
 						<div className = "tab-content-inner">
-							{ tabs[ activeTab ].imageUrl && (
+							{ safeTabs[ activeTab ].imageUrl && (
 								<div className = "tab-image">
-									<img src= { tabs[ activeTab ].imageUrl } alt= { tabs[ activeTab ].title } />
+									<img src= { safeTabs[ activeTab ].imageUrl } alt= { safeTabs[ activeTab ].title } />
 								</div>
 							) }
 							<div className = "tab-text">
 								<RichText
+									key= { `richtext-${safeTabs[ activeTab ].id}` }
 									tagName = "div"
-									value= { tabs[ activeTab ].content }
+									value= { safeTabs[ activeTab ].content }
 									onChange= { ( value ) => updateTab( activeTab, 'content', value ) }
 									placeholder= { __( 'Add content...', 'advanced-tabs-block' ) }
 								/>

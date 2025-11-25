@@ -88,7 +88,7 @@ if ( $content_color || $content_bg_color || $content_border_color ) {
 ?>
 
 <?php if ( ! empty( $inline_styles ) ) : ?>
-	<style><?php echo esc_html( $inline_styles ); ?></style>
+	<style><?php echo wp_kses_post( $inline_styles ); ?></style>
 <?php endif; ?>
 
 <div 
@@ -96,56 +96,60 @@ if ( $content_color || $content_bg_color || $content_border_color ) {
 	data-enable-url-hash="<?php echo $enable_url_hash ? 'true' : 'false'; ?>"
 >
 	<div class="tabs-header">
-		<?php foreach ( $tabs as $index => $tab ) : ?>
+		<?php foreach ( $tabs as $index => $tab ) : 
+			$tab_id = $tab['id'] ?? 'tab-' . $index;
+			?>
 			<div
 				class="tab-title <?php echo 0 === $index ? 'active' : ''; ?>"
 				role="tab"
-				id="tab-title-<?php echo esc_attr( $tab['id'] ); ?>"
+				id="tab-title-<?php echo esc_attr( $tab_id ); ?>"
 				tabindex="<?php echo 0 === $index ? '0' : '-1'; ?>"
 				aria-selected="<?php echo 0 === $index ? 'true' : 'false'; ?>"
-				aria-controls="tab-content-<?php echo esc_attr( $tab['id'] ); ?>"
+				aria-controls="tab-content-<?php echo esc_attr( $tab_id ); ?>"
 				data-tab-index="<?php echo esc_attr( $index ); ?>"
 			>
 				<?php if ( ! empty( $tab['icon'] ) ) : ?>
 					<span class="dashicons dashicons-<?php echo esc_attr( $tab['icon'] ); ?>"></span>
 				<?php endif; ?>
-				<span><?php echo esc_html( $tab['title'] ); ?></span>
+				<span><?php echo esc_html( $tab['title'] ?? "Tab " . ($index + 1) ); ?></span>
 			</div>
 		<?php endforeach; ?>
 	</div>
 
-	<?php foreach ( $tabs as $index => $tab ) : ?>
+	<?php foreach ( $tabs as $index => $tab ) : 
+		$tab_id = $tab['id'] ?? 'tab-' . $index;
+		?>
 		<div
 			class="accordion-mobile-title <?php echo 0 === $index ? 'active' : ''; ?>"
 			role="tab"
-			id="accordion-title-<?php echo esc_attr( $tab['id'] ); ?>"
+			id="accordion-title-<?php echo esc_attr( $tab_id ); ?>"
 			tabindex="<?php echo 0 === $index ? '0' : '-1'; ?>"
 			aria-selected="<?php echo 0 === $index ? 'true' : 'false'; ?>"
-			aria-controls="tab-content-<?php echo esc_attr( $tab['id'] ); ?>"
+			aria-controls="tab-content-<?php echo esc_attr( $tab_id ); ?>"
 			data-tab-index="<?php echo esc_attr( $index ); ?>"
 		>
 			<?php if ( ! empty( $tab['icon'] ) ) : ?>
 				<span class="dashicons dashicons-<?php echo esc_attr( $tab['icon'] ); ?>"></span>
 			<?php endif; ?>
-			<span><?php echo esc_html( $tab['title'] ); ?></span>
+			<span><?php echo esc_html( $tab['title'] ?? "Tab " . ($index + 1) ); ?></span>
 		</div>
 
 		<div
 			class="tab-content-wrapper <?php echo 0 === $index ? 'active' : ''; ?>"
 			role="tabpanel"
-			id="tab-content-<?php echo esc_attr( $tab['id'] ); ?>"
-			aria-labelledby="tab-title-<?php echo esc_attr( $tab['id'] ); ?>"
-			data-tab-id="<?php echo esc_attr( $tab['id'] ); ?>"
+			id="tab-content-<?php echo esc_attr( $tab_id ); ?>"
+			aria-labelledby="tab-title-<?php echo esc_attr( $tab_id ); ?>"
+			data-tab-id="<?php echo esc_attr( $tab_id ); ?>"
 		>
 			<div class="tab-content">
 				<div class="tab-content-inner">
 					<?php if ( ! empty( $tab['imageUrl'] ) ) : ?>
 						<div class="tab-image">
-							<img src="<?php echo esc_url( $tab['imageUrl'] ); ?>" alt="<?php echo esc_attr( $tab['title'] ); ?>" />
+							<img src="<?php echo esc_url( $tab['imageUrl'] ); ?>" alt="<?php echo esc_attr( $tab['title'] ?? "Tab " . ($index + 1) ); ?>" />
 						</div>
 					<?php endif; ?>
 					<div class="tab-text">
-						<?php echo wp_kses_post( $tab['content'] ); ?>
+						<?php echo wp_kses_post( $tab['content'] ?? '' ); ?>
 					</div>
 				</div>
 			</div>
