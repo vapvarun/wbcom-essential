@@ -108,20 +108,20 @@ export default function Edit( { attributes, setAttributes } ) {
 	/**
 	 * Adds a new tab to the tabs array
 	 */
-	const addTab = () => {
-		const newTabs = ensureTabIds([ ...tabs ]);
-		newTabs.push(
-			{
-				id: `tab-${Date.now()}-${tabs.length}-${Math.random().toString(36).substr(2, 9)}`,
-				title: `Tab ${tabs.length + 1}`,
-				icon: '',
-				content: 'New tab content',
-				imageUrl: '',
-				imageId: 0
-			}
-		);
-		setAttributes( { tabs: newTabs } );
-	};
+		const addTab = () => {
+			const newTabs = ensureTabIds([ ...tabs ]);
+			newTabs.push(
+				{
+					id: `tab-${Date.now()}-${tabs.length}-${Math.random().toString(36).substr(2, 9)}`,
+					title: `Tab ${tabs.length + 1}`,
+					icon: '',
+					content: 'New tab content',
+					imageUrl: '',
+					imageId: null
+				}
+			);
+			setAttributes( { tabs: newTabs } );
+		};
 
 	/**
 	 * Removes a tab at the specified index
@@ -208,17 +208,16 @@ export default function Edit( { attributes, setAttributes } ) {
 								value= { tab.icon }
 								onChange= { ( value ) => updateTab( index, 'icon', value ) }
 							/>
-							<MediaUploadCheck key= { `media-check-${tab.id}` }>
+							<MediaUploadCheck>
 								<MediaUpload
-									key= { `media-upload-${tab.id}` }
 									onSelect= { ( media ) => {
-										updateTab( index, 'imageUrl', media.url );
-										updateTab( index, 'imageId', media.id );
+										const newTabs = tabs.map( ( tab, i ) => i === index ? { ...tab, imageUrl: media.url, imageId: media.id } : tab );
+										setAttributes( { tabs: newTabs } );
 										} }
 									allowedTypes= { [ 'image' ] }
-									value= { tab.imageId }
+									value= { tab.imageId || undefined }
 									render= { ( { open } ) => (
-										<div key= { `media-render-${tab.id}` }>
+										<div>
 											<Button onClick= { open } variant = "secondary" style= { { textAlign: 'center', width: '100%' } }>
 												{ tab.imageUrl ? __( 'Change Image', 'advanced-tabs-block' ) : __( 'Select Image', 'advanced-tabs-block' ) }
 											</Button>
@@ -227,8 +226,8 @@ export default function Edit( { attributes, setAttributes } ) {
 													<img src= { tab.imageUrl } alt = "" style= { { maxWidth: '100%', marginTop: '10px' } } />
 													<Button
 														onClick= { () => {
-															updateTab( index, 'imageUrl', '' );
-															updateTab( index, 'imageId', 0 );
+															const newTabs = tabs.map( ( tab, i ) => i === index ? { ...tab, imageUrl: '', imageId: null } : tab );
+															setAttributes( { tabs: newTabs } );
 															} }
 														variant = "link"
 														isDestructive

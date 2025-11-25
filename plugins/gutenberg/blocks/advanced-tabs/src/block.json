@@ -34,7 +34,7 @@
 					"icon": "",
 					"content": "This is the content for tab 1.",
 					"imageUrl": "",
-					"imageId": 0
+					"imageId": null
 				},
 				{
 					"id": "tab-2",
@@ -42,7 +42,7 @@
 					"icon": "",
 					"content": "This is the content for tab 2.",
 					"imageUrl": "",
-					"imageId": 0
+					"imageId": null
 				}
 			]
 		},
