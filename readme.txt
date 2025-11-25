@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, buddypress, woocommerce, widgets, page builder
 Requires at least: 5.0
 Tested up to: 6.8.2
-Stable tag: 4.0.0
+Stable tag: 4.1.0
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -94,6 +94,13 @@ No coding knowledge is required. All widgets come with an intuitive drag-and-dro
 Yes, comprehensive documentation is available at https://wbcomdesigns.com/docs/
 
 == Changelog ==
+
+= 4.1.0 =
+* Improvement: Updated product button border radius for a more polished UI.
+* Improvement: Added a hookable position for reCAPTCHA to allow flexible placement.
+* Improvement: Updated website and plugin URLs for accuracy and consistency.
+* Fix: Resolved warnings in the slider widget.
+* Fix: Prevented errors caused by invalid or empty data structures to improve stability.
 
 = 4.0.0 =
 * New: Integrated Wbcom wrapper class and EDD plugin license module.
