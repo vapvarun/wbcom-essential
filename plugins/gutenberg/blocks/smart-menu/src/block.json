@@ -1,0 +1,93 @@
+
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/smart-menu",
+	"version": "1.0.0",
+	"title": "Smart Menu",
+	"category": "wbcom-essential",
+	"icon": "menu",
+	"description": "A powerful and flexible navigation menu block with extensive styling options",
+	"author": "Wbcom Essential",
+	"example": {},
+	"attributes": {
+		"menuId": {
+			"type": "number",
+			"default": 0
+		},
+		"menuLayout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"menuAlign": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"verticalMenuWidth": {
+			"type": "string",
+			"default": "100%"
+		},
+		"mobileBreakpoint": {
+			"type": "number",
+			"default": 1024
+		},
+		"showMobileToggle": {
+			"type": "boolean",
+			"default": true
+		},
+		"mobileToggleText": {
+			"type": "string",
+			"default": "MENU"
+		},
+		"mobileToggleAlign": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"collapsibleBehavior": {
+			"type": "string",
+			"default": "link"
+		},
+		"dropdownIcon": {
+			"type": "string",
+			"default": "chevron-down"
+		},
+		"subMenuAnimation": {
+			"type": "string",
+			"default": "fadeIn"
+		},
+		"mainMenuSubOffsetX": {
+			"type": "number",
+			"default": 0
+		},
+		"mainMenuSubOffsetY": {
+			"type": "number",
+			"default": 0
+		},
+		"subMenusSubOffsetX": {
+			"type": "number",
+			"default": 0
+		},
+		"subMenusSubOffsetY": {
+			"type": "number",
+			"default": 0
+		},
+		"rtlSubMenus": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}
