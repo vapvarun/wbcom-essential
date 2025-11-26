@@ -1,0 +1,131 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wbcom-essential/slider",
+  "version": "1.0.0",
+  "title": "Slider",
+  "category": "wbcom-essential",
+  "description": "Create beautiful sliders with images, text, animations, and navigation",
+  "icon": "slides",
+  "textdomain": "wbcom-essential",
+  "attributes": {
+    "slides": {
+      "type": "array",
+      "default": [
+        {
+          "id": 1,
+          "image": {
+            "id": "",
+            "url": "",
+            "alt": ""
+          },
+          "title": "Title #1",
+          "content": "Content here...",
+          "link": {
+            "url": "",
+            "is_external": false,
+            "nofollow": false
+          }
+        }
+      ]
+    },
+    "sliderHeight": {
+      "type": "object",
+      "default": {
+        "size": 700,
+        "unit": "px"
+      }
+    },
+    "sliderHeightTablet": {
+      "type": "object",
+      "default": {
+        "size": 500,
+        "unit": "px"
+      }
+    },
+    "sliderHeightMobile": {
+      "type": "object",
+      "default": {
+        "size": 400,
+        "unit": "px"
+      }
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoplayDuration": {
+      "type": "number",
+      "default": 5
+    },
+    "slideTransition": {
+      "type": "string",
+      "default": "fade"
+    },
+    "showDots": {
+      "type": "boolean",
+      "default": false
+    },
+    "showArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "slideBgColor": {
+      "type": "string",
+      "default": "#0073aa"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#111111"
+    },
+    "contentColor": {
+      "type": "string",
+      "default": "#333333"
+    },
+    "navArrowsDesktop": {
+      "type": "boolean",
+      "default": false
+    },
+    "navArrowsTablet": {
+      "type": "boolean",
+      "default": false
+    },
+    "navArrowsMobile": {
+      "type": "boolean",
+      "default": false
+    },
+    "navDotsDesktop": {
+      "type": "boolean",
+      "default": false
+    },
+    "navDotsTablet": {
+      "type": "boolean",
+      "default": false
+    },
+    "navDotsMobile": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "align": [
+      "left",
+      "center",
+      "right",
+      "wide",
+      "full"
+    ],
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
