@@ -50,33 +50,9 @@
       "type": "object",
       "default": {}
     },
-    "mainMenuBorder": {
-      "type": "object",
-      "default": {}
-    },
-    "mainMenuBorderRadius": {
-      "type": "object",
-      "default": {}
-    },
-    "mainMenuBoxShadow": {
-      "type": "object",
-      "default": {}
-    },
     "mainMenuTransitionDuration": {
       "type": "number",
       "default": 0.2
-    },
-    "mainMenuPadding": {
-      "type": "object",
-      "default": {}
-    },
-    "mainMenuMargin": {
-      "type": "object",
-      "default": {}
-    },
-    "mainMenuTypography": {
-      "type": "object",
-      "default": {}
     },
     "mainMenuIcon": {
       "type": "string",
@@ -94,10 +70,6 @@
       "type": "string",
       "default": ""
     },
-    "mainMenuItemBorder": {
-      "type": "object",
-      "default": {}
-    },
     "mainMenuItemColorHover": {
       "type": "string",
       "default": ""
@@ -105,10 +77,6 @@
     "mainMenuItemBgHover": {
       "type": "string",
       "default": ""
-    },
-    "mainMenuItemBorderHover": {
-      "type": "object",
-      "default": {}
     },
     "mainMenuItemColorActive": {
       "type": "string",
@@ -118,47 +86,9 @@
       "type": "string",
       "default": ""
     },
-    "mainMenuItemBorderActive": {
-      "type": "object",
-      "default": {}
-    },
-    "mainMenuItemPadding": {
-      "type": "object",
-      "default": {}
-    },
-    "subMenuMaxWidth": {
-      "type": "object",
-      "default": {
-        "size": 20,
-        "unit": "em"
-      }
-    },
-    "subMenuMinWidth": {
-      "type": "object",
-      "default": {
-        "size": 10,
-        "unit": "em"
-      }
-    },
     "subMenuBg": {
       "type": "string",
       "default": ""
-    },
-    "subMenuBorder": {
-      "type": "object",
-      "default": {}
-    },
-    "subMenuBorderRadius": {
-      "type": "object",
-      "default": {}
-    },
-    "subMenuBoxShadow": {
-      "type": "object",
-      "default": {}
-    },
-    "subMenuTypography": {
-      "type": "object",
-      "default": {}
     },
     "subMenuItemColor": {
       "type": "string",
@@ -168,14 +98,6 @@
       "type": "string",
       "default": ""
     },
-    "subMenuItemBorder": {
-      "type": "object",
-      "default": {}
-    },
-    "subMenuItemBorderRadius": {
-      "type": "object",
-      "default": {}
-    },
     "subMenuItemColorHover": {
       "type": "string",
       "default": ""
@@ -184,10 +106,6 @@
       "type": "string",
       "default": ""
     },
-    "subMenuItemBorderHover": {
-      "type": "object",
-      "default": {}
-    },
     "subMenuItemColorActive": {
       "type": "string",
       "default": ""
@@ -195,18 +113,6 @@
     "subMenuItemBgActive": {
       "type": "string",
       "default": ""
-    },
-    "subMenuItemBorderActive": {
-      "type": "object",
-      "default": {}
-    },
-    "subMenuItemPadding": {
-      "type": "object",
-      "default": {}
-    },
-    "mobileMenuTypography": {
-      "type": "object",
-      "default": {}
     },
     "mobileMenuColor": {
       "type": "string",
@@ -217,26 +123,6 @@
       "default": {}
     },
     "mobileMenuWidth": {
-      "type": "object",
-      "default": {}
-    },
-    "mobileMenuBorder": {
-      "type": "object",
-      "default": {}
-    },
-    "mobileMenuBorderRadius": {
-      "type": "object",
-      "default": {}
-    },
-    "mobileMenuBoxShadow": {
-      "type": "object",
-      "default": {}
-    },
-    "mobileMenuPadding": {
-      "type": "object",
-      "default": {}
-    },
-    "mobileMenuMargin": {
       "type": "object",
       "default": {}
     }

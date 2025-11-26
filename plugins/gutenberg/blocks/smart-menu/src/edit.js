@@ -1,4 +1,3 @@
-
 /**
  * Retrieves the translation of text.
  *
@@ -13,8 +12,13 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, ToggleControl, TextControl, RangeControl, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
+import {
+	PanelBody,
+	SelectControl,
+	ToggleControl,
+	TextControl,
+	RangeControl,
+} from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
 
@@ -30,6 +34,9 @@ import './editor.scss';
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
+ * @param {Object}   props               Block props.
+ * @param {Object}   props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Function to set block attributes.
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
  * @return {Element} Element to render.
@@ -46,52 +53,25 @@ export default function Edit( { attributes, setAttributes } ) {
 		mobileToggleAlign,
 		dropdownIcon,
 		mainMenuBackground,
-		mainMenuBorder,
-		mainMenuBorderRadius,
-		mainMenuBoxShadow,
 		mainMenuTransitionDuration,
-		mainMenuPadding,
-		mainMenuMargin,
-		mainMenuTypography,
 		mainMenuIcon,
 		mainMenuIconSize,
 		mainMenuItemColor,
 		mainMenuItemBg,
-		mainMenuItemBorder,
 		mainMenuItemColorHover,
 		mainMenuItemBgHover,
-		mainMenuItemBorderHover,
 		mainMenuItemColorActive,
 		mainMenuItemBgActive,
-		mainMenuItemBorderActive,
-		mainMenuItemPadding,
-		subMenuMaxWidth,
-		subMenuMinWidth,
 		subMenuBg,
-		subMenuBorder,
-		subMenuBorderRadius,
-		subMenuBoxShadow,
-		subMenuTypography,
 		subMenuItemColor,
 		subMenuItemBg,
-		subMenuItemBorder,
-		subMenuItemBorderRadius,
 		subMenuItemColorHover,
 		subMenuItemBgHover,
-		subMenuItemBorderHover,
 		subMenuItemColorActive,
 		subMenuItemBgActive,
-		subMenuItemBorderActive,
-		subMenuItemPadding,
-		mobileMenuTypography,
 		mobileMenuColor,
 		mobileMenuBackground,
 		mobileMenuWidth,
-		mobileMenuBorder,
-		mobileMenuBorderRadius,
-		mobileMenuBoxShadow,
-		mobileMenuPadding,
-		mobileMenuMargin
 	} = attributes;
 
 	const [ menus, setMenus ] = useState( [] );
@@ -106,13 +86,13 @@ export default function Edit( { attributes, setAttributes } ) {
 				value: menu.id,
 			} ) );
 			setMenus( menuOptions );
-			
+
 			// Set first menu as default if none selected
 			if ( ! menuId && menuOptions.length > 0 ) {
 				setAttributes( { menuId: menuOptions[ 0 ].value } );
 			}
 		} );
-	}, [] );
+	}, [ menuId, setAttributes ] );
 
 	return (
 		<>
@@ -122,65 +102,130 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Select Menu', 'wbcom-essential' ) }
 						value={ menuId }
 						options={ [
-							{ label: __( 'Select a menu...', 'wbcom-essential' ), value: 0 },
+							{
+								label: __(
+									'Select a menu…',
+									'wbcom-essential'
+								),
+								value: 0,
+							},
 							...menus,
 						] }
-						onChange={ ( value ) => setAttributes( { menuId: parseInt( value ) } ) }
+						onChange={ ( value ) =>
+							setAttributes( { menuId: parseInt( value ) } )
+						}
 					/>
 
 					<SelectControl
 						label={ __( 'Menu Layout', 'wbcom-essential' ) }
 						value={ menuLayout }
 						options={ [
-							{ label: __( 'Horizontal', 'wbcom-essential' ), value: 'horizontal' },
-							{ label: __( 'Horizontal Justified', 'wbcom-essential' ), value: 'horizontal-justified' },
-							{ label: __( 'Vertical', 'wbcom-essential' ), value: 'vertical' },
+							{
+								label: __( 'Horizontal', 'wbcom-essential' ),
+								value: 'horizontal',
+							},
+							{
+								label: __(
+									'Horizontal Justified',
+									'wbcom-essential'
+								),
+								value: 'horizontal-justified',
+							},
+							{
+								label: __( 'Vertical', 'wbcom-essential' ),
+								value: 'vertical',
+							},
 						] }
-						onChange={ ( value ) => setAttributes( { menuLayout: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { menuLayout: value } )
+						}
 					/>
 
-					{ ( menuLayout === 'horizontal' || menuLayout === 'vertical' ) && (
-						<ToggleGroupControl
-							label={ __( 'Horizontal Alignment', 'wbcom-essential' ) }
+					{ ( menuLayout === 'horizontal' ||
+						menuLayout === 'vertical' ) && (
+						<SelectControl
+							label={ __(
+								'Horizontal Alignment',
+								'wbcom-essential'
+							) }
 							value={ menuAlign }
-							onChange={ ( value ) => setAttributes( { menuAlign: value } ) }
-							isBlock
-						>
-							<ToggleGroupControlOption value="flex-start" label={ __( 'Start', 'wbcom-essential' ) } />
-							<ToggleGroupControlOption value="center" label={ __( 'Center', 'wbcom-essential' ) } />
-							<ToggleGroupControlOption value="flex-end" label={ __( 'End', 'wbcom-essential' ) } />
-						</ToggleGroupControl>
+							options={ [
+								{
+									label: __( 'Start', 'wbcom-essential' ),
+									value: 'flex-start',
+								},
+								{
+									label: __( 'Center', 'wbcom-essential' ),
+									value: 'center',
+								},
+								{
+									label: __( 'End', 'wbcom-essential' ),
+									value: 'flex-end',
+								},
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { menuAlign: value } )
+							}
+						/>
 					) }
 
 					{ menuLayout === 'vertical' && (
 						<TextControl
-							label={ __( 'Vertical Menu Width', 'wbcom-essential' ) }
+							label={ __(
+								'Vertical Menu Width',
+								'wbcom-essential'
+							) }
 							value={ verticalMenuWidth }
-							onChange={ ( value ) => setAttributes( { verticalMenuWidth: value } ) }
-							help={ __( 'e.g., 250px, 30%, 15em', 'wbcom-essential' ) }
+							onChange={ ( value ) =>
+								setAttributes( { verticalMenuWidth: value } )
+							}
+							help={ __(
+								'e.g., 250px, 30%, 15em',
+								'wbcom-essential'
+							) }
 						/>
 					) }
-
-
 
 					<SelectControl
 						label={ __( 'Dropdown Icon', 'wbcom-essential' ) }
 						value={ dropdownIcon }
 						options={ [
-							{ label: __( 'Chevron', 'wbcom-essential' ), value: 'chevron-down' },
-							{ label: __( 'Caret', 'wbcom-essential' ), value: 'caret-down' },
-							{ label: __( 'Plus', 'wbcom-essential' ), value: 'plus' },
-							{ label: __( 'Arrow', 'wbcom-essential' ), value: 'arrow-down' },
+							{
+								label: __( 'Chevron', 'wbcom-essential' ),
+								value: 'chevron-down',
+							},
+							{
+								label: __( 'Caret', 'wbcom-essential' ),
+								value: 'caret-down',
+							},
+							{
+								label: __( 'Plus', 'wbcom-essential' ),
+								value: 'plus',
+							},
+							{
+								label: __( 'Arrow', 'wbcom-essential' ),
+								value: 'arrow-down',
+							},
 						] }
-						onChange={ ( value ) => setAttributes( { dropdownIcon: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownIcon: value } )
+						}
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Mobile Settings', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Mobile Settings', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<RangeControl
-						label={ __( 'Mobile Breakpoint (px)', 'wbcom-essential' ) }
+						label={ __(
+							'Mobile Breakpoint (px)',
+							'wbcom-essential'
+						) }
 						value={ mobileBreakpoint }
-						onChange={ ( value ) => setAttributes( { mobileBreakpoint: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { mobileBreakpoint: value } )
+						}
 						min={ 320 }
 						max={ 1920 }
 						step={ 1 }
@@ -189,205 +234,383 @@ export default function Edit( { attributes, setAttributes } ) {
 					<ToggleControl
 						label={ __( 'Show Mobile Toggle', 'wbcom-essential' ) }
 						checked={ showMobileToggle }
-						onChange={ ( value ) => setAttributes( { showMobileToggle: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { showMobileToggle: value } )
+						}
 					/>
 
 					{ showMobileToggle && (
 						<>
 							<TextControl
-								label={ __( 'Mobile Toggle Text', 'wbcom-essential' ) }
+								label={ __(
+									'Mobile Toggle Text',
+									'wbcom-essential'
+								) }
 								value={ mobileToggleText }
-								onChange={ ( value ) => setAttributes( { mobileToggleText: value } ) }
+								onChange={ ( value ) =>
+									setAttributes( { mobileToggleText: value } )
+								}
 							/>
 
-							<ToggleGroupControl
-								label={ __( 'Mobile Toggle Alignment', 'wbcom-essential' ) }
+							<SelectControl
+								label={ __(
+									'Mobile Toggle Alignment',
+									'wbcom-essential'
+								) }
 								value={ mobileToggleAlign }
-								onChange={ ( value ) => setAttributes( { mobileToggleAlign: value } ) }
-								isBlock
-							>
-								<ToggleGroupControlOption value="flex-start" label={ __( 'Start', 'wbcom-essential' ) } />
-								<ToggleGroupControlOption value="center" label={ __( 'Center', 'wbcom-essential' ) } />
-								<ToggleGroupControlOption value="flex-end" label={ __( 'End', 'wbcom-essential' ) } />
-							</ToggleGroupControl>
+								options={ [
+									{
+										label: __( 'Start', 'wbcom-essential' ),
+										value: 'flex-start',
+									},
+									{
+										label: __(
+											'Center',
+											'wbcom-essential'
+										),
+										value: 'center',
+									},
+									{
+										label: __( 'End', 'wbcom-essential' ),
+										value: 'flex-end',
+									},
+								] }
+								onChange={ ( value ) =>
+									setAttributes( {
+										mobileToggleAlign: value,
+									} )
+								}
+							/>
 						</>
 					) }
 				</PanelBody>
 
-				<PanelBody title={ __( 'Menu Container', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Menu Container', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<TextControl
 						label={ __( 'Background Color', 'wbcom-essential' ) }
 						value={ mainMenuBackground?.color || '' }
-						onChange={ ( value ) => setAttributes( { mainMenuBackground: { ...mainMenuBackground, color: value } } ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								mainMenuBackground: {
+									...mainMenuBackground,
+									color: value,
+								},
+							} )
+						}
 						type="color"
 					/>
 					<RangeControl
-						label={ __( 'Transition Duration (ms)', 'wbcom-essential' ) }
+						label={ __(
+							'Transition Duration (ms)',
+							'wbcom-essential'
+						) }
 						value={ mainMenuTransitionDuration * 1000 }
-						onChange={ ( value ) => setAttributes( { mainMenuTransitionDuration: value / 1000 } ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								mainMenuTransitionDuration: value / 1000,
+							} )
+						}
 						min={ 0 }
 						max={ 10000 }
 						step={ 100 }
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Main Menu Items', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Main Menu Items', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<SelectControl
 						label={ __( 'Dropdown Menu Icon', 'wbcom-essential' ) }
 						value={ mainMenuIcon }
 						options={ [
-							{ label: __( 'Caret', 'wbcom-essential' ), value: 'caret' },
-							{ label: __( 'Caret-Square', 'wbcom-essential' ), value: 'caret-square' },
-							{ label: __( 'Chevron', 'wbcom-essential' ), value: 'chevron' },
-							{ label: __( 'Chevron-Circle', 'wbcom-essential' ), value: 'chevron-circle' },
-							{ label: __( 'Plus', 'wbcom-essential' ), value: 'plus' },
-							{ label: __( 'Plus-Circle', 'wbcom-essential' ), value: 'plus-circle' },
+							{
+								label: __( 'Caret', 'wbcom-essential' ),
+								value: 'caret',
+							},
+							{
+								label: __( 'Caret-Square', 'wbcom-essential' ),
+								value: 'caret-square',
+							},
+							{
+								label: __( 'Chevron', 'wbcom-essential' ),
+								value: 'chevron',
+							},
+							{
+								label: __(
+									'Chevron-Circle',
+									'wbcom-essential'
+								),
+								value: 'chevron-circle',
+							},
+							{
+								label: __( 'Plus', 'wbcom-essential' ),
+								value: 'plus',
+							},
+							{
+								label: __( 'Plus-Circle', 'wbcom-essential' ),
+								value: 'plus-circle',
+							},
 						] }
-						onChange={ ( value ) => setAttributes( { mainMenuIcon: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { mainMenuIcon: value } )
+						}
 					/>
 					<RangeControl
-						label={ __( 'Dropdown Menu Icon Size', 'wbcom-essential' ) }
+						label={ __(
+							'Dropdown Menu Icon Size',
+							'wbcom-essential'
+						) }
 						value={ mainMenuIconSize }
-						onChange={ ( value ) => setAttributes( { mainMenuIconSize: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { mainMenuIconSize: value } )
+						}
 						min={ 8 }
 						max={ 50 }
 						step={ 1 }
 					/>
-					<PanelBody title={ __( 'Normal', 'wbcom-essential' ) } initialOpen={ false }>
+					<PanelBody
+						title={ __( 'Normal', 'wbcom-essential' ) }
+						initialOpen={ false }
+					>
 						<TextControl
 							label={ __( 'Color', 'wbcom-essential' ) }
 							value={ mainMenuItemColor }
-							onChange={ ( value ) => setAttributes( { mainMenuItemColor: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { mainMenuItemColor: value } )
+							}
 							type="color"
 						/>
 						<TextControl
-							label={ __( 'Background Color', 'wbcom-essential' ) }
+							label={ __(
+								'Background Color',
+								'wbcom-essential'
+							) }
 							value={ mainMenuItemBg }
-							onChange={ ( value ) => setAttributes( { mainMenuItemBg: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { mainMenuItemBg: value } )
+							}
 							type="color"
 						/>
 					</PanelBody>
-					<PanelBody title={ __( 'Hover', 'wbcom-essential' ) } initialOpen={ false }>
+					<PanelBody
+						title={ __( 'Hover', 'wbcom-essential' ) }
+						initialOpen={ false }
+					>
 						<TextControl
 							label={ __( 'Color', 'wbcom-essential' ) }
 							value={ mainMenuItemColorHover }
-							onChange={ ( value ) => setAttributes( { mainMenuItemColorHover: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									mainMenuItemColorHover: value,
+								} )
+							}
 							type="color"
 						/>
 						<TextControl
-							label={ __( 'Background Color', 'wbcom-essential' ) }
+							label={ __(
+								'Background Color',
+								'wbcom-essential'
+							) }
 							value={ mainMenuItemBgHover }
-							onChange={ ( value ) => setAttributes( { mainMenuItemBgHover: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { mainMenuItemBgHover: value } )
+							}
 							type="color"
 						/>
 					</PanelBody>
-					<PanelBody title={ __( 'Active', 'wbcom-essential' ) } initialOpen={ false }>
+					<PanelBody
+						title={ __( 'Active', 'wbcom-essential' ) }
+						initialOpen={ false }
+					>
 						<TextControl
 							label={ __( 'Color', 'wbcom-essential' ) }
 							value={ mainMenuItemColorActive }
-							onChange={ ( value ) => setAttributes( { mainMenuItemColorActive: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									mainMenuItemColorActive: value,
+								} )
+							}
 							type="color"
 						/>
 						<TextControl
-							label={ __( 'Background Color', 'wbcom-essential' ) }
+							label={ __(
+								'Background Color',
+								'wbcom-essential'
+							) }
 							value={ mainMenuItemBgActive }
-							onChange={ ( value ) => setAttributes( { mainMenuItemBgActive: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { mainMenuItemBgActive: value } )
+							}
 							type="color"
 						/>
 					</PanelBody>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Sub Menus', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Sub Menus', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<TextControl
 						label={ __( 'Background Color', 'wbcom-essential' ) }
 						value={ subMenuBg }
-						onChange={ ( value ) => setAttributes( { subMenuBg: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { subMenuBg: value } )
+						}
 						type="color"
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Sub Menu Items', 'wbcom-essential' ) } initialOpen={ false }>
-					<PanelBody title={ __( 'Normal', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Sub Menu Items', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<PanelBody
+						title={ __( 'Normal', 'wbcom-essential' ) }
+						initialOpen={ false }
+					>
 						<TextControl
 							label={ __( 'Color', 'wbcom-essential' ) }
 							value={ subMenuItemColor }
-							onChange={ ( value ) => setAttributes( { subMenuItemColor: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { subMenuItemColor: value } )
+							}
 							type="color"
 						/>
 						<TextControl
-							label={ __( 'Background Color', 'wbcom-essential' ) }
+							label={ __(
+								'Background Color',
+								'wbcom-essential'
+							) }
 							value={ subMenuItemBg }
-							onChange={ ( value ) => setAttributes( { subMenuItemBg: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { subMenuItemBg: value } )
+							}
 							type="color"
 						/>
 					</PanelBody>
-					<PanelBody title={ __( 'Hover', 'wbcom-essential' ) } initialOpen={ false }>
+					<PanelBody
+						title={ __( 'Hover', 'wbcom-essential' ) }
+						initialOpen={ false }
+					>
 						<TextControl
 							label={ __( 'Color', 'wbcom-essential' ) }
 							value={ subMenuItemColorHover }
-							onChange={ ( value ) => setAttributes( { subMenuItemColorHover: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									subMenuItemColorHover: value,
+								} )
+							}
 							type="color"
 						/>
 						<TextControl
-							label={ __( 'Background Color', 'wbcom-essential' ) }
+							label={ __(
+								'Background Color',
+								'wbcom-essential'
+							) }
 							value={ subMenuItemBgHover }
-							onChange={ ( value ) => setAttributes( { subMenuItemBgHover: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { subMenuItemBgHover: value } )
+							}
 							type="color"
 						/>
 					</PanelBody>
-					<PanelBody title={ __( 'Active', 'wbcom-essential' ) } initialOpen={ false }>
+					<PanelBody
+						title={ __( 'Active', 'wbcom-essential' ) }
+						initialOpen={ false }
+					>
 						<TextControl
 							label={ __( 'Color', 'wbcom-essential' ) }
 							value={ subMenuItemColorActive }
-							onChange={ ( value ) => setAttributes( { subMenuItemColorActive: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									subMenuItemColorActive: value,
+								} )
+							}
 							type="color"
 						/>
 						<TextControl
-							label={ __( 'Background Color', 'wbcom-essential' ) }
+							label={ __(
+								'Background Color',
+								'wbcom-essential'
+							) }
 							value={ subMenuItemBgActive }
-							onChange={ ( value ) => setAttributes( { subMenuItemBgActive: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { subMenuItemBgActive: value } )
+							}
 							type="color"
 						/>
 					</PanelBody>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Mobile Menu Toggle', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Mobile Menu Toggle', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<TextControl
 						label={ __( 'Color', 'wbcom-essential' ) }
 						value={ mobileMenuColor }
-						onChange={ ( value ) => setAttributes( { mobileMenuColor: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { mobileMenuColor: value } )
+						}
 						type="color"
 					/>
 					<TextControl
 						label={ __( 'Background Color', 'wbcom-essential' ) }
 						value={ mobileMenuBackground?.color || '' }
-						onChange={ ( value ) => setAttributes( { mobileMenuBackground: { ...mobileMenuBackground, color: value } } ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								mobileMenuBackground: {
+									...mobileMenuBackground,
+									color: value,
+								},
+							} )
+						}
 						type="color"
 					/>
 					<TextControl
 						label={ __( 'Width', 'wbcom-essential' ) }
-						value={ `${mobileMenuWidth?.size || ''}${mobileMenuWidth?.unit || ''}` }
+						value={ `${ mobileMenuWidth?.size || '' }${
+							mobileMenuWidth?.unit || ''
+						}` }
 						onChange={ ( value ) => {
-							const match = value.match(/^(\d+(?:\.\d+)?)(px|%|em|rem)?$/);
-							if (match) {
-								setAttributes( { mobileMenuWidth: { size: parseFloat(match[1]), unit: match[2] || 'px' } } );
+							const match = value.match(
+								/^(\d+(?:\.\d+)?)(px|%|em|rem)?$/
+							);
+							if ( match ) {
+								setAttributes( {
+									mobileMenuWidth: {
+										size: parseFloat( match[ 1 ] ),
+										unit: match[ 2 ] || 'px',
+									},
+								} );
 							}
 						} }
-						help={ __( 'e.g., 200px, 100%, 15em', 'wbcom-essential' ) }
+						help={ __(
+							'e.g., 200px, 100%, 15em',
+							'wbcom-essential'
+						) }
 					/>
 				</PanelBody>
-
 			</InspectorControls>
 
 			<div { ...blockProps }>
 				{ menuId ? (
-				<ServerSideRender
-					block="wbcom-essential/smart-menu"
-					attributes={ attributes }
-				/>
+					<ServerSideRender
+						block="wbcom-essential/smart-menu"
+						attributes={ attributes }
+					/>
 				) : (
 					<div className="smart-menu-placeholder">
-						<p>{ __( 'Please select a menu from the block settings.', 'wbcom-essential' ) }</p>
+						<p>
+							{ __(
+								'Please select a menu from the block settings.',
+								'wbcom-essential'
+							) }
+						</p>
 					</div>
 				) }
 			</div>
