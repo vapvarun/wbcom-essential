@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		const toggle = menuBlock.querySelector('.smart-menu-toggle');
 		const nav = menuBlock.querySelector('.smart-menu-nav');
 		const breakpoint = parseInt(container.dataset.breakpoint || 1024);
-		const collapsibleBehavior = container.dataset.collapsible || 'link';
 
 		// Mobile toggle functionality
 		if (toggle && nav) {
@@ -25,7 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (window.innerWidth <= breakpoint) {
 				menuBlock.classList.add('mobile-view');
 				if (nav) {
-					nav.classList.remove('menu-open');
+					if (toggle) {
+						nav.classList.remove('menu-open');
+					} else {
+						nav.classList.add('menu-open');
+					}
 				}
 			} else {
 				menuBlock.classList.remove('mobile-view');
@@ -53,43 +56,26 @@ document.addEventListener('DOMContentLoaded', function() {
 				link.addEventListener('click', function(e) {
 					// Only handle in mobile view
 					if (menuBlock.classList.contains('mobile-view')) {
-						// Check if click is on dropdown icon or if behavior is toggle
+						// Check if click is on dropdown icon
 						const isClickOnIcon = dropdownIcon && dropdownIcon.contains(e.target);
-						const shouldPreventDefault = (collapsibleBehavior === 'toggle' || collapsibleBehavior === 'accordion-toggle') || isClickOnIcon;
 
-						if (shouldPreventDefault) {
+						if (isClickOnIcon) {
 							e.preventDefault();
 						}
 
-						// Always toggle submenu in mobile view
+						// Toggle submenu in mobile view
 						submenu.classList.toggle('open');
-
-						// Accordion: close siblings
-						if (collapsibleBehavior === 'accordion-toggle' || collapsibleBehavior === 'accordion-link') {
-							const siblings = item.parentElement.querySelectorAll('.sub-menu.open');
-							siblings.forEach(function(sibling) {
-								if (sibling !== submenu) {
-									sibling.classList.remove('open');
-								}
-							});
-						}
 					}
 				});
 			}
 		});
 
-		// Apply animation class when submenus appear
-		const animation = container.dataset.animation;
-		if (animation && animation !== 'none') {
-			const submenus = menuBlock.querySelectorAll('.sub-menu');
-			submenus.forEach(function(submenu) {
-				submenu.classList.add('animate-' + animation);
-			});
-		}
 
-		// Close menu when clicking outside (mobile)
+
+		// Close menu when clicking outside (mobile) - only if toggle exists
 		document.addEventListener('click', function(e) {
-			if (menuBlock.classList.contains('mobile-view') && 
+			if (menuBlock.classList.contains('mobile-view') &&
+				toggle &&
 				!menuBlock.contains(e.target)) {
 				if (nav) {
 					nav.classList.remove('menu-open');
