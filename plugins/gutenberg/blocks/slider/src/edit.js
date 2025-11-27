@@ -22,6 +22,8 @@ import {
 	useBlockProps,
 	InspectorControls,
 	RichText,
+	MediaUpload,
+	MediaUploadCheck,
 } from '@wordpress/block-editor';
 
 import { Button, PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
@@ -74,6 +76,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		const newSlide = {
 			id: slides.length + 1,
 			image: { id: '', url: '', alt: '' },
+			image_position: 'center center',
+			image_repeat: 'no-repeat',
+			image_bg_size: 'cover',
 			title: `Title #${slides.length + 1}`,
 			content: 'Content here...',
 			link: { url: '', is_external: false, nofollow: false },
@@ -317,6 +322,92 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					</div>
 				</PanelBody>
+
+				<PanelBody title={ __( 'Slide Background', 'wbcom-essential' ) }>
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Background Image', 'wbcom-essential' ) }
+						</label>
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={ ( media ) => updateSlide( activeSlideIndex, 'image', { id: media.id, url: media.url, alt: media.alt } ) }
+								allowedTypes={ [ 'image' ] }
+								value={ slides[activeSlideIndex]?.image?.id }
+								render={ ( { open } ) => (
+									<div>
+										{ slides[activeSlideIndex]?.image?.url ? (
+											<div className="wbcom-slider-image-preview">
+												<img src={ slides[activeSlideIndex].image.url } alt={ slides[activeSlideIndex].image.alt } style={{ maxWidth: '100%', height: 'auto' }} />
+												<Button onClick={ open } variant="secondary" className="wbcom-slider-change-image">
+													{ __( 'Change Image', 'wbcom-essential' ) }
+												</Button>
+												<Button onClick={ () => updateSlide( activeSlideIndex, 'image', { id: '', url: '', alt: '' } ) } variant="tertiary" className="wbcom-slider-remove-image">
+													{ __( 'Remove Image', 'wbcom-essential' ) }
+												</Button>
+											</div>
+										) : (
+											<Button onClick={ open } variant="secondary" className="wbcom-slider-upload-image">
+												{ __( 'Select Background Image', 'wbcom-essential' ) }
+											</Button>
+										) }
+									</div>
+								) }
+							/>
+						</MediaUploadCheck>
+					</div>
+
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Background Image Position', 'wbcom-essential' ) }
+						</label>
+						<select
+							value={ slides[activeSlideIndex]?.image_position || 'center center' }
+							onChange={ ( e ) => updateSlide( activeSlideIndex, 'image_position', e.target.value ) }
+							className="components-select-control__input"
+						>
+							<option value="top left">{ __( 'Top Left', 'wbcom-essential' ) }</option>
+							<option value="top center">{ __( 'Top Center', 'wbcom-essential' ) }</option>
+							<option value="top right">{ __( 'Top Right', 'wbcom-essential' ) }</option>
+							<option value="center left">{ __( 'Center Left', 'wbcom-essential' ) }</option>
+							<option value="center center">{ __( 'Center Center', 'wbcom-essential' ) }</option>
+							<option value="center right">{ __( 'Center Right', 'wbcom-essential' ) }</option>
+							<option value="bottom left">{ __( 'Bottom Left', 'wbcom-essential' ) }</option>
+							<option value="bottom center">{ __( 'Bottom Center', 'wbcom-essential' ) }</option>
+							<option value="bottom right">{ __( 'Bottom Right', 'wbcom-essential' ) }</option>
+						</select>
+					</div>
+
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Background Image Repeat', 'wbcom-essential' ) }
+						</label>
+						<select
+							value={ slides[activeSlideIndex]?.image_repeat || 'no-repeat' }
+							onChange={ ( e ) => updateSlide( activeSlideIndex, 'image_repeat', e.target.value ) }
+							className="components-select-control__input"
+						>
+							<option value="no-repeat">{ __( 'No Repeat', 'wbcom-essential' ) }</option>
+							<option value="repeat">{ __( 'Repeat', 'wbcom-essential' ) }</option>
+							<option value="repeat-x">{ __( 'Repeat-x', 'wbcom-essential' ) }</option>
+							<option value="repeat-y">{ __( 'Repeat-y', 'wbcom-essential' ) }</option>
+						</select>
+					</div>
+
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Background Image Size', 'wbcom-essential' ) }
+						</label>
+						<select
+							value={ slides[activeSlideIndex]?.image_bg_size || 'cover' }
+							onChange={ ( e ) => updateSlide( activeSlideIndex, 'image_bg_size', e.target.value ) }
+							className="components-select-control__input"
+						>
+							<option value="cover">{ __( 'Cover', 'wbcom-essential' ) }</option>
+							<option value="contain">{ __( 'Contain', 'wbcom-essential' ) }</option>
+							<option value="auto">{ __( 'Auto (Not recommended)', 'wbcom-essential' ) }</option>
+						</select>
+					</div>
+				</PanelBody>
 			</InspectorControls>
 
 			<div { ...blockProps }>
@@ -370,9 +461,9 @@ export default function Edit( { attributes, setAttributes } ) {
 										className="wbcom-slider-bg"
 										style={ {
 											backgroundImage: `url(${ slides[ activeSlideIndex ].image.url })`,
-											backgroundSize: 'cover',
-											backgroundPosition: 'center center',
-											backgroundRepeat: 'no-repeat',
+											backgroundSize: slides[ activeSlideIndex ].image_bg_size || 'cover',
+											backgroundPosition: slides[ activeSlideIndex ].image_position || 'center center',
+											backgroundRepeat: slides[ activeSlideIndex ].image_repeat || 'no-repeat',
 											minHeight: `${sliderHeight.size}${sliderHeight.unit}`,
 										} }
 									/>

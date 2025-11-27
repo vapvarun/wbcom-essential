@@ -19,6 +19,9 @@
 						"url": "",
 						"alt": ""
 					},
+					"image_position": "center center",
+					"image_repeat": "no-repeat",
+					"image_bg_size": "cover",
 					"title": "Title #1",
 					"content": "Content here...",
 					"link": {

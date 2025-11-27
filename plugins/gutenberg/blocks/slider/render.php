@@ -55,9 +55,9 @@ function wbcom_essential_render_slider_block( $attributes ) {
 		// Background image
 		if ( ! empty( $slide['image']['url'] ) ) {
 		$bg_style = 'background-image: url(' . esc_url( $slide['image']['url'] ) . ');';
-		$bg_style .= 'background-size: cover;';
-		$bg_style .= 'background-position: center center;';
-		$bg_style .= 'background-repeat: no-repeat;';
+		$bg_style .= 'background-size: ' . ( isset( $slide['image_bg_size'] ) ? esc_attr( $slide['image_bg_size'] ) : 'cover' ) . ';';
+		$bg_style .= 'background-position: ' . ( isset( $slide['image_position'] ) ? esc_attr( $slide['image_position'] ) : 'center center' ) . ';';
+		$bg_style .= 'background-repeat: ' . ( isset( $slide['image_repeat'] ) ? esc_attr( $slide['image_repeat'] ) : 'no-repeat' ) . ';';
 		$bg_style .= 'min-height: var(--slider-height-desktop);';
 
 			$output .= '<div class="wbcom-slider-bg" style="' . esc_attr( $bg_style ) . '"';
