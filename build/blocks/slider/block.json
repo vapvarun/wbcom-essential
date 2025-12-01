@@ -28,7 +28,9 @@
             "url": "",
             "is_external": false,
             "nofollow": false
-          }
+          },
+          "overlay_color": "#ffffff",
+          "overlay_opacity": 0.5
         }
       ]
     },

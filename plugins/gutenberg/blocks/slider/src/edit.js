@@ -82,6 +82,8 @@ export default function Edit( { attributes, setAttributes } ) {
 			title: `Title #${slides.length + 1}`,
 			content: 'Content here...',
 			link: { url: '', is_external: false, nofollow: false },
+			overlay_color: '#ffffff',
+			overlay_opacity: 0.5,
 		};
 		setAttributes( { slides: [ ...slides, newSlide ] } );
 	};
@@ -407,6 +409,27 @@ export default function Edit( { attributes, setAttributes } ) {
 							<option value="auto">{ __( 'Auto (Not recommended)', 'wbcom-essential' ) }</option>
 						</select>
 					</div>
+
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Background Overlay Color', 'wbcom-essential' ) }
+						</label>
+						<input
+							type="color"
+							value={ slides[activeSlideIndex]?.overlay_color || '#ffffff' }
+							onChange={ ( e ) => updateSlide( activeSlideIndex, 'overlay_color', e.target.value ) }
+							className="components-color-picker__input"
+						/>
+					</div>
+
+					<RangeControl
+						label={ __( 'Background Overlay Opacity', 'wbcom-essential' ) }
+						value={ slides[activeSlideIndex]?.overlay_opacity || 0.5 }
+						onChange={ ( value ) => updateSlide( activeSlideIndex, 'overlay_opacity', value ) }
+						min={ 0 }
+						max={ 1 }
+						step={ 0.1 }
+					/>
 				</PanelBody>
 			</InspectorControls>
 
@@ -456,18 +479,24 @@ export default function Edit( { attributes, setAttributes } ) {
 					<div className="wbcom-slider-inner">
 						{ slides[ activeSlideIndex ] && (
 							<div key={ slides[ activeSlideIndex ].id } className="wbcom-slider-slide">
-								{ slides[ activeSlideIndex ].image.url && (
+								<div
+									className="wbcom-slider-bg"
+									style={ {
+										backgroundImage: slides[ activeSlideIndex ].image.url ? `url(${ slides[ activeSlideIndex ].image.url })` : 'none',
+										backgroundSize: slides[ activeSlideIndex ].image_bg_size || 'cover',
+										backgroundPosition: slides[ activeSlideIndex ].image_position || 'center center',
+										backgroundRepeat: slides[ activeSlideIndex ].image_repeat || 'no-repeat',
+										minHeight: `${sliderHeight.size}${sliderHeight.unit}`,
+									} }
+								>
 									<div
-										className="wbcom-slider-bg"
+										className="wbcom-slider-overlay"
 										style={ {
-											backgroundImage: `url(${ slides[ activeSlideIndex ].image.url })`,
-											backgroundSize: slides[ activeSlideIndex ].image_bg_size || 'cover',
-											backgroundPosition: slides[ activeSlideIndex ].image_position || 'center center',
-											backgroundRepeat: slides[ activeSlideIndex ].image_repeat || 'no-repeat',
-											minHeight: `${sliderHeight.size}${sliderHeight.unit}`,
+											backgroundColor: slides[ activeSlideIndex ].overlay_color || '#ffffff',
+											opacity: slides[ activeSlideIndex ].overlay_opacity || 0.5,
 										} }
 									/>
-								) }
+								</div>
 
 								<div className="wbcom-slider-text-wrapper">
 									<div className="wbcom-slider-text-box">

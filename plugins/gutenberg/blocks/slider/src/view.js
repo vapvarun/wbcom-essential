@@ -15,9 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		let currentSlide = 0;
 		let autoplayInterval = null;
+		const transition = slider.dataset.transition || 'slide';
 
 		// Initialize slider
 		function initSlider() {
+			// Apply transition class
+			if (transition === 'fade') {
+				inner.classList.add('fade-transition');
+			} else {
+				inner.classList.add('slide-transition');
+			}
+
 			showSlide(currentSlide);
 
 			// Set up autoplay if enabled
@@ -36,9 +44,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			currentSlide = index;
 
-			// Update slide position
-			const translateX = -index * 100;
-			inner.style.transform = `translateX(${translateX}%)`;
+			if (transition === 'fade') {
+				// Fade transition: update opacity classes
+				slides.forEach((slide, i) => {
+					slide.classList.toggle('active', i === index);
+				});
+			} else {
+				// Slide transition: update position
+				const translateX = -index * 100;
+				inner.style.transform = `translateX(${translateX}%)`;
+			}
 
 			// Update dots
 			dots.forEach((dot, i) => {

@@ -53,19 +53,24 @@ function wbcom_essential_render_slider_block( $attributes ) {
 		$output .= '<div class="wbcom-slider-slide">';
 
 		// Background image
+		$bg_style = '';
 		if ( ! empty( $slide['image']['url'] ) ) {
-		$bg_style = 'background-image: url(' . esc_url( $slide['image']['url'] ) . ');';
+			$bg_style .= 'background-image: url(' . esc_url( $slide['image']['url'] ) . ');';
+		}
 		$bg_style .= 'background-size: ' . ( isset( $slide['image_bg_size'] ) ? esc_attr( $slide['image_bg_size'] ) : 'cover' ) . ';';
 		$bg_style .= 'background-position: ' . ( isset( $slide['image_position'] ) ? esc_attr( $slide['image_position'] ) : 'center center' ) . ';';
 		$bg_style .= 'background-repeat: ' . ( isset( $slide['image_repeat'] ) ? esc_attr( $slide['image_repeat'] ) : 'no-repeat' ) . ';';
 		$bg_style .= 'min-height: var(--slider-height-desktop);';
 
-			$output .= '<div class="wbcom-slider-bg" style="' . esc_attr( $bg_style ) . '"';
-			if ( ! empty( $slide['image']['alt'] ) ) {
-				$output .= ' alt="' . esc_attr( $slide['image']['alt'] ) . '"';
-			}
-			$output .= '></div>';
+		$output .= '<div class="wbcom-slider-bg" style="' . esc_attr( $bg_style ) . '"';
+		if ( ! empty( $slide['image']['alt'] ) ) {
+			$output .= ' alt="' . esc_attr( $slide['image']['alt'] ) . '"';
 		}
+		$output .= '>';
+		$overlay_color = isset( $slide['overlay_color'] ) ? $slide['overlay_color'] : '#ffffff';
+		$overlay_opacity = isset( $slide['overlay_opacity'] ) ? $slide['overlay_opacity'] : 0.5;
+		$output .= '<div class="wbcom-slider-overlay" style="background-color: ' . esc_attr( $overlay_color ) . '; opacity: ' . esc_attr( $overlay_opacity ) . ';"></div>';
+		$output .= '</div>';
 
 		// Text content
 		$output .= '<div class="wbcom-slider-text-wrapper">';
