@@ -632,7 +632,7 @@
     },
     "navArrowBgColor": {
       "type": "string",
-      "default": "rgba(0,0,0,0)"
+      "default": "#333333"
     },
     "navArrowHoverColor": {
       "type": "string",
@@ -640,7 +640,7 @@
     },
     "navArrowBgHoverColor": {
       "type": "string",
-      "default": "rgba(0,0,0,0)"
+      "default": "#007cba"
     },
     "navArrowSize": {
       "type": "number",
@@ -649,6 +649,10 @@
     "navArrowBoxSize": {
       "type": "number",
       "default": 50
+    },
+    "navDotsColor": {
+      "type": "string",
+      "default": "#000000"
     }
   },
   "supports": {

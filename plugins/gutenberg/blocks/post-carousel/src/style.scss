@@ -250,6 +250,40 @@
     color: black;
 }
 
+// Custom navigation arrows styling
+.wbcom-post-carousel {
+    .wbcom-post-carousel-prev,
+    .wbcom-post-carousel-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        i {
+            font-size: 16px;
+            color: inherit;
+        }
+    }
+
+    .wbcom-post-carousel-prev {
+        left: 10px;
+    }
+
+    .wbcom-post-carousel-next {
+        right: 10px;
+    }
+}
+
 // Block-specific styles
 .wp-block-wbcom-essential-post-carousel {
 	&.wbcom-post-carousel {
@@ -269,6 +303,7 @@
 			margin: 0 -10px;
 
 			.wbcom-posts-card {
+				position: relative;
 				margin: 0 10px;
 				border-radius: 8px;
 				overflow: hidden;

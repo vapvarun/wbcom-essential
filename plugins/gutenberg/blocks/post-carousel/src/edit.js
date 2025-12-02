@@ -22,6 +22,8 @@ import {
 	TextControl,
 	ToggleControl,
 	RangeControl,
+	ColorPicker,
+	BaseControl,
 } from '@wordpress/components';
 
 import { useSelect } from '@wordpress/data';
@@ -59,6 +61,11 @@ export default function Edit( { attributes, setAttributes } ) {
 		autoplay,
 		autoplayDuration,
 		adaptiveHeight,
+		navArrowColor,
+		navArrowBgColor,
+		navArrowHoverColor,
+		navArrowBgHoverColor,
+		navDotsColor,
 	} = attributes;
 
 	const blockProps = useBlockProps();
@@ -286,6 +293,172 @@ export default function Edit( { attributes, setAttributes } ) {
 						checked={ adaptiveHeight }
 						onChange={ ( value ) => setAttributes( { adaptiveHeight: value } ) }
 					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Style Settings', 'wbcom-essential' ) }>
+					<BaseControl
+						label={ __( 'Card Background Color', 'wbcom-essential' ) }
+						help={ __( 'Set the background color for post cards', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardBgColor || '' }
+							onChange={ ( color ) => setAttributes( { cardBgColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+
+
+					<BaseControl
+						label={ __( 'Category Color', 'wbcom-essential' ) }
+						help={ __( 'Set the color for post categories', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardCategoryColor || '' }
+							onChange={ ( color ) => setAttributes( { cardCategoryColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Category Hover Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover color for post categories', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardCategoryHoverColor || '' }
+							onChange={ ( color ) => setAttributes( { cardCategoryHoverColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Title Color', 'wbcom-essential' ) }
+						help={ __( 'Set the color for post titles', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardTitleColor || '' }
+							onChange={ ( color ) => setAttributes( { cardTitleColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Title Hover Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover color for post titles', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardTitleHoverColor || '' }
+							onChange={ ( color ) => setAttributes( { cardTitleHoverColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Excerpt Color', 'wbcom-essential' ) }
+						help={ __( 'Set the color for post excerpts', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardExcerptColor || '' }
+							onChange={ ( color ) => setAttributes( { cardExcerptColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Author Color', 'wbcom-essential' ) }
+						help={ __( 'Set the color for post authors', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardAuthorColor || '' }
+							onChange={ ( color ) => setAttributes( { cardAuthorColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Author Hover Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover color for post authors', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardAuthorHoverColor || '' }
+							onChange={ ( color ) => setAttributes( { cardAuthorHoverColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Date Color', 'wbcom-essential' ) }
+						help={ __( 'Set the color for post dates', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardDateColor || '' }
+							onChange={ ( color ) => setAttributes( { cardDateColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Date Hover Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover color for post dates', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardDateHoverColor || '' }
+							onChange={ ( color ) => setAttributes( { cardDateHoverColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Navigation Arrow Color', 'wbcom-essential' ) }
+						help={ __( 'Set the color for carousel navigation arrows', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ navArrowColor }
+							onChange={ ( color ) => setAttributes( { navArrowColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Navigation Arrow Background Color', 'wbcom-essential' ) }
+						help={ __( 'Set the background color for carousel navigation arrows', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ navArrowBgColor }
+							onChange={ ( color ) => setAttributes( { navArrowBgColor: color } ) }
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Navigation Arrow Hover Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover color for carousel navigation arrows', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ navArrowHoverColor }
+							onChange={ ( color ) => setAttributes( { navArrowHoverColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Navigation Arrow Background Hover Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover background color for carousel navigation arrows', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ navArrowBgHoverColor }
+							onChange={ ( color ) => setAttributes( { navArrowBgHoverColor: color } ) }
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Navigation Dots Active Color', 'wbcom-essential' ) }
+						help={ __( 'Set the color for carousel navigation dots', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ navDotsColor }
+							onChange={ ( color ) => setAttributes( { navDotsColor: color } ) }
+						/>
+					</BaseControl>
 				</PanelBody>
 			</InspectorControls>
 

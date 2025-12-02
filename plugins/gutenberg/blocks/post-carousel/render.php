@@ -37,6 +37,23 @@ function wbcom_essential_render_post_carousel_block( $attributes ) {
 
 	$card_layout = isset( $attributes['cardLayout'] ) ? sanitize_text_field( $attributes['cardLayout'] ) : 'vertical';
 
+	// Color settings
+	$card_bg_color = isset( $attributes['cardBgColor'] ) ? sanitize_hex_color( $attributes['cardBgColor'] ) : '';
+	$card_category_color = isset( $attributes['cardCategoryColor'] ) ? sanitize_hex_color( $attributes['cardCategoryColor'] ) : '';
+	$card_category_hover_color = isset( $attributes['cardCategoryHoverColor'] ) ? sanitize_hex_color( $attributes['cardCategoryHoverColor'] ) : '';
+	$card_title_color = isset( $attributes['cardTitleColor'] ) ? sanitize_hex_color( $attributes['cardTitleColor'] ) : '';
+	$card_title_hover_color = isset( $attributes['cardTitleHoverColor'] ) ? sanitize_hex_color( $attributes['cardTitleHoverColor'] ) : '';
+	$card_excerpt_color = isset( $attributes['cardExcerptColor'] ) ? sanitize_hex_color( $attributes['cardExcerptColor'] ) : '';
+	$card_author_color = isset( $attributes['cardAuthorColor'] ) ? sanitize_hex_color( $attributes['cardAuthorColor'] ) : '';
+	$card_author_hover_color = isset( $attributes['cardAuthorHoverColor'] ) ? sanitize_hex_color( $attributes['cardAuthorHoverColor'] ) : '';
+	$card_date_color = isset( $attributes['cardDateColor'] ) ? sanitize_hex_color( $attributes['cardDateColor'] ) : '';
+	$card_date_hover_color = isset( $attributes['cardDateHoverColor'] ) ? sanitize_hex_color( $attributes['cardDateHoverColor'] ) : '';
+	$nav_arrow_color = isset( $attributes['navArrowColor'] ) ? $attributes['navArrowColor'] : '#ffffff';
+	$nav_arrow_bg_color = isset( $attributes['navArrowBgColor'] ) ? $attributes['navArrowBgColor'] : '#333333';
+	$nav_arrow_hover_color = isset( $attributes['navArrowHoverColor'] ) ? $attributes['navArrowHoverColor'] : '#ffffff';
+	$nav_arrow_bg_hover_color = isset( $attributes['navArrowBgHoverColor'] ) ? $attributes['navArrowBgHoverColor'] : '#007cba';
+	$nav_dots_color = isset( $attributes['navDotsColor'] ) ? sanitize_hex_color( $attributes['navDotsColor'] ) : '#000000';
+
 	// Build query arguments
 	$query_args = array(
 		'post_type'      => $post_type,
@@ -115,6 +132,54 @@ function wbcom_essential_render_post_carousel_block( $attributes ) {
 	// Generate unique ID for the carousel
 	$carousel_id = 'wbcom-post-carousel-' . wp_rand( 1000, 9999 );
 
+	// Generate inline styles
+	$inline_styles = '';
+	if ( ! empty( $card_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card { background-color: {$card_bg_color}; }";
+	}
+	if ( ! empty( $card_category_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats, #{$carousel_id} .wbcom-posts-card-cats a { color: {$card_category_color}; }";
+	}
+	if ( ! empty( $card_category_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { color: {$card_category_hover_color}; }";
+	}
+	if ( ! empty( $card_title_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title, #{$carousel_id} .wbcom-posts-card-title a { color: {$card_title_color}; }";
+	}
+	if ( ! empty( $card_title_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title a:hover { color: {$card_title_hover_color}; }";
+	}
+	if ( ! empty( $card_excerpt_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-excerpt p { color: {$card_excerpt_color}; }";
+	}
+	if ( ! empty( $card_author_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link { color: {$card_author_color}; }";
+	}
+	if ( ! empty( $card_author_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link:hover { color: {$card_author_hover_color}; }";
+	}
+	if ( ! empty( $card_date_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link { color: {$card_date_color}; }";
+	}
+	if ( ! empty( $card_date_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link:hover { color: {$card_date_hover_color}; }";
+	}
+	if ( ! empty( $nav_arrow_color ) && $nav_arrow_color !== '#ffffff' ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev i, #{$carousel_id} .wbcom-post-carousel-next i { color: " . esc_attr( $nav_arrow_color ) . " !important; }";
+	}
+	if ( ! empty( $nav_arrow_hover_color ) && $nav_arrow_hover_color !== '#ffffff' ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover i, #{$carousel_id} .wbcom-post-carousel-next:hover i { color: " . esc_attr( $nav_arrow_hover_color ) . " !important; }";
+	}
+	if ( ! empty( $nav_arrow_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev, #{$carousel_id} .wbcom-post-carousel-next { background-color: " . esc_attr( $nav_arrow_bg_color ) . " !important; }";
+	}
+	if ( ! empty( $nav_arrow_bg_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover, #{$carousel_id} .wbcom-post-carousel-next:hover { background-color: " . esc_attr( $nav_arrow_bg_hover_color ) . " !important; }";
+	}
+	if ( ! empty( $nav_dots_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-dots li.slick-active button { background-color: {$nav_dots_color}; }";
+	}
+
 	// Build carousel HTML
 	$classes = array( 'wp-block-wbcom-essential-post-carousel', 'wbcom-post-carousel' );
 	$classes[] = 'wbcom-posts-' . $card_layout;
@@ -130,7 +195,11 @@ function wbcom_essential_render_post_carousel_block( $attributes ) {
 		'data-show-arrows="' . esc_attr( $display_nav ? 'true' : 'false' ) . '"',
 	);
 
-	$output = '<div class="' . esc_attr( implode( ' ', $classes ) ) . '" id="' . esc_attr( $carousel_id ) . '" ' . implode( ' ', $data_attrs ) . '>';
+	$output = '';
+	if ( ! empty( $inline_styles ) ) {
+		$output .= '<style>' . $inline_styles . '</style>';
+	}
+	$output .= '<div class="' . esc_attr( implode( ' ', $classes ) ) . '" id="' . esc_attr( $carousel_id ) . '" ' . implode( ' ', $data_attrs ) . '>';
 
 	$output .= '<div class="wbcom-post-carousel-wrapper">';
 	$output .= '<div class="wbcom-post-carousel-inner">';
