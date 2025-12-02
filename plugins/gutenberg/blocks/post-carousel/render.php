@@ -84,20 +84,32 @@ function wbcom_essential_render_post_carousel_block( $attributes ) {
 		$query_args['author__in'] = $authors;
 	}
 
-	// Only posts with thumbnails
-	if ( $display_only_thumbnail ) {
-		$query_args['meta_query'] = array(
-			array(
-				'key'     => '_thumbnail_id',
-				'compare' => 'EXISTS',
-			),
-		);
-	}
-
 	$query = new WP_Query( $query_args );
 
 	if ( ! $query->have_posts() ) {
 		return '<div class="wp-block-wbcom-essential-post-carousel"><p>' . esc_html__( 'No posts found.', 'wbcom-essential' ) . '</p></div>';
+	}
+
+	// Filter posts to only include those with thumbnails if setting is enabled
+	if ( $display_only_thumbnail ) {
+		$filtered_posts = array();
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			if ( has_post_thumbnail( get_the_ID() ) ) {
+				$filtered_posts[] = get_post();
+			}
+		}
+
+		// Create a new query with filtered posts
+		if ( empty( $filtered_posts ) ) {
+			return '<div class="wp-block-wbcom-essential-post-carousel"><p>' . esc_html__( 'No posts with thumbnails found.', 'wbcom-essential' ) . '</p></div>';
+		}
+
+		$query = new WP_Query( array(
+			'post__in' => wp_list_pluck( $filtered_posts, 'ID' ),
+			'orderby'  => 'post__in',
+			'post_type' => 'any',
+		) );
 	}
 
 	// Generate unique ID for the carousel
