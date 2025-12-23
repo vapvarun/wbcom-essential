@@ -38,24 +38,41 @@ $meta_color           = $attributes['metaColor'] ?? '#888888';
 $image_radius         = $attributes['imageRadius'] ?? 8;
 $gap                  = $attributes['gap'] ?? 24;
 
-// Build query args.
+// Pagination settings.
+$enable_pagination    = $attributes['enablePagination'] ?? false;
+$pagination_type      = $attributes['paginationType'] ?? 'numbers';
+$pagination_alignment = $attributes['paginationAlignment'] ?? 'center';
+
+// Generate unique block ID for pagination.
+$block_id = 'wbcom-pr-' . substr( md5( wp_json_encode( $attributes ) . ( $block->parsed_block['attrs']['metadata']['name'] ?? '' ) ), 0, 8 );
+
+// Get current page for this specific block.
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$paged_param = isset( $_GET[ $block_id ] ) ? absint( $_GET[ $block_id ] ) : 1;
+$current_page = max( 1, $paged_param );
+
+// Build query args using WP_Query for pagination support.
 $query_args = array(
 	'post_type'      => $post_type,
 	'posts_per_page' => $posts_per_page,
 	'orderby'        => $order_by,
 	'order'          => $order,
 	'post_status'    => 'publish',
+	'paged'          => $enable_pagination ? $current_page : 1,
 );
 
 if ( ! empty( $categories ) && 'post' === $post_type ) {
 	$query_args['cat'] = implode( ',', $categories );
 }
 
-$posts = get_posts( $query_args );
+$posts_query = new WP_Query( $query_args );
+$posts       = $posts_query->posts;
 
 if ( empty( $posts ) ) {
 	return;
 }
+
+$total_pages = $posts_query->max_num_pages;
 
 // Build inline styles.
 $inline_styles = array(
@@ -303,5 +320,54 @@ $post_args = array(
 			</div>
 			<?php
 	endswitch;
-	?>
+
+	// Render pagination if enabled and there are multiple pages.
+	if ( $enable_pagination && $total_pages > 1 ) :
+		$base_url = remove_query_arg( $block_id );
+		?>
+		<nav class="wbcom-pr__pagination wbcom-pr__pagination--<?php echo esc_attr( $pagination_alignment ); ?>" aria-label="<?php esc_attr_e( 'Posts navigation', 'wbcom-essential' ); ?>">
+			<?php if ( 'numbers' === $pagination_type ) : ?>
+				<?php
+				$pagination_args = array(
+					'base'      => add_query_arg( $block_id, '%#%', $base_url ),
+					'format'    => '',
+					'current'   => $current_page,
+					'total'     => $total_pages,
+					'prev_text' => '&laquo;',
+					'next_text' => '&raquo;',
+					'type'      => 'list',
+					'mid_size'  => 2,
+					'end_size'  => 1,
+				);
+				echo wp_kses_post( paginate_links( $pagination_args ) );
+				?>
+			<?php else : ?>
+				<div class="wbcom-pr__pagination-prevnext">
+					<?php if ( $current_page > 1 ) : ?>
+						<a href="<?php echo esc_url( add_query_arg( $block_id, $current_page - 1, $base_url ) ); ?>" class="wbcom-pr__pagination-prev">
+							<?php esc_html_e( '&laquo; Previous', 'wbcom-essential' ); ?>
+						</a>
+					<?php endif; ?>
+					<span class="wbcom-pr__pagination-info">
+						<?php
+						printf(
+							/* translators: %1$d: current page, %2$d: total pages */
+							esc_html__( 'Page %1$d of %2$d', 'wbcom-essential' ),
+							$current_page,
+							$total_pages
+						);
+						?>
+					</span>
+					<?php if ( $current_page < $total_pages ) : ?>
+						<a href="<?php echo esc_url( add_query_arg( $block_id, $current_page + 1, $base_url ) ); ?>" class="wbcom-pr__pagination-next">
+							<?php esc_html_e( 'Next &raquo;', 'wbcom-essential' ); ?>
+						</a>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
+		</nav>
+	<?php endif; ?>
 </div>
+<?php
+// Reset post data after custom query.
+wp_reset_postdata();

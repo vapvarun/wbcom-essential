@@ -295,3 +295,113 @@
 		}
 	}
 }
+
+// Pagination styles.
+.wbcom-pr__pagination {
+	margin-top: var(--gap);
+	padding-top: var(--gap);
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+	&--left {
+		text-align: left;
+	}
+
+	&--center {
+		text-align: center;
+	}
+
+	&--right {
+		text-align: right;
+	}
+
+	// Numbers pagination (ul > li structure from paginate_links).
+	ul {
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		margin: 0;
+	}
+
+	a,
+	span {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 40px;
+		height: 40px;
+		padding: 0 12px;
+		font-size: 14px;
+		font-weight: 500;
+		text-decoration: none;
+		border-radius: 6px;
+		transition: all 0.2s ease;
+	}
+
+	a {
+		color: var(--title-color);
+		background-color: #f5f5f5;
+
+		&:hover {
+			background-color: var(--category-color);
+			color: #ffffff;
+		}
+	}
+
+	span.current {
+		background-color: var(--category-color);
+		color: #ffffff;
+	}
+
+	span.dots {
+		background: transparent;
+		color: var(--meta-color);
+	}
+
+	// Previous/Next pagination.
+	.wbcom-pr__pagination-prevnext {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.wbcom-pr__pagination-prev,
+	.wbcom-pr__pagination-next {
+		display: inline-flex;
+		align-items: center;
+		padding: 10px 20px;
+		font-size: 14px;
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--title-color);
+		background-color: #f5f5f5;
+		border-radius: 6px;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background-color: var(--category-color);
+			color: #ffffff;
+		}
+	}
+
+	.wbcom-pr__pagination-info {
+		font-size: 14px;
+		color: var(--meta-color);
+	}
+
+	// Alignment in prev-next mode.
+	&--left .wbcom-pr__pagination-prevnext {
+		justify-content: flex-start;
+	}
+
+	&--right .wbcom-pr__pagination-prevnext {
+		justify-content: flex-end;
+	}
+}

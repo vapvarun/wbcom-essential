@@ -40,6 +40,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		metaColor,
 		imageRadius,
 		gap,
+		enablePagination,
+		paginationType,
+		paginationAlignment,
 	} = attributes;
 
 	// Fetch post types.
@@ -182,6 +185,36 @@ export default function Edit( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) => setAttributes( { order: value } ) }
 					/>
+					<Divider />
+					<ToggleControl
+						label={ __( 'Enable Pagination', 'wbcom-essential' ) }
+						checked={ enablePagination }
+						onChange={ ( value ) => setAttributes( { enablePagination: value } ) }
+						help={ enablePagination ? __( 'Pagination allows users to navigate through posts.', 'wbcom-essential' ) : '' }
+					/>
+					{ enablePagination && (
+						<>
+							<SelectControl
+								label={ __( 'Pagination Type', 'wbcom-essential' ) }
+								value={ paginationType }
+								options={ [
+									{ label: __( 'Numbers', 'wbcom-essential' ), value: 'numbers' },
+									{ label: __( 'Previous/Next', 'wbcom-essential' ), value: 'prev-next' },
+								] }
+								onChange={ ( value ) => setAttributes( { paginationType: value } ) }
+							/>
+							<SelectControl
+								label={ __( 'Pagination Alignment', 'wbcom-essential' ) }
+								value={ paginationAlignment }
+								options={ [
+									{ label: __( 'Left', 'wbcom-essential' ), value: 'left' },
+									{ label: __( 'Center', 'wbcom-essential' ), value: 'center' },
+									{ label: __( 'Right', 'wbcom-essential' ), value: 'right' },
+								] }
+								onChange={ ( value ) => setAttributes( { paginationAlignment: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>

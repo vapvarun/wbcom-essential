@@ -110,6 +110,18 @@
     "gap": {
       "type": "number",
       "default": 24
+    },
+    "enablePagination": {
+      "type": "boolean",
+      "default": false
+    },
+    "paginationType": {
+      "type": "string",
+      "default": "numbers"
+    },
+    "paginationAlignment": {
+      "type": "string",
+      "default": "center"
     }
   },
   "textdomain": "wbcom-essential",
