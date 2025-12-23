@@ -1,0 +1,75 @@
+/**
+ * Progress Bar Block - Frontend Styles
+ */
+
+.wbcom-essential-progress-bar {
+	margin-bottom: 1.5rem;
+
+	.wbcom-progress-bar-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+
+	.wbcom-progress-bar-title {
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	.wbcom-progress-bar-percent-out {
+		font-size: 1rem;
+		font-weight: 700;
+	}
+
+	.wbcom-progress-bar-wrapper {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.wbcom-progress-bar-fill {
+		position: relative;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding-right: 8px;
+		box-sizing: border-box;
+
+		// Stripes pattern
+		&.has-stripes {
+			background-image: linear-gradient(
+				45deg,
+				rgba(255, 255, 255, 0.15) 25%,
+				transparent 25%,
+				transparent 50%,
+				rgba(255, 255, 255, 0.15) 50%,
+				rgba(255, 255, 255, 0.15) 75%,
+				transparent 75%,
+				transparent
+			);
+			background-size: 1rem 1rem;
+		}
+
+		// Animated stripes
+		&.stripes-animated {
+			animation: wbcom-progress-stripes 1s linear infinite;
+		}
+	}
+
+	.wbcom-progress-bar-percent-in {
+		font-size: 0.75rem;
+		font-weight: 700;
+		white-space: nowrap;
+	}
+}
+
+// Stripes animation
+@keyframes wbcom-progress-stripes {
+	0% {
+		background-position: 1rem 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}

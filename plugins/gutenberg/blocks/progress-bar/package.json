@@ -1,0 +1,11 @@
+{
+	"name": "wbcom-essential-progress-bar-block",
+	"version": "1.0.0",
+	"description": "Progress Bar block for WBCOM Essential",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.15.0"
+	}
+}

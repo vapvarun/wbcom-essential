@@ -1,0 +1,11 @@
+/**
+ * Progress Bar Block - Editor Styles
+ */
+
+.wbcom-essential-progress-bar {
+	// Ensure consistent preview in editor
+	.wbcom-progress-bar-fill {
+		// Disable scroll animation in editor for immediate preview
+		transition: width 0.3s ease-out !important;
+	}
+}
