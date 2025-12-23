@@ -1,0 +1,145 @@
+/**
+ * Members Grid Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-members-grid {
+	--grid-columns: 3;
+	--grid-columns-tablet: 2;
+	--grid-columns-mobile: 1;
+	--grid-gap: 30px;
+	--card-bg: #ffffff;
+	--card-radius: 8px;
+	--card-padding: 20px;
+	--avatar-size: 126px;
+	--name-color: #122b46;
+	--meta-color: #a3a5a9;
+}
+
+.wbcom-essential-members-grid-list {
+	display: grid;
+	grid-template-columns: repeat(var(--grid-columns), 1fr);
+	gap: var(--grid-gap);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wbcom-member-grid-item {
+	margin: 0;
+}
+
+.wbcom-member-grid-card {
+	background: var(--card-bg);
+	border-radius: var(--card-radius);
+	padding: var(--card-padding);
+	text-align: center;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+	.has-shadow & {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		}
+	}
+}
+
+.wbcom-member-grid-avatar {
+	margin-bottom: 15px;
+
+	a {
+		display: inline-block;
+	}
+
+	img {
+		width: var(--avatar-size);
+		height: var(--avatar-size);
+		border-radius: 50%;
+		object-fit: cover;
+	}
+}
+
+.wbcom-member-grid-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.wbcom-member-grid-name {
+	margin: 0 0 8px;
+	font-size: 16px;
+	font-weight: 600;
+
+	a {
+		color: var(--name-color);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.wbcom-member-grid-meta {
+	margin: 0 0 15px;
+	font-size: 13px;
+	color: var(--meta-color);
+}
+
+.wbcom-member-grid-action {
+	margin-top: auto;
+
+	.generic-button {
+		a,
+		button {
+			display: inline-block;
+			padding: 8px 20px;
+			font-size: 13px;
+			font-weight: 500;
+			color: #3182ce;
+			background: transparent;
+			border: 1px solid #3182ce;
+			border-radius: 30px;
+			text-decoration: none;
+			cursor: pointer;
+			transition: all 0.2s ease;
+
+			&:hover {
+				color: #fff;
+				background: #3182ce;
+			}
+		}
+	}
+}
+
+// No data message.
+.wbcom-essential-no-data {
+	text-align: center;
+	padding: 40px 20px;
+	color: #666;
+
+	p {
+		margin: 0;
+	}
+}
+
+// Responsive.
+@media screen and (max-width: 1024px) {
+	.wbcom-essential-members-grid-list {
+		grid-template-columns: repeat(var(--grid-columns-tablet), 1fr);
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.wbcom-essential-members-grid-list {
+		grid-template-columns: repeat(var(--grid-columns-mobile), 1fr);
+	}
+}

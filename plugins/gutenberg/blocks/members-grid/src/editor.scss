@@ -1,0 +1,130 @@
+/**
+ * Members Grid Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-members-grid {
+	padding: 10px;
+}
+
+.wbcom-members-grid-preview {
+	--grid-columns: 3;
+	--grid-gap: 30px;
+	--card-bg: #ffffff;
+	--card-radius: 8px;
+	--card-padding: 20px;
+	--avatar-size: 126px;
+	--name-color: #122b46;
+	--meta-color: #a3a5a9;
+}
+
+.wbcom-members-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--grid-columns), 1fr);
+	gap: var(--grid-gap);
+}
+
+.wbcom-member-card {
+	background: var(--card-bg);
+	border-radius: var(--card-radius);
+	padding: var(--card-padding);
+	text-align: center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+	.has-shadow & {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		}
+	}
+}
+
+.wbcom-member-card__avatar {
+	margin-bottom: 15px;
+}
+
+.wbcom-avatar-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--avatar-size);
+	height: var(--avatar-size);
+	margin: 0 auto;
+	border-radius: 50%;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.wbcom-member-card__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.wbcom-member-card__name {
+	margin: 0 0 8px;
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--name-color);
+}
+
+.wbcom-member-card__meta {
+	margin: 0 0 15px;
+	font-size: 13px;
+	color: var(--meta-color);
+}
+
+.wbcom-member-card__button {
+	display: inline-block;
+	padding: 8px 20px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #3182ce;
+	background: transparent;
+	border: 1px solid #3182ce;
+	border-radius: 30px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:hover {
+		color: #fff;
+		background: #3182ce;
+	}
+}
+
+.wbcom-preview-note {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 12px;
+	color: #888;
+}
+
+// Color control.
+.wbcom-color-control {
+	margin-bottom: 16px;
+}
+
+.wbcom-color-control-inner {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.wbcom-color-indicator {
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 0;
+	min-width: 28px;
+	cursor: pointer;
+
+	&:hover {
+		border-color: #007cba;
+	}
+}
