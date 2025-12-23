@@ -1,0 +1,297 @@
+/**
+ * Posts Revolution Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-posts-revolution {
+	--category-color: #1d76da;
+	--category-hover-color: #1557a0;
+	--title-color: #122B46;
+	--title-hover-color: #1d76da;
+	--excerpt-color: #666666;
+	--meta-color: #888888;
+	--image-radius: 8px;
+	--gap: 24px;
+	--columns: 2;
+}
+
+// Common post styles.
+.wbcom-pr__post {
+	display: flex;
+	flex-direction: column;
+}
+
+.wbcom-pr__thumb {
+	overflow: hidden;
+	border-radius: var(--image-radius);
+	margin-bottom: 16px;
+
+	img {
+		width: 100%;
+		height: auto;
+		display: block;
+		transition: transform 0.3s ease;
+	}
+
+	a:hover img {
+		transform: scale(1.05);
+	}
+}
+
+.wbcom-pr__content {
+	flex: 1;
+}
+
+.wbcom-pr__category {
+	margin-bottom: 8px;
+
+	a {
+		font-size: 12px;
+		font-weight: 600;
+		text-transform: uppercase;
+		color: var(--category-color);
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: var(--category-hover-color);
+		}
+	}
+}
+
+.wbcom-pr__title {
+	margin: 0 0 12px;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1.3;
+
+	a {
+		color: var(--title-color);
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: var(--title-hover-color);
+		}
+	}
+}
+
+.wbcom-pr__excerpt {
+	margin: 0 0 12px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--excerpt-color);
+}
+
+.wbcom-pr__meta {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	color: var(--meta-color);
+}
+
+.wbcom-pr__sep {
+	opacity: 0.5;
+}
+
+// Size variations.
+.wbcom-pr__post--large {
+	.wbcom-pr__title {
+		font-size: 24px;
+	}
+}
+
+.wbcom-pr__post--small {
+	flex-direction: row;
+	gap: 16px;
+
+	.wbcom-pr__thumb {
+		flex: 0 0 100px;
+		margin-bottom: 0;
+
+		img {
+			width: 100px;
+			height: 100px;
+			object-fit: cover;
+		}
+	}
+
+	.wbcom-pr__title {
+		font-size: 15px;
+		margin-bottom: 8px;
+	}
+
+	.wbcom-pr__category {
+		margin-bottom: 4px;
+
+		a {
+			font-size: 11px;
+		}
+	}
+}
+
+.wbcom-pr__post--medium {
+	flex-direction: row;
+	gap: 20px;
+
+	.wbcom-pr__thumb {
+		flex: 0 0 200px;
+		margin-bottom: 0;
+
+		img {
+			width: 200px;
+			height: 140px;
+			object-fit: cover;
+		}
+	}
+
+	.wbcom-pr__title {
+		font-size: 18px;
+	}
+}
+
+// Layout: Featured + Sidebar.
+.wbcom-essential-posts-revolution--featured-sidebar {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--gap);
+
+	.wbcom-pr__featured {
+		grid-column: 1;
+	}
+
+	.wbcom-pr__sidebar {
+		grid-column: 2;
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+	}
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+
+		.wbcom-pr__featured,
+		.wbcom-pr__sidebar {
+			grid-column: 1;
+		}
+	}
+}
+
+// Layout: Featured + List.
+.wbcom-essential-posts-revolution--featured-list {
+	.wbcom-pr__featured--full {
+		margin-bottom: var(--gap);
+	}
+
+	.wbcom-pr__list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+	}
+}
+
+// Layout: Grid.
+.wbcom-essential-posts-revolution--grid {
+	.wbcom-pr__grid {
+		display: grid;
+		grid-template-columns: repeat(var(--columns), 1fr);
+		gap: var(--gap);
+	}
+
+	@media (max-width: 768px) {
+		.wbcom-pr__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// Layout: Split.
+.wbcom-essential-posts-revolution--split {
+	.wbcom-pr__split {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--gap);
+	}
+
+	@media (max-width: 768px) {
+		.wbcom-pr__split {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// Layout: Two Featured.
+.wbcom-essential-posts-revolution--two-featured {
+	.wbcom-pr__two-featured {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--gap);
+		margin-bottom: var(--gap);
+	}
+
+	.wbcom-pr__list--horizontal {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: var(--gap);
+	}
+
+	@media (max-width: 768px) {
+		.wbcom-pr__two-featured {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// Layout: Magazine.
+.wbcom-essential-posts-revolution--magazine {
+	.wbcom-pr__magazine {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--gap);
+	}
+
+	.wbcom-pr__magazine-featured {
+		grid-row: span 2;
+	}
+
+	.wbcom-pr__magazine-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: calc(var(--gap) / 2);
+
+		.wbcom-pr__post--medium {
+			flex-direction: column;
+
+			.wbcom-pr__thumb {
+				flex: none;
+
+				img {
+					width: 100%;
+					height: 140px;
+				}
+			}
+
+			.wbcom-pr__title {
+				font-size: 15px;
+			}
+		}
+	}
+
+	@media (max-width: 992px) {
+		.wbcom-pr__magazine {
+			grid-template-columns: 1fr;
+		}
+
+		.wbcom-pr__magazine-featured {
+			grid-row: auto;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.wbcom-pr__magazine-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+}

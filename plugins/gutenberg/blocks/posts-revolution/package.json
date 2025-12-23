@@ -1,0 +1,12 @@
+{
+	"name": "@wbcom-essential/posts-revolution",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Posts revolution block for wbcom-essential",
+	"author": "Starter Templates",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start"
+	}
+}

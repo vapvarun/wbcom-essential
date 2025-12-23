@@ -1,0 +1,120 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wbcom-essential/posts-revolution",
+  "version": "1.0.0",
+  "title": "Posts Revolution",
+  "category": "wbcom-essential",
+  "icon": "grid-view",
+  "description": "Display posts in various creative layouts with featured post emphasis.",
+  "keywords": [
+    "posts",
+    "grid",
+    "layout",
+    "featured",
+    "magazine",
+    "blog"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "layout": {
+      "type": "string",
+      "default": "featured-sidebar"
+    },
+    "columns": {
+      "type": "number",
+      "default": 2
+    },
+    "showExcerpt": {
+      "type": "boolean",
+      "default": true
+    },
+    "excerptLength": {
+      "type": "number",
+      "default": 100
+    },
+    "showAuthor": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDate": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCategory": {
+      "type": "boolean",
+      "default": true
+    },
+    "dateFormat": {
+      "type": "string",
+      "default": "M j, Y"
+    },
+    "postType": {
+      "type": "string",
+      "default": "post"
+    },
+    "categories": {
+      "type": "array",
+      "default": []
+    },
+    "postsPerPage": {
+      "type": "number",
+      "default": 5
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "date"
+    },
+    "order": {
+      "type": "string",
+      "default": "DESC"
+    },
+    "categoryColor": {
+      "type": "string",
+      "default": "#1d76da"
+    },
+    "categoryHoverColor": {
+      "type": "string",
+      "default": "#1557a0"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#122B46"
+    },
+    "titleHoverColor": {
+      "type": "string",
+      "default": "#1d76da"
+    },
+    "excerptColor": {
+      "type": "string",
+      "default": "#666666"
+    },
+    "metaColor": {
+      "type": "string",
+      "default": "#888888"
+    },
+    "imageRadius": {
+      "type": "number",
+      "default": 8
+    },
+    "gap": {
+      "type": "number",
+      "default": 24
+    }
+  },
+  "textdomain": "wbcom-essential",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
