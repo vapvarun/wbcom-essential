@@ -66,6 +66,17 @@ export default function Edit( { attributes, setAttributes } ) {
 		buttonHoverBgColor,
 		linkColor,
 		linkHoverColor,
+		formWidth,
+		formBorderColor,
+		formBorderWidth,
+		formBoxShadow,
+		inputBorderRadius,
+		inputPaddingV,
+		inputPaddingH,
+		buttonBorderRadius,
+		buttonPaddingV,
+		buttonPaddingH,
+		checkboxColor,
 	} = attributes;
 
 	const TitleTag = titleTag || 'h2';
@@ -78,6 +89,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		'--form-bg-color': formBgColor,
 		'--form-padding': `${ formPadding }px`,
 		'--form-border-radius': `${ formBorderRadius }px`,
+		'--form-width': `${ formWidth }px`,
+		'--form-border-color': formBorderColor || 'transparent',
+		'--form-border-width': `${ formBorderWidth }px`,
+		'--form-box-shadow': formBoxShadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
 		'--title-color': titleColor,
 		'--subtitle-color': subtitleColor,
 		'--label-color': labelColor,
@@ -85,12 +100,19 @@ export default function Edit( { attributes, setAttributes } ) {
 		'--input-border-color': inputBorderColor,
 		'--input-text-color': inputTextColor,
 		'--input-focus-border-color': inputFocusBorderColor,
+		'--input-border-radius': `${ inputBorderRadius }px`,
+		'--input-padding-v': `${ inputPaddingV }px`,
+		'--input-padding-h': `${ inputPaddingH }px`,
 		'--button-bg-color': buttonBgColor,
 		'--button-text-color': buttonTextColor,
 		'--button-hover-bg-color': buttonHoverBgColor,
+		'--button-border-radius': `${ buttonBorderRadius }px`,
+		'--button-padding-v': `${ buttonPaddingV }px`,
+		'--button-padding-h': `${ buttonPaddingH }px`,
 		'--link-color': linkColor,
 		'--link-hover-color': linkHoverColor,
 		'--logo-width': `${ logoWidth }px`,
+		'--checkbox-color': checkboxColor,
 	};
 
 	const onSelectLogo = ( media ) => {
@@ -326,6 +348,13 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Form Styling', 'wbcom-essential' ) } initialOpen={ false }>
+					<RangeControl
+						label={ __( 'Form Width', 'wbcom-essential' ) }
+						value={ formWidth }
+						onChange={ ( value ) => setAttributes( { formWidth: value } ) }
+						min={ 280 }
+						max={ 800 }
+					/>
 					<ColorControl
 						label={ __( 'Form Background', 'wbcom-essential' ) }
 						value={ formBgColor }
@@ -344,6 +373,24 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { formBorderRadius: value } ) }
 						min={ 0 }
 						max={ 50 }
+					/>
+					<Divider />
+					<ColorControl
+						label={ __( 'Border Color', 'wbcom-essential' ) }
+						value={ formBorderColor }
+						onChange={ ( value ) => setAttributes( { formBorderColor: value } ) }
+					/>
+					<RangeControl
+						label={ __( 'Border Width', 'wbcom-essential' ) }
+						value={ formBorderWidth }
+						onChange={ ( value ) => setAttributes( { formBorderWidth: value } ) }
+						min={ 0 }
+						max={ 10 }
+					/>
+					<ToggleControl
+						label={ __( 'Enable Box Shadow', 'wbcom-essential' ) }
+						checked={ formBoxShadow }
+						onChange={ ( value ) => setAttributes( { formBoxShadow: value } ) }
 					/>
 				</PanelBody>
 
@@ -386,6 +433,28 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ inputFocusBorderColor }
 						onChange={ ( value ) => setAttributes( { inputFocusBorderColor: value } ) }
 					/>
+					<Divider />
+					<RangeControl
+						label={ __( 'Border Radius', 'wbcom-essential' ) }
+						value={ inputBorderRadius }
+						onChange={ ( value ) => setAttributes( { inputBorderRadius: value } ) }
+						min={ 0 }
+						max={ 30 }
+					/>
+					<RangeControl
+						label={ __( 'Vertical Padding', 'wbcom-essential' ) }
+						value={ inputPaddingV }
+						onChange={ ( value ) => setAttributes( { inputPaddingV: value } ) }
+						min={ 4 }
+						max={ 30 }
+					/>
+					<RangeControl
+						label={ __( 'Horizontal Padding', 'wbcom-essential' ) }
+						value={ inputPaddingH }
+						onChange={ ( value ) => setAttributes( { inputPaddingH: value } ) }
+						min={ 8 }
+						max={ 40 }
+					/>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Button Styling', 'wbcom-essential' ) } initialOpen={ false }>
@@ -404,6 +473,28 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ buttonHoverBgColor }
 						onChange={ ( value ) => setAttributes( { buttonHoverBgColor: value } ) }
 					/>
+					<Divider />
+					<RangeControl
+						label={ __( 'Border Radius', 'wbcom-essential' ) }
+						value={ buttonBorderRadius }
+						onChange={ ( value ) => setAttributes( { buttonBorderRadius: value } ) }
+						min={ 0 }
+						max={ 30 }
+					/>
+					<RangeControl
+						label={ __( 'Vertical Padding', 'wbcom-essential' ) }
+						value={ buttonPaddingV }
+						onChange={ ( value ) => setAttributes( { buttonPaddingV: value } ) }
+						min={ 6 }
+						max={ 30 }
+					/>
+					<RangeControl
+						label={ __( 'Horizontal Padding', 'wbcom-essential' ) }
+						value={ buttonPaddingH }
+						onChange={ ( value ) => setAttributes( { buttonPaddingH: value } ) }
+						min={ 12 }
+						max={ 60 }
+					/>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Link Styling', 'wbcom-essential' ) } initialOpen={ false }>
@@ -416,6 +507,12 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Link Hover Color', 'wbcom-essential' ) }
 						value={ linkHoverColor }
 						onChange={ ( value ) => setAttributes( { linkHoverColor: value } ) }
+					/>
+					<Divider />
+					<ColorControl
+						label={ __( 'Checkbox Color', 'wbcom-essential' ) }
+						value={ checkboxColor }
+						onChange={ ( value ) => setAttributes( { checkboxColor: value } ) }
 					/>
 				</PanelBody>
 			</InspectorControls>

@@ -8,6 +8,10 @@
 	--form-bg-color: #ffffff;
 	--form-padding: 30px;
 	--form-border-radius: 8px;
+	--form-width: 420px;
+	--form-border-color: transparent;
+	--form-border-width: 0px;
+	--form-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 	--title-color: #122B46;
 	--subtitle-color: #666666;
 	--label-color: #122B46;
@@ -15,21 +19,29 @@
 	--input-border-color: #e3e3e3;
 	--input-text-color: #122B46;
 	--input-focus-border-color: #1d76da;
+	--input-border-radius: 6px;
+	--input-padding-v: 12px;
+	--input-padding-h: 16px;
 	--button-bg-color: #1d76da;
 	--button-text-color: #ffffff;
 	--button-hover-bg-color: #1557a0;
+	--button-border-radius: 6px;
+	--button-padding-v: 14px;
+	--button-padding-h: 24px;
 	--link-color: #1d76da;
 	--link-hover-color: #1557a0;
 	--logo-width: 150px;
+	--checkbox-color: #1d76da;
 }
 
 .wbcom-essential-login-form {
-	max-width: 420px;
+	max-width: var(--form-width);
 	margin: 0 auto;
 	padding: var(--form-padding);
 	background: var(--form-bg-color);
 	border-radius: var(--form-border-radius);
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	border: var(--form-border-width) solid var(--form-border-color);
+	box-shadow: var(--form-box-shadow);
 }
 
 .wbcom-essential-login-form__logo {
@@ -96,12 +108,12 @@
 
 .wbcom-essential-login-form__input {
 	width: 100%;
-	padding: 12px 16px;
+	padding: var(--input-padding-v) var(--input-padding-h);
 	font-size: 15px;
 	color: var(--input-text-color);
 	background: var(--input-bg-color);
 	border: 1px solid var(--input-border-color);
-	border-radius: 6px;
+	border-radius: var(--input-border-radius);
 	outline: none;
 	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
@@ -136,7 +148,7 @@
 		height: 18px;
 		margin: 0;
 		cursor: pointer;
-		accent-color: var(--button-bg-color);
+		accent-color: var(--checkbox-color);
 	}
 }
 
@@ -157,13 +169,13 @@
 	justify-content: center;
 	gap: 8px;
 	width: 100%;
-	padding: 14px 24px;
+	padding: var(--button-padding-v) var(--button-padding-h);
 	font-size: 16px;
 	font-weight: 600;
 	color: var(--button-text-color);
 	background: var(--button-bg-color);
 	border: none;
-	border-radius: 6px;
+	border-radius: var(--button-border-radius);
 	cursor: pointer;
 	transition: background-color 0.2s ease, transform 0.1s ease;
 
@@ -216,12 +228,12 @@
 
 .wbcom-essential-login-form__logout-link {
 	display: inline-block;
-	padding: 10px 20px;
+	padding: var(--button-padding-v) var(--button-padding-h);
 	font-size: 14px;
 	font-weight: 500;
 	color: var(--button-text-color);
 	background: var(--button-bg-color);
-	border-radius: 6px;
+	border-radius: var(--button-border-radius);
 	text-decoration: none;
 	transition: background-color 0.2s ease;
 
@@ -253,12 +265,12 @@
 			input[type="text"],
 			input[type="password"] {
 				width: 100%;
-				padding: 12px 16px;
+				padding: var(--input-padding-v) var(--input-padding-h);
 				font-size: 15px;
 				color: var(--input-text-color);
 				background: var(--input-bg-color);
 				border: 1px solid var(--input-border-color);
-				border-radius: 6px;
+				border-radius: var(--input-border-radius);
 				outline: none;
 				transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
@@ -272,14 +284,14 @@
 		input[type="submit"] {
 			display: block;
 			width: 100%;
-			padding: 14px 24px;
+			padding: var(--button-padding-v) var(--button-padding-h);
 			margin-top: 8px;
 			font-size: 16px;
 			font-weight: 600;
 			color: var(--button-text-color);
 			background: var(--button-bg-color);
 			border: none;
-			border-radius: 6px;
+			border-radius: var(--button-border-radius);
 			cursor: pointer;
 			transition: background-color 0.2s ease;
 

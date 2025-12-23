@@ -29,6 +29,12 @@ $card_border_radius     = $attributes['cardBorderRadius'] ?? 8;
 $name_color             = $attributes['nameColor'] ?? '#1a202c';
 $role_color             = $attributes['roleColor'] ?? '#718096';
 $nav_color              = $attributes['navColor'] ?? '#3182ce';
+$card_padding           = $attributes['cardPadding'] ?? 20;
+$card_box_shadow        = $attributes['cardBoxShadow'] ?? true;
+$image_border_radius    = $attributes['imageBorderRadius'] ?? 8;
+$name_font_size         = $attributes['nameFontSize'] ?? 18;
+$role_font_size         = $attributes['roleFontSize'] ?? 14;
+$image_aspect_ratio     = $attributes['imageAspectRatio'] ?? '1/1';
 
 // Don't render if no members.
 if ( empty( $members ) ) {
@@ -39,10 +45,20 @@ if ( empty( $members ) ) {
 $unique_id = wp_unique_id( 'wbcom-team-carousel-' );
 
 // Card styles.
-$card_style = sprintf(
-	'background-color: %s; border-radius: %dpx;',
+$box_shadow_value = $card_box_shadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none';
+$card_style       = sprintf(
+	'background-color: %s; border-radius: %dpx; padding: %dpx; box-shadow: %s;',
 	esc_attr( $card_background ),
-	absint( $card_border_radius )
+	absint( $card_border_radius ),
+	absint( $card_padding ),
+	esc_attr( $box_shadow_value )
+);
+
+// Image styles.
+$image_style = sprintf(
+	'border-radius: %dpx; aspect-ratio: %s;',
+	absint( $image_border_radius ),
+	esc_attr( $image_aspect_ratio )
 );
 
 // Swiper configuration.
@@ -122,11 +138,11 @@ if ( $nav_color ) {
 							<a href="<?php echo esc_url( $member_link ); ?>" class="wbcom-team-member-link">
 						<?php endif; ?>
 
-						<div class="wbcom-team-member-image">
+						<div class="wbcom-team-member-image" style="<?php echo esc_attr( $image_style ); ?>">
 							<?php if ( $member_image ) : ?>
 								<?php echo $member_image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							<?php else : ?>
-								<div class="wbcom-team-member-placeholder">
+								<div class="wbcom-team-member-placeholder" style="border-radius: <?php echo absint( $image_border_radius ); ?>px;">
 									<span class="dashicons dashicons-admin-users"></span>
 								</div>
 							<?php endif; ?>
@@ -134,12 +150,12 @@ if ( $nav_color ) {
 
 						<div class="wbcom-team-member-info">
 							<?php if ( $member_name ) : ?>
-								<h4 class="wbcom-team-member-name" style="color: <?php echo esc_attr( $name_color ); ?>;">
+								<h4 class="wbcom-team-member-name" style="color: <?php echo esc_attr( $name_color ); ?>; font-size: <?php echo absint( $name_font_size ); ?>px;">
 									<?php echo esc_html( $member_name ); ?>
 								</h4>
 							<?php endif; ?>
 							<?php if ( $member_role ) : ?>
-								<p class="wbcom-team-member-role" style="color: <?php echo esc_attr( $role_color ); ?>;">
+								<p class="wbcom-team-member-role" style="color: <?php echo esc_attr( $role_color ); ?>; font-size: <?php echo absint( $role_font_size ); ?>px;">
 									<?php echo esc_html( $member_role ); ?>
 								</p>
 							<?php endif; ?>

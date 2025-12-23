@@ -49,6 +49,12 @@ export default function Edit( { attributes, setAttributes } ) {
 		dateColor,
 		titleColor,
 		textColor,
+		contentPadding,
+		contentBoxShadow,
+		dateFontSize,
+		titleFontSize,
+		textFontSize,
+		itemSpacing,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -103,12 +109,19 @@ export default function Edit( { attributes, setAttributes } ) {
 	const contentStyle = {
 		backgroundColor: contentBackground,
 		borderRadius: `${ contentBorderRadius }px`,
+		padding: `${ contentPadding }px`,
+		boxShadow: contentBoxShadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none',
 	};
 
 	const barStyle = {
 		'--bar-color': barColor,
 		'--bar-thickness': `${ barThickness }px`,
 		'--icon-container-size': `${ iconContainerSize }px`,
+		'--content-background': contentBackground,
+		'--item-spacing': `${ itemSpacing }px`,
+		'--date-font-size': `${ dateFontSize }px`,
+		'--title-font-size': `${ titleFontSize }px`,
+		'--text-font-size': `${ textFontSize }px`,
 	};
 
 	return (
@@ -295,6 +308,50 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { contentBorderRadius: value } ) }
 						min={ 0 }
 						max={ 50 }
+					/>
+					<RangeControl
+						label={ __( 'Padding', 'wbcom-essential' ) }
+						value={ contentPadding }
+						onChange={ ( value ) => setAttributes( { contentPadding: value } ) }
+						min={ 8 }
+						max={ 60 }
+					/>
+					<ToggleControl
+						label={ __( 'Box Shadow', 'wbcom-essential' ) }
+						checked={ contentBoxShadow }
+						onChange={ ( value ) => setAttributes( { contentBoxShadow: value } ) }
+					/>
+					<RangeControl
+						label={ __( 'Item Spacing', 'wbcom-essential' ) }
+						value={ itemSpacing }
+						onChange={ ( value ) => setAttributes( { itemSpacing: value } ) }
+						min={ 20 }
+						max={ 100 }
+						help={ __( 'Space between timeline items', 'wbcom-essential' ) }
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Typography', 'wbcom-essential' ) } initialOpen={ false }>
+					<RangeControl
+						label={ __( 'Date Font Size', 'wbcom-essential' ) }
+						value={ dateFontSize }
+						onChange={ ( value ) => setAttributes( { dateFontSize: value } ) }
+						min={ 10 }
+						max={ 24 }
+					/>
+					<RangeControl
+						label={ __( 'Title Font Size', 'wbcom-essential' ) }
+						value={ titleFontSize }
+						onChange={ ( value ) => setAttributes( { titleFontSize: value } ) }
+						min={ 14 }
+						max={ 40 }
+					/>
+					<RangeControl
+						label={ __( 'Text Font Size', 'wbcom-essential' ) }
+						value={ textFontSize }
+						onChange={ ( value ) => setAttributes( { textFontSize: value } ) }
+						min={ 12 }
+						max={ 24 }
 					/>
 				</PanelBody>
 

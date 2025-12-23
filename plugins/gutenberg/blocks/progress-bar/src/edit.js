@@ -34,6 +34,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		titleColor,
 		percentColor,
 		percentOutColor,
+		innerBorderRadius,
+		boxShadow,
+		backgroundHeight,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -43,14 +46,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	const wrapperStyle = {
 		backgroundColor: barBackground,
 		borderRadius: `${ borderRadius }px`,
-		height: `${ barHeight }px`,
+		height: `${ backgroundHeight }px`,
+		boxShadow: boxShadow ? 'inset 0 1px 3px rgba(0, 0, 0, 0.15)' : 'none',
 	};
 
 	const barStyle = {
 		width: `${ percent }%`,
 		backgroundColor: barColor,
-		borderRadius: `${ borderRadius }px`,
-		height: '100%',
+		borderRadius: `${ innerBorderRadius }px`,
+		height: `${ barHeight }px`,
 	};
 
 	const stripesClass = showStripes
@@ -143,6 +147,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					initialOpen={ false }
 				>
 					<RangeControl
+						label={ __( 'Background Height', 'wbcom-essential' ) }
+						value={ backgroundHeight }
+						onChange={ ( value ) =>
+							setAttributes( { backgroundHeight: value } )
+						}
+						min={ 4 }
+						max={ 100 }
+					/>
+					<RangeControl
 						label={ __( 'Bar Height', 'wbcom-essential' ) }
 						value={ barHeight }
 						onChange={ ( value ) =>
@@ -152,13 +165,30 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 100 }
 					/>
 					<RangeControl
-						label={ __( 'Border Radius', 'wbcom-essential' ) }
+						label={ __( 'Background Radius', 'wbcom-essential' ) }
 						value={ borderRadius }
 						onChange={ ( value ) =>
 							setAttributes( { borderRadius: value } )
 						}
 						min={ 0 }
 						max={ 50 }
+					/>
+					<RangeControl
+						label={ __( 'Bar Radius', 'wbcom-essential' ) }
+						value={ innerBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { innerBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 50 }
+					/>
+					<ToggleControl
+						label={ __( 'Inset Shadow', 'wbcom-essential' ) }
+						checked={ boxShadow }
+						onChange={ ( value ) =>
+							setAttributes( { boxShadow: value } )
+						}
+						help={ __( 'Add subtle inset shadow to the background', 'wbcom-essential' ) }
 					/>
 				</PanelBody>
 

@@ -29,17 +29,45 @@ $name_color          = $attributes['nameColor'] ?? '#1a202c';
 $role_color          = $attributes['roleColor'] ?? '#718096';
 $rating_color        = $attributes['ratingColor'] ?? '#f6ad55';
 
-// Build wrapper style.
-$wrapper_style = sprintf(
-	'background-color: %s; border-radius: %dpx;',
-	esc_attr( $background_color ),
-	absint( $border_radius )
+// New attributes.
+$padding          = $attributes['padding'] ?? 32;
+$box_shadow       = $attributes['boxShadow'] ?? true;
+$avatar_size      = $attributes['avatarSize'] ?? 60;
+$quote_icon_size  = $attributes['quoteIconSize'] ?? 64;
+$quote_icon_color = $attributes['quoteIconColor'] ?? '#1d76da';
+$quote_font_size  = $attributes['quoteFontSize'] ?? 18;
+$name_font_size   = $attributes['nameFontSize'] ?? 16;
+$role_font_size   = $attributes['roleFontSize'] ?? 14;
+$spacing          = $attributes['spacing'] ?? 24;
+
+// Build CSS variables.
+$css_vars = array(
+	'--bg-color'         => $background_color,
+	'--border-radius'    => $border_radius . 'px',
+	'--padding'          => $padding . 'px',
+	'--box-shadow'       => $box_shadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
+	'--avatar-size'      => $avatar_size . 'px',
+	'--quote-icon-size'  => $quote_icon_size . 'px',
+	'--quote-icon-color' => $quote_icon_color,
+	'--quote-font-size'  => $quote_font_size . 'px',
+	'--name-font-size'   => $name_font_size . 'px',
+	'--role-font-size'   => $role_font_size . 'px',
+	'--spacing'          => $spacing . 'px',
+	'--quote-color'      => $quote_color,
+	'--name-color'       => $name_color,
+	'--role-color'       => $role_color,
+	'--rating-color'     => $rating_color,
 );
+
+$style_string = '';
+foreach ( $css_vars as $prop => $value ) {
+	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(
 	'class' => sprintf( 'wbcom-essential-testimonial layout-%s text-%s', esc_attr( $layout ), esc_attr( $text_align ) ),
-	'style' => $wrapper_style,
+	'style' => $style_string,
 ) );
 
 // Get author image.
@@ -54,20 +82,17 @@ if ( $image_id ) {
 /**
  * Render star rating HTML.
  *
- * @param int    $rating       Rating value (1-5).
- * @param string $rating_color Color for filled stars.
+ * @param int $rating Rating value (1-5).
  * @return string HTML string.
  */
-function wbcom_render_testimonial_stars( $rating, $rating_color ) {
+function wbcom_render_testimonial_stars( $rating ) {
 	$output = '';
 	for ( $i = 1; $i <= 5; $i++ ) {
 		$filled = $i <= $rating;
-		$color  = $filled ? $rating_color : '#e2e8f0';
 		$class  = $filled ? 'filled' : 'empty';
 		$output .= sprintf(
-			'<span class="star %s" style="color: %s;">★</span>',
-			esc_attr( $class ),
-			esc_attr( $color )
+			'<span class="star %s">★</span>',
+			esc_attr( $class )
 		);
 	}
 	return $output;
@@ -78,16 +103,14 @@ function wbcom_render_testimonial_stars( $rating, $rating_color ) {
 	<div class="wbcom-testimonial-content">
 		<?php if ( $show_rating ) : ?>
 			<div class="wbcom-testimonial-rating">
-				<?php echo wbcom_render_testimonial_stars( $rating, $rating_color ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo wbcom_render_testimonial_stars( $rating ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $testimonial_content ) ) : ?>
 			<div class="wbcom-testimonial-quote">
 				<span class="quote-mark">"</span>
-				<p style="color: <?php echo esc_attr( $quote_color ); ?>;">
-					<?php echo wp_kses_post( $testimonial_content ); ?>
-				</p>
+				<p><?php echo wp_kses_post( $testimonial_content ); ?></p>
 			</div>
 		<?php endif; ?>
 	</div>
@@ -101,14 +124,10 @@ function wbcom_render_testimonial_stars( $rating, $rating_color ) {
 
 		<div class="wbcom-testimonial-info">
 			<?php if ( ! empty( $author_name ) ) : ?>
-				<span class="wbcom-testimonial-name" style="color: <?php echo esc_attr( $name_color ); ?>;">
-					<?php echo esc_html( $author_name ); ?>
-				</span>
+				<span class="wbcom-testimonial-name"><?php echo esc_html( $author_name ); ?></span>
 			<?php endif; ?>
 			<?php if ( ! empty( $author_role ) ) : ?>
-				<span class="wbcom-testimonial-role" style="color: <?php echo esc_attr( $role_color ); ?>;">
-					<?php echo esc_html( $author_role ); ?>
-				</span>
+				<span class="wbcom-testimonial-role"><?php echo esc_html( $author_role ); ?></span>
 			<?php endif; ?>
 		</div>
 	</div>

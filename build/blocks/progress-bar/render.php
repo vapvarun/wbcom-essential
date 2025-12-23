@@ -14,36 +14,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
-$title              = $attributes['title'] ?? __( 'Progress', 'wbcom-essential' );
-$percent            = $attributes['percent'] ?? 75;
-$display_percent    = $attributes['displayPercent'] ?? 'in';
-$show_stripes       = $attributes['showStripes'] ?? false;
-$animate_stripes    = $attributes['animateStripes'] ?? true;
-$animation_duration = $attributes['animationDuration'] ?? 1500;
-$scroll_animation   = $attributes['scrollAnimation'] ?? true;
-$bar_height         = $attributes['barHeight'] ?? 20;
-$border_radius      = $attributes['borderRadius'] ?? 10;
-$bar_color          = $attributes['barColor'] ?? '#3182ce';
-$bar_background     = $attributes['barBackground'] ?? '#e2e8f0';
-$title_color        = $attributes['titleColor'] ?? '#1a202c';
-$percent_color      = $attributes['percentColor'] ?? '#ffffff';
-$percent_out_color  = $attributes['percentOutColor'] ?? '#1a202c';
+$title               = $attributes['title'] ?? __( 'Progress', 'wbcom-essential' );
+$percent             = $attributes['percent'] ?? 75;
+$display_percent     = $attributes['displayPercent'] ?? 'in';
+$show_stripes        = $attributes['showStripes'] ?? false;
+$animate_stripes     = $attributes['animateStripes'] ?? true;
+$animation_duration  = $attributes['animationDuration'] ?? 1500;
+$scroll_animation    = $attributes['scrollAnimation'] ?? true;
+$bar_height          = $attributes['barHeight'] ?? 20;
+$border_radius       = $attributes['borderRadius'] ?? 10;
+$bar_color           = $attributes['barColor'] ?? '#3182ce';
+$bar_background      = $attributes['barBackground'] ?? '#e2e8f0';
+$title_color         = $attributes['titleColor'] ?? '#1a202c';
+$percent_color       = $attributes['percentColor'] ?? '#ffffff';
+$percent_out_color   = $attributes['percentOutColor'] ?? '#1a202c';
+$inner_border_radius = $attributes['innerBorderRadius'] ?? 10;
+$box_shadow          = $attributes['boxShadow'] ?? false;
+$background_height   = $attributes['backgroundHeight'] ?? 20;
 
 // Build wrapper style.
-$wrapper_style = sprintf(
-	'background-color: %s; border-radius: %dpx; height: %dpx;',
+$box_shadow_style = $box_shadow ? 'inset 0 1px 3px rgba(0, 0, 0, 0.15)' : 'none';
+$wrapper_style    = sprintf(
+	'background-color: %s; border-radius: %dpx; height: %dpx; box-shadow: %s;',
 	esc_attr( $bar_background ),
 	absint( $border_radius ),
-	absint( $bar_height )
+	absint( $background_height ),
+	esc_attr( $box_shadow_style )
 );
 
 // Build bar style.
 $initial_width = $scroll_animation ? '0' : $percent . '%';
 $bar_style     = sprintf(
-	'width: %s; background-color: %s; border-radius: %dpx; transition: width %dms ease-out;',
+	'width: %s; background-color: %s; border-radius: %dpx; height: %dpx; transition: width %dms ease-out;',
 	esc_attr( $initial_width ),
 	esc_attr( $bar_color ),
-	absint( $border_radius ),
+	absint( $inner_border_radius ),
+	absint( $bar_height ),
 	absint( $animation_duration )
 );
 

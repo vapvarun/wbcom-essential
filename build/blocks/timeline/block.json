@@ -104,6 +104,30 @@
     "textColor": {
       "type": "string",
       "default": "#4a5568"
+    },
+    "contentPadding": {
+      "type": "number",
+      "default": 24
+    },
+    "contentBoxShadow": {
+      "type": "boolean",
+      "default": true
+    },
+    "dateFontSize": {
+      "type": "number",
+      "default": 14
+    },
+    "titleFontSize": {
+      "type": "number",
+      "default": 20
+    },
+    "textFontSize": {
+      "type": "number",
+      "default": 16
+    },
+    "itemSpacing": {
+      "type": "number",
+      "default": 40
     }
   },
   "supports": {

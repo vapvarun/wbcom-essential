@@ -30,6 +30,12 @@ $content_border_radius        = $attributes['contentBorderRadius'] ?? 12;
 $date_color                   = $attributes['dateColor'] ?? '#718096';
 $title_color                  = $attributes['titleColor'] ?? '#1a202c';
 $text_color                   = $attributes['textColor'] ?? '#4a5568';
+$content_padding              = $attributes['contentPadding'] ?? 24;
+$content_box_shadow           = $attributes['contentBoxShadow'] ?? true;
+$date_font_size               = $attributes['dateFontSize'] ?? 14;
+$title_font_size              = $attributes['titleFontSize'] ?? 20;
+$text_font_size               = $attributes['textFontSize'] ?? 16;
+$item_spacing                 = $attributes['itemSpacing'] ?? 40;
 
 // Don't render if no items.
 if ( empty( $items ) ) {
@@ -54,11 +60,19 @@ $icons = array(
 $unique_id = wp_unique_id( 'wbcom-timeline-' );
 
 // CSS variables for bar.
-$container_style = sprintf(
-	'--bar-color: %s; --bar-thickness: %dpx; --icon-container-size: %dpx;',
+$box_shadow_value = $content_box_shadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none';
+$container_style  = sprintf(
+	'--bar-color: %s; --bar-thickness: %dpx; --icon-container-size: %dpx; --content-background: %s; --content-padding: %dpx; --content-box-shadow: %s; --date-font-size: %dpx; --title-font-size: %dpx; --text-font-size: %dpx; --item-spacing: %dpx;',
 	esc_attr( $bar_color ),
 	absint( $bar_thickness ),
-	absint( $icon_container_size )
+	absint( $icon_container_size ),
+	esc_attr( $content_background ),
+	absint( $content_padding ),
+	esc_attr( $box_shadow_value ),
+	absint( $date_font_size ),
+	absint( $title_font_size ),
+	absint( $text_font_size ),
+	absint( $item_spacing )
 );
 
 // Icon container style.

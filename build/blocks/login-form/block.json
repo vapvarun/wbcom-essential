@@ -189,6 +189,50 @@
     "linkHoverColor": {
       "type": "string",
       "default": "#1557a0"
+    },
+    "formWidth": {
+      "type": "number",
+      "default": 420
+    },
+    "formBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "formBorderWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "formBoxShadow": {
+      "type": "boolean",
+      "default": true
+    },
+    "inputBorderRadius": {
+      "type": "number",
+      "default": 6
+    },
+    "inputPaddingV": {
+      "type": "number",
+      "default": 12
+    },
+    "inputPaddingH": {
+      "type": "number",
+      "default": 16
+    },
+    "buttonBorderRadius": {
+      "type": "number",
+      "default": 6
+    },
+    "buttonPaddingV": {
+      "type": "number",
+      "default": 14
+    },
+    "buttonPaddingH": {
+      "type": "number",
+      "default": 24
+    },
+    "checkboxColor": {
+      "type": "string",
+      "default": "#1d76da"
     }
   },
   "textdomain": "wbcom-essential",

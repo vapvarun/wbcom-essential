@@ -17,6 +17,7 @@ import {
 	RangeControl,
 	ToggleControl,
 	ColorPalette,
+	SelectControl,
 	Button,
 	Placeholder,
 } from '@wordpress/components';
@@ -25,6 +26,8 @@ export default function Edit( { attributes, setAttributes } ) {
 	const {
 		members,
 		slidesPerView,
+		slidesPerViewTablet,
+		slidesPerViewMobile,
 		spaceBetween,
 		showNavigation,
 		showPagination,
@@ -35,6 +38,13 @@ export default function Edit( { attributes, setAttributes } ) {
 		cardBorderRadius,
 		nameColor,
 		roleColor,
+		navColor,
+		cardPadding,
+		cardBoxShadow,
+		imageBorderRadius,
+		nameFontSize,
+		roleFontSize,
+		imageAspectRatio,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -83,6 +93,13 @@ export default function Edit( { attributes, setAttributes } ) {
 	const cardStyle = {
 		backgroundColor: cardBackground,
 		borderRadius: `${ cardBorderRadius }px`,
+		padding: `${ cardPadding }px`,
+		boxShadow: cardBoxShadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none',
+	};
+
+	const imageStyle = {
+		borderRadius: `${ imageBorderRadius }px`,
+		aspectRatio: imageAspectRatio,
 	};
 
 	return (
@@ -162,13 +179,31 @@ export default function Edit( { attributes, setAttributes } ) {
 					initialOpen={ false }
 				>
 					<RangeControl
-						label={ __( 'Slides Per View', 'wbcom-essential' ) }
+						label={ __( 'Slides Per View (Desktop)', 'wbcom-essential' ) }
 						value={ slidesPerView }
 						onChange={ ( value ) =>
 							setAttributes( { slidesPerView: value } )
 						}
 						min={ 1 }
 						max={ 6 }
+					/>
+					<RangeControl
+						label={ __( 'Slides Per View (Tablet)', 'wbcom-essential' ) }
+						value={ slidesPerViewTablet }
+						onChange={ ( value ) =>
+							setAttributes( { slidesPerViewTablet: value } )
+						}
+						min={ 1 }
+						max={ 4 }
+					/>
+					<RangeControl
+						label={ __( 'Slides Per View (Mobile)', 'wbcom-essential' ) }
+						value={ slidesPerViewMobile }
+						onChange={ ( value ) =>
+							setAttributes( { slidesPerViewMobile: value } )
+						}
+						min={ 1 }
+						max={ 2 }
 					/>
 					<RangeControl
 						label={ __( 'Space Between (px)', 'wbcom-essential' ) }
@@ -222,9 +257,18 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Style', 'wbcom-essential' ) }
+					title={ __( 'Card Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
+					<p className="components-base-control__label">
+						{ __( 'Card Background', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ cardBackground }
+						onChange={ ( value ) =>
+							setAttributes( { cardBackground: value } )
+						}
+					/>
 					<RangeControl
 						label={ __( 'Card Border Radius', 'wbcom-essential' ) }
 						value={ cardBorderRadius }
@@ -234,14 +278,64 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 50 }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Card Background', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ cardBackground }
+					<RangeControl
+						label={ __( 'Card Padding', 'wbcom-essential' ) }
+						value={ cardPadding }
 						onChange={ ( value ) =>
-							setAttributes( { cardBackground: value } )
+							setAttributes( { cardPadding: value } )
 						}
+						min={ 0 }
+						max={ 60 }
+					/>
+					<ToggleControl
+						label={ __( 'Card Box Shadow', 'wbcom-essential' ) }
+						checked={ cardBoxShadow }
+						onChange={ ( value ) =>
+							setAttributes( { cardBoxShadow: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Image Style', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Image Border Radius', 'wbcom-essential' ) }
+						value={ imageBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { imageBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 50 }
+					/>
+					<SelectControl
+						label={ __( 'Image Aspect Ratio', 'wbcom-essential' ) }
+						value={ imageAspectRatio }
+						options={ [
+							{ label: __( 'Square (1:1)', 'wbcom-essential' ), value: '1/1' },
+							{ label: __( 'Portrait (3:4)', 'wbcom-essential' ), value: '3/4' },
+							{ label: __( 'Landscape (4:3)', 'wbcom-essential' ), value: '4/3' },
+							{ label: __( 'Wide (16:9)', 'wbcom-essential' ), value: '16/9' },
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { imageAspectRatio: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Typography', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Name Font Size', 'wbcom-essential' ) }
+						value={ nameFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { nameFontSize: value } )
+						}
+						min={ 12 }
+						max={ 32 }
 					/>
 					<p className="components-base-control__label">
 						{ __( 'Name Color', 'wbcom-essential' ) }
@@ -252,6 +346,15 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { nameColor: value } )
 						}
 					/>
+					<RangeControl
+						label={ __( 'Role Font Size', 'wbcom-essential' ) }
+						value={ roleFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { roleFontSize: value } )
+						}
+						min={ 10 }
+						max={ 24 }
+					/>
 					<p className="components-base-control__label">
 						{ __( 'Role Color', 'wbcom-essential' ) }
 					</p>
@@ -259,6 +362,21 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ roleColor }
 						onChange={ ( value ) =>
 							setAttributes( { roleColor: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Navigation Colors', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<p className="components-base-control__label">
+						{ __( 'Navigation Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ navColor }
+						onChange={ ( value ) =>
+							setAttributes( { navColor: value } )
 						}
 					/>
 				</PanelBody>
@@ -286,14 +404,15 @@ export default function Edit( { attributes, setAttributes } ) {
 								className="wbcom-team-member-card"
 								style={ cardStyle }
 							>
-								<div className="wbcom-team-member-image">
+								<div className="wbcom-team-member-image" style={ imageStyle }>
 									{ member.imageUrl ? (
 										<img
 											src={ member.imageUrl }
 											alt={ member.name }
+											style={ { borderRadius: `${ imageBorderRadius }px` } }
 										/>
 									) : (
-										<div className="wbcom-team-member-placeholder">
+										<div className="wbcom-team-member-placeholder" style={ { borderRadius: `${ imageBorderRadius }px` } }>
 											<span className="dashicons dashicons-admin-users"></span>
 										</div>
 									) }
@@ -301,13 +420,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								<div className="wbcom-team-member-info">
 									<h4
 										className="wbcom-team-member-name"
-										style={ { color: nameColor } }
+										style={ { color: nameColor, fontSize: `${ nameFontSize }px` } }
 									>
 										{ member.name }
 									</h4>
 									<p
 										className="wbcom-team-member-role"
-										style={ { color: roleColor } }
+										style={ { color: roleColor, fontSize: `${ roleFontSize }px` } }
 									>
 										{ member.role }
 									</p>

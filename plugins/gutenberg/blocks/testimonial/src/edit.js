@@ -40,13 +40,35 @@ export default function Edit( { attributes, setAttributes } ) {
 		nameColor,
 		roleColor,
 		ratingColor,
+		padding,
+		boxShadow,
+		avatarSize,
+		quoteIconSize,
+		quoteIconColor,
+		quoteFontSize,
+		nameFontSize,
+		roleFontSize,
+		spacing,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
 		className: `wbcom-essential-testimonial layout-${ layout } text-${ textAlign }`,
 		style: {
-			backgroundColor,
-			borderRadius: `${ borderRadius }px`,
+			'--bg-color': backgroundColor,
+			'--border-radius': `${ borderRadius }px`,
+			'--padding': `${ padding }px`,
+			'--box-shadow': boxShadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
+			'--avatar-size': `${ avatarSize }px`,
+			'--quote-icon-size': `${ quoteIconSize }px`,
+			'--quote-icon-color': quoteIconColor,
+			'--quote-font-size': `${ quoteFontSize }px`,
+			'--name-font-size': `${ nameFontSize }px`,
+			'--role-font-size': `${ roleFontSize }px`,
+			'--spacing': `${ spacing }px`,
+			'--quote-color': quoteColor,
+			'--name-color': nameColor,
+			'--role-color': roleColor,
+			'--rating-color': ratingColor,
 		},
 	} );
 
@@ -60,7 +82,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				<span
 					key={ i }
 					className={ `star ${ i <= rating ? 'filled' : 'empty' }` }
-					style={ { color: i <= rating ? ratingColor : '#e2e8f0' } }
 				>
 					★
 				</span>
@@ -187,6 +208,15 @@ export default function Edit( { attributes, setAttributes } ) {
 						) ) }
 					</ButtonGroup>
 					<RangeControl
+						label={ __( 'Padding', 'wbcom-essential' ) }
+						value={ padding }
+						onChange={ ( value ) =>
+							setAttributes( { padding: value } )
+						}
+						min={ 0 }
+						max={ 80 }
+					/>
+					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ borderRadius }
 						onChange={ ( value ) =>
@@ -194,6 +224,95 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						min={ 0 }
 						max={ 50 }
+					/>
+					<RangeControl
+						label={ __( 'Spacing', 'wbcom-essential' ) }
+						value={ spacing }
+						onChange={ ( value ) =>
+							setAttributes( { spacing: value } )
+						}
+						min={ 0 }
+						max={ 60 }
+						help={ __( 'Space between content and author', 'wbcom-essential' ) }
+					/>
+					<ToggleControl
+						label={ __( 'Box Shadow', 'wbcom-essential' ) }
+						checked={ boxShadow }
+						onChange={ ( value ) =>
+							setAttributes( { boxShadow: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Avatar Settings', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Avatar Size', 'wbcom-essential' ) }
+						value={ avatarSize }
+						onChange={ ( value ) =>
+							setAttributes( { avatarSize: value } )
+						}
+						min={ 30 }
+						max={ 150 }
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Quote Icon', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Icon Size', 'wbcom-essential' ) }
+						value={ quoteIconSize }
+						onChange={ ( value ) =>
+							setAttributes( { quoteIconSize: value } )
+						}
+						min={ 24 }
+						max={ 120 }
+					/>
+					<p className="components-base-control__label">
+						{ __( 'Icon Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ quoteIconColor }
+						onChange={ ( value ) =>
+							setAttributes( { quoteIconColor: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Typography', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Quote Font Size', 'wbcom-essential' ) }
+						value={ quoteFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { quoteFontSize: value } )
+						}
+						min={ 12 }
+						max={ 32 }
+					/>
+					<RangeControl
+						label={ __( 'Name Font Size', 'wbcom-essential' ) }
+						value={ nameFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { nameFontSize: value } )
+						}
+						min={ 12 }
+						max={ 28 }
+					/>
+					<RangeControl
+						label={ __( 'Role Font Size', 'wbcom-essential' ) }
+						value={ roleFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { roleFontSize: value } )
+						}
+						min={ 10 }
+						max={ 20 }
 					/>
 				</PanelBody>
 
@@ -269,7 +388,6 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( { content: value } )
 							}
 							placeholder={ __( 'Enter testimonial text...', 'wbcom-essential' ) }
-							style={ { color: quoteColor } }
 						/>
 					</div>
 				</div>
@@ -288,7 +406,6 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( { authorName: value } )
 							}
 							placeholder={ __( 'Author name', 'wbcom-essential' ) }
-							style={ { color: nameColor } }
 						/>
 						<RichText
 							tagName="span"
@@ -298,7 +415,6 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( { authorRole: value } )
 							}
 							placeholder={ __( 'Author role', 'wbcom-essential' ) }
-							style={ { color: roleColor } }
 						/>
 					</div>
 				</div>

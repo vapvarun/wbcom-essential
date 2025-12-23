@@ -69,6 +69,18 @@
 		"percentOutColor": {
 			"type": "string",
 			"default": "#1a202c"
+		},
+		"innerBorderRadius": {
+			"type": "number",
+			"default": 10
+		},
+		"boxShadow": {
+			"type": "boolean",
+			"default": false
+		},
+		"backgroundHeight": {
+			"type": "number",
+			"default": 20
 		}
 	},
 	"textdomain": "wbcom-essential",

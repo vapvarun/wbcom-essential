@@ -97,6 +97,30 @@
 		"navColor": {
 			"type": "string",
 			"default": "#3182ce"
+		},
+		"cardPadding": {
+			"type": "number",
+			"default": 20
+		},
+		"cardBoxShadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"nameFontSize": {
+			"type": "number",
+			"default": 18
+		},
+		"roleFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"imageAspectRatio": {
+			"type": "string",
+			"default": "1/1"
 		}
 	},
 	"textdomain": "wbcom-essential",

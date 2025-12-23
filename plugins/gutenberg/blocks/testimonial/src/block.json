@@ -73,6 +73,42 @@
 		"ratingColor": {
 			"type": "string",
 			"default": "#f6ad55"
+		},
+		"padding": {
+			"type": "number",
+			"default": 32
+		},
+		"boxShadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"avatarSize": {
+			"type": "number",
+			"default": 60
+		},
+		"quoteIconSize": {
+			"type": "number",
+			"default": 64
+		},
+		"quoteIconColor": {
+			"type": "string",
+			"default": "#1d76da"
+		},
+		"quoteFontSize": {
+			"type": "number",
+			"default": 18
+		},
+		"nameFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"roleFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"spacing": {
+			"type": "number",
+			"default": 24
 		}
 	},
 	"textdomain": "wbcom-essential",
