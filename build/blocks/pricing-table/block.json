@@ -118,6 +118,14 @@
       "type": "string",
       "default": "#ffffff"
     },
+    "buttonHoverBackground": {
+      "type": "string",
+      "default": "#2c5aa0"
+    },
+    "buttonHoverTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
     "ribbonBackground": {
       "type": "string",
       "default": "#48bb78"

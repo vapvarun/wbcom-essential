@@ -36,6 +36,8 @@ $container_bg       = $attributes['containerBackground'] ?? '#f7fafc';
 $price_color        = $attributes['priceColor'] ?? '#1a202c';
 $button_bg          = $attributes['buttonBackground'] ?? '#3182ce';
 $button_color       = $attributes['buttonTextColor'] ?? '#ffffff';
+$button_hover_bg    = $attributes['buttonHoverBackground'] ?? '#2c5aa0';
+$button_hover_color = $attributes['buttonHoverTextColor'] ?? '#ffffff';
 $ribbon_bg          = $attributes['ribbonBackground'] ?? '#48bb78';
 $ribbon_color       = $attributes['ribbonTextColor'] ?? '#ffffff';
 $border_radius      = $attributes['borderRadius'] ?? 8;
@@ -48,9 +50,11 @@ if ( ! in_array( $heading_tag, $allowed_tags, true ) ) {
 
 // Build styles.
 $container_style = sprintf(
-	'background-color: %s; border-radius: %dpx;',
+	'background-color: %s; border-radius: %dpx; --button-hover-bg: %s; --button-hover-color: %s;',
 	esc_attr( $container_bg ),
-	absint( $border_radius )
+	absint( $border_radius ),
+	esc_attr( $button_hover_bg ),
+	esc_attr( $button_hover_color )
 );
 
 $header_style = sprintf(

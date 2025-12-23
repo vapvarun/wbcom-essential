@@ -44,6 +44,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		priceColor,
 		buttonBackground,
 		buttonTextColor,
+		buttonHoverBackground,
+		buttonHoverTextColor,
 		ribbonBackground,
 		ribbonTextColor,
 		borderRadius,
@@ -300,6 +302,26 @@ export default function Edit( { attributes, setAttributes } ) {
 						<ColorPalette
 							value={ buttonTextColor }
 							onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
+						/>
+					</div>
+
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Button Hover Background', 'wbcom-essential' ) }
+						</label>
+						<ColorPalette
+							value={ buttonHoverBackground }
+							onChange={ ( value ) => setAttributes( { buttonHoverBackground: value } ) }
+						/>
+					</div>
+
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Button Hover Text Color', 'wbcom-essential' ) }
+						</label>
+						<ColorPalette
+							value={ buttonHoverTextColor }
+							onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
 						/>
 					</div>
 

@@ -189,11 +189,12 @@
 		font-weight: 600;
 		text-decoration: none;
 		border-radius: 6px;
-		transition: all 0.2s ease;
+		transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 		cursor: pointer;
 
 		&:hover {
-			opacity: 0.9;
+			background-color: var(--button-hover-bg) !important;
+			color: var(--button-hover-color) !important;
 			transform: translateY(-1px);
 		}
 	}
