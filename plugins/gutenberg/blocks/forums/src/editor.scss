@@ -1,0 +1,147 @@
+/**
+ * Forums Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-forums-editor {
+	.wbcom-essential-forums {
+		background: var(--box-bg);
+		border: 1px solid var(--box-border-color);
+		border-radius: var(--box-radius);
+		padding: 20px;
+	}
+}
+
+// Block header preview.
+.wbcom-essential-forums .wbcom-essential-block-header {
+	display: flex;
+	align-items: center;
+	margin: 0 0 22px;
+
+	h3 {
+		margin: 0;
+		font-weight: 500;
+	}
+
+	&__extra {
+		margin-left: auto;
+		font-size: 12px;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.3px;
+
+		.count-more {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+			color: var(--link-color);
+		}
+	}
+}
+
+// Preview list.
+.wbcom-essential-forums__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	> li {
+		border-bottom: 1px solid var(--box-border-color);
+
+		&:last-child {
+			border-bottom: 0;
+			padding-bottom: 0 !important;
+			margin-bottom: 0 !important;
+		}
+	}
+}
+
+.wbcom-forums-flex {
+	display: flex;
+	gap: var(--avatar-spacing);
+}
+
+// Avatar placeholder.
+.wbcom-essential-forums__avatar {
+	.avatar-placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #e3e3e3;
+		color: #999;
+	}
+}
+
+// Content.
+.wbcom-essential-forums__content {
+	flex: 1;
+}
+
+.wbcom-essential-forums .item-title {
+	margin-bottom: 3px;
+
+	.topic-link {
+		font-size: 14px;
+		color: var(--title-color);
+	}
+}
+
+.wbcom-essential-forums .item-meta {
+	font-size: 13px;
+	color: var(--meta-color);
+}
+
+.wbcom-essential-forums__ww {
+	.bs-replied {
+		display: block;
+	}
+
+	.bs-voices-wrap {
+		display: block;
+		padding: 10px 0 3px;
+	}
+
+	.bs-separator {
+		margin: 0 4px;
+	}
+}
+
+.wbcom-essential-forums__last-reply {
+	margin-top: 10px;
+
+	.wbcom-essential-forums__ww + & {
+		margin-top: 0;
+	}
+
+	.bs-last-reply {
+		color: var(--last-reply-color);
+		font-size: 13px;
+		line-height: 1.4;
+	}
+}
+
+// Color control.
+.wbcom-color-control {
+	margin-bottom: 16px;
+}
+
+.wbcom-color-control-inner {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.wbcom-color-indicator {
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 0;
+	min-width: 28px;
+	cursor: pointer;
+
+	&:hover {
+		border-color: #007cba;
+	}
+}
