@@ -1,0 +1,174 @@
+/**
+ * Testimonial Block - Frontend Styles
+ */
+
+.wbcom-essential-testimonial {
+	display: flex;
+	flex-direction: column;
+	padding: 32px;
+	max-width: 600px;
+	margin: 0 auto;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+	// Layout variants
+	&.layout-column {
+		flex-direction: column;
+	}
+
+	&.layout-column-reverse {
+		flex-direction: column-reverse;
+
+		.wbcom-testimonial-author {
+			margin-bottom: 20px;
+			margin-top: 0;
+		}
+	}
+
+	&.layout-row {
+		flex-direction: row;
+		align-items: flex-start;
+		max-width: 800px;
+		gap: 24px;
+
+		.wbcom-testimonial-content {
+			flex: 1;
+		}
+
+		.wbcom-testimonial-author {
+			margin-top: 0;
+			flex-shrink: 0;
+		}
+	}
+
+	&.layout-row-reverse {
+		flex-direction: row-reverse;
+		align-items: flex-start;
+		max-width: 800px;
+		gap: 24px;
+
+		.wbcom-testimonial-content {
+			flex: 1;
+		}
+
+		.wbcom-testimonial-author {
+			margin-top: 0;
+			flex-shrink: 0;
+		}
+	}
+
+	// Text alignment
+	&.text-left {
+		text-align: left;
+
+		.wbcom-testimonial-author {
+			justify-content: flex-start;
+		}
+	}
+
+	&.text-center {
+		text-align: center;
+
+		.wbcom-testimonial-author {
+			justify-content: center;
+		}
+	}
+
+	&.text-right {
+		text-align: right;
+
+		.wbcom-testimonial-author {
+			justify-content: flex-end;
+		}
+	}
+
+	// Rating
+	.wbcom-testimonial-rating {
+		margin-bottom: 16px;
+
+		.star {
+			font-size: 1.25rem;
+			margin-right: 2px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	// Quote
+	.wbcom-testimonial-quote {
+		position: relative;
+
+		.quote-mark {
+			font-size: 4rem;
+			line-height: 1;
+			opacity: 0.15;
+			position: absolute;
+			top: -20px;
+			left: -10px;
+			font-family: Georgia, serif;
+		}
+
+		p {
+			margin: 0;
+			font-size: 1.125rem;
+			line-height: 1.7;
+			font-style: italic;
+		}
+	}
+
+	// Author
+	.wbcom-testimonial-author {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin-top: 24px;
+	}
+
+	.wbcom-testimonial-avatar {
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		overflow: hidden;
+		flex-shrink: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.wbcom-testimonial-info {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.wbcom-testimonial-name {
+		font-size: 1rem;
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.wbcom-testimonial-role {
+		font-size: 0.875rem;
+		line-height: 1.4;
+	}
+}
+
+// Responsive
+@media (max-width: 768px) {
+	.wbcom-essential-testimonial {
+		padding: 24px;
+
+		&.layout-row,
+		&.layout-row-reverse {
+			flex-direction: column;
+			max-width: 600px;
+
+			.wbcom-testimonial-author {
+				margin-top: 20px;
+			}
+		}
+	}
+}
