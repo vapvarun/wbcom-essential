@@ -31,7 +31,7 @@ function wbcom_essential_posts_carousel_enqueue_assets() {
 	// Enqueue Swiper CSS.
 	wp_enqueue_style(
 		'swiper',
-		'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
 		array(),
 		'11.0.0'
 	);
@@ -39,7 +39,7 @@ function wbcom_essential_posts_carousel_enqueue_assets() {
 	// Enqueue Swiper JS.
 	wp_enqueue_script(
 		'swiper',
-		'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
 		array(),
 		'11.0.0',
 		true

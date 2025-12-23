@@ -37,7 +37,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 		if ( ! wp_style_is( 'font-awesome-5', 'enqueued' ) ) {
 			wp_register_style(
 				'font-awesome-5',
-				'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
+				WBCOM_ESSENTIAL_URL . 'assets/vendor/font-awesome/css/all.min.css',
 				array(),
 				'5.15.4'
 			);
