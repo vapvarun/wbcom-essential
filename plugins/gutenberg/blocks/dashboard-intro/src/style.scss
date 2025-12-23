@@ -1,0 +1,127 @@
+/**
+ * Dashboard Intro Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-dashboard-intro {
+	--greeting-color: #A3A5A9;
+	--name-color: #122B46;
+	--description-color: #666666;
+	--gap: 20px;
+	--container-bg: transparent;
+	--container-padding: 30px;
+	--container-radius: 8px;
+	--avatar-size: 80px;
+	--avatar-radius: 50%;
+}
+
+.wbcom-essential-dashboard-intro {
+	background: var(--container-bg);
+	padding: var(--container-padding);
+	border-radius: var(--container-radius);
+}
+
+.wbcom-dashboard-intro-inner {
+	display: flex;
+	gap: var(--gap);
+	align-items: center;
+
+	// Layout: Above.
+	.layout-above & {
+		flex-direction: column;
+	}
+
+	// Layout: Right.
+	.layout-right & {
+		flex-direction: row-reverse;
+	}
+}
+
+// Content alignment.
+.wbcom-essential-dashboard-intro {
+	&.align-center {
+		text-align: center;
+
+		.wbcom-dashboard-intro-inner {
+			justify-content: center;
+		}
+	}
+
+	&.align-right {
+		text-align: right;
+
+		.wbcom-dashboard-intro-inner {
+			justify-content: flex-end;
+		}
+	}
+}
+
+// Avatar.
+.wbcom-dashboard-intro-avatar {
+	flex-shrink: 0;
+
+	a {
+		display: block;
+	}
+
+	img {
+		width: var(--avatar-size);
+		height: var(--avatar-size);
+		border-radius: var(--avatar-radius);
+		object-fit: cover;
+		display: block;
+	}
+}
+
+// Content.
+.wbcom-dashboard-intro-content {
+	flex: 1;
+	min-width: 0;
+}
+
+// Greeting.
+.wbcom-dashboard-intro-greeting {
+	margin: 0 0 4px;
+	font-size: 14px;
+	color: var(--greeting-color);
+}
+
+// Name.
+.wbcom-dashboard-intro-name {
+	margin: 0 0 8px;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.2;
+
+	a {
+		color: var(--name-color);
+		text-decoration: none;
+		transition: color 0.3s ease;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+}
+
+// Description.
+.wbcom-dashboard-intro-description {
+	margin: 0;
+	font-size: 14px;
+	color: var(--description-color);
+	line-height: 1.5;
+}
+
+// Logged out message.
+.wbcom-essential-dashboard-intro.logged-out {
+	.wbcom-essential-logged-out-message {
+		text-align: center;
+		padding: 30px 20px;
+		color: #666;
+
+		p {
+			margin: 0;
+		}
+	}
+}

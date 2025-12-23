@@ -1,0 +1,85 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/dashboard-intro",
+	"version": "1.0.0",
+	"title": "Dashboard Intro",
+	"category": "wbcom-starter",
+	"description": "Display a personalized welcome message with user avatar and greeting for logged-in users.",
+	"keywords": [ "dashboard", "intro", "welcome", "greeting", "user", "buddypress", "profile" ],
+	"textdomain": "wbcom-essential",
+	"attributes": {
+		"greetingText": {
+			"type": "string",
+			"default": "Hello,"
+		},
+		"descriptionText": {
+			"type": "string",
+			"default": "Welcome back! Here's what's happening in your community."
+		},
+		"showAvatar": {
+			"type": "boolean",
+			"default": true
+		},
+		"avatarSize": {
+			"type": "number",
+			"default": 80
+		},
+		"avatarBorderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"layout": {
+			"type": "string",
+			"default": "left"
+		},
+		"contentAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"greetingColor": {
+			"type": "string",
+			"default": "#A3A5A9"
+		},
+		"nameColor": {
+			"type": "string",
+			"default": "#122B46"
+		},
+		"descriptionColor": {
+			"type": "string",
+			"default": "#666666"
+		},
+		"gap": {
+			"type": "number",
+			"default": 20
+		},
+		"containerBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"containerPadding": {
+			"type": "number",
+			"default": 30
+		},
+		"containerBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"showLoggedOutMessage": {
+			"type": "boolean",
+			"default": true
+		},
+		"loggedOutMessage": {
+			"type": "string",
+			"default": "Please log in to see your dashboard."
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
