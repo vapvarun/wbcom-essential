@@ -1,0 +1,105 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wbcom-essential/notification-area",
+  "version": "1.0.0",
+  "title": "Header Notification Area",
+  "category": "wbcom-essential",
+  "icon": "bell",
+  "description": "Header notification area with search, cart, messages, notifications, and user menu.",
+  "keywords": [
+    "notification",
+    "header",
+    "search",
+    "cart",
+    "messages",
+    "user",
+    "menu",
+    "buddypress"
+  ],
+  "textdomain": "wbcom-essential",
+  "example": {},
+  "attributes": {
+    "showSearch": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCart": {
+      "type": "boolean",
+      "default": true
+    },
+    "showMessages": {
+      "type": "boolean",
+      "default": true
+    },
+    "showNotifications": {
+      "type": "boolean",
+      "default": true
+    },
+    "showAvatar": {
+      "type": "boolean",
+      "default": true
+    },
+    "showUserName": {
+      "type": "boolean",
+      "default": true
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#122B46"
+    },
+    "iconHoverColor": {
+      "type": "string",
+      "default": "#007CFF"
+    },
+    "userNameColor": {
+      "type": "string",
+      "default": "#122B46"
+    },
+    "badgeColor": {
+      "type": "string",
+      "default": "#EF3E46"
+    },
+    "badgeTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "dropdownBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "dropdownBorderColor": {
+      "type": "string",
+      "default": "#e3e3e3"
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 20
+    },
+    "avatarSize": {
+      "type": "number",
+      "default": 36
+    },
+    "itemGap": {
+      "type": "number",
+      "default": 16
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "left",
+      "center",
+      "right"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}
