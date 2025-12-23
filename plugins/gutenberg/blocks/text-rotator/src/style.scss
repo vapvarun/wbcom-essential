@@ -1,0 +1,155 @@
+/**
+ * Text Rotator Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-text-rotator {
+	--text-color: inherit;
+	--rotating-color: #3182ce;
+	--rotating-bg: transparent;
+}
+
+.wbcom-text-rotator-wrapper {
+	display: block;
+	color: var(--text-color);
+	margin: 0;
+}
+
+.wbcom-text-rotator-prefix,
+.wbcom-text-rotator-suffix {
+	color: var(--text-color);
+}
+
+.wbcom-text-rotator-rotating {
+	display: inline-block;
+	color: var(--rotating-color);
+	background-color: var(--rotating-bg);
+	padding: 0 0.2em;
+	position: relative;
+	min-width: 1em;
+}
+
+// Animation: Fade In
+.wbcom-animation-fadeIn {
+	&.wbcom-animating {
+		animation: wbcom-fadeIn 0.5s ease-in-out;
+	}
+}
+
+@keyframes wbcom-fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+// Animation: Slide Up
+.wbcom-animation-slideUp {
+	overflow: hidden;
+	vertical-align: bottom;
+
+	&.wbcom-animating {
+		animation: wbcom-slideUp 0.5s ease-out;
+	}
+}
+
+@keyframes wbcom-slideUp {
+	0% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Animation: Slide Down
+.wbcom-animation-slideDown {
+	overflow: hidden;
+	vertical-align: top;
+
+	&.wbcom-animating {
+		animation: wbcom-slideDown 0.5s ease-out;
+	}
+}
+
+@keyframes wbcom-slideDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Animation: Zoom In
+.wbcom-animation-zoomIn {
+	&.wbcom-animating {
+		animation: wbcom-zoomIn 0.5s ease-out;
+	}
+}
+
+@keyframes wbcom-zoomIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+// Animation: Flip
+.wbcom-animation-flip {
+	perspective: 300px;
+
+	&.wbcom-animating {
+		animation: wbcom-flip 0.5s ease-out;
+	}
+}
+
+@keyframes wbcom-flip {
+	0% {
+		opacity: 0;
+		transform: rotateX(90deg);
+	}
+	100% {
+		opacity: 1;
+		transform: rotateX(0);
+	}
+}
+
+// Animation: Typing
+.wbcom-animation-typing {
+	border-right: 2px solid var(--rotating-color);
+	white-space: nowrap;
+	overflow: hidden;
+
+	&.wbcom-typing-cursor {
+		animation: wbcom-blink 0.7s step-end infinite;
+	}
+}
+
+@keyframes wbcom-blink {
+	0%,
+	100% {
+		border-color: transparent;
+	}
+	50% {
+		border-color: var(--rotating-color);
+	}
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+	.wbcom-text-rotator-wrapper {
+		word-break: break-word;
+	}
+}

@@ -1,0 +1,86 @@
+/**
+ * Text Rotator Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-text-rotator {
+	// Editor preview spacing.
+	padding: 10px;
+
+	.wbcom-text-rotator-rotating {
+		transition: all 0.3s ease;
+	}
+}
+
+// Repeater control styles.
+.wbcom-repeater-control {
+	margin-bottom: 16px;
+
+	.components-base-control__label {
+		display: block;
+		margin-bottom: 8px;
+		font-weight: 600;
+	}
+}
+
+.wbcom-repeater-item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 12px;
+	background: #f0f0f0;
+	border-radius: 4px;
+	margin-bottom: 8px;
+
+	.components-text-control__input {
+		width: 100%;
+	}
+}
+
+.wbcom-repeater-actions {
+	display: flex;
+	gap: 4px;
+	justify-content: flex-end;
+
+	.components-button {
+		min-width: 30px;
+		height: 30px;
+		padding: 0;
+		justify-content: center;
+
+		&.is-destructive {
+			color: #cc1818;
+		}
+	}
+}
+
+.wbcom-repeater-add {
+	width: 100%;
+	justify-content: center;
+}
+
+// Color control styles.
+.wbcom-color-control {
+	margin-bottom: 16px;
+}
+
+.wbcom-color-control-inner {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.wbcom-color-indicator {
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 0;
+	min-width: 28px;
+	cursor: pointer;
+
+	&:hover {
+		border-color: #007cba;
+	}
+}
