@@ -923,7 +923,7 @@ class Wbcom_Shared_Loader
 
     private function extract_menu_slug($settings_url)
     {
-        $parsed = parse_url($settings_url);
+        $parsed = wp_parse_url($settings_url);
         if (isset($parsed['query'])) {
             parse_str($parsed['query'], $params);
             return isset($params['page']) ? $params['page'] : '';

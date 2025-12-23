@@ -548,7 +548,7 @@ class Shape extends \Elementor\Widget_Base {
 		<div class="wbcom-custom-shape" style="border-radius:<?php echo esc_attr( $settings['shape_value_1']['size'] ); ?>% <?php echo esc_attr( $settings['shape_value_2']['size'] ); ?>% <?php echo esc_attr( $settings['shape_value_3']['size'] ); ?>% <?php echo esc_attr( $settings['shape_value_4']['size'] ); ?>% / <?php echo esc_attr( $settings['shape_value_5']['size'] ); ?>% <?php echo esc_attr( $settings['shape_value_6']['size'] ); ?>% <?php echo esc_attr( $settings['shape_value_7']['size'] ); ?>% <?php echo esc_attr( $settings['shape_value_8']['size'] ); ?>% "><?php \Elementor\Icons_Manager::render_icon( $settings['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 		<?php
 		if ( $settings['website_link']['url'] ) {
-			echo '<a class="wbcom-custom-shape-link" href="' . $settings['website_link']['url'] . '"' . $target . $nofollow . '></a>'; }
+			echo '<a class="wbcom-custom-shape-link" href="' . esc_url( $settings['website_link']['url'] ) . '"' . esc_attr( $target ) . esc_attr( $nofollow ) . '></a>'; }
 		?>
 		</div>
 		</div>

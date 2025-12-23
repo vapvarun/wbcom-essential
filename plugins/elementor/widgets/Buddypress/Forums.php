@@ -601,22 +601,24 @@ class Forums extends \Elementor\Widget_Base {
 														<?php
 														if ( bbp_is_topic( $get_last_reply_id ) ) {
 															add_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
+															// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bbPress function returns safe HTML
 															echo bbp_get_topic_reply_link(
 																array(
 																	'id' => $get_last_reply_id,
 																	'reply_text' => '',
 																)
-															); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+															);
 															remove_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
 															// If post is a reply, print the reply admin links instead.
 														} else {
 															add_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
+															// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bbPress function returns safe HTML
 															echo bbp_get_reply_to_link(
 																array(
 																	'id' => $get_last_reply_id,
 																	'reply_text' => '',
 																)
-															); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+															);
 															remove_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
 														}
 														?>

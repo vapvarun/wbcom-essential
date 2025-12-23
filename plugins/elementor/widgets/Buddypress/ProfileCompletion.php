@@ -12,7 +12,7 @@ namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\Buddypress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} // Exit if accessed directly
+} // Exit if accessed directly.
 
 use WBCOM_ESSENTIAL\ELEMENTOR\Plugin;
 use Elementor\Widget_Base;
@@ -885,15 +885,14 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			$settings_options['profile_groups']     = $selected_groups;
 			$settings_options['profile_photo_type'] = $profile_phototype_selected;
 			$user_progress                          = $profile_percent;
-			/* translators: $s: User Progress Percentage */
-			$progress_label = sprintf( __( '%s', 'wbcom-essential' ), $user_progress['completion_percentage'] );
+			$progress_label = $user_progress['completion_percentage'];
 
-			if ( ( 'yes' == $settings['switch_hide_widget'] || ! isset( $settings['switch_hide_widget'] ) ) && ( 100 == $user_progress['completion_percentage'] ) ) { ?>
+			if ( ( 'yes' === $settings['switch_hide_widget'] || ! isset( $settings['switch_hide_widget'] ) ) && ( 100 === $user_progress['completion_percentage'] ) ) { ?>
 				<div class="profile_bit_wrapper profile_bit_wrapper--blank"></div>
 				<?php
 			} else {
 				?>
-				<div class="profile_bit_wrapper <?php echo $settings['switch_profile_btn'] ? 'has-profile-button' : ''; ?> ">
+				<div class="profile_bit_wrapper <?php echo esc_attr( $settings['switch_profile_btn'] ? 'has-profile-button' : '' ); ?> ">
 					<div class="profile_bit_figure">
 						<div class="profile_bit <?php echo esc_attr( 'skin-' . $settings_skin ); ?> border-<?php echo esc_attr( $settings['box_border_style'] ); ?>">
 							<div class="progress_container">
@@ -919,7 +918,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 								</div>
 								<?php if ( $settings['switch_profile_btn'] && 'linear' === $settings['skin_style'] ) { ?>
 									<div class="profile_bit_action">
-										<a class="profile_bit_action__link" href="<?php echo esc_url( bp_loggedin_user_domain() . 'profile/edit/' ); ?>"><?php echo esc_html( ( 100 === $user_progress['completion_percentage'] ) ) ? esc_html( $settings['edit_button_text'] ) : esc_html( $settings['completion_button_text'] ); ?>
+										<a class="profile_bit_action__link" href="<?php echo esc_url( bp_loggedin_user_domain() . 'profile/edit/' ); ?>"><?php echo esc_html( ( 100 === $user_progress['completion_percentage'] ) ? $settings['edit_button_text'] : $settings['completion_button_text'] ); ?>
 											<i class="eicon-chevron-right"></i></a>
 									</div>
 								<?php } ?>
@@ -966,7 +965,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 						</div>
 						<?php if ( $settings['switch_profile_btn'] && 'circle' === $settings['skin_style'] ) { ?>
 							<div class="profile_bit_action">
-								<a class="profile_bit_action__link" href="<?php echo esc_url( bp_loggedin_user_domain() . 'profile/edit/' ); ?>"><?php echo esc_html( 100 === $user_progress['completion_percentage'] ) ? esc_html( $settings['edit_button_text'] ) : esc_html( $settings['completion_button_text'] ); ?>
+								<a class="profile_bit_action__link" href="<?php echo esc_url( bp_loggedin_user_domain() . 'profile/edit/' ); ?>"><?php echo esc_html( ( 100 === $user_progress['completion_percentage'] ) ? $settings['edit_button_text'] : $settings['completion_button_text'] ); ?>
 									<i class="eicon-chevron-right"></i></a>
 							</div>
 						<?php } ?>

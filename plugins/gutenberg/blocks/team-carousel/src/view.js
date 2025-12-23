@@ -23,7 +23,6 @@
 
 		// Check if Swiper is available.
 		if ( typeof Swiper === 'undefined' ) {
-			console.warn( 'Team Carousel: Swiper library not loaded' );
 			return;
 		}
 
@@ -38,7 +37,7 @@
 			try {
 				config = JSON.parse( carousel.dataset.swiperConfig || '{}' );
 			} catch ( e ) {
-				console.warn( 'Team Carousel: Invalid Swiper config', e );
+				// Invalid config, use defaults.
 			}
 
 			// Initialize Swiper.

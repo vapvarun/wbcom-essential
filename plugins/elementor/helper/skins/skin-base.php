@@ -936,6 +936,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			)
 		);
 		?>
+		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's get_render_attribute_string() returns escaped HTML ?>
 		<div <?php echo $this->parent->get_render_attribute_string( 'container' ); ?>>
 			<?php
 	}
@@ -989,8 +990,11 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			$links[] = $prev_next['next'];
 		}
 		?>
-		<nav class="elementor-pagination" role="navigation" aria-label="<?php esc_html__( 'Pagination', 'wbcom-essential' ); ?>">
-		<?php echo implode( PHP_EOL, $links ); ?>
+		<nav class="elementor-pagination" role="navigation" aria-label="<?php esc_attr_e( 'Pagination', 'wbcom-essential' ); ?>">
+		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- paginate_links() returns safe HTML
+		echo implode( PHP_EOL, $links );
+		?>
 		</nav>
 		<?php
 	}
@@ -1044,7 +1048,10 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	protected function render_date() {
 		?>
 		<span class="elementor-post-date">
-			<?php echo apply_filters( 'the_date', get_the_date(), get_option( 'date_format' ), '', '' ); ?>
+			<?php
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- apply_filters('the_date') is a core WordPress filter that returns safe HTML
+			echo apply_filters( 'the_date', get_the_date(), get_option( 'date_format' ), '', '' );
+			?>
 		</span>
 		<?php
 	}

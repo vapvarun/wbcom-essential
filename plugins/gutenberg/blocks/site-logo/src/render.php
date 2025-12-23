@@ -54,7 +54,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
-// Link attributes.
+// Link attributes - pre-escaped with esc_url() and hardcoded safe strings.
 $link_attrs = '';
 if ( $link_url ) {
 	$link_attrs = 'href="' . esc_url( $link_url ) . '"';
@@ -64,7 +64,7 @@ if ( $link_url ) {
 }
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-site-logo-container">
 		<?php if ( 'customizer' === $logo_source ) : ?>
 			<?php if ( has_custom_logo() ) : ?>
@@ -77,22 +77,28 @@ if ( $link_url ) {
 		<?php else : ?>
 			<?php if ( $desktop_logo_url ) : ?>
 				<?php if ( $link_url ) : ?>
+					<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $link_attrs is built with esc_url() and hardcoded strings ?>
 					<a <?php echo $link_attrs; ?> class="wbcom-logo-desktop">
+						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
 						<?php echo wp_get_attachment_image( $desktop_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 					</a>
 				<?php else : ?>
 					<div class="wbcom-logo-desktop">
+						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
 						<?php echo wp_get_attachment_image( $desktop_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 					</div>
 				<?php endif; ?>
 
 				<?php if ( $mobile_logo_url ) : ?>
 					<?php if ( $link_url ) : ?>
+						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $link_attrs is built with esc_url() and hardcoded strings ?>
 						<a <?php echo $link_attrs; ?> class="wbcom-logo-mobile">
+							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
 							<?php echo wp_get_attachment_image( $mobile_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 						</a>
 					<?php else : ?>
 						<div class="wbcom-logo-mobile">
+							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
 							<?php echo wp_get_attachment_image( $mobile_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 						</div>
 					<?php endif; ?>

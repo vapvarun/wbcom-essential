@@ -19,7 +19,6 @@
 		}
 
 		if ( typeof Swiper === 'undefined' ) {
-			console.warn( 'Testimonial Carousel: Swiper library not loaded' );
 			return;
 		}
 
@@ -33,7 +32,7 @@
 			try {
 				config = JSON.parse( carousel.dataset.swiperConfig || '{}' );
 			} catch ( e ) {
-				console.warn( 'Testimonial Carousel: Invalid Swiper config', e );
+				// Invalid config, use defaults.
 			}
 
 			new Swiper( swiperContainer, config );

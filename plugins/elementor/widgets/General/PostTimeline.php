@@ -1694,7 +1694,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 				)
 			);
 		if ( $custom_query->have_posts() ) { ?>
-			<div class="wbcom-post-timeline <?php echo $settings['layout']; ?>">
+			<div class="wbcom-post-timeline <?php echo esc_attr( $settings['layout'] ); ?>">
 				<div class="wbcom-post-timeline__container wbcom-post-ajax-id-<?php echo esc_attr( $this->get_id() ); ?>" data-ajaxid="<?php echo esc_attr( $this->get_id() ); ?>" data-pageid="<?php echo esc_attr( $paged ); ?>" data-maxpage="<?php echo esc_attr( $custom_query->max_num_pages ); ?>">
 				<?php
 				while ( $custom_query->have_posts() ) :
@@ -1704,7 +1704,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 						<div class="wbcom-post-timeline__img">
 						<?php \Elementor\Icons_Manager::render_icon( $settings['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 						</div>
-						<div class="wbcom-post-timeline__content <?php echo $settings['display_arrow']; ?>">
+						<div class="wbcom-post-timeline__content <?php echo esc_attr( $settings['display_arrow'] ); ?>">
 						<?php if ( ( has_post_thumbnail() ) && ( $settings['display_thumbnail'] ) ) { ?>
 							<?php
 							$wbposts_thumb_id        = get_post_thumbnail_id();
@@ -1721,6 +1721,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 						<<?php echo esc_attr( $settings['title_html_tag'] ); ?> class="wbcom-post-timeline-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></<?php echo esc_attr( $settings['title_html_tag'] ); ?>>
 						<?php
 						if ( ( get_the_excerpt() ) && ( ! empty( $settings['excerpt_length'] ) ) && ( $settings['excerpt_length'] != 0 ) ) {
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wpautop is a WordPress function that returns safe HTML
 							echo wpautop( wba_excerpt( $settings['excerpt_length'] ) );
 						}
 						?>

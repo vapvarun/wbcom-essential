@@ -89,7 +89,7 @@ $avatar_args = array(
 );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-essential-members">
 		<?php if ( $heading_text || ( $show_all_members && $member_link_text ) ) : ?>
 			<div class="wbcom-essential-block-header">

@@ -242,17 +242,17 @@ class Wbcom_Shared_Dashboard
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
                             <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo version_compare(get_bloginfo('version'), '5.0', '>=') ? '#1d76da' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('WordPress Version', 'wbcom-essential'); ?></span>
-                            <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo get_bloginfo('version'); ?></span>
+                            <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo esc_html( get_bloginfo('version') ); ?></span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
                             <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo function_exists('buddypress') ? '#1d76da' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('BuddyPress', 'wbcom-essential'); ?></span>
-                            <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo function_exists('buddypress') ? __('Active', 'wbcom-essential') : __('Inactive', 'wbcom-essential'); ?></span>
+                            <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo function_exists('buddypress') ? esc_html__('Active', 'wbcom-essential') : esc_html__('Inactive', 'wbcom-essential'); ?></span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
                             <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo defined('WP_DEBUG') && WP_DEBUG ? '#e74c3c' : '#1d76da'; ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('Production Mode', 'wbcom-essential'); ?></span>
-                            <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo defined('WP_DEBUG') && WP_DEBUG ? __('Debug On', 'wbcom-essential') : __('Active', 'wbcom-essential'); ?></span>
+                            <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo defined('WP_DEBUG') && WP_DEBUG ? esc_html__('Debug On', 'wbcom-essential') : esc_html__('Active', 'wbcom-essential'); ?></span>
                         </div>
                     </div>
                 </div>
@@ -815,7 +815,7 @@ class Wbcom_Shared_Dashboard
 
     private function extract_menu_slug($settings_url)
     {
-        $parsed = parse_url($settings_url);
+        $parsed = wp_parse_url($settings_url);
         if (isset($parsed['query'])) {
             parse_str($parsed['query'], $params);
             return isset($params['page']) ? $params['page'] : '';

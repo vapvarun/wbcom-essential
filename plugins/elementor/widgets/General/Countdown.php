@@ -103,6 +103,7 @@ class Countdown extends \Elementor\Widget_Base {
 			'due_date',
 			array(
 				'label'       => esc_html__( 'Due Date', 'wbcom-essential' ),
+				/* translators: %s: Timezone string */
 				'description' => sprintf( esc_html__( 'Date set according to your timezone: %s.', 'wbcom-essential' ), Utils::get_timezone_string() ),
 				'default'     => gmdate( 'Y-m-d H:i', strtotime( '+1 month' ) + ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ),
 				'type'        => \Elementor\Controls_Manager::DATE_TIME,

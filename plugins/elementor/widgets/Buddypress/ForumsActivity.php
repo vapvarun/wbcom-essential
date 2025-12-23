@@ -858,7 +858,7 @@ class ForumsActivity extends \Elementor\Widget_Base {
 		$settings            = $this->get_settings_for_display();
 		$my_discussions_link = trailingslashit( bp_loggedin_user_domain() . bbp_maybe_get_root_slug() );
 		?>
-		<div class="wbcom-essential-forums-activity-wrapper <?php echo ( $settings['switch_my_discussions'] ) ? 'wbcom-essential-forums-activity-wrapper--ismy' : ''; ?>">
+		<div class="wbcom-essential-forums-activity-wrapper <?php echo esc_attr( $settings['switch_my_discussions'] ? 'wbcom-essential-forums-activity-wrapper--ismy' : '' ); ?>">
 
 			<?php if ( $settings['switch_my_discussions'] && is_user_logged_in() ) { ?>
 				<div class="wbcom-essential-forums-activity-btn">
@@ -915,36 +915,43 @@ class ForumsActivity extends \Elementor\Widget_Base {
 							<div class="wbcom-essential-fa__topic-title"><h2><?php echo esc_html( $topic_title ); ?></h2></div>
 							<?php if ( $settings['switch_meta'] ) : ?>
 								<div class="wbcom-essential-fa__meta">
-									<span class="wbcom-essential-fa__meta-count"><?php echo esc_html( $topic_reply_count ); ?> <?php esc_html_e( 'repl' . ( 1 !== $topic_reply_count ? 'ies' : 'y' ) . ' ', 'wbcom-essential' ); ?></span>
+									<span class="wbcom-essential-fa__meta-count">
+										<?php
+										echo esc_html( $topic_reply_count ) . ' ';
+										echo esc_html( 1 !== $topic_reply_count ? __( 'replies', 'wbcom-essential' ) : __( 'reply', 'wbcom-essential' ) );
+										?>
+									</span>
 									<span class="bs-separator">·</span>
 									<span class="wbcom-essential-fa__meta-who"><?php echo esc_html( $get_last_reply_author_name ); ?> <?php esc_html_e( 'replied', 'wbcom-essential' ); ?> </span>
 									<span class="wbcom-essential-fa__meta-when"><?php echo esc_html( $get_last_reply_since ); ?></span>
 								</div>
 							<?php endif; ?>
 							<?php if ( $settings['switch_excerpt'] ) : ?>
-								<div class="wbcom-essential-fa__excerpt <?php echo ( ! empty( $get_last_reply_excerpt ) ) ? 'is-excerpt' : 'is-empty'; ?> <?php echo ( $settings['switch_excerpt_icon'] ) ? 'is-link' : 'no-link'; ?>">
+								<div class="wbcom-essential-fa__excerpt <?php echo esc_attr( ! empty( $get_last_reply_excerpt ) ? 'is-excerpt' : 'is-empty' ); ?> <?php echo esc_attr( $settings['switch_excerpt_icon'] ? 'is-link' : 'no-link' ); ?>">
 									<?php
 									if ( $settings['switch_excerpt_icon'] ) :
 										$get_last_reply_id = bbp_get_topic_last_reply_id( bbp_get_topic_id() );
 										if ( bbp_is_topic( $get_last_reply_id ) ) {
 											add_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
+											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bbp_get_topic_reply_link() is a safe bbPress function that returns escaped HTML
 											echo bbp_get_topic_reply_link(
 												array(
 													'id' => $get_last_reply_id,
 													'reply_text' => '',
 												)
-											);  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+											);
 
 											remove_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
 											// If post is a reply, print the reply admin links instead.
 										} else {
 											add_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
+											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bbp_get_reply_to_link() is a safe bbPress function that returns escaped HTML
 											echo bbp_get_reply_to_link(
 												array(
 													'id' => $get_last_reply_id,
 													'reply_text' => '',
 												)
-											); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+											);
 											remove_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
 										}
 									endif;

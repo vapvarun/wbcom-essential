@@ -1517,12 +1517,12 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
-		<div id="wbcom-testimonials-carousel-<?php echo esc_attr( $this->get_id() ); ?>" class="wbcom-testimonials-carousel <?php echo esc_attr( $settings['carousel_overflow_hidden'] ); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? $settings['nav_arrow_prev_icon']['value'] : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? $settings['nav_arrow_next_icon']['value'] : ''; ?>" data-autoplay="<?php if ( $settings['autoplay'] ) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr( $settings['autoplay_duration'] ); ?>000" data-infinite="<?php if ( $settings['infinite'] ) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ( $settings['display_nav'] ) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ( $settings['display_dots'] ) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr( $settings['columns'] ); ?>" data-rtl="<?php if ( is_rtl() ) { echo 'true'; } else { echo 'false'; } ?>">
+		<div id="wbcom-testimonials-carousel-<?php echo esc_attr( $this->get_id() ); ?>" class="wbcom-testimonials-carousel <?php echo esc_attr( $settings['carousel_overflow_hidden'] ); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? esc_attr( $settings['nav_arrow_prev_icon']['value'] ) : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? esc_attr( $settings['nav_arrow_next_icon']['value'] ) : ''; ?>" data-autoplay="<?php if ( $settings['autoplay'] ) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr( $settings['autoplay_duration'] ); ?>000" data-infinite="<?php if ( $settings['infinite'] ) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ( $settings['display_nav'] ) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ( $settings['display_dots'] ) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr( $settings['columns'] ); ?>" data-rtl="<?php if ( is_rtl() ) { echo 'true'; } else { echo 'false'; } ?>">
 		<?php foreach ( $settings['testimonials'] as $item ) { ?>
 			<?php $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] ); ?>
 			<div class="wbcom-testimonials-slide">
 				<div class="wbcom-testimonials-item">
-					<div class="wbcom-testimonials-content <?php echo $settings['content_arrow']; ?>">
+					<div class="wbcom-testimonials-content <?php echo esc_attr( $settings['content_arrow'] ); ?>">
 						<?php echo wp_kses_post( $item['content'] ); ?>
 					</div>
 					<div class="wbcom-testimonials-person">

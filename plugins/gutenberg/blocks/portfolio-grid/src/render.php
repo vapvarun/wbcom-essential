@@ -70,7 +70,7 @@ foreach ( $filters as $filter ) {
 }
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( $show_filters || $show_layout_switch ) : ?>
 		<div class="wbcom-portfolio-controls">
 			<?php if ( $show_filters && ! empty( $filters ) ) : ?>
@@ -175,6 +175,7 @@ foreach ( $filters as $filter ) {
 								<?php endif; ?>
 
 								<?php if ( ! empty( $item['link'] ) ) : ?>
+									<?php /* translators: %s: Portfolio item title */ ?>
 									<a href="<?php echo esc_url( $item['link'] ); ?>" class="wbcom-portfolio-link" aria-label="<?php echo esc_attr( sprintf( __( 'View %s', 'wbcom-essential' ), $item['title'] ?? '' ) ); ?>">
 										<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 											<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>

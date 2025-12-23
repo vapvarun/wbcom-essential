@@ -664,6 +664,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 			}
 		}
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's get_render_attribute_string() handles escaping.
 		echo '<div ' . $this->get_render_attribute_string( 'review_area_attr' ) . '>';
 		echo '<div class="wb-row ' . ( $settings['no_gutters'] === 'yes' ? 'wb-gutters' : '' ) . '">';
 		?>
@@ -715,6 +716,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 					<div class="clint-info">
 						<?php
 						if ( $review['image'] ) {
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from Elementor's Group_Control_Image_Size is safe.
 							echo $review['image'];
 						}
 
@@ -740,6 +742,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 					<div class="content">
 						<?php
 						if ( $review['image'] ) {
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from Elementor's Group_Control_Image_Size is safe.
 							echo $review['image'];
 						}
 						?>

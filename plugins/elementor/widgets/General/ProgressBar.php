@@ -583,8 +583,8 @@ class ProgressBar extends \Elementor\Widget_Base {
 		<div id="wbcom-progress-bar-<?php echo esc_attr( $this->get_id() ); ?>" class="wbcom-progress-bar-wrapper" <?php if ( $settings['progress_bar_overflow'] ) { ?>
 			style="overflow:hidden;"<?php } ?>>
 			<div class="wbcom-progress-bar-overlay"></div>
-			<div class="wbcom-progress-bar 
-			<?php if ( $settings['stripes'] ) { echo 'stripes'; } ?> " style="width:<?php echo esc_attr( $settings['percent']['size'] ); ?>%;" data-prct="<?php echo esc_attr( $settings['percent']['size'] ); ?>%" data-animduration="<?php echo $settings['anim_duration']; ?>"  <?php if ( $settings['scroll_anim_switcher'] ) { ?> data-scrollanim<?php } ?>>
+			<div class="wbcom-progress-bar
+			<?php if ( $settings['stripes'] ) { echo 'stripes'; } ?> " style="width:<?php echo esc_attr( $settings['percent']['size'] ); ?>%;" data-prct="<?php echo esc_attr( $settings['percent']['size'] ); ?>%" data-animduration="<?php echo esc_attr($settings['anim_duration']); ?>"  <?php if ( $settings['scroll_anim_switcher'] ) { ?> data-scrollanim<?php } ?>>
 				<div class="wbcom-progress-bar-title"><?php echo esc_html( $settings['title'] ); ?></div>
 				<?php if ( $settings['percent_select'] == 'in' ) { ?>
 				<div class="wbcom-progress-bar-percent"><?php echo esc_html( $settings['percent']['size'] ); ?>%</div>

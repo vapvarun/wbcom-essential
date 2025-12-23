@@ -84,6 +84,11 @@ class WBCOM_Essential_Gutenberg {
 					'title' => __( 'Wbcom Essential', 'wbcom-essential' ),
 					'icon'  => 'lightbulb',
 				),
+				array(
+					'slug'  => 'wbcom-essential-buddypress',
+					'title' => __( 'Wbcom BuddyPress', 'wbcom-essential' ),
+					'icon'  => 'groups',
+				),
 			)
 		);
 	}

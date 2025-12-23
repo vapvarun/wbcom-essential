@@ -90,7 +90,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-shape-wrapper">
 		<div class="wbcom-shape <?php echo esc_attr( $animation_class ); ?>">
 			<?php if ( $icon ) : ?>

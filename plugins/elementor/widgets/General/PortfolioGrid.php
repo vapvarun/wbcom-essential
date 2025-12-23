@@ -1750,14 +1750,14 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 		$settings_id = $this->get_id();
         if ( $settings['list2'] ) { ?>
 
-       <form id="wba_fpg_form-<?php echo $settings_id; ?>" name="wba_fpg_form-<?php echo $settings_id; ?>" class="wba-fpg-toolbar">
+       <form id="wba_fpg_form-<?php echo esc_attr($settings_id); ?>" name="wba_fpg_form-<?php echo esc_attr($settings_id); ?>" class="wba-fpg-toolbar">
            <?php if ($settings['filter_menu']) { ?>
             <ul class="wba-fpg-search-wrapper">
                 <li class="wba-fpg-mobile-icon"><label><span class="dashicons dashicons-menu-alt"></span></label></li>
-                <?php foreach ( $settings['list2'] as $item ) { ?> 
+                <?php foreach ( $settings['list2'] as $item ) { ?>
                 <li>
-                    <input id="wba-fpg-filter-<?php echo $settings_id; ?>-<?php echo esc_attr($item['filter_id']); ?>" type="radio" <?php if ($item['filter_default']) { ?>checked="checked"<?php } ?> name="filter" value="<?php echo esc_attr($item['filter_id']); ?>" style="display:none">
-                    <label for="wba-fpg-filter-<?php echo $settings_id; ?>-<?php echo esc_attr($item['filter_id']); ?>" <?php if ($item['filter_default']) { ?>class="active"<?php } ?>><?php echo $item['filter_name']; ?></label>
+                    <input id="wba-fpg-filter-<?php echo esc_attr($settings_id); ?>-<?php echo esc_attr($item['filter_id']); ?>" type="radio" <?php if ($item['filter_default']) { ?>checked="checked"<?php } ?> name="filter" value="<?php echo esc_attr($item['filter_id']); ?>" style="display:none">
+                    <label for="wba-fpg-filter-<?php echo esc_attr($settings_id); ?>-<?php echo esc_attr($item['filter_id']); ?>" <?php if ($item['filter_default']) { ?>class="active"<?php } ?>><?php echo esc_html($item['filter_name']); ?></label>
                 </li>
                 <?php } ?>
             </ul>
@@ -1765,12 +1765,12 @@ class PortfolioGrid extends \Elementor\Widget_Base {
             <?php if ($settings['layout_menu']) { ?>
             <ul class="wba-fpg-view-options">
               <li>
-				<input id="wba-fpg-show-grid-<?php echo $settings_id; ?>" type="radio" <?php if ($settings['layout_default'] == 'wba-fpg-grid-view') { ?>checked="checked"<?php } ?> name="view" value="show-grid" style="display:none">
-                <label for="wba-fpg-show-grid-<?php echo $settings_id; ?>" <?php if ($settings['layout_default'] == 'wba-fpg-grid-view') { ?>class="active"<?php } ?>><span class="dashicons dashicons-grid-view"></span></label>
+				<input id="wba-fpg-show-grid-<?php echo esc_attr($settings_id); ?>" type="radio" <?php if ($settings['layout_default'] == 'wba-fpg-grid-view') { ?>checked="checked"<?php } ?> name="view" value="show-grid" style="display:none">
+                <label for="wba-fpg-show-grid-<?php echo esc_attr($settings_id); ?>" <?php if ($settings['layout_default'] == 'wba-fpg-grid-view') { ?>class="active"<?php } ?>><span class="dashicons dashicons-grid-view"></span></label>
               </li>
               <li>
-                <input id="wba-fpg-show-list-<?php echo $settings_id; ?>" type="radio" <?php if ($settings['layout_default'] == 'wba-fpg-list-view') { ?>checked="checked"<?php } ?> name="view" value="show-list" style="display:none">
-                <label for="wba-fpg-show-list-<?php echo $settings_id; ?>" <?php if ($settings['layout_default'] == 'wba-fpg-list-view') { ?>class="active"<?php } ?>><span class="dashicons dashicons-list-view"></span></label>
+                <input id="wba-fpg-show-list-<?php echo esc_attr($settings_id); ?>" type="radio" <?php if ($settings['layout_default'] == 'wba-fpg-list-view') { ?>checked="checked"<?php } ?> name="view" value="show-list" style="display:none">
+                <label for="wba-fpg-show-list-<?php echo esc_attr($settings_id); ?>" <?php if ($settings['layout_default'] == 'wba-fpg-list-view') { ?>class="active"<?php } ?>><span class="dashicons dashicons-list-view"></span></label>
               </li>
             </ul>
             <?php } ?>
@@ -1778,15 +1778,15 @@ class PortfolioGrid extends \Elementor\Widget_Base {
         <?php } ?>
 
         <?php if ( $settings['list'] ) { ?>
-          <ol class="wba-fpg-container <?php echo $settings['layout_default'] . ' ' . $settings['grid_txt_placement']; ?> wba-fpg-zoom-in" style="display:none;">
-          <?php foreach ( $settings['list'] as $item ) { ?> 
-            <li data-filter="<?php echo $item['item_filter_ids']; ?>" class="elementor-repeater-item-<?php echo $item['_id']; ?>">
+          <ol class="wba-fpg-container <?php echo esc_attr($settings['layout_default'] . ' ' . $settings['grid_txt_placement']); ?> wba-fpg-zoom-in" style="display:none;">
+          <?php foreach ( $settings['list'] as $item ) { ?>
+            <li data-filter="<?php echo esc_attr($item['item_filter_ids']); ?>" class="elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
             <div class="wba-fpg-inner elementor-animation-<?php echo esc_attr($settings['grid_item_animation']); ?>">
             <?php
             $target = $item['website_link']['is_external'] ? ' target="_blank"' : '';
             $nofollow = $item['website_link']['nofollow'] ? ' rel="nofollow"' : '';
             if ($item['website_link']['url']) {
-                echo '<a href="' . esc_url($item['website_link']['url']) . '"' . $target . $nofollow . '>';
+                echo '<a href="' . esc_url($item['website_link']['url']) . '"' . esc_attr( $target ) . esc_attr( $nofollow ) . '>';
             }
             ?>
               <figure>
@@ -1801,16 +1801,16 @@ class PortfolioGrid extends \Elementor\Widget_Base {
                     $img_url = \Elementor\Utils::get_placeholder_image_src();
                 }
                 if (!empty($img_url)) {
-                    echo '<img src="' . $img_url . '" alt="' . $img_alt . '" />';
+                    echo '<img src="' . esc_url($img_url) . '" alt="' . esc_attr($img_alt) . '" />';
                 }
                 ?>
                 <figcaption>
-                <?php 
+                <?php
                 if (!empty($item['title'])) {
-                    echo '<' . $settings['title_html_tag'] . ' class="wba-fpg-title">' . $item['title'] . '</' . $settings['title_html_tag'] . '>'; 
+                    echo '<' . esc_attr($settings['title_html_tag']) . ' class="wba-fpg-title">' . esc_html($item['title']) . '</' . esc_attr($settings['title_html_tag']) . '>';
                 }
                 if (!empty($item['info'])) {
-                    echo '<' . $settings['info_html_tag'] . ' class="wba-fpg-info">' . do_shortcode($item['info']) . '</' . $settings['info_html_tag'] . '>'; 
+                    echo '<' . esc_attr($settings['info_html_tag']) . ' class="wba-fpg-info">' . wp_kses_post(do_shortcode($item['info'])) . '</' . esc_attr($settings['info_html_tag']) . '>';
                 }
                 ?>
                 </figcaption>

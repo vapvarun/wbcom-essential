@@ -109,7 +109,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-profile-completion-wrapper">
 		<div class="wbcom-profile-completion-figure">
 			<div class="wbcom-profile-completion-progress">

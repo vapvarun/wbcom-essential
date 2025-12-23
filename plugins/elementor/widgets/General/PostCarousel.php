@@ -2201,7 +2201,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 
         if ($custom_query->have_posts()) {
         ?>
-        <div id="wbcom-post-carousel-<?php echo esc_attr($widget_id); ?>" class="wbcom-post-carousel <?php echo esc_attr($settings['overflow_hidden']); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? $settings['nav_arrow_prev_icon']['value'] : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? $settings['nav_arrow_next_icon']['value'] : ''; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-infinite="<?php if ($settings['infinite']) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ($settings['display_nav']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['display_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr($settings['columns']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>">
+        <div id="wbcom-post-carousel-<?php echo esc_attr($widget_id); ?>" class="wbcom-post-carousel <?php echo esc_attr($settings['overflow_hidden']); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? esc_attr( $settings['nav_arrow_prev_icon']['value'] ) : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? esc_attr( $settings['nav_arrow_next_icon']['value'] ) : ''; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-infinite="<?php if ($settings['infinite']) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ($settings['display_nav']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['display_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr($settings['columns']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>">
 			<?php while($custom_query->have_posts()) : $custom_query->the_post(); ?>
 			<div <?php if ($settings['add_classes']) { post_class('wbcom-carousel-item'); } else { echo 'class="wbcom-carousel-item"'; } ?>>
 				<div class="wbcom-posts-card wbcom-posts-<?php echo esc_attr($settings['card_layout']); ?>">
@@ -2241,8 +2241,9 @@ class PostCarousel extends \Elementor\Widget_Base {
 						</div>
 						<?php } ?>
 						<<?php echo esc_attr($settings['card_title_html']); ?> class="wbcom-posts-card-title <?php echo esc_attr($settings['card_title_ellipsis']); ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></<?php echo esc_attr($settings['card_title_html']); ?>>
-						<?php 
+						<?php
 						if ((get_the_excerpt()) && (!empty($settings['excerpt_length'])) && ($settings['excerpt_length'] != 0)) {
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wpautop is a WordPress function that returns safe HTML
 							echo '<div class="wbcom-posts-excerpt">' . wpautop(wba_excerpt($settings['excerpt_length'])) . '</div>';
 						}
 						?>
@@ -2261,16 +2262,16 @@ class PostCarousel extends \Elementor\Widget_Base {
 						<div class="wbcom-posts-card-author-img">
 							<?php if ($settings['display_author_url']) { ?>
 							<?php $avatar_size = ( ! empty( $settings['avatar_size'] ) ) ? esc_attr( $settings['avatar_size'] ) : ''; ?>
-							<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), $avatar_size ); ?></a>
+							<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), $avatar_size ); ?></a>
 							<?php } else { ?>
 							<?php echo get_avatar( get_the_author_meta( 'ID' ), $settings['avatar_size'] ); ?>
 							<?php } ?>
 						</div>
 						<?php } ?>
 						<div class="wbcom-posts-card-date <?php echo esc_attr($settings['card_footer_layout']) ?>">
-							<?php if ($settings['display_author_name']) { ?>           
+							<?php if ($settings['display_author_name']) { ?>
 							<?php if ($settings['display_author_url']) { ?>
-							<a class="wbcom-posts-card-author-link" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
+							<a class="wbcom-posts-card-author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
 								<?php \Elementor\Icons_Manager::render_icon( $settings['card_author_icon'], [ 'aria-hidden' => 'true' ] ); ?><?php the_author(); ?>
 							</a>
 							<?php } else { ?>
@@ -2303,9 +2304,9 @@ class PostCarousel extends \Elementor\Widget_Base {
 				$viewport_md = '';
 				if (empty($viewport_md)) {
 					$viewport_md = 767;
-				} 
+				}
 				?>
-				@media screen and (min-width: <?php echo ($viewport_lg + 1) . 'px'; ?>) {
+				@media screen and (min-width: <?php echo esc_attr( $viewport_lg + 1 ) . 'px'; ?>) {
 					<?php if ($settings['nav_arrows_desktop']) { ?>
 					#wbcom-post-carousel-<?php echo esc_attr($widget_id); ?> .slick-prev,
 					#wbcom-post-carousel-<?php echo esc_attr($widget_id); ?> .slick-next {

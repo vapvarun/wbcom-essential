@@ -47,7 +47,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					<a class="user-link" href="<?php echo esc_url( $user_link ); ?>">
 						<span class="user-name"><?php echo esc_html( $display_name ); ?></span><i class="wbe-icon-angle-down"></i>
-						<?php echo get_avatar( get_current_user_id(), 100 ); ?>
+						<?php
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_avatar() is a safe WordPress core function that returns escaped HTML
+						echo get_avatar( get_current_user_id(), 100 );
+						?>
 					</a>
 
 					<div class="sub-menu">

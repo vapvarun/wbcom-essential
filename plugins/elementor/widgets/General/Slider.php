@@ -2065,7 +2065,7 @@ class Slider extends \Elementor\Widget_Base {
 
 		if ( $settings['list'] ) { ?>
 		<div class="wbcom-slider-wrapper <?php if ($settings['hide_nav']) { echo 'hide-nav'; } ?>">
-			<div class="wbcom-slider-loader <?php if (empty($settings['loader_image']['url'])) { ?>wbcom-css3-loader<?php } ?>" style="<?php if (!empty($settings['loader_image']['url'])) { echo 'background-image:url(' . $settings['loader_image']['url'] . ');'; } ?>"></div>
+			<div class="wbcom-slider-loader <?php if (empty($settings['loader_image']['url'])) { ?>wbcom-css3-loader<?php } ?>" style="<?php if (!empty($settings['loader_image']['url'])) { echo 'background-image:url(' . esc_url($settings['loader_image']['url']) . ');'; } ?>"></div>
 				<div id="wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?>"
 				class="wbcom-slider"
 				data-prv="<?php echo esc_attr( $data_prv ); ?>"
@@ -2081,16 +2081,16 @@ class Slider extends \Elementor\Widget_Base {
 				<?php foreach ( $settings['list'] as $item ) { ?>
 				<?php $slide_thumbnail = wp_get_attachment_image_url( $item['image']['id'], $settings['nav_thumbnail_size'] ); ?>
 				<div class="wbcom-slick-thumb" data-thumbnail="<?php echo esc_url($slide_thumbnail); ?>" data-alt="<?php echo esc_attr($item['title']); ?>">
-					<div class="wbcom-slider-inner animated none <?php echo $item['bg_entrance_animation']; ?>" style="background-image:url(<?php echo $item['image']['url']; ?>);background-position:<?php echo $item['image_position']; ?>;background-repeat:<?php echo $item['image_repeat']; ?>;background-size:<?php echo $item['image_bg_size']; ?>;transition-duration:<?php echo $item['bg_entrance_animation_duration']; ?>s;"></div>
+					<div class="wbcom-slider-inner animated none <?php echo esc_attr($item['bg_entrance_animation']); ?>" style="background-image:url(<?php echo esc_url($item['image']['url']); ?>);background-position:<?php echo esc_attr($item['image_position']); ?>;background-repeat:<?php echo esc_attr($item['image_repeat']); ?>;background-size:<?php echo esc_attr($item['image_bg_size']); ?>;transition-duration:<?php echo esc_attr($item['bg_entrance_animation_duration']); ?>s;"></div>
 					<?php if ($item['website_link']['url']) { ?>
 					<a class="wbcom-slider-url" href="<?php echo esc_url($item['website_link']['url']); ?>" <?php if ($item['website_link']['is_external']) { ?>target="_blank"<?php } ?> <?php if ($item['website_link']['nofollow']) { ?>rel="nofollow"<?php } ?>></a>
 					<?php } ?>
 					<div class="wbcom-slider-overlay"></div>
-						<div class="wbcom-slider-text-wrapper elementor-repeater-item-<?php echo $item['_id']; ?>">
-							<div class="wbcom-slider-text-box noanim animated <?php echo $item['entrance_animation_duration']; ?> <?php echo $item['entrance_animation']; ?>">
-								<?php 
-								if ($item['title']) { 
-									echo '<' . $settings['title_html_tag'] . ' class="wbcom-slider-title">' . $item['title'] . '</' . $settings['title_html_tag'] . '>';
+						<div class="wbcom-slider-text-wrapper elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
+							<div class="wbcom-slider-text-box noanim animated <?php echo esc_attr($item['entrance_animation_duration']); ?> <?php echo esc_attr($item['entrance_animation']); ?>">
+								<?php
+								if ($item['title']) {
+									echo '<' . esc_attr($settings['title_html_tag']) . ' class="wbcom-slider-title">' . esc_html($item['title']) . '</' . esc_attr($settings['title_html_tag']) . '>';
 								}
 								?>
 								<?php if ($settings['divider_hide'] != 'yes') { ?>
@@ -2098,9 +2098,9 @@ class Slider extends \Elementor\Widget_Base {
 									<div class="wbcom-slider-divider"></div>
 								</div>
 								<?php } ?>
-								<?php 
-								if ($item['desc']) { 
-									echo '<div class="wbcom-slider-desc">' . do_shortcode($item['desc']) . '</div>';
+								<?php
+								if ($item['desc']) {
+									echo '<div class="wbcom-slider-desc">' . wp_kses_post(do_shortcode($item['desc'])) . '</div>';
 								}
 								?>
 							</div>
@@ -2109,7 +2109,7 @@ class Slider extends \Elementor\Widget_Base {
 				<?php } ?>
 			</div>
 			<?php if (($settings['nav_dots']) && ($settings['nav_thumbnails'])) { ?>
-			<div id="wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?>" class="wbcom-slider-thumbnails <?php echo $settings['nav_thumbnails_position']; ?>"></div>
+			<div id="wbcom-slider-thumbnails-<?php echo esc_attr($wbcomslider_slider_id) ?>" class="wbcom-slider-thumbnails <?php echo esc_attr($settings['nav_thumbnails_position']); ?>"></div>
 			<?php } ?>
 		</div>
 			<style type="text/css">
@@ -2121,9 +2121,9 @@ class Slider extends \Elementor\Widget_Base {
 				$viewport_md = '';
 				if (empty($viewport_md)) {
 					$viewport_md = 767;
-				} 
+				}
 				?>
-				@media screen and (min-width: <?php echo ($viewport_lg + 1) . 'px'; ?>) {
+				@media screen and (min-width: <?php echo esc_attr( $viewport_lg + 1 ) . 'px'; ?>) {
 					<?php if ($settings['nav_arrows_desktop']) { ?>
 					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
 					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
@@ -2147,7 +2147,7 @@ class Slider extends \Elementor\Widget_Base {
 					}
 					<?php } ?>
 				}
-				@media only screen and (max-width: <?php echo $viewport_lg . 'px'; ?>) {
+				@media only screen and (max-width: <?php echo esc_attr( $viewport_lg ) . 'px'; ?>) {
 					<?php if ($settings['nav_arrows_tablet']) { ?>
 					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
 					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {
@@ -2171,7 +2171,7 @@ class Slider extends \Elementor\Widget_Base {
 					}
 					<?php } ?>
 				}
-				@media screen and (max-width: <?php echo $viewport_md . 'px'; ?>) {
+				@media screen and (max-width: <?php echo esc_attr( $viewport_md ) . 'px'; ?>) {
 					<?php if ($settings['nav_arrows_mobile']) { ?>
 					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-prev,
 					#wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?> .slick-next {

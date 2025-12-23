@@ -178,7 +178,7 @@ class Wbcom_Essential_Widget_Showcase
 				'wbcom-essential' => array(
 					'name' => 'WBcom Essential',
 					'version' => WBCOM_ESSENTIAL_VERSION,
-					'description' => '43+ premium Elementor widgets for BuddyPress, WooCommerce, and general purpose websites.',
+					'description' => '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.',
 					'status' => 'active',
 					'settings_url' => admin_url('admin.php?page=wbcom-essential'),
 					'icon' => 'dashicons-screenoptions'
@@ -205,7 +205,7 @@ class Wbcom_Essential_Widget_Showcase
 			</h1>
 
 			<div class="notice notice-info">
-				<p><strong>Welcome to WBcom Essential!</strong> Unlock the full potential of your website with our premium Elementor widgets and professional integrations. Manage all your WBcom plugins from this centralized dashboard.</p>
+				<p><strong>Welcome to WBcom Essential!</strong> Unlock the full potential of your website with 30+ Gutenberg blocks and 43+ Elementor widgets. Blocks work out of the box — no Elementor required!</p>
 			</div>
 
 			<div class="card">
@@ -356,6 +356,57 @@ class Wbcom_Essential_Widget_Showcase
 				]
 			);
 		}
+	}
+
+	/**
+	 * Get all available Gutenberg blocks
+	 */
+	private function get_blocks_list()
+	{
+		return [
+			'general' => [
+				'title' => esc_html__('General Blocks', 'wbcom-essential'),
+				'description' => esc_html__('Versatile blocks for various content types - works without Elementor!', 'wbcom-essential'),
+				'icon' => 'dashicons-block-default',
+				'blocks' => [
+					['name' => esc_html__('Accordion', 'wbcom-essential'), 'description' => esc_html__('Collapsible FAQ sections with smooth animations', 'wbcom-essential'), 'icon' => 'dashicons-editor-justify'],
+					['name' => esc_html__('Advanced Tabs', 'wbcom-essential'), 'description' => esc_html__('Tabbed content with multiple styles', 'wbcom-essential'), 'icon' => 'dashicons-category'],
+					['name' => esc_html__('Branding', 'wbcom-essential'), 'description' => esc_html__('Display logo with customizable options', 'wbcom-essential'), 'icon' => 'dashicons-tag'],
+					['name' => esc_html__('Countdown', 'wbcom-essential'), 'description' => esc_html__('Timer for events and launches', 'wbcom-essential'), 'icon' => 'dashicons-clock'],
+					['name' => esc_html__('Dropdown Button', 'wbcom-essential'), 'description' => esc_html__('Interactive dropdown menu button', 'wbcom-essential'), 'icon' => 'dashicons-arrow-down-alt2'],
+					['name' => esc_html__('Flip Box', 'wbcom-essential'), 'description' => esc_html__('Interactive flip animation boxes', 'wbcom-essential'), 'icon' => 'dashicons-image-flip-horizontal'],
+					['name' => esc_html__('Heading', 'wbcom-essential'), 'description' => esc_html__('Stylized heading elements', 'wbcom-essential'), 'icon' => 'dashicons-heading'],
+					['name' => esc_html__('Login Form', 'wbcom-essential'), 'description' => esc_html__('Customizable user login form', 'wbcom-essential'), 'icon' => 'dashicons-lock'],
+					['name' => esc_html__('Post Carousel', 'wbcom-essential'), 'description' => esc_html__('Display posts in carousel format', 'wbcom-essential'), 'icon' => 'dashicons-admin-post'],
+					['name' => esc_html__('Pricing Table', 'wbcom-essential'), 'description' => esc_html__('Product/service pricing displays', 'wbcom-essential'), 'icon' => 'dashicons-cart'],
+					['name' => esc_html__('Progress Bar', 'wbcom-essential'), 'description' => esc_html__('Animated progress indicators', 'wbcom-essential'), 'icon' => 'dashicons-chart-bar'],
+					['name' => esc_html__('Slider', 'wbcom-essential'), 'description' => esc_html__('General purpose content slider', 'wbcom-essential'), 'icon' => 'dashicons-images-alt'],
+					['name' => esc_html__('Smart Menu', 'wbcom-essential'), 'description' => esc_html__('Advanced navigation menu', 'wbcom-essential'), 'icon' => 'dashicons-menu-alt3'],
+					['name' => esc_html__('Team Carousel', 'wbcom-essential'), 'description' => esc_html__('Showcase team members in carousel', 'wbcom-essential'), 'icon' => 'dashicons-businessman'],
+					['name' => esc_html__('Testimonial', 'wbcom-essential'), 'description' => esc_html__('Client testimonial displays', 'wbcom-essential'), 'icon' => 'dashicons-format-quote'],
+					['name' => esc_html__('Testimonial Carousel', 'wbcom-essential'), 'description' => esc_html__('Rotating testimonials showcase', 'wbcom-essential'), 'icon' => 'dashicons-testimonial'],
+					['name' => esc_html__('Timeline', 'wbcom-essential'), 'description' => esc_html__('Visual timeline displays', 'wbcom-essential'), 'icon' => 'dashicons-calendar-alt'],
+					['name' => esc_html__('Text Rotator', 'wbcom-essential'), 'description' => esc_html__('Animated rotating text', 'wbcom-essential'), 'icon' => 'dashicons-update-alt'],
+					['name' => esc_html__('Notification Area', 'wbcom-essential'), 'description' => esc_html__('Header notifications display', 'wbcom-essential'), 'icon' => 'dashicons-bell'],
+					['name' => esc_html__('Shape', 'wbcom-essential'), 'description' => esc_html__('Decorative shape elements', 'wbcom-essential'), 'icon' => 'dashicons-marker'],
+					['name' => esc_html__('Site Logo', 'wbcom-essential'), 'description' => esc_html__('Display site logo with options', 'wbcom-essential'), 'icon' => 'dashicons-wordpress'],
+				]
+			],
+			'buddypress' => [
+				'title' => esc_html__('BuddyPress Blocks', 'wbcom-essential'),
+				'description' => esc_html__('Social community blocks for BuddyPress (requires BuddyPress)', 'wbcom-essential'),
+				'icon' => 'dashicons-groups',
+				'blocks' => [
+					['name' => esc_html__('Dashboard Intro', 'wbcom-essential'), 'description' => esc_html__('Welcome message for dashboards', 'wbcom-essential'), 'icon' => 'dashicons-dashboard'],
+					['name' => esc_html__('Forums', 'wbcom-essential'), 'description' => esc_html__('Display forum topics', 'wbcom-essential'), 'icon' => 'dashicons-format-chat'],
+					['name' => esc_html__('Forums Activity', 'wbcom-essential'), 'description' => esc_html__('Recent forum activity', 'wbcom-essential'), 'icon' => 'dashicons-update'],
+					['name' => esc_html__('Group Carousel', 'wbcom-essential'), 'description' => esc_html__('Groups in rotating carousel', 'wbcom-essential'), 'icon' => 'dashicons-images-alt2'],
+					['name' => esc_html__('Members Lists', 'wbcom-essential'), 'description' => esc_html__('Display community members', 'wbcom-essential'), 'icon' => 'dashicons-id'],
+					['name' => esc_html__('Groups Lists', 'wbcom-essential'), 'description' => esc_html__('Display community groups', 'wbcom-essential'), 'icon' => 'dashicons-list-view'],
+					['name' => esc_html__('Profile Completion', 'wbcom-essential'), 'description' => esc_html__('Profile completeness indicator', 'wbcom-essential'), 'icon' => 'dashicons-chart-pie'],
+				]
+			],
+		];
 	}
 
 	/**
@@ -731,15 +782,67 @@ class Wbcom_Essential_Widget_Showcase
 	 */
 	private function render_widgets_tab($widgets)
 	{
+		$blocks = $this->get_blocks_list();
 	?>
 		<div class="wbcom-widget-showcase">
+			<div class="wbcom-feature-highlight" style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+				<div class="wbcom-feature-card" style="flex: 1; min-width: 280px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 20px; border-radius: 8px;">
+					<span class="dashicons dashicons-block-default" style="font-size: 32px; margin-bottom: 10px;"></span>
+					<h3 style="color: #fff; margin: 10px 0;"><?php esc_html_e('Gutenberg Blocks', 'wbcom-essential'); ?></h3>
+					<p style="margin: 0; opacity: 0.9;"><?php esc_html_e('30+ blocks ready to use in the WordPress Block Editor. No Elementor required!', 'wbcom-essential'); ?></p>
+				</div>
+				<div class="wbcom-feature-card" style="flex: 1; min-width: 280px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: #fff; padding: 20px; border-radius: 8px;">
+					<span class="dashicons dashicons-admin-customizer" style="font-size: 32px; margin-bottom: 10px;"></span>
+					<h3 style="color: #fff; margin: 10px 0;"><?php esc_html_e('Elementor Widgets', 'wbcom-essential'); ?></h3>
+					<p style="margin: 0; opacity: 0.9;"><?php esc_html_e('43+ premium widgets for Elementor Page Builder with advanced styling options.', 'wbcom-essential'); ?></p>
+				</div>
+			</div>
 			<p class="description">
-				<?php esc_html_e('Explore all available Elementor widgets provided by WBcom Essential. Drag and drop these widgets in Elementor to enhance your website.', 'wbcom-essential'); ?>
+				<?php esc_html_e('Explore all available widgets and blocks provided by WBcom Essential. Use Gutenberg blocks directly in the Block Editor, or install Elementor for even more widgets.', 'wbcom-essential'); ?>
 			</p>
+
+			<!-- Gutenberg Blocks Section -->
+			<h2 style="margin-top: 30px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">
+				<span class="dashicons dashicons-block-default" style="margin-right: 8px; color: #667eea;"></span>
+				<?php esc_html_e('Gutenberg Blocks', 'wbcom-essential'); ?>
+				<span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 10px;"><?php esc_html_e('Works without Elementor!', 'wbcom-essential'); ?></span>
+			</h2>
+
+			<div class="widget-categories">
+				<?php foreach ($blocks as $category_key => $category) : ?>
+					<div class="widget-category" id="blocks-<?php echo esc_attr($category_key); ?>">
+						<div class="category-header">
+							<span class="dashicons <?php echo esc_attr($category['icon']); ?>"></span>
+							<h2><?php echo esc_html($category['title']); ?></h2>
+							<span class="widget-count"><?php echo count($category['blocks']); ?> <?php esc_html_e('blocks', 'wbcom-essential'); ?></span>
+						</div>
+						<p class="category-description"><?php echo esc_html($category['description']); ?></p>
+
+						<div class="widgets-grid">
+							<?php foreach ($category['blocks'] as $block) : ?>
+								<div class="widget-card" style="border-left: 3px solid #667eea;">
+									<div class="widget-icon">
+										<span class="dashicons <?php echo esc_attr($block['icon']); ?>"></span>
+									</div>
+									<h3><?php echo esc_html($block['name']); ?></h3>
+									<p><?php echo esc_html($block['description']); ?></p>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+
+			<!-- Elementor Widgets Section -->
+			<h2 style="margin-top: 40px; padding-bottom: 10px; border-bottom: 2px solid #f5576c;">
+				<span class="dashicons dashicons-admin-customizer" style="margin-right: 8px; color: #f5576c;"></span>
+				<?php esc_html_e('Elementor Widgets', 'wbcom-essential'); ?>
+				<span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 10px;"><?php esc_html_e('Requires Elementor plugin', 'wbcom-essential'); ?></span>
+			</h2>
 
 			<div class="widget-categories">
 				<?php foreach ($widgets as $category_key => $category) : ?>
-					<div class="widget-category" id="<?php echo esc_attr($category_key); ?>">
+					<div class="widget-category" id="widgets-<?php echo esc_attr($category_key); ?>">
 						<div class="category-header">
 							<span class="dashicons <?php echo esc_attr($category['icon']); ?>"></span>
 							<h2><?php echo esc_html($category['title']); ?></h2>
@@ -749,7 +852,7 @@ class Wbcom_Essential_Widget_Showcase
 
 						<div class="widgets-grid">
 							<?php foreach ($category['widgets'] as $widget) : ?>
-								<div class="widget-card">
+								<div class="widget-card" style="border-left: 3px solid #f5576c;">
 									<div class="widget-icon">
 										<span class="dashicons <?php echo esc_attr($widget['icon']); ?>"></span>
 									</div>
@@ -762,14 +865,25 @@ class Wbcom_Essential_Widget_Showcase
 				<?php endforeach; ?>
 			</div>
 
-			<div class="widget-showcase-footer">
-				<h3><?php esc_html_e('How to Use These Widgets', 'wbcom-essential'); ?></h3>
-				<ol>
-					<li><?php esc_html_e('Edit any page or post with Elementor', 'wbcom-essential'); ?></li>
-					<li><?php esc_html_e('Search for "WBcom" in the widgets panel', 'wbcom-essential'); ?></li>
-					<li><?php esc_html_e('Drag and drop any widget to your page', 'wbcom-essential'); ?></li>
-					<li><?php esc_html_e('Customize the widget settings to match your design', 'wbcom-essential'); ?></li>
-				</ol>
+			<div class="widget-showcase-footer" style="display: flex; gap: 30px; flex-wrap: wrap;">
+				<div style="flex: 1; min-width: 280px;">
+					<h3><span class="dashicons dashicons-block-default" style="margin-right: 8px;"></span><?php esc_html_e('How to Use Gutenberg Blocks', 'wbcom-essential'); ?></h3>
+					<ol>
+						<li><?php esc_html_e('Edit any page or post with the Block Editor', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('Click the + button to add a block', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('Search for "WBcom" or browse the Wbcom Essential category', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('Insert and customize the block settings', 'wbcom-essential'); ?></li>
+					</ol>
+				</div>
+				<div style="flex: 1; min-width: 280px;">
+					<h3><span class="dashicons dashicons-admin-customizer" style="margin-right: 8px;"></span><?php esc_html_e('How to Use Elementor Widgets', 'wbcom-essential'); ?></h3>
+					<ol>
+						<li><?php esc_html_e('Install and activate Elementor plugin', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('Edit any page or post with Elementor', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('Search for "WBcom" in the widgets panel', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('Drag and drop any widget to your page', 'wbcom-essential'); ?></li>
+					</ol>
+				</div>
 			</div>
 		</div>
 	<?php
@@ -808,44 +922,50 @@ class Wbcom_Essential_Widget_Showcase
 
 			<div class="wbcom-faq-items">
 				<div class="wbcom-faq-item">
-					<h3><?php esc_html_e('How do I use WBcom Essential widgets?', 'wbcom-essential'); ?></h3>
-					<p><?php esc_html_e('To use WBcom Essential widgets, edit any page or post with Elementor. In the widgets panel, search for "WBcom" to see all available widgets. Simply drag and drop any widget onto your page and customize its settings.', 'wbcom-essential'); ?></p>
+					<h3><?php esc_html_e('Do I need Elementor to use WBcom Essential?', 'wbcom-essential'); ?></h3>
+					<p><?php esc_html_e('No! WBcom Essential includes 30+ Gutenberg blocks that work directly in the WordPress Block Editor without any additional plugins. Elementor is optional — if you install it, you get access to 43+ additional premium widgets.', 'wbcom-essential'); ?></p>
 				</div>
 
 				<div class="wbcom-faq-item">
-					<h3><?php esc_html_e('Do I need a license to use the widgets?', 'wbcom-essential'); ?></h3>
-					<p><?php esc_html_e('The widgets will work without a license, but having an active license provides you with automatic updates, premium support, and access to new features as they are released.', 'wbcom-essential'); ?></p>
+					<h3><?php esc_html_e('How do I use WBcom Essential blocks and widgets?', 'wbcom-essential'); ?></h3>
+					<p><?php esc_html_e('For Gutenberg blocks: Edit any page or post, click the + button, and search for "WBcom" or browse the Wbcom Essential category. For Elementor widgets: Edit with Elementor and search for "WBcom" in the widgets panel.', 'wbcom-essential'); ?></p>
 				</div>
 
 				<div class="wbcom-faq-item">
-					<h3><?php esc_html_e('Which plugins are required for all widgets to work?', 'wbcom-essential'); ?></h3>
-					<p><?php esc_html_e('WBcom Essential requires Elementor (free or pro). Some widgets have additional requirements:', 'wbcom-essential'); ?></p>
+					<h3><?php esc_html_e('Do I need a license to use the blocks and widgets?', 'wbcom-essential'); ?></h3>
+					<p><?php esc_html_e('All blocks and widgets work without a license. However, an active license provides automatic updates, premium support, and access to new features as they are released.', 'wbcom-essential'); ?></p>
+				</div>
+
+				<div class="wbcom-faq-item">
+					<h3><?php esc_html_e('Which plugins are required?', 'wbcom-essential'); ?></h3>
+					<p><?php esc_html_e('Gutenberg blocks work out of the box with no requirements. For Elementor widgets, you need Elementor (free or pro). Some blocks/widgets have additional requirements:', 'wbcom-essential'); ?></p>
 					<ul>
-						<li><?php esc_html_e('BuddyPress widgets require BuddyPress plugin', 'wbcom-essential'); ?></li>
-						<li><?php esc_html_e('WooCommerce widgets require WooCommerce plugin', 'wbcom-essential'); ?></li>
-						<li><?php esc_html_e('Forum widgets require bbPress plugin', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('BuddyPress blocks/widgets require BuddyPress plugin', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('WooCommerce blocks/widgets require WooCommerce plugin', 'wbcom-essential'); ?></li>
+						<li><?php esc_html_e('Forum blocks/widgets require bbPress plugin', 'wbcom-essential'); ?></li>
 					</ul>
 				</div>
 
 				<div class="wbcom-faq-item">
-					<h3><?php esc_html_e('Why are some widgets not showing in Elementor?', 'wbcom-essential'); ?></h3>
-					<p><?php esc_html_e('Widgets only appear if their required plugins are active. For example, BuddyPress widgets will only show if BuddyPress is installed and activated. Check the Widgets tab to see which plugins are required for each widget.', 'wbcom-essential'); ?></p>
+					<h3><?php esc_html_e('Why are some blocks/widgets not showing?', 'wbcom-essential'); ?></h3>
+					<p><?php esc_html_e('Blocks and widgets only appear if their required plugins are active. For example, BuddyPress blocks will only show if BuddyPress is installed and activated.', 'wbcom-essential'); ?></p>
 				</div>
 
 				<div class="wbcom-faq-item">
-					<h3><?php esc_html_e('How do I customize widget styles?', 'wbcom-essential'); ?></h3>
-					<p><?php esc_html_e('Each widget comes with extensive style options in the Elementor editor. Click on any widget and navigate to the Style tab to customize colors, typography, spacing, and more. You can also use custom CSS for advanced styling.', 'wbcom-essential'); ?></p>
+					<h3><?php esc_html_e('How do I customize styles?', 'wbcom-essential'); ?></h3>
+					<p><?php esc_html_e('For Gutenberg blocks: Use the Block Settings panel on the right to customize colors, typography, and spacing. For Elementor widgets: Click on any widget and use the Style tab for extensive customization options.', 'wbcom-essential'); ?></p>
 				</div>
 
 				<div class="wbcom-faq-item">
-					<h3><?php esc_html_e('Can I use these widgets with any theme?', 'wbcom-essential'); ?></h3>
-					<p><?php esc_html_e('Yes! WBcom Essential widgets are designed to work with any WordPress theme that supports Elementor. However, they work best with WBcom Designs themes like Reign, which have been optimized for these widgets.', 'wbcom-essential'); ?></p>
+					<h3><?php esc_html_e('Can I use these blocks/widgets with any theme?', 'wbcom-essential'); ?></h3>
+					<p><?php esc_html_e('Yes! WBcom Essential blocks and widgets work with any WordPress theme. They work best with WBcom Designs themes like BuddyX and Flavor, which have been optimized for these components.', 'wbcom-essential'); ?></p>
 				</div>
 
 				<div class="wbcom-faq-item">
 					<h3><?php esc_html_e('How do I get support?', 'wbcom-essential'); ?></h3>
 					<p><?php
 						printf(
+							/* translators: %s: Support portal link */
 							esc_html__('License holders can get premium support through our support portal. Visit %s to submit a ticket. Make sure to include your license key when requesting support.', 'wbcom-essential'),
 							'<a href="https://wbcomdesigns.com/support" target="_blank">wbcomdesigns.com/support</a>'
 						);
@@ -866,6 +986,7 @@ class Wbcom_Essential_Widget_Showcase
 					<h3><?php esc_html_e('How do I report a bug or request a feature?', 'wbcom-essential'); ?></h3>
 					<p><?php
 						printf(
+							/* translators: %s: GitHub repository link */
 							esc_html__('We welcome your feedback! Report bugs or request features through our GitHub repository at %s or through our support portal if you have an active license.', 'wbcom-essential'),
 							'<a href="https://github.com/wbcomdesigns/wbcom-essential" target="_blank">GitHub</a>'
 						);
@@ -877,7 +998,8 @@ class Wbcom_Essential_Widget_Showcase
 				<h3><?php esc_html_e('Still have questions?', 'wbcom-essential'); ?></h3>
 				<p><?php
 					printf(
-						esc_html__('Check out our %s or %s for more help.', 'wbcom-essential'),
+						/* translators: %1$s: Documentation link, %2$s: Support link */
+						esc_html__('Check out our %1$s or %2$s for more help.', 'wbcom-essential'),
 						'<a href="https://wbcomdesigns.com/docs/wbcom-essential" target="_blank">' . esc_html__('documentation', 'wbcom-essential') . '</a>',
 						'<a href="https://wbcomdesigns.com/support" target="_blank">' . esc_html__('contact support', 'wbcom-essential') . '</a>'
 					);

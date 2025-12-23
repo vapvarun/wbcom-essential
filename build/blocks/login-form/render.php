@@ -131,7 +131,7 @@ $lost_password_url = apply_filters( 'wbcom_essential_login_lost_password_url', $
 $register_url      = apply_filters( 'wbcom_essential_login_register_url', $register_url );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( $is_logged_in && ! $test_mode ) : ?>
 		<?php if ( $show_logged_in_message ) : ?>
 			<div class="wbcom-essential-login-form wbcom-essential-login-form--logged-in">

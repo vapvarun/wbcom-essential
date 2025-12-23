@@ -80,7 +80,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-header-bar-inner">
 		<?php if ( is_user_logged_in() ) : ?>
 			<?php if ( $show_profile ) : ?>

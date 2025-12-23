@@ -149,6 +149,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'profile_dropdown_menu',
 				array(
 					'type'            => Controls_Manager::RAW_HTML,
+					// translators: %s is the URL to create a new menu
 					'raw'             => '<strong>' . __( 'There are no menus available.', 'wbcom-essential' ) . '</strong><br>' . sprintf( __( 'Start by creating one <a href="%s" target="_blank">here</a>.', 'wbcom-essential' ), admin_url( 'nav-menus.php?action=edit&menu=0' ) ),
 					'separator'       => 'after',
 					'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',

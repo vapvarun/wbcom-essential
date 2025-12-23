@@ -81,7 +81,7 @@ $groups_url = function_exists( 'bp_get_groups_directory_url' )
 	: bp_get_groups_directory_permalink();
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( ! empty( $heading_text ) || ( $show_all_groups_link && ! empty( $all_groups_link_text ) ) ) : ?>
 		<div class="wbcom-groups-lists-header">
 			<?php if ( ! empty( $heading_text ) ) : ?>

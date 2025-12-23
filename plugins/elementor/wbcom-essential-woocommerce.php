@@ -368,9 +368,9 @@ function wbcom_sale_flash( $offertype = 'default', $echo = true, $outofstocktxt 
 			}
 
 			if ( $offertype == 'number' ) {
-				echo '<span class="wb-product-label wb-product-label-right">' . $price_display . '</span>';
+				echo '<span class="wb-product-label wb-product-label-right">' . esc_html( $price_display ) . '</span>';
 			} elseif ( $offertype == 'percent' ) {
-				echo '<span class="wb-product-label wb-product-label-right">' . $_off_percent . '%</span>';
+				echo '<span class="wb-product-label wb-product-label-right">' . esc_html( $_off_percent ) . '%</span>';
 			} else {
 				echo ' ';
 			}
@@ -413,7 +413,7 @@ function wbcom_get_product_category_list( $id = null, $taxonomy = 'product_cat',
 		if ( is_wp_error( $link ) ) {
 			return $link;
 		}
-		echo '<a href="' . esc_url( $link ) . '">' . $term->name . '</a>';
+		echo '<a href="' . esc_url( $link ) . '">' . esc_html( $term->name ) . '</a>';
 		if ( $i == $limit ) {
 			break;
 		} else {
@@ -446,7 +446,7 @@ if ( ! function_exists( 'wbcom_wc_get_rating_html' ) ) {
 						<?php
 						for ( $i = 1; $i <= 5; $i++ ) {
 							if ( $i <= $rating_whole ) {
-								echo '<i class="' . $icon_prefix . ' fa-star"></i>';
+								echo '<i class="' . esc_attr( $icon_prefix ) . ' fa-star"></i>';
 							} elseif ( $rating_fraction > 0 && $flug == 0 ) {
 								if ( $icon_svg == 'active' || $block == 'yes' ) {
 									echo '<i class="fa fa-star-half-o"></i>';

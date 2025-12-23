@@ -113,6 +113,11 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 	 * @return void
 	 */
 	function wbcom_essential_notification_avatar() {
+		// Early return if BuddyPress is not active.
+		if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'notifications' ) ) {
+			return;
+		}
+
 		$notification = buddypress()->notifications->query_loop->notification;
 		$component    = $notification->component_name;
 
@@ -165,6 +170,7 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 			?>
 			<a href="<?php echo esc_url( $link ); ?>">
 				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bp_core_fetch_avatar() returns escaped HTML
 				echo bp_core_fetch_avatar(
 					array(
 						'item_id' => $item_id,
@@ -235,9 +241,9 @@ if ( ! function_exists( 'wbcom_essential_theme_elementor_topic_link_attribute_ch
 	 * @return void
 	 */
 	function wbcom_essential_theme_elementor_topic_link_attribute_change( $retval, $r, $args ) {
-
-		if ( ! function_exists( 'buddypress' ) && ! bp_is_active( 'forums' ) ) {
-			return;
+		// Early return if BuddyPress or bbPress is not active.
+		if ( ! function_exists( 'buddypress' ) || ! class_exists( 'bbPress' ) ) {
+			return $retval;
 		}
 
 		$url    = bbp_get_topic_last_reply_url( $r['id'] ) . '?bbp_reply_to=0#new-post';
@@ -256,9 +262,9 @@ if ( ! function_exists( 'wbcom_essential_theme_elementor_reply_link_attribute_ch
 	 * @return void
 	 */
 	function wbcom_essential_theme_elementor_reply_link_attribute_change( $retval, $r, $args ) {
-
-		if ( ! function_exists( 'buddypress' ) && ! bp_is_active( 'forums' ) ) {
-			return;
+		// Early return if BuddyPress or bbPress is not active.
+		if ( ! function_exists( 'buddypress' ) || ! class_exists( 'bbPress' ) ) {
+			return $retval;
 		}
 
 		// Get the reply to use it's ID and post_parent.
@@ -321,7 +327,10 @@ function wbcom_essential_header_cart_fragment( $fragments ) {
 
 	return $fragments;
 }
-add_filter( 'woocommerce_add_to_cart_fragments', 'wbcom_essential_header_cart_fragment' );
+// Only add this filter if WooCommerce is active.
+if ( class_exists( 'WooCommerce' ) ) {
+	add_filter( 'woocommerce_add_to_cart_fragments', 'wbcom_essential_header_cart_fragment' );
+}
 
 /**
  * Filters the scripts to enqueue for BuddyPress Nouveau.
@@ -415,6 +424,7 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 		$categories = get_the_category();
 		if ( $categories ) {
 			foreach ( $categories as $category ) {
+				// translators: %s is the category name
 				$output .= '<a href="' . get_category_link( $category->term_id ) . '" title="' . esc_attr( sprintf( __( 'View all posts in %s', 'wbcom-essential' ), $category->name ) ) . '">' . $category->cat_name . '</a>' . $separator;
 			}
 		}
@@ -424,6 +434,7 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 		$term_list      = wp_get_post_terms( $post->ID, $taxonomy_names );
 		if ( $term_list ) {
 			foreach ( $term_list as $tax_term ) {
+				// translators: %s is the taxonomy term name
 				$output .= '<a href="' . esc_attr( get_term_link( $tax_term, $wbcom_query_posts_type ) ) . '" title="' . sprintf( __( 'View all posts in %s', 'wbcom-essential' ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '</a>' . $separator;
 			}
 		}

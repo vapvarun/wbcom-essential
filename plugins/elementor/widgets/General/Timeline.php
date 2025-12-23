@@ -690,14 +690,14 @@ class Timeline extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		if ( $settings['list'] ) { ?>
-		<div class="wbcom-timeline <?php echo $settings['layout']; ?>">
+		<div class="wbcom-timeline <?php echo esc_attr( $settings['layout'] ); ?>">
 			<div class="wbcom-timeline__container">
 				<?php foreach ( $settings['list'] as $item ) { ?>
-				<div class="wbcom-timeline__block elementor-repeater-item-<?php echo $item['_id']; ?>">
+				<div class="wbcom-timeline__block elementor-repeater-item-<?php echo esc_attr( $item['_id'] ); ?>">
 					<div class="wbcom-timeline__img">
 					<?php \Elementor\Icons_Manager::render_icon( $item['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 					</div>
-					<div class="wbcom-timeline__content <?php echo $settings['display_arrow']; ?>">
+					<div class="wbcom-timeline__content <?php echo esc_attr( $settings['display_arrow'] ); ?>">
 					<?php
 					if ( $item['image']['url'] ) {
 						echo '<div class="wbcom-timeline-img">' . wp_get_attachment_image( $item['image']['id'], 'full' ) . '</div>';
@@ -705,15 +705,17 @@ class Timeline extends \Elementor\Widget_Base {
 					?>
 					<?php if ( $item['date'] ) { ?>
 					<div class="wbcom-timeline-date">
-						<span class="wbcom-timeline__date"><?php echo $item['date']; ?></span>
+						<span class="wbcom-timeline__date"><?php echo esc_html( $item['date'] ); ?></span>
 					</div>
-					<?php } ?> 
+					<?php } ?>
 					<?php
 					if ( $item['title'] ) {
-						echo '<' . $item['title_html_tag'] . ' class="wbcom-timeline-title">' . $item['title'] . '</' . $item['title_html_tag'] . '>';
+						echo '<' . esc_attr( $item['title_html_tag'] ) . ' class="wbcom-timeline-title">' . esc_html( $item['title'] ) . '</' . esc_attr( $item['title_html_tag'] ) . '>';
 					}
 					?>
-					<?php echo wpautop( $item['text'] ); ?>
+					<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wpautop is a WordPress function that returns safe HTML
+					echo wpautop( $item['text'] ); ?>
 					</div>
 				</div>
 			<?php } ?>

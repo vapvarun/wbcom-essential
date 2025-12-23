@@ -2078,7 +2078,7 @@ class PricingTable extends \Elementor\Widget_Base {
 		$target   = $settings['btn_link']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['btn_link']['nofollow'] ? ' rel="nofollow"' : '';
 		?>    
-		<div class="wbcom-price-table" <?php echo $settings['show_ribbon'] ? 'style="overflow:hidden;"' : ''; ?>>
+		<div class="wbcom-price-table" <?php echo $settings['show_ribbon'] ? 'style="overflow:hidden;"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<?php if ( $settings['show_ribbon'] ) : ?>
 				<div class="wbcom-price-table-ribbon-wrapper">
 					<div class="<?php echo esc_attr( $settings['ribbon_style'] ); ?> <?php echo esc_attr( $settings['ribbon_align'] ); ?>">
@@ -2144,9 +2144,9 @@ class PricingTable extends \Elementor\Widget_Base {
 	
 			<div class="wbcom-price-table-footer">
 				<div class="wbcom-btn-wrapper">
-					<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>" 
-						class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>" 
-						href="<?php echo esc_url( $settings['btn_link']['url'] ); ?>" <?php echo $target; ?> <?php echo $nofollow; ?>>
+					<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>"
+						class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>"
+						href="<?php echo esc_url( $settings['btn_link']['url'] ); ?>" <?php echo $target; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php echo $nofollow; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<?php echo esc_html( $settings['btn_text'] ); ?>
 					</a>
 				</div>

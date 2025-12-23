@@ -742,10 +742,10 @@ class PostsRevolution extends Widget_Base {
 		$return .= '<div class="wbclear"></div>';
 
 		if ( $wbcom_animate == 'on' ) { // ANIMATION ON
-			$return .= '<div class="animate-in" data-anim-type="' . $wbcom_animate_effect . '" data-anim-delay="' . $wbcom_delay . '">';
+			$return .= '<div class="animate-in" data-anim-type="' . esc_attr( $wbcom_animate_effect ) . '" data-anim-delay="' . esc_attr( $wbcom_delay ) . '">';
 		}
 
-			$return .= '<div class="wbcom-essential-posts-revolution-elementor ' . $wbcom_post_display_type . ' wbselector-' . $instance . '">';
+			$return .= '<div class="wbcom-essential-posts-revolution-elementor ' . esc_attr( $wbcom_post_display_type ) . ' wbselector-' . esc_attr( $instance ) . '">';
 
 			$count = 0;
 
@@ -775,13 +775,15 @@ class PostsRevolution extends Widget_Base {
 						$return .= '</div>';
 
 						$return         .= '<div class="wb-info-left">';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 						if ( $wbcom_post_display_excerpt == 'true' ) {
-							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
-								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+								$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+								$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 						$return         .= '</div>';
 
 						$return .= '</div>';
@@ -792,8 +794,9 @@ class PostsRevolution extends Widget_Base {
 
 						$return         .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container wb_one_third">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</div>';
 						$return         .= '<div class="wb-info-right wb_two_third wb_last">';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
 						$return         .= '</div><div class="wbclear"></div>';
 
 						$return .= '</div>';
@@ -814,13 +817,15 @@ class PostsRevolution extends Widget_Base {
 						$return .= '</div>';
 
 						$return         .= '<div class="wb-info-left">';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 						if ( $wbcom_post_display_excerpt == 'true' ) {
-							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
-								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+								$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+								$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 						$return         .= '</div>';
 
 						$return .= '</div>';
@@ -832,10 +837,12 @@ class PostsRevolution extends Widget_Base {
 						$return .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container wb_one_third">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</div>';
 
 						$return .= '<div class="wb-info-right wb_two_third wb_last">';
-						$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-						$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+						$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 						if ( $wbcom_post_display_excerpt == 'true' ) {
-							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
 						$return .= '</div><div class="wbclear"></div>';
 
@@ -855,13 +862,15 @@ class PostsRevolution extends Widget_Base {
 						$return .= '</div>';
 
 						$return .= '<div class="wb-info-left">';
-						$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-						$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+						$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 					if ( $wbcom_post_display_excerpt == 'true' ) {
-						$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 					}
-						$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-						$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+						$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+						$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 						$return .= '</div>';
 
 					$return .= '</div>';
@@ -881,13 +890,15 @@ class PostsRevolution extends Widget_Base {
 						</div>';
 
 					$return         .= '<div class="wb-info-right wb_one_half wb_last">';
-							$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-							$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+							$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 					if ( $wbcom_post_display_excerpt == 'true' ) {
-						$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 					}
-							$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-							$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+							$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+							$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 					$return         .= '</div>';
 					$return         .= '<div class="wbclear"></div></div>';
 
@@ -905,13 +916,15 @@ class PostsRevolution extends Widget_Base {
 						$return .= '</div>';
 
 						$return         .= '<div class="wb-info-left">';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 						if ( $wbcom_post_display_excerpt == 'true' ) {
-							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
-								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+								$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+								$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 						$return         .= '</div>';
 
 						$return .= '</div>';
@@ -921,8 +934,9 @@ class PostsRevolution extends Widget_Base {
 						$return .= '<div class="wb_two_fifth wb_last">';
 
 						$return         .= '<div class="wb-info-right wb_last">';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
 						$return         .= '</div><div class="wbclear"></div>';
 
 						$return .= '</div>';
@@ -937,13 +951,15 @@ class PostsRevolution extends Widget_Base {
 						$return .= '</div>';
 
 						$return         .= '<div class="wb-info-left">';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 						if ( $wbcom_post_display_excerpt == 'true' ) {
-							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
-								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+								$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+								$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 						$return         .= '</div>';
 
 						$return .= '</div>';
@@ -957,13 +973,15 @@ class PostsRevolution extends Widget_Base {
 						$return .= '</div>';
 
 						$return         .= '<div class="wb-info-left">';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 						if ( $wbcom_post_display_excerpt == 'true' ) {
-							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
-								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+								$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+								$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 						$return         .= '</div>';
 						$return         .= '</div>';
 
@@ -976,8 +994,9 @@ class PostsRevolution extends Widget_Base {
 
 						$return         .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container wb_one_third">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</div>';
 						$return         .= '<div class="wb-info-right wb_two_third wb_last">';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
 						$return         .= '</div><div class="wbclear"></div>';
 
 						$return .= '</div>';
@@ -992,13 +1011,15 @@ class PostsRevolution extends Widget_Base {
 						$return .= '</div>';
 
 						$return         .= '<div class="wb-info-left">';
-								$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-								$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
-								$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-								$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_category is safe
+					$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
+								$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
+								$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+								$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 								$return .= '<div class="clearfix wbclear"></div>';
 						if ( $wbcom_post_display_excerpt == 'true' ) {
-							$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_essential_posts_revolution_elementor_excerpt is safe
+					$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_post_display_excerpt_number ) . '</span>';
 						}
 						$return .= '</div>';
 
@@ -1010,9 +1031,9 @@ class PostsRevolution extends Widget_Base {
 
 						$return .= '<div class="wbcom-essential-posts-revolution-elementor-thumbs-container wb_one_third">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</div>';
 						$return .= '<div class="wb-info-right wb_two_third wb_last">';
-						$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+						$return .= '<span class="wb-title"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title() ) . '</a></span>';
 						// $return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-						$return .= '<span class="wb-date">' . get_the_date( $wbcom_post_display_date_format ) . '</span>';
+						$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_post_display_date_format ) ) . '</span>';
 						$return .= '</div><div class="wbclear"></div>';
 
 						$return .= '</div>';
@@ -1053,6 +1074,7 @@ class PostsRevolution extends Widget_Base {
 			$return .= '</div>';
 
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $return contains pre-escaped HTML from WordPress functions
 		echo $return;
 	}
 

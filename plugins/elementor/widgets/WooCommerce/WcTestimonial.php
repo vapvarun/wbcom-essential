@@ -1201,6 +1201,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 			$this->add_render_attribute( 'area_attr', 'data-settings', wp_json_encode( $slider_settings ) );
 		}
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's get_render_attribute_string() handles escaping.
 		echo '<div ' . $this->get_render_attribute_string( 'area_attr' ) . ' ' . $slider_main_div_style . '>';
 
 		foreach ( $testimonial_list as $testimonial ) :
@@ -1211,21 +1212,23 @@ class WcTestimonial extends \Elementor\Widget_Base {
 					<?php if ( $settings['testimonial_layout'] === '1' ) : ?>
 							<?php
 							if ( ! empty( $testimonial['message'] ) ) {
-								printf( '<div class="wb-client-content wb-client-content-border"><p>%1$s</p>%2$s</div>', $testimonial['message'], $this->ratting( $testimonial['ratting'] ) );
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ratting() method returns properly escaped HTML.
+								printf( '<div class="wb-client-content wb-client-content-border"><p>%1$s</p>%2$s</div>', esc_html( $testimonial['message'] ), $this->ratting( $testimonial['ratting'] ) );
 							}
 							?>
 							<div class="wb-client-info">
 								<?php
 								if ( ! empty( $testimonial['image'] ) ) {
+									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from Elementor's Group_Control_Image_Size is safe.
 									echo $testimonial['image'];
 								}
 
 								if ( ! empty( $testimonial['name'] ) ) {
-									echo '<h4>' . $testimonial['name'] . '</h4>';
+									echo '<h4>' . esc_html( $testimonial['name'] ) . '</h4>';
 								}
 
 								if ( ! empty( $testimonial['designation'] ) ) {
-									echo '<span>' . $testimonial['designation'] . '</span>';
+									echo '<span>' . esc_html( $testimonial['designation'] ) . '</span>';
 								}
 								?>
 							</div>
@@ -1234,15 +1237,17 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							<div class="wb-client-info-wrap-2">
 								<?php
 								if ( ! empty( $testimonial['image'] ) ) {
+									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from Elementor's Group_Control_Image_Size is safe.
 									printf( '<div class="wb-client-img-2">%1$s</div>', $testimonial['image'] );
 								}
 								?>
 								<div class="wb-client-info-3">
 									<?php
 									if ( ! empty( $testimonial['name'] ) || ! empty( $testimonial['designation'] ) ) {
-										printf( '<h4>%1$s<span>%2$s</span></h4>', $testimonial['name'], $testimonial['designation'] );
+										printf( '<h4>%1$s<span>%2$s</span></h4>', esc_html( $testimonial['name'] ), esc_html( $testimonial['designation'] ) );
 									}
 									if ( ! empty( $testimonial['ratting'] ) ) {
+										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ratting() method returns properly escaped HTML.
 										echo $this->ratting( $testimonial['ratting'] );
 									}
 									?>
@@ -1250,7 +1255,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							</div>
 							<?php
 							if ( ! empty( $testimonial['message'] ) ) {
-								printf( '<div class="wb-client-content"><p class="wb-width-dec">%1$s</p></div>', $testimonial['message'] );
+								printf( '<div class="wb-client-content"><p class="wb-width-dec">%1$s</p></div>', esc_html( $testimonial['message'] ) );
 							}
 							?>
 
@@ -1258,20 +1263,22 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							<div class="wb-client-info-wrap wb-client-info-border">
 								<?php
 								if ( ! empty( $testimonial['image'] ) ) {
+									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from Elementor's Group_Control_Image_Size is safe.
 									printf( '<div class="wb-client-img">%1$s</div>', $testimonial['image'] );
 								}
 								?>
 								<div class="wb-client-info-2">
 									<?php
 									if ( ! empty( $testimonial['name'] ) ) {
-										echo '<h4>' . $testimonial['name'] . '</h4>';
+										echo '<h4>' . esc_html( $testimonial['name'] ) . '</h4>';
 									}
 
 									if ( ! empty( $testimonial['designation'] ) ) {
-										echo '<span>' . $testimonial['designation'] . '</span>';
+										echo '<span>' . esc_html( $testimonial['designation'] ) . '</span>';
 									}
 
 									if ( ! empty( $testimonial['ratting'] ) ) {
+										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ratting() method returns properly escaped HTML.
 										echo $this->ratting( $testimonial['ratting'] );
 									}
 									?>
@@ -1279,7 +1286,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							</div>
 							<?php
 							if ( ! empty( $testimonial['message'] ) ) {
-								printf( '<div class="wb-client-content"><p>%1$s</p></div>', $testimonial['message'] );
+								printf( '<div class="wb-client-content"><p>%1$s</p></div>', esc_html( $testimonial['message'] ) );
 							}
 							?>
 
@@ -1287,16 +1294,18 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							<div class="wb-client-info-wrap-2">
 								<?php
 								if ( ! empty( $testimonial['image'] ) ) {
+									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from Elementor's Group_Control_Image_Size is safe.
 									printf( '<div class="wb-client-img-2">%1$s</div>', $testimonial['image'] );
 								}
 								?>
 								<div class="wb-client-info-3">
 									<?php
 									if ( ! empty( $testimonial['name'] ) || ! empty( $testimonial['designation'] ) ) {
-										printf( '<h4>%1$s<span>%2$s</span></h4>', $testimonial['name'], $testimonial['designation'] );
+										printf( '<h4>%1$s<span>%2$s</span></h4>', esc_html( $testimonial['name'] ), esc_html( $testimonial['designation'] ) );
 									}
 
 									if ( ! empty( $testimonial['ratting'] ) ) {
+										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ratting() method returns properly escaped HTML.
 										echo $this->ratting( $testimonial['ratting'] );
 									}
 									?>
@@ -1304,7 +1313,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							</div>
 							<?php
 							if ( ! empty( $testimonial['message'] ) ) {
-								printf( '<div class="wb-client-content"><p>%1$s</p></div>', $testimonial['message'] );
+								printf( '<div class="wb-client-content"><p>%1$s</p></div>', esc_html( $testimonial['message'] ) );
 							}
 							?>
 

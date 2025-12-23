@@ -2136,8 +2136,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
 
                                     if( $fetchproduct->have_posts() ){
                                         ?>
-                                            <li><a class="<?php if($m==1){ echo 'htactive';}?>" href="#wbcomtab<?php echo $tabuniqid.esc_attr($m);?>">
-                                                <?php echo esc_attr( $prod_cats->name,'wbcom-essential' );?>
+                                            <li><a class="<?php if($m==1){ echo 'htactive';}?>" href="#wbcomtab<?php echo esc_attr( $tabuniqid . $m );?>">
+                                                <?php echo esc_html( $prod_cats->name );?>
                                             </a></li>
                                         <?php
                                     }
@@ -2159,7 +2159,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
                         'hide_empty' => true,
                         'slug'       => $product_cats,
                     );
-                    $tabcat_fach = get_terms( 'product_cat', $tabcatargs );
+                    $tabcatargs['taxonomy'] = 'product_cat';
+                    $tabcat_fach = get_terms( $tabcatargs );
                     foreach( $tabcat_fach as $cats ):
                         $z++;
                         $field_name = is_numeric( $product_cats[0] ) ? 'term_id' : 'slug';
@@ -2183,7 +2184,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 
                         if( $products->have_posts() ):
                     ?>
-                        <div class="wb-tab-pane <?php if( $z==1 ){ echo 'htactive'; } ?>" id="<?php echo 'wbcomtab'.$tabuniqid.$z;?>">
+                        <div class="wb-tab-pane <?php if( $z==1 ){ echo 'htactive'; } ?>" id="<?php echo esc_attr( 'wbcomtab' . $tabuniqid . $z );?>">
                             <div class="wb-row">
 
                                 <?php
@@ -2217,7 +2218,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                 ?>
                                                 <div class="wb-product-image">
                                                     <?php if ( $settings['thumbnails_style'] == 2 && $gallery_images_ids ) : ?>
-                                                        <div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo $tabuniqid; ?>">
+                                                        <div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>">
                                                             <?php
                                                                 foreach ( $gallery_images_ids as $gallery_attachment_id ) {
                                                                     echo '<a href="'.esc_url( get_the_permalink() ).'" class="item">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ).'</a>';
@@ -2232,7 +2233,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                                 foreach ( $gallery_images_ids as $gallery_attachment_id ) {
                                                                     $i++;
                                                                     if( $i == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                                    echo '<div class="wb-product-cus-tab-pane '.$tabactive.'" id="image-'.$i.get_the_ID().'"><a href="'.esc_url( get_the_permalink() ).'">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ).'</a></div>';
+                                                                    echo '<div class="wb-product-cus-tab-pane ' . esc_attr( $tabactive ) . '" id="image-' . esc_attr( $i . get_the_ID() ) . '"><a href="' . esc_url( get_the_permalink() ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
                                                                 }
                                                             ?>
                                                         </div>
@@ -2242,7 +2243,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                                 foreach ( $gallery_images_ids as $gallery_attachment_id ) {
                                                                     $j++;
                                                                     if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                                    echo '<li><a href="#image-'.$j.get_the_ID().'" class="'.$tabactive.'">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ).'</a></li>';
+                                                                    echo '<li><a href="#image-' . esc_attr( $j . get_the_ID() ) . '" class="' . esc_attr( $tabactive ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ) . '</a></li>';
                                                                 }
                                                             ?>
                                                         </ul>
@@ -2257,6 +2258,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 
                                                 <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] != 'contentbottom' ): ?>
                                                     <div class="wb-product-action">
+                                                        <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
                                                         <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
                                                             <?php
                                                                 if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
@@ -2287,11 +2289,12 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                     <?php do_action( 'wbcom_universal_before_price' ); ?>
                                                     <div class="wb-product-price"><?php woocommerce_template_loop_price();?></div>
                                                     <?php do_action( 'wbcom_universal_after_price' ); ?>
-                                                    <div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); ?></div>
+                                                    <div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Function returns escaped HTML ?></div>
 
                                                     <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] == 'contentbottom' ): ?>
                                                         <div class="wb-product-action">
-                                                            <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
+                                                            <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
+                                                        <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
                                                                 <?php
                                                                     if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
                                                                         echo '<li>';
@@ -2333,7 +2336,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                         echo '<div class="wb-row">'; 
                     } 
                 ?>
-                    <div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce <?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( 'product-slider' ); } else{ echo 'wb-row'; } ?>" dir="<?php echo $direction; ?>" data-settings='<?php if( $settings['product_layout_style'] == 'slider' ){ echo wp_json_encode( $slider_settings ); } ?>' <?php echo $slider_main_div_style; ?> >
+                    <div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce <?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( 'product-slider' ); } else{ echo 'wb-row'; } ?>" dir="<?php echo esc_attr( $direction ); ?>" data-settings='<?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( wp_json_encode( $slider_settings ) ); } ?>' <?php echo esc_attr( $slider_main_div_style ); ?> >
 
                         <?php
                             if( $products->have_posts() ):
@@ -2356,7 +2359,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                         ?>
 
                             <!--Product Start-->
-                            <div class="<?php echo $collumval; ?>">
+                            <div class="<?php echo esc_attr( $collumval ); ?>">
                                 <div class="wb-product-inner">
 
                                     <div class="wb-product-image-wrap">
@@ -2368,7 +2371,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                         ?>
                                         <div class="wb-product-image">
                                             <?php  if( $settings['thumbnails_style'] == 2 && $gallery_images_ids ): ?>
-                                                <div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo $tabuniqid; ?>" data-slick='{"rtl":<?php if( is_rtl() ){ echo 'true'; }else{ echo 'false'; } ?> }'>
+                                                <div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>" data-slick='{"rtl":<?php if( is_rtl() ){ echo 'true'; }else{ echo 'false'; } ?> }'>
                                                     <?php
                                                         foreach ( $gallery_images_ids as $gallery_attachment_id ) {
                                                             echo '<a href="'.esc_url( get_the_permalink() ).'" class="item">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ).'</a>';
@@ -2383,7 +2386,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                         foreach ( $gallery_images_ids as $gallery_attachment_id ) {
                                                             $i++;
                                                             if( $i == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                            echo '<div class="wb-product-cus-tab-pane '.$tabactive.'" id="image-'.$i.get_the_ID().'"><a href="#">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ).'</a></div>';
+                                                            echo '<div class="wb-product-cus-tab-pane ' . esc_attr( $tabactive ) . '" id="image-' . esc_attr( $i . get_the_ID() ) . '"><a href="#">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
                                                         }
                                                     ?>
                                                 </div>
@@ -2393,7 +2396,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                                         foreach ( $gallery_images_ids as $gallery_attachment_id ) {
                                                             $j++;
                                                             if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                            echo '<li><a href="#image-'.$j.get_the_ID().'" class="'.$tabactive.'">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ).'</a></li>';
+                                                            echo '<li><a href="#image-' . esc_attr( $j . get_the_ID() ) . '" class="' . esc_attr( $tabactive ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ) . '</a></li>';
                                                         }
                                                     ?>
                                                 </ul>
@@ -2408,7 +2411,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
 
                                         <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] != 'contentbottom' ): ?>
                                             <div class="wb-product-action">
-                                                <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
+                                                <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
+                                                        <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
                                                     <?php
                                                         if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
                                                             echo '<li>';
@@ -2438,11 +2442,12 @@ class UniversalProduct extends \Elementor\Widget_Base {
                                             <?php do_action( 'wbcom_universal_before_price' ); ?>
                                             <div class="wb-product-price"><?php woocommerce_template_loop_price();?></div>
                                             <?php do_action( 'wbcom_universal_after_price' ); ?>
-                                            <div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); ?></div>
+                                            <div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Function returns escaped HTML ?></div>
 
                                             <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] == 'contentbottom' ): ?>
                                                 <div class="wb-product-action">
-                                                    <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
+                                                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
+                                                        <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
                                                         <?php
                                                             if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
                                                                 echo '<li>';
@@ -2476,7 +2481,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
                 <script>
                     ;jQuery(document).ready(function($) {
                         'use strict';
-                        $(".wb-product-image-thumbnaisl-<?php echo $tabuniqid; ?>").slick({
+                        $(".wb-product-image-thumbnaisl-<?php echo esc_js( $tabuniqid ); ?>").slick({
                             dots: true,
                             arrows: true,
                             prevArrow: '<button class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',

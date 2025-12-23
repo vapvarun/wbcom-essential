@@ -152,7 +152,7 @@ function wbcom_pr_render_post( $post, $args = array() ) {
 		<div class="wbcom-pr__content">
 			<?php if ( $args['show_category'] ) : ?>
 				<div class="wbcom-pr__category">
-					<?php echo wbcom_pr_get_category( $post->ID ); ?>
+					<?php echo wbcom_pr_get_category( $post->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_get_category() returns escaped HTML ?>
 				</div>
 			<?php endif; ?>
 
@@ -197,20 +197,22 @@ $post_args = array(
 );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php
 	switch ( $layout ) :
 		case 'featured-sidebar':
 			// First post large, rest in sidebar.
 			?>
 			<div class="wbcom-pr__featured">
-				<?php echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
+				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
+					echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
 			</div>
 			<?php if ( count( $posts ) > 1 ) : ?>
 				<div class="wbcom-pr__sidebar">
 					<?php
 					for ( $i = 1; $i < count( $posts ); $i++ ) {
-						echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'small' ) ) );
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
+					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'small' ) ) );
 					}
 					?>
 				</div>
@@ -222,13 +224,15 @@ $post_args = array(
 			// First post large, rest in list.
 			?>
 			<div class="wbcom-pr__featured wbcom-pr__featured--full">
-				<?php echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
+				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
+					echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
 			</div>
 			<?php if ( count( $posts ) > 1 ) : ?>
 				<div class="wbcom-pr__list">
 					<?php
 					for ( $i = 1; $i < count( $posts ); $i++ ) {
-						echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'medium' ) ) );
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
+					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'medium' ) ) );
 					}
 					?>
 				</div>
@@ -242,6 +246,7 @@ $post_args = array(
 			<div class="wbcom-pr__grid">
 				<?php
 				foreach ( $posts as $post ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
 					echo wbcom_pr_render_post( $post, array_merge( $post_args, array( 'size' => 'large' ) ) );
 				}
 				?>
@@ -255,6 +260,7 @@ $post_args = array(
 			<div class="wbcom-pr__split">
 				<?php
 				foreach ( $posts as $post ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
 					echo wbcom_pr_render_post( $post, array_merge( $post_args, array( 'size' => 'large' ) ) );
 				}
 				?>
@@ -269,6 +275,7 @@ $post_args = array(
 				<?php
 				$featured_count = min( 2, count( $posts ) );
 				for ( $i = 0; $i < $featured_count; $i++ ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
 					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'large' ) ) );
 				}
 				?>
@@ -277,7 +284,8 @@ $post_args = array(
 				<div class="wbcom-pr__list wbcom-pr__list--horizontal">
 					<?php
 					for ( $i = 2; $i < count( $posts ); $i++ ) {
-						echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'small' ) ) );
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
+					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'small' ) ) );
 					}
 					?>
 				</div>
@@ -290,13 +298,15 @@ $post_args = array(
 			?>
 			<div class="wbcom-pr__magazine">
 				<div class="wbcom-pr__magazine-featured">
-					<?php echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
+					<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
+					echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
 				</div>
 				<?php if ( count( $posts ) > 1 ) : ?>
 					<div class="wbcom-pr__magazine-grid">
 						<?php
 						for ( $i = 1; $i < count( $posts ); $i++ ) {
-							echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array(
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
+					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array(
 								'size'         => 'medium',
 								'show_excerpt' => false,
 							) ) );
@@ -314,6 +324,7 @@ $post_args = array(
 			<div class="wbcom-pr__grid">
 				<?php
 				foreach ( $posts as $post ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
 					echo wbcom_pr_render_post( $post, array_merge( $post_args, array( 'size' => 'large' ) ) );
 				}
 				?>
@@ -353,8 +364,8 @@ $post_args = array(
 						printf(
 							/* translators: %1$d: current page, %2$d: total pages */
 							esc_html__( 'Page %1$d of %2$d', 'wbcom-essential' ),
-							$current_page,
-							$total_pages
+							(int) $current_page,
+							(int) $total_pages
 						);
 						?>
 					</span>

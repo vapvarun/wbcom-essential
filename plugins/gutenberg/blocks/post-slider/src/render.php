@@ -120,7 +120,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 ) );
 ?>
 
-<div <?php echo $wrapper_attributes; ?> data-swiper-config="<?php echo esc_attr( wp_json_encode( $swiper_config ) ); ?>">
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?> data-swiper-config="<?php echo esc_attr( wp_json_encode( $swiper_config ) ); ?>">
 	<div class="swiper">
 		<div class="swiper-wrapper">
 			<?php

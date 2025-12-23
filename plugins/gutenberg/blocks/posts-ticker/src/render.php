@@ -84,7 +84,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 $ticker_id = 'wbcom-ticker-' . wp_unique_id();
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div
 		class="wbcom-essential-posts-ticker wbcom-essential-posts-ticker--<?php echo esc_attr( $ticker_type ); ?>"
 		id="<?php echo esc_attr( $ticker_id ); ?>"

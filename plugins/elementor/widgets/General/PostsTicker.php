@@ -629,7 +629,7 @@ class PostsTicker extends Widget_Base {
 		$return = '<div class="adclear"></div>';
 
 		if ( $wbcom_animate == 'on' ) { // ANIMATION ON
-			$return .= '<div class="animate-in" data-anim-type="' . $wbcom_animate_effect . '" data-anim-delay="' . $wbcom_delay . '">';
+			$return .= '<div class="animate-in" data-anim-type="' . esc_attr( $wbcom_animate_effect ) . '" data-anim-delay="' . esc_attr( $wbcom_delay ) . '">';
 		}
 
 		/*
@@ -642,13 +642,13 @@ class PostsTicker extends Widget_Base {
 			if ( $wbcom_custom_style == 'on' ) {
 
 				$return .= '.wbcom-essential-posts-revolution-elementor.posts_newsticker_type1 li .wb-category a {
-										color:' . $wbcom_main_color . '!important;
+										color:' . esc_attr( $wbcom_main_color ) . '!important;
 									}
 						.wbcom-essential-posts-revolution-elementor.posts_newsticker_type1 li .wb-category a:hover {
-										color:' . $wbcom_hover_color . '!important;
+										color:' . esc_attr( $wbcom_hover_color ) . '!important;
 									}
 						.wbcom-essential-posts-revolution-elementor.posts_newsticker_type1 li .mega-title a:hover {
-										color:' . $wbcom_hover_color . '!important;
+										color:' . esc_attr( $wbcom_hover_color ) . '!important;
 									}
 						</style>';
 
@@ -660,19 +660,19 @@ class PostsTicker extends Widget_Base {
 
 			$return .= '<script type="text/javascript">
 					jQuery(document).ready(function($){
-            			var nt_example1 = $(\'#wb-newsticker-type1-' . $instance . '\').newsTicker({
+            			var nt_example1 = $(\'#wb-newsticker-type1-' . esc_js( $instance ) . '\').newsTicker({
 							row_height: 149,
-							max_rows: ' . $wbcom_newsticker_item_show . ',
+							max_rows: ' . esc_js( $wbcom_newsticker_item_show ) . ',
 							duration: 4000,
-							prevButton: $(\'#newsticker-prev-' . $instance . '\'),
-							nextButton: $(\'#newsticker-next-' . $instance . '\')
+							prevButton: $(\'#newsticker-prev-' . esc_js( $instance ) . '\'),
+							nextButton: $(\'#newsticker-next-' . esc_js( $instance ) . '\')
             			});
 					});
 					</script>';
 
-			$return .= '<div class="adclear"></div><div class="wb-newsticker-' . $instance . ' wbcom-essential-posts-revolution-elementor posts_newsticker_type1 wb-selector-' . $instance . '">'; // OPEN MAIN DIV
-			$return .= '<i class="fa fa-angle-up fa-2x" id="newsticker-prev-' . $instance . '"></i>';
-			$return .= '<ul id="wb-newsticker-type1-' . $instance . '">';
+			$return .= '<div class="adclear"></div><div class="wb-newsticker-' . esc_attr( $instance ) . ' wbcom-essential-posts-revolution-elementor posts_newsticker_type1 wb-selector-' . esc_attr( $instance ) . '">'; // OPEN MAIN DIV
+			$return .= '<i class="fa fa-angle-up fa-2x" id="newsticker-prev-' . esc_attr( $instance ) . '"></i>';
+			$return .= '<ul id="wb-newsticker-type1-' . esc_attr( $instance ) . '">';
 			$count   = 0;
 			$loop    = new \WP_Query( $query );
 			if ( $loop ) {
@@ -685,16 +685,16 @@ class PostsTicker extends Widget_Base {
 					if ( has_post_thumbnail() ) {
 
 						$return .= '<div class="mega-thumb">';
-						$return .= '<a href="' . get_the_permalink() . '" title="' . get_the_title() . '">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</a>';
+						$return .= '<a href="' . esc_url( get_the_permalink() ) . '" title="' . esc_attr( get_the_title() ) . '">' . wbcom_essential_posts_revolution_elementor_thumbs() . '</a>';
 						$return .= '</div>';
 					}
 
 					if ( get_the_date() ) {
 
 						$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-						$return .= '<div class="mega-info"><div class="mega-title"><a href="' . get_the_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></div>';
-						$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-						$return .= '<span class="wb-date">' . get_the_date( $wbcom_newsticker_date_format ) . '</span>';
+						$return .= '<div class="mega-info"><div class="mega-title"><a href="' . esc_url( get_the_permalink() ) . '" title="' . esc_attr( get_the_title() ) . '">' . esc_html( get_the_title() ) . '</a></div>';
+						$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+						$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_newsticker_date_format ) ) . '</span>';
 
 					}
 
@@ -708,7 +708,7 @@ class PostsTicker extends Widget_Base {
 				endwhile;
 			}
 
-			$return .= '</ul><i class="fa fa-angle-down fa-2x" id="newsticker-next-' . $instance . '"></i></div>'; // CLOSE MAIN DIV
+			$return .= '</ul><i class="fa fa-angle-down fa-2x" id="newsticker-next-' . esc_attr( $instance ) . '"></i></div>'; // CLOSE MAIN DIV
 
 		}
 
@@ -772,6 +772,7 @@ class PostsTicker extends Widget_Base {
 			$return .= '</div>';
 
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $return contains pre-escaped HTML from WordPress functions
 		echo $return;
 	}
 

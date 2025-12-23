@@ -1152,16 +1152,16 @@ class SmartMenu extends \Elementor\Widget_Base {
 			$rtl = 'sm-rtl';
 		}
 		?>
-		<div style="display:none;" class="wba-smart-menu-container 
+		<div style="display:none;" class="wba-smart-menu-container
 		<?php
 		if ( $settings['menu_rtl_sub_menus'] ) {
 			echo 'wba-smart-menu-rtl-submenu'; }
 		?>
-		" data-animin="<?php echo $settings['menu_sub_menu_animation']; ?>" data-animout="<?php echo wba_get_anim_exits( $settings['menu_sub_menu_animation'] ); ?>" data-collapsiblebehavior="<?php echo esc_attr( $settings['menu_collapsible_behavior'] ); ?>" data-mainmenusuboffsetx="<?php echo esc_attr( $settings['mainMenuSubOffsetX'] ); ?>" data-mainmenusuboffsety="<?php echo esc_attr( $settings['mainMenuSubOffsetY'] ); ?>" data-submenussuboffsetx="<?php echo esc_attr( $settings['subMenusSubOffsetX'] ); ?>" data-submenussuboffsety="<?php echo esc_attr( $settings['subMenusSubOffsetY'] ); ?>" data-submenumin="<?php echo esc_attr( $settings['menu_sub_menu_min_width']['size'] . $settings['menu_sub_menu_min_width']['unit'] ); ?>"  data-submenumax="<?php echo esc_attr( $settings['menu_sub_menu_max_width']['size'] . $settings['menu_sub_menu_max_width']['unit'] ); ?>" data-rtlsubmenu="<?php echo esc_attr( $settings['menu_rtl_sub_menus'] ); ?>" data-mtoggle="<?php echo esc_attr( $settings['menu_toggle'] ); ?>" data-bpoint="<?php echo esc_attr( $settings['menu_breakpoint'] ); ?>">
+		" data-animin="<?php echo esc_attr($settings['menu_sub_menu_animation']); ?>" data-animout="<?php echo esc_attr(wba_get_anim_exits( $settings['menu_sub_menu_animation'] )); ?>" data-collapsiblebehavior="<?php echo esc_attr( $settings['menu_collapsible_behavior'] ); ?>" data-mainmenusuboffsetx="<?php echo esc_attr( $settings['mainMenuSubOffsetX'] ); ?>" data-mainmenusuboffsety="<?php echo esc_attr( $settings['mainMenuSubOffsetY'] ); ?>" data-submenussuboffsetx="<?php echo esc_attr( $settings['subMenusSubOffsetX'] ); ?>" data-submenussuboffsety="<?php echo esc_attr( $settings['subMenusSubOffsetY'] ); ?>" data-submenumin="<?php echo esc_attr( $settings['menu_sub_menu_min_width']['size'] . $settings['menu_sub_menu_min_width']['unit'] ); ?>"  data-submenumax="<?php echo esc_attr( $settings['menu_sub_menu_max_width']['size'] . $settings['menu_sub_menu_max_width']['unit'] ); ?>" data-rtlsubmenu="<?php echo esc_attr( $settings['menu_rtl_sub_menus'] ); ?>" data-mtoggle="<?php echo esc_attr( $settings['menu_toggle'] ); ?>" data-bpoint="<?php echo esc_attr( $settings['menu_breakpoint'] ); ?>">
 		<?php if ( $settings['menu_toggle'] ) { ?>
 			<div class="wba-smart-menu-toggle-container">
 				<div class="wbcom-smart-menu-toggle">
-					<i class="fas fa-bars"></i> <span><?php echo $settings['menu_toggle_text']; ?></span>
+					<i class="fas fa-bars"></i> <span><?php echo esc_html($settings['menu_toggle_text']); ?></span>
 				</div>
 			</div>
 		<?php } ?>
@@ -1170,10 +1170,10 @@ class SmartMenu extends \Elementor\Widget_Base {
 				array(
 					'menu'            => $settings['menu'],
 					'container'       => 'nav',
-					'container_id'    => 'wba-smart-menu-wrapper-' . $menu_id,
+					'container_id'    => 'wba-smart-menu-wrapper-' . esc_attr($menu_id),
 					'container_class' => 'wba-smart-menu-wrapper',
-					'menu_id'         => 'wba-smart-menu-' . $menu_id,
-					'menu_class'      => 'wba-smart-menu sm wba-sm-skin animated ' . $settings['menu_layout'] . ' ' . $settings['main_menu_icon'] . ' ' . $rtl,
+					'menu_id'         => 'wba-smart-menu-' . esc_attr($menu_id),
+					'menu_class'      => 'wba-smart-menu sm wba-sm-skin animated ' . esc_attr($settings['menu_layout']) . ' ' . esc_attr($settings['main_menu_icon']) . ' ' . esc_attr($rtl),
 					'depth'           => 99,
 				)
 			);

@@ -82,7 +82,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-flip-box-wrapper <?php echo esc_attr( $flip_direction ); ?>">
 		<div class="wbcom-flip-box-inner">
 			<!-- Front Side -->

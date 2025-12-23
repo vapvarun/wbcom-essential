@@ -15,7 +15,6 @@
 	function initGroupCarousel( container ) {
 		// Check if Swiper is available.
 		if ( typeof Swiper === 'undefined' ) {
-			console.warn( 'Swiper is not loaded. Group Carousel will not function.' );
 			return;
 		}
 
@@ -28,7 +27,6 @@
 		try {
 			options = JSON.parse( optionsAttr );
 		} catch ( e ) {
-			console.error( 'Invalid Swiper options:', e );
 			return;
 		}
 

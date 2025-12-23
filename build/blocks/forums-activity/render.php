@@ -85,7 +85,7 @@ if ( is_user_logged_in() && function_exists( 'bp_loggedin_user_domain' ) && func
 }
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( $show_my_discussions && is_user_logged_in() && $my_discussions_link ) : ?>
 		<div class="wbcom-essential-forums-activity-btn">
 			<a class="wbcom-essential-forums-activity-btn__link" href="<?php echo esc_url( $my_discussions_link ); ?>">

@@ -46,6 +46,7 @@ function wbcom_essential_elementor_load() {
 
 /**
  * Display admin notice when Elementor is not active.
+ * This is now an informational notice since Gutenberg blocks work without Elementor.
  *
  * @since 1.0.0
  * @return void
@@ -59,64 +60,83 @@ function wbcom_essential_elementor_fail_load() {
 		return;
 	}
 
+	// Check if notice was dismissed
+	$dismissed = get_option( 'wbcom_essential_elementor_notice_dismissed', false );
+	if ( $dismissed ) {
+		return;
+	}
+
 	// Determine if Elementor is installed but not activated
 	if ( isset( $installed_plugins[ $plugin ] ) && ! is_plugin_active( $plugin ) ) {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
-		
-		$activation_url = wp_nonce_url( 
-			'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 
-			'activate-plugin_' . $plugin 
+
+		$activation_url = wp_nonce_url(
+			'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s',
+			'activate-plugin_' . $plugin
 		);
-		
-		$message = sprintf(
-			/* translators: %1$s: Plugin name, %2$s: Required plugin name */
-			__( '%1$s requires %2$s to be activated to unlock its full functionality.', 'wbcom-essential' ),
-			'<strong>WBcom Essential</strong>',
-			'<strong>Elementor Page Builder</strong>'
-		);
-		
+
 		$button_text = __( 'Activate Elementor', 'wbcom-essential' );
 		$button_url  = $activation_url;
-		
+
 	} else {
 		// Elementor is not installed
 		if ( ! current_user_can( 'install_plugins' ) ) {
 			return;
 		}
-		
-		$install_url = wp_nonce_url( 
-			self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 
-			'install-plugin_elementor' 
+
+		$install_url = wp_nonce_url(
+			self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ),
+			'install-plugin_elementor'
 		);
-		
-		$message = sprintf(
-			/* translators: %1$s: Plugin name, %2$s: Required plugin name */
-			__( '%1$s requires %2$s to be installed to unlock its full functionality.', 'wbcom-essential' ),
-			'<strong>WBcom Essential</strong>',
-			'<strong>Elementor Page Builder</strong>'
-		);
-		
+
 		$button_text = __( 'Install Elementor', 'wbcom-essential' );
 		$button_url  = $install_url;
 	}
 
-	// Display the notice
+	// Display the informational notice
 	?>
-	<div class="notice notice-warning is-dismissible">
-		<p><?php echo wp_kses_post( $message ); ?></p>
+	<div class="notice notice-info is-dismissible" id="wbcom-essential-elementor-notice">
+		<p>
+			<strong><?php esc_html_e( 'WBcom Essential', 'wbcom-essential' ); ?></strong> —
+			<?php esc_html_e( 'Gutenberg blocks are ready to use! Want even more options? Install Elementor to unlock 43+ additional widgets.', 'wbcom-essential' ); ?>
+		</p>
 		<p>
 			<a href="<?php echo esc_url( $button_url ); ?>" class="button button-primary">
 				<?php echo esc_html( $button_text ); ?>
 			</a>
-			<a href="https://elementor.com/" target="_blank" class="button button-secondary" style="margin-left: 10px;">
-				<?php esc_html_e( 'Learn More', 'wbcom-essential' ); ?>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=wbcom-essential' ) ); ?>" class="button button-secondary" style="margin-left: 10px;">
+				<?php esc_html_e( 'View All Widgets & Blocks', 'wbcom-essential' ); ?>
 			</a>
 		</p>
 	</div>
+	<script>
+	jQuery(document).ready(function($) {
+		$('#wbcom-essential-elementor-notice').on('click', '.notice-dismiss', function() {
+			$.post(ajaxurl, {
+				action: 'wbcom_essential_dismiss_elementor_notice',
+				_wpnonce: '<?php echo esc_js( wp_create_nonce( 'wbcom_essential_dismiss_notice' ) ); ?>'
+			});
+		});
+	});
+	</script>
 	<?php
 }
+
+/**
+ * AJAX handler to dismiss the Elementor notice.
+ */
+function wbcom_essential_dismiss_elementor_notice() {
+	check_ajax_referer( 'wbcom_essential_dismiss_notice' );
+
+	if ( current_user_can( 'manage_options' ) ) {
+		update_option( 'wbcom_essential_elementor_notice_dismissed', true );
+	}
+
+	wp_die();
+}
+add_action( 'wp_ajax_wbcom_essential_dismiss_elementor_notice', 'wbcom_essential_dismiss_elementor_notice' );
 
 add_action( 'init', 'wbcom_essential_elementor_load', -999 );
 

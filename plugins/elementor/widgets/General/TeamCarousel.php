@@ -1648,7 +1648,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display(); 
         if ($settings['gallery']) {
         ?>
-        <div id="wbcom-team-carousel-<?php echo esc_attr($this->get_id()); ?>" class="wbcom-team-carousel <?php echo esc_attr($settings['carousel_overflow_hidden']); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? $settings['nav_arrow_prev_icon']['value'] : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? $settings['nav_arrow_next_icon']['value'] : ''; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-infinite="<?php if ($settings['infinite']) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ($settings['display_nav']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['display_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr($settings['columns']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>">
+        <div id="wbcom-team-carousel-<?php echo esc_attr($this->get_id()); ?>" class="wbcom-team-carousel <?php echo esc_attr($settings['carousel_overflow_hidden']); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? esc_attr( $settings['nav_arrow_prev_icon']['value'] ) : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? esc_attr( $settings['nav_arrow_next_icon']['value'] ) : ''; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-infinite="<?php if ($settings['infinite']) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ($settings['display_nav']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['display_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr($settings['columns']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>">
         <?php foreach ( $settings['gallery'] as $item ) { ?>
             <?php 
             $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] );  
@@ -1664,7 +1664,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
                         $target = $item['external_link']['is_external'] ? ' target="_blank"' : '';
                         $nofollow = $item['external_link']['nofollow'] ? ' rel="nofollow"' : '';
                         ?>
-                        <a href="<?php echo esc_url($item['external_link']['url']); ?>" <?php echo $target; ?> <?php echo $nofollow; ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
+                        <a href="<?php echo esc_url($item['external_link']['url']); ?>" <?php echo esc_attr( $target ); ?> <?php echo esc_attr( $nofollow ); ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } elseif ($item['lightbox_style'] != 'none') { ?>
                         <a href="#wbcom-lightbox-<?php echo esc_attr($item['_id']); ?>" data-elementor-open-lightbox="no" class="has-lightbox <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } ?>    
@@ -1673,12 +1673,12 @@ class TeamCarousel extends \Elementor\Widget_Base {
                             <div class="wbcom-team-overlay elementor-animation-<?php echo esc_attr($settings['box_content_animation']); ?>  <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                                 <div class="wbcom-team-texts">
                                     <?php if ($item['title']) { ?>
-                                    <div class="wbcom-team-title <?php if (($settings['title_entrance_animation']) && ($settings['title_entrance_animation'] != 'none')) { ?>animated wbcom-hide<?php } ?> <?php echo $settings['title_entrance_animation_duration']; ?>" data-animation="<?php echo $settings['title_entrance_animation']; ?>" data-exit="<?php echo $this->get_anim_exits($settings['title_entrance_animation']); ?>">
+                                    <div class="wbcom-team-title <?php if (($settings['title_entrance_animation']) && ($settings['title_entrance_animation'] != 'none')) { ?>animated wbcom-hide<?php } ?> <?php echo esc_attr( $settings['title_entrance_animation_duration'] ); ?>" data-animation="<?php echo esc_attr( $settings['title_entrance_animation'] ); ?>" data-exit="<?php echo esc_attr( $this->get_anim_exits($settings['title_entrance_animation']) ); ?>">
                                         <span><?php echo esc_html($item['title']); ?></span>
                                     </div>
                                     <?php } ?>
                                     <?php if ($item['subtitle']) { ?>
-                                    <div class="wbcom-team-subtitle <?php if (($settings['subtitle_entrance_animation']) && ($settings['subtitle_entrance_animation'] != 'none')) { ?>animated wbcom-hide<?php } ?> <?php echo $settings['subtitle_entrance_animation_duration']; ?>" data-animation="<?php echo $settings['subtitle_entrance_animation']; ?>" data-exit="<?php echo $this->get_anim_exits($settings['subtitle_entrance_animation']); ?>">
+                                    <div class="wbcom-team-subtitle <?php if (($settings['subtitle_entrance_animation']) && ($settings['subtitle_entrance_animation'] != 'none')) { ?>animated wbcom-hide<?php } ?> <?php echo esc_attr( $settings['subtitle_entrance_animation_duration'] ); ?>" data-animation="<?php echo esc_attr( $settings['subtitle_entrance_animation'] ); ?>" data-exit="<?php echo esc_attr( $this->get_anim_exits($settings['subtitle_entrance_animation']) ); ?>">
                                         <span><?php echo esc_html($item['subtitle']); ?></span>
                                     </div>
                                     <?php } ?>
@@ -1716,7 +1716,9 @@ class TeamCarousel extends \Elementor\Widget_Base {
             );
             ?>
             <?php $oembed = wp_oembed_get( $item['oembed'], $args ); ?>
-            <?php echo ( $oembed ) ? $oembed : $settings['oembed']; ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_oembed_get returns safe HTML from WordPress oEmbed
+            echo ( $oembed ) ? $oembed : $settings['oembed']; ?>
             </div>
             <?php } elseif (($item['lightbox_image']['url']) && ($item['lightbox_style'] == 'img')) { ?>
             <?php $lightbox_image_url = wp_get_attachment_image_url( $item['lightbox_image']['id'], 'full' );  ?>

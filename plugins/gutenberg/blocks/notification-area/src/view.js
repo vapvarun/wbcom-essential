@@ -30,18 +30,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const userDropdowns = document.querySelectorAll( '.wbcom-essential-na__user-toggle' );
 	userDropdowns.forEach( ( toggle ) => {
 		const wrapper = toggle.closest( '.wbcom-essential-na__user' );
-		const menu = wrapper?.querySelector( '.wbcom-essential-na__user-menu' );
 
 		toggle.addEventListener( 'click', ( e ) => {
 			e.preventDefault();
 			wrapper?.classList.toggle( 'is-open' );
-		} );
-
-		// Close on outside click.
-		document.addEventListener( 'click', ( e ) => {
-			if ( ! wrapper?.contains( e.target ) ) {
-				wrapper?.classList.remove( 'is-open' );
-			}
 		} );
 	} );
 
@@ -54,12 +46,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			e.preventDefault();
 			wrapper?.classList.toggle( 'is-open' );
 		} );
-
-		document.addEventListener( 'click', ( e ) => {
-			if ( ! wrapper?.contains( e.target ) ) {
-				wrapper?.classList.remove( 'is-open' );
-			}
-		} );
 	} );
 
 	// Notifications dropdown toggle.
@@ -70,12 +56,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		toggle?.addEventListener( 'click', ( e ) => {
 			e.preventDefault();
 			wrapper?.classList.toggle( 'is-open' );
-		} );
-
-		document.addEventListener( 'click', ( e ) => {
-			if ( ! wrapper?.contains( e.target ) ) {
-				wrapper?.classList.remove( 'is-open' );
-			}
 		} );
 	} );
 
@@ -88,10 +68,35 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			e.preventDefault();
 			wrapper?.classList.toggle( 'is-open' );
 		} );
+	} );
 
-		document.addEventListener( 'click', ( e ) => {
-			if ( ! wrapper?.contains( e.target ) ) {
-				wrapper?.classList.remove( 'is-open' );
+	// Single delegated listener for closing dropdowns on outside click.
+	document.addEventListener( 'click', ( e ) => {
+		// Close user dropdowns.
+		document.querySelectorAll( '.wbcom-essential-na__user.is-open' ).forEach( ( wrapper ) => {
+			if ( ! wrapper.contains( e.target ) ) {
+				wrapper.classList.remove( 'is-open' );
+			}
+		} );
+
+		// Close messages dropdowns.
+		document.querySelectorAll( '.wbcom-essential-na__messages.is-open' ).forEach( ( wrapper ) => {
+			if ( ! wrapper.contains( e.target ) ) {
+				wrapper.classList.remove( 'is-open' );
+			}
+		} );
+
+		// Close notifications dropdowns.
+		document.querySelectorAll( '.wbcom-essential-na__notifications.is-open' ).forEach( ( wrapper ) => {
+			if ( ! wrapper.contains( e.target ) ) {
+				wrapper.classList.remove( 'is-open' );
+			}
+		} );
+
+		// Close cart dropdowns.
+		document.querySelectorAll( '.wbcom-essential-na__cart.is-open' ).forEach( ( wrapper ) => {
+			if ( ! wrapper.contains( e.target ) ) {
+				wrapper.classList.remove( 'is-open' );
 			}
 		} );
 	} );

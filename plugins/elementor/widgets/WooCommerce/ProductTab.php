@@ -1451,8 +1451,8 @@ class ProductTab extends \Elementor\Widget_Base {
 											if ( $m == 1 ) {
 												echo 'htactive';}
 											?>
-											" href="#wbcomtab<?php echo $tabuniqid . esc_attr( $m ); ?>">
-											<?php echo esc_attr( $prod_cats->name, 'wbcom-essential' ); ?>
+											" href="#wbcomtab<?php echo esc_attr( $tabuniqid . $m ); ?>">
+											<?php echo esc_html( $prod_cats->name ); ?>
 											</a></li>
 										<?php
 								}
@@ -1468,12 +1468,13 @@ class ProductTab extends \Elementor\Widget_Base {
 				<?php
 				$j           = 0;
 				$tabcatargs  = array(
+					'taxonomy'   => 'product_cat',
 					'orderby'    => 'name',
 					'order'      => 'ASC',
 					'hide_empty' => true,
 					'slug'       => $product_cats,
 				);
-				$tabcat_fach = get_terms( 'product_cat', $tabcatargs );
+				$tabcat_fach = get_terms( $tabcatargs );
 				foreach ( $tabcat_fach as $cats ) :
 					++$j;
 					$field_name        = is_numeric( $product_cats[0] ) ? 'term_id' : 'slug';
@@ -1497,12 +1498,12 @@ class ProductTab extends \Elementor\Widget_Base {
 
 					if ( $products->have_posts() ) :
 						?>
-					<div class="wb-tab-pane 
+					<div class="wb-tab-pane
 						<?php
 						if ( $j == 1 ) {
 							echo 'htactive';}
 						?>
-					" id="<?php echo 'wbcomtab' . $tabuniqid . $j; ?>">
+					" id="<?php echo esc_attr( 'wbcomtab' . $tabuniqid . $j ); ?>">
 						
 						<div class="wb-row">
 							<div class="<?php echo esc_attr( $collumval ); ?>">
@@ -1542,7 +1543,7 @@ class ProductTab extends \Elementor\Widget_Base {
 															?>
 															<ul>
 															<?php
-																echo '<li class="attribute_label">' . wc_attribute_label( $attribute->get_name() ) . esc_html__( ':', 'wbcom-essential' ) . '</li>';
+																echo '<li class="attribute_label">' . esc_html( wc_attribute_label( $attribute->get_name() ) ) . esc_html__( ':', 'wbcom-essential' ) . '</li>';
 															if ( $attribute->is_taxonomy() ) {
 																global $wc_product_attributes;
 																$product_terms = wc_get_product_terms( $product->get_id(), $name, array( 'fields' => 'all' ) );
@@ -1551,11 +1552,11 @@ class ProductTab extends \Elementor\Widget_Base {
 																	$link              = get_term_link( $product_term->term_id, $name );
 																	$color             = get_term_meta( $product_term->term_id, 'color', true );
 																	if ( ! empty( $wc_product_attributes[ $name ]->attribute_public ) ) {
-																		echo '<li><a href="' . esc_url( $link ) . '" rel="tag">' . $product_term_name . '</a></li>';
+																		echo '<li><a href="' . esc_url( $link ) . '" rel="tag">' . esc_html( $product_term_name ) . '</a></li>';
 																	} elseif ( ! empty( $color ) ) {
-																			echo '<li class="color_attribute" style="background-color: ' . $color . ';">&nbsp;</li>';
+																			echo '<li class="color_attribute" style="background-color: ' . esc_attr( $color ) . ';">&nbsp;</li>';
 																	} else {
-																		echo '<li>' . $product_term_name . '</li>';
+																		echo '<li>' . esc_html( $product_term_name ) . '</li>';
 																	}
 																}
 															}
@@ -1568,7 +1569,7 @@ class ProductTab extends \Elementor\Widget_Base {
 													?>
 
 													<div class="content">
-														<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h4>
+														<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
 														<?php woocommerce_template_loop_price(); ?>
 														<?php do_action( 'wbcom_addon_after_price' ); ?>
 													</div>
@@ -1596,7 +1597,7 @@ class ProductTab extends \Elementor\Widget_Base {
 										</div>
 										
 										<div class="content">
-											<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h4>
+											<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
 											<?php woocommerce_template_loop_price(); ?>
 											<?php do_action( 'wbcom_addon_after_price' ); ?>
 										</div>
@@ -1627,7 +1628,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						$slider_main_div_style = '';
 					if ( $proslider == 'yes' ) {
 						$slider_main_div_style = "style='display:none'";
-						echo '<div id="product-slider-' . uniqid() . '" dir="' . $direction . '" class="product-slider" ' . $slider_main_div_style . ' data-settings=\'' . wp_json_encode( $slider_settings ) . '\'>';
+						echo '<div id="product-slider-' . esc_attr( uniqid() ) . '" dir="' . esc_attr( $direction ) . '" class="product-slider" ' . esc_attr( $slider_main_div_style ) . ' data-settings=\'' . esc_attr( wp_json_encode( $slider_settings ) ) . '\'>';
 					}
 					?>
 
@@ -1669,7 +1670,7 @@ class ProductTab extends \Elementor\Widget_Base {
 															?>
 															<ul>
 															<?php
-																echo '<li class="attribute_label">' . wc_attribute_label( $attribute->get_name() ) . esc_html__( ':', 'wbcom-essential' ) . '</li>';
+																echo '<li class="attribute_label">' . esc_html( wc_attribute_label( $attribute->get_name() ) ) . esc_html__( ':', 'wbcom-essential' ) . '</li>';
 															if ( $attribute->is_taxonomy() ) {
 																global $wc_product_attributes;
 																$product_terms = wc_get_product_terms( $product->get_id(), $name, array( 'fields' => 'all' ) );
@@ -1678,11 +1679,11 @@ class ProductTab extends \Elementor\Widget_Base {
 																	$link              = get_term_link( $product_term->term_id, $name );
 																	$color             = get_term_meta( $product_term->term_id, 'color', true );
 																	if ( ! empty( $wc_product_attributes[ $name ]->attribute_public ) ) {
-																		echo '<li><a href="' . esc_url( $link ) . '" rel="tag">' . $product_term_name . '</a></li>';
+																		echo '<li><a href="' . esc_url( $link ) . '" rel="tag">' . esc_html( $product_term_name ) . '</a></li>';
 																	} elseif ( ! empty( $color ) ) {
-																			echo '<li class="color_attribute" style="background-color: ' . $color . ';">&nbsp;</li>';
+																			echo '<li class="color_attribute" style="background-color: ' . esc_attr( $color ) . ';">&nbsp;</li>';
 																	} else {
-																		echo '<li>' . $product_term_name . '</li>';
+																		echo '<li>' . esc_html( $product_term_name ) . '</li>';
 																	}
 																}
 															}
@@ -1701,7 +1702,7 @@ class ProductTab extends \Elementor\Widget_Base {
 													</div>
 
 													<div class="content">
-														<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h4>
+														<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
 														<?php woocommerce_template_loop_price(); ?>
 														<?php do_action( 'wbcom_addon_after_price' ); ?>
 													</div>
@@ -1729,7 +1730,7 @@ class ProductTab extends \Elementor\Widget_Base {
 										</div>
 										
 										<div class="content">
-											<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h4>
+											<h4 class="title"><a href="<?php the_permalink(); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
 											<?php woocommerce_template_loop_price(); ?>
 											<?php do_action( 'wbcom_addon_after_price' ); ?>
 										</div>

@@ -35,6 +35,7 @@ $this->add_render_attribute( 'site-header', 'data-dark-icon', esc_attr( $setting
 $this->add_render_attribute( 'site-header', 'data-sidebartoggle-icon', esc_attr( $settings_sidebartoggle_icon ) );
 
 $this->add_render_attribute( 'site-header-container', 'class', 'container site-header-container flex default-header' );
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $this->get_render_attribute_string() is a safe Elementor method that returns escaped HTML
 $container = '<div ' . $this->get_render_attribute_string( 'site-header-container' ) . '>';
 
 $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';

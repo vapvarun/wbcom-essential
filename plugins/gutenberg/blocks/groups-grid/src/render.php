@@ -84,7 +84,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( bp_has_groups( $groups_args ) ) : ?>
 		<div class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>">
 			<?php

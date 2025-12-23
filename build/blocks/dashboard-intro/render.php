@@ -23,7 +23,7 @@ if ( ! is_user_logged_in() ) {
 			'class' => 'wbcom-essential-dashboard-intro logged-out',
 		) );
 		?>
-		<div <?php echo $wrapper_attributes; ?>>
+		<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 			<div class="wbcom-essential-logged-out-message">
 				<p><?php echo esc_html( $logged_out_message ); ?></p>
 			</div>
@@ -108,7 +108,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 ) );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-dashboard-intro-inner">
 		<?php if ( $show_avatar ) : ?>
 			<div class="wbcom-dashboard-intro-avatar">

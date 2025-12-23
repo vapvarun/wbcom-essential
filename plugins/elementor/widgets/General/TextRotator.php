@@ -432,20 +432,20 @@ class TextRotator extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 		if ( $settings['list'] ) {
 			?>
-			<?php echo '<' . $settings['html_tag'] . ' class="wbcom-anim-text-wrapper">'; ?>
-			<span class="wbcom-anim-text-prefix"><?php echo $settings['prefix_text']; ?></span>
-			<span class="wbcom-anim-text" style="display:none;" data-txtanim="<?php echo $settings['anim']; ?>" data-animduration="<?php echo $settings['anim_duration']; ?>">
-			<?php $last_key = end( $settings['list'] ); ?>    
-			<?php foreach ( $settings['list'] as $item ) { ?> 
-				<?php echo $item['title']; ?>
+			<?php echo '<' . esc_attr( $settings['html_tag'] ) . ' class="wbcom-anim-text-wrapper">'; ?>
+			<span class="wbcom-anim-text-prefix"><?php echo esc_html( $settings['prefix_text'] ); ?></span>
+			<span class="wbcom-anim-text" style="display:none;" data-txtanim="<?php echo esc_attr( $settings['anim'] ); ?>" data-animduration="<?php echo esc_attr( $settings['anim_duration'] ); ?>">
+			<?php $last_key = end( $settings['list'] ); ?>
+			<?php foreach ( $settings['list'] as $item ) { ?>
+				<?php echo esc_html( $item['title'] ); ?>
 						<?php
 						if ( $item != $last_key ) {
 							?>
 					| <?php } ?>
 			<?php } ?>
-			</span>    
-			<span class="wbcom-anim-text-suffix"><?php echo $settings['suffix_text']; ?></span>
-				<?php echo '</' . $settings['html_tag'] . '>'; ?>
+			</span>
+			<span class="wbcom-anim-text-suffix"><?php echo esc_html( $settings['suffix_text'] ); ?></span>
+				<?php echo '</' . esc_attr( $settings['html_tag'] ) . '>'; ?>
 			<?php
 		}
 	}

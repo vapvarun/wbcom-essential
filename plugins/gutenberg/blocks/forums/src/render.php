@@ -89,7 +89,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 $forums_url = function_exists( 'bbp_get_root_slug' ) ? home_url( bbp_get_root_slug() ) : '#';
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( $has_topics ) : ?>
 
 		<div class="wbcom-essential-block-header">

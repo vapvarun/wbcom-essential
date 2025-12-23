@@ -411,16 +411,20 @@ class SiteLogo extends \Elementor\Widget_Base {
 		} else {
 			if ( $settings['link']['url'] ) {
 				if ( $settings['before_image']['url'] ) {
-					echo '<a href="' . $settings['link']['url'] . '" class="wba-logo-desktop"' . $target . ' ' . $nofollow . '><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></a>';
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
+					echo '<a href="' . esc_url( $settings['link']['url'] ) . '" class="wba-logo-desktop"' . $target . ' ' . $nofollow . '><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></a>';
 				}
 				if ( $settings['after_image']['url'] && $settings['breakpoint'] ) {
-					echo '<a href="' . $settings['link']['url'] . '" class="wba-logo-mobile"' . $target . ' ' . $nofollow . '><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></a>';
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
+					echo '<a href="' . esc_url( $settings['link']['url'] ) . '" class="wba-logo-mobile"' . $target . ' ' . $nofollow . '><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></a>';
 				}
 			} else {
 				if ( $settings['before_image']['url'] ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<div class="wba-logo-desktop"><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></div>';
 				}
 				if ( $settings['after_image']['url'] && $settings['breakpoint'] ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<div class="wba-logo-mobile"><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></div>';
 				}
 			}
@@ -429,11 +433,11 @@ class SiteLogo extends \Elementor\Widget_Base {
 		</div>
 		<?php if ( isset( $settings['after_image']['url'] ) && $settings['breakpoint'] ) { ?>
 		<style>
-		@media screen and (min-width: <?php echo ( $settings['breakpoint'] + 1 ) . 'px'; ?>) {
+		@media screen and (min-width: <?php echo esc_attr( $settings['breakpoint'] + 1 ) . 'px'; ?>) {
 			.wba-logo-desktop span {display:block;}
 			.wba-logo-mobile span {display:none;}
 		}
-		@media screen and (max-width: <?php echo ( $settings['breakpoint'] ) . 'px'; ?>) {
+		@media screen and (max-width: <?php echo esc_attr( $settings['breakpoint'] ) . 'px'; ?>) {
 			.wba-logo-desktop span {display:none;}
 			.wba-logo-mobile span {display:block;}
 		}

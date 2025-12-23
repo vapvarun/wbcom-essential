@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/forums",
 	"version": "1.0.0",
 	"title": "Forums",
-	"category": "wbcom-starter",
+	"category": "wbcom-essential-buddypress",
 	"description": "Display a list of recent bbPress forum topics with avatars, meta data, and last reply excerpts.",
 	"keywords": [ "forums", "topics", "bbpress", "discussion", "community" ],
 	"textdomain": "wbcom-essential",

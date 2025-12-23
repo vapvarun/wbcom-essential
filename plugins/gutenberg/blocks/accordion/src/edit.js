@@ -69,8 +69,8 @@ export default function Edit( { attributes, setAttributes } ) {
 			...items,
 			{
 				id: newId,
-				title: __( 'New Accordion Item', 'accordion-block' ),
-				content: __( 'Add your content here…', 'accordion-block' ),
+				title: __( 'New Accordion Item', 'wbcom-essential' ),
+				content: __( 'Add your content here…', 'wbcom-essential' ),
 				isOpen: false,
 				selfBlock: false,
 				iconType: 'icon',
@@ -112,7 +112,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		<div>
 			<InspectorControls>
 				<PanelBody
-					title={ __( 'Accordion Items', 'accordion-block' ) }
+					title={ __( 'Accordion Items', 'wbcom-essential' ) }
 					initialOpen={ true }
 				>
 					<div className="accordion-items-list">
@@ -142,7 +142,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								</span>
 								<span className="item-title">
 									{ item.title ||
-										__( 'Untitled', 'accordion-block' ) }
+										__( 'Untitled', 'wbcom-essential' ) }
 								</span>
 								<Button
 									icon="trash"
@@ -150,7 +150,7 @@ export default function Edit( { attributes, setAttributes } ) {
 										e.stopPropagation();
 										removeItem( item.id );
 									} }
-									label={ __( 'Remove', 'accordion-block' ) }
+									label={ __( 'Remove', 'wbcom-essential' ) }
 									isDestructive
 									isSmall
 								/>
@@ -162,31 +162,31 @@ export default function Edit( { attributes, setAttributes } ) {
 						onClick={ addItem }
 						className="add-accordion-item-sidebar"
 					>
-						{ __( '+ Add Item', 'accordion-block' ) }
+						{ __( '+ Add Item', 'wbcom-essential' ) }
 					</Button>
 				</PanelBody>
 
 				{ selectedItem && (
 					<PanelBody
-						title={ __( 'Edit Selected Item', 'accordion-block' ) }
+						title={ __( 'Edit Selected Item', 'wbcom-essential' ) }
 						initialOpen={ true }
 					>
 						<TextControl
-							label={ __( 'Accordion Title', 'accordion-block' ) }
+							label={ __( 'Accordion Title', 'wbcom-essential' ) }
 							value={ selectedItem.title }
 							onChange={ ( value ) =>
 								updateItem( selectedItem.id, 'title', value )
 							}
 							help={ __(
 								'Enter the title for this accordion item',
-								'accordion-block'
+								'wbcom-essential'
 							) }
 						/>
 						<hr />
 						<TextareaControl
 							label={ __(
 								'Accordion Content',
-								'accordion-block'
+								'wbcom-essential'
 							) }
 							value={ selectedItem.content }
 							onChange={ ( value ) =>
@@ -194,28 +194,28 @@ export default function Edit( { attributes, setAttributes } ) {
 							}
 							help={ __(
 								'Enter the content for this accordion item',
-								'accordion-block'
+								'wbcom-essential'
 							) }
 							rows={ 8 }
 						/>
 						<hr />
 						<SelectControl
-							label={ __( 'Icon Type', 'accordion-block' ) }
+							label={ __( 'Icon Type', 'wbcom-essential' ) }
 							value={ selectedItem.iconType || 'icon' }
 							options={ [
 								{
-									label: __( 'Icon', 'accordion-block' ),
+									label: __( 'Icon', 'wbcom-essential' ),
 									value: 'icon',
 								},
 								{
 									label: __(
 										'Text/Number',
-										'accordion-block'
+										'wbcom-essential'
 									),
 									value: 'text',
 								},
 								{
-									label: __( 'None', 'accordion-block' ),
+									label: __( 'None', 'wbcom-essential' ),
 									value: 'none',
 								},
 							] }
@@ -225,7 +225,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 						{ selectedItem.iconType === 'text' && (
 							<TextControl
-								label={ __( 'Icon Text', 'accordion-block' ) }
+								label={ __( 'Icon Text', 'wbcom-essential' ) }
 								value={ selectedItem.iconText || '' }
 								onChange={ ( value ) =>
 									updateItem(
@@ -240,7 +240,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							<TextControl
 								label={ __(
 									'Dashicon Class',
-									'accordion-block'
+									'wbcom-essential'
 								) }
 								value={
 									selectedItem.icon || 'dashicons-arrow-down'
@@ -250,13 +250,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								}
 								help={ __(
 									'e.g., dashicons-arrow-down',
-									'accordion-block'
+									'wbcom-essential'
 								) }
 							/>
 						) }
 						<hr />
 						<ToggleControl
-							label={ __( 'Open by Default', 'accordion-block' ) }
+							label={ __( 'Open by Default', 'wbcom-essential' ) }
 							checked={ selectedItem.isOpen || false }
 							onChange={ ( value ) =>
 								updateItem( selectedItem.id, 'isOpen', value )
@@ -266,11 +266,11 @@ export default function Edit( { attributes, setAttributes } ) {
 				) }
 
 				<PanelBody
-					title={ __( 'Accordion Settings', 'accordion-block' ) }
+					title={ __( 'Accordion Settings', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
 					<SelectControl
-						label={ __( 'Title HTML Tag', 'accordion-block' ) }
+						label={ __( 'Title HTML Tag', 'wbcom-essential' ) }
 						value={ titleTag }
 						options={ [
 							{ label: 'H1', value: 'h1' },
@@ -288,10 +288,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<hr />
 					<ToggleControl
-						label={ __( 'Open Single', 'accordion-block' ) }
+						label={ __( 'Open Single', 'wbcom-essential' ) }
 						help={ __(
 							'Only one accordion item can be open at a time',
-							'accordion-block'
+							'wbcom-essential'
 						) }
 						checked={ openSingle }
 						onChange={ ( value ) =>
@@ -299,10 +299,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<ToggleControl
-						label={ __( 'Self Close', 'accordion-block' ) }
+						label={ __( 'Self Close', 'wbcom-essential' ) }
 						help={ __(
 							'Close accordion when clicking outside',
-							'accordion-block'
+							'wbcom-essential'
 						) }
 						checked={ selfClose }
 						onChange={ ( value ) =>
@@ -310,10 +310,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<ToggleControl
-						label={ __( 'Enable FAQ Schema', 'accordion-block' ) }
+						label={ __( 'Enable FAQ Schema', 'wbcom-essential' ) }
 						help={ __(
 							'Add FAQ schema markup for SEO',
-							'accordion-block'
+							'wbcom-essential'
 						) }
 						checked={ enableFaqSchema }
 						onChange={ ( value ) =>
@@ -322,10 +322,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<hr />
 					<ToggleControl
-						label={ __( 'Auto Scroll', 'accordion-block' ) }
+						label={ __( 'Auto Scroll', 'wbcom-essential' ) }
 						help={ __(
 							'Scroll to accordion item when opened',
-							'accordion-block'
+							'wbcom-essential'
 						) }
 						checked={ autoScroll }
 						onChange={ ( value ) =>
@@ -337,7 +337,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							<RangeControl
 								label={ __(
 									'Scroll Offset (px)',
-									'accordion-block'
+									'wbcom-essential'
 								) }
 								value={ scrollOffset }
 								onChange={ ( value ) =>
@@ -349,7 +349,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							<RangeControl
 								label={ __(
 									'Scroll Speed (ms)',
-									'accordion-block'
+									'wbcom-essential'
 								) }
 								value={ scrollSpeed }
 								onChange={ ( value ) =>
@@ -364,11 +364,11 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Animation Settings', 'accordion-block' ) }
+					title={ __( 'Animation Settings', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
 					<RangeControl
-						label={ __( 'Open Speed (ms)', 'accordion-block' ) }
+						label={ __( 'Open Speed (ms)', 'wbcom-essential' ) }
 						value={ openSpeed }
 						onChange={ ( value ) =>
 							setAttributes( { openSpeed: value } )
@@ -378,7 +378,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						step={ 50 }
 					/>
 					<RangeControl
-						label={ __( 'Close Speed (ms)', 'accordion-block' ) }
+						label={ __( 'Close Speed (ms)', 'wbcom-essential' ) }
 						value={ closeSpeed }
 						onChange={ ( value ) =>
 							setAttributes( { closeSpeed: value } )
@@ -390,11 +390,11 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Spacing Settings', 'accordion-block' ) }
+					title={ __( 'Spacing Settings', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
 					<RangeControl
-						label={ __( 'Item Spacing (px)', 'accordion-block' ) }
+						label={ __( 'Item Spacing (px)', 'wbcom-essential' ) }
 						value={ itemSpacing }
 						onChange={ ( value ) =>
 							setAttributes( { itemSpacing: value } )
@@ -403,7 +403,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 50 }
 					/>
 					<RangeControl
-						label={ __( 'Border Width (px)', 'accordion-block' ) }
+						label={ __( 'Border Width (px)', 'wbcom-essential' ) }
 						value={ borderWidth }
 						onChange={ ( value ) =>
 							setAttributes( { borderWidth: value } )
@@ -412,7 +412,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 10 }
 					/>
 					<RangeControl
-						label={ __( 'Border Radius (px)', 'accordion-block' ) }
+						label={ __( 'Border Radius (px)', 'wbcom-essential' ) }
 						value={ borderRadius }
 						onChange={ ( value ) =>
 							setAttributes( { borderRadius: value } )
@@ -423,16 +423,16 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Typography Settings', 'accordion-block' ) }
+					title={ __( 'Typography Settings', 'wbcom-essential' ) }
 					initialOpen={ true }
 				>
 					<p>
 						<strong>
-							{ __( 'Title Typography', 'accordion-block' ) }
+							{ __( 'Title Typography', 'wbcom-essential' ) }
 						</strong>
 					</p>
 					<RangeControl
-						label={ __( 'Font Size (px)', 'accordion-block' ) }
+						label={ __( 'Font Size (px)', 'wbcom-essential' ) }
 						value={ titleFontSize }
 						onChange={ ( value ) =>
 							setAttributes( { titleFontSize: value } )
@@ -441,7 +441,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 50 }
 					/>
 					<SelectControl
-						label={ __( 'Font Weight', 'accordion-block' ) }
+						label={ __( 'Font Weight', 'wbcom-essential' ) }
 						value={ titleFontWeight }
 						options={ [
 							{ label: 'Light', value: '300' },
@@ -456,7 +456,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<RangeControl
-						label={ __( 'Line Height', 'accordion-block' ) }
+						label={ __( 'Line Height', 'wbcom-essential' ) }
 						value={ titleLineHeight }
 						onChange={ ( value ) =>
 							setAttributes( { titleLineHeight: value } )
@@ -468,11 +468,11 @@ export default function Edit( { attributes, setAttributes } ) {
 					<hr />
 					<p>
 						<strong>
-							{ __( 'Content Typography', 'accordion-block' ) }
+							{ __( 'Content Typography', 'wbcom-essential' ) }
 						</strong>
 					</p>
 					<RangeControl
-						label={ __( 'Font Size (px)', 'accordion-block' ) }
+						label={ __( 'Font Size (px)', 'wbcom-essential' ) }
 						value={ contentFontSize }
 						onChange={ ( value ) =>
 							setAttributes( { contentFontSize: value } )
@@ -481,7 +481,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 30 }
 					/>
 					<SelectControl
-						label={ __( 'Font Weight', 'accordion-block' ) }
+						label={ __( 'Font Weight', 'wbcom-essential' ) }
 						value={ contentFontWeight }
 						options={ [
 							{ label: 'Light', value: '300' },
@@ -495,7 +495,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<RangeControl
-						label={ __( 'Line Height', 'accordion-block' ) }
+						label={ __( 'Line Height', 'wbcom-essential' ) }
 						value={ contentLineHeight }
 						onChange={ ( value ) =>
 							setAttributes( { contentLineHeight: value } )
@@ -507,12 +507,12 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Color Settings', 'accordion-block' ) }
+					title={ __( 'Color Settings', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
 					<p>
 						<strong>
-							{ __( 'Title Color', 'accordion-block' ) }
+							{ __( 'Title Color', 'wbcom-essential' ) }
 						</strong>
 					</p>
 					<ColorPicker
@@ -526,7 +526,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						<strong>
 							{ __(
 								'Title Background Color',
-								'accordion-block'
+								'wbcom-essential'
 							) }
 						</strong>
 					</p>
@@ -539,7 +539,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<hr />
 					<p>
 						<strong>
-							{ __( 'Content Color', 'accordion-block' ) }
+							{ __( 'Content Color', 'wbcom-essential' ) }
 						</strong>
 					</p>
 					<ColorPicker
@@ -553,7 +553,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						<strong>
 							{ __(
 								'Content Background Color',
-								'accordion-block'
+								'wbcom-essential'
 							) }
 						</strong>
 					</p>
@@ -566,7 +566,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<hr />
 					<p>
 						<strong>
-							{ __( 'Border Color', 'accordion-block' ) }
+							{ __( 'Border Color', 'wbcom-essential' ) }
 						</strong>
 					</p>
 					<ColorPicker
@@ -586,7 +586,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				>
 					{ __(
 						'Use the sidebar panel to manage accordion items and edit their title and content. Select an item from the list to edit it.',
-						'accordion-block'
+						'wbcom-essential'
 					) }
 				</Notice>
 				<div className="accordion-wrapper">
@@ -664,7 +664,7 @@ export default function Edit( { attributes, setAttributes } ) {
 										{ item.title ||
 											__(
 												'Untitled',
-												'accordion-block'
+												'wbcom-essential'
 											) }
 									</span>
 									<span className="accordion-arrow"></span>
@@ -678,7 +678,7 @@ export default function Edit( { attributes, setAttributes } ) {
 										{ item.content ||
 											__(
 												'No content',
-												'accordion-block'
+												'wbcom-essential'
 											) }
 									</div>
 								) }
@@ -689,7 +689,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									>
 										{ __(
 											'✓ Selected - Edit in sidebar',
-											'accordion-block'
+											'wbcom-essential'
 										) }
 									</div>
 								) }

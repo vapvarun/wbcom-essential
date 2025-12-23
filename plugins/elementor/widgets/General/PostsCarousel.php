@@ -792,7 +792,7 @@ class PostsCarousel extends Widget_Base {
 			$return .= '<div class="wbclear"></div>';
 
 		if ( $wbcom_animate == 'on' ) { // ANIMATION ON
-			$return .= '<div class="animate-in" data-anim-type="' . $wbcom_animate_effect . '" data-anim-delay="' . $wbcom_delay . '">';
+			$return .= '<div class="animate-in" data-anim-type="' . esc_attr($wbcom_animate_effect) . '" data-anim-delay="' . esc_attr($wbcom_delay) . '">';
 		}
 
 		/*
@@ -818,12 +818,12 @@ class PostsCarousel extends Widget_Base {
 
 							$return         .= '<div class="wb-info-left">';
 									$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-									$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+									$return .= '<span class="wb-title"><a href="' . esc_url($link) . '">' . esc_html(get_the_title()) . '</a></span>';
 					if ( $wbcom_carousel_excerpt == 'true' ) {
 						$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_carousel_excerpt_number ) . '</span>';
 					}
-									$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-									$return .= '<span class="wb-date">' . get_the_date( $wbcom_carousel_date_format ) . '</span>';
+									$return .= '<span class="wb-author">' . esc_html(get_the_author()) . '</span>';
+									$return .= '<span class="wb-date">' . esc_html(get_the_date( $wbcom_carousel_date_format )) . '</span>';
 							$return         .= '</div>';
 
 					$return .= '</div>';
@@ -857,7 +857,7 @@ class PostsCarousel extends Widget_Base {
 
 									$return         .= '<div class="wb-info-left">';
 											$return .= '<span class="wb-category">' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-											$return .= '<span class="wb-title"><a href="' . $link . '">' . get_the_title() . '</a></span>';
+											$return .= '<span class="wb-title"><a href="' . esc_url($link) . '">' . esc_html(get_the_title()) . '</a></span>';
 					if ( $wbcom_carousel_excerpt == 'true' ) {
 						$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_carousel_excerpt_number ) . '</span>';
 					}
@@ -882,6 +882,7 @@ class PostsCarousel extends Widget_Base {
 			$return .= '</div>';
 
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $return contains pre-escaped HTML from WordPress functions
 		echo $return;
 	}
 

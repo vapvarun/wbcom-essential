@@ -1111,7 +1111,7 @@ class Testimonial extends \Elementor\Widget_Base {
 		$img_url = wp_get_attachment_image_url( $settings['image']['id'], $settings['img_size'] );
 		?>
 		<div class="wbcom-testimonials-item">
-			<div class="wbcom-testimonials-content <?php echo $settings['content_arrow']; ?>">
+			<div class="wbcom-testimonials-content <?php echo esc_attr( $settings['content_arrow'] ); ?>">
 				<?php echo wp_kses_post( $settings['content'] ); ?>
 			</div>
 			<div class="wbcom-testimonials-person">

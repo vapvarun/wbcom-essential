@@ -80,17 +80,26 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			} );
 		} );
 
-		if ( settings.selfClose ) {
-			document.addEventListener( 'click', function ( e ) {
-				if ( ! accordion.contains( e.target ) ) {
-					items.forEach( function ( item ) {
-						if ( item.classList.contains( 'is-open' ) ) {
-							closeItem( item, settings );
-						}
-					} );
-				}
-			} );
-		}
+	} );
+
+	// Single delegated listener for selfClose functionality.
+	document.addEventListener( 'click', function ( e ) {
+		accordions.forEach( function ( accordion ) {
+			const selfClose = accordion.dataset.selfclose === 'true';
+			if ( ! selfClose ) {
+				return;
+			}
+
+			if ( ! accordion.contains( e.target ) ) {
+				const items = accordion.querySelectorAll( '.accordion-item.is-open' );
+				const settings = {
+					closeSpeed: parseInt( accordion.dataset.closespeed ) || 200,
+				};
+				items.forEach( function ( item ) {
+					closeItem( item, settings );
+				} );
+			}
+		} );
 	} );
 
 	function openItem( item, settings ) {

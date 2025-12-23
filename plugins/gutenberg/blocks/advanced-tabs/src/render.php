@@ -91,7 +91,8 @@ if ( $content_color || $content_bg_color || $content_border_color ) {
 	<style><?php echo wp_kses_post( $inline_styles ); ?></style>
 <?php endif; ?>
 
-<div 
+<div
+	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>
 	<?php echo get_block_wrapper_attributes( array( 'class' => "layout-{$layout}", 'id' => $unique_id ) ); ?>
 	data-enable-url-hash="<?php echo $enable_url_hash ? 'true' : 'false'; ?>"
 >

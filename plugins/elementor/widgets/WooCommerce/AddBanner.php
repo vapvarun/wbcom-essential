@@ -334,6 +334,7 @@ class AddBanner extends \Elementor\Widget_Base {
 		$nofollow = $settings['buttonlink']['nofollow'] ? ' rel="nofollow"' : '';
 
 		?>
+			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_render_attribute_string() returns escaped HTML ?>
 			<div <?php echo $this->get_render_attribute_string( 'area_attr' ); ?> >
 				<div class="wbcom-content">
 					<?php
@@ -344,12 +345,15 @@ class AddBanner extends \Elementor\Widget_Base {
 						echo '<h2 class="banner_title">' . esc_html( $settings['bannertitle'] ) . '</h2>';
 					}
 					if ( ! empty( $settings['buttontxt'] ) ) {
-						echo '<a class="banner_button" href="' . esc_url( $settings['buttonlink']['url'] ) . '" ' . $target . $nofollow . '>' . esc_html__( $settings['buttontxt'], 'wbcom-essential' ) . '</a>';
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $target and $nofollow are hardcoded safe strings
+						echo '<a class="banner_button" href="' . esc_url( $settings['buttonlink']['url'] ) . '" ' . $target . $nofollow . '>' . esc_html( $settings['buttontxt'] ) . '</a>';
 					}
 					?>
 				</div>
 				<div class="wbcom-banner-img">
+					<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $target and $nofollow are hardcoded safe strings ?>
 					<a href="<?php echo esc_url( $settings['buttonlink']['url'] ); ?>" <?php echo $target . $nofollow; ?> >
+						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's get_attachment_image_html() returns escaped HTML ?>
 						<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'bannerimagesize', 'bannerimage' ); ?>
 					</a>
 				</div>

@@ -242,9 +242,9 @@ class Skin_Cards extends Skin_Base {
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-post__card .elementor-post__badge' => 'background-color: {{VALUE}};',
 				),
-				'global' => [
+				'global'    => array(
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
-				],
+				),
 				'condition' => array(
 					$this->get_control_id( 'show_badge' ) => 'yes',
 				),
@@ -330,9 +330,9 @@ class Skin_Cards extends Skin_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'      => 'badge_typography',
-				'global' => [
-			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
-		],
+				'global'    => array(
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+				),
 				'selector'  => '{{WRAPPER}} .elementor-post__card .elementor-post__badge',
 				'exclude'   => array( 'font_size', 'line-height' ),
 				'condition' => array(
@@ -648,7 +648,10 @@ class Skin_Cards extends Skin_Base {
 	protected function render_avatar() {
 		?>
 		<div class="elementor-post__avatar">
-			<?php echo get_avatar( get_the_author_meta( 'ID' ), 128, '', get_the_author_meta( 'display_name' ) ); ?>
+			<?php
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_avatar() is a safe WordPress core function that returns escaped HTML
+			echo get_avatar( get_the_author_meta( 'ID' ), 128, '', get_the_author_meta( 'display_name' ) );
+			?>
 		</div>
 		<?php
 	}
@@ -692,8 +695,8 @@ class Skin_Cards extends Skin_Base {
 			return;
 		}
 		?>
-		<a class="elementor-post__thumbnail__link" href="<?php echo get_permalink(); ?>">
-			<div class="elementor-post__thumbnail"><?php echo $thumbnail_html; ?></div>
+		<a class="elementor-post__thumbnail__link" href="<?php echo esc_url( get_permalink() ); ?>">
+			<div class="elementor-post__thumbnail"><?php echo wp_kses_post( $thumbnail_html ); ?></div>
 		</a>
 		<?php
 

@@ -60,7 +60,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 $texts_json = wp_json_encode( array_column( $rotating_texts, 'text' ) );
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<<?php echo esc_html( $html_tag ); ?> class="wbcom-text-rotator-wrapper">
 		<?php if ( $prefix_text ) : ?>
 			<span class="wbcom-text-rotator-prefix"><?php echo esc_html( $prefix_text ); ?> </span>

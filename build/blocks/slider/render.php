@@ -164,6 +164,7 @@ if ( $nav_dots_mobile ) {
 		<?php if ( $show_dots ) : ?>
 			<div class="<?php echo esc_attr( $dots_classes ); ?>">
 				<?php for ( $i = 0; $i < count( $slides ); $i++ ) : ?>
+					<?php /* translators: %d: Slide number */ ?>
 					<button class="wbcom-slider-dot" data-slide="<?php echo esc_attr( $i ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Go to slide %d', 'wbcom-essential' ), $i + 1 ) ); ?>"></button>
 				<?php endfor; ?>
 			</div>

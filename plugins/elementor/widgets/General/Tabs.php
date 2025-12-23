@@ -766,7 +766,7 @@ class Tabs extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$rand     = '-' . rand();
+		$rand     = '-' . wp_rand();
 
 		if ( ! empty( $settings['list'] ) ) { ?>
 			<div class="wbcom-tabs <?php echo esc_attr( $settings['tab_layout'] ); ?>">

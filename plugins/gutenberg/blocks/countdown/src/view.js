@@ -27,6 +27,7 @@
 		}
 
 		const targetTime = new Date( dueDate ).getTime();
+		let intervalId = null;
 
 		/**
 		 * Update countdown display
@@ -36,7 +37,11 @@
 			const diff = targetTime - now;
 
 			if ( diff <= 0 ) {
-				// Countdown expired
+				// Countdown expired - clear interval to prevent memory leak.
+				if ( intervalId ) {
+					clearInterval( intervalId );
+					intervalId = null;
+				}
 				countdown.style.display = 'none';
 				if ( message ) {
 					message.style.display = 'block';
@@ -78,8 +83,8 @@
 
 		// Initial update
 		if ( updateCountdown() ) {
-			// Start interval
-			setInterval( updateCountdown, 1000 );
+			// Start interval and save reference for cleanup.
+			intervalId = setInterval( updateCountdown, 1000 );
 		}
 	}
 

@@ -3,7 +3,7 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, buddypress, woocommerce, widgets, page builder
 Requires at least: 5.0
-Tested up to: 6.8.2
+Tested up to: 6.9
 Stable tag: 4.0.0
 Requires PHP: 7.2
 License: GPLv2 or later

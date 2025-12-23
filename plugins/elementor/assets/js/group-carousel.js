@@ -6,7 +6,6 @@
             var elementSettings = $(this).data('settings');
             
             if (!elementSettings) {
-                console.warn('No settings found for the carousel.');
                 return;
             }
 

@@ -70,7 +70,7 @@ if ( $enable_faq_schema && ! empty( $items ) ) {
 }
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="accordion-wrapper">
 		<?php if ( ! empty( $items ) ) : ?>
 			<?php foreach ( $items as $index => $item ) : ?>
@@ -139,7 +139,7 @@ if ( $enable_faq_schema && ! empty( $items ) ) {
 				</div>
 			<?php endforeach; ?>
 		<?php else : ?>
-			<p><?php esc_html_e( 'No accordion items found. Please add items in the editor.', 'accordion-block' ); ?></p>
+			<p><?php esc_html_e( 'No accordion items found. Please add items in the editor.', 'wbcom-essential' ); ?></p>
 		<?php endif; ?>
 	</div>
 </div>

@@ -197,14 +197,14 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			}
 			
 			// Use the advanced quick registration system
-			\Wbcom_Shared_Loader::quick_register( 
+			\Wbcom_Shared_Loader::quick_register(
 				WBCOM_ESSENTIAL_FILE,
 				array(
 					'menu_title'    => 'Essential Widgets',
 					'slug'          => 'wbcom-essential',
 					'priority'      => 5,
 					'icon'          => 'dashicons-screenoptions',
-					'description'   => '43+ premium Elementor widgets for BuddyPress, WooCommerce, and general purpose websites.',
+					'description'   => '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.',
 					'settings_url'  => admin_url( 'admin.php?page=wbcom-essential' ),
 					'status'        => 'active',
 					'version'       => WBCOM_ESSENTIAL_VERSION,
