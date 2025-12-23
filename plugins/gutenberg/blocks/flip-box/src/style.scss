@@ -1,0 +1,271 @@
+/**
+ * Flip Box Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-flip-box {
+	--flip-box-width: 300px;
+	--flip-box-height: 300px;
+	--flip-box-align: center;
+	--flip-duration: 0.6s;
+	--flip-timing: ease;
+	--flip-front-bg: #f5f5f5;
+	--flip-front-title: #1a1a1a;
+	--flip-front-content: #666666;
+	--flip-front-icon: #3182ce;
+	--flip-front-icon-size: 48px;
+	--flip-back-bg: #3182ce;
+	--flip-back-title: #ffffff;
+	--flip-back-content: rgba(255, 255, 255, 0.9);
+	--flip-back-icon: #ffffff;
+	--flip-back-icon-size: 48px;
+	--flip-btn-bg: #ffffff;
+	--flip-btn-text: #3182ce;
+	--flip-radius: 8px;
+
+	display: flex;
+	justify-content: var(--flip-box-align);
+}
+
+// Wrapper with 3D perspective
+.wbcom-flip-box-wrapper {
+	perspective: 1000px;
+	width: 100%;
+	max-width: var(--flip-box-width);
+	height: var(--flip-box-height);
+}
+
+// Inner container with 3D transform
+.wbcom-flip-box-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition-duration: var(--flip-duration);
+	transition-timing-function: var(--flip-timing);
+	cursor: pointer;
+}
+
+// Shared styles for front and back
+.wbcom-flip-box-front,
+.wbcom-flip-box-back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	box-sizing: border-box;
+	border-radius: var(--flip-radius);
+	text-align: center;
+	overflow: hidden;
+}
+
+// Front side
+.wbcom-flip-box-front {
+	z-index: 2;
+	background: var(--flip-front-bg);
+
+	.wbcom-flip-box-icon {
+		color: var(--flip-front-icon);
+
+		.dashicons {
+			font-size: var(--flip-front-icon-size);
+			width: var(--flip-front-icon-size);
+			height: var(--flip-front-icon-size);
+		}
+	}
+
+	.wbcom-flip-box-title {
+		color: var(--flip-front-title);
+	}
+
+	.wbcom-flip-box-content {
+		color: var(--flip-front-content);
+	}
+}
+
+// Back side (default rotation for flip-right)
+.wbcom-flip-box-back {
+	background: var(--flip-back-bg);
+	transform: rotateY(180deg);
+
+	.wbcom-flip-box-icon {
+		color: var(--flip-back-icon);
+
+		.dashicons {
+			font-size: var(--flip-back-icon-size);
+			width: var(--flip-back-icon-size);
+			height: var(--flip-back-icon-size);
+		}
+	}
+
+	.wbcom-flip-box-title {
+		color: var(--flip-back-title);
+	}
+
+	.wbcom-flip-box-content {
+		color: var(--flip-back-content);
+	}
+}
+
+// Icon styling
+.wbcom-flip-box-icon {
+	margin-bottom: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// Title styling
+.wbcom-flip-box-title {
+	margin: 0 0 12px;
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+// Content styling
+.wbcom-flip-box-content {
+	margin: 0 0 16px;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+}
+
+// Button styling
+.wbcom-flip-box-button {
+	display: inline-block;
+	padding: 10px 24px;
+	background: var(--flip-btn-bg);
+	color: var(--flip-btn-text);
+	text-decoration: none;
+	font-weight: 500;
+	border-radius: 4px;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	margin-top: auto;
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	}
+}
+
+// ============================================
+// Flip Directions
+// ============================================
+
+// Flip Right (default)
+.wbcom-flip-box-wrapper.flip-right {
+	.wbcom-flip-box-back {
+		transform: rotateY(180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotateY(180deg);
+	}
+}
+
+// Flip Left
+.wbcom-flip-box-wrapper.flip-left {
+	.wbcom-flip-box-back {
+		transform: rotateY(-180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotateY(-180deg);
+	}
+}
+
+// Flip Up
+.wbcom-flip-box-wrapper.flip-up {
+	.wbcom-flip-box-back {
+		transform: rotateX(180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotateX(180deg);
+	}
+}
+
+// Flip Down
+.wbcom-flip-box-wrapper.flip-down {
+	.wbcom-flip-box-back {
+		transform: rotateX(-180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotateX(-180deg);
+	}
+}
+
+// Flip Diagonal Right
+.wbcom-flip-box-wrapper.flip-diagonal-right {
+	.wbcom-flip-box-back {
+		transform: rotate3d(1, 1, 0, 180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotate3d(1, 1, 0, 180deg);
+	}
+}
+
+// Flip Diagonal Left
+.wbcom-flip-box-wrapper.flip-diagonal-left {
+	.wbcom-flip-box-back {
+		transform: rotate3d(1, 1, 0, -180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotate3d(1, 1, 0, -180deg);
+	}
+}
+
+// Flip Inverted Diagonal Right
+.wbcom-flip-box-wrapper.flip-inverted-diagonal-right {
+	.wbcom-flip-box-back {
+		transform: rotate3d(-1, 1, 0, 180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotate3d(-1, 1, 0, 180deg);
+	}
+}
+
+// Flip Inverted Diagonal Left
+.wbcom-flip-box-wrapper.flip-inverted-diagonal-left {
+	.wbcom-flip-box-back {
+		transform: rotate3d(1, -1, 0, 180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotate3d(1, -1, 0, 180deg);
+	}
+}
+
+// ============================================
+// Responsive
+// ============================================
+@media (max-width: 600px) {
+	.wbcom-flip-box-wrapper {
+		max-width: 100%;
+	}
+
+	.wbcom-flip-box-front,
+	.wbcom-flip-box-back {
+		padding: 20px;
+	}
+
+	.wbcom-flip-box-title {
+		font-size: 1.125rem;
+	}
+
+	.wbcom-flip-box-content {
+		font-size: 0.875rem;
+	}
+}
