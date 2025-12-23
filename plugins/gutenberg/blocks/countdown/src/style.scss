@@ -1,0 +1,62 @@
+/**
+ * Countdown Block - Frontend Styles
+ */
+
+.wbcom-essential-countdown {
+	.wbcom-countdown {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-right: auto;
+		margin-left: auto;
+		flex-direction: row;
+
+		> div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: nowrap;
+			line-height: 1.1;
+			flex-basis: 0;
+			flex-grow: 1;
+			font-size: 20px;
+			width: 100%;
+		}
+
+		// Layout variations
+		&.h-layout > div {
+			flex-direction: row;
+		}
+
+		&.v-layout > div {
+			flex-direction: column;
+		}
+
+		&.h-layout-reverse > div {
+			flex-direction: row-reverse;
+		}
+
+		&.v-layout-reverse > div {
+			flex-direction: column-reverse;
+		}
+	}
+
+	.wbcom-countdown-value {
+		font-size: 60px;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.wbcom-countdown-label {
+		font-size: 16px;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.wbcom-countdown-msg {
+		text-align: center;
+		font-size: 24px;
+		padding: 20px;
+	}
+}
