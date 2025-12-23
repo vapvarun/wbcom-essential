@@ -1,0 +1,192 @@
+/**
+ * Members Lists Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-members-lists {
+	padding: 10px;
+}
+
+.wbcom-members-lists-preview {
+	--box-border-color: #e3e3e3;
+	--box-border-radius: 4px;
+	--box-bg-color: #ffffff;
+	--filter-border-color: #e3e3e3;
+	--avatar-size: 40px;
+	--avatar-radius: 50%;
+	--avatar-spacing: 15px;
+	--online-color: #1cd991;
+	--online-size: 13px;
+	--name-color: #122b46;
+	--row-space: 10px;
+	--link-color: inherit;
+}
+
+.wbcom-members-lists-box {
+	border: 1px solid var(--box-border-color);
+	border-radius: var(--box-border-radius);
+	padding: 20px;
+	background-color: var(--box-bg-color);
+}
+
+.wbcom-members-lists-header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 22px;
+}
+
+.wbcom-members-lists-title {
+	margin: 0;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.wbcom-members-lists-link {
+	margin-left: auto;
+	font-size: 12px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+	color: var(--link-color);
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+
+	.dashicons {
+		font-size: 14px;
+		width: 14px;
+		height: 14px;
+	}
+}
+
+.wbcom-members-lists-filters {
+	border-bottom: 1px solid var(--filter-border-color);
+	margin: -10px 0 15px;
+	padding: 0;
+
+	&.border-solid {
+		border-bottom-style: solid;
+	}
+
+	&.border-dashed {
+		border-bottom-style: dashed;
+	}
+
+	&.border-dotted {
+		border-bottom-style: dotted;
+	}
+
+	&.border-double {
+		border-bottom-style: double;
+	}
+
+	&.border-none {
+		border-bottom-style: none;
+	}
+}
+
+.wbcom-filter-tab {
+	color: #9c9c9c;
+	font-size: 0.875rem;
+	font-weight: 500;
+	display: inline-block;
+	padding: 10px 0;
+	margin-right: 1.25rem;
+	text-transform: capitalize;
+	cursor: pointer;
+	border: none;
+	background: none;
+
+	&:hover {
+		color: #1d76da;
+	}
+
+	&.selected {
+		color: #303030;
+		border-bottom: 1px solid #1d76da;
+		font-weight: 600;
+		margin-bottom: -1px;
+	}
+}
+
+.wbcom-members-list {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.wbcom-members-list--align-right {
+	.wbcom-member-item {
+		flex-direction: row-reverse;
+	}
+
+	.wbcom-member-avatar {
+		margin-left: var(--avatar-spacing);
+		margin-right: 0;
+	}
+}
+
+.wbcom-member-item {
+	display: flex;
+	align-items: center;
+	padding: 3px 0;
+	position: relative;
+}
+
+.wbcom-member-avatar {
+	margin-right: var(--avatar-spacing);
+}
+
+.wbcom-avatar-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--avatar-size);
+	height: var(--avatar-size);
+	border-radius: var(--avatar-radius);
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.wbcom-member-name {
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--name-color);
+}
+
+.wbcom-member-online {
+	background: var(--online-color);
+	border: 2px solid #fff;
+	border-radius: 100%;
+	width: var(--online-size);
+	height: var(--online-size);
+	margin-left: auto;
+	display: inline-block;
+}
+
+// Color control.
+.wbcom-color-control {
+	margin-bottom: 16px;
+}
+
+.wbcom-color-control-inner {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.wbcom-color-indicator {
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 0;
+	min-width: 28px;
+	cursor: pointer;
+
+	&:hover {
+		border-color: #007cba;
+	}
+}
