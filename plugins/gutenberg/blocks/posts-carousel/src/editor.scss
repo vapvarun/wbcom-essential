@@ -1,0 +1,30 @@
+/**
+ * Posts Carousel Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-posts-carousel {
+	// Swiper not initialized in editor, show as grid preview.
+	.swiper-wrapper {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	.swiper-slide {
+		height: auto;
+	}
+
+	// Hide navigation/pagination in editor (no JS).
+	.swiper-button-prev,
+	.swiper-button-next,
+	.swiper-pagination {
+		display: none;
+	}
+
+	// Limit visible items in preview.
+	.swiper-slide:nth-child(n + 4) {
+		display: none;
+	}
+}

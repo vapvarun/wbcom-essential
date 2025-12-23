@@ -1,0 +1,13 @@
+{
+	"name": "wbcom-essential-posts-carousel-new",
+	"version": "1.0.0",
+	"description": "Posts Carousel block for WBCOM Essential",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.0.0"
+	}
+}
