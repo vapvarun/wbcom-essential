@@ -1,0 +1,177 @@
+/**
+ * Groups Grid Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-groups-grid {
+	--columns: 3;
+	--columns-tablet: 2;
+	--columns-mobile: 1;
+	--gap: 30px;
+	--card-bg: #ffffff;
+	--card-radius: 8px;
+	--card-padding: 20px;
+	--name-color: #122B46;
+	--meta-color: #A3A5A9;
+	--button-bg: #1d76da;
+	--button-text: #ffffff;
+}
+
+.wbcom-essential-groups-grid-list {
+	display: grid;
+	grid-template-columns: repeat(var(--columns), 1fr);
+	gap: var(--gap);
+
+	// Tablet.
+	@media (max-width: 1024px) {
+		grid-template-columns: repeat(var(--columns-tablet), 1fr);
+	}
+
+	// Mobile.
+	@media (max-width: 768px) {
+		grid-template-columns: repeat(var(--columns-mobile), 1fr);
+	}
+}
+
+.wbcom-groups-grid-card {
+	background: var(--card-bg);
+	border-radius: var(--card-radius);
+	padding: var(--card-padding);
+	text-align: center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.has-shadow & {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		}
+	}
+}
+
+// Avatar.
+.wbcom-groups-grid-avatar {
+	margin-bottom: 15px;
+
+	a {
+		display: inline-block;
+	}
+
+	img {
+		width: 100px;
+		height: 100px;
+		border-radius: 8px;
+		object-fit: cover;
+	}
+}
+
+// Content.
+.wbcom-groups-grid-content {
+	flex: 1;
+	text-align: center;
+}
+
+.wbcom-groups-grid-name {
+	margin: 0 0 8px;
+	font-size: 16px;
+	font-weight: 600;
+
+	a {
+		color: var(--name-color);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.wbcom-groups-grid-description {
+	margin: 0 0 10px;
+	font-size: 13px;
+	color: var(--meta-color);
+	line-height: 1.5;
+}
+
+.wbcom-groups-grid-meta,
+.wbcom-groups-grid-members {
+	margin: 0 0 4px;
+	font-size: 13px;
+	color: var(--meta-color);
+}
+
+// Action / Join button.
+.wbcom-groups-grid-action {
+	margin-top: 15px;
+	padding-top: 15px;
+	border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+	.group-button,
+	a.group-button,
+	button.group-button {
+		display: inline-block;
+		padding: 8px 20px;
+		background: var(--button-bg);
+		color: var(--button-text);
+		border: none;
+		border-radius: 4px;
+		font-size: 13px;
+		font-weight: 500;
+		text-decoration: none;
+		cursor: pointer;
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 0.9;
+		}
+
+		&.leave-group,
+		&.membership-requested {
+			background: #e3e3e3;
+			color: #666;
+		}
+	}
+
+	.generic-button {
+		a,
+		button {
+			display: inline-block;
+			padding: 8px 20px;
+			background: var(--button-bg);
+			color: var(--button-text);
+			border: none;
+			border-radius: 4px;
+			font-size: 13px;
+			font-weight: 500;
+			text-decoration: none;
+			cursor: pointer;
+			transition: opacity 0.2s ease;
+
+			&:hover {
+				opacity: 0.9;
+			}
+		}
+
+		&.leave-group a,
+		&.membership-requested a {
+			background: #e3e3e3;
+			color: #666;
+		}
+	}
+}
+
+// No data state.
+.wbcom-essential-groups-grid .wbcom-essential-no-data {
+	text-align: center;
+	padding: 40px 20px;
+	color: #666;
+
+	p {
+		margin: 0;
+	}
+}
