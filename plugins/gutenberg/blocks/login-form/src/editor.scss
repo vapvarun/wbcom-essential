@@ -1,0 +1,158 @@
+/**
+ * Login Form Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-login-form-editor {
+	.wbcom-essential-login-form {
+		max-width: 420px;
+		margin: 0 auto;
+		padding: var(--form-padding);
+		background: var(--form-bg-color);
+		border-radius: var(--form-border-radius);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	}
+
+	.wbcom-essential-login-form__logo {
+		text-align: center;
+		margin-bottom: 24px;
+
+		img {
+			max-width: var(--logo-width);
+			height: auto;
+		}
+	}
+
+	.wbcom-essential-login-form__title {
+		margin: 0 0 8px;
+		font-size: 28px;
+		font-weight: 600;
+		color: var(--title-color);
+		text-align: center;
+	}
+
+	.wbcom-essential-login-form__subtitle {
+		margin: 0 0 24px;
+		font-size: 15px;
+		color: var(--subtitle-color);
+		text-align: center;
+	}
+
+	.wbcom-essential-login-form__fields {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.wbcom-essential-login-form__field {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.wbcom-essential-login-form__label {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--label-color);
+	}
+
+	.wbcom-essential-login-form__input {
+		width: 100%;
+		padding: 12px 16px;
+		font-size: 15px;
+		color: var(--input-text-color);
+		background: var(--input-bg-color);
+		border: 1px solid var(--input-border-color);
+		border-radius: 6px;
+
+		&::placeholder {
+			color: #a0aec0;
+		}
+	}
+
+	.wbcom-essential-login-form__options {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.wbcom-essential-login-form__remember {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 14px;
+		color: var(--label-color);
+
+		input[type="checkbox"] {
+			width: 18px;
+			height: 18px;
+			margin: 0;
+		}
+	}
+
+	.wbcom-essential-login-form__lost-password {
+		font-size: 14px;
+		color: var(--link-color);
+		text-decoration: none;
+	}
+
+	.wbcom-essential-login-form__button {
+		width: 100%;
+		padding: 14px 24px;
+		font-size: 16px;
+		font-weight: 600;
+		color: var(--button-text-color);
+		background: var(--button-bg-color);
+		border: none;
+		border-radius: 6px;
+	}
+
+	.wbcom-essential-login-form__register {
+		margin: 8px 0 0;
+		font-size: 14px;
+		color: var(--subtitle-color);
+		text-align: center;
+
+		a {
+			color: var(--link-color);
+			text-decoration: none;
+			font-weight: 500;
+		}
+	}
+}
+
+// Editor notice.
+.wbcom-login-form-notice {
+	margin: 16px 0 0;
+	padding: 10px;
+	background: #f0f6fc;
+	border-left: 4px solid #1d76da;
+	font-size: 12px;
+	color: #666;
+}
+
+// Media upload control.
+.wbcom-media-upload {
+	margin-bottom: 12px;
+}
+
+.wbcom-media-preview {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 4px;
+		border: 1px solid #e3e3e3;
+	}
+}
+
+.wbcom-media-actions {
+	display: flex;
+	gap: 8px;
+}

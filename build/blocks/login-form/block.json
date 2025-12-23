@@ -1,0 +1,200 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wbcom-essential/login-form",
+  "version": "1.0.0",
+  "title": "Login Form",
+  "category": "wbcom-essential",
+  "icon": "admin-users",
+  "description": "Display a customizable login form with AJAX support.",
+  "keywords": [
+    "login",
+    "form",
+    "user",
+    "authentication",
+    "sign in"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "showLogo": {
+      "type": "boolean",
+      "default": true
+    },
+    "logoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "logoId": {
+      "type": "number",
+      "default": 0
+    },
+    "logoWidth": {
+      "type": "number",
+      "default": 150
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "title": {
+      "type": "string",
+      "default": "Welcome Back"
+    },
+    "titleTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "showSubtitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Please login to your account"
+    },
+    "usernameLabel": {
+      "type": "string",
+      "default": "Username or Email"
+    },
+    "usernamePlaceholder": {
+      "type": "string",
+      "default": "Enter your username or email"
+    },
+    "passwordLabel": {
+      "type": "string",
+      "default": "Password"
+    },
+    "passwordPlaceholder": {
+      "type": "string",
+      "default": "Enter your password"
+    },
+    "showLabels": {
+      "type": "boolean",
+      "default": true
+    },
+    "showRememberMe": {
+      "type": "boolean",
+      "default": true
+    },
+    "rememberMeLabel": {
+      "type": "string",
+      "default": "Remember Me"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Log In"
+    },
+    "showLostPassword": {
+      "type": "boolean",
+      "default": true
+    },
+    "lostPasswordText": {
+      "type": "string",
+      "default": "Lost your password?"
+    },
+    "showRegister": {
+      "type": "boolean",
+      "default": true
+    },
+    "registerText": {
+      "type": "string",
+      "default": "Don't have an account?"
+    },
+    "registerLinkText": {
+      "type": "string",
+      "default": "Register"
+    },
+    "redirectUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "showLoggedInMessage": {
+      "type": "boolean",
+      "default": true
+    },
+    "loggedInMessage": {
+      "type": "string",
+      "default": "You are already logged in."
+    },
+    "testMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "formBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "formPadding": {
+      "type": "number",
+      "default": 30
+    },
+    "formBorderRadius": {
+      "type": "number",
+      "default": 8
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#122B46"
+    },
+    "subtitleColor": {
+      "type": "string",
+      "default": "#666666"
+    },
+    "labelColor": {
+      "type": "string",
+      "default": "#122B46"
+    },
+    "inputBgColor": {
+      "type": "string",
+      "default": "#f8f9fa"
+    },
+    "inputBorderColor": {
+      "type": "string",
+      "default": "#e3e3e3"
+    },
+    "inputTextColor": {
+      "type": "string",
+      "default": "#122B46"
+    },
+    "inputFocusBorderColor": {
+      "type": "string",
+      "default": "#1d76da"
+    },
+    "buttonBgColor": {
+      "type": "string",
+      "default": "#1d76da"
+    },
+    "buttonTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonHoverBgColor": {
+      "type": "string",
+      "default": "#1557a0"
+    },
+    "linkColor": {
+      "type": "string",
+      "default": "#1d76da"
+    },
+    "linkHoverColor": {
+      "type": "string",
+      "default": "#1557a0"
+    }
+  },
+  "textdomain": "wbcom-essential",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
