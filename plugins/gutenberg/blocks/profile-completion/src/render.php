@@ -29,9 +29,10 @@ $skin_style            = $attributes['skinStyle'] ?? 'circle';
 $alignment             = $attributes['alignment'] ?? 'center';
 $hide_on_complete      = $attributes['hideOnComplete'] ?? false;
 $show_profile_button   = $attributes['showProfileButton'] ?? true;
-$show_profile_photo    = $attributes['showProfilePhoto'] ?? true;
-$show_cover_photo      = $attributes['showCoverPhoto'] ?? true;
-$show_header           = $attributes['showHeader'] ?? true;
+$show_profile_photo     = $attributes['showProfilePhoto'] ?? true;
+$show_cover_photo       = $attributes['showCoverPhoto'] ?? true;
+$selected_field_groups  = $attributes['selectedFieldGroups'] ?? array();
+$show_header            = $attributes['showHeader'] ?? true;
 $show_completion_icon  = $attributes['showCompletionIcon'] ?? true;
 $show_completion_status = $attributes['showCompletionStatus'] ?? true;
 $heading_text          = $attributes['headingText'] ?? __( 'Complete your profile', 'wbcom-essential' );
@@ -52,7 +53,7 @@ $button_border_color   = $attributes['buttonBorderColor'] ?? '#9EA8B2';
 
 // Calculate profile completion.
 $user_id = get_current_user_id();
-$progress_data = wbcom_essential_calculate_profile_completion( $user_id, $show_profile_photo, $show_cover_photo );
+$progress_data = wbcom_essential_calculate_profile_completion( $user_id, $show_profile_photo, $show_cover_photo, $selected_field_groups );
 
 if ( empty( $progress_data ) ) {
 	return;
@@ -196,12 +197,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 /**
  * Calculate profile completion percentage.
  *
- * @param int  $user_id           User ID.
- * @param bool $include_profile   Include profile photo.
- * @param bool $include_cover     Include cover photo.
+ * @param int   $user_id               User ID.
+ * @param bool  $include_profile       Include profile photo.
+ * @param bool  $include_cover         Include cover photo.
+ * @param array $selected_field_groups Array of selected xProfile group IDs.
  * @return array|null
  */
-function wbcom_essential_calculate_profile_completion( $user_id, $include_profile = true, $include_cover = true ) {
+function wbcom_essential_calculate_profile_completion( $user_id, $include_profile = true, $include_cover = true, $selected_field_groups = array() ) {
 	if ( ! function_exists( 'buddypress' ) ) {
 		return null;
 	}
@@ -261,37 +263,43 @@ function wbcom_essential_calculate_profile_completion( $user_id, $include_profil
 			)
 		);
 
-		$fields_total = 0;
-		$fields_completed = 0;
-
 		if ( ! empty( $profile_groups ) ) {
-			foreach ( $profile_groups as $group ) {
-				if ( empty( $group->fields ) ) {
+			foreach ( $profile_groups as $profile_group ) {
+				// Skip this group if selected_field_groups is set and this group is not in it.
+				// Empty array means "all groups" for backward compatibility.
+				if ( ! empty( $selected_field_groups ) && ! in_array( $profile_group->id, $selected_field_groups, false ) ) {
 					continue;
 				}
 
-				foreach ( $group->fields as $field ) {
-					$fields_total++;
+				if ( empty( $profile_group->fields ) ) {
+					continue;
+				}
+
+				$group_total = 0;
+				$group_completed = 0;
+
+				foreach ( $profile_group->fields as $field ) {
+					$group_total++;
 					$field_value = isset( $field->data->value ) ? maybe_unserialize( $field->data->value ) : '';
 
 					if ( ! empty( $field_value ) ) {
-						$fields_completed++;
+						$group_completed++;
 					}
 				}
+
+				if ( $group_total > 0 ) {
+					$total_fields += $group_total;
+					$completed_fields += $group_completed;
+
+					$groups[] = array(
+						'label'        => $profile_group->name,
+						'link'         => trailingslashit( $loggedin_user_domain . $profile_slug ) . 'edit/group/' . $profile_group->id . '/',
+						'is_completed' => ( $group_total === $group_completed ),
+						'total'        => $group_total,
+						'completed'    => $group_completed,
+					);
+				}
 			}
-		}
-
-		if ( $fields_total > 0 ) {
-			$total_fields += $fields_total;
-			$completed_fields += $fields_completed;
-
-			$groups[] = array(
-				'label'        => __( 'Profile Fields', 'wbcom-essential' ),
-				'link'         => trailingslashit( $loggedin_user_domain . $profile_slug ) . 'edit/',
-				'is_completed' => ( $fields_total === $fields_completed ),
-				'total'        => $fields_total,
-				'completed'    => $fields_completed,
-			);
 		}
 	}
 

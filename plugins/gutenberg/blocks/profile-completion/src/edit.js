@@ -5,6 +5,8 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { useState, useEffect } from '@wordpress/element';
+import apiFetch from '@wordpress/api-fetch';
 import {
 	useBlockProps,
 	InspectorControls,
@@ -17,6 +19,8 @@ import {
 	ToggleControl,
 	TextControl,
 	RangeControl,
+	Spinner,
+	Notice,
 } from '@wordpress/components';
 import ColorControl from './components/color-control';
 
@@ -33,6 +37,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		showProfileButton,
 		showProfilePhoto,
 		showCoverPhoto,
+		selectedFieldGroups,
+		fieldGroupsInitialized,
 		showHeader,
 		showCompletionIcon,
 		showCompletionStatus,
@@ -52,6 +58,43 @@ export default function Edit( { attributes, setAttributes } ) {
 		buttonBgColor,
 		buttonBorderColor,
 	} = attributes;
+
+	// State for xProfile groups from REST API.
+	const [ fieldGroups, setFieldGroups ] = useState( [] );
+	const [ isLoading, setIsLoading ] = useState( true );
+	const [ hasError, setHasError ] = useState( false );
+
+	// Fetch xProfile groups on mount.
+	useEffect( () => {
+		apiFetch( { path: '/wbcom-essential/v1/xprofile-groups' } )
+			.then( ( response ) => {
+				const groups = response.fieldGroups || [];
+				setFieldGroups( groups );
+				setIsLoading( false );
+
+				// Initialize selected groups if not already done.
+				if ( ! fieldGroupsInitialized && groups.length > 0 ) {
+					const allGroupIds = groups.map( ( g ) => g.id );
+					setAttributes( {
+						selectedFieldGroups: allGroupIds,
+						fieldGroupsInitialized: true,
+					} );
+				}
+			} )
+			.catch( () => {
+				setHasError( true );
+				setIsLoading( false );
+			} );
+	}, [] );
+
+	// Toggle a field group in the selection.
+	const toggleFieldGroup = ( groupId ) => {
+		const isSelected = selectedFieldGroups.includes( groupId );
+		const newSelection = isSelected
+			? selectedFieldGroups.filter( ( id ) => id !== groupId )
+			: [ ...selectedFieldGroups, groupId ];
+		setAttributes( { selectedFieldGroups: newSelection } );
+	};
 
 	// Demo progress for preview.
 	const demoPercent = 65;
@@ -143,6 +186,42 @@ export default function Edit( { attributes, setAttributes } ) {
 							'wbcom-essential'
 						) }
 					/>
+
+					{ /* Dynamic xProfile Field Groups */ }
+					{ isLoading && (
+						<div style={ { textAlign: 'center', padding: '10px' } }>
+							<Spinner />
+							<p>{ __( 'Loading field groups...', 'wbcom-essential' ) }</p>
+						</div>
+					) }
+
+					{ hasError && (
+						<Notice status="warning" isDismissible={ false }>
+							{ __( 'Could not load xProfile groups. BuddyPress may not be active.', 'wbcom-essential' ) }
+						</Notice>
+					) }
+
+					{ ! isLoading && ! hasError && fieldGroups.length > 0 && (
+						<>
+							<p className="components-base-control__help" style={ { marginTop: '16px', marginBottom: '8px' } }>
+								{ __( 'xProfile Field Groups:', 'wbcom-essential' ) }
+							</p>
+							{ fieldGroups.map( ( group ) => (
+								<ToggleControl
+									key={ group.id }
+									label={ group.name }
+									checked={ selectedFieldGroups.includes( group.id ) }
+									onChange={ () => toggleFieldGroup( group.id ) }
+								/>
+							) ) }
+						</>
+					) }
+
+					{ ! isLoading && ! hasError && fieldGroups.length === 0 && (
+						<Notice status="info" isDismissible={ false }>
+							{ __( 'No xProfile field groups found. Create field groups in BuddyPress settings.', 'wbcom-essential' ) }
+						</Notice>
+					) }
 				</PanelBody>
 
 				<PanelBody

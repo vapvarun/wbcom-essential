@@ -41,6 +41,14 @@
       "type": "boolean",
       "default": true
     },
+    "selectedFieldGroups": {
+      "type": "array",
+      "default": []
+    },
+    "fieldGroupsInitialized": {
+      "type": "boolean",
+      "default": false
+    },
     "showHeader": {
       "type": "boolean",
       "default": true
