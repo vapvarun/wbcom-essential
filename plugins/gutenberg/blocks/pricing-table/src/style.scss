@@ -1,0 +1,206 @@
+/**
+ * Pricing Table Block - Frontend Styles
+ */
+
+.wbcom-essential-pricing-table {
+	.wbcom-price-table {
+		position: relative;
+		display: block;
+		margin: 0 auto;
+		max-width: 400px;
+		overflow: hidden;
+
+		&.has-ribbon {
+			overflow: hidden;
+		}
+	}
+
+	// Ribbon styles
+	.wbcom-price-table-ribbon-badge {
+		position: absolute;
+		z-index: 1;
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+
+		&.ribbon-style-ribbon {
+			width: 200px;
+			text-align: center;
+			line-height: 40px;
+			top: 20px;
+			right: -55px;
+			transform: rotate(45deg);
+		}
+
+		&.ribbon-style-vertical {
+			top: 0;
+			right: 0;
+			writing-mode: vertical-rl;
+			transform: rotate(180deg);
+			padding: 12px 8px;
+		}
+
+		&.ribbon-style-horizontal {
+			top: 0;
+			left: 0;
+			right: 0;
+			text-align: center;
+			padding: 8px 12px;
+		}
+	}
+
+	// Header
+	.wbcom-price-table-header {
+		padding: 24px 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.wbcom-price-table-title {
+		margin: 0;
+		padding: 0;
+		font-size: 1.5rem;
+		font-weight: 600;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	.wbcom-price-table-desc {
+		margin-top: 8px;
+		opacity: 0.9;
+		font-size: 0.9rem;
+	}
+
+	// Pricing
+	.wbcom-price-table-subheader {
+		padding: 24px 20px;
+		text-align: center;
+	}
+
+	.wbcom-price-table-price {
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
+		flex-wrap: wrap;
+		line-height: 1;
+		gap: 4px;
+	}
+
+	.wbcom-price-table-price-prefix {
+		font-size: 1.5rem;
+		font-weight: 500;
+		align-self: flex-start;
+	}
+
+	.wbcom-price-table-price-value {
+		font-size: 3.5rem;
+		font-weight: 800;
+		line-height: 1;
+	}
+
+	.wbcom-price-table-price-suffix {
+		font-size: 1.25rem;
+		font-weight: 500;
+		align-self: flex-end;
+	}
+
+	.wbcom-price-table-original-price {
+		font-size: 1.25rem;
+		opacity: 0.6;
+		margin-right: 8px;
+	}
+
+	.wbcom-price-table-period {
+		margin-top: 8px;
+		font-size: 0.9rem;
+		opacity: 0.7;
+	}
+
+	// Features
+	.wbcom-price-table-content {
+		padding: 0 20px;
+	}
+
+	.wbcom-price-table-features {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.wbcom-price-table-features li {
+		padding: 12px 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		.feature-icon {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 12px;
+			font-weight: 700;
+			flex-shrink: 0;
+
+			&.icon-yes {
+				background-color: #48bb78;
+				color: #ffffff;
+			}
+
+			&.icon-no {
+				background-color: #fc8181;
+				color: #ffffff;
+			}
+		}
+
+		&.feature-no {
+			opacity: 0.5;
+			text-decoration: line-through;
+		}
+	}
+
+	// Footer
+	.wbcom-price-table-footer {
+		padding: 24px 20px;
+		text-align: center;
+	}
+
+	.wbcom-btn-wrapper {
+		margin-bottom: 12px;
+	}
+
+	.wbcom-price-table-btn {
+		display: inline-block;
+		padding: 14px 32px;
+		font-size: 1rem;
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: 6px;
+		transition: all 0.2s ease;
+		cursor: pointer;
+
+		&:hover {
+			opacity: 0.9;
+			transform: translateY(-1px);
+		}
+	}
+
+	.wbcom-price-table-footer-desc {
+		display: block;
+		font-size: 0.8rem;
+		opacity: 0.7;
+	}
+}
