@@ -4,7 +4,20 @@
  * @package wbcom-essential
  */
 
+// Remove Gutenberg's default block outline.
+.wp-block[data-type="wbcom-essential/login-form"] {
+	outline: none !important;
+
+	&.is-selected,
+	&.has-child-selected {
+		outline: none !important;
+	}
+}
+
 .wbcom-essential-login-form-editor {
+	// Remove any inherited borders from block wrapper.
+	border: none;
+	outline: none;
 	.wbcom-essential-login-form {
 		max-width: 420px;
 		margin: 0 auto;

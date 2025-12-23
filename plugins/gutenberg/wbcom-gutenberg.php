@@ -26,6 +26,23 @@ class WBCOM_Essential_Gutenberg {
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 2 );
 		add_filter( 'style_loader_src', array( $this, 'filter_kirki_style_src' ), 10, 2 );
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_blocks_reset_styles' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_blocks_reset_styles' ) );
+	}
+
+	/**
+	 * Enqueue global reset styles for all blocks.
+	 *
+	 * Prevents theme styles from adding unwanted borders and outlines
+	 * to block wrappers.
+	 */
+	public function enqueue_blocks_reset_styles() {
+		wp_enqueue_style(
+			'wbcom-essential-blocks-reset',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/css/blocks-reset.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
 	}
 
 	/**
