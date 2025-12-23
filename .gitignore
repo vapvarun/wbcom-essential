@@ -8,3 +8,4 @@ nbproject
 public/assets/.DS_Store
 src/.DS_Store
 /vendor
+dist/
