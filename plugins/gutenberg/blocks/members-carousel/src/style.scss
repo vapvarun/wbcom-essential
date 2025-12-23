@@ -1,0 +1,144 @@
+/**
+ * Members Carousel Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-members-carousel {
+	--card-bg: #ffffff;
+	--card-radius: 8px;
+	--name-color: #122b46;
+	--meta-color: #a3a5a9;
+	--arrow-color: #122b46;
+	--dot-color: #122b46;
+	--space-between: 30px;
+}
+
+.wbcom-members-carousel-container {
+	position: relative;
+	overflow: hidden;
+}
+
+.wbcom-member-carousel-card {
+	background: var(--card-bg);
+	border-radius: var(--card-radius);
+	padding: 30px 20px;
+	text-align: center;
+	height: 100%;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+	.has-shadow & {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		}
+	}
+}
+
+.wbcom-member-carousel-avatar {
+	margin-bottom: 15px;
+
+	a {
+		display: inline-block;
+	}
+
+	img {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+}
+
+.wbcom-member-carousel-content {
+	text-align: center;
+}
+
+.wbcom-member-carousel-name {
+	margin: 0 0 8px;
+	font-size: 16px;
+	font-weight: 600;
+
+	a {
+		color: var(--name-color);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.wbcom-member-carousel-meta {
+	margin: 0;
+	font-size: 13px;
+	color: var(--meta-color);
+}
+
+// Swiper navigation.
+.wbcom-members-carousel-container {
+	.swiper-button-prev,
+	.swiper-button-next {
+		width: 44px;
+		height: 44px;
+		background: #fff;
+		border-radius: 50%;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		color: var(--arrow-color);
+		transition: all 0.3s ease;
+
+		&::after {
+			display: none;
+		}
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+
+		&:hover {
+			background: var(--arrow-color);
+			color: #fff;
+		}
+	}
+
+	.swiper-button-prev {
+		left: 10px;
+	}
+
+	.swiper-button-next {
+		right: 10px;
+	}
+
+	// Pagination dots.
+	.swiper-pagination {
+		position: relative;
+		margin-top: 20px;
+	}
+
+	.swiper-pagination-bullet {
+		width: 10px;
+		height: 10px;
+		background: #e0e0e0;
+		opacity: 1;
+		transition: all 0.3s ease;
+
+		&-active {
+			background: var(--dot-color);
+			transform: scale(1.2);
+		}
+	}
+}
+
+// No data message.
+.wbcom-essential-no-data {
+	text-align: center;
+	padding: 40px 20px;
+	color: #666;
+
+	p {
+		margin: 0;
+	}
+}
