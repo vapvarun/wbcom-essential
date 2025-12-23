@@ -7,6 +7,14 @@
   "category": "wbcom-essential",
   "icon": "category",
   "description": "A powerful tabbed interface that transforms into an accordion on mobile devices.",
+  "keywords": [
+    "tabs",
+    "tabbed",
+    "content",
+    "accordion",
+    "toggle"
+  ],
+  "textdomain": "wbcom-essential",
   "example": {
     "attributes": {
       "tabs": [
@@ -111,7 +119,6 @@
       "lineHeight": true
     }
   },
-  "textdomain": "wbcom-essential",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",

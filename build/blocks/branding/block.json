@@ -6,6 +6,12 @@
   "title": "Branding",
   "category": "wbcom-essential",
   "description": "Display site branding with title or logo",
+  "keywords": [
+    "branding",
+    "logo",
+    "site title",
+    "identity"
+  ],
   "icon": "admin-site",
   "textdomain": "wbcom-essential",
   "attributes": {
@@ -111,5 +117,6 @@
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
 }

@@ -6,6 +6,7 @@
 	"title": "Post Carousel",
 	"category": "wbcom-essential",
 	"description": "Display posts in a carousel with customizable layout and styling options",
+	"keywords": ["posts", "carousel", "slider", "blog", "articles"],
 	"icon": "slides",
 	"textdomain": "wbcom-essential",
 	"attributes": {
@@ -669,5 +670,6 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
 }

@@ -2,11 +2,18 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "wbcom-essential/accordion",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "Accordion",
   "category": "wbcom-essential",
   "icon": "list-view",
   "description": "Create expandable accordion sections with rich content and customization options.",
+  "keywords": [
+    "accordion",
+    "faq",
+    "collapse",
+    "toggle",
+    "expandable"
+  ],
   "example": {
     "attributes": {
       "items": [

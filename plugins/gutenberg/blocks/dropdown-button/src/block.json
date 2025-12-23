@@ -2,12 +2,14 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "wbcom-essential/block-dropdown-button",
-	"category": "wbcom-essential",
-	"version": "0.1.0",
+	"name": "wbcom-essential/dropdown-button",
+	"version": "1.0.0",
 	"title": "Dropdown Button",
-	"icon": "button",
+	"category": "wbcom-essential",
 	"description": "A customizable dropdown button with menu items",
+	"keywords": ["button", "dropdown", "menu", "action"],
+	"icon": "button",
+	"textdomain": "wbcom-essential",
 	"example": {},
 	"attributes": {
 		"text": {
