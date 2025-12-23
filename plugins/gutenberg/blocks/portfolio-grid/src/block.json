@@ -1,0 +1,121 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/portfolio-grid",
+	"version": "1.0.0",
+	"title": "Portfolio Grid",
+	"category": "wbcom-essential",
+	"icon": "grid-view",
+	"description": "Display portfolio items in a filterable grid layout.",
+	"keywords": [ "portfolio", "grid", "gallery", "projects", "filter", "isotope" ],
+	"textdomain": "wbcom-essential",
+	"example": {},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"id": "item-1",
+					"image": "",
+					"title": "Project One",
+					"description": "A brief description of this project.",
+					"link": "",
+					"filters": "design"
+				},
+				{
+					"id": "item-2",
+					"image": "",
+					"title": "Project Two",
+					"description": "A brief description of this project.",
+					"link": "",
+					"filters": "development"
+				},
+				{
+					"id": "item-3",
+					"image": "",
+					"title": "Project Three",
+					"description": "A brief description of this project.",
+					"link": "",
+					"filters": "design development"
+				}
+			]
+		},
+		"filters": {
+			"type": "array",
+			"default": [
+				{ "id": "all", "label": "All", "isDefault": true },
+				{ "id": "design", "label": "Design", "isDefault": false },
+				{ "id": "development", "label": "Development", "isDefault": false }
+			]
+		},
+		"showFilters": {
+			"type": "boolean",
+			"default": true
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"showLayoutSwitcher": {
+			"type": "boolean",
+			"default": false
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"gap": {
+			"type": "number",
+			"default": 30
+		},
+		"itemBackground": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"itemBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"overlayColor": {
+			"type": "string",
+			"default": "rgba(0, 0, 0, 0.7)"
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"descriptionColor": {
+			"type": "string",
+			"default": "rgba(255, 255, 255, 0.9)"
+		},
+		"filterActiveColor": {
+			"type": "string",
+			"default": "#3182ce"
+		},
+		"filterTextColor": {
+			"type": "string",
+			"default": "#4a5568"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

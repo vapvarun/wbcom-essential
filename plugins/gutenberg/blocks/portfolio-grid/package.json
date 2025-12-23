@@ -1,0 +1,13 @@
+{
+	"name": "wbcom-essential-portfolio-grid",
+	"version": "1.0.0",
+	"description": "Portfolio Grid block for WBCOM Essential",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.0.0"
+	}
+}
