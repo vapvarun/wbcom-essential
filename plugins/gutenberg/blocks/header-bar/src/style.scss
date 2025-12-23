@@ -1,0 +1,324 @@
+/**
+ * Header Bar Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-header-bar {
+	--space-between: 10px;
+	--icon-size: 21px;
+	--avatar-size: 36px;
+	--avatar-radius: 50%;
+	--separator-color: rgba(0, 0, 0, 0.1);
+	--icon-color: #303030;
+	--counter-bg: #1d76da;
+	--dropdown-bg: #ffffff;
+	--dropdown-text: #303030;
+	--user-name-color: #303030;
+	--sign-in-color: inherit;
+	--sign-up-bg: #1d76da;
+	--sign-up-text: #ffffff;
+
+	position: relative;
+}
+
+.wbcom-header-bar-inner {
+	display: flex;
+	align-items: center;
+	gap: var(--space-between);
+}
+
+// Alignment variations.
+.wbcom-header-bar-align-left .wbcom-header-bar-inner {
+	justify-content: flex-start;
+}
+
+.wbcom-header-bar-align-center .wbcom-header-bar-inner {
+	justify-content: center;
+}
+
+.wbcom-header-bar-align-right .wbcom-header-bar-inner {
+	justify-content: flex-end;
+}
+
+// Icons.
+.wbcom-header-bar-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	color: var(--icon-color);
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+
+	.dashicons {
+		font-size: var(--icon-size);
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+// Counter badge.
+.wbcom-header-bar-count {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	background: var(--counter-bg);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 600;
+	min-width: 18px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	border-radius: 50%;
+	padding: 0 4px;
+}
+
+// Separator.
+.wbcom-header-bar-separator {
+	display: block;
+	width: 1px;
+	height: 28px;
+	background: var(--separator-color);
+}
+
+// Profile dropdown.
+.wbcom-header-bar-profile {
+	position: relative;
+}
+
+.wbcom-profile-link {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	text-decoration: none;
+	color: var(--user-name-color);
+	font-size: 14px;
+	font-weight: 500;
+
+	img {
+		width: var(--avatar-size);
+		height: var(--avatar-size);
+		border-radius: var(--avatar-radius);
+		object-fit: cover;
+	}
+}
+
+.wbcom-profile-name {
+	max-width: 120px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.wbcom-profile-arrow {
+	font-size: 16px;
+	transition: transform 0.2s ease;
+}
+
+// Dropdown container.
+.wbcom-header-bar-dropdown {
+	position: relative;
+}
+
+.wbcom-header-bar-dropdown-content {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	margin-top: 10px;
+	min-width: 180px;
+	background: var(--dropdown-bg);
+	border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-10px);
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease,
+		visibility 0.2s ease;
+	z-index: 100;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: -6px;
+		right: 20px;
+		width: 12px;
+		height: 12px;
+		background: var(--dropdown-bg);
+		transform: rotate(45deg);
+		box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.05);
+	}
+}
+
+.wbcom-header-bar-dropdown.is-open .wbcom-header-bar-dropdown-content,
+.wbcom-header-bar-dropdown:hover .wbcom-header-bar-dropdown-content {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.wbcom-header-bar-dropdown.is-open .wbcom-profile-arrow {
+	transform: rotate(180deg);
+}
+
+// Profile menu.
+.wbcom-dropdown-inner {
+	padding: 8px 0;
+}
+
+.wbcom-profile-menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		margin: 0;
+	}
+
+	a {
+		display: block;
+		padding: 10px 16px;
+		color: var(--dropdown-text);
+		text-decoration: none;
+		font-size: 14px;
+		transition: background 0.2s ease;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.05);
+		}
+	}
+}
+
+// Auth buttons (logged out).
+.wbcom-header-bar-auth {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.wbcom-header-bar-signin {
+	color: var(--sign-in-color);
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 500;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.wbcom-header-bar-signup {
+	display: inline-block;
+	padding: 8px 16px;
+	background: var(--sign-up-bg);
+	color: var(--sign-up-text);
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 4px;
+	transition: opacity 0.2s ease;
+
+	&:hover {
+		opacity: 0.9;
+	}
+}
+
+// Search overlay.
+.wbcom-header-bar-search-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.98);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.3s ease,
+		visibility 0.3s ease;
+	z-index: 9999;
+}
+
+.wbcom-essential-header-bar.search-active .wbcom-header-bar-search-overlay {
+	opacity: 1;
+	visibility: visible;
+}
+
+.wbcom-search-container {
+	width: 100%;
+	max-width: 600px;
+	padding: 20px;
+	position: relative;
+
+	.search-form {
+		display: flex;
+		gap: 10px;
+	}
+
+	input[type="search"],
+	input[type="text"] {
+		flex: 1;
+		padding: 15px 20px;
+		font-size: 18px;
+		border: 2px solid #e0e0e0;
+		border-radius: 8px;
+		outline: none;
+
+		&:focus {
+			border-color: #1d76da;
+		}
+	}
+
+	input[type="submit"] {
+		padding: 15px 30px;
+		background: #1d76da;
+		color: #fff;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		font-size: 16px;
+
+		&:hover {
+			background: #1565c0;
+		}
+	}
+}
+
+.wbcom-search-close {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	color: #666;
+	text-decoration: none;
+
+	.dashicons {
+		font-size: 32px;
+		width: 32px;
+		height: 32px;
+	}
+
+	&:hover {
+		color: #333;
+	}
+}
+
+// Responsive.
+@media (max-width: 768px) {
+	.wbcom-profile-name {
+		display: none;
+	}
+
+	.wbcom-profile-arrow {
+		display: none;
+	}
+}

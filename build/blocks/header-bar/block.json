@@ -1,0 +1,122 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wbcom-essential/header-bar",
+  "version": "1.0.0",
+  "title": "Header Bar",
+  "category": "wbcom-essential-buddypress",
+  "icon": "menu-alt3",
+  "description": "Header bar with profile dropdown, search, notifications, messages, and cart icons.",
+  "keywords": [
+    "header",
+    "bar",
+    "buddypress",
+    "profile",
+    "navigation",
+    "menu"
+  ],
+  "textdomain": "wbcom-essential",
+  "example": {},
+  "attributes": {
+    "alignment": {
+      "type": "string",
+      "default": "right"
+    },
+    "showProfileDropdown": {
+      "type": "boolean",
+      "default": true
+    },
+    "profileMenu": {
+      "type": "string",
+      "default": ""
+    },
+    "showSeparator": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSearch": {
+      "type": "boolean",
+      "default": true
+    },
+    "showMessages": {
+      "type": "boolean",
+      "default": true
+    },
+    "showNotifications": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCart": {
+      "type": "boolean",
+      "default": true
+    },
+    "spaceBetween": {
+      "type": "number",
+      "default": 10
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 21
+    },
+    "avatarSize": {
+      "type": "number",
+      "default": 36
+    },
+    "avatarBorderRadius": {
+      "type": "number",
+      "default": 50
+    },
+    "separatorColor": {
+      "type": "string",
+      "default": "rgba(0,0,0,0.1)"
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#303030"
+    },
+    "counterBgColor": {
+      "type": "string",
+      "default": "#1D76DA"
+    },
+    "dropdownBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "dropdownTextColor": {
+      "type": "string",
+      "default": "#303030"
+    },
+    "userNameColor": {
+      "type": "string",
+      "default": "#303030"
+    },
+    "signInColor": {
+      "type": "string",
+      "default": ""
+    },
+    "signUpBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "signUpTextColor": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}
