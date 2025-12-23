@@ -1,0 +1,11 @@
+{
+	"name": "wbcom-essential-testimonial-carousel",
+	"version": "1.0.0",
+	"description": "Testimonial Carousel block for WBCOM Essential",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.15.0"
+	}
+}
