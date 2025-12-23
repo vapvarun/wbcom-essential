@@ -1,0 +1,149 @@
+/**
+ * Team Carousel Block - Frontend Styles
+ */
+
+.wbcom-essential-team-carousel {
+	position: relative;
+	padding: 0 50px;
+
+	.wbcom-team-swiper {
+		overflow: hidden;
+	}
+
+	.wbcom-team-member-card {
+		text-align: center;
+		overflow: hidden;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+		&:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		}
+	}
+
+	.wbcom-team-member-link {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.wbcom-team-member-image {
+		position: relative;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+			transition: transform 0.3s ease;
+		}
+
+		&:hover img {
+			transform: scale(1.05);
+		}
+	}
+
+	.wbcom-team-member-placeholder {
+		background-color: #e2e8f0;
+		padding: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 200px;
+
+		.dashicons {
+			font-size: 64px;
+			width: 64px;
+			height: 64px;
+			color: #a0aec0;
+		}
+	}
+
+	.wbcom-team-member-info {
+		padding: 20px;
+	}
+
+	.wbcom-team-member-name {
+		margin: 0 0 5px;
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+
+	.wbcom-team-member-role {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	// Swiper navigation
+	.swiper-button-prev,
+	.swiper-button-next {
+		width: 40px;
+		height: 40px;
+		background-color: #ffffff;
+		border-radius: 50%;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		transition: all 0.2s ease;
+
+		&::after {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		&:hover {
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+		}
+	}
+
+	.swiper-button-prev {
+		left: 0;
+	}
+
+	.swiper-button-next {
+		right: 0;
+	}
+
+	// Swiper pagination
+	.swiper-pagination {
+		position: relative;
+		margin-top: 20px;
+	}
+
+	.swiper-pagination-bullet {
+		width: 10px;
+		height: 10px;
+		opacity: 0.3;
+		transition: opacity 0.2s ease;
+
+		&-active {
+			opacity: 1;
+		}
+	}
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+	.wbcom-essential-team-carousel {
+		padding: 0 30px;
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			width: 32px;
+			height: 32px;
+
+			&::after {
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.wbcom-essential-team-carousel {
+		padding: 0 15px;
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			display: none;
+		}
+	}
+}

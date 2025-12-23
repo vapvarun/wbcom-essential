@@ -1,0 +1,102 @@
+/**
+ * Team Carousel Block - Editor Styles
+ */
+
+.wbcom-essential-team-carousel {
+	// Editor preview grid
+	.wbcom-team-carousel-preview {
+		display: flex;
+		gap: 20px;
+		flex-wrap: wrap;
+	}
+
+	.wbcom-team-member-card {
+		flex: 1;
+		min-width: 200px;
+		max-width: 300px;
+		text-align: center;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	}
+
+	.wbcom-team-member-image {
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+	}
+
+	.wbcom-team-member-placeholder {
+		background-color: #e2e8f0;
+		padding: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 150px;
+
+		.dashicons {
+			font-size: 48px;
+			width: 48px;
+			height: 48px;
+			color: #a0aec0;
+		}
+	}
+
+	.wbcom-team-member-info {
+		padding: 16px;
+	}
+
+	.wbcom-team-member-name {
+		margin: 0 0 4px;
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+
+	.wbcom-team-member-role {
+		margin: 0;
+		font-size: 0.85rem;
+	}
+
+	.wbcom-team-carousel-hint {
+		margin-top: 12px;
+		font-size: 0.85rem;
+		color: #718096;
+		font-style: italic;
+		text-align: center;
+	}
+}
+
+// Inspector panel styles
+.wbcom-member-panel {
+	margin-bottom: 16px;
+	padding-bottom: 16px;
+
+	.wbcom-member-panel-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 12px;
+	}
+
+	.wbcom-member-image-btn {
+		width: 100%;
+		min-height: 80px;
+		margin-bottom: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px dashed #ccc;
+		background: #f7f7f7;
+
+		img {
+			max-width: 100%;
+			max-height: 80px;
+			object-fit: cover;
+		}
+	}
+
+	hr {
+		margin: 16px 0 0;
+		border-color: #e2e8f0;
+	}
+}
