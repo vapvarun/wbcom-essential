@@ -1,0 +1,30 @@
+/**
+ * Post Slider Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-post-slider {
+	// Show first slide static in editor.
+	.swiper-wrapper {
+		display: block;
+	}
+
+	.swiper-slide:not(:first-child) {
+		display: none;
+	}
+
+	// Hide navigation in editor (no JS).
+	.swiper-button-prev,
+	.swiper-button-next,
+	.swiper-pagination {
+		display: none;
+	}
+
+	// Disable animations in editor.
+	.wbcom-post-slider-content,
+	.wbcom-post-slider-slide {
+		animation: none !important;
+		opacity: 1 !important;
+	}
+}
