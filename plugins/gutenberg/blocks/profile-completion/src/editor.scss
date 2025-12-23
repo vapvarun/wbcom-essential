@@ -1,0 +1,168 @@
+/**
+ * Profile Completion Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-profile-completion {
+	padding: 10px;
+}
+
+// Circle skin preview.
+.wbcom-profile-completion-circle {
+	.wbcom-progress-ring {
+		width: var(--progress-size, 100px);
+		height: var(--progress-size, 100px);
+		position: relative;
+		border-radius: 50%;
+		background: conic-gradient(
+			var(--completion-color, #1cd991) 0deg
+				calc(3.6deg * var(--progress-percent, 65)),
+			var(--progress-border, #dedfe2)
+				calc(3.6deg * var(--progress-percent, 65)) 360deg
+		);
+	}
+
+	.wbcom-progress-ring-inner {
+		position: absolute;
+		top: var(--progress-width, 6px);
+		left: var(--progress-width, 6px);
+		right: var(--progress-width, 6px);
+		bottom: var(--progress-width, 6px);
+		background: #fff;
+		border-radius: 50%;
+	}
+
+	.wbcom-progress-data {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.wbcom-progress-num {
+		font-size: 22px;
+		font-weight: 500;
+		color: var(--number-color, #122b46);
+		line-height: 1.2;
+
+		span {
+			font-size: 12px;
+			color: var(--text-color, #a3a5a9);
+			vertical-align: super;
+		}
+	}
+
+	.wbcom-progress-text {
+		font-size: 12px;
+		color: var(--text-color, #a3a5a9);
+	}
+}
+
+// Linear skin preview.
+.wbcom-profile-completion-linear {
+	width: 100%;
+	max-width: 350px;
+	background: var(--details-bg, #fff);
+	border: 1px solid #e7e9ec;
+	border-radius: 10px;
+	padding: 20px;
+	text-align: left;
+
+	.wbcom-progress-header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+
+		h3 {
+			margin: 0;
+			font-size: 13px;
+			font-weight: bold;
+			text-transform: uppercase;
+			color: var(--number-color, #122b46);
+		}
+
+		.dashicons {
+			margin-left: auto;
+		}
+	}
+
+	.wbcom-progress-bar {
+		height: var(--progress-width, 6px);
+		background: var(--progress-border, #dedfe2);
+		border-radius: 20px;
+		overflow: hidden;
+	}
+
+	.wbcom-progress-bar-fill {
+		height: 100%;
+		background: var(--completion-color, #1cd991);
+		border-radius: 20px 0 0 20px;
+	}
+
+	.wbcom-progress-info {
+		display: flex;
+		gap: 8px;
+		margin-top: 10px;
+
+		.wbcom-progress-num,
+		.wbcom-progress-text {
+			font-size: 13px;
+			color: var(--text-color, #a3a5a9);
+		}
+	}
+}
+
+// Button preview.
+.wbcom-profile-completion-button {
+	margin-top: 15px;
+}
+
+.wbcom-profile-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 5px 15px;
+	color: var(--button-color, #939597);
+	background: var(--button-bg, transparent);
+	border: 1px solid var(--button-border, #9ea8b2);
+	border-radius: 100px;
+	font-size: 13px;
+	cursor: pointer;
+
+	.dashicons {
+		font-size: 14px;
+		width: 14px;
+		height: 14px;
+	}
+}
+
+// Color control.
+.wbcom-color-control {
+	margin-bottom: 16px;
+}
+
+.wbcom-color-control-inner {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.wbcom-color-indicator {
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 0;
+	min-width: 28px;
+	cursor: pointer;
+
+	&:hover {
+		border-color: #007cba;
+	}
+}

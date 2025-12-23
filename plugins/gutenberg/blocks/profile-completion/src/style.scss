@@ -1,0 +1,387 @@
+/**
+ * Profile Completion Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-profile-completion {
+	--progress-size: 100px;
+	--progress-width: 6px;
+	--completion-color: #1cd991;
+	--incomplete-color: #ef3e46;
+	--progress-border: #dedfe2;
+	--number-color: #122b46;
+	--text-color: #a3a5a9;
+	--details-bg: #ffffff;
+	--button-color: #939597;
+	--button-bg: transparent;
+	--button-border: #9ea8b2;
+	--progress-percent: 0;
+}
+
+.wbcom-profile-completion-wrapper {
+	display: inline-block;
+	text-align: center;
+}
+
+// Alignment.
+.wbcom-profile-completion-align-left {
+	text-align: left;
+}
+
+.wbcom-profile-completion-align-center {
+	text-align: center;
+}
+
+.wbcom-profile-completion-align-right {
+	text-align: right;
+}
+
+.wbcom-profile-completion-figure {
+	position: relative;
+	display: inline-block;
+}
+
+// Circle skin - Progress ring using conic-gradient (modern approach).
+.wbcom-profile-completion-skin-circle {
+	.wbcom-progress-ring {
+		width: var(--progress-size);
+		height: var(--progress-size);
+		position: relative;
+		border-radius: 50%;
+		background: conic-gradient(
+			var(--completion-color) 0deg calc(3.6deg * var(--progress-percent)),
+			var(--progress-border) calc(3.6deg * var(--progress-percent)) 360deg
+		);
+		cursor: pointer;
+	}
+
+	.wbcom-progress-ring-inner {
+		position: absolute;
+		top: var(--progress-width);
+		left: var(--progress-width);
+		right: var(--progress-width);
+		bottom: var(--progress-width);
+		background: #fff;
+		border-radius: 50%;
+	}
+
+	.wbcom-progress-data {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.wbcom-progress-num {
+		font-size: 22px;
+		font-weight: 500;
+		color: var(--number-color);
+		line-height: 1.2;
+
+		span {
+			font-size: 12px;
+			color: var(--text-color);
+			vertical-align: super;
+		}
+	}
+
+	.wbcom-progress-text {
+		font-size: 12px;
+		color: var(--text-color);
+	}
+
+	// Details dropdown.
+	.wbcom-profile-completion-details {
+		position: absolute;
+		top: 0;
+		right: calc(100% + 10px);
+		min-width: 280px;
+		background: var(--details-bg);
+		border-radius: 10px;
+		box-shadow: 0 3px 24px 0 rgba(18, 43, 70, 0.08);
+		padding: 20px;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateX(10px);
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease,
+			visibility 0.3s ease;
+		z-index: 99;
+		text-align: left;
+	}
+
+	.wbcom-profile-completion-progress:hover + .wbcom-profile-completion-details,
+	.wbcom-profile-completion-details:hover {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(0);
+	}
+}
+
+// Linear skin.
+.wbcom-profile-completion-skin-linear {
+	.wbcom-profile-completion-wrapper {
+		width: 100%;
+		max-width: 400px;
+	}
+
+	.wbcom-profile-completion-progress {
+		background: var(--details-bg);
+		border: 1px solid #e7e9ec;
+		border-radius: 10px;
+		padding: 20px;
+		cursor: pointer;
+	}
+
+	.wbcom-progress-linear-header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+
+		h3 {
+			margin: 0;
+			font-size: 13px;
+			font-weight: bold;
+			text-transform: uppercase;
+			color: var(--number-color);
+		}
+
+		.wbcom-toggle-icon {
+			margin-left: auto;
+			transition: transform 0.3s ease;
+		}
+	}
+
+	.wbcom-progress-bar {
+		height: var(--progress-width);
+		background: var(--progress-border);
+		border-radius: 20px;
+		overflow: hidden;
+	}
+
+	.wbcom-progress-bar-fill {
+		height: 100%;
+		background: var(--completion-color);
+		border-radius: 20px 0 0 20px;
+		transition: width 0.5s ease;
+	}
+
+	.wbcom-progress-info {
+		display: flex;
+		gap: 8px;
+		margin-top: 10px;
+
+		.wbcom-progress-num,
+		.wbcom-progress-text {
+			font-size: 13px;
+			color: var(--text-color);
+		}
+	}
+
+	// Details dropdown.
+	.wbcom-profile-completion-details {
+		background: var(--details-bg);
+		border: 1px solid #e7e9ec;
+		border-top: none;
+		border-radius: 0 0 10px 10px;
+		padding: 15px 20px;
+		margin-top: -5px;
+		display: none;
+		text-align: left;
+	}
+
+	&.is-active {
+		.wbcom-profile-completion-progress {
+			border-radius: 10px 10px 0 0;
+		}
+
+		.wbcom-toggle-icon {
+			transform: rotate(90deg);
+		}
+
+		.wbcom-profile-completion-details {
+			display: block;
+		}
+	}
+}
+
+// Details header.
+.wbcom-details-header {
+	display: flex;
+	align-items: center;
+	background: #f5f5f5;
+	border-radius: 30px;
+	padding: 3px 10px;
+	margin-bottom: 15px;
+	font-size: 14px;
+
+	.wbcom-details-percent {
+		flex: 1;
+		color: var(--number-color);
+	}
+
+	.wbcom-details-ring-small {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+
+		.wbcom-progress-ring-small {
+			width: 46px;
+			height: 46px;
+			border-radius: 50%;
+			background: conic-gradient(
+				var(--completion-color) 0deg
+					calc(3.6deg * var(--progress-percent)),
+				var(--progress-border) calc(3.6deg * var(--progress-percent))
+					360deg
+			);
+			position: relative;
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 4px;
+				left: 4px;
+				right: 4px;
+				bottom: 4px;
+				background: #fff;
+				border-radius: 50%;
+			}
+		}
+	}
+
+	.wbcom-details-label {
+		flex: 1;
+		text-align: right;
+		color: var(--number-color);
+	}
+}
+
+// Completion list.
+.wbcom-profile-completion-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.wbcom-section-icon {
+	margin-right: 10px;
+	line-height: 1;
+
+	.dashicons-yes {
+		width: 22px;
+		height: 22px;
+		background: var(--completion-color);
+		border-radius: 50%;
+		color: #fff;
+		font-size: 14px;
+		line-height: 22px;
+		text-align: center;
+	}
+
+	.wbcom-section-dot {
+		display: block;
+		width: 22px;
+		height: 22px;
+		border: 2px solid var(--progress-border);
+		border-radius: 50%;
+	}
+}
+
+.wbcom-section-name {
+	flex: 1;
+
+	a {
+		color: var(--text-color);
+		text-decoration: none;
+		font-size: 14px;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+li.incomplete .wbcom-section-name a {
+	color: var(--incomplete-color);
+}
+
+.wbcom-section-status {
+	padding: 3px 8px;
+	border: 1px solid var(--progress-border);
+	border-radius: 30px;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: center;
+}
+
+li.completed .wbcom-section-status {
+	border-color: var(--completion-color);
+	color: var(--completion-color);
+}
+
+li.incomplete .wbcom-section-status {
+	border-color: var(--incomplete-color);
+	color: var(--incomplete-color);
+}
+
+// Button.
+.wbcom-profile-completion-action {
+	margin-top: 15px;
+}
+
+.wbcom-profile-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 5px 15px;
+	color: var(--button-color);
+	background: var(--button-bg);
+	border: 1px solid var(--button-border);
+	border-radius: 100px;
+	font-size: 13px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	.dashicons {
+		font-size: 14px;
+		width: 14px;
+		height: 14px;
+	}
+
+	&:hover {
+		color: #007cff;
+		border-color: #007cff;
+	}
+}
+
+// Responsive.
+@media (max-width: 768px) {
+	.wbcom-profile-completion-skin-circle {
+		.wbcom-profile-completion-details {
+			position: static;
+			margin-top: 15px;
+			transform: none;
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}

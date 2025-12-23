@@ -1,0 +1,133 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wbcom-essential/profile-completion",
+  "version": "1.0.0",
+  "title": "Profile Completion",
+  "category": "wbcom-essential-buddypress",
+  "icon": "chart-pie",
+  "description": "Display user profile completion progress with circle or linear style.",
+  "keywords": [
+    "profile",
+    "completion",
+    "progress",
+    "buddypress",
+    "xprofile"
+  ],
+  "textdomain": "wbcom-essential",
+  "example": {},
+  "attributes": {
+    "skinStyle": {
+      "type": "string",
+      "default": "circle"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "hideOnComplete": {
+      "type": "boolean",
+      "default": false
+    },
+    "showProfileButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "showProfilePhoto": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCoverPhoto": {
+      "type": "boolean",
+      "default": true
+    },
+    "showHeader": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCompletionIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCompletionStatus": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingText": {
+      "type": "string",
+      "default": "Complete your profile"
+    },
+    "completionText": {
+      "type": "string",
+      "default": "Complete"
+    },
+    "completeButtonText": {
+      "type": "string",
+      "default": "Complete Profile"
+    },
+    "editButtonText": {
+      "type": "string",
+      "default": "Edit Profile"
+    },
+    "progressSize": {
+      "type": "number",
+      "default": 100
+    },
+    "progressWidth": {
+      "type": "number",
+      "default": 6
+    },
+    "completionColor": {
+      "type": "string",
+      "default": "#1CD991"
+    },
+    "incompleteColor": {
+      "type": "string",
+      "default": "#EF3E46"
+    },
+    "progressBorderColor": {
+      "type": "string",
+      "default": "#DEDFE2"
+    },
+    "numberColor": {
+      "type": "string",
+      "default": "#122B46"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#A3A5A9"
+    },
+    "detailsBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonColor": {
+      "type": "string",
+      "default": "#939597"
+    },
+    "buttonBgColor": {
+      "type": "string",
+      "default": "transparent"
+    },
+    "buttonBorderColor": {
+      "type": "string",
+      "default": "#9EA8B2"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}
