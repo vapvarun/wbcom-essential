@@ -7,8 +7,86 @@ module.exports = function (grunt) {
 
 	// Load webpack task
 	grunt.loadNpmTasks('grunt-webpack');
+
+	// Project configuration
+	var pluginSlug = 'wbcom-essential';
+	var pluginVersion = '4.0.2';
+
 	grunt.initConfig(
 		{
+			pkg: grunt.file.readJSON('package.json'),
+
+			// Clean dist folder
+			clean: {
+				dist: ['dist/'],
+				post: ['dist/' + pluginSlug + '/']
+			},
+
+			// Copy files to dist
+			copy: {
+				dist: {
+					files: [
+						{
+							expand: true,
+							src: [
+								// Main plugin files
+								'*.php',
+								'readme.txt',
+								// Admin
+								'admin/**',
+								// Assets
+								'assets/**',
+								// Build folder (compiled blocks)
+								'build/**',
+								// Includes
+								'includes/**',
+								// Languages
+								'languages/**',
+								// License
+								'license/**',
+								// Loader
+								'loader.php',
+								// Plugins (Elementor + Gutenberg)
+								'plugins/**/*.php',
+								'plugins/**/*.css',
+								'plugins/**/*.js',
+								'plugins/**/*.json',
+								'plugins/**/*.png',
+								'plugins/**/*.jpg',
+								'plugins/**/*.svg',
+								'plugins/**/*.gif',
+								// Exclude block src folders (already in build)
+								'!plugins/gutenberg/blocks/*/src/**',
+								'!plugins/gutenberg/blocks/*/node_modules/**',
+								'!plugins/gutenberg/blocks/*/package.json',
+								'!plugins/gutenberg/blocks/*/package-lock.json',
+								// Templates
+								'templates/**'
+							],
+							dest: 'dist/' + pluginSlug + '/'
+						}
+					]
+				}
+			},
+
+			// Create zip file
+			compress: {
+				dist: {
+					options: {
+						archive: 'dist/' + pluginSlug + '-' + pluginVersion + '.zip',
+						mode: 'zip'
+					},
+					files: [
+						{
+							expand: true,
+							cwd: 'dist/',
+							src: [pluginSlug + '/**'],
+							dest: ''
+						}
+					]
+				}
+			},
+
 			// Check text domain
 			checktextdomain: {
 				options: {
@@ -37,20 +115,22 @@ module.exports = function (grunt) {
 							'**/*.php',
 							'!node_modules/**',
 							'!options/framework/**',
-							'!tests/**'
+							'!tests/**',
+							'!dist/**'
 						], // all php
 						expand: true
 					}]
 				}
 			},
+
 			// make po files
 			makepot: {
 				target: {
 					options: {
 						cwd: '.', // Directory of files to internationalize.
 						domainPath: 'languages/', // Where to save the POT file.
-						exclude: ['node_modules/*', 'options/framework/*'], // List of files or directories to ignore.
-						mainFile: 'index.php', // Main project file.
+						exclude: ['node_modules/*', 'options/framework/*', 'dist/*'], // List of files or directories to ignore.
+						mainFile: 'wbcom-essential.php', // Main project file.
 						potFilename: 'wbcom-essential.pot', // Name of the POT file.
 						potHeaders: { // Headers to add to the generated POT file.
 							poedit: true, // Includes common Poedit headers.
@@ -64,6 +144,7 @@ module.exports = function (grunt) {
 					}
 				}
 			},
+
 			// Webpack for Gutenberg blocks
 			webpack: {
 				blocks: {
@@ -142,4 +223,7 @@ module.exports = function (grunt) {
 	// register tasks
 	grunt.registerTask( 'default', ['checktextdomain', 'makepot'] );
 	grunt.registerTask( 'build-blocks', ['webpack:blocks'] );
+	grunt.registerTask( 'i18n', ['checktextdomain', 'makepot'] );
+	grunt.registerTask( 'dist', ['clean:dist', 'copy:dist', 'compress:dist', 'clean:post'] );
+	grunt.registerTask( 'release', ['i18n', 'dist'] );
 };
