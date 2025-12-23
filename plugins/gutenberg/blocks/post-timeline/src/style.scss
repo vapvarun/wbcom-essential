@@ -1,0 +1,294 @@
+/**
+ * Post Timeline Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-post-timeline {
+	position: relative;
+	padding: 40px 0;
+
+	// Central timeline bar.
+	.wbcom-post-timeline-bar {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		bottom: 0;
+		width: var(--bar-width, 4px);
+		background: var(--bar-color, #e2e8f0);
+		transform: translateX(-50%);
+	}
+
+	// Items container.
+	.wbcom-post-timeline-items {
+		position: relative;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	// Individual timeline item.
+	.wbcom-post-timeline-item {
+		position: relative;
+		width: 50%;
+		padding: 20px 40px;
+		box-sizing: border-box;
+
+		&.side-left {
+			padding-right: 60px;
+			text-align: right;
+
+			.wbcom-post-timeline-dot {
+				right: -8px;
+				left: auto;
+			}
+
+			.wbcom-post-timeline-date {
+				right: -100px;
+				left: auto;
+				text-align: left;
+			}
+
+			.wbcom-post-timeline-card {
+				margin-left: auto;
+			}
+		}
+
+		&.side-right {
+			margin-left: 50%;
+			padding-left: 60px;
+			text-align: left;
+
+			.wbcom-post-timeline-dot {
+				left: -8px;
+			}
+
+			.wbcom-post-timeline-date {
+				left: -100px;
+				text-align: right;
+			}
+		}
+	}
+
+	// Timeline dot/marker.
+	.wbcom-post-timeline-dot {
+		position: absolute;
+		top: 30px;
+		width: var(--dot-size, 16px);
+		height: var(--dot-size, 16px);
+		background: var(--dot-color, #3182ce);
+		border-radius: 50%;
+		border: 3px solid #fff;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		z-index: 1;
+	}
+
+	// Date label.
+	.wbcom-post-timeline-date {
+		position: absolute;
+		top: 28px;
+		width: 80px;
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--date-color, #718096);
+	}
+
+	// Card container.
+	.wbcom-post-timeline-card {
+		background: var(--card-bg, #fff);
+		border-radius: var(--card-radius, 8px);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+		overflow: hidden;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+		}
+	}
+
+	// Thumbnail.
+	.wbcom-post-timeline-thumbnail {
+		overflow: hidden;
+
+		a {
+			display: block;
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+			transition: transform 0.5s ease;
+		}
+
+		&:hover img {
+			transform: scale(1.05);
+		}
+	}
+
+	// Content section.
+	.wbcom-post-timeline-content {
+		padding: 20px;
+	}
+
+	// Title.
+	.wbcom-post-timeline-title {
+		margin: 0 0 10px;
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 1.4;
+
+		a {
+			color: var(--title-color, #1a202c);
+			text-decoration: none;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: var(--dot-color, #3182ce);
+			}
+		}
+	}
+
+	// Excerpt.
+	.wbcom-post-timeline-excerpt {
+		margin-bottom: 15px;
+		font-size: 14px;
+		line-height: 1.6;
+		color: var(--excerpt-color, #4a5568);
+	}
+
+	// Button.
+	.wbcom-post-timeline-button {
+		display: inline-block;
+		padding: 8px 20px;
+		font-size: 14px;
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--button-text, #fff);
+		background: var(--button-bg, #3182ce);
+		border-radius: 4px;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+		}
+	}
+
+	// One column layout.
+	&.layout-one-column {
+		.wbcom-post-timeline-bar {
+			left: 40px;
+		}
+
+		.wbcom-post-timeline-item {
+			width: 100%;
+			margin-left: 0;
+			padding-left: 100px;
+			padding-right: 20px;
+			text-align: left;
+
+			.wbcom-post-timeline-dot {
+				left: 32px;
+				right: auto;
+			}
+
+			.wbcom-post-timeline-date {
+				left: auto;
+				right: auto;
+				position: relative;
+				width: auto;
+				margin-bottom: 10px;
+				text-align: left;
+			}
+
+			.wbcom-post-timeline-card {
+				margin-left: 0;
+			}
+		}
+	}
+
+	// Empty state.
+	&-empty {
+		text-align: center;
+		padding: 40px;
+		background: #f7fafc;
+		border-radius: 8px;
+		color: #718096;
+	}
+}
+
+// Responsive - tablet.
+@media (max-width: 991px) {
+	.wbcom-essential-post-timeline {
+		&.layout-two-column {
+			.wbcom-post-timeline-bar {
+				left: 40px;
+			}
+
+			.wbcom-post-timeline-item {
+				width: 100%;
+				margin-left: 0;
+				padding-left: 100px;
+				padding-right: 20px;
+				text-align: left;
+
+				&.side-left,
+				&.side-right {
+					padding-left: 100px;
+					padding-right: 20px;
+
+					.wbcom-post-timeline-dot {
+						left: 32px;
+						right: auto;
+					}
+
+					.wbcom-post-timeline-date {
+						position: relative;
+						left: auto;
+						right: auto;
+						width: auto;
+						margin-bottom: 10px;
+						text-align: left;
+					}
+
+					.wbcom-post-timeline-card {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+// Responsive - mobile.
+@media (max-width: 576px) {
+	.wbcom-essential-post-timeline {
+		padding: 20px 0;
+
+		.wbcom-post-timeline-bar {
+			left: 20px;
+		}
+
+		.wbcom-post-timeline-item {
+			padding-left: 60px !important;
+			padding-right: 0 !important;
+
+			.wbcom-post-timeline-dot {
+				left: 12px !important;
+			}
+		}
+
+		&.layout-one-column .wbcom-post-timeline-item {
+			padding-left: 60px;
+		}
+
+		.wbcom-post-timeline-content {
+			padding: 15px;
+		}
+
+		.wbcom-post-timeline-title {
+			font-size: 16px;
+		}
+	}
+}
