@@ -5,15 +5,17 @@
  */
 
 .wbcom-essential-dashboard-intro {
-	--greeting-color: #A3A5A9;
-	--name-color: #122B46;
-	--description-color: #666666;
+	// Layout
 	--gap: 20px;
-	--container-bg: transparent;
 	--container-padding: 30px;
 	--container-radius: 8px;
 	--avatar-size: 80px;
 	--avatar-radius: 50%;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--greeting-color: var(--wbcom-meta-color, #A3A5A9);
+	--name-color: var(--wbcom-heading-color, #122B46);
+	--description-color: var(--wbcom-text-color, #666666);
+	--container-bg: transparent;
 }
 
 .wbcom-essential-dashboard-intro {
@@ -118,7 +120,7 @@
 	.wbcom-essential-logged-out-message {
 		text-align: center;
 		padding: 30px 20px;
-		color: #666;
+		color: var(--wbcom-text-color, #666);
 
 		p {
 			margin: 0;

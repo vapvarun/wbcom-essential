@@ -1,4 +1,22 @@
+/**
+ * Slider Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
 .wp-block-wbcom-essential-slider {
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--slider-title-color: var(--wbcom-button-text, #fff);
+	--slider-desc-color: rgba(255, 255, 255, 0.9);
+	--slider-button-bg: var(--wbcom-color-primary, #0073aa);
+	--slider-button-text: var(--wbcom-button-text, #fff);
+	--slider-button-hover-bg: var(--wbcom-color-primary-dark, #005177);
+	--slider-nav-bg: rgba(0, 0, 0, 0.5);
+	--slider-nav-color: var(--wbcom-button-text, #fff);
+	--slider-nav-hover-bg: rgba(0, 0, 0, 0.7);
+	--slider-dot-color: rgba(255, 255, 255, 0.5);
+	--slider-dot-active-color: var(--wbcom-button-text, #fff);
+
 	position: relative;
 
 	.wbcom-slider-wrapper {
@@ -125,12 +143,14 @@
 							margin: 0 0 15px 0;
 							font-size: 2rem;
 							font-weight: bold;
+							color: var(--slider-title-color);
 						}
 
 						.wbcom-slider-desc {
 							margin: 0 0 20px 0;
 							font-size: 1rem;
 							line-height: 1.5;
+							color: var(--slider-desc-color);
 
 							p {
 								margin: 0;
@@ -141,14 +161,14 @@
 							.wbcombtn-primary {
 								display: inline-block;
 								padding: 12px 24px;
-								background: #0073aa;
-								color: #fff;
+								background: var(--slider-button-bg);
+								color: var(--slider-button-text);
 								text-decoration: none;
 								border-radius: 4px;
 								transition: background 0.3s ease;
 
 								&:hover {
-									background: #005177;
+									background: var(--slider-button-hover-bg);
 								}
 							}
 						}
@@ -163,8 +183,8 @@
 			top: 50%;
 			transform: translateY(-50%);
 			z-index: 4;
-			background: rgba(0, 0, 0, 0.5);
-			color: #fff;
+			background: var(--slider-nav-bg);
+			color: var(--slider-nav-color);
 			border: none;
 			width: 50px;
 			height: 50px;
@@ -177,7 +197,7 @@
 			transition: background 0.3s ease;
 
 			&:hover {
-				background: rgba(0, 0, 0, 0.7);
+				background: var(--slider-nav-hover-bg);
 			}
 		}
 
@@ -203,14 +223,14 @@
 				height: 12px;
 				padding: 0;
 				border-radius: 50%;
-				background: rgba(255, 255, 255, 0.5);
+				background: var(--slider-dot-color);
 				border: none;
 				cursor: pointer;
 				transition: background 0.3s ease;
 
 				&:hover,
 				&.active {
-					background: #fff;
+					background: var(--slider-dot-active-color);
 				}
 			}
 		}

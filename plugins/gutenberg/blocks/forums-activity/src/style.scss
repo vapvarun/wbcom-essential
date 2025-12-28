@@ -5,16 +5,18 @@
  */
 
 .wbcom-essential-forums-activity-wrapper {
-	--box-bg: #ffffff;
-	--box-border-color: #e3e3e3;
+	// Layout
 	--box-radius: 4px;
 	--box-padding: 20px;
-	--forum-title-color: #A3A5A9;
-	--topic-title-color: #122B46;
-	--meta-color: #A3A5A9;
-	--excerpt-color: #666666;
-	--button-color: #122B46;
-	--button-border-color: #e3e3e3;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--box-bg: var(--wbcom-card-bg, #ffffff);
+	--box-border-color: var(--wbcom-border-color, #e3e3e3);
+	--forum-title-color: var(--wbcom-meta-color, #A3A5A9);
+	--topic-title-color: var(--wbcom-heading-color, #122B46);
+	--meta-color: var(--wbcom-meta-color, #A3A5A9);
+	--excerpt-color: var(--wbcom-text-color, #666666);
+	--button-color: var(--wbcom-heading-color, #122B46);
+	--button-border-color: var(--wbcom-border-color, #e3e3e3);
 
 	position: relative;
 	min-height: 250px;
@@ -53,7 +55,7 @@
 		font-size: 13px;
 		border-radius: 100px;
 		padding: 4px 15px;
-		color: #939597;
+		color: var(--wbcom-meta-color, #939597);
 		border: 1px solid var(--button-border-color);
 		text-decoration: none;
 		transition: all 0.3s ease;
@@ -64,7 +66,7 @@
 		}
 
 		&:hover {
-			color: #007CFF;
+			color: var(--wbcom-color-primary, #007CFF);
 		}
 	}
 }
@@ -135,7 +137,7 @@
 
 			&:hover {
 				background: var(--topic-title-color);
-				color: #fff;
+				color: var(--wbcom-button-text, #fff);
 				border-color: var(--topic-title-color);
 			}
 		}
@@ -172,7 +174,7 @@
 
 	.wbcom-essential-no-data__msg {
 		font-size: 14px;
-		color: #666;
+		color: var(--wbcom-text-color, #666);
 		margin-bottom: 15px;
 	}
 
@@ -188,7 +190,7 @@
 
 		&:hover {
 			background: var(--topic-title-color);
-			color: #fff;
+			color: var(--wbcom-button-text, #fff);
 			border-color: var(--topic-title-color);
 		}
 	}

@@ -5,8 +5,9 @@
  */
 
 .wbcom-essential-text-rotator {
-	--text-color: inherit;
-	--rotating-color: #3182ce;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--text-color: var(--wbcom-heading-color, inherit);
+	--rotating-color: var(--wbcom-color-primary, #3182ce);
 	--rotating-bg: transparent;
 }
 

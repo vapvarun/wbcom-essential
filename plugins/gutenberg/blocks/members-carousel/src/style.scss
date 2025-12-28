@@ -5,13 +5,15 @@
  */
 
 .wbcom-essential-members-carousel {
-	--card-bg: #ffffff;
+	// Layout
 	--card-radius: 8px;
-	--name-color: #122b46;
-	--meta-color: #a3a5a9;
-	--arrow-color: #122b46;
-	--dot-color: #122b46;
 	--space-between: 30px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--card-bg: var(--wbcom-card-bg, #ffffff);
+	--name-color: var(--wbcom-heading-color, #122b46);
+	--meta-color: var(--wbcom-meta-color, #a3a5a9);
+	--arrow-color: var(--wbcom-heading-color, #122b46);
+	--dot-color: var(--wbcom-heading-color, #122b46);
 }
 
 .wbcom-members-carousel-container {
@@ -83,7 +85,7 @@
 	.swiper-button-next {
 		width: 44px;
 		height: 44px;
-		background: #fff;
+		background: var(--wbcom-card-bg, #fff);
 		border-radius: 50%;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 		color: var(--arrow-color);
@@ -100,7 +102,7 @@
 
 		&:hover {
 			background: var(--arrow-color);
-			color: #fff;
+			color: var(--wbcom-button-text, #fff);
 		}
 	}
 
@@ -121,7 +123,7 @@
 	.swiper-pagination-bullet {
 		width: 10px;
 		height: 10px;
-		background: #e0e0e0;
+		background: var(--wbcom-border-color, #e0e0e0);
 		opacity: 1;
 		transition: all 0.3s ease;
 
@@ -136,7 +138,7 @@
 .wbcom-essential-no-data {
 	text-align: center;
 	padding: 40px 20px;
-	color: #666;
+	color: var(--wbcom-text-color, #666);
 
 	p {
 		margin: 0;

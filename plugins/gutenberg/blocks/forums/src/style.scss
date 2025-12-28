@@ -5,18 +5,20 @@
  */
 
 .wbcom-essential-forums {
-	--box-bg: #ffffff;
-	--box-border-color: #e3e3e3;
+	// Layout
 	--box-radius: 4px;
-	--title-color: #122B46;
-	--title-hover: #007CFF;
-	--meta-color: #A3A5A9;
-	--last-reply-color: #4D5C6D;
-	--link-color: #1d76da;
 	--avatar-size: 52px;
 	--avatar-radius: 50%;
 	--avatar-spacing: 15px;
 	--row-space: 20px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--box-bg: var(--wbcom-card-bg, #ffffff);
+	--box-border-color: var(--wbcom-border-color, #e3e3e3);
+	--title-color: var(--wbcom-heading-color, #122B46);
+	--title-hover: var(--wbcom-color-primary, #007CFF);
+	--meta-color: var(--wbcom-meta-color, #A3A5A9);
+	--last-reply-color: var(--wbcom-text-color, #4D5C6D);
+	--link-color: var(--wbcom-color-primary, #1d76da);
 
 	background: var(--box-bg);
 	border: 1px solid var(--box-border-color);
@@ -199,14 +201,14 @@
 
 	p {
 		margin: 0 0 15px;
-		color: #666;
+		color: var(--wbcom-text-color, #666);
 	}
 
 	&__link {
 		display: inline-block;
 		font-size: 14px;
 		padding: 8px 20px;
-		border: 1px solid #e3e3e3;
+		border: 1px solid var(--wbcom-border-color, #e3e3e3);
 		border-radius: 30px;
 		color: var(--title-color);
 		text-decoration: none;
@@ -214,7 +216,7 @@
 
 		&:hover {
 			background: var(--title-color);
-			color: #fff;
+			color: var(--wbcom-button-text, #fff);
 			border-color: var(--title-color);
 		}
 	}

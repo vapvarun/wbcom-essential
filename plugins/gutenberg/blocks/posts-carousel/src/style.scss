@@ -5,6 +5,16 @@
  */
 
 .wbcom-essential-posts-carousel {
+	// Layout
+	--card-radius: 10px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--card-bg: var(--wbcom-card-bg, #fff);
+	--category-color: var(--wbcom-color-primary, #3182ce);
+	--title-color: var(--wbcom-heading-color, #1a202c);
+	--excerpt-color: var(--wbcom-text-color, #4a5568);
+	--meta-color: var(--wbcom-meta-color, #718096);
+	--nav-color: var(--wbcom-color-primary, #3182ce);
+
 	position: relative;
 	width: 100%;
 	padding-bottom: 50px;
@@ -258,9 +268,9 @@
 	&-empty {
 		text-align: center;
 		padding: 40px;
-		background: #f7fafc;
+		background: var(--wbcom-card-bg-alt, #f7fafc);
 		border-radius: 8px;
-		color: #718096;
+		color: var(--wbcom-meta-color, #718096);
 	}
 }
 

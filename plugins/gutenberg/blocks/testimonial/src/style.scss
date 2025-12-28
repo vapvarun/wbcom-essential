@@ -1,24 +1,28 @@
 /**
  * Testimonial Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
 
 .wbcom-essential-testimonial {
-	// CSS Custom Properties with defaults.
-	--bg-color: #ffffff;
+	// Layout
 	--border-radius: 12px;
 	--padding: 32px;
 	--box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 	--avatar-size: 60px;
 	--quote-icon-size: 64px;
-	--quote-icon-color: #1d76da;
 	--quote-font-size: 18px;
 	--name-font-size: 16px;
 	--role-font-size: 14px;
 	--spacing: 24px;
-	--quote-color: #4a5568;
-	--name-color: #1a202c;
-	--role-color: #718096;
-	--rating-color: #f6ad55;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--bg-color: var(--wbcom-card-bg, #ffffff);
+	--quote-icon-color: var(--wbcom-color-primary, #1d76da);
+	--quote-color: var(--wbcom-text-color, #4a5568);
+	--name-color: var(--wbcom-heading-color, #1a202c);
+	--role-color: var(--wbcom-meta-color, #718096);
+	--rating-color: var(--wbcom-warning-color, #f6ad55);
+	--star-empty-color: var(--wbcom-border-color, #e2e8f0);
 
 	display: flex;
 	flex-direction: column;
@@ -107,7 +111,7 @@
 		.star {
 			font-size: 1.25rem;
 			margin-right: 2px;
-			color: #e2e8f0;
+			color: var(--star-empty-color);
 
 			&.filled {
 				color: var(--rating-color);

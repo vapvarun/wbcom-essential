@@ -5,15 +5,17 @@
  */
 
 .wbcom-essential-shape {
+	// Layout
 	--shape-width: 200px;
 	--shape-height: 200px;
 	--shape-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
 	--shape-rotation: 0deg;
-	--shape-background: #3182ce;
-	--shape-icon-color: #ffffff;
 	--shape-icon-size: 48px;
 	--shape-icon-rotation: 0deg;
 	--shape-align: center;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--shape-background: var(--wbcom-color-primary, #3182ce);
+	--shape-icon-color: var(--wbcom-button-text, #ffffff);
 }
 
 .wbcom-shape-wrapper {

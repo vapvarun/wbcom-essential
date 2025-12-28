@@ -5,16 +5,20 @@
  */
 
 .wbcom-essential-members-grid {
+	// Layout
 	--grid-columns: 3;
 	--grid-columns-tablet: 2;
 	--grid-columns-mobile: 1;
 	--grid-gap: 30px;
-	--card-bg: #ffffff;
 	--card-radius: 8px;
 	--card-padding: 20px;
 	--avatar-size: 126px;
-	--name-color: #122b46;
-	--meta-color: #a3a5a9;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--card-bg: var(--wbcom-card-bg, #ffffff);
+	--name-color: var(--wbcom-heading-color, #122b46);
+	--meta-color: var(--wbcom-meta-color, #a3a5a9);
+	--button-color: var(--wbcom-color-primary, #3182ce);
+	--button-text: var(--wbcom-button-text, #ffffff);
 }
 
 .wbcom-essential-members-grid-list {
@@ -104,17 +108,17 @@
 			padding: 8px 20px;
 			font-size: 13px;
 			font-weight: 500;
-			color: #3182ce;
+			color: var(--button-color);
 			background: transparent;
-			border: 1px solid #3182ce;
+			border: 1px solid var(--button-color);
 			border-radius: 30px;
 			text-decoration: none;
 			cursor: pointer;
 			transition: all 0.2s ease;
 
 			&:hover {
-				color: #fff;
-				background: #3182ce;
+				color: var(--button-text);
+				background: var(--button-color);
 			}
 		}
 	}
@@ -124,7 +128,7 @@
 .wbcom-essential-no-data {
 	text-align: center;
 	padding: 40px 20px;
-	color: #666;
+	color: var(--wbcom-text-color, #666);
 
 	p {
 		margin: 0;

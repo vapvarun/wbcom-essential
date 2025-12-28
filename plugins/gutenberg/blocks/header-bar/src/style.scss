@@ -5,19 +5,21 @@
  */
 
 .wbcom-essential-header-bar {
+	// Layout
 	--space-between: 10px;
 	--icon-size: 21px;
 	--avatar-size: 36px;
 	--avatar-radius: 50%;
 	--separator-color: rgba(0, 0, 0, 0.1);
-	--icon-color: #303030;
-	--counter-bg: #1d76da;
-	--dropdown-bg: #ffffff;
-	--dropdown-text: #303030;
-	--user-name-color: #303030;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--icon-color: var(--wbcom-heading-color, #303030);
+	--counter-bg: var(--wbcom-color-primary, #1d76da);
+	--dropdown-bg: var(--wbcom-card-bg, #ffffff);
+	--dropdown-text: var(--wbcom-heading-color, #303030);
+	--user-name-color: var(--wbcom-heading-color, #303030);
 	--sign-in-color: inherit;
-	--sign-up-bg: #1d76da;
-	--sign-up-text: #ffffff;
+	--sign-up-bg: var(--wbcom-button-bg, #1d76da);
+	--sign-up-text: var(--wbcom-button-text, #ffffff);
 
 	position: relative;
 }

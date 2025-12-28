@@ -1,9 +1,19 @@
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
+ * Advanced Tabs Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
 
 .wp-block-wbcom-essential-advanced-tabs {
+    // Colors - inherit from theme via bridge variables (theme-colors.css)
+    --tab-border-color: var(--wbcom-border-color, #e0e0e0);
+    --tab-bg: var(--wbcom-card-bg-alt, #f5f5f5);
+    --tab-hover-bg: var(--wbcom-border-color, #efefef);
+    --tab-active-bg: var(--wbcom-card-bg, #ffffff);
+    --tab-text-color: var(--wbcom-heading-color, inherit);
+    --content-bg: var(--wbcom-card-bg, #ffffff);
+    --content-border-color: var(--wbcom-border-color, #e0e0e0);
+
     display: flex;
     gap: 0;
     width: 100%;
@@ -52,15 +62,16 @@
     }
 
     &.layout-vertical-reverse .tabs-header {
-        border-left: 1px solid #fff;
+        border-left: 1px solid var(--tab-active-bg);
     }
 
     .tab-title {
         padding: 15px 20px;
         cursor: pointer;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--tab-border-color);
         border-bottom: none;
-        background-color: #f5f5f5;
+        background-color: var(--tab-bg);
+        color: var(--tab-text-color);
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
@@ -73,7 +84,7 @@
 
         .layout-vertical &,
         .layout-vertical-reverse & {
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--tab-border-color);
             border-right: none;
         }
 
@@ -82,21 +93,21 @@
         }
 
         &:hover {
-            background-color: #efefef;
+            background-color: var(--tab-hover-bg);
         }
 
         &.active {
-            background-color: #ffffff;
-            border-bottom-color: #ffffff;
+            background-color: var(--tab-active-bg);
+            border-bottom-color: var(--tab-active-bg);
             position: relative;
             z-index: 1;
 
             .layout-vertical & {
-                border-right-color: #ffffff;
+                border-right-color: var(--tab-active-bg);
             }
 
             .layout-vertical-reverse & {
-                border-left-color: #ffffff;
+                border-left-color: var(--tab-active-bg);
             }
         }
 
@@ -111,8 +122,8 @@
         display: none;
         flex: 1;
         padding: 20px;
-        border: 1px solid #e0e0e0;
-        background-color: #ffffff;
+        border: 1px solid var(--content-border-color);
+        background-color: var(--content-bg);
         min-height: 200px;
 
         .layout-horizontal & {
@@ -130,7 +141,7 @@
     &.layout-vertical {
         .tab-title {
             &:last-child {
-                border-bottom: 1px solid #e0e0e0;
+                border-bottom: 1px solid var(--tab-border-color);
             }
         }
 
@@ -142,7 +153,7 @@
     &.layout-vertical-reverse {
         .tab-title {
             &:last-child {
-                border-bottom: 1px solid #e0e0e0;
+                border-bottom: 1px solid var(--tab-border-color);
             }
         }
 
@@ -206,19 +217,20 @@
             align-items: center;
             gap: 10px;
             padding: 15px 20px;
-            background-color: #f5f5f5;
-            border: 1px solid #e0e0e0;
+            background-color: var(--tab-bg);
+            border: 1px solid var(--tab-border-color);
+            color: var(--tab-text-color);
             cursor: pointer;
             font-weight: 500;
             margin-bottom: -1px;
             transition: all 0.3s ease;
 
             &:hover {
-                background-color: #efefef;
+                background-color: var(--tab-hover-bg);
             }
 
             &.active {
-                background-color: #ffffff;
+                background-color: var(--tab-active-bg);
 				margin-bottom: 0;
             }
 
@@ -240,11 +252,11 @@
         }
 
 		&.layout-vertical .tab-content {
-			border-left: 1px solid #e0e0e0;
+			border-left: 1px solid var(--content-border-color);
 		}
 
 		&.layout-vertical-reverse .tab-content {
-			border-right: 1px solid #e0e0e0;
+			border-right: 1px solid var(--content-border-color);
 		}
     }
 }

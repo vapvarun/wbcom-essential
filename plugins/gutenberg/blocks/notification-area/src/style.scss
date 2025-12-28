@@ -5,16 +5,18 @@
  */
 
 .wbcom-essential-notification-area-wrapper {
-	--icon-color: #122B46;
-	--icon-hover-color: #007CFF;
-	--username-color: #122B46;
-	--badge-color: #EF3E46;
-	--badge-text-color: #ffffff;
-	--dropdown-bg-color: #ffffff;
-	--dropdown-border-color: #e3e3e3;
+	// Layout
 	--icon-size: 20px;
 	--avatar-size: 36px;
 	--item-gap: 16px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--icon-color: var(--wbcom-heading-color, #122B46);
+	--icon-hover-color: var(--wbcom-color-primary, #007CFF);
+	--username-color: var(--wbcom-heading-color, #122B46);
+	--badge-color: var(--wbcom-error-color, #EF3E46);
+	--badge-text-color: #ffffff;
+	--dropdown-bg-color: var(--wbcom-card-bg, #ffffff);
+	--dropdown-border-color: var(--wbcom-border-color, #e3e3e3);
 }
 
 .wbcom-essential-notification-area {

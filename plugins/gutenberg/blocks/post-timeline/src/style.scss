@@ -5,6 +5,20 @@
  */
 
 .wbcom-essential-post-timeline {
+	// Layout
+	--bar-width: 4px;
+	--dot-size: 16px;
+	--card-radius: 8px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--bar-color: var(--wbcom-border-color, #e2e8f0);
+	--dot-color: var(--wbcom-color-primary, #3182ce);
+	--date-color: var(--wbcom-meta-color, #718096);
+	--card-bg: var(--wbcom-card-bg, #fff);
+	--title-color: var(--wbcom-heading-color, #1a202c);
+	--excerpt-color: var(--wbcom-text-color, #4a5568);
+	--button-bg: var(--wbcom-color-primary, #3182ce);
+	--button-text: var(--wbcom-button-text, #fff);
+
 	position: relative;
 	padding: 40px 0;
 
@@ -14,8 +28,8 @@
 		left: 50%;
 		top: 0;
 		bottom: 0;
-		width: var(--bar-width, 4px);
-		background: var(--bar-color, #e2e8f0);
+		width: var(--bar-width);
+		background: var(--bar-color);
 		transform: translateX(-50%);
 	}
 
@@ -73,11 +87,11 @@
 	.wbcom-post-timeline-dot {
 		position: absolute;
 		top: 30px;
-		width: var(--dot-size, 16px);
-		height: var(--dot-size, 16px);
-		background: var(--dot-color, #3182ce);
+		width: var(--dot-size);
+		height: var(--dot-size);
+		background: var(--dot-color);
 		border-radius: 50%;
-		border: 3px solid #fff;
+		border: 3px solid var(--card-bg);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		z-index: 1;
 	}
@@ -89,13 +103,13 @@
 		width: 80px;
 		font-size: 13px;
 		font-weight: 600;
-		color: var(--date-color, #718096);
+		color: var(--date-color);
 	}
 
 	// Card container.
 	.wbcom-post-timeline-card {
-		background: var(--card-bg, #fff);
-		border-radius: var(--card-radius, 8px);
+		background: var(--card-bg);
+		border-radius: var(--card-radius);
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 		overflow: hidden;
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -139,12 +153,12 @@
 		line-height: 1.4;
 
 		a {
-			color: var(--title-color, #1a202c);
+			color: var(--title-color);
 			text-decoration: none;
 			transition: color 0.2s ease;
 
 			&:hover {
-				color: var(--dot-color, #3182ce);
+				color: var(--dot-color);
 			}
 		}
 	}
@@ -154,7 +168,7 @@
 		margin-bottom: 15px;
 		font-size: 14px;
 		line-height: 1.6;
-		color: var(--excerpt-color, #4a5568);
+		color: var(--excerpt-color);
 	}
 
 	// Button.
@@ -164,8 +178,8 @@
 		font-size: 14px;
 		font-weight: 500;
 		text-decoration: none;
-		color: var(--button-text, #fff);
-		background: var(--button-bg, #3182ce);
+		color: var(--button-text);
+		background: var(--button-bg);
 		border-radius: 4px;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 
@@ -212,9 +226,9 @@
 	&-empty {
 		text-align: center;
 		padding: 40px;
-		background: #f7fafc;
+		background: var(--wbcom-card-bg-alt, #f7fafc);
 		border-radius: 8px;
-		color: #718096;
+		color: var(--wbcom-meta-color, #718096);
 	}
 }
 

@@ -1,18 +1,25 @@
 /**
  * Timeline Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
 
 .wbcom-essential-timeline {
-	--bar-color: #e2e8f0;
+	// Layout
 	--bar-thickness: 4px;
 	--icon-container-size: 60px;
-	--content-background: #f7fafc;
 	--content-padding: 24px;
 	--content-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 	--date-font-size: 14px;
 	--title-font-size: 20px;
 	--text-font-size: 16px;
 	--item-spacing: 40px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--bar-color: var(--wbcom-border-color, #e2e8f0);
+	--content-background: var(--wbcom-card-bg-alt, #f7fafc);
+	--date-color: var(--wbcom-color-primary, inherit);
+	--title-color: var(--wbcom-heading-color, inherit);
+	--text-color: var(--wbcom-text-color, inherit);
 
 	padding: 40px 0;
 

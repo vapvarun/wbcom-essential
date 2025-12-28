@@ -1,8 +1,22 @@
 /**
  * Countdown Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
 
 .wbcom-essential-countdown {
+	// Layout
+	--countdown-value-size: 60px;
+	--countdown-label-size: 16px;
+	--countdown-msg-size: 24px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--value-color: var(--wbcom-heading-color, inherit);
+	--label-color: var(--wbcom-text-color, inherit);
+	--separator-color: var(--wbcom-meta-color, inherit);
+	--msg-color: var(--wbcom-heading-color, inherit);
+	--item-bg: var(--wbcom-card-bg, transparent);
+	--item-border: var(--wbcom-border-color, transparent);
+
 	.wbcom-countdown {
 		display: flex;
 		justify-content: center;
@@ -43,20 +57,27 @@
 	}
 
 	.wbcom-countdown-value {
-		font-size: 60px;
+		font-size: var(--countdown-value-size);
 		font-weight: 700;
 		line-height: 1;
+		color: var(--value-color);
 	}
 
 	.wbcom-countdown-label {
-		font-size: 16px;
+		font-size: var(--countdown-label-size);
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
+		color: var(--label-color);
+	}
+
+	.wbcom-countdown-separator {
+		color: var(--separator-color);
 	}
 
 	.wbcom-countdown-msg {
 		text-align: center;
-		font-size: 24px;
+		font-size: var(--countdown-msg-size);
 		padding: 20px;
+		color: var(--msg-color);
 	}
 }

@@ -5,13 +5,26 @@
  */
 
 .wbcom-essential-post-slider {
+	// Layout
+	--slider-height: 600px;
+	--content-width: 800px;
+	--bg-anim-duration: 8s;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--overlay-color: rgba(0, 0, 0, 0.4);
+	--date-color: rgba(255, 255, 255, 0.8);
+	--title-color: var(--wbcom-button-text, #fff);
+	--excerpt-color: rgba(255, 255, 255, 0.9);
+	--button-bg: var(--wbcom-card-bg, #fff);
+	--button-text: var(--wbcom-heading-color, #1a202c);
+	--nav-color: var(--wbcom-button-text, #fff);
+
 	position: relative;
 	width: 100%;
 	overflow: hidden;
 
 	.swiper {
 		width: 100%;
-		height: var(--slider-height, 600px);
+		height: var(--slider-height);
 	}
 
 	// Slide item.
@@ -217,7 +230,7 @@
 		text-align: center;
 		padding: 60px 40px;
 		background: linear-gradient(135deg, #2d3748, #1a202c);
-		color: #fff;
+		color: var(--wbcom-button-text, #fff);
 		border-radius: 8px;
 	}
 }

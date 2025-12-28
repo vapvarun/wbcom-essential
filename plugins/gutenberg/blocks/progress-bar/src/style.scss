@@ -1,8 +1,20 @@
 /**
  * Progress Bar Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
 
 .wbcom-essential-progress-bar {
+	// Layout
+	--bar-height: 20px;
+	--bar-radius: 4px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--title-color: var(--wbcom-heading-color, inherit);
+	--percent-color: var(--wbcom-heading-color, inherit);
+	--bar-bg: var(--wbcom-border-color, #e2e8f0);
+	--fill-bg: var(--wbcom-color-primary, #3182ce);
+	--fill-text: var(--wbcom-button-text, #ffffff);
+
 	margin-bottom: 1.5rem;
 
 	.wbcom-progress-bar-header {
@@ -15,16 +27,21 @@
 	.wbcom-progress-bar-title {
 		font-size: 1rem;
 		font-weight: 600;
+		color: var(--title-color);
 	}
 
 	.wbcom-progress-bar-percent-out {
 		font-size: 1rem;
 		font-weight: 700;
+		color: var(--percent-color);
 	}
 
 	.wbcom-progress-bar-wrapper {
 		position: relative;
 		overflow: hidden;
+		background: var(--bar-bg);
+		border-radius: var(--bar-radius);
+		height: var(--bar-height);
 	}
 
 	.wbcom-progress-bar-fill {
@@ -61,6 +78,7 @@
 		font-size: 0.75rem;
 		font-weight: 700;
 		white-space: nowrap;
+		color: var(--fill-text);
 	}
 }
 

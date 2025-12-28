@@ -7,33 +7,34 @@
 // Note: Border reset is handled globally by blocks-reset.css
 
 .wbcom-essential-login-form-wrapper {
-	--form-bg-color: #ffffff;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--form-bg-color: var(--wbcom-card-bg, #ffffff);
 	--form-padding: 30px;
 	--form-border-radius: 8px;
 	--form-width: 420px;
 	--form-border-color: transparent;
 	--form-border-width: 0px;
 	--form-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-	--title-color: #122B46;
-	--subtitle-color: #666666;
-	--label-color: #122B46;
-	--input-bg-color: #f8f9fa;
-	--input-border-color: #e3e3e3;
-	--input-text-color: #122B46;
-	--input-focus-border-color: #1d76da;
+	--title-color: var(--wbcom-heading-color, #122B46);
+	--subtitle-color: var(--wbcom-text-color, #666666);
+	--label-color: var(--wbcom-heading-color, #122B46);
+	--input-bg-color: var(--wbcom-input-bg, #f8f9fa);
+	--input-border-color: var(--wbcom-border-color, #e3e3e3);
+	--input-text-color: var(--wbcom-heading-color, #122B46);
+	--input-focus-border-color: var(--wbcom-color-primary, #1d76da);
 	--input-border-radius: 6px;
 	--input-padding-v: 12px;
 	--input-padding-h: 16px;
-	--button-bg-color: #1d76da;
-	--button-text-color: #ffffff;
-	--button-hover-bg-color: #1557a0;
+	--button-bg-color: var(--wbcom-button-bg, #1d76da);
+	--button-text-color: var(--wbcom-button-text, #ffffff);
+	--button-hover-bg-color: var(--wbcom-button-hover-bg, #1557a0);
 	--button-border-radius: 6px;
 	--button-padding-v: 14px;
 	--button-padding-h: 24px;
-	--link-color: #1d76da;
-	--link-hover-color: #1557a0;
+	--link-color: var(--wbcom-link-color, #1d76da);
+	--link-hover-color: var(--wbcom-link-hover-color, #1557a0);
 	--logo-width: 150px;
-	--checkbox-color: #1d76da;
+	--checkbox-color: var(--wbcom-color-primary, #1d76da);
 }
 
 .wbcom-essential-login-form {
@@ -84,15 +85,15 @@
 	text-align: center;
 
 	&.is-error {
-		background: #fef2f2;
-		color: #dc2626;
-		border: 1px solid #fecaca;
+		background: var(--wbcom-error-bg, #fef2f2);
+		color: var(--wbcom-error-color, #dc2626);
+		border: 1px solid var(--wbcom-error-border, #fecaca);
 	}
 
 	&.is-success {
-		background: #f0fdf4;
-		color: #16a34a;
-		border: 1px solid #bbf7d0;
+		background: var(--wbcom-success-bg, #f0fdf4);
+		color: var(--wbcom-success-color, #16a34a);
+		border: 1px solid var(--wbcom-success-border, #bbf7d0);
 	}
 }
 
@@ -120,7 +121,7 @@
 	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
 	&::placeholder {
-		color: #a0aec0;
+		color: var(--wbcom-meta-color, #a0aec0);
 	}
 
 	&:focus {

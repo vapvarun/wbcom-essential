@@ -1,10 +1,32 @@
 
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
+ * Smart Menu Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
 
 .wp-block-wbcom-essential-smart-menu {
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--toggle-bg: var(--wbcom-color-primary, #007cba);
+	--toggle-color: var(--wbcom-button-text, #fff);
+	--toggle-hover-bg: var(--wbcom-color-primary-dark, #005a87);
+	--item-color: var(--wbcom-heading-color, #333);
+	--item-bg: transparent;
+	--item-color-hover: var(--wbcom-color-primary, #007cba);
+	--item-bg-hover: rgba(0, 124, 186, 0.05);
+	--item-color-active: var(--wbcom-color-primary, #007cba);
+	--item-bg-active: rgba(0, 124, 186, 0.1);
+	--sub-bg: var(--wbcom-card-bg, #fff);
+	--sub-border-color: var(--wbcom-border-color, #e0e0e0);
+	--sub-item-color: var(--wbcom-text-color, #555);
+	--sub-item-bg: transparent;
+	--sub-item-color-hover: var(--wbcom-color-primary, #007cba);
+	--sub-item-bg-hover: var(--wbcom-card-bg-alt, #f8f9fa);
+	--sub-item-color-active: var(--wbcom-color-primary, #007cba);
+	--sub-item-bg-active: var(--wbcom-card-bg-alt, #f8f9fa);
+	--mobile-bg: var(--wbcom-card-bg, #fff);
+	--mobile-border-color: var(--wbcom-border-color-light, #f0f0f0);
+
 	position: relative;
 
 	.smart-menu-container {
@@ -22,8 +44,8 @@
 		gap: 0.5rem;
 		cursor: pointer;
 		padding: 0.75rem 1.25rem;
-		background: #007cba;
-		color: #fff;
+		background: var(--toggle-bg);
+		color: var(--toggle-color);
 		border: none;
 		border-radius: 4px;
 		font-size: 14px;
@@ -33,7 +55,7 @@
 		min-height: 44px;
 
 		&:hover {
-			background: #005a87;
+			background: var(--toggle-hover-bg);
 			transform: translateY(-1px);
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 		}
@@ -172,8 +194,8 @@
 					left: 0;
 					display: none;
 					flex-direction: column;
-					background: var(--sub-bg, #fff);
-					border: 1px solid #e0e0e0;
+					background: var(--sub-bg);
+					border: 1px solid var(--sub-border-color);
 					border-radius: 6px;
 					box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 					min-width: 220px;
@@ -181,7 +203,7 @@
 
 					li {
 						width: 100%;
-						border-bottom: 1px solid #f0f0f0;
+						border-bottom: 1px solid var(--mobile-border-color);
 
 						&:last-child {
 							border-bottom: none;
@@ -246,7 +268,7 @@
 
 		.smart-menu-nav {
 			display: none;
-			background: #fff;
+			background: var(--mobile-bg);
 			border-radius: 6px;
 			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 			overflow: hidden;
@@ -262,7 +284,7 @@
 
 				li {
 					width: 100%;
-					border-bottom: 1px solid #f0f0f0;
+					border-bottom: 1px solid var(--mobile-border-color);
 
 					&:last-child {
 						border-bottom: none;
@@ -290,7 +312,7 @@
 							border: none;
 							border-radius: 0;
 							display: none;
-							background: var(--sub-bg, #f8f9fa);
+							background: var(--sub-bg);
 							margin: 0;
 							width: 100%;
 
@@ -300,7 +322,7 @@
 						}
 
 						li {
-							border-bottom: 1px solid #e0e0e0;
+							border-bottom: 1px solid var(--sub-border-color);
 
 							&:last-child {
 								border-bottom: none;

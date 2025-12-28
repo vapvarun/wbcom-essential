@@ -1,13 +1,28 @@
 /**
  * Pricing Table Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
 
 .wbcom-essential-pricing-table {
+	// Layout
+	--max-width: 400px;
+	--padding: 24px 20px;
+	--button-radius: 6px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--card-bg: var(--wbcom-card-bg, #ffffff);
+	--border-color: var(--wbcom-border-color, rgba(0, 0, 0, 0.1));
+	--title-color: var(--wbcom-heading-color, inherit);
+	--text-color: var(--wbcom-text-color, inherit);
+	--feature-yes-bg: var(--wbcom-success-color, #48bb78);
+	--feature-no-bg: var(--wbcom-error-color, #fc8181);
+	--feature-icon-color: var(--wbcom-button-text, #ffffff);
+
 	.wbcom-price-table {
 		position: relative;
 		display: block;
 		margin: 0 auto;
-		max-width: 400px;
+		max-width: var(--max-width);
 		overflow: hidden;
 
 		&.has-ribbon {
@@ -135,7 +150,7 @@
 
 	.wbcom-price-table-features li {
 		padding: 12px 0;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		border-bottom: 1px solid var(--border-color);
 		display: flex;
 		align-items: center;
 		gap: 12px;
@@ -156,13 +171,13 @@
 			flex-shrink: 0;
 
 			&.icon-yes {
-				background-color: #48bb78;
-				color: #ffffff;
+				background-color: var(--feature-yes-bg);
+				color: var(--feature-icon-color);
 			}
 
 			&.icon-no {
-				background-color: #fc8181;
-				color: #ffffff;
+				background-color: var(--feature-no-bg);
+				color: var(--feature-icon-color);
 			}
 		}
 

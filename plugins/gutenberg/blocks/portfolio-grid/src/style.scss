@@ -5,17 +5,25 @@
  */
 
 .wbcom-essential-portfolio-grid {
+	// Layout
 	--portfolio-columns: 3;
 	--portfolio-columns-tablet: 2;
 	--portfolio-columns-mobile: 1;
 	--portfolio-gap: 30px;
-	--portfolio-item-bg: #ffffff;
 	--portfolio-item-radius: 8px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--portfolio-item-bg: var(--wbcom-card-bg, #ffffff);
 	--portfolio-overlay: rgba(0, 0, 0, 0.7);
-	--portfolio-title-color: #ffffff;
+	--portfolio-title-color: var(--wbcom-button-text, #ffffff);
 	--portfolio-desc-color: rgba(255, 255, 255, 0.9);
-	--portfolio-filter-active: #3182ce;
-	--portfolio-filter-text: #4a5568;
+	--portfolio-filter-active: var(--wbcom-color-primary, #3182ce);
+	--portfolio-filter-text: var(--wbcom-text-color, #4a5568);
+	--portfolio-layout-btn-bg: var(--wbcom-card-bg-alt, #f7f7f7);
+	--portfolio-layout-btn-active-bg: var(--wbcom-card-bg, #ffffff);
+	--portfolio-empty-bg: var(--wbcom-card-bg-alt, #f8f9fa);
+	--portfolio-empty-text: var(--wbcom-meta-color, #6c757d);
+	--portfolio-list-title: var(--wbcom-heading-color, #1a202c);
+	--portfolio-list-desc: var(--wbcom-text-color, #4a5568);
 }
 
 // Controls wrapper
@@ -76,7 +84,7 @@
 .wbcom-portfolio-layout-switch {
 	display: flex;
 	gap: 4px;
-	background: #f7f7f7;
+	background: var(--portfolio-layout-btn-bg);
 	padding: 4px;
 	border-radius: 6px;
 }
@@ -99,7 +107,7 @@
 	}
 
 	&.is-active {
-		background: #ffffff;
+		background: var(--portfolio-layout-btn-active-bg);
 		color: var(--portfolio-filter-active);
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	}
@@ -189,7 +197,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: #f0f0f0;
+		background: var(--portfolio-layout-btn-bg);
 
 		svg {
 			position: absolute;
@@ -310,17 +318,17 @@
 	}
 
 	.wbcom-portfolio-title {
-		color: #1a202c;
+		color: var(--portfolio-list-title);
 	}
 
 	.wbcom-portfolio-description {
-		color: #4a5568;
+		color: var(--portfolio-list-desc);
 		-webkit-line-clamp: 3;
 	}
 
 	.wbcom-portfolio-link {
 		background: var(--portfolio-filter-active);
-		color: #ffffff;
+		color: var(--portfolio-title-color);
 	}
 }
 
@@ -329,9 +337,9 @@
 	grid-column: 1 / -1;
 	text-align: center;
 	padding: 60px 20px;
-	background: #f8f9fa;
+	background: var(--portfolio-empty-bg);
 	border-radius: var(--portfolio-item-radius);
-	color: #6c757d;
+	color: var(--portfolio-empty-text);
 }
 
 // Responsive

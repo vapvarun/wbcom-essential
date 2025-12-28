@@ -5,13 +5,15 @@
  */
 
 .wbcom-essential-posts-ticker-wrapper {
-	--label-bg-color: #1d76da;
-	--label-text-color: #ffffff;
-	--ticker-bg-color: #f8f9fa;
-	--text-color: #122B46;
-	--hover-color: #1d76da;
-	--border-color: #e3e3e3;
+	// Layout
 	--ticker-height: 50px;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--label-bg-color: var(--wbcom-color-primary, #1d76da);
+	--label-text-color: var(--wbcom-button-text, #ffffff);
+	--ticker-bg-color: var(--wbcom-card-bg-alt, #f8f9fa);
+	--text-color: var(--wbcom-heading-color, #122B46);
+	--hover-color: var(--wbcom-color-primary, #1d76da);
+	--border-color: var(--wbcom-border-color, #e3e3e3);
 }
 
 .wbcom-essential-posts-ticker {
@@ -112,7 +114,7 @@
 
 .wbcom-essential-posts-ticker__date {
 	font-size: 12px;
-	color: #888;
+	color: var(--wbcom-meta-color, #888);
 	margin-left: 8px;
 }
 

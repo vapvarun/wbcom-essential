@@ -5,18 +5,20 @@
  */
 
 .wbcom-essential-members-lists {
-	--box-border-color: #e3e3e3;
+	// Layout
 	--box-border-radius: 4px;
-	--box-bg-color: #ffffff;
-	--filter-border-color: #e3e3e3;
 	--avatar-size: 40px;
 	--avatar-radius: 50%;
 	--avatar-spacing: 15px;
-	--online-color: #1cd991;
 	--online-size: 13px;
-	--name-color: #122b46;
 	--row-space: 10px;
-	--link-color: inherit;
+	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--box-border-color: var(--wbcom-border-color, #e3e3e3);
+	--box-bg-color: var(--wbcom-card-bg, #ffffff);
+	--filter-border-color: var(--wbcom-border-color, #e3e3e3);
+	--online-color: var(--wbcom-success-color, #1cd991);
+	--name-color: var(--wbcom-heading-color, #122b46);
+	--link-color: var(--wbcom-link-color, inherit);
 }
 
 .wbcom-essential-members {
@@ -93,7 +95,7 @@
 }
 
 .wbcom-essential-members__tab {
-	color: #9c9c9c;
+	color: var(--wbcom-meta-color, #9c9c9c);
 	font-size: 0.875rem;
 	font-weight: 500;
 	display: inline-block;
@@ -105,12 +107,12 @@
 	cursor: pointer;
 
 	&:hover {
-		color: #1d76da;
+		color: var(--wbcom-color-primary, #1d76da);
 	}
 
 	&.selected {
-		color: #303030;
-		border-bottom: 1px solid #1d76da;
+		color: var(--wbcom-heading-color, #303030);
+		border-bottom: 1px solid var(--wbcom-color-primary, #1d76da);
 		font-weight: 600;
 		margin-bottom: -1px;
 	}
@@ -204,7 +206,7 @@
 	text-align: center;
 	padding: 30px 0;
 	font-size: 14px;
-	color: #666;
+	color: var(--wbcom-text-color, #666);
 
 	p {
 		margin: 0;

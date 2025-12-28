@@ -43,6 +43,14 @@ class WBCOM_Essential_Gutenberg {
 			array(),
 			WBCOM_ESSENTIAL_VERSION
 		);
+
+		// Theme colors integration - maps WordPress theme.json colors to block variables.
+		wp_enqueue_style(
+			'wbcom-essential-theme-colors',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/css/theme-colors.css',
+			array( 'wbcom-essential-blocks-reset' ),
+			WBCOM_ESSENTIAL_VERSION
+		);
 	}
 
 	/**
