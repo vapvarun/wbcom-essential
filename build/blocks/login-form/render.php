@@ -40,63 +40,38 @@ $show_logged_in_message = $attributes['showLoggedInMessage'] ?? true;
 $logged_in_message      = $attributes['loggedInMessage'] ?? 'You are already logged in.';
 $test_mode              = $attributes['testMode'] ?? false;
 
-// Styling attributes.
-$form_bg_color            = $attributes['formBgColor'] ?? '#ffffff';
-$form_padding             = $attributes['formPadding'] ?? 30;
-$form_border_radius       = $attributes['formBorderRadius'] ?? 8;
-$title_color              = $attributes['titleColor'] ?? '#122B46';
-$subtitle_color           = $attributes['subtitleColor'] ?? '#666666';
-$label_color              = $attributes['labelColor'] ?? '#122B46';
-$input_bg_color           = $attributes['inputBgColor'] ?? '#f8f9fa';
-$input_border_color       = $attributes['inputBorderColor'] ?? '#e3e3e3';
-$input_text_color         = $attributes['inputTextColor'] ?? '#122B46';
-$input_focus_border_color = $attributes['inputFocusBorderColor'] ?? '#1d76da';
-$button_bg_color          = $attributes['buttonBgColor'] ?? '#1d76da';
-$button_text_color        = $attributes['buttonTextColor'] ?? '#ffffff';
-$button_hover_bg_color    = $attributes['buttonHoverBgColor'] ?? '#1557a0';
-$link_color               = $attributes['linkColor'] ?? '#1d76da';
-$link_hover_color         = $attributes['linkHoverColor'] ?? '#1557a0';
-$form_width               = $attributes['formWidth'] ?? 420;
-$form_border_color        = $attributes['formBorderColor'] ?? '';
-$form_border_width        = $attributes['formBorderWidth'] ?? 0;
-$form_box_shadow          = $attributes['formBoxShadow'] ?? true;
-$input_border_radius      = $attributes['inputBorderRadius'] ?? 6;
-$input_padding_v          = $attributes['inputPaddingV'] ?? 12;
-$input_padding_h          = $attributes['inputPaddingH'] ?? 16;
-$button_border_radius     = $attributes['buttonBorderRadius'] ?? 6;
-$button_padding_v         = $attributes['buttonPaddingV'] ?? 14;
-$button_padding_h         = $attributes['buttonPaddingH'] ?? 24;
-$checkbox_color           = $attributes['checkboxColor'] ?? '#1d76da';
+// Styling attributes - only get values that are explicitly set (not defaults).
+// Colors use 'inherit' as default to allow CSS/theme to control them.
+$form_padding         = $attributes['formPadding'] ?? 30;
+$form_border_radius   = $attributes['formBorderRadius'] ?? 8;
+$form_width           = $attributes['formWidth'] ?? 420;
+$form_border_color    = $attributes['formBorderColor'] ?? '';
+$form_border_width    = $attributes['formBorderWidth'] ?? 0;
+$form_box_shadow      = $attributes['formBoxShadow'] ?? true;
+$input_border_radius  = $attributes['inputBorderRadius'] ?? 6;
+$input_padding_v      = $attributes['inputPaddingV'] ?? 12;
+$input_padding_h      = $attributes['inputPaddingH'] ?? 16;
+$button_border_radius = $attributes['buttonBorderRadius'] ?? 6;
+$button_padding_v     = $attributes['buttonPaddingV'] ?? 14;
+$button_padding_h     = $attributes['buttonPaddingH'] ?? 24;
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled entirely by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly without !important hacks.
+// DO NOT add color variables here - they will override CSS and break dark mode.
 $inline_styles = array(
-	'--form-bg-color'            => $form_bg_color,
-	'--form-padding'             => $form_padding . 'px',
-	'--form-border-radius'       => $form_border_radius . 'px',
-	'--form-width'               => $form_width . 'px',
-	'--form-border-color'        => $form_border_color ? $form_border_color : 'transparent',
-	'--form-border-width'        => $form_border_width . 'px',
-	'--form-box-shadow'          => $form_box_shadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
-	'--title-color'              => $title_color,
-	'--subtitle-color'           => $subtitle_color,
-	'--label-color'              => $label_color,
-	'--input-bg-color'           => $input_bg_color,
-	'--input-border-color'       => $input_border_color,
-	'--input-text-color'         => $input_text_color,
-	'--input-focus-border-color' => $input_focus_border_color,
-	'--input-border-radius'      => $input_border_radius . 'px',
-	'--input-padding-v'          => $input_padding_v . 'px',
-	'--input-padding-h'          => $input_padding_h . 'px',
-	'--button-bg-color'          => $button_bg_color,
-	'--button-text-color'        => $button_text_color,
-	'--button-hover-bg-color'    => $button_hover_bg_color,
-	'--button-border-radius'     => $button_border_radius . 'px',
-	'--button-padding-v'         => $button_padding_v . 'px',
-	'--button-padding-h'         => $button_padding_h . 'px',
-	'--link-color'               => $link_color,
-	'--link-hover-color'         => $link_hover_color,
-	'--logo-width'               => $logo_width . 'px',
-	'--checkbox-color'           => $checkbox_color,
+	'--form-padding'         => $form_padding . 'px',
+	'--form-border-radius'   => $form_border_radius . 'px',
+	'--form-width'           => $form_width . 'px',
+	'--form-border-width'    => $form_border_width . 'px',
+	'--form-box-shadow'      => $form_box_shadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
+	'--input-border-radius'  => $input_border_radius . 'px',
+	'--input-padding-v'      => $input_padding_v . 'px',
+	'--input-padding-h'      => $input_padding_h . 'px',
+	'--button-border-radius' => $button_border_radius . 'px',
+	'--button-padding-v'     => $button_padding_v . 'px',
+	'--button-padding-h'     => $button_padding_h . 'px',
+	'--logo-width'           => $logo_width . 'px',
 );
 
 $style_string = '';

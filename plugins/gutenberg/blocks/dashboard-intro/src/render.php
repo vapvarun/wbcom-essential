@@ -73,21 +73,16 @@ $container_bg_color  = $attributes['containerBgColor'] ?? '';
 $container_padding   = $attributes['containerPadding'] ?? 30;
 $container_radius    = $attributes['containerBorderRadius'] ?? 8;
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--greeting-color'    => $greeting_color,
-	'--name-color'        => $name_color,
-	'--description-color' => $description_color,
 	'--gap'               => $gap . 'px',
 	'--container-padding' => $container_padding . 'px',
 	'--container-radius'  => $container_radius . 'px',
 	'--avatar-size'       => $avatar_size . 'px',
 	'--avatar-radius'     => $avatar_border_radius . '%',
 );
-
-if ( $container_bg_color ) {
-	$inline_styles['--container-bg'] = $container_bg_color;
-}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {

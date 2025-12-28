@@ -44,20 +44,16 @@ $online_status_color  = $attributes['onlineStatusColor'] ?? '#1CD991';
 $online_status_size   = $attributes['onlineStatusSize'] ?? 13;
 $name_color           = $attributes['nameColor'] ?? '#122B46';
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--box-border-color'  => $box_border_color,
 	'--box-border-radius' => $box_border_radius . 'px',
-	'--box-bg-color'      => $box_bg_color,
-	'--filter-border-color' => $filter_border_color,
 	'--avatar-size'       => $avatar_size . 'px',
 	'--avatar-radius'     => $avatar_border_radius . '%',
 	'--avatar-spacing'    => $avatar_spacing . 'px',
-	'--online-color'      => $online_status_color,
 	'--online-size'       => $online_status_size . 'px',
-	'--name-color'        => $name_color,
 	'--row-space'         => $row_space . 'px',
-	'--link-color'        => $all_members_link_color ?: 'inherit',
 );
 
 $style_string = '';

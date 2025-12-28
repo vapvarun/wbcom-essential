@@ -31,15 +31,10 @@ $icon_size          = $attributes['iconSize'] ?? 20;
 $avatar_size        = $attributes['avatarSize'] ?? 36;
 $item_gap           = $attributes['itemGap'] ?? 16;
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--icon-color'           => $icon_color,
-	'--icon-hover-color'     => $icon_hover_color,
-	'--username-color'       => $user_name_color,
-	'--badge-color'          => $badge_color,
-	'--badge-text-color'     => $badge_text_color,
-	'--dropdown-bg-color'    => $dropdown_bg_color,
-	'--dropdown-border-color' => $dropdown_border,
 	'--icon-size'            => $icon_size . 'px',
 	'--avatar-size'          => $avatar_size . 'px',
 	'--item-gap'             => $item_gap . 'px',

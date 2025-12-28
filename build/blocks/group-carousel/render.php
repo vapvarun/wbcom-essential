@@ -41,14 +41,11 @@ $meta_color         = $attributes['metaColor'] ?? '#A3A5A9';
 $arrow_color        = $attributes['arrowColor'] ?? '#122B46';
 $dot_color          = $attributes['dotColor'] ?? '#122B46';
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--card-bg'       => $card_bg_color,
 	'--card-radius'   => $card_radius . 'px',
-	'--name-color'    => $name_color,
-	'--meta-color'    => $meta_color,
-	'--arrow-color'   => $arrow_color,
-	'--dot-color'     => $dot_color,
 	'--space-between' => $space_between . 'px',
 );
 

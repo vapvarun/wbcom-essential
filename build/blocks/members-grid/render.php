@@ -37,18 +37,17 @@ $card_shadow     = $attributes['cardShadow'] ?? true;
 $name_color      = $attributes['nameColor'] ?? '#122B46';
 $meta_color      = $attributes['metaColor'] ?? '#A3A5A9';
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
 	'--grid-columns'        => $columns,
 	'--grid-columns-tablet' => $columns_tablet,
 	'--grid-columns-mobile' => $columns_mobile,
 	'--grid-gap'            => $gap . 'px',
-	'--card-bg'             => $card_bg_color,
 	'--card-radius'         => $card_radius . 'px',
 	'--card-padding'        => $card_padding . 'px',
 	'--avatar-size'         => $avatar_size . 'px',
-	'--name-color'          => $name_color,
-	'--meta-color'          => $meta_color,
 );
 
 $style_string = '';

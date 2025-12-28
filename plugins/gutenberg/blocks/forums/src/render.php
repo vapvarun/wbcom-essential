@@ -40,16 +40,11 @@ $meta_color           = $attributes['metaColor'] ?? '#A3A5A9';
 $last_reply_color     = $attributes['lastReplyColor'] ?? '#4D5C6D';
 $all_forums_link_color = $attributes['allForumsLinkColor'] ?? '#1d76da';
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--box-bg'           => $box_bg_color,
-	'--box-border-color' => $box_border_color,
 	'--box-radius'       => $box_border_radius . 'px',
-	'--title-color'      => $title_color,
-	'--title-hover'      => $title_hover_color,
-	'--meta-color'       => $meta_color,
-	'--last-reply-color' => $last_reply_color,
-	'--link-color'       => $all_forums_link_color,
 	'--avatar-size'      => $avatar_size . 'px',
 	'--avatar-radius'    => $avatar_border_radius . '%',
 	'--avatar-spacing'   => $avatar_spacing . 'px',

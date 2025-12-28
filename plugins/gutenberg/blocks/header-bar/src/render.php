@@ -42,29 +42,15 @@ $messages_active     = $bp_active && function_exists( 'bp_is_active' ) && bp_is_
 $notifications_active = $bp_active && function_exists( 'bp_is_active' ) && bp_is_active( 'notifications' );
 $wc_active           = class_exists( 'WooCommerce' );
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
 	'--space-between'   => $space_between . 'px',
 	'--icon-size'       => $icon_size . 'px',
 	'--avatar-size'     => $avatar_size . 'px',
 	'--avatar-radius'   => $avatar_border_radius . '%',
-	'--separator-color' => $separator_color,
-	'--icon-color'      => $icon_color,
-	'--counter-bg'      => $counter_bg_color,
-	'--dropdown-bg'     => $dropdown_bg_color,
-	'--dropdown-text'   => $dropdown_text_color,
-	'--user-name-color' => $user_name_color,
 );
-
-if ( $sign_in_color ) {
-	$inline_styles['--sign-in-color'] = $sign_in_color;
-}
-if ( $sign_up_bg_color ) {
-	$inline_styles['--sign-up-bg'] = $sign_up_bg_color;
-}
-if ( $sign_up_text_color ) {
-	$inline_styles['--sign-up-text'] = $sign_up_text_color;
-}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {

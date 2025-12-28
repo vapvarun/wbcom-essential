@@ -74,14 +74,10 @@ if ( empty( $posts ) ) {
 
 $total_pages = $posts_query->max_num_pages;
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--category-color'       => $category_color,
-	'--category-hover-color' => $category_hover_color,
-	'--title-color'          => $title_color,
-	'--title-hover-color'    => $title_hover_color,
-	'--excerpt-color'        => $excerpt_color,
-	'--meta-color'           => $meta_color,
 	'--image-radius'         => $image_radius . 'px',
 	'--gap'                  => $gap . 'px',
 	'--columns'              => $columns,

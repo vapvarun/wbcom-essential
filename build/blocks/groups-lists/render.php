@@ -40,19 +40,13 @@ $filter_normal_color      = $attributes['filterNormalColor'] ?? '#9c9c9c';
 $filter_active_color      = $attributes['filterActiveColor'] ?? '#303030';
 $filter_active_border     = $attributes['filterActiveBorderColor'] ?? '#1d76da';
 
-// Build CSS variables.
+// Build CSS variables - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $css_vars = array(
-	'--box-bg'                   => $box_bg_color,
-	'--box-border-color'         => $box_border_color,
 	'--box-border-radius'        => $box_border_radius . 'px',
 	'--avatar-size'              => $avatar_size . 'px',
 	'--avatar-border-radius'     => $avatar_border_radius . 'px',
-	'--title-color'              => $title_color,
-	'--meta-color'               => $meta_color,
-	'--link-color'               => $link_color,
-	'--filter-normal-color'      => $filter_normal_color,
-	'--filter-active-color'      => $filter_active_color,
-	'--filter-active-border'     => $filter_active_border,
 );
 
 $style_string = '';

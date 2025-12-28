@@ -40,18 +40,12 @@ $button_color              = $attributes['buttonColor'] ?? '#122B46';
 $button_border_color       = $attributes['buttonBorderColor'] ?? '#e3e3e3';
 $button_align              = $attributes['buttonAlign'] ?? 'right';
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--box-bg'             => $box_bg_color,
-	'--box-border-color'   => $box_border_color,
 	'--box-radius'         => $box_border_radius . 'px',
 	'--box-padding'        => $box_padding . 'px',
-	'--forum-title-color'  => $forum_title_color,
-	'--topic-title-color'  => $topic_title_color,
-	'--meta-color'         => $meta_color,
-	'--excerpt-color'      => $excerpt_color,
-	'--button-color'       => $button_color,
-	'--button-border-color' => $button_border_color,
 );
 
 $style_string = '';

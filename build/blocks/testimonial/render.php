@@ -40,23 +40,19 @@ $name_font_size   = $attributes['nameFontSize'] ?? 16;
 $role_font_size   = $attributes['roleFontSize'] ?? 14;
 $spacing          = $attributes['spacing'] ?? 24;
 
-// Build CSS variables.
+// Build CSS variables - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $css_vars = array(
-	'--bg-color'         => $background_color,
 	'--border-radius'    => $border_radius . 'px',
 	'--padding'          => $padding . 'px',
 	'--box-shadow'       => $box_shadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
 	'--avatar-size'      => $avatar_size . 'px',
 	'--quote-icon-size'  => $quote_icon_size . 'px',
-	'--quote-icon-color' => $quote_icon_color,
 	'--quote-font-size'  => $quote_font_size . 'px',
 	'--name-font-size'   => $name_font_size . 'px',
 	'--role-font-size'   => $role_font_size . 'px',
 	'--spacing'          => $spacing . 'px',
-	'--quote-color'      => $quote_color,
-	'--name-color'       => $name_color,
-	'--role-color'       => $role_color,
-	'--rating-color'     => $rating_color,
 );
 
 $style_string = '';

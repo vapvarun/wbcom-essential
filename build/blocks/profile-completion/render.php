@@ -67,19 +67,12 @@ if ( $hide_on_complete && 100 === $completion_percentage ) {
 	return;
 }
 
-// Build inline styles.
+// Build inline styles - ONLY layout/spacing, NEVER colors.
+// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
+// This allows dark mode and theme customizations to work properly.
 $inline_styles = array(
-	'--progress-size'   => $progress_size . 'px',
-	'--progress-width'  => $progress_width . 'px',
-	'--completion-color' => $completion_color,
-	'--incomplete-color' => $incomplete_color,
-	'--progress-border' => $progress_border_color,
-	'--number-color'    => $number_color,
-	'--text-color'      => $text_color,
-	'--details-bg'      => $details_bg_color,
-	'--button-color'    => $button_color,
-	'--button-bg'       => $button_bg_color,
-	'--button-border'   => $button_border_color,
+	'--progress-size'    => $progress_size . 'px',
+	'--progress-width'   => $progress_width . 'px',
 	'--progress-percent' => $completion_percentage,
 );
 
