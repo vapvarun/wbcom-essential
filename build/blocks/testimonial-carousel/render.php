@@ -32,6 +32,11 @@ $name_color             = $attributes['nameColor'] ?? '#1a202c';
 $role_color             = $attributes['roleColor'] ?? '#718096';
 $rating_color           = $attributes['ratingColor'] ?? '#f6ad55';
 $nav_color              = $attributes['navColor'] ?? '#3182ce';
+$pause_on_interaction   = $attributes['pauseOnInteraction'] ?? false;
+$direction              = $attributes['direction'] ?? 'horizontal';
+$effect                 = $attributes['effect'] ?? 'slide';
+$enable_keyboard        = $attributes['enableKeyboard'] ?? true;
+$grab_cursor            = $attributes['grabCursor'] ?? true;
 
 // Don't render if no testimonials.
 if ( empty( $testimonials ) ) {
@@ -53,9 +58,15 @@ $swiper_config = wp_json_encode( array(
 	'slidesPerView' => absint( $slides_per_view ),
 	'spaceBetween'  => absint( $space_between ),
 	'loop'          => (bool) $loop,
+	'direction'     => sanitize_text_field( $direction ),
+	'effect'        => sanitize_text_field( $effect ),
+	'grabCursor'    => (bool) $grab_cursor,
+	'keyboard'      => array(
+		'enabled' => (bool) $enable_keyboard,
+	),
 	'autoplay'      => $autoplay ? array(
 		'delay'                => absint( $autoplay_delay ),
-		'disableOnInteraction' => false,
+		'disableOnInteraction' => (bool) $pause_on_interaction,
 	) : false,
 	'navigation'    => $show_navigation ? array(
 		'nextEl' => '#' . $unique_id . ' .swiper-button-next',

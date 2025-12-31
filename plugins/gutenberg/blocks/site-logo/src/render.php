@@ -19,14 +19,23 @@ $desktop_logo_id   = $attributes['desktopLogoId'] ?? 0;
 $desktop_logo_url  = $attributes['desktopLogoUrl'] ?? '';
 $mobile_logo_id    = $attributes['mobileLogoId'] ?? 0;
 $mobile_logo_url   = $attributes['mobileLogoUrl'] ?? '';
+$image_size        = $attributes['imageSize'] ?? 'full';
+$mobile_image_size = $attributes['mobileImageSize'] ?? 'large';
 $link_url          = $attributes['linkUrl'] ?? '';
 $link_home         = $attributes['linkHome'] ?? true;
 $link_new_tab      = $attributes['linkNewTab'] ?? false;
+$link_rel          = $attributes['linkRel'] ?? '';
 $mobile_breakpoint = $attributes['mobileBreakpoint'] ?? 768;
 $alignment         = $attributes['alignment'] ?? 'flex-start';
 $max_width         = $attributes['maxWidth'] ?? 200;
+$max_width_tablet  = $attributes['maxWidthTablet'] ?? 150;
+$max_width_mobile  = $attributes['maxWidthMobile'] ?? 120;
 $background_color  = $attributes['backgroundColor'] ?? '';
+$border_style      = $attributes['borderStyle'] ?? 'none';
+$border_width      = $attributes['borderWidth'] ?? 0;
+$border_color      = $attributes['borderColor'] ?? '';
 $border_radius     = $attributes['borderRadius'] ?? 0;
+$box_shadow        = $attributes['boxShadow'] ?? '';
 
 // Determine link URL.
 if ( $link_home ) {
@@ -37,13 +46,28 @@ if ( $link_home ) {
 $block_id = 'site-logo-' . wp_unique_id();
 
 // Build CSS custom properties.
-$style_vars = sprintf(
-	'--logo-align: %s; --logo-max-width: %dpx; --logo-bg: %s; --logo-radius: %dpx;',
-	esc_attr( $alignment ),
-	$max_width,
-	$background_color ? esc_attr( $background_color ) : 'transparent',
-	$border_radius
+$style_parts = array(
+	'--logo-align: ' . esc_attr( $alignment ),
+	'--logo-max-width: ' . intval( $max_width ) . 'px',
+	'--logo-max-width-tablet: ' . intval( $max_width_tablet ) . 'px',
+	'--logo-max-width-mobile: ' . intval( $max_width_mobile ) . 'px',
+	'--logo-bg: ' . ( $background_color ? esc_attr( $background_color ) : 'transparent' ),
+	'--logo-radius: ' . intval( $border_radius ) . 'px',
 );
+
+// Border styles.
+if ( 'none' !== $border_style && $border_width > 0 ) {
+	$style_parts[] = '--logo-border-style: ' . esc_attr( $border_style );
+	$style_parts[] = '--logo-border-width: ' . intval( $border_width ) . 'px';
+	$style_parts[] = '--logo-border-color: ' . ( $border_color ? esc_attr( $border_color ) : '#000000' );
+}
+
+// Box shadow.
+if ( ! empty( $box_shadow ) ) {
+	$style_parts[] = '--logo-box-shadow: ' . esc_attr( $box_shadow );
+}
+
+$style_vars = implode( '; ', $style_parts ) . ';';
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
@@ -58,8 +82,23 @@ $wrapper_attributes = get_block_wrapper_attributes(
 $link_attrs = '';
 if ( $link_url ) {
 	$link_attrs = 'href="' . esc_url( $link_url ) . '"';
+
+	// Build rel attribute.
+	$rel_parts = array();
 	if ( $link_new_tab ) {
-		$link_attrs .= ' target="_blank" rel="noopener noreferrer"';
+		$rel_parts[] = 'noopener';
+	}
+	if ( ! empty( $link_rel ) ) {
+		$rel_values = array_filter( explode( ' ', $link_rel ) );
+		$rel_parts  = array_merge( $rel_parts, $rel_values );
+	}
+
+	if ( ! empty( $rel_parts ) ) {
+		$link_attrs .= ' rel="' . esc_attr( implode( ' ', array_unique( $rel_parts ) ) ) . '"';
+	}
+
+	if ( $link_new_tab ) {
+		$link_attrs .= ' target="_blank"';
 	}
 }
 ?>
@@ -80,12 +119,12 @@ if ( $link_url ) {
 					<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $link_attrs is built with esc_url() and hardcoded strings ?>
 					<a <?php echo $link_attrs; ?> class="wbcom-logo-desktop">
 						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
-						<?php echo wp_get_attachment_image( $desktop_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
+						<?php echo wp_get_attachment_image( $desktop_logo_id, $image_size, false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 					</a>
 				<?php else : ?>
 					<div class="wbcom-logo-desktop">
 						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
-						<?php echo wp_get_attachment_image( $desktop_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
+						<?php echo wp_get_attachment_image( $desktop_logo_id, $image_size, false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 					</div>
 				<?php endif; ?>
 
@@ -94,12 +133,12 @@ if ( $link_url ) {
 						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $link_attrs is built with esc_url() and hardcoded strings ?>
 						<a <?php echo $link_attrs; ?> class="wbcom-logo-mobile">
 							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
-							<?php echo wp_get_attachment_image( $mobile_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
+							<?php echo wp_get_attachment_image( $mobile_logo_id, $mobile_image_size, false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 						</a>
 					<?php else : ?>
 						<div class="wbcom-logo-mobile">
 							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image() handles escaping internally ?>
-							<?php echo wp_get_attachment_image( $mobile_logo_id, 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
+							<?php echo wp_get_attachment_image( $mobile_logo_id, $mobile_image_size, false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
 						</div>
 					<?php endif; ?>
 				<?php endif; ?>

@@ -31,6 +31,14 @@
 			"type": "string",
 			"default": ""
 		},
+		"imageSize": {
+			"type": "string",
+			"default": "full"
+		},
+		"mobileImageSize": {
+			"type": "string",
+			"default": "large"
+		},
 		"linkUrl": {
 			"type": "string",
 			"default": ""
@@ -42,6 +50,10 @@
 		"linkNewTab": {
 			"type": "boolean",
 			"default": false
+		},
+		"linkRel": {
+			"type": "string",
+			"default": ""
 		},
 		"mobileBreakpoint": {
 			"type": "number",
@@ -55,13 +67,37 @@
 			"type": "number",
 			"default": 200
 		},
+		"maxWidthTablet": {
+			"type": "number",
+			"default": 150
+		},
+		"maxWidthMobile": {
+			"type": "number",
+			"default": 120
+		},
 		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderStyle": {
+			"type": "string",
+			"default": "none"
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"borderColor": {
 			"type": "string",
 			"default": ""
 		},
 		"borderRadius": {
 			"type": "number",
 			"default": 0
+		},
+		"boxShadow": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

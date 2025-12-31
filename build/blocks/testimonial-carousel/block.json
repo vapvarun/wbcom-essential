@@ -122,6 +122,26 @@
     "navColor": {
       "type": "string",
       "default": "#3182ce"
+    },
+    "pauseOnInteraction": {
+      "type": "boolean",
+      "default": false
+    },
+    "direction": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "effect": {
+      "type": "string",
+      "default": "slide"
+    },
+    "enableKeyboard": {
+      "type": "boolean",
+      "default": true
+    },
+    "grabCursor": {
+      "type": "boolean",
+      "default": true
     }
   },
   "textdomain": "wbcom-essential",

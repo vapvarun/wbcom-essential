@@ -8,9 +8,18 @@
 	// Layout
 	--logo-align: flex-start;
 	--logo-max-width: 200px;
+	--logo-max-width-tablet: 150px;
+	--logo-max-width-mobile: 120px;
 	--logo-radius: 0px;
 	// Colors - inherit from theme via bridge variables (theme-colors.css)
 	--logo-bg: transparent;
+	// Border
+	--logo-border-style: none;
+	--logo-border-width: 0px;
+	--logo-border-color: #000000;
+	// Box Shadow
+	--logo-box-shadow: none;
+	// Placeholder
 	--placeholder-bg: var(--wbcom-card-bg-alt, #f5f5f5);
 	--placeholder-border: var(--wbcom-border-color, #ccc);
 	--placeholder-text: var(--wbcom-meta-color, #666);
@@ -34,12 +43,35 @@
 		max-width: var(--logo-max-width);
 		height: auto;
 		background-color: var(--logo-bg);
+		border-style: var(--logo-border-style);
+		border-width: var(--logo-border-width);
+		border-color: var(--logo-border-color);
 		border-radius: var(--logo-radius);
+		box-shadow: var(--logo-box-shadow);
 		transition: opacity 0.2s ease;
 	}
 
 	a:hover img {
 		opacity: 0.85;
+	}
+}
+
+// Responsive max-width
+@media (max-width: 1024px) {
+	.wbcom-site-logo-container img {
+		max-width: var(--logo-max-width-tablet);
+	}
+	.wbcom-site-logo-placeholder {
+		max-width: var(--logo-max-width-tablet);
+	}
+}
+
+@media (max-width: 768px) {
+	.wbcom-site-logo-container img {
+		max-width: var(--logo-max-width-mobile);
+	}
+	.wbcom-site-logo-placeholder {
+		max-width: var(--logo-max-width-mobile);
 	}
 }
 

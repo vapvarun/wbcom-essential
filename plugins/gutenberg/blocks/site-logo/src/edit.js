@@ -20,7 +20,10 @@ import {
 	Button,
 	Flex,
 	ColorPalette,
+	CheckboxControl,
+	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -30,15 +33,32 @@ export default function Edit( { attributes, setAttributes } ) {
 		desktopLogoUrl,
 		mobileLogoId,
 		mobileLogoUrl,
+		imageSize,
+		mobileImageSize,
 		linkUrl,
 		linkHome,
 		linkNewTab,
+		linkRel,
 		mobileBreakpoint,
 		alignment,
 		maxWidth,
+		maxWidthTablet,
+		maxWidthMobile,
 		backgroundColor,
+		borderStyle,
+		borderWidth,
+		borderColor,
 		borderRadius,
+		boxShadow,
 	} = attributes;
+
+	// State for image sizes
+	const [ imageSizes, setImageSizes ] = useState( [
+		{ label: __( 'Full', 'wbcom-essential' ), value: 'full' },
+		{ label: __( 'Large', 'wbcom-essential' ), value: 'large' },
+		{ label: __( 'Medium', 'wbcom-essential' ), value: 'medium' },
+		{ label: __( 'Thumbnail', 'wbcom-essential' ), value: 'thumbnail' },
+	] );
 
 	const blockProps = useBlockProps();
 
@@ -113,6 +133,15 @@ export default function Edit( { attributes, setAttributes } ) {
 								</MediaUploadCheck>
 							</div>
 
+							{ desktopLogoUrl && (
+								<SelectControl
+									label={ __( 'Desktop Image Size', 'wbcom-essential' ) }
+									value={ imageSize }
+									options={ imageSizes }
+									onChange={ ( value ) => setAttributes( { imageSize: value } ) }
+								/>
+							) }
+
 							<div style={ { marginBottom: '16px' } }>
 								<p style={ { fontWeight: '500', marginBottom: '8px' } }>
 									{ __( 'Mobile Logo (Optional)', 'wbcom-essential' ) }
@@ -155,14 +184,22 @@ export default function Edit( { attributes, setAttributes } ) {
 							</div>
 
 							{ mobileLogoUrl && (
-								<RangeControl
-									label={ __( 'Mobile Breakpoint (px)', 'wbcom-essential' ) }
-									help={ __( 'Screen width below which mobile logo is shown', 'wbcom-essential' ) }
-									value={ mobileBreakpoint }
-									onChange={ ( value ) => setAttributes( { mobileBreakpoint: value } ) }
-									min={ 320 }
-									max={ 1200 }
-								/>
+								<>
+									<SelectControl
+										label={ __( 'Mobile Image Size', 'wbcom-essential' ) }
+										value={ mobileImageSize }
+										options={ imageSizes }
+										onChange={ ( value ) => setAttributes( { mobileImageSize: value } ) }
+									/>
+									<RangeControl
+										label={ __( 'Mobile Breakpoint (px)', 'wbcom-essential' ) }
+										help={ __( 'Screen width below which mobile logo is shown', 'wbcom-essential' ) }
+										value={ mobileBreakpoint }
+										onChange={ ( value ) => setAttributes( { mobileBreakpoint: value } ) }
+										min={ 320 }
+										max={ 1200 }
+									/>
+								</>
 							) }
 						</>
 					) }
@@ -189,6 +226,54 @@ export default function Edit( { attributes, setAttributes } ) {
 						checked={ linkNewTab }
 						onChange={ ( value ) => setAttributes( { linkNewTab: value } ) }
 					/>
+
+					<div style={ { marginTop: '16px' } }>
+						<p style={ { fontWeight: '500', marginBottom: '8px' } }>
+							{ __( 'Link Relationship (rel)', 'wbcom-essential' ) }
+						</p>
+						<CheckboxControl
+							label={ __( 'nofollow', 'wbcom-essential' ) }
+							checked={ linkRel.includes( 'nofollow' ) }
+							onChange={ ( checked ) => {
+								const rels = linkRel.split( ' ' ).filter( Boolean );
+								if ( checked ) {
+									rels.push( 'nofollow' );
+								} else {
+									const index = rels.indexOf( 'nofollow' );
+									if ( index > -1 ) rels.splice( index, 1 );
+								}
+								setAttributes( { linkRel: rels.join( ' ' ) } );
+							} }
+						/>
+						<CheckboxControl
+							label={ __( 'noreferrer', 'wbcom-essential' ) }
+							checked={ linkRel.includes( 'noreferrer' ) }
+							onChange={ ( checked ) => {
+								const rels = linkRel.split( ' ' ).filter( Boolean );
+								if ( checked ) {
+									rels.push( 'noreferrer' );
+								} else {
+									const index = rels.indexOf( 'noreferrer' );
+									if ( index > -1 ) rels.splice( index, 1 );
+								}
+								setAttributes( { linkRel: rels.join( ' ' ) } );
+							} }
+						/>
+						<CheckboxControl
+							label={ __( 'sponsored', 'wbcom-essential' ) }
+							checked={ linkRel.includes( 'sponsored' ) }
+							onChange={ ( checked ) => {
+								const rels = linkRel.split( ' ' ).filter( Boolean );
+								if ( checked ) {
+									rels.push( 'sponsored' );
+								} else {
+									const index = rels.indexOf( 'sponsored' );
+									if ( index > -1 ) rels.splice( index, 1 );
+								}
+								setAttributes( { linkRel: rels.join( ' ' ) } );
+							} }
+						/>
+					</div>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
@@ -203,20 +288,29 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { alignment: value } ) }
 					/>
 
+					<p style={ { fontWeight: '500', marginTop: '16px', marginBottom: '8px' } }>
+						{ __( 'Maximum Width', 'wbcom-essential' ) }
+					</p>
 					<RangeControl
-						label={ __( 'Max Width (px)', 'wbcom-essential' ) }
+						label={ __( 'Desktop (px)', 'wbcom-essential' ) }
 						value={ maxWidth }
 						onChange={ ( value ) => setAttributes( { maxWidth: value } ) }
 						min={ 50 }
-						max={ 500 }
+						max={ 800 }
 					/>
-
 					<RangeControl
-						label={ __( 'Border Radius', 'wbcom-essential' ) }
-						value={ borderRadius }
-						onChange={ ( value ) => setAttributes( { borderRadius: value } ) }
-						min={ 0 }
-						max={ 50 }
+						label={ __( 'Tablet (px)', 'wbcom-essential' ) }
+						value={ maxWidthTablet }
+						onChange={ ( value ) => setAttributes( { maxWidthTablet: value } ) }
+						min={ 50 }
+						max={ 600 }
+					/>
+					<RangeControl
+						label={ __( 'Mobile (px)', 'wbcom-essential' ) }
+						value={ maxWidthMobile }
+						onChange={ ( value ) => setAttributes( { maxWidthMobile: value } ) }
+						min={ 50 }
+						max={ 400 }
 					/>
 
 					<div style={ { marginTop: '16px' } }>
@@ -227,6 +321,62 @@ export default function Edit( { attributes, setAttributes } ) {
 							value={ backgroundColor }
 							onChange={ ( value ) => setAttributes( { backgroundColor: value } ) }
 							clearable={ true }
+						/>
+					</div>
+
+					<div style={ { marginTop: '16px' } }>
+						<p style={ { fontWeight: '500', marginBottom: '8px' } }>
+							{ __( 'Border', 'wbcom-essential' ) }
+						</p>
+						<SelectControl
+							label={ __( 'Border Style', 'wbcom-essential' ) }
+							value={ borderStyle }
+							options={ [
+								{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+								{ label: __( 'Solid', 'wbcom-essential' ), value: 'solid' },
+								{ label: __( 'Dashed', 'wbcom-essential' ), value: 'dashed' },
+								{ label: __( 'Dotted', 'wbcom-essential' ), value: 'dotted' },
+								{ label: __( 'Double', 'wbcom-essential' ), value: 'double' },
+							] }
+							onChange={ ( value ) => setAttributes( { borderStyle: value } ) }
+						/>
+
+						{ borderStyle !== 'none' && (
+							<>
+								<RangeControl
+									label={ __( 'Border Width (px)', 'wbcom-essential' ) }
+									value={ borderWidth }
+									onChange={ ( value ) => setAttributes( { borderWidth: value } ) }
+									min={ 0 }
+									max={ 20 }
+								/>
+								<p style={ { fontWeight: '500', marginTop: '8px', marginBottom: '8px' } }>
+									{ __( 'Border Color', 'wbcom-essential' ) }
+								</p>
+								<ColorPalette
+									value={ borderColor }
+									onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+									clearable={ true }
+								/>
+							</>
+						) }
+
+						<RangeControl
+							label={ __( 'Border Radius (px)', 'wbcom-essential' ) }
+							value={ borderRadius }
+							onChange={ ( value ) => setAttributes( { borderRadius: value } ) }
+							min={ 0 }
+							max={ 100 }
+						/>
+					</div>
+
+					<div style={ { marginTop: '16px' } }>
+						<TextControl
+							label={ __( 'Box Shadow', 'wbcom-essential' ) }
+							help={ __( 'CSS box-shadow value (e.g., 0 4px 6px rgba(0,0,0,0.1))', 'wbcom-essential' ) }
+							value={ boxShadow }
+							onChange={ ( value ) => setAttributes( { boxShadow: value } ) }
+							placeholder="0 4px 6px rgba(0,0,0,0.1)"
 						/>
 					</div>
 				</PanelBody>

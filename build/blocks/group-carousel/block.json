@@ -100,6 +100,26 @@
     "dotColor": {
       "type": "string",
       "default": "#122B46"
+    },
+    "pauseOnInteraction": {
+      "type": "boolean",
+      "default": false
+    },
+    "direction": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "effect": {
+      "type": "string",
+      "default": "slide"
+    },
+    "enableKeyboard": {
+      "type": "boolean",
+      "default": true
+    },
+    "grabCursor": {
+      "type": "boolean",
+      "default": true
     }
   },
   "supports": {

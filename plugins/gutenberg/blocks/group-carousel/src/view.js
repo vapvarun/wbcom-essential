@@ -36,6 +36,10 @@
 			spaceBetween: options.spaceBetween || 30,
 			speed: options.speed || 500,
 			loop: options.loop !== false,
+			direction: options.direction || 'horizontal',
+			effect: options.effect || 'slide',
+			grabCursor: options.grabCursor !== false,
+			keyboard: options.keyboard || { enabled: true },
 			breakpoints: options.breakpoints || {
 				320: { slidesPerView: 1 },
 				768: { slidesPerView: 2 },

@@ -37,6 +37,11 @@ export default function Edit( { attributes, setAttributes } ) {
 		metaColor,
 		arrowColor,
 		dotColor,
+		pauseOnInteraction,
+		direction,
+		effect,
+		enableKeyboard,
+		grabCursor,
 	} = attributes;
 
 	const blockProps = useBlockProps();
@@ -161,6 +166,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								onChange={ ( value ) => setAttributes( { pauseOnHover: value } ) }
 							/>
 
+							<ToggleControl
+								label={ __( 'Pause on Interaction', 'wbcom-essential' ) }
+								help={ __( 'Pause autoplay when user interacts with carousel', 'wbcom-essential' ) }
+								checked={ pauseOnInteraction }
+								onChange={ ( value ) => setAttributes( { pauseOnInteraction: value } ) }
+							/>
+
 							<RangeControl
 								label={ __( 'Autoplay Speed (ms)', 'wbcom-essential' ) }
 								value={ autoplaySpeed }
@@ -185,6 +197,45 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 100 }
 						max={ 2000 }
 						step={ 100 }
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Advanced Options', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Direction', 'wbcom-essential' ) }
+						value={ direction }
+						options={ [
+							{ label: __( 'Horizontal', 'wbcom-essential' ), value: 'horizontal' },
+							{ label: __( 'Vertical', 'wbcom-essential' ), value: 'vertical' },
+						] }
+						onChange={ ( value ) => setAttributes( { direction: value } ) }
+					/>
+
+					<SelectControl
+						label={ __( 'Effect', 'wbcom-essential' ) }
+						value={ effect }
+						options={ [
+							{ label: __( 'Slide', 'wbcom-essential' ), value: 'slide' },
+							{ label: __( 'Fade', 'wbcom-essential' ), value: 'fade' },
+							{ label: __( 'Cube', 'wbcom-essential' ), value: 'cube' },
+							{ label: __( 'Coverflow', 'wbcom-essential' ), value: 'coverflow' },
+						] }
+						onChange={ ( value ) => setAttributes( { effect: value } ) }
+						help={ __( 'Note: Some effects work best with 1 slide visible', 'wbcom-essential' ) }
+					/>
+
+					<ToggleControl
+						label={ __( 'Keyboard Navigation', 'wbcom-essential' ) }
+						help={ __( 'Allow navigation using arrow keys', 'wbcom-essential' ) }
+						checked={ enableKeyboard }
+						onChange={ ( value ) => setAttributes( { enableKeyboard: value } ) }
+					/>
+
+					<ToggleControl
+						label={ __( 'Grab Cursor', 'wbcom-essential' ) }
+						help={ __( 'Show grab cursor when hovering over carousel', 'wbcom-essential' ) }
+						checked={ grabCursor }
+						onChange={ ( value ) => setAttributes( { grabCursor: value } ) }
 					/>
 				</PanelBody>
 

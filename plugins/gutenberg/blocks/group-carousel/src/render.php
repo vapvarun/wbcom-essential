@@ -40,6 +40,11 @@ $name_color         = $attributes['nameColor'] ?? '#122B46';
 $meta_color         = $attributes['metaColor'] ?? '#A3A5A9';
 $arrow_color        = $attributes['arrowColor'] ?? '#122B46';
 $dot_color          = $attributes['dotColor'] ?? '#122B46';
+$pause_on_interaction = $attributes['pauseOnInteraction'] ?? false;
+$direction          = $attributes['direction'] ?? 'horizontal';
+$effect             = $attributes['effect'] ?? 'slide';
+$enable_keyboard    = $attributes['enableKeyboard'] ?? true;
+$grab_cursor        = $attributes['grabCursor'] ?? true;
 
 // Build inline styles - ONLY layout/spacing, NEVER colors.
 // Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
@@ -61,9 +66,15 @@ $swiper_options = array(
 	'spaceBetween'   => $space_between,
 	'speed'          => $animation_speed,
 	'loop'           => $infinite_loop,
+	'direction'      => $direction,
+	'effect'         => $effect,
+	'grabCursor'     => $grab_cursor,
+	'keyboard'       => array(
+		'enabled' => $enable_keyboard,
+	),
 	'autoplay'       => $autoplay ? array(
 		'delay'                => $autoplay_speed,
-		'disableOnInteraction' => ! $pause_on_hover,
+		'disableOnInteraction' => $pause_on_interaction,
 		'pauseOnMouseEnter'    => $pause_on_hover,
 	) : false,
 	'navigation'     => in_array( $navigation, array( 'arrows', 'both' ), true ),
