@@ -17,6 +17,7 @@ import {
 	SelectControl,
 	RangeControl,
 	Button,
+	ToggleControl,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import ColorControl from './components/color-control';
@@ -25,7 +26,11 @@ const ANIMATION_OPTIONS = [
 	{ label: __( 'Fade In', 'wbcom-essential' ), value: 'fadeIn' },
 	{ label: __( 'Slide Up', 'wbcom-essential' ), value: 'slideUp' },
 	{ label: __( 'Slide Down', 'wbcom-essential' ), value: 'slideDown' },
+	{ label: __( 'Slide Left', 'wbcom-essential' ), value: 'slideLeft' },
+	{ label: __( 'Slide Right', 'wbcom-essential' ), value: 'slideRight' },
 	{ label: __( 'Zoom In', 'wbcom-essential' ), value: 'zoomIn' },
+	{ label: __( 'Zoom Out', 'wbcom-essential' ), value: 'zoomOut' },
+	{ label: __( 'Bounce', 'wbcom-essential' ), value: 'bounce' },
 	{ label: __( 'Flip', 'wbcom-essential' ), value: 'flip' },
 	{ label: __( 'Typing', 'wbcom-essential' ), value: 'typing' },
 ];
@@ -51,9 +56,14 @@ export default function Edit( { attributes, setAttributes } ) {
 		textAlign,
 		animation,
 		duration,
+		showCursor,
+		cursorChar,
+		loopCount,
 		textColor,
 		rotatingTextColor,
 		rotatingTextBg,
+		prefixColor,
+		suffixColor,
 	} = attributes;
 
 	const [ activeIndex, setActiveIndex ] = useState( 0 );
@@ -76,6 +86,8 @@ export default function Edit( { attributes, setAttributes } ) {
 			'--text-color': textColor || undefined,
 			'--rotating-color': rotatingTextColor || undefined,
 			'--rotating-bg': rotatingTextBg || undefined,
+			'--prefix-color': prefixColor || undefined,
+			'--suffix-color': suffixColor || undefined,
 		},
 	} );
 
@@ -241,6 +253,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) =>
 							setAttributes( { animation: value } )
 						}
+						help={ __(
+							'Choose how the rotating text transitions',
+							'wbcom-essential'
+						) }
 					/>
 
 					<RangeControl
@@ -252,6 +268,61 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 500 }
 						max={ 10000 }
 						step={ 100 }
+						help={ __(
+							'Time each text is displayed before rotating',
+							'wbcom-essential'
+						) }
+					/>
+
+					{ animation === 'typing' && (
+						<>
+							<ToggleControl
+								label={ __(
+									'Show Cursor',
+									'wbcom-essential'
+								) }
+								checked={ showCursor }
+								onChange={ ( value ) =>
+									setAttributes( { showCursor: value } )
+								}
+								help={ __(
+									'Display a blinking cursor',
+									'wbcom-essential'
+								) }
+							/>
+
+							{ showCursor && (
+								<TextControl
+									label={ __(
+										'Cursor Character',
+										'wbcom-essential'
+									) }
+									value={ cursorChar }
+									onChange={ ( value ) =>
+										setAttributes( { cursorChar: value } )
+									}
+									help={ __(
+										'Character to use for cursor',
+										'wbcom-essential'
+									) }
+								/>
+							) }
+						</>
+					) }
+
+					<RangeControl
+						label={ __( 'Loop Count', 'wbcom-essential' ) }
+						value={ loopCount }
+						onChange={ ( value ) =>
+							setAttributes( { loopCount: value } )
+						}
+						min={ 0 }
+						max={ 100 }
+						step={ 1 }
+						help={ __(
+							'Number of times to loop. 0 = infinite',
+							'wbcom-essential'
+						) }
 					/>
 				</PanelBody>
 
@@ -287,6 +358,30 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) =>
 							setAttributes( { rotatingTextBg: value } )
 						}
+					/>
+
+					<ColorControl
+						label={ __( 'Prefix Color', 'wbcom-essential' ) }
+						value={ prefixColor }
+						onChange={ ( value ) =>
+							setAttributes( { prefixColor: value } )
+						}
+						help={ __(
+							'Override color for prefix text',
+							'wbcom-essential'
+						) }
+					/>
+
+					<ColorControl
+						label={ __( 'Suffix Color', 'wbcom-essential' ) }
+						value={ suffixColor }
+						onChange={ ( value ) =>
+							setAttributes( { suffixColor: value } )
+						}
+						help={ __(
+							'Override color for suffix text',
+							'wbcom-essential'
+						) }
 					/>
 				</PanelBody>
 			</InspectorControls>

@@ -21,9 +21,14 @@ $html_tag            = $attributes['htmlTag'] ?? 'h2';
 $text_align          = $attributes['textAlign'] ?? 'center';
 $animation           = $attributes['animation'] ?? 'fadeIn';
 $duration            = $attributes['duration'] ?? 3000;
+$show_cursor         = $attributes['showCursor'] ?? true;
+$cursor_char         = $attributes['cursorChar'] ?? '|';
+$loop_count          = $attributes['loopCount'] ?? 0;
 $text_color          = $attributes['textColor'] ?? '';
 $rotating_text_color = $attributes['rotatingTextColor'] ?? '#3182ce';
 $rotating_text_bg    = $attributes['rotatingTextBg'] ?? '';
+$prefix_color        = $attributes['prefixColor'] ?? '';
+$suffix_color        = $attributes['suffixColor'] ?? '';
 
 // Allowed tags.
 $allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p' );
@@ -45,14 +50,23 @@ if ( $rotating_text_color ) {
 if ( $rotating_text_bg ) {
 	$inline_styles[] = '--rotating-bg: ' . esc_attr( $rotating_text_bg );
 }
+if ( $prefix_color ) {
+	$inline_styles[] = '--prefix-color: ' . esc_attr( $prefix_color );
+}
+if ( $suffix_color ) {
+	$inline_styles[] = '--suffix-color: ' . esc_attr( $suffix_color );
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'         => 'wbcom-essential-text-rotator',
-		'style'         => implode( '; ', $inline_styles ),
-		'data-animation' => esc_attr( $animation ),
-		'data-duration' => esc_attr( $duration ),
+		'class'            => 'wbcom-essential-text-rotator',
+		'style'            => implode( '; ', $inline_styles ),
+		'data-animation'   => esc_attr( $animation ),
+		'data-duration'    => esc_attr( $duration ),
+		'data-show-cursor' => $show_cursor ? '1' : '0',
+		'data-cursor-char' => esc_attr( $cursor_char ),
+		'data-loop-count'  => esc_attr( $loop_count ),
 	)
 );
 

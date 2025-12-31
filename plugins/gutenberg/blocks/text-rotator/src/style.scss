@@ -9,6 +9,8 @@
 	--text-color: var(--wbcom-heading-color, inherit);
 	--rotating-color: var(--wbcom-color-primary, #3182ce);
 	--rotating-bg: transparent;
+	--prefix-color: var(--text-color);
+	--suffix-color: var(--text-color);
 }
 
 .wbcom-text-rotator-wrapper {
@@ -17,9 +19,12 @@
 	margin: 0;
 }
 
-.wbcom-text-rotator-prefix,
+.wbcom-text-rotator-prefix {
+	color: var(--prefix-color);
+}
+
 .wbcom-text-rotator-suffix {
-	color: var(--text-color);
+	color: var(--suffix-color);
 }
 
 .wbcom-text-rotator-rotating {
@@ -127,24 +132,113 @@
 	}
 }
 
-// Animation: Typing
-.wbcom-animation-typing {
-	border-right: 2px solid var(--rotating-color);
-	white-space: nowrap;
+// Animation: Slide Left
+.wbcom-animation-slideLeft {
 	overflow: hidden;
 
-	&.wbcom-typing-cursor {
+	&.wbcom-animating {
+		animation: wbcom-slideLeft 0.5s ease-out;
+	}
+}
+
+@keyframes wbcom-slideLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+// Animation: Slide Right
+.wbcom-animation-slideRight {
+	overflow: hidden;
+
+	&.wbcom-animating {
+		animation: wbcom-slideRight 0.5s ease-out;
+	}
+}
+
+@keyframes wbcom-slideRight {
+	0% {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+// Animation: Zoom Out
+.wbcom-animation-zoomOut {
+	&.wbcom-animating {
+		animation: wbcom-zoomOut 0.5s ease-out;
+	}
+}
+
+@keyframes wbcom-zoomOut {
+	0% {
+		opacity: 0;
+		transform: scale(1.5);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+// Animation: Bounce
+.wbcom-animation-bounce {
+	&.wbcom-animating {
+		animation: wbcom-bounce 0.6s ease-out;
+	}
+}
+
+@keyframes wbcom-bounce {
+	0% {
+		opacity: 0;
+		transform: scale(0.3);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.1);
+	}
+	70% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+// Animation: Typing
+.wbcom-animation-typing {
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+
+	&::after {
+		content: attr(data-cursor);
+		position: absolute;
+		margin-left: 2px;
 		animation: wbcom-blink 0.7s step-end infinite;
+	}
+
+	&.wbcom-typing-no-cursor::after {
+		display: none;
 	}
 }
 
 @keyframes wbcom-blink {
 	0%,
 	100% {
-		border-color: transparent;
+		opacity: 1;
 	}
 	50% {
-		border-color: var(--rotating-color);
+		opacity: 0;
 	}
 }
 
