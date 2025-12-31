@@ -98,6 +98,26 @@
       "type": "number",
       "default": 0
     },
+    "svgWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "svgHeight": {
+      "type": "number",
+      "default": 0
+    },
+    "iconBackgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "iconBackgroundSize": {
+      "type": "number",
+      "default": 80
+    },
+    "iconBackgroundRadius": {
+      "type": "number",
+      "default": 50
+    },
     "linkUrl": {
       "type": "string",
       "default": ""
@@ -113,6 +133,42 @@
     "hoverAnimation": {
       "type": "string",
       "default": ""
+    },
+    "borderWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "borderStyle": {
+      "type": "string",
+      "default": "solid"
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "boxShadowEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "boxShadowHorizontal": {
+      "type": "number",
+      "default": 0
+    },
+    "boxShadowVertical": {
+      "type": "number",
+      "default": 10
+    },
+    "boxShadowBlur": {
+      "type": "number",
+      "default": 20
+    },
+    "boxShadowSpread": {
+      "type": "number",
+      "default": 0
+    },
+    "boxShadowColor": {
+      "type": "string",
+      "default": "rgba(0,0,0,0.15)"
     }
   },
   "supports": {

@@ -10,10 +10,12 @@
 	--icon-container-size: 60px;
 	--content-padding: 24px;
 	--content-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+	--content-border: none;
 	--date-font-size: 14px;
 	--title-font-size: 20px;
 	--text-font-size: 16px;
 	--item-spacing: 40px;
+	--image-border-radius: 8px;
 	// Colors - inherit from theme via bridge variables (theme-colors.css)
 	--bar-color: var(--wbcom-border-color, #e2e8f0);
 	--content-background: var(--wbcom-card-bg-alt, #f7fafc);
@@ -65,6 +67,7 @@
 		margin-left: 30px;
 		padding: var(--content-padding);
 		box-shadow: var(--content-box-shadow);
+		border: var(--content-border);
 
 		// Arrow pointer
 		&::before {
@@ -95,7 +98,7 @@
 		img {
 			max-width: 100%;
 			height: auto;
-			border-radius: 8px;
+			border-radius: var(--image-border-radius);
 		}
 	}
 

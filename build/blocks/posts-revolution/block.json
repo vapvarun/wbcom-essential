@@ -6,14 +6,15 @@
   "title": "Posts Revolution",
   "category": "wbcom-essential",
   "icon": "grid-view",
-  "description": "Display posts in various creative layouts with featured post emphasis.",
+  "description": "Display posts in 7 creative magazine-style layouts with featured post emphasis.",
   "keywords": [
     "posts",
     "grid",
     "layout",
     "featured",
     "magazine",
-    "blog"
+    "blog",
+    "revolution"
   ],
   "supports": {
     "html": false,
@@ -27,9 +28,9 @@
     }
   },
   "attributes": {
-    "layout": {
+    "displayType": {
       "type": "string",
-      "default": "featured-sidebar"
+      "default": "posts_type1"
     },
     "columns": {
       "type": "number",
@@ -41,31 +42,27 @@
     },
     "excerptLength": {
       "type": "number",
-      "default": 100
-    },
-    "showAuthor": {
-      "type": "boolean",
-      "default": true
-    },
-    "showDate": {
-      "type": "boolean",
-      "default": true
-    },
-    "showCategory": {
-      "type": "boolean",
-      "default": true
+      "default": 150
     },
     "dateFormat": {
       "type": "string",
-      "default": "M j, Y"
+      "default": "F j, Y"
     },
-    "postType": {
+    "querySource": {
       "type": "string",
-      "default": "post"
+      "default": "wp_posts"
+    },
+    "customPostType": {
+      "type": "string",
+      "default": ""
     },
     "categories": {
       "type": "array",
       "default": []
+    },
+    "stickyPosts": {
+      "type": "string",
+      "default": "allposts"
     },
     "postsPerPage": {
       "type": "number",
@@ -79,54 +76,43 @@
       "type": "string",
       "default": "DESC"
     },
-    "categoryColor": {
-      "type": "string",
-      "default": "#1d76da"
-    },
-    "categoryHoverColor": {
-      "type": "string",
-      "default": "#1557a0"
-    },
-    "titleColor": {
-      "type": "string",
-      "default": "#122B46"
-    },
-    "titleHoverColor": {
-      "type": "string",
-      "default": "#1d76da"
-    },
-    "excerptColor": {
-      "type": "string",
-      "default": "#666666"
-    },
-    "metaColor": {
-      "type": "string",
-      "default": "#888888"
-    },
-    "imageRadius": {
-      "type": "number",
-      "default": 8
-    },
-    "gap": {
-      "type": "number",
-      "default": 24
-    },
     "enablePagination": {
       "type": "boolean",
       "default": false
     },
     "paginationType": {
       "type": "string",
-      "default": "numbers"
+      "default": "numeric"
     },
-    "paginationAlignment": {
+    "enableAnimation": {
+      "type": "boolean",
+      "default": false
+    },
+    "animationType": {
       "type": "string",
-      "default": "center"
+      "default": "fade-in"
+    },
+    "animationDelay": {
+      "type": "number",
+      "default": 1000
+    },
+    "enableCustomStyle": {
+      "type": "boolean",
+      "default": false
+    },
+    "mainColor": {
+      "type": "string",
+      "default": "#1d76da"
+    },
+    "hoverColor": {
+      "type": "string",
+      "default": "#1d76da"
     }
   },
   "textdomain": "wbcom-essential",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
   "render": "file:./render.php"
 }

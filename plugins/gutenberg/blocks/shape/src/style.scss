@@ -16,6 +16,16 @@
 	// Colors - inherit from theme via bridge variables (theme-colors.css)
 	--shape-background: var(--wbcom-color-primary, #3182ce);
 	--shape-icon-color: var(--wbcom-button-text, #ffffff);
+	// Border & Shadow defaults
+	--shape-border: none;
+	--shape-box-shadow: none;
+	// SVG dimensions
+	--shape-svg-width: auto;
+	--shape-svg-height: auto;
+	// Icon background
+	--shape-icon-bg: transparent;
+	--shape-icon-bg-size: 80px;
+	--shape-icon-bg-radius: 50%;
 }
 
 .wbcom-shape-wrapper {
@@ -33,7 +43,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+	border: var(--shape-border);
+	box-shadow: var(--shape-box-shadow);
 }
 
 // Icon styling
@@ -46,6 +58,25 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 1;
+
+	// SVG specific dimensions override
+	svg {
+		width: var(--shape-svg-width);
+		height: var(--shape-svg-height);
+		fill: var(--shape-icon-color);
+	}
+}
+
+// Icon background wrapper
+.wbcom-shape-icon-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--shape-icon-bg-size);
+	height: var(--shape-icon-bg-size);
+	background-color: var(--shape-icon-bg);
+	border-radius: var(--shape-icon-bg-radius);
 	z-index: 1;
 }
 

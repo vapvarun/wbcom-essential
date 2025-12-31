@@ -17,41 +17,61 @@ if ( ! defined( 'ABSPATH' ) ) {
 $show_logo              = $attributes['showLogo'] ?? true;
 $logo_url               = $attributes['logoUrl'] ?? '';
 $logo_width             = $attributes['logoWidth'] ?? 150;
+$logo_align             = $attributes['logoAlign'] ?? 'center';
+$logo_border_radius     = $attributes['logoBorderRadius'] ?? 0;
+$logo_margin_bottom     = $attributes['logoMarginBottom'] ?? 24;
 $show_title             = $attributes['showTitle'] ?? true;
 $title                  = $attributes['title'] ?? 'Welcome Back';
 $title_tag              = $attributes['titleTag'] ?? 'h2';
+$title_align            = $attributes['titleAlign'] ?? 'center';
+$title_margin_bottom    = $attributes['titleMarginBottom'] ?? 8;
 $show_subtitle          = $attributes['showSubtitle'] ?? true;
 $subtitle               = $attributes['subtitle'] ?? 'Please login to your account';
-$username_label         = $attributes['usernameLabel'] ?? 'Username or Email';
+$subtitle_tag           = $attributes['subtitleTag'] ?? 'p';
+$subtitle_align         = $attributes['subtitleAlign'] ?? 'center';
+$subtitle_margin_bottom = $attributes['subtitleMarginBottom'] ?? 24;
+$username_label         = $attributes['usernameLabel'] ?? 'Username or Email Address';
 $username_placeholder   = $attributes['usernamePlaceholder'] ?? 'Enter your username or email';
 $password_label         = $attributes['passwordLabel'] ?? 'Password';
 $password_placeholder   = $attributes['passwordPlaceholder'] ?? 'Enter your password';
 $show_labels            = $attributes['showLabels'] ?? true;
+$label_align            = $attributes['labelAlign'] ?? 'left';
 $show_remember_me       = $attributes['showRememberMe'] ?? true;
 $remember_me_label      = $attributes['rememberMeLabel'] ?? 'Remember Me';
 $button_text            = $attributes['buttonText'] ?? 'Log In';
+$button_width           = $attributes['buttonWidth'] ?? 100;
+$button_align           = $attributes['buttonAlign'] ?? 'center';
 $show_lost_password     = $attributes['showLostPassword'] ?? true;
-$lost_password_text     = $attributes['lostPasswordText'] ?? 'Lost your password?';
-$show_register          = $attributes['showRegister'] ?? true;
-$register_text          = $attributes['registerText'] ?? "Don't have an account?";
-$register_link_text     = $attributes['registerLinkText'] ?? 'Register';
+$lost_password_text     = $attributes['lostPasswordText'] ?? 'Lost Password';
+$show_register          = $attributes['showRegister'] ?? false;
+$register_text          = $attributes['registerText'] ?? 'Register';
+$link_separator         = $attributes['linkSeparator'] ?? '|';
+$links_align            = $attributes['linksAlign'] ?? 'flex-end';
+$links_margin_top       = $attributes['linksMarginTop'] ?? 0;
+$redirect_enabled       = $attributes['redirectEnabled'] ?? false;
 $redirect_url           = $attributes['redirectUrl'] ?? '';
 $show_logged_in_message = $attributes['showLoggedInMessage'] ?? true;
-$logged_in_message      = $attributes['loggedInMessage'] ?? 'You are already logged in.';
+$logged_in_message      = $attributes['loggedInMessage'] ?? 'You are logged in as ';
+$logged_in_msg_align    = $attributes['loggedInMsgAlign'] ?? 'left';
 $test_mode              = $attributes['testMode'] ?? false;
 
 // Styling attributes - only get values that are explicitly set (not defaults).
 // Colors use 'inherit' as default to allow CSS/theme to control them.
 $form_padding         = $attributes['formPadding'] ?? 30;
 $form_border_radius   = $attributes['formBorderRadius'] ?? 8;
-$form_width           = $attributes['formWidth'] ?? 420;
-$form_border_color    = $attributes['formBorderColor'] ?? '';
+$form_width           = $attributes['formWidth'] ?? 100;
+$form_width_unit      = $attributes['formWidthUnit'] ?? '%';
+$form_align           = $attributes['formAlign'] ?? 'center';
 $form_border_width    = $attributes['formBorderWidth'] ?? 0;
 $form_box_shadow      = $attributes['formBoxShadow'] ?? true;
+$rows_gap             = $attributes['rowsGap'] ?? 20;
 $input_border_radius  = $attributes['inputBorderRadius'] ?? 6;
 $input_padding_v      = $attributes['inputPaddingV'] ?? 12;
 $input_padding_h      = $attributes['inputPaddingH'] ?? 16;
+$input_width          = $attributes['inputWidth'] ?? 100;
+$input_align          = $attributes['inputAlign'] ?? 'left';
 $button_border_radius = $attributes['buttonBorderRadius'] ?? 6;
+$button_border_width  = $attributes['buttonBorderWidth'] ?? 0;
 $button_padding_v     = $attributes['buttonPaddingV'] ?? 14;
 $button_padding_h     = $attributes['buttonPaddingH'] ?? 24;
 
@@ -60,18 +80,36 @@ $button_padding_h     = $attributes['buttonPaddingH'] ?? 24;
 // This allows dark mode and theme customizations to work properly without !important hacks.
 // DO NOT add color variables here - they will override CSS and break dark mode.
 $inline_styles = array(
-	'--form-padding'         => $form_padding . 'px',
-	'--form-border-radius'   => $form_border_radius . 'px',
-	'--form-width'           => $form_width . 'px',
-	'--form-border-width'    => $form_border_width . 'px',
-	'--form-box-shadow'      => $form_box_shadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
-	'--input-border-radius'  => $input_border_radius . 'px',
-	'--input-padding-v'      => $input_padding_v . 'px',
-	'--input-padding-h'      => $input_padding_h . 'px',
-	'--button-border-radius' => $button_border_radius . 'px',
-	'--button-padding-v'     => $button_padding_v . 'px',
-	'--button-padding-h'     => $button_padding_h . 'px',
-	'--logo-width'           => $logo_width . 'px',
+	'--form-padding'           => $form_padding . 'px',
+	'--form-border-radius'     => $form_border_radius . 'px',
+	'--form-width'             => $form_width . $form_width_unit,
+	'--form-align'             => $form_align,
+	'--form-border-width'      => $form_border_width . 'px',
+	'--form-box-shadow'        => $form_box_shadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
+	'--rows-gap'               => $rows_gap . 'px',
+	'--logo-width'             => $logo_width . 'px',
+	'--logo-align'             => $logo_align,
+	'--logo-border-radius'     => $logo_border_radius . 'px',
+	'--logo-margin-bottom'     => $logo_margin_bottom . 'px',
+	'--title-align'            => $title_align,
+	'--title-margin-bottom'    => $title_margin_bottom . 'px',
+	'--subtitle-align'         => $subtitle_align,
+	'--subtitle-margin-bottom' => $subtitle_margin_bottom . 'px',
+	'--label-align'            => $label_align,
+	'--input-border-radius'    => $input_border_radius . 'px',
+	'--input-padding-v'        => $input_padding_v . 'px',
+	'--input-padding-h'        => $input_padding_h . 'px',
+	'--input-width'            => $input_width . '%',
+	'--input-align'            => $input_align,
+	'--button-border-radius'   => $button_border_radius . 'px',
+	'--button-border-width'    => $button_border_width . 'px',
+	'--button-padding-v'       => $button_padding_v . 'px',
+	'--button-padding-h'       => $button_padding_h . 'px',
+	'--button-width'           => $button_width . '%',
+	'--button-align'           => $button_align,
+	'--links-align'            => $links_align,
+	'--links-margin-top'       => $links_margin_top . 'px',
+	'--logged-in-msg-align'    => $logged_in_msg_align,
 );
 
 $style_string = '';
@@ -109,9 +147,11 @@ $register_url      = apply_filters( 'wbcom_essential_login_register_url', $regis
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( $is_logged_in && ! $test_mode ) : ?>
 		<?php if ( $show_logged_in_message ) : ?>
+			<?php $current_user = wp_get_current_user(); ?>
 			<div class="wbcom-essential-login-form wbcom-essential-login-form--logged-in">
 				<p class="wbcom-essential-login-form__logged-in-message">
 					<?php echo esc_html( $logged_in_message ); ?>
+					<strong><?php echo esc_html( $current_user->display_name ); ?></strong>
 				</p>
 				<a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="wbcom-essential-login-form__logout-link">
 					<?php esc_html_e( 'Log Out', 'wbcom-essential' ); ?>
@@ -133,9 +173,9 @@ $register_url      = apply_filters( 'wbcom_essential_login_register_url', $regis
 			<?php endif; ?>
 
 			<?php if ( $show_subtitle && $subtitle ) : ?>
-				<p class="wbcom-essential-login-form__subtitle">
+				<<?php echo esc_attr( $subtitle_tag ); ?> class="wbcom-essential-login-form__subtitle">
 					<?php echo esc_html( $subtitle ); ?>
-				</p>
+				</<?php echo esc_attr( $subtitle_tag ); ?>>
 			<?php endif; ?>
 
 			<?php if ( $has_pmpro ) : ?>
@@ -181,22 +221,16 @@ $register_url      = apply_filters( 'wbcom_essential_login_register_url', $regis
 						/>
 					</div>
 
-					<div class="wbcom-essential-login-form__options">
-						<?php if ( $show_remember_me ) : ?>
+					<?php if ( $show_remember_me ) : ?>
+						<div class="wbcom-essential-login-form__options">
 							<label class="wbcom-essential-login-form__remember">
 								<input type="checkbox" name="remember" value="1" />
 								<span><?php echo esc_html( $remember_me_label ); ?></span>
 							</label>
-						<?php endif; ?>
+						</div>
+					<?php endif; ?>
 
-						<?php if ( $show_lost_password ) : ?>
-							<a href="<?php echo esc_url( $lost_password_url ); ?>" class="wbcom-essential-login-form__lost-password">
-								<?php echo esc_html( $lost_password_text ); ?>
-							</a>
-						<?php endif; ?>
-					</div>
-
-					<input type="hidden" name="redirect" value="<?php echo esc_attr( $redirect_url ); ?>" />
+					<input type="hidden" name="redirect" value="<?php echo $redirect_enabled ? esc_attr( $redirect_url ) : ''; ?>" />
 					<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'wbcom_essential_login_nonce' ) ); ?>" />
 
 					<button type="submit" class="wbcom-essential-login-form__button">
@@ -211,13 +245,24 @@ $register_url      = apply_filters( 'wbcom_essential_login_register_url', $regis
 						</span>
 					</button>
 
-					<?php if ( $show_register && get_option( 'users_can_register' ) ) : ?>
-						<p class="wbcom-essential-login-form__register">
-							<?php echo esc_html( $register_text ); ?>
-							<a href="<?php echo esc_url( $register_url ); ?>">
-								<?php echo esc_html( $register_link_text ); ?>
-							</a>
-						</p>
+					<?php if ( ( $show_register && get_option( 'users_can_register' ) ) || $show_lost_password ) : ?>
+						<div class="wbcom-essential-login-form__links">
+							<?php if ( $show_lost_password ) : ?>
+								<a href="<?php echo esc_url( $lost_password_url ); ?>" class="wbcom-essential-login-form__link">
+									<?php echo esc_html( $lost_password_text ); ?>
+								</a>
+							<?php endif; ?>
+
+							<?php if ( $show_lost_password && $show_register && get_option( 'users_can_register' ) && $link_separator ) : ?>
+								<span class="wbcom-essential-login-form__link-separator"><?php echo esc_html( $link_separator ); ?></span>
+							<?php endif; ?>
+
+							<?php if ( $show_register && get_option( 'users_can_register' ) ) : ?>
+								<a href="<?php echo esc_url( $register_url ); ?>" class="wbcom-essential-login-form__link">
+									<?php echo esc_html( $register_text ); ?>
+								</a>
+							<?php endif; ?>
+						</div>
 					<?php endif; ?>
 				</form>
 			<?php endif; ?>

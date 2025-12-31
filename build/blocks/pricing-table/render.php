@@ -34,13 +34,16 @@ $header_bg          = $attributes['headerBackground'] ?? '#4a5568';
 $header_color       = $attributes['headerTextColor'] ?? '#ffffff';
 $container_bg       = $attributes['containerBackground'] ?? '#f7fafc';
 $price_color        = $attributes['priceColor'] ?? '#1a202c';
-$button_bg          = $attributes['buttonBackground'] ?? '#3182ce';
-$button_color       = $attributes['buttonTextColor'] ?? '#ffffff';
-$button_hover_bg    = $attributes['buttonHoverBackground'] ?? '#2c5aa0';
-$button_hover_color = $attributes['buttonHoverTextColor'] ?? '#ffffff';
-$ribbon_bg          = $attributes['ribbonBackground'] ?? '#48bb78';
-$ribbon_color       = $attributes['ribbonTextColor'] ?? '#ffffff';
-$border_radius      = $attributes['borderRadius'] ?? 8;
+$button_bg           = $attributes['buttonBackground'] ?? '#3182ce';
+$button_color        = $attributes['buttonTextColor'] ?? '#ffffff';
+$button_hover_bg     = $attributes['buttonHoverBackground'] ?? '#2c5aa0';
+$button_hover_color  = $attributes['buttonHoverTextColor'] ?? '#ffffff';
+$button_hover_border = $attributes['buttonHoverBorder'] ?? '#2c5aa0';
+$button_skin         = $attributes['buttonSkin'] ?? '';
+$button_size         = $attributes['buttonSize'] ?? 'wbcom-btn-md';
+$ribbon_bg           = $attributes['ribbonBackground'] ?? '#48bb78';
+$ribbon_color        = $attributes['ribbonTextColor'] ?? '#ffffff';
+$border_radius       = $attributes['borderRadius'] ?? 8;
 
 // Sanitize heading tag.
 $allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
@@ -50,11 +53,12 @@ if ( ! in_array( $heading_tag, $allowed_tags, true ) ) {
 
 // Build styles.
 $container_style = sprintf(
-	'background-color: %s; border-radius: %dpx; --button-hover-bg: %s; --button-hover-color: %s;',
+	'background-color: %s; border-radius: %dpx; --button-hover-bg: %s; --button-hover-color: %s; --button-hover-border: %s;',
 	esc_attr( $container_bg ),
 	absint( $border_radius ),
 	esc_attr( $button_hover_bg ),
-	esc_attr( $button_hover_color )
+	esc_attr( $button_hover_color ),
+	esc_attr( $button_hover_border )
 );
 
 $header_style = sprintf(
@@ -143,7 +147,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 
 		<div class="wbcom-price-table-footer">
 			<div class="wbcom-btn-wrapper">
-				<a class="wbcom-price-table-btn" href="<?php echo esc_url( $button_url ); ?>" style="<?php echo esc_attr( $button_style ); ?>"<?php echo $target_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+				<a class="wbcom-price-table-btn <?php echo esc_attr( $button_size ); ?> <?php echo esc_attr( $button_skin ); ?>" href="<?php echo esc_url( $button_url ); ?>" style="<?php echo esc_attr( $button_style ); ?>"<?php echo $target_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?php echo esc_html( $button_text ); ?>
 				</a>
 			</div>

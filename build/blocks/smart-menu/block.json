@@ -131,6 +131,56 @@
     "mobileMenuWidth": {
       "type": "object",
       "default": {}
+    },
+    "collapsibleBehavior": {
+      "type": "string",
+      "default": "link"
+    },
+    "submenuAnimation": {
+      "type": "string",
+      "default": ""
+    },
+    "submenuMinWidth": {
+      "type": "object",
+      "default": {
+        "size": 10,
+        "unit": "em"
+      }
+    },
+    "submenuMaxWidth": {
+      "type": "object",
+      "default": {
+        "size": 20,
+        "unit": "em"
+      }
+    },
+    "submenuOffsetX": {
+      "type": "number",
+      "default": 0
+    },
+    "submenuOffsetY": {
+      "type": "number",
+      "default": 0
+    },
+    "submenuLevel2OffsetX": {
+      "type": "number",
+      "default": 0
+    },
+    "submenuLevel2OffsetY": {
+      "type": "number",
+      "default": 0
+    },
+    "submenuTransitionDuration": {
+      "type": "number",
+      "default": 0.3
+    },
+    "submenuIndicatorIcon": {
+      "type": "string",
+      "default": "caret"
+    },
+    "submenuIndicatorIconSize": {
+      "type": "number",
+      "default": 12
     }
   },
   "supports": {

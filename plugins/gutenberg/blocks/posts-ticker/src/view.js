@@ -104,31 +104,63 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				ticker.verticalInterval = intervalId;
 			},
 
-			fade: () => {
+			typewriter: () => {
 				let intervalId;
+				let timeoutId;
 
-				// Hide all items except first.
-				items.forEach( ( item, index ) => {
-					item.style.opacity = index === 0 ? '1' : '0';
-					item.style.position = 'absolute';
-					item.style.top = '0';
-					item.style.left = '0';
-					item.style.right = '0';
+				// Hide all items.
+				items.forEach( ( item ) => {
+					item.style.opacity = '0';
+					item.style.display = 'none';
 				} );
-				list.style.position = 'relative';
 
-				const showNext = () => {
+				const typeItem = () => {
 					if ( isPaused ) return;
 
-					items[ currentIndex ].style.opacity = '0';
-					currentIndex = ( currentIndex + 1 ) % items.length;
-					items[ currentIndex ].style.opacity = '1';
+					const currentItem = items[ currentIndex ];
+					const link = currentItem.querySelector( '.wbcom-essential-posts-ticker__link' );
+					if ( ! link ) return;
+
+					const fullText = link.dataset.fullText || link.textContent;
+					if ( ! link.dataset.fullText ) {
+						link.dataset.fullText = fullText;
+					}
+
+					let charIndex = 0;
+					currentItem.style.opacity = '1';
+					currentItem.style.display = 'flex';
+					currentItem.style.position = 'absolute';
+					currentItem.style.top = '0';
+					currentItem.style.left = '0';
+					currentItem.style.right = '0';
+
+					const typeChar = () => {
+						if ( isPaused ) return;
+
+						charIndex++;
+						link.textContent = fullText.substring( 0, charIndex );
+
+						if ( charIndex >= fullText.length ) {
+							clearInterval( intervalId );
+							// Wait then move to next.
+							timeoutId = setTimeout( () => {
+								currentItem.style.opacity = '0';
+								currentItem.style.display = 'none';
+								currentIndex = ( currentIndex + 1 ) % items.length;
+								typeItem();
+							}, speed * 40 ); // Wait time before next item.
+						}
+					};
+
+					intervalId = setInterval( typeChar, speed );
 				};
 
-				intervalId = setInterval( showNext, speed * 50 );
+				list.style.position = 'relative';
+				typeItem();
 
 				// Store interval for cleanup.
-				ticker.fadeInterval = intervalId;
+				ticker.typewriterInterval = intervalId;
+				ticker.typewriterTimeout = timeoutId;
 			},
 		};
 
@@ -138,10 +170,17 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				currentIndex = ( currentIndex - 1 + items.length ) % items.length;
 				const itemHeight = items[ 0 ].offsetHeight;
 				list.style.transform = `translateY(-${ currentIndex * itemHeight }px)`;
-			} else if ( tickerType === 'fade' ) {
+			} else if ( tickerType === 'typewriter' ) {
 				items[ currentIndex ].style.opacity = '0';
+				items[ currentIndex ].style.display = 'none';
 				currentIndex = ( currentIndex - 1 + items.length ) % items.length;
-				items[ currentIndex ].style.opacity = '1';
+				const currentItem = items[ currentIndex ];
+				const link = currentItem.querySelector( '.wbcom-essential-posts-ticker__link' );
+				if ( link && link.dataset.fullText ) {
+					link.textContent = link.dataset.fullText;
+				}
+				currentItem.style.opacity = '1';
+				currentItem.style.display = 'flex';
 			}
 		};
 
@@ -150,10 +189,17 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				currentIndex = ( currentIndex + 1 ) % items.length;
 				const itemHeight = items[ 0 ].offsetHeight;
 				list.style.transform = `translateY(-${ currentIndex * itemHeight }px)`;
-			} else if ( tickerType === 'fade' ) {
+			} else if ( tickerType === 'typewriter' ) {
 				items[ currentIndex ].style.opacity = '0';
+				items[ currentIndex ].style.display = 'none';
 				currentIndex = ( currentIndex + 1 ) % items.length;
-				items[ currentIndex ].style.opacity = '1';
+				const currentItem = items[ currentIndex ];
+				const link = currentItem.querySelector( '.wbcom-essential-posts-ticker__link' );
+				if ( link && link.dataset.fullText ) {
+					link.textContent = link.dataset.fullText;
+				}
+				currentItem.style.opacity = '1';
+				currentItem.style.display = 'flex';
 			}
 		};
 

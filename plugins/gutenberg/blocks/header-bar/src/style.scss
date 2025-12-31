@@ -5,21 +5,50 @@
  */
 
 .wbcom-essential-header-bar {
-	// Layout
+	// Layout defaults
 	--space-between: 10px;
 	--icon-size: 21px;
 	--avatar-size: 36px;
 	--avatar-radius: 50%;
 	--separator-color: rgba(0, 0, 0, 0.1);
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--separator-width: 1px;
+
+	// Icon colors - inherit from theme via bridge variables (theme-colors.css)
 	--icon-color: var(--wbcom-heading-color, #303030);
-	--counter-bg: var(--wbcom-color-primary, #1d76da);
-	--dropdown-bg: var(--wbcom-card-bg, #ffffff);
-	--dropdown-text: var(--wbcom-heading-color, #303030);
+	--search-icon-color: var(--icon-color);
+	--messages-icon-color: var(--icon-color);
+	--notifications-icon-color: var(--icon-color);
+	--cart-icon-color: var(--icon-color);
+	--dark-mode-icon-color: var(--icon-color);
+	--icon-text-shadow: none;
+
+	// Counter styles
+	--counter-bg-color: var(--wbcom-color-primary, #1d76da);
+	--counter-text-color: #ffffff;
+	--counter-box-shadow: none;
+
+	// Dropdown styles
+	--dropdown-bg-color: var(--wbcom-card-bg, #ffffff);
+	--dropdown-text-color: var(--wbcom-heading-color, #303030);
+	--dropdown-hover-bg-color: rgba(0, 0, 0, 0.05);
+	--dropdown-hover-text-color: var(--dropdown-text-color);
+	--dropdown-border-color: transparent;
+	--dropdown-border-width: 0;
+	--dropdown-border-radius: 8px;
+	--dropdown-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+	// Profile styles
 	--user-name-color: var(--wbcom-heading-color, #303030);
+	--user-name-hover-color: var(--wbcom-color-primary, #1d76da);
+
+	// Auth styles
 	--sign-in-color: inherit;
-	--sign-up-bg: var(--wbcom-button-bg, #1d76da);
-	--sign-up-text: var(--wbcom-button-text, #ffffff);
+	--sign-in-hover-color: var(--wbcom-color-primary, #1d76da);
+	--sign-up-bg-color: var(--wbcom-button-bg, #1d76da);
+	--sign-up-text-color: var(--wbcom-button-text, #ffffff);
+	--sign-up-hover-bg-color: var(--wbcom-button-hover-bg, #1565c0);
+	--sign-up-hover-text-color: var(--sign-up-text-color);
+	--sign-up-border-radius: 4px;
 
 	position: relative;
 }
@@ -52,11 +81,29 @@
 	color: var(--icon-color);
 	text-decoration: none;
 	transition: opacity 0.2s ease;
+	text-shadow: var(--icon-text-shadow);
+	background: transparent;
+	border: none;
+	padding: 0;
+	cursor: pointer;
 
-	.dashicons {
+	.dashicons,
+	.wbcom-header-bar-icon-inner {
 		font-size: var(--icon-size);
 		width: var(--icon-size);
 		height: var(--icon-size);
+	}
+
+	// Custom SVG icons
+	.wbcom-custom-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: var(--icon-size);
+			height: var(--icon-size);
+		}
 	}
 
 	&:hover {
@@ -64,13 +111,35 @@
 	}
 }
 
+// Individual icon color overrides
+.wbcom-header-bar-search .wbcom-header-bar-icon-inner.search-icon,
+.wbcom-header-bar-search.wbcom-header-bar-icon .search-icon {
+	color: var(--search-icon-color);
+}
+
+.wbcom-header-bar-messages .messages-icon {
+	color: var(--messages-icon-color);
+}
+
+.wbcom-header-bar-notifications .notifications-icon {
+	color: var(--notifications-icon-color);
+}
+
+.wbcom-header-bar-cart .cart-icon {
+	color: var(--cart-icon-color);
+}
+
+.wbcom-header-bar-dark-mode .dark-mode-icon {
+	color: var(--dark-mode-icon-color);
+}
+
 // Counter badge.
 .wbcom-header-bar-count {
 	position: absolute;
 	top: -8px;
 	right: -8px;
-	background: var(--counter-bg);
-	color: #fff;
+	background: var(--counter-bg-color);
+	color: var(--counter-text-color);
 	font-size: 10px;
 	font-weight: 600;
 	min-width: 18px;
@@ -79,12 +148,13 @@
 	text-align: center;
 	border-radius: 50%;
 	padding: 0 4px;
+	box-shadow: var(--counter-box-shadow);
 }
 
 // Separator.
 .wbcom-header-bar-separator {
 	display: block;
-	width: 1px;
+	width: var(--separator-width);
 	height: 28px;
 	background: var(--separator-color);
 }
@@ -102,12 +172,17 @@
 	color: var(--user-name-color);
 	font-size: 14px;
 	font-weight: 500;
+	transition: color 0.2s ease;
 
 	img {
 		width: var(--avatar-size);
 		height: var(--avatar-size);
 		border-radius: var(--avatar-radius);
 		object-fit: cover;
+	}
+
+	&:hover {
+		color: var(--user-name-hover-color);
 	}
 }
 
@@ -134,9 +209,10 @@
 	right: 0;
 	margin-top: 10px;
 	min-width: 180px;
-	background: var(--dropdown-bg);
-	border-radius: 8px;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	background: var(--dropdown-bg-color);
+	border-radius: var(--dropdown-border-radius);
+	border: var(--dropdown-border-width) solid var(--dropdown-border-color);
+	box-shadow: var(--dropdown-box-shadow);
 	opacity: 0;
 	visibility: hidden;
 	transform: translateY(-10px);
@@ -153,9 +229,11 @@
 		right: 20px;
 		width: 12px;
 		height: 12px;
-		background: var(--dropdown-bg);
+		background: var(--dropdown-bg-color);
 		transform: rotate(45deg);
 		box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.05);
+		border-top: var(--dropdown-border-width) solid var(--dropdown-border-color);
+		border-left: var(--dropdown-border-width) solid var(--dropdown-border-color);
 	}
 }
 
@@ -187,13 +265,16 @@
 	a {
 		display: block;
 		padding: 10px 16px;
-		color: var(--dropdown-text);
+		color: var(--dropdown-text-color);
 		text-decoration: none;
 		font-size: 14px;
-		transition: background 0.2s ease;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
 
 		&:hover {
-			background: rgba(0, 0, 0, 0.05);
+			background: var(--dropdown-hover-bg-color);
+			color: var(--dropdown-hover-text-color);
 		}
 	}
 }
@@ -210,8 +291,10 @@
 	text-decoration: none;
 	font-size: 14px;
 	font-weight: 500;
+	transition: color 0.2s ease;
 
 	&:hover {
+		color: var(--sign-in-hover-color);
 		text-decoration: underline;
 	}
 }
@@ -219,16 +302,30 @@
 .wbcom-header-bar-signup {
 	display: inline-block;
 	padding: 8px 16px;
-	background: var(--sign-up-bg);
-	color: var(--sign-up-text);
+	background: var(--sign-up-bg-color);
+	color: var(--sign-up-text-color);
 	text-decoration: none;
 	font-size: 14px;
 	font-weight: 500;
-	border-radius: 4px;
-	transition: opacity 0.2s ease;
+	border-radius: var(--sign-up-border-radius);
+	transition:
+		background 0.2s ease,
+		color 0.2s ease;
 
 	&:hover {
-		opacity: 0.9;
+		background: var(--sign-up-hover-bg-color);
+		color: var(--sign-up-hover-text-color);
+	}
+}
+
+// Dark mode toggle button
+.wbcom-header-bar-dark-mode {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&.is-dark-mode {
+		// Add any dark mode active state styles here
 	}
 }
 
@@ -249,6 +346,11 @@
 		opacity 0.3s ease,
 		visibility 0.3s ease;
 	z-index: 9999;
+
+	// Dark mode support for search overlay
+	.dark-mode & {
+		background: rgba(30, 30, 30, 0.98);
+	}
 }
 
 .wbcom-essential-header-bar.search-active .wbcom-header-bar-search-overlay {
@@ -277,21 +379,33 @@
 		outline: none;
 
 		&:focus {
-			border-color: #1d76da;
+			border-color: var(--wbcom-color-primary, #1d76da);
+		}
+
+		// Dark mode support
+		.dark-mode & {
+			background: #333;
+			border-color: #444;
+			color: #fff;
+
+			&:focus {
+				border-color: var(--wbcom-color-primary, #1d76da);
+			}
 		}
 	}
 
 	input[type="submit"] {
 		padding: 15px 30px;
-		background: #1d76da;
+		background: var(--wbcom-color-primary, #1d76da);
 		color: #fff;
 		border: none;
 		border-radius: 8px;
 		cursor: pointer;
 		font-size: 16px;
+		transition: background 0.2s ease;
 
 		&:hover {
-			background: #1565c0;
+			background: var(--wbcom-button-hover-bg, #1565c0);
 		}
 	}
 }
@@ -302,6 +416,7 @@
 	right: 0;
 	color: #666;
 	text-decoration: none;
+	transition: color 0.2s ease;
 
 	.dashicons {
 		font-size: 32px;
@@ -311,6 +426,15 @@
 
 	&:hover {
 		color: #333;
+	}
+
+	// Dark mode support
+	.dark-mode & {
+		color: #999;
+
+		&:hover {
+			color: #fff;
+		}
 	}
 }
 
@@ -322,5 +446,9 @@
 
 	.wbcom-profile-arrow {
 		display: none;
+	}
+
+	.wbcom-header-bar-dropdown-content {
+		min-width: 160px;
 	}
 }

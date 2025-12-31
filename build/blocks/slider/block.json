@@ -117,6 +117,82 @@
     "navDotsMobile": {
       "type": "boolean",
       "default": false
+    },
+    "transitionDuration": {
+      "type": "number",
+      "default": 300
+    },
+    "arrowColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "arrowHoverColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "arrowBgColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.5)"
+    },
+    "arrowBgHoverColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.7)"
+    },
+    "arrowSize": {
+      "type": "number",
+      "default": 24
+    },
+    "arrowBoxSize": {
+      "type": "number",
+      "default": 50
+    },
+    "arrowBorderRadius": {
+      "type": "number",
+      "default": 50
+    },
+    "dotsColor": {
+      "type": "string",
+      "default": "rgba(255, 255, 255, 0.5)"
+    },
+    "dotsActiveColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "dotsSize": {
+      "type": "number",
+      "default": 12
+    },
+    "dotsSpacing": {
+      "type": "number",
+      "default": 10
+    },
+    "dotsPosition": {
+      "type": "string",
+      "default": "inside"
+    },
+    "dotsBottomOffset": {
+      "type": "number",
+      "default": 20
+    },
+    "enableParallax": {
+      "type": "boolean",
+      "default": false
+    },
+    "parallaxSpeed": {
+      "type": "number",
+      "default": 0.5
+    },
+    "enableKeyboardNav": {
+      "type": "boolean",
+      "default": true
+    },
+    "pauseOnHover": {
+      "type": "boolean",
+      "default": true
+    },
+    "infiniteLoop": {
+      "type": "boolean",
+      "default": true
     }
   },
   "supports": {

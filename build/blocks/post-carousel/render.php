@@ -46,8 +46,13 @@ $card_layout = isset( $attributes['cardLayout'] ) ? sanitize_text_field( $attrib
 
 // Color settings.
 $card_bg_color            = isset( $attributes['cardBgColor'] ) ? sanitize_hex_color( $attributes['cardBgColor'] ) : '';
+$card_hover_bg_color      = isset( $attributes['cardHoverBgColor'] ) ? sanitize_hex_color( $attributes['cardHoverBgColor'] ) : '';
 $card_category_color      = isset( $attributes['cardCategoryColor'] ) ? sanitize_hex_color( $attributes['cardCategoryColor'] ) : '';
 $card_category_hover_color = isset( $attributes['cardCategoryHoverColor'] ) ? sanitize_hex_color( $attributes['cardCategoryHoverColor'] ) : '';
+$card_badge_bg_color      = isset( $attributes['cardBadgeBgColor'] ) ? sanitize_hex_color( $attributes['cardBadgeBgColor'] ) : '';
+$card_badge_hover_bg_color = isset( $attributes['cardBadgeHoverBgColor'] ) ? sanitize_hex_color( $attributes['cardBadgeHoverBgColor'] ) : '';
+$card_badge_color         = isset( $attributes['cardBadgeColor'] ) ? sanitize_hex_color( $attributes['cardBadgeColor'] ) : '';
+$card_footer_bg_color     = isset( $attributes['cardFooterBgColor'] ) ? sanitize_hex_color( $attributes['cardFooterBgColor'] ) : '';
 $card_title_color         = isset( $attributes['cardTitleColor'] ) ? sanitize_hex_color( $attributes['cardTitleColor'] ) : '';
 $card_title_hover_color   = isset( $attributes['cardTitleHoverColor'] ) ? sanitize_hex_color( $attributes['cardTitleHoverColor'] ) : '';
 $card_excerpt_color       = isset( $attributes['cardExcerptColor'] ) ? sanitize_hex_color( $attributes['cardExcerptColor'] ) : '';
@@ -55,6 +60,7 @@ $card_author_color        = isset( $attributes['cardAuthorColor'] ) ? sanitize_h
 $card_author_hover_color  = isset( $attributes['cardAuthorHoverColor'] ) ? sanitize_hex_color( $attributes['cardAuthorHoverColor'] ) : '';
 $card_date_color          = isset( $attributes['cardDateColor'] ) ? sanitize_hex_color( $attributes['cardDateColor'] ) : '';
 $card_date_hover_color    = isset( $attributes['cardDateHoverColor'] ) ? sanitize_hex_color( $attributes['cardDateHoverColor'] ) : '';
+$card_img_hover_effect    = isset( $attributes['cardImgHoverEffect'] ) ? sanitize_text_field( $attributes['cardImgHoverEffect'] ) : 'zoom';
 $nav_arrow_color          = isset( $attributes['navArrowColor'] ) ? $attributes['navArrowColor'] : '#ffffff';
 $nav_arrow_bg_color       = isset( $attributes['navArrowBgColor'] ) ? $attributes['navArrowBgColor'] : '#333333';
 $nav_arrow_hover_color    = isset( $attributes['navArrowHoverColor'] ) ? $attributes['navArrowHoverColor'] : '#ffffff';
@@ -148,6 +154,21 @@ $inline_styles = '';
 if ( ! empty( $card_bg_color ) ) {
 	$inline_styles .= "#{$carousel_id} .wbcom-posts-card { background-color: {$card_bg_color}; }";
 }
+if ( ! empty( $card_hover_bg_color ) ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card:hover { background-color: {$card_hover_bg_color}; }";
+}
+if ( ! empty( $card_badge_bg_color ) ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { background-color: {$card_badge_bg_color}; }";
+}
+if ( ! empty( $card_badge_hover_bg_color ) ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { background-color: {$card_badge_hover_bg_color}; }";
+}
+if ( ! empty( $card_badge_color ) ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { color: {$card_badge_color}; }";
+}
+if ( ! empty( $card_footer_bg_color ) ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-footer { background-color: {$card_footer_bg_color}; }";
+}
 if ( ! empty( $card_category_color ) ) {
 	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats, #{$carousel_id} .wbcom-posts-card-cats a { color: {$card_category_color}; }";
 }
@@ -174,6 +195,16 @@ if ( ! empty( $card_date_color ) ) {
 }
 if ( ! empty( $card_date_hover_color ) ) {
 	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link:hover { color: {$card_date_hover_color}; }";
+}
+// Image hover effects.
+if ( 'zoom' === $card_img_hover_effect ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: scale(1.1); }";
+} elseif ( 'zoom-out' === $card_img_hover_effect ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; transform: scale(1.1); } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: scale(1); }";
+} elseif ( 'slide' === $card_img_hover_effect ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: translateX(10px); }";
+} elseif ( 'rotate' === $card_img_hover_effect ) {
+	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: rotate(3deg) scale(1.05); }";
 }
 if ( ! empty( $nav_arrow_color ) && '#ffffff' !== $nav_arrow_color ) {
 	$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev i, #{$carousel_id} .wbcom-post-carousel-next i { color: " . esc_attr( $nav_arrow_color ) . ' !important; }';

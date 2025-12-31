@@ -33,6 +33,27 @@ $slide_bg_color       = $attributes['slideBgColor'] ?? '#0073aa';
 $title_color          = $attributes['titleColor'] ?? '#111111';
 $content_color        = $attributes['contentColor'] ?? '#333333';
 
+// New styling attributes.
+$transition_duration   = $attributes['transitionDuration'] ?? 300;
+$arrow_color           = $attributes['arrowColor'] ?? '#ffffff';
+$arrow_hover_color     = $attributes['arrowHoverColor'] ?? '#ffffff';
+$arrow_bg_color        = $attributes['arrowBgColor'] ?? 'rgba(0, 0, 0, 0.5)';
+$arrow_bg_hover_color  = $attributes['arrowBgHoverColor'] ?? 'rgba(0, 0, 0, 0.7)';
+$arrow_size            = $attributes['arrowSize'] ?? 24;
+$arrow_box_size        = $attributes['arrowBoxSize'] ?? 50;
+$arrow_border_radius   = $attributes['arrowBorderRadius'] ?? 50;
+$dots_color            = $attributes['dotsColor'] ?? 'rgba(255, 255, 255, 0.5)';
+$dots_active_color     = $attributes['dotsActiveColor'] ?? '#ffffff';
+$dots_size             = $attributes['dotsSize'] ?? 12;
+$dots_spacing          = $attributes['dotsSpacing'] ?? 10;
+$dots_position         = $attributes['dotsPosition'] ?? 'inside';
+$dots_bottom_offset    = $attributes['dotsBottomOffset'] ?? 20;
+$enable_parallax       = $attributes['enableParallax'] ?? false;
+$parallax_speed        = $attributes['parallaxSpeed'] ?? 0.5;
+$enable_keyboard_nav   = $attributes['enableKeyboardNav'] ?? true;
+$pause_on_hover        = $attributes['pauseOnHover'] ?? true;
+$infinite_loop         = $attributes['infiniteLoop'] ?? true;
+
 // Early return if no slides.
 if ( empty( $slides ) ) {
 	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'wbcom-essential-slider' ) );
@@ -51,12 +72,28 @@ $slider_id = 'wbcom-slider-' . wp_unique_id();
 $responsive_styles  = '--slider-height-desktop: ' . esc_attr( $slider_height['size'] . $slider_height['unit'] ) . ';';
 $responsive_styles .= '--slider-height-tablet: ' . esc_attr( $slider_height_tablet['size'] . $slider_height_tablet['unit'] ) . ';';
 $responsive_styles .= '--slider-height-mobile: ' . esc_attr( $slider_height_mobile['size'] . $slider_height_mobile['unit'] ) . ';';
+$responsive_styles .= '--slider-transition-duration: ' . esc_attr( $transition_duration ) . 'ms;';
+$responsive_styles .= '--slider-arrow-color: ' . esc_attr( $arrow_color ) . ';';
+$responsive_styles .= '--slider-arrow-hover-color: ' . esc_attr( $arrow_hover_color ) . ';';
+$responsive_styles .= '--slider-arrow-bg-color: ' . esc_attr( $arrow_bg_color ) . ';';
+$responsive_styles .= '--slider-arrow-bg-hover-color: ' . esc_attr( $arrow_bg_hover_color ) . ';';
+$responsive_styles .= '--slider-arrow-size: ' . esc_attr( $arrow_size ) . 'px;';
+$responsive_styles .= '--slider-arrow-box-size: ' . esc_attr( $arrow_box_size ) . 'px;';
+$responsive_styles .= '--slider-arrow-border-radius: ' . esc_attr( $arrow_border_radius ) . '%;';
+$responsive_styles .= '--slider-dots-color: ' . esc_attr( $dots_color ) . ';';
+$responsive_styles .= '--slider-dots-active-color: ' . esc_attr( $dots_active_color ) . ';';
+$responsive_styles .= '--slider-dots-size: ' . esc_attr( $dots_size ) . 'px;';
+$responsive_styles .= '--slider-dots-spacing: ' . esc_attr( $dots_spacing ) . 'px;';
+$responsive_styles .= '--slider-dots-bottom-offset: ' . esc_attr( $dots_bottom_offset ) . 'px;';
+
+// Build dots position class.
+$dots_position_class = ( 'outside' === $dots_position ) ? 'wbcom-dots-outside' : 'wbcom-dots-inside';
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'id'    => $slider_id,
-		'class' => 'wbcom-essential-slider',
+		'class' => 'wbcom-essential-slider ' . $dots_position_class . ( $enable_parallax ? ' has-parallax' : '' ),
 		'style' => 'background-color: ' . esc_attr( $slide_bg_color ) . '; ' . $responsive_styles,
 	)
 );
@@ -93,7 +130,13 @@ if ( $nav_dots_mobile ) {
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	data-autoplay="<?php echo esc_attr( $autoplay ? 'true' : 'false' ); ?>"
 	data-autoplay-duration="<?php echo esc_attr( $autoplay_duration ); ?>"
-	data-transition="<?php echo esc_attr( $slide_transition ); ?>">
+	data-transition="<?php echo esc_attr( $slide_transition ); ?>"
+	data-transition-duration="<?php echo esc_attr( $transition_duration ); ?>"
+	data-keyboard-nav="<?php echo esc_attr( $enable_keyboard_nav ? 'true' : 'false' ); ?>"
+	data-pause-on-hover="<?php echo esc_attr( $pause_on_hover ? 'true' : 'false' ); ?>"
+	data-infinite-loop="<?php echo esc_attr( $infinite_loop ? 'true' : 'false' ); ?>"
+	data-parallax="<?php echo esc_attr( $enable_parallax ? 'true' : 'false' ); ?>"
+	data-parallax-speed="<?php echo esc_attr( $parallax_speed ); ?>">
 
 	<div class="wbcom-slider-wrapper">
 		<div class="wbcom-slider-inner">

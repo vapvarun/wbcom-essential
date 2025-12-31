@@ -174,8 +174,8 @@
 	}
 }
 
-// Fade ticker specific styles.
-.wbcom-essential-posts-ticker--fade {
+// Typewriter ticker specific styles.
+.wbcom-essential-posts-ticker--typewriter {
 	.wbcom-essential-posts-ticker__track {
 		display: block;
 		height: var(--ticker-height);
@@ -188,6 +188,21 @@
 
 	.wbcom-essential-posts-ticker__item {
 		transition: opacity 0.5s ease;
+	}
+
+	.wbcom-essential-posts-ticker__link::after {
+		content: '|';
+		margin-left: 2px;
+		animation: blink-cursor 0.7s step-end infinite;
+	}
+}
+
+@keyframes blink-cursor {
+	from, to {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
 	}
 }
 

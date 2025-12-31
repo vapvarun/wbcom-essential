@@ -6,28 +6,68 @@
 	"title": "Header Notification Area",
 	"category": "wbcom-essential",
 	"icon": "bell",
-	"description": "Header notification area with search, cart, messages, notifications, and user menu.",
-	"keywords": [ "notification", "header", "search", "cart", "messages", "user", "menu", "buddypress" ],
+	"description": "Header notification area with search, cart, messages, notifications, and user menu with responsive visibility controls.",
+	"keywords": [ "notification", "header", "search", "cart", "messages", "user", "menu", "buddypress", "woocommerce" ],
 	"textdomain": "wbcom-essential",
 	"example": {},
 	"attributes": {
-		"showSearch": {
+		"showSearchDesktop": {
 			"type": "boolean",
 			"default": true
 		},
-		"showCart": {
+		"showSearchTablet": {
 			"type": "boolean",
 			"default": true
 		},
-		"showMessages": {
+		"showSearchMobile": {
 			"type": "boolean",
 			"default": true
 		},
-		"showNotifications": {
+		"showCartDesktop": {
 			"type": "boolean",
 			"default": true
 		},
-		"showAvatar": {
+		"showCartTablet": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCartMobile": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMessagesDesktop": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMessagesTablet": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMessagesMobile": {
+			"type": "boolean",
+			"default": true
+		},
+		"showNotificationsDesktop": {
+			"type": "boolean",
+			"default": true
+		},
+		"showNotificationsTablet": {
+			"type": "boolean",
+			"default": true
+		},
+		"showNotificationsMobile": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAvatarDesktop": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAvatarTablet": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAvatarMobile": {
 			"type": "boolean",
 			"default": true
 		},
@@ -47,6 +87,10 @@
 			"type": "string",
 			"default": "#122B46"
 		},
+		"userNameHoverColor": {
+			"type": "string",
+			"default": "#007CFF"
+		},
 		"badgeColor": {
 			"type": "string",
 			"default": "#EF3E46"
@@ -63,6 +107,18 @@
 			"type": "string",
 			"default": "#e3e3e3"
 		},
+		"dropdownLinkColor": {
+			"type": "string",
+			"default": "#122B46"
+		},
+		"dropdownLinkHoverColor": {
+			"type": "string",
+			"default": "#007CFF"
+		},
+		"dropdownLinkHoverBg": {
+			"type": "string",
+			"default": "#f5f5f5"
+		},
 		"iconSize": {
 			"type": "number",
 			"default": 20
@@ -74,6 +130,14 @@
 		"itemGap": {
 			"type": "number",
 			"default": 16
+		},
+		"lineHeight": {
+			"type": "number",
+			"default": 90
+		},
+		"counterTopSpace": {
+			"type": "number",
+			"default": 20
 		}
 	},
 	"supports": {

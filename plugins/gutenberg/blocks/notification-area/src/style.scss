@@ -4,31 +4,43 @@
  * @package wbcom-essential
  */
 
+// CSS Variables with fallbacks.
 .wbcom-essential-notification-area-wrapper {
-	// Layout
+	// Layout.
 	--icon-size: 20px;
 	--avatar-size: 36px;
 	--item-gap: 16px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--icon-color: var(--wbcom-heading-color, #122B46);
-	--icon-hover-color: var(--wbcom-color-primary, #007CFF);
-	--username-color: var(--wbcom-heading-color, #122B46);
-	--badge-color: var(--wbcom-error-color, #EF3E46);
-	--badge-text-color: #ffffff;
-	--dropdown-bg-color: var(--wbcom-card-bg, #ffffff);
-	--dropdown-border-color: var(--wbcom-border-color, #e3e3e3);
+	--line-height: 90px;
+	--counter-top: 20px;
+
+	// Colors - defaults that can be overridden by inline styles.
+	--icon-color: #122b46;
+	--icon-hover-color: #007cff;
+	--username-color: #122b46;
+	--username-hover-color: #007cff;
+	--badge-color: #ef3e46;
+	--badge-text-color: #fff;
+	--dropdown-bg-color: #fff;
+	--dropdown-border-color: #e3e3e3;
+	--dropdown-link-color: #122b46;
+	--dropdown-link-hover-color: #007cff;
+	--dropdown-link-hover-bg: #f5f5f5;
 }
 
+// Main container.
 .wbcom-essential-notification-area {
 	display: flex;
 	align-items: center;
 	gap: var(--item-gap);
 }
 
+// Individual items.
 .wbcom-essential-na__item {
 	position: relative;
 	display: flex;
 	align-items: center;
+	line-height: var(--line-height);
+	height: var(--line-height);
 
 	a {
 		display: flex;
@@ -47,10 +59,10 @@
 	}
 }
 
-// Badge styles.
+// Badge counter styles.
 .wbcom-essential-na__badge {
 	position: absolute;
-	top: -6px;
+	top: var(--counter-top);
 	right: -8px;
 	min-width: 18px;
 	height: 18px;
@@ -62,6 +74,7 @@
 	color: var(--badge-text-color);
 	background-color: var(--badge-color);
 	border-radius: 10px;
+	box-sizing: border-box;
 }
 
 // Search styles.
@@ -118,6 +131,7 @@
 		padding: 4px;
 		color: var(--icon-color);
 		cursor: pointer;
+		text-decoration: none;
 
 		&:hover {
 			color: var(--icon-hover-color);
@@ -131,8 +145,14 @@
 	}
 }
 
-// User styles.
+// User avatar and menu styles.
 .wbcom-essential-na__user {
+	.wbcom-essential-na__user-toggle {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
 	.wbcom-essential-na__avatar {
 		width: var(--avatar-size);
 		height: var(--avatar-size);
@@ -141,10 +161,14 @@
 	}
 
 	.wbcom-essential-na__username {
-		margin-left: 8px;
 		font-size: 14px;
 		font-weight: 500;
 		color: var(--username-color);
+		transition: color 0.2s ease;
+	}
+
+	.wbcom-essential-na__user-toggle:hover .wbcom-essential-na__username {
+		color: var(--username-hover-color);
 	}
 
 	.wbcom-essential-na__user-menu {
@@ -177,13 +201,13 @@
 				display: block;
 				padding: 8px 16px;
 				font-size: 14px;
-				color: var(--icon-color);
+				color: var(--dropdown-link-color);
 				text-decoration: none;
-				transition: background 0.2s ease;
+				transition: all 0.2s ease;
 
 				&:hover {
-					background: #f5f5f5;
-					color: var(--icon-hover-color);
+					background: var(--dropdown-link-hover-bg);
+					color: var(--dropdown-link-hover-color);
 				}
 			}
 		}
@@ -202,7 +226,7 @@
 	}
 }
 
-// Auth links (logged out).
+// Auth links (logged out state).
 .wbcom-essential-na__auth {
 	display: flex;
 	align-items: center;
@@ -227,7 +251,7 @@
 	}
 }
 
-// Messages dropdown.
+// Messages and notifications dropdowns.
 .wbcom-essential-na__messages,
 .wbcom-essential-na__notifications {
 	.wbcom-essential-na__dropdown {
@@ -255,7 +279,33 @@
 	}
 }
 
-// Responsive.
+// Responsive visibility classes.
+// Desktop: > 1024px
+// Tablet: 768px - 1024px
+// Mobile: < 768px
+
+// Hide on desktop (show on smaller screens).
+@media (min-width: 1025px) {
+	.wbcom-na-hide-desktop {
+		display: none !important;
+	}
+}
+
+// Hide on tablet.
+@media (min-width: 768px) and (max-width: 1024px) {
+	.wbcom-na-hide-tablet {
+		display: none !important;
+	}
+}
+
+// Hide on mobile.
+@media (max-width: 767px) {
+	.wbcom-na-hide-mobile {
+		display: none !important;
+	}
+}
+
+// General responsive adjustments.
 @media (max-width: 768px) {
 	.wbcom-essential-notification-area {
 		gap: calc(var(--item-gap) * 0.75);
@@ -274,4 +324,26 @@
 		min-width: 100%;
 		border-radius: 0;
 	}
+
+	.wbcom-essential-na__user .wbcom-essential-na__user-menu,
+	.wbcom-essential-na__messages .wbcom-essential-na__dropdown,
+	.wbcom-essential-na__notifications .wbcom-essential-na__dropdown {
+		position: fixed;
+		top: auto;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		max-height: 70vh;
+		overflow-y: auto;
+		border-radius: 16px 16px 0 0;
+	}
+}
+
+// Dropdown top position adjustment based on line height.
+.wbcom-essential-na__search .wbcom-essential-na__search-form,
+.wbcom-essential-na__user .wbcom-essential-na__user-menu,
+.wbcom-essential-na__messages .wbcom-essential-na__dropdown,
+.wbcom-essential-na__notifications .wbcom-essential-na__dropdown {
+	top: var(--line-height);
 }

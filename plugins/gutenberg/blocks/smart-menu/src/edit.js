@@ -72,6 +72,17 @@ export default function Edit( { attributes, setAttributes } ) {
 		mobileMenuColor,
 		mobileMenuBackground,
 		mobileMenuWidth,
+		collapsibleBehavior,
+		submenuAnimation,
+		submenuMinWidth,
+		submenuMaxWidth,
+		submenuOffsetX,
+		submenuOffsetY,
+		submenuLevel2OffsetX,
+		submenuLevel2OffsetY,
+		submenuTransitionDuration,
+		submenuIndicatorIcon,
+		submenuIndicatorIconSize,
 	} = attributes;
 
 	const [ menus, setMenus ] = useState( [] );
@@ -209,6 +220,40 @@ export default function Edit( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { dropdownIcon: value } )
+						}
+					/>
+
+					<SelectControl
+						label={ __( 'Collapsible Behavior', 'wbcom-essential' ) }
+						value={ collapsibleBehavior }
+						options={ [
+							{
+								label: __( 'Default', 'wbcom-essential' ),
+								value: 'default',
+							},
+							{
+								label: __( 'Toggle', 'wbcom-essential' ),
+								value: 'toggle',
+							},
+							{
+								label: __( 'Link', 'wbcom-essential' ),
+								value: 'link',
+							},
+							{
+								label: __( 'Accordion', 'wbcom-essential' ),
+								value: 'accordion',
+							},
+							{
+								label: __( 'Accordion Toggle', 'wbcom-essential' ),
+								value: 'accordion-toggle',
+							},
+							{
+								label: __( 'Accordion Link', 'wbcom-essential' ),
+								value: 'accordion-link',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { collapsibleBehavior: value } )
 						}
 					/>
 				</PanelBody>
@@ -454,6 +499,146 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Sub Menus', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
+					<SelectControl
+						label={ __( 'Submenu Animation', 'wbcom-essential' ) }
+						value={ submenuAnimation }
+						options={ [
+							{ label: __( 'None', 'wbcom-essential' ), value: '' },
+							{ label: __( 'Fade In', 'wbcom-essential' ), value: 'fadeIn' },
+							{ label: __( 'Fade In Up', 'wbcom-essential' ), value: 'fadeInUp' },
+							{ label: __( 'Fade In Down', 'wbcom-essential' ), value: 'fadeInDown' },
+							{ label: __( 'Fade In Left', 'wbcom-essential' ), value: 'fadeInLeft' },
+							{ label: __( 'Fade In Right', 'wbcom-essential' ), value: 'fadeInRight' },
+							{ label: __( 'Slide In Up', 'wbcom-essential' ), value: 'slideInUp' },
+							{ label: __( 'Slide In Down', 'wbcom-essential' ), value: 'slideInDown' },
+							{ label: __( 'Zoom In', 'wbcom-essential' ), value: 'zoomIn' },
+							{ label: __( 'Bounce In', 'wbcom-essential' ), value: 'bounceIn' },
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { submenuAnimation: value } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'Minimum Width', 'wbcom-essential' ) }
+						value={ `${ submenuMinWidth?.size || '' }${
+							submenuMinWidth?.unit || ''
+						}` }
+						onChange={ ( value ) => {
+							const match = value.match(
+								/^(\d+(?:\.\d+)?)(px|%|em|rem)?$/
+							);
+							if ( match ) {
+								setAttributes( {
+									submenuMinWidth: {
+										size: parseFloat( match[ 1 ] ),
+										unit: match[ 2 ] || 'em',
+									},
+								} );
+							}
+						} }
+						help={ __(
+							'e.g., 10em, 200px, 50%',
+							'wbcom-essential'
+						) }
+					/>
+
+					<TextControl
+						label={ __( 'Maximum Width', 'wbcom-essential' ) }
+						value={ `${ submenuMaxWidth?.size || '' }${
+							submenuMaxWidth?.unit || ''
+						}` }
+						onChange={ ( value ) => {
+							const match = value.match(
+								/^(\d+(?:\.\d+)?)(px|%|em|rem)?$/
+							);
+							if ( match ) {
+								setAttributes( {
+									submenuMaxWidth: {
+										size: parseFloat( match[ 1 ] ),
+										unit: match[ 2 ] || 'em',
+									},
+								} );
+							}
+						} }
+						help={ __(
+							'e.g., 20em, 400px, 100%',
+							'wbcom-essential'
+						) }
+					/>
+
+					<RangeControl
+						label={ __(
+							'First-level Offset X (px)',
+							'wbcom-essential'
+						) }
+						value={ submenuOffsetX }
+						onChange={ ( value ) =>
+							setAttributes( { submenuOffsetX: value } )
+						}
+						min={ -100 }
+						max={ 100 }
+						step={ 1 }
+					/>
+
+					<RangeControl
+						label={ __(
+							'First-level Offset Y (px)',
+							'wbcom-essential'
+						) }
+						value={ submenuOffsetY }
+						onChange={ ( value ) =>
+							setAttributes( { submenuOffsetY: value } )
+						}
+						min={ -100 }
+						max={ 100 }
+						step={ 1 }
+					/>
+
+					<RangeControl
+						label={ __(
+							'Second-level Offset X (px)',
+							'wbcom-essential'
+						) }
+						value={ submenuLevel2OffsetX }
+						onChange={ ( value ) =>
+							setAttributes( { submenuLevel2OffsetX: value } )
+						}
+						min={ -100 }
+						max={ 100 }
+						step={ 1 }
+					/>
+
+					<RangeControl
+						label={ __(
+							'Second-level Offset Y (px)',
+							'wbcom-essential'
+						) }
+						value={ submenuLevel2OffsetY }
+						onChange={ ( value ) =>
+							setAttributes( { submenuLevel2OffsetY: value } )
+						}
+						min={ -100 }
+						max={ 100 }
+						step={ 1 }
+					/>
+
+					<RangeControl
+						label={ __(
+							'Transition Duration (ms)',
+							'wbcom-essential'
+						) }
+						value={ submenuTransitionDuration * 1000 }
+						onChange={ ( value ) =>
+							setAttributes( {
+								submenuTransitionDuration: value / 1000,
+							} )
+						}
+						min={ 0 }
+						max={ 2000 }
+						step={ 100 }
+					/>
+
 					<TextControl
 						label={ __( 'Background Color', 'wbcom-essential' ) }
 						value={ subMenuBg }
@@ -461,6 +646,54 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { subMenuBg: value } )
 						}
 						type="color"
+					/>
+
+					<SelectControl
+						label={ __( 'Submenu Indicator Icon', 'wbcom-essential' ) }
+						value={ submenuIndicatorIcon }
+						options={ [
+							{
+								label: __( 'Caret', 'wbcom-essential' ),
+								value: 'caret',
+							},
+							{
+								label: __( 'Caret Square', 'wbcom-essential' ),
+								value: 'caret-square',
+							},
+							{
+								label: __( 'Chevron', 'wbcom-essential' ),
+								value: 'chevron',
+							},
+							{
+								label: __( 'Chevron Circle', 'wbcom-essential' ),
+								value: 'chevron-circle',
+							},
+							{
+								label: __( 'Plus', 'wbcom-essential' ),
+								value: 'plus',
+							},
+							{
+								label: __( 'Plus Circle', 'wbcom-essential' ),
+								value: 'plus-circle',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { submenuIndicatorIcon: value } )
+						}
+					/>
+
+					<RangeControl
+						label={ __(
+							'Submenu Indicator Icon Size',
+							'wbcom-essential'
+						) }
+						value={ submenuIndicatorIconSize }
+						onChange={ ( value ) =>
+							setAttributes( { submenuIndicatorIconSize: value } )
+						}
+						min={ 8 }
+						max={ 50 }
+						step={ 1 }
 					/>
 				</PanelBody>
 

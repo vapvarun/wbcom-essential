@@ -23,17 +23,28 @@
 			display: block;
 			text-decoration: none;
 			transition: color 0.3s ease;
+
+			// Hover state handled by inline styles via data attributes
+			// to support dynamic color changes from block settings
 		}
 	}
 
 	.site-description {
 		margin: 0;
-		font-size: 0.9em;
-		opacity: 0.8;
+
+		// Default fallback styles (can be overridden by inline styles)
+		&:empty {
+			display: none;
+		}
 	}
 
 	.custom-logo {
 		max-width: 100%;
 		height: auto;
+		transition: opacity 0.3s ease;
+
+		&:hover {
+			opacity: 0.85;
+		}
 	}
 }

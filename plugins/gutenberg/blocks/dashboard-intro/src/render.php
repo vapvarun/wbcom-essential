@@ -58,30 +58,64 @@ if ( function_exists( 'bp_core_get_user_domain' ) ) {
 }
 
 // Extract attributes.
-$greeting_text       = $attributes['greetingText'] ?? 'Hello,';
-$description_text    = $attributes['descriptionText'] ?? '';
-$show_avatar         = $attributes['showAvatar'] ?? true;
-$avatar_size         = $attributes['avatarSize'] ?? 80;
+$greeting_text        = $attributes['greetingText'] ?? 'Hello,';
+$description_text     = $attributes['descriptionText'] ?? '';
+$show_avatar          = $attributes['showAvatar'] ?? true;
+$avatar_size          = $attributes['avatarSize'] ?? 80;
 $avatar_border_radius = $attributes['avatarBorderRadius'] ?? 50;
-$layout              = $attributes['layout'] ?? 'left';
-$content_align       = $attributes['contentAlign'] ?? 'left';
-$greeting_color      = $attributes['greetingColor'] ?? '#A3A5A9';
-$name_color          = $attributes['nameColor'] ?? '#122B46';
-$description_color   = $attributes['descriptionColor'] ?? '#666666';
-$gap                 = $attributes['gap'] ?? 20;
-$container_bg_color  = $attributes['containerBgColor'] ?? '';
-$container_padding   = $attributes['containerPadding'] ?? 30;
-$container_radius    = $attributes['containerBorderRadius'] ?? 8;
+$avatar_border_style  = $attributes['avatarBorderStyle'] ?? 'none';
+$avatar_border_width  = $attributes['avatarBorderWidth'] ?? 1;
+$avatar_border_color  = $attributes['avatarBorderColor'] ?? '#000000';
+$avatar_padding       = $attributes['avatarPadding'] ?? 3;
+$avatar_shadow        = $attributes['avatarShadow'] ?? array(
+	'horizontal' => 0,
+	'vertical'   => 0,
+	'blur'       => 0,
+	'spread'     => 0,
+	'color'      => 'rgba(0,0,0,0.5)',
+);
+$layout               = $attributes['layout'] ?? 'left';
+$content_align        = $attributes['contentAlign'] ?? 'left';
+$greeting_color       = $attributes['greetingColor'] ?? '#A3A5A9';
+$greeting_font_size   = $attributes['greetingFontSize'] ?? 14;
+$name_color           = $attributes['nameColor'] ?? '#122B46';
+$name_font_size       = $attributes['nameFontSize'] ?? 24;
+$description_color    = $attributes['descriptionColor'] ?? '#666666';
+$description_font_size = $attributes['descriptionFontSize'] ?? 14;
+$gap                  = $attributes['gap'] ?? 20;
+$container_bg_color   = $attributes['containerBgColor'] ?? '';
+$container_padding    = $attributes['containerPadding'] ?? 30;
+$container_radius     = $attributes['containerBorderRadius'] ?? 8;
 
-// Build inline styles - ONLY layout/spacing, NEVER colors.
-// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly.
+// Build box shadow string.
+$shadow_string = sprintf(
+	'%dpx %dpx %dpx %dpx %s',
+	$avatar_shadow['horizontal'] ?? 0,
+	$avatar_shadow['vertical'] ?? 0,
+	$avatar_shadow['blur'] ?? 0,
+	$avatar_shadow['spread'] ?? 0,
+	$avatar_shadow['color'] ?? 'rgba(0,0,0,0.5)'
+);
+
+// Build inline styles.
 $inline_styles = array(
-	'--gap'               => $gap . 'px',
-	'--container-padding' => $container_padding . 'px',
-	'--container-radius'  => $container_radius . 'px',
-	'--avatar-size'       => $avatar_size . 'px',
-	'--avatar-radius'     => $avatar_border_radius . '%',
+	'--gap'                   => $gap . 'px',
+	'--container-bg'          => $container_bg_color,
+	'--container-padding'     => $container_padding . 'px',
+	'--container-radius'      => $container_radius . 'px',
+	'--avatar-size'           => $avatar_size . 'px',
+	'--avatar-radius'         => $avatar_border_radius . '%',
+	'--avatar-border-style'   => $avatar_border_style,
+	'--avatar-border-width'   => $avatar_border_width . 'px',
+	'--avatar-border-color'   => $avatar_border_color,
+	'--avatar-padding'        => $avatar_padding . 'px',
+	'--avatar-shadow'         => $shadow_string,
+	'--greeting-color'        => $greeting_color,
+	'--greeting-font-size'    => $greeting_font_size . 'px',
+	'--name-color'            => $name_color,
+	'--name-font-size'        => $name_font_size . 'px',
+	'--description-color'     => $description_color,
+	'--description-font-size' => $description_font_size . 'px',
 );
 
 $style_string = '';

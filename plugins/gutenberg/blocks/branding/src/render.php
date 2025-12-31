@@ -14,17 +14,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
-$branding_type      = $attributes['brandingType'] ?? 'title';
-$alignment          = $attributes['alignment'] ?? '';
-$title_color        = $attributes['titleColor'] ?? '#333333';
-$title_hover_color  = $attributes['titleHoverColor'] ?? '#333333';
-$description_color  = $attributes['descriptionColor'] ?? '#333333';
-$title_padding      = $attributes['titlePadding'] ?? array( 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0' );
-$description_padding = $attributes['descriptionPadding'] ?? array( 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0' );
-$logo_padding       = $attributes['logoPadding'] ?? array( 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0' );
-$logo_width         = $attributes['logoWidth'] ?? 'auto';
-$logo_height        = $attributes['logoHeight'] ?? 'auto';
-$title_typography   = $attributes['titleTypography'] ?? array(
+$branding_type           = $attributes['brandingType'] ?? 'title';
+$alignment               = $attributes['alignment'] ?? '';
+$title_color             = $attributes['titleColor'] ?? '#333333';
+$title_hover_color       = $attributes['titleHoverColor'] ?? '#333333';
+$description_color       = $attributes['descriptionColor'] ?? '#333333';
+$title_padding           = $attributes['titlePadding'] ?? array( 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0' );
+$description_padding     = $attributes['descriptionPadding'] ?? array( 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0' );
+$logo_padding            = $attributes['logoPadding'] ?? array( 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0' );
+$logo_width              = $attributes['logoWidth'] ?? 'auto';
+$logo_height             = $attributes['logoHeight'] ?? 'auto';
+$title_typography        = $attributes['titleTypography'] ?? array(
 	'fontFamily'     => '',
 	'fontSize'       => '',
 	'fontWeight'     => '',
@@ -33,8 +33,19 @@ $title_typography   = $attributes['titleTypography'] ?? array(
 	'textTransform'  => '',
 	'textDecoration' => '',
 );
-$border             = $attributes['border'] ?? array( 'width' => '0', 'style' => 'none', 'color' => '#000000' );
-$border_radius      = $attributes['borderRadius'] ?? array( 'top' => '0px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px' );
+$description_typography  = $attributes['descriptionTypography'] ?? array(
+	'fontFamily'     => '',
+	'fontSize'       => '',
+	'fontWeight'     => '',
+	'lineHeight'     => '',
+	'letterSpacing'  => '',
+	'textTransform'  => '',
+	'textDecoration' => '',
+);
+$title_link_url          = $attributes['titleLinkUrl'] ?? '';
+$title_link_target       = $attributes['titleLinkTarget'] ?? '_self';
+$border                  = $attributes['border'] ?? array( 'width' => '0', 'style' => 'none', 'color' => '#000000' );
+$border_radius           = $attributes['borderRadius'] ?? array( 'top' => '0px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px' );
 
 // Build inline styles.
 $inline_styles = '';
@@ -98,12 +109,16 @@ if ( empty( $site_title ) ) {
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="header-title">
 		<?php if ( 'title' === $branding_type ) : ?>
+			<?php
+			$link_url = ! empty( $title_link_url ) ? $title_link_url : home_url( '/' );
+			$link_target_attr = '_blank' === $title_link_target ? ' target="_blank" rel="noopener noreferrer"' : '';
+			?>
 			<span class="site-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+				<a href="<?php echo esc_url( $link_url ); ?>"
 				   title="<?php echo esc_attr( $site_title ); ?>"
 				   style="<?php echo esc_attr( $title_styles ); ?>"
 				   data-hover-color="<?php echo esc_attr( $title_hover_color ); ?>"
-				   data-normal-color="<?php echo esc_attr( $title_color ); ?>">
+				   data-normal-color="<?php echo esc_attr( $title_color ); ?>"<?php echo $link_target_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?php echo esc_html( $site_title ); ?>
 				</a>
 			</span>
@@ -111,6 +126,29 @@ if ( empty( $site_title ) ) {
 			<?php
 			$desc_styles  = 'color: ' . esc_attr( $description_color ) . ';';
 			$desc_styles .= 'padding: ' . esc_attr( $description_padding['top'] ) . ' ' . esc_attr( $description_padding['right'] ) . ' ' . esc_attr( $description_padding['bottom'] ) . ' ' . esc_attr( $description_padding['left'] ) . ';';
+
+			// Apply description typography styles.
+			if ( ! empty( $description_typography['fontFamily'] ) ) {
+				$desc_styles .= 'font-family: ' . esc_attr( $description_typography['fontFamily'] ) . ';';
+			}
+			if ( ! empty( $description_typography['fontSize'] ) ) {
+				$desc_styles .= 'font-size: ' . esc_attr( $description_typography['fontSize'] ) . ';';
+			}
+			if ( ! empty( $description_typography['fontWeight'] ) ) {
+				$desc_styles .= 'font-weight: ' . esc_attr( $description_typography['fontWeight'] ) . ';';
+			}
+			if ( ! empty( $description_typography['lineHeight'] ) ) {
+				$desc_styles .= 'line-height: ' . esc_attr( $description_typography['lineHeight'] ) . ';';
+			}
+			if ( ! empty( $description_typography['letterSpacing'] ) ) {
+				$desc_styles .= 'letter-spacing: ' . esc_attr( $description_typography['letterSpacing'] ) . ';';
+			}
+			if ( ! empty( $description_typography['textTransform'] ) ) {
+				$desc_styles .= 'text-transform: ' . esc_attr( $description_typography['textTransform'] ) . ';';
+			}
+			if ( ! empty( $description_typography['textDecoration'] ) ) {
+				$desc_styles .= 'text-decoration: ' . esc_attr( $description_typography['textDecoration'] ) . ';';
+			}
 			?>
 			<?php if ( $site_description ) : ?>
 				<p class="site-description" style="<?php echo esc_attr( $desc_styles ); ?>">

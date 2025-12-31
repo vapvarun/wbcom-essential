@@ -32,6 +32,9 @@ const FLIP_DIRECTIONS = [
 	{ label: __( 'Diagonal Left', 'wbcom-essential' ), value: 'flip-diagonal-left' },
 	{ label: __( 'Inverted Diagonal Right', 'wbcom-essential' ), value: 'flip-inverted-diagonal-right' },
 	{ label: __( 'Inverted Diagonal Left', 'wbcom-essential' ), value: 'flip-inverted-diagonal-left' },
+	{ label: __( 'Zoom In', 'wbcom-essential' ), value: 'zoom-in' },
+	{ label: __( 'Zoom Out', 'wbcom-essential' ), value: 'zoom-out' },
+	{ label: __( 'Rotate', 'wbcom-essential' ), value: 'rotate' },
 ];
 
 const TIMING_FUNCTIONS = [
@@ -49,6 +52,18 @@ const HEADING_TAGS = [
 	{ label: 'H4', value: 'h4' },
 	{ label: 'H5', value: 'h5' },
 	{ label: 'H6', value: 'h6' },
+];
+
+const BUTTON_SKINS = [
+	{ label: __( 'None', 'wbcom-essential' ), value: '' },
+	{ label: __( 'Animation 1', 'wbcom-essential' ), value: 'wbcom-btn-1' },
+	{ label: __( 'Animation 2', 'wbcom-essential' ), value: 'wbcom-btn-2' },
+	{ label: __( 'Animation 3', 'wbcom-essential' ), value: 'wbcom-btn-3' },
+	{ label: __( 'Animation 4', 'wbcom-essential' ), value: 'wbcom-btn-4' },
+	{ label: __( 'Animation 5', 'wbcom-essential' ), value: 'wbcom-btn-5' },
+	{ label: __( 'Animation 6', 'wbcom-essential' ), value: 'wbcom-btn-6' },
+	{ label: __( 'Animation 7', 'wbcom-essential' ), value: 'wbcom-btn-7' },
+	{ label: __( 'Animation 8', 'wbcom-essential' ), value: 'wbcom-btn-8' },
 ];
 
 const DASHICONS = [
@@ -106,6 +121,15 @@ export default function Edit( { attributes, setAttributes } ) {
 		buttonBackground,
 		buttonTextColor,
 		borderRadius,
+		buttonSkin,
+		buttonHoverBackground,
+		buttonHoverTextColor,
+		frontBorderWidth,
+		frontBorderColor,
+		frontBoxShadow,
+		backBorderWidth,
+		backBorderColor,
+		backBoxShadow,
 	} = attributes;
 
 	const [ activeTab, setActiveTab ] = useState( 'front' );
@@ -300,6 +324,28 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ frontContentColor }
 						onChange={ ( value ) => setAttributes( { frontContentColor: value } ) }
 					/>
+
+					<RangeControl
+						label={ __( 'Border Width', 'wbcom-essential' ) }
+						value={ frontBorderWidth }
+						onChange={ ( value ) => setAttributes( { frontBorderWidth: value } ) }
+						min={ 0 }
+						max={ 10 }
+					/>
+
+					{ frontBorderWidth > 0 && (
+						<ColorControl
+							label={ __( 'Border Color', 'wbcom-essential' ) }
+							value={ frontBorderColor }
+							onChange={ ( value ) => setAttributes( { frontBorderColor: value } ) }
+						/>
+					) }
+
+					<ToggleControl
+						label={ __( 'Box Shadow', 'wbcom-essential' ) }
+						checked={ frontBoxShadow }
+						onChange={ ( value ) => setAttributes( { frontBoxShadow: value } ) }
+					/>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Back Side Colors', 'wbcom-essential' ) } initialOpen={ false }>
@@ -335,6 +381,37 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { backContentColor: value } ) }
 					/>
 
+					<RangeControl
+						label={ __( 'Border Width', 'wbcom-essential' ) }
+						value={ backBorderWidth }
+						onChange={ ( value ) => setAttributes( { backBorderWidth: value } ) }
+						min={ 0 }
+						max={ 10 }
+					/>
+
+					{ backBorderWidth > 0 && (
+						<ColorControl
+							label={ __( 'Border Color', 'wbcom-essential' ) }
+							value={ backBorderColor }
+							onChange={ ( value ) => setAttributes( { backBorderColor: value } ) }
+						/>
+					) }
+
+					<ToggleControl
+						label={ __( 'Box Shadow', 'wbcom-essential' ) }
+						checked={ backBoxShadow }
+						onChange={ ( value ) => setAttributes( { backBoxShadow: value } ) }
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Button Style', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Animation Skin', 'wbcom-essential' ) }
+						value={ buttonSkin }
+						options={ BUTTON_SKINS }
+						onChange={ ( value ) => setAttributes( { buttonSkin: value } ) }
+					/>
+
 					<ColorControl
 						label={ __( 'Button Background', 'wbcom-essential' ) }
 						value={ buttonBackground }
@@ -345,6 +422,18 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Button Text Color', 'wbcom-essential' ) }
 						value={ buttonTextColor }
 						onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
+					/>
+
+					<ColorControl
+						label={ __( 'Hover Background', 'wbcom-essential' ) }
+						value={ buttonHoverBackground }
+						onChange={ ( value ) => setAttributes( { buttonHoverBackground: value } ) }
+					/>
+
+					<ColorControl
+						label={ __( 'Hover Text Color', 'wbcom-essential' ) }
+						value={ buttonHoverTextColor }
+						onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
 					/>
 				</PanelBody>
 			</InspectorControls>

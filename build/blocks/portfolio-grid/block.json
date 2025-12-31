@@ -6,14 +6,16 @@
   "title": "Portfolio Grid",
   "category": "wbcom-essential",
   "icon": "grid-view",
-  "description": "Display portfolio items in a filterable grid layout.",
+  "description": "Display portfolio items in a filterable grid or masonry layout with hover effects and lightbox support.",
   "keywords": [
     "portfolio",
     "grid",
     "gallery",
     "projects",
     "filter",
-    "isotope"
+    "isotope",
+    "masonry",
+    "lightbox"
   ],
   "textdomain": "wbcom-essential",
   "example": {},
@@ -24,26 +26,38 @@
         {
           "id": "item-1",
           "image": "",
+          "imageId": 0,
           "title": "Project One",
           "description": "A brief description of this project.",
           "link": "",
-          "filters": "design"
+          "linkTarget": "_self",
+          "filters": "design",
+          "columnWidth": 1,
+          "rowHeight": 1
         },
         {
           "id": "item-2",
           "image": "",
+          "imageId": 0,
           "title": "Project Two",
           "description": "A brief description of this project.",
           "link": "",
-          "filters": "development"
+          "linkTarget": "_self",
+          "filters": "development",
+          "columnWidth": 1,
+          "rowHeight": 1
         },
         {
           "id": "item-3",
           "image": "",
+          "imageId": 0,
           "title": "Project Three",
           "description": "A brief description of this project.",
           "link": "",
-          "filters": "design development"
+          "linkTarget": "_self",
+          "filters": "design development",
+          "columnWidth": 1,
+          "rowHeight": 1
         }
       ]
     },
@@ -75,6 +89,14 @@
       "type": "string",
       "default": "grid"
     },
+    "layoutType": {
+      "type": "string",
+      "default": "grid",
+      "enum": [
+        "grid",
+        "masonry"
+      ]
+    },
     "showLayoutSwitcher": {
       "type": "boolean",
       "default": false
@@ -95,6 +117,61 @@
       "type": "number",
       "default": 30
     },
+    "imageSize": {
+      "type": "string",
+      "default": "large"
+    },
+    "imageAspectRatio": {
+      "type": "string",
+      "default": "4:3"
+    },
+    "titleHtmlTag": {
+      "type": "string",
+      "default": "h3"
+    },
+    "descriptionHtmlTag": {
+      "type": "string",
+      "default": "p"
+    },
+    "hoverEffect": {
+      "type": "string",
+      "default": "zoom",
+      "enum": [
+        "none",
+        "zoom",
+        "overlay",
+        "slide-up",
+        "fade"
+      ]
+    },
+    "hoverAnimation": {
+      "type": "string",
+      "default": ""
+    },
+    "enableLightbox": {
+      "type": "boolean",
+      "default": false
+    },
+    "lightboxIcon": {
+      "type": "string",
+      "default": "search"
+    },
+    "textPlacement": {
+      "type": "string",
+      "default": "overlay",
+      "enum": [
+        "overlay",
+        "below"
+      ]
+    },
+    "overlayVerticalAlign": {
+      "type": "string",
+      "default": "flex-end"
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "left"
+    },
     "itemBackground": {
       "type": "string",
       "default": "#ffffff"
@@ -103,17 +180,76 @@
       "type": "number",
       "default": 8
     },
+    "itemBorderWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "itemBorderColor": {
+      "type": "string",
+      "default": "#e2e8f0"
+    },
+    "itemBoxShadow": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "horizontal": 0,
+        "vertical": 2,
+        "blur": 8,
+        "spread": 0,
+        "color": "rgba(0, 0, 0, 0.08)"
+      }
+    },
+    "itemHoverBoxShadow": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "horizontal": 0,
+        "vertical": 8,
+        "blur": 24,
+        "spread": 0,
+        "color": "rgba(0, 0, 0, 0.12)"
+      }
+    },
     "overlayColor": {
       "type": "string",
       "default": "rgba(0, 0, 0, 0.7)"
+    },
+    "overlayHoverColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.85)"
     },
     "titleColor": {
       "type": "string",
       "default": "#ffffff"
     },
+    "titleFontSize": {
+      "type": "number",
+      "default": 18
+    },
+    "titleFontWeight": {
+      "type": "string",
+      "default": "600"
+    },
+    "titleMargin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 8,
+        "left": 0
+      }
+    },
     "descriptionColor": {
       "type": "string",
       "default": "rgba(255, 255, 255, 0.9)"
+    },
+    "descriptionFontSize": {
+      "type": "number",
+      "default": 14
+    },
+    "descriptionLineClamp": {
+      "type": "number",
+      "default": 2
     },
     "filterActiveColor": {
       "type": "string",
@@ -122,6 +258,66 @@
     "filterTextColor": {
       "type": "string",
       "default": "#4a5568"
+    },
+    "filterActiveBackground": {
+      "type": "string",
+      "default": ""
+    },
+    "filterBackground": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.05)"
+    },
+    "filterBorderRadius": {
+      "type": "number",
+      "default": 4
+    },
+    "filterPadding": {
+      "type": "object",
+      "default": {
+        "top": 8,
+        "right": 20,
+        "bottom": 8,
+        "left": 20
+      }
+    },
+    "imagePadding": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "imageBorderRadius": {
+      "type": "number",
+      "default": 0
+    },
+    "contentPadding": {
+      "type": "object",
+      "default": {
+        "top": 24,
+        "right": 24,
+        "bottom": 24,
+        "left": 24
+      }
+    },
+    "contentMargin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "contentBackground": {
+      "type": "string",
+      "default": ""
+    },
+    "contentBorderRadius": {
+      "type": "number",
+      "default": 0
     }
   },
   "supports": {
@@ -133,6 +329,10 @@
     "spacing": {
       "margin": true,
       "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
     }
   },
   "editorScript": "file:./index.js",

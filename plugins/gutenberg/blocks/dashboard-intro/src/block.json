@@ -29,6 +29,32 @@
 			"type": "number",
 			"default": 50
 		},
+		"avatarBorderStyle": {
+			"type": "string",
+			"default": "none"
+		},
+		"avatarBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"avatarBorderColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"avatarPadding": {
+			"type": "number",
+			"default": 3
+		},
+		"avatarShadow": {
+			"type": "object",
+			"default": {
+				"horizontal": 0,
+				"vertical": 0,
+				"blur": 0,
+				"spread": 0,
+				"color": "rgba(0,0,0,0.5)"
+			}
+		},
 		"layout": {
 			"type": "string",
 			"default": "left"
@@ -41,13 +67,25 @@
 			"type": "string",
 			"default": "#A3A5A9"
 		},
+		"greetingFontSize": {
+			"type": "number",
+			"default": 14
+		},
 		"nameColor": {
 			"type": "string",
 			"default": "#122B46"
 		},
+		"nameFontSize": {
+			"type": "number",
+			"default": 24
+		},
 		"descriptionColor": {
 			"type": "string",
 			"default": "#666666"
+		},
+		"descriptionFontSize": {
+			"type": "number",
+			"default": 14
 		},
 		"gap": {
 			"type": "number",

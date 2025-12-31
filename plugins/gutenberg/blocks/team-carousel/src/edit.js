@@ -45,6 +45,19 @@ export default function Edit( { attributes, setAttributes } ) {
 		nameFontSize,
 		roleFontSize,
 		imageAspectRatio,
+		imageOverlayColor,
+		imageOverlayHoverColor,
+		cardHoverScale,
+		cardHoverShadow,
+		cardBorderWidth,
+		cardBorderColor,
+		dotsColor,
+		dotsActiveColor,
+		dotsSize,
+		arrowColor,
+		arrowBgColor,
+		arrowSize,
+		arrowBorderRadius,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -287,12 +300,58 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 60 }
 					/>
+					<RangeControl
+						label={ __( 'Card Border Width', 'wbcom-essential' ) }
+						value={ cardBorderWidth }
+						onChange={ ( value ) =>
+							setAttributes( { cardBorderWidth: value } )
+						}
+						min={ 0 }
+						max={ 10 }
+					/>
+					{ cardBorderWidth > 0 && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Card Border Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ cardBorderColor }
+								onChange={ ( value ) =>
+									setAttributes( { cardBorderColor: value } )
+								}
+							/>
+						</>
+					) }
 					<ToggleControl
 						label={ __( 'Card Box Shadow', 'wbcom-essential' ) }
 						checked={ cardBoxShadow }
 						onChange={ ( value ) =>
 							setAttributes( { cardBoxShadow: value } )
 						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Hover Effects', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Hover Scale', 'wbcom-essential' ) }
+						value={ cardHoverScale }
+						onChange={ ( value ) =>
+							setAttributes( { cardHoverScale: value } )
+						}
+						min={ 1 }
+						max={ 1.2 }
+						step={ 0.01 }
+					/>
+					<TextControl
+						label={ __( 'Hover Shadow', 'wbcom-essential' ) }
+						value={ cardHoverShadow }
+						onChange={ ( value ) =>
+							setAttributes( { cardHoverShadow: value } )
+						}
+						help={ __( 'CSS box-shadow value (e.g., 0 10px 30px rgba(0, 0, 0, 0.15))', 'wbcom-essential' ) }
 					/>
 				</PanelBody>
 
@@ -320,6 +379,24 @@ export default function Edit( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { imageAspectRatio: value } )
+						}
+					/>
+					<p className="components-base-control__label">
+						{ __( 'Image Overlay Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ imageOverlayColor }
+						onChange={ ( value ) =>
+							setAttributes( { imageOverlayColor: value } )
+						}
+					/>
+					<p className="components-base-control__label">
+						{ __( 'Image Overlay Hover Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ imageOverlayHoverColor }
+						onChange={ ( value ) =>
+							setAttributes( { imageOverlayHoverColor: value } )
 						}
 					/>
 				</PanelBody>
@@ -367,16 +444,76 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Navigation Colors', 'wbcom-essential' ) }
+					title={ __( 'Navigation Arrows', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
+					<RangeControl
+						label={ __( 'Arrow Size', 'wbcom-essential' ) }
+						value={ arrowSize }
+						onChange={ ( value ) =>
+							setAttributes( { arrowSize: value } )
+						}
+						min={ 20 }
+						max={ 80 }
+					/>
+					<RangeControl
+						label={ __( 'Arrow Border Radius (%)', 'wbcom-essential' ) }
+						value={ arrowBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { arrowBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 50 }
+					/>
 					<p className="components-base-control__label">
-						{ __( 'Navigation Color', 'wbcom-essential' ) }
+						{ __( 'Arrow Color', 'wbcom-essential' ) }
 					</p>
 					<ColorPalette
-						value={ navColor }
+						value={ arrowColor }
 						onChange={ ( value ) =>
-							setAttributes( { navColor: value } )
+							setAttributes( { arrowColor: value } )
+						}
+					/>
+					<p className="components-base-control__label">
+						{ __( 'Arrow Background Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ arrowBgColor }
+						onChange={ ( value ) =>
+							setAttributes( { arrowBgColor: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Pagination Dots', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Dot Size', 'wbcom-essential' ) }
+						value={ dotsSize }
+						onChange={ ( value ) =>
+							setAttributes( { dotsSize: value } )
+						}
+						min={ 5 }
+						max={ 20 }
+					/>
+					<p className="components-base-control__label">
+						{ __( 'Dot Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ dotsColor }
+						onChange={ ( value ) =>
+							setAttributes( { dotsColor: value } )
+						}
+					/>
+					<p className="components-base-control__label">
+						{ __( 'Active Dot Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ dotsActiveColor }
+						onChange={ ( value ) =>
+							setAttributes( { dotsActiveColor: value } )
 						}
 					/>
 				</PanelBody>

@@ -37,9 +37,31 @@
 			"type": "number",
 			"default": 52
 		},
-		"avatarBorderRadius": {
+		"avatarBorderType": {
+			"type": "string",
+			"default": "none"
+		},
+		"avatarBorderWidth": {
 			"type": "number",
-			"default": 50
+			"default": 0
+		},
+		"avatarBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"avatarBorderRadius": {
+			"type": "object",
+			"default": {
+				"top": 50,
+				"right": 50,
+				"bottom": 50,
+				"left": 50,
+				"unit": "%"
+			}
+		},
+		"avatarOpacity": {
+			"type": "number",
+			"default": 1
 		},
 		"avatarSpacing": {
 			"type": "number",
@@ -57,17 +79,47 @@
 			"type": "boolean",
 			"default": true
 		},
-		"boxBgColor": {
+		"boxBorderType": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": "solid"
+		},
+		"boxBorderWidth": {
+			"type": "number",
+			"default": 1
 		},
 		"boxBorderColor": {
 			"type": "string",
 			"default": "#e3e3e3"
 		},
 		"boxBorderRadius": {
+			"type": "object",
+			"default": {
+				"top": 4,
+				"right": 4,
+				"bottom": 4,
+				"left": 4,
+				"unit": "px"
+			}
+		},
+		"boxBgColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"allForumsLinkColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleFontSize": {
 			"type": "number",
-			"default": 4
+			"default": 14
+		},
+		"titleFontWeight": {
+			"type": "string",
+			"default": "400"
+		},
+		"titleLineHeight": {
+			"type": "number",
+			"default": 1.5
 		},
 		"titleColor": {
 			"type": "string",
@@ -77,6 +129,10 @@
 			"type": "string",
 			"default": "#007CFF"
 		},
+		"metaFontSize": {
+			"type": "number",
+			"default": 13
+		},
 		"metaColor": {
 			"type": "string",
 			"default": "#A3A5A9"
@@ -84,10 +140,6 @@
 		"lastReplyColor": {
 			"type": "string",
 			"default": "#4D5C6D"
-		},
-		"allForumsLinkColor": {
-			"type": "string",
-			"default": "#1d76da"
 		}
 	},
 	"supports": {

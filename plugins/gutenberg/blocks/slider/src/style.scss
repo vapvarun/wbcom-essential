@@ -5,19 +5,46 @@
  */
 
 .wp-block-wbcom-essential-slider {
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	// Default CSS variables - can be overridden via inline styles
 	--slider-title-color: var(--wbcom-button-text, #fff);
 	--slider-desc-color: rgba(255, 255, 255, 0.9);
 	--slider-button-bg: var(--wbcom-color-primary, #0073aa);
 	--slider-button-text: var(--wbcom-button-text, #fff);
 	--slider-button-hover-bg: var(--wbcom-color-primary-dark, #005177);
-	--slider-nav-bg: rgba(0, 0, 0, 0.5);
-	--slider-nav-color: var(--wbcom-button-text, #fff);
-	--slider-nav-hover-bg: rgba(0, 0, 0, 0.7);
-	--slider-dot-color: rgba(255, 255, 255, 0.5);
-	--slider-dot-active-color: var(--wbcom-button-text, #fff);
+
+	// Navigation defaults (overridden by block attributes)
+	--slider-arrow-color: #fff;
+	--slider-arrow-hover-color: #fff;
+	--slider-arrow-bg-color: rgba(0, 0, 0, 0.5);
+	--slider-arrow-bg-hover-color: rgba(0, 0, 0, 0.7);
+	--slider-arrow-size: 24px;
+	--slider-arrow-box-size: 50px;
+	--slider-arrow-border-radius: 50%;
+
+	--slider-dots-color: rgba(255, 255, 255, 0.5);
+	--slider-dots-active-color: #fff;
+	--slider-dots-size: 12px;
+	--slider-dots-spacing: 10px;
+	--slider-dots-bottom-offset: 20px;
+
+	--slider-transition-duration: 300ms;
 
 	position: relative;
+
+	// Focus outline for keyboard navigation
+	&:focus {
+		outline: 2px solid var(--wbcom-color-primary, #0073aa);
+		outline-offset: 2px;
+	}
+
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--wbcom-color-primary, #0073aa);
+		outline-offset: 2px;
+	}
 
 	.wbcom-slider-wrapper {
 		position: relative;
@@ -25,7 +52,7 @@
 
 		.wbcom-slider-inner {
 			position: relative;
-			transition: transform 0.3s ease;
+			transition: transform var(--slider-transition-duration) ease;
 
 			@media (min-width: 1025px) {
 				min-height: var(--slider-height-desktop);
@@ -50,7 +77,7 @@
 					width: 100%;
 					height: 100%;
 					opacity: 0;
-					transition: opacity 0.3s ease;
+					transition: opacity var(--slider-transition-duration) ease;
 
 					&.active {
 						opacity: 1;
@@ -103,6 +130,7 @@
 					width: 100%;
 					height: 100%;
 					z-index: 1;
+					transition: transform 0.1s linear;
 
 					@media (min-width: 1025px) {
 						min-height: var(--slider-height-desktop);
@@ -177,27 +205,51 @@
 			}
 		}
 
+		// Arrow navigation styles
 		.wbcom-slider-prev,
 		.wbcom-slider-next {
 			position: absolute;
 			top: 50%;
 			transform: translateY(-50%);
 			z-index: 4;
-			background: var(--slider-nav-bg);
-			color: var(--slider-nav-color);
+			background: var(--slider-arrow-bg-color);
+			color: var(--slider-arrow-color);
 			border: none;
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
+			width: var(--slider-arrow-box-size);
+			height: var(--slider-arrow-box-size);
+			border-radius: var(--slider-arrow-border-radius);
 			cursor: pointer;
-			font-size: 24px;
+			font-size: var(--slider-arrow-size);
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			transition: background 0.3s ease;
+			transition: background var(--slider-transition-duration) ease,
+						color var(--slider-transition-duration) ease,
+						opacity var(--slider-transition-duration) ease;
 
 			&:hover {
-				background: var(--slider-nav-hover-bg);
+				background: var(--slider-arrow-bg-hover-color);
+				color: var(--slider-arrow-hover-color);
+			}
+
+			&:focus {
+				outline: 2px solid var(--slider-arrow-color);
+				outline-offset: 2px;
+			}
+
+			&:focus:not(:focus-visible) {
+				outline: none;
+			}
+
+			&:focus-visible {
+				outline: 2px solid var(--slider-arrow-color);
+				outline-offset: 2px;
+			}
+
+			&.disabled {
+				opacity: 0.3;
+				cursor: not-allowed;
+				pointer-events: none;
 			}
 		}
 
@@ -209,28 +261,48 @@
 			right: 20px;
 		}
 
+		// Dots/pagination styles
 		.wbcom-slider-dots {
 			position: absolute;
-			bottom: 20px;
+			bottom: var(--slider-dots-bottom-offset);
 			left: 50%;
 			transform: translateX(-50%);
 			z-index: 4;
 			display: flex;
-			gap: 10px;
+			gap: var(--slider-dots-spacing);
 
 			.wbcom-slider-dot {
-				width: 12px;
-				height: 12px;
+				width: var(--slider-dots-size);
+				height: var(--slider-dots-size);
 				padding: 0;
 				border-radius: 50%;
-				background: var(--slider-dot-color);
+				background: var(--slider-dots-color);
 				border: none;
 				cursor: pointer;
-				transition: background 0.3s ease;
+				transition: background var(--slider-transition-duration) ease,
+							transform var(--slider-transition-duration) ease;
 
-				&:hover,
+				&:hover {
+					background: var(--slider-dots-active-color);
+					transform: scale(1.1);
+				}
+
 				&.active {
-					background: var(--slider-dot-active-color);
+					background: var(--slider-dots-active-color);
+				}
+
+				&:focus {
+					outline: 2px solid var(--slider-dots-active-color);
+					outline-offset: 2px;
+				}
+
+				&:focus:not(:focus-visible) {
+					outline: none;
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--slider-dots-active-color);
+					outline-offset: 2px;
 				}
 			}
 		}
@@ -258,6 +330,34 @@
 			@media (max-width: 767px) {
 				display: none !important;
 			}
+		}
+	}
+
+	// Dots position outside slider
+	&.wbcom-dots-outside {
+		.wbcom-slider-dots {
+			position: relative;
+			bottom: auto;
+			left: auto;
+			transform: none;
+			justify-content: center;
+			padding: 15px 0;
+			margin-top: 10px;
+		}
+	}
+
+	// Parallax effect styles
+	&.has-parallax {
+		.wbcom-slider-wrapper {
+			overflow: hidden;
+		}
+
+		.wbcom-slider-bg {
+			// Extend background for parallax room
+			top: -50px;
+			bottom: -50px;
+			height: calc(100% + 100px);
+			will-change: transform;
 		}
 	}
 }

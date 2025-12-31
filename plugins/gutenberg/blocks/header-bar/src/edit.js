@@ -19,10 +19,13 @@ import {
 	ToolbarButton,
 	Placeholder,
 	Spinner,
+	TextControl,
+	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import ColorControl from './components/color-control';
+import IconPicker, { RenderIcon } from './components/icon-picker';
 
 const ALIGNMENT_OPTIONS = [
 	{ label: __( 'Left', 'wbcom-essential' ), value: 'left' },
@@ -40,19 +43,45 @@ export default function Edit( { attributes, setAttributes } ) {
 		showMessages,
 		showNotifications,
 		showCart,
+		showDarkModeToggle,
 		spaceBetween,
 		iconSize,
 		avatarSize,
 		avatarBorderRadius,
 		separatorColor,
+		separatorWidth,
 		iconColor,
+		searchIcon,
+		searchIconColor,
+		messagesIcon,
+		messagesIconColor,
+		notificationsIcon,
+		notificationsIconColor,
+		cartIcon,
+		cartIconColor,
+		darkModeIcon,
+		darkModeIconColor,
+		iconTextShadow,
 		counterBgColor,
+		counterTextColor,
+		counterBoxShadow,
 		dropdownBgColor,
 		dropdownTextColor,
+		dropdownHoverBgColor,
+		dropdownHoverTextColor,
+		dropdownBorderColor,
+		dropdownBorderWidth,
+		dropdownBorderRadius,
+		dropdownBoxShadow,
 		userNameColor,
+		userNameHoverColor,
 		signInColor,
+		signInHoverColor,
 		signUpBgColor,
 		signUpTextColor,
+		signUpHoverBgColor,
+		signUpHoverTextColor,
+		signUpBorderRadius,
 	} = attributes;
 
 	const [ menus, setMenus ] = useState( [] );
@@ -79,11 +108,27 @@ export default function Edit( { attributes, setAttributes } ) {
 			'--avatar-size': `${ avatarSize }px`,
 			'--avatar-radius': `${ avatarBorderRadius }%`,
 			'--separator-color': separatorColor || undefined,
+			'--separator-width': separatorWidth ? `${ separatorWidth }px` : undefined,
 			'--icon-color': iconColor || undefined,
+			'--search-icon-color': searchIconColor || undefined,
+			'--messages-icon-color': messagesIconColor || undefined,
+			'--notifications-icon-color': notificationsIconColor || undefined,
+			'--cart-icon-color': cartIconColor || undefined,
+			'--dark-mode-icon-color': darkModeIconColor || undefined,
+			'--icon-text-shadow': iconTextShadow || undefined,
 			'--counter-bg': counterBgColor || undefined,
+			'--counter-text': counterTextColor || undefined,
+			'--counter-shadow': counterBoxShadow || undefined,
 			'--dropdown-bg': dropdownBgColor || undefined,
 			'--dropdown-text': dropdownTextColor || undefined,
+			'--dropdown-hover-bg': dropdownHoverBgColor || undefined,
+			'--dropdown-hover-text': dropdownHoverTextColor || undefined,
+			'--dropdown-border-color': dropdownBorderColor || undefined,
+			'--dropdown-border-width': dropdownBorderWidth ? `${ dropdownBorderWidth }px` : undefined,
+			'--dropdown-border-radius': `${ dropdownBorderRadius }px`,
+			'--dropdown-shadow': dropdownBoxShadow || undefined,
 			'--user-name-color': userNameColor || undefined,
+			'--user-name-hover-color': userNameHoverColor || undefined,
 		},
 	} );
 
@@ -91,6 +136,24 @@ export default function Edit( { attributes, setAttributes } ) {
 		{ label: __( 'Select a menu', 'wbcom-essential' ), value: '' },
 		...menus,
 	];
+
+	// Render icon with fallback to dashicon.
+	const renderIconPreview = ( customIcon, dashiconClass, color ) => {
+		const style = color ? { color } : {};
+		if ( customIcon ) {
+			return (
+				<span className="wbcom-header-bar-icon wbcom-header-bar-custom-icon" style={ style }>
+					<RenderIcon name={ customIcon } size={ iconSize } />
+				</span>
+			);
+		}
+		return (
+			<span
+				className={ `wbcom-header-bar-icon dashicons ${ dashiconClass }` }
+				style={ style }
+			></span>
+		);
+	};
 
 	return (
 		<>
@@ -117,6 +180,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</BlockControls>
 
 			<InspectorControls>
+				{ /* Content Settings Panel */ }
 				<PanelBody
 					title={ __( 'Content Settings', 'wbcom-essential' ) }
 					initialOpen={ true }
@@ -199,8 +263,82 @@ export default function Edit( { attributes, setAttributes } ) {
 							'wbcom-essential'
 						) }
 					/>
+
+					<ToggleControl
+						label={ __( 'Show Dark Mode Toggle', 'wbcom-essential' ) }
+						checked={ showDarkModeToggle }
+						onChange={ ( value ) =>
+							setAttributes( { showDarkModeToggle: value } )
+						}
+						help={ __(
+							'Show dark/light mode toggle button',
+							'wbcom-essential'
+						) }
+					/>
 				</PanelBody>
 
+				{ /* Icons Selection Panel */ }
+				<PanelBody
+					title={ __( 'Icon Selection', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					{ showSearch && (
+						<IconPicker
+							label={ __( 'Search Icon', 'wbcom-essential' ) }
+							value={ searchIcon }
+							onChange={ ( value ) =>
+								setAttributes( { searchIcon: value } )
+							}
+							help={ __( 'Replace default search icon', 'wbcom-essential' ) }
+						/>
+					) }
+
+					{ showMessages && (
+						<IconPicker
+							label={ __( 'Messages Icon', 'wbcom-essential' ) }
+							value={ messagesIcon }
+							onChange={ ( value ) =>
+								setAttributes( { messagesIcon: value } )
+							}
+							help={ __( 'Replace default messages icon', 'wbcom-essential' ) }
+						/>
+					) }
+
+					{ showNotifications && (
+						<IconPicker
+							label={ __( 'Notifications Icon', 'wbcom-essential' ) }
+							value={ notificationsIcon }
+							onChange={ ( value ) =>
+								setAttributes( { notificationsIcon: value } )
+							}
+							help={ __( 'Replace default notifications icon', 'wbcom-essential' ) }
+						/>
+					) }
+
+					{ showCart && (
+						<IconPicker
+							label={ __( 'Cart Icon', 'wbcom-essential' ) }
+							value={ cartIcon }
+							onChange={ ( value ) =>
+								setAttributes( { cartIcon: value } )
+							}
+							help={ __( 'Replace default cart icon', 'wbcom-essential' ) }
+						/>
+					) }
+
+					{ showDarkModeToggle && (
+						<IconPicker
+							label={ __( 'Dark Mode Icon', 'wbcom-essential' ) }
+							value={ darkModeIcon }
+							onChange={ ( value ) =>
+								setAttributes( { darkModeIcon: value } )
+							}
+							help={ __( 'Replace default dark mode icon', 'wbcom-essential' ) }
+						/>
+					) }
+				</PanelBody>
+
+				{ /* Layout Panel */ }
 				<PanelBody
 					title={ __( 'Layout', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -253,28 +391,97 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 50 }
 					/>
+
+					<RangeControl
+						label={ __( 'Separator Width', 'wbcom-essential' ) }
+						value={ separatorWidth }
+						onChange={ ( value ) =>
+							setAttributes( { separatorWidth: value } )
+						}
+						min={ 1 }
+						max={ 10 }
+					/>
 				</PanelBody>
 
+				{ /* Icon Colors Panel */ }
 				<PanelBody
-					title={ __( 'Colors', 'wbcom-essential' ) }
+					title={ __( 'Icon Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
 					<ColorControl
-						label={ __( 'Icon Color', 'wbcom-essential' ) }
+						label={ __( 'All Icons Color', 'wbcom-essential' ) }
 						value={ iconColor }
 						onChange={ ( value ) =>
 							setAttributes( { iconColor: value } )
 						}
 					/>
 
-					<ColorControl
-						label={ __( 'Separator Color', 'wbcom-essential' ) }
-						value={ separatorColor }
-						onChange={ ( value ) =>
-							setAttributes( { separatorColor: value } )
-						}
-					/>
+					{ showSearch && (
+						<ColorControl
+							label={ __( 'Search Icon Color', 'wbcom-essential' ) }
+							value={ searchIconColor }
+							onChange={ ( value ) =>
+								setAttributes( { searchIconColor: value } )
+							}
+						/>
+					) }
 
+					{ showMessages && (
+						<ColorControl
+							label={ __( 'Messages Icon Color', 'wbcom-essential' ) }
+							value={ messagesIconColor }
+							onChange={ ( value ) =>
+								setAttributes( { messagesIconColor: value } )
+							}
+						/>
+					) }
+
+					{ showNotifications && (
+						<ColorControl
+							label={ __( 'Notifications Icon Color', 'wbcom-essential' ) }
+							value={ notificationsIconColor }
+							onChange={ ( value ) =>
+								setAttributes( { notificationsIconColor: value } )
+							}
+						/>
+					) }
+
+					{ showCart && (
+						<ColorControl
+							label={ __( 'Cart Icon Color', 'wbcom-essential' ) }
+							value={ cartIconColor }
+							onChange={ ( value ) =>
+								setAttributes( { cartIconColor: value } )
+							}
+						/>
+					) }
+
+					{ showDarkModeToggle && (
+						<ColorControl
+							label={ __( 'Dark Mode Icon Color', 'wbcom-essential' ) }
+							value={ darkModeIconColor }
+							onChange={ ( value ) =>
+								setAttributes( { darkModeIconColor: value } )
+							}
+						/>
+					) }
+
+					<TextControl
+						label={ __( 'Icon Text Shadow', 'wbcom-essential' ) }
+						value={ iconTextShadow }
+						onChange={ ( value ) =>
+							setAttributes( { iconTextShadow: value } )
+						}
+						help={ __( 'Example: 1px 1px 2px rgba(0,0,0,0.3)', 'wbcom-essential' ) }
+						placeholder="1px 1px 2px rgba(0,0,0,0.3)"
+					/>
+				</PanelBody>
+
+				{ /* Counter Style Panel */ }
+				<PanelBody
+					title={ __( 'Counter Style', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<ColorControl
 						label={ __( 'Counter Background', 'wbcom-essential' ) }
 						value={ counterBgColor }
@@ -284,6 +491,120 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 
 					<ColorControl
+						label={ __( 'Counter Text Color', 'wbcom-essential' ) }
+						value={ counterTextColor }
+						onChange={ ( value ) =>
+							setAttributes( { counterTextColor: value } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'Counter Box Shadow', 'wbcom-essential' ) }
+						value={ counterBoxShadow }
+						onChange={ ( value ) =>
+							setAttributes( { counterBoxShadow: value } )
+						}
+						help={ __( 'Example: 0 2px 4px rgba(0,0,0,0.2)', 'wbcom-essential' ) }
+						placeholder="0 2px 4px rgba(0,0,0,0.2)"
+					/>
+				</PanelBody>
+
+				{ /* Dropdown Style Panel */ }
+				<PanelBody
+					title={ __( 'Dropdown Style', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<ColorControl
+						label={ __( 'Background Color', 'wbcom-essential' ) }
+						value={ dropdownBgColor }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownBgColor: value } )
+						}
+					/>
+
+					<ColorControl
+						label={ __( 'Text Color', 'wbcom-essential' ) }
+						value={ dropdownTextColor }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownTextColor: value } )
+						}
+					/>
+
+					<ColorControl
+						label={ __( 'Hover Background', 'wbcom-essential' ) }
+						value={ dropdownHoverBgColor }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownHoverBgColor: value } )
+						}
+					/>
+
+					<ColorControl
+						label={ __( 'Hover Text Color', 'wbcom-essential' ) }
+						value={ dropdownHoverTextColor }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownHoverTextColor: value } )
+						}
+					/>
+
+					<ColorControl
+						label={ __( 'Border Color', 'wbcom-essential' ) }
+						value={ dropdownBorderColor }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownBorderColor: value } )
+						}
+					/>
+
+					<RangeControl
+						label={ __( 'Border Width', 'wbcom-essential' ) }
+						value={ dropdownBorderWidth }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownBorderWidth: value } )
+						}
+						min={ 0 }
+						max={ 5 }
+					/>
+
+					<RangeControl
+						label={ __( 'Border Radius', 'wbcom-essential' ) }
+						value={ dropdownBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 20 }
+					/>
+
+					<TextControl
+						label={ __( 'Box Shadow', 'wbcom-essential' ) }
+						value={ dropdownBoxShadow }
+						onChange={ ( value ) =>
+							setAttributes( { dropdownBoxShadow: value } )
+						}
+						help={ __( 'Example: 0 4px 20px rgba(0,0,0,0.15)', 'wbcom-essential' ) }
+						placeholder="0 4px 20px rgba(0,0,0,0.15)"
+					/>
+				</PanelBody>
+
+				{ /* Separator Style Panel */ }
+				<PanelBody
+					title={ __( 'Separator', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<ColorControl
+						label={ __( 'Separator Color', 'wbcom-essential' ) }
+						value={ separatorColor }
+						onChange={ ( value ) =>
+							setAttributes( { separatorColor: value } )
+						}
+					/>
+				</PanelBody>
+
+				{ /* Profile Dropdown Style Panel */ }
+				<PanelBody
+					title={ __( 'Profile Style', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<ColorControl
 						label={ __( 'User Name Color', 'wbcom-essential' ) }
 						value={ userNameColor }
 						onChange={ ( value ) =>
@@ -292,25 +613,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 
 					<ColorControl
-						label={ __(
-							'Dropdown Background',
-							'wbcom-essential'
-						) }
-						value={ dropdownBgColor }
+						label={ __( 'User Name Hover Color', 'wbcom-essential' ) }
+						value={ userNameHoverColor }
 						onChange={ ( value ) =>
-							setAttributes( { dropdownBgColor: value } )
-						}
-					/>
-
-					<ColorControl
-						label={ __( 'Dropdown Text Color', 'wbcom-essential' ) }
-						value={ dropdownTextColor }
-						onChange={ ( value ) =>
-							setAttributes( { dropdownTextColor: value } )
+							setAttributes( { userNameHoverColor: value } )
 						}
 					/>
 				</PanelBody>
 
+				{ /* Logged Out State Panel */ }
 				<PanelBody
 					title={ __( 'Logged Out State', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -324,10 +635,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 
 					<ColorControl
-						label={ __(
-							'Sign Up Background',
-							'wbcom-essential'
-						) }
+						label={ __( 'Sign In Hover Color', 'wbcom-essential' ) }
+						value={ signInHoverColor }
+						onChange={ ( value ) =>
+							setAttributes( { signInHoverColor: value } )
+						}
+					/>
+
+					<ColorControl
+						label={ __( 'Sign Up Background', 'wbcom-essential' ) }
 						value={ signUpBgColor }
 						onChange={ ( value ) =>
 							setAttributes( { signUpBgColor: value } )
@@ -340,6 +656,32 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) =>
 							setAttributes( { signUpTextColor: value } )
 						}
+					/>
+
+					<ColorControl
+						label={ __( 'Sign Up Hover Background', 'wbcom-essential' ) }
+						value={ signUpHoverBgColor }
+						onChange={ ( value ) =>
+							setAttributes( { signUpHoverBgColor: value } )
+						}
+					/>
+
+					<ColorControl
+						label={ __( 'Sign Up Hover Text Color', 'wbcom-essential' ) }
+						value={ signUpHoverTextColor }
+						onChange={ ( value ) =>
+							setAttributes( { signUpHoverTextColor: value } )
+						}
+					/>
+
+					<RangeControl
+						label={ __( 'Sign Up Border Radius', 'wbcom-essential' ) }
+						value={ signUpBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { signUpBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 25 }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -369,46 +711,32 @@ export default function Edit( { attributes, setAttributes } ) {
 							) }
 
 							{ showSearch && (
-								<span
-									className="wbcom-header-bar-icon dashicons dashicons-search"
-									title={ __( 'Search', 'wbcom-essential' ) }
-								></span>
+								renderIconPreview( searchIcon, 'dashicons-search', searchIconColor || iconColor )
 							) }
 
 							{ showMessages && (
-								<span
-									className="wbcom-header-bar-icon dashicons dashicons-email"
-									title={ __( 'Messages', 'wbcom-essential' ) }
-								>
-									<span className="wbcom-header-bar-count">
-										3
-									</span>
+								<span className="wbcom-header-bar-icon-wrapper">
+									{ renderIconPreview( messagesIcon, 'dashicons-email', messagesIconColor || iconColor ) }
+									<span className="wbcom-header-bar-count">3</span>
 								</span>
 							) }
 
 							{ showNotifications && (
-								<span
-									className="wbcom-header-bar-icon dashicons dashicons-bell"
-									title={ __(
-										'Notifications',
-										'wbcom-essential'
-									) }
-								>
-									<span className="wbcom-header-bar-count">
-										5
-									</span>
+								<span className="wbcom-header-bar-icon-wrapper">
+									{ renderIconPreview( notificationsIcon, 'dashicons-bell', notificationsIconColor || iconColor ) }
+									<span className="wbcom-header-bar-count">5</span>
 								</span>
 							) }
 
 							{ showCart && (
-								<span
-									className="wbcom-header-bar-icon dashicons dashicons-cart"
-									title={ __( 'Cart', 'wbcom-essential' ) }
-								>
-									<span className="wbcom-header-bar-count">
-										2
-									</span>
+								<span className="wbcom-header-bar-icon-wrapper">
+									{ renderIconPreview( cartIcon, 'dashicons-cart', cartIconColor || iconColor ) }
+									<span className="wbcom-header-bar-count">2</span>
 								</span>
+							) }
+
+							{ showDarkModeToggle && (
+								renderIconPreview( darkModeIcon, 'dashicons-lightbulb', darkModeIconColor || iconColor )
 							) }
 						</div>
 					</div>

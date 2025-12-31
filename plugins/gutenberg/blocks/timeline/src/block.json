@@ -121,6 +121,62 @@
 		"itemSpacing": {
 			"type": "number",
 			"default": 40
+		},
+		"contentBorderType": {
+			"type": "string",
+			"default": "none"
+		},
+		"contentBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"contentBorderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"contentBoxShadowHorizontal": {
+			"type": "number",
+			"default": 0
+		},
+		"contentBoxShadowVertical": {
+			"type": "number",
+			"default": 4
+		},
+		"contentBoxShadowBlur": {
+			"type": "number",
+			"default": 15
+		},
+		"contentBoxShadowSpread": {
+			"type": "number",
+			"default": 0
+		},
+		"contentBoxShadowColor": {
+			"type": "string",
+			"default": "rgba(0, 0, 0, 0.08)"
+		},
+		"dateFontFamily": {
+			"type": "string",
+			"default": ""
+		},
+		"dateFontWeight": {
+			"type": "string",
+			"default": "600"
+		},
+		"dateTextTransform": {
+			"type": "string",
+			"default": "none"
+		},
+		"dateLineHeight": {
+			"type": "number",
+			"default": 1.4
+		},
+		"dateLetterSpacing": {
+			"type": "number",
+			"default": 0
+		},
+		"imageBorderRadius": {
+			"type": "number",
+			"default": 8
 		}
 	},
 	"supports": {

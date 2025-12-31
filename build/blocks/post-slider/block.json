@@ -13,7 +13,8 @@
     "hero",
     "fullscreen",
     "carousel",
-    "featured"
+    "featured",
+    "banner"
   ],
   "textdomain": "wbcom-essential",
   "example": {},
@@ -23,6 +24,10 @@
       "default": "post"
     },
     "categories": {
+      "type": "array",
+      "default": []
+    },
+    "tags": {
       "type": "array",
       "default": []
     },
@@ -37,6 +42,14 @@
     "order": {
       "type": "string",
       "default": "DESC"
+    },
+    "includeIds": {
+      "type": "string",
+      "default": ""
+    },
+    "excludeIds": {
+      "type": "string",
+      "default": ""
     },
     "showExcerpt": {
       "type": "boolean",
@@ -57,6 +70,10 @@
     "buttonText": {
       "type": "string",
       "default": "Read More"
+    },
+    "titleTag": {
+      "type": "string",
+      "default": "h2"
     },
     "sliderHeight": {
       "type": "number",
@@ -118,6 +135,10 @@
       "type": "string",
       "default": "center"
     },
+    "verticalAlign": {
+      "type": "string",
+      "default": "center"
+    },
     "titleColor": {
       "type": "string",
       "default": "#ffffff"
@@ -138,9 +159,53 @@
       "type": "string",
       "default": "#1a202c"
     },
+    "buttonHoverBgColor": {
+      "type": "string",
+      "default": "#1a202c"
+    },
+    "buttonHoverTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonBorderRadius": {
+      "type": "number",
+      "default": 4
+    },
     "navColor": {
       "type": "string",
       "default": "#ffffff"
+    },
+    "bgPosition": {
+      "type": "string",
+      "default": "center center"
+    },
+    "bgSize": {
+      "type": "string",
+      "default": "cover"
+    },
+    "showDivider": {
+      "type": "boolean",
+      "default": false
+    },
+    "dividerColor": {
+      "type": "string",
+      "default": "#0073aa"
+    },
+    "dividerWidth": {
+      "type": "number",
+      "default": 80
+    },
+    "contentPadding": {
+      "type": "number",
+      "default": 40
+    },
+    "defaultImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "defaultImageUrl": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {

@@ -83,10 +83,24 @@ export default function Edit( { attributes, setAttributes } ) {
 		iconColor,
 		iconSize,
 		iconRotation,
+		svgWidth,
+		svgHeight,
+		iconBackgroundColor,
+		iconBackgroundSize,
+		iconBackgroundRadius,
 		linkUrl,
 		linkNewTab,
 		alignment,
 		hoverAnimation,
+		borderWidth,
+		borderStyle,
+		borderColor,
+		boxShadowEnabled,
+		boxShadowHorizontal,
+		boxShadowVertical,
+		boxShadowBlur,
+		boxShadowSpread,
+		boxShadowColor,
 	} = attributes;
 
 	const blockProps = useBlockProps();
@@ -292,11 +306,11 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 
 							<RangeControl
-								label={ __( 'Icon Size', 'wbcom-essential' ) }
+								label={ __( 'Icon Size (px)', 'wbcom-essential' ) }
 								value={ iconSize }
 								onChange={ ( value ) => setAttributes( { iconSize: value } ) }
 								min={ 16 }
-								max={ 128 }
+								max={ 200 }
 							/>
 
 							<RangeControl
@@ -305,6 +319,143 @@ export default function Edit( { attributes, setAttributes } ) {
 								onChange={ ( value ) => setAttributes( { iconRotation: value } ) }
 								min={ 0 }
 								max={ 360 }
+							/>
+
+							<p style={ { marginTop: '20px', fontWeight: '500', borderTop: '1px solid #ddd', paddingTop: '16px' } }>
+								{ __( 'SVG Dimensions (Optional)', 'wbcom-essential' ) }
+							</p>
+							<p style={ { fontSize: '12px', color: '#757575', marginBottom: '12px' } }>
+								{ __( 'Override icon dimensions for SVG icons. Set to 0 to use icon size.', 'wbcom-essential' ) }
+							</p>
+
+							<RangeControl
+								label={ __( 'SVG Width (px)', 'wbcom-essential' ) }
+								value={ svgWidth }
+								onChange={ ( value ) => setAttributes( { svgWidth: value } ) }
+								min={ 0 }
+								max={ 500 }
+							/>
+
+							<RangeControl
+								label={ __( 'SVG Height (px)', 'wbcom-essential' ) }
+								value={ svgHeight }
+								onChange={ ( value ) => setAttributes( { svgHeight: value } ) }
+								min={ 0 }
+								max={ 500 }
+							/>
+
+							<p style={ { marginTop: '20px', fontWeight: '500', borderTop: '1px solid #ddd', paddingTop: '16px' } }>
+								{ __( 'Icon Background', 'wbcom-essential' ) }
+							</p>
+
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ iconBackgroundColor }
+								onChange={ ( value ) => setAttributes( { iconBackgroundColor: value } ) }
+							/>
+
+							{ iconBackgroundColor && (
+								<>
+									<RangeControl
+										label={ __( 'Background Size (px)', 'wbcom-essential' ) }
+										value={ iconBackgroundSize }
+										onChange={ ( value ) => setAttributes( { iconBackgroundSize: value } ) }
+										min={ 20 }
+										max={ 300 }
+									/>
+
+									<RangeControl
+										label={ __( 'Background Radius (%)', 'wbcom-essential' ) }
+										value={ iconBackgroundRadius }
+										onChange={ ( value ) => setAttributes( { iconBackgroundRadius: value } ) }
+										min={ 0 }
+										max={ 50 }
+									/>
+								</>
+							) }
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody title={ __( 'Border', 'wbcom-essential' ) } initialOpen={ false }>
+					<RangeControl
+						label={ __( 'Border Width (px)', 'wbcom-essential' ) }
+						value={ borderWidth }
+						onChange={ ( value ) => setAttributes( { borderWidth: value } ) }
+						min={ 0 }
+						max={ 20 }
+					/>
+
+					{ borderWidth > 0 && (
+						<>
+							<SelectControl
+								label={ __( 'Border Style', 'wbcom-essential' ) }
+								value={ borderStyle }
+								options={ [
+									{ label: __( 'Solid', 'wbcom-essential' ), value: 'solid' },
+									{ label: __( 'Dashed', 'wbcom-essential' ), value: 'dashed' },
+									{ label: __( 'Dotted', 'wbcom-essential' ), value: 'dotted' },
+									{ label: __( 'Double', 'wbcom-essential' ), value: 'double' },
+									{ label: __( 'Groove', 'wbcom-essential' ), value: 'groove' },
+									{ label: __( 'Ridge', 'wbcom-essential' ), value: 'ridge' },
+								] }
+								onChange={ ( value ) => setAttributes( { borderStyle: value } ) }
+							/>
+
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ borderColor }
+								onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody title={ __( 'Box Shadow', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Enable Box Shadow', 'wbcom-essential' ) }
+						checked={ boxShadowEnabled }
+						onChange={ ( value ) => setAttributes( { boxShadowEnabled: value } ) }
+					/>
+
+					{ boxShadowEnabled && (
+						<>
+							<RangeControl
+								label={ __( 'Horizontal Offset (px)', 'wbcom-essential' ) }
+								value={ boxShadowHorizontal }
+								onChange={ ( value ) => setAttributes( { boxShadowHorizontal: value } ) }
+								min={ -100 }
+								max={ 100 }
+							/>
+
+							<RangeControl
+								label={ __( 'Vertical Offset (px)', 'wbcom-essential' ) }
+								value={ boxShadowVertical }
+								onChange={ ( value ) => setAttributes( { boxShadowVertical: value } ) }
+								min={ -100 }
+								max={ 100 }
+							/>
+
+							<RangeControl
+								label={ __( 'Blur (px)', 'wbcom-essential' ) }
+								value={ boxShadowBlur }
+								onChange={ ( value ) => setAttributes( { boxShadowBlur: value } ) }
+								min={ 0 }
+								max={ 100 }
+							/>
+
+							<RangeControl
+								label={ __( 'Spread (px)', 'wbcom-essential' ) }
+								value={ boxShadowSpread }
+								onChange={ ( value ) => setAttributes( { boxShadowSpread: value } ) }
+								min={ -50 }
+								max={ 100 }
+							/>
+
+							<ColorControl
+								label={ __( 'Shadow Color', 'wbcom-essential' ) }
+								value={ boxShadowColor }
+								onChange={ ( value ) => setAttributes( { boxShadowColor: value } ) }
 							/>
 						</>
 					) }

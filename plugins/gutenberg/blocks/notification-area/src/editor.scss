@@ -4,31 +4,62 @@
  * @package wbcom-essential
  */
 
+// Editor wrapper.
 .wbcom-essential-notification-area-editor {
+	// Preview header with device selector.
+	.wbcom-essential-notification-area-preview-header {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 12px;
+		padding: 8px 12px;
+		background: #f0f0f0;
+		border-radius: 4px;
+		font-size: 12px;
+		color: #666;
+
+		.components-button-group {
+			.components-button {
+				padding: 4px 8px;
+
+				&.is-pressed {
+					background: #007cba;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	// Preview container.
 	.wbcom-essential-notification-area {
 		display: flex;
 		align-items: center;
 		gap: var(--item-gap);
-		padding: 10px;
+		padding: 10px 16px;
 		background: #f8f9fa;
 		border: 1px dashed #ccc;
 		border-radius: 4px;
+		min-height: 60px;
 	}
 
+	// Individual items.
 	.wbcom-essential-na__item {
 		position: relative;
 		display: flex;
 		align-items: center;
 		color: var(--icon-color);
+		line-height: var(--line-height, 90px);
+		height: var(--line-height, 90px);
 
 		svg {
 			fill: currentColor;
 		}
 	}
 
+	// Badge.
 	.wbcom-essential-na__badge {
 		position: absolute;
-		top: -6px;
+		top: var(--counter-top, 20px);
 		right: -8px;
 		min-width: 18px;
 		height: 18px;
@@ -42,6 +73,7 @@
 		border-radius: 10px;
 	}
 
+	// User avatar and name.
 	.wbcom-essential-na__user {
 		display: flex;
 		align-items: center;
@@ -59,6 +91,8 @@
 
 			svg {
 				fill: currentColor;
+				width: calc(var(--avatar-size) * 0.5);
+				height: calc(var(--avatar-size) * 0.5);
 			}
 		}
 
@@ -68,16 +102,78 @@
 			color: var(--username-color);
 		}
 	}
+
+	// Empty state.
+	.wbcom-essential-na__empty {
+		color: #999;
+		font-style: italic;
+		font-size: 13px;
+		margin: 0;
+	}
 }
 
 // Editor notice.
 .wbcom-notification-area-notice {
 	margin: 10px 0 0;
-	padding: 10px;
+	padding: 10px 12px;
 	background: #f0f6fc;
 	border-left: 4px solid #1d76da;
 	font-size: 12px;
 	color: #666;
+	line-height: 1.5;
+}
+
+// Device visibility control in sidebar.
+.wbcom-device-visibility-control {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 0;
+	border-bottom: 1px solid #e0e0e0;
+
+	&:last-of-type {
+		border-bottom: none;
+	}
+
+	.wbcom-device-visibility-label {
+		font-size: 13px;
+		color: #1e1e1e;
+	}
+
+	.wbcom-device-visibility-toggles {
+		display: flex;
+		gap: 4px;
+
+		.components-button {
+			padding: 4px;
+			min-width: 28px;
+			height: 28px;
+			background: #e0e0e0;
+			border-radius: 4px;
+
+			svg {
+				fill: #666;
+			}
+
+			&.is-active,
+			&.is-pressed {
+				background: #1cd991;
+
+				svg {
+					fill: #fff;
+				}
+			}
+
+			&:hover {
+				background: #d0d0d0;
+
+				&.is-active,
+				&.is-pressed {
+					background: #17c583;
+				}
+			}
+		}
+	}
 }
 
 // Color control.

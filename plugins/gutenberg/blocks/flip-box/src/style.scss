@@ -149,10 +149,15 @@
 	text-decoration: none;
 	font-weight: 500;
 	border-radius: 4px;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	transition: all 0.3s ease;
 	margin-top: auto;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
 
 	&:hover {
+		background: var(--flip-btn-hover-bg);
+		color: var(--flip-btn-hover-text);
 		transform: translateY(-2px);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 	}
@@ -248,6 +253,252 @@
 	&:hover .wbcom-flip-box-inner {
 		transform: rotate3d(1, -1, 0, 180deg);
 	}
+}
+
+// Zoom In
+.wbcom-flip-box-wrapper.zoom-in {
+	.wbcom-flip-box-front {
+		z-index: 2;
+	}
+
+	.wbcom-flip-box-back {
+		transform: scale(0);
+		opacity: 0;
+		z-index: 1;
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		.wbcom-flip-box-front {
+			transform: scale(0);
+			opacity: 0;
+		}
+
+		.wbcom-flip-box-back {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+}
+
+// Zoom Out
+.wbcom-flip-box-wrapper.zoom-out {
+	.wbcom-flip-box-front {
+		z-index: 2;
+	}
+
+	.wbcom-flip-box-back {
+		transform: scale(2);
+		opacity: 0;
+		z-index: 1;
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		.wbcom-flip-box-front {
+			transform: scale(2);
+			opacity: 0;
+		}
+
+		.wbcom-flip-box-back {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+}
+
+// Rotate
+.wbcom-flip-box-wrapper.rotate {
+	.wbcom-flip-box-back {
+		transform: rotateY(180deg) rotateZ(180deg);
+	}
+
+	&:hover .wbcom-flip-box-inner {
+		transform: rotateY(180deg) rotateZ(180deg);
+	}
+}
+
+// ============================================
+// Border & Shadow
+// ============================================
+.wbcom-flip-box-front,
+.wbcom-flip-box-back {
+	border-style: solid;
+}
+
+.wbcom-flip-box-front {
+	border-width: var(--flip-front-border-width);
+	border-color: var(--flip-front-border-color);
+}
+
+.wbcom-flip-box-back {
+	border-width: var(--flip-back-border-width);
+	border-color: var(--flip-back-border-color);
+}
+
+.wbcom-flip-box-front.has-box-shadow {
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wbcom-flip-box-back.has-box-shadow {
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+// ============================================
+// Button Animation Skins
+// ============================================
+
+// Base for button animations
+.wbcom-flip-box-button[class*="wbcom-btn-"] {
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+
+	&::before {
+		position: absolute;
+		content: "";
+		z-index: -1;
+		background: var(--flip-btn-hover-bg);
+	}
+}
+
+// Animation 1 - Rotate in
+.wbcom-flip-box-button.wbcom-btn-1::before {
+	width: 200%;
+	height: 150%;
+	opacity: 0;
+	left: -50%;
+	bottom: 0;
+	transform-origin: left bottom;
+	transform: rotate(-90deg);
+	transition: transform 0.6s cubic-bezier(0.01, -0.24, 0, 0.68), opacity 0.6s;
+}
+
+.wbcom-flip-box-button.wbcom-btn-1:hover::before {
+	transform: rotate(0deg);
+	opacity: 1;
+	transition-duration: 0.2s;
+}
+
+// Animation 2 - Circle expand
+.wbcom-flip-box-button.wbcom-btn-2::before {
+	width: 0;
+	height: 0;
+	padding: 50%;
+	border-radius: 50%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	transition: transform 0.3s ease-out;
+}
+
+.wbcom-flip-box-button.wbcom-btn-2:hover::before {
+	transform: translate(-50%, -50%) scale(1.5);
+	width: 100%;
+}
+
+// Animation 3 - Vertical expand
+.wbcom-flip-box-button.wbcom-btn-3::before {
+	width: 110%;
+	height: 0;
+	opacity: 0;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: opacity 0.25s 0.15s, height 0.25s;
+}
+
+.wbcom-flip-box-button.wbcom-btn-3:hover::before {
+	opacity: 1;
+	height: 110%;
+	transition: opacity 0.25s, height 0.4s;
+	transition-delay: 0s;
+}
+
+// Animation 4 - Horizontal expand
+.wbcom-flip-box-button.wbcom-btn-4::before {
+	width: 0;
+	height: 110%;
+	opacity: 0;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: opacity 0.25s 0.15s, width 0.25s;
+}
+
+.wbcom-flip-box-button.wbcom-btn-4:hover::before {
+	opacity: 1;
+	width: 110%;
+	transition: opacity 0.25s, width 0.4s;
+	transition-delay: 0s;
+}
+
+// Animation 5 - Slide from left
+.wbcom-flip-box-button.wbcom-btn-5::before {
+	width: 0;
+	height: 110%;
+	opacity: 0;
+	left: 0;
+	top: 0;
+	transition: opacity 0.25s 0.15s, width 0.25s;
+}
+
+.wbcom-flip-box-button.wbcom-btn-5:hover::before {
+	opacity: 1;
+	width: 110%;
+	transition: opacity 0.25s, width 0.4s;
+	transition-delay: 0s;
+}
+
+// Animation 6 - Slide from bottom
+.wbcom-flip-box-button.wbcom-btn-6::before {
+	width: 110%;
+	height: 0;
+	opacity: 0;
+	left: 0;
+	bottom: 0;
+	transition: opacity 0.25s 0.15s, height 0.25s;
+}
+
+.wbcom-flip-box-button.wbcom-btn-6:hover::before {
+	opacity: 1;
+	height: 110%;
+	transition: opacity 0.25s, height 0.4s;
+	transition-delay: 0s;
+}
+
+// Animation 7 - Slide from right
+.wbcom-flip-box-button.wbcom-btn-7::before {
+	width: 0;
+	height: 110%;
+	opacity: 0;
+	right: 0;
+	top: 0;
+	left: auto;
+	transition: opacity 0.25s 0.15s, width 0.25s;
+}
+
+.wbcom-flip-box-button.wbcom-btn-7:hover::before {
+	opacity: 1;
+	width: 110%;
+	transition: opacity 0.25s, width 0.4s;
+	transition-delay: 0s;
+}
+
+// Animation 8 - Slide from top
+.wbcom-flip-box-button.wbcom-btn-8::before {
+	width: 110%;
+	height: 0;
+	opacity: 0;
+	left: 0;
+	top: 0;
+	bottom: auto;
+	transition: opacity 0.25s 0.15s, height 0.25s;
+}
+
+.wbcom-flip-box-button.wbcom-btn-8:hover::before {
+	opacity: 1;
+	height: 110%;
+	transition: opacity 0.25s, height 0.4s;
+	transition-delay: 0s;
 }
 
 // ============================================

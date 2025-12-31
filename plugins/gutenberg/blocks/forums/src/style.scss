@@ -5,13 +5,25 @@
  */
 
 .wbcom-essential-forums {
-	// Layout
-	--box-radius: 4px;
+	// Layout variables
+	--box-border-type: solid;
+	--box-border-width: 1px;
+	--box-radius: 4px 4px 4px 4px;
 	--avatar-size: 52px;
-	--avatar-radius: 50%;
+	--avatar-border-type: none;
+	--avatar-border-width: 0px;
+	--avatar-radius: 50% 50% 50% 50%;
+	--avatar-opacity: 1;
 	--avatar-spacing: 15px;
 	--row-space: 20px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
+
+	// Typography variables
+	--title-font-size: 14px;
+	--title-font-weight: 400;
+	--title-line-height: 1.5;
+	--meta-font-size: 13px;
+
+	// Color variables - inherit from theme via bridge variables (theme-colors.css)
 	--box-bg: var(--wbcom-card-bg, #ffffff);
 	--box-border-color: var(--wbcom-border-color, #e3e3e3);
 	--title-color: var(--wbcom-heading-color, #122B46);
@@ -19,9 +31,10 @@
 	--meta-color: var(--wbcom-meta-color, #A3A5A9);
 	--last-reply-color: var(--wbcom-text-color, #4D5C6D);
 	--link-color: var(--wbcom-color-primary, #1d76da);
+	--avatar-border-color: transparent;
 
 	background: var(--box-bg);
-	border: 1px solid var(--box-border-color);
+	border: var(--box-border-width) var(--box-border-type) var(--box-border-color);
 	border-radius: var(--box-radius);
 	padding: 20px;
 	position: relative;
@@ -105,6 +118,8 @@
 		height: var(--avatar-size);
 		max-width: var(--avatar-size);
 		border-radius: var(--avatar-radius);
+		border: var(--avatar-border-width) var(--avatar-border-type) var(--avatar-border-color);
+		opacity: var(--avatar-opacity);
 		object-fit: cover;
 	}
 
@@ -124,8 +139,9 @@
 	margin-bottom: 3px;
 
 	a {
-		font-size: 14px;
-		line-height: 1.5;
+		font-size: var(--title-font-size);
+		font-weight: var(--title-font-weight);
+		line-height: var(--title-line-height);
 		color: var(--title-color);
 		text-decoration: none;
 
@@ -137,7 +153,7 @@
 
 // Meta data.
 .wbcom-essential-forums .item-meta {
-	font-size: 13px;
+	font-size: var(--meta-font-size);
 	color: var(--meta-color);
 	line-height: 1;
 }
@@ -176,7 +192,7 @@
 	display: block;
 	color: var(--last-reply-color);
 	line-height: 1.4;
-	font-size: 13px;
+	font-size: var(--meta-font-size);
 }
 
 // No data state.

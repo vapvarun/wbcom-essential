@@ -5,18 +5,25 @@
  */
 
 .wbcom-essential-post-slider {
-	// Layout
+	// CSS Custom Properties with defaults.
 	--slider-height: 600px;
 	--content-width: 800px;
+	--content-padding: 40px;
 	--bg-anim-duration: 8s;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	--bg-position: center center;
+	--bg-size: cover;
 	--overlay-color: rgba(0, 0, 0, 0.4);
 	--date-color: rgba(255, 255, 255, 0.8);
-	--title-color: var(--wbcom-button-text, #fff);
+	--title-color: #fff;
 	--excerpt-color: rgba(255, 255, 255, 0.9);
-	--button-bg: var(--wbcom-card-bg, #fff);
-	--button-text: var(--wbcom-heading-color, #1a202c);
-	--nav-color: var(--wbcom-button-text, #fff);
+	--button-bg: #fff;
+	--button-text: #1a202c;
+	--button-hover-bg: #1a202c;
+	--button-hover-text: #fff;
+	--button-radius: 4px;
+	--nav-color: #fff;
+	--divider-color: #0073aa;
+	--divider-width: 80px;
 
 	position: relative;
 	width: 100%;
@@ -32,8 +39,8 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-		background-size: cover;
-		background-position: center;
+		background-size: var(--bg-size, cover);
+		background-position: var(--bg-position, center center);
 		background-repeat: no-repeat;
 	}
 
@@ -52,15 +59,16 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 40px;
+		padding: var(--content-padding, 40px);
 		max-width: var(--content-width, 800px);
 		margin: 0 auto;
 		z-index: 2;
 	}
 
-	// Content alignment.
+	// Horizontal alignment.
 	&.content-align-left .wbcom-post-slider-content {
 		margin-left: 5%;
+		margin-right: auto;
 		text-align: left;
 		align-items: flex-start;
 	}
@@ -77,6 +85,21 @@
 		align-items: flex-end;
 	}
 
+	// Vertical alignment.
+	&.vertical-align-top .wbcom-post-slider-content {
+		justify-content: flex-start;
+		padding-top: 60px;
+	}
+
+	&.vertical-align-center .wbcom-post-slider-content {
+		justify-content: center;
+	}
+
+	&.vertical-align-bottom .wbcom-post-slider-content {
+		justify-content: flex-end;
+		padding-bottom: 80px;
+	}
+
 	// Date.
 	.wbcom-post-slider-date {
 		font-size: 14px;
@@ -87,7 +110,25 @@
 		margin-bottom: 15px;
 	}
 
-	// Title.
+	// Divider.
+	.wbcom-post-slider-divider {
+		width: var(--divider-width, 80px);
+		height: 3px;
+		background: var(--divider-color, #0073aa);
+		margin-bottom: 20px;
+	}
+
+	&.content-align-center .wbcom-post-slider-divider {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&.content-align-right .wbcom-post-slider-divider {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	// Title - supports different HTML tags.
 	.wbcom-post-slider-title {
 		margin: 0 0 20px;
 		font-size: clamp(28px, 5vw, 56px);
@@ -103,6 +144,21 @@
 				opacity: 0.9;
 			}
 		}
+	}
+
+	// Ensure all title tags have same styling.
+	h1.wbcom-post-slider-title,
+	h2.wbcom-post-slider-title,
+	h3.wbcom-post-slider-title,
+	h4.wbcom-post-slider-title,
+	h5.wbcom-post-slider-title,
+	h6.wbcom-post-slider-title,
+	div.wbcom-post-slider-title,
+	p.wbcom-post-slider-title {
+		margin: 0 0 20px;
+		font-size: clamp(28px, 5vw, 56px);
+		font-weight: 700;
+		line-height: 1.2;
 	}
 
 	// Excerpt.
@@ -123,10 +179,12 @@
 		text-decoration: none;
 		color: var(--button-text, #1a202c);
 		background: var(--button-bg, #fff);
-		border-radius: 4px;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		border-radius: var(--button-radius, 4px);
+		transition: all 0.3s ease;
 
 		&:hover {
+			color: var(--button-hover-text, #fff);
+			background: var(--button-hover-bg, #1a202c);
 			transform: translateY(-2px);
 			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 		}
@@ -136,10 +194,14 @@
 	.swiper-button-prev,
 	.swiper-button-next {
 		color: var(--nav-color, #fff);
-		transition: opacity 0.3s ease;
+		transition: opacity 0.3s ease, transform 0.3s ease;
 
 		&::after {
 			font-size: 24px;
+		}
+
+		&:hover {
+			transform: scale(1.1);
 		}
 	}
 
@@ -153,22 +215,31 @@
 		height: 12px;
 		background: var(--nav-color, #fff);
 		opacity: 0.5;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+
+		&:hover {
+			opacity: 0.8;
+		}
 
 		&.swiper-pagination-bullet-active {
 			opacity: 1;
+			transform: scale(1.2);
 		}
 	}
 
 	// Hide nav on hover.
 	&.nav-on-hover {
 		.swiper-button-prev,
-		.swiper-button-next {
+		.swiper-button-next,
+		.swiper-pagination {
 			opacity: 0;
+			transition: opacity 0.3s ease;
 		}
 
 		&:hover {
 			.swiper-button-prev,
-			.swiper-button-next {
+			.swiper-button-next,
+			.swiper-pagination {
 				opacity: 1;
 			}
 		}
@@ -176,48 +247,72 @@
 
 	// Background animations.
 	&.bg-animation-zoom .swiper-slide-active .wbcom-post-slider-slide {
-		animation: bgZoom var(--bg-anim-duration, 8s) ease-out forwards;
+		animation: wbcomBgZoom var(--bg-anim-duration, 8s) ease-out forwards;
 	}
 
 	&.bg-animation-zoom-top .swiper-slide-active .wbcom-post-slider-slide {
-		animation: bgZoomTop var(--bg-anim-duration, 8s) ease-out forwards;
+		animation: wbcomBgZoomTop var(--bg-anim-duration, 8s) ease-out forwards;
 	}
 
 	&.bg-animation-zoom-bottom .swiper-slide-active .wbcom-post-slider-slide {
-		animation: bgZoomBottom var(--bg-anim-duration, 8s) ease-out forwards;
+		animation: wbcomBgZoomBottom var(--bg-anim-duration, 8s) ease-out forwards;
 	}
 
 	&.bg-animation-zoom-left .swiper-slide-active .wbcom-post-slider-slide {
-		animation: bgZoomLeft var(--bg-anim-duration, 8s) ease-out forwards;
+		animation: wbcomBgZoomLeft var(--bg-anim-duration, 8s) ease-out forwards;
 	}
 
 	&.bg-animation-zoom-right .swiper-slide-active .wbcom-post-slider-slide {
-		animation: bgZoomRight var(--bg-anim-duration, 8s) ease-out forwards;
+		animation: wbcomBgZoomRight var(--bg-anim-duration, 8s) ease-out forwards;
+	}
+
+	&.bg-animation-zoom-top-left .swiper-slide-active .wbcom-post-slider-slide {
+		animation: wbcomBgZoomTopLeft var(--bg-anim-duration, 8s) ease-out forwards;
+	}
+
+	&.bg-animation-zoom-top-right .swiper-slide-active .wbcom-post-slider-slide {
+		animation: wbcomBgZoomTopRight var(--bg-anim-duration, 8s) ease-out forwards;
+	}
+
+	&.bg-animation-zoom-bottom-left .swiper-slide-active .wbcom-post-slider-slide {
+		animation: wbcomBgZoomBottomLeft var(--bg-anim-duration, 8s) ease-out forwards;
+	}
+
+	&.bg-animation-zoom-bottom-right .swiper-slide-active .wbcom-post-slider-slide {
+		animation: wbcomBgZoomBottomRight var(--bg-anim-duration, 8s) ease-out forwards;
 	}
 
 	// Text animations.
 	&.text-animation-fadeIn .swiper-slide-active .wbcom-post-slider-content {
-		animation: fadeIn 0.8s ease-out forwards;
+		animation: wbcomFadeIn 0.8s ease-out forwards;
 	}
 
 	&.text-animation-fadeInUp .swiper-slide-active .wbcom-post-slider-content {
-		animation: fadeInUp 0.8s ease-out forwards;
+		animation: wbcomFadeInUp 0.8s ease-out forwards;
 	}
 
 	&.text-animation-fadeInDown .swiper-slide-active .wbcom-post-slider-content {
-		animation: fadeInDown 0.8s ease-out forwards;
+		animation: wbcomFadeInDown 0.8s ease-out forwards;
 	}
 
 	&.text-animation-fadeInLeft .swiper-slide-active .wbcom-post-slider-content {
-		animation: fadeInLeft 0.8s ease-out forwards;
+		animation: wbcomFadeInLeft 0.8s ease-out forwards;
 	}
 
 	&.text-animation-fadeInRight .swiper-slide-active .wbcom-post-slider-content {
-		animation: fadeInRight 0.8s ease-out forwards;
+		animation: wbcomFadeInRight 0.8s ease-out forwards;
 	}
 
 	&.text-animation-zoomIn .swiper-slide-active .wbcom-post-slider-content {
-		animation: zoomIn 0.8s ease-out forwards;
+		animation: wbcomZoomIn 0.8s ease-out forwards;
+	}
+
+	&.text-animation-slideUp .swiper-slide-active .wbcom-post-slider-content {
+		animation: wbcomSlideUp 0.6s ease-out forwards;
+	}
+
+	&.text-animation-slideDown .swiper-slide-active .wbcom-post-slider-content {
+		animation: wbcomSlideDown 0.6s ease-out forwards;
 	}
 
 	// Initial state for animations.
@@ -230,73 +325,220 @@
 		text-align: center;
 		padding: 60px 40px;
 		background: linear-gradient(135deg, #2d3748, #1a202c);
-		color: var(--wbcom-button-text, #fff);
+		color: #fff;
 		border-radius: 8px;
 	}
 }
 
-// Keyframes for background animations.
-@keyframes bgZoom {
-	from { transform: scale(1); }
-	to { transform: scale(1.1); }
+// Keyframes for background animations - namespaced to avoid conflicts.
+@keyframes wbcomBgZoom {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.1);
+	}
 }
 
-@keyframes bgZoomTop {
-	from { transform: scale(1); transform-origin: top center; }
-	to { transform: scale(1.1); transform-origin: top center; }
+@keyframes wbcomBgZoomTop {
+	from {
+		transform: scale(1);
+		transform-origin: top center;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: top center;
+	}
 }
 
-@keyframes bgZoomBottom {
-	from { transform: scale(1); transform-origin: bottom center; }
-	to { transform: scale(1.1); transform-origin: bottom center; }
+@keyframes wbcomBgZoomBottom {
+	from {
+		transform: scale(1);
+		transform-origin: bottom center;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: bottom center;
+	}
 }
 
-@keyframes bgZoomLeft {
-	from { transform: scale(1); transform-origin: left center; }
-	to { transform: scale(1.1); transform-origin: left center; }
+@keyframes wbcomBgZoomLeft {
+	from {
+		transform: scale(1);
+		transform-origin: left center;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: left center;
+	}
 }
 
-@keyframes bgZoomRight {
-	from { transform: scale(1); transform-origin: right center; }
-	to { transform: scale(1.1); transform-origin: right center; }
+@keyframes wbcomBgZoomRight {
+	from {
+		transform: scale(1);
+		transform-origin: right center;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: right center;
+	}
+}
+
+@keyframes wbcomBgZoomTopLeft {
+	from {
+		transform: scale(1);
+		transform-origin: top left;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: top left;
+	}
+}
+
+@keyframes wbcomBgZoomTopRight {
+	from {
+		transform: scale(1);
+		transform-origin: top right;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: top right;
+	}
+}
+
+@keyframes wbcomBgZoomBottomLeft {
+	from {
+		transform: scale(1);
+		transform-origin: bottom left;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: bottom left;
+	}
+}
+
+@keyframes wbcomBgZoomBottomRight {
+	from {
+		transform: scale(1);
+		transform-origin: bottom right;
+	}
+	to {
+		transform: scale(1.1);
+		transform-origin: bottom right;
+	}
 }
 
 // Keyframes for text animations.
-@keyframes fadeIn {
-	from { opacity: 0; }
-	to { opacity: 1; }
+@keyframes wbcomFadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
-@keyframes fadeInUp {
-	from { opacity: 0; transform: translateY(30px); }
-	to { opacity: 1; transform: translateY(0); }
+@keyframes wbcomFadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
-@keyframes fadeInDown {
-	from { opacity: 0; transform: translateY(-30px); }
-	to { opacity: 1; transform: translateY(0); }
+@keyframes wbcomFadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
-@keyframes fadeInLeft {
-	from { opacity: 0; transform: translateX(-30px); }
-	to { opacity: 1; transform: translateX(0); }
+@keyframes wbcomFadeInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
-@keyframes fadeInRight {
-	from { opacity: 0; transform: translateX(30px); }
-	to { opacity: 1; transform: translateX(0); }
+@keyframes wbcomFadeInRight {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
-@keyframes zoomIn {
-	from { opacity: 0; transform: scale(0.9); }
-	to { opacity: 1; transform: scale(1); }
+@keyframes wbcomZoomIn {
+	from {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes wbcomSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes wbcomSlideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 // Responsive.
+@media (max-width: 1024px) {
+	.wbcom-essential-post-slider {
+		.wbcom-post-slider-content {
+			padding: 30px;
+		}
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			&::after {
+				font-size: 20px;
+			}
+		}
+	}
+}
+
 @media (max-width: 768px) {
 	.wbcom-essential-post-slider {
 		.wbcom-post-slider-content {
 			padding: 30px 20px;
+		}
+
+		.wbcom-post-slider-title {
+			font-size: clamp(24px, 6vw, 36px);
 		}
 
 		.wbcom-post-slider-excerpt {
@@ -312,6 +554,63 @@
 		.swiper-button-prev,
 		.swiper-button-next {
 			display: none;
+		}
+
+		.swiper-pagination {
+			bottom: 20px;
+		}
+
+		.swiper-pagination-bullet {
+			width: 10px;
+			height: 10px;
+		}
+
+		// Adjust alignment on mobile.
+		&.content-align-left .wbcom-post-slider-content,
+		&.content-align-right .wbcom-post-slider-content {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			align-items: center;
+		}
+
+		&.content-align-center .wbcom-post-slider-divider,
+		&.content-align-left .wbcom-post-slider-divider,
+		&.content-align-right .wbcom-post-slider-divider {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.wbcom-essential-post-slider {
+		.wbcom-post-slider-content {
+			padding: 20px 15px;
+		}
+
+		.wbcom-post-slider-date {
+			font-size: 12px;
+			margin-bottom: 10px;
+		}
+
+		.wbcom-post-slider-title {
+			font-size: clamp(20px, 7vw, 28px);
+			margin-bottom: 15px;
+		}
+
+		.wbcom-post-slider-excerpt {
+			font-size: 14px;
+			margin-bottom: 15px;
+		}
+
+		.wbcom-post-slider-button {
+			padding: 10px 20px;
+			font-size: 13px;
+		}
+
+		.wbcom-post-slider-divider {
+			margin-bottom: 15px;
 		}
 	}
 }

@@ -131,6 +131,58 @@
     "imageAspectRatio": {
       "type": "string",
       "default": "1/1"
+    },
+    "imageOverlayColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0)"
+    },
+    "imageOverlayHoverColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.5)"
+    },
+    "cardHoverScale": {
+      "type": "number",
+      "default": 1.05
+    },
+    "cardHoverShadow": {
+      "type": "string",
+      "default": "0 10px 30px rgba(0, 0, 0, 0.15)"
+    },
+    "cardBorderWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "cardBorderColor": {
+      "type": "string",
+      "default": "#e2e8f0"
+    },
+    "dotsColor": {
+      "type": "string",
+      "default": "#718096"
+    },
+    "dotsActiveColor": {
+      "type": "string",
+      "default": "#3182ce"
+    },
+    "dotsSize": {
+      "type": "number",
+      "default": 10
+    },
+    "arrowColor": {
+      "type": "string",
+      "default": "#3182ce"
+    },
+    "arrowBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "arrowSize": {
+      "type": "number",
+      "default": 40
+    },
+    "arrowBorderRadius": {
+      "type": "number",
+      "default": 50
     }
   },
   "textdomain": "wbcom-essential",

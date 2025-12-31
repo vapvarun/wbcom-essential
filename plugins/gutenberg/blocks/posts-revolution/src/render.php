@@ -14,367 +14,532 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes.
-$layout         = $attributes['layout'] ?? 'featured-sidebar';
-$columns        = $attributes['columns'] ?? 2;
-$show_excerpt   = $attributes['showExcerpt'] ?? true;
-$excerpt_length = $attributes['excerptLength'] ?? 100;
-$show_author    = $attributes['showAuthor'] ?? true;
-$show_date      = $attributes['showDate'] ?? true;
-$show_category  = $attributes['showCategory'] ?? true;
-$date_format    = $attributes['dateFormat'] ?? 'M j, Y';
-$post_type      = $attributes['postType'] ?? 'post';
-$categories     = $attributes['categories'] ?? array();
-$posts_per_page = $attributes['postsPerPage'] ?? 5;
-$order_by       = $attributes['orderBy'] ?? 'date';
-$order          = $attributes['order'] ?? 'DESC';
-
-// Colors.
-$category_color       = $attributes['categoryColor'] ?? '#1d76da';
-$category_hover_color = $attributes['categoryHoverColor'] ?? '#1557a0';
-$title_color          = $attributes['titleColor'] ?? '#122B46';
-$title_hover_color    = $attributes['titleHoverColor'] ?? '#1d76da';
-$excerpt_color        = $attributes['excerptColor'] ?? '#666666';
-$meta_color           = $attributes['metaColor'] ?? '#888888';
-$image_radius         = $attributes['imageRadius'] ?? 8;
-$gap                  = $attributes['gap'] ?? 24;
+$display_type     = $attributes['displayType'] ?? 'posts_type1';
+$columns          = $attributes['columns'] ?? 2;
+$show_excerpt     = $attributes['showExcerpt'] ?? true;
+$excerpt_length   = $attributes['excerptLength'] ?? 150;
+$date_format      = $attributes['dateFormat'] ?? 'F j, Y';
+$query_source     = $attributes['querySource'] ?? 'wp_posts';
+$custom_post_type = $attributes['customPostType'] ?? '';
+$categories       = $attributes['categories'] ?? array();
+$sticky_posts     = $attributes['stickyPosts'] ?? 'allposts';
+$posts_per_page   = $attributes['postsPerPage'] ?? 5;
+$order_by         = $attributes['orderBy'] ?? 'date';
+$order            = $attributes['order'] ?? 'DESC';
 
 // Pagination settings.
-$enable_pagination    = $attributes['enablePagination'] ?? false;
-$pagination_type      = $attributes['paginationType'] ?? 'numbers';
-$pagination_alignment = $attributes['paginationAlignment'] ?? 'center';
+$enable_pagination = $attributes['enablePagination'] ?? false;
+$pagination_type   = $attributes['paginationType'] ?? 'numeric';
 
-// Generate unique block ID for pagination.
-$block_id = 'wbcom-pr-' . substr( md5( wp_json_encode( $attributes ) . ( $block->parsed_block['attrs']['metadata']['name'] ?? '' ) ), 0, 8 );
+// Animation settings.
+$enable_animation = $attributes['enableAnimation'] ?? false;
+$animation_type   = $attributes['animationType'] ?? 'fade-in';
+$animation_delay  = $attributes['animationDelay'] ?? 1000;
 
-// Get current page for this specific block.
+// Style settings.
+$enable_custom_style = $attributes['enableCustomStyle'] ?? false;
+$main_color          = $attributes['mainColor'] ?? '#1d76da';
+$hover_color         = $attributes['hoverColor'] ?? '#1d76da';
+
+// Generate unique block ID.
+$instance = 'wbcom-pr-' . substr( md5( wp_json_encode( $attributes ) ), 0, 8 );
+
+// Get current page for pagination.
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$paged_param = isset( $_GET[ $block_id ] ) ? absint( $_GET[ $block_id ] ) : 1;
-$current_page = max( 1, $paged_param );
+$paged = isset( $_GET[ 'paged_' . $instance ] ) ? absint( $_GET[ 'paged_' . $instance ] ) : 1;
 
-// Build query args using WP_Query for pagination support.
+// Build query args.
 $query_args = array(
-	'post_type'      => $post_type,
-	'posts_per_page' => $posts_per_page,
+	'post_status'    => 'publish',
 	'orderby'        => $order_by,
 	'order'          => $order,
-	'post_status'    => 'publish',
-	'paged'          => $enable_pagination ? $current_page : 1,
+	'paged'          => $paged,
 );
 
-if ( ! empty( $categories ) && 'post' === $post_type ) {
-	$query_args['cat'] = implode( ',', $categories );
+// Determine post type.
+if ( 'wp_custom_posts_type' === $query_source && ! empty( $custom_post_type ) ) {
+	$query_args['post_type'] = $custom_post_type;
+} else {
+	$query_args['post_type'] = 'post';
 }
 
-$posts_query = new WP_Query( $query_args );
-$posts       = $posts_query->posts;
+// Handle pagination vs number of posts.
+if ( $enable_pagination ) {
+	$query_args['posts_per_page'] = $posts_per_page;
+} else {
+	$query_args['posts_per_page'] = $posts_per_page;
+	$query_args['no_found_rows']  = true;
+}
 
-if ( empty( $posts ) ) {
+// Handle categories.
+if ( ! empty( $categories ) && 'post' === $query_args['post_type'] ) {
+	$query_args['category_name'] = implode( ',', $categories );
+}
+
+// Handle sticky posts.
+if ( 'onlystickyposts' === $sticky_posts && 'post' === $query_args['post_type'] ) {
+	$sticky = get_option( 'sticky_posts' );
+	if ( ! empty( $sticky ) ) {
+		$query_args['post__in']            = $sticky;
+		$query_args['ignore_sticky_posts'] = 1;
+	} else {
+		$query_args['post__in'] = array( 0 );
+	}
+}
+
+$loop = new WP_Query( $query_args );
+
+if ( ! $loop->have_posts() ) {
+	echo '<p>' . esc_html__( 'No posts found.', 'wbcom-essential' ) . '</p>';
 	return;
 }
 
-$total_pages = $posts_query->max_num_pages;
+// Build custom styles if enabled.
+$custom_styles = '';
+if ( $enable_custom_style ) {
+	$custom_styles = '<style type="text/css">';
+	$selector      = '.wbcom-essential-posts-revolution.' . esc_attr( $display_type ) . '.wbselector-' . esc_attr( $instance );
 
-// Build inline styles - ONLY layout/spacing, NEVER colors.
-// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly.
-$inline_styles = array(
-	'--image-radius'         => $image_radius . 'px',
-	'--gap'                  => $gap . 'px',
-	'--columns'              => $columns,
-);
+	if ( in_array( $display_type, array( 'posts_type1', 'posts_type2', 'posts_type3', 'posts_type4', 'posts_type5' ), true ) ) {
+		$custom_styles .= $selector . ' .wb-category a { color: ' . esc_attr( $main_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb-category a:hover { color: ' . esc_attr( $hover_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb-title a:hover { color: ' . esc_attr( $hover_color ) . ' !important; }';
+	}
 
-$style_string = '';
-foreach ( $inline_styles as $prop => $value ) {
-	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
+	if ( 'posts_type6' === $display_type ) {
+		$custom_styles .= $selector . ' .wb_last .wb-category a { color: ' . esc_attr( $main_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb_last .wb-category a:hover { color: ' . esc_attr( $hover_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb_last .wb-title a:hover { color: ' . esc_attr( $hover_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb_two_half .wb-category a { background-color: ' . esc_attr( $main_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb_two_half:first-child:hover .wb-category a { background-color: ' . esc_attr( $hover_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wbcom-essential-posts-second-half:hover .wb-category a { background-color: ' . esc_attr( $hover_color ) . ' !important; }';
+	}
+
+	if ( 'posts_type7' === $display_type ) {
+		$custom_styles .= $selector . ' .wb-category a { background-color: ' . esc_attr( $main_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb-category a:hover { background-color: ' . esc_attr( $hover_color ) . ' !important; }';
+		$custom_styles .= $selector . ' .wb-title a:hover { color: ' . esc_attr( $hover_color ) . ' !important; }';
+	}
+
+	// Pagination styles.
+	if ( $enable_pagination ) {
+		if ( 'numeric' === $pagination_type ) {
+			$custom_styles .= '.wb-pagination.numeric .current { background-color: ' . esc_attr( $main_color ) . ' !important; border-color: ' . esc_attr( $main_color ) . ' !important; }';
+			$custom_styles .= '.wb-pagination.numeric a:hover { background-color: ' . esc_attr( $main_color ) . ' !important; border-color: ' . esc_attr( $main_color ) . ' !important; }';
+		} else {
+			$custom_styles .= '.wb-pagination a:hover { color: ' . esc_attr( $hover_color ) . ' !important; }';
+		}
+	}
+
+	$custom_styles .= '</style>';
+}
+
+if ( ! function_exists( 'wbcom_pr_block_get_excerpt' ) ) {
+	/**
+	 * Helper function to get excerpt.
+	 *
+	 * @param int $length Excerpt length.
+	 * @return string
+	 */
+	function wbcom_pr_block_get_excerpt( $length ) {
+		$excerpt = get_the_excerpt();
+		if ( mb_strlen( $excerpt, 'UTF-8' ) > $length ) {
+			$excerpt = mb_substr( $excerpt, 0, $length, 'UTF-8' ) . '...';
+		}
+		return $excerpt;
+	}
+}
+
+if ( ! function_exists( 'wbcom_pr_block_get_category' ) ) {
+	/**
+	 * Helper function to get category.
+	 *
+	 * @param string $source    Query source.
+	 * @param string $post_type Custom post type.
+	 * @return string
+	 */
+	function wbcom_pr_block_get_category( $source, $post_type ) {
+		if ( 'wp_custom_posts_type' === $source && ! empty( $post_type ) ) {
+			$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+			foreach ( $taxonomies as $taxonomy ) {
+				if ( $taxonomy->hierarchical ) {
+					$terms = get_the_terms( get_the_ID(), $taxonomy->name );
+					if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+						return '<a href="' . esc_url( get_term_link( $terms[0] ) ) . '">' . esc_html( $terms[0]->name ) . '</a>';
+					}
+				}
+			}
+		} else {
+			$categories = get_the_category();
+			if ( ! empty( $categories ) ) {
+				return '<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . esc_html( $categories[0]->name ) . '</a>';
+			}
+		}
+		return '';
+	}
+}
+
+if ( ! function_exists( 'wbcom_pr_block_get_thumbnail' ) ) {
+	/**
+	 * Helper function to get thumbnail.
+	 *
+	 * @param string $size Image size.
+	 * @return string
+	 */
+	function wbcom_pr_block_get_thumbnail( $size = 'large' ) {
+		if ( has_post_thumbnail() ) {
+			return '<a href="' . esc_url( get_permalink() ) . '">' . get_the_post_thumbnail( get_the_ID(), $size ) . '</a>';
+		}
+		return '';
+	}
 }
 
 $wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => 'wbcom-essential-posts-revolution wbcom-essential-posts-revolution--' . $layout,
-	'style' => $style_string,
+	'class' => 'wbcom-essential-posts-revolution ' . esc_attr( $display_type ) . ' wbselector-' . esc_attr( $instance ),
 ) );
 
-/**
- * Helper function to get excerpt.
- */
-function wbcom_pr_get_excerpt( $post_id, $length ) {
-	$excerpt = get_the_excerpt( $post_id );
-	if ( strlen( $excerpt ) > $length ) {
-		$excerpt = substr( $excerpt, 0, $length ) . '...';
-	}
-	return $excerpt;
+// Output custom styles.
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the style generation above.
+echo $custom_styles;
+
+echo '<div class="wbclear"></div>';
+
+// Animation wrapper.
+if ( $enable_animation ) {
+	echo '<div class="animate-in" data-anim-type="' . esc_attr( $animation_type ) . '" data-anim-delay="' . esc_attr( $animation_delay ) . '">';
 }
-
-/**
- * Helper function to get categories.
- */
-function wbcom_pr_get_category( $post_id ) {
-	$categories = get_the_category( $post_id );
-	if ( ! empty( $categories ) ) {
-		return '<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . esc_html( $categories[0]->name ) . '</a>';
-	}
-	return '';
-}
-
-/**
- * Render a single post item.
- */
-function wbcom_pr_render_post( $post, $args = array() ) {
-	$defaults = array(
-		'show_category'  => true,
-		'show_excerpt'   => true,
-		'show_author'    => true,
-		'show_date'      => true,
-		'excerpt_length' => 100,
-		'date_format'    => 'M j, Y',
-		'size'           => 'large',
-		'class'          => '',
-	);
-	$args = wp_parse_args( $args, $defaults );
-
-	$thumbnail_size = 'large' === $args['size'] ? 'large' : 'medium';
-	$has_thumbnail  = has_post_thumbnail( $post->ID );
-
-	ob_start();
-	?>
-	<article class="wbcom-pr__post wbcom-pr__post--<?php echo esc_attr( $args['size'] ); ?> <?php echo esc_attr( $args['class'] ); ?>">
-		<?php if ( $has_thumbnail ) : ?>
-			<div class="wbcom-pr__thumb">
-				<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">
-					<?php echo get_the_post_thumbnail( $post->ID, $thumbnail_size ); ?>
-				</a>
-			</div>
-		<?php endif; ?>
-
-		<div class="wbcom-pr__content">
-			<?php if ( $args['show_category'] ) : ?>
-				<div class="wbcom-pr__category">
-					<?php echo wbcom_pr_get_category( $post->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_get_category() returns escaped HTML ?>
-				</div>
-			<?php endif; ?>
-
-			<h3 class="wbcom-pr__title">
-				<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">
-					<?php echo esc_html( get_the_title( $post->ID ) ); ?>
-				</a>
-			</h3>
-
-			<?php if ( $args['show_excerpt'] && 'large' === $args['size'] ) : ?>
-				<p class="wbcom-pr__excerpt">
-					<?php echo esc_html( wbcom_pr_get_excerpt( $post->ID, $args['excerpt_length'] ) ); ?>
-				</p>
-			<?php endif; ?>
-
-			<?php if ( $args['show_author'] || $args['show_date'] ) : ?>
-				<div class="wbcom-pr__meta">
-					<?php if ( $args['show_author'] ) : ?>
-						<span class="wbcom-pr__author"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></span>
-					<?php endif; ?>
-					<?php if ( $args['show_author'] && $args['show_date'] ) : ?>
-						<span class="wbcom-pr__sep">&bull;</span>
-					<?php endif; ?>
-					<?php if ( $args['show_date'] ) : ?>
-						<span class="wbcom-pr__date"><?php echo esc_html( get_the_date( $args['date_format'], $post->ID ) ); ?></span>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-		</div>
-	</article>
-	<?php
-	return ob_get_clean();
-}
-
-$post_args = array(
-	'show_category'  => $show_category,
-	'show_excerpt'   => $show_excerpt,
-	'show_author'    => $show_author,
-	'show_date'      => $show_date,
-	'excerpt_length' => $excerpt_length,
-	'date_format'    => $date_format,
-);
 ?>
 
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
-	<?php
-	switch ( $layout ) :
-		case 'featured-sidebar':
-			// First post large, rest in sidebar.
-			?>
-			<div class="wbcom-pr__featured">
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
-			</div>
-			<?php if ( count( $posts ) > 1 ) : ?>
-				<div class="wbcom-pr__sidebar">
-					<?php
-					for ( $i = 1; $i < count( $posts ); $i++ ) {
-						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'small' ) ) );
-					}
-					?>
-				</div>
-			<?php endif; ?>
-			<?php
-			break;
+<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<?php
+$count = 0;
+if ( 'posts_type3' === $display_type ) {
+	$count = 1;
+}
 
-		case 'featured-list':
-			// First post large, rest in list.
-			?>
-			<div class="wbcom-pr__featured wbcom-pr__featured--full">
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
-			</div>
-			<?php if ( count( $posts ) > 1 ) : ?>
-				<div class="wbcom-pr__list">
-					<?php
-					for ( $i = 1; $i < count( $posts ); $i++ ) {
-						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'medium' ) ) );
-					}
-					?>
-				</div>
-			<?php endif; ?>
-			<?php
-			break;
+while ( $loop->have_posts() ) :
+	$loop->the_post();
+	$link = get_permalink();
 
-		case 'grid':
-			// Grid layout.
-			?>
-			<div class="wbcom-pr__grid">
-				<?php
-				foreach ( $posts as $post ) {
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $post, array_merge( $post_args, array( 'size' => 'large' ) ) );
-				}
+	switch ( $display_type ) :
+		case 'posts_type1':
+			// TYPE 1: Featured (3/5) + Sidebar (2/5) with thumbnails.
+			if ( 0 === $count ) {
 				?>
-			</div>
-			<?php
-			break;
-
-		case 'split':
-			// 50/50 split.
-			?>
-			<div class="wbcom-pr__split">
-				<?php
-				foreach ( $posts as $post ) {
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $post, array_merge( $post_args, array( 'size' => 'large' ) ) );
-				}
-				?>
-			</div>
-			<?php
-			break;
-
-		case 'two-featured':
-			// Two large posts + list.
-			?>
-			<div class="wbcom-pr__two-featured">
-				<?php
-				$featured_count = min( 2, count( $posts ) );
-				for ( $i = 0; $i < $featured_count; $i++ ) {
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'large' ) ) );
-				}
-				?>
-			</div>
-			<?php if ( count( $posts ) > 2 ) : ?>
-				<div class="wbcom-pr__list wbcom-pr__list--horizontal">
-					<?php
-					for ( $i = 2; $i < count( $posts ); $i++ ) {
-						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array( 'size' => 'small' ) ) );
-					}
-					?>
-				</div>
-			<?php endif; ?>
-			<?php
-			break;
-
-		case 'magazine':
-			// Magazine style: 1 featured + 4 in grid.
-			?>
-			<div class="wbcom-pr__magazine">
-				<div class="wbcom-pr__magazine-featured">
-					<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[0], array_merge( $post_args, array( 'size' => 'large' ) ) ); ?>
-				</div>
-				<?php if ( count( $posts ) > 1 ) : ?>
-					<div class="wbcom-pr__magazine-grid">
-						<?php
-						for ( $i = 1; $i < count( $posts ); $i++ ) {
-							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $posts[ $i ], array_merge( $post_args, array(
-								'size'         => 'medium',
-								'show_excerpt' => false,
-							) ) );
-						}
-						?>
+				<div class="wb_three_fifth">
+					<div class="wbcom-essential-posts-revolution-thumbs-container">
+						<?php echo wbcom_pr_block_get_thumbnail( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
-				<?php endif; ?>
+					<div class="wb-info-left">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+					</div>
+				</div>
+				<?php
+			} else {
+				?>
+				<div class="wb_two_fifth wb_last">
+					<div class="wbcom-essential-posts-revolution-thumbs-container wb_one_third">
+						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-right wb_two_third wb_last">
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					</div>
+					<div class="wbclear"></div>
+				</div>
+				<?php
+			}
+			break;
+
+		case 'posts_type2':
+			// TYPE 2: Featured full width + list below.
+			if ( 0 === $count ) {
+				?>
+				<div class="wb-columns-1 firstpost">
+					<div class="wbcom-essential-posts-revolution-thumbs-container">
+						<?php echo wbcom_pr_block_get_thumbnail( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-left">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+					</div>
+				</div>
+				<?php
+			} else {
+				?>
+				<div class="wb-columns-1 moreposts">
+					<div class="wbcom-essential-posts-revolution-thumbs-container wb_one_third">
+						<?php echo wbcom_pr_block_get_thumbnail( 'medium' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-right wb_two_third wb_last">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+					</div>
+					<div class="wbclear"></div>
+				</div>
+				<?php
+			}
+			break;
+
+		case 'posts_type3':
+			// TYPE 3: Grid layout with columns.
+			?>
+			<div class="wb-columns-<?php echo esc_attr( $columns ); ?>">
+				<div class="wbcom-essential-posts-revolution-thumbs-container">
+					<?php echo wbcom_pr_block_get_thumbnail( 'medium_large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</div>
+				<div class="wb-info-left">
+					<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+					<?php if ( $show_excerpt ) : ?>
+						<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+					<?php endif; ?>
+					<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+					<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+				</div>
 			</div>
 			<?php
+			if ( 0 === $count % $columns ) {
+				echo '<br class="wbclear">';
+			}
+			break;
+
+		case 'posts_type4':
+			// TYPE 4: Side by side (image left, content right).
+			?>
+			<div class="container-display4">
+				<div class="wbcom-essential-posts-revolution-thumbs-container wb_one_half">
+					<?php echo wbcom_pr_block_get_thumbnail( 'medium_large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</div>
+				<div class="wb-info-right wb_one_half wb_last">
+					<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+					<?php if ( $show_excerpt ) : ?>
+						<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+					<?php endif; ?>
+					<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+					<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+				</div>
+				<div class="wbclear"></div>
+			</div>
+			<?php
+			break;
+
+		case 'posts_type5':
+			// TYPE 5: Featured (3/5) + Text-only sidebar (2/5).
+			if ( 0 === $count ) {
+				?>
+				<div class="wb_three_fifth">
+					<div class="wbcom-essential-posts-revolution-thumbs-container">
+						<?php echo wbcom_pr_block_get_thumbnail( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-left">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+					</div>
+				</div>
+				<?php
+			} else {
+				?>
+				<div class="wb_two_fifth wb_last">
+					<div class="wb-info-right wb_last">
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					</div>
+					<div class="wbclear"></div>
+				</div>
+				<?php
+			}
+			break;
+
+		case 'posts_type6':
+			// TYPE 6: Magazine style - 1 large + 3 medium + rest small.
+			if ( 0 === $count ) {
+				?>
+				<div class="wb_two_half">
+					<div class="wbcom-essential-posts-revolution-thumbs-container">
+						<?php echo wbcom_pr_block_get_thumbnail( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-left">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+					</div>
+				</div>
+				<?php
+			} elseif ( $count >= 1 && $count <= 3 ) {
+				if ( 1 === $count ) {
+					echo '<div class="wb_two_half">';
+				}
+				?>
+				<div class="wbcom-essential-posts-second-half">
+					<div class="wbcom-essential-posts-revolution-thumbs-container">
+						<?php echo wbcom_pr_block_get_thumbnail( 'medium' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-left">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+					</div>
+				</div>
+				<?php
+				if ( 3 === $count ) {
+					echo '</div>';
+				}
+			} else {
+				?>
+				<div class="wb_two_fifth wb_last">
+					<div class="wbcom-essential-posts-revolution-thumbs-container wb_one_third">
+						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-right wb_two_third wb_last">
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					</div>
+					<div class="wbclear"></div>
+				</div>
+				<?php
+			}
+			break;
+
+		case 'posts_type7':
+			// TYPE 7: Two large posts + rest as list.
+			if ( $count <= 1 ) {
+				?>
+				<div class="wb_two_half">
+					<div class="wbcom-essential-posts-revolution-thumbs-container">
+						<?php echo wbcom_pr_block_get_thumbnail( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-left">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+						<div class="clearfix wbclear"></div>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+					</div>
+				</div>
+				<?php
+			} else {
+				?>
+				<div class="wb_two_fifth wb_last">
+					<div class="wbcom-essential-posts-revolution-thumbs-container wb_one_third">
+						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-right wb_two_third wb_last">
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+					</div>
+					<div class="wbclear"></div>
+				</div>
+				<?php
+			}
 			break;
 
 		default:
-			// Default to grid.
-			?>
-			<div class="wbcom-pr__grid">
-				<?php
-				foreach ( $posts as $post ) {
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wbcom_pr_render_post() handles escaping internally
-					echo wbcom_pr_render_post( $post, array_merge( $post_args, array( 'size' => 'large' ) ) );
-				}
+			// Default to type 1.
+			if ( 0 === $count ) {
 				?>
-			</div>
-			<?php
+				<div class="wb_three_fifth">
+					<div class="wbcom-essential-posts-revolution-thumbs-container">
+						<?php echo wbcom_pr_block_get_thumbnail( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-left">
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<?php if ( $show_excerpt ) : ?>
+							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
+						<?php endif; ?>
+						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
+						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
+					</div>
+				</div>
+				<?php
+			} else {
+				?>
+				<div class="wb_two_fifth wb_last">
+					<div class="wbcom-essential-posts-revolution-thumbs-container wb_one_third">
+						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="wb-info-right wb_two_third wb_last">
+						<span class="wb-title"><a href="<?php echo esc_url( $link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					</div>
+					<div class="wbclear"></div>
+				</div>
+				<?php
+			}
 	endswitch;
 
-	// Render pagination if enabled and there are multiple pages.
-	if ( $enable_pagination && $total_pages > 1 ) :
-		$base_url = remove_query_arg( $block_id );
-		?>
-		<nav class="wbcom-pr__pagination wbcom-pr__pagination--<?php echo esc_attr( $pagination_alignment ); ?>" aria-label="<?php esc_attr_e( 'Posts navigation', 'wbcom-essential' ); ?>">
-			<?php if ( 'numbers' === $pagination_type ) : ?>
-				<?php
-				$pagination_args = array(
-					'base'      => add_query_arg( $block_id, '%#%', $base_url ),
-					'format'    => '',
-					'current'   => $current_page,
-					'total'     => $total_pages,
-					'prev_text' => '&laquo;',
-					'next_text' => '&raquo;',
-					'type'      => 'list',
-					'mid_size'  => 2,
-					'end_size'  => 1,
-				);
-				echo wp_kses_post( paginate_links( $pagination_args ) );
-				?>
-			<?php else : ?>
-				<div class="wbcom-pr__pagination-prevnext">
-					<?php if ( $current_page > 1 ) : ?>
-						<a href="<?php echo esc_url( add_query_arg( $block_id, $current_page - 1, $base_url ) ); ?>" class="wbcom-pr__pagination-prev">
-							<?php esc_html_e( '&laquo; Previous', 'wbcom-essential' ); ?>
-						</a>
-					<?php endif; ?>
-					<span class="wbcom-pr__pagination-info">
-						<?php
-						printf(
-							/* translators: %1$d: current page, %2$d: total pages */
-							esc_html__( 'Page %1$d of %2$d', 'wbcom-essential' ),
-							(int) $current_page,
-							(int) $total_pages
-						);
-						?>
-					</span>
-					<?php if ( $current_page < $total_pages ) : ?>
-						<a href="<?php echo esc_url( add_query_arg( $block_id, $current_page + 1, $base_url ) ); ?>" class="wbcom-pr__pagination-next">
-							<?php esc_html_e( 'Next &raquo;', 'wbcom-essential' ); ?>
-						</a>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-		</nav>
-	<?php endif; ?>
+	$count++;
+endwhile;
+
+// Pagination.
+if ( $enable_pagination && $loop->max_num_pages > 1 ) :
+	echo '<div class="wbclear"></div>';
+	echo '<div class="wb-post-display-' . esc_attr( $instance ) . ' wb-pagination ' . esc_attr( $pagination_type ) . '">';
+
+	if ( 'numeric' === $pagination_type ) {
+		$pagination_args = array(
+			'base'      => add_query_arg( 'paged_' . $instance, '%#%' ),
+			'format'    => '',
+			'current'   => $paged,
+			'total'     => $loop->max_num_pages,
+			'prev_text' => '&laquo;',
+			'next_text' => '&raquo;',
+			'type'      => 'list',
+			'mid_size'  => 2,
+			'end_size'  => 1,
+		);
+		echo wp_kses_post( paginate_links( $pagination_args ) );
+	} else {
+		$older = get_next_posts_link( esc_html__( 'Older posts', 'wbcom-essential' ), $loop->max_num_pages );
+		$newer = get_previous_posts_link( esc_html__( 'Newer posts', 'wbcom-essential' ) );
+		if ( $older ) {
+			echo wp_kses_post( $older );
+		}
+		if ( $newer ) {
+			echo wp_kses_post( $newer );
+		}
+	}
+
+	echo '</div>';
+endif;
+?>
 </div>
 <?php
-// Reset post data after custom query.
+
+if ( $enable_animation ) {
+	echo '</div>';
+}
+
 wp_reset_postdata();

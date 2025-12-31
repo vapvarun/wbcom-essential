@@ -26,6 +26,10 @@ import {
 	Flex,
 	FlexItem,
 	Icon,
+	__experimentalBoxControl as BoxControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	TabPanel,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
@@ -39,18 +43,50 @@ export default function Edit( { attributes, setAttributes } ) {
 		filters,
 		showFilters,
 		layout,
+		layoutType,
 		showLayoutSwitcher,
 		columns,
 		columnsTablet,
 		columnsMobile,
 		gap,
+		imageSize,
+		imageAspectRatio,
+		titleHtmlTag,
+		descriptionHtmlTag,
+		hoverEffect,
+		hoverAnimation,
+		enableLightbox,
+		lightboxIcon,
+		textPlacement,
+		overlayVerticalAlign,
+		textAlign,
 		itemBackground,
 		itemBorderRadius,
+		itemBorderWidth,
+		itemBorderColor,
+		itemBoxShadow,
+		itemHoverBoxShadow,
 		overlayColor,
+		overlayHoverColor,
 		titleColor,
+		titleFontSize,
+		titleFontWeight,
+		titleMargin,
 		descriptionColor,
+		descriptionFontSize,
+		descriptionLineClamp,
 		filterActiveColor,
 		filterTextColor,
+		filterActiveBackground,
+		filterBackground,
+		filterBorderRadius,
+		filterPadding,
+		imagePadding,
+		imageBorderRadius,
+		contentPadding,
+		contentMargin,
+		contentBackground,
+		contentBorderRadius,
 	} = attributes;
 
 	const [ activeTab, setActiveTab ] = useState( 'items' );
@@ -69,10 +105,14 @@ export default function Edit( { attributes, setAttributes } ) {
 		const newItem = {
 			id: generateId(),
 			image: '',
+			imageId: 0,
 			title: `Project ${ items.length + 1 }`,
 			description: 'A brief description of this project.',
 			link: '',
+			linkTarget: '_self',
 			filters: '',
+			columnWidth: 1,
+			rowHeight: 1,
 		};
 		setAttributes( { items: [ ...items, newItem ] } );
 		setExpandedItem( items.length );
@@ -110,15 +150,71 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const removeFilter = ( index ) => {
-		if ( filters[ index ].id === 'all' ) return; // Don't remove "All" filter
+		if ( filters[ index ].id === 'all' ) return;
 		const newFilters = filters.filter( ( _, i ) => i !== index );
 		setAttributes( { filters: newFilters } );
 		setExpandedFilter( null );
 	};
 
+	const updateBoxShadow = ( key, value, isHover = false ) => {
+		const shadowKey = isHover ? 'itemHoverBoxShadow' : 'itemBoxShadow';
+		const currentShadow = isHover ? itemHoverBoxShadow : itemBoxShadow;
+		setAttributes( {
+			[ shadowKey ]: { ...currentShadow, [ key ]: value },
+		} );
+	};
+
+	const imageSizes = [
+		{ label: __( 'Thumbnail', 'wbcom-essential' ), value: 'thumbnail' },
+		{ label: __( 'Medium', 'wbcom-essential' ), value: 'medium' },
+		{ label: __( 'Medium Large', 'wbcom-essential' ), value: 'medium_large' },
+		{ label: __( 'Large', 'wbcom-essential' ), value: 'large' },
+		{ label: __( 'Full', 'wbcom-essential' ), value: 'full' },
+	];
+
+	const aspectRatios = [
+		{ label: __( '1:1 Square', 'wbcom-essential' ), value: '1:1' },
+		{ label: __( '4:3 Standard', 'wbcom-essential' ), value: '4:3' },
+		{ label: __( '16:9 Widescreen', 'wbcom-essential' ), value: '16:9' },
+		{ label: __( '3:2 Classic', 'wbcom-essential' ), value: '3:2' },
+		{ label: __( '2:3 Portrait', 'wbcom-essential' ), value: '2:3' },
+		{ label: __( 'Auto', 'wbcom-essential' ), value: 'auto' },
+	];
+
+	const htmlTagOptions = [
+		{ label: 'H1', value: 'h1' },
+		{ label: 'H2', value: 'h2' },
+		{ label: 'H3', value: 'h3' },
+		{ label: 'H4', value: 'h4' },
+		{ label: 'H5', value: 'h5' },
+		{ label: 'H6', value: 'h6' },
+		{ label: 'div', value: 'div' },
+		{ label: 'p', value: 'p' },
+	];
+
+	const hoverEffects = [
+		{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+		{ label: __( 'Zoom', 'wbcom-essential' ), value: 'zoom' },
+		{ label: __( 'Overlay Fade', 'wbcom-essential' ), value: 'overlay' },
+		{ label: __( 'Slide Up', 'wbcom-essential' ), value: 'slide-up' },
+		{ label: __( 'Fade', 'wbcom-essential' ), value: 'fade' },
+	];
+
+	const hoverAnimations = [
+		{ label: __( 'None', 'wbcom-essential' ), value: '' },
+		{ label: __( 'Grow', 'wbcom-essential' ), value: 'grow' },
+		{ label: __( 'Shrink', 'wbcom-essential' ), value: 'shrink' },
+		{ label: __( 'Pulse', 'wbcom-essential' ), value: 'pulse' },
+		{ label: __( 'Float', 'wbcom-essential' ), value: 'float' },
+		{ label: __( 'Sink', 'wbcom-essential' ), value: 'sink' },
+		{ label: __( 'Bob', 'wbcom-essential' ), value: 'bob' },
+		{ label: __( 'Hang', 'wbcom-essential' ), value: 'hang' },
+	];
+
 	return (
 		<>
 			<InspectorControls>
+				{ /* Content Tab */ }
 				<PanelBody title={ __( 'Content', 'wbcom-essential' ) } initialOpen>
 					<ButtonGroup style={ { marginBottom: '16px', width: '100%' } }>
 						<Button
@@ -161,9 +257,12 @@ export default function Edit( { attributes, setAttributes } ) {
 										<CardBody>
 											<MediaUploadCheck>
 												<MediaUpload
-													onSelect={ ( media ) => updateItem( index, 'image', media.url ) }
+													onSelect={ ( media ) => {
+														updateItem( index, 'image', media.url );
+														updateItem( index, 'imageId', media.id );
+													} }
 													allowedTypes={ [ 'image' ] }
-													value={ item.image }
+													value={ item.imageId }
 													render={ ( { open } ) => (
 														<div style={ { marginBottom: '12px' } }>
 															{ item.image ? (
@@ -177,7 +276,10 @@ export default function Edit( { attributes, setAttributes } ) {
 																		<Button isSecondary onClick={ open }>
 																			{ __( 'Replace', 'wbcom-essential' ) }
 																		</Button>
-																		<Button isDestructive onClick={ () => updateItem( index, 'image', '' ) }>
+																		<Button isDestructive onClick={ () => {
+																			updateItem( index, 'image', '' );
+																			updateItem( index, 'imageId', 0 );
+																		} }>
 																			{ __( 'Remove', 'wbcom-essential' ) }
 																		</Button>
 																	</Flex>
@@ -211,12 +313,41 @@ export default function Edit( { attributes, setAttributes } ) {
 												type="url"
 											/>
 
+											<SelectControl
+												label={ __( 'Link Target', 'wbcom-essential' ) }
+												value={ item.linkTarget || '_self' }
+												options={ [
+													{ label: __( 'Same Window', 'wbcom-essential' ), value: '_self' },
+													{ label: __( 'New Tab', 'wbcom-essential' ), value: '_blank' },
+												] }
+												onChange={ ( value ) => updateItem( index, 'linkTarget', value ) }
+											/>
+
 											<TextControl
 												label={ __( 'Filter Categories', 'wbcom-essential' ) }
 												help={ __( 'Space-separated filter IDs (e.g., "design development")', 'wbcom-essential' ) }
 												value={ item.filters }
 												onChange={ ( value ) => updateItem( index, 'filters', value ) }
 											/>
+
+											{ layoutType === 'masonry' && (
+												<>
+													<RangeControl
+														label={ __( 'Column Span', 'wbcom-essential' ) }
+														value={ item.columnWidth || 1 }
+														onChange={ ( value ) => updateItem( index, 'columnWidth', value ) }
+														min={ 1 }
+														max={ 3 }
+													/>
+													<RangeControl
+														label={ __( 'Row Span', 'wbcom-essential' ) }
+														value={ item.rowHeight || 1 }
+														onChange={ ( value ) => updateItem( index, 'rowHeight', value ) }
+														min={ 1 }
+														max={ 3 }
+													/>
+												</>
+											) }
 
 											<Flex style={ { marginTop: '12px' } }>
 												<Button
@@ -251,6 +382,12 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					{ activeTab === 'filters' && (
 						<>
+							<ToggleControl
+								label={ __( 'Show Filters', 'wbcom-essential' ) }
+								checked={ showFilters }
+								onChange={ ( value ) => setAttributes( { showFilters: value } ) }
+							/>
+
 							{ filters.map( ( filter, index ) => (
 								<Card key={ filter.id } style={ { marginBottom: '12px' } }>
 									<CardHeader
@@ -287,7 +424,6 @@ export default function Edit( { attributes, setAttributes } ) {
 												label={ __( 'Default Active', 'wbcom-essential' ) }
 												checked={ filter.isDefault }
 												onChange={ ( value ) => {
-													// Only one filter can be default
 													const newFilters = filters.map( ( f, i ) => ( {
 														...f,
 														isDefault: i === index ? value : false,
@@ -317,15 +453,20 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				</PanelBody>
 
-				<PanelBody title={ __( 'Display Settings', 'wbcom-essential' ) } initialOpen={ false }>
-					<ToggleControl
-						label={ __( 'Show Filters', 'wbcom-essential' ) }
-						checked={ showFilters }
-						onChange={ ( value ) => setAttributes( { showFilters: value } ) }
+				{ /* Layout Settings */ }
+				<PanelBody title={ __( 'Layout', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Layout Type', 'wbcom-essential' ) }
+						value={ layoutType }
+						options={ [
+							{ label: __( 'Grid', 'wbcom-essential' ), value: 'grid' },
+							{ label: __( 'Masonry', 'wbcom-essential' ), value: 'masonry' },
+						] }
+						onChange={ ( value ) => setAttributes( { layoutType: value } ) }
 					/>
 
 					<SelectControl
-						label={ __( 'Default Layout', 'wbcom-essential' ) }
+						label={ __( 'Default View', 'wbcom-essential' ) }
 						value={ layout }
 						options={ [
 							{ label: __( 'Grid', 'wbcom-essential' ), value: 'grid' },
@@ -339,9 +480,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						checked={ showLayoutSwitcher }
 						onChange={ ( value ) => setAttributes( { showLayoutSwitcher: value } ) }
 					/>
-				</PanelBody>
 
-				<PanelBody title={ __( 'Grid Settings', 'wbcom-essential' ) } initialOpen={ false }>
 					<RangeControl
 						label={ __( 'Columns (Desktop)', 'wbcom-essential' ) }
 						value={ columns }
@@ -371,31 +510,313 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ gap }
 						onChange={ ( value ) => setAttributes( { gap: value } ) }
 						min={ 0 }
-						max={ 60 }
-					/>
-
-					<RangeControl
-						label={ __( 'Item Border Radius', 'wbcom-essential' ) }
-						value={ itemBorderRadius }
-						onChange={ ( value ) => setAttributes( { itemBorderRadius: value } ) }
-						min={ 0 }
-						max={ 30 }
+						max={ 100 }
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+				{ /* Image Settings */ }
+				<PanelBody title={ __( 'Image Settings', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Image Size', 'wbcom-essential' ) }
+						value={ imageSize }
+						options={ imageSizes }
+						onChange={ ( value ) => setAttributes( { imageSize: value } ) }
+					/>
+
+					<SelectControl
+						label={ __( 'Aspect Ratio', 'wbcom-essential' ) }
+						value={ imageAspectRatio }
+						options={ aspectRatios }
+						onChange={ ( value ) => setAttributes( { imageAspectRatio: value } ) }
+					/>
+
+					<RangeControl
+						label={ __( 'Image Border Radius', 'wbcom-essential' ) }
+						value={ imageBorderRadius }
+						onChange={ ( value ) => setAttributes( { imageBorderRadius: value } ) }
+						min={ 0 }
+						max={ 50 }
+					/>
+				</PanelBody>
+
+				{ /* Hover & Effects */ }
+				<PanelBody title={ __( 'Hover Effects', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Hover Effect', 'wbcom-essential' ) }
+						value={ hoverEffect }
+						options={ hoverEffects }
+						onChange={ ( value ) => setAttributes( { hoverEffect: value } ) }
+					/>
+
+					<SelectControl
+						label={ __( 'Hover Animation', 'wbcom-essential' ) }
+						value={ hoverAnimation }
+						options={ hoverAnimations }
+						onChange={ ( value ) => setAttributes( { hoverAnimation: value } ) }
+					/>
+
+					<ToggleControl
+						label={ __( 'Enable Lightbox', 'wbcom-essential' ) }
+						checked={ enableLightbox }
+						onChange={ ( value ) => setAttributes( { enableLightbox: value } ) }
+					/>
+
+					{ enableLightbox && (
+						<SelectControl
+							label={ __( 'Lightbox Icon', 'wbcom-essential' ) }
+							value={ lightboxIcon }
+							options={ [
+								{ label: __( 'Search', 'wbcom-essential' ), value: 'search' },
+								{ label: __( 'Plus', 'wbcom-essential' ), value: 'plus' },
+								{ label: __( 'Expand', 'wbcom-essential' ), value: 'expand' },
+								{ label: __( 'Eye', 'wbcom-essential' ), value: 'eye' },
+							] }
+							onChange={ ( value ) => setAttributes( { lightboxIcon: value } ) }
+						/>
+					) }
+				</PanelBody>
+
+				{ /* Text Settings */ }
+				<PanelBody title={ __( 'Text Settings', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Text Placement', 'wbcom-essential' ) }
+						value={ textPlacement }
+						options={ [
+							{ label: __( 'Overlay on Image', 'wbcom-essential' ), value: 'overlay' },
+							{ label: __( 'Below Image', 'wbcom-essential' ), value: 'below' },
+						] }
+						onChange={ ( value ) => setAttributes( { textPlacement: value } ) }
+					/>
+
+					{ textPlacement === 'overlay' && (
+						<SelectControl
+							label={ __( 'Vertical Alignment', 'wbcom-essential' ) }
+							value={ overlayVerticalAlign }
+							options={ [
+								{ label: __( 'Top', 'wbcom-essential' ), value: 'flex-start' },
+								{ label: __( 'Center', 'wbcom-essential' ), value: 'center' },
+								{ label: __( 'Bottom', 'wbcom-essential' ), value: 'flex-end' },
+							] }
+							onChange={ ( value ) => setAttributes( { overlayVerticalAlign: value } ) }
+						/>
+					) }
+
+					<SelectControl
+						label={ __( 'Text Alignment', 'wbcom-essential' ) }
+						value={ textAlign }
+						options={ [
+							{ label: __( 'Left', 'wbcom-essential' ), value: 'left' },
+							{ label: __( 'Center', 'wbcom-essential' ), value: 'center' },
+							{ label: __( 'Right', 'wbcom-essential' ), value: 'right' },
+						] }
+						onChange={ ( value ) => setAttributes( { textAlign: value } ) }
+					/>
+
+					<SelectControl
+						label={ __( 'Title HTML Tag', 'wbcom-essential' ) }
+						value={ titleHtmlTag }
+						options={ htmlTagOptions }
+						onChange={ ( value ) => setAttributes( { titleHtmlTag: value } ) }
+					/>
+
+					<RangeControl
+						label={ __( 'Title Font Size', 'wbcom-essential' ) }
+						value={ titleFontSize }
+						onChange={ ( value ) => setAttributes( { titleFontSize: value } ) }
+						min={ 12 }
+						max={ 48 }
+					/>
+
+					<SelectControl
+						label={ __( 'Title Font Weight', 'wbcom-essential' ) }
+						value={ titleFontWeight }
+						options={ [
+							{ label: '400 Normal', value: '400' },
+							{ label: '500 Medium', value: '500' },
+							{ label: '600 Semi Bold', value: '600' },
+							{ label: '700 Bold', value: '700' },
+						] }
+						onChange={ ( value ) => setAttributes( { titleFontWeight: value } ) }
+					/>
+
+					<SelectControl
+						label={ __( 'Description HTML Tag', 'wbcom-essential' ) }
+						value={ descriptionHtmlTag }
+						options={ htmlTagOptions }
+						onChange={ ( value ) => setAttributes( { descriptionHtmlTag: value } ) }
+					/>
+
+					<RangeControl
+						label={ __( 'Description Font Size', 'wbcom-essential' ) }
+						value={ descriptionFontSize }
+						onChange={ ( value ) => setAttributes( { descriptionFontSize: value } ) }
+						min={ 10 }
+						max={ 24 }
+					/>
+
+					<RangeControl
+						label={ __( 'Description Line Clamp', 'wbcom-essential' ) }
+						value={ descriptionLineClamp }
+						onChange={ ( value ) => setAttributes( { descriptionLineClamp: value } ) }
+						min={ 1 }
+						max={ 10 }
+					/>
+				</PanelBody>
+
+				{ /* Item Style */ }
+				<PanelBody title={ __( 'Item Style', 'wbcom-essential' ) } initialOpen={ false }>
 					<ColorControl
-						label={ __( 'Item Background', 'wbcom-essential' ) }
+						label={ __( 'Background Color', 'wbcom-essential' ) }
 						value={ itemBackground }
 						onChange={ ( value ) => setAttributes( { itemBackground: value } ) }
 					/>
 
+					<RangeControl
+						label={ __( 'Border Radius', 'wbcom-essential' ) }
+						value={ itemBorderRadius }
+						onChange={ ( value ) => setAttributes( { itemBorderRadius: value } ) }
+						min={ 0 }
+						max={ 50 }
+					/>
+
+					<RangeControl
+						label={ __( 'Border Width', 'wbcom-essential' ) }
+						value={ itemBorderWidth }
+						onChange={ ( value ) => setAttributes( { itemBorderWidth: value } ) }
+						min={ 0 }
+						max={ 10 }
+					/>
+
+					{ itemBorderWidth > 0 && (
+						<ColorControl
+							label={ __( 'Border Color', 'wbcom-essential' ) }
+							value={ itemBorderColor }
+							onChange={ ( value ) => setAttributes( { itemBorderColor: value } ) }
+						/>
+					) }
+
+					<h4>{ __( 'Box Shadow', 'wbcom-essential' ) }</h4>
+					<ToggleControl
+						label={ __( 'Enable Box Shadow', 'wbcom-essential' ) }
+						checked={ itemBoxShadow.enabled }
+						onChange={ ( value ) => updateBoxShadow( 'enabled', value ) }
+					/>
+
+					{ itemBoxShadow.enabled && (
+						<>
+							<RangeControl
+								label={ __( 'Horizontal', 'wbcom-essential' ) }
+								value={ itemBoxShadow.horizontal }
+								onChange={ ( value ) => updateBoxShadow( 'horizontal', value ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Vertical', 'wbcom-essential' ) }
+								value={ itemBoxShadow.vertical }
+								onChange={ ( value ) => updateBoxShadow( 'vertical', value ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Blur', 'wbcom-essential' ) }
+								value={ itemBoxShadow.blur }
+								onChange={ ( value ) => updateBoxShadow( 'blur', value ) }
+								min={ 0 }
+								max={ 100 }
+							/>
+							<RangeControl
+								label={ __( 'Spread', 'wbcom-essential' ) }
+								value={ itemBoxShadow.spread }
+								onChange={ ( value ) => updateBoxShadow( 'spread', value ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<ColorControl
+								label={ __( 'Shadow Color', 'wbcom-essential' ) }
+								value={ itemBoxShadow.color }
+								onChange={ ( value ) => updateBoxShadow( 'color', value ) }
+							/>
+						</>
+					) }
+
+					<h4>{ __( 'Hover Box Shadow', 'wbcom-essential' ) }</h4>
+					<ToggleControl
+						label={ __( 'Enable Hover Shadow', 'wbcom-essential' ) }
+						checked={ itemHoverBoxShadow.enabled }
+						onChange={ ( value ) => updateBoxShadow( 'enabled', value, true ) }
+					/>
+
+					{ itemHoverBoxShadow.enabled && (
+						<>
+							<RangeControl
+								label={ __( 'Horizontal', 'wbcom-essential' ) }
+								value={ itemHoverBoxShadow.horizontal }
+								onChange={ ( value ) => updateBoxShadow( 'horizontal', value, true ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Vertical', 'wbcom-essential' ) }
+								value={ itemHoverBoxShadow.vertical }
+								onChange={ ( value ) => updateBoxShadow( 'vertical', value, true ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Blur', 'wbcom-essential' ) }
+								value={ itemHoverBoxShadow.blur }
+								onChange={ ( value ) => updateBoxShadow( 'blur', value, true ) }
+								min={ 0 }
+								max={ 100 }
+							/>
+							<RangeControl
+								label={ __( 'Spread', 'wbcom-essential' ) }
+								value={ itemHoverBoxShadow.spread }
+								onChange={ ( value ) => updateBoxShadow( 'spread', value, true ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<ColorControl
+								label={ __( 'Shadow Color', 'wbcom-essential' ) }
+								value={ itemHoverBoxShadow.color }
+								onChange={ ( value ) => updateBoxShadow( 'color', value, true ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				{ /* Overlay Style */ }
+				<PanelBody title={ __( 'Overlay Style', 'wbcom-essential' ) } initialOpen={ false }>
 					<ColorControl
 						label={ __( 'Overlay Color', 'wbcom-essential' ) }
 						value={ overlayColor }
 						onChange={ ( value ) => setAttributes( { overlayColor: value } ) }
 					/>
 
+					<ColorControl
+						label={ __( 'Overlay Hover Color', 'wbcom-essential' ) }
+						value={ overlayHoverColor }
+						onChange={ ( value ) => setAttributes( { overlayHoverColor: value } ) }
+					/>
+
+					<RangeControl
+						label={ __( 'Content Border Radius', 'wbcom-essential' ) }
+						value={ contentBorderRadius }
+						onChange={ ( value ) => setAttributes( { contentBorderRadius: value } ) }
+						min={ 0 }
+						max={ 30 }
+					/>
+
+					<ColorControl
+						label={ __( 'Content Background', 'wbcom-essential' ) }
+						value={ contentBackground }
+						onChange={ ( value ) => setAttributes( { contentBackground: value } ) }
+					/>
+				</PanelBody>
+
+				{ /* Typography Colors */ }
+				<PanelBody title={ __( 'Typography Colors', 'wbcom-essential' ) } initialOpen={ false }>
 					<ColorControl
 						label={ __( 'Title Color', 'wbcom-essential' ) }
 						value={ titleColor }
@@ -407,6 +828,15 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ descriptionColor }
 						onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
 					/>
+				</PanelBody>
+
+				{ /* Filter Style */ }
+				<PanelBody title={ __( 'Filter Style', 'wbcom-essential' ) } initialOpen={ false }>
+					<ColorControl
+						label={ __( 'Filter Text Color', 'wbcom-essential' ) }
+						value={ filterTextColor }
+						onChange={ ( value ) => setAttributes( { filterTextColor: value } ) }
+					/>
 
 					<ColorControl
 						label={ __( 'Filter Active Color', 'wbcom-essential' ) }
@@ -415,9 +845,23 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 
 					<ColorControl
-						label={ __( 'Filter Text Color', 'wbcom-essential' ) }
-						value={ filterTextColor }
-						onChange={ ( value ) => setAttributes( { filterTextColor: value } ) }
+						label={ __( 'Filter Background', 'wbcom-essential' ) }
+						value={ filterBackground }
+						onChange={ ( value ) => setAttributes( { filterBackground: value } ) }
+					/>
+
+					<ColorControl
+						label={ __( 'Filter Active Background', 'wbcom-essential' ) }
+						value={ filterActiveBackground }
+						onChange={ ( value ) => setAttributes( { filterActiveBackground: value } ) }
+					/>
+
+					<RangeControl
+						label={ __( 'Filter Border Radius', 'wbcom-essential' ) }
+						value={ filterBorderRadius }
+						onChange={ ( value ) => setAttributes( { filterBorderRadius: value } ) }
+						min={ 0 }
+						max={ 30 }
 					/>
 				</PanelBody>
 			</InspectorControls>

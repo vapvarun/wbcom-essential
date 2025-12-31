@@ -27,4 +27,40 @@
 		animation: none !important;
 		opacity: 1 !important;
 	}
+
+	// Ensure content is visible in editor.
+	.swiper-slide:not(.swiper-slide-active) .wbcom-post-slider-content {
+		opacity: 1 !important;
+	}
+}
+
+// Inspector panel styles.
+.wbcom-post-slider-inspector {
+	.components-base-control {
+		margin-bottom: 16px;
+	}
+
+	.components-panel__body-title {
+		text-transform: none;
+	}
+}
+
+// Color control wrapper.
+.wbcom-color-control {
+	margin-bottom: 16px;
+
+	.components-base-control__label {
+		margin-bottom: 8px;
+		display: block;
+	}
+}
+
+// Default image preview in inspector.
+.wbcom-default-image-preview {
+	img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 4px;
+		margin-bottom: 8px;
+	}
 }

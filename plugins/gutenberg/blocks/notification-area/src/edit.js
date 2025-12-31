@@ -13,48 +13,90 @@ import {
 	PanelBody,
 	ToggleControl,
 	RangeControl,
+	ButtonGroup,
+	Button,
+	__experimentalDivider as Divider,
 } from '@wordpress/components';
+import { useState } from '@wordpress/element';
+import { desktop, tablet, mobile } from '@wordpress/icons';
 
 import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
-		showSearch,
-		showCart,
-		showMessages,
-		showNotifications,
-		showAvatar,
+		showSearchDesktop,
+		showSearchTablet,
+		showSearchMobile,
+		showCartDesktop,
+		showCartTablet,
+		showCartMobile,
+		showMessagesDesktop,
+		showMessagesTablet,
+		showMessagesMobile,
+		showNotificationsDesktop,
+		showNotificationsTablet,
+		showNotificationsMobile,
+		showAvatarDesktop,
+		showAvatarTablet,
+		showAvatarMobile,
 		showUserName,
 		iconColor,
 		iconHoverColor,
 		userNameColor,
+		userNameHoverColor,
 		badgeColor,
 		badgeTextColor,
 		dropdownBgColor,
 		dropdownBorderColor,
+		dropdownLinkColor,
+		dropdownLinkHoverColor,
+		dropdownLinkHoverBg,
 		iconSize,
 		avatarSize,
 		itemGap,
+		lineHeight,
+		counterTopSpace,
 	} = attributes;
+
+	// Current preview device.
+	const [ previewDevice, setPreviewDevice ] = useState( 'desktop' );
 
 	// Preview styles.
 	const containerStyle = {
 		'--icon-color': iconColor,
 		'--icon-hover-color': iconHoverColor,
 		'--username-color': userNameColor,
+		'--username-hover-color': userNameHoverColor,
 		'--badge-color': badgeColor,
 		'--badge-text-color': badgeTextColor,
 		'--dropdown-bg-color': dropdownBgColor,
 		'--dropdown-border-color': dropdownBorderColor,
+		'--dropdown-link-color': dropdownLinkColor,
+		'--dropdown-link-hover-color': dropdownLinkHoverColor,
+		'--dropdown-link-hover-bg': dropdownLinkHoverBg,
 		'--icon-size': `${ iconSize }px`,
 		'--avatar-size': `${ avatarSize }px`,
 		'--item-gap': `${ itemGap }px`,
+		'--line-height': `${ lineHeight }px`,
+		'--counter-top': `${ counterTopSpace }px`,
 	};
 
 	const blockProps = useBlockProps( {
 		className: 'wbcom-essential-notification-area-editor',
 		style: containerStyle,
 	} );
+
+	// Get visibility based on current preview device.
+	const isSearchVisible = previewDevice === 'desktop' ? showSearchDesktop :
+		previewDevice === 'tablet' ? showSearchTablet : showSearchMobile;
+	const isCartVisible = previewDevice === 'desktop' ? showCartDesktop :
+		previewDevice === 'tablet' ? showCartTablet : showCartMobile;
+	const isMessagesVisible = previewDevice === 'desktop' ? showMessagesDesktop :
+		previewDevice === 'tablet' ? showMessagesTablet : showMessagesMobile;
+	const isNotificationsVisible = previewDevice === 'desktop' ? showNotificationsDesktop :
+		previewDevice === 'tablet' ? showNotificationsTablet : showNotificationsMobile;
+	const isAvatarVisible = previewDevice === 'desktop' ? showAvatarDesktop :
+		previewDevice === 'tablet' ? showAvatarTablet : showAvatarMobile;
 
 	// SVG Icons.
 	const SearchIcon = () => (
@@ -87,42 +129,86 @@ export default function Edit( { attributes, setAttributes } ) {
 		</svg>
 	);
 
+	// Device visibility control component.
+	const DeviceVisibilityControl = ( { label, desktopAttr, tabletAttr, mobileAttr } ) => (
+		<div className="wbcom-device-visibility-control">
+			<span className="wbcom-device-visibility-label">{ label }</span>
+			<div className="wbcom-device-visibility-toggles">
+				<Button
+					icon={ desktop }
+					label={ __( 'Desktop', 'wbcom-essential' ) }
+					isPressed={ attributes[ desktopAttr ] }
+					onClick={ () => setAttributes( { [ desktopAttr ]: ! attributes[ desktopAttr ] } ) }
+					className={ attributes[ desktopAttr ] ? 'is-active' : '' }
+				/>
+				<Button
+					icon={ tablet }
+					label={ __( 'Tablet', 'wbcom-essential' ) }
+					isPressed={ attributes[ tabletAttr ] }
+					onClick={ () => setAttributes( { [ tabletAttr ]: ! attributes[ tabletAttr ] } ) }
+					className={ attributes[ tabletAttr ] ? 'is-active' : '' }
+				/>
+				<Button
+					icon={ mobile }
+					label={ __( 'Mobile', 'wbcom-essential' ) }
+					isPressed={ attributes[ mobileAttr ] }
+					onClick={ () => setAttributes( { [ mobileAttr ]: ! attributes[ mobileAttr ] } ) }
+					className={ attributes[ mobileAttr ] ? 'is-active' : '' }
+				/>
+			</div>
+		</div>
+	);
+
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Display Options', 'wbcom-essential' ) }>
-					<ToggleControl
-						label={ __( 'Show Search', 'wbcom-essential' ) }
-						checked={ showSearch }
-						onChange={ ( value ) => setAttributes( { showSearch: value } ) }
+					<p className="components-base-control__help" style={ { marginBottom: '16px' } }>
+						{ __( 'Toggle visibility per device. Green = visible, gray = hidden.', 'wbcom-essential' ) }
+					</p>
+
+					<DeviceVisibilityControl
+						label={ __( 'Search Form', 'wbcom-essential' ) }
+						desktopAttr="showSearchDesktop"
+						tabletAttr="showSearchTablet"
+						mobileAttr="showSearchMobile"
 					/>
-					<ToggleControl
-						label={ __( 'Show Cart (WooCommerce)', 'wbcom-essential' ) }
-						checked={ showCart }
-						onChange={ ( value ) => setAttributes( { showCart: value } ) }
-						help={ __( 'Requires WooCommerce plugin.', 'wbcom-essential' ) }
+
+					<DeviceVisibilityControl
+						label={ __( 'Cart (WooCommerce)', 'wbcom-essential' ) }
+						desktopAttr="showCartDesktop"
+						tabletAttr="showCartTablet"
+						mobileAttr="showCartMobile"
 					/>
-					<ToggleControl
-						label={ __( 'Show Messages (BuddyPress)', 'wbcom-essential' ) }
-						checked={ showMessages }
-						onChange={ ( value ) => setAttributes( { showMessages: value } ) }
-						help={ __( 'Requires BuddyPress Messages component.', 'wbcom-essential' ) }
+
+					<DeviceVisibilityControl
+						label={ __( 'Messages (BuddyPress)', 'wbcom-essential' ) }
+						desktopAttr="showMessagesDesktop"
+						tabletAttr="showMessagesTablet"
+						mobileAttr="showMessagesMobile"
 					/>
-					<ToggleControl
-						label={ __( 'Show Notifications (BuddyPress)', 'wbcom-essential' ) }
-						checked={ showNotifications }
-						onChange={ ( value ) => setAttributes( { showNotifications: value } ) }
-						help={ __( 'Requires BuddyPress Notifications component.', 'wbcom-essential' ) }
+
+					<DeviceVisibilityControl
+						label={ __( 'Notifications (BuddyPress)', 'wbcom-essential' ) }
+						desktopAttr="showNotificationsDesktop"
+						tabletAttr="showNotificationsTablet"
+						mobileAttr="showNotificationsMobile"
 					/>
-					<ToggleControl
-						label={ __( 'Show User Avatar', 'wbcom-essential' ) }
-						checked={ showAvatar }
-						onChange={ ( value ) => setAttributes( { showAvatar: value } ) }
+
+					<DeviceVisibilityControl
+						label={ __( 'User Avatar', 'wbcom-essential' ) }
+						desktopAttr="showAvatarDesktop"
+						tabletAttr="showAvatarTablet"
+						mobileAttr="showAvatarMobile"
 					/>
+
+					<Divider />
+
 					<ToggleControl
 						label={ __( 'Show User Name', 'wbcom-essential' ) }
 						checked={ showUserName }
 						onChange={ ( value ) => setAttributes( { showUserName: value } ) }
+						help={ __( 'Display user name next to avatar.', 'wbcom-essential' ) }
 					/>
 				</PanelBody>
 
@@ -148,9 +234,25 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 8 }
 						max={ 40 }
 					/>
+					<RangeControl
+						label={ __( 'Line Height (px)', 'wbcom-essential' ) }
+						value={ lineHeight }
+						onChange={ ( value ) => setAttributes( { lineHeight: value } ) }
+						min={ 40 }
+						max={ 150 }
+						help={ __( 'Controls overall height of the notification area.', 'wbcom-essential' ) }
+					/>
+					<RangeControl
+						label={ __( 'Counter Top Space (px)', 'wbcom-essential' ) }
+						value={ counterTopSpace }
+						onChange={ ( value ) => setAttributes( { counterTopSpace: value } ) }
+						min={ 0 }
+						max={ 50 }
+						help={ __( 'Position of badge counters from top.', 'wbcom-essential' ) }
+					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Icon Colors', 'wbcom-essential' ) } initialOpen={ false }>
 					<ColorControl
 						label={ __( 'Icon Color', 'wbcom-essential' ) }
 						value={ iconColor }
@@ -161,13 +263,24 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ iconHoverColor }
 						onChange={ ( value ) => setAttributes( { iconHoverColor: value } ) }
 					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'User Name Colors', 'wbcom-essential' ) } initialOpen={ false }>
 					<ColorControl
 						label={ __( 'User Name Color', 'wbcom-essential' ) }
 						value={ userNameColor }
 						onChange={ ( value ) => setAttributes( { userNameColor: value } ) }
 					/>
 					<ColorControl
-						label={ __( 'Badge Color', 'wbcom-essential' ) }
+						label={ __( 'User Name Hover Color', 'wbcom-essential' ) }
+						value={ userNameHoverColor }
+						onChange={ ( value ) => setAttributes( { userNameHoverColor: value } ) }
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Badge Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<ColorControl
+						label={ __( 'Badge Background', 'wbcom-essential' ) }
 						value={ badgeColor }
 						onChange={ ( value ) => setAttributes( { badgeColor: value } ) }
 					/>
@@ -189,39 +302,78 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ dropdownBorderColor }
 						onChange={ ( value ) => setAttributes( { dropdownBorderColor: value } ) }
 					/>
+					<ColorControl
+						label={ __( 'Link Color', 'wbcom-essential' ) }
+						value={ dropdownLinkColor }
+						onChange={ ( value ) => setAttributes( { dropdownLinkColor: value } ) }
+					/>
+					<ColorControl
+						label={ __( 'Link Hover Color', 'wbcom-essential' ) }
+						value={ dropdownLinkHoverColor }
+						onChange={ ( value ) => setAttributes( { dropdownLinkHoverColor: value } ) }
+					/>
+					<ColorControl
+						label={ __( 'Link Hover Background', 'wbcom-essential' ) }
+						value={ dropdownLinkHoverBg }
+						onChange={ ( value ) => setAttributes( { dropdownLinkHoverBg: value } ) }
+					/>
 				</PanelBody>
 			</InspectorControls>
 
 			<div { ...blockProps }>
+				<div className="wbcom-essential-notification-area-preview-header">
+					<span>{ __( 'Preview Device:', 'wbcom-essential' ) }</span>
+					<ButtonGroup>
+						<Button
+							icon={ desktop }
+							label={ __( 'Desktop', 'wbcom-essential' ) }
+							isPressed={ previewDevice === 'desktop' }
+							onClick={ () => setPreviewDevice( 'desktop' ) }
+						/>
+						<Button
+							icon={ tablet }
+							label={ __( 'Tablet', 'wbcom-essential' ) }
+							isPressed={ previewDevice === 'tablet' }
+							onClick={ () => setPreviewDevice( 'tablet' ) }
+						/>
+						<Button
+							icon={ mobile }
+							label={ __( 'Mobile', 'wbcom-essential' ) }
+							isPressed={ previewDevice === 'mobile' }
+							onClick={ () => setPreviewDevice( 'mobile' ) }
+						/>
+					</ButtonGroup>
+				</div>
+
 				<div className="wbcom-essential-notification-area">
-					{ showSearch && (
+					{ isSearchVisible && (
 						<div className="wbcom-essential-na__item wbcom-essential-na__search">
 							<SearchIcon />
 						</div>
 					) }
 
-					{ showCart && (
+					{ isCartVisible && (
 						<div className="wbcom-essential-na__item wbcom-essential-na__cart">
 							<CartIcon />
 							<span className="wbcom-essential-na__badge">3</span>
 						</div>
 					) }
 
-					{ showMessages && (
+					{ isMessagesVisible && (
 						<div className="wbcom-essential-na__item wbcom-essential-na__messages">
 							<MessageIcon />
 							<span className="wbcom-essential-na__badge">2</span>
 						</div>
 					) }
 
-					{ showNotifications && (
+					{ isNotificationsVisible && (
 						<div className="wbcom-essential-na__item wbcom-essential-na__notifications">
 							<BellIcon />
 							<span className="wbcom-essential-na__badge">5</span>
 						</div>
 					) }
 
-					{ showAvatar && (
+					{ isAvatarVisible && (
 						<div className="wbcom-essential-na__item wbcom-essential-na__user">
 							<div className="wbcom-essential-na__avatar">
 								<UserIcon />
@@ -233,10 +385,16 @@ export default function Edit( { attributes, setAttributes } ) {
 							) }
 						</div>
 					) }
+
+					{ ! isSearchVisible && ! isCartVisible && ! isMessagesVisible && ! isNotificationsVisible && ! isAvatarVisible && (
+						<p className="wbcom-essential-na__empty">
+							{ __( 'All items hidden on this device.', 'wbcom-essential' ) }
+						</p>
+					) }
 				</div>
 
 				<p className="wbcom-notification-area-notice">
-					{ __( 'Note: Icons display based on active plugins (WooCommerce, BuddyPress). User menu shows for logged-in users.', 'wbcom-essential' ) }
+					{ __( 'Icons display based on active plugins (WooCommerce, BuddyPress). User menu shows for logged-in users.', 'wbcom-essential' ) }
 				</p>
 			</div>
 		</>

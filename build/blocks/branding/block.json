@@ -82,6 +82,26 @@
         "textDecoration": ""
       }
     },
+    "descriptionTypography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": "",
+        "fontWeight": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "textTransform": "",
+        "textDecoration": ""
+      }
+    },
+    "titleLinkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "titleLinkTarget": {
+      "type": "string",
+      "default": "_self"
+    },
     "border": {
       "type": "object",
       "default": {
@@ -118,5 +138,6 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
   "render": "file:./render.php"
 }

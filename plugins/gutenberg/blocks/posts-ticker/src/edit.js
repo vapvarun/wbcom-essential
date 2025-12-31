@@ -83,7 +83,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ label: __( 'Horizontal Scroll', 'wbcom-essential' ), value: 'horizontal' },
 							{ label: __( 'Vertical Scroll', 'wbcom-essential' ), value: 'vertical' },
 							{ label: __( 'Marquee', 'wbcom-essential' ), value: 'marquee' },
-							{ label: __( 'Fade', 'wbcom-essential' ), value: 'fade' },
+							{ label: __( 'Typewriter', 'wbcom-essential' ), value: 'typewriter' },
 						] }
 						onChange={ ( value ) => setAttributes( { tickerType: value } ) }
 					/>

@@ -29,11 +29,19 @@ export default function Edit( { attributes, setAttributes } ) {
 		showAvatar,
 		avatarSize,
 		avatarBorderRadius,
+		avatarBorderStyle,
+		avatarBorderWidth,
+		avatarBorderColor,
+		avatarPadding,
+		avatarShadow,
 		layout,
 		contentAlign,
 		greetingColor,
+		greetingFontSize,
 		nameColor,
+		nameFontSize,
 		descriptionColor,
+		descriptionFontSize,
 		gap,
 		containerBgColor,
 		containerPadding,
@@ -45,14 +53,22 @@ export default function Edit( { attributes, setAttributes } ) {
 	// Preview styles.
 	const containerStyle = {
 		'--greeting-color': greetingColor,
+		'--greeting-font-size': `${ greetingFontSize }px`,
 		'--name-color': nameColor,
+		'--name-font-size': `${ nameFontSize }px`,
 		'--description-color': descriptionColor,
+		'--description-font-size': `${ descriptionFontSize }px`,
 		'--gap': `${ gap }px`,
 		'--container-bg': containerBgColor || 'transparent',
 		'--container-padding': `${ containerPadding }px`,
 		'--container-radius': `${ containerBorderRadius }px`,
 		'--avatar-size': `${ avatarSize }px`,
 		'--avatar-radius': `${ avatarBorderRadius }%`,
+		'--avatar-border-style': avatarBorderStyle,
+		'--avatar-border-width': `${ avatarBorderWidth }px`,
+		'--avatar-border-color': avatarBorderColor,
+		'--avatar-padding': `${ avatarPadding }px`,
+		'--avatar-shadow': `${ avatarShadow.horizontal }px ${ avatarShadow.vertical }px ${ avatarShadow.blur }px ${ avatarShadow.spread }px ${ avatarShadow.color }`,
 	};
 
 	const blockProps = useBlockProps( {
@@ -107,12 +123,108 @@ export default function Edit( { attributes, setAttributes } ) {
 								max={ 200 }
 							/>
 							<RangeControl
-								label={ __( 'Avatar Border Radius (%)', 'wbcom-essential' ) }
+								label={ __( 'Border Radius (%)', 'wbcom-essential' ) }
 								value={ avatarBorderRadius }
 								onChange={ ( value ) => setAttributes( { avatarBorderRadius: value } ) }
 								min={ 0 }
 								max={ 50 }
 							/>
+							<SelectControl
+								label={ __( 'Border Style', 'wbcom-essential' ) }
+								value={ avatarBorderStyle }
+								options={ [
+									{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+									{ label: __( 'Solid', 'wbcom-essential' ), value: 'solid' },
+									{ label: __( 'Dashed', 'wbcom-essential' ), value: 'dashed' },
+									{ label: __( 'Dotted', 'wbcom-essential' ), value: 'dotted' },
+									{ label: __( 'Double', 'wbcom-essential' ), value: 'double' },
+									{ label: __( 'Groove', 'wbcom-essential' ), value: 'groove' },
+									{ label: __( 'Ridge', 'wbcom-essential' ), value: 'ridge' },
+								] }
+								onChange={ ( value ) => setAttributes( { avatarBorderStyle: value } ) }
+							/>
+							{ avatarBorderStyle !== 'none' && (
+								<>
+									<RangeControl
+										label={ __( 'Border Width', 'wbcom-essential' ) }
+										value={ avatarBorderWidth }
+										onChange={ ( value ) => setAttributes( { avatarBorderWidth: value } ) }
+										min={ 1 }
+										max={ 20 }
+									/>
+									<ColorControl
+										label={ __( 'Border Color', 'wbcom-essential' ) }
+										value={ avatarBorderColor }
+										onChange={ ( value ) => setAttributes( { avatarBorderColor: value } ) }
+									/>
+								</>
+							) }
+							<RangeControl
+								label={ __( 'Padding', 'wbcom-essential' ) }
+								value={ avatarPadding }
+								onChange={ ( value ) => setAttributes( { avatarPadding: value } ) }
+								min={ 0 }
+								max={ 50 }
+								help={ __( 'Space between avatar and border', 'wbcom-essential' ) }
+							/>
+							<div style={ { marginBottom: '16px' } }>
+								<p style={ { marginBottom: '8px', fontWeight: '500' } }>
+									{ __( 'Box Shadow', 'wbcom-essential' ) }
+								</p>
+								<RangeControl
+									label={ __( 'Horizontal', 'wbcom-essential' ) }
+									value={ avatarShadow.horizontal }
+									onChange={ ( value ) =>
+										setAttributes( {
+											avatarShadow: { ...avatarShadow, horizontal: value },
+										} )
+									}
+									min={ -50 }
+									max={ 50 }
+								/>
+								<RangeControl
+									label={ __( 'Vertical', 'wbcom-essential' ) }
+									value={ avatarShadow.vertical }
+									onChange={ ( value ) =>
+										setAttributes( {
+											avatarShadow: { ...avatarShadow, vertical: value },
+										} )
+									}
+									min={ -50 }
+									max={ 50 }
+								/>
+								<RangeControl
+									label={ __( 'Blur', 'wbcom-essential' ) }
+									value={ avatarShadow.blur }
+									onChange={ ( value ) =>
+										setAttributes( {
+											avatarShadow: { ...avatarShadow, blur: value },
+										} )
+									}
+									min={ 0 }
+									max={ 100 }
+								/>
+								<RangeControl
+									label={ __( 'Spread', 'wbcom-essential' ) }
+									value={ avatarShadow.spread }
+									onChange={ ( value ) =>
+										setAttributes( {
+											avatarShadow: { ...avatarShadow, spread: value },
+										} )
+									}
+									min={ -50 }
+									max={ 50 }
+								/>
+								<ColorControl
+									label={ __( 'Shadow Color', 'wbcom-essential' ) }
+									value={ avatarShadow.color }
+									onChange={ ( value ) =>
+										setAttributes( {
+											avatarShadow: { ...avatarShadow, color: value },
+										} )
+									}
+								/>
+							</div>
 						</>
 					) }
 				</PanelBody>
@@ -169,21 +281,47 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Typography & Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<h3>{ __( 'Greeting Text', 'wbcom-essential' ) }</h3>
 					<ColorControl
-						label={ __( 'Greeting Color', 'wbcom-essential' ) }
+						label={ __( 'Color', 'wbcom-essential' ) }
 						value={ greetingColor }
 						onChange={ ( value ) => setAttributes( { greetingColor: value } ) }
 					/>
+					<RangeControl
+						label={ __( 'Font Size', 'wbcom-essential' ) }
+						value={ greetingFontSize }
+						onChange={ ( value ) => setAttributes( { greetingFontSize: value } ) }
+						min={ 10 }
+						max={ 48 }
+					/>
+					<hr />
+					<h3>{ __( 'User Name', 'wbcom-essential' ) }</h3>
 					<ColorControl
-						label={ __( 'Name Color', 'wbcom-essential' ) }
+						label={ __( 'Color', 'wbcom-essential' ) }
 						value={ nameColor }
 						onChange={ ( value ) => setAttributes( { nameColor: value } ) }
 					/>
+					<RangeControl
+						label={ __( 'Font Size', 'wbcom-essential' ) }
+						value={ nameFontSize }
+						onChange={ ( value ) => setAttributes( { nameFontSize: value } ) }
+						min={ 12 }
+						max={ 72 }
+					/>
+					<hr />
+					<h3>{ __( 'Description Text', 'wbcom-essential' ) }</h3>
 					<ColorControl
-						label={ __( 'Description Color', 'wbcom-essential' ) }
+						label={ __( 'Color', 'wbcom-essential' ) }
 						value={ descriptionColor }
 						onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
+					/>
+					<RangeControl
+						label={ __( 'Font Size', 'wbcom-essential' ) }
+						value={ descriptionFontSize }
+						onChange={ ( value ) => setAttributes( { descriptionFontSize: value } ) }
+						min={ 10 }
+						max={ 32 }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -198,6 +336,14 @@ export default function Edit( { attributes, setAttributes } ) {
 									width: avatarSize,
 									height: avatarSize,
 									borderRadius: `${ avatarBorderRadius }%`,
+									borderStyle: avatarBorderStyle,
+									borderWidth: avatarBorderStyle !== 'none' ? `${ avatarBorderWidth }px` : 0,
+									borderColor: avatarBorderColor,
+									padding: `${ avatarPadding }px`,
+									boxShadow:
+										avatarShadow.blur > 0 || avatarShadow.spread > 0
+											? `${ avatarShadow.horizontal }px ${ avatarShadow.vertical }px ${ avatarShadow.blur }px ${ avatarShadow.spread }px ${ avatarShadow.color }`
+											: 'none',
 								} }
 							>
 								<svg viewBox="0 0 24 24" width={ avatarSize * 0.5 } height={ avatarSize * 0.5 }>

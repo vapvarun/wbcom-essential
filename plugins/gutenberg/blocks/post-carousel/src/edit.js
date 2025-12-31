@@ -307,7 +307,73 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					</BaseControl>
 
+					<BaseControl
+						label={ __( 'Card Hover Background Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover background color for post cards', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardHoverBgColor || '' }
+							onChange={ ( color ) => setAttributes( { cardHoverBgColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
 
+					<SelectControl
+						label={ __( 'Image Hover Effect', 'wbcom-essential' ) }
+						value={ attributes.cardImgHoverEffect || 'zoom' }
+						options={ [
+							{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+							{ label: __( 'Zoom In', 'wbcom-essential' ), value: 'zoom' },
+							{ label: __( 'Zoom Out', 'wbcom-essential' ), value: 'zoom-out' },
+							{ label: __( 'Slide', 'wbcom-essential' ), value: 'slide' },
+							{ label: __( 'Rotate', 'wbcom-essential' ), value: 'rotate' },
+						] }
+						onChange={ ( value ) => setAttributes( { cardImgHoverEffect: value } ) }
+					/>
+
+					<BaseControl
+						label={ __( 'Category Badge Background Color', 'wbcom-essential' ) }
+						help={ __( 'Set the background color for category badges', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardBadgeBgColor || '' }
+							onChange={ ( color ) => setAttributes( { cardBadgeBgColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Category Badge Hover Background Color', 'wbcom-essential' ) }
+						help={ __( 'Set the hover background color for category badges', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardBadgeHoverBgColor || '' }
+							onChange={ ( color ) => setAttributes( { cardBadgeHoverBgColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Category Badge Text Color', 'wbcom-essential' ) }
+						help={ __( 'Set the text color for category badges', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardBadgeColor || '' }
+							onChange={ ( color ) => setAttributes( { cardBadgeColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
+
+					<BaseControl
+						label={ __( 'Footer Background Color', 'wbcom-essential' ) }
+						help={ __( 'Set the background color for card footer section', 'wbcom-essential' ) }
+					>
+						<ColorPicker
+							color={ attributes.cardFooterBgColor || '' }
+							onChange={ ( color ) => setAttributes( { cardFooterBgColor: color } ) }
+							enableAlpha
+						/>
+					</BaseControl>
 
 					<BaseControl
 						label={ __( 'Category Color', 'wbcom-essential' ) }

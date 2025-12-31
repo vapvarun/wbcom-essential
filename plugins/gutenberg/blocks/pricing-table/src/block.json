@@ -111,6 +111,18 @@
 			"type": "string",
 			"default": "#ffffff"
 		},
+		"buttonHoverBorder": {
+			"type": "string",
+			"default": "#2c5aa0"
+		},
+		"buttonSkin": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonSize": {
+			"type": "string",
+			"default": "wbcom-btn-md"
+		},
 		"ribbonBackground": {
 			"type": "string",
 			"default": "#48bb78"

@@ -51,6 +51,10 @@
 				}
 			]
 		},
+		"buttonSkin": {
+			"type": "string",
+			"default": "none"
+		},
 		"animationStyle": {
 			"type": "string",
 			"default": "none"
@@ -65,10 +69,92 @@
 		"buttonBgColor": {
 			"type": "string"
 		},
+		"enableGradient": {
+			"type": "boolean",
+			"default": false
+		},
+		"gradientType": {
+			"type": "string",
+			"default": "linear"
+		},
+		"gradientAngle": {
+			"type": "number",
+			"default": 180
+		},
+		"gradientColorStart": {
+			"type": "string",
+			"default": "#2271b1"
+		},
+		"gradientColorEnd": {
+			"type": "string",
+			"default": "#135e96"
+		},
+		"gradientStartPosition": {
+			"type": "number",
+			"default": 0
+		},
+		"gradientEndPosition": {
+			"type": "number",
+			"default": 100
+		},
 		"buttonHoverTextColor": {
 			"type": "string"
 		},
 		"buttonHoverBgColor": {
+			"type": "string"
+		},
+		"enableHoverGradient": {
+			"type": "boolean",
+			"default": false
+		},
+		"hoverGradientType": {
+			"type": "string",
+			"default": "linear"
+		},
+		"hoverGradientAngle": {
+			"type": "number",
+			"default": 180
+		},
+		"hoverGradientColorStart": {
+			"type": "string",
+			"default": "#135e96"
+		},
+		"hoverGradientColorEnd": {
+			"type": "string",
+			"default": "#0a3d5f"
+		},
+		"hoverGradientStartPosition": {
+			"type": "number",
+			"default": 0
+		},
+		"hoverGradientEndPosition": {
+			"type": "number",
+			"default": 100
+		},
+		"animationColor": {
+			"type": "string"
+		},
+		"borderStyle": {
+			"type": "string",
+			"default": "none"
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderStyleHover": {
+			"type": "string"
+		},
+		"borderWidthHover": {
+			"type": "number"
+		},
+		"borderColorHover": {
+			"type": "string"
+		},
+		"iconBgColor": {
 			"type": "string"
 		},
 		"dropdownTextColor": {
@@ -81,6 +167,12 @@
 			"type": "string"
 		},
 		"dropdownHoverBgColor": {
+			"type": "string"
+		},
+		"dropdownShadow": {
+			"type": "string"
+		},
+		"separatorColor": {
 			"type": "string"
 		}
 	},

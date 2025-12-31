@@ -43,6 +43,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"showDarkModeToggle": {
+			"type": "boolean",
+			"default": false
+		},
 		"spaceBetween": {
 			"type": "number",
 			"default": 10
@@ -63,13 +67,69 @@
 			"type": "string",
 			"default": "rgba(0,0,0,0.1)"
 		},
+		"separatorWidth": {
+			"type": "number",
+			"default": 1
+		},
 		"iconColor": {
 			"type": "string",
 			"default": "#303030"
 		},
+		"searchIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"searchIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"messagesIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"messagesIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"notificationsIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"notificationsIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"cartIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"cartIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkModeIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"darkModeIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconTextShadow": {
+			"type": "string",
+			"default": ""
+		},
 		"counterBgColor": {
 			"type": "string",
 			"default": "#1D76DA"
+		},
+		"counterTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"counterBoxShadow": {
+			"type": "string",
+			"default": ""
 		},
 		"dropdownBgColor": {
 			"type": "string",
@@ -79,11 +139,43 @@
 			"type": "string",
 			"default": "#303030"
 		},
+		"dropdownHoverBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"dropdownHoverTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"dropdownBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"dropdownBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"dropdownBorderRadius": {
+			"type": "number",
+			"default": 8
+		},
+		"dropdownBoxShadow": {
+			"type": "string",
+			"default": "0 4px 20px rgba(0, 0, 0, 0.15)"
+		},
 		"userNameColor": {
 			"type": "string",
 			"default": "#303030"
 		},
+		"userNameHoverColor": {
+			"type": "string",
+			"default": ""
+		},
 		"signInColor": {
+			"type": "string",
+			"default": ""
+		},
+		"signInHoverColor": {
 			"type": "string",
 			"default": ""
 		},
@@ -94,6 +186,18 @@
 		"signUpTextColor": {
 			"type": "string",
 			"default": ""
+		},
+		"signUpHoverBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"signUpHoverTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"signUpBorderRadius": {
+			"type": "number",
+			"default": 4
 		}
 	},
 	"supports": {

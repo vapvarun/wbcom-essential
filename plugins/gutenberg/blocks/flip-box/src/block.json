@@ -130,6 +130,42 @@
 		"borderRadius": {
 			"type": "number",
 			"default": 8
+		},
+		"buttonSkin": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverBackground": {
+			"type": "string",
+			"default": "#2c5aa0"
+		},
+		"buttonHoverTextColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"frontBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"frontBorderColor": {
+			"type": "string",
+			"default": "#e0e0e0"
+		},
+		"frontBoxShadow": {
+			"type": "boolean",
+			"default": false
+		},
+		"backBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"backBorderColor": {
+			"type": "string",
+			"default": "#e0e0e0"
+		},
+		"backBoxShadow": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

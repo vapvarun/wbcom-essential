@@ -33,6 +33,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"imageSize": {
+			"type": "string",
+			"default": "thumbnail"
+		},
 		"showRating": {
 			"type": "boolean",
 			"default": true
@@ -46,6 +50,11 @@
 			"default": "column",
 			"enum": [ "column", "column-reverse", "row", "row-reverse" ]
 		},
+		"authorInfoDirection": {
+			"type": "string",
+			"default": "row",
+			"enum": [ "column", "column-reverse", "row", "row-reverse" ]
+		},
 		"textAlign": {
 			"type": "string",
 			"default": "center"
@@ -54,9 +63,26 @@
 			"type": "string",
 			"default": "#ffffff"
 		},
+		"itemMaxWidth": {
+			"type": "number",
+			"default": 600
+		},
 		"borderRadius": {
 			"type": "number",
 			"default": 12
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"borderStyle": {
+			"type": "string",
+			"default": "solid",
+			"enum": [ "none", "solid", "dashed", "dotted", "double" ]
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
 		},
 		"quoteColor": {
 			"type": "string",
@@ -82,9 +108,50 @@
 			"type": "boolean",
 			"default": true
 		},
+		"boxShadowColor": {
+			"type": "string",
+			"default": "rgba(0, 0, 0, 0.08)"
+		},
+		"boxShadowBlur": {
+			"type": "number",
+			"default": 20
+		},
+		"boxShadowSpread": {
+			"type": "number",
+			"default": 0
+		},
+		"boxShadowHorizontal": {
+			"type": "number",
+			"default": 0
+		},
+		"boxShadowVertical": {
+			"type": "number",
+			"default": 4
+		},
 		"avatarSize": {
 			"type": "number",
 			"default": 60
+		},
+		"avatarBorderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"avatarBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"avatarBorderStyle": {
+			"type": "string",
+			"default": "solid",
+			"enum": [ "none", "solid", "dashed", "dotted", "double" ]
+		},
+		"avatarBorderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"avatarBoxShadow": {
+			"type": "boolean",
+			"default": false
 		},
 		"quoteIconSize": {
 			"type": "number",
@@ -109,6 +176,19 @@
 		"spacing": {
 			"type": "number",
 			"default": 24
+		},
+		"contentArrow": {
+			"type": "string",
+			"default": "none",
+			"enum": [ "none", "top", "bottom", "left", "right" ]
+		},
+		"contentArrowColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"contentArrowSize": {
+			"type": "number",
+			"default": 15
 		}
 	},
 	"textdomain": "wbcom-essential",

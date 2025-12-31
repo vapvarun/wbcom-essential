@@ -55,6 +55,20 @@ export default function Edit( { attributes, setAttributes } ) {
 		titleFontSize,
 		textFontSize,
 		itemSpacing,
+		contentBorderType,
+		contentBorderWidth,
+		contentBorderColor,
+		contentBoxShadowHorizontal,
+		contentBoxShadowVertical,
+		contentBoxShadowBlur,
+		contentBoxShadowSpread,
+		contentBoxShadowColor,
+		dateFontFamily,
+		dateFontWeight,
+		dateTextTransform,
+		dateLineHeight,
+		dateLetterSpacing,
+		imageBorderRadius,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -106,11 +120,31 @@ export default function Edit( { attributes, setAttributes } ) {
 		color: iconColor,
 	};
 
+	// Build box shadow value.
+	const boxShadowValue = contentBoxShadow
+		? `${ contentBoxShadowHorizontal }px ${ contentBoxShadowVertical }px ${ contentBoxShadowBlur }px ${ contentBoxShadowSpread }px ${ contentBoxShadowColor }`
+		: 'none';
+
+	// Build border value.
+	const borderValue = contentBorderType !== 'none'
+		? `${ contentBorderWidth }px ${ contentBorderType } ${ contentBorderColor }`
+		: 'none';
+
 	const contentStyle = {
 		backgroundColor: contentBackground,
 		borderRadius: `${ contentBorderRadius }px`,
 		padding: `${ contentPadding }px`,
-		boxShadow: contentBoxShadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none',
+		boxShadow: boxShadowValue,
+		border: borderValue,
+	};
+
+	// Date typography style.
+	const dateTypographyStyle = {
+		fontFamily: dateFontFamily || 'inherit',
+		fontWeight: dateFontWeight,
+		textTransform: dateTextTransform,
+		lineHeight: dateLineHeight,
+		letterSpacing: `${ dateLetterSpacing }px`,
 	};
 
 	const barStyle = {
@@ -122,6 +156,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		'--date-font-size': `${ dateFontSize }px`,
 		'--title-font-size': `${ titleFontSize }px`,
 		'--text-font-size': `${ textFontSize }px`,
+		'--image-border-radius': `${ imageBorderRadius }px`,
 	};
 
 	return (
@@ -316,11 +351,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 8 }
 						max={ 60 }
 					/>
-					<ToggleControl
-						label={ __( 'Box Shadow', 'wbcom-essential' ) }
-						checked={ contentBoxShadow }
-						onChange={ ( value ) => setAttributes( { contentBoxShadow: value } ) }
-					/>
 					<RangeControl
 						label={ __( 'Item Spacing', 'wbcom-essential' ) }
 						value={ itemSpacing }
@@ -331,23 +361,163 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Typography', 'wbcom-essential' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Content Border', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Border Type', 'wbcom-essential' ) }
+						value={ contentBorderType }
+						options={ [
+							{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+							{ label: __( 'Solid', 'wbcom-essential' ), value: 'solid' },
+							{ label: __( 'Dashed', 'wbcom-essential' ), value: 'dashed' },
+							{ label: __( 'Dotted', 'wbcom-essential' ), value: 'dotted' },
+							{ label: __( 'Double', 'wbcom-essential' ), value: 'double' },
+						] }
+						onChange={ ( value ) => setAttributes( { contentBorderType: value } ) }
+					/>
+					{ contentBorderType !== 'none' && (
+						<>
+							<RangeControl
+								label={ __( 'Border Width', 'wbcom-essential' ) }
+								value={ contentBorderWidth }
+								onChange={ ( value ) => setAttributes( { contentBorderWidth: value } ) }
+								min={ 1 }
+								max={ 10 }
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Border Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ contentBorderColor }
+								onChange={ ( value ) => setAttributes( { contentBorderColor: value } ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody title={ __( 'Content Box Shadow', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Enable Box Shadow', 'wbcom-essential' ) }
+						checked={ contentBoxShadow }
+						onChange={ ( value ) => setAttributes( { contentBoxShadow: value } ) }
+					/>
+					{ contentBoxShadow && (
+						<>
+							<RangeControl
+								label={ __( 'Horizontal Offset', 'wbcom-essential' ) }
+								value={ contentBoxShadowHorizontal }
+								onChange={ ( value ) => setAttributes( { contentBoxShadowHorizontal: value } ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Vertical Offset', 'wbcom-essential' ) }
+								value={ contentBoxShadowVertical }
+								onChange={ ( value ) => setAttributes( { contentBoxShadowVertical: value } ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Blur', 'wbcom-essential' ) }
+								value={ contentBoxShadowBlur }
+								onChange={ ( value ) => setAttributes( { contentBoxShadowBlur: value } ) }
+								min={ 0 }
+								max={ 100 }
+							/>
+							<RangeControl
+								label={ __( 'Spread', 'wbcom-essential' ) }
+								value={ contentBoxShadowSpread }
+								onChange={ ( value ) => setAttributes( { contentBoxShadowSpread: value } ) }
+								min={ -50 }
+								max={ 50 }
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Shadow Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ contentBoxShadowColor }
+								onChange={ ( value ) => setAttributes( { contentBoxShadowColor: value } ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody title={ __( 'Image Settings', 'wbcom-essential' ) } initialOpen={ false }>
 					<RangeControl
-						label={ __( 'Date Font Size', 'wbcom-essential' ) }
+						label={ __( 'Image Border Radius', 'wbcom-essential' ) }
+						value={ imageBorderRadius }
+						onChange={ ( value ) => setAttributes( { imageBorderRadius: value } ) }
+						min={ 0 }
+						max={ 50 }
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Typography', 'wbcom-essential' ) } initialOpen={ false }>
+					<p className="components-base-control__label" style={ { fontWeight: 'bold', marginBottom: '8px' } }>
+						{ __( 'Date Typography', 'wbcom-essential' ) }
+					</p>
+					<RangeControl
+						label={ __( 'Font Size', 'wbcom-essential' ) }
 						value={ dateFontSize }
 						onChange={ ( value ) => setAttributes( { dateFontSize: value } ) }
 						min={ 10 }
-						max={ 24 }
+						max={ 32 }
+					/>
+					<SelectControl
+						label={ __( 'Font Weight', 'wbcom-essential' ) }
+						value={ dateFontWeight }
+						options={ [
+							{ label: __( 'Normal', 'wbcom-essential' ), value: '400' },
+							{ label: __( 'Medium', 'wbcom-essential' ), value: '500' },
+							{ label: __( 'Semi Bold', 'wbcom-essential' ), value: '600' },
+							{ label: __( 'Bold', 'wbcom-essential' ), value: '700' },
+							{ label: __( 'Extra Bold', 'wbcom-essential' ), value: '800' },
+						] }
+						onChange={ ( value ) => setAttributes( { dateFontWeight: value } ) }
+					/>
+					<SelectControl
+						label={ __( 'Text Transform', 'wbcom-essential' ) }
+						value={ dateTextTransform }
+						options={ [
+							{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+							{ label: __( 'Uppercase', 'wbcom-essential' ), value: 'uppercase' },
+							{ label: __( 'Lowercase', 'wbcom-essential' ), value: 'lowercase' },
+							{ label: __( 'Capitalize', 'wbcom-essential' ), value: 'capitalize' },
+						] }
+						onChange={ ( value ) => setAttributes( { dateTextTransform: value } ) }
 					/>
 					<RangeControl
-						label={ __( 'Title Font Size', 'wbcom-essential' ) }
+						label={ __( 'Line Height', 'wbcom-essential' ) }
+						value={ dateLineHeight }
+						onChange={ ( value ) => setAttributes( { dateLineHeight: value } ) }
+						min={ 1 }
+						max={ 3 }
+						step={ 0.1 }
+					/>
+					<RangeControl
+						label={ __( 'Letter Spacing (px)', 'wbcom-essential' ) }
+						value={ dateLetterSpacing }
+						onChange={ ( value ) => setAttributes( { dateLetterSpacing: value } ) }
+						min={ -2 }
+						max={ 10 }
+						step={ 0.5 }
+					/>
+					<hr style={ { margin: '16px 0' } } />
+					<p className="components-base-control__label" style={ { fontWeight: 'bold', marginBottom: '8px' } }>
+						{ __( 'Title Typography', 'wbcom-essential' ) }
+					</p>
+					<RangeControl
+						label={ __( 'Font Size', 'wbcom-essential' ) }
 						value={ titleFontSize }
 						onChange={ ( value ) => setAttributes( { titleFontSize: value } ) }
 						min={ 14 }
-						max={ 40 }
+						max={ 48 }
 					/>
+					<hr style={ { margin: '16px 0' } } />
+					<p className="components-base-control__label" style={ { fontWeight: 'bold', marginBottom: '8px' } }>
+						{ __( 'Text Typography', 'wbcom-essential' ) }
+					</p>
 					<RangeControl
-						label={ __( 'Text Font Size', 'wbcom-essential' ) }
+						label={ __( 'Font Size', 'wbcom-essential' ) }
 						value={ textFontSize }
 						onChange={ ( value ) => setAttributes( { textFontSize: value } ) }
 						min={ 12 }
@@ -405,7 +575,7 @@ export default function Edit( { attributes, setAttributes } ) {
 										</div>
 									) }
 									{ item.date && (
-										<span className="wbcom-timeline-date" style={ { color: dateColor } }>
+										<span className="wbcom-timeline-date" style={ { color: dateColor, ...dateTypographyStyle } }>
 											{ item.date }
 										</span>
 									) }

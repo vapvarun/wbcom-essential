@@ -26,29 +26,90 @@ $show_all_forums_link = $attributes['showAllForumsLink'] ?? true;
 $all_forums_link_text = $attributes['allForumsLinkText'] ?? 'All Forums';
 $show_avatar          = $attributes['showAvatar'] ?? true;
 $avatar_size          = $attributes['avatarSize'] ?? 52;
-$avatar_border_radius = $attributes['avatarBorderRadius'] ?? 50;
+$avatar_border_type   = $attributes['avatarBorderType'] ?? 'none';
+$avatar_border_width  = $attributes['avatarBorderWidth'] ?? 0;
+$avatar_border_color  = $attributes['avatarBorderColor'] ?? '';
+$avatar_border_radius = $attributes['avatarBorderRadius'] ?? array(
+	'top'    => 50,
+	'right'  => 50,
+	'bottom' => 50,
+	'left'   => 50,
+	'unit'   => '%',
+);
+$avatar_opacity       = $attributes['avatarOpacity'] ?? 1;
 $avatar_spacing       = $attributes['avatarSpacing'] ?? 15;
 $show_meta            = $attributes['showMeta'] ?? true;
 $show_meta_replies    = $attributes['showMetaReplies'] ?? true;
 $show_last_reply      = $attributes['showLastReply'] ?? true;
+$box_border_type      = $attributes['boxBorderType'] ?? 'solid';
+$box_border_width     = $attributes['boxBorderWidth'] ?? 1;
 $box_bg_color         = $attributes['boxBgColor'] ?? '#ffffff';
 $box_border_color     = $attributes['boxBorderColor'] ?? '#e3e3e3';
-$box_border_radius    = $attributes['boxBorderRadius'] ?? 4;
+$box_border_radius    = $attributes['boxBorderRadius'] ?? array(
+	'top'    => 4,
+	'right'  => 4,
+	'bottom' => 4,
+	'left'   => 4,
+	'unit'   => 'px',
+);
+$all_forums_link_color = $attributes['allForumsLinkColor'] ?? '';
+$title_font_size      = $attributes['titleFontSize'] ?? 14;
+$title_font_weight    = $attributes['titleFontWeight'] ?? '400';
+$title_line_height    = $attributes['titleLineHeight'] ?? 1.5;
 $title_color          = $attributes['titleColor'] ?? '#122B46';
 $title_hover_color    = $attributes['titleHoverColor'] ?? '#007CFF';
+$meta_font_size       = $attributes['metaFontSize'] ?? 13;
 $meta_color           = $attributes['metaColor'] ?? '#A3A5A9';
 $last_reply_color     = $attributes['lastReplyColor'] ?? '#4D5C6D';
-$all_forums_link_color = $attributes['allForumsLinkColor'] ?? '#1d76da';
 
-// Build inline styles - ONLY layout/spacing, NEVER colors.
-// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly.
+/**
+ * Helper function to convert dimension object to CSS value.
+ *
+ * @param mixed $dimension The dimension value (object or number).
+ * @return string The CSS dimension value.
+ */
+function wbcom_forums_get_dimension( $dimension ) {
+	if ( is_array( $dimension ) && isset( $dimension['top'] ) ) {
+		$unit = $dimension['unit'] ?? 'px';
+		return sprintf(
+			'%s%s %s%s %s%s %s%s',
+			$dimension['top'] ?? 0,
+			$unit,
+			$dimension['right'] ?? 0,
+			$unit,
+			$dimension['bottom'] ?? 0,
+			$unit,
+			$dimension['left'] ?? 0,
+			$unit
+		);
+	}
+	return $dimension . 'px';
+}
+
+// Build inline styles.
 $inline_styles = array(
-	'--box-radius'       => $box_border_radius . 'px',
-	'--avatar-size'      => $avatar_size . 'px',
-	'--avatar-radius'    => $avatar_border_radius . '%',
-	'--avatar-spacing'   => $avatar_spacing . 'px',
-	'--row-space'        => $row_space . 'px',
+	'--box-border-type'   => $box_border_type,
+	'--box-border-width'  => $box_border_width . 'px',
+	'--box-border-color'  => $box_border_color,
+	'--box-radius'        => wbcom_forums_get_dimension( $box_border_radius ),
+	'--box-bg'            => $box_bg_color,
+	'--avatar-size'       => $avatar_size . 'px',
+	'--avatar-border-type' => $avatar_border_type,
+	'--avatar-border-width' => $avatar_border_width . 'px',
+	'--avatar-border-color' => $avatar_border_color,
+	'--avatar-radius'     => wbcom_forums_get_dimension( $avatar_border_radius ),
+	'--avatar-opacity'    => $avatar_opacity,
+	'--avatar-spacing'    => $avatar_spacing . 'px',
+	'--row-space'         => $row_space . 'px',
+	'--title-font-size'   => $title_font_size . 'px',
+	'--title-font-weight' => $title_font_weight,
+	'--title-line-height' => $title_line_height,
+	'--title-color'       => $title_color,
+	'--title-hover'       => $title_hover_color,
+	'--meta-font-size'    => $meta_font_size . 'px',
+	'--meta-color'        => $meta_color,
+	'--last-reply-color'  => $last_reply_color,
+	'--link-color'        => $all_forums_link_color ? $all_forums_link_color : $title_color,
 );
 
 $style_string = '';

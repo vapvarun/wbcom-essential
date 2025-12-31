@@ -12,6 +12,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		const toggle = menuBlock.querySelector( '.smart-menu-toggle' );
 		const nav = menuBlock.querySelector( '.smart-menu-nav' );
 		const breakpoint = parseInt( container.dataset.breakpoint || 1024 );
+		const collapsibleBehavior =
+			container.dataset.collapsibleBehavior || 'link';
+		const submenuAnimation = container.dataset.submenuAnimation || '';
 
 		// Mobile toggle functionality
 		if ( toggle && nav ) {
@@ -45,7 +48,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		// Listen for resize
 		window.addEventListener( 'resize', handleResize );
 
-		// Mobile submenu toggle
+		// Apply submenu animation
+		function applySubmenuAnimation( submenu ) {
+			if ( submenuAnimation ) {
+				submenu.style.animation = `${ submenuAnimation } 0.3s ease`;
+			}
+		}
+
+		// Mobile submenu toggle with collapsible behavior
 		const menuItems = menuBlock.querySelectorAll(
 			'.menu-item-has-children'
 		);
@@ -56,11 +66,55 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			const dropdownIcon = item.querySelector( '.dropdown-icon' );
 
 			if ( link && submenu ) {
+				// Desktop view hover
+				if ( ! menuBlock.classList.contains( 'mobile-view' ) ) {
+					item.addEventListener( 'mouseenter', function () {
+						applySubmenuAnimation( submenu );
+					} );
+				}
+
 				link.addEventListener( 'click', function ( e ) {
-					// Handle desktop view - toggle submenu expansion
-					if ( ! menuBlock.classList.contains( 'mobile-view' ) ) {
-						e.preventDefault();
-						item.classList.toggle( 'submenu-expanded' );
+					const isMobile =
+						menuBlock.classList.contains( 'mobile-view' );
+
+					// Handle collapsible behavior
+					if (
+						collapsibleBehavior === 'accordion' ||
+						collapsibleBehavior === 'accordion-toggle' ||
+						collapsibleBehavior === 'accordion-link'
+					) {
+						// Close all other submenus at same level
+						const parent = item.parentElement;
+						const siblings = parent.querySelectorAll(
+							':scope > .menu-item-has-children'
+						);
+						siblings.forEach( function ( sibling ) {
+							if ( sibling !== item ) {
+								const siblingSubmenu =
+									sibling.querySelector( '.sub-menu' );
+								if ( siblingSubmenu ) {
+									siblingSubmenu.classList.remove( 'open' );
+									sibling.classList.remove(
+										'submenu-expanded'
+									);
+								}
+							}
+						} );
+					}
+
+					// Handle desktop view
+					if ( ! isMobile ) {
+						if (
+							collapsibleBehavior === 'link' ||
+							collapsibleBehavior === 'accordion-link'
+						) {
+							// Allow link navigation, don't prevent default
+						} else {
+							e.preventDefault();
+							item.classList.toggle( 'submenu-expanded' );
+							submenu.classList.toggle( 'open' );
+							applySubmenuAnimation( submenu );
+						}
 					}
 					// Handle mobile view
 					else {
@@ -70,10 +124,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 						if ( isClickOnIcon ) {
 							e.preventDefault();
+						} else if (
+							collapsibleBehavior === 'link' ||
+							collapsibleBehavior === 'accordion-link'
+						) {
+							// Allow navigation for link behavior
+							return;
 						}
 
 						// Toggle submenu in mobile view
 						submenu.classList.toggle( 'open' );
+						applySubmenuAnimation( submenu );
 					}
 				} );
 			}

@@ -67,6 +67,19 @@ $mobile_menu_color         = $attributes['mobileMenuColor'] ?? '';
 $mobile_menu_bg            = $attributes['mobileMenuBackground'] ?? array();
 $mobile_menu_width         = $attributes['mobileMenuWidth'] ?? array();
 
+// New submenu attributes.
+$collapsible_behavior      = $attributes['collapsibleBehavior'] ?? 'link';
+$submenu_animation         = $attributes['submenuAnimation'] ?? '';
+$submenu_min_width         = $attributes['submenuMinWidth'] ?? array( 'size' => 10, 'unit' => 'em' );
+$submenu_max_width         = $attributes['submenuMaxWidth'] ?? array( 'size' => 20, 'unit' => 'em' );
+$submenu_offset_x          = $attributes['submenuOffsetX'] ?? 0;
+$submenu_offset_y          = $attributes['submenuOffsetY'] ?? 0;
+$submenu_level2_offset_x   = $attributes['submenuLevel2OffsetX'] ?? 0;
+$submenu_level2_offset_y   = $attributes['submenuLevel2OffsetY'] ?? 0;
+$submenu_transition        = $attributes['submenuTransitionDuration'] ?? 0.3;
+$submenu_indicator_icon    = $attributes['submenuIndicatorIcon'] ?? 'caret';
+$submenu_indicator_size    = $attributes['submenuIndicatorIconSize'] ?? 12;
+
 // Build classes.
 $container_classes = array( 'smart-menu-container' );
 $menu_classes      = array(
@@ -123,6 +136,14 @@ $menu_style .= '--sub-item-color-hover: ' . esc_attr( $sub_menu_item_color_hover
 $menu_style .= '--sub-item-bg-hover: ' . esc_attr( $sub_menu_item_bg_hover ) . ';';
 $menu_style .= '--sub-item-color-active: ' . esc_attr( $sub_menu_item_color_active ) . ';';
 $menu_style .= '--sub-item-bg-active: ' . esc_attr( $sub_menu_item_bg_active ) . ';';
+$menu_style .= '--submenu-min-width: ' . esc_attr( $submenu_min_width['size'] . $submenu_min_width['unit'] ) . ';';
+$menu_style .= '--submenu-max-width: ' . esc_attr( $submenu_max_width['size'] . $submenu_max_width['unit'] ) . ';';
+$menu_style .= '--submenu-offset-x: ' . esc_attr( $submenu_offset_x ) . 'px;';
+$menu_style .= '--submenu-offset-y: ' . esc_attr( $submenu_offset_y ) . 'px;';
+$menu_style .= '--submenu-level2-offset-x: ' . esc_attr( $submenu_level2_offset_x ) . 'px;';
+$menu_style .= '--submenu-level2-offset-y: ' . esc_attr( $submenu_level2_offset_y ) . 'px;';
+$menu_style .= '--submenu-transition: ' . esc_attr( $submenu_transition ) . 's;';
+$menu_style .= '--submenu-indicator-size: ' . esc_attr( $submenu_indicator_size ) . 'px;';
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'wbcom-essential-smart-menu' ) );
@@ -132,6 +153,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'wbcom-ess
 	<div class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>"
 		data-breakpoint="<?php echo esc_attr( $breakpoint ); ?>"
 		data-mtoggle="<?php echo esc_attr( $show_toggle ? 'yes' : '' ); ?>"
+		data-collapsible-behavior="<?php echo esc_attr( $collapsible_behavior ); ?>"
+		data-submenu-animation="<?php echo esc_attr( $submenu_animation ); ?>"
+		data-submenu-indicator="<?php echo esc_attr( $submenu_indicator_icon ); ?>"
 		style="<?php echo esc_attr( $container_style ); ?>">
 
 		<?php if ( $show_toggle ) : ?>

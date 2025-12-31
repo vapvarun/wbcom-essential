@@ -30,35 +30,68 @@ export default function Edit( { attributes, setAttributes } ) {
 		authorRole,
 		imageId,
 		imageUrl,
+		imageSize,
 		showRating,
 		rating,
 		layout,
+		authorInfoDirection,
 		textAlign,
 		backgroundColor,
+		itemMaxWidth,
 		borderRadius,
+		borderWidth,
+		borderStyle,
+		borderColor,
 		quoteColor,
 		nameColor,
 		roleColor,
 		ratingColor,
 		padding,
 		boxShadow,
+		boxShadowColor,
+		boxShadowBlur,
+		boxShadowSpread,
+		boxShadowHorizontal,
+		boxShadowVertical,
 		avatarSize,
+		avatarBorderRadius,
+		avatarBorderWidth,
+		avatarBorderStyle,
+		avatarBorderColor,
+		avatarBoxShadow,
 		quoteIconSize,
 		quoteIconColor,
 		quoteFontSize,
 		nameFontSize,
 		roleFontSize,
 		spacing,
+		contentArrow,
+		contentArrowColor,
+		contentArrowSize,
 	} = attributes;
 
+	// Build box shadow string
+	const boxShadowValue = boxShadow
+		? `${ boxShadowHorizontal }px ${ boxShadowVertical }px ${ boxShadowBlur }px ${ boxShadowSpread }px ${ boxShadowColor }`
+		: 'none';
+
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-testimonial layout-${ layout } text-${ textAlign }`,
+		className: `wbcom-essential-testimonial layout-${ layout } info-${ authorInfoDirection } text-${ textAlign } arrow-${ contentArrow }`,
 		style: {
 			'--bg-color': backgroundColor,
+			'--item-max-width': `${ itemMaxWidth }px`,
 			'--border-radius': `${ borderRadius }px`,
+			'--border-width': `${ borderWidth }px`,
+			'--border-style': borderStyle,
+			'--border-color': borderColor,
 			'--padding': `${ padding }px`,
-			'--box-shadow': boxShadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
+			'--box-shadow': boxShadowValue,
 			'--avatar-size': `${ avatarSize }px`,
+			'--avatar-border-radius': `${ avatarBorderRadius }%`,
+			'--avatar-border-width': `${ avatarBorderWidth }px`,
+			'--avatar-border-style': avatarBorderStyle,
+			'--avatar-border-color': avatarBorderColor,
+			'--avatar-box-shadow': avatarBoxShadow ? '0 4px 10px rgba(0, 0, 0, 0.15)' : 'none',
 			'--quote-icon-size': `${ quoteIconSize }px`,
 			'--quote-icon-color': quoteIconColor,
 			'--quote-font-size': `${ quoteFontSize }px`,
@@ -69,6 +102,8 @@ export default function Edit( { attributes, setAttributes } ) {
 			'--name-color': nameColor,
 			'--role-color': roleColor,
 			'--rating-color': ratingColor,
+			'--arrow-color': contentArrowColor,
+			'--arrow-size': `${ contentArrowSize }px`,
 		},
 	} );
 
@@ -89,6 +124,48 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 		return stars;
 	};
+
+	/**
+	 * Image size options.
+	 */
+	const imageSizeOptions = [
+		{ label: __( 'Thumbnail', 'wbcom-essential' ), value: 'thumbnail' },
+		{ label: __( 'Medium', 'wbcom-essential' ), value: 'medium' },
+		{ label: __( 'Large', 'wbcom-essential' ), value: 'large' },
+		{ label: __( 'Full', 'wbcom-essential' ), value: 'full' },
+	];
+
+	/**
+	 * Border style options.
+	 */
+	const borderStyleOptions = [
+		{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+		{ label: __( 'Solid', 'wbcom-essential' ), value: 'solid' },
+		{ label: __( 'Dashed', 'wbcom-essential' ), value: 'dashed' },
+		{ label: __( 'Dotted', 'wbcom-essential' ), value: 'dotted' },
+		{ label: __( 'Double', 'wbcom-essential' ), value: 'double' },
+	];
+
+	/**
+	 * Flex direction options.
+	 */
+	const flexDirectionOptions = [
+		{ label: __( 'Column', 'wbcom-essential' ), value: 'column' },
+		{ label: __( 'Column Reverse', 'wbcom-essential' ), value: 'column-reverse' },
+		{ label: __( 'Row', 'wbcom-essential' ), value: 'row' },
+		{ label: __( 'Row Reverse', 'wbcom-essential' ), value: 'row-reverse' },
+	];
+
+	/**
+	 * Arrow options.
+	 */
+	const arrowOptions = [
+		{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+		{ label: __( 'Top', 'wbcom-essential' ), value: 'top' },
+		{ label: __( 'Bottom', 'wbcom-essential' ), value: 'bottom' },
+		{ label: __( 'Left', 'wbcom-essential' ), value: 'left' },
+		{ label: __( 'Right', 'wbcom-essential' ), value: 'right' },
+	];
 
 	return (
 		<>
@@ -140,6 +217,16 @@ export default function Edit( { attributes, setAttributes } ) {
 							) }
 						/>
 					</MediaUploadCheck>
+					{ imageUrl && (
+						<SelectControl
+							label={ __( 'Image Size', 'wbcom-essential' ) }
+							value={ imageSize }
+							options={ imageSizeOptions }
+							onChange={ ( value ) =>
+								setAttributes( { imageSize: value } )
+							}
+						/>
+					) }
 					<TextControl
 						label={ __( 'Author Name', 'wbcom-essential' ) }
 						value={ authorName }
@@ -179,17 +266,22 @@ export default function Edit( { attributes, setAttributes } ) {
 					initialOpen={ false }
 				>
 					<SelectControl
-						label={ __( 'Direction', 'wbcom-essential' ) }
+						label={ __( 'Item Direction', 'wbcom-essential' ) }
 						value={ layout }
-						options={ [
-							{ label: __( 'Column', 'wbcom-essential' ), value: 'column' },
-							{ label: __( 'Column Reverse', 'wbcom-essential' ), value: 'column-reverse' },
-							{ label: __( 'Row', 'wbcom-essential' ), value: 'row' },
-							{ label: __( 'Row Reverse', 'wbcom-essential' ), value: 'row-reverse' },
-						] }
+						options={ flexDirectionOptions }
 						onChange={ ( value ) =>
 							setAttributes( { layout: value } )
 						}
+						help={ __( 'Controls the main testimonial layout', 'wbcom-essential' ) }
+					/>
+					<SelectControl
+						label={ __( 'Author Info Direction', 'wbcom-essential' ) }
+						value={ authorInfoDirection }
+						options={ flexDirectionOptions }
+						onChange={ ( value ) =>
+							setAttributes( { authorInfoDirection: value } )
+						}
+						help={ __( 'Controls the author section layout', 'wbcom-essential' ) }
 					/>
 					<p className="components-base-control__label">
 						{ __( 'Text Alignment', 'wbcom-essential' ) }
@@ -208,6 +300,15 @@ export default function Edit( { attributes, setAttributes } ) {
 						) ) }
 					</ButtonGroup>
 					<RangeControl
+						label={ __( 'Max Width', 'wbcom-essential' ) }
+						value={ itemMaxWidth }
+						onChange={ ( value ) =>
+							setAttributes( { itemMaxWidth: value } )
+						}
+						min={ 200 }
+						max={ 1200 }
+					/>
+					<RangeControl
 						label={ __( 'Padding', 'wbcom-essential' ) }
 						value={ padding }
 						onChange={ ( value ) =>
@@ -215,15 +316,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						min={ 0 }
 						max={ 80 }
-					/>
-					<RangeControl
-						label={ __( 'Border Radius', 'wbcom-essential' ) }
-						value={ borderRadius }
-						onChange={ ( value ) =>
-							setAttributes( { borderRadius: value } )
-						}
-						min={ 0 }
-						max={ 50 }
 					/>
 					<RangeControl
 						label={ __( 'Spacing', 'wbcom-essential' ) }
@@ -235,6 +327,60 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 60 }
 						help={ __( 'Space between content and author', 'wbcom-essential' ) }
 					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Item Style', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<p className="components-base-control__label">
+						{ __( 'Background Color', 'wbcom-essential' ) }
+					</p>
+					<ColorPalette
+						value={ backgroundColor }
+						onChange={ ( value ) =>
+							setAttributes( { backgroundColor: value } )
+						}
+					/>
+					<RangeControl
+						label={ __( 'Border Radius', 'wbcom-essential' ) }
+						value={ borderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { borderRadius: value } )
+						}
+						min={ 0 }
+						max={ 50 }
+					/>
+					<RangeControl
+						label={ __( 'Border Width', 'wbcom-essential' ) }
+						value={ borderWidth }
+						onChange={ ( value ) =>
+							setAttributes( { borderWidth: value } )
+						}
+						min={ 0 }
+						max={ 10 }
+					/>
+					{ borderWidth > 0 && (
+						<>
+							<SelectControl
+								label={ __( 'Border Style', 'wbcom-essential' ) }
+								value={ borderStyle }
+								options={ borderStyleOptions }
+								onChange={ ( value ) =>
+									setAttributes( { borderStyle: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Border Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ borderColor }
+								onChange={ ( value ) =>
+									setAttributes( { borderColor: value } )
+								}
+							/>
+						</>
+					) }
 					<ToggleControl
 						label={ __( 'Box Shadow', 'wbcom-essential' ) }
 						checked={ boxShadow }
@@ -242,6 +388,46 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { boxShadow: value } )
 						}
 					/>
+					{ boxShadow && (
+						<>
+							<RangeControl
+								label={ __( 'Horizontal Offset', 'wbcom-essential' ) }
+								value={ boxShadowHorizontal }
+								onChange={ ( value ) =>
+									setAttributes( { boxShadowHorizontal: value } )
+								}
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Vertical Offset', 'wbcom-essential' ) }
+								value={ boxShadowVertical }
+								onChange={ ( value ) =>
+									setAttributes( { boxShadowVertical: value } )
+								}
+								min={ -50 }
+								max={ 50 }
+							/>
+							<RangeControl
+								label={ __( 'Blur', 'wbcom-essential' ) }
+								value={ boxShadowBlur }
+								onChange={ ( value ) =>
+									setAttributes( { boxShadowBlur: value } )
+								}
+								min={ 0 }
+								max={ 100 }
+							/>
+							<RangeControl
+								label={ __( 'Spread', 'wbcom-essential' ) }
+								value={ boxShadowSpread }
+								onChange={ ( value ) =>
+									setAttributes( { boxShadowSpread: value } )
+								}
+								min={ -50 }
+								max={ 50 }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
@@ -255,8 +441,91 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { avatarSize: value } )
 						}
 						min={ 30 }
-						max={ 150 }
+						max={ 200 }
 					/>
+					<RangeControl
+						label={ __( 'Border Radius (%)', 'wbcom-essential' ) }
+						value={ avatarBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { avatarBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 50 }
+						help={ __( '50% creates a circle', 'wbcom-essential' ) }
+					/>
+					<RangeControl
+						label={ __( 'Border Width', 'wbcom-essential' ) }
+						value={ avatarBorderWidth }
+						onChange={ ( value ) =>
+							setAttributes( { avatarBorderWidth: value } )
+						}
+						min={ 0 }
+						max={ 10 }
+					/>
+					{ avatarBorderWidth > 0 && (
+						<>
+							<SelectControl
+								label={ __( 'Border Style', 'wbcom-essential' ) }
+								value={ avatarBorderStyle }
+								options={ borderStyleOptions }
+								onChange={ ( value ) =>
+									setAttributes( { avatarBorderStyle: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Border Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ avatarBorderColor }
+								onChange={ ( value ) =>
+									setAttributes( { avatarBorderColor: value } )
+								}
+							/>
+						</>
+					) }
+					<ToggleControl
+						label={ __( 'Avatar Shadow', 'wbcom-essential' ) }
+						checked={ avatarBoxShadow }
+						onChange={ ( value ) =>
+							setAttributes( { avatarBoxShadow: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Content Arrow', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<SelectControl
+						label={ __( 'Arrow Position', 'wbcom-essential' ) }
+						value={ contentArrow }
+						options={ arrowOptions }
+						onChange={ ( value ) =>
+							setAttributes( { contentArrow: value } )
+						}
+					/>
+					{ contentArrow !== 'none' && (
+						<>
+							<RangeControl
+								label={ __( 'Arrow Size', 'wbcom-essential' ) }
+								value={ contentArrowSize }
+								onChange={ ( value ) =>
+									setAttributes( { contentArrowSize: value } )
+								}
+								min={ 5 }
+								max={ 30 }
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Arrow Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ contentArrowColor }
+								onChange={ ( value ) =>
+									setAttributes( { contentArrowColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
@@ -320,15 +589,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<p className="components-base-control__label">
-						{ __( 'Background', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ backgroundColor }
-						onChange={ ( value ) =>
-							setAttributes( { backgroundColor: value } )
-						}
-					/>
 					<p className="components-base-control__label">
 						{ __( 'Quote Color', 'wbcom-essential' ) }
 					</p>

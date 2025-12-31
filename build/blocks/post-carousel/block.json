@@ -207,6 +207,10 @@
       "type": "string",
       "default": ""
     },
+    "cardHoverBgColor": {
+      "type": "string",
+      "default": ""
+    },
     "cardBorder": {
       "type": "object",
       "default": {}
@@ -246,6 +250,10 @@
     "cardImgAnimation": {
       "type": "string",
       "default": ""
+    },
+    "cardImgHoverEffect": {
+      "type": "string",
+      "default": "zoom"
     },
     "thumbnailOpacity": {
       "type": "number",
@@ -345,6 +353,10 @@
       "type": "string",
       "default": ""
     },
+    "cardFooterBgColor": {
+      "type": "string",
+      "default": ""
+    },
     "cardFooterBorder": {
       "type": "object",
       "default": {}
@@ -400,6 +412,14 @@
       "default": {}
     },
     "cardBadgeColor": {
+      "type": "string",
+      "default": ""
+    },
+    "cardBadgeBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "cardBadgeHoverBgColor": {
       "type": "string",
       "default": ""
     },

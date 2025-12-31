@@ -5,9 +5,9 @@
 	"version": "1.0.0",
 	"title": "Profile Completion",
 	"category": "wbcom-essential-buddypress",
-	"icon": "chart-pie",
-	"description": "Display user profile completion progress with circle or linear style.",
-	"keywords": [ "profile", "completion", "progress", "buddypress", "xprofile" ],
+	"icon": "chart-line",
+	"description": "Display BuddyPress member profile completion progress with customizable styles.",
+	"keywords": ["buddypress", "profile", "completion", "progress", "percentage"],
 	"textdomain": "wbcom-essential",
 	"example": {},
 	"attributes": {
@@ -17,41 +17,25 @@
 		},
 		"alignment": {
 			"type": "string",
-			"default": "center"
+			"default": "right"
 		},
-		"hideOnComplete": {
+		"profilePhoto": {
+			"type": "boolean",
+			"default": true
+		},
+		"coverPhoto": {
+			"type": "boolean",
+			"default": true
+		},
+		"profileGroups": {
+			"type": "object",
+			"default": {}
+		},
+		"hideWidget": {
 			"type": "boolean",
 			"default": false
 		},
-		"showProfileButton": {
-			"type": "boolean",
-			"default": true
-		},
-		"showProfilePhoto": {
-			"type": "boolean",
-			"default": true
-		},
-		"showCoverPhoto": {
-			"type": "boolean",
-			"default": true
-		},
-		"selectedFieldGroups": {
-			"type": "array",
-			"default": []
-		},
-		"fieldGroupsInitialized": {
-			"type": "boolean",
-			"default": false
-		},
-		"showHeader": {
-			"type": "boolean",
-			"default": true
-		},
-		"showCompletionIcon": {
-			"type": "boolean",
-			"default": true
-		},
-		"showCompletionStatus": {
+		"showProfileBtn": {
 			"type": "boolean",
 			"default": true
 		},
@@ -63,7 +47,7 @@
 			"type": "string",
 			"default": "Complete"
 		},
-		"completeButtonText": {
+		"completionButtonText": {
 			"type": "string",
 			"default": "Complete Profile"
 		},
@@ -71,13 +55,57 @@
 			"type": "string",
 			"default": "Edit Profile"
 		},
-		"progressSize": {
+		"showHeading": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCompletionIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCompletionStatus": {
+			"type": "boolean",
+			"default": true
+		},
+		"boxWidth": {
 			"type": "number",
 			"default": 100
 		},
-		"progressWidth": {
+		"boxBgColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"boxBorderStyle": {
+			"type": "string",
+			"default": "solid"
+		},
+		"boxBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#E7E9EC"
+		},
+		"boxBorderRadius": {
+			"type": "number",
+			"default": 10
+		},
+		"progressSpacing": {
+			"type": "object",
+			"default": {
+				"top": "0",
+				"right": "10",
+				"bottom": "0",
+				"left": "10"
+			}
+		},
+		"progressBorderWidth": {
 			"type": "number",
 			"default": 6
+		},
+		"headingColor": {
+			"type": "string"
 		},
 		"completionColor": {
 			"type": "string",
@@ -87,41 +115,70 @@
 			"type": "string",
 			"default": "#EF3E46"
 		},
-		"progressBorderColor": {
+		"ringBorderColor": {
 			"type": "string",
 			"default": "#DEDFE2"
 		},
-		"numberColor": {
-			"type": "string",
-			"default": "#122B46"
+		"ringNumColor": {
+			"type": "string"
 		},
-		"textColor": {
-			"type": "string",
-			"default": "#A3A5A9"
+		"ringTextColor": {
+			"type": "string"
 		},
-		"detailsBgColor": {
+		"detailsColor": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": "#fff"
 		},
 		"buttonColor": {
-			"type": "string",
-			"default": "#939597"
+			"type": "string"
 		},
 		"buttonBgColor": {
-			"type": "string",
-			"default": "transparent"
+			"type": "string"
 		},
 		"buttonBorderColor": {
-			"type": "string",
-			"default": "#9EA8B2"
+			"type": "string"
+		},
+		"buttonColorHover": {
+			"type": "string"
+		},
+		"buttonBgColorHover": {
+			"type": "string"
+		},
+		"buttonBorderColorHover": {
+			"type": "string"
+		},
+		"buttonPadding": {
+			"type": "object",
+			"default": {
+				"top": "2",
+				"right": "15",
+				"bottom": "2",
+				"left": "15"
+			}
+		},
+		"buttonBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"buttonBorderRadius": {
+			"type": "number",
+			"default": 100
+		},
+		"buttonSpacing": {
+			"type": "number",
+			"default": 10
 		}
 	},
 	"supports": {
 		"html": false,
-		"align": [ "wide", "full" ],
+		"align": true,
+		"color": {
+			"background": true,
+			"text": true
+		},
 		"spacing": {
-			"margin": true,
-			"padding": true
+			"padding": true,
+			"margin": true
 		}
 	},
 	"editorScript": "file:./index.js",

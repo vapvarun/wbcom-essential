@@ -46,6 +46,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		buttonTextColor,
 		buttonHoverBackground,
 		buttonHoverTextColor,
+		buttonHoverBorder,
+		buttonSkin,
+		buttonSize,
 		ribbonBackground,
 		ribbonTextColor,
 		borderRadius,
@@ -210,6 +213,32 @@ export default function Edit( { attributes, setAttributes } ) {
 						checked={ buttonTarget }
 						onChange={ ( value ) => setAttributes( { buttonTarget: value } ) }
 					/>
+					<SelectControl
+						label={ __( 'Button Size', 'wbcom-essential' ) }
+						value={ buttonSize }
+						options={ [
+							{ label: __( 'Small', 'wbcom-essential' ), value: 'wbcom-btn-sm' },
+							{ label: __( 'Medium', 'wbcom-essential' ), value: 'wbcom-btn-md' },
+							{ label: __( 'Large', 'wbcom-essential' ), value: 'wbcom-btn-lg' },
+						] }
+						onChange={ ( value ) => setAttributes( { buttonSize: value } ) }
+					/>
+					<SelectControl
+						label={ __( 'Button Animation', 'wbcom-essential' ) }
+						value={ buttonSkin }
+						options={ [
+							{ label: __( 'None', 'wbcom-essential' ), value: '' },
+							{ label: __( 'Animation 1 - Rotate Fill', 'wbcom-essential' ), value: 'wbcom-btn-1' },
+							{ label: __( 'Animation 2 - Ripple', 'wbcom-essential' ), value: 'wbcom-btn-2' },
+							{ label: __( 'Animation 3 - Vertical Expand', 'wbcom-essential' ), value: 'wbcom-btn-3' },
+							{ label: __( 'Animation 4 - Horizontal Expand', 'wbcom-essential' ), value: 'wbcom-btn-4' },
+							{ label: __( 'Animation 5 - Slide Left', 'wbcom-essential' ), value: 'wbcom-btn-5' },
+							{ label: __( 'Animation 6 - Slide Up', 'wbcom-essential' ), value: 'wbcom-btn-6' },
+							{ label: __( 'Animation 7 - Slide Right', 'wbcom-essential' ), value: 'wbcom-btn-7' },
+							{ label: __( 'Animation 8 - Slide Down', 'wbcom-essential' ), value: 'wbcom-btn-8' },
+						] }
+						onChange={ ( value ) => setAttributes( { buttonSkin: value } ) }
+					/>
 					<TextControl
 						label={ __( 'Footer Text', 'wbcom-essential' ) }
 						value={ footerText }
@@ -325,6 +354,16 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					</div>
 
+					<div className="components-base-control">
+						<label className="components-base-control__label">
+							{ __( 'Button Hover Border Color', 'wbcom-essential' ) }
+						</label>
+						<ColorPalette
+							value={ buttonHoverBorder }
+							onChange={ ( value ) => setAttributes( { buttonHoverBorder: value } ) }
+						/>
+					</div>
+
 					{ showRibbon && (
 						<>
 							<div className="components-base-control">
@@ -411,7 +450,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					<div className="wbcom-price-table-footer">
 						<div className="wbcom-btn-wrapper">
-							<span className="wbcom-price-table-btn" style={ buttonStyle }>
+							<span className={ `wbcom-price-table-btn ${ buttonSize } ${ buttonSkin }` } style={ buttonStyle }>
 								{ buttonText }
 							</span>
 						</div>

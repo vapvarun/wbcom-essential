@@ -42,6 +42,18 @@
       "type": "number",
       "default": 150
     },
+    "logoAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "logoBorderRadius": {
+      "type": "number",
+      "default": 0
+    },
+    "logoMarginBottom": {
+      "type": "number",
+      "default": 24
+    },
     "showTitle": {
       "type": "boolean",
       "default": true
@@ -54,6 +66,14 @@
       "type": "string",
       "default": "h2"
     },
+    "titleAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "titleMarginBottom": {
+      "type": "number",
+      "default": 8
+    },
     "showSubtitle": {
       "type": "boolean",
       "default": true
@@ -62,9 +82,21 @@
       "type": "string",
       "default": "Please login to your account"
     },
+    "subtitleTag": {
+      "type": "string",
+      "default": "p"
+    },
+    "subtitleAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "subtitleMarginBottom": {
+      "type": "number",
+      "default": 24
+    },
     "usernameLabel": {
       "type": "string",
-      "default": "Username or Email"
+      "default": "Username or Email Address"
     },
     "usernamePlaceholder": {
       "type": "string",
@@ -100,19 +132,23 @@
     },
     "lostPasswordText": {
       "type": "string",
-      "default": "Lost your password?"
+      "default": "Lost Password"
     },
     "showRegister": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "registerText": {
       "type": "string",
-      "default": "Don't have an account?"
-    },
-    "registerLinkText": {
-      "type": "string",
       "default": "Register"
+    },
+    "linkSeparator": {
+      "type": "string",
+      "default": "|"
+    },
+    "redirectEnabled": {
+      "type": "boolean",
+      "default": false
     },
     "redirectUrl": {
       "type": "string",
@@ -124,15 +160,31 @@
     },
     "loggedInMessage": {
       "type": "string",
-      "default": "You are already logged in."
+      "default": "You are logged in as "
     },
     "testMode": {
       "type": "boolean",
       "default": false
     },
+    "formWidth": {
+      "type": "number",
+      "default": 100
+    },
+    "formWidthUnit": {
+      "type": "string",
+      "default": "%"
+    },
+    "formAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "rowsGap": {
+      "type": "number",
+      "default": 20
+    },
     "formBgColor": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "formPadding": {
       "type": "number",
@@ -141,58 +193,6 @@
     "formBorderRadius": {
       "type": "number",
       "default": 8
-    },
-    "titleColor": {
-      "type": "string",
-      "default": "#122B46"
-    },
-    "subtitleColor": {
-      "type": "string",
-      "default": "#666666"
-    },
-    "labelColor": {
-      "type": "string",
-      "default": "#122B46"
-    },
-    "inputBgColor": {
-      "type": "string",
-      "default": "#f8f9fa"
-    },
-    "inputBorderColor": {
-      "type": "string",
-      "default": "#e3e3e3"
-    },
-    "inputTextColor": {
-      "type": "string",
-      "default": "#122B46"
-    },
-    "inputFocusBorderColor": {
-      "type": "string",
-      "default": "#1d76da"
-    },
-    "buttonBgColor": {
-      "type": "string",
-      "default": "#1d76da"
-    },
-    "buttonTextColor": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "buttonHoverBgColor": {
-      "type": "string",
-      "default": "#1557a0"
-    },
-    "linkColor": {
-      "type": "string",
-      "default": "#1d76da"
-    },
-    "linkHoverColor": {
-      "type": "string",
-      "default": "#1557a0"
-    },
-    "formWidth": {
-      "type": "number",
-      "default": 420
     },
     "formBorderColor": {
       "type": "string",
@@ -206,6 +206,46 @@
       "type": "boolean",
       "default": true
     },
+    "titleColor": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitleColor": {
+      "type": "string",
+      "default": ""
+    },
+    "labelColor": {
+      "type": "string",
+      "default": ""
+    },
+    "labelAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "inputBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "inputBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "inputTextColor": {
+      "type": "string",
+      "default": ""
+    },
+    "inputPlaceholderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "inputFocusBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "inputFocusBgColor": {
+      "type": "string",
+      "default": ""
+    },
     "inputBorderRadius": {
       "type": "number",
       "default": 6
@@ -218,9 +258,45 @@
       "type": "number",
       "default": 16
     },
+    "inputWidth": {
+      "type": "number",
+      "default": 100
+    },
+    "inputAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "buttonBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonTextColor": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonHoverBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonHoverTextColor": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonHoverBorderColor": {
+      "type": "string",
+      "default": ""
+    },
     "buttonBorderRadius": {
       "type": "number",
       "default": 6
+    },
+    "buttonBorderWidth": {
+      "type": "number",
+      "default": 0
     },
     "buttonPaddingV": {
       "type": "number",
@@ -230,9 +306,41 @@
       "type": "number",
       "default": 24
     },
+    "buttonWidth": {
+      "type": "number",
+      "default": 100
+    },
+    "buttonAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "linkColor": {
+      "type": "string",
+      "default": ""
+    },
+    "linkHoverColor": {
+      "type": "string",
+      "default": ""
+    },
+    "linksAlign": {
+      "type": "string",
+      "default": "flex-end"
+    },
+    "linksMarginTop": {
+      "type": "number",
+      "default": 0
+    },
     "checkboxColor": {
       "type": "string",
-      "default": "#1d76da"
+      "default": ""
+    },
+    "loggedInMsgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "loggedInMsgAlign": {
+      "type": "string",
+      "default": "left"
     }
   },
   "textdomain": "wbcom-essential",

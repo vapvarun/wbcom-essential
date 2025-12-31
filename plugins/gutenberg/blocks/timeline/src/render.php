@@ -37,6 +37,25 @@ $title_font_size              = $attributes['titleFontSize'] ?? 20;
 $text_font_size               = $attributes['textFontSize'] ?? 16;
 $item_spacing                 = $attributes['itemSpacing'] ?? 40;
 
+// New attributes for border and shadow.
+$content_border_type     = $attributes['contentBorderType'] ?? 'none';
+$content_border_width    = $attributes['contentBorderWidth'] ?? 1;
+$content_border_color    = $attributes['contentBorderColor'] ?? '#e2e8f0';
+$shadow_horizontal       = $attributes['contentBoxShadowHorizontal'] ?? 0;
+$shadow_vertical         = $attributes['contentBoxShadowVertical'] ?? 4;
+$shadow_blur             = $attributes['contentBoxShadowBlur'] ?? 15;
+$shadow_spread           = $attributes['contentBoxShadowSpread'] ?? 0;
+$shadow_color            = $attributes['contentBoxShadowColor'] ?? 'rgba(0, 0, 0, 0.08)';
+
+// Date typography attributes.
+$date_font_weight      = $attributes['dateFontWeight'] ?? '600';
+$date_text_transform   = $attributes['dateTextTransform'] ?? 'none';
+$date_line_height      = $attributes['dateLineHeight'] ?? 1.4;
+$date_letter_spacing   = $attributes['dateLetterSpacing'] ?? 0;
+
+// Image settings.
+$image_border_radius = $attributes['imageBorderRadius'] ?? 8;
+
 // Don't render if no items.
 if ( empty( $items ) ) {
 	return;
@@ -59,20 +78,52 @@ $icons = array(
 // Build unique ID.
 $unique_id = wp_unique_id( 'wbcom-timeline-' );
 
+// Build box shadow value.
+$box_shadow_value = $content_box_shadow
+	? sprintf(
+		'%dpx %dpx %dpx %dpx %s',
+		intval( $shadow_horizontal ),
+		intval( $shadow_vertical ),
+		absint( $shadow_blur ),
+		intval( $shadow_spread ),
+		esc_attr( $shadow_color )
+	)
+	: 'none';
+
+// Build border value.
+$border_value = 'none' !== $content_border_type
+	? sprintf(
+		'%dpx %s %s',
+		absint( $content_border_width ),
+		esc_attr( $content_border_type ),
+		esc_attr( $content_border_color )
+	)
+	: 'none';
+
 // CSS variables for bar.
-$box_shadow_value = $content_box_shadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none';
-$container_style  = sprintf(
-	'--bar-color: %s; --bar-thickness: %dpx; --icon-container-size: %dpx; --content-background: %s; --content-padding: %dpx; --content-box-shadow: %s; --date-font-size: %dpx; --title-font-size: %dpx; --text-font-size: %dpx; --item-spacing: %dpx;',
+$container_style = sprintf(
+	'--bar-color: %s; --bar-thickness: %dpx; --icon-container-size: %dpx; --content-background: %s; --content-padding: %dpx; --content-box-shadow: %s; --content-border: %s; --date-font-size: %dpx; --title-font-size: %dpx; --text-font-size: %dpx; --item-spacing: %dpx; --image-border-radius: %dpx;',
 	esc_attr( $bar_color ),
 	absint( $bar_thickness ),
 	absint( $icon_container_size ),
 	esc_attr( $content_background ),
 	absint( $content_padding ),
 	esc_attr( $box_shadow_value ),
+	esc_attr( $border_value ),
 	absint( $date_font_size ),
 	absint( $title_font_size ),
 	absint( $text_font_size ),
-	absint( $item_spacing )
+	absint( $item_spacing ),
+	absint( $image_border_radius )
+);
+
+// Date typography style.
+$date_typography_style = sprintf(
+	'font-weight: %s; text-transform: %s; line-height: %s; letter-spacing: %spx;',
+	esc_attr( $date_font_weight ),
+	esc_attr( $date_text_transform ),
+	esc_attr( $date_line_height ),
+	esc_attr( $date_letter_spacing )
 );
 
 // Icon container style.
@@ -154,7 +205,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 					<?php endif; ?>
 
 					<?php if ( ! empty( $item_date ) ) : ?>
-						<span class="wbcom-timeline-date" style="color: <?php echo esc_attr( $date_color ); ?>;">
+						<span class="wbcom-timeline-date" style="color: <?php echo esc_attr( $date_color ); ?>; <?php echo esc_attr( $date_typography_style ); ?>">
 							<?php echo esc_html( $item_date ); ?>
 						</span>
 					<?php endif; ?>

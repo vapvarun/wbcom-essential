@@ -8,15 +8,200 @@
 	// Editor preview spacing.
 	padding: 10px;
 
-	// Color control helper.
-	.wbcom-color-control {
-		margin-bottom: 16px;
+	// Ensure SSR content displays correctly in editor.
+	.wbcom-essential-portfolio-grid {
+		pointer-events: none;
+	}
+}
 
-		&__label {
-			font-size: 11px;
-			font-weight: 500;
-			text-transform: uppercase;
-			margin-bottom: 8px;
+// Inspector controls styling.
+.wbcom-color-control {
+	margin-bottom: 16px;
+
+	&__label {
+		font-size: 11px;
+		font-weight: 500;
+		text-transform: uppercase;
+		margin-bottom: 8px;
+		display: block;
+	}
+}
+
+// Item card styling in sidebar.
+.components-card {
+	.components-card-header {
+		padding: 12px;
+	}
+
+	.components-card-body {
+		padding: 12px;
+	}
+}
+
+// Box shadow controls grouping.
+.wbcom-portfolio-shadow-controls {
+	background: #f0f0f0;
+	padding: 12px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+
+	h4 {
+		margin-top: 0;
+		margin-bottom: 12px;
+		font-size: 12px;
+		font-weight: 600;
+	}
+}
+
+// Media upload preview in sidebar.
+.wbcom-portfolio-media-preview {
+	img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 4px;
+		margin-bottom: 8px;
+	}
+}
+
+// Layout type icons.
+.wbcom-portfolio-layout-icons {
+	display: flex;
+	gap: 8px;
+
+	.components-button {
+		flex: 1;
+		justify-content: center;
+	}
+}
+
+// Filter list styling.
+.wbcom-portfolio-filter-list {
+	margin-bottom: 16px;
+
+	.wbcom-portfolio-filter-item {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		margin-bottom: 8px;
+
+		&:last-child {
+			margin-bottom: 0;
 		}
+	}
+}
+
+// Spacing controls.
+.wbcom-portfolio-spacing {
+	.components-base-control {
+		margin-bottom: 8px;
+	}
+}
+
+// Responsive controls.
+.wbcom-responsive-controls {
+	background: #f9f9f9;
+	padding: 12px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+
+	&__label {
+		font-size: 11px;
+		font-weight: 500;
+		color: #757575;
+		margin-bottom: 8px;
+	}
+}
+
+// Tab panel styling for content tabs.
+.components-tab-panel__tabs {
+	margin-bottom: 16px;
+}
+
+// Button group full width.
+.components-button-group {
+	&.is-full-width {
+		width: 100%;
+
+		.components-button {
+			flex: 1;
+		}
+	}
+}
+
+// Range control with unit.
+.wbcom-range-with-unit {
+	display: flex;
+	align-items: flex-end;
+	gap: 8px;
+
+	.components-range-control {
+		flex: 1;
+	}
+
+	.components-select-control {
+		width: 70px;
+	}
+}
+
+// Panel body improvements.
+.components-panel__body {
+	.components-toggle-control {
+		margin-bottom: 12px;
+	}
+
+	.components-select-control {
+		margin-bottom: 12px;
+	}
+
+	.components-range-control {
+		margin-bottom: 12px;
+	}
+}
+
+// Color indicator inline.
+.wbcom-color-indicator {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	border: 1px solid #ddd;
+	margin-right: 8px;
+	vertical-align: middle;
+}
+
+// Masonry preview hint.
+.wbcom-masonry-hint {
+	background: #e7f3ff;
+	padding: 12px;
+	border-radius: 4px;
+	font-size: 12px;
+	color: #0073aa;
+	margin-bottom: 16px;
+
+	svg {
+		vertical-align: middle;
+		margin-right: 6px;
+	}
+}
+
+// Lightbox preview in editor.
+.wbcom-lightbox-preview {
+	text-align: center;
+	padding: 16px;
+	background: #f5f5f5;
+	border-radius: 4px;
+
+	svg {
+		opacity: 0.5;
+	}
+
+	p {
+		margin: 8px 0 0;
+		font-size: 12px;
+		color: #757575;
 	}
 }

@@ -62,24 +62,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			};
 		}
 
-		// Initialize Swiper.
+		// Initialize Swiper - require it to be enqueued by the block.
 		if ( typeof Swiper !== 'undefined' ) {
 			new Swiper( swiperContainer, options );
 		} else {
-			// Load Swiper from CDN if not available.
-			const link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.href =
-				'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
-			document.head.appendChild( link );
-
-			const script = document.createElement( 'script' );
-			script.src =
-				'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
-			script.onload = function () {
-				new Swiper( swiperContainer, options );
-			};
-			document.body.appendChild( script );
+			// Swiper not available - log error for debugging.
+			// eslint-disable-next-line no-console
+			console.error(
+				'Wbcom Essential: Swiper library not loaded. Please ensure the block is properly enqueued.'
+			);
 		}
 	} );
 } );

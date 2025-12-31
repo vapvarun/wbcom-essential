@@ -55,7 +55,7 @@ function wbcom_essential_ajax_login() {
 
 	$username = isset( $_POST['username'] ) ? sanitize_user( wp_unslash( $_POST['username'] ) ) : '';
 	$password = isset( $_POST['password'] ) ? $_POST['password'] : ''; // phpcs:ignore
-	$remember = isset( $_POST['remember'] ) && 'true' === $_POST['remember'];
+	$remember = ! empty( $_POST['remember'] );
 
 	if ( empty( $username ) || empty( $password ) ) {
 		wp_send_json_error( array( 'message' => __( 'Please enter both username and password.', 'wbcom-essential' ) ) );
@@ -83,8 +83,13 @@ function wbcom_essential_ajax_login() {
 		wp_send_json_error( array( 'message' => $error_message ) );
 	}
 
-	// Get redirect URL.
+	// Get redirect URL - validate to prevent open redirect attacks.
 	$redirect_url = isset( $_POST['redirect'] ) ? esc_url_raw( wp_unslash( $_POST['redirect'] ) ) : '';
+
+	// Validate redirect URL to ensure it's on the same site (prevent open redirect).
+	if ( ! empty( $redirect_url ) ) {
+		$redirect_url = wp_validate_redirect( $redirect_url, home_url() );
+	}
 
 	if ( empty( $redirect_url ) ) {
 		// Default redirect based on user role.

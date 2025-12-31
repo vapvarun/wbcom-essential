@@ -5,16 +5,20 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
 	RangeControl,
 	ToggleControl,
 	TextControl,
-	__experimentalUnitControl as UnitControl,
-	ButtonGroup,
 	Button,
+	Placeholder,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import ServerSideRender from '@wordpress/server-side-render';
@@ -24,14 +28,18 @@ export default function Edit( { attributes, setAttributes } ) {
 	const {
 		postType,
 		categories,
+		tags,
 		numberOfPosts,
 		orderBy,
 		order,
+		includeIds,
+		excludeIds,
 		showExcerpt,
 		excerptLength,
 		showDate,
 		showButton,
 		buttonText,
+		titleTag,
 		sliderHeight,
 		sliderHeightUnit,
 		transition,
@@ -47,17 +55,29 @@ export default function Edit( { attributes, setAttributes } ) {
 		overlayColor,
 		contentWidth,
 		contentAlign,
+		verticalAlign,
 		titleColor,
 		excerptColor,
 		dateColor,
 		buttonBgColor,
 		buttonTextColor,
+		buttonHoverBgColor,
+		buttonHoverTextColor,
+		buttonBorderRadius,
 		navColor,
+		bgPosition,
+		bgSize,
+		showDivider,
+		dividerColor,
+		dividerWidth,
+		contentPadding,
+		defaultImageId,
+		defaultImageUrl,
 	} = attributes;
 
 	const blockProps = useBlockProps();
 
-	// Fetch post types
+	// Fetch post types.
 	const postTypes = useSelect( ( select ) => {
 		const { getPostTypes } = select( 'core' );
 		const types = getPostTypes( { per_page: -1 } );
@@ -72,7 +92,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			} ) );
 	}, [] );
 
-	// Fetch categories
+	// Fetch categories.
 	const categoryOptions = useSelect( ( select ) => {
 		const { getEntityRecords } = select( 'core' );
 		const cats = getEntityRecords( 'taxonomy', 'category', {
@@ -85,6 +105,22 @@ export default function Edit( { attributes, setAttributes } ) {
 		return cats.map( ( cat ) => ( {
 			label: cat.name,
 			value: cat.slug,
+		} ) );
+	}, [] );
+
+	// Fetch tags.
+	const tagOptions = useSelect( ( select ) => {
+		const { getEntityRecords } = select( 'core' );
+		const postTags = getEntityRecords( 'taxonomy', 'post_tag', {
+			per_page: -1,
+			hide_empty: false,
+		} );
+		if ( ! postTags ) {
+			return [];
+		}
+		return postTags.map( ( tag ) => ( {
+			label: tag.name,
+			value: tag.slug,
 		} ) );
 	}, [] );
 
@@ -118,6 +154,21 @@ export default function Edit( { attributes, setAttributes } ) {
 							) }
 						/>
 					) }
+					{ postType === 'post' && tagOptions.length > 0 && (
+						<SelectControl
+							multiple
+							label={ __( 'Tags', 'wbcom-essential' ) }
+							value={ tags }
+							options={ tagOptions }
+							onChange={ ( value ) =>
+								setAttributes( { tags: value } )
+							}
+							help={ __(
+								'Leave empty to show all tags.',
+								'wbcom-essential'
+							) }
+						/>
+					) }
 					<RangeControl
 						label={ __( 'Number of Posts', 'wbcom-essential' ) }
 						value={ numberOfPosts }
@@ -125,16 +176,32 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { numberOfPosts: value } )
 						}
 						min={ 1 }
-						max={ 10 }
+						max={ 20 }
 					/>
 					<SelectControl
 						label={ __( 'Order By', 'wbcom-essential' ) }
 						value={ orderBy }
 						options={ [
-							{ label: __( 'Date', 'wbcom-essential' ), value: 'date' },
-							{ label: __( 'Title', 'wbcom-essential' ), value: 'title' },
-							{ label: __( 'Random', 'wbcom-essential' ), value: 'rand' },
-							{ label: __( 'Comment Count', 'wbcom-essential' ), value: 'comment_count' },
+							{
+								label: __( 'Date', 'wbcom-essential' ),
+								value: 'date',
+							},
+							{
+								label: __( 'Title', 'wbcom-essential' ),
+								value: 'title',
+							},
+							{
+								label: __( 'Random', 'wbcom-essential' ),
+								value: 'rand',
+							},
+							{
+								label: __( 'Comment Count', 'wbcom-essential' ),
+								value: 'comment_count',
+							},
+							{
+								label: __( 'Menu Order', 'wbcom-essential' ),
+								value: 'menu_order',
+							},
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { orderBy: value } )
@@ -144,12 +211,40 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Order', 'wbcom-essential' ) }
 						value={ order }
 						options={ [
-							{ label: __( 'Descending', 'wbcom-essential' ), value: 'DESC' },
-							{ label: __( 'Ascending', 'wbcom-essential' ), value: 'ASC' },
+							{
+								label: __( 'Descending', 'wbcom-essential' ),
+								value: 'DESC',
+							},
+							{
+								label: __( 'Ascending', 'wbcom-essential' ),
+								value: 'ASC',
+							},
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { order: value } )
 						}
+					/>
+					<TextControl
+						label={ __( 'Include Posts by ID', 'wbcom-essential' ) }
+						value={ includeIds }
+						onChange={ ( value ) =>
+							setAttributes( { includeIds: value } )
+						}
+						help={ __(
+							'Comma-separated post IDs to include.',
+							'wbcom-essential'
+						) }
+					/>
+					<TextControl
+						label={ __( 'Exclude Posts by ID', 'wbcom-essential' ) }
+						value={ excludeIds }
+						onChange={ ( value ) =>
+							setAttributes( { excludeIds: value } )
+						}
+						help={ __(
+							'Comma-separated post IDs to exclude.',
+							'wbcom-essential'
+						) }
 					/>
 				</PanelBody>
 
@@ -180,6 +275,10 @@ export default function Edit( { attributes, setAttributes } ) {
 							}
 							min={ 0 }
 							max={ 500 }
+							help={ __(
+								'Set to 0 to hide excerpt.',
+								'wbcom-essential'
+							) }
 						/>
 					) }
 					<ToggleControl
@@ -198,25 +297,126 @@ export default function Edit( { attributes, setAttributes } ) {
 							}
 						/>
 					) }
+					<SelectControl
+						label={ __( 'Title HTML Tag', 'wbcom-essential' ) }
+						value={ titleTag }
+						options={ [
+							{ label: 'H1', value: 'h1' },
+							{ label: 'H2', value: 'h2' },
+							{ label: 'H3', value: 'h3' },
+							{ label: 'H4', value: 'h4' },
+							{ label: 'H5', value: 'h5' },
+							{ label: 'H6', value: 'h6' },
+							{ label: 'DIV', value: 'div' },
+							{ label: 'P', value: 'p' },
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { titleTag: value } )
+						}
+					/>
+					<ToggleControl
+						label={ __( 'Show Divider', 'wbcom-essential' ) }
+						checked={ showDivider }
+						onChange={ ( value ) =>
+							setAttributes( { showDivider: value } )
+						}
+					/>
+					{ showDivider && (
+						<>
+							<ColorControl
+								label={ __(
+									'Divider Color',
+									'wbcom-essential'
+								) }
+								value={ dividerColor }
+								onChange={ ( value ) =>
+									setAttributes( { dividerColor: value } )
+								}
+							/>
+							<RangeControl
+								label={ __(
+									'Divider Width (px)',
+									'wbcom-essential'
+								) }
+								value={ dividerWidth }
+								onChange={ ( value ) =>
+									setAttributes( { dividerWidth: value } )
+								}
+								min={ 20 }
+								max={ 300 }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Layout Settings', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<RangeControl
-						label={ __( 'Content Max Width (px)', 'wbcom-essential' ) }
+						label={ __(
+							'Content Max Width (px)',
+							'wbcom-essential'
+						) }
 						value={ contentWidth }
 						onChange={ ( value ) =>
 							setAttributes( { contentWidth: value } )
 						}
 						min={ 400 }
-						max={ 1200 }
+						max={ 1400 }
+					/>
+					<RangeControl
+						label={ __( 'Content Padding (px)', 'wbcom-essential' ) }
+						value={ contentPadding }
+						onChange={ ( value ) =>
+							setAttributes( { contentPadding: value } )
+						}
+						min={ 10 }
+						max={ 100 }
 					/>
 					<SelectControl
-						label={ __( 'Content Alignment', 'wbcom-essential' ) }
+						label={ __(
+							'Horizontal Alignment',
+							'wbcom-essential'
+						) }
 						value={ contentAlign }
 						options={ [
-							{ label: __( 'Left', 'wbcom-essential' ), value: 'left' },
-							{ label: __( 'Center', 'wbcom-essential' ), value: 'center' },
-							{ label: __( 'Right', 'wbcom-essential' ), value: 'right' },
+							{
+								label: __( 'Left', 'wbcom-essential' ),
+								value: 'left',
+							},
+							{
+								label: __( 'Center', 'wbcom-essential' ),
+								value: 'center',
+							},
+							{
+								label: __( 'Right', 'wbcom-essential' ),
+								value: 'right',
+							},
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { contentAlign: value } )
+						}
+					/>
+					<SelectControl
+						label={ __( 'Vertical Alignment', 'wbcom-essential' ) }
+						value={ verticalAlign }
+						options={ [
+							{
+								label: __( 'Top', 'wbcom-essential' ),
+								value: 'top',
+							},
+							{
+								label: __( 'Center', 'wbcom-essential' ),
+								value: 'center',
+							},
+							{
+								label: __( 'Bottom', 'wbcom-essential' ),
+								value: 'bottom',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { verticalAlign: value } )
 						}
 					/>
 				</PanelBody>
@@ -249,15 +449,24 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Transition Effect', 'wbcom-essential' ) }
 						value={ transition }
 						options={ [
-							{ label: __( 'Fade', 'wbcom-essential' ), value: 'fade' },
-							{ label: __( 'Slide', 'wbcom-essential' ), value: 'slide' },
+							{
+								label: __( 'Fade', 'wbcom-essential' ),
+								value: 'fade',
+							},
+							{
+								label: __( 'Slide', 'wbcom-essential' ),
+								value: 'slide',
+							},
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { transition: value } )
 						}
 					/>
 					<RangeControl
-						label={ __( 'Transition Duration (ms)', 'wbcom-essential' ) }
+						label={ __(
+							'Transition Duration (ms)',
+							'wbcom-essential'
+						) }
 						value={ transitionDuration }
 						onChange={ ( value ) =>
 							setAttributes( { transitionDuration: value } )
@@ -275,7 +484,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					{ autoplay && (
 						<RangeControl
-							label={ __( 'Autoplay Delay (ms)', 'wbcom-essential' ) }
+							label={ __(
+								'Autoplay Delay (ms)',
+								'wbcom-essential'
+							) }
 							value={ autoplayDelay }
 							onChange={ ( value ) =>
 								setAttributes( { autoplayDelay: value } )
@@ -285,6 +497,145 @@ export default function Edit( { attributes, setAttributes } ) {
 							step={ 500 }
 						/>
 					) }
+					<MediaUploadCheck>
+						<div style={ { marginBottom: '16px' } }>
+							<p style={ { marginBottom: '8px' } }>
+								{ __( 'Default Image', 'wbcom-essential' ) }
+							</p>
+							{ defaultImageUrl ? (
+								<div>
+									<img
+										src={ defaultImageUrl }
+										alt={ __(
+											'Default slide image',
+											'wbcom-essential'
+										) }
+										style={ {
+											maxWidth: '100%',
+											marginBottom: '8px',
+										} }
+									/>
+									<Button
+										isSecondary
+										onClick={ () =>
+											setAttributes( {
+												defaultImageId: 0,
+												defaultImageUrl: '',
+											} )
+										}
+									>
+										{ __(
+											'Remove Image',
+											'wbcom-essential'
+										) }
+									</Button>
+								</div>
+							) : (
+								<MediaUpload
+									onSelect={ ( media ) =>
+										setAttributes( {
+											defaultImageId: media.id,
+											defaultImageUrl: media.url,
+										} )
+									}
+									allowedTypes={ [ 'image' ] }
+									value={ defaultImageId }
+									render={ ( { open } ) => (
+										<Button isSecondary onClick={ open }>
+											{ __(
+												'Select Default Image',
+												'wbcom-essential'
+											) }
+										</Button>
+									) }
+								/>
+							) }
+							<p
+								style={ {
+									fontSize: '12px',
+									color: '#757575',
+									marginTop: '4px',
+								} }
+							>
+								{ __(
+									'Used for posts without featured images.',
+									'wbcom-essential'
+								) }
+							</p>
+						</div>
+					</MediaUploadCheck>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Background Settings', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<SelectControl
+						label={ __( 'Background Position', 'wbcom-essential' ) }
+						value={ bgPosition }
+						options={ [
+							{
+								label: __( 'Top Left', 'wbcom-essential' ),
+								value: 'top left',
+							},
+							{
+								label: __( 'Top Center', 'wbcom-essential' ),
+								value: 'top center',
+							},
+							{
+								label: __( 'Top Right', 'wbcom-essential' ),
+								value: 'top right',
+							},
+							{
+								label: __( 'Center Left', 'wbcom-essential' ),
+								value: 'center left',
+							},
+							{
+								label: __( 'Center Center', 'wbcom-essential' ),
+								value: 'center center',
+							},
+							{
+								label: __( 'Center Right', 'wbcom-essential' ),
+								value: 'center right',
+							},
+							{
+								label: __( 'Bottom Left', 'wbcom-essential' ),
+								value: 'bottom left',
+							},
+							{
+								label: __( 'Bottom Center', 'wbcom-essential' ),
+								value: 'bottom center',
+							},
+							{
+								label: __( 'Bottom Right', 'wbcom-essential' ),
+								value: 'bottom right',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { bgPosition: value } )
+						}
+					/>
+					<SelectControl
+						label={ __( 'Background Size', 'wbcom-essential' ) }
+						value={ bgSize }
+						options={ [
+							{
+								label: __( 'Cover', 'wbcom-essential' ),
+								value: 'cover',
+							},
+							{
+								label: __( 'Contain', 'wbcom-essential' ),
+								value: 'contain',
+							},
+							{
+								label: __( 'Auto', 'wbcom-essential' ),
+								value: 'auto',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { bgSize: value } )
+						}
+					/>
 				</PanelBody>
 
 				<PanelBody
@@ -292,7 +643,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					initialOpen={ false }
 				>
 					<ToggleControl
-						label={ __( 'Show Navigation Arrows', 'wbcom-essential' ) }
+						label={ __(
+							'Show Navigation Arrows',
+							'wbcom-essential'
+						) }
 						checked={ showNavigation }
 						onChange={ ( value ) =>
 							setAttributes( { showNavigation: value } )
@@ -306,7 +660,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<ToggleControl
-						label={ __( 'Show Nav Only on Hover', 'wbcom-essential' ) }
+						label={ __(
+							'Show Nav Only on Hover',
+							'wbcom-essential'
+						) }
 						checked={ hideNavOnHover }
 						onChange={ ( value ) =>
 							setAttributes( { hideNavOnHover: value } )
@@ -322,12 +679,55 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Background Animation', 'wbcom-essential' ) }
 						value={ bgAnimation }
 						options={ [
-							{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
-							{ label: __( 'Zoom', 'wbcom-essential' ), value: 'zoom' },
-							{ label: __( 'Zoom Top', 'wbcom-essential' ), value: 'zoom-top' },
-							{ label: __( 'Zoom Bottom', 'wbcom-essential' ), value: 'zoom-bottom' },
-							{ label: __( 'Zoom Left', 'wbcom-essential' ), value: 'zoom-left' },
-							{ label: __( 'Zoom Right', 'wbcom-essential' ), value: 'zoom-right' },
+							{
+								label: __( 'None', 'wbcom-essential' ),
+								value: 'none',
+							},
+							{
+								label: __( 'Zoom', 'wbcom-essential' ),
+								value: 'zoom',
+							},
+							{
+								label: __( 'Zoom Top', 'wbcom-essential' ),
+								value: 'zoom-top',
+							},
+							{
+								label: __( 'Zoom Bottom', 'wbcom-essential' ),
+								value: 'zoom-bottom',
+							},
+							{
+								label: __( 'Zoom Left', 'wbcom-essential' ),
+								value: 'zoom-left',
+							},
+							{
+								label: __( 'Zoom Right', 'wbcom-essential' ),
+								value: 'zoom-right',
+							},
+							{
+								label: __( 'Zoom Top Left', 'wbcom-essential' ),
+								value: 'zoom-top-left',
+							},
+							{
+								label: __(
+									'Zoom Top Right',
+									'wbcom-essential'
+								),
+								value: 'zoom-top-right',
+							},
+							{
+								label: __(
+									'Zoom Bottom Left',
+									'wbcom-essential'
+								),
+								value: 'zoom-bottom-left',
+							},
+							{
+								label: __(
+									'Zoom Bottom Right',
+									'wbcom-essential'
+								),
+								value: 'zoom-bottom-right',
+							},
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { bgAnimation: value } )
@@ -335,7 +735,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					{ bgAnimation !== 'none' && (
 						<RangeControl
-							label={ __( 'Animation Duration (s)', 'wbcom-essential' ) }
+							label={ __(
+								'Animation Duration (s)',
+								'wbcom-essential'
+							) }
 							value={ bgAnimationDuration }
 							onChange={ ( value ) =>
 								setAttributes( { bgAnimationDuration: value } )
@@ -348,13 +751,42 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Text Animation', 'wbcom-essential' ) }
 						value={ textAnimation }
 						options={ [
-							{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
-							{ label: __( 'Fade In', 'wbcom-essential' ), value: 'fadeIn' },
-							{ label: __( 'Fade In Up', 'wbcom-essential' ), value: 'fadeInUp' },
-							{ label: __( 'Fade In Down', 'wbcom-essential' ), value: 'fadeInDown' },
-							{ label: __( 'Fade In Left', 'wbcom-essential' ), value: 'fadeInLeft' },
-							{ label: __( 'Fade In Right', 'wbcom-essential' ), value: 'fadeInRight' },
-							{ label: __( 'Zoom In', 'wbcom-essential' ), value: 'zoomIn' },
+							{
+								label: __( 'None', 'wbcom-essential' ),
+								value: 'none',
+							},
+							{
+								label: __( 'Fade In', 'wbcom-essential' ),
+								value: 'fadeIn',
+							},
+							{
+								label: __( 'Fade In Up', 'wbcom-essential' ),
+								value: 'fadeInUp',
+							},
+							{
+								label: __( 'Fade In Down', 'wbcom-essential' ),
+								value: 'fadeInDown',
+							},
+							{
+								label: __( 'Fade In Left', 'wbcom-essential' ),
+								value: 'fadeInLeft',
+							},
+							{
+								label: __( 'Fade In Right', 'wbcom-essential' ),
+								value: 'fadeInRight',
+							},
+							{
+								label: __( 'Zoom In', 'wbcom-essential' ),
+								value: 'zoomIn',
+							},
+							{
+								label: __( 'Slide Up', 'wbcom-essential' ),
+								value: 'slideUp',
+							},
+							{
+								label: __( 'Slide Down', 'wbcom-essential' ),
+								value: 'slideDown',
+							},
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { textAnimation: value } )
@@ -395,6 +827,19 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<ColorControl
+						label={ __( 'Navigation Color', 'wbcom-essential' ) }
+						value={ navColor }
+						onChange={ ( value ) =>
+							setAttributes( { navColor: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Button Style', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<ColorControl
 						label={ __( 'Button Background', 'wbcom-essential' ) }
 						value={ buttonBgColor }
 						onChange={ ( value ) =>
@@ -409,11 +854,33 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<ColorControl
-						label={ __( 'Navigation Color', 'wbcom-essential' ) }
-						value={ navColor }
+						label={ __(
+							'Button Hover Background',
+							'wbcom-essential'
+						) }
+						value={ buttonHoverBgColor }
 						onChange={ ( value ) =>
-							setAttributes( { navColor: value } )
+							setAttributes( { buttonHoverBgColor: value } )
 						}
+					/>
+					<ColorControl
+						label={ __(
+							'Button Hover Text Color',
+							'wbcom-essential'
+						) }
+						value={ buttonHoverTextColor }
+						onChange={ ( value ) =>
+							setAttributes( { buttonHoverTextColor: value } )
+						}
+					/>
+					<RangeControl
+						label={ __( 'Border Radius (px)', 'wbcom-essential' ) }
+						value={ buttonBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { buttonBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 50 }
 					/>
 				</PanelBody>
 			</InspectorControls>

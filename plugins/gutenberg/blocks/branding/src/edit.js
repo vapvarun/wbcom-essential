@@ -42,6 +42,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		logoWidth,
 		logoHeight,
 		titleTypography,
+		descriptionTypography,
+		titleLinkUrl,
+		titleLinkTarget,
 		border,
 		borderRadius,
 	} = attributes;
@@ -189,6 +192,24 @@ export default function Edit( { attributes, setAttributes } ) {
 									onChange={ ( value ) => setAttributes( { titleTypography: { ...titleTypography, textDecoration: value } } ) }
 								/>
 							</wp.components.PanelBody>
+							<wp.components.PanelBody title={ __( 'Link Settings', 'wbcom-essential' ) } initialOpen={ false }>
+								<wp.components.TextControl
+									label={ __( 'Custom Link URL', 'wbcom-essential' ) }
+									value={ titleLinkUrl }
+									onChange={ ( value ) => setAttributes( { titleLinkUrl: value } ) }
+									placeholder={ __( 'Leave empty to use home URL', 'wbcom-essential' ) }
+									help={ __( 'Optional custom URL for the title link', 'wbcom-essential' ) }
+								/>
+								<wp.components.SelectControl
+									label={ __( 'Link Target', 'wbcom-essential' ) }
+									value={ titleLinkTarget }
+									options={ [
+										{ label: __( 'Same Window', 'wbcom-essential' ), value: '_self' },
+										{ label: __( 'New Window', 'wbcom-essential' ), value: '_blank' },
+									] }
+									onChange={ ( value ) => setAttributes( { titleLinkTarget: value } ) }
+								/>
+							</wp.components.PanelBody>
 						</>
 					) }
 					{ brandingType === 'logo' && (
@@ -267,6 +288,77 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( value ) => setAttributes( { descriptionPadding: { ...descriptionPadding, left: value } } ) }
 							help={ __( 'Default: 0', 'wbcom-essential' ) }
 						/>
+						<wp.components.PanelBody title={ __( 'Description Typography', 'wbcom-essential' ) } initialOpen={ false }>
+							<wp.components.TextControl
+								label={ __( 'Font Family', 'wbcom-essential' ) }
+								value={ descriptionTypography.fontFamily }
+								onChange={ ( value ) => setAttributes( { descriptionTypography: { ...descriptionTypography, fontFamily: value } } ) }
+								placeholder={ __( 'e.g., Arial, sans-serif', 'wbcom-essential' ) }
+							/>
+							<wp.components.TextControl
+								label={ __( 'Font Size', 'wbcom-essential' ) }
+								value={ descriptionTypography.fontSize }
+								onChange={ ( value ) => setAttributes( { descriptionTypography: { ...descriptionTypography, fontSize: value } } ) }
+								placeholder={ __( 'e.g., 14px, 1em', 'wbcom-essential' ) }
+							/>
+							<wp.components.SelectControl
+								label={ __( 'Font Weight', 'wbcom-essential' ) }
+								value={ descriptionTypography.fontWeight }
+								options={ [
+									{ label: __( 'Default', 'wbcom-essential' ), value: '' },
+									{ label: '100', value: '100' },
+									{ label: '200', value: '200' },
+									{ label: '300', value: '300' },
+									{ label: '400', value: '400' },
+									{ label: '500', value: '500' },
+									{ label: '600', value: '600' },
+									{ label: '700', value: '700' },
+									{ label: '800', value: '800' },
+									{ label: '900', value: '900' },
+									{ label: __( 'Normal', 'wbcom-essential' ), value: 'normal' },
+									{ label: __( 'Bold', 'wbcom-essential' ), value: 'bold' },
+									{ label: __( 'Bolder', 'wbcom-essential' ), value: 'bolder' },
+									{ label: __( 'Lighter', 'wbcom-essential' ), value: 'lighter' },
+								] }
+								onChange={ ( value ) => setAttributes( { descriptionTypography: { ...descriptionTypography, fontWeight: value } } ) }
+							/>
+							<wp.components.TextControl
+								label={ __( 'Line Height', 'wbcom-essential' ) }
+								value={ descriptionTypography.lineHeight }
+								onChange={ ( value ) => setAttributes( { descriptionTypography: { ...descriptionTypography, lineHeight: value } } ) }
+								placeholder={ __( 'e.g., 1.5, 24px', 'wbcom-essential' ) }
+							/>
+							<wp.components.TextControl
+								label={ __( 'Letter Spacing', 'wbcom-essential' ) }
+								value={ descriptionTypography.letterSpacing }
+								onChange={ ( value ) => setAttributes( { descriptionTypography: { ...descriptionTypography, letterSpacing: value } } ) }
+								placeholder={ __( 'e.g., 1px, 0.1em', 'wbcom-essential' ) }
+							/>
+							<wp.components.SelectControl
+								label={ __( 'Text Transform', 'wbcom-essential' ) }
+								value={ descriptionTypography.textTransform }
+								options={ [
+									{ label: __( 'Default', 'wbcom-essential' ), value: '' },
+									{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+									{ label: __( 'Capitalize', 'wbcom-essential' ), value: 'capitalize' },
+									{ label: __( 'Uppercase', 'wbcom-essential' ), value: 'uppercase' },
+									{ label: __( 'Lowercase', 'wbcom-essential' ), value: 'lowercase' },
+								] }
+								onChange={ ( value ) => setAttributes( { descriptionTypography: { ...descriptionTypography, textTransform: value } } ) }
+							/>
+							<wp.components.SelectControl
+								label={ __( 'Text Decoration', 'wbcom-essential' ) }
+								value={ descriptionTypography.textDecoration }
+								options={ [
+									{ label: __( 'Default', 'wbcom-essential' ), value: '' },
+									{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
+									{ label: __( 'Underline', 'wbcom-essential' ), value: 'underline' },
+									{ label: __( 'Overline', 'wbcom-essential' ), value: 'overline' },
+									{ label: __( 'Line Through', 'wbcom-essential' ), value: 'line-through' },
+								] }
+								onChange={ ( value ) => setAttributes( { descriptionTypography: { ...descriptionTypography, textDecoration: value } } ) }
+							/>
+						</wp.components.PanelBody>
 					</wp.components.PanelBody>
 				) }
 
@@ -347,6 +439,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								style={ {
 									color: descriptionColor,
 									padding: `${ descriptionPadding.top } ${ descriptionPadding.right } ${ descriptionPadding.bottom } ${ descriptionPadding.left }`,
+									fontFamily: descriptionTypography.fontFamily || undefined,
+									fontSize: descriptionTypography.fontSize || undefined,
+									fontWeight: descriptionTypography.fontWeight || undefined,
+									lineHeight: descriptionTypography.lineHeight || undefined,
+									letterSpacing: descriptionTypography.letterSpacing || undefined,
+									textTransform: descriptionTypography.textTransform || undefined,
+									textDecoration: descriptionTypography.textDecoration || undefined,
 								} }
 							>
 								{ siteDescription }

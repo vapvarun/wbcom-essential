@@ -11,30 +11,72 @@
 	--form-bg-color: var(--wbcom-card-bg, #ffffff);
 	--form-padding: 30px;
 	--form-border-radius: 8px;
-	--form-width: 420px;
+	--form-width: 100%;
+	--form-align: center;
 	--form-border-color: transparent;
 	--form-border-width: 0px;
 	--form-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	--rows-gap: 20px;
+
+	// Logo
+	--logo-width: 150px;
+	--logo-align: center;
+	--logo-border-radius: 0px;
+	--logo-margin-bottom: 24px;
+
+	// Title
 	--title-color: var(--wbcom-heading-color, #122B46);
+	--title-align: center;
+	--title-margin-bottom: 8px;
+
+	// Subtitle
 	--subtitle-color: var(--wbcom-text-color, #666666);
+	--subtitle-align: center;
+	--subtitle-margin-bottom: 24px;
+
+	// Labels
 	--label-color: var(--wbcom-heading-color, #122B46);
+	--label-align: left;
+
+	// Inputs
 	--input-bg-color: var(--wbcom-input-bg, #f8f9fa);
 	--input-border-color: var(--wbcom-border-color, #e3e3e3);
 	--input-text-color: var(--wbcom-heading-color, #122B46);
 	--input-focus-border-color: var(--wbcom-color-primary, #1d76da);
+	--input-focus-bg-color: var(--wbcom-input-bg, #f8f9fa);
+	--input-placeholder-color: var(--wbcom-meta-color, #a0aec0);
 	--input-border-radius: 6px;
 	--input-padding-v: 12px;
 	--input-padding-h: 16px;
+	--input-width: 100%;
+	--input-align: left;
+
+	// Button
 	--button-bg-color: var(--wbcom-button-bg, #1d76da);
 	--button-text-color: var(--wbcom-button-text, #ffffff);
 	--button-hover-bg-color: var(--wbcom-button-hover-bg, #1557a0);
+	--button-hover-text-color: var(--wbcom-button-text, #ffffff);
+	--button-border-color: transparent;
+	--button-hover-border-color: transparent;
 	--button-border-radius: 6px;
+	--button-border-width: 0px;
 	--button-padding-v: 14px;
 	--button-padding-h: 24px;
+	--button-width: 100%;
+	--button-align: center;
+
+	// Links
 	--link-color: var(--wbcom-link-color, #1d76da);
 	--link-hover-color: var(--wbcom-link-hover-color, #1557a0);
-	--logo-width: 150px;
+	--links-align: flex-end;
+	--links-margin-top: 0px;
+
+	// Checkbox
 	--checkbox-color: var(--wbcom-color-primary, #1d76da);
+
+	// Logged in message
+	--logged-in-msg-color: var(--wbcom-heading-color, #122B46);
+	--logged-in-msg-align: left;
 }
 
 .wbcom-essential-login-form {
@@ -45,37 +87,49 @@
 	border-radius: var(--form-border-radius);
 	border: var(--form-border-width) solid var(--form-border-color);
 	box-shadow: var(--form-box-shadow);
+
+	// Form horizontal alignment
+	@at-root .wbcom-essential-login-form-wrapper[style*="--form-align: left"] & {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	@at-root .wbcom-essential-login-form-wrapper[style*="--form-align: right"] & {
+		margin-left: auto;
+		margin-right: 0;
+	}
 }
 
 .wbcom-essential-login-form__logo {
-	text-align: center;
-	margin-bottom: 24px;
+	text-align: var(--logo-align);
+	margin-bottom: var(--logo-margin-bottom);
 
 	img {
 		max-width: var(--logo-width);
 		height: auto;
+		border-radius: var(--logo-border-radius);
 	}
 }
 
 .wbcom-essential-login-form__title {
-	margin: 0 0 8px;
+	margin: 0 0 var(--title-margin-bottom);
 	font-size: 28px;
 	font-weight: 600;
 	color: var(--title-color);
-	text-align: center;
+	text-align: var(--title-align);
 }
 
 .wbcom-essential-login-form__subtitle {
-	margin: 0 0 24px;
+	margin: 0 0 var(--subtitle-margin-bottom);
 	font-size: 15px;
 	color: var(--subtitle-color);
-	text-align: center;
+	text-align: var(--subtitle-align);
 }
 
 .wbcom-essential-login-form__form {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: var(--rows-gap);
 }
 
 .wbcom-essential-login-form__message {
@@ -101,12 +155,25 @@
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
+	width: var(--input-width);
+
+	// Input field alignment
+	@at-root .wbcom-essential-login-form-wrapper[style*="--input-align: center"] & {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@at-root .wbcom-essential-login-form-wrapper[style*="--input-align: right"] & {
+		margin-left: auto;
+		margin-right: 0;
+	}
 }
 
 .wbcom-essential-login-form__label {
 	font-size: 14px;
 	font-weight: 500;
 	color: var(--label-color);
+	text-align: var(--label-align);
 }
 
 .wbcom-essential-login-form__input {
@@ -118,14 +185,15 @@
 	border: 1px solid var(--input-border-color);
 	border-radius: var(--input-border-radius);
 	outline: none;
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 
 	&::placeholder {
-		color: var(--wbcom-meta-color, #a0aec0);
+		color: var(--input-placeholder-color);
 	}
 
 	&:focus {
 		border-color: var(--input-focus-border-color);
+		background-color: var(--input-focus-bg-color);
 		box-shadow: 0 0 0 3px rgba(29, 118, 218, 0.1);
 	}
 }
@@ -133,7 +201,7 @@
 .wbcom-essential-login-form__options {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	gap: 12px;
 }
@@ -155,35 +223,40 @@
 	}
 }
 
-.wbcom-essential-login-form__lost-password {
-	font-size: 14px;
-	color: var(--link-color);
-	text-decoration: none;
-	transition: color 0.2s ease;
-
-	&:hover {
-		color: var(--link-hover-color);
-	}
-}
-
 .wbcom-essential-login-form__button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
-	width: 100%;
+	width: var(--button-width);
 	padding: var(--button-padding-v) var(--button-padding-h);
 	font-size: 16px;
 	font-weight: 600;
 	color: var(--button-text-color);
 	background: var(--button-bg-color);
-	border: none;
+	border: var(--button-border-width) solid var(--button-border-color);
 	border-radius: var(--button-border-radius);
 	cursor: pointer;
-	transition: background-color 0.2s ease, transform 0.1s ease;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+
+	// Button alignment
+	@at-root .wbcom-essential-login-form-wrapper[style*="--button-align: left"] & {
+		margin-right: auto;
+	}
+
+	@at-root .wbcom-essential-login-form-wrapper[style*="--button-align: center"] & {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@at-root .wbcom-essential-login-form-wrapper[style*="--button-align: right"] & {
+		margin-left: auto;
+	}
 
 	&:hover:not(:disabled) {
 		background: var(--button-hover-bg-color);
+		color: var(--button-hover-text-color);
+		border-color: var(--button-hover-border-color);
 	}
 
 	&:active:not(:disabled) {
@@ -200,6 +273,33 @@
 	}
 }
 
+// Links section (Lost Password + Register)
+.wbcom-essential-login-form__links {
+	display: flex;
+	align-items: center;
+	justify-content: var(--links-align);
+	gap: 12px;
+	margin-top: var(--links-margin-top);
+	flex-wrap: wrap;
+}
+
+.wbcom-essential-login-form__link {
+	font-size: 14px;
+	color: var(--link-color);
+	text-decoration: none;
+	transition: color 0.2s ease;
+
+	&:hover {
+		color: var(--link-hover-color);
+	}
+}
+
+.wbcom-essential-login-form__link-separator {
+	font-size: 14px;
+	color: var(--wbcom-meta-color, #a0aec0);
+}
+
+// Legacy class - kept for backwards compatibility
 .wbcom-essential-login-form__register {
 	margin: 8px 0 0;
 	font-size: 14px;
@@ -218,15 +318,31 @@
 	}
 }
 
+// Legacy class - kept for backwards compatibility
+.wbcom-essential-login-form__lost-password {
+	font-size: 14px;
+	color: var(--link-color);
+	text-decoration: none;
+	transition: color 0.2s ease;
+
+	&:hover {
+		color: var(--link-hover-color);
+	}
+}
+
 // Logged in state.
 .wbcom-essential-login-form--logged-in {
-	text-align: center;
+	text-align: var(--logged-in-msg-align);
 }
 
 .wbcom-essential-login-form__logged-in-message {
 	margin: 0 0 16px;
 	font-size: 16px;
-	color: var(--title-color);
+	color: var(--logged-in-msg-color);
+
+	strong {
+		font-weight: 600;
+	}
 }
 
 .wbcom-essential-login-form__logout-link {
@@ -251,7 +367,7 @@
 		.pmpro_login-fields {
 			display: flex;
 			flex-direction: column;
-			gap: 16px;
+			gap: var(--rows-gap);
 		}
 
 		.pmpro_login-field {
@@ -286,14 +402,14 @@
 
 		input[type="submit"] {
 			display: block;
-			width: 100%;
+			width: var(--button-width);
 			padding: var(--button-padding-v) var(--button-padding-h);
 			margin-top: 8px;
 			font-size: 16px;
 			font-weight: 600;
 			color: var(--button-text-color);
 			background: var(--button-bg-color);
-			border: none;
+			border: var(--button-border-width) solid var(--button-border-color);
 			border-radius: var(--button-border-radius);
 			cursor: pointer;
 			transition: background-color 0.2s ease;
@@ -331,5 +447,14 @@
 	.wbcom-essential-login-form__options {
 		flex-direction: column;
 		align-items: flex-start;
+	}
+
+	.wbcom-essential-login-form__links {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.wbcom-essential-login-form__link-separator {
+		display: none;
 	}
 }

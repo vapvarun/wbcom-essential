@@ -7,7 +7,7 @@
 .wbcom-essential-forums-editor {
 	.wbcom-essential-forums {
 		background: var(--box-bg);
-		border: 1px solid var(--box-border-color);
+		border: var(--box-border-width) var(--box-border-type) var(--box-border-color);
 		border-radius: var(--box-radius);
 		padding: 20px;
 	}
@@ -70,6 +70,9 @@
 		justify-content: center;
 		background: #e3e3e3;
 		color: #999;
+		border-radius: var(--avatar-radius);
+		border: var(--avatar-border-width) var(--avatar-border-type) var(--avatar-border-color);
+		opacity: var(--avatar-opacity);
 	}
 }
 
@@ -82,13 +85,15 @@
 	margin-bottom: 3px;
 
 	.topic-link {
-		font-size: 14px;
+		font-size: var(--title-font-size);
+		font-weight: var(--title-font-weight);
+		line-height: var(--title-line-height);
 		color: var(--title-color);
 	}
 }
 
 .wbcom-essential-forums .item-meta {
-	font-size: 13px;
+	font-size: var(--meta-font-size);
 	color: var(--meta-color);
 }
 
@@ -116,7 +121,7 @@
 
 	.bs-last-reply {
 		color: var(--last-reply-color);
-		font-size: 13px;
+		font-size: var(--meta-font-size);
 		line-height: 1.4;
 	}
 }

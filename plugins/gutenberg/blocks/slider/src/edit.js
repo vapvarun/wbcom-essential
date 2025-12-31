@@ -26,8 +26,16 @@ import {
 	MediaUploadCheck,
 } from '@wordpress/block-editor';
 
-import { Button, PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
+import {
+	Button,
+	PanelBody,
+	ToggleControl,
+	RangeControl,
+	SelectControl,
+	__experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
+import { ColorPalette } from '@wordpress/block-editor';
 
 /**
  * The edit function describes the structure of your block in the context of the editor.
@@ -56,6 +64,25 @@ export default function Edit( { attributes, setAttributes } ) {
 		navDotsDesktop,
 		navDotsTablet,
 		navDotsMobile,
+		transitionDuration,
+		arrowColor,
+		arrowHoverColor,
+		arrowBgColor,
+		arrowBgHoverColor,
+		arrowSize,
+		arrowBoxSize,
+		arrowBorderRadius,
+		dotsColor,
+		dotsActiveColor,
+		dotsSize,
+		dotsSpacing,
+		dotsPosition,
+		dotsBottomOffset,
+		enableParallax,
+		parallaxSpeed,
+		enableKeyboardNav,
+		pauseOnHover,
+		infiniteLoop,
 	} = attributes;
 
 	const [ activeSlideIndex, setActiveSlideIndex ] = useState( 0 );
@@ -234,6 +261,34 @@ export default function Edit( { attributes, setAttributes } ) {
 						</select>
 					</div>
 
+					<RangeControl
+						label={ __( 'Transition Duration (ms)', 'wbcom-essential' ) }
+						value={ transitionDuration }
+						onChange={ ( value ) => setAttributes( { transitionDuration: value } ) }
+						min={ 100 }
+						max={ 3000 }
+						step={ 50 }
+					/>
+
+					<ToggleControl
+						label={ __( 'Infinite Loop', 'wbcom-essential' ) }
+						checked={ infiniteLoop }
+						onChange={ ( value ) => setAttributes( { infiniteLoop: value } ) }
+					/>
+
+					<ToggleControl
+						label={ __( 'Pause on Hover', 'wbcom-essential' ) }
+						checked={ pauseOnHover }
+						onChange={ ( value ) => setAttributes( { pauseOnHover: value } ) }
+					/>
+
+					<ToggleControl
+						label={ __( 'Keyboard Navigation', 'wbcom-essential' ) }
+						checked={ enableKeyboardNav }
+						onChange={ ( value ) => setAttributes( { enableKeyboardNav: value } ) }
+						help={ __( 'Allow navigating slides with arrow keys', 'wbcom-essential' ) }
+					/>
+
 					<ToggleControl
 						label={ __( 'Show Dots', 'wbcom-essential' ) }
 						checked={ showDots }
@@ -323,6 +378,171 @@ export default function Edit( { attributes, setAttributes } ) {
 							className="components-color-picker__input"
 						/>
 					</div>
+				</PanelBody>
+
+				{ showArrows && (
+					<PanelBody title={ __( 'Arrow Styling', 'wbcom-essential' ) } initialOpen={ false }>
+						<div className="components-base-control">
+							<label className="components-base-control__label">
+								{ __( 'Arrow Color', 'wbcom-essential' ) }
+							</label>
+							<input
+								type="color"
+								value={ arrowColor }
+								onChange={ ( e ) => setAttributes( { arrowColor: e.target.value } ) }
+								className="components-color-picker__input"
+							/>
+						</div>
+
+						<div className="components-base-control">
+							<label className="components-base-control__label">
+								{ __( 'Arrow Hover Color', 'wbcom-essential' ) }
+							</label>
+							<input
+								type="color"
+								value={ arrowHoverColor }
+								onChange={ ( e ) => setAttributes( { arrowHoverColor: e.target.value } ) }
+								className="components-color-picker__input"
+							/>
+						</div>
+
+						<div className="components-base-control">
+							<label className="components-base-control__label">
+								{ __( 'Arrow Background Color', 'wbcom-essential' ) }
+							</label>
+							<input
+								type="color"
+								value={ arrowBgColor.startsWith( 'rgba' ) ? '#000000' : arrowBgColor }
+								onChange={ ( e ) => setAttributes( { arrowBgColor: e.target.value } ) }
+								className="components-color-picker__input"
+							/>
+						</div>
+
+						<div className="components-base-control">
+							<label className="components-base-control__label">
+								{ __( 'Arrow Background Hover Color', 'wbcom-essential' ) }
+							</label>
+							<input
+								type="color"
+								value={ arrowBgHoverColor.startsWith( 'rgba' ) ? '#000000' : arrowBgHoverColor }
+								onChange={ ( e ) => setAttributes( { arrowBgHoverColor: e.target.value } ) }
+								className="components-color-picker__input"
+							/>
+						</div>
+
+						<RangeControl
+							label={ __( 'Arrow Icon Size (px)', 'wbcom-essential' ) }
+							value={ arrowSize }
+							onChange={ ( value ) => setAttributes( { arrowSize: value } ) }
+							min={ 12 }
+							max={ 48 }
+							step={ 1 }
+						/>
+
+						<RangeControl
+							label={ __( 'Arrow Box Size (px)', 'wbcom-essential' ) }
+							value={ arrowBoxSize }
+							onChange={ ( value ) => setAttributes( { arrowBoxSize: value } ) }
+							min={ 30 }
+							max={ 100 }
+							step={ 1 }
+						/>
+
+						<RangeControl
+							label={ __( 'Arrow Border Radius (%)', 'wbcom-essential' ) }
+							value={ arrowBorderRadius }
+							onChange={ ( value ) => setAttributes( { arrowBorderRadius: value } ) }
+							min={ 0 }
+							max={ 50 }
+							step={ 1 }
+						/>
+					</PanelBody>
+				) }
+
+				{ showDots && (
+					<PanelBody title={ __( 'Dots Styling', 'wbcom-essential' ) } initialOpen={ false }>
+						<div className="components-base-control">
+							<label className="components-base-control__label">
+								{ __( 'Dots Color', 'wbcom-essential' ) }
+							</label>
+							<input
+								type="color"
+								value={ dotsColor.startsWith( 'rgba' ) ? '#ffffff' : dotsColor }
+								onChange={ ( e ) => setAttributes( { dotsColor: e.target.value } ) }
+								className="components-color-picker__input"
+							/>
+						</div>
+
+						<div className="components-base-control">
+							<label className="components-base-control__label">
+								{ __( 'Active Dot Color', 'wbcom-essential' ) }
+							</label>
+							<input
+								type="color"
+								value={ dotsActiveColor }
+								onChange={ ( e ) => setAttributes( { dotsActiveColor: e.target.value } ) }
+								className="components-color-picker__input"
+							/>
+						</div>
+
+						<RangeControl
+							label={ __( 'Dot Size (px)', 'wbcom-essential' ) }
+							value={ dotsSize }
+							onChange={ ( value ) => setAttributes( { dotsSize: value } ) }
+							min={ 6 }
+							max={ 24 }
+							step={ 1 }
+						/>
+
+						<RangeControl
+							label={ __( 'Dot Spacing (px)', 'wbcom-essential' ) }
+							value={ dotsSpacing }
+							onChange={ ( value ) => setAttributes( { dotsSpacing: value } ) }
+							min={ 4 }
+							max={ 30 }
+							step={ 1 }
+						/>
+
+						<SelectControl
+							label={ __( 'Dots Position', 'wbcom-essential' ) }
+							value={ dotsPosition }
+							options={ [
+								{ label: __( 'Inside Slider', 'wbcom-essential' ), value: 'inside' },
+								{ label: __( 'Outside Slider', 'wbcom-essential' ), value: 'outside' },
+							] }
+							onChange={ ( value ) => setAttributes( { dotsPosition: value } ) }
+						/>
+
+						<RangeControl
+							label={ __( 'Dots Bottom Offset (px)', 'wbcom-essential' ) }
+							value={ dotsBottomOffset }
+							onChange={ ( value ) => setAttributes( { dotsBottomOffset: value } ) }
+							min={ 0 }
+							max={ 100 }
+							step={ 1 }
+						/>
+					</PanelBody>
+				) }
+
+				<PanelBody title={ __( 'Parallax Effect', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Enable Parallax', 'wbcom-essential' ) }
+						checked={ enableParallax }
+						onChange={ ( value ) => setAttributes( { enableParallax: value } ) }
+						help={ __( 'Add a parallax scrolling effect to slide backgrounds', 'wbcom-essential' ) }
+					/>
+
+					{ enableParallax && (
+						<RangeControl
+							label={ __( 'Parallax Speed', 'wbcom-essential' ) }
+							value={ parallaxSpeed }
+							onChange={ ( value ) => setAttributes( { parallaxSpeed: value } ) }
+							min={ 0.1 }
+							max={ 1 }
+							step={ 0.1 }
+							help={ __( 'Lower values = slower parallax movement', 'wbcom-essential' ) }
+						/>
+					) }
 				</PanelBody>
 
 				<PanelBody title={ __( 'Slide Background', 'wbcom-essential' ) }>

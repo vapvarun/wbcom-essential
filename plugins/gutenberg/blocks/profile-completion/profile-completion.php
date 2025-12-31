@@ -10,11 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the block using the metadata loaded from block.json.
- * Requires BuddyPress to be active.
+ * Registers the block using the metadata loaded from the `block.json` file.
+ * Behind the scenes, it registers also all assets so they can be enqueued
+ * through the block editor in the corresponding context.
+ *
+ * Only register if BuddyPress is active.
+ *
+ * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function wbcom_essential_profile_completion_block_init() {
-	// Only register if BuddyPress is active - this block is 100% BuddyPress dependent.
+	// Only register if BuddyPress is active.
 	if ( ! function_exists( 'buddypress' ) ) {
 		return;
 	}
