@@ -183,9 +183,7 @@ $register_url      = apply_filters( 'wbcom_essential_login_register_url', $regis
 			<?php if ( $has_pmpro ) : ?>
 				<?php
 				// Use PMPro login form.
-				// Validate redirect URL to prevent open redirect attacks.
-				$validated_pmpro_redirect = wp_validate_redirect( $redirect_url, home_url() );
-				echo do_shortcode( '[pmpro_login redirect="' . esc_attr( $validated_pmpro_redirect ) . '"]' );
+				echo do_shortcode( '[pmpro_login redirect="' . esc_attr( $redirect_url ) . '"]' );
 				?>
 			<?php else : ?>
 				<form class="wbcom-essential-login-form__form" method="post" data-ajax="true">

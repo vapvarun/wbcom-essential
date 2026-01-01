@@ -43,11 +43,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
 					messageEl.hidden = false;
 
 					// Redirect after a short delay.
-					if ( result.data.redirect ) {
-						setTimeout( () => {
-							window.location.href = result.data.redirect;
-						}, 500 );
-					}
+					setTimeout( () => {
+						window.location.href = result.data.redirect;
+					}, 500 );
 				} else {
 					// Show error message.
 					messageEl.textContent = result.data.message || 'An error occurred. Please try again.';

@@ -21,7 +21,7 @@ $logo_align             = $attributes['logoAlign'] ?? 'center';
 $logo_border_radius     = $attributes['logoBorderRadius'] ?? 0;
 $logo_margin_bottom     = $attributes['logoMarginBottom'] ?? 24;
 $show_title             = $attributes['showTitle'] ?? true;
-$title                  = $attributes['title'] ?? 'Welcome Back';
+$form_title             = $attributes['title'] ?? 'Welcome Back';
 $title_tag              = $attributes['titleTag'] ?? 'h2';
 $title_align            = $attributes['titleAlign'] ?? 'center';
 $title_margin_bottom    = $attributes['titleMarginBottom'] ?? 8;
@@ -118,10 +118,12 @@ foreach ( $inline_styles as $prop => $value ) {
 }
 
 // Wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => 'wbcom-essential-login-form-wrapper',
-	'style' => $style_string,
-) );
+$wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'class' => 'wbcom-essential-login-form-wrapper',
+		'style' => $style_string,
+	)
+);
 
 // Check if user is logged in.
 $is_logged_in = is_user_logged_in();
@@ -147,11 +149,11 @@ $register_url      = apply_filters( 'wbcom_essential_login_register_url', $regis
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<?php if ( $is_logged_in && ! $test_mode ) : ?>
 		<?php if ( $show_logged_in_message ) : ?>
-			<?php $current_user = wp_get_current_user(); ?>
+			<?php $logged_in_user = wp_get_current_user(); ?>
 			<div class="wbcom-essential-login-form wbcom-essential-login-form--logged-in">
 				<p class="wbcom-essential-login-form__logged-in-message">
 					<?php echo esc_html( $logged_in_message ); ?>
-					<strong><?php echo esc_html( $current_user->display_name ); ?></strong>
+					<strong><?php echo esc_html( $logged_in_user->display_name ); ?></strong>
 				</p>
 				<a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="wbcom-essential-login-form__logout-link">
 					<?php esc_html_e( 'Log Out', 'wbcom-essential' ); ?>
@@ -166,9 +168,9 @@ $register_url      = apply_filters( 'wbcom_essential_login_register_url', $regis
 				</div>
 			<?php endif; ?>
 
-			<?php if ( $show_title && $title ) : ?>
+			<?php if ( $show_title && $form_title ) : ?>
 				<<?php echo esc_attr( $title_tag ); ?> class="wbcom-essential-login-form__title">
-					<?php echo esc_html( $title ); ?>
+					<?php echo esc_html( $form_title ); ?>
 				</<?php echo esc_attr( $title_tag ); ?>>
 			<?php endif; ?>
 
