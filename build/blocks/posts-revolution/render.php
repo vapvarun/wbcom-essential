@@ -234,7 +234,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-left">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<?php if ( $show_excerpt ) : ?>
 							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 						<?php endif; ?>
@@ -250,7 +250,7 @@ while ( $loop->have_posts() ) :
 						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 					<div class="wb-info-right wb_two_third wb_last">
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</div>
 					<div class="wbclear"></div>
@@ -269,7 +269,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-left">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<?php if ( $show_excerpt ) : ?>
 							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 						<?php endif; ?>
@@ -286,7 +286,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-right wb_two_third wb_last">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<?php if ( $show_excerpt ) : ?>
 							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 						<?php endif; ?>
@@ -306,7 +306,7 @@ while ( $loop->have_posts() ) :
 				</div>
 				<div class="wb-info-left">
 					<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+					<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 					<?php if ( $show_excerpt ) : ?>
 						<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 					<?php endif; ?>
@@ -329,7 +329,7 @@ while ( $loop->have_posts() ) :
 				</div>
 				<div class="wb-info-right wb_one_half wb_last">
 					<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+					<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 					<?php if ( $show_excerpt ) : ?>
 						<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 					<?php endif; ?>
@@ -351,7 +351,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-left">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<?php if ( $show_excerpt ) : ?>
 							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 						<?php endif; ?>
@@ -364,7 +364,7 @@ while ( $loop->have_posts() ) :
 				?>
 				<div class="wb_two_fifth wb_last">
 					<div class="wb-info-right wb_last">
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</div>
 					<div class="wbclear"></div>
@@ -383,7 +383,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-left">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<?php if ( $show_excerpt ) : ?>
 							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 						<?php endif; ?>
@@ -403,7 +403,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-left">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<?php if ( $show_excerpt ) : ?>
 							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 						<?php endif; ?>
@@ -422,7 +422,7 @@ while ( $loop->have_posts() ) :
 						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 					<div class="wb-info-right wb_two_third wb_last">
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</div>
 					<div class="wbclear"></div>
@@ -441,7 +441,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-left">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<span class="wb-author"><?php echo esc_html( get_the_author() ); ?></span>
 						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
 						<div class="clearfix wbclear"></div>
@@ -458,7 +458,7 @@ while ( $loop->have_posts() ) :
 						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 					<div class="wb-info-right wb_two_third wb_last">
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<span class="wb-date"><?php echo esc_html( get_the_date( $date_format ) ); ?></span>
 					</div>
 					<div class="wbclear"></div>
@@ -477,7 +477,7 @@ while ( $loop->have_posts() ) :
 					</div>
 					<div class="wb-info-left">
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<?php if ( $show_excerpt ) : ?>
 							<span class="wb-content"><?php echo esc_html( wbcom_pr_block_get_excerpt( $excerpt_length ) ); ?></span>
 						<?php endif; ?>
@@ -493,7 +493,7 @@ while ( $loop->have_posts() ) :
 						<?php echo wbcom_pr_block_get_thumbnail( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 					<div class="wb-info-right wb_two_third wb_last">
-						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php the_title(); ?></a></span>
+						<span class="wb-title"><a href="<?php echo esc_url( $post_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a></span>
 						<span class="wb-category"><?php echo wbcom_pr_block_get_category( $query_source, $custom_post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</div>
 					<div class="wbclear"></div>
@@ -514,7 +514,7 @@ if ( $enable_pagination && $loop->max_num_pages > 1 ) :
 		$pagination_args = array(
 			'base'      => add_query_arg( 'paged_' . $instance, '%#%' ),
 			'format'    => '',
-			'current'   => $paged,
+			'current'   => $current_page,
 			'total'     => $loop->max_num_pages,
 			'prev_text' => '&laquo;',
 			'next_text' => '&raquo;',
