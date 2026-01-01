@@ -91,11 +91,14 @@
 
 	&:hover {
 		color: var(--portfolio-filter-active);
+		background: var(--portfolio-filter-active-bg, transparent);
+		border: none;
 	}
 
 	&.is-active {
 		color: var(--portfolio-filter-active);
 		background: var(--portfolio-filter-active-bg, transparent);
+		border: none;
 
 		&::after {
 			width: 100%;
@@ -118,6 +121,7 @@
 	justify-content: center;
 	width: 36px;
 	height: 36px;
+	padding: 0;
 	border: none;
 	background: transparent;
 	color: var(--portfolio-filter-text);
@@ -126,7 +130,9 @@
 	transition: all 0.2s ease;
 
 	&:hover {
+		background: transparent;
 		color: var(--portfolio-filter-active);
+		border: none;
 	}
 
 	&.is-active {
@@ -558,13 +564,6 @@
 		img {
 			position: relative;
 			height: 100%;
-		}
-
-		&.wbcom-portfolio-placeholder {
-			svg {
-				position: relative;
-				transform: none;
-			}
 		}
 	}
 
