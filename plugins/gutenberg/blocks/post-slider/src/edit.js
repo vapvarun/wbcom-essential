@@ -21,6 +21,7 @@ import {
 	Placeholder,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
 import { ColorControl } from './components/color-control';
 
@@ -76,6 +77,94 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps();
+
+	// Initialize Swiper in editor preview
+	useEffect( () => {
+		// Wait for ServerSideRender to complete and DOM to be ready
+		const initializeSwiper = () => {
+			const sliders = document.querySelectorAll( '.wbcom-essential-post-slider' );
+			
+			sliders.forEach( function ( slider ) {
+				const swiperContainer = slider.querySelector( '.swiper' );
+				if ( ! swiperContainer ) {
+					return;
+				}
+
+				// Parse configuration from data attribute.
+				let config;
+				try {
+					config = JSON.parse(
+						slider.getAttribute( 'data-swiper-config' ) || '{}'
+					);
+				} catch ( e ) {
+					config = {};
+				}
+
+				// Build Swiper options.
+				const options = {
+					effect: config.effect || 'fade',
+					speed: config.speed || 500,
+					loop: config.loop !== false,
+				};
+
+				// Add fade effect options.
+				if ( config.effect === 'fade' ) {
+					options.fadeEffect = config.fadeEffect || { crossFade: true };
+				}
+
+				// Add navigation if enabled.
+				if ( config.navigation ) {
+					options.navigation = {
+						prevEl: slider.querySelector( '.swiper-button-prev' ),
+						nextEl: slider.querySelector( '.swiper-button-next' ),
+					};
+				}
+
+				// Add pagination if enabled.
+				if ( config.pagination ) {
+					options.pagination = {
+						el: slider.querySelector( '.swiper-pagination' ),
+						clickable: true,
+					};
+				}
+
+				// Add autoplay if enabled.
+				if ( config.autoplay && config.autoplay.delay ) {
+					options.autoplay = {
+						delay: config.autoplay.delay,
+						disableOnInteraction: false,
+						pauseOnMouseEnter: true,
+					};
+				}
+
+				// Initialize Swiper - require it to be enqueued by the block.
+				if ( typeof Swiper !== 'undefined' ) {
+					new Swiper( swiperContainer, options );
+				}
+			} );
+		};
+
+		// Initial attempt
+		setTimeout( initializeSwiper, 1000 );
+		
+		// Also observe for changes
+		const observer = new MutationObserver( () => {
+			setTimeout( initializeSwiper, 500 );
+		} );
+		
+		// Start observing the block element
+		const blockElement = document.querySelector( '.block-editor-block-preview__content' );
+		if ( blockElement ) {
+			observer.observe( blockElement, {
+				childList: true,
+				subtree: true,
+			} );
+		}
+
+		return () => {
+			observer.disconnect();
+		};
+	}, [ attributes ] ); // Re-initialize when attributes change
 
 	// Fetch post types.
 	const postTypes = useSelect( ( select ) => {

@@ -217,8 +217,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 								<div class="wbcom-post-slider-excerpt">
 									<?php
 									$excerpt = get_the_excerpt();
-									if ( strlen( $excerpt ) > $excerpt_length ) {
-										$excerpt = substr( $excerpt, 0, $excerpt_length ) . '...';
+									if ( mb_strlen( $excerpt, 'UTF-8' ) > $excerpt_length ) {
+										$excerpt = mb_substr( $excerpt, 0, $excerpt_length, 'UTF-8' ) . '...';
 									}
 									echo wp_kses_post( $excerpt );
 									?>

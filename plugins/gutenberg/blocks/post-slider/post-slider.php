@@ -21,7 +21,7 @@ function wbcom_essential_post_slider_block_init() {
 add_action( 'init', 'wbcom_essential_post_slider_block_init' );
 
 /**
- * Enqueue Swiper assets for Post Slider block.
+ * Enqueue Swiper assets for Post Slider block on frontend.
  */
 function wbcom_essential_post_slider_enqueue_assets() {
 	if ( ! has_block( 'wbcom-essential/post-slider' ) ) {
@@ -46,3 +46,26 @@ function wbcom_essential_post_slider_enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'wbcom_essential_post_slider_enqueue_assets' );
+
+/**
+ * Enqueue Swiper assets for Post Slider block in editor.
+ */
+function wbcom_essential_post_slider_enqueue_editor_assets() {
+	// Enqueue Swiper CSS for editor preview.
+	wp_enqueue_style(
+		'swiper',
+		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
+		array(),
+		'11.0.0'
+	);
+
+	// Enqueue Swiper JS for editor preview.
+	wp_enqueue_script(
+		'swiper',
+		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
+		array(),
+		'11.0.0',
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'wbcom_essential_post_slider_enqueue_editor_assets' );
