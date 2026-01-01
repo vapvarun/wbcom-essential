@@ -108,3 +108,4 @@ function wbcom_essential_ajax_login() {
 	) );
 }
 add_action( 'wp_ajax_nopriv_wbcom_essential_ajax_login', 'wbcom_essential_ajax_login' );
+add_action( 'wp_ajax_wbcom_essential_ajax_login', 'wbcom_essential_ajax_login' );
