@@ -65,6 +65,22 @@ export default function Edit( { attributes, setAttributes } ) {
 		className: 'wbcom-essential-groups-lists-editor',
 	} );
 
+	// Build inline styles for editor preview.
+	const containerStyle = {
+		'--box-border-radius'        : `${ boxBorderRadius }px`,
+		'--avatar-size'              : `${ avatarSize }px`,
+		'--avatar-border-radius'     : `${ avatarBorderRadius }px`,
+		// User-selected colors
+		'--box-bg'                  : boxBgColor,
+		'--box-border-color'         : boxBorderColor,
+		'--title-color'              : titleColor,
+		'--meta-color'               : metaColor,
+		'--link-color'               : linkColor,
+		'--filter-normal-color'      : filterNormalColor,
+		'--filter-active-color'      : filterActiveColor,
+		'--filter-active-border'     : filterActiveBorderColor,
+	};
+
 	// Get labels for FormTokenField.
 	const getGroupTypeLabels = () => {
 		return groupTypes.map( ( type ) => {
@@ -262,10 +278,12 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<ServerSideRender
-					block="wbcom-essential/groups-lists"
-					attributes={ attributes }
-				/>
+				<div className="wbcom-essential-groups-lists-preview" style={ containerStyle }>
+					<ServerSideRender
+						block="wbcom-essential/groups-lists"
+						attributes={ attributes }
+					/>
+				</div>
 			</div>
 		</>
 	);
