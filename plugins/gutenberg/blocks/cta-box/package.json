@@ -1,0 +1,23 @@
+{
+	"name": "block-cta-box",
+	"version": "1.0.0",
+	"description": "Call-to-action box with title, description, and button",
+	"author": "Wbcom Essential",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"keywords": [
+		"wordpress",
+		"block",
+		"cta",
+		"call-to-action",
+		"button",
+		"gutenberg"
+	],
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start --blocks-manifest"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^26.0.0"
+	}
+}

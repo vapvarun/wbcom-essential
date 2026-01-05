@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/text-rotator",
 	"version": "1.0.0",
 	"title": "Text Rotator",
-	"category": "wbcom-essential",
+	"category": "starter-design",
 	"icon": "editor-textcolor",
 	"description": "Animated rotating text with prefix and suffix.",
 	"keywords": [ "text", "rotator", "animation", "typing", "headline", "animated" ],

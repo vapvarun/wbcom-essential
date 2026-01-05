@@ -4,7 +4,7 @@
   "name": "wbcom-essential/advanced-tabs",
   "version": "1.0.0",
   "title": "Advanced Tabs",
-  "category": "wbcom-essential",
+  "category": "starter-content",
   "icon": "category",
   "description": "A powerful tabbed interface that transforms into an accordion on mobile devices.",
   "keywords": [

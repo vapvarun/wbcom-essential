@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/posts-revolution",
 	"version": "1.0.0",
 	"title": "Posts Revolution",
-	"category": "wbcom-essential",
+	"category": "starter-blog",
 	"icon": "grid-view",
 	"description": "Display posts in 7 creative magazine-style layouts with featured post emphasis.",
 	"keywords": [ "posts", "grid", "layout", "featured", "magazine", "blog", "revolution" ],

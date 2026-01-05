@@ -4,7 +4,7 @@
   "name": "wbcom-essential/group-carousel",
   "version": "1.0.0",
   "title": "Group Carousel",
-  "category": "wbcom-essential-buddypress",
+  "category": "starter-buddypress",
   "icon": "slides",
   "description": "Display BuddyPress groups in a Swiper carousel.",
   "keywords": [

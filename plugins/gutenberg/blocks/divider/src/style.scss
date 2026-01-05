@@ -1,0 +1,43 @@
+/**
+ * Divider Block - Frontend Styles
+ */
+.wbcom-essential-divider {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-top: var(--margin-top, 20px);
+	margin-bottom: var(--margin-bottom, 20px);
+
+	&__line {
+		flex: 1;
+		height: 0;
+		border-top-width: var(--divider-thickness, 2px);
+		border-top-color: var(--divider-color, #ddd);
+		max-width: var(--divider-width, 100%);
+
+		&--full {
+			width: var(--divider-width, 100%);
+			flex: none;
+		}
+	}
+
+	&.style-solid .wbcom-essential-divider__line { border-top-style: solid; }
+	&.style-dashed .wbcom-essential-divider__line { border-top-style: dashed; }
+	&.style-dotted .wbcom-essential-divider__line { border-top-style: dotted; }
+	&.style-double .wbcom-essential-divider__line { border-top-style: double; }
+
+	&__icon {
+		display: inline-flex;
+		padding: 0 12px;
+		color: var(--icon-color, var(--divider-color, #333));
+		.dashicons {
+			font-size: var(--icon-size, 20px);
+			width: var(--icon-size, 20px);
+			height: var(--icon-size, 20px);
+		}
+	}
+
+	&.align-left { justify-content: flex-start; }
+	&.align-center { justify-content: center; }
+	&.align-right { justify-content: flex-end; }
+}

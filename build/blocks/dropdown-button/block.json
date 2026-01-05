@@ -4,7 +4,7 @@
   "name": "wbcom-essential/dropdown-button",
   "version": "1.0.0",
   "title": "Dropdown Button",
-  "category": "wbcom-essential",
+  "category": "starter-header",
   "description": "A customizable dropdown button with menu items",
   "keywords": [
     "button",

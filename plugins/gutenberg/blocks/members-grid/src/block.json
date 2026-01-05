@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/members-grid",
 	"version": "1.0.0",
 	"title": "Members Grid",
-	"category": "wbcom-essential-buddypress",
+	"category": "starter-buddypress",
 	"icon": "screenoptions",
 	"description": "Display BuddyPress members in a responsive grid layout.",
 	"keywords": [ "members", "buddypress", "grid", "users", "community" ],

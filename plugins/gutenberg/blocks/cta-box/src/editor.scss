@@ -1,0 +1,30 @@
+/**
+ * CTA Box Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-cta-box {
+	// Make RichText components editable
+	.wbcom-essential-cta-box__title,
+	.wbcom-essential-cta-box__description {
+		cursor: text;
+
+		&:focus {
+			outline: none;
+		}
+
+		&[data-rich-text-placeholder]::after {
+			opacity: 0.62;
+		}
+	}
+
+	// Button in editor
+	.wbcom-essential-cta-box__button {
+		cursor: text;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}

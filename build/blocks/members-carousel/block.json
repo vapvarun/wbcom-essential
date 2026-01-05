@@ -4,7 +4,7 @@
   "name": "wbcom-essential/members-carousel",
   "version": "1.0.0",
   "title": "Members Carousel",
-  "category": "wbcom-essential-buddypress",
+  "category": "starter-buddypress",
   "icon": "slides",
   "description": "Display BuddyPress members in an interactive carousel.",
   "keywords": [

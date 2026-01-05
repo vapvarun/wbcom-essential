@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/heading",
 	"version": "1.0.0",
 	"title": "Heading",
-	"category": "wbcom-essential",
+	"category": "starter-design",
 	"description": "Display heading with advanced styling options",
 	"keywords": ["heading", "title", "text", "typography"],
 	"icon": "heading",

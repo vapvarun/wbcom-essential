@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/pricing-table",
 	"version": "1.0.0",
 	"title": "Pricing Table",
-	"category": "wbcom-essential",
+	"category": "starter-marketing",
 	"icon": "money-alt",
 	"description": "Display pricing plans with features, pricing, and CTA buttons",
 	"keywords": ["pricing", "price", "table", "plan", "subscription"],

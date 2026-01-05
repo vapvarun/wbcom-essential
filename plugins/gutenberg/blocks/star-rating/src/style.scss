@@ -1,0 +1,48 @@
+/**
+ * Star Rating Block - Frontend Styles
+ */
+.wbcom-essential-star-rating {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+
+	&__stars {
+		display: inline-flex;
+		gap: var(--star-gap, 4px);
+	}
+
+	&__star {
+		display: inline-flex;
+		.dashicons {
+			font-size: var(--star-size, 24px);
+			width: var(--star-size, 24px);
+			height: var(--star-size, 24px);
+		}
+		&.filled .dashicons { color: var(--filled-color, #ffc107); }
+		&.empty .dashicons { color: var(--empty-color, #e0e0e0); }
+		&.half {
+			position: relative;
+			.dashicons { color: var(--empty-color, #e0e0e0); }
+			&::before {
+				content: "\f155";
+				font-family: dashicons;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 50%;
+				overflow: hidden;
+				color: var(--filled-color, #ffc107);
+				font-size: var(--star-size, 24px);
+			}
+		}
+	}
+
+	&__label {
+		font-size: var(--label-size, 14px);
+		color: var(--label-color, inherit);
+	}
+
+	&.align-left { justify-content: flex-start; }
+	&.align-center { justify-content: center; }
+	&.align-right { justify-content: flex-end; }
+}

@@ -4,7 +4,7 @@
   "name": "wbcom-essential/portfolio-grid",
   "version": "1.0.0",
   "title": "Portfolio Grid",
-  "category": "wbcom-essential",
+  "category": "starter-blog",
   "icon": "grid-view",
   "description": "Display portfolio items in a filterable grid or masonry layout with hover effects and lightbox support.",
   "keywords": [

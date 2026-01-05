@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/profile-completion",
 	"version": "1.0.0",
 	"title": "Profile Completion",
-	"category": "wbcom-essential-buddypress",
+	"category": "starter-buddypress",
 	"icon": "chart-line",
 	"description": "Display BuddyPress member profile completion progress with customizable styles.",
 	"keywords": ["buddypress", "profile", "completion", "progress", "percentage"],

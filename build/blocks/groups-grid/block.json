@@ -4,7 +4,7 @@
   "name": "wbcom-essential/groups-grid",
   "version": "1.0.0",
   "title": "Groups Grid",
-  "category": "wbcom-essential-buddypress",
+  "category": "starter-buddypress",
   "icon": "grid-view",
   "description": "Display BuddyPress groups in a responsive grid layout.",
   "keywords": [

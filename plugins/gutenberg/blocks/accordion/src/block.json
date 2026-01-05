@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/accordion",
 	"version": "1.0.0",
 	"title": "Accordion",
-	"category": "wbcom-essential",
+	"category": "starter-content",
 	"icon": "list-view",
 	"description": "Create expandable accordion sections with rich content and customization options.",
 	"keywords": ["accordion", "faq", "collapse", "toggle", "expandable"],

@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/testimonial",
 	"version": "1.0.0",
 	"title": "Testimonial",
-	"category": "wbcom-essential",
+	"category": "starter-marketing",
 	"icon": "format-quote",
 	"description": "Display a customer testimonial with quote, author info, and optional rating.",
 	"keywords": [ "testimonial", "quote", "review", "customer", "feedback" ],

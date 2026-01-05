@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/timeline",
 	"version": "1.0.0",
 	"title": "Timeline",
-	"category": "wbcom-essential",
+	"category": "starter-content",
 	"icon": "backup",
 	"description": "Display events or milestones in a vertical timeline layout.",
 	"keywords": [ "timeline", "history", "events", "milestones", "chronology", "roadmap" ],

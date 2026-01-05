@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/flip-box",
 	"version": "1.0.0",
 	"title": "Flip Box",
-	"category": "wbcom-essential",
+	"category": "starter-design",
 	"icon": "image-flip-horizontal",
 	"description": "A 3D flip box with front and back content revealed on hover.",
 	"keywords": [ "flip", "card", "box", "hover", "3d", "animation", "interactive" ],

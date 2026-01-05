@@ -1,0 +1,23 @@
+{
+	"name": "block-social-icons",
+	"version": "1.0.0",
+	"description": "Display social media icons with links",
+	"author": "Wbcom Essential",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"keywords": [
+		"wordpress",
+		"block",
+		"social",
+		"icons",
+		"links",
+		"gutenberg"
+	],
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start --blocks-manifest"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^26.0.0"
+	}
+}

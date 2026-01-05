@@ -95,27 +95,53 @@ class WBCOM_Essential_Gutenberg {
 	}
 
 	/**
-	 * Register block category
+	 * Register block categories.
+	 *
+	 * Organizes blocks into logical groups for easier discovery.
 	 *
 	 * @param array $categories Block categories.
 	 * @return array
 	 */
 	public function register_block_category( $categories ) {
-		return array_merge(
-			$categories,
+		$starter_categories = array(
 			array(
-				array(
-					'slug'  => 'wbcom-essential',
-					'title' => __( 'Wbcom Essential', 'wbcom-essential' ),
-					'icon'  => 'lightbulb',
-				),
-				array(
-					'slug'  => 'wbcom-essential-buddypress',
-					'title' => __( 'Wbcom BuddyPress', 'wbcom-essential' ),
-					'icon'  => 'groups',
-				),
-			)
+				'slug'  => 'starter-header',
+				'title' => __( 'Starter Pack - Header', 'wbcom-essential' ),
+				'icon'  => 'admin-links',
+			),
+			array(
+				'slug'  => 'starter-design',
+				'title' => __( 'Starter Pack - Design', 'wbcom-essential' ),
+				'icon'  => 'art',
+			),
+			array(
+				'slug'  => 'starter-content',
+				'title' => __( 'Starter Pack - Content', 'wbcom-essential' ),
+				'icon'  => 'editor-table',
+			),
+			array(
+				'slug'  => 'starter-blog',
+				'title' => __( 'Starter Pack - Blog', 'wbcom-essential' ),
+				'icon'  => 'admin-post',
+			),
+			array(
+				'slug'  => 'starter-marketing',
+				'title' => __( 'Starter Pack - Marketing', 'wbcom-essential' ),
+				'icon'  => 'megaphone',
+			),
+			array(
+				'slug'  => 'starter-buddypress',
+				'title' => __( 'Starter Pack - BuddyPress', 'wbcom-essential' ),
+				'icon'  => 'groups',
+			),
+			array(
+				'slug'  => 'starter-woocommerce',
+				'title' => __( 'Starter Pack - WooCommerce', 'wbcom-essential' ),
+				'icon'  => 'cart',
+			),
 		);
+
+		return array_merge( $starter_categories, $categories );
 	}
 
 	/**

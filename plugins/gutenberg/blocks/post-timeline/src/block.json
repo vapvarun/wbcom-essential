@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/post-timeline",
 	"version": "1.0.0",
 	"title": "Post Timeline",
-	"category": "wbcom-essential",
+	"category": "starter-blog",
 	"icon": "backup",
 	"description": "Display WordPress posts in a vertical timeline layout.",
 	"keywords": [ "post", "timeline", "history", "blog", "articles", "chronological" ],

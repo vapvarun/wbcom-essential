@@ -4,7 +4,7 @@
   "name": "wbcom-essential/post-carousel",
   "version": "1.0.0",
   "title": "Post Carousel",
-  "category": "wbcom-essential",
+  "category": "starter-blog",
   "description": "Display posts in a carousel with customizable layout and styling options",
   "keywords": [
     "posts",

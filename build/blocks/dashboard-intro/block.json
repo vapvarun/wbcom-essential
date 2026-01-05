@@ -4,7 +4,7 @@
   "name": "wbcom-essential/dashboard-intro",
   "version": "1.0.0",
   "title": "Dashboard Intro",
-  "category": "wbcom-essential-buddypress",
+  "category": "starter-buddypress",
   "description": "Display a personalized welcome message with user avatar and greeting for logged-in users.",
   "keywords": [
     "dashboard",

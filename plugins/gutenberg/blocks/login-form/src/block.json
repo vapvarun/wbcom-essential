@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/login-form",
 	"version": "1.0.0",
 	"title": "Login Form",
-	"category": "wbcom-essential",
+	"category": "starter-header",
 	"icon": "admin-users",
 	"description": "Display a customizable login form with AJAX support.",
 	"keywords": [ "login", "form", "user", "authentication", "sign in" ],

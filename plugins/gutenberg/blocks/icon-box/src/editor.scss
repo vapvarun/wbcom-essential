@@ -1,0 +1,63 @@
+/**
+ * Icon Box Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-icon-box {
+	// Editor-specific adjustments
+
+	// Icon upload area in sidebar
+	.wbcom-icon-upload {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		align-items: flex-start;
+		padding: 12px;
+		background: #f0f0f0;
+		border-radius: 4px;
+		margin-bottom: 16px;
+
+		img {
+			max-width: 60px;
+			height: auto;
+			border-radius: 4px;
+		}
+
+		.components-button {
+			margin-top: 4px;
+		}
+	}
+
+	// Make RichText components editable
+	.wbcom-essential-icon-box__title {
+		cursor: text;
+
+		&:focus {
+			outline: none;
+		}
+
+		&[data-rich-text-placeholder]::after {
+			opacity: 0.62;
+		}
+	}
+
+	.wbcom-essential-icon-box__description {
+		cursor: text;
+
+		&:focus {
+			outline: none;
+		}
+
+		&[data-rich-text-placeholder]::after {
+			opacity: 0.62;
+		}
+	}
+}
+
+// Inspector panel adjustments
+.components-panel__body {
+	.wbcom-icon-upload {
+		margin-top: 8px;
+	}
+}

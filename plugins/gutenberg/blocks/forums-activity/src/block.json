@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/forums-activity",
 	"version": "1.0.0",
 	"title": "Forums Activity",
-	"category": "wbcom-essential-buddypress",
+	"category": "starter-buddypress",
 	"description": "Display the logged-in user's most recent forum discussion with meta data and excerpt.",
 	"keywords": [ "forums", "activity", "discussion", "bbpress", "user", "topics" ],
 	"textdomain": "wbcom-essential",

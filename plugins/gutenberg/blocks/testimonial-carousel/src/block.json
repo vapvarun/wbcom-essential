@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/testimonial-carousel",
 	"version": "1.0.0",
 	"title": "Testimonial Carousel",
-	"category": "wbcom-essential",
+	"category": "starter-marketing",
 	"icon": "format-quote",
 	"description": "Display multiple testimonials in an interactive carousel.",
 	"keywords": [ "testimonial", "carousel", "reviews", "quotes", "slider", "feedback" ],

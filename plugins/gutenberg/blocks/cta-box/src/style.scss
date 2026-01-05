@@ -1,0 +1,135 @@
+/**
+ * CTA Box Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-cta-box {
+	display: flex;
+	flex-direction: column;
+	gap: var(--content-spacing, 24px);
+
+	// Content wrapper
+	&__content {
+		flex: 1;
+	}
+
+	// Title
+	&__title {
+		margin: 0 0 12px 0;
+		font-size: var(--title-size, 32px);
+		color: var(--title-color, inherit);
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	// Description
+	&__description {
+		margin: 0;
+		font-size: var(--description-size, 16px);
+		color: var(--description-color, inherit);
+		line-height: 1.6;
+	}
+
+	// Buttons wrapper
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	// Button base
+	&__button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--button-padding, 12px 24px);
+		border-radius: var(--button-radius, 4px);
+		font-size: 16px;
+		font-weight: 600;
+		text-decoration: none;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		border: 2px solid transparent;
+
+		// Primary button
+		&--primary {
+			background-color: var(--button-bg-color, #2563eb);
+			color: var(--button-text-color, #ffffff);
+			border-color: var(--button-bg-color, #2563eb);
+
+			&:hover,
+			&:focus {
+				background-color: var(--button-hover-bg, var(--button-bg-color, #1d4ed8));
+				color: var(--button-hover-text, var(--button-text-color, #ffffff));
+				border-color: var(--button-hover-bg, var(--button-bg-color, #1d4ed8));
+				text-decoration: none;
+			}
+		}
+
+		// Secondary button
+		&--secondary {
+			background-color: var(--second-button-bg, transparent);
+			color: var(--second-button-text, #2563eb);
+			border-color: var(--second-button-text, #2563eb);
+
+			&:hover,
+			&:focus {
+				background-color: var(--second-button-text, #2563eb);
+				color: var(--second-button-bg, #ffffff);
+				text-decoration: none;
+			}
+		}
+	}
+
+	// Layout: Centered (default)
+	&.layout-centered {
+		text-align: center;
+		align-items: center;
+
+		.wbcom-essential-cta-box__buttons {
+			justify-content: center;
+		}
+	}
+
+	// Layout: Left
+	&.layout-left {
+		text-align: left;
+		align-items: flex-start;
+
+		.wbcom-essential-cta-box__buttons {
+			justify-content: flex-start;
+		}
+	}
+
+	// Layout: Inline
+	&.layout-inline {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		text-align: left;
+
+		.wbcom-essential-cta-box__content {
+			flex: 1;
+			margin-right: var(--content-spacing, 24px);
+		}
+
+		.wbcom-essential-cta-box__buttons {
+			flex-shrink: 0;
+		}
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			text-align: center;
+
+			.wbcom-essential-cta-box__content {
+				margin-right: 0;
+				margin-bottom: var(--content-spacing, 24px);
+			}
+
+			.wbcom-essential-cta-box__buttons {
+				justify-content: center;
+			}
+		}
+	}
+}

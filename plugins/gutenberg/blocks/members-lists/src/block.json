@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/members-lists",
 	"version": "1.0.0",
 	"title": "Members Lists",
-	"category": "wbcom-essential-buddypress",
+	"category": "starter-buddypress",
 	"icon": "groups",
 	"description": "Display a list of BuddyPress members with filtering options.",
 	"keywords": [ "members", "buddypress", "users", "community", "list" ],

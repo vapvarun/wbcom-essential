@@ -4,7 +4,7 @@
   "name": "wbcom-essential/posts-ticker",
   "version": "1.0.0",
   "title": "Posts Ticker",
-  "category": "wbcom-essential",
+  "category": "starter-blog",
   "icon": "slides",
   "description": "Display posts in a scrolling news ticker format.",
   "keywords": [

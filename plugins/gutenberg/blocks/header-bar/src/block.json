@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/header-bar",
 	"version": "1.0.0",
 	"title": "Header Bar",
-	"category": "wbcom-essential-buddypress",
+	"category": "starter-buddypress",
 	"icon": "menu-alt3",
 	"description": "Header bar with profile dropdown, search, notifications, messages, and cart icons.",
 	"keywords": [ "header", "bar", "buddypress", "profile", "navigation", "menu" ],

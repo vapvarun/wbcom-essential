@@ -4,7 +4,7 @@
   "name": "wbcom-essential/countdown",
   "version": "1.0.0",
   "title": "Countdown",
-  "category": "wbcom-essential",
+  "category": "starter-marketing",
   "icon": "clock",
   "description": "Display a countdown timer to a specific date and time",
   "keywords": [

@@ -1,0 +1,94 @@
+/**
+ * Social Icons Block - Frontend Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-social-icons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--icon-gap, 12px);
+
+	// Individual icon item
+	&__item {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: calc(var(--icon-size, 24px) + var(--icon-padding, 12px) * 2);
+		height: calc(var(--icon-size, 24px) + var(--icon-padding, 12px) * 2);
+		padding: var(--icon-padding, 12px);
+		border-radius: var(--border-radius, 50%);
+		text-decoration: none;
+		transition: all 0.3s ease;
+
+		.dashicons {
+			font-size: var(--icon-size, 24px);
+			width: var(--icon-size, 24px);
+			height: var(--icon-size, 24px);
+			line-height: 1;
+		}
+	}
+
+	// Filled style
+	&.style-filled {
+		.wbcom-essential-social-icons__item {
+			background-color: var(--icon-bg-color, #333);
+			color: var(--icon-color, #fff);
+
+			&:hover,
+			&:focus {
+				background-color: var(--icon-hover-bg, var(--icon-bg-color, #555));
+				color: var(--icon-hover-color, var(--icon-color, #fff));
+				text-decoration: none;
+			}
+		}
+	}
+
+	// Outline style
+	&.style-outline {
+		.wbcom-essential-social-icons__item {
+			background-color: transparent;
+			color: var(--icon-color, #333);
+			border: 2px solid var(--icon-color, #333);
+
+			&:hover,
+			&:focus {
+				background-color: var(--icon-color, #333);
+				color: var(--icon-hover-color, #fff);
+				text-decoration: none;
+			}
+		}
+	}
+
+	// Minimal style
+	&.style-minimal {
+		.wbcom-essential-social-icons__item {
+			background-color: transparent;
+			color: var(--icon-color, #333);
+			padding: 0;
+			width: auto;
+			height: auto;
+
+			&:hover,
+			&:focus {
+				color: var(--icon-hover-color, var(--icon-color, #555));
+				text-decoration: none;
+			}
+		}
+	}
+
+	// Alignment: Left
+	&.align-left {
+		justify-content: flex-start;
+	}
+
+	// Alignment: Center
+	&.align-center {
+		justify-content: center;
+	}
+
+	// Alignment: Right
+	&.align-right {
+		justify-content: flex-end;
+	}
+}

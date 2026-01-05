@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/post-slider",
 	"version": "1.0.0",
 	"title": "Post Slider",
-	"category": "wbcom-essential",
+	"category": "starter-blog",
 	"icon": "slides",
 	"description": "Display posts in a fullscreen hero slider with animations.",
 	"keywords": [ "post", "slider", "hero", "fullscreen", "carousel", "featured", "banner" ],

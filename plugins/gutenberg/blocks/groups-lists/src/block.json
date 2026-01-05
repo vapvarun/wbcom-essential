@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/groups-lists",
 	"version": "1.0.0",
 	"title": "Groups Lists",
-	"category": "wbcom-essential-buddypress",
+	"category": "starter-buddypress",
 	"icon": "groups",
 	"description": "Display a list of BuddyPress groups with filter tabs.",
 	"keywords": [ "groups", "buddypress", "list", "community", "social" ],

@@ -32,22 +32,22 @@ $show_avatar_mobile         = $attributes['showAvatarMobile'] ?? true;
 $show_user_name             = $attributes['showUserName'] ?? true;
 
 // Extract style attributes.
-$icon_color              = $attributes['iconColor'] ?? '#122B46';
-$icon_hover_color        = $attributes['iconHoverColor'] ?? '#007CFF';
-$user_name_color         = $attributes['userNameColor'] ?? '#122B46';
-$user_name_hover_color   = $attributes['userNameHoverColor'] ?? '#007CFF';
-$badge_color             = $attributes['badgeColor'] ?? '#EF3E46';
-$badge_text_color        = $attributes['badgeTextColor'] ?? '#ffffff';
-$dropdown_bg_color       = $attributes['dropdownBgColor'] ?? '#ffffff';
-$dropdown_border_color   = $attributes['dropdownBorderColor'] ?? '#e3e3e3';
-$dropdown_link_color     = $attributes['dropdownLinkColor'] ?? '#122B46';
-$dropdown_link_hover     = $attributes['dropdownLinkHoverColor'] ?? '#007CFF';
-$dropdown_link_hover_bg  = $attributes['dropdownLinkHoverBg'] ?? '#f5f5f5';
-$icon_size               = $attributes['iconSize'] ?? 20;
-$avatar_size             = $attributes['avatarSize'] ?? 36;
-$item_gap                = $attributes['itemGap'] ?? 16;
-$line_height             = $attributes['lineHeight'] ?? 90;
-$counter_top_space       = $attributes['counterTopSpace'] ?? 20;
+$icon_color             = $attributes['iconColor'] ?? '#122B46';
+$icon_hover_color       = $attributes['iconHoverColor'] ?? '#007CFF';
+$user_name_color        = $attributes['userNameColor'] ?? '#122B46';
+$user_name_hover_color  = $attributes['userNameHoverColor'] ?? '#007CFF';
+$badge_color            = $attributes['badgeColor'] ?? '#EF3E46';
+$badge_text_color       = $attributes['badgeTextColor'] ?? '#ffffff';
+$dropdown_bg_color      = $attributes['dropdownBgColor'] ?? '#ffffff';
+$dropdown_border_color  = $attributes['dropdownBorderColor'] ?? '#e3e3e3';
+$dropdown_link_color    = $attributes['dropdownLinkColor'] ?? '#122B46';
+$dropdown_link_hover    = $attributes['dropdownLinkHoverColor'] ?? '#007CFF';
+$dropdown_link_hover_bg = $attributes['dropdownLinkHoverBg'] ?? '#f5f5f5';
+$icon_size              = $attributes['iconSize'] ?? 20;
+$avatar_size            = $attributes['avatarSize'] ?? 36;
+$item_gap               = $attributes['itemGap'] ?? 16;
+$line_height            = $attributes['lineHeight'] ?? 90;
+$counter_top_space      = $attributes['counterTopSpace'] ?? 20;
 
 // Build inline styles.
 $inline_styles = array(
@@ -90,7 +90,7 @@ $bp_notifications_active = $has_buddypress && function_exists( 'bp_is_active' ) 
 
 // Get current user data.
 $is_logged_in = is_user_logged_in();
-$current_user = $is_logged_in ? wp_get_current_user() : null;
+$logged_user = $is_logged_in ? wp_get_current_user() : null;
 
 /**
  * Helper function to build responsive visibility classes.
@@ -142,11 +142,11 @@ $login_icon = '<svg viewBox="0 0 24 24" width="' . esc_attr( $icon_size ) . '" h
 $register_icon = '<svg viewBox="0 0 24 24" width="' . esc_attr( $icon_size ) . '" height="' . esc_attr( $icon_size ) . '" fill="currentColor"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
 
 // Check if any item is visible (at least on one device).
-$any_search_visible = $show_search_desktop || $show_search_tablet || $show_search_mobile;
-$any_cart_visible   = ( $show_cart_desktop || $show_cart_tablet || $show_cart_mobile ) && $has_woocommerce;
-$any_messages_visible = ( $show_messages_desktop || $show_messages_tablet || $show_messages_mobile ) && $bp_messages_active && $is_logged_in;
+$any_search_visible        = $show_search_desktop || $show_search_tablet || $show_search_mobile;
+$any_cart_visible          = ( $show_cart_desktop || $show_cart_tablet || $show_cart_mobile ) && $has_woocommerce;
+$any_messages_visible      = ( $show_messages_desktop || $show_messages_tablet || $show_messages_mobile ) && $bp_messages_active && $is_logged_in;
 $any_notifications_visible = ( $show_notifications_desktop || $show_notifications_tablet || $show_notifications_mobile ) && $bp_notifications_active && $is_logged_in;
-$any_avatar_visible = $show_avatar_desktop || $show_avatar_tablet || $show_avatar_mobile;
+$any_avatar_visible        = $show_avatar_desktop || $show_avatar_tablet || $show_avatar_mobile;
 ?>
 
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
@@ -191,7 +191,7 @@ $any_avatar_visible = $show_avatar_desktop || $show_avatar_tablet || $show_avata
 		if ( $any_messages_visible ) :
 			$messages_classes = wbcom_na_visibility_classes( $show_messages_desktop, $show_messages_tablet, $show_messages_mobile );
 			$unread_count     = function_exists( 'bp_get_total_unread_messages_count' ) ? bp_get_total_unread_messages_count() : 0;
-			$messages_url     = function_exists( 'bp_loggedin_user_domain' ) ? trailingslashit( bp_loggedin_user_domain() . bp_get_messages_slug() ) : '#';
+			$messages_url     = ( function_exists( 'bp_loggedin_user_domain' ) && function_exists( 'bp_get_messages_slug' ) ) ? trailingslashit( bp_loggedin_user_domain() . bp_get_messages_slug() ) : '#';
 			?>
 			<div class="wbcom-essential-na__item wbcom-essential-na__messages <?php echo esc_attr( $messages_classes ); ?>">
 				<a href="<?php echo esc_url( $messages_url ); ?>" class="wbcom-essential-na__messages-toggle" aria-label="<?php esc_attr_e( 'Messages', 'wbcom-essential' ); ?>">
@@ -208,7 +208,7 @@ $any_avatar_visible = $show_avatar_desktop || $show_avatar_tablet || $show_avata
 		if ( $any_notifications_visible ) :
 			$notifications_classes = wbcom_na_visibility_classes( $show_notifications_desktop, $show_notifications_tablet, $show_notifications_mobile );
 			$notifications_count   = function_exists( 'bp_notifications_get_unread_notification_count' ) ? bp_notifications_get_unread_notification_count( bp_loggedin_user_id() ) : 0;
-			$notifications_url     = function_exists( 'bp_loggedin_user_domain' ) ? trailingslashit( bp_loggedin_user_domain() . bp_get_notifications_slug() ) : '#';
+			$notifications_url     = ( function_exists( 'bp_loggedin_user_domain' ) && function_exists( 'bp_get_notifications_slug' ) ) ? trailingslashit( bp_loggedin_user_domain() . bp_get_notifications_slug() ) : '#';
 			?>
 			<div class="wbcom-essential-na__item wbcom-essential-na__notifications <?php echo esc_attr( $notifications_classes ); ?>">
 				<a href="<?php echo esc_url( $notifications_url ); ?>" class="wbcom-essential-na__notifications-toggle" aria-label="<?php esc_attr_e( 'Notifications', 'wbcom-essential' ); ?>">
@@ -225,13 +225,13 @@ $any_avatar_visible = $show_avatar_desktop || $show_avatar_tablet || $show_avata
 		if ( $any_avatar_visible ) :
 			$avatar_classes = wbcom_na_visibility_classes( $show_avatar_desktop, $show_avatar_tablet, $show_avatar_mobile );
 
-			if ( $is_logged_in && $current_user ) :
+			if ( $is_logged_in && $logged_user ) :
 				// Get avatar URL.
 				$avatar_url = '';
 				if ( $has_buddypress && function_exists( 'bp_core_fetch_avatar' ) ) {
 					$avatar_url = bp_core_fetch_avatar(
 						array(
-							'item_id' => $current_user->ID,
+							'item_id' => $logged_user->ID,
 							'object'  => 'user',
 							'type'    => 'thumb',
 							'html'    => false,
@@ -239,14 +239,14 @@ $any_avatar_visible = $show_avatar_desktop || $show_avatar_tablet || $show_avata
 					);
 				}
 				if ( empty( $avatar_url ) ) {
-					$avatar_url = get_avatar_url( $current_user->ID, array( 'size' => $avatar_size * 2 ) );
+					$avatar_url = get_avatar_url( $logged_user->ID, array( 'size' => $avatar_size * 2 ) );
 				}
 
 				// Profile URL.
 				$profile_url = $has_buddypress && function_exists( 'bp_loggedin_user_domain' ) ? bp_loggedin_user_domain() : get_edit_profile_url();
 
 				// User display name.
-				$display_name = $current_user->display_name;
+				$display_name = $logged_user->display_name;
 				?>
 				<div class="wbcom-essential-na__item wbcom-essential-na__user <?php echo esc_attr( $avatar_classes ); ?>">
 					<a href="<?php echo esc_url( $profile_url ); ?>" class="wbcom-essential-na__user-toggle" aria-label="<?php esc_attr_e( 'User menu', 'wbcom-essential' ); ?>">

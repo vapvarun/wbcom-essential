@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/shape",
 	"version": "1.0.0",
 	"title": "Shape",
-	"category": "wbcom-essential",
+	"category": "starter-design",
 	"icon": "marker",
 	"description": "Create custom blob shapes with 8-point border-radius control.",
 	"keywords": [ "shape", "blob", "circle", "decorative", "organic", "icon" ],

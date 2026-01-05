@@ -1,0 +1,23 @@
+{
+	"name": "block-mini-cart",
+	"version": "1.0.0",
+	"description": "Display a WooCommerce mini cart with item count and total",
+	"author": "Wbcom Essential",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"keywords": [
+		"wordpress",
+		"block",
+		"cart",
+		"woocommerce",
+		"minicart",
+		"gutenberg"
+	],
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start --blocks-manifest"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^26.0.0"
+	}
+}

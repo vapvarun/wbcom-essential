@@ -1,0 +1,23 @@
+{
+	"name": "block-counter",
+	"version": "1.0.0",
+	"description": "Display animated statistics and counters with customizable styling",
+	"author": "Wbcom Essential",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"keywords": [
+		"wordpress",
+		"block",
+		"counter",
+		"stats",
+		"number",
+		"gutenberg"
+	],
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start --blocks-manifest"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^26.0.0"
+	}
+}

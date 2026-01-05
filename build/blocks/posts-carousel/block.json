@@ -4,7 +4,7 @@
   "name": "wbcom-essential/posts-carousel",
   "version": "1.0.0",
   "title": "Posts Carousel",
-  "category": "wbcom-essential",
+  "category": "starter-blog",
   "icon": "slides",
   "description": "Display WordPress posts in a beautiful carousel slider.",
   "keywords": [

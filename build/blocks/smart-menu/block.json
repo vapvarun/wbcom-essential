@@ -4,7 +4,7 @@
   "name": "wbcom-essential/smart-menu",
   "version": "1.0.0",
   "title": "Smart Menu",
-  "category": "wbcom-essential",
+  "category": "starter-header",
   "icon": "menu",
   "description": "A powerful and flexible navigation menu block with extensive styling options",
   "keywords": [

@@ -4,7 +4,7 @@
   "name": "wbcom-essential/site-logo",
   "version": "1.0.0",
   "title": "Site Logo",
-  "category": "wbcom-essential",
+  "category": "starter-header",
   "icon": "format-image",
   "description": "Display your site logo with responsive desktop/mobile variants.",
   "keywords": [

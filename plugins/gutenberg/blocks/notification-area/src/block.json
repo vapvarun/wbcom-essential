@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/notification-area",
 	"version": "1.0.0",
 	"title": "Header Notification Area",
-	"category": "wbcom-essential",
+	"category": "starter-header",
 	"icon": "bell",
 	"description": "Header notification area with search, cart, messages, notifications, and user menu with responsive visibility controls.",
 	"keywords": [ "notification", "header", "search", "cart", "messages", "user", "menu", "buddypress", "woocommerce" ],

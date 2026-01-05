@@ -1,0 +1,23 @@
+{
+	"name": "block-icon-box",
+	"version": "1.0.0",
+	"description": "Display features or services with an icon, title, and description",
+	"author": "Wbcom Essential",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"keywords": [
+		"wordpress",
+		"block",
+		"icon",
+		"box",
+		"feature",
+		"gutenberg"
+	],
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"start": "wp-scripts start --blocks-manifest"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^26.0.0"
+	}
+}

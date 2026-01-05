@@ -14,52 +14,52 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
-$post_type                = $attributes['postType'] ?? 'post';
-$categories               = $attributes['categories'] ?? array();
-$tags                     = $attributes['tags'] ?? array();
-$number_of_posts          = $attributes['numberOfPosts'] ?? 5;
-$order_by                 = $attributes['orderBy'] ?? 'date';
-$order                    = $attributes['order'] ?? 'DESC';
-$include_ids              = $attributes['includeIds'] ?? '';
-$exclude_ids              = $attributes['excludeIds'] ?? '';
-$show_excerpt             = $attributes['showExcerpt'] ?? true;
-$excerpt_length           = $attributes['excerptLength'] ?? 140;
-$show_date                = $attributes['showDate'] ?? true;
-$show_button              = $attributes['showButton'] ?? true;
-$button_text              = $attributes['buttonText'] ?? __( 'Read More', 'wbcom-essential' );
-$title_tag                = $attributes['titleTag'] ?? 'h2';
-$slider_height            = $attributes['sliderHeight'] ?? 600;
-$slider_height_unit       = $attributes['sliderHeightUnit'] ?? 'px';
-$transition               = $attributes['transition'] ?? 'fade';
-$transition_duration      = $attributes['transitionDuration'] ?? 500;
-$autoplay                 = $attributes['autoplay'] ?? true;
-$autoplay_delay           = $attributes['autoplayDelay'] ?? 5000;
-$show_navigation          = $attributes['showNavigation'] ?? true;
-$show_pagination          = $attributes['showPagination'] ?? true;
-$hide_nav_on_hover        = $attributes['hideNavOnHover'] ?? false;
-$bg_animation             = $attributes['bgAnimation'] ?? 'none';
-$bg_animation_duration    = $attributes['bgAnimationDuration'] ?? 8;
-$text_animation           = $attributes['textAnimation'] ?? 'fadeInUp';
-$overlay_color            = $attributes['overlayColor'] ?? 'rgba(0, 0, 0, 0.4)';
-$content_width            = $attributes['contentWidth'] ?? 800;
-$content_align            = $attributes['contentAlign'] ?? 'center';
-$vertical_align           = $attributes['verticalAlign'] ?? 'center';
-$title_color              = $attributes['titleColor'] ?? '#ffffff';
-$excerpt_color            = $attributes['excerptColor'] ?? 'rgba(255, 255, 255, 0.9)';
-$date_color               = $attributes['dateColor'] ?? 'rgba(255, 255, 255, 0.8)';
-$button_bg_color          = $attributes['buttonBgColor'] ?? '#ffffff';
-$button_text_color        = $attributes['buttonTextColor'] ?? '#1a202c';
-$button_hover_bg_color    = $attributes['buttonHoverBgColor'] ?? '#1a202c';
-$button_hover_text_color  = $attributes['buttonHoverTextColor'] ?? '#ffffff';
-$button_border_radius     = $attributes['buttonBorderRadius'] ?? 4;
-$nav_color                = $attributes['navColor'] ?? '#ffffff';
-$bg_position              = $attributes['bgPosition'] ?? 'center center';
-$bg_size                  = $attributes['bgSize'] ?? 'cover';
-$show_divider             = $attributes['showDivider'] ?? false;
-$divider_color            = $attributes['dividerColor'] ?? '#0073aa';
-$divider_width            = $attributes['dividerWidth'] ?? 80;
-$content_padding          = $attributes['contentPadding'] ?? 40;
-$default_image_url        = $attributes['defaultImageUrl'] ?? '';
+$slider_post_type        = $attributes['postType'] ?? 'post';
+$categories              = $attributes['categories'] ?? array();
+$tags                    = $attributes['tags'] ?? array();
+$number_of_posts         = $attributes['numberOfPosts'] ?? 5;
+$order_by                = $attributes['orderBy'] ?? 'date';
+$sort_order              = $attributes['order'] ?? 'DESC';
+$include_ids             = $attributes['includeIds'] ?? '';
+$exclude_ids             = $attributes['excludeIds'] ?? '';
+$show_excerpt            = $attributes['showExcerpt'] ?? true;
+$excerpt_length          = $attributes['excerptLength'] ?? 140;
+$show_date               = $attributes['showDate'] ?? true;
+$show_button             = $attributes['showButton'] ?? true;
+$button_text             = $attributes['buttonText'] ?? __( 'Read More', 'wbcom-essential' );
+$title_tag               = $attributes['titleTag'] ?? 'h2';
+$slider_height           = $attributes['sliderHeight'] ?? 600;
+$slider_height_unit      = $attributes['sliderHeightUnit'] ?? 'px';
+$transition              = $attributes['transition'] ?? 'fade';
+$transition_duration     = $attributes['transitionDuration'] ?? 500;
+$autoplay                = $attributes['autoplay'] ?? true;
+$autoplay_delay          = $attributes['autoplayDelay'] ?? 5000;
+$show_navigation         = $attributes['showNavigation'] ?? true;
+$show_pagination         = $attributes['showPagination'] ?? true;
+$hide_nav_on_hover       = $attributes['hideNavOnHover'] ?? false;
+$bg_animation            = $attributes['bgAnimation'] ?? 'none';
+$bg_animation_duration   = $attributes['bgAnimationDuration'] ?? 8;
+$text_animation          = $attributes['textAnimation'] ?? 'fadeInUp';
+$overlay_color           = $attributes['overlayColor'] ?? 'rgba(0, 0, 0, 0.4)';
+$content_width           = $attributes['contentWidth'] ?? 800;
+$content_align           = $attributes['contentAlign'] ?? 'center';
+$vertical_align          = $attributes['verticalAlign'] ?? 'center';
+$title_color             = $attributes['titleColor'] ?? '#ffffff';
+$excerpt_color           = $attributes['excerptColor'] ?? 'rgba(255, 255, 255, 0.9)';
+$date_color              = $attributes['dateColor'] ?? 'rgba(255, 255, 255, 0.8)';
+$button_bg_color         = $attributes['buttonBgColor'] ?? '#ffffff';
+$button_text_color       = $attributes['buttonTextColor'] ?? '#1a202c';
+$button_hover_bg_color   = $attributes['buttonHoverBgColor'] ?? '#1a202c';
+$button_hover_text_color = $attributes['buttonHoverTextColor'] ?? '#ffffff';
+$button_border_radius    = $attributes['buttonBorderRadius'] ?? 4;
+$nav_color               = $attributes['navColor'] ?? '#ffffff';
+$bg_position             = $attributes['bgPosition'] ?? 'center center';
+$bg_size                 = $attributes['bgSize'] ?? 'cover';
+$show_divider            = $attributes['showDivider'] ?? false;
+$divider_color           = $attributes['dividerColor'] ?? '#0073aa';
+$divider_width           = $attributes['dividerWidth'] ?? 80;
+$content_padding         = $attributes['contentPadding'] ?? 40;
+$default_image_url       = $attributes['defaultImageUrl'] ?? '';
 
 // Sanitize title tag.
 $allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'p' );
@@ -69,20 +69,20 @@ if ( ! in_array( $title_tag, $allowed_tags, true ) ) {
 
 // Build query args.
 $query_args = array(
-	'post_type'      => sanitize_key( $post_type ),
+	'post_type'      => sanitize_key( $slider_post_type ),
 	'posts_per_page' => absint( $number_of_posts ),
 	'orderby'        => sanitize_key( $order_by ),
-	'order'          => 'ASC' === strtoupper( $order ) ? 'ASC' : 'DESC',
+	'order'          => 'ASC' === strtoupper( $sort_order ) ? 'ASC' : 'DESC',
 	'post_status'    => 'publish',
 );
 
 // Add category filter if set.
-if ( ! empty( $categories ) && 'post' === $post_type ) {
+if ( ! empty( $categories ) && 'post' === $slider_post_type ) {
 	$query_args['category_name'] = implode( ',', array_map( 'sanitize_title', $categories ) );
 }
 
 // Add tags filter if set.
-if ( ! empty( $tags ) && 'post' === $post_type ) {
+if ( ! empty( $tags ) && 'post' === $slider_post_type ) {
 	$query_args['tag'] = implode( ',', array_map( 'sanitize_title', $tags ) );
 }
 
@@ -210,7 +210,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							<?php endif; ?>
 
 							<<?php echo esc_attr( $title_tag ); ?> class="wbcom-post-slider-title">
-								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								<a href="<?php the_permalink(); ?>"><?php echo esc_html( get_the_title() ); ?></a>
 							</<?php echo esc_attr( $title_tag ); ?>>
 
 							<?php if ( $show_excerpt && $excerpt_length > 0 ) : ?>

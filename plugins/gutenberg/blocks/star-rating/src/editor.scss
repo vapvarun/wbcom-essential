@@ -1,0 +1,9 @@
+/**
+ * Star Rating Block - Editor Styles
+ */
+.wbcom-essential-star-rating {
+	.wbcom-essential-star-rating__label {
+		cursor: text;
+		&:focus { outline: none; }
+	}
+}

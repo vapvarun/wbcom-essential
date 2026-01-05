@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/branding",
 	"version": "1.0.0",
 	"title": "Branding",
-	"category": "wbcom-essential",
+	"category": "starter-header",
 	"description": "Display site branding with title or logo",
 	"keywords": ["branding", "logo", "site title", "identity"],
 	"icon": "admin-site",
