@@ -33,27 +33,26 @@ export default function Edit( { attributes, setAttributes } ) {
 	const {
 		skinStyle,
 		alignment,
-		hideOnComplete,
-		showProfileButton,
-		showProfilePhoto,
-		showCoverPhoto,
-		selectedFieldGroups,
-		fieldGroupsInitialized,
-		showHeader,
+		hideWidget,
+		showProfileBtn,
+		profilePhoto,
+		coverPhoto,
+		profileGroups,
+		profileGroupsInitialized,
+		showHeading,
 		showCompletionIcon,
 		showCompletionStatus,
 		headingText,
 		completionText,
-		completeButtonText,
+		completionButtonText,
 		editButtonText,
-		progressSize,
-		progressWidth,
+		progressBorderWidth,
 		completionColor,
 		incompleteColor,
-		progressBorderColor,
-		numberColor,
-		textColor,
-		detailsBgColor,
+		ringBorderColor,
+		ringNumColor,
+		ringTextColor,
+		detailsColor,
 		buttonColor,
 		buttonBgColor,
 		buttonBorderColor,
@@ -73,11 +72,14 @@ export default function Edit( { attributes, setAttributes } ) {
 				setIsLoading( false );
 
 				// Initialize selected groups if not already done.
-				if ( ! fieldGroupsInitialized && groups.length > 0 ) {
-					const allGroupIds = groups.map( ( g ) => g.id );
+				if ( ! profileGroupsInitialized && groups.length > 0 ) {
+					const initialGroups = {};
+					groups.forEach( ( g ) => {
+						initialGroups[ g.id ] = true;
+					} );
 					setAttributes( {
-						selectedFieldGroups: allGroupIds,
-						fieldGroupsInitialized: true,
+						profileGroups: initialGroups,
+						profileGroupsInitialized: true,
 					} );
 				}
 			} )
@@ -89,11 +91,9 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	// Toggle a field group in the selection.
 	const toggleFieldGroup = ( groupId ) => {
-		const isSelected = selectedFieldGroups.includes( groupId );
-		const newSelection = isSelected
-			? selectedFieldGroups.filter( ( id ) => id !== groupId )
-			: [ ...selectedFieldGroups, groupId ];
-		setAttributes( { selectedFieldGroups: newSelection } );
+		const newGroups = { ...profileGroups };
+		newGroups[ groupId ] = ! newGroups[ groupId ];
+		setAttributes( { profileGroups: newGroups } );
 	};
 
 	// Demo progress for preview.
@@ -102,14 +102,13 @@ export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps( {
 		className: `wbcom-essential-profile-completion wbcom-profile-completion-skin-${ skinStyle } wbcom-profile-completion-align-${ alignment }`,
 		style: {
-			'--progress-size': `${ progressSize }px`,
-			'--progress-width': `${ progressWidth }px`,
+			'--progress-width': `${ progressBorderWidth }px`,
 			'--completion-color': completionColor,
 			'--incomplete-color': incompleteColor,
-			'--progress-border': progressBorderColor,
-			'--number-color': numberColor,
-			'--text-color': textColor,
-			'--details-bg': detailsBgColor,
+			'--ring-border-color': ringBorderColor,
+			'--ring-num-color': ringNumColor,
+			'--ring-text-color': ringTextColor,
+			'--details-color': detailsColor,
 			'--button-color': buttonColor,
 			'--button-bg': buttonBgColor,
 			'--button-border': buttonBorderColor,
@@ -144,17 +143,17 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					<ToggleControl
 						label={ __( 'Hide on 100% Complete', 'wbcom-essential' ) }
-						checked={ hideOnComplete }
+						checked={ hideWidget }
 						onChange={ ( value ) =>
-							setAttributes( { hideOnComplete: value } )
+							setAttributes( { hideWidget: value } )
 						}
 					/>
 
 					<ToggleControl
 						label={ __( 'Show Profile Button', 'wbcom-essential' ) }
-						checked={ showProfileButton }
+						checked={ showProfileBtn }
 						onChange={ ( value ) =>
-							setAttributes( { showProfileButton: value } )
+							setAttributes( { showProfileBtn: value } )
 						}
 					/>
 				</PanelBody>
@@ -165,9 +164,9 @@ export default function Edit( { attributes, setAttributes } ) {
 				>
 					<ToggleControl
 						label={ __( 'Include Profile Photo', 'wbcom-essential' ) }
-						checked={ showProfilePhoto }
+						checked={ profilePhoto }
 						onChange={ ( value ) =>
-							setAttributes( { showProfilePhoto: value } )
+							setAttributes( { profilePhoto: value } )
 						}
 						help={ __(
 							'Track profile photo upload in progress',
@@ -177,9 +176,9 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					<ToggleControl
 						label={ __( 'Include Cover Photo', 'wbcom-essential' ) }
-						checked={ showCoverPhoto }
+						checked={ coverPhoto }
 						onChange={ ( value ) =>
-							setAttributes( { showCoverPhoto: value } )
+							setAttributes( { coverPhoto: value } )
 						}
 						help={ __(
 							'Track cover photo upload in progress',
@@ -210,7 +209,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								<ToggleControl
 									key={ group.id }
 									label={ group.name }
-									checked={ selectedFieldGroups.includes( group.id ) }
+									checked={ profileGroups[ group.id ] || false }
 									onChange={ () => toggleFieldGroup( group.id ) }
 								/>
 							) ) }
@@ -230,10 +229,10 @@ export default function Edit( { attributes, setAttributes } ) {
 				>
 					{ skinStyle === 'circle' && (
 						<ToggleControl
-							label={ __( 'Show Header', 'wbcom-essential' ) }
-							checked={ showHeader }
+							label={ __( 'Show Heading', 'wbcom-essential' ) }
+							checked={ showHeading }
 							onChange={ ( value ) =>
-								setAttributes( { showHeader: value } )
+								setAttributes( { showHeading: value } )
 							}
 						/>
 					) }
@@ -280,17 +279,17 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 
-					{ showProfileButton && (
+					{ showProfileBtn && (
 						<>
 							<TextControl
 								label={ __(
 									'Complete Button Text',
 									'wbcom-essential'
 								) }
-								value={ completeButtonText }
+								value={ completionButtonText }
 								onChange={ ( value ) =>
 									setAttributes( {
-										completeButtonText: value,
+										completionButtonText: value,
 									} )
 								}
 								help={ __(
@@ -321,29 +320,14 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Progress Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					{ skinStyle === 'circle' && (
-						<RangeControl
-							label={ __(
-								'Circle Size (px)',
-								'wbcom-essential'
-							) }
-							value={ progressSize }
-							onChange={ ( value ) =>
-								setAttributes( { progressSize: value } )
-							}
-							min={ 60 }
-							max={ 150 }
-						/>
-					) }
-
 					<RangeControl
 						label={ __(
-							'Progress Bar Width (px)',
+							'Progress Border Width (px)',
 							'wbcom-essential'
 						) }
-						value={ progressWidth }
+						value={ progressBorderWidth }
 						onChange={ ( value ) =>
-							setAttributes( { progressWidth: value } )
+							setAttributes( { progressBorderWidth: value } )
 						}
 						min={ 3 }
 						max={ 12 }
@@ -375,25 +359,25 @@ export default function Edit( { attributes, setAttributes } ) {
 							'Progress Background',
 							'wbcom-essential'
 						) }
-						value={ progressBorderColor }
+						value={ ringBorderColor }
 						onChange={ ( value ) =>
-							setAttributes( { progressBorderColor: value } )
+							setAttributes( { ringBorderColor: value } )
 						}
 					/>
 
 					<ColorControl
 						label={ __( 'Number Color', 'wbcom-essential' ) }
-						value={ numberColor }
+						value={ ringNumColor }
 						onChange={ ( value ) =>
-							setAttributes( { numberColor: value } )
+							setAttributes( { ringNumColor: value } )
 						}
 					/>
 
 					<ColorControl
 						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ textColor }
+						value={ ringTextColor }
 						onChange={ ( value ) =>
-							setAttributes( { textColor: value } )
+							setAttributes( { ringTextColor: value } )
 						}
 					/>
 
@@ -402,9 +386,9 @@ export default function Edit( { attributes, setAttributes } ) {
 							'Details Background',
 							'wbcom-essential'
 						) }
-						value={ detailsBgColor }
+						value={ detailsColor }
 						onChange={ ( value ) =>
-							setAttributes( { detailsBgColor: value } )
+							setAttributes( { detailsColor: value } )
 						}
 					/>
 				</PanelBody>
@@ -482,10 +466,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						</div>
 					) }
 
-					{ showProfileButton && (
+					{ showProfileBtn && (
 						<div className="wbcom-profile-completion-button">
 							<span className="wbcom-profile-button">
-								{ completeButtonText }
+								{ completionButtonText }
 								<span className="dashicons dashicons-arrow-right-alt2"></span>
 							</span>
 						</div>
