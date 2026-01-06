@@ -132,6 +132,50 @@
 		"grabCursor": {
 			"type": "boolean",
 			"default": true
+		},
+		"cardPadding": {
+			"type": "number",
+			"default": 24
+		},
+		"cardBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": "#e2e8f0"
+		},
+		"cardShadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"avatarSize": {
+			"type": "number",
+			"default": 60
+		},
+		"avatarBorderRadius": {
+			"type": "number",
+			"default": 50
+		},
+		"quoteFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"nameFontSize": {
+			"type": "number",
+			"default": 16
+		},
+		"roleFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"paginationColor": {
+			"type": "string",
+			"default": "#cbd5e0"
+		},
+		"paginationActiveColor": {
+			"type": "string",
+			"default": "#3182ce"
 		}
 	},
 	"textdomain": "wbcom-essential",

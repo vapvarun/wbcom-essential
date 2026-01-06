@@ -233,14 +233,33 @@ $forums_url = function_exists( 'bbp_get_root_slug' ) ? home_url( bbp_get_root_sl
 
 										<?php if ( $show_last_reply ) : ?>
 											<?php
-											$last_reply_id = bbp_get_topic_last_reply_id( $topic_id );
-											$reply_excerpt = bbp_get_reply_excerpt( $last_reply_id, 90 );
+											$last_reply_id     = bbp_get_topic_last_reply_id( $topic_id );
+											$reply_excerpt     = bbp_get_reply_excerpt( $last_reply_id, 90 );
+											$last_reply_author = '';
+											$last_reply_avatar = '';
+
+											// Get the last reply author info.
+											if ( $last_reply_id && $last_reply_id !== $topic_id ) {
+												$last_reply_user_id = bbp_get_reply_author_id( $last_reply_id );
+												if ( $last_reply_user_id ) {
+													$last_reply_author = bbp_get_reply_author_display_name( $last_reply_id );
+													$last_reply_avatar = get_avatar( $last_reply_user_id, 24, '', $last_reply_author );
+												}
+											}
 											?>
-											<?php if ( $reply_excerpt ) : ?>
+											<?php if ( $reply_excerpt || $last_reply_author ) : ?>
 												<div class="wbcom-essential-forums__last-reply">
-													<span class="bs-last-reply">
-														<?php echo esc_html( $reply_excerpt ); ?>
-													</span>
+													<?php if ( $last_reply_author ) : ?>
+														<span class="bs-last-reply-author">
+															<?php echo $last_reply_avatar; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+															<span class="bs-author-name"><?php echo esc_html( $last_reply_author ); ?></span>
+														</span>
+													<?php endif; ?>
+													<?php if ( $reply_excerpt ) : ?>
+														<span class="bs-last-reply">
+															<?php echo esc_html( $reply_excerpt ); ?>
+														</span>
+													<?php endif; ?>
 												</div>
 											<?php endif; ?>
 										<?php endif; ?>

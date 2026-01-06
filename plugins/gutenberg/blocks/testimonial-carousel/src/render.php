@@ -38,6 +38,19 @@ $effect                 = $attributes['effect'] ?? 'slide';
 $enable_keyboard        = $attributes['enableKeyboard'] ?? true;
 $grab_cursor            = $attributes['grabCursor'] ?? true;
 
+// New styling attributes.
+$card_padding            = $attributes['cardPadding'] ?? 24;
+$card_border_width       = $attributes['cardBorderWidth'] ?? 0;
+$card_border_color       = $attributes['cardBorderColor'] ?? '#e2e8f0';
+$card_shadow             = $attributes['cardShadow'] ?? true;
+$avatar_size             = $attributes['avatarSize'] ?? 60;
+$avatar_border_radius    = $attributes['avatarBorderRadius'] ?? 50;
+$quote_font_size         = $attributes['quoteFontSize'] ?? 16;
+$name_font_size          = $attributes['nameFontSize'] ?? 16;
+$role_font_size          = $attributes['roleFontSize'] ?? 14;
+$pagination_color        = $attributes['paginationColor'] ?? '#cbd5e0';
+$pagination_active_color = $attributes['paginationActiveColor'] ?? '#3182ce';
+
 // Don't render if no testimonials.
 if ( empty( $testimonials ) ) {
 	return;
@@ -65,7 +78,7 @@ if ( ! function_exists( 'wbcom_sanitize_css_color' ) ) {
 		if ( in_array( strtolower( $color ), $named_colors, true ) ) {
 			return $color;
 		}
-		return $default;
+		return $fallback;
 	}
 }
 
@@ -73,10 +86,28 @@ if ( ! function_exists( 'wbcom_sanitize_css_color' ) ) {
 $unique_id = wp_unique_id( 'wbcom-testimonial-carousel-' );
 
 // Card styles.
-$card_style = sprintf(
-	'background-color: %s; border-radius: %dpx;',
-	esc_attr( $card_background ),
-	absint( $card_border_radius )
+$card_style_parts = array(
+	sprintf( 'background-color: %s', esc_attr( $card_background ) ),
+	sprintf( 'border-radius: %dpx', absint( $card_border_radius ) ),
+	sprintf( 'padding: %dpx', absint( $card_padding ) ),
+);
+
+if ( $card_border_width > 0 ) {
+	$card_style_parts[] = sprintf( 'border: %dpx solid %s', absint( $card_border_width ), esc_attr( $card_border_color ) );
+}
+
+if ( $card_shadow ) {
+	$card_style_parts[] = 'box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+}
+
+$card_style = implode( '; ', $card_style_parts ) . ';';
+
+// Avatar styles.
+$avatar_style = sprintf(
+	'width: %dpx; height: %dpx; border-radius: %d%%;',
+	absint( $avatar_size ),
+	absint( $avatar_size ),
+	absint( $avatar_border_radius )
 );
 
 // Swiper configuration.
@@ -126,19 +157,40 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
-// Navigation color style - sanitize color to prevent CSS injection.
-$nav_style           = '';
-$sanitized_nav_color = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
-if ( $sanitized_nav_color ) {
-	$nav_style = sprintf(
-		'<style>#%s .swiper-button-next, #%s .swiper-button-prev { color: %s; } #%s .swiper-pagination-bullet-active { background-color: %s; }</style>',
-		esc_attr( $unique_id ),
-		esc_attr( $unique_id ),
-		esc_attr( $sanitized_nav_color ),
-		esc_attr( $unique_id ),
-		esc_attr( $sanitized_nav_color )
-	);
-}
+// Navigation and pagination color styles - sanitize colors to prevent CSS injection.
+$nav_style                   = '';
+$sanitized_nav_color         = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
+$sanitized_pagination_color  = wbcom_sanitize_css_color( $pagination_color, '#cbd5e0' );
+$sanitized_pagination_active = wbcom_sanitize_css_color( $pagination_active_color, '#3182ce' );
+$sanitized_quote_color       = wbcom_sanitize_css_color( $quote_color, '#4a5568' );
+$sanitized_name_color        = wbcom_sanitize_css_color( $name_color, '#1a202c' );
+$sanitized_role_color        = wbcom_sanitize_css_color( $role_color, '#718096' );
+
+$nav_style = sprintf(
+	'<style>
+	#%1$s .swiper-button-next,
+	#%1$s .swiper-button-prev { color: %2$s; }
+	#%1$s .swiper-pagination-bullet { background-color: %3$s; }
+	#%1$s .swiper-pagination-bullet-active { background-color: %4$s; }
+	#%1$s .wbcom-testimonial-quote p { color: %5$s; font-size: %6$dpx; }
+	#%1$s .wbcom-testimonial-name { color: %7$s; font-size: %8$dpx; }
+	#%1$s .wbcom-testimonial-role { color: %9$s; font-size: %10$dpx; }
+	#%1$s .wbcom-testimonial-avatar { width: %11$dpx; height: %11$dpx; border-radius: %12$d%%; overflow: hidden; }
+	#%1$s .wbcom-testimonial-avatar img { width: 100%%; height: 100%%; object-fit: cover; }
+	</style>',
+	esc_attr( $unique_id ),
+	esc_attr( $sanitized_nav_color ),
+	esc_attr( $sanitized_pagination_color ),
+	esc_attr( $sanitized_pagination_active ),
+	esc_attr( $sanitized_quote_color ),
+	absint( $quote_font_size ),
+	esc_attr( $sanitized_name_color ),
+	absint( $name_font_size ),
+	esc_attr( $sanitized_role_color ),
+	absint( $role_font_size ),
+	absint( $avatar_size ),
+	absint( $avatar_border_radius )
+);
 
 if ( ! function_exists( 'wbcom_render_carousel_stars' ) ) {
 	/**

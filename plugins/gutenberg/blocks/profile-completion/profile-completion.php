@@ -134,17 +134,16 @@ if ( ! function_exists( 'wbcom_essential_calculate_profile_completion' ) ) {
 
 					$grand_total_fields     += $group_total_fields;
 					$grand_completed_fields += $group_completed_fields;
-					$total_fields           += $group_total_fields;
-					$completed_fields       += $group_completed_fields;
+
+					// Store each group separately with its actual BP group ID.
+					$progress_details['groups'][ $group_id ] = array(
+						'group_name'             => $single_group_details->name,
+						'group_total_fields'     => $group_total_fields,
+						'group_completed_fields' => $group_completed_fields,
+					);
 				}
 			}
 		}
-
-		$progress_details['groups'][] = array(
-			'group_name'             => __( 'Profile Fields', 'wbcom-essential' ),
-			'group_total_fields'     => $total_fields,
-			'group_completed_fields' => $completed_fields,
-		);
 
 		$progress_details['total_fields']     = $grand_total_fields;
 		$progress_details['completed_fields'] = $grand_completed_fields;

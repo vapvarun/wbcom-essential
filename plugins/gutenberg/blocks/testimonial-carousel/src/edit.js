@@ -42,11 +42,23 @@ export default function Edit( { attributes, setAttributes } ) {
 		nameColor,
 		roleColor,
 		ratingColor,
+		navColor,
 		pauseOnInteraction,
 		direction,
 		effect,
 		enableKeyboard,
 		grabCursor,
+		cardPadding,
+		cardBorderWidth,
+		cardBorderColor,
+		cardShadow,
+		avatarSize,
+		avatarBorderRadius,
+		quoteFontSize,
+		nameFontSize,
+		roleFontSize,
+		paginationColor,
+		paginationActiveColor,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -103,6 +115,17 @@ export default function Edit( { attributes, setAttributes } ) {
 	const cardStyle = {
 		backgroundColor: cardBackground,
 		borderRadius: `${ cardBorderRadius }px`,
+		padding: `${ cardPadding }px`,
+		borderWidth: cardBorderWidth > 0 ? `${ cardBorderWidth }px` : undefined,
+		borderStyle: cardBorderWidth > 0 ? 'solid' : undefined,
+		borderColor: cardBorderWidth > 0 ? cardBorderColor : undefined,
+		boxShadow: cardShadow ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none',
+	};
+
+	const avatarStyle = {
+		width: `${ avatarSize }px`,
+		height: `${ avatarSize }px`,
+		borderRadius: `${ avatarBorderRadius }%`,
 	};
 
 	return (
@@ -323,14 +346,115 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { showRating: value } )
 						}
 					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Card Styling', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
 					<RangeControl
-						label={ __( 'Card Border Radius', 'wbcom-essential' ) }
+						label={ __( 'Card Padding (px)', 'wbcom-essential' ) }
+						value={ cardPadding }
+						onChange={ ( value ) =>
+							setAttributes( { cardPadding: value } )
+						}
+						min={ 0 }
+						max={ 60 }
+					/>
+					<RangeControl
+						label={ __( 'Card Border Radius (px)', 'wbcom-essential' ) }
 						value={ cardBorderRadius }
 						onChange={ ( value ) =>
 							setAttributes( { cardBorderRadius: value } )
 						}
 						min={ 0 }
 						max={ 50 }
+					/>
+					<RangeControl
+						label={ __( 'Card Border Width (px)', 'wbcom-essential' ) }
+						value={ cardBorderWidth }
+						onChange={ ( value ) =>
+							setAttributes( { cardBorderWidth: value } )
+						}
+						min={ 0 }
+						max={ 10 }
+					/>
+					{ cardBorderWidth > 0 && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Card Border Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ cardBorderColor }
+								onChange={ ( value ) =>
+									setAttributes( { cardBorderColor: value } )
+								}
+							/>
+						</>
+					) }
+					<ToggleControl
+						label={ __( 'Card Shadow', 'wbcom-essential' ) }
+						checked={ cardShadow }
+						onChange={ ( value ) =>
+							setAttributes( { cardShadow: value } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Avatar Styling', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Avatar Size (px)', 'wbcom-essential' ) }
+						value={ avatarSize }
+						onChange={ ( value ) =>
+							setAttributes( { avatarSize: value } )
+						}
+						min={ 30 }
+						max={ 150 }
+					/>
+					<RangeControl
+						label={ __( 'Avatar Border Radius (%)', 'wbcom-essential' ) }
+						value={ avatarBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { avatarBorderRadius: value } )
+						}
+						min={ 0 }
+						max={ 50 }
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Typography', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Quote Font Size (px)', 'wbcom-essential' ) }
+						value={ quoteFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { quoteFontSize: value } )
+						}
+						min={ 12 }
+						max={ 32 }
+					/>
+					<RangeControl
+						label={ __( 'Name Font Size (px)', 'wbcom-essential' ) }
+						value={ nameFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { nameFontSize: value } )
+						}
+						min={ 12 }
+						max={ 28 }
+					/>
+					<RangeControl
+						label={ __( 'Role Font Size (px)', 'wbcom-essential' ) }
+						value={ roleFontSize }
+						onChange={ ( value ) =>
+							setAttributes( { roleFontSize: value } )
+						}
+						min={ 10 }
+						max={ 24 }
 					/>
 				</PanelBody>
 
@@ -387,6 +511,41 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 						</>
 					) }
+					{ showNavigation && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Navigation Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ navColor }
+								onChange={ ( value ) =>
+									setAttributes( { navColor: value } )
+								}
+							/>
+						</>
+					) }
+					{ showPagination && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Pagination Dot Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ paginationColor }
+								onChange={ ( value ) =>
+									setAttributes( { paginationColor: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Pagination Active Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ paginationActiveColor }
+								onChange={ ( value ) =>
+									setAttributes( { paginationActiveColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 
@@ -419,29 +578,30 @@ export default function Edit( { attributes, setAttributes } ) {
 								) }
 								<div className="wbcom-testimonial-quote">
 									<span className="quote-mark">"</span>
-									<p style={ { color: quoteColor } }>
+									<p style={ { color: quoteColor, fontSize: `${ quoteFontSize }px` } }>
 										{ testimonial.content }
 									</p>
 								</div>
 								<div className="wbcom-testimonial-author">
 									{ testimonial.imageUrl && (
-										<div className="wbcom-testimonial-avatar">
+										<div className="wbcom-testimonial-avatar" style={ avatarStyle }>
 											<img
 												src={ testimonial.imageUrl }
 												alt={ testimonial.authorName }
+												style={ { width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' } }
 											/>
 										</div>
 									) }
 									<div className="wbcom-testimonial-info">
 										<span
 											className="wbcom-testimonial-name"
-											style={ { color: nameColor } }
+											style={ { color: nameColor, fontSize: `${ nameFontSize }px` } }
 										>
 											{ testimonial.authorName }
 										</span>
 										<span
 											className="wbcom-testimonial-role"
-											style={ { color: roleColor } }
+											style={ { color: roleColor, fontSize: `${ roleFontSize }px` } }
 										>
 											{ testimonial.authorRole }
 										</span>

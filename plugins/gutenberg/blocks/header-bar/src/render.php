@@ -333,6 +333,54 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 							<span class="wbcom-header-bar-count"><?php echo esc_html( $unread_count ); ?></span>
 						<?php endif; ?>
 					</a>
+					<div class="wbcom-header-bar-dropdown-content wbcom-messages-dropdown">
+						<div class="wbcom-dropdown-inner">
+							<div class="wbcom-dropdown-header">
+								<h4><?php esc_html_e( 'Messages', 'wbcom-essential' ); ?></h4>
+							</div>
+							<ul class="wbcom-messages-list">
+								<?php
+								if ( function_exists( 'bp_has_message_threads' ) && bp_has_message_threads( array( 'user_id' => get_current_user_id() ) ) ) :
+									$msg_count = 0;
+									while ( bp_message_threads() && $msg_count < 5 ) :
+										bp_message_thread();
+										++$msg_count;
+										$thread_id = bp_get_message_thread_id();
+										?>
+										<li class="wbcom-message-item <?php echo bp_message_thread_has_unread() ? 'unread' : ''; ?>">
+											<a href="<?php echo esc_url( bp_message_thread_view_link( $thread_id ) ); ?>" class="wbcom-message-link">
+												<div class="wbcom-message-avatar">
+													<?php
+													bp_message_thread_avatar(
+														array(
+															'width'  => 40,
+															'height' => 40,
+														)
+													);
+													?>
+												</div>
+												<div class="wbcom-message-content">
+													<span class="wbcom-message-subject"><?php bp_message_thread_subject(); ?></span>
+													<span class="wbcom-message-excerpt"><?php bp_message_thread_excerpt(); ?></span>
+												</div>
+											</a>
+										</li>
+										<?php
+									endwhile;
+								else :
+									?>
+									<li class="wbcom-no-messages">
+										<span><?php esc_html_e( 'No messages', 'wbcom-essential' ); ?></span>
+									</li>
+								<?php endif; ?>
+							</ul>
+							<div class="wbcom-dropdown-footer">
+								<a href="<?php echo esc_url( $messages_url ); ?>" class="wbcom-view-all">
+									<?php esc_html_e( 'View Inbox', 'wbcom-essential' ); ?>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			<?php endif; ?>
 
@@ -348,6 +396,56 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 							<span class="wbcom-header-bar-count"><?php echo esc_html( $notification_count ); ?></span>
 						<?php endif; ?>
 					</a>
+					<div class="wbcom-header-bar-dropdown-content wbcom-notifications-dropdown">
+						<div class="wbcom-dropdown-inner">
+							<div class="wbcom-dropdown-header">
+								<h4><?php esc_html_e( 'Notifications', 'wbcom-essential' ); ?></h4>
+							</div>
+							<ul class="wbcom-notifications-list">
+								<?php
+								if ( function_exists( 'bp_has_notifications' ) && bp_has_notifications( array( 'user_id' => bp_loggedin_user_id() ) ) ) :
+									$notif_count = 0;
+									while ( bp_the_notifications() && $notif_count < 5 ) :
+										++$notif_count;
+										$notification = notifications_template_loop_notifications();
+										?>
+										<li class="wbcom-notification-item <?php echo bp_get_the_notification_is_new() ? 'unread' : ''; ?>">
+											<a href="<?php echo esc_url( bp_get_the_notification_mark_link() ); ?>" class="wbcom-notification-link">
+												<div class="wbcom-notification-avatar">
+													<?php
+													$user_id = bp_get_the_notification_item_id();
+													// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bp_core_fetch_avatar returns safe HTML.
+													echo bp_core_fetch_avatar(
+														array(
+															'item_id' => $user_id,
+															'width'   => 40,
+															'height'  => 40,
+														)
+													);
+													?>
+												</div>
+												<div class="wbcom-notification-content">
+													<span class="wbcom-notification-text"><?php bp_the_notification_description(); ?></span>
+													<span class="wbcom-notification-time"><?php bp_the_notification_time_since(); ?></span>
+												</div>
+											</a>
+										</li>
+										<?php
+									endwhile;
+								else :
+									?>
+									<li class="wbcom-no-notifications">
+										<span><?php esc_html_e( 'No notifications', 'wbcom-essential' ); ?></span>
+									</li>
+								<?php endif; ?>
+							</ul>
+							<div class="wbcom-dropdown-footer">
+								<a href="<?php echo esc_url( $notifications_url ); ?>" class="wbcom-view-all">
+									<?php esc_html_e( 'View All', 'wbcom-essential' ); ?>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			<?php endif; ?>
 
@@ -364,6 +462,24 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 							<span class="wbcom-header-bar-count"><?php echo esc_html( $cart_count ); ?></span>
 						<?php endif; ?>
 					</a>
+					<div class="wbcom-header-bar-dropdown-content wbcom-cart-dropdown">
+						<div class="wbcom-dropdown-inner">
+							<div class="wbcom-dropdown-header">
+								<h4><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></h4>
+							</div>
+							<div class="wbcom-cart-content">
+								<?php
+								if ( function_exists( 'woocommerce_mini_cart' ) ) {
+									woocommerce_mini_cart();
+								} else {
+									?>
+									<p class="wbcom-empty-cart"><?php esc_html_e( 'Your cart is empty.', 'wbcom-essential' ); ?></p>
+									<?php
+								}
+								?>
+							</div>
+						</div>
+					</div>
 				</div>
 			<?php endif; ?>
 
@@ -394,6 +510,24 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 							<span class="wbcom-header-bar-count"><?php echo esc_html( $cart_count ); ?></span>
 						<?php endif; ?>
 					</a>
+					<div class="wbcom-header-bar-dropdown-content wbcom-cart-dropdown">
+						<div class="wbcom-dropdown-inner">
+							<div class="wbcom-dropdown-header">
+								<h4><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></h4>
+							</div>
+							<div class="wbcom-cart-content">
+								<?php
+								if ( function_exists( 'woocommerce_mini_cart' ) ) {
+									woocommerce_mini_cart();
+								} else {
+									?>
+									<p class="wbcom-empty-cart"><?php esc_html_e( 'Your cart is empty.', 'wbcom-essential' ); ?></p>
+									<?php
+								}
+								?>
+							</div>
+						</div>
+					</div>
 				</div>
 			<?php endif; ?>
 
