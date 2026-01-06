@@ -68,6 +68,7 @@ $last_reply_color     = $attributes['lastReplyColor'] ?? '#4D5C6D';
  * @param mixed $dimension The dimension value (object or number).
  * @return string The CSS dimension value.
  */
+if ( ! function_exists( 'wbcom_forums_get_dimension' ) ) {
 function wbcom_forums_get_dimension( $dimension ) {
 	if ( is_array( $dimension ) && isset( $dimension['top'] ) ) {
 		$unit = $dimension['unit'] ?? 'px';
@@ -84,6 +85,7 @@ function wbcom_forums_get_dimension( $dimension ) {
 		);
 	}
 	return $dimension . 'px';
+}
 }
 
 // Build inline styles.

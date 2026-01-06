@@ -176,6 +176,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
  * @param string $extra_class    Additional CSS class.
  * @return string HTML for the icon.
  */
+if ( ! function_exists( 'wbcom_header_bar_render_icon' ) ) {
 function wbcom_header_bar_render_icon( $custom_icon, $dashicon_class, $extra_class = '' ) {
 	$class = 'wbcom-header-bar-icon-inner';
 	if ( ! empty( $extra_class ) ) {
@@ -191,6 +192,7 @@ function wbcom_header_bar_render_icon( $custom_icon, $dashicon_class, $extra_cla
 
 	return '<span class="' . esc_attr( $class ) . ' dashicons ' . esc_attr( $dashicon_class ) . '"></span>';
 }
+}
 
 /**
  * Get SVG markup for a custom icon.
@@ -198,6 +200,7 @@ function wbcom_header_bar_render_icon( $custom_icon, $dashicon_class, $extra_cla
  * @param string $icon_name Icon name.
  * @return string|false SVG markup or false if not found.
  */
+if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 function wbcom_header_bar_get_icon_svg( $icon_name ) {
 	$icons = array(
 		// General icons.
@@ -243,6 +246,7 @@ function wbcom_header_bar_get_icon_svg( $icon_name ) {
 	}
 
 	return false;
+}
 }
 ?>
 

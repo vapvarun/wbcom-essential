@@ -112,6 +112,7 @@ if ( $nav_color ) {
 /**
  * Render star rating HTML.
  */
+if ( ! function_exists( 'wbcom_render_carousel_stars' ) ) {
 function wbcom_render_carousel_stars( $rating, $rating_color ) {
 	$output = '';
 	for ( $i = 1; $i <= 5; $i++ ) {
@@ -125,6 +126,7 @@ function wbcom_render_carousel_stars( $rating, $rating_color ) {
 		);
 	}
 	return $output;
+}
 }
 ?>
 

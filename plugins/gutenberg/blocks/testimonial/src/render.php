@@ -143,6 +143,7 @@ if ( $image_id ) {
  * @param int $rating Rating value (1-5).
  * @return string HTML string.
  */
+if ( ! function_exists( 'wbcom_render_testimonial_stars' ) ) {
 function wbcom_render_testimonial_stars( $rating ) {
 	$output = '';
 	for ( $i = 1; $i <= 5; $i++ ) {
@@ -154,6 +155,7 @@ function wbcom_render_testimonial_stars( $rating ) {
 		);
 	}
 	return $output;
+}
 }
 ?>
 
