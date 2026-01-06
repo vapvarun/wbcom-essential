@@ -75,10 +75,31 @@ $button_border_width  = $attributes['buttonBorderWidth'] ?? 0;
 $button_padding_v     = $attributes['buttonPaddingV'] ?? 14;
 $button_padding_h     = $attributes['buttonPaddingH'] ?? 24;
 
-// Build inline styles - ONLY layout/spacing, NEVER colors.
-// Colors are handled entirely by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly without !important hacks.
-// DO NOT add color variables here - they will override CSS and break dark mode.
+// Get color attributes - only use if explicitly set (not empty defaults)
+$form_bg_color              = $attributes['formBgColor'] ?? '';
+$title_color                = $attributes['titleColor'] ?? '';
+$subtitle_color             = $attributes['subtitleColor'] ?? '';
+$label_color                = $attributes['labelColor'] ?? '';
+$input_bg_color             = $attributes['inputBgColor'] ?? '';
+$input_border_color         = $attributes['inputBorderColor'] ?? '';
+$input_text_color           = $attributes['inputTextColor'] ?? '';
+$input_placeholder_color    = $attributes['inputPlaceholderColor'] ?? '';
+$input_focus_border_color   = $attributes['inputFocusBorderColor'] ?? '';
+$input_focus_bg_color       = $attributes['inputFocusBgColor'] ?? '';
+$button_bg_color            = $attributes['buttonBgColor'] ?? '';
+$button_text_color          = $attributes['buttonTextColor'] ?? '';
+$button_hover_bg_color      = $attributes['buttonHoverBgColor'] ?? '';
+$button_hover_text_color    = $attributes['buttonHoverTextColor'] ?? '';
+$button_border_color        = $attributes['buttonBorderColor'] ?? '';
+$button_hover_border_color  = $attributes['buttonHoverBorderColor'] ?? '';
+$link_color                 = $attributes['linkColor'] ?? '';
+$link_hover_color           = $attributes['linkHoverColor'] ?? '';
+$checkbox_color             = $attributes['checkboxColor'] ?? '';
+$logged_in_msg_color        = $attributes['loggedInMsgColor'] ?? '';
+$form_border_color          = $attributes['formBorderColor'] ?? '';
+
+// Build inline styles - include both layout/spacing AND colors.
+// Colors are included here to ensure they show on frontend when explicitly set.
 $inline_styles = array(
 	'--form-padding'           => $form_padding . 'px',
 	'--form-border-radius'     => $form_border_radius . 'px',
@@ -111,6 +132,71 @@ $inline_styles = array(
 	'--links-margin-top'       => $links_margin_top . 'px',
 	'--logged-in-msg-align'    => $logged_in_msg_align,
 );
+
+// Add color variables only if they're explicitly set (not empty)
+if ( ! empty( $form_bg_color ) ) {
+	$inline_styles['--form-bg-color'] = $form_bg_color;
+}
+if ( ! empty( $form_border_color ) ) {
+	$inline_styles['--form-border-color'] = $form_border_color;
+}
+if ( ! empty( $title_color ) ) {
+	$inline_styles['--title-color'] = $title_color;
+}
+if ( ! empty( $subtitle_color ) ) {
+	$inline_styles['--subtitle-color'] = $subtitle_color;
+}
+if ( ! empty( $label_color ) ) {
+	$inline_styles['--label-color'] = $label_color;
+}
+if ( ! empty( $input_bg_color ) ) {
+	$inline_styles['--input-bg-color'] = $input_bg_color;
+}
+if ( ! empty( $input_border_color ) ) {
+	$inline_styles['--input-border-color'] = $input_border_color;
+}
+if ( ! empty( $input_text_color ) ) {
+	$inline_styles['--input-text-color'] = $input_text_color;
+}
+if ( ! empty( $input_placeholder_color ) ) {
+	$inline_styles['--input-placeholder-color'] = $input_placeholder_color;
+}
+if ( ! empty( $input_focus_border_color ) ) {
+	$inline_styles['--input-focus-border-color'] = $input_focus_border_color;
+}
+if ( ! empty( $input_focus_bg_color ) ) {
+	$inline_styles['--input-focus-bg-color'] = $input_focus_bg_color;
+}
+if ( ! empty( $button_bg_color ) ) {
+	$inline_styles['--button-bg-color'] = $button_bg_color;
+}
+if ( ! empty( $button_text_color ) ) {
+	$inline_styles['--button-text-color'] = $button_text_color;
+}
+if ( ! empty( $button_hover_bg_color ) ) {
+	$inline_styles['--button-hover-bg-color'] = $button_hover_bg_color;
+}
+if ( ! empty( $button_hover_text_color ) ) {
+	$inline_styles['--button-hover-text-color'] = $button_hover_text_color;
+}
+if ( ! empty( $button_border_color ) ) {
+	$inline_styles['--button-border-color'] = $button_border_color;
+}
+if ( ! empty( $button_hover_border_color ) ) {
+	$inline_styles['--button-hover-border-color'] = $button_hover_border_color;
+}
+if ( ! empty( $link_color ) ) {
+	$inline_styles['--link-color'] = $link_color;
+}
+if ( ! empty( $link_hover_color ) ) {
+	$inline_styles['--link-hover-color'] = $link_hover_color;
+}
+if ( ! empty( $checkbox_color ) ) {
+	$inline_styles['--checkbox-color'] = $checkbox_color;
+}
+if ( ! empty( $logged_in_msg_color ) ) {
+	$inline_styles['--logged-in-msg-color'] = $logged_in_msg_color;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {

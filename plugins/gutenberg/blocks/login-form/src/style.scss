@@ -7,13 +7,14 @@
 // Note: Border reset is handled globally by blocks-reset.css
 
 .wbcom-essential-login-form-wrapper {
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--form-bg-color: var(--wbcom-card-bg, #ffffff);
+	// Colors - use inline style values first, fallback to theme, then to defaults
+	// This allows user-set colors to override theme colors
+	--form-bg-color: var(--form-bg-color, var(--wbcom-card-bg, #ffffff));
 	--form-padding: 30px;
 	--form-border-radius: 8px;
 	--form-width: 100%;
 	--form-align: center;
-	--form-border-color: transparent;
+	--form-border-color: var(--form-border-color, transparent);
 	--form-border-width: 0px;
 	--form-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 	--rows-gap: 20px;
@@ -25,26 +26,26 @@
 	--logo-margin-bottom: 24px;
 
 	// Title
-	--title-color: var(--wbcom-heading-color, #122B46);
+	--title-color: var(--title-color, var(--wbcom-heading-color, #122B46));
 	--title-align: center;
 	--title-margin-bottom: 8px;
 
 	// Subtitle
-	--subtitle-color: var(--wbcom-text-color, #666666);
+	--subtitle-color: var(--subtitle-color, var(--wbcom-text-color, #666666));
 	--subtitle-align: center;
 	--subtitle-margin-bottom: 24px;
 
 	// Labels
-	--label-color: var(--wbcom-heading-color, #122B46);
+	--label-color: var(--label-color, var(--wbcom-heading-color, #122B46));
 	--label-align: left;
 
 	// Inputs
-	--input-bg-color: var(--wbcom-input-bg, #f8f9fa);
-	--input-border-color: var(--wbcom-border-color, #e3e3e3);
-	--input-text-color: var(--wbcom-heading-color, #122B46);
-	--input-focus-border-color: var(--wbcom-color-primary, #1d76da);
-	--input-focus-bg-color: var(--wbcom-input-bg, #f8f9fa);
-	--input-placeholder-color: var(--wbcom-meta-color, #a0aec0);
+	--input-bg-color: var(--input-bg-color, var(--wbcom-input-bg, #f8f9fa));
+	--input-border-color: var(--input-border-color, var(--wbcom-border-color, #e3e3e3));
+	--input-text-color: var(--input-text-color, var(--wbcom-heading-color, #122B46));
+	--input-focus-border-color: var(--input-focus-border-color, var(--wbcom-color-primary, #1d76da));
+	--input-focus-bg-color: var(--input-focus-bg-color, var(--wbcom-input-bg, #f8f9fa));
+	--input-placeholder-color: var(--input-placeholder-color, var(--wbcom-meta-color, #a0aec0));
 	--input-border-radius: 6px;
 	--input-padding-v: 12px;
 	--input-padding-h: 16px;
@@ -52,12 +53,12 @@
 	--input-align: left;
 
 	// Button
-	--button-bg-color: var(--wbcom-button-bg, #1d76da);
-	--button-text-color: var(--wbcom-button-text, #ffffff);
-	--button-hover-bg-color: var(--wbcom-button-hover-bg, #1557a0);
-	--button-hover-text-color: var(--wbcom-button-text, #ffffff);
-	--button-border-color: transparent;
-	--button-hover-border-color: transparent;
+	--button-bg-color: var(--button-bg-color, var(--wbcom-button-bg, #1d76da));
+	--button-text-color: var(--button-text-color, var(--wbcom-button-text, #ffffff));
+	--button-hover-bg-color: var(--button-hover-bg-color, var(--wbcom-button-hover-bg, #1557a0));
+	--button-hover-text-color: var(--button-hover-text-color, var(--wbcom-button-text, #ffffff));
+	--button-border-color: var(--button-border-color, transparent);
+	--button-hover-border-color: var(--button-hover-border-color, transparent);
 	--button-border-radius: 6px;
 	--button-border-width: 0px;
 	--button-padding-v: 14px;
@@ -66,16 +67,16 @@
 	--button-align: center;
 
 	// Links
-	--link-color: var(--wbcom-link-color, #1d76da);
-	--link-hover-color: var(--wbcom-link-hover-color, #1557a0);
+	--link-color: var(--link-color, var(--wbcom-link-color, #1d76da));
+	--link-hover-color: var(--link-hover-color, var(--wbcom-link-hover-color, #1557a0));
 	--links-align: flex-end;
 	--links-margin-top: 0px;
 
 	// Checkbox
-	--checkbox-color: var(--wbcom-color-primary, #1d76da);
+	--checkbox-color: var(--checkbox-color, var(--wbcom-color-primary, #1d76da));
 
 	// Logged in message
-	--logged-in-msg-color: var(--wbcom-heading-color, #122B46);
+	--logged-in-msg-color: var(--logged-in-msg-color, var(--wbcom-heading-color, #122B46));
 	--logged-in-msg-align: left;
 }
 
@@ -176,7 +177,7 @@
 	text-align: var(--label-align);
 }
 
-.wbcom-essential-login-form__input {
+.wbcom-essential-login-form .wbcom-essential-login-form__input {
 	width: 100%;
 	padding: var(--input-padding-v) var(--input-padding-h);
 	font-size: 15px;
@@ -223,7 +224,7 @@
 	}
 }
 
-.wbcom-essential-login-form__button {
+.wbcom-essential-login-form .wbcom-essential-login-form__button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
