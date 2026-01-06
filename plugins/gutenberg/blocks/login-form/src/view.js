@@ -5,6 +5,11 @@
  */
 
 document.addEventListener( 'DOMContentLoaded', () => {
+	// Check if localized script data is available.
+	if ( typeof wbcomEssentialLogin === 'undefined' ) {
+		return;
+	}
+
 	const loginForms = document.querySelectorAll( '.wbcom-essential-login-form__form[data-ajax="true"]' );
 
 	loginForms.forEach( ( form ) => {

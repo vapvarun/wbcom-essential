@@ -43,6 +43,32 @@ if ( empty( $testimonials ) ) {
 	return;
 }
 
+if ( ! function_exists( 'wbcom_sanitize_css_color' ) ) {
+	/**
+	 * Sanitize CSS color value (hex, rgb, rgba, or named colors).
+	 *
+	 * @param string $color   The color value to sanitize.
+	 * @param string $fallback Fallback color if invalid.
+	 * @return string The sanitized color or fallback.
+	 */
+	function wbcom_sanitize_css_color( $color, $fallback = '' ) {
+		// Handle hex colors.
+		if ( preg_match( '/^#([A-Fa-f0-9]{3}){1,2}$/', $color ) ) {
+			return $color;
+		}
+		// Handle rgb/rgba colors.
+		if ( preg_match( '/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(0|1|0?\.\d+))?\s*\)$/', $color ) ) {
+			return $color;
+		}
+		// Handle named colors (basic list).
+		$named_colors = array( 'transparent', 'inherit', 'initial', 'currentcolor', 'black', 'white', 'red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'gray', 'grey' );
+		if ( in_array( strtolower( $color ), $named_colors, true ) ) {
+			return $color;
+		}
+		return $default;
+	}
+}
+
 // Build unique ID for this instance.
 $unique_id = wp_unique_id( 'wbcom-testimonial-carousel-' );
 
@@ -54,79 +80,88 @@ $card_style = sprintf(
 );
 
 // Swiper configuration.
-$swiper_config = wp_json_encode( array(
-	'slidesPerView' => absint( $slides_per_view ),
-	'spaceBetween'  => absint( $space_between ),
-	'loop'          => (bool) $loop,
-	'direction'     => sanitize_text_field( $direction ),
-	'effect'        => sanitize_text_field( $effect ),
-	'grabCursor'    => (bool) $grab_cursor,
-	'keyboard'      => array(
-		'enabled' => (bool) $enable_keyboard,
-	),
-	'autoplay'      => $autoplay ? array(
-		'delay'                => absint( $autoplay_delay ),
-		'disableOnInteraction' => (bool) $pause_on_interaction,
-	) : false,
-	'navigation'    => $show_navigation ? array(
-		'nextEl' => '#' . $unique_id . ' .swiper-button-next',
-		'prevEl' => '#' . $unique_id . ' .swiper-button-prev',
-	) : false,
-	'pagination'    => $show_pagination ? array(
-		'el'        => '#' . $unique_id . ' .swiper-pagination',
-		'clickable' => true,
-	) : false,
-	'breakpoints'   => array(
-		320  => array(
-			'slidesPerView' => absint( $slides_per_view_mobile ),
+$swiper_config = wp_json_encode(
+	array(
+		'slidesPerView' => absint( $slides_per_view ),
+		'spaceBetween'  => absint( $space_between ),
+		'loop'          => (bool) $loop,
+		'direction'     => sanitize_text_field( $direction ),
+		'effect'        => sanitize_text_field( $effect ),
+		'grabCursor'    => (bool) $grab_cursor,
+		'keyboard'      => array(
+			'enabled' => (bool) $enable_keyboard,
 		),
-		768  => array(
-			'slidesPerView' => absint( $slides_per_view_tablet ),
+		'autoplay'      => $autoplay ? array(
+			'delay'                => absint( $autoplay_delay ),
+			'disableOnInteraction' => (bool) $pause_on_interaction,
+		) : false,
+		'navigation'    => $show_navigation ? array(
+			'nextEl' => '#' . $unique_id . ' .swiper-button-next',
+			'prevEl' => '#' . $unique_id . ' .swiper-button-prev',
+		) : false,
+		'pagination'    => $show_pagination ? array(
+			'el'        => '#' . $unique_id . ' .swiper-pagination',
+			'clickable' => true,
+		) : false,
+		'breakpoints'   => array(
+			320  => array(
+				'slidesPerView' => absint( $slides_per_view_mobile ),
+			),
+			768  => array(
+				'slidesPerView' => absint( $slides_per_view_tablet ),
+			),
+			1024 => array(
+				'slidesPerView' => absint( $slides_per_view ),
+			),
 		),
-		1024 => array(
-			'slidesPerView' => absint( $slides_per_view ),
-		),
-	),
-) );
+	)
+);
 
 // Get wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes( array(
-	'class'              => 'wbcom-essential-testimonial-carousel',
-	'id'                 => $unique_id,
-	'data-swiper-config' => $swiper_config,
-) );
+$wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'class'              => 'wbcom-essential-testimonial-carousel',
+		'id'                 => $unique_id,
+		'data-swiper-config' => $swiper_config,
+	)
+);
 
-// Navigation color style.
-$nav_style = '';
-if ( $nav_color ) {
+// Navigation color style - sanitize color to prevent CSS injection.
+$nav_style           = '';
+$sanitized_nav_color = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
+if ( $sanitized_nav_color ) {
 	$nav_style = sprintf(
 		'<style>#%s .swiper-button-next, #%s .swiper-button-prev { color: %s; } #%s .swiper-pagination-bullet-active { background-color: %s; }</style>',
 		esc_attr( $unique_id ),
 		esc_attr( $unique_id ),
-		esc_attr( $nav_color ),
+		esc_attr( $sanitized_nav_color ),
 		esc_attr( $unique_id ),
-		esc_attr( $nav_color )
+		esc_attr( $sanitized_nav_color )
 	);
 }
 
-/**
- * Render star rating HTML.
- */
 if ( ! function_exists( 'wbcom_render_carousel_stars' ) ) {
-function wbcom_render_carousel_stars( $rating, $rating_color ) {
-	$output = '';
-	for ( $i = 1; $i <= 5; $i++ ) {
-		$filled = $i <= $rating;
-		$color  = $filled ? $rating_color : '#e2e8f0';
-		$class  = $filled ? 'filled' : 'empty';
-		$output .= sprintf(
-			'<span class="star %s" style="color: %s;">★</span>',
-			esc_attr( $class ),
-			esc_attr( $color )
-		);
+	/**
+	 * Render star rating HTML.
+	 *
+	 * @param int    $rating       The rating value (1-5).
+	 * @param string $rating_color The color for filled stars.
+	 * @return string The star rating HTML.
+	 */
+	function wbcom_render_carousel_stars( $rating, $rating_color ) {
+		$output = '';
+		for ( $i = 1; $i <= 5; $i++ ) {
+			$filled  = $i <= $rating;
+			$color   = $filled ? $rating_color : '#e2e8f0';
+			$class   = $filled ? 'filled' : 'empty';
+			$output .= sprintf(
+				'<span class="star %s" style="color: %s;">★</span>',
+				esc_attr( $class ),
+				esc_attr( $color )
+			);
+		}
+		return $output;
 	}
-	return $output;
-}
 }
 ?>
 
@@ -137,18 +172,23 @@ function wbcom_render_carousel_stars( $rating, $rating_color ) {
 		<div class="swiper-wrapper">
 			<?php foreach ( $testimonials as $testimonial ) : ?>
 				<?php
-				$t_content     = $testimonial['content'] ?? '';
-				$t_name        = $testimonial['authorName'] ?? '';
-				$t_role        = $testimonial['authorRole'] ?? '';
-				$t_image_id    = $testimonial['imageId'] ?? 0;
-				$t_rating      = $testimonial['rating'] ?? 5;
-				$t_image       = '';
+				$t_content  = $testimonial['content'] ?? '';
+				$t_name     = $testimonial['authorName'] ?? '';
+				$t_role     = $testimonial['authorRole'] ?? '';
+				$t_image_id = $testimonial['imageId'] ?? 0;
+				$t_rating   = $testimonial['rating'] ?? 5;
+				$t_image    = '';
 
 				if ( $t_image_id ) {
-					$t_image = wp_get_attachment_image( $t_image_id, 'thumbnail', false, array(
-						'class' => 'wbcom-testimonial-avatar-img',
-						'alt'   => esc_attr( $t_name ),
-					) );
+					$t_image = wp_get_attachment_image(
+						$t_image_id,
+						'thumbnail',
+						false,
+						array(
+							'class' => 'wbcom-testimonial-avatar-img',
+							'alt'   => esc_attr( $t_name ),
+						)
+					);
 				}
 				?>
 				<div class="swiper-slide">

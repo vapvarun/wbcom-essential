@@ -25,10 +25,11 @@ $count_text_color = ! empty( $attributes['countTextColor'] ) ? $attributes['coun
 $total_color      = ! empty( $attributes['totalColor'] ) ? $attributes['totalColor'] : '';
 $dropdown_bg      = ! empty( $attributes['dropdownBgColor'] ) ? $attributes['dropdownBgColor'] : '#ffffff';
 
-// Get cart data.
-$cart_count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
-$cart_total = WC()->cart ? WC()->cart->get_cart_total() : wc_price( 0 );
-$cart_url   = wc_get_cart_url();
+// Get cart data - ensure WC() is available.
+$wc_instance = WC();
+$cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_contents_count() : 0;
+$cart_total  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_total() : wc_price( 0 );
+$cart_url    = wc_get_cart_url();
 
 // Build inline styles.
 $inline_styles = array(

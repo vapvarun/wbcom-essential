@@ -60,6 +60,12 @@ if ( empty( $selected_groups ) && empty( $profile_phototype_selected ) ) {
 
 // Calculate profile completion.
 $user_id = get_current_user_id();
+
+// Ensure the helper function exists.
+if ( ! function_exists( 'wbcom_essential_calculate_profile_completion' ) ) {
+	return;
+}
+
 $profile_percent = wbcom_essential_calculate_profile_completion( $user_id, $selected_groups, $profile_phototype_selected );
 
 if ( empty( $profile_percent ) ) {

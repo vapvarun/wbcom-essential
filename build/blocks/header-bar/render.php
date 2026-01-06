@@ -353,8 +353,9 @@ function wbcom_header_bar_get_icon_svg( $icon_name ) {
 
 			<?php if ( $show_cart && $wc_active ) : ?>
 				<?php
-				$cart_count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
-				$cart_url   = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
+				$wc_instance = WC();
+				$cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_contents_count() : 0;
+				$cart_url    = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
 				?>
 				<div class="wbcom-header-bar-cart wbcom-header-bar-dropdown">
 					<a href="<?php echo esc_url( $cart_url ); ?>" class="wbcom-header-bar-icon" title="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">
@@ -382,8 +383,9 @@ function wbcom_header_bar_get_icon_svg( $icon_name ) {
 
 			<?php if ( $show_cart && $wc_active ) : ?>
 				<?php
-				$cart_count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
-				$cart_url   = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
+				$wc_instance = WC();
+				$cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_contents_count() : 0;
+				$cart_url    = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
 				?>
 				<div class="wbcom-header-bar-cart wbcom-header-bar-dropdown">
 					<a href="<?php echo esc_url( $cart_url ); ?>" class="wbcom-header-bar-icon" title="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">

@@ -43,6 +43,28 @@ if ( empty( $testimonials ) ) {
 	return;
 }
 
+/**
+ * Sanitize CSS color value (hex, rgb, rgba, or named colors).
+ */
+if ( ! function_exists( 'wbcom_sanitize_css_color' ) ) {
+function wbcom_sanitize_css_color( $color, $default = '' ) {
+	// Handle hex colors.
+	if ( preg_match( '/^#([A-Fa-f0-9]{3}){1,2}$/', $color ) ) {
+		return $color;
+	}
+	// Handle rgb/rgba colors.
+	if ( preg_match( '/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(0|1|0?\.\d+))?\s*\)$/', $color ) ) {
+		return $color;
+	}
+	// Handle named colors (basic list).
+	$named_colors = array( 'transparent', 'inherit', 'initial', 'currentcolor', 'black', 'white', 'red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'gray', 'grey' );
+	if ( in_array( strtolower( $color ), $named_colors, true ) ) {
+		return $color;
+	}
+	return $default;
+}
+}
+
 // Build unique ID for this instance.
 $unique_id = wp_unique_id( 'wbcom-testimonial-carousel-' );
 
@@ -96,16 +118,17 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 	'data-swiper-config' => $swiper_config,
 ) );
 
-// Navigation color style.
+// Navigation color style - sanitize color to prevent CSS injection.
 $nav_style = '';
-if ( $nav_color ) {
+$sanitized_nav_color = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
+if ( $sanitized_nav_color ) {
 	$nav_style = sprintf(
 		'<style>#%s .swiper-button-next, #%s .swiper-button-prev { color: %s; } #%s .swiper-pagination-bullet-active { background-color: %s; }</style>',
 		esc_attr( $unique_id ),
 		esc_attr( $unique_id ),
-		esc_attr( $nav_color ),
+		esc_attr( $sanitized_nav_color ),
 		esc_attr( $unique_id ),
-		esc_attr( $nav_color )
+		esc_attr( $sanitized_nav_color )
 	);
 }
 

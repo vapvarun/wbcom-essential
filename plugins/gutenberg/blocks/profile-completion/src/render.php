@@ -19,19 +19,19 @@ if ( ! function_exists( 'buddypress' ) || ! is_user_logged_in() ) {
 }
 
 // Extract attributes.
-$skin_style           = $attributes['skinStyle'] ?? 'circle';
-$alignment            = $attributes['alignment'] ?? 'right';
-$profile_photo        = $attributes['profilePhoto'] ?? true;
-$cover_photo          = $attributes['coverPhoto'] ?? true;
-$profile_groups_attr  = $attributes['profileGroups'] ?? array();
-$hide_widget          = $attributes['hideWidget'] ?? false;
-$show_profile_btn     = $attributes['showProfileBtn'] ?? true;
-$heading_text         = $attributes['headingText'] ?? __( 'Complete your profile', 'wbcom-essential' );
-$completion_text      = $attributes['completionText'] ?? __( 'Complete', 'wbcom-essential' );
-$completion_btn_text  = $attributes['completionButtonText'] ?? __( 'Complete Profile', 'wbcom-essential' );
-$edit_btn_text        = $attributes['editButtonText'] ?? __( 'Edit Profile', 'wbcom-essential' );
-$show_heading         = $attributes['showHeading'] ?? true;
-$show_completion_icon = $attributes['showCompletionIcon'] ?? true;
+$skin_style             = $attributes['skinStyle'] ?? 'circle';
+$alignment              = $attributes['alignment'] ?? 'right';
+$profile_photo          = $attributes['profilePhoto'] ?? true;
+$cover_photo            = $attributes['coverPhoto'] ?? true;
+$profile_groups_attr    = $attributes['profileGroups'] ?? array();
+$hide_widget            = $attributes['hideWidget'] ?? false;
+$show_profile_btn       = $attributes['showProfileBtn'] ?? true;
+$heading_text           = $attributes['headingText'] ?? __( 'Complete your profile', 'wbcom-essential' );
+$completion_text        = $attributes['completionText'] ?? __( 'Complete', 'wbcom-essential' );
+$completion_btn_text    = $attributes['completionButtonText'] ?? __( 'Complete Profile', 'wbcom-essential' );
+$edit_btn_text          = $attributes['editButtonText'] ?? __( 'Edit Profile', 'wbcom-essential' );
+$show_heading           = $attributes['showHeading'] ?? true;
+$show_completion_icon   = $attributes['showCompletionIcon'] ?? true;
 $show_completion_status = $attributes['showCompletionStatus'] ?? true;
 
 // Get selected profile groups.
@@ -60,6 +60,12 @@ if ( empty( $selected_groups ) && empty( $profile_phototype_selected ) ) {
 
 // Calculate profile completion.
 $user_id = get_current_user_id();
+
+// Ensure the helper function exists.
+if ( ! function_exists( 'wbcom_essential_calculate_profile_completion' ) ) {
+	return;
+}
+
 $profile_percent = wbcom_essential_calculate_profile_completion( $user_id, $selected_groups, $profile_phototype_selected );
 
 if ( empty( $profile_percent ) ) {
@@ -82,9 +88,11 @@ $wrapper_classes = array(
 	'wbcom-essential-align-' . $alignment,
 );
 
-$wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => implode( ' ', array_filter( $wrapper_classes ) ),
-) );
+$wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'class' => implode( ' ', array_filter( $wrapper_classes ) ),
+	)
+);
 
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>

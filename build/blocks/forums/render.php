@@ -126,6 +126,11 @@ $args = array(
 	'max_num_pages'  => $forums_count,
 );
 
+// Ensure bbPress function exists before calling.
+if ( ! function_exists( 'bbp_has_topics' ) ) {
+	return;
+}
+
 $has_topics = bbp_has_topics( $args );
 
 // Container classes.
