@@ -12,14 +12,14 @@
 	--gap: 30px;
 	--card-radius: 8px;
 	--card-padding: 20px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--card-bg: var(--wbcom-card-bg, #ffffff);
-	--name-color: var(--wbcom-heading-color, #122B46);
-	--meta-color: var(--wbcom-meta-color, #A3A5A9);
-	--button-bg: var(--wbcom-button-bg, #1d76da);
-	--button-text: var(--wbcom-button-text, #ffffff);
-	--button-secondary-bg: var(--wbcom-card-bg-alt, #e3e3e3);
-	--button-secondary-text: var(--wbcom-text-color, #666);
+	// Colors - user selected values with theme fallbacks
+	--card-bg: #ffffff;
+	--name-color: #122B46;
+	--meta-color: #A3A5A9;
+	--button-bg: #1d76da;
+	--button-text: #ffffff;
+	--button-secondary-bg: #e3e3e3;
+	--button-secondary-text: #666;
 }
 
 .wbcom-essential-groups-grid-list {
@@ -46,7 +46,6 @@
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 
 	.has-shadow & {
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);

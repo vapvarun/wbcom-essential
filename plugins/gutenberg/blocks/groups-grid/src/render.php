@@ -40,9 +40,7 @@ $meta_color        = $attributes['metaColor'] ?? '#A3A5A9';
 $button_bg_color   = $attributes['buttonBgColor'] ?? '#1d76da';
 $button_text_color = $attributes['buttonTextColor'] ?? '#ffffff';
 
-// Build CSS variables - ONLY layout/spacing, NEVER colors.
-// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly.
+// Build CSS variables for layout/spacing and colors.
 $css_vars = array(
 	'--columns'           => $columns,
 	'--columns-tablet'    => $columns_tablet,
@@ -50,6 +48,11 @@ $css_vars = array(
 	'--gap'               => $gap . 'px',
 	'--card-radius'       => $card_border_radius . 'px',
 	'--card-padding'      => $card_padding . 'px',
+	'--card-bg'           => $card_bg_color,
+	'--name-color'        => $name_color,
+	'--meta-color'        => $meta_color,
+	'--button-bg'         => $button_bg_color,
+	'--button-text'       => $button_text_color,
 );
 
 $style_string = '';
