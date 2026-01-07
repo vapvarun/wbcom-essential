@@ -45,11 +45,15 @@
 	}
 }
 
+.wp-block-wbcom-essential-members-carousel .wbcom-member-carousel-card {
+	height: auto;
+}
+
 .wbcom-member-carousel-avatar {
 	margin-bottom: 15px;
 }
 
-.wbcom-avatar-placeholder {
+.wp-block-wbcom-essential-members-carousel .wbcom-avatar-placeholder {
 	display: flex;
 	align-items: center;
 	justify-content: center;
