@@ -19,35 +19,43 @@ if ( ! function_exists( 'buddypress' ) ) {
 }
 
 // Extract attributes.
-$sort_type       = $attributes['sortType'] ?? 'newest';
-$total_members   = $attributes['totalMembers'] ?? 12;
-$columns         = $attributes['columns'] ?? 3;
-$columns_tablet  = $attributes['columnsTablet'] ?? 2;
-$columns_mobile  = $attributes['columnsMobile'] ?? 1;
-$gap             = $attributes['gap'] ?? 30;
-$show_avatar     = $attributes['showAvatar'] ?? true;
-$show_name       = $attributes['showName'] ?? true;
+$sort_type        = $attributes['sortType'] ?? 'newest';
+$total_members    = $attributes['totalMembers'] ?? 12;
+$columns          = $attributes['columns'] ?? 3;
+$columns_tablet   = $attributes['columnsTablet'] ?? 2;
+$columns_mobile   = $attributes['columnsMobile'] ?? 1;
+$gap              = $attributes['gap'] ?? 30;
+$show_avatar      = $attributes['showAvatar'] ?? true;
+$show_name        = $attributes['showName'] ?? true;
 $show_last_active = $attributes['showLastActive'] ?? true;
-$show_friend_btn = $attributes['showFriendButton'] ?? true;
-$avatar_size     = $attributes['avatarSize'] ?? 126;
-$card_bg_color   = $attributes['cardBgColor'] ?? '#ffffff';
-$card_radius     = $attributes['cardBorderRadius'] ?? 8;
-$card_padding    = $attributes['cardPadding'] ?? 20;
-$card_shadow     = $attributes['cardShadow'] ?? true;
-$name_color      = $attributes['nameColor'] ?? '#122B46';
-$meta_color      = $attributes['metaColor'] ?? '#A3A5A9';
+$show_friend_btn  = $attributes['showFriendButton'] ?? true;
+$avatar_size      = $attributes['avatarSize'] ?? 126;
+$card_bg_color    = $attributes['cardBgColor'] ?? '#ffffff';
+$card_radius      = $attributes['cardBorderRadius'] ?? 8;
+$card_padding     = $attributes['cardPadding'] ?? 20;
+$card_shadow      = $attributes['cardShadow'] ?? true;
+$name_color       = $attributes['nameColor'] ?? '#122B46';
+$meta_color       = $attributes['metaColor'] ?? '#A3A5A9';
+$button_color     = $attributes['buttonColor'] ?? '#3182ce';
+$button_text      = $attributes['buttonTextColor'] ?? '#ffffff';
 
-// Build inline styles - ONLY layout/spacing, NEVER colors.
-// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly.
+// Build unique ID for each block instance to avoid CSS conflicts.
+$unique_id = 'wbcom-members-grid-' . wp_unique_id();
+
+// Build inline styles with unique ID wrapper.
 $inline_styles = array(
-	'--grid-columns'        => $columns,
-	'--grid-columns-tablet' => $columns_tablet,
-	'--grid-columns-mobile' => $columns_mobile,
-	'--grid-gap'            => $gap . 'px',
-	'--card-radius'         => $card_radius . 'px',
-	'--card-padding'        => $card_padding . 'px',
-	'--avatar-size'         => $avatar_size . 'px',
+	'--wbcom-grid-columns'        => $columns,
+	'--wbcom-grid-columns-tablet' => $columns_tablet,
+	'--wbcom-grid-columns-mobile' => $columns_mobile,
+	'--wbcom-grid-gap'            => $gap . 'px',
+	'--wbcom-card-radius'         => $card_radius . 'px',
+	'--wbcom-card-padding'        => $card_padding . 'px',
+	'--wbcom-avatar-size'         => $avatar_size . 'px',
+	'--wbcom-card-bg'             => $card_bg_color,
+	'--wbcom-name-color'          => $name_color,
+	'--wbcom-meta-color'          => $meta_color,
+	'--wbcom-button-color'        => $button_color,
+	'--wbcom-button-text'         => $button_text,
 );
 
 $style_string = '';
@@ -86,6 +94,7 @@ $members_args = array(
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => 'wbcom-essential-members-grid',
+		'id'    => $unique_id,
 		'style' => $style_string,
 	)
 );
