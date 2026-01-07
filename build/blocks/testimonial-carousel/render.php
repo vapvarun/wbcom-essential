@@ -110,10 +110,22 @@ $avatar_style = sprintf(
 	absint( $avatar_border_radius )
 );
 
+// Adjust slides per view for vertical direction
+$final_slides_per_view = $slides_per_view;
+$final_slides_per_view_tablet = $slides_per_view_tablet;
+$final_slides_per_view_mobile = $slides_per_view_mobile;
+
+if ( $direction === 'vertical' ) {
+	// For vertical sliders, force 1 slide per view for better UX
+	$final_slides_per_view = 1;
+	$final_slides_per_view_tablet = 1;
+	$final_slides_per_view_mobile = 1;
+}
+
 // Swiper configuration.
 $swiper_config = wp_json_encode(
 	array(
-		'slidesPerView' => absint( $slides_per_view ),
+		'slidesPerView' => absint( $final_slides_per_view ),
 		'spaceBetween'  => absint( $space_between ),
 		'loop'          => (bool) $loop,
 		'direction'     => sanitize_text_field( $direction ),
@@ -136,13 +148,13 @@ $swiper_config = wp_json_encode(
 		) : false,
 		'breakpoints'   => array(
 			320  => array(
-				'slidesPerView' => absint( $slides_per_view_mobile ),
+				'slidesPerView' => absint( $final_slides_per_view_mobile ),
 			),
 			768  => array(
-				'slidesPerView' => absint( $slides_per_view_tablet ),
+				'slidesPerView' => absint( $final_slides_per_view_tablet ),
 			),
 			1024 => array(
-				'slidesPerView' => absint( $slides_per_view ),
+				'slidesPerView' => absint( $final_slides_per_view ),
 			),
 		),
 	)
@@ -158,13 +170,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 
 // Navigation and pagination color styles - sanitize colors to prevent CSS injection.
-$nav_style                     = '';
-$sanitized_nav_color           = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
-$sanitized_pagination_color    = wbcom_sanitize_css_color( $pagination_color, '#cbd5e0' );
-$sanitized_pagination_active   = wbcom_sanitize_css_color( $pagination_active_color, '#3182ce' );
-$sanitized_quote_color         = wbcom_sanitize_css_color( $quote_color, '#4a5568' );
-$sanitized_name_color          = wbcom_sanitize_css_color( $name_color, '#1a202c' );
-$sanitized_role_color          = wbcom_sanitize_css_color( $role_color, '#718096' );
+$nav_style                   = '';
+$sanitized_nav_color         = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
+$sanitized_pagination_color  = wbcom_sanitize_css_color( $pagination_color, '#cbd5e0' );
+$sanitized_pagination_active = wbcom_sanitize_css_color( $pagination_active_color, '#3182ce' );
+$sanitized_quote_color       = wbcom_sanitize_css_color( $quote_color, '#4a5568' );
+$sanitized_name_color        = wbcom_sanitize_css_color( $name_color, '#1a202c' );
+$sanitized_role_color        = wbcom_sanitize_css_color( $role_color, '#718096' );
 
 $nav_style = sprintf(
 	'<style>
@@ -230,16 +242,24 @@ if ( ! function_exists( 'wbcom_render_carousel_stars' ) ) {
 				$t_image_id = $testimonial['imageId'] ?? 0;
 				$t_rating   = $testimonial['rating'] ?? 5;
 				$t_image    = '';
+$t_image_url = $testimonial['imageUrl'] ?? '';
 
 				if ( $t_image_id ) {
 					$t_image = wp_get_attachment_image(
 						$t_image_id,
-						'thumbnail',
+						'medium',
 						false,
 						array(
 							'class' => 'wbcom-testimonial-avatar-img',
 							'alt'   => esc_attr( $t_name ),
 						)
+					);
+				} elseif ( $t_image_url ) {
+					// Fallback to imageUrl if imageId fails
+					$t_image = sprintf(
+						'<img src="%s" alt="%s" class="wbcom-testimonial-avatar-img" />',
+						esc_url( $t_image_url ),
+						esc_attr( $t_name )
 					);
 				}
 				?>
@@ -264,6 +284,22 @@ if ( ! function_exists( 'wbcom_render_carousel_stars' ) ) {
 							<?php if ( $t_image ) : ?>
 								<div class="wbcom-testimonial-avatar">
 									<?php echo $t_image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								</div>
+							<?php else : ?>
+								<div class="wbcom-testimonial-avatar wbcom-testimonial-avatar-placeholder">
+									<?php 
+									// Get initials from name
+									$initials = '';
+									if ( ! empty( $t_name ) ) {
+										$name_parts = explode( ' ', trim( $t_name ) );
+										if ( count( $name_parts ) >= 2 ) {
+											$initials = strtoupper( substr( $name_parts[0], 0, 1 ) ) . strtoupper( substr( $name_parts[1], 0, 1 ) );
+										} else {
+											$initials = strtoupper( substr( $t_name, 0, 2 ) );
+										}
+									}
+									echo esc_html( $initials );
+									?>
 								</div>
 							<?php endif; ?>
 

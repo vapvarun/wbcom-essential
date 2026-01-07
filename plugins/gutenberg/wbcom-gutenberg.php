@@ -28,6 +28,33 @@ class WBCOM_Essential_Gutenberg {
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_blocks_reset_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_blocks_reset_styles' ) );
+		
+	}
+
+	/**
+	 * Register Swiper script and CSS for carousel blocks.
+	 *
+	 * Makes Swiper available as a dependency for blocks that need it.
+	 */
+	public function register_swiper_script() {
+		wp_register_script(
+			'wbcom-swiper',
+			WBCOM_ESSENTIAL_URL . 'plugins/elementor/assets/js/swiper.min.js',
+			array( 'jquery' ),
+			WBCOM_ESSENTIAL_VERSION,
+			true
+		);
+
+		// Register Swiper CSS
+		wp_register_style(
+			'wbcom-swiper-css',
+			WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+
+		// Auto-enqueue Swiper CSS when script is used
+		wp_enqueue_style( 'wbcom-swiper-css' );
 	}
 
 	/**

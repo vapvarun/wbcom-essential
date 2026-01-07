@@ -31,7 +31,7 @@
           "content": "This product has transformed our workflow completely. Highly recommended!",
           "authorName": "Sarah Johnson",
           "authorRole": "Marketing Director",
-          "imageId": 0,
+          "imageId": 1,
           "imageUrl": "",
           "rating": 5
         },
@@ -40,7 +40,7 @@
           "content": "Outstanding customer support and an amazing product. Worth every penny.",
           "authorName": "Michael Chen",
           "authorRole": "CTO, TechStart",
-          "imageId": 0,
+          "imageId": 2,
           "imageUrl": "",
           "rating": 5
         },
@@ -49,7 +49,7 @@
           "content": "We've seen a 40% increase in productivity since implementing this solution.",
           "authorName": "Emily Davis",
           "authorRole": "Operations Manager",
-          "imageId": 0,
+          "imageId": 3,
           "imageUrl": "",
           "rating": 4
         }
