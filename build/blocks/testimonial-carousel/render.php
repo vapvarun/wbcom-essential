@@ -33,7 +33,6 @@ $role_color             = $attributes['roleColor'] ?? '#718096';
 $rating_color           = $attributes['ratingColor'] ?? '#f6ad55';
 $nav_color              = $attributes['navColor'] ?? '#3182ce';
 $pause_on_interaction   = $attributes['pauseOnInteraction'] ?? false;
-$direction              = $attributes['direction'] ?? 'horizontal';
 $effect                 = $attributes['effect'] ?? 'slide';
 $enable_keyboard        = $attributes['enableKeyboard'] ?? true;
 $grab_cursor            = $attributes['grabCursor'] ?? true;
@@ -110,25 +109,13 @@ $avatar_style = sprintf(
 	absint( $avatar_border_radius )
 );
 
-// Adjust slides per view for vertical direction
-$final_slides_per_view = $slides_per_view;
-$final_slides_per_view_tablet = $slides_per_view_tablet;
-$final_slides_per_view_mobile = $slides_per_view_mobile;
-
-if ( $direction === 'vertical' ) {
-	// For vertical sliders, force 1 slide per view for better UX
-	$final_slides_per_view = 1;
-	$final_slides_per_view_tablet = 1;
-	$final_slides_per_view_mobile = 1;
-}
-
 // Swiper configuration.
 $swiper_config = wp_json_encode(
 	array(
-		'slidesPerView' => absint( $final_slides_per_view ),
+		'slidesPerView' => absint( $slides_per_view ),
 		'spaceBetween'  => absint( $space_between ),
 		'loop'          => (bool) $loop,
-		'direction'     => sanitize_text_field( $direction ),
+		'direction'     => 'horizontal',
 		'effect'        => sanitize_text_field( $effect ),
 		'grabCursor'    => (bool) $grab_cursor,
 		'keyboard'      => array(
@@ -148,13 +135,13 @@ $swiper_config = wp_json_encode(
 		) : false,
 		'breakpoints'   => array(
 			320  => array(
-				'slidesPerView' => absint( $final_slides_per_view_mobile ),
+				'slidesPerView' => absint( $slides_per_view_mobile ),
 			),
 			768  => array(
-				'slidesPerView' => absint( $final_slides_per_view_tablet ),
+				'slidesPerView' => absint( $slides_per_view_tablet ),
 			),
 			1024 => array(
-				'slidesPerView' => absint( $final_slides_per_view ),
+				'slidesPerView' => absint( $slides_per_view ),
 			),
 		),
 	)
