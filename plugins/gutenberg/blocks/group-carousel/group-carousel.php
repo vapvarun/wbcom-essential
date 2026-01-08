@@ -41,8 +41,8 @@ add_action( 'wp_enqueue_scripts', 'wbcom_essential_group_carousel_enqueue_script
  * Registers the block using the metadata loaded from block.json.
  */
 function wbcom_essential_group_carousel_block_init() {
-	// Only register if BuddyPress is active.
-	if ( ! function_exists( 'buddypress' ) ) {
+	// Only register if BuddyPress is active and groups component is enabled.
+	if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'groups' ) ) {
 		return;
 	}
 

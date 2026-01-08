@@ -16,34 +16,33 @@ import ServerSideRender from '@wordpress/server-side-render';
 import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const {
-		sortType,
-		totalGroups,
-		slidesToShow,
-		slidesToShowTablet,
-		slidesToShowMobile,
-		slidesToScroll,
-		navigation,
-		autoplay,
-		pauseOnHover,
-		autoplaySpeed,
-		infiniteLoop,
-		animationSpeed,
-		spaceBetween,
-		showMeta,
-		cardBgColor,
-		cardBorderRadius,
-		cardShadow,
-		nameColor,
-		metaColor,
-		arrowColor,
-		dotColor,
-		pauseOnInteraction,
-		direction,
-		effect,
-		enableKeyboard,
-		grabCursor,
-	} = attributes;
+		const {
+			sortType,
+			totalGroups,
+			slidesToShow,
+			slidesToShowTablet,
+			slidesToShowMobile,
+			slidesToScroll,
+			navigation,
+			autoplay,
+			pauseOnHover,
+			autoplaySpeed,
+			infiniteLoop,
+			animationSpeed,
+			spaceBetween,
+			showMeta,
+			cardBgColor,
+			cardBorderRadius,
+			cardShadow,
+			nameColor,
+			metaColor,
+			arrowColor,
+			dotColor,
+			pauseOnInteraction,
+			effect,
+			enableKeyboard,
+			grabCursor,
+		} = attributes;
 
 	const blockProps = useBlockProps( {
 		className: 'wbcom-essential-group-carousel-editor',
@@ -195,16 +194,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Advanced Options', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<SelectControl
-						label={ __( 'Direction', 'wbcom-essential' ) }
-						value={ direction }
-						options={ [
-							{ label: __( 'Horizontal', 'wbcom-essential' ), value: 'horizontal' },
-							{ label: __( 'Vertical', 'wbcom-essential' ), value: 'vertical' },
-						] }
-						onChange={ ( value ) => setAttributes( { direction: value } ) }
-					/>
-
 					<SelectControl
 						label={ __( 'Effect', 'wbcom-essential' ) }
 						value={ effect }

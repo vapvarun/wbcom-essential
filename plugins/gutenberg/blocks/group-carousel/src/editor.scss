@@ -6,6 +6,30 @@
 
 .wbcom-essential-group-carousel-editor {
 	padding: 10px;
+	
+	// Ensure Swiper container is properly sized in editor
+	.wbcom-group-carousel-container {
+		min-height: 300px;
+		
+		// Fallback layout in case Swiper doesn't initialize in editor
+		.swiper-wrapper {
+			display: flex;
+			align-items: stretch;
+		}
+		
+		.swiper-slide {
+			flex: 0 0 auto;
+			min-width: 0; // Prevent flex items from overflowing
+			
+			// Calculate slide width based on --slides-per-view CSS variable
+			width: calc((100% - var(--space-between, 30px) * (var(--slides-per-view, 4) - 1)) / var(--slides-per-view, 4));
+			margin-right: var(--space-between, 30px);
+			
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
 }
 
 // Color control.
