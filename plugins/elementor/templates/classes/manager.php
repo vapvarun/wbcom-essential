@@ -328,7 +328,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				return;
 			}
 
-			if ( ! isset( $data['data']['source'] ) ) {
+			if ( ! isset( $data['data']['source'] ) || ! is_string( $data['data']['source'] ) ) {
 				return;
 			}
 
