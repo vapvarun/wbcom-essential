@@ -105,10 +105,6 @@
       "type": "boolean",
       "default": false
     },
-    "direction": {
-      "type": "string",
-      "default": "horizontal"
-    },
     "effect": {
       "type": "string",
       "default": "slide"
