@@ -7,6 +7,16 @@
 ( function () {
 	'use strict';
 
+	// Wait for Swiper to be available
+	function initWhenReady() {
+		if ( typeof Swiper !== 'undefined' ) {
+			initAll();
+		} else {
+			// Wait a bit and check again
+			setTimeout( initWhenReady, 100 );
+		}
+	}
+
 	/**
 	 * Initialize a group carousel instance.
 	 *
@@ -86,8 +96,8 @@
 
 	// Initialize on DOM ready.
 	if ( document.readyState === 'loading' ) {
-		document.addEventListener( 'DOMContentLoaded', initAll );
+		document.addEventListener( 'DOMContentLoaded', initWhenReady );
 	} else {
-		initAll();
+		initWhenReady();
 	}
 } )();

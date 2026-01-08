@@ -8,12 +8,12 @@
 	// Layout
 	--card-radius: 8px;
 	--space-between: 30px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--card-bg: var(--wbcom-card-bg, #ffffff);
-	--name-color: var(--wbcom-heading-color, #122B46);
-	--meta-color: var(--wbcom-meta-color, #A3A5A9);
-	--arrow-color: var(--wbcom-heading-color, #122B46);
-	--dot-color: var(--wbcom-heading-color, #122B46);
+	// Colors - inherit from theme via inline variables set in render.php
+	--card-bg: var(--card-bg, #ffffff);
+	--name-color: var(--name-color, #122B46);
+	--meta-color: var(--meta-color, #A3A5A9);
+	--arrow-color: var(--arrow-color, #122B46);
+	--dot-color: var(--dot-color, #122B46);
 }
 
 .wbcom-group-carousel-container {
@@ -123,6 +123,7 @@
 	.swiper-pagination-bullet {
 		width: 10px;
 		height: 10px;
+		margin: 0 4px;
 		background: var(--wbcom-border-color, #e0e0e0);
 		opacity: 1;
 		transition: all 0.3s ease;

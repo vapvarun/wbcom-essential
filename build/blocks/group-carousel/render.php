@@ -46,12 +46,15 @@ $effect             = $attributes['effect'] ?? 'slide';
 $enable_keyboard    = $attributes['enableKeyboard'] ?? true;
 $grab_cursor        = $attributes['grabCursor'] ?? true;
 
-// Build inline styles - ONLY layout/spacing, NEVER colors.
-// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly.
+// Build inline styles for layout and colors.
 $inline_styles = array(
 	'--card-radius'   => $card_radius . 'px',
 	'--space-between' => $space_between . 'px',
+	'--card-bg'       => $card_bg_color,
+	'--name-color'    => $name_color,
+	'--meta-color'    => $meta_color,
+	'--arrow-color'   => $arrow_color,
+	'--dot-color'     => $dot_color,
 );
 
 $style_string = '';
