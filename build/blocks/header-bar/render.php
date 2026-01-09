@@ -18,6 +18,7 @@ $alignment            = $attributes['alignment'] ?? 'right';
 $show_profile         = $attributes['showProfileDropdown'] ?? true;
 $profile_menu         = $attributes['profileMenu'] ?? '';
 $show_separator       = $attributes['showSeparator'] ?? true;
+$show_friend_requests = $attributes['showFriendRequests'] ?? true;
 $show_search          = $attributes['showSearch'] ?? true;
 $show_messages        = $attributes['showMessages'] ?? true;
 $show_notifications   = $attributes['showNotifications'] ?? true;
@@ -32,8 +33,10 @@ $separator_width      = $attributes['separatorWidth'] ?? 1;
 $icon_color           = $attributes['iconColor'] ?? '#303030';
 
 // Individual icon settings.
-$search_icon              = $attributes['searchIcon'] ?? '';
-$search_icon_color        = $attributes['searchIconColor'] ?? '';
+$friend_requests_icon       = $attributes['friendRequestsIcon'] ?? '';
+$friend_requests_icon_color = $attributes['friendRequestsIconColor'] ?? '';
+$search_icon                = $attributes['searchIcon'] ?? '';
+$search_icon_color          = $attributes['searchIconColor'] ?? '';
 $messages_icon            = $attributes['messagesIcon'] ?? '';
 $messages_icon_color      = $attributes['messagesIconColor'] ?? '';
 $notifications_icon       = $attributes['notificationsIcon'] ?? '';
@@ -74,6 +77,7 @@ $sign_up_border_radius = $attributes['signUpBorderRadius'] ?? 4;
 
 // BuddyPress checks.
 $bp_active            = function_exists( 'buddypress' );
+$friends_active       = $bp_active && function_exists( 'bp_is_active' ) && bp_is_active( 'friends' );
 $messages_active      = $bp_active && function_exists( 'bp_is_active' ) && bp_is_active( 'messages' );
 $notifications_active = $bp_active && function_exists( 'bp_is_active' ) && bp_is_active( 'notifications' );
 $wc_active            = class_exists( 'WooCommerce' );
@@ -97,6 +101,9 @@ $inline_styles = array(
 );
 
 // Add optional styles only if set.
+if ( ! empty( $friend_requests_icon_color ) ) {
+	$inline_styles['--friend-requests-icon-color'] = $friend_requests_icon_color;
+}
 if ( ! empty( $search_icon_color ) ) {
 	$inline_styles['--search-icon-color'] = $search_icon_color;
 }
@@ -232,6 +239,7 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 			// User icons.
 			'user'             => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
 			'user-circle'      => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>',
+			'user-plus'        => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>',
 			'users'            => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
 			// Theme icons.
 			'sun'              => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>',
@@ -253,66 +261,70 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 	<div class="wbcom-header-bar-inner">
 		<?php if ( is_user_logged_in() ) : ?>
-			<?php if ( $show_profile ) : ?>
+			<?php if ( $show_friend_requests && $friends_active ) : ?>
 				<?php
-				$header_bar_user = wp_get_current_user();
-
-				// Get user profile link.
-				if ( $bp_active && function_exists( 'bp_members_get_user_url' ) ) {
-					$user_link = bp_members_get_user_url( $header_bar_user->ID );
-				} elseif ( $bp_active && function_exists( 'bp_core_get_user_domain' ) ) {
-					$user_link = bp_core_get_user_domain( $header_bar_user->ID );
-				} else {
-					$user_link = get_author_posts_url( $header_bar_user->ID );
-				}
-
-				// Get display name.
-				$display_name = $bp_active && function_exists( 'bp_core_get_user_displayname' )
-					? bp_core_get_user_displayname( $header_bar_user->ID )
-					: $header_bar_user->display_name;
+				$friend_request_count = function_exists( 'bp_friend_get_total_requests_count' ) ? bp_friend_get_total_requests_count( bp_loggedin_user_id() ) : 0;
+				$friend_requests_url  = function_exists( 'bp_loggedin_user_domain' ) ? trailingslashit( bp_loggedin_user_domain() . bp_get_friends_slug() . '/requests' ) : '#';
 				?>
-				<div class="wbcom-header-bar-profile wbcom-header-bar-dropdown">
-					<a class="wbcom-profile-link" href="<?php echo esc_url( $user_link ); ?>">
-						<span class="wbcom-profile-name"><?php echo esc_html( $display_name ); ?></span>
-						<span class="wbcom-profile-arrow dashicons dashicons-arrow-down-alt2"></span>
-						<?php echo get_avatar( $header_bar_user->ID, $avatar_size * 2, '', $display_name ); ?>
+				<div class="wbcom-header-bar-friend-requests wbcom-header-bar-dropdown">
+					<a href="<?php echo esc_url( $friend_requests_url ); ?>" class="wbcom-header-bar-icon wbcom-header-bar-toggle" title="<?php esc_attr_e( 'Friend Requests', 'wbcom-essential' ); ?>">
+						<?php echo wbcom_header_bar_render_icon( ! empty( $friend_requests_icon ) ? $friend_requests_icon : 'user-plus', 'dashicons-groups', 'friend-requests-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php if ( $friend_request_count > 0 ) : ?>
+							<span class="wbcom-header-bar-count count"><?php echo ( $friend_request_count > 9 ) ? '9+' : esc_html( $friend_request_count ); ?></span>
+						<?php endif; ?>
 					</a>
-
-					<div class="wbcom-header-bar-dropdown-content wbcom-profile-dropdown">
-						<div class="wbcom-dropdown-inner">
+					<div class="wbcom-header-bar-dropdown-content wbcom-friend-requests-dropdown">
+						<div class="wbcom-dropdown-header">
+							<div class="wbcom-dropdown-title"><?php esc_html_e( 'Friend Requests', 'wbcom-essential' ); ?></div>
+						</div>
+						<div class="wbcom-dropdown-items">
 							<?php
-							if ( $bp_active && ! empty( $profile_menu ) ) {
-								wp_nav_menu(
-									array(
-										'menu'        => $profile_menu,
-										'menu_id'     => 'wbcom-header-profile-menu',
-										'container'   => false,
-										'menu_class'  => 'wbcom-profile-menu',
-										'fallback_cb' => '__return_false',
-									)
-								);
-							} else {
-								// Default menu items.
+							if ( function_exists( 'bp_has_members' ) && bp_has_members(
+								array(
+									'user_id'  => 0,
+									'type'     => 'alphabetical',
+									'per_page' => 5,
+									'max'      => 5,
+									'include'  => bp_get_friendship_requests( bp_loggedin_user_id() ),
+								)
+							) ) :
+								while ( bp_members() ) :
+									bp_the_member();
+									?>
+									<div class="wbcom-dropdown-item wbcom-friend-request-item">
+										<a href="<?php bp_member_permalink(); ?>" class="wbcom-friend-request-link">
+											<div class="wbcom-friend-request-avatar item-avatar">
+												<?php bp_member_avatar( 'type=thumb&width=40&height=40' ); ?>
+											</div>
+											<div class="wbcom-friend-request-content">
+												<span class="wbcom-friend-request-name"><?php bp_member_name(); ?></span>
+											</div>
+										</a>
+										<div class="wbcom-friend-request-actions">
+											<a href="<?php echo esc_url( bp_get_friend_accept_request_link() ); ?>" class="wbcom-friend-accept" title="<?php esc_attr_e( 'Accept', 'wbcom-essential' ); ?>">
+												<span class="dashicons dashicons-yes"></span>
+											</a>
+											<a href="<?php echo esc_url( bp_get_friend_reject_request_link() ); ?>" class="wbcom-friend-reject" title="<?php esc_attr_e( 'Reject', 'wbcom-essential' ); ?>">
+												<span class="dashicons dashicons-no"></span>
+											</a>
+										</div>
+									</div>
+									<?php
+								endwhile;
+							else :
 								?>
-								<ul class="wbcom-profile-menu">
-									<?php if ( $bp_active ) : ?>
-										<li><a href="<?php echo esc_url( $user_link ); ?>"><?php esc_html_e( 'Profile', 'wbcom-essential' ); ?></a></li>
-										<li><a href="<?php echo esc_url( trailingslashit( $user_link ) . 'settings/' ); ?>"><?php esc_html_e( 'Settings', 'wbcom-essential' ); ?></a></li>
-									<?php else : ?>
-										<li><a href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>"><?php esc_html_e( 'Profile', 'wbcom-essential' ); ?></a></li>
-									<?php endif; ?>
-									<li><a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>"><?php esc_html_e( 'Log Out', 'wbcom-essential' ); ?></a></li>
-								</ul>
-								<?php
-							}
-							?>
+								<div class="wbcom-dropdown-empty">
+									<p><?php esc_html_e( 'No friend requests.', 'wbcom-essential' ); ?></p>
+								</div>
+							<?php endif; ?>
+						</div>
+						<div class="wbcom-dropdown-footer">
+							<a href="<?php echo esc_url( $friend_requests_url ); ?>" class="wbcom-dropdown-button">
+								<?php esc_html_e( 'View All Requests', 'wbcom-essential' ); ?>
+							</a>
 						</div>
 					</div>
 				</div>
-			<?php endif; ?>
-
-			<?php if ( $show_separator && $show_profile ) : ?>
-				<span class="wbcom-header-bar-separator"></span>
 			<?php endif; ?>
 
 			<?php if ( $show_search ) : ?>
@@ -327,51 +339,56 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 				$messages_url = $bp_active && function_exists( 'bp_loggedin_user_domain' ) ? trailingslashit( bp_loggedin_user_domain() ) . 'messages/' : '#';
 				?>
 				<div class="wbcom-header-bar-messages wbcom-header-bar-dropdown">
-					<a href="<?php echo esc_url( $messages_url ); ?>" class="wbcom-header-bar-icon" title="<?php esc_attr_e( 'Messages', 'wbcom-essential' ); ?>">
+					<a href="<?php echo esc_url( $messages_url ); ?>" class="wbcom-header-bar-icon wbcom-header-bar-toggle" title="<?php esc_attr_e( 'Messages', 'wbcom-essential' ); ?>">
 						<?php echo wbcom_header_bar_render_icon( $messages_icon, 'dashicons-email', 'messages-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php if ( $unread_count > 0 ) : ?>
-							<span class="wbcom-header-bar-count"><?php echo esc_html( $unread_count ); ?></span>
+							<span class="wbcom-header-bar-count count"><?php echo esc_html( $unread_count ); ?></span>
 						<?php endif; ?>
 					</a>
 					<div class="wbcom-header-bar-dropdown-content wbcom-messages-dropdown">
-						<div class="wbcom-dropdown-inner">
-							<div class="wbcom-dropdown-header">
-								<h4><?php esc_html_e( 'Messages', 'wbcom-essential' ); ?></h4>
-							</div>
-							<ul class="wbcom-messages-list">
-								<?php
-								if ( function_exists( 'bp_has_message_threads' ) && bp_has_message_threads( array( 'user_id' => get_current_user_id() ) ) ) :
-									$msg_count = 0;
-									while ( bp_message_threads() && $msg_count < 5 ) :
-										bp_message_thread();
-										$msg_count++;
-										$thread_id = bp_get_message_thread_id();
-										?>
-										<li class="wbcom-message-item <?php echo bp_message_thread_has_unread() ? 'unread' : ''; ?>">
-											<a href="<?php echo esc_url( bp_message_thread_view_link( $thread_id ) ); ?>" class="wbcom-message-link">
-												<div class="wbcom-message-avatar">
-													<?php bp_message_thread_avatar( array( 'width' => 40, 'height' => 40 ) ); ?>
-												</div>
-												<div class="wbcom-message-content">
-													<span class="wbcom-message-subject"><?php bp_message_thread_subject(); ?></span>
-													<span class="wbcom-message-excerpt"><?php bp_message_thread_excerpt(); ?></span>
-												</div>
-											</a>
-										</li>
-										<?php
-									endwhile;
-								else :
+						<div class="wbcom-dropdown-header">
+							<div class="wbcom-dropdown-title"><?php esc_html_e( 'Messages', 'wbcom-essential' ); ?></div>
+						</div>
+						<div class="wbcom-dropdown-items">
+							<?php
+							if ( function_exists( 'bp_has_message_threads' ) && bp_has_message_threads( array( 'user_id' => get_current_user_id() ) ) ) :
+								$msg_count = 0;
+								while ( bp_message_threads() && $msg_count < 5 ) :
+									bp_message_thread();
+									++$msg_count;
+									$thread_id = bp_get_message_thread_id();
 									?>
-									<li class="wbcom-no-messages">
-										<span><?php esc_html_e( 'No messages', 'wbcom-essential' ); ?></span>
-									</li>
-								<?php endif; ?>
-							</ul>
-							<div class="wbcom-dropdown-footer">
-								<a href="<?php echo esc_url( $messages_url ); ?>" class="wbcom-view-all">
-									<?php esc_html_e( 'View Inbox', 'wbcom-essential' ); ?>
-								</a>
-							</div>
+									<div class="wbcom-dropdown-item wbcom-message-item <?php echo bp_message_thread_has_unread() ? 'unread' : ''; ?>">
+										<a href="<?php echo esc_url( bp_message_thread_view_link( $thread_id ) ); ?>" class="wbcom-message-link">
+											<div class="wbcom-message-avatar item-avatar">
+												<?php
+												bp_message_thread_avatar(
+													array(
+														'width'  => 40,
+														'height' => 40,
+													)
+												);
+												?>
+											</div>
+											<div class="wbcom-message-content">
+												<span class="wbcom-message-subject"><?php bp_message_thread_subject(); ?></span>
+												<span class="wbcom-message-excerpt"><?php bp_message_thread_excerpt(); ?></span>
+											</div>
+										</a>
+									</div>
+									<?php
+								endwhile;
+							else :
+								?>
+								<div class="wbcom-dropdown-empty">
+									<p><?php esc_html_e( 'No messages found.', 'wbcom-essential' ); ?></p>
+								</div>
+							<?php endif; ?>
+						</div>
+						<div class="wbcom-dropdown-footer">
+							<a href="<?php echo esc_url( $messages_url ); ?>" class="wbcom-dropdown-button">
+								<?php esc_html_e( 'All Messages', 'wbcom-essential' ); ?>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -382,60 +399,59 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 				$notification_count = function_exists( 'bp_notifications_get_unread_notification_count' ) ? bp_notifications_get_unread_notification_count( bp_loggedin_user_id() ) : 0;
 				$notifications_url  = $bp_active && function_exists( 'bp_loggedin_user_domain' ) ? trailingslashit( bp_loggedin_user_domain() ) . 'notifications/' : '#';
 				?>
-				<div class="wbcom-header-bar-notifications wbcom-header-bar-dropdown">
-					<a href="<?php echo esc_url( $notifications_url ); ?>" class="wbcom-header-bar-icon" title="<?php esc_attr_e( 'Notifications', 'wbcom-essential' ); ?>">
+				<div class="wbcom-header-bar-notifications wbcom-header-bar-dropdown ">
+					<a href="<?php echo esc_url( $notifications_url ); ?>" class="wbcom-header-bar-icon wbcom-header-bar-toggle" title="<?php esc_attr_e( 'Notifications', 'wbcom-essential' ); ?>">
 						<?php echo wbcom_header_bar_render_icon( $notifications_icon, 'dashicons-bell', 'notifications-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php if ( $notification_count > 0 ) : ?>
-							<span class="wbcom-header-bar-count"><?php echo esc_html( $notification_count ); ?></span>
+							<span class="wbcom-header-bar-count count"><?php echo esc_html( $notification_count ); ?></span>
 						<?php endif; ?>
 					</a>
-					<div class="wbcom-header-bar-dropdown-content wbcom-notifications-dropdown">
-						<div class="wbcom-dropdown-inner">
-							<div class="wbcom-dropdown-header">
-								<h4><?php esc_html_e( 'Notifications', 'wbcom-essential' ); ?></h4>
-							</div>
-							<ul class="wbcom-notifications-list">
-								<?php
-								if ( function_exists( 'bp_has_notifications' ) && bp_has_notifications( array( 'user_id' => bp_loggedin_user_id() ) ) ) :
-									$notif_count = 0;
-									while ( bp_the_notifications() && $notif_count < 5 ) :
-										$notif_count++;
-										$notification = notifications_template_loop_notifications();
-										?>
-										<li class="wbcom-notification-item <?php echo bp_get_the_notification_is_new() ? 'unread' : ''; ?>">
-											<a href="<?php echo esc_url( bp_get_the_notification_mark_link() ); ?>" class="wbcom-notification-link">
-												<div class="wbcom-notification-avatar">
-													<?php
-													$user_id = bp_get_the_notification_item_id();
-													echo bp_core_fetch_avatar(
-														array(
-															'item_id' => $user_id,
-															'width'   => 40,
-															'height'  => 40,
-														)
-													);
-													?>
-												</div>
-												<div class="wbcom-notification-content">
-													<span class="wbcom-notification-text"><?php bp_the_notification_description(); ?></span>
-													<span class="wbcom-notification-time"><?php bp_the_notification_time_since(); ?></span>
-												</div>
-											</a>
-										</li>
-										<?php
-									endwhile;
-								else :
+					<div class="wbcom-header-bar-dropdown-content wbcom-notifications-dropdown ">
+						<div class="wbcom-dropdown-header">
+							<div class="wbcom-dropdown-title"><?php esc_html_e( 'Notifications', 'wbcom-essential' ); ?></div>
+						</div>
+						<div class="wbcom-dropdown-items">
+							<?php
+							if ( function_exists( 'bp_has_notifications' ) && bp_has_notifications( array( 'user_id' => bp_loggedin_user_id() ) ) ) :
+								$notif_count = 0;
+								while ( bp_the_notifications() && $notif_count < 5 ) :
+									++$notif_count;
+									$notification = notifications_template_loop_notifications();
 									?>
-									<li class="wbcom-no-notifications">
-										<span><?php esc_html_e( 'No notifications', 'wbcom-essential' ); ?></span>
-									</li>
-								<?php endif; ?>
-							</ul>
-							<div class="wbcom-dropdown-footer">
-								<a href="<?php echo esc_url( $notifications_url ); ?>" class="wbcom-view-all">
-									<?php esc_html_e( 'View All', 'wbcom-essential' ); ?>
-								</a>
-							</div>
+									<div class="wbcom-dropdown-item wbcom-notification-item <?php echo bp_get_the_notification_is_new() ? 'unread' : ''; ?>">
+										<a href="<?php echo esc_url( bp_get_the_notification_mark_link() ); ?>" class="wbcom-notification-link">
+											<div class="wbcom-notification-avatar item-avatar">
+												<?php
+												$user_id = bp_get_the_notification_item_id();
+												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bp_core_fetch_avatar returns safe HTML.
+												echo bp_core_fetch_avatar(
+													array(
+														'item_id' => $user_id,
+														'width'   => 40,
+														'height'  => 40,
+													)
+												);
+												?>
+											</div>
+											<div class="wbcom-notification-content">
+												<span class="wbcom-notification-text"><?php bp_the_notification_description(); ?></span>
+												<span class="wbcom-notification-time"><?php bp_the_notification_time_since(); ?></span>
+											</div>
+										</a>
+									</div>
+									<?php
+								endwhile;
+							else :
+								?>
+								<div class="wbcom-dropdown-empty">
+									<p><?php esc_html_e( 'No notifications found.', 'wbcom-essential' ); ?></p>
+								</div>
+							<?php endif; ?>
+						</div>
+						<div class="wbcom-dropdown-footer">
+							<a href="<?php echo esc_url( $notifications_url ); ?>" class="wbcom-dropdown-button">
+								<?php esc_html_e( 'All Notifications', 'wbcom-essential' ); ?>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -447,29 +463,29 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 				$cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_contents_count() : 0;
 				$cart_url    = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
 				?>
-				<div class="wbcom-header-bar-cart wbcom-header-bar-dropdown">
-					<a href="<?php echo esc_url( $cart_url ); ?>" class="wbcom-header-bar-icon" title="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">
+				<div class="wbcom-header-bar-cart wbcom-header-bar-dropdown ">
+					<a href="<?php echo esc_url( $cart_url ); ?>" class="wbcom-header-bar-icon wbcom-header-bar-toggle" title="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">
 						<?php echo wbcom_header_bar_render_icon( $cart_icon, 'dashicons-cart', 'cart-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php if ( $cart_count > 0 ) : ?>
-							<span class="wbcom-header-bar-count"><?php echo esc_html( $cart_count ); ?></span>
+							<span class="wbcom-header-bar-count count"><?php echo esc_html( $cart_count ); ?></span>
 						<?php endif; ?>
 					</a>
-					<div class="wbcom-header-bar-dropdown-content wbcom-cart-dropdown">
-						<div class="wbcom-dropdown-inner">
-							<div class="wbcom-dropdown-header">
-								<h4><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></h4>
-							</div>
-							<div class="wbcom-cart-content">
-								<?php
-								if ( function_exists( 'woocommerce_mini_cart' ) ) {
-									woocommerce_mini_cart();
-								} else {
-									?>
-									<p class="wbcom-empty-cart"><?php esc_html_e( 'Your cart is empty.', 'wbcom-essential' ); ?></p>
-									<?php
-								}
+					<div class="wbcom-header-bar-dropdown-content wbcom-cart-dropdown ">
+						<div class="wbcom-dropdown-header">
+							<div class="wbcom-dropdown-title"><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></div>
+						</div>
+						<div class="wbcom-dropdown-items wbcom-cart-content">
+							<?php
+							if ( function_exists( 'woocommerce_mini_cart' ) ) {
+								woocommerce_mini_cart();
+							} else {
 								?>
-							</div>
+								<div class="wbcom-dropdown-empty">
+									<p><?php esc_html_e( 'Your cart is empty.', 'wbcom-essential' ); ?></p>
+								</div>
+								<?php
+							}
+							?>
 						</div>
 					</div>
 				</div>
@@ -479,6 +495,56 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 				<button type="button" class="wbcom-header-bar-dark-mode wbcom-header-bar-icon" title="<?php esc_attr_e( 'Toggle Dark Mode', 'wbcom-essential' ); ?>" aria-label="<?php esc_attr_e( 'Toggle Dark Mode', 'wbcom-essential' ); ?>">
 					<?php echo wbcom_header_bar_render_icon( $dark_mode_icon, 'dashicons-lightbulb', 'dark-mode-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</button>
+			<?php endif; ?>
+
+			<?php if ( $show_separator && $show_profile ) : ?>
+				<span class="wbcom-header-bar-separator"></span>
+			<?php endif; ?>
+
+			<?php if ( $show_profile ) : ?>
+				<?php
+				$current_user = wp_get_current_user();
+				$display_name = $current_user->display_name;
+				$profile_url  = $bp_active && function_exists( 'bp_loggedin_user_domain' ) ? bp_loggedin_user_domain() : get_edit_profile_url();
+				$avatar_url   = get_avatar_url( $current_user->ID, array( 'size' => $avatar_size * 2 ) );
+				$logout_url   = wp_logout_url( home_url() );
+				?>
+				<div class="wbcom-header-bar-profile wbcom-header-bar-dropdown">
+					<a href="<?php echo esc_url( $profile_url ); ?>" class="wbcom-header-bar-toggle wbcom-profile-toggle">
+						<span class="wbcom-profile-name"><?php echo esc_html( $display_name ); ?></span>
+						<span class="wbcom-profile-arrow"><span class="dashicons dashicons-arrow-down-alt2"></span></span>
+						<span class="wbcom-profile-avatar">
+							<img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $display_name ); ?>" class="wbcom-avatar-img" />
+						</span>
+					</a>
+					<div class="wbcom-header-bar-dropdown-content wbcom-profile-dropdown">
+						<?php
+						if ( ! empty( $profile_menu ) ) {
+							wp_nav_menu(
+								array(
+									'menu'           => $profile_menu,
+									'container'      => false,
+									'menu_class'     => 'wbcom-profile-menu',
+									'fallback_cb'    => false,
+									'depth'          => 1,
+								)
+							);
+						} else {
+							?>
+							<ul class="wbcom-profile-menu">
+								<li><a href="<?php echo esc_url( $profile_url ); ?>"><?php esc_html_e( 'Profile', 'wbcom-essential' ); ?></a></li>
+								<?php if ( $bp_active && function_exists( 'bp_loggedin_user_domain' ) ) : ?>
+									<li><a href="<?php echo esc_url( trailingslashit( bp_loggedin_user_domain() ) . 'settings/' ); ?>"><?php esc_html_e( 'Settings', 'wbcom-essential' ); ?></a></li>
+								<?php else : ?>
+									<li><a href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>"><?php esc_html_e( 'Settings', 'wbcom-essential' ); ?></a></li>
+								<?php endif; ?>
+								<li><a href="<?php echo esc_url( $logout_url ); ?>"><?php esc_html_e( 'Log Out', 'wbcom-essential' ); ?></a></li>
+							</ul>
+							<?php
+						}
+						?>
+					</div>
+				</div>
 			<?php endif; ?>
 
 		<?php else : ?>
@@ -495,29 +561,29 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 				$cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_contents_count() : 0;
 				$cart_url    = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
 				?>
-				<div class="wbcom-header-bar-cart wbcom-header-bar-dropdown">
-					<a href="<?php echo esc_url( $cart_url ); ?>" class="wbcom-header-bar-icon" title="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">
+				<div class="wbcom-header-bar-cart wbcom-header-bar-dropdown ">
+					<a href="<?php echo esc_url( $cart_url ); ?>" class="wbcom-header-bar-icon wbcom-header-bar-toggle" title="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">
 						<?php echo wbcom_header_bar_render_icon( $cart_icon, 'dashicons-cart', 'cart-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php if ( $cart_count > 0 ) : ?>
-							<span class="wbcom-header-bar-count"><?php echo esc_html( $cart_count ); ?></span>
+							<span class="wbcom-header-bar-count count"><?php echo esc_html( $cart_count ); ?></span>
 						<?php endif; ?>
 					</a>
-					<div class="wbcom-header-bar-dropdown-content wbcom-cart-dropdown">
-						<div class="wbcom-dropdown-inner">
-							<div class="wbcom-dropdown-header">
-								<h4><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></h4>
-							</div>
-							<div class="wbcom-cart-content">
-								<?php
-								if ( function_exists( 'woocommerce_mini_cart' ) ) {
-									woocommerce_mini_cart();
-								} else {
-									?>
-									<p class="wbcom-empty-cart"><?php esc_html_e( 'Your cart is empty.', 'wbcom-essential' ); ?></p>
-									<?php
-								}
+					<div class="wbcom-header-bar-dropdown-content wbcom-cart-dropdown ">
+						<div class="wbcom-dropdown-header">
+							<div class="wbcom-dropdown-title"><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></div>
+						</div>
+						<div class="wbcom-dropdown-items wbcom-cart-content">
+							<?php
+							if ( function_exists( 'woocommerce_mini_cart' ) ) {
+								woocommerce_mini_cart();
+							} else {
 								?>
-							</div>
+								<div class="wbcom-dropdown-empty">
+									<p><?php esc_html_e( 'Your cart is empty.', 'wbcom-essential' ); ?></p>
+								</div>
+								<?php
+							}
+							?>
 						</div>
 					</div>
 				</div>

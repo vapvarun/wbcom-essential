@@ -27,6 +27,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"showFriendRequests": {
+			"type": "boolean",
+			"default": true
+		},
 		"showSearch": {
 			"type": "boolean",
 			"default": true
@@ -74,6 +78,14 @@
 		"iconColor": {
 			"type": "string",
 			"default": "#303030"
+		},
+		"friendRequestsIcon": {
+			"type": "string",
+			"default": ""
+		},
+		"friendRequestsIconColor": {
+			"type": "string",
+			"default": ""
 		},
 		"searchIcon": {
 			"type": "string",

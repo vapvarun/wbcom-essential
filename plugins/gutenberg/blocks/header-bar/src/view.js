@@ -96,6 +96,29 @@
 				}
 			} );
 		} );
+
+		// Dark mode toggle.
+		const darkModeButton = container.querySelector(
+			'.wbcom-header-bar-dark-mode'
+		);
+
+		if ( darkModeButton ) {
+			// Check for saved dark mode preference on page load.
+			const savedDarkMode = localStorage.getItem( 'wbcom-dark-mode' );
+			if ( savedDarkMode === 'true' ) {
+				document.body.classList.add( 'dark-mode' );
+				darkModeButton.classList.add( 'is-active' );
+			}
+
+			darkModeButton.addEventListener( 'click', function ( e ) {
+				e.preventDefault();
+				const isDarkMode = document.body.classList.toggle( 'dark-mode' );
+				darkModeButton.classList.toggle( 'is-active', isDarkMode );
+
+				// Save preference to localStorage.
+				localStorage.setItem( 'wbcom-dark-mode', isDarkMode.toString() );
+			} );
+		}
 	}
 
 	/**
