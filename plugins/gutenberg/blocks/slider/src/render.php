@@ -48,8 +48,6 @@ $dots_size             = $attributes['dotsSize'] ?? 12;
 $dots_spacing          = $attributes['dotsSpacing'] ?? 10;
 $dots_position         = $attributes['dotsPosition'] ?? 'inside';
 $dots_bottom_offset    = $attributes['dotsBottomOffset'] ?? 20;
-$enable_parallax       = $attributes['enableParallax'] ?? false;
-$parallax_speed        = $attributes['parallaxSpeed'] ?? 0.5;
 $enable_keyboard_nav   = $attributes['enableKeyboardNav'] ?? true;
 $pause_on_hover        = $attributes['pauseOnHover'] ?? true;
 $infinite_loop         = $attributes['infiniteLoop'] ?? true;
@@ -93,7 +91,7 @@ $dots_position_class = ( 'outside' === $dots_position ) ? 'wbcom-dots-outside' :
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'id'    => $slider_id,
-		'class' => 'wbcom-essential-slider ' . $dots_position_class . ( $enable_parallax ? ' has-parallax' : '' ),
+		'class' => 'wbcom-essential-slider ' . $dots_position_class,
 		'style' => 'background-color: ' . esc_attr( $slide_bg_color ) . '; ' . $responsive_styles,
 	)
 );
@@ -135,8 +133,7 @@ if ( $nav_dots_mobile ) {
 	data-keyboard-nav="<?php echo esc_attr( $enable_keyboard_nav ? 'true' : 'false' ); ?>"
 	data-pause-on-hover="<?php echo esc_attr( $pause_on_hover ? 'true' : 'false' ); ?>"
 	data-infinite-loop="<?php echo esc_attr( $infinite_loop ? 'true' : 'false' ); ?>"
-	data-parallax="<?php echo esc_attr( $enable_parallax ? 'true' : 'false' ); ?>"
-	data-parallax-speed="<?php echo esc_attr( $parallax_speed ); ?>">
+	>
 
 	<div class="wbcom-slider-wrapper">
 		<div class="wbcom-slider-inner">

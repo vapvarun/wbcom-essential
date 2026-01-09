@@ -78,8 +78,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		dotsSpacing,
 		dotsPosition,
 		dotsBottomOffset,
-		enableParallax,
-		parallaxSpeed,
 		enableKeyboardNav,
 		pauseOnHover,
 		infiniteLoop,
@@ -91,6 +89,22 @@ export default function Edit( { attributes, setAttributes } ) {
 		'--slider-height-desktop': `${sliderHeight.size}${sliderHeight.unit}`,
 		'--slider-height-tablet': `${sliderHeightTablet.size}${sliderHeightTablet.unit}`,
 		'--slider-height-mobile': `${sliderHeightMobile.size}${sliderHeightMobile.unit}`,
+		'--slide-bg-color': slideBgColor,
+		'--title-color': titleColor,
+		'--content-color': contentColor,
+		'--arrow-color': arrowColor,
+		'--arrow-hover-color': arrowHoverColor,
+		'--arrow-bg-color': arrowBgColor,
+		'--arrow-bg-hover-color': arrowBgHoverColor,
+		'--arrow-size': `${arrowSize}px`,
+		'--arrow-box-size': `${arrowBoxSize}px`,
+		'--arrow-border-radius': `${arrowBorderRadius}%`,
+		'--dots-color': dotsColor,
+		'--dots-active-color': dotsActiveColor,
+		'--dots-size': `${dotsSize}px`,
+		'--dots-spacing': `${dotsSpacing}px`,
+		'--dots-position': dotsPosition,
+		'--dots-bottom-offset': `${dotsBottomOffset}px`,
 		minHeight: `${sliderHeight.size}${sliderHeight.unit}`,
 	};
 
@@ -524,26 +538,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					</PanelBody>
 				) }
 
-				<PanelBody title={ __( 'Parallax Effect', 'wbcom-essential' ) } initialOpen={ false }>
-					<ToggleControl
-						label={ __( 'Enable Parallax', 'wbcom-essential' ) }
-						checked={ enableParallax }
-						onChange={ ( value ) => setAttributes( { enableParallax: value } ) }
-						help={ __( 'Add a parallax scrolling effect to slide backgrounds', 'wbcom-essential' ) }
-					/>
-
-					{ enableParallax && (
-						<RangeControl
-							label={ __( 'Parallax Speed', 'wbcom-essential' ) }
-							value={ parallaxSpeed }
-							onChange={ ( value ) => setAttributes( { parallaxSpeed: value } ) }
-							min={ 0.1 }
-							max={ 1 }
-							step={ 0.1 }
-							help={ __( 'Lower values = slower parallax movement', 'wbcom-essential' ) }
-						/>
-					) }
-				</PanelBody>
+				
 
 				<PanelBody title={ __( 'Slide Background', 'wbcom-essential' ) }>
 					<div className="components-base-control">
@@ -695,7 +690,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				</div>
 
 				{/* Active Slide Editor */}
-				<div className="wbcom-slider-wrapper" style={{ backgroundColor: slideBgColor }}>
+				<div className="wbcom-slider-wrapper">
 					<div className="wbcom-slider-inner">
 						{ slides[ activeSlideIndex ] && (
 							<div key={ slides[ activeSlideIndex ].id } className="wbcom-slider-slide">
@@ -725,7 +720,6 @@ export default function Edit( { attributes, setAttributes } ) {
 											value={ slides[ activeSlideIndex ].title }
 											onChange={ ( value ) => updateSlide( activeSlideIndex, 'title', value ) }
 											placeholder={ __( 'Slide Title', 'wbcom-essential' ) }
-											style={ { color: titleColor } }
 											className="wbcom-slider-title"
 										/>
 
@@ -734,7 +728,6 @@ export default function Edit( { attributes, setAttributes } ) {
 											value={ slides[ activeSlideIndex ].content }
 											onChange={ ( value ) => updateSlide( activeSlideIndex, 'content', value ) }
 											placeholder={ __( 'Slide content...', 'wbcom-essential' ) }
-											style={ { color: contentColor } }
 											className="wbcom-slider-desc"
 										/>
 
@@ -768,15 +761,22 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					{ showArrows && (
 						<>
-							<button className="wbcom-slider-prev">‹</button>
-							<button className="wbcom-slider-next">›</button>
+							<button 
+								className={`wbcom-slider-prev ${navArrowsDesktop ? 'hide-on-desktop' : ''} ${navArrowsTablet ? 'hide-on-tablet' : ''} ${navArrowsMobile ? 'hide-on-mobile' : ''}`}
+							>‹</button>
+							<button 
+								className={`wbcom-slider-next ${navArrowsDesktop ? 'hide-on-desktop' : ''} ${navArrowsTablet ? 'hide-on-tablet' : ''} ${navArrowsMobile ? 'hide-on-mobile' : ''}`}
+							>›</button>
 						</>
 					) }
 
 					{ showDots && (
-						<div className="wbcom-slider-dots">
+						<div className={`wbcom-slider-dots ${navDotsDesktop ? 'hide-on-desktop' : ''} ${navDotsTablet ? 'hide-on-tablet' : ''} ${navDotsMobile ? 'hide-on-mobile' : ''}`}>
 							{ slides.map( ( _, index ) => (
-								<button key={ index } className="wbcom-slider-dot" />
+								<button 
+									key={ index } 
+									className={`wbcom-slider-dot ${index === activeSlideIndex ? 'active' : ''}`}
+								/>
 							) ) }
 						</div>
 					) }

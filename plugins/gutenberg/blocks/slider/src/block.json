@@ -168,14 +168,6 @@
 			"type": "number",
 			"default": 20
 		},
-		"enableParallax": {
-			"type": "boolean",
-			"default": false
-		},
-		"parallaxSpeed": {
-			"type": "number",
-			"default": 0.5
-		},
 		"enableKeyboardNav": {
 			"type": "boolean",
 			"default": true

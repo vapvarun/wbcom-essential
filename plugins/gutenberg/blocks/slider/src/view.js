@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		const keyboardNav = slider.dataset.keyboardNav === 'true';
 		const pauseOnHover = slider.dataset.pauseOnHover === 'true';
 		const infiniteLoop = slider.dataset.infiniteLoop === 'true';
-		const enableParallax = slider.dataset.parallax === 'true';
-		const parallaxSpeed = parseFloat(slider.dataset.parallaxSpeed) || 0.5;
 
 		// Initialize slider
 		function initSlider() {
@@ -48,11 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			if (autoplay) {
 				startAutoplay(autoplayDuration);
-			}
-
-			// Initialize parallax if enabled
-			if (enableParallax) {
-				initParallax();
 			}
 
 			// Set up keyboard navigation if enabled
@@ -171,42 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					stopAutoplay();
 				}
 			});
-		}
-
-		// Initialize parallax effect
-		function initParallax() {
-			const slideBgs = slider.querySelectorAll('.wbcom-slider-bg');
-
-			function updateParallax() {
-				const sliderRect = slider.getBoundingClientRect();
-				const windowHeight = window.innerHeight;
-
-				// Only apply parallax when slider is visible
-				if (sliderRect.bottom < 0 || sliderRect.top > windowHeight) return;
-
-				// Calculate parallax offset
-				const scrollProgress = (windowHeight - sliderRect.top) / (windowHeight + sliderRect.height);
-				const parallaxOffset = (scrollProgress - 0.5) * 100 * parallaxSpeed;
-
-				slideBgs.forEach(bg => {
-					bg.style.transform = `translateY(${parallaxOffset}px)`;
-				});
-			}
-
-			// Debounced scroll handler
-			let ticking = false;
-			window.addEventListener('scroll', function() {
-				if (!ticking) {
-					window.requestAnimationFrame(function() {
-						updateParallax();
-						ticking = false;
-					});
-					ticking = true;
-				}
-			}, { passive: true });
-
-			// Initial update
-			updateParallax();
 		}
 
 		// Event listeners
