@@ -416,17 +416,16 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 								$notif_count = 0;
 								while ( bp_the_notifications() && $notif_count < 5 ) :
 									++$notif_count;
-									$notification = notifications_template_loop_notifications();
 									?>
 									<div class="wbcom-dropdown-item wbcom-notification-item <?php echo bp_get_the_notification_is_new() ? 'unread' : ''; ?>">
 										<a href="<?php echo esc_url( bp_get_the_notification_mark_link() ); ?>" class="wbcom-notification-link">
 											<div class="wbcom-notification-avatar item-avatar">
 												<?php
-												$user_id = bp_get_the_notification_item_id();
+												$secondary_item_id = bp_get_the_notification_secondary_item_id();
 												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bp_core_fetch_avatar returns safe HTML.
 												echo bp_core_fetch_avatar(
 													array(
-														'item_id' => $user_id,
+														'item_id' => $secondary_item_id,
 														'width'   => 40,
 														'height'  => 40,
 													)
