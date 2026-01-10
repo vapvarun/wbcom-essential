@@ -60,11 +60,11 @@
     },
     "spaceBetween": {
       "type": "number",
-      "default": 10
+      "default": 15
     },
     "iconSize": {
       "type": "number",
-      "default": 21
+      "default": 18
     },
     "avatarSize": {
       "type": "number",
