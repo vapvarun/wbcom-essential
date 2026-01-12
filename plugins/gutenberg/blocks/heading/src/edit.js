@@ -34,6 +34,7 @@ import { ColorPicker, BaseControl, TextareaControl, SelectControl, TextControl, 
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		headingText,
 		htmlTag,
 		link,
@@ -58,7 +59,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
   const blockProps = useBlockProps( {
-    className: `wp-block-wbcom-essential-heading`,
+    className: `wp-block-wbcom-essential-heading${ useThemeColors ? ' use-theme-colors' : '' }`,
   } );
 
   // Wrapper styles (layout, spacing)
@@ -167,13 +168,27 @@ export default function Edit( { attributes, setAttributes } ) {
 
               {/* Style Section */}
               <PanelBody title={ __( 'Style', 'wbcom-essential' ) }>
-                <BaseControl label={ __( 'Text Color', 'wbcom-essential' ) }>
-                  <ColorPicker
-                    color={ titleColor }
-                    onChange={ ( color ) => setAttributes( { titleColor: typeof color === 'object' ? color.color || color.hex || '' : color } ) }
-                    enableAlpha
-                  />
-                </BaseControl>
+                <ToggleControl
+                  label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+                  help={ useThemeColors
+                    ? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+                    : __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+                  }
+                  checked={ useThemeColors }
+                  onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+                />
+                { ! useThemeColors && (
+                  <>
+                    <hr />
+                    <BaseControl label={ __( 'Text Color', 'wbcom-essential' ) }>
+                      <ColorPicker
+                        color={ titleColor }
+                        onChange={ ( color ) => setAttributes( { titleColor: typeof color === 'object' ? color.color || color.hex || '' : color } ) }
+                        enableAlpha
+                      />
+                    </BaseControl>
+                  </>
+                ) }
 
 					{/* Typography */}
 					<TextControl

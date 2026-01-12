@@ -25,20 +25,23 @@ const ICON_OPTIONS = [
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
-		style, width, widthUnit, thickness, color, alignment,
+		useThemeColors, style, width, widthUnit, thickness, color, alignment,
 		marginTop, marginBottom, showIcon, icon, iconSize, iconColor,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-divider align-${ alignment } style-${ style }`,
+		className: `wbcom-essential-divider align-${ alignment } style-${ style }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: {
 			'--divider-width': `${ width }${ widthUnit }`,
 			'--divider-thickness': `${ thickness }px`,
-			'--divider-color': color || undefined,
 			'--margin-top': `${ marginTop }px`,
 			'--margin-bottom': `${ marginBottom }px`,
 			'--icon-size': `${ iconSize }px`,
-			'--icon-color': iconColor || color || undefined,
+			// Only apply color styles when not using theme colors.
+			...( ! useThemeColors && {
+				'--divider-color': color || undefined,
+				'--icon-color': iconColor || color || undefined,
+			} ),
 		},
 	} );
 
@@ -81,11 +84,24 @@ export default function Edit( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) => setAttributes( { alignment: value } ) }
 					/>
-					<p>{ __( 'Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ color }
-						onChange={ ( value ) => setAttributes( { color: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<>
+							<p>{ __( 'Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ color }
+								onChange={ ( value ) => setAttributes( { color: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 				<PanelBody title={ __( 'Icon', 'wbcom-essential' ) } initialOpen={ false }>
 					<ToggleControl
@@ -108,11 +124,15 @@ export default function Edit( { attributes, setAttributes } ) {
 								min={ 12 }
 								max={ 48 }
 							/>
-							<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
-							<ColorPalette
-								value={ iconColor }
-								onChange={ ( value ) => setAttributes( { iconColor: value } ) }
-							/>
+							{ ! useThemeColors && (
+								<>
+									<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
+									<ColorPalette
+										value={ iconColor }
+										onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>

@@ -19,6 +19,10 @@
 		}
 	},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"icons": {
 			"type": "array",
 			"default": [

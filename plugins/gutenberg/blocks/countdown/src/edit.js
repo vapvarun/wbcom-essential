@@ -26,6 +26,7 @@ import { format, __experimentalGetSettings } from '@wordpress/date';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		dueDate,
 		showDays,
 		showHours,
@@ -98,7 +99,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [] );
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-countdown',
+		className: `wbcom-essential-countdown${ useThemeColors ? ' use-theme-colors' : '' }`,
 	} );
 
 	const containerStyle = {
@@ -113,12 +114,12 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const digitStyle = {
-		color: digitColor || undefined,
+		...( ! useThemeColors && digitColor && { color: digitColor } ),
 		fontSize: digitFontSize ? `${ digitFontSize }px` : undefined,
 	};
 
 	const labelStyle = {
-		color: labelColor || undefined,
+		...( ! useThemeColors && labelColor && { color: labelColor } ),
 		fontSize: labelFontSize ? `${ labelFontSize }px` : undefined,
 	};
 
@@ -282,15 +283,49 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Typography', 'wbcom-essential' ) } initialOpen={ false }>
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Digit Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ digitColor }
-							onChange={ ( value ) => setAttributes( { digitColor: value } ) }
-						/>
-					</div>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+
+					{ ! useThemeColors && (
+						<>
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Digit Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ digitColor }
+									onChange={ ( value ) => setAttributes( { digitColor: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Label Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ labelColor }
+									onChange={ ( value ) => setAttributes( { labelColor: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Message Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ messageColor }
+									onChange={ ( value ) => setAttributes( { messageColor: value } ) }
+								/>
+							</div>
+						</>
+					) }
 
 					<RangeControl
 						label={ __( 'Digit Font Size', 'wbcom-essential' ) }
@@ -300,16 +335,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 200 }
 					/>
 
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Label Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ labelColor }
-							onChange={ ( value ) => setAttributes( { labelColor: value } ) }
-						/>
-					</div>
-
 					<RangeControl
 						label={ __( 'Label Font Size', 'wbcom-essential' ) }
 						value={ labelFontSize }
@@ -317,16 +342,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 8 }
 						max={ 100 }
 					/>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Message Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ messageColor }
-							onChange={ ( value ) => setAttributes( { messageColor: value } ) }
-						/>
-					</div>
 
 					<RangeControl
 						label={ __( 'Message Font Size', 'wbcom-essential' ) }

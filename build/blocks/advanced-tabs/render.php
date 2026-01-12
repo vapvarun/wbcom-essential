@@ -6,6 +6,7 @@
 $tabs = $attributes['tabs'] ?? array();
 $layout = $attributes['layout'] ?? 'horizontal';
 $enable_url_hash = $attributes['enableUrlHash'] ?? false;
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 
 // Style attributes
 $title_color = $attributes['titleColor'] ?? '';
@@ -24,10 +25,16 @@ $title_alignment = $attributes['titleAlignment'] ?? 'left';
 
 $unique_id = 'tabs-' . uniqid();
 
-// Build inline styles
+// Build wrapper classes.
+$wrapper_classes = "layout-{$layout}";
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
+// Build inline styles - only when not using theme colors.
 $inline_styles = '';
 
-if ( $title_color || $title_bg_color || $title_border_color ) {
+if ( ! $use_theme_colors && ( $title_color || $title_bg_color || $title_border_color ) ) {
 	$inline_styles .= "#{$unique_id} .tab-title {";
 	if ( $title_color ) {
 		$inline_styles .= "color: {$title_color};";
@@ -42,7 +49,7 @@ if ( $title_color || $title_bg_color || $title_border_color ) {
 	$inline_styles .= '}';
 }
 
-if ( $title_active_color || $title_active_bg_color || $title_active_border_color ) {
+if ( ! $use_theme_colors && ( $title_active_color || $title_active_bg_color || $title_active_border_color ) ) {
 	$inline_styles .= "#{$unique_id} .tab-title.active, #{$unique_id} .accordion-mobile-title.active {";
 	if ( $title_active_color ) {
 		$inline_styles .= "color: {$title_active_color};";
@@ -56,7 +63,7 @@ if ( $title_active_color || $title_active_bg_color || $title_active_border_color
 	$inline_styles .= '}';
 }
 
-if ( $icon_color || $icon_size ) {
+if ( ! $use_theme_colors && ( $icon_color || $icon_size ) ) {
 	$inline_styles .= "#{$unique_id} .dashicons {";
 	if ( $icon_color ) {
 		$inline_styles .= "color: {$icon_color};";
@@ -65,13 +72,13 @@ if ( $icon_color || $icon_size ) {
 	$inline_styles .= '}';
 }
 
-if ( $icon_active_color ) {
+if ( ! $use_theme_colors && $icon_active_color ) {
 	$inline_styles .= "#{$unique_id} .tab-title.active .dashicons, #{$unique_id} .accordion-mobile-title.active .dashicons {";
 	$inline_styles .= "color: {$icon_active_color};";
 	$inline_styles .= '}';
 }
 
-if ( $content_color || $content_bg_color || $content_border_color ) {
+if ( ! $use_theme_colors && ( $content_color || $content_bg_color || $content_border_color ) ) {
 	$inline_styles .= "#{$unique_id} .tab-content {";
 	if ( $content_color ) {
 		$inline_styles .= "color: {$content_color};";
@@ -93,7 +100,7 @@ if ( $content_color || $content_bg_color || $content_border_color ) {
 
 <div
 	<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>
-	<?php echo get_block_wrapper_attributes( array( 'class' => "layout-{$layout}", 'id' => $unique_id ) ); ?>
+	<?php echo get_block_wrapper_attributes( array( 'class' => $wrapper_classes, 'id' => $unique_id ) ); ?>
 	data-enable-url-hash="<?php echo $enable_url_hash ? 'true' : 'false'; ?>"
 >
 	<div class="tabs-header">

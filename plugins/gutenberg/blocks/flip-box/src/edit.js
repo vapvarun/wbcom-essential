@@ -91,6 +91,7 @@ const DASHICONS = [
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		frontIcon,
 		frontTitle,
 		frontTitleTag,
@@ -292,6 +293,19 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 
+				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+				</PanelBody>
+
+				{ ! useThemeColors && (
 				<PanelBody title={ __( 'Front Side Colors', 'wbcom-essential' ) } initialOpen={ false }>
 					<ColorControl
 						label={ __( 'Background', 'wbcom-essential' ) }
@@ -436,6 +450,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
 					/>
 				</PanelBody>
+				) }
 			</InspectorControls>
 
 			<div { ...blockProps }>

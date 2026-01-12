@@ -11,6 +11,10 @@
 	"textdomain": "wbcom-essential",
 	"example": {},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"items": {
 			"type": "array",
 			"default": [

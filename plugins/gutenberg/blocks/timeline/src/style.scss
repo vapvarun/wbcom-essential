@@ -5,7 +5,7 @@
  */
 
 .wbcom-essential-timeline {
-	// Layout
+	// Layout defaults
 	--bar-thickness: 4px;
 	--icon-container-size: 60px;
 	--content-padding: 24px;
@@ -16,9 +16,51 @@
 	--text-font-size: 16px;
 	--item-spacing: 40px;
 	--image-border-radius: 8px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--bar-color: var(--wbcom-border-color, #e2e8f0);
-	--content-background: var(--wbcom-card-bg-alt, #f7fafc);
+
+	// Default color fallbacks (used when custom colors applied via inline styles)
+	--bar-color: #e2e8f0;
+	--content-background: #f7fafc;
+	--icon-bg: #3182ce;
+	--icon-color: #ffffff;
+	--date-color: #718096;
+	--title-color: #1a202c;
+	--text-color: #4a5568;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--bar-color: var(--wbcom-border-color, var(--wbcom-color-base-2, #e2e8f0));
+		--content-background: var(--wbcom-card-bg, var(--wbcom-color-base, #f7fafc));
+		--icon-bg: var(--wbcom-color-primary, #3182ce);
+		--icon-color: var(--wbcom-color-base, #ffffff);
+		--date-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #718096));
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--text-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #4a5568));
+
+		// Apply theme colors to elements
+		.wbcom-timeline-icon {
+			background-color: var(--icon-bg);
+			color: var(--icon-color);
+		}
+
+		.wbcom-timeline-content {
+			background-color: var(--content-background);
+		}
+
+		.wbcom-timeline-date {
+			color: var(--date-color);
+		}
+
+		.wbcom-timeline-title {
+			color: var(--title-color);
+		}
+
+		.wbcom-timeline-text {
+			color: var(--text-color);
+		}
+	}
 
 	padding: 40px 0;
 

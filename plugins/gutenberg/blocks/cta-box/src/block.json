@@ -17,6 +17,10 @@
 		}
 	},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"title": {
 			"type": "string",
 			"default": "Ready to Get Started?"

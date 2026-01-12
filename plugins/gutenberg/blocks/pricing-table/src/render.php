@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $title              = $attributes['title'] ?? __( 'Basic Plan', 'wbcom-essential' );
 $description        = $attributes['description'] ?? '';
 $heading_tag        = $attributes['headingTag'] ?? 'h3';
@@ -51,43 +52,74 @@ if ( ! in_array( $heading_tag, $allowed_tags, true ) ) {
 	$heading_tag = 'h3';
 }
 
-// Build styles.
-$container_style = sprintf(
-	'background-color: %s; border-radius: %dpx; --button-hover-bg: %s; --button-hover-color: %s; --button-hover-border: %s;',
-	esc_attr( $container_bg ),
-	absint( $border_radius ),
-	esc_attr( $button_hover_bg ),
-	esc_attr( $button_hover_color ),
-	esc_attr( $button_hover_border )
-);
-
-$header_style = sprintf(
-	'background-color: %s; color: %s; border-radius: %dpx %dpx 0 0;',
-	esc_attr( $header_bg ),
-	esc_attr( $header_color ),
-	absint( $border_radius ),
+// Build styles - layout vars always.
+$layout_style = sprintf(
+	'border-radius: %dpx;',
 	absint( $border_radius )
 );
 
-$price_style = sprintf( 'color: %s;', esc_attr( $price_color ) );
+// Add color vars only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$layout_style .= sprintf(
+		' --button-hover-bg: %s; --button-hover-color: %s; --button-hover-border: %s;',
+		esc_attr( $button_hover_bg ),
+		esc_attr( $button_hover_color ),
+		esc_attr( $button_hover_border )
+	);
+}
 
-$button_style = sprintf(
-	'background-color: %s; color: %s;',
-	esc_attr( $button_bg ),
-	esc_attr( $button_color )
-);
+$container_style = $layout_style;
+if ( ! $use_theme_colors ) {
+	$container_style .= sprintf( ' background-color: %s;', esc_attr( $container_bg ) );
+}
 
-$ribbon_style_attr = sprintf(
-	'background-color: %s; color: %s;',
-	esc_attr( $ribbon_bg ),
-	esc_attr( $ribbon_color )
+$header_style = sprintf(
+	'border-radius: %dpx %dpx 0 0;',
+	absint( $border_radius ),
+	absint( $border_radius )
 );
+if ( ! $use_theme_colors ) {
+	$header_style .= sprintf(
+		' background-color: %s; color: %s;',
+		esc_attr( $header_bg ),
+		esc_attr( $header_color )
+	);
+}
+
+$price_style = '';
+if ( ! $use_theme_colors ) {
+	$price_style = sprintf( 'color: %s;', esc_attr( $price_color ) );
+}
+
+$button_style = '';
+if ( ! $use_theme_colors ) {
+	$button_style = sprintf(
+		'background-color: %s; color: %s;',
+		esc_attr( $button_bg ),
+		esc_attr( $button_color )
+	);
+}
+
+$ribbon_style_attr = '';
+if ( ! $use_theme_colors ) {
+	$ribbon_style_attr = sprintf(
+		'background-color: %s; color: %s;',
+		esc_attr( $ribbon_bg ),
+		esc_attr( $ribbon_color )
+	);
+}
 
 $target_attr = $button_target ? ' target="_blank" rel="noopener noreferrer"' : '';
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-pricing-table';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => 'wbcom-essential-pricing-table',
+	'class' => $wrapper_classes,
 ) );
 ?>
 

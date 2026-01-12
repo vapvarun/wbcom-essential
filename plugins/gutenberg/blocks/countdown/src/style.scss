@@ -9,13 +9,42 @@
 	--countdown-value-size: 60px;
 	--countdown-label-size: 16px;
 	--countdown-msg-size: 24px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--value-color: var(--wbcom-heading-color, inherit);
-	--label-color: var(--wbcom-text-color, inherit);
-	--separator-color: var(--wbcom-meta-color, inherit);
-	--msg-color: var(--wbcom-heading-color, inherit);
-	--item-bg: var(--wbcom-card-bg, transparent);
-	--item-border: var(--wbcom-border-color, transparent);
+	// Default colors (fallbacks when using inline styles)
+	--value-color: inherit;
+	--label-color: inherit;
+	--separator-color: inherit;
+	--msg-color: inherit;
+	--item-bg: transparent;
+	--item-border: transparent;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--value-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--label-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+		--separator-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-3, inherit));
+		--msg-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--item-bg: var(--wbcom-card-bg, var(--wbcom-color-base, transparent));
+		--item-border: var(--wbcom-border-color, var(--wbcom-color-border, transparent));
+
+		.wbcom-countdown-value {
+			color: var(--value-color);
+		}
+
+		.wbcom-countdown-label {
+			color: var(--label-color);
+		}
+
+		.wbcom-countdown-separator {
+			color: var(--separator-color);
+		}
+
+		.wbcom-countdown-msg {
+			color: var(--msg-color);
+		}
+	}
 
 	.wbcom-countdown {
 		display: flex;

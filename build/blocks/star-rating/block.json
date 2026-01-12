@@ -21,6 +21,10 @@
     }
   },
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "rating": {
       "type": "number",
       "default": 4

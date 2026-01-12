@@ -22,6 +22,7 @@ import {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		title,
 		titleTag,
 		description,
@@ -49,16 +50,18 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-cta-box layout-${ layout }`,
+		className: `wbcom-essential-cta-box layout-${ layout }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: {
-			'--title-color': titleColor || undefined,
-			'--description-color': descriptionColor || undefined,
-			'--button-bg-color': buttonBgColor || undefined,
-			'--button-text-color': buttonTextColor || undefined,
-			'--button-hover-bg': buttonHoverBgColor || undefined,
-			'--button-hover-text': buttonHoverTextColor || undefined,
-			'--second-button-bg': secondButtonBgColor || undefined,
-			'--second-button-text': secondButtonTextColor || undefined,
+			...( ! useThemeColors && {
+				'--title-color': titleColor || undefined,
+				'--description-color': descriptionColor || undefined,
+				'--button-bg-color': buttonBgColor || undefined,
+				'--button-text-color': buttonTextColor || undefined,
+				'--button-hover-bg': buttonHoverBgColor || undefined,
+				'--button-hover-text': buttonHoverTextColor || undefined,
+				'--second-button-bg': secondButtonBgColor || undefined,
+				'--second-button-text': secondButtonTextColor || undefined,
+			} ),
 			'--button-radius': `${ buttonBorderRadius }px`,
 			'--button-padding': `${ buttonPadding.top }px ${ buttonPadding.right }px ${ buttonPadding.bottom }px ${ buttonPadding.left }px`,
 			'--title-size': `${ titleSize }px`,
@@ -199,49 +202,63 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Title Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
 
-					<Divider />
-
-					<p>{ __( 'Description Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ descriptionColor }
-						onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
-					/>
-
-					<Divider />
-
-					<p>{ __( 'Primary Button Background', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ buttonBgColor }
-						onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
-					/>
-
-					<p>{ __( 'Primary Button Text', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ buttonTextColor }
-						onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
-					/>
-
-					{ showSecondButton && (
+					{ ! useThemeColors && (
 						<>
+							<p>{ __( 'Title Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+
 							<Divider />
 
-							<p>{ __( 'Secondary Button Background', 'wbcom-essential' ) }</p>
+							<p>{ __( 'Description Color', 'wbcom-essential' ) }</p>
 							<ColorPalette
-								value={ secondButtonBgColor }
-								onChange={ ( value ) => setAttributes( { secondButtonBgColor: value } ) }
+								value={ descriptionColor }
+								onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
 							/>
 
-							<p>{ __( 'Secondary Button Text', 'wbcom-essential' ) }</p>
+							<Divider />
+
+							<p>{ __( 'Primary Button Background', 'wbcom-essential' ) }</p>
 							<ColorPalette
-								value={ secondButtonTextColor }
-								onChange={ ( value ) => setAttributes( { secondButtonTextColor: value } ) }
+								value={ buttonBgColor }
+								onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
 							/>
+
+							<p>{ __( 'Primary Button Text', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ buttonTextColor }
+								onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
+							/>
+
+							{ showSecondButton && (
+								<>
+									<Divider />
+
+									<p>{ __( 'Secondary Button Background', 'wbcom-essential' ) }</p>
+									<ColorPalette
+										value={ secondButtonBgColor }
+										onChange={ ( value ) => setAttributes( { secondButtonBgColor: value } ) }
+									/>
+
+									<p>{ __( 'Secondary Button Text', 'wbcom-essential' ) }</p>
+									<ColorPalette
+										value={ secondButtonTextColor }
+										onChange={ ( value ) => setAttributes( { secondButtonTextColor: value } ) }
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>

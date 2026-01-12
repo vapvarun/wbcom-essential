@@ -9,6 +9,17 @@
 	flex-direction: column;
 	position: relative;
 
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--number-color: var(--wbcom-color-primary, currentColor);
+		--title-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+		--prefix-suffix-color: var(--wbcom-color-primary, currentColor);
+		--icon-color: var(--wbcom-color-primary, currentColor);
+	}
+
 	// Icon wrapper
 	&__icon {
 		display: inline-flex;

@@ -49,6 +49,7 @@ const TAG_OPTIONS = [
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		prefixText,
 		rotatingTexts,
 		suffixText,
@@ -80,14 +81,16 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [ rotatingTexts.length, duration ] );
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-text-rotator',
+		className: `wbcom-essential-text-rotator${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: {
 			textAlign,
-			'--text-color': textColor || undefined,
-			'--rotating-color': rotatingTextColor || undefined,
-			'--rotating-bg': rotatingTextBg || undefined,
-			'--prefix-color': prefixColor || undefined,
-			'--suffix-color': suffixColor || undefined,
+			...( ! useThemeColors && {
+				'--text-color': textColor || undefined,
+				'--rotating-color': rotatingTextColor || undefined,
+				'--rotating-bg': rotatingTextBg || undefined,
+				'--prefix-color': prefixColor || undefined,
+				'--suffix-color': suffixColor || undefined,
+			} ),
 		},
 	} );
 
@@ -330,59 +333,75 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ textColor }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
 						onChange={ ( value ) =>
-							setAttributes( { textColor: value } )
+							setAttributes( { useThemeColors: value } )
 						}
 					/>
 
-					<ColorControl
-						label={ __(
-							'Rotating Text Color',
-							'wbcom-essential'
-						) }
-						value={ rotatingTextColor }
-						onChange={ ( value ) =>
-							setAttributes( { rotatingTextColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ textColor }
+								onChange={ ( value ) =>
+									setAttributes( { textColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __(
-							'Rotating Text Background',
-							'wbcom-essential'
-						) }
-						value={ rotatingTextBg }
-						onChange={ ( value ) =>
-							setAttributes( { rotatingTextBg: value } )
-						}
-					/>
+							<ColorControl
+								label={ __(
+									'Rotating Text Color',
+									'wbcom-essential'
+								) }
+								value={ rotatingTextColor }
+								onChange={ ( value ) =>
+									setAttributes( { rotatingTextColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __( 'Prefix Color', 'wbcom-essential' ) }
-						value={ prefixColor }
-						onChange={ ( value ) =>
-							setAttributes( { prefixColor: value } )
-						}
-						help={ __(
-							'Override color for prefix text',
-							'wbcom-essential'
-						) }
-					/>
+							<ColorControl
+								label={ __(
+									'Rotating Text Background',
+									'wbcom-essential'
+								) }
+								value={ rotatingTextBg }
+								onChange={ ( value ) =>
+									setAttributes( { rotatingTextBg: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __( 'Suffix Color', 'wbcom-essential' ) }
-						value={ suffixColor }
-						onChange={ ( value ) =>
-							setAttributes( { suffixColor: value } )
-						}
-						help={ __(
-							'Override color for suffix text',
-							'wbcom-essential'
-						) }
-					/>
+							<ColorControl
+								label={ __( 'Prefix Color', 'wbcom-essential' ) }
+								value={ prefixColor }
+								onChange={ ( value ) =>
+									setAttributes( { prefixColor: value } )
+								}
+								help={ __(
+									'Override color for prefix text',
+									'wbcom-essential'
+								) }
+							/>
+
+							<ColorControl
+								label={ __( 'Suffix Color', 'wbcom-essential' ) }
+								value={ suffixColor }
+								onChange={ ( value ) =>
+									setAttributes( { suffixColor: value } )
+								}
+								help={ __(
+									'Override color for suffix text',
+									'wbcom-essential'
+								) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

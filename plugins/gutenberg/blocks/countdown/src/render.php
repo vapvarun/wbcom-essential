@@ -14,7 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
-$due_date       = $attributes['dueDate'] ?? '';
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+$due_date         = $attributes['dueDate'] ?? '';
 $show_days      = $attributes['showDays'] ?? true;
 $show_hours     = $attributes['showHours'] ?? true;
 $show_minutes   = $attributes['showMinutes'] ?? true;
@@ -76,7 +77,7 @@ $box_style = implode( '; ', $box_style_parts );
 
 // Build digit style.
 $digit_style_parts = array();
-if ( ! empty( $digit_color ) ) {
+if ( ! $use_theme_colors && ! empty( $digit_color ) ) {
 	$digit_style_parts[] = 'color: ' . esc_attr( $digit_color );
 }
 if ( $digit_size > 0 ) {
@@ -86,7 +87,7 @@ $digit_style = implode( '; ', $digit_style_parts );
 
 // Build label style.
 $label_style_parts = array();
-if ( ! empty( $label_color ) ) {
+if ( ! $use_theme_colors && ! empty( $label_color ) ) {
 	$label_style_parts[] = 'color: ' . esc_attr( $label_color );
 }
 if ( $label_size > 0 ) {
@@ -96,7 +97,7 @@ $label_style = implode( '; ', $label_style_parts );
 
 // Build message style.
 $message_style_parts = array();
-if ( ! empty( $message_color ) ) {
+if ( ! $use_theme_colors && ! empty( $message_color ) ) {
 	$message_style_parts[] = 'color: ' . esc_attr( $message_color );
 }
 if ( $message_size > 0 ) {
@@ -104,9 +105,15 @@ if ( $message_size > 0 ) {
 }
 $message_style = implode( '; ', $message_style_parts );
 
+// Build wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-countdown' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => 'wbcom-essential-countdown',
+	'class' => implode( ' ', $wrapper_classes ),
 ) );
 ?>
 

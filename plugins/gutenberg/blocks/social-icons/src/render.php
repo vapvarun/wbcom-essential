@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $icons            = ! empty( $attributes['icons'] ) ? $attributes['icons'] : array();
 $alignment        = ! empty( $attributes['alignment'] ) ? $attributes['alignment'] : 'center';
 $icon_size        = isset( $attributes['iconSize'] ) ? absint( $attributes['iconSize'] ) : 24;
@@ -42,17 +43,21 @@ $platform_icons = array(
 	'tiktok'    => 'video-alt2',
 );
 
-// Build inline styles.
+// Build inline styles - layout always, colors only when NOT using theme colors.
 $inline_styles = array(
-	'--icon-size'       => $icon_size . 'px',
-	'--icon-gap'        => $icon_gap . 'px',
-	'--icon-padding'    => $icon_padding . 'px',
-	'--icon-color'      => $icon_color,
-	'--icon-bg-color'   => $icon_bg_color,
-	'--icon-hover-color' => $icon_hover_color,
-	'--icon-hover-bg'   => $icon_hover_bg,
-	'--border-radius'   => $border_radius . '%',
+	'--icon-size'    => $icon_size . 'px',
+	'--icon-gap'     => $icon_gap . 'px',
+	'--icon-padding' => $icon_padding . 'px',
+	'--border-radius' => $border_radius . '%',
 );
+
+// Color variables only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--icon-color']       = $icon_color;
+	$inline_styles['--icon-bg-color']    = $icon_bg_color;
+	$inline_styles['--icon-hover-color'] = $icon_hover_color;
+	$inline_styles['--icon-hover-bg']    = $icon_hover_bg;
+}
 
 // Filter out empty values.
 $inline_styles = array_filter( $inline_styles );
@@ -63,10 +68,16 @@ foreach ( $inline_styles as $property => $value ) {
 	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
 }
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-social-icons align-' . esc_attr( $alignment ) . ' style-' . esc_attr( $style );
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Build wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-social-icons align-' . esc_attr( $alignment ) . ' style-' . esc_attr( $style ),
+		'class' => $wrapper_classes,
 		'style' => $style_string,
 	)
 );

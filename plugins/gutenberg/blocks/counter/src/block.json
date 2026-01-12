@@ -19,6 +19,10 @@
 		}
 	},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"startNumber": {
 			"type": "number",
 			"default": 0

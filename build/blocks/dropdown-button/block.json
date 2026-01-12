@@ -13,7 +13,7 @@
     "action"
   ],
   "icon": "button",
-  "textdomain": "dropdown-button",
+  "textdomain": "wbcom-essential",
   "example": {},
   "attributes": {
     "text": {

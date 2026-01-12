@@ -5,6 +5,31 @@
  */
 
 .wbcom-essential-cta-box {
+	// Default colors (fallbacks when using inline styles)
+	--title-color: inherit;
+	--description-color: inherit;
+	--button-bg-color: #2563eb;
+	--button-text-color: #ffffff;
+	--button-hover-bg: #1d4ed8;
+	--button-hover-text: #ffffff;
+	--second-button-bg: transparent;
+	--second-button-text: #2563eb;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--description-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+		--button-bg-color: var(--wbcom-color-primary, #2563eb);
+		--button-text-color: var(--wbcom-color-base, #ffffff);
+		--button-hover-bg: var(--wbcom-color-primary-dark, var(--wbcom-color-secondary, #1d4ed8));
+		--button-hover-text: var(--wbcom-color-base, #ffffff);
+		--second-button-bg: transparent;
+		--second-button-text: var(--wbcom-color-primary, #2563eb);
+	}
+
 	display: flex;
 	flex-direction: column;
 	gap: var(--content-spacing, 24px);

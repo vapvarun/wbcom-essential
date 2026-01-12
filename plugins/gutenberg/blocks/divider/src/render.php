@@ -9,7 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$style         = ! empty( $attributes['style'] ) ? $attributes['style'] : 'solid';
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+$style            = ! empty( $attributes['style'] ) ? $attributes['style'] : 'solid';
 $width         = isset( $attributes['width'] ) ? absint( $attributes['width'] ) : 100;
 $width_unit    = ! empty( $attributes['widthUnit'] ) ? $attributes['widthUnit'] : '%';
 $thickness     = isset( $attributes['thickness'] ) ? absint( $attributes['thickness'] ) : 2;
@@ -22,15 +23,20 @@ $icon          = ! empty( $attributes['icon'] ) ? $attributes['icon'] : 'star-fi
 $icon_size     = isset( $attributes['iconSize'] ) ? absint( $attributes['iconSize'] ) : 20;
 $icon_color    = ! empty( $attributes['iconColor'] ) ? $attributes['iconColor'] : '';
 
+// Build inline styles - non-color styles always applied.
 $inline_styles = array(
 	'--divider-width'     => $width . $width_unit,
 	'--divider-thickness' => $thickness . 'px',
-	'--divider-color'     => $color,
 	'--margin-top'        => $margin_top . 'px',
 	'--margin-bottom'     => $margin_bottom . 'px',
 	'--icon-size'         => $icon_size . 'px',
-	'--icon-color'        => $icon_color ? $icon_color : $color,
 );
+
+// Only add color styles when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--divider-color'] = $color;
+	$inline_styles['--icon-color']    = $icon_color ? $icon_color : $color;
+}
 
 $inline_styles = array_filter( $inline_styles );
 $style_string  = '';
@@ -38,9 +44,15 @@ foreach ( $inline_styles as $property => $value ) {
 	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
 }
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-divider align-' . esc_attr( $alignment ) . ' style-' . esc_attr( $style );
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-divider align-' . esc_attr( $alignment ) . ' style-' . esc_attr( $style ),
+		'class' => $wrapper_classes,
 		'style' => $style_string,
 	)
 );

@@ -22,6 +22,7 @@ import {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		title,
 		description,
 		headingTag,
@@ -54,8 +55,13 @@ export default function Edit( { attributes, setAttributes } ) {
 		borderRadius,
 	} = attributes;
 
+	const wrapperClasses = [
+		'wbcom-essential-pricing-table',
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
+
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-pricing-table',
+		className: wrapperClasses,
 	} );
 
 	const addFeature = () => {
@@ -274,117 +280,131 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Container Background', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ containerBackground }
-							onChange={ ( value ) => setAttributes( { containerBackground: value } ) }
-						/>
-					</div>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
 
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Header Background', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ headerBackground }
-							onChange={ ( value ) => setAttributes( { headerBackground: value } ) }
-						/>
-					</div>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Header Text Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ headerTextColor }
-							onChange={ ( value ) => setAttributes( { headerTextColor: value } ) }
-						/>
-					</div>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Price Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ priceColor }
-							onChange={ ( value ) => setAttributes( { priceColor: value } ) }
-						/>
-					</div>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Button Background', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ buttonBackground }
-							onChange={ ( value ) => setAttributes( { buttonBackground: value } ) }
-						/>
-					</div>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Button Text Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ buttonTextColor }
-							onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
-						/>
-					</div>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Button Hover Background', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ buttonHoverBackground }
-							onChange={ ( value ) => setAttributes( { buttonHoverBackground: value } ) }
-						/>
-					</div>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Button Hover Text Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ buttonHoverTextColor }
-							onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
-						/>
-					</div>
-
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Button Hover Border Color', 'wbcom-essential' ) }
-						</label>
-						<ColorPalette
-							value={ buttonHoverBorder }
-							onChange={ ( value ) => setAttributes( { buttonHoverBorder: value } ) }
-						/>
-					</div>
-
-					{ showRibbon && (
+					{ ! useThemeColors && (
 						<>
 							<div className="components-base-control">
 								<label className="components-base-control__label">
-									{ __( 'Ribbon Background', 'wbcom-essential' ) }
+									{ __( 'Container Background', 'wbcom-essential' ) }
 								</label>
 								<ColorPalette
-									value={ ribbonBackground }
-									onChange={ ( value ) => setAttributes( { ribbonBackground: value } ) }
+									value={ containerBackground }
+									onChange={ ( value ) => setAttributes( { containerBackground: value } ) }
 								/>
 							</div>
 
 							<div className="components-base-control">
 								<label className="components-base-control__label">
-									{ __( 'Ribbon Text Color', 'wbcom-essential' ) }
+									{ __( 'Header Background', 'wbcom-essential' ) }
 								</label>
 								<ColorPalette
-									value={ ribbonTextColor }
-									onChange={ ( value ) => setAttributes( { ribbonTextColor: value } ) }
+									value={ headerBackground }
+									onChange={ ( value ) => setAttributes( { headerBackground: value } ) }
 								/>
 							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Header Text Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ headerTextColor }
+									onChange={ ( value ) => setAttributes( { headerTextColor: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Price Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ priceColor }
+									onChange={ ( value ) => setAttributes( { priceColor: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Button Background', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ buttonBackground }
+									onChange={ ( value ) => setAttributes( { buttonBackground: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Button Text Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ buttonTextColor }
+									onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Button Hover Background', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ buttonHoverBackground }
+									onChange={ ( value ) => setAttributes( { buttonHoverBackground: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Button Hover Text Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ buttonHoverTextColor }
+									onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
+								/>
+							</div>
+
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Button Hover Border Color', 'wbcom-essential' ) }
+								</label>
+								<ColorPalette
+									value={ buttonHoverBorder }
+									onChange={ ( value ) => setAttributes( { buttonHoverBorder: value } ) }
+								/>
+							</div>
+
+							{ showRibbon && (
+								<>
+									<div className="components-base-control">
+										<label className="components-base-control__label">
+											{ __( 'Ribbon Background', 'wbcom-essential' ) }
+										</label>
+										<ColorPalette
+											value={ ribbonBackground }
+											onChange={ ( value ) => setAttributes( { ribbonBackground: value } ) }
+										/>
+									</div>
+
+									<div className="components-base-control">
+										<label className="components-base-control__label">
+											{ __( 'Ribbon Text Color', 'wbcom-essential' ) }
+										</label>
+										<ColorPalette
+											value={ ribbonTextColor }
+											onChange={ ( value ) => setAttributes( { ribbonTextColor: value } ) }
+										/>
+									</div>
+								</>
+							) }
 						</>
 					) }
 

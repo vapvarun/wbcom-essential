@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors  = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $icon              = ! empty( $attributes['icon'] ) ? $attributes['icon'] : 'star-filled';
 $icon_type         = ! empty( $attributes['iconType'] ) ? $attributes['iconType'] : 'dashicon';
 $custom_icon_url   = ! empty( $attributes['customIconUrl'] ) ? $attributes['customIconUrl'] : '';
@@ -43,21 +44,25 @@ if ( ! in_array( $title_tag, $allowed_tags, true ) ) {
 	$title_tag = 'h3';
 }
 
-// Build inline styles.
+// Build inline styles - non-color styles always applied.
 $inline_styles = array(
 	'--icon-size'          => $icon_size . 'px',
-	'--icon-color'         => $icon_color,
-	'--icon-bg-color'      => $icon_bg_color,
 	'--icon-border-radius' => $icon_border_radius . '%',
 	'--icon-padding'       => $icon_padding . 'px',
-	'--title-color'        => $title_color,
-	'--description-color'  => $description_color,
-	'--hover-icon-color'   => $hover_icon_color,
-	'--hover-icon-bg'      => $hover_icon_bg,
-	'--hover-title-color'  => $hover_title_color,
 	'--icon-spacing'       => $icon_spacing . 'px',
 	'--title-spacing'      => $title_spacing . 'px',
 );
+
+// Only add color styles when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--icon-color']        = $icon_color;
+	$inline_styles['--icon-bg-color']     = $icon_bg_color;
+	$inline_styles['--title-color']       = $title_color;
+	$inline_styles['--description-color'] = $description_color;
+	$inline_styles['--hover-icon-color']  = $hover_icon_color;
+	$inline_styles['--hover-icon-bg']     = $hover_icon_bg;
+	$inline_styles['--hover-title-color'] = $hover_title_color;
+}
 
 // Filter out empty values.
 $inline_styles = array_filter( $inline_styles );
@@ -68,10 +73,16 @@ foreach ( $inline_styles as $property => $value ) {
 	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
 }
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-icon-box layout-' . esc_attr( $layout ) . ' align-' . esc_attr( $alignment );
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Build wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-icon-box layout-' . esc_attr( $layout ) . ' align-' . esc_attr( $alignment ),
+		'class' => $wrapper_classes,
 		'style' => $style_string,
 	)
 );

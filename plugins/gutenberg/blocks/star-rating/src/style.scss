@@ -1,7 +1,25 @@
 /**
  * Star Rating Block - Frontend Styles
+ *
+ * @package wbcom-essential
  */
+
 .wbcom-essential-star-rating {
+	// Default color fallbacks (used when custom colors applied via inline styles)
+	--filled-color: #ffc107;
+	--empty-color: #e0e0e0;
+	--label-color: inherit;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--filled-color: var(--wbcom-color-primary, #ffc107);
+		--empty-color: var(--wbcom-border-color, var(--wbcom-color-base-2, #e0e0e0));
+		--label-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+	}
+
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;

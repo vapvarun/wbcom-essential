@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors     = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $heading_text         = $attributes['headingText'] ?? 'Add Your Heading Text Here';
 $html_tag             = $attributes['htmlTag'] ?? 'h2';
 $link                 = $attributes['link'] ?? array( 'url' => '', 'isExternal' => false, 'nofollow' => false );
@@ -90,7 +91,7 @@ if ( ! empty( $padding['top'] ) || ! empty( $padding['right'] ) || ! empty( $pad
 
 // Build heading styles.
 $heading_styles = '';
-if ( ! $gradient_heading && ! empty( $title_color ) ) {
+if ( ! $use_theme_colors && ! $gradient_heading && ! empty( $title_color ) ) {
 	$heading_styles .= 'color: ' . esc_attr( $title_color ) . ';';
 }
 if ( ! empty( $blend_mode ) ) {
@@ -158,7 +159,8 @@ if ( ! empty( $before_line['width']['value'] ) ) {
 if ( ! empty( $before_line['height']['value'] ) ) {
 	$before_styles .= 'height: ' . esc_attr( $before_line['height']['value'] ) . ( $before_line['height']['unit'] ?? 'px' ) . ';';
 }
-if ( ! empty( $before_line['color'] ) ) {
+// Only apply line colors when not using theme colors.
+if ( ! $use_theme_colors && ! empty( $before_line['color'] ) ) {
 	$before_styles .= 'background: ' . esc_attr( $before_line['color'] ) . ';';
 }
 if ( ! empty( $before_line['align'] ) ) {
@@ -174,15 +176,22 @@ if ( ! empty( $after_line['width']['value'] ) ) {
 if ( ! empty( $after_line['height']['value'] ) ) {
 	$after_styles .= 'height: ' . esc_attr( $after_line['height']['value'] ) . ( $after_line['height']['unit'] ?? 'px' ) . ';';
 }
-if ( ! empty( $after_line['color'] ) ) {
+// Only apply line colors when not using theme colors.
+if ( ! $use_theme_colors && ! empty( $after_line['color'] ) ) {
 	$after_styles .= 'background: ' . esc_attr( $after_line['color'] ) . ';';
 }
 if ( ! empty( $after_line['align'] ) ) {
 	$after_styles .= 'align-self: ' . esc_attr( $after_line['align'] ) . ';';
 }
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-heading';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Get wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'wbcom-essential-heading' ) );
+$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $wrapper_classes ) );
 
 // Allowed HTML tags for the heading element.
 $allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' );

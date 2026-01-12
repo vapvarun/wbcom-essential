@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors      = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $testimonial_content  = $attributes['content'] ?? '';
 $author_name          = $attributes['authorName'] ?? '';
 $author_role          = $attributes['authorRole'] ?? '';
@@ -71,35 +72,40 @@ $box_shadow_value = $box_shadow
 	)
 	: 'none';
 
-// Build CSS variables.
+// Build CSS variables - layout always, colors conditionally.
 $css_vars = array(
-	'--bg-color'              => $background_color,
+	// Layout variables (always applied).
 	'--item-max-width'        => $item_max_width . 'px',
 	'--border-radius'         => $border_radius . 'px',
 	'--border-width'          => $border_width . 'px',
 	'--border-style'          => $border_style,
-	'--border-color'          => $border_color,
 	'--padding'               => $padding . 'px',
 	'--box-shadow'            => $box_shadow_value,
 	'--avatar-size'           => $avatar_size . 'px',
 	'--avatar-border-radius'  => $avatar_border_radius . '%',
 	'--avatar-border-width'   => $avatar_border_width . 'px',
 	'--avatar-border-style'   => $avatar_border_style,
-	'--avatar-border-color'   => $avatar_border_color,
 	'--avatar-box-shadow'     => $avatar_box_shadow ? '0 4px 10px rgba(0, 0, 0, 0.15)' : 'none',
 	'--quote-icon-size'       => $quote_icon_size . 'px',
-	'--quote-icon-color'      => $quote_icon_color,
 	'--quote-font-size'       => $quote_font_size . 'px',
 	'--name-font-size'        => $name_font_size . 'px',
 	'--role-font-size'        => $role_font_size . 'px',
 	'--spacing'               => $spacing . 'px',
-	'--quote-color'           => $quote_color,
-	'--name-color'            => $name_color,
-	'--role-color'            => $role_color,
-	'--rating-color'          => $rating_color,
-	'--arrow-color'           => $content_arrow_color,
 	'--arrow-size'            => $content_arrow_size . 'px',
 );
+
+// Add color variables only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$css_vars['--bg-color']             = $background_color;
+	$css_vars['--border-color']         = $border_color;
+	$css_vars['--avatar-border-color']  = $avatar_border_color;
+	$css_vars['--quote-icon-color']     = $quote_icon_color;
+	$css_vars['--quote-color']          = $quote_color;
+	$css_vars['--name-color']           = $name_color;
+	$css_vars['--role-color']           = $role_color;
+	$css_vars['--rating-color']         = $rating_color;
+	$css_vars['--arrow-color']          = $content_arrow_color;
+}
 
 $style_string = '';
 foreach ( $css_vars as $prop => $value ) {
@@ -108,11 +114,12 @@ foreach ( $css_vars as $prop => $value ) {
 
 // Build class names.
 $class_names = sprintf(
-	'wbcom-essential-testimonial layout-%s info-%s text-%s arrow-%s',
+	'wbcom-essential-testimonial layout-%s info-%s text-%s arrow-%s%s',
 	esc_attr( $layout ),
 	esc_attr( $author_info_direction ),
 	esc_attr( $text_align ),
-	esc_attr( $content_arrow )
+	esc_attr( $content_arrow ),
+	$use_theme_colors ? ' use-theme-colors' : ''
 );
 
 // Get wrapper attributes.

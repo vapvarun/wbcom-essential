@@ -8,15 +8,71 @@
 	// Layout
 	--card-radius: 8px;
 	--info-padding: 20px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--card-bg: var(--wbcom-card-bg, #ffffff);
-	--name-color: var(--wbcom-heading-color, inherit);
-	--role-color: var(--wbcom-meta-color, inherit);
-	--placeholder-bg: var(--wbcom-border-color, #e2e8f0);
-	--placeholder-icon-color: var(--wbcom-meta-color, #a0aec0);
-	--nav-bg: var(--wbcom-card-bg, #ffffff);
-	--nav-color: var(--wbcom-heading-color, inherit);
-	--dot-color: var(--wbcom-heading-color, inherit);
+
+	// Default color fallbacks (used when custom colors applied via inline styles).
+	--card-bg: #ffffff;
+	--name-color: #1a202c;
+	--role-color: #718096;
+	--placeholder-bg: #e2e8f0;
+	--placeholder-icon-color: #a0aec0;
+	--nav-bg: #ffffff;
+	--nav-color: #3182ce;
+	--dot-color: #718096;
+	--dot-active-color: #3182ce;
+	--border-color: #e2e8f0;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--role-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #718096));
+		--placeholder-bg: var(--wbcom-border-color, var(--wbcom-color-base-2, #e2e8f0));
+		--placeholder-icon-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #a0aec0));
+		--nav-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--nav-color: var(--wbcom-color-primary, #3182ce);
+		--dot-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #718096));
+		--dot-active-color: var(--wbcom-color-primary, #3182ce);
+		--border-color: var(--wbcom-border-color, var(--wbcom-color-base-2, #e2e8f0));
+
+		// Apply theme colors to elements.
+		.wbcom-team-member-card {
+			background: var(--card-bg);
+			border-color: var(--border-color);
+		}
+
+		.wbcom-team-member-name {
+			color: var(--name-color);
+		}
+
+		.wbcom-team-member-role {
+			color: var(--role-color);
+		}
+
+		.wbcom-team-member-placeholder {
+			background-color: var(--placeholder-bg);
+
+			.dashicons {
+				color: var(--placeholder-icon-color);
+			}
+		}
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			background-color: var(--nav-bg);
+			color: var(--nav-color);
+		}
+
+		.swiper-pagination-bullet {
+			background-color: var(--dot-color);
+
+			&-active {
+				background-color: var(--dot-active-color);
+			}
+		}
+	}
 
 	position: relative;
 	padding: 0 50px;
@@ -82,13 +138,11 @@
 		margin: 0 0 5px;
 		font-size: 1.25rem;
 		font-weight: 600;
-		color: var(--name-color);
 	}
 
 	.wbcom-team-member-role {
 		margin: 0;
 		font-size: 0.9rem;
-		color: var(--role-color);
 	}
 
 	// Swiper navigation - base styles (customized via inline styles)

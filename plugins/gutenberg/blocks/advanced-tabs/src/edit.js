@@ -52,6 +52,7 @@ import './editor.scss';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		tabs,
 		layout,
 		enableUrlHash,
@@ -74,7 +75,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const blockProps = useBlockProps(
 		{
-			className: `advanced-tabs-block layout-${layout}`
+			className: `advanced-tabs-block layout-${layout}${ useThemeColors ? ' use-theme-colors' : '' }`
 		}
 	);
 
@@ -186,6 +187,15 @@ export default function Edit( { attributes, setAttributes } ) {
 						checked= { enableUrlHash }
 						onChange= {( value ) => setAttributes( { enableUrlHash: value } ) }
 					/>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
 				</PanelBody>
 
 				<PanelBody title= { __( 'Manage Tabs', 'advanced-tabs-block' ) } initialOpen= { false }>
@@ -283,156 +293,162 @@ export default function Edit( { attributes, setAttributes } ) {
 					</Button>
 				</PanelBody>
 
-				<PanelBody title= { __( 'Title Styling', 'advanced-tabs-block' ) } initialOpen= { false }>
-					<VStack spacing= { 3 }>
-						<div>
-							<p> { __( 'Normal Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { titleColor }
-								onChange= { ( value ) => setAttributes( { titleColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Active Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { titleActiveColor }
-								onChange= { ( value ) => setAttributes( { titleActiveColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Background Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { titleBgColor }
-								onChange= { ( value ) => setAttributes( { titleBgColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Active Background', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { titleActiveBgColor }
-								onChange= { ( value ) => setAttributes( { titleActiveBgColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Border Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { titleBorderColor }
-								onChange= { ( value ) => setAttributes( { titleBorderColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Active Border Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { titleActiveBorderColor }
-								onChange= { ( value ) => setAttributes( { titleActiveBorderColor: value } ) }
-							/>
-						</div>
-						<SelectControl
-							label= { __( 'Text Alignment', 'advanced-tabs-block' ) }
-							value= { titleAlignment }
-							options= { [
-								{ label: __( 'Left', 'advanced-tabs-block' ), value: 'left' },
-								{ label: __( 'Center', 'advanced-tabs-block' ), value: 'center' },
-								{ label: __( 'Right', 'advanced-tabs-block' ), value: 'right' }
-								] }
-							onChange= { ( value ) => setAttributes( { titleAlignment: value } ) }
-						/>
-					</VStack>
-				</PanelBody>
+				{ ! useThemeColors && (
+					<>
+						<PanelBody title= { __( 'Title Styling', 'advanced-tabs-block' ) } initialOpen= { false }>
+							<VStack spacing= { 3 }>
+								<div>
+									<p> { __( 'Normal Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { titleColor }
+										onChange= { ( value ) => setAttributes( { titleColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Active Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { titleActiveColor }
+										onChange= { ( value ) => setAttributes( { titleActiveColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Background Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { titleBgColor }
+										onChange= { ( value ) => setAttributes( { titleBgColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Active Background', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { titleActiveBgColor }
+										onChange= { ( value ) => setAttributes( { titleActiveBgColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Border Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { titleBorderColor }
+										onChange= { ( value ) => setAttributes( { titleBorderColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Active Border Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { titleActiveBorderColor }
+										onChange= { ( value ) => setAttributes( { titleActiveBorderColor: value } ) }
+									/>
+								</div>
+								<SelectControl
+									label= { __( 'Text Alignment', 'advanced-tabs-block' ) }
+									value= { titleAlignment }
+									options= { [
+										{ label: __( 'Left', 'advanced-tabs-block' ), value: 'left' },
+										{ label: __( 'Center', 'advanced-tabs-block' ), value: 'center' },
+										{ label: __( 'Right', 'advanced-tabs-block' ), value: 'right' }
+										] }
+									onChange= { ( value ) => setAttributes( { titleAlignment: value } ) }
+								/>
+							</VStack>
+						</PanelBody>
 
-				<PanelBody title= { __( 'Icon Styling', 'advanced-tabs-block' ) } initialOpen= { false }>
-					<VStack spacing= { 3 }>
-						<div>
-							<p> { __( 'Icon Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { iconColor }
-								onChange= { ( value ) => setAttributes( { iconColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Active Icon Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { iconActiveColor }
-								onChange= { ( value ) => setAttributes( { iconActiveColor: value } ) }
-							/>
-						</div>
-						<RangeControl
-							label= { __( 'Icon Size', 'advanced-tabs-block' ) }
-							value= { iconSize }
-							onChange= { ( value ) => setAttributes( { iconSize: value } ) }
-							min= { 12 }
-							max= { 48 }
-						/>
-					</VStack>
-				</PanelBody>
+						<PanelBody title= { __( 'Icon Styling', 'advanced-tabs-block' ) } initialOpen= { false }>
+							<VStack spacing= { 3 }>
+								<div>
+									<p> { __( 'Icon Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { iconColor }
+										onChange= { ( value ) => setAttributes( { iconColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Active Icon Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { iconActiveColor }
+										onChange= { ( value ) => setAttributes( { iconActiveColor: value } ) }
+									/>
+								</div>
+								<RangeControl
+									label= { __( 'Icon Size', 'advanced-tabs-block' ) }
+									value= { iconSize }
+									onChange= { ( value ) => setAttributes( { iconSize: value } ) }
+									min= { 12 }
+									max= { 48 }
+								/>
+							</VStack>
+						</PanelBody>
 
-				<PanelBody title= { __( 'Content Styling', 'advanced-tabs-block' ) } initialOpen= { false }>
-					<VStack spacing= { 3 }>
-						<div>
-							<p> { __( 'Text Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { contentColor }
-								onChange= { ( value ) => setAttributes( { contentColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Background Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { contentBgColor }
-								onChange= { ( value ) => setAttributes( { contentBgColor: value } ) }
-							/>
-						</div>
-						<div>
-							<p> { __( 'Border Color', 'advanced-tabs-block' ) } </p>
-							<ColorPalette
-								colors= { colors }
-								value= { contentBorderColor }
-								onChange= { ( value ) => setAttributes( { contentBorderColor: value } ) }
-							/>
-						</div>
-					</VStack>
-				</PanelBody>
+						<PanelBody title= { __( 'Content Styling', 'advanced-tabs-block' ) } initialOpen= { false }>
+							<VStack spacing= { 3 }>
+								<div>
+									<p> { __( 'Text Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { contentColor }
+										onChange= { ( value ) => setAttributes( { contentColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Background Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { contentBgColor }
+										onChange= { ( value ) => setAttributes( { contentBgColor: value } ) }
+									/>
+								</div>
+								<div>
+									<p> { __( 'Border Color', 'advanced-tabs-block' ) } </p>
+									<ColorPalette
+										colors= { colors }
+										value= { contentBorderColor }
+										onChange= { ( value ) => setAttributes( { contentBorderColor: value } ) }
+									/>
+								</div>
+							</VStack>
+						</PanelBody>
+					</>
+				) }
 
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<style>
-					{ `
-						.advanced-tabs-block .tab-title {
-							${titleColor ? `color: ${titleColor};` : ''}
-							${titleBgColor ? `background-color: ${titleBgColor};` : ''}
-							${titleBorderColor ? `border-color: ${titleBorderColor};` : ''}
-							text-align: ${titleAlignment};
-						}
-						.advanced-tabs-block .tab-title.active {
-							${titleActiveColor ? `color: ${titleActiveColor};` : ''}
-							${titleActiveBgColor ? `background-color: ${titleActiveBgColor};` : ''}
-							${titleActiveBorderColor ? `border-color: ${titleActiveBorderColor};` : ''}
-						}
-						.advanced-tabs-block .tab-title .dashicon {
-							${iconColor ? `color: ${iconColor};` : ''}
-							font-size: ${iconSize}px;
-						}
-						.advanced-tabs-block .tab-title.active .dashicon {
-							${iconActiveColor ? `color: ${iconActiveColor};` : ''}
-						}
-						.advanced-tabs-block .tab-content {
-							${contentColor ? `color: ${contentColor};` : ''}
-							${contentBgColor ? `background-color: ${contentBgColor};` : ''}
-							${contentBorderColor ? `border-color: ${contentBorderColor};` : ''}
-						}
-						` }
-				</style>
+				{ ! useThemeColors && (
+					<style>
+						{ `
+							.advanced-tabs-block .tab-title {
+								${titleColor ? `color: ${titleColor};` : ''}
+								${titleBgColor ? `background-color: ${titleBgColor};` : ''}
+								${titleBorderColor ? `border-color: ${titleBorderColor};` : ''}
+								text-align: ${titleAlignment};
+							}
+							.advanced-tabs-block .tab-title.active {
+								${titleActiveColor ? `color: ${titleActiveColor};` : ''}
+								${titleActiveBgColor ? `background-color: ${titleActiveBgColor};` : ''}
+								${titleActiveBorderColor ? `border-color: ${titleActiveBorderColor};` : ''}
+							}
+							.advanced-tabs-block .tab-title .dashicon {
+								${iconColor ? `color: ${iconColor};` : ''}
+								font-size: ${iconSize}px;
+							}
+							.advanced-tabs-block .tab-title.active .dashicon {
+								${iconActiveColor ? `color: ${iconActiveColor};` : ''}
+							}
+							.advanced-tabs-block .tab-content {
+								${contentColor ? `color: ${contentColor};` : ''}
+								${contentBgColor ? `background-color: ${contentBgColor};` : ''}
+								${contentBorderColor ? `border-color: ${contentBorderColor};` : ''}
+							}
+							` }
+					</style>
+				) }
 				<div className = "tabs-header">
 					{ safeTabs.map(
 						( tab, index ) => (

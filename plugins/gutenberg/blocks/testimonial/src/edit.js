@@ -25,6 +25,7 @@ import {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		content,
 		authorName,
 		authorRole,
@@ -75,36 +76,53 @@ export default function Edit( { attributes, setAttributes } ) {
 		? `${ boxShadowHorizontal }px ${ boxShadowVertical }px ${ boxShadowBlur }px ${ boxShadowSpread }px ${ boxShadowColor }`
 		: 'none';
 
-	const blockProps = useBlockProps( {
-		className: `wbcom-essential-testimonial layout-${ layout } info-${ authorInfoDirection } text-${ textAlign } arrow-${ contentArrow }`,
-		style: {
+	// Build wrapper classes.
+	const wrapperClasses = [
+		'wbcom-essential-testimonial',
+		`layout-${ layout }`,
+		`info-${ authorInfoDirection }`,
+		`text-${ textAlign }`,
+		`arrow-${ contentArrow }`,
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
+
+	// Build CSS variables - layout always, colors conditionally.
+	const cssVars = {
+		// Layout variables (always applied).
+		'--item-max-width': `${ itemMaxWidth }px`,
+		'--border-radius': `${ borderRadius }px`,
+		'--border-width': `${ borderWidth }px`,
+		'--border-style': borderStyle,
+		'--padding': `${ padding }px`,
+		'--box-shadow': boxShadowValue,
+		'--avatar-size': `${ avatarSize }px`,
+		'--avatar-border-radius': `${ avatarBorderRadius }%`,
+		'--avatar-border-width': `${ avatarBorderWidth }px`,
+		'--avatar-border-style': avatarBorderStyle,
+		'--avatar-box-shadow': avatarBoxShadow ? '0 4px 10px rgba(0, 0, 0, 0.15)' : 'none',
+		'--quote-icon-size': `${ quoteIconSize }px`,
+		'--quote-font-size': `${ quoteFontSize }px`,
+		'--name-font-size': `${ nameFontSize }px`,
+		'--role-font-size': `${ roleFontSize }px`,
+		'--spacing': `${ spacing }px`,
+		'--arrow-size': `${ contentArrowSize }px`,
+		// Color variables (only when NOT using theme colors).
+		...( ! useThemeColors && {
 			'--bg-color': backgroundColor,
-			'--item-max-width': `${ itemMaxWidth }px`,
-			'--border-radius': `${ borderRadius }px`,
-			'--border-width': `${ borderWidth }px`,
-			'--border-style': borderStyle,
 			'--border-color': borderColor,
-			'--padding': `${ padding }px`,
-			'--box-shadow': boxShadowValue,
-			'--avatar-size': `${ avatarSize }px`,
-			'--avatar-border-radius': `${ avatarBorderRadius }%`,
-			'--avatar-border-width': `${ avatarBorderWidth }px`,
-			'--avatar-border-style': avatarBorderStyle,
 			'--avatar-border-color': avatarBorderColor,
-			'--avatar-box-shadow': avatarBoxShadow ? '0 4px 10px rgba(0, 0, 0, 0.15)' : 'none',
-			'--quote-icon-size': `${ quoteIconSize }px`,
 			'--quote-icon-color': quoteIconColor,
-			'--quote-font-size': `${ quoteFontSize }px`,
-			'--name-font-size': `${ nameFontSize }px`,
-			'--role-font-size': `${ roleFontSize }px`,
-			'--spacing': `${ spacing }px`,
 			'--quote-color': quoteColor,
 			'--name-color': nameColor,
 			'--role-color': roleColor,
 			'--rating-color': ratingColor,
 			'--arrow-color': contentArrowColor,
-			'--arrow-size': `${ contentArrowSize }px`,
-		},
+		} ),
+	};
+
+	const blockProps = useBlockProps( {
+		className: wrapperClasses,
+		style: cssVars,
 	} );
 
 	/**
@@ -333,15 +351,28 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Item Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<p className="components-base-control__label">
-						{ __( 'Background Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ backgroundColor }
-						onChange={ ( value ) =>
-							setAttributes( { backgroundColor: value } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
 						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Background Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ backgroundColor }
+								onChange={ ( value ) =>
+									setAttributes( { backgroundColor: value } )
+								}
+							/>
+						</>
+					) }
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ borderRadius }
@@ -370,15 +401,19 @@ export default function Edit( { attributes, setAttributes } ) {
 									setAttributes( { borderStyle: value } )
 								}
 							/>
-							<p className="components-base-control__label">
-								{ __( 'Border Color', 'wbcom-essential' ) }
-							</p>
-							<ColorPalette
-								value={ borderColor }
-								onChange={ ( value ) =>
-									setAttributes( { borderColor: value } )
-								}
-							/>
+							{ ! useThemeColors && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Border Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ borderColor }
+										onChange={ ( value ) =>
+											setAttributes( { borderColor: value } )
+										}
+									/>
+								</>
+							) }
 						</>
 					) }
 					<ToggleControl
@@ -472,15 +507,19 @@ export default function Edit( { attributes, setAttributes } ) {
 									setAttributes( { avatarBorderStyle: value } )
 								}
 							/>
-							<p className="components-base-control__label">
-								{ __( 'Border Color', 'wbcom-essential' ) }
-							</p>
-							<ColorPalette
-								value={ avatarBorderColor }
-								onChange={ ( value ) =>
-									setAttributes( { avatarBorderColor: value } )
-								}
-							/>
+							{ ! useThemeColors && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Border Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ avatarBorderColor }
+										onChange={ ( value ) =>
+											setAttributes( { avatarBorderColor: value } )
+										}
+									/>
+								</>
+							) }
 						</>
 					) }
 					<ToggleControl
@@ -515,15 +554,19 @@ export default function Edit( { attributes, setAttributes } ) {
 								min={ 5 }
 								max={ 30 }
 							/>
-							<p className="components-base-control__label">
-								{ __( 'Arrow Color', 'wbcom-essential' ) }
-							</p>
-							<ColorPalette
-								value={ contentArrowColor }
-								onChange={ ( value ) =>
-									setAttributes( { contentArrowColor: value } )
-								}
-							/>
+							{ ! useThemeColors && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Arrow Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ contentArrowColor }
+										onChange={ ( value ) =>
+											setAttributes( { contentArrowColor: value } )
+										}
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>
@@ -541,15 +584,19 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 24 }
 						max={ 120 }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Icon Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ quoteIconColor }
-						onChange={ ( value ) =>
-							setAttributes( { quoteIconColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Icon Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ quoteIconColor }
+								onChange={ ( value ) =>
+									setAttributes( { quoteIconColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
@@ -589,44 +636,52 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<p className="components-base-control__label">
-						{ __( 'Quote Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ quoteColor }
-						onChange={ ( value ) =>
-							setAttributes( { quoteColor: value } )
-						}
-					/>
-					<p className="components-base-control__label">
-						{ __( 'Name Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ nameColor }
-						onChange={ ( value ) =>
-							setAttributes( { nameColor: value } )
-						}
-					/>
-					<p className="components-base-control__label">
-						{ __( 'Role Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ roleColor }
-						onChange={ ( value ) =>
-							setAttributes( { roleColor: value } )
-						}
-					/>
-					{ showRating && (
+					{ useThemeColors ? (
+						<p className="components-base-control__help">
+							{ __( 'Colors are inherited from your theme. Disable "Use Theme Colors" in Item Style to customize.', 'wbcom-essential' ) }
+						</p>
+					) : (
 						<>
 							<p className="components-base-control__label">
-								{ __( 'Rating Color', 'wbcom-essential' ) }
+								{ __( 'Quote Color', 'wbcom-essential' ) }
 							</p>
 							<ColorPalette
-								value={ ratingColor }
+								value={ quoteColor }
 								onChange={ ( value ) =>
-									setAttributes( { ratingColor: value } )
+									setAttributes( { quoteColor: value } )
 								}
 							/>
+							<p className="components-base-control__label">
+								{ __( 'Name Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ nameColor }
+								onChange={ ( value ) =>
+									setAttributes( { nameColor: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Role Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ roleColor }
+								onChange={ ( value ) =>
+									setAttributes( { roleColor: value } )
+								}
+							/>
+							{ showRating && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Rating Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ ratingColor }
+										onChange={ ( value ) =>
+											setAttributes( { ratingColor: value } )
+										}
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>

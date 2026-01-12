@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors          = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $members                   = $attributes['members'] ?? array();
 $slides_per_view           = $attributes['slidesPerView'] ?? 3;
 $slides_per_view_tablet    = $attributes['slidesPerViewTablet'] ?? 2;
@@ -57,17 +58,20 @@ if ( empty( $members ) ) {
 // Build unique ID for this instance.
 $unique_id = wp_unique_id( 'wbcom-team-carousel-' );
 
-// Card styles.
+// Card styles - layout always, colors only when not using theme colors.
 $box_shadow_value = $card_box_shadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none';
-$border_style     = $card_border_width > 0 ? sprintf( '%dpx solid %s', absint( $card_border_width ), esc_attr( $card_border_color ) ) : 'none';
 $card_style       = sprintf(
-	'background-color: %s; border-radius: %dpx; padding: %dpx; box-shadow: %s; border: %s;',
-	esc_attr( $card_background ),
+	'border-radius: %dpx; padding: %dpx; box-shadow: %s;',
 	absint( $card_border_radius ),
 	absint( $card_padding ),
-	esc_attr( $box_shadow_value ),
-	esc_attr( $border_style )
+	esc_attr( $box_shadow_value )
 );
+if ( ! $use_theme_colors ) {
+	$card_style .= sprintf( ' background-color: %s;', esc_attr( $card_background ) );
+	if ( $card_border_width > 0 ) {
+		$card_style .= sprintf( ' border: %dpx solid %s;', absint( $card_border_width ), esc_attr( $card_border_color ) );
+	}
+}
 
 // Image styles.
 $image_style = sprintf(
@@ -106,68 +110,74 @@ $swiper_config = wp_json_encode( array(
 	),
 ) );
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-team-carousel';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(
-	'class'              => 'wbcom-essential-team-carousel',
+	'class'              => $wrapper_classes,
 	'id'                 => $unique_id,
 	'data-swiper-config' => $swiper_config,
 ) );
 
-// Build comprehensive custom styles.
-$custom_styles = sprintf(
-	'<style>
-	#%1$s .wbcom-team-member-card {
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-	}
-	#%1$s .wbcom-team-member-card:hover {
-		transform: scale(%2$s);
-		box-shadow: %3$s;
-	}
-	#%1$s .wbcom-team-member-image::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: %4$s;
-		transition: background-color 0.3s ease;
-		pointer-events: none;
-		z-index: 1;
-	}
-	#%1$s .wbcom-team-member-card:hover .wbcom-team-member-image::before {
-		background-color: %5$s;
-	}
-	#%1$s .swiper-button-next,
-	#%1$s .swiper-button-prev {
-		width: %6$dpx;
-		height: %6$dpx;
-		background-color: %7$s;
-		color: %8$s;
-		border-radius: %9$d%%;
-	}
-	#%1$s .swiper-pagination-bullet {
-		width: %10$dpx;
-		height: %10$dpx;
-		background-color: %11$s;
-	}
-	#%1$s .swiper-pagination-bullet-active {
-		background-color: %12$s;
-	}
-	</style>',
+// Build custom styles - layout always, colors conditionally.
+$custom_styles = '<style>';
+
+// Hover effects (layout).
+$custom_styles .= sprintf(
+	'#%1$s .wbcom-team-member-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+	#%1$s .wbcom-team-member-card:hover { transform: scale(%2$s); box-shadow: %3$s; }',
 	esc_attr( $unique_id ),
 	esc_attr( $card_hover_scale ),
-	esc_attr( $card_hover_shadow ),
-	esc_attr( $image_overlay_color ),
-	esc_attr( $image_overlay_hover_color ),
-	absint( $arrow_size ),
-	esc_attr( $arrow_bg_color ),
-	esc_attr( $arrow_color ),
-	absint( $arrow_border_radius ),
-	absint( $dots_size ),
-	esc_attr( $dots_color ),
-	esc_attr( $dots_active_color )
+	esc_attr( $card_hover_shadow )
 );
+
+// Navigation and pagination sizes (layout).
+$custom_styles .= sprintf(
+	'#%1$s .swiper-button-next, #%1$s .swiper-button-prev { width: %2$dpx; height: %2$dpx; border-radius: %3$d%%; }
+	#%1$s .swiper-pagination-bullet { width: %4$dpx; height: %4$dpx; }',
+	esc_attr( $unique_id ),
+	absint( $arrow_size ),
+	absint( $arrow_border_radius ),
+	absint( $dots_size )
+);
+
+// Color styles only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	// Image overlay colors.
+	$custom_styles .= sprintf(
+		'#%1$s .wbcom-team-member-image::before {
+			content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+			background-color: %2$s; transition: background-color 0.3s ease; pointer-events: none; z-index: 1;
+		}
+		#%1$s .wbcom-team-member-card:hover .wbcom-team-member-image::before { background-color: %3$s; }',
+		esc_attr( $unique_id ),
+		esc_attr( $image_overlay_color ),
+		esc_attr( $image_overlay_hover_color )
+	);
+
+	// Navigation colors.
+	$custom_styles .= sprintf(
+		'#%1$s .swiper-button-next, #%1$s .swiper-button-prev { background-color: %2$s; color: %3$s; }',
+		esc_attr( $unique_id ),
+		esc_attr( $arrow_bg_color ),
+		esc_attr( $arrow_color )
+	);
+
+	// Pagination colors.
+	$custom_styles .= sprintf(
+		'#%1$s .swiper-pagination-bullet { background-color: %2$s; }
+		#%1$s .swiper-pagination-bullet-active { background-color: %3$s; }',
+		esc_attr( $unique_id ),
+		esc_attr( $dots_color ),
+		esc_attr( $dots_active_color )
+	);
+}
+
+$custom_styles .= '</style>';
 ?>
 
 <?php echo $custom_styles; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -208,12 +218,24 @@ $custom_styles = sprintf(
 
 						<div class="wbcom-team-member-info">
 							<?php if ( $member_name ) : ?>
-								<h4 class="wbcom-team-member-name" style="color: <?php echo esc_attr( $name_color ); ?>; font-size: <?php echo absint( $name_font_size ); ?>px;">
+								<?php
+								$name_style = sprintf( 'font-size: %dpx;', absint( $name_font_size ) );
+								if ( ! $use_theme_colors ) {
+									$name_style .= sprintf( ' color: %s;', esc_attr( $name_color ) );
+								}
+								?>
+								<h4 class="wbcom-team-member-name" style="<?php echo esc_attr( $name_style ); ?>">
 									<?php echo esc_html( $member_name ); ?>
 								</h4>
 							<?php endif; ?>
 							<?php if ( $member_role ) : ?>
-								<p class="wbcom-team-member-role" style="color: <?php echo esc_attr( $role_color ); ?>; font-size: <?php echo absint( $role_font_size ); ?>px;">
+								<?php
+								$role_style = sprintf( 'font-size: %dpx;', absint( $role_font_size ) );
+								if ( ! $use_theme_colors ) {
+									$role_style .= sprintf( ' color: %s;', esc_attr( $role_color ) );
+								}
+								?>
+								<p class="wbcom-team-member-role" style="<?php echo esc_attr( $role_style ); ?>">
 									<?php echo esc_html( $member_role ); ?>
 								</p>
 							<?php endif; ?>

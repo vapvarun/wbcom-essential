@@ -9,6 +9,20 @@
 	flex-direction: column;
 	position: relative;
 
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--icon-color: var(--wbcom-color-primary, currentColor);
+		--icon-bg-color: var(--wbcom-color-base-2, transparent);
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--description-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+		--hover-icon-color: var(--wbcom-color-base, currentColor);
+		--hover-icon-bg: var(--wbcom-color-primary, transparent);
+		--hover-title-color: var(--wbcom-color-primary, inherit);
+	}
+
 	// Icon wrapper
 	&__icon {
 		display: inline-flex;

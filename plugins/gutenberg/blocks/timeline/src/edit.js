@@ -34,6 +34,7 @@ const ICONS = {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		items,
 		layout,
 		showArrow,
@@ -70,8 +71,15 @@ export default function Edit( { attributes, setAttributes } ) {
 		imageBorderRadius,
 	} = attributes;
 
+	// Build wrapper classes.
+	const wrapperClasses = [
+		'wbcom-essential-timeline',
+		`wbcom-timeline-${ layout }`,
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
+
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-timeline wbcom-timeline-${ layout }`,
+		className: wrapperClasses,
 	} );
 
 	const updateItem = ( index, key, value ) => {
@@ -111,12 +119,16 @@ export default function Edit( { attributes, setAttributes } ) {
 	} ) );
 
 	const iconContainerStyle = {
+		// Layout styles (always applied).
 		width: `${ iconContainerSize }px`,
 		height: `${ iconContainerSize }px`,
-		backgroundColor: iconContainerBackground,
 		borderRadius: `${ iconContainerBorderRadius }%`,
 		fontSize: `${ iconSize }px`,
-		color: iconColor,
+		// Color styles (only when NOT using theme colors).
+		...( ! useThemeColors && {
+			backgroundColor: iconContainerBackground,
+			color: iconColor,
+		} ),
 	};
 
 	// Build box shadow value.
@@ -130,11 +142,15 @@ export default function Edit( { attributes, setAttributes } ) {
 		: 'none';
 
 	const contentStyle = {
-		backgroundColor: contentBackground,
+		// Layout styles (always applied).
 		borderRadius: `${ contentBorderRadius }px`,
 		padding: `${ contentPadding }px`,
 		boxShadow: boxShadowValue,
 		border: borderValue,
+		// Color styles (only when NOT using theme colors).
+		...( ! useThemeColors && {
+			backgroundColor: contentBackground,
+		} ),
 	};
 
 	// Date typography style.
@@ -146,15 +162,19 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const barStyle = {
-		'--bar-color': barColor,
+		// Layout variables (always applied).
 		'--bar-thickness': `${ barThickness }px`,
 		'--icon-container-size': `${ iconContainerSize }px`,
-		'--content-background': contentBackground,
 		'--item-spacing': `${ itemSpacing }px`,
 		'--date-font-size': `${ dateFontSize }px`,
 		'--title-font-size': `${ titleFontSize }px`,
 		'--text-font-size': `${ textFontSize }px`,
 		'--image-border-radius': `${ imageBorderRadius }px`,
+		// Color variables (only when NOT using theme colors).
+		...( ! useThemeColors && {
+			'--bar-color': barColor,
+			'--content-background': contentBackground,
+		} ),
 	};
 
 	return (
@@ -296,11 +316,15 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 1 }
 						max={ 20 }
 					/>
-					<p className="components-base-control__label">{ __( 'Bar Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ barColor }
-						onChange={ ( value ) => setAttributes( { barColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">{ __( 'Bar Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ barColor }
+								onChange={ ( value ) => setAttributes( { barColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody title={ __( 'Icon Container', 'wbcom-essential' ) } initialOpen={ false }>
@@ -311,13 +335,17 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 30 }
 						max={ 120 }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Container Background', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ iconContainerBackground }
-						onChange={ ( value ) => setAttributes( { iconContainerBackground: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Container Background', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ iconContainerBackground }
+								onChange={ ( value ) => setAttributes( { iconContainerBackground: value } ) }
+							/>
+						</>
+					) }
 					<RangeControl
 						label={ __( 'Border Radius (%)', 'wbcom-essential' ) }
 						value={ iconContainerBorderRadius }
@@ -332,21 +360,29 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 12 }
 						max={ 60 }
 					/>
-					<p className="components-base-control__label">{ __( 'Icon Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ iconColor }
-						onChange={ ( value ) => setAttributes( { iconColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">{ __( 'Icon Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ iconColor }
+								onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody title={ __( 'Content Box', 'wbcom-essential' ) } initialOpen={ false }>
-					<p className="components-base-control__label">
-						{ __( 'Background Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ contentBackground }
-						onChange={ ( value ) => setAttributes( { contentBackground: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Background Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ contentBackground }
+								onChange={ ( value ) => setAttributes( { contentBackground: value } ) }
+							/>
+						</>
+					) }
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ contentBorderRadius }
@@ -393,13 +429,17 @@ export default function Edit( { attributes, setAttributes } ) {
 								min={ 1 }
 								max={ 10 }
 							/>
-							<p className="components-base-control__label">
-								{ __( 'Border Color', 'wbcom-essential' ) }
-							</p>
-							<ColorPalette
-								value={ contentBorderColor }
-								onChange={ ( value ) => setAttributes( { contentBorderColor: value } ) }
-							/>
+							{ ! useThemeColors && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Border Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ contentBorderColor }
+										onChange={ ( value ) => setAttributes( { contentBorderColor: value } ) }
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>
@@ -536,21 +576,35 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<p className="components-base-control__label">{ __( 'Date Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ dateColor }
-						onChange={ ( value ) => setAttributes( { dateColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<p className="components-base-control__label">{ __( 'Title Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
-					/>
-					<p className="components-base-control__label">{ __( 'Text Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ textColor }
-						onChange={ ( value ) => setAttributes( { textColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<hr />
+							<p className="components-base-control__label">{ __( 'Date Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ dateColor }
+								onChange={ ( value ) => setAttributes( { dateColor: value } ) }
+							/>
+							<p className="components-base-control__label">{ __( 'Title Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+							<p className="components-base-control__label">{ __( 'Text Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ textColor }
+								onChange={ ( value ) => setAttributes( { textColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 
@@ -585,20 +639,20 @@ export default function Edit( { attributes, setAttributes } ) {
 										</div>
 									) }
 									{ item.date && (
-										<span className="wbcom-timeline-date" style={ { color: dateColor, ...dateTypographyStyle } }>
+										<span className="wbcom-timeline-date" style={ { ...( ! useThemeColors && { color: dateColor } ), ...dateTypographyStyle } }>
 											{ item.date }
 										</span>
 									) }
 									{ item.title && (
 										<div
 											className="wbcom-timeline-title"
-											style={ { color: titleColor } }
+											style={ ! useThemeColors ? { color: titleColor } : undefined }
 										>
 											{ item.title }
 										</div>
 									) }
 									{ item.content && (
-										<p className="wbcom-timeline-text" style={ { color: textColor } }>
+										<p className="wbcom-timeline-text" style={ ! useThemeColors ? { color: textColor } : undefined }>
 											{ item.content }
 										</p>
 									) }

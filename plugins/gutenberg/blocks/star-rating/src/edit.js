@@ -17,18 +17,20 @@ import {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
-		rating, maxRating, starSize, starGap, filledColor, emptyColor,
+		useThemeColors, rating, maxRating, starSize, starGap, filledColor, emptyColor,
 		alignment, showLabel, label, labelPosition, labelColor, labelSize,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-star-rating align-${ alignment } label-${ labelPosition }`,
+		className: `wbcom-essential-star-rating align-${ alignment } label-${ labelPosition }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: {
 			'--star-size': `${ starSize }px`,
 			'--star-gap': `${ starGap }px`,
-			'--filled-color': filledColor || '#ffc107',
-			'--empty-color': emptyColor || '#e0e0e0',
-			'--label-color': labelColor || undefined,
+			...( ! useThemeColors && {
+				'--filled-color': filledColor || '#ffc107',
+				'--empty-color': emptyColor || '#e0e0e0',
+				'--label-color': labelColor || undefined,
+			} ),
 			'--label-size': `${ labelSize }px`,
 		},
 	} );
@@ -81,6 +83,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
 					<RangeControl
 						label={ __( 'Star Size', 'wbcom-essential' ) }
 						value={ starSize }
@@ -95,16 +106,20 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 20 }
 					/>
-					<p>{ __( 'Filled Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ filledColor }
-						onChange={ ( value ) => setAttributes( { filledColor: value } ) }
-					/>
-					<p>{ __( 'Empty Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ emptyColor }
-						onChange={ ( value ) => setAttributes( { emptyColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p>{ __( 'Filled Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ filledColor }
+								onChange={ ( value ) => setAttributes( { filledColor: value } ) }
+							/>
+							<p>{ __( 'Empty Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ emptyColor }
+								onChange={ ( value ) => setAttributes( { emptyColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 				<PanelBody title={ __( 'Label', 'wbcom-essential' ) } initialOpen={ false }>
 					<ToggleControl
@@ -130,11 +145,15 @@ export default function Edit( { attributes, setAttributes } ) {
 								min={ 10 }
 								max={ 32 }
 							/>
-							<p>{ __( 'Label Color', 'wbcom-essential' ) }</p>
-							<ColorPalette
-								value={ labelColor }
-								onChange={ ( value ) => setAttributes( { labelColor: value } ) }
-							/>
+							{ ! useThemeColors && (
+								<>
+									<p>{ __( 'Label Color', 'wbcom-essential' ) }</p>
+									<ColorPalette
+										value={ labelColor }
+										onChange={ ( value ) => setAttributes( { labelColor: value } ) }
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>

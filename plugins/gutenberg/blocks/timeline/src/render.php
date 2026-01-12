@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors             = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $items                        = $attributes['items'] ?? array();
 $layout                       = $attributes['layout'] ?? 'two-column';
 $show_arrow                   = $attributes['showArrow'] ?? true;
@@ -100,22 +101,28 @@ $border_value = 'none' !== $content_border_type
 	)
 	: 'none';
 
-// CSS variables for bar.
-$container_style = sprintf(
-	'--bar-color: %s; --bar-thickness: %dpx; --icon-container-size: %dpx; --content-background: %s; --content-padding: %dpx; --content-box-shadow: %s; --content-border: %s; --date-font-size: %dpx; --title-font-size: %dpx; --text-font-size: %dpx; --item-spacing: %dpx; --image-border-radius: %dpx;',
-	esc_attr( $bar_color ),
-	absint( $bar_thickness ),
-	absint( $icon_container_size ),
-	esc_attr( $content_background ),
-	absint( $content_padding ),
-	esc_attr( $box_shadow_value ),
-	esc_attr( $border_value ),
-	absint( $date_font_size ),
-	absint( $title_font_size ),
-	absint( $text_font_size ),
-	absint( $item_spacing ),
-	absint( $image_border_radius )
+// CSS variables - layout always, colors only when NOT using theme colors.
+$container_style_parts = array(
+	// Layout variables (always applied).
+	sprintf( '--bar-thickness: %dpx', absint( $bar_thickness ) ),
+	sprintf( '--icon-container-size: %dpx', absint( $icon_container_size ) ),
+	sprintf( '--content-padding: %dpx', absint( $content_padding ) ),
+	sprintf( '--content-box-shadow: %s', esc_attr( $box_shadow_value ) ),
+	sprintf( '--content-border: %s', esc_attr( $border_value ) ),
+	sprintf( '--date-font-size: %dpx', absint( $date_font_size ) ),
+	sprintf( '--title-font-size: %dpx', absint( $title_font_size ) ),
+	sprintf( '--text-font-size: %dpx', absint( $text_font_size ) ),
+	sprintf( '--item-spacing: %dpx', absint( $item_spacing ) ),
+	sprintf( '--image-border-radius: %dpx', absint( $image_border_radius ) ),
 );
+
+// Color variables (only when NOT using theme colors).
+if ( ! $use_theme_colors ) {
+	$container_style_parts[] = sprintf( '--bar-color: %s', esc_attr( $bar_color ) );
+	$container_style_parts[] = sprintf( '--content-background: %s', esc_attr( $content_background ) );
+}
+
+$container_style = implode( '; ', $container_style_parts ) . ';';
 
 // Date typography style.
 $date_typography_style = sprintf(
@@ -126,28 +133,41 @@ $date_typography_style = sprintf(
 	esc_attr( $date_letter_spacing )
 );
 
-// Icon container style.
-$icon_style = sprintf(
-	'width: %1$dpx; height: %1$dpx; background-color: %2$s; border-radius: %3$d%%; font-size: %4$dpx; color: %5$s;',
-	absint( $icon_container_size ),
-	esc_attr( $icon_container_background ),
-	absint( $icon_container_border_radius ),
-	absint( $icon_size ),
-	esc_attr( $icon_color )
+// Icon container style - layout always, colors only when NOT using theme colors.
+$icon_style_parts = array(
+	sprintf( 'width: %dpx', absint( $icon_container_size ) ),
+	sprintf( 'height: %dpx', absint( $icon_container_size ) ),
+	sprintf( 'border-radius: %d%%', absint( $icon_container_border_radius ) ),
+	sprintf( 'font-size: %dpx', absint( $icon_size ) ),
 );
 
-// Content style.
-$content_style = sprintf(
-	'background-color: %s; border-radius: %dpx;',
-	esc_attr( $content_background ),
-	absint( $content_border_radius )
+if ( ! $use_theme_colors ) {
+	$icon_style_parts[] = sprintf( 'background-color: %s', esc_attr( $icon_container_background ) );
+	$icon_style_parts[] = sprintf( 'color: %s', esc_attr( $icon_color ) );
+}
+
+$icon_style = implode( '; ', $icon_style_parts ) . ';';
+
+// Content style - layout always, colors only when NOT using theme colors.
+$content_style_parts = array(
+	sprintf( 'border-radius: %dpx', absint( $content_border_radius ) ),
 );
+
+if ( ! $use_theme_colors ) {
+	$content_style_parts[] = sprintf( 'background-color: %s', esc_attr( $content_background ) );
+}
+
+$content_style = implode( '; ', $content_style_parts ) . ';';
 
 // Get wrapper attributes.
 $classes = array(
 	'wbcom-essential-timeline',
 	'wbcom-timeline-' . esc_attr( $layout ),
 );
+
+if ( $use_theme_colors ) {
+	$classes[] = 'use-theme-colors';
+}
 
 if ( $enable_animation ) {
 	$classes[] = 'wbcom-timeline-animated';
@@ -205,19 +225,19 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 					<?php endif; ?>
 
 					<?php if ( ! empty( $item_date ) ) : ?>
-						<span class="wbcom-timeline-date" style="color: <?php echo esc_attr( $date_color ); ?>; <?php echo esc_attr( $date_typography_style ); ?>">
+						<span class="wbcom-timeline-date" style="<?php echo ! $use_theme_colors ? 'color: ' . esc_attr( $date_color ) . '; ' : ''; ?><?php echo esc_attr( $date_typography_style ); ?>">
 							<?php echo esc_html( $item_date ); ?>
 						</span>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $item_title ) ) : ?>
-						<<?php echo esc_html( $item_title_tag ); ?> class="wbcom-timeline-title" style="color: <?php echo esc_attr( $title_color ); ?>;">
+						<<?php echo esc_html( $item_title_tag ); ?> class="wbcom-timeline-title" style="<?php echo ! $use_theme_colors ? 'color: ' . esc_attr( $title_color ) . ';' : ''; ?>">
 							<?php echo esc_html( $item_title ); ?>
 						</<?php echo esc_html( $item_title_tag ); ?>>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $item_content ) ) : ?>
-						<p class="wbcom-timeline-text" style="color: <?php echo esc_attr( $text_color ); ?>;">
+						<p class="wbcom-timeline-text" style="<?php echo ! $use_theme_colors ? 'color: ' . esc_attr( $text_color ) . ';' : ''; ?>">
 							<?php echo wp_kses_post( $item_content ); ?>
 						</p>
 					<?php endif; ?>

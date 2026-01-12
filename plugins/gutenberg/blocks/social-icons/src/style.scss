@@ -5,6 +5,23 @@
  */
 
 .wbcom-essential-social-icons {
+	// Default color fallbacks (used when custom colors applied via inline styles)
+	--icon-color: #fff;
+	--icon-bg-color: #333;
+	--icon-hover-color: #fff;
+	--icon-hover-bg: #555;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--icon-color: var(--wbcom-color-base, #fff);
+		--icon-bg-color: var(--wbcom-color-primary, #333);
+		--icon-hover-color: var(--wbcom-color-base, #fff);
+		--icon-hover-bg: var(--wbcom-color-secondary, var(--wbcom-color-primary-dark, #555));
+	}
+
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--icon-gap, 12px);

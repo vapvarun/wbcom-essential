@@ -25,6 +25,7 @@ import {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		testimonials,
 		slidesPerView,
 		slidesPerViewTablet,
@@ -60,8 +61,13 @@ export default function Edit( { attributes, setAttributes } ) {
 		paginationActiveColor,
 	} = attributes;
 
+	const wrapperClasses = [
+		'wbcom-essential-testimonial-carousel',
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
+
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-testimonial-carousel',
+		className: wrapperClasses,
 	} );
 
 	const updateTestimonial = ( index, key, value ) => {
@@ -98,11 +104,14 @@ export default function Edit( { attributes, setAttributes } ) {
 	const renderStars = ( rating ) => {
 		const stars = [];
 		for ( let i = 1; i <= 5; i++ ) {
+			const starStyle = ! useThemeColors
+				? { color: i <= rating ? ratingColor : '#e2e8f0' }
+				: {};
 			stars.push(
 				<span
 					key={ i }
 					className={ `star ${ i <= rating ? 'filled' : 'empty' }` }
-					style={ { color: i <= rating ? ratingColor : '#e2e8f0' } }
+					style={ starStyle }
 				>
 					★
 				</span>
@@ -112,13 +121,17 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const cardStyle = {
-		backgroundColor: cardBackground,
+		// Layout styles (always applied).
 		borderRadius: `${ cardBorderRadius }px`,
 		padding: `${ cardPadding }px`,
 		borderWidth: cardBorderWidth > 0 ? `${ cardBorderWidth }px` : undefined,
 		borderStyle: cardBorderWidth > 0 ? 'solid' : undefined,
-		borderColor: cardBorderWidth > 0 ? cardBorderColor : undefined,
 		boxShadow: cardShadow ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none',
+		// Color styles (only when NOT using theme colors).
+		...( ! useThemeColors && {
+			backgroundColor: cardBackground,
+			borderColor: cardBorderWidth > 0 ? cardBorderColor : undefined,
+		} ),
 	};
 
 	const avatarStyle = {
@@ -366,7 +379,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 10 }
 					/>
-					{ cardBorderWidth > 0 && (
+					{ cardBorderWidth > 0 && ! useThemeColors && (
 						<>
 							<p className="components-base-control__label">
 								{ __( 'Card Border Color', 'wbcom-essential' ) }
@@ -449,88 +462,105 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<p className="components-base-control__label">
-						{ __( 'Card Background', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ cardBackground }
-						onChange={ ( value ) =>
-							setAttributes( { cardBackground: value } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
 						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Quote Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ quoteColor }
-						onChange={ ( value ) =>
-							setAttributes( { quoteColor: value } )
-						}
-					/>
-					<p className="components-base-control__label">
-						{ __( 'Name Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ nameColor }
-						onChange={ ( value ) =>
-							setAttributes( { nameColor: value } )
-						}
-					/>
-					<p className="components-base-control__label">
-						{ __( 'Role Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ roleColor }
-						onChange={ ( value ) =>
-							setAttributes( { roleColor: value } )
-						}
-					/>
-					{ showRating && (
+					{ useThemeColors ? (
+						<p className="components-base-control__help">
+							{ __( 'Card, quote, name, role, rating, navigation, and pagination colors are now using your theme\'s color palette.', 'wbcom-essential' ) }
+						</p>
+					) : (
 						<>
 							<p className="components-base-control__label">
-								{ __( 'Rating Color', 'wbcom-essential' ) }
+								{ __( 'Card Background', 'wbcom-essential' ) }
 							</p>
 							<ColorPalette
-								value={ ratingColor }
+								value={ cardBackground }
 								onChange={ ( value ) =>
-									setAttributes( { ratingColor: value } )
-								}
-							/>
-						</>
-					) }
-					{ showNavigation && (
-						<>
-							<p className="components-base-control__label">
-								{ __( 'Navigation Color', 'wbcom-essential' ) }
-							</p>
-							<ColorPalette
-								value={ navColor }
-								onChange={ ( value ) =>
-									setAttributes( { navColor: value } )
-								}
-							/>
-						</>
-					) }
-					{ showPagination && (
-						<>
-							<p className="components-base-control__label">
-								{ __( 'Pagination Dot Color', 'wbcom-essential' ) }
-							</p>
-							<ColorPalette
-								value={ paginationColor }
-								onChange={ ( value ) =>
-									setAttributes( { paginationColor: value } )
+									setAttributes( { cardBackground: value } )
 								}
 							/>
 							<p className="components-base-control__label">
-								{ __( 'Pagination Active Color', 'wbcom-essential' ) }
+								{ __( 'Quote Color', 'wbcom-essential' ) }
 							</p>
 							<ColorPalette
-								value={ paginationActiveColor }
+								value={ quoteColor }
 								onChange={ ( value ) =>
-									setAttributes( { paginationActiveColor: value } )
+									setAttributes( { quoteColor: value } )
 								}
 							/>
+							<p className="components-base-control__label">
+								{ __( 'Name Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ nameColor }
+								onChange={ ( value ) =>
+									setAttributes( { nameColor: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Role Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ roleColor }
+								onChange={ ( value ) =>
+									setAttributes( { roleColor: value } )
+								}
+							/>
+							{ showRating && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Rating Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ ratingColor }
+										onChange={ ( value ) =>
+											setAttributes( { ratingColor: value } )
+										}
+									/>
+								</>
+							) }
+							{ showNavigation && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Navigation Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ navColor }
+										onChange={ ( value ) =>
+											setAttributes( { navColor: value } )
+										}
+									/>
+								</>
+							) }
+							{ showPagination && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Pagination Dot Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ paginationColor }
+										onChange={ ( value ) =>
+											setAttributes( { paginationColor: value } )
+										}
+									/>
+									<p className="components-base-control__label">
+										{ __( 'Pagination Active Color', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ paginationActiveColor }
+										onChange={ ( value ) =>
+											setAttributes( { paginationActiveColor: value } )
+										}
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>
@@ -565,7 +595,10 @@ export default function Edit( { attributes, setAttributes } ) {
 								) }
 								<div className="wbcom-testimonial-quote">
 									<span className="quote-mark">"</span>
-									<p style={ { color: quoteColor, fontSize: `${ quoteFontSize }px` } }>
+									<p style={ {
+										fontSize: `${ quoteFontSize }px`,
+										...( ! useThemeColors && { color: quoteColor } ),
+									} }>
 										{ testimonial.content }
 									</p>
 								</div>
@@ -582,13 +615,19 @@ export default function Edit( { attributes, setAttributes } ) {
 									<div className="wbcom-testimonial-info">
 										<span
 											className="wbcom-testimonial-name"
-											style={ { color: nameColor, fontSize: `${ nameFontSize }px` } }
+											style={ {
+												fontSize: `${ nameFontSize }px`,
+												...( ! useThemeColors && { color: nameColor } ),
+											} }
 										>
 											{ testimonial.authorName }
 										</span>
 										<span
 											className="wbcom-testimonial-role"
-											style={ { color: roleColor, fontSize: `${ roleFontSize }px` } }
+											style={ {
+												fontSize: `${ roleFontSize }px`,
+												...( ! useThemeColors && { color: roleColor } ),
+											} }
 										>
 											{ testimonial.authorRole }
 										</span>

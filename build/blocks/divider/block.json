@@ -16,6 +16,10 @@
   ],
   "textdomain": "wbcom-essential",
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "style": {
       "type": "string",
       "default": "solid"

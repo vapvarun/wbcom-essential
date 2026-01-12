@@ -1,4 +1,26 @@
 .wp-block-wbcom-essential-heading {
+	// Default colors (fallbacks when using inline styles)
+	--title-color: inherit;
+	--line-color: currentColor;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--line-color: var(--wbcom-color-primary, currentColor);
+
+		.wbcom-heading {
+			color: var(--title-color);
+		}
+
+		.wbcom-heading-before,
+		.wbcom-heading-after {
+			background: var(--line-color);
+		}
+	}
+
 	.wbcom-heading-wrapper {
 		display: flex;
 		flex-direction: column;

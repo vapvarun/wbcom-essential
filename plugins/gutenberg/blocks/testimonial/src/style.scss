@@ -5,19 +5,17 @@
  */
 
 .wbcom-essential-testimonial {
-	// Layout defaults
+	// Layout defaults.
 	--item-max-width: 600px;
 	--border-radius: 12px;
 	--border-width: 0px;
 	--border-style: solid;
-	--border-color: #e2e8f0;
 	--padding: 32px;
 	--box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 	--avatar-size: 60px;
 	--avatar-border-radius: 50%;
 	--avatar-border-width: 0px;
 	--avatar-border-style: solid;
-	--avatar-border-color: #e2e8f0;
 	--avatar-box-shadow: none;
 	--quote-icon-size: 64px;
 	--quote-font-size: 18px;
@@ -26,15 +24,34 @@
 	--spacing: 24px;
 	--arrow-size: 15px;
 
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--bg-color: var(--wbcom-card-bg, #ffffff);
-	--quote-icon-color: var(--wbcom-color-primary, #1d76da);
-	--quote-color: var(--wbcom-text-color, #4a5568);
-	--name-color: var(--wbcom-heading-color, #1a202c);
-	--role-color: var(--wbcom-meta-color, #718096);
-	--rating-color: var(--wbcom-warning-color, #f6ad55);
-	--star-empty-color: var(--wbcom-border-color, #e2e8f0);
-	--arrow-color: var(--wbcom-card-bg, #ffffff);
+	// Default color fallbacks (used when custom colors applied via inline styles).
+	--bg-color: #ffffff;
+	--border-color: #e2e8f0;
+	--avatar-border-color: #e2e8f0;
+	--quote-icon-color: #1d76da;
+	--quote-color: #4a5568;
+	--name-color: #1a202c;
+	--role-color: #718096;
+	--rating-color: #f6ad55;
+	--star-empty-color: #e2e8f0;
+	--arrow-color: #ffffff;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--bg-color: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--border-color: var(--wbcom-border-color, var(--wbcom-color-base-2, #e2e8f0));
+		--avatar-border-color: var(--wbcom-border-color, var(--wbcom-color-base-2, #e2e8f0));
+		--quote-icon-color: var(--wbcom-color-primary, #1d76da);
+		--quote-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #4a5568));
+		--name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--role-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #718096));
+		--rating-color: var(--wbcom-warning-color, #f6ad55);
+		--star-empty-color: var(--wbcom-border-color, var(--wbcom-color-base-2, #e2e8f0));
+		--arrow-color: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+	}
 
 	display: flex;
 	flex-direction: column;

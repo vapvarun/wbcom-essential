@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors    = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $prefix_text         = $attributes['prefixText'] ?? '';
 $rotating_texts      = $attributes['rotatingTexts'] ?? array();
 $suffix_text         = $attributes['suffixText'] ?? '';
@@ -36,31 +37,41 @@ if ( ! in_array( $html_tag, $allowed_tags, true ) ) {
 	$html_tag = 'h2';
 }
 
-// Build inline styles.
+// Build inline styles - layout always, colors only when NOT using theme colors.
 $inline_styles = array();
 if ( $text_align ) {
 	$inline_styles[] = 'text-align: ' . esc_attr( $text_align );
 }
-if ( $text_color ) {
-	$inline_styles[] = '--text-color: ' . esc_attr( $text_color );
+
+// Color variables only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	if ( $text_color ) {
+		$inline_styles[] = '--text-color: ' . esc_attr( $text_color );
+	}
+	if ( $rotating_text_color ) {
+		$inline_styles[] = '--rotating-color: ' . esc_attr( $rotating_text_color );
+	}
+	if ( $rotating_text_bg ) {
+		$inline_styles[] = '--rotating-bg: ' . esc_attr( $rotating_text_bg );
+	}
+	if ( $prefix_color ) {
+		$inline_styles[] = '--prefix-color: ' . esc_attr( $prefix_color );
+	}
+	if ( $suffix_color ) {
+		$inline_styles[] = '--suffix-color: ' . esc_attr( $suffix_color );
+	}
 }
-if ( $rotating_text_color ) {
-	$inline_styles[] = '--rotating-color: ' . esc_attr( $rotating_text_color );
-}
-if ( $rotating_text_bg ) {
-	$inline_styles[] = '--rotating-bg: ' . esc_attr( $rotating_text_bg );
-}
-if ( $prefix_color ) {
-	$inline_styles[] = '--prefix-color: ' . esc_attr( $prefix_color );
-}
-if ( $suffix_color ) {
-	$inline_styles[] = '--suffix-color: ' . esc_attr( $suffix_color );
+
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-text-rotator';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
 }
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'            => 'wbcom-essential-text-rotator',
+		'class'            => $wrapper_classes,
 		'style'            => implode( '; ', $inline_styles ),
 		'data-animation'   => esc_attr( $animation ),
 		'data-duration'    => esc_attr( $duration ),

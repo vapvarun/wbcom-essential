@@ -31,6 +31,7 @@ import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		brandingType,
 		alignment,
 		titleColor,
@@ -50,7 +51,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: `wp-block-wbcom-essential-branding align${ alignment }`,
+		className: `wp-block-wbcom-essential-branding align${ alignment }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: {
 			border: `${ border.width } ${ border.style } ${ border.color }`,
 			borderRadius: `${ borderRadius.top } ${ borderRadius.right } ${ borderRadius.bottom } ${ borderRadius.left }`,
@@ -79,7 +80,16 @@ export default function Edit( { attributes, setAttributes } ) {
 				</wp.components.PanelBody>
 
 				<wp.components.PanelBody title={ __( 'Brand', 'wbcom-essential' ) }>
-					{ brandingType === 'title' && (
+					<wp.components.ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+					{ brandingType === 'title' && ! useThemeColors && (
 						<>
 							<wp.components.BaseControl label={ __( 'Title Color', 'wbcom-essential' ) }>
 								<wp.components.ColorPicker
@@ -97,6 +107,10 @@ export default function Edit( { attributes, setAttributes } ) {
 									defaultValue="#333333"
 								/>
 							</wp.components.BaseControl>
+						</>
+					) }
+					{ brandingType === 'title' && (
+						<>
 							<wp.components.TextControl
 								label={ __( 'Title Padding Top', 'wbcom-essential' ) }
 								value={ titlePadding.top }
@@ -325,14 +339,16 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{ brandingType === 'title' && (
 					<wp.components.PanelBody title={ __( 'Description Options', 'wbcom-essential' ) }>
-						<wp.components.BaseControl label={ __( 'Description Color', 'wbcom-essential' ) }>
-							<wp.components.ColorPicker
-								color={ descriptionColor }
-								onChange={ ( color ) => setAttributes( { descriptionColor: color } ) }
-								enableAlpha
-								defaultValue="#333333"
-							/>
-						</wp.components.BaseControl>
+						{ ! useThemeColors && (
+							<wp.components.BaseControl label={ __( 'Description Color', 'wbcom-essential' ) }>
+								<wp.components.ColorPicker
+									color={ descriptionColor }
+									onChange={ ( color ) => setAttributes( { descriptionColor: color } ) }
+									enableAlpha
+									defaultValue="#333333"
+								/>
+							</wp.components.BaseControl>
+						) }
 						<wp.components.TextControl
 							label={ __( 'Description Padding Top', 'wbcom-essential' ) }
 							value={ descriptionPadding.top }

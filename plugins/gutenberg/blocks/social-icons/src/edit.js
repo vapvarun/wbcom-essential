@@ -42,6 +42,7 @@ const PLATFORM_OPTIONS = Object.keys( PLATFORMS ).map( ( key ) => ( {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		icons,
 		alignment,
 		iconSize,
@@ -57,15 +58,17 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-social-icons align-${ alignment } style-${ style }`,
+		className: `wbcom-essential-social-icons align-${ alignment } style-${ style }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: {
 			'--icon-size': `${ iconSize }px`,
 			'--icon-gap': `${ iconGap }px`,
 			'--icon-padding': `${ iconPadding }px`,
-			'--icon-color': iconColor || undefined,
-			'--icon-bg-color': iconBgColor || undefined,
-			'--icon-hover-color': iconHoverColor || undefined,
-			'--icon-hover-bg': iconHoverBgColor || undefined,
+			...( ! useThemeColors && {
+				'--icon-color': iconColor || undefined,
+				'--icon-bg-color': iconBgColor || undefined,
+				'--icon-hover-color': iconHoverColor || undefined,
+				'--icon-hover-bg': iconHoverBgColor || undefined,
+			} ),
 			'--border-radius': `${ borderRadius }%`,
 		},
 	} );
@@ -185,33 +188,49 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ iconColor }
-						onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
 
-					<Divider />
+					{ ! useThemeColors && (
+						<>
+							<Divider />
 
-					<p>{ __( 'Background Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ iconBgColor }
-						onChange={ ( value ) => setAttributes( { iconBgColor: value } ) }
-					/>
+							<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ iconColor }
+								onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+							/>
 
-					<Divider />
+							<Divider />
 
-					<p>{ __( 'Hover Icon Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ iconHoverColor }
-						onChange={ ( value ) => setAttributes( { iconHoverColor: value } ) }
-					/>
+							<p>{ __( 'Background Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ iconBgColor }
+								onChange={ ( value ) => setAttributes( { iconBgColor: value } ) }
+							/>
 
-					<p>{ __( 'Hover Background', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ iconHoverBgColor }
-						onChange={ ( value ) => setAttributes( { iconHoverBgColor: value } ) }
-					/>
+							<Divider />
+
+							<p>{ __( 'Hover Icon Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ iconHoverColor }
+								onChange={ ( value ) => setAttributes( { iconHoverColor: value } ) }
+							/>
+
+							<p>{ __( 'Hover Background', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ iconHoverBgColor }
+								onChange={ ( value ) => setAttributes( { iconHoverBgColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

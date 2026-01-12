@@ -46,6 +46,7 @@ $title_link_url          = $attributes['titleLinkUrl'] ?? '';
 $title_link_target       = $attributes['titleLinkTarget'] ?? '_self';
 $border                  = $attributes['border'] ?? array( 'width' => '0', 'style' => 'none', 'color' => '#000000' );
 $border_radius           = $attributes['borderRadius'] ?? array( 'top' => '0px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px' );
+$use_theme_colors        = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 
 // Build inline styles.
 $inline_styles = '';
@@ -61,6 +62,9 @@ $classes = array( 'wbcom-essential-branding' );
 if ( $alignment ) {
 	$classes[] = 'align' . $alignment;
 }
+if ( $use_theme_colors ) {
+	$classes[] = 'use-theme-colors';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
@@ -71,7 +75,10 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 
 // Build title styles.
-$title_styles = 'color: ' . esc_attr( $title_color ) . ';';
+$title_styles = '';
+if ( ! $use_theme_colors ) {
+	$title_styles .= 'color: ' . esc_attr( $title_color ) . ';';
+}
 $title_styles .= 'padding: ' . esc_attr( $title_padding['top'] ) . ' ' . esc_attr( $title_padding['right'] ) . ' ' . esc_attr( $title_padding['bottom'] ) . ' ' . esc_attr( $title_padding['left'] ) . ';';
 
 // Apply typography styles.
@@ -117,14 +124,19 @@ if ( empty( $site_title ) ) {
 				<a href="<?php echo esc_url( $link_url ); ?>"
 				   title="<?php echo esc_attr( $site_title ); ?>"
 				   style="<?php echo esc_attr( $title_styles ); ?>"
+				   <?php if ( ! $use_theme_colors ) : ?>
 				   data-hover-color="<?php echo esc_attr( $title_hover_color ); ?>"
-				   data-normal-color="<?php echo esc_attr( $title_color ); ?>"<?php echo $link_target_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+				   data-normal-color="<?php echo esc_attr( $title_color ); ?>"
+				   <?php endif; ?><?php echo $link_target_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?php echo esc_html( $site_title ); ?>
 				</a>
 			</span>
 
 			<?php
-			$desc_styles  = 'color: ' . esc_attr( $description_color ) . ';';
+			$desc_styles = '';
+			if ( ! $use_theme_colors ) {
+				$desc_styles .= 'color: ' . esc_attr( $description_color ) . ';';
+			}
 			$desc_styles .= 'padding: ' . esc_attr( $description_padding['top'] ) . ' ' . esc_attr( $description_padding['right'] ) . ' ' . esc_attr( $description_padding['bottom'] ) . ' ' . esc_attr( $description_padding['left'] ) . ';';
 
 			// Apply description typography styles.

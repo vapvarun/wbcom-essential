@@ -46,6 +46,7 @@ const ICON_OPTIONS = [
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		startNumber,
 		endNumber,
 		prefix,
@@ -73,19 +74,22 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-counter layout-${ layout } align-${ alignment }`,
+		className: `wbcom-essential-counter layout-${ layout } align-${ alignment }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: {
-			'--number-color': numberColor || undefined,
-			'--title-color': titleColor || undefined,
-			'--prefix-suffix-color': prefixSuffixColor || undefined,
 			'--number-size': `${ numberSize }px`,
 			'--title-size': `${ titleSize }px`,
 			'--prefix-suffix-size': `${ prefixSuffixSize }px`,
 			'--number-weight': numberWeight,
 			'--title-spacing': `${ titleSpacing }px`,
 			'--icon-size': `${ iconSize }px`,
-			'--icon-color': iconColor || undefined,
 			'--icon-spacing': `${ iconSpacing }px`,
+			// Only apply color styles when not using theme colors.
+			...( ! useThemeColors && {
+				'--number-color': numberColor || undefined,
+				'--title-color': titleColor || undefined,
+				'--prefix-suffix-color': prefixSuffixColor || undefined,
+				'--icon-color': iconColor || undefined,
+			} ),
 		},
 	} );
 
@@ -291,37 +295,52 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Number Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ numberColor }
-						onChange={ ( value ) => setAttributes( { numberColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-
-					<Divider />
-
-					<p>{ __( 'Prefix/Suffix Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ prefixSuffixColor }
-						onChange={ ( value ) => setAttributes( { prefixSuffixColor: value } ) }
-					/>
-
-					<Divider />
-
-					<p>{ __( 'Title Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
-					/>
-
-					{ showIcon && (
+					{ ! useThemeColors && (
 						<>
 							<Divider />
 
-							<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
+							<p>{ __( 'Number Color', 'wbcom-essential' ) }</p>
 							<ColorPalette
-								value={ iconColor }
-								onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+								value={ numberColor }
+								onChange={ ( value ) => setAttributes( { numberColor: value } ) }
 							/>
+
+							<Divider />
+
+							<p>{ __( 'Prefix/Suffix Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ prefixSuffixColor }
+								onChange={ ( value ) => setAttributes( { prefixSuffixColor: value } ) }
+							/>
+
+							<Divider />
+
+							<p>{ __( 'Title Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+
+							{ showIcon && (
+								<>
+									<Divider />
+
+									<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
+									<ColorPalette
+										value={ iconColor }
+										onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>

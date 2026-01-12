@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors         = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $front_icon               = $attributes['frontIcon'] ?? 'star-filled';
 $front_title              = $attributes['frontTitle'] ?? '';
 $front_title_tag          = $attributes['frontTitleTag'] ?? 'h3';
@@ -59,39 +60,52 @@ $allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
 $front_title_tag = in_array( $front_title_tag, $allowed_tags, true ) ? $front_title_tag : 'h3';
 $back_title_tag = in_array( $back_title_tag, $allowed_tags, true ) ? $back_title_tag : 'h3';
 
-// Build inline styles.
+// Build inline styles - layout vars always.
 $style_vars = sprintf(
-	'--flip-box-width: %dpx; --flip-box-height: %dpx; --flip-box-align: %s; --flip-duration: %ss; --flip-timing: %s; --flip-front-bg: %s; --flip-front-title: %s; --flip-front-content: %s; --flip-front-icon: %s; --flip-front-icon-size: %dpx; --flip-back-bg: %s; --flip-back-title: %s; --flip-back-content: %s; --flip-back-icon: %s; --flip-back-icon-size: %dpx; --flip-btn-bg: %s; --flip-btn-text: %s; --flip-radius: %dpx; --flip-btn-hover-bg: %s; --flip-btn-hover-text: %s; --flip-front-border-width: %dpx; --flip-front-border-color: %s; --flip-back-border-width: %dpx; --flip-back-border-color: %s;',
+	'--flip-box-width: %dpx; --flip-box-height: %dpx; --flip-box-align: %s; --flip-duration: %ss; --flip-timing: %s; --flip-front-icon-size: %dpx; --flip-back-icon-size: %dpx; --flip-radius: %dpx; --flip-front-border-width: %dpx; --flip-back-border-width: %dpx;',
 	$box_width,
 	$box_height,
 	esc_attr( $box_align ),
 	$animation_duration,
 	esc_attr( $animation_timing ),
-	esc_attr( $front_background ),
-	esc_attr( $front_title_color ),
-	esc_attr( $front_content_color ),
-	esc_attr( $front_icon_color ),
 	$front_icon_size,
-	esc_attr( $back_background ),
-	esc_attr( $back_title_color ),
-	esc_attr( $back_content_color ),
-	esc_attr( $back_icon_color ),
 	$back_icon_size,
-	esc_attr( $button_background ),
-	esc_attr( $button_text_color ),
 	$border_radius,
-	esc_attr( $button_hover_bg ),
-	esc_attr( $button_hover_text ),
 	$front_border_width,
-	esc_attr( $front_border_color ),
-	$back_border_width,
-	esc_attr( $back_border_color )
+	$back_border_width
 );
+
+// Add color vars only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$style_vars .= sprintf(
+		' --flip-front-bg: %s; --flip-front-title: %s; --flip-front-content: %s; --flip-front-icon: %s; --flip-back-bg: %s; --flip-back-title: %s; --flip-back-content: %s; --flip-back-icon: %s; --flip-btn-bg: %s; --flip-btn-text: %s; --flip-btn-hover-bg: %s; --flip-btn-hover-text: %s; --flip-front-border-color: %s; --flip-back-border-color: %s;',
+		esc_attr( $front_background ),
+		esc_attr( $front_title_color ),
+		esc_attr( $front_content_color ),
+		esc_attr( $front_icon_color ),
+		esc_attr( $back_background ),
+		esc_attr( $back_title_color ),
+		esc_attr( $back_content_color ),
+		esc_attr( $back_icon_color ),
+		esc_attr( $button_background ),
+		esc_attr( $button_text_color ),
+		esc_attr( $button_hover_bg ),
+		esc_attr( $button_hover_text ),
+		esc_attr( $front_border_color ),
+		esc_attr( $back_border_color )
+	);
+}
+
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-flip-box';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-flip-box',
+		'class' => $wrapper_classes,
 		'style' => $style_vars,
 	)
 );

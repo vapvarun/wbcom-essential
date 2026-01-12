@@ -1,4 +1,31 @@
 .wp-block-wbcom-essential-branding {
+	// Default colors (fallbacks when using inline styles)
+	--title-color: #333333;
+	--title-hover-color: #333333;
+	--description-color: #333333;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #333333));
+		--title-hover-color: var(--wbcom-link-color, var(--wbcom-color-primary, #0073aa));
+		--description-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #333333));
+
+		.site-title a {
+			color: var(--title-color);
+
+			&:hover {
+				color: var(--title-hover-color);
+			}
+		}
+
+		.site-description {
+			color: var(--description-color);
+		}
+	}
+
 	display: block;
 	border: none;
 

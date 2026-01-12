@@ -32,6 +32,10 @@
     }
   },
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "tabs": {
       "type": "array",
       "default": [

@@ -10,6 +10,10 @@
 	"icon": "admin-site",
 	"textdomain": "wbcom-essential",
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"brandingType": {
 			"type": "string",
 			"default": "title"

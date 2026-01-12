@@ -8,12 +8,46 @@
 	// Layout
 	--bar-height: 20px;
 	--bar-radius: 4px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--title-color: var(--wbcom-heading-color, inherit);
-	--percent-color: var(--wbcom-heading-color, inherit);
-	--bar-bg: var(--wbcom-border-color, #e2e8f0);
-	--fill-bg: var(--wbcom-color-primary, #3182ce);
-	--fill-text: var(--wbcom-button-text, #ffffff);
+
+	// Default color fallbacks (used when custom colors applied via inline styles).
+	--title-color: #1a202c;
+	--percent-color: #1a202c;
+	--bar-bg: #e2e8f0;
+	--fill-bg: #3182ce;
+	--fill-text: #ffffff;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--percent-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--bar-bg: var(--wbcom-border-color, var(--wbcom-color-base-2, #e2e8f0));
+		--fill-bg: var(--wbcom-color-primary, #3182ce);
+		--fill-text: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+
+		// Apply theme colors to elements.
+		.wbcom-progress-bar-title {
+			color: var(--title-color);
+		}
+
+		.wbcom-progress-bar-percent-out {
+			color: var(--percent-color);
+		}
+
+		.wbcom-progress-bar-wrapper {
+			background-color: var(--bar-bg);
+		}
+
+		.wbcom-progress-bar-fill {
+			background-color: var(--fill-bg);
+		}
+
+		.wbcom-progress-bar-percent-in {
+			color: var(--fill-text);
+		}
+	}
 
 	margin-bottom: 1.5rem;
 
@@ -27,19 +61,16 @@
 	.wbcom-progress-bar-title {
 		font-size: 1rem;
 		font-weight: 600;
-		color: var(--title-color);
 	}
 
 	.wbcom-progress-bar-percent-out {
 		font-size: 1rem;
 		font-weight: 700;
-		color: var(--percent-color);
 	}
 
 	.wbcom-progress-bar-wrapper {
 		position: relative;
 		overflow: hidden;
-		background: var(--bar-bg);
 		border-radius: var(--bar-radius);
 		height: var(--bar-height);
 	}
@@ -78,7 +109,6 @@
 		font-size: 0.75rem;
 		font-weight: 700;
 		white-space: nowrap;
-		color: var(--fill-text);
 	}
 }
 

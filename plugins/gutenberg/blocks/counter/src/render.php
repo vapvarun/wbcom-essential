@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $start_number       = isset( $attributes['startNumber'] ) ? absint( $attributes['startNumber'] ) : 0;
 $end_number         = isset( $attributes['endNumber'] ) ? absint( $attributes['endNumber'] ) : 100;
 $prefix             = ! empty( $attributes['prefix'] ) ? $attributes['prefix'] : '';
@@ -39,20 +40,24 @@ $icon_color         = ! empty( $attributes['iconColor'] ) ? $attributes['iconCol
 $icon_spacing       = isset( $attributes['iconSpacing'] ) ? absint( $attributes['iconSpacing'] ) : 16;
 $show_icon          = isset( $attributes['showIcon'] ) ? $attributes['showIcon'] : false;
 
-// Build inline styles.
+// Build inline styles - non-color styles always applied.
 $inline_styles = array(
-	'--number-color'       => $number_color,
-	'--title-color'        => $title_color,
-	'--prefix-suffix-color' => $prefix_suffix_color,
 	'--number-size'        => $number_size . 'px',
 	'--title-size'         => $title_size . 'px',
 	'--prefix-suffix-size' => $prefix_suffix_size . 'px',
 	'--number-weight'      => $number_weight,
 	'--title-spacing'      => $title_spacing . 'px',
 	'--icon-size'          => $icon_size . 'px',
-	'--icon-color'         => $icon_color,
 	'--icon-spacing'       => $icon_spacing . 'px',
 );
+
+// Only add color styles when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--number-color']        = $number_color;
+	$inline_styles['--title-color']         = $title_color;
+	$inline_styles['--prefix-suffix-color'] = $prefix_suffix_color;
+	$inline_styles['--icon-color']          = $icon_color;
+}
 
 // Filter out empty values.
 $inline_styles = array_filter( $inline_styles );
@@ -63,10 +68,16 @@ foreach ( $inline_styles as $property => $value ) {
 	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
 }
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-counter layout-' . esc_attr( $layout ) . ' align-' . esc_attr( $alignment );
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Build wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'           => 'wbcom-essential-counter layout-' . esc_attr( $layout ) . ' align-' . esc_attr( $alignment ),
+		'class'           => $wrapper_classes,
 		'style'           => $style_string,
 		'data-start'      => $start_number,
 		'data-end'        => $end_number,

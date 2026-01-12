@@ -9,14 +9,75 @@
 	--max-width: 400px;
 	--padding: 24px 20px;
 	--button-radius: 6px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--card-bg: var(--wbcom-card-bg, #ffffff);
-	--border-color: var(--wbcom-border-color, rgba(0, 0, 0, 0.1));
-	--title-color: var(--wbcom-heading-color, inherit);
-	--text-color: var(--wbcom-text-color, inherit);
-	--feature-yes-bg: var(--wbcom-success-color, #48bb78);
-	--feature-no-bg: var(--wbcom-error-color, #fc8181);
-	--feature-icon-color: var(--wbcom-button-text, #ffffff);
+
+	// Default color fallbacks (used when custom colors applied via inline styles).
+	--card-bg: #ffffff;
+	--border-color: rgba(0, 0, 0, 0.1);
+	--title-color: inherit;
+	--text-color: inherit;
+	--feature-yes-bg: #48bb78;
+	--feature-no-bg: #fc8181;
+	--feature-icon-color: #ffffff;
+	--header-bg: #4a5568;
+	--header-text: #ffffff;
+	--price-color: #1a202c;
+	--container-bg: #f7fafc;
+	--button-bg: #3182ce;
+	--button-text: #ffffff;
+	--button-hover-bg: #2c5aa0;
+	--button-hover-color: #ffffff;
+	--button-hover-border: #2c5aa0;
+	--ribbon-bg: #48bb78;
+	--ribbon-text: #ffffff;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--border-color: var(--wbcom-border-color, var(--wbcom-color-border, rgba(0, 0, 0, 0.1)));
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--text-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+		--feature-yes-bg: var(--wbcom-success-color, #48bb78);
+		--feature-no-bg: var(--wbcom-error-color, #fc8181);
+		--feature-icon-color: var(--wbcom-button-text, #ffffff);
+		--header-bg: var(--wbcom-color-primary, #4a5568);
+		--header-text: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+		--price-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--container-bg: var(--wbcom-card-bg, var(--wbcom-color-base-2, #f7fafc));
+		--button-bg: var(--wbcom-color-primary, #3182ce);
+		--button-text: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+		--button-hover-bg: var(--wbcom-color-primary-dark, var(--wbcom-color-secondary, #2c5aa0));
+		--button-hover-color: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+		--button-hover-border: var(--wbcom-color-primary-dark, var(--wbcom-color-secondary, #2c5aa0));
+		--ribbon-bg: var(--wbcom-success-color, var(--wbcom-color-secondary, #48bb78));
+		--ribbon-text: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+
+		// Apply theme colors to elements.
+		.wbcom-price-table {
+			background-color: var(--container-bg);
+		}
+
+		.wbcom-price-table-header {
+			background-color: var(--header-bg);
+			color: var(--header-text);
+		}
+
+		.wbcom-price-table-price {
+			color: var(--price-color);
+		}
+
+		.wbcom-price-table-btn {
+			background-color: var(--button-bg);
+			color: var(--button-text);
+		}
+
+		.wbcom-price-table-ribbon-badge {
+			background-color: var(--ribbon-bg);
+			color: var(--ribbon-text);
+		}
+	}
 
 	.wbcom-price-table {
 		position: relative;

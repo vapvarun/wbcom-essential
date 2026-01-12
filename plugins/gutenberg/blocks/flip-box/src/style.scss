@@ -14,17 +14,42 @@
 	--flip-front-icon-size: 48px;
 	--flip-back-icon-size: 48px;
 	--flip-radius: 8px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--flip-front-bg: var(--wbcom-card-bg-alt, #f5f5f5);
-	--flip-front-title: var(--wbcom-heading-color, #1a1a1a);
-	--flip-front-content: var(--wbcom-text-color, #666666);
-	--flip-front-icon: var(--wbcom-color-primary, #3182ce);
-	--flip-back-bg: var(--wbcom-color-primary, #3182ce);
-	--flip-back-title: var(--wbcom-button-text, #ffffff);
+	// Default colors (fallbacks when using inline styles)
+	--flip-front-bg: #f5f5f5;
+	--flip-front-title: #1a1a1a;
+	--flip-front-content: #666666;
+	--flip-front-icon: #3182ce;
+	--flip-back-bg: #3182ce;
+	--flip-back-title: #ffffff;
 	--flip-back-content: rgba(255, 255, 255, 0.9);
-	--flip-back-icon: var(--wbcom-button-text, #ffffff);
-	--flip-btn-bg: var(--wbcom-card-bg, #ffffff);
-	--flip-btn-text: var(--wbcom-color-primary, #3182ce);
+	--flip-back-icon: #ffffff;
+	--flip-btn-bg: #ffffff;
+	--flip-btn-text: #3182ce;
+	--flip-btn-hover-bg: #2c5aa0;
+	--flip-btn-hover-text: #ffffff;
+	--flip-front-border-color: #e0e0e0;
+	--flip-back-border-color: #e0e0e0;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--flip-front-bg: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, #f5f5f5));
+		--flip-front-title: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a1a1a));
+		--flip-front-content: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #666666));
+		--flip-front-icon: var(--wbcom-color-primary, #3182ce);
+		--flip-back-bg: var(--wbcom-color-primary, #3182ce);
+		--flip-back-title: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+		--flip-back-content: var(--wbcom-button-text, rgba(255, 255, 255, 0.9));
+		--flip-back-icon: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+		--flip-btn-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--flip-btn-text: var(--wbcom-color-primary, #3182ce);
+		--flip-btn-hover-bg: var(--wbcom-color-primary-dark, var(--wbcom-color-secondary, #2c5aa0));
+		--flip-btn-hover-text: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+		--flip-front-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e0e0e0));
+		--flip-back-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e0e0e0));
+	}
 
 	display: flex;
 	justify-content: var(--flip-box-align);

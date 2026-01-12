@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors       = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $title                  = ! empty( $attributes['title'] ) ? $attributes['title'] : '';
 $title_tag              = ! empty( $attributes['titleTag'] ) ? $attributes['titleTag'] : 'h2';
 $description            = ! empty( $attributes['description'] ) ? $attributes['description'] : '';
@@ -60,20 +61,24 @@ $padding_string = sprintf(
 );
 
 $inline_styles = array(
-	'--title-color'         => $title_color,
-	'--description-color'   => $description_color,
-	'--button-bg-color'     => $button_bg_color,
-	'--button-text-color'   => $button_text_color,
-	'--button-hover-bg'     => $button_hover_bg,
-	'--button-hover-text'   => $button_hover_text,
-	'--second-button-bg'    => $second_button_bg,
-	'--second-button-text'  => $second_button_text_clr,
 	'--button-radius'       => $button_border_radius . 'px',
 	'--button-padding'      => $padding_string,
 	'--title-size'          => $title_size . 'px',
 	'--description-size'    => $description_size . 'px',
 	'--content-spacing'     => $content_spacing . 'px',
 );
+
+// Only add color styles if not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--title-color']        = $title_color;
+	$inline_styles['--description-color']  = $description_color;
+	$inline_styles['--button-bg-color']    = $button_bg_color;
+	$inline_styles['--button-text-color']  = $button_text_color;
+	$inline_styles['--button-hover-bg']    = $button_hover_bg;
+	$inline_styles['--button-hover-text']  = $button_hover_text;
+	$inline_styles['--second-button-bg']   = $second_button_bg;
+	$inline_styles['--second-button-text'] = $second_button_text_clr;
+}
 
 // Filter out empty values.
 $inline_styles = array_filter( $inline_styles );
@@ -84,10 +89,16 @@ foreach ( $inline_styles as $property => $value ) {
 	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
 }
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-cta-box layout-' . esc_attr( $layout );
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Build wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-cta-box layout-' . esc_attr( $layout ),
+		'class' => $wrapper_classes,
 		'style' => $style_string,
 	)
 );

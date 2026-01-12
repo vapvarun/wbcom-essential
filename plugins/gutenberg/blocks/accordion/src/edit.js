@@ -29,6 +29,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		itemSpacing,
 		borderRadius,
 		borderWidth,
+		useThemeColors,
 		titleColor,
 		titleBgColor,
 		contentColor,
@@ -60,7 +61,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [ items ] );
 
 	const blockProps = useBlockProps( {
-		className: 'wp-block-wbcom-essential-accordion',
+		className: `wp-block-wbcom-essential-accordion${ useThemeColors ? ' use-theme-colors' : '' }`,
 	} );
 
 	const addItem = () => {
@@ -510,71 +511,87 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Color Settings', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<p>
-						<strong>
-							{ __( 'Title Color', 'wbcom-essential' ) }
-						</strong>
-					</p>
-					<ColorPicker
-						color={ titleColor }
-						onChangeComplete={ ( value ) =>
-							setAttributes( { titleColor: value.hex } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) =>
+							setAttributes( { useThemeColors: value } )
 						}
 					/>
-					<hr />
-					<p>
-						<strong>
-							{ __(
-								'Title Background Color',
-								'wbcom-essential'
-							) }
-						</strong>
-					</p>
-					<ColorPicker
-						color={ titleBgColor }
-						onChangeComplete={ ( value ) =>
-							setAttributes( { titleBgColor: value.hex } )
-						}
-					/>
-					<hr />
-					<p>
-						<strong>
-							{ __( 'Content Color', 'wbcom-essential' ) }
-						</strong>
-					</p>
-					<ColorPicker
-						color={ contentColor }
-						onChangeComplete={ ( value ) =>
-							setAttributes( { contentColor: value.hex } )
-						}
-					/>
-					<hr />
-					<p>
-						<strong>
-							{ __(
-								'Content Background Color',
-								'wbcom-essential'
-							) }
-						</strong>
-					</p>
-					<ColorPicker
-						color={ contentBgColor }
-						onChangeComplete={ ( value ) =>
-							setAttributes( { contentBgColor: value.hex } )
-						}
-					/>
-					<hr />
-					<p>
-						<strong>
-							{ __( 'Border Color', 'wbcom-essential' ) }
-						</strong>
-					</p>
-					<ColorPicker
-						color={ borderColor }
-						onChangeComplete={ ( value ) =>
-							setAttributes( { borderColor: value.hex } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<hr />
+							<p>
+								<strong>
+									{ __( 'Title Color', 'wbcom-essential' ) }
+								</strong>
+							</p>
+							<ColorPicker
+								color={ titleColor }
+								onChangeComplete={ ( value ) =>
+									setAttributes( { titleColor: value.hex } )
+								}
+							/>
+							<hr />
+							<p>
+								<strong>
+									{ __(
+										'Title Background Color',
+										'wbcom-essential'
+									) }
+								</strong>
+							</p>
+							<ColorPicker
+								color={ titleBgColor }
+								onChangeComplete={ ( value ) =>
+									setAttributes( { titleBgColor: value.hex } )
+								}
+							/>
+							<hr />
+							<p>
+								<strong>
+									{ __( 'Content Color', 'wbcom-essential' ) }
+								</strong>
+							</p>
+							<ColorPicker
+								color={ contentColor }
+								onChangeComplete={ ( value ) =>
+									setAttributes( { contentColor: value.hex } )
+								}
+							/>
+							<hr />
+							<p>
+								<strong>
+									{ __(
+										'Content Background Color',
+										'wbcom-essential'
+									) }
+								</strong>
+							</p>
+							<ColorPicker
+								color={ contentBgColor }
+								onChangeComplete={ ( value ) =>
+									setAttributes( { contentBgColor: value.hex } )
+								}
+							/>
+							<hr />
+							<p>
+								<strong>
+									{ __( 'Border Color', 'wbcom-essential' ) }
+								</strong>
+							</p>
+							<ColorPicker
+								color={ borderColor }
+								onChangeComplete={ ( value ) =>
+									setAttributes( { borderColor: value.hex } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 
@@ -591,6 +608,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				</Notice>
 				<div className="accordion-wrapper">
 					{ items.map( ( item, index ) => {
+						// Base styles (always applied)
 						const itemStyle = {
 							marginBottom:
 								index < items.length - 1
@@ -598,25 +616,31 @@ export default function Edit( { attributes, setAttributes } ) {
 									: 0,
 							borderRadius: `${ borderRadius }px`,
 							borderWidth: `${ borderWidth }px`,
-							borderColor: borderColor || '#ddd',
+							// Only apply custom border color when theme colors is disabled
+							...( ! useThemeColors && { borderColor: borderColor || '#ddd' } ),
 						};
 
+						// Only apply custom colors when theme colors is disabled
 						const headerStyle = {
-							color: titleColor,
-							backgroundColor: titleBgColor || '#f8f9fa',
 							fontSize: `${ titleFontSize }px`,
 							fontWeight: titleFontWeight,
 							lineHeight: titleLineHeight,
+							...( ! useThemeColors && {
+								color: titleColor,
+								backgroundColor: titleBgColor || '#f8f9fa',
+							} ),
 						};
 
 						const contentStyle = {
-							color: contentColor,
-							backgroundColor: contentBgColor || '#fff',
 							fontSize: `${ contentFontSize }px`,
 							fontWeight: contentFontWeight,
 							lineHeight: contentLineHeight,
 							padding: '20px',
 							borderTop: '1px solid #e0e0e0',
+							...( ! useThemeColors && {
+								color: contentColor,
+								backgroundColor: contentBgColor || '#fff',
+							} ),
 						};
 
 						const isSelected = selectedItemId === item.id;

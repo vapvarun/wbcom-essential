@@ -24,6 +24,7 @@ import {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		members,
 		slidesPerView,
 		slidesPerViewTablet,
@@ -60,8 +61,13 @@ export default function Edit( { attributes, setAttributes } ) {
 		arrowBorderRadius,
 	} = attributes;
 
+	const wrapperClasses = [
+		'wbcom-essential-team-carousel',
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
+
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-team-carousel',
+		className: wrapperClasses,
 	} );
 
 	/**
@@ -104,10 +110,12 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const cardStyle = {
-		backgroundColor: cardBackground,
 		borderRadius: `${ cardBorderRadius }px`,
 		padding: `${ cardPadding }px`,
 		boxShadow: cardBoxShadow ? '0 4px 15px rgba(0, 0, 0, 0.08)' : 'none',
+		...( ! useThemeColors && {
+			backgroundColor: cardBackground,
+		} ),
 	};
 
 	const imageStyle = {
@@ -270,18 +278,37 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody
+					title={ __( 'Colors', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+				</PanelBody>
+
+				<PanelBody
 					title={ __( 'Card Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<p className="components-base-control__label">
-						{ __( 'Card Background', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ cardBackground }
-						onChange={ ( value ) =>
-							setAttributes( { cardBackground: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Card Background', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ cardBackground }
+								onChange={ ( value ) =>
+									setAttributes( { cardBackground: value } )
+								}
+							/>
+						</>
+					) }
 					<RangeControl
 						label={ __( 'Card Border Radius', 'wbcom-essential' ) }
 						value={ cardBorderRadius }
@@ -309,7 +336,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 10 }
 					/>
-					{ cardBorderWidth > 0 && (
+					{ cardBorderWidth > 0 && ! useThemeColors && (
 						<>
 							<p className="components-base-control__label">
 								{ __( 'Card Border Color', 'wbcom-essential' ) }
@@ -381,24 +408,28 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { imageAspectRatio: value } )
 						}
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Image Overlay Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ imageOverlayColor }
-						onChange={ ( value ) =>
-							setAttributes( { imageOverlayColor: value } )
-						}
-					/>
-					<p className="components-base-control__label">
-						{ __( 'Image Overlay Hover Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ imageOverlayHoverColor }
-						onChange={ ( value ) =>
-							setAttributes( { imageOverlayHoverColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Image Overlay Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ imageOverlayColor }
+								onChange={ ( value ) =>
+									setAttributes( { imageOverlayColor: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Image Overlay Hover Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ imageOverlayHoverColor }
+								onChange={ ( value ) =>
+									setAttributes( { imageOverlayHoverColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
@@ -414,15 +445,19 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 12 }
 						max={ 32 }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Name Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ nameColor }
-						onChange={ ( value ) =>
-							setAttributes( { nameColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Name Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ nameColor }
+								onChange={ ( value ) =>
+									setAttributes( { nameColor: value } )
+								}
+							/>
+						</>
+					) }
 					<RangeControl
 						label={ __( 'Role Font Size', 'wbcom-essential' ) }
 						value={ roleFontSize }
@@ -432,15 +467,19 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 10 }
 						max={ 24 }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Role Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ roleColor }
-						onChange={ ( value ) =>
-							setAttributes( { roleColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Role Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ roleColor }
+								onChange={ ( value ) =>
+									setAttributes( { roleColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
@@ -465,24 +504,28 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 50 }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Arrow Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ arrowColor }
-						onChange={ ( value ) =>
-							setAttributes( { arrowColor: value } )
-						}
-					/>
-					<p className="components-base-control__label">
-						{ __( 'Arrow Background Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ arrowBgColor }
-						onChange={ ( value ) =>
-							setAttributes( { arrowBgColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Arrow Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ arrowColor }
+								onChange={ ( value ) =>
+									setAttributes( { arrowColor: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Arrow Background Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ arrowBgColor }
+								onChange={ ( value ) =>
+									setAttributes( { arrowBgColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
@@ -498,24 +541,28 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 5 }
 						max={ 20 }
 					/>
-					<p className="components-base-control__label">
-						{ __( 'Dot Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ dotsColor }
-						onChange={ ( value ) =>
-							setAttributes( { dotsColor: value } )
-						}
-					/>
-					<p className="components-base-control__label">
-						{ __( 'Active Dot Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ dotsActiveColor }
-						onChange={ ( value ) =>
-							setAttributes( { dotsActiveColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p className="components-base-control__label">
+								{ __( 'Dot Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ dotsColor }
+								onChange={ ( value ) =>
+									setAttributes( { dotsColor: value } )
+								}
+							/>
+							<p className="components-base-control__label">
+								{ __( 'Active Dot Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ dotsActiveColor }
+								onChange={ ( value ) =>
+									setAttributes( { dotsActiveColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 
@@ -557,13 +604,19 @@ export default function Edit( { attributes, setAttributes } ) {
 								<div className="wbcom-team-member-info">
 									<h4
 										className="wbcom-team-member-name"
-										style={ { color: nameColor, fontSize: `${ nameFontSize }px` } }
+										style={ {
+											fontSize: `${ nameFontSize }px`,
+											...( ! useThemeColors && { color: nameColor } ),
+										} }
 									>
 										{ member.name }
 									</h4>
 									<p
 										className="wbcom-team-member-role"
-										style={ { color: roleColor, fontSize: `${ roleFontSize }px` } }
+										style={ {
+											fontSize: `${ roleFontSize }px`,
+											...( ! useThemeColors && { color: roleColor } ),
+										} }
 									>
 										{ member.role }
 									</p>

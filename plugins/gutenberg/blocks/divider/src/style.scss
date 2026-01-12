@@ -8,6 +8,15 @@
 	margin-top: var(--margin-top, 20px);
 	margin-bottom: var(--margin-bottom, 20px);
 
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables
+	 */
+	&.use-theme-colors {
+		--divider-color: var(--wbcom-color-primary, #ddd);
+		--icon-color: var(--wbcom-color-primary, #333);
+	}
+
 	&__line {
 		flex: 1;
 		height: 0;

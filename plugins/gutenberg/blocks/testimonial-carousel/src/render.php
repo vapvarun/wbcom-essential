@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors       = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $testimonials           = $attributes['testimonials'] ?? array();
 $slides_per_view        = $attributes['slidesPerView'] ?? 2;
 $slides_per_view_tablet = $attributes['slidesPerViewTablet'] ?? 1;
@@ -84,15 +85,24 @@ if ( ! function_exists( 'wbcom_sanitize_css_color' ) ) {
 // Build unique ID for this instance.
 $unique_id = wp_unique_id( 'wbcom-testimonial-carousel-' );
 
-// Card styles.
+// Card styles - layout always, colors only when NOT using theme colors.
 $card_style_parts = array(
-	sprintf( 'background-color: %s', esc_attr( $card_background ) ),
 	sprintf( 'border-radius: %dpx', absint( $card_border_radius ) ),
 	sprintf( 'padding: %dpx', absint( $card_padding ) ),
 );
 
+// Add background color only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	array_unshift( $card_style_parts, sprintf( 'background-color: %s', esc_attr( $card_background ) ) );
+}
+
 if ( $card_border_width > 0 ) {
-	$card_style_parts[] = sprintf( 'border: %dpx solid %s', absint( $card_border_width ), esc_attr( $card_border_color ) );
+	if ( $use_theme_colors ) {
+		$card_style_parts[] = sprintf( 'border-width: %dpx', absint( $card_border_width ) );
+		$card_style_parts[] = 'border-style: solid';
+	} else {
+		$card_style_parts[] = sprintf( 'border: %dpx solid %s', absint( $card_border_width ), esc_attr( $card_border_color ) );
+	}
 }
 
 if ( $card_shadow ) {
@@ -147,76 +157,112 @@ $swiper_config = wp_json_encode(
 	)
 );
 
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-testimonial-carousel';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'              => 'wbcom-essential-testimonial-carousel',
+		'class'              => $wrapper_classes,
 		'id'                 => $unique_id,
 		'data-swiper-config' => $swiper_config,
 	)
 );
 
-// Navigation and pagination color styles - sanitize colors to prevent CSS injection.
-$nav_style                   = '';
-$sanitized_nav_color         = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
-$sanitized_pagination_color  = wbcom_sanitize_css_color( $pagination_color, '#cbd5e0' );
-$sanitized_pagination_active = wbcom_sanitize_css_color( $pagination_active_color, '#3182ce' );
-$sanitized_quote_color       = wbcom_sanitize_css_color( $quote_color, '#4a5568' );
-$sanitized_name_color        = wbcom_sanitize_css_color( $name_color, '#1a202c' );
-$sanitized_role_color        = wbcom_sanitize_css_color( $role_color, '#718096' );
+// Build inline styles - layout always, colors only when NOT using theme colors.
+$inline_style = '';
 
-$nav_style = sprintf(
-	'<style>
-	#%1$s .swiper-button-next,
-	#%1$s .swiper-button-prev { color: %2$s; }
-	#%1$s .swiper-pagination-bullet { background-color: %3$s; }
-	#%1$s .swiper-pagination-bullet-active { background-color: %4$s; }
-	#%1$s .wbcom-testimonial-quote p { color: %5$s; font-size: %6$dpx; }
-	#%1$s .wbcom-testimonial-name { color: %7$s; font-size: %8$dpx; }
-	#%1$s .wbcom-testimonial-role { color: %9$s; font-size: %10$dpx; }
-	#%1$s .wbcom-testimonial-avatar { width: %11$dpx; height: %11$dpx; border-radius: %12$d%%; overflow: hidden; }
-	#%1$s .wbcom-testimonial-avatar img { width: 100%%; height: 100%%; object-fit: cover; }
-	</style>',
-	esc_attr( $unique_id ),
-	esc_attr( $sanitized_nav_color ),
-	esc_attr( $sanitized_pagination_color ),
-	esc_attr( $sanitized_pagination_active ),
-	esc_attr( $sanitized_quote_color ),
-	absint( $quote_font_size ),
-	esc_attr( $sanitized_name_color ),
-	absint( $name_font_size ),
-	esc_attr( $sanitized_role_color ),
-	absint( $role_font_size ),
-	absint( $avatar_size ),
-	absint( $avatar_border_radius )
-);
+if ( $use_theme_colors ) {
+	// Layout styles only (font sizes, avatar dimensions).
+	$inline_style = sprintf(
+		'<style>
+		#%1$s .wbcom-testimonial-quote p { font-size: %2$dpx; }
+		#%1$s .wbcom-testimonial-name { font-size: %3$dpx; }
+		#%1$s .wbcom-testimonial-role { font-size: %4$dpx; }
+		#%1$s .wbcom-testimonial-avatar { width: %5$dpx; height: %5$dpx; border-radius: %6$d%%; overflow: hidden; }
+		#%1$s .wbcom-testimonial-avatar img { width: 100%%; height: 100%%; object-fit: cover; }
+		</style>',
+		esc_attr( $unique_id ),
+		absint( $quote_font_size ),
+		absint( $name_font_size ),
+		absint( $role_font_size ),
+		absint( $avatar_size ),
+		absint( $avatar_border_radius )
+	);
+} else {
+	// Full styles including colors.
+	$sanitized_nav_color         = wbcom_sanitize_css_color( $nav_color, '#3182ce' );
+	$sanitized_pagination_color  = wbcom_sanitize_css_color( $pagination_color, '#cbd5e0' );
+	$sanitized_pagination_active = wbcom_sanitize_css_color( $pagination_active_color, '#3182ce' );
+	$sanitized_quote_color       = wbcom_sanitize_css_color( $quote_color, '#4a5568' );
+	$sanitized_name_color        = wbcom_sanitize_css_color( $name_color, '#1a202c' );
+	$sanitized_role_color        = wbcom_sanitize_css_color( $role_color, '#718096' );
+
+	$inline_style = sprintf(
+		'<style>
+		#%1$s .swiper-button-next,
+		#%1$s .swiper-button-prev { color: %2$s; }
+		#%1$s .swiper-pagination-bullet { background-color: %3$s; }
+		#%1$s .swiper-pagination-bullet-active { background-color: %4$s; }
+		#%1$s .wbcom-testimonial-quote p { color: %5$s; font-size: %6$dpx; }
+		#%1$s .wbcom-testimonial-name { color: %7$s; font-size: %8$dpx; }
+		#%1$s .wbcom-testimonial-role { color: %9$s; font-size: %10$dpx; }
+		#%1$s .wbcom-testimonial-avatar { width: %11$dpx; height: %11$dpx; border-radius: %12$d%%; overflow: hidden; }
+		#%1$s .wbcom-testimonial-avatar img { width: 100%%; height: 100%%; object-fit: cover; }
+		</style>',
+		esc_attr( $unique_id ),
+		esc_attr( $sanitized_nav_color ),
+		esc_attr( $sanitized_pagination_color ),
+		esc_attr( $sanitized_pagination_active ),
+		esc_attr( $sanitized_quote_color ),
+		absint( $quote_font_size ),
+		esc_attr( $sanitized_name_color ),
+		absint( $name_font_size ),
+		esc_attr( $sanitized_role_color ),
+		absint( $role_font_size ),
+		absint( $avatar_size ),
+		absint( $avatar_border_radius )
+	);
+}
 
 if ( ! function_exists( 'wbcom_render_carousel_stars' ) ) {
 	/**
 	 * Render star rating HTML.
 	 *
 	 * @param int    $rating       The rating value (1-5).
-	 * @param string $rating_color The color for filled stars.
+	 * @param string $rating_color The color for filled stars (empty for theme colors mode).
 	 * @return string The star rating HTML.
 	 */
 	function wbcom_render_carousel_stars( $rating, $rating_color ) {
 		$output = '';
 		for ( $i = 1; $i <= 5; $i++ ) {
-			$filled  = $i <= $rating;
-			$color   = $filled ? $rating_color : '#e2e8f0';
-			$class   = $filled ? 'filled' : 'empty';
-			$output .= sprintf(
-				'<span class="star %s" style="color: %s;">★</span>',
-				esc_attr( $class ),
-				esc_attr( $color )
-			);
+			$filled = $i <= $rating;
+			$class  = $filled ? 'filled' : 'empty';
+
+			// Only add inline color style if rating_color is provided.
+			if ( ! empty( $rating_color ) ) {
+				$color   = $filled ? $rating_color : '#e2e8f0';
+				$output .= sprintf(
+					'<span class="star %s" style="color: %s;">★</span>',
+					esc_attr( $class ),
+					esc_attr( $color )
+				);
+			} else {
+				$output .= sprintf(
+					'<span class="star %s">★</span>',
+					esc_attr( $class )
+				);
+			}
 		}
 		return $output;
 	}
 }
 ?>
 
-<?php echo $nav_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<?php echo $inline_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="swiper wbcom-testimonial-swiper">
@@ -254,14 +300,14 @@ $t_image_url = $testimonial['imageUrl'] ?? '';
 					<div class="wbcom-testimonial-card" style="<?php echo esc_attr( $card_style ); ?>">
 						<?php if ( $show_rating ) : ?>
 							<div class="wbcom-testimonial-rating">
-								<?php echo wbcom_render_carousel_stars( $t_rating, $rating_color ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo wbcom_render_carousel_stars( $t_rating, $use_theme_colors ? '' : $rating_color ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							</div>
 						<?php endif; ?>
 
 						<?php if ( ! empty( $t_content ) ) : ?>
 							<div class="wbcom-testimonial-quote">
 								<span class="quote-mark">"</span>
-								<p style="color: <?php echo esc_attr( $quote_color ); ?>;">
+								<p<?php echo ! $use_theme_colors ? ' style="color: ' . esc_attr( $quote_color ) . ';"' : ''; ?>>
 									<?php echo wp_kses_post( $t_content ); ?>
 								</p>
 							</div>
@@ -292,12 +338,12 @@ $t_image_url = $testimonial['imageUrl'] ?? '';
 
 							<div class="wbcom-testimonial-info">
 								<?php if ( ! empty( $t_name ) ) : ?>
-									<span class="wbcom-testimonial-name" style="color: <?php echo esc_attr( $name_color ); ?>;">
+									<span class="wbcom-testimonial-name"<?php echo ! $use_theme_colors ? ' style="color: ' . esc_attr( $name_color ) . ';"' : ''; ?>>
 										<?php echo esc_html( $t_name ); ?>
 									</span>
 								<?php endif; ?>
 								<?php if ( ! empty( $t_role ) ) : ?>
-									<span class="wbcom-testimonial-role" style="color: <?php echo esc_attr( $role_color ); ?>;">
+									<span class="wbcom-testimonial-role"<?php echo ! $use_theme_colors ? ' style="color: ' . esc_attr( $role_color ) . ';"' : ''; ?>>
 										<?php echo esc_html( $t_role ); ?>
 									</span>
 								<?php endif; ?>

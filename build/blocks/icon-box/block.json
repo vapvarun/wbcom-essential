@@ -23,6 +23,10 @@
     }
   },
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "icon": {
       "type": "string",
       "default": "star-filled"

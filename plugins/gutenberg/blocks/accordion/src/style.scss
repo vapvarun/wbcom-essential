@@ -10,15 +10,52 @@
     --item-spacing: 10px;
     --header-padding: 16px 20px;
     --content-padding: 20px;
-    // Colors - inherit from theme via bridge variables (theme-colors.css)
-    --border-color: var(--wbcom-border-color, #ddd);
-    --header-bg: var(--wbcom-card-bg-alt, #f8f9fa);
-    --header-hover-bg: var(--wbcom-border-color, #e9ecef);
-    --content-bg: var(--wbcom-card-bg, #fff);
-    --title-color: var(--wbcom-heading-color, inherit);
-    --link-color: var(--wbcom-color-primary, #0073aa);
+    // Default colors (used when custom colors are set via inline styles)
+    --border-color: #ddd;
+    --header-bg: #f8f9fa;
+    --header-hover-bg: #e9ecef;
+    --content-bg: #fff;
+    --title-color: inherit;
+    --link-color: #0073aa;
 
     max-width: 100%;
+
+    /**
+     * Theme Colors Mode
+     * When enabled, colors inherit from the active theme's color palette
+     * via CSS custom properties defined in theme-colors.css
+     */
+    &.use-theme-colors {
+        --border-color: var(--wbcom-card-border, var(--wbcom-color-border, #ddd));
+        --header-bg: var(--wbcom-color-base-2, #f8f9fa);
+        --header-hover-bg: var(--wbcom-color-tertiary, #e9ecef);
+        --content-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+        --title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+        --content-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+        --link-color: var(--wbcom-link-color, var(--wbcom-color-primary, #0073aa));
+
+        .accordion-item {
+            border-color: var(--border-color);
+        }
+
+        .accordion-header {
+            color: var(--title-color);
+            background-color: var(--header-bg);
+
+            &:hover {
+                background-color: var(--header-hover-bg);
+            }
+        }
+
+        .accordion-content {
+            color: var(--content-color);
+            background-color: var(--content-bg);
+
+            a {
+                color: var(--link-color);
+            }
+        }
+    }
 
     .accordion-wrapper {
         width: 100%;

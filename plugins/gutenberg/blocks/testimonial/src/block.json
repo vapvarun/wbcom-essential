@@ -13,6 +13,10 @@
 		"align": [ "wide", "full" ]
 	},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"content": {
 			"type": "string",
 			"default": "This product exceeded my expectations. The quality is outstanding and the customer service was incredibly helpful throughout the entire process."

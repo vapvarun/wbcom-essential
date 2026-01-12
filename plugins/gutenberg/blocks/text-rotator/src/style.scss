@@ -5,12 +5,24 @@
  */
 
 .wbcom-essential-text-rotator {
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--text-color: var(--wbcom-heading-color, inherit);
-	--rotating-color: var(--wbcom-color-primary, #3182ce);
+	// Default color fallbacks (used when custom colors applied via inline styles)
+	--text-color: inherit;
+	--rotating-color: #3182ce;
 	--rotating-bg: transparent;
-	--prefix-color: var(--text-color);
-	--suffix-color: var(--text-color);
+	--prefix-color: inherit;
+	--suffix-color: inherit;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--text-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--rotating-color: var(--wbcom-color-primary, #3182ce);
+		--rotating-bg: transparent;
+		--prefix-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+		--suffix-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+	}
 }
 
 .wbcom-text-rotator-wrapper {

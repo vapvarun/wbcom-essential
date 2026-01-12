@@ -20,6 +20,7 @@ import {
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		title,
 		percent,
 		displayPercent,
@@ -39,8 +40,13 @@ export default function Edit( { attributes, setAttributes } ) {
 		backgroundHeight,
 	} = attributes;
 
+	const wrapperClasses = [
+		'wbcom-essential-progress-bar',
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
+
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-progress-bar',
+		className: wrapperClasses,
 	} );
 
 	const wrapperStyle = {
@@ -196,61 +202,75 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<p className="components-base-control__label">
-						{ __( 'Bar Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ barColor }
-						onChange={ ( value ) =>
-							setAttributes( { barColor: value } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
 						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
 
-					<p className="components-base-control__label">
-						{ __( 'Background Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ barBackground }
-						onChange={ ( value ) =>
-							setAttributes( { barBackground: value } )
-						}
-					/>
-
-					<p className="components-base-control__label">
-						{ __( 'Title Color', 'wbcom-essential' ) }
-					</p>
-					<ColorPalette
-						value={ titleColor }
-						onChange={ ( value ) =>
-							setAttributes( { titleColor: value } )
-						}
-					/>
-
-					{ displayPercent === 'in' && (
+					{ ! useThemeColors && (
 						<>
 							<p className="components-base-control__label">
-								{ __( 'Percentage Color (Inside)', 'wbcom-essential' ) }
+								{ __( 'Bar Color', 'wbcom-essential' ) }
 							</p>
 							<ColorPalette
-								value={ percentColor }
+								value={ barColor }
 								onChange={ ( value ) =>
-									setAttributes( { percentColor: value } )
+									setAttributes( { barColor: value } )
 								}
 							/>
-						</>
-					) }
 
-					{ displayPercent === 'out' && (
-						<>
 							<p className="components-base-control__label">
-								{ __( 'Percentage Color (Outside)', 'wbcom-essential' ) }
+								{ __( 'Background Color', 'wbcom-essential' ) }
 							</p>
 							<ColorPalette
-								value={ percentOutColor }
+								value={ barBackground }
 								onChange={ ( value ) =>
-									setAttributes( { percentOutColor: value } )
+									setAttributes( { barBackground: value } )
 								}
 							/>
+
+							<p className="components-base-control__label">
+								{ __( 'Title Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ titleColor }
+								onChange={ ( value ) =>
+									setAttributes( { titleColor: value } )
+								}
+							/>
+
+							{ displayPercent === 'in' && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Percentage Color (Inside)', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ percentColor }
+										onChange={ ( value ) =>
+											setAttributes( { percentColor: value } )
+										}
+									/>
+								</>
+							) }
+
+							{ displayPercent === 'out' && (
+								<>
+									<p className="components-base-control__label">
+										{ __( 'Percentage Color (Outside)', 'wbcom-essential' ) }
+									</p>
+									<ColorPalette
+										value={ percentOutColor }
+										onChange={ ( value ) =>
+											setAttributes( { percentOutColor: value } )
+										}
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>

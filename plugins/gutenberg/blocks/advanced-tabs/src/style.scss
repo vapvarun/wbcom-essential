@@ -5,14 +5,28 @@
  */
 
 .wp-block-wbcom-essential-advanced-tabs {
-    // Colors - inherit from theme via bridge variables (theme-colors.css)
-    --tab-border-color: var(--wbcom-border-color, #e0e0e0);
-    --tab-bg: var(--wbcom-card-bg-alt, #f5f5f5);
-    --tab-hover-bg: var(--wbcom-border-color, #efefef);
-    --tab-active-bg: var(--wbcom-card-bg, #ffffff);
-    --tab-text-color: var(--wbcom-heading-color, inherit);
-    --content-bg: var(--wbcom-card-bg, #ffffff);
-    --content-border-color: var(--wbcom-border-color, #e0e0e0);
+    // Default colors (fallbacks when using inline styles)
+    --tab-border-color: #e0e0e0;
+    --tab-bg: #f5f5f5;
+    --tab-hover-bg: #efefef;
+    --tab-active-bg: #ffffff;
+    --tab-text-color: inherit;
+    --content-bg: #ffffff;
+    --content-border-color: #e0e0e0;
+
+    /**
+     * Theme Colors Mode
+     * Maps theme CSS variables to block-specific variables
+     */
+    &.use-theme-colors {
+        --tab-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e0e0e0));
+        --tab-bg: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, #f5f5f5));
+        --tab-hover-bg: var(--wbcom-border-color, var(--wbcom-color-border, #efefef));
+        --tab-active-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+        --tab-text-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+        --content-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+        --content-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e0e0e0));
+    }
 
     display: flex;
     gap: 0;

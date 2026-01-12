@@ -15,6 +15,10 @@
 		}
 	},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"dueDate": {
 			"type": "string",
 			"default": ""
