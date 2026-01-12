@@ -33,7 +33,7 @@ function wbcom_essential_post_slider_enqueue_assets() {
 		'swiper',
 		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
 		array(),
-		'11.0.0'
+		'11.2.10'
 	);
 
 	// Enqueue Swiper JS.
@@ -41,7 +41,7 @@ function wbcom_essential_post_slider_enqueue_assets() {
 		'swiper',
 		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
 		array(),
-		'11.0.0',
+		'11.2.10',
 		true
 	);
 }
@@ -56,7 +56,7 @@ function wbcom_essential_post_slider_enqueue_editor_assets() {
 		'swiper',
 		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
 		array(),
-		'11.0.0'
+		'11.2.10'
 	);
 
 	// Enqueue Swiper JS for editor preview.
@@ -64,7 +64,7 @@ function wbcom_essential_post_slider_enqueue_editor_assets() {
 		'swiper',
 		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
 		array(),
-		'11.0.0',
+		'11.2.10',
 		true
 	);
 }

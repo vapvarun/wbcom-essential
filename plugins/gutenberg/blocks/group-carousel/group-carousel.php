@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Enqueue Swiper for Group Carousel block.
+ * Enqueue Swiper for Group Carousel block on frontend.
  */
 function wbcom_essential_group_carousel_enqueue_scripts() {
 	// Only enqueue if the block is present.
@@ -18,24 +18,47 @@ function wbcom_essential_group_carousel_enqueue_scripts() {
 		return;
 	}
 
-	// Enqueue Swiper script.
-	wp_enqueue_script(
-		'wbcom-swiper',
-		WBCOM_ESSENTIAL_URL . 'plugins/elementor/assets/js/swiper.min.js',
-		array( 'jquery' ),
-		WBCOM_ESSENTIAL_VERSION,
-		true
-	);
-
 	// Enqueue Swiper CSS.
 	wp_enqueue_style(
-		'wbcom-swiper-css',
+		'swiper',
 		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
 		array(),
-		WBCOM_ESSENTIAL_VERSION
+		'11.2.10'
+	);
+
+	// Enqueue Swiper JS.
+	wp_enqueue_script(
+		'swiper',
+		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
+		array(),
+		'11.2.10',
+		true
 	);
 }
 add_action( 'wp_enqueue_scripts', 'wbcom_essential_group_carousel_enqueue_scripts' );
+
+/**
+ * Enqueue Swiper for Group Carousel block in editor.
+ */
+function wbcom_essential_group_carousel_enqueue_editor_scripts() {
+	// Enqueue Swiper CSS for editor preview.
+	wp_enqueue_style(
+		'swiper',
+		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
+		array(),
+		'11.2.10'
+	);
+
+	// Enqueue Swiper JS for editor preview.
+	wp_enqueue_script(
+		'swiper',
+		WBCOM_ESSENTIAL_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
+		array(),
+		'11.2.10',
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'wbcom_essential_group_carousel_enqueue_editor_scripts' );
 
 /**
  * Registers the block using the metadata loaded from block.json.
