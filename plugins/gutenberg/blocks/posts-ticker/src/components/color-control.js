@@ -7,7 +7,7 @@
 import { __ } from '@wordpress/i18n';
 import {
 	BaseControl,
-	ColorPalette,
+	ColorPicker,
 	Button,
 	Popover,
 } from '@wordpress/components';
@@ -50,15 +50,12 @@ export default function ColorControl( { label, value, onChange } ) {
 						position="bottom left"
 						onClose={ () => setIsOpen( false ) }
 					>
-						<div style={ { padding: '12px', minWidth: '200px' } }>
-							<ColorPalette
-								colors={ THEME_COLORS }
-								value={ value }
-								onChange={ ( color ) => {
-									onChange( color );
-									setIsOpen( false );
-								} }
-								clearable={ false }
+						<div style={ { padding: '12px', minWidth: '280px' } }>
+							<ColorPicker
+								color={ value }
+								onChange={ ( color ) => onChange( color ) }
+								enableAlpha={ false }
+								defaultValue="#000000"
 							/>
 						</div>
 					</Popover>

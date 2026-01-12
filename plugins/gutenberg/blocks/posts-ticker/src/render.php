@@ -58,11 +58,16 @@ if ( empty( $posts ) ) {
 	return;
 }
 
-// Build inline styles - ONLY layout/spacing, NEVER colors.
-// Colors are handled by CSS variables in style.scss which inherit from theme-colors.css.
-// This allows dark mode and theme customizations to work properly.
+// Build inline styles - layout and colors.
+// Colors are set as CSS variables to allow dynamic theming.
 $inline_styles = array(
-	'--ticker-height'    => $height . 'px',
+	'--ticker-height'     => $height . 'px',
+	'--label-bg-color'    => $label_bg_color,
+	'--label-text-color'  => $label_text_color,
+	'--ticker-bg-color'   => $ticker_bg_color,
+	'--text-color'        => $text_color,
+	'--hover-color'       => $hover_color,
+	'--border-color'      => $border_color,
 );
 
 $style_string = '';
