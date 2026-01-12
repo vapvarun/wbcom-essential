@@ -78,6 +78,50 @@
 	// Logged in message
 	--logged-in-msg-color: var(--logged-in-msg-color, var(--wbcom-heading-color, #122B46));
 	--logged-in-msg-align: left;
+
+	/**
+	 * Theme Colors Mode
+	 * When enabled, all colors inherit from the theme's CSS custom properties.
+	 * This overrides any custom inline color values set by the user.
+	 */
+	&.use-theme-colors {
+		// Form container
+		--form-bg-color: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--form-border-color: var(--wbcom-card-border, var(--wbcom-border-color, transparent));
+
+		// Title & Subtitle
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--subtitle-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #666666));
+
+		// Labels
+		--label-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+
+		// Inputs
+		--input-bg-color: var(--wbcom-input-bg, var(--wbcom-color-base-2, #f8f9fa));
+		--input-border-color: var(--wbcom-border-color, var(--wbcom-input-border, #e3e3e3));
+		--input-text-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--input-focus-border-color: var(--wbcom-color-primary, #1d76da);
+		--input-focus-bg-color: var(--wbcom-input-bg, var(--wbcom-color-base-2, #f8f9fa));
+		--input-placeholder-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-3, #a0aec0));
+
+		// Button
+		--button-bg-color: var(--wbcom-button-bg, var(--wbcom-color-primary, #1d76da));
+		--button-text-color: var(--wbcom-button-text, #ffffff);
+		--button-hover-bg-color: var(--wbcom-button-hover-bg, var(--wbcom-color-primary-dark, #1557a0));
+		--button-hover-text-color: var(--wbcom-button-text, #ffffff);
+		--button-border-color: var(--wbcom-button-border, transparent);
+		--button-hover-border-color: var(--wbcom-button-hover-border, transparent);
+
+		// Links
+		--link-color: var(--wbcom-link-color, var(--wbcom-color-primary, #1d76da));
+		--link-hover-color: var(--wbcom-link-hover-color, var(--wbcom-color-primary-dark, #1557a0));
+
+		// Checkbox
+		--checkbox-color: var(--wbcom-color-primary, #1d76da);
+
+		// Logged in message
+		--logged-in-msg-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+	}
 }
 
 .wbcom-essential-login-form {

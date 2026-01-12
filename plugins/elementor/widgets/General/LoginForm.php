@@ -77,6 +77,13 @@ class LoginForm extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'login', 'form', 'signin', 'authentication', 'user' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {
@@ -1664,9 +1671,10 @@ class LoginForm extends \Elementor\Widget_Base {
 					<?php if ( defined( 'PMPRO_VERSION' ) ) { ?>
 						<?php wp_login_form( $login_form_args ); ?>
 					<?php } else { ?>
-						<div id="wbcom-login-error" style="display:none; color:red; margin-bottom:10px;"></div>
-	
-						<form id="wb_login_form">
+						<?php $widget_id = $this->get_id(); ?>
+						<div id="wbcom-login-error-<?php echo esc_attr( $widget_id ); ?>" class="wbcom-login-error" style="display:none; color:red; margin-bottom:10px;"></div>
+
+						<form id="wb_login_form_<?php echo esc_attr( $widget_id ); ?>" class="wb_login_form" data-widget-id="<?php echo esc_attr( $widget_id ); ?>">
 							<p>
 								<label><?php echo esc_html( $settings['label_username'] ); ?></label>
 								<input type="text" name="log" required>
@@ -1688,7 +1696,7 @@ class LoginForm extends \Elementor\Widget_Base {
 							</p>
 
 							<p>
-								<button id="wp-submit" type="submit"><?php echo esc_html( $settings['label_log_in'] ); ?></button>
+								<button id="wp-submit-<?php echo esc_attr( $widget_id ); ?>" class="wp-submit" type="submit"><?php echo esc_html( $settings['label_log_in'] ); ?></button>
 							</p>
 							<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_link ); ?>">
 							<input type="hidden" name="action" value="wbcom_ajax_login">

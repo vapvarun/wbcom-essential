@@ -69,6 +69,13 @@ class PostCarousel extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'post', 'carousel', 'slider', 'blog', 'content' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {

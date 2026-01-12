@@ -25,6 +25,23 @@
 	--divider-color: #0073aa;
 	--divider-width: 80px;
 
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--overlay-color: var(--wbcom-overlay-color, rgba(0, 0, 0, 0.4));
+		--date-color: var(--wbcom-color-base-2, rgba(255, 255, 255, 0.8));
+		--title-color: var(--wbcom-color-base, #fff);
+		--excerpt-color: var(--wbcom-color-base-2, rgba(255, 255, 255, 0.9));
+		--button-bg: var(--wbcom-color-base, #fff);
+		--button-text: var(--wbcom-color-contrast, #1a202c);
+		--button-hover-bg: var(--wbcom-color-primary, #1a202c);
+		--button-hover-text: var(--wbcom-button-text, #fff);
+		--nav-color: var(--wbcom-color-base, #fff);
+		--divider-color: var(--wbcom-color-primary, #0073aa);
+	}
+
 	position: relative;
 	width: 100%;
 	overflow: hidden;

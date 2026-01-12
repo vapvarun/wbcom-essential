@@ -21,6 +21,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		displayType,
 		columns,
 		showExcerpt,
@@ -66,7 +67,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [] );
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-posts-revolution-editor',
+		className: `wbcom-essential-posts-revolution-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
 	} );
 
 	return (
@@ -320,22 +321,35 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
 					<ToggleControl
-						label={ __( 'Custom Style', 'wbcom-essential' ) }
-						checked={ enableCustomStyle }
-						onChange={ ( value ) => setAttributes( { enableCustomStyle: value } ) }
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					{ enableCustomStyle && (
+					{ ! useThemeColors && (
 						<>
-							<ColorControl
-								label={ __( 'Main Color', 'wbcom-essential' ) }
-								value={ mainColor }
-								onChange={ ( value ) => setAttributes( { mainColor: value } ) }
+							<ToggleControl
+								label={ __( 'Custom Style', 'wbcom-essential' ) }
+								checked={ enableCustomStyle }
+								onChange={ ( value ) => setAttributes( { enableCustomStyle: value } ) }
 							/>
-							<ColorControl
-								label={ __( 'Hover Color', 'wbcom-essential' ) }
-								value={ hoverColor }
-								onChange={ ( value ) => setAttributes( { hoverColor: value } ) }
-							/>
+							{ enableCustomStyle && (
+								<>
+									<ColorControl
+										label={ __( 'Main Color', 'wbcom-essential' ) }
+										value={ mainColor }
+										onChange={ ( value ) => setAttributes( { mainColor: value } ) }
+									/>
+									<ColorControl
+										label={ __( 'Hover Color', 'wbcom-essential' ) }
+										value={ hoverColor }
+										onChange={ ( value ) => setAttributes( { hoverColor: value } ) }
+									/>
+								</>
+							) }
 						</>
 					) }
 				</PanelBody>

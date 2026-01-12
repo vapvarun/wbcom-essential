@@ -22,6 +22,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		membersOrder,
 		profileTypes,
 		membersCount,
@@ -62,22 +63,28 @@ export default function Edit( { attributes, setAttributes } ) {
 			} );
 	}, [] );
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: useThemeColors ? 'use-theme-colors' : '',
+	} );
 
-	// Build inline styles.
+	// Build inline styles - layout always applied, colors only when not using theme colors.
 	const containerStyle = {
-		'--box-border-color': boxBorderColor,
+		// Layout styles - always applied.
 		'--box-border-radius': `${ boxBorderRadius }px`,
-		'--box-bg-color': boxBackgroundColor,
-		'--filter-border-color': filterBorderColor,
 		'--avatar-size': `${ avatarSize }px`,
 		'--avatar-radius': `${ avatarBorderRadius }%`,
 		'--avatar-spacing': `${ avatarSpacing }px`,
-		'--online-color': onlineStatusColor,
 		'--online-size': `${ onlineStatusSize }px`,
-		'--name-color': nameColor,
 		'--row-space': `${ rowSpace }px`,
-		'--link-color': allMembersLinkColor || 'inherit',
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
+			'--box-border-color': boxBorderColor,
+			'--box-bg-color': boxBackgroundColor,
+			'--filter-border-color': filterBorderColor,
+			'--online-color': onlineStatusColor,
+			'--name-color': nameColor,
+			'--link-color': allMembersLinkColor || 'inherit',
+		} ),
 	};
 
 	// Demo members data for preview.
@@ -212,30 +219,12 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Box Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ boxBorderColor }
-						onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ boxBorderRadius }
 						onChange={ ( value ) => setAttributes( { boxBorderRadius: value } ) }
 						min={ 0 }
 						max={ 50 }
-					/>
-
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ boxBackgroundColor }
-						onChange={ ( value ) => setAttributes( { boxBackgroundColor: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'All Members Link Color', 'wbcom-essential' ) }
-						value={ allMembersLinkColor }
-						onChange={ ( value ) => setAttributes( { allMembersLinkColor: value } ) }
 					/>
 
 					<SelectControl
@@ -249,12 +238,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ label: __( 'None', 'wbcom-essential' ), value: 'none' },
 						] }
 						onChange={ ( value ) => setAttributes( { filterBorderStyle: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'Filter Border Color', 'wbcom-essential' ) }
-						value={ filterBorderColor }
-						onChange={ ( value ) => setAttributes( { filterBorderColor: value } ) }
 					/>
 				</PanelBody>
 
@@ -288,12 +271,6 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{ showOnlineStatus && (
 					<PanelBody title={ __( 'Online Status', 'wbcom-essential' ) } initialOpen={ false }>
-						<ColorControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ onlineStatusColor }
-							onChange={ ( value ) => setAttributes( { onlineStatusColor: value } ) }
-						/>
-
 						<RangeControl
 							label={ __( 'Size', 'wbcom-essential' ) }
 							value={ onlineStatusSize }
@@ -304,15 +281,57 @@ export default function Edit( { attributes, setAttributes } ) {
 					</PanelBody>
 				) }
 
-				{ showName && (
-					<PanelBody title={ __( 'Name Style', 'wbcom-essential' ) } initialOpen={ false }>
-						<ColorControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ nameColor }
-							onChange={ ( value ) => setAttributes( { nameColor: value } ) }
-						/>
-					</PanelBody>
-				) }
+				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ boxBackgroundColor }
+								onChange={ ( value ) => setAttributes( { boxBackgroundColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ boxBorderColor }
+								onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Filter Border Color', 'wbcom-essential' ) }
+								value={ filterBorderColor }
+								onChange={ ( value ) => setAttributes( { filterBorderColor: value } ) }
+							/>
+							{ showName && (
+								<ColorControl
+									label={ __( 'Name Color', 'wbcom-essential' ) }
+									value={ nameColor }
+									onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+								/>
+							) }
+							{ showAllMembersLink && (
+								<ColorControl
+									label={ __( 'All Members Link Color', 'wbcom-essential' ) }
+									value={ allMembersLinkColor }
+									onChange={ ( value ) => setAttributes( { allMembersLinkColor: value } ) }
+								/>
+							) }
+							{ showOnlineStatus && (
+								<ColorControl
+									label={ __( 'Online Status Color', 'wbcom-essential' ) }
+									value={ onlineStatusColor }
+									onChange={ ( value ) => setAttributes( { onlineStatusColor: value } ) }
+								/>
+							) }
+						</>
+					) }
+				</PanelBody>
 			</InspectorControls>
 
 			<div { ...blockProps }>

@@ -63,6 +63,7 @@ const DASHICONS = [
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		shapePreset,
 		point1,
 		point2,
@@ -258,27 +259,41 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ backgroundColor }
-						onChange={ ( value ) => setAttributes( { backgroundColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme colors instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
 
-					<p style={ { marginTop: '20px', fontWeight: '500' } }>
-						{ __( 'Gradient (Optional)', 'wbcom-essential' ) }
-					</p>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ backgroundColor }
+								onChange={ ( value ) => setAttributes( { backgroundColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Gradient From', 'wbcom-essential' ) }
-						value={ gradientFrom }
-						onChange={ ( value ) => setAttributes( { gradientFrom: value } ) }
-					/>
+							<p style={ { marginTop: '20px', fontWeight: '500' } }>
+								{ __( 'Gradient (Optional)', 'wbcom-essential' ) }
+							</p>
 
-					<ColorControl
-						label={ __( 'Gradient To', 'wbcom-essential' ) }
-						value={ gradientTo }
-						onChange={ ( value ) => setAttributes( { gradientTo: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Gradient From', 'wbcom-essential' ) }
+								value={ gradientFrom }
+								onChange={ ( value ) => setAttributes( { gradientFrom: value } ) }
+							/>
+
+							<ColorControl
+								label={ __( 'Gradient To', 'wbcom-essential' ) }
+								value={ gradientTo }
+								onChange={ ( value ) => setAttributes( { gradientTo: value } ) }
+							/>
+						</>
+					) }
 
 					<RangeControl
 						label={ __( 'Gradient Angle', 'wbcom-essential' ) }
@@ -299,11 +314,13 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					{ icon && (
 						<>
-							<ColorControl
-								label={ __( 'Icon Color', 'wbcom-essential' ) }
-								value={ iconColor }
-								onChange={ ( value ) => setAttributes( { iconColor: value } ) }
-							/>
+							{ ! useThemeColors && (
+								<ColorControl
+									label={ __( 'Icon Color', 'wbcom-essential' ) }
+									value={ iconColor }
+									onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+								/>
+							) }
 
 							<RangeControl
 								label={ __( 'Icon Size (px)', 'wbcom-essential' ) }
@@ -344,15 +361,19 @@ export default function Edit( { attributes, setAttributes } ) {
 								max={ 500 }
 							/>
 
-							<p style={ { marginTop: '20px', fontWeight: '500', borderTop: '1px solid #ddd', paddingTop: '16px' } }>
-								{ __( 'Icon Background', 'wbcom-essential' ) }
-							</p>
+							{ ! useThemeColors && (
+								<>
+									<p style={ { marginTop: '20px', fontWeight: '500', borderTop: '1px solid #ddd', paddingTop: '16px' } }>
+										{ __( 'Icon Background', 'wbcom-essential' ) }
+									</p>
 
-							<ColorControl
-								label={ __( 'Background Color', 'wbcom-essential' ) }
-								value={ iconBackgroundColor }
-								onChange={ ( value ) => setAttributes( { iconBackgroundColor: value } ) }
-							/>
+									<ColorControl
+										label={ __( 'Background Color', 'wbcom-essential' ) }
+										value={ iconBackgroundColor }
+										onChange={ ( value ) => setAttributes( { iconBackgroundColor: value } ) }
+									/>
+								</>
+							) }
 
 							{ iconBackgroundColor && (
 								<>
@@ -402,11 +423,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								onChange={ ( value ) => setAttributes( { borderStyle: value } ) }
 							/>
 
-							<ColorControl
-								label={ __( 'Border Color', 'wbcom-essential' ) }
-								value={ borderColor }
-								onChange={ ( value ) => setAttributes( { borderColor: value } ) }
-							/>
+							{ ! useThemeColors && (
+								<ColorControl
+									label={ __( 'Border Color', 'wbcom-essential' ) }
+									value={ borderColor }
+									onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+								/>
+							) }
 						</>
 					) }
 				</PanelBody>
@@ -452,11 +475,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								max={ 100 }
 							/>
 
-							<ColorControl
-								label={ __( 'Shadow Color', 'wbcom-essential' ) }
-								value={ boxShadowColor }
-								onChange={ ( value ) => setAttributes( { boxShadowColor: value } ) }
-							/>
+							{ ! useThemeColors && (
+								<ColorControl
+									label={ __( 'Shadow Color', 'wbcom-essential' ) }
+									value={ boxShadowColor }
+									onChange={ ( value ) => setAttributes( { boxShadowColor: value } ) }
+								/>
+							) }
 						</>
 					) }
 				</PanelBody>

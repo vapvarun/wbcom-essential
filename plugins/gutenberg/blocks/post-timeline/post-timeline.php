@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Timeline Block
+ * Post Timeline Block Registration.
  *
  * @package WBCOM_Essential
  */

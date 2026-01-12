@@ -19,7 +19,6 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Core\Schemes;
 use Elementor\Group_Control_Typography;
 /**
  * Elementor groups lists widget.
@@ -85,6 +84,13 @@ class GroupsLists extends \Elementor\Widget_Base {
 	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+
+	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'groups', 'list', 'buddypress', 'community', 'directory' );
 	}
 
 	/**
@@ -575,6 +581,13 @@ class GroupsLists extends \Elementor\Widget_Base {
 	 * Render elementor group lists widget.
 	 */
 	protected function render() {
+		// Check if BuddyPress is active before rendering.
+		if ( ! function_exists( 'buddypress' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'BuddyPress is required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
 
 		$settings = $this->get_settings_for_display();
 		$type     = $settings['groups_order'];

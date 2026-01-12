@@ -26,6 +26,19 @@
 	--shape-icon-bg: transparent;
 	--shape-icon-bg-size: 80px;
 	--shape-icon-bg-radius: 50%;
+
+	/**
+	 * Theme Colors Mode
+	 * When enabled, all colors inherit from the theme's CSS custom properties.
+	 * This overrides any custom inline color values set by the user.
+	 */
+	&.use-theme-colors {
+		--shape-background: var(--wbcom-color-primary, #3182ce);
+		--shape-icon-color: var(--wbcom-button-text, #ffffff);
+		--shape-border: none;
+		--shape-box-shadow: none;
+		--shape-icon-bg: var(--wbcom-color-primary-dark, rgba(0, 0, 0, 0.1));
+	}
 }
 
 .wbcom-shape-wrapper {

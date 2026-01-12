@@ -65,6 +65,13 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'portfolio', 'grid', 'gallery', 'projects', 'showcase' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {

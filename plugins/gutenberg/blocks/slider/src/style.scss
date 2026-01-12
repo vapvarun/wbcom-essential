@@ -345,4 +345,42 @@
 			margin-top: 10px;
 		}
 	}
+
+	/**
+	 * Theme Colors Mode
+	 * When enabled, colors inherit from the active theme's CSS custom properties.
+	 */
+	&.use-theme-colors {
+		// Slide background - use theme card background.
+		background-color: var(--wbcom-card-bg, var(--wbcom-color-base, #f5f5f5));
+
+		// Title and content colors.
+		--slider-title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #111));
+		--slider-desc-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #333));
+
+		// Button colors.
+		--slider-button-bg: var(--wbcom-color-primary, #0073aa);
+		--slider-button-text: var(--wbcom-button-text, #fff);
+		--slider-button-hover-bg: var(--wbcom-color-primary-dark, #005177);
+
+		// Arrow colors - use theme primary and contrast.
+		--slider-arrow-color: var(--wbcom-button-text, #fff);
+		--slider-arrow-hover-color: var(--wbcom-button-text, #fff);
+		--slider-arrow-bg-color: var(--wbcom-color-primary, rgba(0, 0, 0, 0.6));
+		--slider-arrow-bg-hover-color: var(--wbcom-color-primary-dark, rgba(0, 0, 0, 0.8));
+
+		// Dots colors - use theme primary.
+		--slider-dots-color: var(--wbcom-border-color, rgba(0, 0, 0, 0.3));
+		--slider-dots-active-color: var(--wbcom-color-primary, #0073aa);
+
+		// Apply theme colors to slider title.
+		.wbcom-slider-title {
+			color: var(--slider-title-color);
+		}
+
+		// Apply theme colors to slider description.
+		.wbcom-slider-desc {
+			color: var(--slider-desc-color);
+		}
+	}
 }

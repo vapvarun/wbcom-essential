@@ -17,6 +17,10 @@
 		}
 	},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"tickerType": {
 			"type": "string",
 			"default": "horizontal"

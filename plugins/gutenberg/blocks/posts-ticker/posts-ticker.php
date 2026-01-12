@@ -1,6 +1,6 @@
 <?php
 /**
- * Posts Ticker Block
+ * Posts Ticker Block Registration.
  *
  * @package WBCOM_Essential
  */

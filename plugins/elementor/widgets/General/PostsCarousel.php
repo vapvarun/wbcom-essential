@@ -116,6 +116,12 @@ class PostsCarousel extends Widget_Base {
 		return array( 'wbcom-elements' );
 	}
 
+	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'posts', 'carousel', 'slider', 'blog', 'articles' );
+	}
 
 	/**
 	 * Get post type categories.
@@ -861,8 +867,8 @@ class PostsCarousel extends Widget_Base {
 					if ( $wbcom_carousel_excerpt == 'true' ) {
 						$return .= '<span class="wb-content">' . wbcom_essential_posts_revolution_elementor_excerpt( $wbcom_carousel_excerpt_number ) . '</span>';
 					}
-											$return .= '<span class="wb-author">' . get_the_author() . '</span>';
-											$return .= '<span class="wb-date">' . get_the_date( $wbcom_carousel_date_format ) . '</span>';
+											$return .= '<span class="wb-author">' . esc_html( get_the_author() ) . '</span>';
+											$return .= '<span class="wb-date">' . esc_html( get_the_date( $wbcom_carousel_date_format ) ) . '</span>';
 									$return         .= '</div>';
 
 						$return .= '</div>';// img

@@ -21,6 +21,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		tickerType,
 		tickerLabel,
 		showLabel,
@@ -69,7 +70,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [] );
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-posts-ticker-editor',
+		className: `wbcom-essential-posts-ticker-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
 	} );
 
 	return (
@@ -195,37 +196,50 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Label Background', 'wbcom-essential' ) }
-						value={ labelBgColor }
-						onChange={ ( value ) => setAttributes( { labelBgColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<ColorControl
-						label={ __( 'Label Text', 'wbcom-essential' ) }
-						value={ labelTextColor }
-						onChange={ ( value ) => setAttributes( { labelTextColor: value } ) }
-					/>
-					<Divider />
-					<ColorControl
-						label={ __( 'Ticker Background', 'wbcom-essential' ) }
-						value={ tickerBgColor }
-						onChange={ ( value ) => setAttributes( { tickerBgColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ textColor }
-						onChange={ ( value ) => setAttributes( { textColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Hover Color', 'wbcom-essential' ) }
-						value={ hoverColor }
-						onChange={ ( value ) => setAttributes( { hoverColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ borderColor }
-						onChange={ ( value ) => setAttributes( { borderColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Label Background', 'wbcom-essential' ) }
+								value={ labelBgColor }
+								onChange={ ( value ) => setAttributes( { labelBgColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Label Text', 'wbcom-essential' ) }
+								value={ labelTextColor }
+								onChange={ ( value ) => setAttributes( { labelTextColor: value } ) }
+							/>
+							<Divider />
+							<ColorControl
+								label={ __( 'Ticker Background', 'wbcom-essential' ) }
+								value={ tickerBgColor }
+								onChange={ ( value ) => setAttributes( { tickerBgColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ textColor }
+								onChange={ ( value ) => setAttributes( { textColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Hover Color', 'wbcom-essential' ) }
+								value={ hoverColor }
+								onChange={ ( value ) => setAttributes( { hoverColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ borderColor }
+								onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

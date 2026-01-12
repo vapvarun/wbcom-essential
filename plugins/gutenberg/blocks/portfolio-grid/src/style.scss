@@ -5,7 +5,7 @@
  */
 
 .wbcom-essential-portfolio-grid {
-	// Layout
+	// Layout variables (always set via inline styles).
 	--portfolio-columns: 3;
 	--portfolio-columns-tablet: 2;
 	--portfolio-columns-mobile: 1;
@@ -15,13 +15,11 @@
 	--portfolio-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 	--portfolio-box-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
 	--portfolio-border-width: 0px;
-	--portfolio-border-color: #e2e8f0;
 	--portfolio-image-radius: 0px;
 	--portfolio-overlay-valign: flex-end;
 	--portfolio-text-align: left;
 	--portfolio-content-padding: 24px 24px 24px 24px;
 	--portfolio-content-margin: 0px 0px 0px 0px;
-	--portfolio-content-bg: transparent;
 	--portfolio-content-radius: 0px;
 	--portfolio-filter-padding: 8px 20px 8px 20px;
 	--portfolio-title-margin: 0px 0px 8px 0px;
@@ -30,22 +28,48 @@
 	--portfolio-desc-size: 14px;
 	--portfolio-desc-clamp: 2;
 
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--portfolio-item-bg: var(--wbcom-card-bg, #ffffff);
+	// Color variables - static defaults (overridden by inline styles in custom color mode).
+	--portfolio-item-bg: #ffffff;
+	--portfolio-border-color: #e2e8f0;
 	--portfolio-overlay: rgba(0, 0, 0, 0.7);
 	--portfolio-overlay-hover: rgba(0, 0, 0, 0.85);
-	--portfolio-title-color: var(--wbcom-button-text, #ffffff);
+	--portfolio-title-color: #ffffff;
 	--portfolio-desc-color: rgba(255, 255, 255, 0.9);
-	--portfolio-filter-active: var(--wbcom-color-primary, #3182ce);
-	--portfolio-filter-text: var(--wbcom-text-color, #4a5568);
+	--portfolio-filter-active: #3182ce;
+	--portfolio-filter-text: #4a5568;
 	--portfolio-filter-bg: rgba(0, 0, 0, 0.05);
 	--portfolio-filter-active-bg: transparent;
-	--portfolio-layout-btn-bg: var(--wbcom-card-bg-alt, #f7f7f7);
-	--portfolio-layout-btn-active-bg: var(--wbcom-card-bg, #ffffff);
-	--portfolio-empty-bg: var(--wbcom-card-bg-alt, #f8f9fa);
-	--portfolio-empty-text: var(--wbcom-meta-color, #6c757d);
-	--portfolio-list-title: var(--wbcom-heading-color, #1a202c);
-	--portfolio-list-desc: var(--wbcom-text-color, #4a5568);
+	--portfolio-content-bg: transparent;
+	--portfolio-layout-btn-bg: #f7f7f7;
+	--portfolio-layout-btn-active-bg: #ffffff;
+	--portfolio-empty-bg: #f8f9fa;
+	--portfolio-empty-text: #6c757d;
+	--portfolio-list-title: #1a202c;
+	--portfolio-list-desc: #4a5568;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--portfolio-item-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--portfolio-border-color: var(--wbcom-card-border, var(--wbcom-color-border, #e2e8f0));
+		--portfolio-overlay: rgba(0, 0, 0, 0.7);
+		--portfolio-overlay-hover: rgba(0, 0, 0, 0.85);
+		--portfolio-title-color: var(--wbcom-button-text, #ffffff);
+		--portfolio-desc-color: rgba(255, 255, 255, 0.9);
+		--portfolio-filter-active: var(--wbcom-color-primary, #3182ce);
+		--portfolio-filter-text: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #4a5568));
+		--portfolio-filter-bg: rgba(0, 0, 0, 0.05);
+		--portfolio-filter-active-bg: transparent;
+		--portfolio-content-bg: transparent;
+		--portfolio-layout-btn-bg: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, #f7f7f7));
+		--portfolio-layout-btn-active-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--portfolio-empty-bg: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, #f8f9fa));
+		--portfolio-empty-text: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #6c757d));
+		--portfolio-list-title: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--portfolio-list-desc: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #4a5568));
+	}
 }
 
 // Controls wrapper

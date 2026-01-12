@@ -81,6 +81,13 @@ class Forums extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'forums', 'bbpress', 'discussion', 'board', 'topics' );
+	}
+
+	/**
 	 * Register Controls.
 	 */
 	protected function register_controls() {
@@ -497,6 +504,13 @@ class Forums extends \Elementor\Widget_Base {
 	 * Render forums widget.
 	 */
 	protected function render() {
+		// Check if bbPress is active before rendering.
+		if ( ! class_exists( 'bbPress' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'bbPress is required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
 
 		$settings = $this->get_settings_for_display();
 

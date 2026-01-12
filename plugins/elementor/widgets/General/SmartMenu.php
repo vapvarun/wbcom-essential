@@ -75,6 +75,13 @@ class SmartMenu extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'smart', 'menu', 'navigation', 'nav', 'header' );
+	}
+
+	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {

@@ -22,6 +22,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		headingText,
 		forumsCount,
 		rowSpace,
@@ -63,34 +64,38 @@ export default function Edit( { attributes, setAttributes } ) {
 		return `${ dimension || 0 }px`;
 	};
 
-	// Preview styles.
+	// Preview styles - layout always applied, colors only when not using theme colors.
 	const containerStyle = {
-		'--box-bg': boxBgColor,
+		// Layout styles - always applied.
 		'--box-border-type': boxBorderType,
 		'--box-border-width': `${ boxBorderWidth }px`,
-		'--box-border-color': boxBorderColor,
 		'--box-radius': getDimensionValue( boxBorderRadius ),
 		'--title-font-size': `${ titleFontSize }px`,
 		'--title-font-weight': titleFontWeight,
 		'--title-line-height': titleLineHeight,
-		'--title-color': titleColor,
-		'--title-hover': titleHoverColor,
 		'--meta-font-size': `${ metaFontSize }px`,
-		'--meta-color': metaColor,
-		'--last-reply-color': lastReplyColor,
-		'--link-color': allForumsLinkColor || titleColor,
 		'--avatar-size': `${ avatarSize }px`,
 		'--avatar-border-type': avatarBorderType,
 		'--avatar-border-width': `${ avatarBorderWidth }px`,
-		'--avatar-border-color': avatarBorderColor,
 		'--avatar-radius': getDimensionValue( avatarBorderRadius ),
 		'--avatar-opacity': avatarOpacity,
 		'--avatar-spacing': `${ avatarSpacing }px`,
 		'--row-space': `${ rowSpace }px`,
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
+			'--box-bg': boxBgColor,
+			'--box-border-color': boxBorderColor,
+			'--title-color': titleColor,
+			'--title-hover': titleHoverColor,
+			'--meta-color': metaColor,
+			'--last-reply-color': lastReplyColor,
+			'--link-color': allForumsLinkColor || titleColor,
+			'--avatar-border-color': avatarBorderColor,
+		} ),
 	};
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-forums-editor',
+		className: `wbcom-essential-forums-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: containerStyle,
 	} );
 
@@ -167,6 +172,18 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 
+				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+				</PanelBody>
+
 				{ showAvatar && (
 					<PanelBody title={ __( 'Avatar Style', 'wbcom-essential' ) } initialOpen={ false }>
 						<RangeControl
@@ -197,11 +214,13 @@ export default function Edit( { attributes, setAttributes } ) {
 									min={ 0 }
 									max={ 10 }
 								/>
-								<ColorControl
-									label={ __( 'Border Color', 'wbcom-essential' ) }
-									value={ avatarBorderColor }
-									onChange={ ( value ) => setAttributes( { avatarBorderColor: value } ) }
-								/>
+								{ ! useThemeColors && (
+									<ColorControl
+										label={ __( 'Border Color', 'wbcom-essential' ) }
+										value={ avatarBorderColor }
+										onChange={ ( value ) => setAttributes( { avatarBorderColor: value } ) }
+									/>
+								) }
 							</>
 						) }
 						<BoxControl
@@ -249,11 +268,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								min={ 0 }
 								max={ 10 }
 							/>
-							<ColorControl
-								label={ __( 'Border Color', 'wbcom-essential' ) }
-								value={ boxBorderColor }
-								onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
-							/>
+							{ ! useThemeColors && (
+								<ColorControl
+									label={ __( 'Border Color', 'wbcom-essential' ) }
+									value={ boxBorderColor }
+									onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
+								/>
+							) }
 						</>
 					) }
 					<BoxControl
@@ -261,17 +282,21 @@ export default function Edit( { attributes, setAttributes } ) {
 						values={ boxBorderRadius }
 						onChange={ ( value ) => setAttributes( { boxBorderRadius: value } ) }
 					/>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ boxBgColor }
-						onChange={ ( value ) => setAttributes( { boxBgColor: value } ) }
-					/>
-					{ showAllForumsLink && (
-						<ColorControl
-							label={ __( 'All Forums Link Color', 'wbcom-essential' ) }
-							value={ allForumsLinkColor }
-							onChange={ ( value ) => setAttributes( { allForumsLinkColor: value } ) }
-						/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ boxBgColor }
+								onChange={ ( value ) => setAttributes( { boxBgColor: value } ) }
+							/>
+							{ showAllForumsLink && (
+								<ColorControl
+									label={ __( 'All Forums Link Color', 'wbcom-essential' ) }
+									value={ allForumsLinkColor }
+									onChange={ ( value ) => setAttributes( { allForumsLinkColor: value } ) }
+								/>
+							) }
+						</>
 					) }
 				</PanelBody>
 
@@ -305,16 +330,20 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 3 }
 						step={ 0.1 }
 					/>
-					<ColorControl
-						label={ __( 'Title Color (Normal)', 'wbcom-essential' ) }
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Title Color (Hover)', 'wbcom-essential' ) }
-						value={ titleHoverColor }
-						onChange={ ( value ) => setAttributes( { titleHoverColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Title Color (Normal)', 'wbcom-essential' ) }
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Title Color (Hover)', 'wbcom-essential' ) }
+								value={ titleHoverColor }
+								onChange={ ( value ) => setAttributes( { titleHoverColor: value } ) }
+							/>
+						</>
+					) }
 					<hr />
 					<p><strong>{ __( 'Meta Typography', 'wbcom-essential' ) }</strong></p>
 					<RangeControl
@@ -324,16 +353,20 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 10 }
 						max={ 30 }
 					/>
-					<ColorControl
-						label={ __( 'Meta Data Color', 'wbcom-essential' ) }
-						value={ metaColor }
-						onChange={ ( value ) => setAttributes( { metaColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Last Reply Color', 'wbcom-essential' ) }
-						value={ lastReplyColor }
-						onChange={ ( value ) => setAttributes( { lastReplyColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Meta Data Color', 'wbcom-essential' ) }
+								value={ metaColor }
+								onChange={ ( value ) => setAttributes( { metaColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Last Reply Color', 'wbcom-essential' ) }
+								value={ lastReplyColor }
+								onChange={ ( value ) => setAttributes( { lastReplyColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

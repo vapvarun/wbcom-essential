@@ -19,6 +19,7 @@ if ( ! function_exists( 'buddypress' ) || ! is_user_logged_in() ) {
 }
 
 // Extract attributes.
+$use_theme_colors       = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $skin_style             = $attributes['skinStyle'] ?? 'circle';
 $alignment              = $attributes['alignment'] ?? 'right';
 $profile_photo          = $attributes['profilePhoto'] ?? true;
@@ -92,31 +93,38 @@ if ( $hide_widget && 100 === $completion_percentage ) {
 	return;
 }
 
-// Build inline styles.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_style = sprintf(
-	'--progress-width: %dpx; --progress-percent: %d; --completion-color: %s; --incomplete-color: %s; --progress-border: %s; --details-bg: %s;',
+	'--progress-width: %dpx; --progress-percent: %d;',
 	absint( $progress_border_width ),
-	absint( $completion_percentage ),
-	esc_attr( $completion_color ),
-	esc_attr( $incomplete_color ),
-	esc_attr( $ring_border_color ),
-	esc_attr( $details_color )
+	absint( $completion_percentage )
 );
 
-if ( ! empty( $ring_num_color ) ) {
-	$inline_style .= sprintf( ' --number-color: %s;', esc_attr( $ring_num_color ) );
-}
-if ( ! empty( $ring_text_color ) ) {
-	$inline_style .= sprintf( ' --text-color: %s;', esc_attr( $ring_text_color ) );
-}
-if ( ! empty( $button_color ) ) {
-	$inline_style .= sprintf( ' --button-color: %s;', esc_attr( $button_color ) );
-}
-if ( ! empty( $button_bg_color ) ) {
-	$inline_style .= sprintf( ' --button-bg: %s;', esc_attr( $button_bg_color ) );
-}
-if ( ! empty( $button_border_color ) ) {
-	$inline_style .= sprintf( ' --button-border: %s;', esc_attr( $button_border_color ) );
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_style .= sprintf(
+		' --completion-color: %s; --incomplete-color: %s; --progress-border: %s; --details-bg: %s;',
+		esc_attr( $completion_color ),
+		esc_attr( $incomplete_color ),
+		esc_attr( $ring_border_color ),
+		esc_attr( $details_color )
+	);
+
+	if ( ! empty( $ring_num_color ) ) {
+		$inline_style .= sprintf( ' --number-color: %s;', esc_attr( $ring_num_color ) );
+	}
+	if ( ! empty( $ring_text_color ) ) {
+		$inline_style .= sprintf( ' --text-color: %s;', esc_attr( $ring_text_color ) );
+	}
+	if ( ! empty( $button_color ) ) {
+		$inline_style .= sprintf( ' --button-color: %s;', esc_attr( $button_color ) );
+	}
+	if ( ! empty( $button_bg_color ) ) {
+		$inline_style .= sprintf( ' --button-bg: %s;', esc_attr( $button_bg_color ) );
+	}
+	if ( ! empty( $button_border_color ) ) {
+		$inline_style .= sprintf( ' --button-border: %s;', esc_attr( $button_border_color ) );
+	}
 }
 
 // Get wrapper attributes.
@@ -125,6 +133,10 @@ $wrapper_classes = array(
 	'wbcom-profile-completion-skin-' . $skin_style,
 	'wbcom-profile-completion-align-' . $alignment,
 );
+
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(

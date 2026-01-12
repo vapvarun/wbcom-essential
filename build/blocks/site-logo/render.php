@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors  = $attributes['useThemeColors'] ?? false;
 $logo_source       = $attributes['logoSource'] ?? 'customizer';
 $desktop_logo_id   = $attributes['desktopLogoId'] ?? 0;
 $desktop_logo_url  = $attributes['desktopLogoUrl'] ?? '';
@@ -45,35 +46,51 @@ if ( $link_home ) {
 // Generate unique ID for scoped styles.
 $block_id = 'site-logo-' . wp_unique_id();
 
-// Build CSS custom properties.
+// Build CSS custom properties - layout properties always applied.
 $style_parts = array(
 	'--logo-align: ' . esc_attr( $alignment ),
 	'--logo-max-width: ' . intval( $max_width ) . 'px',
 	'--logo-max-width-tablet: ' . intval( $max_width_tablet ) . 'px',
 	'--logo-max-width-mobile: ' . intval( $max_width_mobile ) . 'px',
-	'--logo-bg: ' . ( $background_color ? esc_attr( $background_color ) : 'transparent' ),
 	'--logo-radius: ' . intval( $border_radius ) . 'px',
 );
 
-// Border styles.
-if ( 'none' !== $border_style && $border_width > 0 ) {
-	$style_parts[] = '--logo-border-style: ' . esc_attr( $border_style );
-	$style_parts[] = '--logo-border-width: ' . intval( $border_width ) . 'px';
-	$style_parts[] = '--logo-border-color: ' . ( $border_color ? esc_attr( $border_color ) : '#000000' );
-}
+// Add color CSS variables only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$style_parts[] = '--logo-bg: ' . ( $background_color ? esc_attr( $background_color ) : 'transparent' );
 
-// Box shadow.
-if ( ! empty( $box_shadow ) ) {
-	$style_parts[] = '--logo-box-shadow: ' . esc_attr( $box_shadow );
+	// Border styles.
+	if ( 'none' !== $border_style && $border_width > 0 ) {
+		$style_parts[] = '--logo-border-style: ' . esc_attr( $border_style );
+		$style_parts[] = '--logo-border-width: ' . intval( $border_width ) . 'px';
+		$style_parts[] = '--logo-border-color: ' . ( $border_color ? esc_attr( $border_color ) : '#000000' );
+	}
+
+	// Box shadow.
+	if ( ! empty( $box_shadow ) ) {
+		$style_parts[] = '--logo-box-shadow: ' . esc_attr( $box_shadow );
+	}
+} else {
+	// When using theme colors, still apply border style/width if set.
+	if ( 'none' !== $border_style && $border_width > 0 ) {
+		$style_parts[] = '--logo-border-style: ' . esc_attr( $border_style );
+		$style_parts[] = '--logo-border-width: ' . intval( $border_width ) . 'px';
+	}
 }
 
 $style_vars = implode( '; ', $style_parts ) . ';';
+
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-site-logo';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'id'    => $block_id,
-		'class' => 'wbcom-essential-site-logo',
+		'class' => $wrapper_classes,
 		'style' => $style_vars,
 	)
 );

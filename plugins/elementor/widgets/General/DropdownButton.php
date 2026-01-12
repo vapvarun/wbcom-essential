@@ -68,6 +68,13 @@ class DropdownButton extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'dropdown', 'button', 'menu', 'action', 'select' );
+	}
+
+	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {

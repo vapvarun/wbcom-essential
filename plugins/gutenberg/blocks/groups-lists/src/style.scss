@@ -5,19 +5,35 @@
  */
 
 .wbcom-essential-groups-lists {
-	// Layout
+	// Layout CSS variables (overridden by inline styles).
 	--box-border-radius: 4px;
 	--avatar-size: 40px;
 	--avatar-border-radius: 3px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--box-bg: var(--wbcom-card-bg, #ffffff);
-	--box-border-color: var(--wbcom-border-color, #e3e3e3);
-	--title-color: var(--wbcom-heading-color, #303030);
-	--meta-color: var(--wbcom-meta-color, #a3a5a9);
-	--link-color: var(--wbcom-color-primary, #1d76da);
-	--filter-normal-color: var(--wbcom-meta-color, #9c9c9c);
-	--filter-active-color: var(--wbcom-heading-color, #303030);
-	--filter-active-border: var(--wbcom-color-primary, #1d76da);
+
+	// Default color CSS variables (overridden by inline styles when custom colors used).
+	--box-bg: #ffffff;
+	--box-border-color: #e3e3e3;
+	--title-color: #303030;
+	--meta-color: #a3a5a9;
+	--link-color: #1d76da;
+	--filter-normal-color: #9c9c9c;
+	--filter-active-color: #303030;
+	--filter-active-border: #1d76da;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--box-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--box-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e3e3e3));
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #303030));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #a3a5a9));
+		--link-color: var(--wbcom-link-color, var(--wbcom-color-primary, #1d76da));
+		--filter-normal-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #9c9c9c));
+		--filter-active-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #303030));
+		--filter-active-border: var(--wbcom-color-primary, #1d76da);
+	}
 
 	background: var(--box-bg);
 	border: 1px solid var(--box-border-color) !important;

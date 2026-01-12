@@ -16,6 +16,10 @@
   "icon": "slides",
   "textdomain": "wbcom-essential",
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "postType": {
       "type": "string",
       "default": "post"

@@ -324,137 +324,6 @@ npm run build -- --block={block-name}
 
 ---
 
-## Existing Blocks Review Checklist
-
-All 8 existing blocks need review for:
-
-- [ ] **Consistent file structure** - Match standard above
-- [ ] **block.json apiVersion 3** - Update if needed
-- [ ] **Proper namespace** - `wbcom-essential/{name}`
-- [ ] **Category registration** - Use `wbcom-essential`
-- [ ] **CSS class naming** - `.wbcom-essential-{block}`
-- [ ] **Supports configuration** - Align, color, spacing, typography
-- [ ] **Server-side render** - For dynamic content
-- [ ] **Elementor feature parity** - All controls available
-- [ ] **Shared utilities** - Use common helpers
-
-### Blocks Review Status
-
-| Block | Location | API | Category | Render | Issues |
-|-------|----------|-----|----------|--------|--------|
-| accordion | `blocks/accordion/` | v3 ✅ | ✅ | SSR ✅ | Good baseline |
-| advanced-tabs | `blocks/advanced-tabs/` | v3 ✅ | ✅ | SSR ✅ | Review needed |
-| branding | `blocks/branding/` | v3 ✅ | ✅ | Static | Review needed |
-| dropdown-button | `blocks/dropdown-button/` | v3 ✅ | ✅ | ? | Review needed |
-| heading | `blocks/heading/` | v3 ✅ | ✅ | Static | No viewScript |
-| post-carousel | `blocks/post-carousel/` | v3 ✅ | ✅ | SSR ✅ | Feature-rich baseline |
-| slider | `blocks/slider/` | v3 ✅ | ✅ | Static | Good baseline |
-| smart-menu | `blocks/smart-menu/` | v3 ✅ | ✅ | SSR ✅ | Review needed |
-
-### Existing Block Analysis
-
-**Positive Patterns Found:**
-- All blocks use `apiVersion: 3` ✅
-- Consistent naming: `wbcom-essential/{name}` ✅
-- Proper category: `wbcom-essential` ✅
-- Good supports configuration (align, color, spacing) ✅
-- Responsive attributes pattern (Desktop/Tablet/Mobile) ✅
-
-**Areas for Standardization:**
-1. **Server-side render**: Some blocks missing `render.php`
-2. **Keywords**: Not all blocks have SEO keywords
-3. **Examples**: Not all have preview examples
-4. **Icon consistency**: Mix of dashicons used
-5. **Version numbers**: Mix of 0.1.0 and 1.0.0
-
-**Recommended Block Structure Template:**
-Use `accordion` as the reference implementation (cleanest pattern).
-
----
-
-## Detailed Block Audit Findings
-
-### Inconsistencies Found
-
-#### 1. PHP File Headers
-| Block | Issue |
-|-------|-------|
-| `accordion` | ✅ Simple package header |
-| `post-carousel` | ❌ Has full plugin headers (Plugin Name, Version, etc.) - should be removed |
-| `heading` | ✅ Simple package header |
-| Others | Mixed patterns |
-
-**Standard to follow:**
-```php
-<?php
-/**
- * {Block Name} Block
- *
- * @package WBCOM_Essential
- */
-```
-
-#### 2. index.js Patterns
-| Block | editor.scss | save.js |
-|-------|-------------|---------|
-| `accordion` | ❌ Missing import | ❌ Not imported |
-| `post-carousel` | ✅ Imported | ✅ Imported |
-| Others | Mixed |
-
-**Standard to follow:**
-```javascript
-import { registerBlockType } from '@wordpress/blocks';
-import './style.scss';
-import './editor.scss';
-import Edit from './edit';
-import save from './save';
-import metadata from './block.json';
-
-registerBlockType( metadata.name, {
-    edit: Edit,
-    save,
-} );
-```
-
-#### 3. Server-Side Render vs Static Save
-| Block | Type | Implementation |
-|-------|------|----------------|
-| `accordion` | SSR | `render.php` via block.json |
-| `post-carousel` | SSR | `render_callback` in PHP |
-| `heading` | SSR | `render_callback` in PHP |
-| `slider` | Static | `save.js` returns markup |
-| `branding` | Static | `save.js` returns markup |
-
-**Standard: Use block.json `render` for SSR:**
-```json
-{
-    "render": "file:./render.php"
-}
-```
-
-#### 4. render.php Location
-| Block | Location |
-|-------|----------|
-| `accordion` | `src/render.php` ✅ |
-| `post-carousel` | `render.php` (root) ❌ |
-| `advanced-tabs` | `src/render.php` ✅ |
-
-**Standard:** All render.php should be in `src/` folder.
-
-#### 5. Function Naming
-```php
-// Current (inconsistent)
-wbcom_essential_accordion_block_init()
-wbcom_essential_post_carousel_block_init()
-wbcom_essential_render_post_carousel_block()
-
-// Standard pattern
-wbcom_essential_{block_name}_block_init()
-wbcom_essential_render_{block_name}_block()
-```
-
----
-
 ## Standardized Block Template
 
 ### File Structure
@@ -603,27 +472,159 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 
 ---
 
-## Blocks Requiring Updates
+## Use Theme Colors Pattern
 
-### Priority Fixes
+All blocks should support a "Use Theme Colors" toggle that allows users to choose between:
+- **Disabled (default)**: Custom colors via ColorPicker controls with inline styles
+- **Enabled**: Inherit colors from the active theme's CSS custom properties
 
-1. **post-carousel**
-   - [ ] Remove plugin headers from PHP file
-   - [ ] Move render.php to src/
-   - [ ] Use block.json render instead of render_callback
+### Implementation Checklist
 
-2. **accordion**
-   - [ ] Add editor.scss import to index.js
-   - [ ] Add save.js import (even if null)
+When adding theme colors support to a block:
 
-3. **heading**
-   - [ ] Create render.php, use block.json render
-   - [ ] Remove render_callback from PHP
+1. **block.json** - Add attribute
+2. **edit.js** - Add toggle and conditional color pickers
+3. **render.php** - Add class and conditional inline styles
+4. **style.scss** - Add theme color variable mappings
 
-4. **All blocks**
-   - [ ] Add keywords to block.json
-   - [ ] Add example previews
-   - [ ] Standardize version to 1.0.0
+### 1. block.json - Add Attribute
+
+```json
+"attributes": {
+    "useThemeColors": {
+        "type": "boolean",
+        "default": false
+    },
+    // ... other attributes
+}
+```
+
+### 2. edit.js - Add Toggle Control
+
+```javascript
+// Import ToggleControl
+import { ToggleControl } from '@wordpress/components';
+
+// Destructure attribute
+const { useThemeColors, /* other attrs */ } = attributes;
+
+// Add class to blockProps
+const blockProps = useBlockProps( {
+    className: `wp-block-wbcom-essential-{block-name}${ useThemeColors ? ' use-theme-colors' : '' }`,
+} );
+
+// In InspectorControls, Color Settings panel:
+<PanelBody title={ __( 'Color Settings', 'wbcom-essential' ) } initialOpen={ false }>
+    <ToggleControl
+        label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+        help={ useThemeColors
+            ? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+            : __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+        }
+        checked={ useThemeColors }
+        onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+    />
+    { ! useThemeColors && (
+        <>
+            <hr />
+            {/* ColorPicker controls here - only shown when theme colors disabled */}
+        </>
+    ) }
+</PanelBody>
+
+// Conditionally apply inline styles in preview
+const elementStyle = {
+    // Typography always applied
+    fontSize: `${ fontSize }px`,
+    // Colors only when NOT using theme colors
+    ...( ! useThemeColors && {
+        color: textColor,
+        backgroundColor: bgColor,
+    } ),
+};
+```
+
+### 3. render.php - Add Class and Conditional Styles
+
+```php
+// Extract attribute
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+
+// Add class to wrapper
+$wrapper_classes = $use_theme_colors ? 'use-theme-colors' : '';
+$wrapper_attributes = get_block_wrapper_attributes( array(
+    'class' => $wrapper_classes,
+) );
+
+// Build styles - colors only when theme colors disabled
+$element_style = 'font-size: ' . esc_attr( $font_size ) . 'px;';
+if ( ! $use_theme_colors ) {
+    if ( ! empty( $text_color ) ) {
+        $element_style .= ' color: ' . esc_attr( $text_color ) . ';';
+    }
+    if ( ! empty( $bg_color ) ) {
+        $element_style .= ' background-color: ' . esc_attr( $bg_color ) . ';';
+    }
+}
+```
+
+### 4. style.scss - Theme Color Variable Mappings
+
+```scss
+.wp-block-wbcom-essential-{block-name} {
+    // Default colors (fallbacks when using inline styles)
+    --border-color: #ddd;
+    --bg-color: #fff;
+    --text-color: inherit;
+    --heading-color: inherit;
+    --link-color: #0073aa;
+
+    /**
+     * Theme Colors Mode
+     * Maps theme CSS variables to block-specific variables
+     */
+    &.use-theme-colors {
+        --border-color: var(--wbcom-card-border, var(--wbcom-color-border, #ddd));
+        --bg-color: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+        --text-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+        --heading-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+        --link-color: var(--wbcom-link-color, var(--wbcom-color-primary, #0073aa));
+
+        // Apply theme colors to elements
+        .element-class {
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            border-color: var(--border-color);
+        }
+    }
+}
+```
+
+### Available Theme CSS Variables
+
+Reference: `/plugins/gutenberg/assets/css/theme-colors.css`
+
+| Variable | Purpose | Fallback |
+|----------|---------|----------|
+| `--wbcom-color-primary` | Primary accent | `#0073aa` |
+| `--wbcom-color-secondary` | Secondary accent | `#6c757d` |
+| `--wbcom-color-base` | Background | `#fff` |
+| `--wbcom-color-base-2` | Secondary bg | `#f8f9fa` |
+| `--wbcom-color-contrast` | Primary text | `#212529` |
+| `--wbcom-color-contrast-2` | Secondary text | `#495057` |
+| `--wbcom-heading-color` | Headings | `inherit` |
+| `--wbcom-text-color` | Body text | `inherit` |
+| `--wbcom-link-color` | Links | Primary |
+| `--wbcom-card-bg` | Card backgrounds | Base |
+| `--wbcom-card-border` | Card borders | `#ddd` |
+
+### Reference Implementation
+
+See the Accordion block for a complete implementation:
+- `blocks/accordion/src/block.json` - Attribute definition
+- `blocks/accordion/src/edit.js` - Editor toggle and conditional rendering
+- `blocks/accordion/src/render.php` - Server-side conditional styles
+- `blocks/accordion/src/style.scss` - Theme color mappings
 
 ---
 

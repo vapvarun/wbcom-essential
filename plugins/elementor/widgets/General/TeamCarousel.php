@@ -72,6 +72,13 @@ class TeamCarousel extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'team', 'carousel', 'members', 'staff', 'slider' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {

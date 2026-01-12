@@ -49,6 +49,7 @@ import './editor.scss';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		text,
 		size,
 		buttonIcon,
@@ -171,7 +172,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const blockProps = useBlockProps( {
-		className: `dropdown-button-wrapper size-${ size } ${ buttonSkin !== 'none' ? buttonSkin : '' }`,
+		className: `dropdown-button-wrapper size-${ size } ${ buttonSkin !== 'none' ? buttonSkin : '' }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: wrapperStyle
 	} );
 
@@ -288,7 +289,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						__next40pxDefaultSize={ true }
 						__nextHasNoMarginBottom={ true }
 					/>
-					{ buttonSkin !== 'none' && (
+					{ buttonSkin !== 'none' && ! useThemeColors && (
 						<>
 							<p><strong>{ __( 'Animation Color', 'dropdown-button' ) }</strong></p>
 							<ColorPalette
@@ -351,238 +352,259 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Button Colors', 'dropdown-button' ) } initialOpen={ false }>
-					<p>{ __( 'Normal State', 'dropdown-button' ) }</p>
-					<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ buttonTextColor }
-						onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
-					/>
-					<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ buttonBgColor }
-						onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
-					/>
-					<hr />
-					<p>{ __( 'Hover State', 'dropdown-button' ) }</p>
-					<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ buttonHoverTextColor }
-						onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
-					/>
-					<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ buttonHoverBgColor }
-						onChange={ ( value ) => setAttributes( { buttonHoverBgColor: value } ) }
-					/>
-				</PanelBody>
-
-				<PanelBody title={ __( 'Button Gradient Background', 'dropdown-button' ) } initialOpen={ false }>
 					<ToggleControl
-						label={ __( 'Enable Gradient', 'dropdown-button' ) }
-						checked={ enableGradient }
-						onChange={ ( value ) => setAttributes( { enableGradient: value } ) }
+						label={ __( 'Use Theme Colors', 'dropdown-button' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'dropdown-button' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'dropdown-button' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					{ enableGradient && (
+					{ ! useThemeColors && (
 						<>
-							<SelectControl
-								label={ __( 'Gradient Type', 'dropdown-button' ) }
-								value={ gradientType }
-								options={ [
-									{ label: __( 'Linear', 'dropdown-button' ), value: 'linear' },
-									{ label: __( 'Radial', 'dropdown-button' ), value: 'radial' }
-								] }
-								onChange={ ( value ) => setAttributes( { gradientType: value } ) }
+							<p>{ __( 'Normal State', 'dropdown-button' ) }</p>
+							<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
+							<ColorPalette
+								value={ buttonTextColor }
+								onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
 							/>
-							{ gradientType === 'linear' && (
-								<RangeControl
-									label={ __( 'Angle', 'dropdown-button' ) }
-									value={ gradientAngle }
-									onChange={ ( value ) => setAttributes( { gradientAngle: value } ) }
-									min={ 0 }
-									max={ 360 }
+							<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
+							<ColorPalette
+								value={ buttonBgColor }
+								onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
+							/>
+							<hr />
+							<p>{ __( 'Hover State', 'dropdown-button' ) }</p>
+							<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
+							<ColorPalette
+								value={ buttonHoverTextColor }
+								onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
+							/>
+							<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
+							<ColorPalette
+								value={ buttonHoverBgColor }
+								onChange={ ( value ) => setAttributes( { buttonHoverBgColor: value } ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				{ ! useThemeColors && (
+					<PanelBody title={ __( 'Button Gradient Background', 'dropdown-button' ) } initialOpen={ false }>
+						<ToggleControl
+							label={ __( 'Enable Gradient', 'dropdown-button' ) }
+							checked={ enableGradient }
+							onChange={ ( value ) => setAttributes( { enableGradient: value } ) }
+						/>
+						{ enableGradient && (
+							<>
+								<SelectControl
+									label={ __( 'Gradient Type', 'dropdown-button' ) }
+									value={ gradientType }
+									options={ [
+										{ label: __( 'Linear', 'dropdown-button' ), value: 'linear' },
+										{ label: __( 'Radial', 'dropdown-button' ), value: 'radial' }
+									] }
+									onChange={ ( value ) => setAttributes( { gradientType: value } ) }
 								/>
-							) }
-							<p><strong>{ __( 'Start Color', 'dropdown-button' ) }</strong></p>
-							<ColorPalette
-								value={ gradientColorStart }
-								onChange={ ( value ) => setAttributes( { gradientColorStart: value } ) }
-							/>
-							<RangeControl
-								label={ __( 'Start Position (%)', 'dropdown-button' ) }
-								value={ gradientStartPosition }
-								onChange={ ( value ) => setAttributes( { gradientStartPosition: value } ) }
-								min={ 0 }
-								max={ 100 }
-							/>
-							<p><strong>{ __( 'End Color', 'dropdown-button' ) }</strong></p>
-							<ColorPalette
-								value={ gradientColorEnd }
-								onChange={ ( value ) => setAttributes( { gradientColorEnd: value } ) }
-							/>
-							<RangeControl
-								label={ __( 'End Position (%)', 'dropdown-button' ) }
-								value={ gradientEndPosition }
-								onChange={ ( value ) => setAttributes( { gradientEndPosition: value } ) }
-								min={ 0 }
-								max={ 100 }
-							/>
-						</>
-					) }
-					<hr />
-					<ToggleControl
-						label={ __( 'Enable Hover Gradient', 'dropdown-button' ) }
-						checked={ enableHoverGradient }
-						onChange={ ( value ) => setAttributes( { enableHoverGradient: value } ) }
-					/>
-					{ enableHoverGradient && (
-						<>
-							<SelectControl
-								label={ __( 'Hover Gradient Type', 'dropdown-button' ) }
-								value={ hoverGradientType }
-								options={ [
-									{ label: __( 'Linear', 'dropdown-button' ), value: 'linear' },
-									{ label: __( 'Radial', 'dropdown-button' ), value: 'radial' }
-								] }
-								onChange={ ( value ) => setAttributes( { hoverGradientType: value } ) }
-							/>
-							{ hoverGradientType === 'linear' && (
-								<RangeControl
-									label={ __( 'Angle', 'dropdown-button' ) }
-									value={ hoverGradientAngle }
-									onChange={ ( value ) => setAttributes( { hoverGradientAngle: value } ) }
-									min={ 0 }
-									max={ 360 }
+								{ gradientType === 'linear' && (
+									<RangeControl
+										label={ __( 'Angle', 'dropdown-button' ) }
+										value={ gradientAngle }
+										onChange={ ( value ) => setAttributes( { gradientAngle: value } ) }
+										min={ 0 }
+										max={ 360 }
+									/>
+								) }
+								<p><strong>{ __( 'Start Color', 'dropdown-button' ) }</strong></p>
+								<ColorPalette
+									value={ gradientColorStart }
+									onChange={ ( value ) => setAttributes( { gradientColorStart: value } ) }
 								/>
-							) }
-							<p><strong>{ __( 'Start Color', 'dropdown-button' ) }</strong></p>
-							<ColorPalette
-								value={ hoverGradientColorStart }
-								onChange={ ( value ) => setAttributes( { hoverGradientColorStart: value } ) }
-							/>
-							<RangeControl
-								label={ __( 'Start Position (%)', 'dropdown-button' ) }
-								value={ hoverGradientStartPosition }
-								onChange={ ( value ) => setAttributes( { hoverGradientStartPosition: value } ) }
-								min={ 0 }
-								max={ 100 }
-							/>
-							<p><strong>{ __( 'End Color', 'dropdown-button' ) }</strong></p>
-							<ColorPalette
-								value={ hoverGradientColorEnd }
-								onChange={ ( value ) => setAttributes( { hoverGradientColorEnd: value } ) }
-							/>
-							<RangeControl
-								label={ __( 'End Position (%)', 'dropdown-button' ) }
-								value={ hoverGradientEndPosition }
-								onChange={ ( value ) => setAttributes( { hoverGradientEndPosition: value } ) }
-								min={ 0 }
-								max={ 100 }
-							/>
-						</>
-					) }
-				</PanelBody>
+								<RangeControl
+									label={ __( 'Start Position (%)', 'dropdown-button' ) }
+									value={ gradientStartPosition }
+									onChange={ ( value ) => setAttributes( { gradientStartPosition: value } ) }
+									min={ 0 }
+									max={ 100 }
+								/>
+								<p><strong>{ __( 'End Color', 'dropdown-button' ) }</strong></p>
+								<ColorPalette
+									value={ gradientColorEnd }
+									onChange={ ( value ) => setAttributes( { gradientColorEnd: value } ) }
+								/>
+								<RangeControl
+									label={ __( 'End Position (%)', 'dropdown-button' ) }
+									value={ gradientEndPosition }
+									onChange={ ( value ) => setAttributes( { gradientEndPosition: value } ) }
+									min={ 0 }
+									max={ 100 }
+								/>
+							</>
+						) }
+						<hr />
+						<ToggleControl
+							label={ __( 'Enable Hover Gradient', 'dropdown-button' ) }
+							checked={ enableHoverGradient }
+							onChange={ ( value ) => setAttributes( { enableHoverGradient: value } ) }
+						/>
+						{ enableHoverGradient && (
+							<>
+								<SelectControl
+									label={ __( 'Hover Gradient Type', 'dropdown-button' ) }
+									value={ hoverGradientType }
+									options={ [
+										{ label: __( 'Linear', 'dropdown-button' ), value: 'linear' },
+										{ label: __( 'Radial', 'dropdown-button' ), value: 'radial' }
+									] }
+									onChange={ ( value ) => setAttributes( { hoverGradientType: value } ) }
+								/>
+								{ hoverGradientType === 'linear' && (
+									<RangeControl
+										label={ __( 'Angle', 'dropdown-button' ) }
+										value={ hoverGradientAngle }
+										onChange={ ( value ) => setAttributes( { hoverGradientAngle: value } ) }
+										min={ 0 }
+										max={ 360 }
+									/>
+								) }
+								<p><strong>{ __( 'Start Color', 'dropdown-button' ) }</strong></p>
+								<ColorPalette
+									value={ hoverGradientColorStart }
+									onChange={ ( value ) => setAttributes( { hoverGradientColorStart: value } ) }
+								/>
+								<RangeControl
+									label={ __( 'Start Position (%)', 'dropdown-button' ) }
+									value={ hoverGradientStartPosition }
+									onChange={ ( value ) => setAttributes( { hoverGradientStartPosition: value } ) }
+									min={ 0 }
+									max={ 100 }
+								/>
+								<p><strong>{ __( 'End Color', 'dropdown-button' ) }</strong></p>
+								<ColorPalette
+									value={ hoverGradientColorEnd }
+									onChange={ ( value ) => setAttributes( { hoverGradientColorEnd: value } ) }
+								/>
+								<RangeControl
+									label={ __( 'End Position (%)', 'dropdown-button' ) }
+									value={ hoverGradientEndPosition }
+									onChange={ ( value ) => setAttributes( { hoverGradientEndPosition: value } ) }
+									min={ 0 }
+									max={ 100 }
+								/>
+							</>
+						) }
+					</PanelBody>
+				) }
 
-				<PanelBody title={ __( 'Button Border', 'dropdown-button' ) } initialOpen={ false }>
-					<p>{ __( 'Normal State', 'dropdown-button' ) }</p>
-					<SelectControl
-						label={ __( 'Border Style', 'dropdown-button' ) }
-						value={ borderStyle }
-						options={ [
-							{ label: __( 'None', 'dropdown-button' ), value: 'none' },
-							{ label: __( 'Solid', 'dropdown-button' ), value: 'solid' },
-							{ label: __( 'Dashed', 'dropdown-button' ), value: 'dashed' },
-							{ label: __( 'Dotted', 'dropdown-button' ), value: 'dotted' },
-							{ label: __( 'Double', 'dropdown-button' ), value: 'double' }
-						] }
-						onChange={ ( value ) => setAttributes( { borderStyle: value } ) }
-					/>
-					{ borderStyle !== 'none' && (
-						<>
-							<RangeControl
-								label={ __( 'Border Width', 'dropdown-button' ) }
-								value={ borderWidth }
-								onChange={ ( value ) => setAttributes( { borderWidth: value } ) }
-								min={ 1 }
-								max={ 10 }
-							/>
-							<p><strong>{ __( 'Border Color', 'dropdown-button' ) }</strong></p>
-							<ColorPalette
-								value={ borderColor }
-								onChange={ ( value ) => setAttributes( { borderColor: value } ) }
-							/>
-						</>
-					) }
-					<hr />
-					<p>{ __( 'Hover State', 'dropdown-button' ) }</p>
-					<SelectControl
-						label={ __( 'Border Style', 'dropdown-button' ) }
-						value={ borderStyleHover }
-						options={ [
-							{ label: __( 'None', 'dropdown-button' ), value: 'none' },
-							{ label: __( 'Solid', 'dropdown-button' ), value: 'solid' },
-							{ label: __( 'Dashed', 'dropdown-button' ), value: 'dashed' },
-							{ label: __( 'Dotted', 'dropdown-button' ), value: 'dotted' },
-							{ label: __( 'Double', 'dropdown-button' ), value: 'double' }
-						] }
-						onChange={ ( value ) => setAttributes( { borderStyleHover: value } ) }
-					/>
-					{ borderStyleHover !== 'none' && borderStyleHover && (
-						<>
-							<RangeControl
-								label={ __( 'Border Width', 'dropdown-button' ) }
-								value={ borderWidthHover }
-								onChange={ ( value ) => setAttributes( { borderWidthHover: value } ) }
-								min={ 1 }
-								max={ 10 }
-							/>
-							<p><strong>{ __( 'Border Color', 'dropdown-button' ) }</strong></p>
-							<ColorPalette
-								value={ borderColorHover }
-								onChange={ ( value ) => setAttributes( { borderColorHover: value } ) }
-							/>
-						</>
-					) }
-				</PanelBody>
+				{ ! useThemeColors && (
+					<PanelBody title={ __( 'Button Border', 'dropdown-button' ) } initialOpen={ false }>
+						<p>{ __( 'Normal State', 'dropdown-button' ) }</p>
+						<SelectControl
+							label={ __( 'Border Style', 'dropdown-button' ) }
+							value={ borderStyle }
+							options={ [
+								{ label: __( 'None', 'dropdown-button' ), value: 'none' },
+								{ label: __( 'Solid', 'dropdown-button' ), value: 'solid' },
+								{ label: __( 'Dashed', 'dropdown-button' ), value: 'dashed' },
+								{ label: __( 'Dotted', 'dropdown-button' ), value: 'dotted' },
+								{ label: __( 'Double', 'dropdown-button' ), value: 'double' }
+							] }
+							onChange={ ( value ) => setAttributes( { borderStyle: value } ) }
+						/>
+						{ borderStyle !== 'none' && (
+							<>
+								<RangeControl
+									label={ __( 'Border Width', 'dropdown-button' ) }
+									value={ borderWidth }
+									onChange={ ( value ) => setAttributes( { borderWidth: value } ) }
+									min={ 1 }
+									max={ 10 }
+								/>
+								<p><strong>{ __( 'Border Color', 'dropdown-button' ) }</strong></p>
+								<ColorPalette
+									value={ borderColor }
+									onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+								/>
+							</>
+						) }
+						<hr />
+						<p>{ __( 'Hover State', 'dropdown-button' ) }</p>
+						<SelectControl
+							label={ __( 'Border Style', 'dropdown-button' ) }
+							value={ borderStyleHover }
+							options={ [
+								{ label: __( 'None', 'dropdown-button' ), value: 'none' },
+								{ label: __( 'Solid', 'dropdown-button' ), value: 'solid' },
+								{ label: __( 'Dashed', 'dropdown-button' ), value: 'dashed' },
+								{ label: __( 'Dotted', 'dropdown-button' ), value: 'dotted' },
+								{ label: __( 'Double', 'dropdown-button' ), value: 'double' }
+							] }
+							onChange={ ( value ) => setAttributes( { borderStyleHover: value } ) }
+						/>
+						{ borderStyleHover !== 'none' && borderStyleHover && (
+							<>
+								<RangeControl
+									label={ __( 'Border Width', 'dropdown-button' ) }
+									value={ borderWidthHover }
+									onChange={ ( value ) => setAttributes( { borderWidthHover: value } ) }
+									min={ 1 }
+									max={ 10 }
+								/>
+								<p><strong>{ __( 'Border Color', 'dropdown-button' ) }</strong></p>
+								<ColorPalette
+									value={ borderColorHover }
+									onChange={ ( value ) => setAttributes( { borderColorHover: value } ) }
+								/>
+							</>
+						) }
+					</PanelBody>
+				) }
 
-				<PanelBody title={ __( 'Icon Styling', 'dropdown-button' ) } initialOpen={ false }>
-					<p><strong>{ __( 'Icon Background Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ iconBgColor }
-						onChange={ ( value ) => setAttributes( { iconBgColor: value } ) }
-					/>
-				</PanelBody>
+				{ ! useThemeColors && (
+					<PanelBody title={ __( 'Icon Styling', 'dropdown-button' ) } initialOpen={ false }>
+						<p><strong>{ __( 'Icon Background Color', 'dropdown-button' ) }</strong></p>
+						<ColorPalette
+							value={ iconBgColor }
+							onChange={ ( value ) => setAttributes( { iconBgColor: value } ) }
+						/>
+					</PanelBody>
+				) }
 
-				<PanelBody title={ __( 'Dropdown Colors', 'dropdown-button' ) } initialOpen={ false }>
-					<p>{ __( 'Normal State', 'dropdown-button' ) }</p>
-					<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ dropdownTextColor }
-						onChange={ ( value ) => setAttributes( { dropdownTextColor: value } ) }
-					/>
-					<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ dropdownBgColor }
-						onChange={ ( value ) => setAttributes( { dropdownBgColor: value } ) }
-					/>
-					<hr />
-					<p>{ __( 'Hover State', 'dropdown-button' ) }</p>
-					<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ dropdownHoverTextColor }
-						onChange={ ( value ) => setAttributes( { dropdownHoverTextColor: value } ) }
-					/>
-					<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ dropdownHoverBgColor }
-						onChange={ ( value ) => setAttributes( { dropdownHoverBgColor: value } ) }
-					/>
-					<hr />
-					<p><strong>{ __( 'Separator Color', 'dropdown-button' ) }</strong></p>
-					<ColorPalette
-						value={ separatorColor }
-						onChange={ ( value ) => setAttributes( { separatorColor: value } ) }
-					/>
-				</PanelBody>
+				{ ! useThemeColors && (
+					<PanelBody title={ __( 'Dropdown Colors', 'dropdown-button' ) } initialOpen={ false }>
+						<p>{ __( 'Normal State', 'dropdown-button' ) }</p>
+						<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
+						<ColorPalette
+							value={ dropdownTextColor }
+							onChange={ ( value ) => setAttributes( { dropdownTextColor: value } ) }
+						/>
+						<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
+						<ColorPalette
+							value={ dropdownBgColor }
+							onChange={ ( value ) => setAttributes( { dropdownBgColor: value } ) }
+						/>
+						<hr />
+						<p>{ __( 'Hover State', 'dropdown-button' ) }</p>
+						<p><strong>{ __( 'Text Color', 'dropdown-button' ) }</strong></p>
+						<ColorPalette
+							value={ dropdownHoverTextColor }
+							onChange={ ( value ) => setAttributes( { dropdownHoverTextColor: value } ) }
+						/>
+						<p><strong>{ __( 'Background Color', 'dropdown-button' ) }</strong></p>
+						<ColorPalette
+							value={ dropdownHoverBgColor }
+							onChange={ ( value ) => setAttributes( { dropdownHoverBgColor: value } ) }
+						/>
+						<hr />
+						<p><strong>{ __( 'Separator Color', 'dropdown-button' ) }</strong></p>
+						<ColorPalette
+							value={ separatorColor }
+							onChange={ ( value ) => setAttributes( { separatorColor: value } ) }
+						/>
+					</PanelBody>
+				) }
 
 				<PanelBody title={ __( 'Dropdown Shadow', 'dropdown-button' ) } initialOpen={ false }>
 					<TextControl

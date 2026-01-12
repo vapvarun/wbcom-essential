@@ -27,6 +27,8 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		// Theme colors.
+		useThemeColors,
 		// Logo settings.
 		showLogo,
 		logoUrl,
@@ -125,16 +127,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	const SubtitleTag = subtitleTag || 'p';
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-login-form-editor',
+		className: `wbcom-essential-login-form-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
 	} );
 
 	// Build inline styles for preview.
+	// Dimension/layout styles - always applied.
 	const inlineStyles = {
-		'--form-bg-color': formBgColor || '#ffffff',
 		'--form-padding': `${ formPadding }px`,
 		'--form-border-radius': `${ formBorderRadius }px`,
 		'--form-width': `${ formWidth }${ formWidthUnit }`,
-		'--form-border-color': formBorderColor || 'transparent',
 		'--form-border-width': `${ formBorderWidth }px`,
 		'--form-box-shadow': formBoxShadow ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
 		'--form-align': formAlign,
@@ -143,45 +144,53 @@ export default function Edit( { attributes, setAttributes } ) {
 		'--logo-align': logoAlign,
 		'--logo-border-radius': `${ logoBorderRadius }px`,
 		'--logo-margin-bottom': `${ logoMarginBottom }px`,
-		'--title-color': titleColor || '#122B46',
 		'--title-align': titleAlign,
 		'--title-margin-bottom': `${ titleMarginBottom }px`,
-		'--subtitle-color': subtitleColor || '#666666',
 		'--subtitle-align': subtitleAlign,
 		'--subtitle-margin-bottom': `${ subtitleMarginBottom }px`,
-		'--label-color': labelColor || '#122B46',
 		'--label-align': labelAlign,
-		'--input-bg-color': inputBgColor || '#f8f9fa',
-		'--input-border-color': inputBorderColor || '#e3e3e3',
-		'--input-text-color': inputTextColor || '#122B46',
-		'--input-placeholder-color': inputPlaceholderColor || '#a0aec0',
-		'--input-focus-border-color': inputFocusBorderColor || '#1d76da',
-		'--input-focus-bg-color': inputFocusBgColor || '',
 		'--input-border-radius': `${ inputBorderRadius }px`,
 		'--input-padding-v': `${ inputPaddingV }px`,
 		'--input-padding-h': `${ inputPaddingH }px`,
 		'--input-width': `${ inputWidth }%`,
 		'--input-align': inputAlign,
-		'--button-bg-color': buttonBgColor || '#1d76da',
-		'--button-text-color': buttonTextColor || '#ffffff',
-		'--button-hover-bg-color': buttonHoverBgColor || '#1557a0',
-		'--button-hover-text-color': buttonHoverTextColor || '#ffffff',
-		'--button-border-color': buttonBorderColor || 'transparent',
-		'--button-hover-border-color': buttonHoverBorderColor || 'transparent',
 		'--button-border-radius': `${ buttonBorderRadius }px`,
 		'--button-border-width': `${ buttonBorderWidth }px`,
 		'--button-padding-v': `${ buttonPaddingV }px`,
 		'--button-padding-h': `${ buttonPaddingH }px`,
 		'--button-width': `${ buttonWidth }%`,
 		'--button-align': buttonAlign,
-		'--link-color': linkColor || '#1d76da',
-		'--link-hover-color': linkHoverColor || '#1557a0',
 		'--links-align': linksAlign,
 		'--links-margin-top': `${ linksMarginTop }px`,
-		'--checkbox-color': checkboxColor || '#1d76da',
-		'--logged-in-msg-color': loggedInMsgColor || '#122B46',
 		'--logged-in-msg-align': loggedInMsgAlign,
 	};
+
+	// Color styles - only when NOT using theme colors.
+	if ( ! useThemeColors ) {
+		Object.assign( inlineStyles, {
+			'--form-bg-color': formBgColor || '#ffffff',
+			'--form-border-color': formBorderColor || 'transparent',
+			'--title-color': titleColor || '#122B46',
+			'--subtitle-color': subtitleColor || '#666666',
+			'--label-color': labelColor || '#122B46',
+			'--input-bg-color': inputBgColor || '#f8f9fa',
+			'--input-border-color': inputBorderColor || '#e3e3e3',
+			'--input-text-color': inputTextColor || '#122B46',
+			'--input-placeholder-color': inputPlaceholderColor || '#a0aec0',
+			'--input-focus-border-color': inputFocusBorderColor || '#1d76da',
+			'--input-focus-bg-color': inputFocusBgColor || '',
+			'--button-bg-color': buttonBgColor || '#1d76da',
+			'--button-text-color': buttonTextColor || '#ffffff',
+			'--button-hover-bg-color': buttonHoverBgColor || '#1557a0',
+			'--button-hover-text-color': buttonHoverTextColor || '#ffffff',
+			'--button-border-color': buttonBorderColor || 'transparent',
+			'--button-hover-border-color': buttonHoverBorderColor || 'transparent',
+			'--link-color': linkColor || '#1d76da',
+			'--link-hover-color': linkHoverColor || '#1557a0',
+			'--checkbox-color': checkboxColor || '#1d76da',
+			'--logged-in-msg-color': loggedInMsgColor || '#122B46',
+		} );
+	}
 
 	const onSelectLogo = ( media ) => {
 		setAttributes( {
@@ -224,6 +233,19 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
+				{ /* Theme Colors Panel */ }
+				<PanelBody title={ __( 'Theme Colors', 'wbcom-essential' ) } initialOpen={ true }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+				</PanelBody>
+
 				{ /* Login Form Content Panel */ }
 				<PanelBody title={ __( 'Login Form', 'wbcom-essential' ) }>
 					<MediaUploadCheck>
@@ -451,19 +473,25 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					<Divider />
 
-					<ColorControl
-						label={ __( 'Background', 'wbcom-essential' ) }
-						value={ formBgColor }
-						onChange={ ( value ) => setAttributes( { formBgColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Background', 'wbcom-essential' ) }
+								value={ formBgColor }
+								onChange={ ( value ) => setAttributes( { formBgColor: value } ) }
+							/>
 
-					<Divider />
+							<Divider />
 
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ formBorderColor }
-						onChange={ ( value ) => setAttributes( { formBorderColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ formBorderColor }
+								onChange={ ( value ) => setAttributes( { formBorderColor: value } ) }
+							/>
+
+							<Divider />
+						</>
+					) }
 
 					<RangeControl
 						label={ __( 'Border Width', 'wbcom-essential' ) }
@@ -546,11 +574,16 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{ /* Title Style */ }
 				<PanelBody title={ __( 'Title', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+							<Divider />
+						</>
+					) }
 
 					<div className="wbcom-control-group">
 						<p className="components-base-control__label">
@@ -582,11 +615,16 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{ /* Subtitle Style */ }
 				<PanelBody title={ __( 'Sub Title', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ subtitleColor }
-						onChange={ ( value ) => setAttributes( { subtitleColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ subtitleColor }
+								onChange={ ( value ) => setAttributes( { subtitleColor: value } ) }
+							/>
+							<Divider />
+						</>
+					) }
 
 					<div className="wbcom-control-group">
 						<p className="components-base-control__label">
@@ -624,11 +662,16 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { showLabels: value } ) }
 					/>
 
-					<ColorControl
-						label={ __( 'Color', 'wbcom-essential' ) }
-						value={ labelColor }
-						onChange={ ( value ) => setAttributes( { labelColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Color', 'wbcom-essential' ) }
+								value={ labelColor }
+								onChange={ ( value ) => setAttributes( { labelColor: value } ) }
+							/>
+							<Divider />
+						</>
+					) }
 
 					<div className="wbcom-control-group">
 						<p className="components-base-control__label">
@@ -677,49 +720,53 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					<Divider />
 
-					<p className="wbcom-panel-subtitle">{ __( 'Normal', 'wbcom-essential' ) }</p>
+					{ ! useThemeColors && (
+						<>
+							<p className="wbcom-panel-subtitle">{ __( 'Normal', 'wbcom-essential' ) }</p>
 
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ inputTextColor }
-						onChange={ ( value ) => setAttributes( { inputTextColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ inputTextColor }
+								onChange={ ( value ) => setAttributes( { inputTextColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Placeholder Color', 'wbcom-essential' ) }
-						value={ inputPlaceholderColor }
-						onChange={ ( value ) => setAttributes( { inputPlaceholderColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Placeholder Color', 'wbcom-essential' ) }
+								value={ inputPlaceholderColor }
+								onChange={ ( value ) => setAttributes( { inputPlaceholderColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ inputBgColor }
-						onChange={ ( value ) => setAttributes( { inputBgColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ inputBgColor }
+								onChange={ ( value ) => setAttributes( { inputBgColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ inputBorderColor }
-						onChange={ ( value ) => setAttributes( { inputBorderColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ inputBorderColor }
+								onChange={ ( value ) => setAttributes( { inputBorderColor: value } ) }
+							/>
 
-					<Divider />
+							<Divider />
 
-					<p className="wbcom-panel-subtitle">{ __( 'Focus', 'wbcom-essential' ) }</p>
+							<p className="wbcom-panel-subtitle">{ __( 'Focus', 'wbcom-essential' ) }</p>
 
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ inputFocusBgColor }
-						onChange={ ( value ) => setAttributes( { inputFocusBgColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ inputFocusBgColor }
+								onChange={ ( value ) => setAttributes( { inputFocusBgColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ inputFocusBorderColor }
-						onChange={ ( value ) => setAttributes( { inputFocusBorderColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ inputFocusBorderColor }
+								onChange={ ( value ) => setAttributes( { inputFocusBorderColor: value } ) }
+							/>
 
-					<Divider />
+							<Divider />
+						</>
+					) }
 
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
@@ -775,49 +822,53 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					<Divider />
 
-					<p className="wbcom-panel-subtitle">{ __( 'Normal', 'wbcom-essential' ) }</p>
+					{ ! useThemeColors && (
+						<>
+							<p className="wbcom-panel-subtitle">{ __( 'Normal', 'wbcom-essential' ) }</p>
 
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ buttonTextColor }
-						onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ buttonTextColor }
+								onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ buttonBgColor }
-						onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ buttonBgColor }
+								onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ buttonBorderColor }
-						onChange={ ( value ) => setAttributes( { buttonBorderColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ buttonBorderColor }
+								onChange={ ( value ) => setAttributes( { buttonBorderColor: value } ) }
+							/>
 
-					<Divider />
+							<Divider />
 
-					<p className="wbcom-panel-subtitle">{ __( 'Hover', 'wbcom-essential' ) }</p>
+							<p className="wbcom-panel-subtitle">{ __( 'Hover', 'wbcom-essential' ) }</p>
 
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ buttonHoverTextColor }
-						onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ buttonHoverTextColor }
+								onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ buttonHoverBgColor }
-						onChange={ ( value ) => setAttributes( { buttonHoverBgColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ buttonHoverBgColor }
+								onChange={ ( value ) => setAttributes( { buttonHoverBgColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ buttonHoverBorderColor }
-						onChange={ ( value ) => setAttributes( { buttonHoverBorderColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ buttonHoverBorderColor }
+								onChange={ ( value ) => setAttributes( { buttonHoverBorderColor: value } ) }
+							/>
 
-					<Divider />
+							<Divider />
+						</>
+					) }
 
 					<RangeControl
 						label={ __( 'Border Width', 'wbcom-essential' ) }
@@ -854,17 +905,23 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{ /* Links Style */ }
 				<PanelBody title={ __( 'Links', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Link Color', 'wbcom-essential' ) }
-						value={ linkColor }
-						onChange={ ( value ) => setAttributes( { linkColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Link Color', 'wbcom-essential' ) }
+								value={ linkColor }
+								onChange={ ( value ) => setAttributes( { linkColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Link Hover Color', 'wbcom-essential' ) }
-						value={ linkHoverColor }
-						onChange={ ( value ) => setAttributes( { linkHoverColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Link Hover Color', 'wbcom-essential' ) }
+								value={ linkHoverColor }
+								onChange={ ( value ) => setAttributes( { linkHoverColor: value } ) }
+							/>
+
+							<Divider />
+						</>
+					) }
 
 					<div className="wbcom-control-group">
 						<p className="components-base-control__label">
@@ -893,23 +950,32 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 60 }
 					/>
 
-					<Divider />
+					{ ! useThemeColors && (
+						<>
+							<Divider />
 
-					<ColorControl
-						label={ __( 'Checkbox Color', 'wbcom-essential' ) }
-						value={ checkboxColor }
-						onChange={ ( value ) => setAttributes( { checkboxColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Checkbox Color', 'wbcom-essential' ) }
+								value={ checkboxColor }
+								onChange={ ( value ) => setAttributes( { checkboxColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				{ /* Logged in Message Style */ }
 				{ showLoggedInMessage && (
 					<PanelBody title={ __( 'Logged in Message', 'wbcom-essential' ) } initialOpen={ false }>
-						<ColorControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ loggedInMsgColor }
-							onChange={ ( value ) => setAttributes( { loggedInMsgColor: value } ) }
-						/>
+						{ ! useThemeColors && (
+							<>
+								<ColorControl
+									label={ __( 'Color', 'wbcom-essential' ) }
+									value={ loggedInMsgColor }
+									onChange={ ( value ) => setAttributes( { loggedInMsgColor: value } ) }
+								/>
+								<Divider />
+							</>
+						) }
 
 						<div className="wbcom-control-group">
 							<p className="components-base-control__label">

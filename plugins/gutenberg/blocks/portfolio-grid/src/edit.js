@@ -39,6 +39,7 @@ const generateId = () => `item-${ Date.now() }-${ Math.random().toString( 36 ).s
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		items,
 		filters,
 		showFilters,
@@ -663,14 +664,107 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 
+				{ /* Colors */ }
+				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+					{ ! useThemeColors && (
+						<>
+							<hr />
+							<h4>{ __( 'Item Colors', 'wbcom-essential' ) }</h4>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ itemBackground }
+								onChange={ ( value ) => setAttributes( { itemBackground: value } ) }
+							/>
+							{ itemBorderWidth > 0 && (
+								<ColorControl
+									label={ __( 'Border Color', 'wbcom-essential' ) }
+									value={ itemBorderColor }
+									onChange={ ( value ) => setAttributes( { itemBorderColor: value } ) }
+								/>
+							) }
+							{ itemBoxShadow.enabled && (
+								<ColorControl
+									label={ __( 'Shadow Color', 'wbcom-essential' ) }
+									value={ itemBoxShadow.color }
+									onChange={ ( value ) => updateBoxShadow( 'color', value ) }
+								/>
+							) }
+							{ itemHoverBoxShadow.enabled && (
+								<ColorControl
+									label={ __( 'Hover Shadow Color', 'wbcom-essential' ) }
+									value={ itemHoverBoxShadow.color }
+									onChange={ ( value ) => updateBoxShadow( 'color', value, true ) }
+								/>
+							) }
+
+							<hr />
+							<h4>{ __( 'Overlay Colors', 'wbcom-essential' ) }</h4>
+							<ColorControl
+								label={ __( 'Overlay Color', 'wbcom-essential' ) }
+								value={ overlayColor }
+								onChange={ ( value ) => setAttributes( { overlayColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Overlay Hover Color', 'wbcom-essential' ) }
+								value={ overlayHoverColor }
+								onChange={ ( value ) => setAttributes( { overlayHoverColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Content Background', 'wbcom-essential' ) }
+								value={ contentBackground }
+								onChange={ ( value ) => setAttributes( { contentBackground: value } ) }
+							/>
+
+							<hr />
+							<h4>{ __( 'Typography Colors', 'wbcom-essential' ) }</h4>
+							<ColorControl
+								label={ __( 'Title Color', 'wbcom-essential' ) }
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Description Color', 'wbcom-essential' ) }
+								value={ descriptionColor }
+								onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
+							/>
+
+							<hr />
+							<h4>{ __( 'Filter Colors', 'wbcom-essential' ) }</h4>
+							<ColorControl
+								label={ __( 'Filter Text Color', 'wbcom-essential' ) }
+								value={ filterTextColor }
+								onChange={ ( value ) => setAttributes( { filterTextColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Filter Active Color', 'wbcom-essential' ) }
+								value={ filterActiveColor }
+								onChange={ ( value ) => setAttributes( { filterActiveColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Filter Background', 'wbcom-essential' ) }
+								value={ filterBackground }
+								onChange={ ( value ) => setAttributes( { filterBackground: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Filter Active Background', 'wbcom-essential' ) }
+								value={ filterActiveBackground }
+								onChange={ ( value ) => setAttributes( { filterActiveBackground: value } ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
 				{ /* Item Style */ }
 				<PanelBody title={ __( 'Item Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ itemBackground }
-						onChange={ ( value ) => setAttributes( { itemBackground: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ itemBorderRadius }
@@ -686,14 +780,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 10 }
 					/>
-
-					{ itemBorderWidth > 0 && (
-						<ColorControl
-							label={ __( 'Border Color', 'wbcom-essential' ) }
-							value={ itemBorderColor }
-							onChange={ ( value ) => setAttributes( { itemBorderColor: value } ) }
-						/>
-					) }
 
 					<h4>{ __( 'Box Shadow', 'wbcom-essential' ) }</h4>
 					<ToggleControl
@@ -731,11 +817,6 @@ export default function Edit( { attributes, setAttributes } ) {
 								onChange={ ( value ) => updateBoxShadow( 'spread', value ) }
 								min={ -50 }
 								max={ 50 }
-							/>
-							<ColorControl
-								label={ __( 'Shadow Color', 'wbcom-essential' ) }
-								value={ itemBoxShadow.color }
-								onChange={ ( value ) => updateBoxShadow( 'color', value ) }
 							/>
 						</>
 					) }
@@ -777,29 +858,12 @@ export default function Edit( { attributes, setAttributes } ) {
 								min={ -50 }
 								max={ 50 }
 							/>
-							<ColorControl
-								label={ __( 'Shadow Color', 'wbcom-essential' ) }
-								value={ itemHoverBoxShadow.color }
-								onChange={ ( value ) => updateBoxShadow( 'color', value, true ) }
-							/>
 						</>
 					) }
 				</PanelBody>
 
 				{ /* Overlay Style */ }
 				<PanelBody title={ __( 'Overlay Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Overlay Color', 'wbcom-essential' ) }
-						value={ overlayColor }
-						onChange={ ( value ) => setAttributes( { overlayColor: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'Overlay Hover Color', 'wbcom-essential' ) }
-						value={ overlayHoverColor }
-						onChange={ ( value ) => setAttributes( { overlayHoverColor: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Content Border Radius', 'wbcom-essential' ) }
 						value={ contentBorderRadius }
@@ -807,55 +871,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 30 }
 					/>
-
-					<ColorControl
-						label={ __( 'Content Background', 'wbcom-essential' ) }
-						value={ contentBackground }
-						onChange={ ( value ) => setAttributes( { contentBackground: value } ) }
-					/>
-				</PanelBody>
-
-				{ /* Typography Colors */ }
-				<PanelBody title={ __( 'Typography Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Title Color', 'wbcom-essential' ) }
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'Description Color', 'wbcom-essential' ) }
-						value={ descriptionColor }
-						onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
-					/>
 				</PanelBody>
 
 				{ /* Filter Style */ }
 				<PanelBody title={ __( 'Filter Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Filter Text Color', 'wbcom-essential' ) }
-						value={ filterTextColor }
-						onChange={ ( value ) => setAttributes( { filterTextColor: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'Filter Active Color', 'wbcom-essential' ) }
-						value={ filterActiveColor }
-						onChange={ ( value ) => setAttributes( { filterActiveColor: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'Filter Background', 'wbcom-essential' ) }
-						value={ filterBackground }
-						onChange={ ( value ) => setAttributes( { filterBackground: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'Filter Active Background', 'wbcom-essential' ) }
-						value={ filterActiveBackground }
-						onChange={ ( value ) => setAttributes( { filterActiveBackground: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Filter Border Radius', 'wbcom-essential' ) }
 						value={ filterBorderRadius }

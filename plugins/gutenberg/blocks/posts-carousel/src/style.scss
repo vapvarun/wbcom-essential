@@ -5,15 +5,29 @@
  */
 
 .wbcom-essential-posts-carousel {
-	// Layout
+	// Layout CSS variables.
 	--card-radius: 10px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--card-bg: var(--wbcom-card-bg, #fff);
-	--category-color: var(--wbcom-color-primary, #3182ce);
-	--title-color: var(--wbcom-heading-color, #1a202c);
-	--excerpt-color: var(--wbcom-text-color, #4a5568);
-	--meta-color: var(--wbcom-meta-color, #718096);
-	--nav-color: var(--wbcom-color-primary, #3182ce);
+
+	// Default color CSS variables (overridden by inline styles when custom colors used).
+	--card-bg: #fff;
+	--category-color: #3182ce;
+	--title-color: #1a202c;
+	--excerpt-color: #4a5568;
+	--meta-color: #718096;
+	--nav-color: #3182ce;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+		--category-color: var(--wbcom-color-primary, #3182ce);
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--excerpt-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #4a5568));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #718096));
+		--nav-color: var(--wbcom-color-primary, #3182ce);
+	}
 
 	position: relative;
 	width: 100%;

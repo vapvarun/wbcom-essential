@@ -88,6 +88,13 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'profile', 'completion', 'progress', 'user', 'buddypress' );
+	}
+
+	/**
 	 * Register elementor profile completion widget controls.
 	 */
 	protected function register_controls() {

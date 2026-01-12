@@ -5,20 +5,37 @@
  */
 
 .wbcom-essential-profile-completion {
-	// Layout
+	// Layout variables (always applied).
 	--progress-size: 100px;
 	--progress-width: 6px;
 	--progress-percent: 0;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--completion-color: var(--wbcom-success-color, #1cd991);
-	--incomplete-color: var(--wbcom-error-color, #ef3e46);
-	--progress-border: var(--wbcom-border-color, #dedfe2);
-	--number-color: var(--wbcom-heading-color, #122b46);
-	--text-color: var(--wbcom-meta-color, #a3a5a9);
-	--details-bg: var(--wbcom-card-bg, #ffffff);
-	--button-color: var(--wbcom-text-color, #939597);
+
+	// Color variables (defaults - overridden by inline styles when custom colors used).
+	--completion-color: #1cd991;
+	--incomplete-color: #ef3e46;
+	--progress-border: #dedfe2;
+	--number-color: #122b46;
+	--text-color: #a3a5a9;
+	--details-bg: #ffffff;
+	--button-color: #939597;
 	--button-bg: transparent;
-	--button-border: var(--wbcom-border-color, #9ea8b2);
+	--button-border: #9ea8b2;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--completion-color: var(--wbcom-success-color, var(--wbcom-color-primary, #1cd991));
+		--incomplete-color: var(--wbcom-error-color, var(--wbcom-color-secondary, #ef3e46));
+		--progress-border: var(--wbcom-border-color, var(--wbcom-color-border, #dedfe2));
+		--number-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122b46));
+		--text-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #a3a5a9));
+		--details-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--button-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #939597));
+		--button-bg: transparent;
+		--button-border: var(--wbcom-border-color, var(--wbcom-color-border, #9ea8b2));
+	}
 }
 
 .wbcom-profile-completion-wrapper {

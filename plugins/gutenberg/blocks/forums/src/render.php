@@ -19,6 +19,7 @@ if ( ! class_exists( 'bbPress' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors      = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $heading_text          = $attributes['headingText'] ?? 'Forums';
 $forums_count          = $attributes['forumsCount'] ?? 5;
 $row_space             = $attributes['rowSpace'] ?? 20;
@@ -88,17 +89,15 @@ if ( ! function_exists( 'wbcom_forums_get_dimension' ) ) {
 	}
 }
 
-// Build inline styles.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_styles = array(
+	// Layout styles - always applied.
 	'--box-border-type'     => $box_border_type,
 	'--box-border-width'    => $box_border_width . 'px',
-	'--box-border-color'    => $box_border_color,
 	'--box-radius'          => wbcom_forums_get_dimension( $box_border_radius ),
-	'--box-bg'              => $box_bg_color,
 	'--avatar-size'         => $avatar_size . 'px',
 	'--avatar-border-type'  => $avatar_border_type,
 	'--avatar-border-width' => $avatar_border_width . 'px',
-	'--avatar-border-color' => $avatar_border_color,
 	'--avatar-radius'       => wbcom_forums_get_dimension( $avatar_border_radius ),
 	'--avatar-opacity'      => $avatar_opacity,
 	'--avatar-spacing'      => $avatar_spacing . 'px',
@@ -106,13 +105,20 @@ $inline_styles = array(
 	'--title-font-size'     => $title_font_size . 'px',
 	'--title-font-weight'   => $title_font_weight,
 	'--title-line-height'   => $title_line_height,
-	'--title-color'         => $title_color,
-	'--title-hover'         => $title_hover_color,
 	'--meta-font-size'      => $meta_font_size . 'px',
-	'--meta-color'          => $meta_color,
-	'--last-reply-color'    => $last_reply_color,
-	'--link-color'          => $all_forums_link_color ? $all_forums_link_color : $title_color,
 );
+
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--box-border-color']    = $box_border_color;
+	$inline_styles['--box-bg']              = $box_bg_color;
+	$inline_styles['--avatar-border-color'] = $avatar_border_color;
+	$inline_styles['--title-color']         = $title_color;
+	$inline_styles['--title-hover']         = $title_hover_color;
+	$inline_styles['--meta-color']          = $meta_color;
+	$inline_styles['--last-reply-color']    = $last_reply_color;
+	$inline_styles['--link-color']          = $all_forums_link_color ? $all_forums_link_color : $title_color;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
@@ -137,6 +143,10 @@ $has_topics = bbp_has_topics( $args );
 $container_classes = array(
 	'wbcom-essential-forums',
 );
+
+if ( $use_theme_colors ) {
+	$container_classes[] = 'use-theme-colors';
+}
 
 if ( ! $has_topics ) {
 	$container_classes[] = 'wbcom-essential-forums--blank';

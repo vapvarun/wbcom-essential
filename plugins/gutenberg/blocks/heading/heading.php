@@ -1,6 +1,6 @@
 <?php
 /**
- * Heading Block
+ * Heading Block Registration.
  *
  * @package WBCOM_Essential
  */

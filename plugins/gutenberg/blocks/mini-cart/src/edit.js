@@ -16,6 +16,7 @@ import { Dashicon } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		showIcon,
 		showCount,
 		showTotal,
@@ -28,16 +29,22 @@ export default function Edit( { attributes, setAttributes } ) {
 		dropdownBgColor,
 	} = attributes;
 
+	// Build styles - layout always, colors only when not using theme colors.
+	const blockStyles = {
+		'--icon-size': `${ iconSize }px`,
+	};
+
+	if ( ! useThemeColors ) {
+		blockStyles[ '--icon-color' ] = iconColor || 'inherit';
+		blockStyles[ '--count-bg-color' ] = countBgColor;
+		blockStyles[ '--count-text-color' ] = countTextColor;
+		blockStyles[ '--total-color' ] = totalColor || 'inherit';
+		blockStyles[ '--dropdown-bg-color' ] = dropdownBgColor;
+	}
+
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-mini-cart',
-		style: {
-			'--icon-size': `${ iconSize }px`,
-			'--icon-color': iconColor || 'inherit',
-			'--count-bg-color': countBgColor,
-			'--count-text-color': countTextColor,
-			'--total-color': totalColor || 'inherit',
-			'--dropdown-bg-color': dropdownBgColor,
-		},
+		className: `wbcom-essential-mini-cart${ useThemeColors ? ' use-theme-colors' : '' }`,
+		style: blockStyles,
 	} );
 
 	return (
@@ -74,40 +81,47 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 16 }
 						max={ 48 }
 					/>
-					<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ iconColor }
-						onChange={ ( value ) => setAttributes( { iconColor: value } ) }
-					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Count Badge Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Background Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ countBgColor }
-						onChange={ ( value ) => setAttributes( { countBgColor: value } ) }
+				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<p>{ __( 'Text Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ countTextColor }
-						onChange={ ( value ) => setAttributes( { countTextColor: value } ) }
-					/>
-				</PanelBody>
-
-				<PanelBody title={ __( 'Total Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Total Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ totalColor }
-						onChange={ ( value ) => setAttributes( { totalColor: value } ) }
-					/>
-				</PanelBody>
-
-				<PanelBody title={ __( 'Dropdown Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Dropdown Background Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ dropdownBgColor }
-						onChange={ ( value ) => setAttributes( { dropdownBgColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<p>{ __( 'Icon Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ iconColor }
+								onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+							/>
+							<p>{ __( 'Count Badge Background', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ countBgColor }
+								onChange={ ( value ) => setAttributes( { countBgColor: value } ) }
+							/>
+							<p>{ __( 'Count Badge Text', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ countTextColor }
+								onChange={ ( value ) => setAttributes( { countTextColor: value } ) }
+							/>
+							<p>{ __( 'Total Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ totalColor }
+								onChange={ ( value ) => setAttributes( { totalColor: value } ) }
+							/>
+							<p>{ __( 'Dropdown Background', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ dropdownBgColor }
+								onChange={ ( value ) => setAttributes( { dropdownBgColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

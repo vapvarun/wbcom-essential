@@ -17,17 +17,34 @@
 	--box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.05);
 	--border-color: #e3e3e3;
 
-	// Colors - inherit from theme via bridge variables.
-	--category-color: var(--wbcom-color-primary, #1d76da);
-	--category-hover-color: var(--wbcom-color-primary-dark, #1557a0);
-	--title-color: var(--wbcom-heading-color, #122B46);
-	--title-hover-color: var(--wbcom-color-primary, #1d76da);
-	--excerpt-color: var(--wbcom-text-color, #808291);
-	--meta-color: var(--wbcom-meta-color, #999999);
-	--card-bg: var(--wbcom-card-bg, #ffffff);
-	--pagination-bg: var(--wbcom-card-bg-alt, #f5f5f5);
-	--pagination-hover-bg: var(--wbcom-color-primary, #1d76da);
-	--pagination-hover-color: var(--wbcom-button-text, #ffffff);
+	// Default colors (static fallbacks for custom color mode).
+	--category-color: #1d76da;
+	--category-hover-color: #1557a0;
+	--title-color: #122B46;
+	--title-hover-color: #1d76da;
+	--excerpt-color: #808291;
+	--meta-color: #999999;
+	--card-bg: #ffffff;
+	--pagination-bg: #f5f5f5;
+	--pagination-hover-bg: #1d76da;
+	--pagination-hover-color: #ffffff;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--category-color: var(--wbcom-color-primary, #1d76da);
+		--category-hover-color: var(--wbcom-color-primary-dark, #1557a0);
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--title-hover-color: var(--wbcom-color-primary, #1d76da);
+		--excerpt-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #808291));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #999999));
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--pagination-bg: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, #f5f5f5));
+		--pagination-hover-bg: var(--wbcom-color-primary, #1d76da);
+		--pagination-hover-color: var(--wbcom-button-text, #ffffff);
+	}
 }
 
 // ============================================================================

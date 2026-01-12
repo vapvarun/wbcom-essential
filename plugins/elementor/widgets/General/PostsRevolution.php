@@ -111,6 +111,12 @@ class PostsRevolution extends Widget_Base {
 		return array( 'wbcom-elements' );
 	}
 
+	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'posts', 'revolution', 'grid', 'blog', 'layout' );
+	}
 
 	/**
 	 * Get post type categories.

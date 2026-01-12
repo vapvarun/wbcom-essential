@@ -19,6 +19,7 @@ import { ColorControl } from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		postType,
 		categories,
 		numberOfPosts,
@@ -44,7 +45,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		buttonTextColor,
 	} = attributes;
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: `wbcom-essential-post-timeline${ useThemeColors ? ' use-theme-colors' : '' }`,
+	} );
 
 	// Fetch post types
 	const postTypes = useSelect( ( select ) => {
@@ -245,62 +248,75 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Timeline Bar Color', 'wbcom-essential' ) }
-						value={ barColor }
-						onChange={ ( value ) =>
-							setAttributes( { barColor: value } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
 						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<ColorControl
-						label={ __( 'Dot Color', 'wbcom-essential' ) }
-						value={ dotColor }
-						onChange={ ( value ) =>
-							setAttributes( { dotColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Card Background', 'wbcom-essential' ) }
-						value={ cardBackground }
-						onChange={ ( value ) =>
-							setAttributes( { cardBackground: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Title Color', 'wbcom-essential' ) }
-						value={ titleColor }
-						onChange={ ( value ) =>
-							setAttributes( { titleColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Excerpt Color', 'wbcom-essential' ) }
-						value={ excerptColor }
-						onChange={ ( value ) =>
-							setAttributes( { excerptColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Date Color', 'wbcom-essential' ) }
-						value={ dateColor }
-						onChange={ ( value ) =>
-							setAttributes( { dateColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Button Background', 'wbcom-essential' ) }
-						value={ buttonBgColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonBgColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Button Text Color', 'wbcom-essential' ) }
-						value={ buttonTextColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonTextColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Timeline Bar Color', 'wbcom-essential' ) }
+								value={ barColor }
+								onChange={ ( value ) =>
+									setAttributes( { barColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Dot Color', 'wbcom-essential' ) }
+								value={ dotColor }
+								onChange={ ( value ) =>
+									setAttributes( { dotColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Card Background', 'wbcom-essential' ) }
+								value={ cardBackground }
+								onChange={ ( value ) =>
+									setAttributes( { cardBackground: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Title Color', 'wbcom-essential' ) }
+								value={ titleColor }
+								onChange={ ( value ) =>
+									setAttributes( { titleColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Excerpt Color', 'wbcom-essential' ) }
+								value={ excerptColor }
+								onChange={ ( value ) =>
+									setAttributes( { excerptColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Date Color', 'wbcom-essential' ) }
+								value={ dateColor }
+								onChange={ ( value ) =>
+									setAttributes( { dateColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Button Background', 'wbcom-essential' ) }
+								value={ buttonBgColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonBgColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Button Text Color', 'wbcom-essential' ) }
+								value={ buttonTextColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonTextColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

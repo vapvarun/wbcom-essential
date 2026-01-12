@@ -9,6 +9,10 @@
 	"keywords": [ "dashboard", "intro", "welcome", "greeting", "user", "buddypress", "profile" ],
 	"textdomain": "wbcom-essential",
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"greetingText": {
 			"type": "string",
 			"default": "Hello,"

@@ -73,6 +73,13 @@ class MembersGrid extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'members', 'grid', 'users', 'buddypress', 'cards' );
+	}
+
+	/**
 	 * Get dependent styles.
 	 */
 	public function get_style_depends() {
@@ -159,6 +166,14 @@ class MembersGrid extends \Elementor\Widget_Base {
 	 * Render elementor members grid widget.
 	 */
 	protected function render() {
+		// Check if BuddyPress is active before rendering.
+		if ( ! function_exists( 'buddypress' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'BuddyPress is required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
+
 		parent::render();
 		$settings = $this->get_settings_for_display();
 

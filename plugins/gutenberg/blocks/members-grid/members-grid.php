@@ -1,6 +1,6 @@
 <?php
 /**
- * Members Grid Block
+ * Members Grid Block Registration.
  *
  * @package WBCOM_Essential
  */

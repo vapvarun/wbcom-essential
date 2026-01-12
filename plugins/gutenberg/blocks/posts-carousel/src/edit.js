@@ -20,6 +20,7 @@ import { ColorControl } from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		displayType,
 		postType,
 		categories,
@@ -50,7 +51,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		navColor,
 	} = attributes;
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: `wbcom-essential-posts-carousel${ useThemeColors ? ' use-theme-colors' : '' }`,
+	} );
 
 	// Fetch post types
 	const postTypes = useSelect( ( select ) => {
@@ -304,13 +307,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Style Settings', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Card Background', 'wbcom-essential' ) }
-						value={ cardBackground }
-						onChange={ ( value ) =>
-							setAttributes( { cardBackground: value } )
-						}
-					/>
 					<RangeControl
 						label={ __( 'Card Border Radius', 'wbcom-essential' ) }
 						value={ cardBorderRadius }
@@ -320,41 +316,61 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 30 }
 					/>
-					<ColorControl
-						label={ __( 'Category Color', 'wbcom-essential' ) }
-						value={ categoryColor }
-						onChange={ ( value ) =>
-							setAttributes( { categoryColor: value } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
 						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<ColorControl
-						label={ __( 'Title Color', 'wbcom-essential' ) }
-						value={ titleColor }
-						onChange={ ( value ) =>
-							setAttributes( { titleColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Excerpt Color', 'wbcom-essential' ) }
-						value={ excerptColor }
-						onChange={ ( value ) =>
-							setAttributes( { excerptColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Meta Color', 'wbcom-essential' ) }
-						value={ metaColor }
-						onChange={ ( value ) =>
-							setAttributes( { metaColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Navigation Color', 'wbcom-essential' ) }
-						value={ navColor }
-						onChange={ ( value ) =>
-							setAttributes( { navColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Card Background', 'wbcom-essential' ) }
+								value={ cardBackground }
+								onChange={ ( value ) =>
+									setAttributes( { cardBackground: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Category Color', 'wbcom-essential' ) }
+								value={ categoryColor }
+								onChange={ ( value ) =>
+									setAttributes( { categoryColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Title Color', 'wbcom-essential' ) }
+								value={ titleColor }
+								onChange={ ( value ) =>
+									setAttributes( { titleColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Excerpt Color', 'wbcom-essential' ) }
+								value={ excerptColor }
+								onChange={ ( value ) =>
+									setAttributes( { excerptColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Meta Color', 'wbcom-essential' ) }
+								value={ metaColor }
+								onChange={ ( value ) =>
+									setAttributes( { metaColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Navigation Color', 'wbcom-essential' ) }
+								value={ navColor }
+								onChange={ ( value ) =>
+									setAttributes( { navColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

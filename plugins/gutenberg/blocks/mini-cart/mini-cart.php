@@ -1,8 +1,8 @@
 <?php
 /**
- * Mini Cart Block Registration
+ * Mini Cart Block Registration.
  *
- * @package wbcom-essential
+ * @package WBCOM_Essential
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,21 +10,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register the Mini Cart block.
+ * Registers the block using the metadata loaded from block.json.
  */
-function wbcom_essential_register_mini_cart_block() {
+function wbcom_essential_mini_cart_block_init() {
 	// Only register if WooCommerce is active.
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		return;
 	}
 
-	$block_path = WBCOM_ESSENTIAL_PATH . 'plugins/gutenberg/blocks/mini-cart/build';
-	if ( ! file_exists( $block_path . '/block.json' ) ) {
-		return;
+	$build_path = WBCOM_ESSENTIAL_PATH . 'build/blocks/mini-cart/';
+	if ( file_exists( $build_path . 'block.json' ) ) {
+		register_block_type( $build_path );
 	}
-	register_block_type( $block_path );
 }
-add_action( 'init', 'wbcom_essential_register_mini_cart_block' );
+add_action( 'init', 'wbcom_essential_mini_cart_block_init' );
 
 /**
  * Add mini cart fragments for AJAX updates.
@@ -33,8 +32,11 @@ add_action( 'init', 'wbcom_essential_register_mini_cart_block' );
  * @return array Modified fragments.
  */
 function wbcom_essential_mini_cart_fragments( $fragments ) {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return $fragments;
+	}
+
 	$cart_count = WC()->cart->get_cart_contents_count();
-	$cart_total = WC()->cart->get_cart_total();
 
 	$fragments['.wbcom-essential-mini-cart__count'] = $cart_count;
 

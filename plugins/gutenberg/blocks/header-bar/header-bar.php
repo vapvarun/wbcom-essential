@@ -1,6 +1,6 @@
 <?php
 /**
- * Header Bar Block
+ * Header Bar Block Registration.
  *
  * @package WBCOM_Essential
  */
@@ -49,7 +49,7 @@ function wbcom_essential_register_nav_menus_rest() {
 		array(
 			'methods'             => 'GET',
 			'callback'            => 'wbcom_essential_get_nav_menus',
-			'permission_callback' => function() {
+			'permission_callback' => function () {
 				return current_user_can( 'edit_posts' );
 			},
 		)

@@ -1,6 +1,6 @@
 <?php
 /**
- * Forums Activity Block
+ * Forums Activity Block Registration.
  *
  * @package WBCOM_Essential
  */

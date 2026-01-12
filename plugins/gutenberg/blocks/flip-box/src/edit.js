@@ -306,7 +306,8 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				{ ! useThemeColors && (
-				<PanelBody title={ __( 'Front Side Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<>
+					<PanelBody title={ __( 'Front Side Colors', 'wbcom-essential' ) } initialOpen={ false }>
 					<ColorControl
 						label={ __( 'Background', 'wbcom-essential' ) }
 						value={ frontBackground }
@@ -450,6 +451,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { buttonHoverTextColor: value } ) }
 					/>
 				</PanelBody>
+				</>
 				) }
 			</InspectorControls>
 

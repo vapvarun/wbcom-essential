@@ -5,7 +5,7 @@
  */
 
 .wbcom-essential-dashboard-intro {
-	// Layout
+	// Layout variables (always applied).
 	--gap: 20px;
 	--container-padding: 30px;
 	--container-radius: 8px;
@@ -13,17 +13,30 @@
 	--avatar-radius: 50%;
 	--avatar-border-style: none;
 	--avatar-border-width: 1px;
-	--avatar-border-color: #000000;
 	--avatar-padding: 3px;
 	--avatar-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--greeting-color: var(--wbcom-meta-color, #A3A5A9);
 	--greeting-font-size: 14px;
-	--name-color: var(--wbcom-heading-color, #122B46);
 	--name-font-size: 24px;
-	--description-color: var(--wbcom-text-color, #666666);
 	--description-font-size: 14px;
+
+	// Color variables (defaults - overridden by inline styles when custom colors used).
 	--container-bg: transparent;
+	--avatar-border-color: #000000;
+	--greeting-color: #a3a5a9;
+	--name-color: #122b46;
+	--description-color: #666666;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--container-bg: var(--wbcom-card-bg, var(--wbcom-color-base, transparent));
+		--avatar-border-color: var(--wbcom-color-primary, var(--wbcom-color-border, #000000));
+		--greeting-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #a3a5a9));
+		--name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122b46));
+		--description-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #666666));
+	}
 }
 
 .wbcom-essential-dashboard-intro {

@@ -30,7 +30,8 @@ if ( ! $menu_id ) {
 }
 
 // Extract attributes with defaults.
-$menu_layout    = $attributes['menuLayout'] ?? 'horizontal';
+$use_theme_colors = $attributes['useThemeColors'] ?? false;
+$menu_layout      = $attributes['menuLayout'] ?? 'horizontal';
 $menu_align     = $attributes['menuAlign'] ?? ( $attributes['menuHAlign'] ?? 'flex-start' );
 $vertical_width = $attributes['verticalMenuWidth'] ?? '100%';
 $show_toggle    = $attributes['showMobileToggle'] ?? ( $attributes['menuToggle'] ?? true );
@@ -98,7 +99,8 @@ $container_style = '';
 if ( 'vertical' === $menu_layout ) {
 	$container_style = 'width: ' . esc_attr( $vertical_width ) . ';';
 }
-if ( ! empty( $main_menu_bg['color'] ) ) {
+// Only add custom background color when NOT using theme colors.
+if ( ! $use_theme_colors && ! empty( $main_menu_bg['color'] ) ) {
 	$container_style .= 'background-color: ' . esc_attr( $main_menu_bg['color'] ) . ';';
 }
 $container_style .= '--transition-duration: ' . esc_attr( $main_menu_transition ) . 's;';
@@ -106,14 +108,17 @@ $container_style .= '--transition-duration: ' . esc_attr( $main_menu_transition 
 // Toggle container style.
 $toggle_container_style = 'justify-content: ' . esc_attr( $toggle_align ) . ';';
 
-// Mobile toggle styles.
+// Mobile toggle styles - colors only when NOT using theme colors.
 $toggle_style = '';
-if ( ! empty( $mobile_menu_color ) ) {
-	$toggle_style .= 'color: ' . esc_attr( $mobile_menu_color ) . ';';
+if ( ! $use_theme_colors ) {
+	if ( ! empty( $mobile_menu_color ) ) {
+		$toggle_style .= 'color: ' . esc_attr( $mobile_menu_color ) . ';';
+	}
+	if ( ! empty( $mobile_menu_bg['color'] ) ) {
+		$toggle_style .= 'background-color: ' . esc_attr( $mobile_menu_bg['color'] ) . ';';
+	}
 }
-if ( ! empty( $mobile_menu_bg['color'] ) ) {
-	$toggle_style .= 'background-color: ' . esc_attr( $mobile_menu_bg['color'] ) . ';';
-}
+// Width is always applied.
 if ( ! empty( $mobile_menu_width['size'] ) ) {
 	$toggle_style .= 'width: ' . esc_attr( $mobile_menu_width['size'] ) . ( $mobile_menu_width['unit'] ?? 'px' ) . ';';
 }
@@ -121,21 +126,8 @@ if ( ! empty( $mobile_menu_width['size'] ) ) {
 // Get SVG icon for dropdown.
 $icon_svg = wbcom_essential_smart_menu_get_icon_svg( $dropdown_icon );
 
-// Build menu CSS variables style.
+// Build menu CSS variables style - sizes and layout always applied.
 $menu_style  = '--icon-size: ' . esc_attr( $main_menu_icon_size ) . 'px;';
-$menu_style .= '--item-color: ' . esc_attr( $main_menu_item_color ) . ';';
-$menu_style .= '--item-bg: ' . esc_attr( $main_menu_item_bg ) . ';';
-$menu_style .= '--item-color-hover: ' . esc_attr( $main_menu_item_color_hover ) . ';';
-$menu_style .= '--item-bg-hover: ' . esc_attr( $main_menu_item_bg_hover ) . ';';
-$menu_style .= '--item-color-active: ' . esc_attr( $main_menu_item_color_active ) . ';';
-$menu_style .= '--item-bg-active: ' . esc_attr( $main_menu_item_bg_active ) . ';';
-$menu_style .= '--sub-bg: ' . esc_attr( $sub_menu_bg ) . ';';
-$menu_style .= '--sub-item-color: ' . esc_attr( $sub_menu_item_color ) . ';';
-$menu_style .= '--sub-item-bg: ' . esc_attr( $sub_menu_item_bg ) . ';';
-$menu_style .= '--sub-item-color-hover: ' . esc_attr( $sub_menu_item_color_hover ) . ';';
-$menu_style .= '--sub-item-bg-hover: ' . esc_attr( $sub_menu_item_bg_hover ) . ';';
-$menu_style .= '--sub-item-color-active: ' . esc_attr( $sub_menu_item_color_active ) . ';';
-$menu_style .= '--sub-item-bg-active: ' . esc_attr( $sub_menu_item_bg_active ) . ';';
 $menu_style .= '--submenu-min-width: ' . esc_attr( $submenu_min_width['size'] . $submenu_min_width['unit'] ) . ';';
 $menu_style .= '--submenu-max-width: ' . esc_attr( $submenu_max_width['size'] . $submenu_max_width['unit'] ) . ';';
 $menu_style .= '--submenu-offset-x: ' . esc_attr( $submenu_offset_x ) . 'px;';
@@ -145,8 +137,31 @@ $menu_style .= '--submenu-level2-offset-y: ' . esc_attr( $submenu_level2_offset_
 $menu_style .= '--submenu-transition: ' . esc_attr( $submenu_transition ) . 's;';
 $menu_style .= '--submenu-indicator-size: ' . esc_attr( $submenu_indicator_size ) . 'px;';
 
+// Add color CSS variables only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$menu_style .= '--item-color: ' . esc_attr( $main_menu_item_color ) . ';';
+	$menu_style .= '--item-bg: ' . esc_attr( $main_menu_item_bg ) . ';';
+	$menu_style .= '--item-color-hover: ' . esc_attr( $main_menu_item_color_hover ) . ';';
+	$menu_style .= '--item-bg-hover: ' . esc_attr( $main_menu_item_bg_hover ) . ';';
+	$menu_style .= '--item-color-active: ' . esc_attr( $main_menu_item_color_active ) . ';';
+	$menu_style .= '--item-bg-active: ' . esc_attr( $main_menu_item_bg_active ) . ';';
+	$menu_style .= '--sub-bg: ' . esc_attr( $sub_menu_bg ) . ';';
+	$menu_style .= '--sub-item-color: ' . esc_attr( $sub_menu_item_color ) . ';';
+	$menu_style .= '--sub-item-bg: ' . esc_attr( $sub_menu_item_bg ) . ';';
+	$menu_style .= '--sub-item-color-hover: ' . esc_attr( $sub_menu_item_color_hover ) . ';';
+	$menu_style .= '--sub-item-bg-hover: ' . esc_attr( $sub_menu_item_bg_hover ) . ';';
+	$menu_style .= '--sub-item-color-active: ' . esc_attr( $sub_menu_item_color_active ) . ';';
+	$menu_style .= '--sub-item-bg-active: ' . esc_attr( $sub_menu_item_bg_active ) . ';';
+}
+
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-smart-menu';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
+
 // Get wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'wbcom-essential-smart-menu' ) );
+$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $wrapper_classes ) );
 ?>
 
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>

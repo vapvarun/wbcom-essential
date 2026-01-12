@@ -5,21 +5,36 @@
  */
 
 .wbcom-essential-groups-grid {
-	// Layout
+	// Layout CSS variables (overridden by inline styles).
 	--columns: 3;
 	--columns-tablet: 2;
 	--columns-mobile: 1;
 	--gap: 30px;
 	--card-radius: 8px;
 	--card-padding: 20px;
-	// Colors - user selected values with theme fallbacks
+
+	// Default color CSS variables (overridden by inline styles when custom colors used).
 	--card-bg: #ffffff;
-	--name-color: #122B46;
-	--meta-color: #A3A5A9;
+	--name-color: #122b46;
+	--meta-color: #a3a5a9;
 	--button-bg: #1d76da;
 	--button-text: #ffffff;
 	--button-secondary-bg: #e3e3e3;
 	--button-secondary-text: #666;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122b46));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #a3a5a9));
+		--button-bg: var(--wbcom-color-primary, #1d76da);
+		--button-text: var(--wbcom-button-text, #ffffff);
+		--button-secondary-bg: var(--wbcom-color-base-2, #e3e3e3);
+		--button-secondary-text: var(--wbcom-text-color, #666);
+	}
 }
 
 .wbcom-essential-groups-grid-list {

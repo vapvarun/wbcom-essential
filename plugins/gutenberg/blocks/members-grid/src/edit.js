@@ -16,6 +16,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		sortType,
 		totalMembers,
 		columns,
@@ -35,18 +36,30 @@ export default function Edit( { attributes, setAttributes } ) {
 		metaColor,
 	} = attributes;
 
-	const blockProps = useBlockProps();
+	// Container classes.
+	const containerClasses = [
+		'wbcom-members-grid-preview',
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
 
-	// Build inline styles.
+	const blockProps = useBlockProps( {
+		className: useThemeColors ? 'use-theme-colors' : '',
+	} );
+
+	// Build inline styles - layout always applied, colors only when not using theme colors.
 	const containerStyle = {
+		// Layout styles - always applied.
 		'--grid-columns': columns,
 		'--grid-gap': `${ gap }px`,
-		'--card-bg': cardBgColor,
 		'--card-radius': `${ cardBorderRadius }px`,
 		'--card-padding': `${ cardPadding }px`,
 		'--avatar-size': `${ avatarSize }px`,
-		'--name-color': nameColor,
-		'--meta-color': metaColor,
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
+			'--card-bg': cardBgColor,
+			'--name-color': nameColor,
+			'--meta-color': metaColor,
+		} ),
 	};
 
 	// Demo members for preview.
@@ -148,12 +161,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Card Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ cardBgColor }
-						onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ cardBorderRadius }
@@ -188,22 +195,39 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Name Color', 'wbcom-essential' ) }
-						value={ nameColor }
-						onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-
-					<ColorControl
-						label={ __( 'Meta Color', 'wbcom-essential' ) }
-						value={ metaColor }
-						onChange={ ( value ) => setAttributes( { metaColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Card Background', 'wbcom-essential' ) }
+								value={ cardBgColor }
+								onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Name Color', 'wbcom-essential' ) }
+								value={ nameColor }
+								onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Meta Color', 'wbcom-essential' ) }
+								value={ metaColor }
+								onChange={ ( value ) => setAttributes( { metaColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<div className="wbcom-members-grid-preview" style={ containerStyle }>
+				<div className={ containerClasses } style={ containerStyle }>
 					<div className={ `wbcom-members-grid ${ cardShadow ? 'has-shadow' : '' }` }>
 						{ demoMembers.slice( 0, Math.min( totalMembers, 6 ) ).map( ( member ) => (
 							<div key={ member.id } className="wbcom-member-card">

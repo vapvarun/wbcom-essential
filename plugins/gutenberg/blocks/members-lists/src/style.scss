@@ -5,20 +5,34 @@
  */
 
 .wbcom-essential-members-lists {
-	// Layout
+	// Layout CSS variables (overridden by inline styles).
 	--box-border-radius: 4px;
 	--avatar-size: 40px;
 	--avatar-radius: 50%;
 	--avatar-spacing: 15px;
 	--online-size: 13px;
 	--row-space: 10px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--box-border-color: var(--wbcom-border-color, #e3e3e3);
-	--box-bg-color: var(--wbcom-card-bg, #ffffff);
-	--filter-border-color: var(--wbcom-border-color, #e3e3e3);
-	--online-color: var(--wbcom-success-color, #1cd991);
-	--name-color: var(--wbcom-heading-color, #122b46);
-	--link-color: var(--wbcom-link-color, inherit);
+
+	// Default color CSS variables (overridden by inline styles when custom colors used).
+	--box-border-color: #e3e3e3;
+	--box-bg-color: #ffffff;
+	--filter-border-color: #e3e3e3;
+	--online-color: #1cd991;
+	--name-color: #122b46;
+	--link-color: inherit;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--box-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e3e3e3));
+		--box-bg-color: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--filter-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e3e3e3));
+		--online-color: var(--wbcom-success-color, #1cd991);
+		--name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122b46));
+		--link-color: var(--wbcom-link-color, var(--wbcom-color-primary, inherit));
+	}
 }
 
 .wbcom-essential-members {

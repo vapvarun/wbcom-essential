@@ -19,6 +19,7 @@ if ( ! function_exists( 'buddypress' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors     = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $members_order        = $attributes['membersOrder'] ?? 'active';
 $profile_types        = $attributes['profileTypes'] ?? array();
 $members_count        = $attributes['membersCount'] ?? 5;
@@ -44,23 +45,26 @@ $online_status_color  = $attributes['onlineStatusColor'] ?? '#1CD991';
 $online_status_size   = $attributes['onlineStatusSize'] ?? 13;
 $name_color           = $attributes['nameColor'] ?? '#122B46';
 
-// Build inline styles - include both layout/spacing and user-selected colors.
-// User colors override theme defaults but maintain theme color integration.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_styles = array(
-	'--box-border-radius'  => $box_border_radius . 'px',
-	'--avatar-size'        => $avatar_size . 'px',
-	'--avatar-radius'      => $avatar_border_radius . '%',
-	'--avatar-spacing'     => $avatar_spacing . 'px',
-	'--online-size'        => $online_status_size . 'px',
-	'--row-space'          => $row_space . 'px',
-	// User-selected colors
-	'--box-border-color'   => $box_border_color,
-	'--box-bg-color'       => $box_bg_color,
-	'--filter-border-color'=> $filter_border_color,
-	'--online-color'       => $online_status_color,
-	'--name-color'         => $name_color,
-	'--link-color'         => ! empty( $all_members_link_color ) ? $all_members_link_color : 'inherit',
+	// Layout styles - always applied.
+	'--box-border-radius' => $box_border_radius . 'px',
+	'--avatar-size'       => $avatar_size . 'px',
+	'--avatar-radius'     => $avatar_border_radius . '%',
+	'--avatar-spacing'    => $avatar_spacing . 'px',
+	'--online-size'       => $online_status_size . 'px',
+	'--row-space'         => $row_space . 'px',
 );
+
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--box-border-color']    = $box_border_color;
+	$inline_styles['--box-bg-color']        = $box_bg_color;
+	$inline_styles['--filter-border-color'] = $filter_border_color;
+	$inline_styles['--online-color']        = $online_status_color;
+	$inline_styles['--name-color']          = $name_color;
+	$inline_styles['--link-color']          = ! empty( $all_members_link_color ) ? $all_members_link_color : 'inherit';
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
@@ -74,10 +78,16 @@ $members_types = array(
 	'newest'  => __( 'Newest', 'wbcom-essential' ),
 );
 
+// Wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-members-lists' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-members-lists',
+		'class' => implode( ' ', $wrapper_classes ),
 		'style' => $style_string,
 	)
 );

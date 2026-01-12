@@ -22,6 +22,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		groupsOrder,
 		groupTypes,
 		groupsCount,
@@ -62,23 +63,26 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [] );
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-groups-lists-editor',
+		className: `wbcom-essential-groups-lists-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
 	} );
 
-	// Build inline styles for editor preview.
+	// Build inline styles - layout always applied, colors only when not using theme colors.
 	const containerStyle = {
-		'--box-border-radius'        : `${ boxBorderRadius }px`,
-		'--avatar-size'              : `${ avatarSize }px`,
-		'--avatar-border-radius'     : `${ avatarBorderRadius }px`,
-		// User-selected colors
-		'--box-bg'                  : boxBgColor,
-		'--box-border-color'         : boxBorderColor,
-		'--title-color'              : titleColor,
-		'--meta-color'               : metaColor,
-		'--link-color'               : linkColor,
-		'--filter-normal-color'      : filterNormalColor,
-		'--filter-active-color'      : filterActiveColor,
-		'--filter-active-border'     : filterActiveBorderColor,
+		// Layout styles - always applied.
+		'--box-border-radius': `${ boxBorderRadius }px`,
+		'--avatar-size': `${ avatarSize }px`,
+		'--avatar-border-radius': `${ avatarBorderRadius }px`,
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
+			'--box-bg': boxBgColor,
+			'--box-border-color': boxBorderColor,
+			'--title-color': titleColor,
+			'--meta-color': metaColor,
+			'--link-color': linkColor,
+			'--filter-normal-color': filterNormalColor,
+			'--filter-active-color': filterActiveColor,
+			'--filter-active-border': filterActiveBorderColor,
+		} ),
 	};
 
 	// Get labels for FormTokenField.
@@ -188,18 +192,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Box Styling', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ boxBgColor }
-						onChange={ ( value ) => setAttributes( { boxBgColor: value } ) }
-					/>
-
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ boxBorderColor }
-						onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ boxBorderRadius }
@@ -234,46 +226,80 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Title Color', 'wbcom-essential' ) }
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Box Background', 'wbcom-essential' ) }
+								value={ boxBgColor }
+								onChange={ ( value ) => setAttributes( { boxBgColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Meta Color', 'wbcom-essential' ) }
-						value={ metaColor }
-						onChange={ ( value ) => setAttributes( { metaColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Box Border Color', 'wbcom-essential' ) }
+								value={ boxBorderColor }
+								onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Link Color', 'wbcom-essential' ) }
-						value={ linkColor }
-						onChange={ ( value ) => setAttributes( { linkColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Title Color', 'wbcom-essential' ) }
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+
+							<ColorControl
+								label={ __( 'Meta Color', 'wbcom-essential' ) }
+								value={ metaColor }
+								onChange={ ( value ) => setAttributes( { metaColor: value } ) }
+							/>
+
+							<ColorControl
+								label={ __( 'Link Color', 'wbcom-essential' ) }
+								value={ linkColor }
+								onChange={ ( value ) => setAttributes( { linkColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
 					title={ __( 'Filter Tab Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Normal Color', 'wbcom-essential' ) }
-						value={ filterNormalColor }
-						onChange={ ( value ) => setAttributes( { filterNormalColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Normal Color', 'wbcom-essential' ) }
+								value={ filterNormalColor }
+								onChange={ ( value ) => setAttributes( { filterNormalColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Active Color', 'wbcom-essential' ) }
-						value={ filterActiveColor }
-						onChange={ ( value ) => setAttributes( { filterActiveColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Active Color', 'wbcom-essential' ) }
+								value={ filterActiveColor }
+								onChange={ ( value ) => setAttributes( { filterActiveColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Active Border Color', 'wbcom-essential' ) }
-						value={ filterActiveBorderColor }
-						onChange={ ( value ) => setAttributes( { filterActiveBorderColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Active Border Color', 'wbcom-essential' ) }
+								value={ filterActiveBorderColor }
+								onChange={ ( value ) => setAttributes( { filterActiveBorderColor: value } ) }
+							/>
+						</>
+					) }
+					{ useThemeColors && (
+						<p style={ { margin: 0, fontSize: '12px', color: '#757575' } }>
+							{ __( 'Filter colors inherit from theme when "Use Theme Colors" is enabled.', 'wbcom-essential' ) }
+						</p>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

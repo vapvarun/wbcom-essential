@@ -1,6 +1,6 @@
 <?php
 /**
- * Portfolio Grid Block
+ * Portfolio Grid Block Registration.
  *
  * @package WBCOM_Essential
  */

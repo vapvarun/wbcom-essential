@@ -17,6 +17,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		sortType,
 		totalGroups,
 		columns,
@@ -40,7 +41,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: 'wbcom-essential-groups-grid-editor',
+		className: `wbcom-essential-groups-grid-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
 	} );
 
 	return (
@@ -154,12 +155,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Card Styling', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ cardBgColor }
-						onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ cardBorderRadius }
@@ -187,29 +182,48 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Name Color', 'wbcom-essential' ) }
-						value={ nameColor }
-						onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Card Background', 'wbcom-essential' ) }
+								value={ cardBgColor }
+								onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Meta Color', 'wbcom-essential' ) }
-						value={ metaColor }
-						onChange={ ( value ) => setAttributes( { metaColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Name Color', 'wbcom-essential' ) }
+								value={ nameColor }
+								onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Button Background', 'wbcom-essential' ) }
-						value={ buttonBgColor }
-						onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Meta Color', 'wbcom-essential' ) }
+								value={ metaColor }
+								onChange={ ( value ) => setAttributes( { metaColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Button Text Color', 'wbcom-essential' ) }
-						value={ buttonTextColor }
-						onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Button Background', 'wbcom-essential' ) }
+								value={ buttonBgColor }
+								onChange={ ( value ) => setAttributes( { buttonBgColor: value } ) }
+							/>
+
+							<ColorControl
+								label={ __( 'Button Text Color', 'wbcom-essential' ) }
+								value={ buttonTextColor }
+								onChange={ ( value ) => setAttributes( { buttonTextColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

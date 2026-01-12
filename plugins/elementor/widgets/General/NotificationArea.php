@@ -1,4 +1,12 @@
 <?php
+/**
+ * Elementor Notification Area Widget.
+ *
+ * @since      1.0.0
+ *
+ * @package    Wbcom_Essential
+ * @subpackage Wbcom_Essential/plugins/elementor/widget/general
+ */
 
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\General;
 
@@ -13,6 +21,13 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 
+/**
+ * Elementor NotificationArea
+ *
+ * Elementor widget for NotificationArea
+ *
+ * @since 1.0.0
+ */
 class NotificationArea extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
@@ -37,6 +52,13 @@ class NotificationArea extends \Elementor\Widget_Base {
 
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+
+	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'notification', 'alert', 'header', 'bell', 'messages' );
 	}
 
 	public function get_style_depends() {

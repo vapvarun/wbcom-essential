@@ -21,6 +21,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		showForumTitle,
 		showMeta,
 		showExcerpt,
@@ -43,22 +44,33 @@ export default function Edit( { attributes, setAttributes } ) {
 		buttonAlign,
 	} = attributes;
 
-	// Preview styles.
+	// Preview styles - layout always applied, colors only when not using theme colors.
 	const containerStyle = {
-		'--box-bg': boxBgColor,
-		'--box-border-color': boxBorderColor,
+		// Layout styles - always applied.
 		'--box-radius': `${ boxBorderRadius }px`,
 		'--box-padding': `${ boxPadding }px`,
-		'--forum-title-color': forumTitleColor,
-		'--topic-title-color': topicTitleColor,
-		'--meta-color': metaColor,
-		'--excerpt-color': excerptColor,
-		'--button-color': buttonColor,
-		'--button-border-color': buttonBorderColor,
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
+			'--box-bg': boxBgColor,
+			'--box-border-color': boxBorderColor,
+			'--forum-title-color': forumTitleColor,
+			'--topic-title-color': topicTitleColor,
+			'--meta-color': metaColor,
+			'--excerpt-color': excerptColor,
+			'--button-color': buttonColor,
+			'--button-border-color': buttonBorderColor,
+		} ),
 	};
 
+	// Container classes.
+	const containerClasses = [
+		'wbcom-essential-forums-activity-editor',
+		`button-align-${ buttonAlign }`,
+		useThemeColors ? 'use-theme-colors' : '',
+	].filter( Boolean ).join( ' ' );
+
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-forums-activity-editor button-align-${ buttonAlign }`,
+		className: containerClasses,
 		style: containerStyle,
 	} );
 
@@ -121,16 +133,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Box Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ boxBgColor }
-						onChange={ ( value ) => setAttributes( { boxBgColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Border Color', 'wbcom-essential' ) }
-						value={ boxBorderColor }
-						onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
-					/>
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ boxBorderRadius }
@@ -148,39 +150,62 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Forum Title Color', 'wbcom-essential' ) }
-						value={ forumTitleColor }
-						onChange={ ( value ) => setAttributes( { forumTitleColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<ColorControl
-						label={ __( 'Topic Title Color', 'wbcom-essential' ) }
-						value={ topicTitleColor }
-						onChange={ ( value ) => setAttributes( { topicTitleColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Meta Color', 'wbcom-essential' ) }
-						value={ metaColor }
-						onChange={ ( value ) => setAttributes( { metaColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Excerpt Color', 'wbcom-essential' ) }
-						value={ excerptColor }
-						onChange={ ( value ) => setAttributes( { excerptColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ boxBgColor }
+								onChange={ ( value ) => setAttributes( { boxBgColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Border Color', 'wbcom-essential' ) }
+								value={ boxBorderColor }
+								onChange={ ( value ) => setAttributes( { boxBorderColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Forum Title Color', 'wbcom-essential' ) }
+								value={ forumTitleColor }
+								onChange={ ( value ) => setAttributes( { forumTitleColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Topic Title Color', 'wbcom-essential' ) }
+								value={ topicTitleColor }
+								onChange={ ( value ) => setAttributes( { topicTitleColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Meta Color', 'wbcom-essential' ) }
+								value={ metaColor }
+								onChange={ ( value ) => setAttributes( { metaColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Excerpt Color', 'wbcom-essential' ) }
+								value={ excerptColor }
+								onChange={ ( value ) => setAttributes( { excerptColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Button Color', 'wbcom-essential' ) }
+								value={ buttonColor }
+								onChange={ ( value ) => setAttributes( { buttonColor: value } ) }
+							/>
+							<ColorControl
+								label={ __( 'Button Border Color', 'wbcom-essential' ) }
+								value={ buttonBorderColor }
+								onChange={ ( value ) => setAttributes( { buttonBorderColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody title={ __( 'Button Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Button Color', 'wbcom-essential' ) }
-						value={ buttonColor }
-						onChange={ ( value ) => setAttributes( { buttonColor: value } ) }
-					/>
-					<ColorControl
-						label={ __( 'Button Border Color', 'wbcom-essential' ) }
-						value={ buttonBorderColor }
-						onChange={ ( value ) => setAttributes( { buttonBorderColor: value } ) }
-					/>
 					<SelectControl
 						label={ __( 'Button Alignment', 'wbcom-essential' ) }
 						value={ buttonAlign }

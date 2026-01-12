@@ -1,6 +1,6 @@
 <?php
 /**
- * Flip Box Block
+ * Flip Box Block Registration.
  *
  * @package WBCOM_Essential
  */

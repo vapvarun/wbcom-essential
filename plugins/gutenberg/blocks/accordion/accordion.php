@@ -1,6 +1,6 @@
 <?php
 /**
- * Accordion Block Registration
+ * Accordion Block Registration.
  *
  * @package WBCOM_Essential
  */

@@ -19,6 +19,7 @@ if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'groups' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $sort_type          = $attributes['sortType'] ?? 'active';
 $total_groups       = $attributes['totalGroups'] ?? 12;
 $show_meta          = $attributes['showMeta'] ?? true;
@@ -45,17 +46,22 @@ $effect             = $attributes['effect'] ?? 'slide';
 $enable_keyboard    = $attributes['enableKeyboard'] ?? true;
 $grab_cursor        = $attributes['grabCursor'] ?? true;
 
-// Build inline styles for layout and colors.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_styles = array(
-	'--card-radius'   => $card_radius . 'px',
-	'--space-between' => $space_between . 'px',
-	'--card-bg'       => $card_bg_color,
-	'--name-color'    => $name_color,
-	'--meta-color'    => $meta_color,
-	'--arrow-color'   => $arrow_color,
-	'--dot-color'     => $dot_color,
+	// Layout styles - always applied.
+	'--card-radius'     => $card_radius . 'px',
+	'--space-between'   => $space_between . 'px',
 	'--slides-per-view' => $slides_to_show,
 );
+
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--card-bg']     = $card_bg_color;
+	$inline_styles['--name-color']  = $name_color;
+	$inline_styles['--meta-color']  = $meta_color;
+	$inline_styles['--arrow-color'] = $arrow_color;
+	$inline_styles['--dot-color']   = $dot_color;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
@@ -116,10 +122,16 @@ $groups_args = array(
 	'populate_extras' => true,
 );
 
+// Wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-group-carousel' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-group-carousel',
+		'class' => implode( ' ', $wrapper_classes ),
 		'style' => $style_string,
 	)
 );

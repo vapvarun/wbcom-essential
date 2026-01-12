@@ -1,6 +1,6 @@
 <?php
 /**
- * Shape Block
+ * Shape Block Registration.
  *
  * @package WBCOM_Essential
  */

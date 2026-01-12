@@ -61,6 +61,13 @@ class Shape extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'shape', 'divider', 'blob', 'decoration', 'graphic' );
+	}
+
+	/**
 	 * Get dependent style..
 	 */
 	public function get_style_depends() {

@@ -27,6 +27,7 @@ import { ColorControl } from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		postType,
 		categories,
 		tags,
@@ -76,7 +77,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		defaultImageUrl,
 	} = attributes;
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: `wbcom-essential-post-slider-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
+	} );
 
 	// Initialize Swiper in editor preview
 	useEffect( () => {
@@ -412,16 +415,18 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					{ showDivider && (
 						<>
-							<ColorControl
-								label={ __(
-									'Divider Color',
-									'wbcom-essential'
-								) }
-								value={ dividerColor }
-								onChange={ ( value ) =>
-									setAttributes( { dividerColor: value } )
-								}
-							/>
+							{ ! useThemeColors && (
+								<ColorControl
+									label={ __(
+										'Divider Color',
+										'wbcom-essential'
+									) }
+									value={ dividerColor }
+									onChange={ ( value ) =>
+										setAttributes( { dividerColor: value } )
+									}
+								/>
+							) }
 							<RangeControl
 								label={ __(
 									'Divider Width (px)',
@@ -887,81 +892,98 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Overlay Color', 'wbcom-essential' ) }
-						value={ overlayColor }
-						onChange={ ( value ) =>
-							setAttributes( { overlayColor: value } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
 						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<ColorControl
-						label={ __( 'Title Color', 'wbcom-essential' ) }
-						value={ titleColor }
-						onChange={ ( value ) =>
-							setAttributes( { titleColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Excerpt Color', 'wbcom-essential' ) }
-						value={ excerptColor }
-						onChange={ ( value ) =>
-							setAttributes( { excerptColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Date Color', 'wbcom-essential' ) }
-						value={ dateColor }
-						onChange={ ( value ) =>
-							setAttributes( { dateColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Navigation Color', 'wbcom-essential' ) }
-						value={ navColor }
-						onChange={ ( value ) =>
-							setAttributes( { navColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Overlay Color', 'wbcom-essential' ) }
+								value={ overlayColor }
+								onChange={ ( value ) =>
+									setAttributes( { overlayColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Title Color', 'wbcom-essential' ) }
+								value={ titleColor }
+								onChange={ ( value ) =>
+									setAttributes( { titleColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Excerpt Color', 'wbcom-essential' ) }
+								value={ excerptColor }
+								onChange={ ( value ) =>
+									setAttributes( { excerptColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Date Color', 'wbcom-essential' ) }
+								value={ dateColor }
+								onChange={ ( value ) =>
+									setAttributes( { dateColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Navigation Color', 'wbcom-essential' ) }
+								value={ navColor }
+								onChange={ ( value ) =>
+									setAttributes( { navColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
 					title={ __( 'Button Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Button Background', 'wbcom-essential' ) }
-						value={ buttonBgColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonBgColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __( 'Button Text Color', 'wbcom-essential' ) }
-						value={ buttonTextColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonTextColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __(
-							'Button Hover Background',
-							'wbcom-essential'
-						) }
-						value={ buttonHoverBgColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonHoverBgColor: value } )
-						}
-					/>
-					<ColorControl
-						label={ __(
-							'Button Hover Text Color',
-							'wbcom-essential'
-						) }
-						value={ buttonHoverTextColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonHoverTextColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Button Background', 'wbcom-essential' ) }
+								value={ buttonBgColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonBgColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __( 'Button Text Color', 'wbcom-essential' ) }
+								value={ buttonTextColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonTextColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __(
+									'Button Hover Background',
+									'wbcom-essential'
+								) }
+								value={ buttonHoverBgColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonHoverBgColor: value } )
+								}
+							/>
+							<ColorControl
+								label={ __(
+									'Button Hover Text Color',
+									'wbcom-essential'
+								) }
+								value={ buttonHoverTextColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonHoverTextColor: value } )
+								}
+							/>
+						</>
+					) }
 					<RangeControl
 						label={ __( 'Border Radius (px)', 'wbcom-essential' ) }
 						value={ buttonBorderRadius }

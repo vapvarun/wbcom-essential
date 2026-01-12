@@ -73,6 +73,13 @@ class GroupGrid extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'groups', 'grid', 'buddypress', 'community', 'cards' );
+	}
+
+	/**
 	 * Get Style depends.
 	 */
 	public function get_style_depends() {
@@ -158,6 +165,14 @@ class GroupGrid extends \Elementor\Widget_Base {
 	 * Render Elementor groups grid widget.
 	 */
 	protected function render() {
+		// Check if BuddyPress is active before rendering.
+		if ( ! function_exists( 'buddypress' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'BuddyPress is required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
+
 		parent::render();
 		$settings             = $this->get_settings_for_display();
 		$active_template      = get_option( '_bp_theme_package_id' );

@@ -74,6 +74,13 @@ class Timeline extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'timeline', 'history', 'events', 'chronology', 'vertical' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {
@@ -714,8 +721,7 @@ class Timeline extends \Elementor\Widget_Base {
 					}
 					?>
 					<?php
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wpautop is a WordPress function that returns safe HTML
-					echo wpautop( $item['text'] ); ?>
+					echo wp_kses_post( wpautop( $item['text'] ) ); ?>
 					</div>
 				</div>
 			<?php } ?>

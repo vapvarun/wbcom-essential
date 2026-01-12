@@ -52,6 +52,49 @@
 	--sign-up-border-radius: 4px;
 
 	position: relative;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables when enabled.
+	 * This allows the block to inherit colors from the active theme.
+	 */
+	&.use-theme-colors {
+		// Icon colors - inherit from theme
+		--icon-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #303030));
+		--friend-requests-icon-color: var(--icon-color);
+		--search-icon-color: var(--icon-color);
+		--messages-icon-color: var(--icon-color);
+		--notifications-icon-color: var(--icon-color);
+		--cart-icon-color: var(--icon-color);
+		--dark-mode-icon-color: var(--icon-color);
+
+		// Separator
+		--separator-color: var(--wbcom-border-color, var(--wbcom-color-border, rgba(0, 0, 0, 0.1)));
+
+		// Counter styles - use theme primary
+		--counter-bg-color: var(--wbcom-color-primary, #1d76da);
+		--counter-text-color: var(--wbcom-button-text, #ffffff);
+
+		// Dropdown styles - use theme card colors
+		--dropdown-bg-color: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--dropdown-text-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #303030));
+		--dropdown-hover-bg-color: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, rgba(0, 0, 0, 0.05)));
+		--dropdown-hover-text-color: var(--wbcom-link-color, var(--wbcom-color-primary, #1d76da));
+		--dropdown-border-color: var(--wbcom-card-border, var(--wbcom-color-border, transparent));
+		--dropdown-box-shadow: var(--wbcom-card-shadow, 0 4px 20px rgba(0, 0, 0, 0.15));
+
+		// Profile styles
+		--user-name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #303030));
+		--user-name-hover-color: var(--wbcom-link-color, var(--wbcom-color-primary, #1d76da));
+
+		// Auth button styles
+		--sign-in-color: var(--wbcom-text-color, inherit);
+		--sign-in-hover-color: var(--wbcom-link-color, var(--wbcom-color-primary, #1d76da));
+		--sign-up-bg-color: var(--wbcom-button-bg, var(--wbcom-color-primary, #1d76da));
+		--sign-up-text-color: var(--wbcom-button-text, #ffffff);
+		--sign-up-hover-bg-color: var(--wbcom-button-hover-bg, var(--wbcom-color-primary-dark, #1565c0));
+		--sign-up-hover-text-color: var(--wbcom-button-text, #ffffff);
+	}
 }
 
 .wbcom-header-bar-inner {

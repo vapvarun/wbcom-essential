@@ -1,6 +1,6 @@
 <?php
 /**
- * Branding Block
+ * Branding Block Registration.
  *
  * @package WBCOM_Essential
  */

@@ -48,6 +48,13 @@ class SiteLogo extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'site', 'logo', 'brand', 'image', 'identity' );
+	}
+
+	/**
 	 * Register the widget controls.
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.

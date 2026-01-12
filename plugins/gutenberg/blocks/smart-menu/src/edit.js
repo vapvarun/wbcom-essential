@@ -43,6 +43,7 @@ import './editor.scss';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		menuId,
 		menuLayout,
 		menuAlign,
@@ -334,19 +335,30 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Menu Container', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<TextControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ mainMenuBackground?.color || '' }
-						onChange={ ( value ) =>
-							setAttributes( {
-								mainMenuBackground: {
-									...mainMenuBackground,
-									color: value,
-								},
-							} )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme colors instead of custom colors.', 'wbcom-essential' )
 						}
-						type="color"
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<TextControl
+							label={ __( 'Background Color', 'wbcom-essential' ) }
+							value={ mainMenuBackground?.color || '' }
+							onChange={ ( value ) =>
+								setAttributes( {
+									mainMenuBackground: {
+										...mainMenuBackground,
+										color: value,
+									},
+								} )
+							}
+							type="color"
+						/>
+					) }
 					<RangeControl
 						label={ __(
 							'Transition Duration (ms)',
@@ -417,82 +429,86 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 50 }
 						step={ 1 }
 					/>
-					<PanelBody
-						title={ __( 'Normal', 'wbcom-essential' ) }
-						initialOpen={ false }
-					>
-						<TextControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ mainMenuItemColor }
-							onChange={ ( value ) =>
-								setAttributes( { mainMenuItemColor: value } )
-							}
-							type="color"
-						/>
-						<TextControl
-							label={ __(
-								'Background Color',
-								'wbcom-essential'
-							) }
-							value={ mainMenuItemBg }
-							onChange={ ( value ) =>
-								setAttributes( { mainMenuItemBg: value } )
-							}
-							type="color"
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Hover', 'wbcom-essential' ) }
-						initialOpen={ false }
-					>
-						<TextControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ mainMenuItemColorHover }
-							onChange={ ( value ) =>
-								setAttributes( {
-									mainMenuItemColorHover: value,
-								} )
-							}
-							type="color"
-						/>
-						<TextControl
-							label={ __(
-								'Background Color',
-								'wbcom-essential'
-							) }
-							value={ mainMenuItemBgHover }
-							onChange={ ( value ) =>
-								setAttributes( { mainMenuItemBgHover: value } )
-							}
-							type="color"
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Active', 'wbcom-essential' ) }
-						initialOpen={ false }
-					>
-						<TextControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ mainMenuItemColorActive }
-							onChange={ ( value ) =>
-								setAttributes( {
-									mainMenuItemColorActive: value,
-								} )
-							}
-							type="color"
-						/>
-						<TextControl
-							label={ __(
-								'Background Color',
-								'wbcom-essential'
-							) }
-							value={ mainMenuItemBgActive }
-							onChange={ ( value ) =>
-								setAttributes( { mainMenuItemBgActive: value } )
-							}
-							type="color"
-						/>
-					</PanelBody>
+					{ ! useThemeColors && (
+						<>
+							<PanelBody
+								title={ __( 'Normal', 'wbcom-essential' ) }
+								initialOpen={ false }
+							>
+								<TextControl
+									label={ __( 'Color', 'wbcom-essential' ) }
+									value={ mainMenuItemColor }
+									onChange={ ( value ) =>
+										setAttributes( { mainMenuItemColor: value } )
+									}
+									type="color"
+								/>
+								<TextControl
+									label={ __(
+										'Background Color',
+										'wbcom-essential'
+									) }
+									value={ mainMenuItemBg }
+									onChange={ ( value ) =>
+										setAttributes( { mainMenuItemBg: value } )
+									}
+									type="color"
+								/>
+							</PanelBody>
+							<PanelBody
+								title={ __( 'Hover', 'wbcom-essential' ) }
+								initialOpen={ false }
+							>
+								<TextControl
+									label={ __( 'Color', 'wbcom-essential' ) }
+									value={ mainMenuItemColorHover }
+									onChange={ ( value ) =>
+										setAttributes( {
+											mainMenuItemColorHover: value,
+										} )
+									}
+									type="color"
+								/>
+								<TextControl
+									label={ __(
+										'Background Color',
+										'wbcom-essential'
+									) }
+									value={ mainMenuItemBgHover }
+									onChange={ ( value ) =>
+										setAttributes( { mainMenuItemBgHover: value } )
+									}
+									type="color"
+								/>
+							</PanelBody>
+							<PanelBody
+								title={ __( 'Active', 'wbcom-essential' ) }
+								initialOpen={ false }
+							>
+								<TextControl
+									label={ __( 'Color', 'wbcom-essential' ) }
+									value={ mainMenuItemColorActive }
+									onChange={ ( value ) =>
+										setAttributes( {
+											mainMenuItemColorActive: value,
+										} )
+									}
+									type="color"
+								/>
+								<TextControl
+									label={ __(
+										'Background Color',
+										'wbcom-essential'
+									) }
+									value={ mainMenuItemBgActive }
+									onChange={ ( value ) =>
+										setAttributes( { mainMenuItemBgActive: value } )
+									}
+									type="color"
+								/>
+							</PanelBody>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
@@ -639,14 +655,16 @@ export default function Edit( { attributes, setAttributes } ) {
 						step={ 100 }
 					/>
 
-					<TextControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ subMenuBg }
-						onChange={ ( value ) =>
-							setAttributes( { subMenuBg: value } )
-						}
-						type="color"
-					/>
+					{ ! useThemeColors && (
+						<TextControl
+							label={ __( 'Background Color', 'wbcom-essential' ) }
+							value={ subMenuBg }
+							onChange={ ( value ) =>
+								setAttributes( { subMenuBg: value } )
+							}
+							type="color"
+						/>
+					) }
 
 					<SelectControl
 						label={ __( 'Submenu Indicator Icon', 'wbcom-essential' ) }
@@ -701,109 +719,117 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Sub Menu Items', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<PanelBody
-						title={ __( 'Normal', 'wbcom-essential' ) }
-						initialOpen={ false }
-					>
-						<TextControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ subMenuItemColor }
-							onChange={ ( value ) =>
-								setAttributes( { subMenuItemColor: value } )
-							}
-							type="color"
-						/>
-						<TextControl
-							label={ __(
-								'Background Color',
-								'wbcom-essential'
-							) }
-							value={ subMenuItemBg }
-							onChange={ ( value ) =>
-								setAttributes( { subMenuItemBg: value } )
-							}
-							type="color"
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Hover', 'wbcom-essential' ) }
-						initialOpen={ false }
-					>
-						<TextControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ subMenuItemColorHover }
-							onChange={ ( value ) =>
-								setAttributes( {
-									subMenuItemColorHover: value,
-								} )
-							}
-							type="color"
-						/>
-						<TextControl
-							label={ __(
-								'Background Color',
-								'wbcom-essential'
-							) }
-							value={ subMenuItemBgHover }
-							onChange={ ( value ) =>
-								setAttributes( { subMenuItemBgHover: value } )
-							}
-							type="color"
-						/>
-					</PanelBody>
-					<PanelBody
-						title={ __( 'Active', 'wbcom-essential' ) }
-						initialOpen={ false }
-					>
-						<TextControl
-							label={ __( 'Color', 'wbcom-essential' ) }
-							value={ subMenuItemColorActive }
-							onChange={ ( value ) =>
-								setAttributes( {
-									subMenuItemColorActive: value,
-								} )
-							}
-							type="color"
-						/>
-						<TextControl
-							label={ __(
-								'Background Color',
-								'wbcom-essential'
-							) }
-							value={ subMenuItemBgActive }
-							onChange={ ( value ) =>
-								setAttributes( { subMenuItemBgActive: value } )
-							}
-							type="color"
-						/>
-					</PanelBody>
+					{ ! useThemeColors && (
+						<>
+							<PanelBody
+								title={ __( 'Normal', 'wbcom-essential' ) }
+								initialOpen={ false }
+							>
+								<TextControl
+									label={ __( 'Color', 'wbcom-essential' ) }
+									value={ subMenuItemColor }
+									onChange={ ( value ) =>
+										setAttributes( { subMenuItemColor: value } )
+									}
+									type="color"
+								/>
+								<TextControl
+									label={ __(
+										'Background Color',
+										'wbcom-essential'
+									) }
+									value={ subMenuItemBg }
+									onChange={ ( value ) =>
+										setAttributes( { subMenuItemBg: value } )
+									}
+									type="color"
+								/>
+							</PanelBody>
+							<PanelBody
+								title={ __( 'Hover', 'wbcom-essential' ) }
+								initialOpen={ false }
+							>
+								<TextControl
+									label={ __( 'Color', 'wbcom-essential' ) }
+									value={ subMenuItemColorHover }
+									onChange={ ( value ) =>
+										setAttributes( {
+											subMenuItemColorHover: value,
+										} )
+									}
+									type="color"
+								/>
+								<TextControl
+									label={ __(
+										'Background Color',
+										'wbcom-essential'
+									) }
+									value={ subMenuItemBgHover }
+									onChange={ ( value ) =>
+										setAttributes( { subMenuItemBgHover: value } )
+									}
+									type="color"
+								/>
+							</PanelBody>
+							<PanelBody
+								title={ __( 'Active', 'wbcom-essential' ) }
+								initialOpen={ false }
+							>
+								<TextControl
+									label={ __( 'Color', 'wbcom-essential' ) }
+									value={ subMenuItemColorActive }
+									onChange={ ( value ) =>
+										setAttributes( {
+											subMenuItemColorActive: value,
+										} )
+									}
+									type="color"
+								/>
+								<TextControl
+									label={ __(
+										'Background Color',
+										'wbcom-essential'
+									) }
+									value={ subMenuItemBgActive }
+									onChange={ ( value ) =>
+										setAttributes( { subMenuItemBgActive: value } )
+									}
+									type="color"
+								/>
+							</PanelBody>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
 					title={ __( 'Mobile Menu Toggle', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<TextControl
-						label={ __( 'Color', 'wbcom-essential' ) }
-						value={ mobileMenuColor }
-						onChange={ ( value ) =>
-							setAttributes( { mobileMenuColor: value } )
-						}
-						type="color"
-					/>
-					<TextControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ mobileMenuBackground?.color || '' }
-						onChange={ ( value ) =>
-							setAttributes( {
-								mobileMenuBackground: {
-									...mobileMenuBackground,
-									color: value,
-								},
-							} )
-						}
-						type="color"
-					/>
+					{ ! useThemeColors && (
+						<>
+							<TextControl
+								label={ __( 'Color', 'wbcom-essential' ) }
+								value={ mobileMenuColor }
+								onChange={ ( value ) =>
+									setAttributes( { mobileMenuColor: value } )
+								}
+								type="color"
+							/>
+							<TextControl
+								label={ __( 'Background Color', 'wbcom-essential' ) }
+								value={ mobileMenuBackground?.color || '' }
+								onChange={ ( value ) =>
+									setAttributes( {
+										mobileMenuBackground: {
+											...mobileMenuBackground,
+											color: value,
+										},
+									} )
+								}
+								type="color"
+							/>
+						</>
+					) }
 					<TextControl
 						label={ __( 'Width', 'wbcom-essential' ) }
 						value={ `${ mobileMenuWidth?.size || '' }${

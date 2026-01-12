@@ -77,6 +77,13 @@ class PostTimeline extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'post', 'timeline', 'history', 'chronology', 'events' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {

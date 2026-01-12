@@ -19,44 +19,50 @@ if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'groups' ) ) {
 }
 
 // Extract attributes with defaults.
-$sort_type         = $attributes['sortType'] ?? 'active';
-$total_groups      = $attributes['totalGroups'] ?? 12;
-$columns           = $attributes['columns'] ?? 3;
-$columns_tablet    = $attributes['columnsTablet'] ?? 2;
-$columns_mobile    = $attributes['columnsMobile'] ?? 1;
-$gap               = $attributes['gap'] ?? 30;
-$show_avatar       = $attributes['showAvatar'] ?? true;
-$show_name         = $attributes['showName'] ?? true;
-$show_description  = $attributes['showDescription'] ?? false;
-$show_meta         = $attributes['showMeta'] ?? true;
-$show_member_count = $attributes['showMemberCount'] ?? true;
-$show_join_button  = $attributes['showJoinButton'] ?? true;
-$card_bg_color     = $attributes['cardBgColor'] ?? '#ffffff';
+$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+$sort_type          = $attributes['sortType'] ?? 'active';
+$total_groups       = $attributes['totalGroups'] ?? 12;
+$columns            = $attributes['columns'] ?? 3;
+$columns_tablet     = $attributes['columnsTablet'] ?? 2;
+$columns_mobile     = $attributes['columnsMobile'] ?? 1;
+$gap                = $attributes['gap'] ?? 30;
+$show_avatar        = $attributes['showAvatar'] ?? true;
+$show_name          = $attributes['showName'] ?? true;
+$show_description   = $attributes['showDescription'] ?? false;
+$show_meta          = $attributes['showMeta'] ?? true;
+$show_member_count  = $attributes['showMemberCount'] ?? true;
+$show_join_button   = $attributes['showJoinButton'] ?? true;
+$card_bg_color      = $attributes['cardBgColor'] ?? '#ffffff';
 $card_border_radius = $attributes['cardBorderRadius'] ?? 8;
-$card_shadow       = $attributes['cardShadow'] ?? true;
-$card_padding      = $attributes['cardPadding'] ?? 20;
-$name_color        = $attributes['nameColor'] ?? '#122B46';
-$meta_color        = $attributes['metaColor'] ?? '#A3A5A9';
-$button_bg_color   = $attributes['buttonBgColor'] ?? '#1d76da';
-$button_text_color = $attributes['buttonTextColor'] ?? '#ffffff';
+$card_shadow        = $attributes['cardShadow'] ?? true;
+$card_padding       = $attributes['cardPadding'] ?? 20;
+$name_color         = $attributes['nameColor'] ?? '#122B46';
+$meta_color         = $attributes['metaColor'] ?? '#A3A5A9';
+$button_bg_color    = $attributes['buttonBgColor'] ?? '#1d76da';
+$button_text_color  = $attributes['buttonTextColor'] ?? '#ffffff';
 
-// Build CSS variables for layout/spacing and colors.
-$css_vars = array(
-	'--columns'           => $columns,
-	'--columns-tablet'    => $columns_tablet,
-	'--columns-mobile'    => $columns_mobile,
-	'--gap'               => $gap . 'px',
-	'--card-radius'       => $card_border_radius . 'px',
-	'--card-padding'      => $card_padding . 'px',
-	'--card-bg'           => $card_bg_color,
-	'--name-color'        => $name_color,
-	'--meta-color'        => $meta_color,
-	'--button-bg'         => $button_bg_color,
-	'--button-text'       => $button_text_color,
+// Build inline styles - layout always applied, colors only when not using theme colors.
+$inline_styles = array(
+	// Layout styles - always applied.
+	'--columns'        => $columns,
+	'--columns-tablet' => $columns_tablet,
+	'--columns-mobile' => $columns_mobile,
+	'--gap'            => $gap . 'px',
+	'--card-radius'    => $card_border_radius . 'px',
+	'--card-padding'   => $card_padding . 'px',
 );
 
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--card-bg']     = $card_bg_color;
+	$inline_styles['--name-color']  = $name_color;
+	$inline_styles['--meta-color']  = $meta_color;
+	$inline_styles['--button-bg']   = $button_bg_color;
+	$inline_styles['--button-text'] = $button_text_color;
+}
+
 $style_string = '';
-foreach ( $css_vars as $prop => $value ) {
+foreach ( $inline_styles as $prop => $value ) {
 	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
 }
 
@@ -75,10 +81,16 @@ $groups_args = array(
 	'populate_extras' => true,
 );
 
+// Wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-groups-grid' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-groups-grid',
+		'class' => implode( ' ', $wrapper_classes ),
 		'style' => $style_string,
 	)
 );

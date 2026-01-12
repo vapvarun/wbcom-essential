@@ -1,6 +1,6 @@
 <?php
 /**
- * Pricing Table Block
+ * Pricing Table Block Registration.
  *
  * @package WBCOM_Essential
  */

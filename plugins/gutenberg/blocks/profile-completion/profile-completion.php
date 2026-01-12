@@ -1,6 +1,6 @@
 <?php
 /**
- * Profile Completion Block
+ * Profile Completion Block Registration.
  *
  * @package WBCOM_Essential
  */

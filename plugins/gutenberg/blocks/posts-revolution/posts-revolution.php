@@ -1,6 +1,6 @@
 <?php
 /**
- * Posts Revolution Block
+ * Posts Revolution Block Registration.
  *
  * @package WBCOM_Essential
  */

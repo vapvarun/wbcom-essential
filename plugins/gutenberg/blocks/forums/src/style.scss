@@ -23,13 +23,36 @@
 }
 
 .wbcom-essential-forums {
-	// Use CSS variables with fallback chain: inline style -> theme -> default
-	// The inline style sets --box-bg, etc. directly on the element via style attribute
-	// which takes precedence over these fallbacks.
-	background: var(--box-bg, var(--wbcom-card-bg, #ffffff));
+	// Default CSS variables for colors (overridden by inline styles when custom colors used).
+	--box-bg: #ffffff;
+	--box-border-color: #e3e3e3;
+	--title-color: #122B46;
+	--title-hover: #007CFF;
+	--meta-color: #A3A5A9;
+	--last-reply-color: #4D5C6D;
+	--link-color: #1d76da;
+	--avatar-border-color: transparent;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--box-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--box-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e3e3e3));
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--title-hover: var(--wbcom-link-color, var(--wbcom-color-primary, #007CFF));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #A3A5A9));
+		--last-reply-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #4D5C6D));
+		--link-color: var(--wbcom-link-color, var(--wbcom-color-primary, #1d76da));
+		--avatar-border-color: var(--wbcom-border-color, var(--wbcom-color-border, transparent));
+	}
+
+	// Use CSS variables with fallback chain.
+	background: var(--box-bg);
 	border-width: var(--box-border-width, 1px);
 	border-style: var(--box-border-type, solid);
-	border-color: var(--box-border-color, var(--wbcom-border-color, #e3e3e3));
+	border-color: var(--box-border-color);
 	border-radius: var(--box-radius, 4px 4px 4px 4px);
 	padding: 20px;
 	position: relative;
@@ -57,7 +80,7 @@
 			display: inline-flex;
 			align-items: center;
 			gap: 4px;
-			color: var(--link-color, var(--wbcom-color-primary, #1d76da));
+			color: var(--link-color);
 			text-decoration: none;
 
 			&:hover {
@@ -81,7 +104,7 @@
 	padding: 0;
 
 	> li {
-		border-bottom: 1px solid var(--box-border-color, var(--wbcom-border-color, #e3e3e3));
+		border-bottom: 1px solid var(--box-border-color);
 		padding-bottom: var(--row-space, 20px);
 		margin-bottom: var(--row-space, 20px);
 
@@ -139,11 +162,11 @@
 		font-size: var(--title-font-size, 14px);
 		font-weight: var(--title-font-weight, 400);
 		line-height: var(--title-line-height, 1.5);
-		color: var(--title-color, var(--wbcom-heading-color, #122B46));
+		color: var(--title-color);
 		text-decoration: none;
 
 		&:hover {
-			color: var(--title-hover, var(--wbcom-color-primary, #007CFF));
+			color: var(--title-hover);
 		}
 	}
 }
@@ -151,17 +174,17 @@
 // Meta data.
 .wbcom-essential-forums .item-meta {
 	font-size: var(--meta-font-size, 13px);
-	color: var(--meta-color, var(--wbcom-text-color, #666));
+	color: var(--meta-color);
 	line-height: 1;
 }
 
 .wbcom-essential-forums__ww {
 	.bs-replied {
 		a {
-			color: var(--title-color, var(--wbcom-heading-color, #122B46));
+			color: var(--title-color);
 
 			&:hover {
-				color: var(--title-hover, var(--wbcom-color-primary, #007CFF));
+				color: var(--title-hover);
 			}
 		}
 	}
@@ -187,7 +210,7 @@
 
 .wbcom-essential-forums .bs-last-reply {
 	display: block;
-	color: var(--last-reply-color, var(--wbcom-text-color, #666));
+	color: var(--last-reply-color);
 	line-height: 1.4;
 	font-size: var(--meta-font-size, 13px);
 }
@@ -214,23 +237,23 @@
 
 	p {
 		margin: 0 0 15px;
-		color: var(--wbcom-text-color, #666);
+		color: var(--meta-color);
 	}
 
 	&__link {
 		display: inline-block;
 		font-size: 14px;
 		padding: 8px 20px;
-		border: 1px solid var(--wbcom-border-color, #e3e3e3);
+		border: 1px solid var(--box-border-color);
 		border-radius: 30px;
-		color: var(--title-color, var(--wbcom-heading-color, #122B46));
+		color: var(--title-color);
 		text-decoration: none;
 		transition: all 0.3s ease;
 
 		&:hover {
-			background: var(--title-color, var(--wbcom-heading-color, #122B46));
-			color: var(--wbcom-button-text, #fff);
-			border-color: var(--title-color, var(--wbcom-heading-color, #122B46));
+			background: var(--title-color);
+			color: #fff;
+			border-color: var(--title-color);
 		}
 	}
 }

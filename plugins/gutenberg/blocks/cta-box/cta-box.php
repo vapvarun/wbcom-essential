@@ -1,8 +1,8 @@
 <?php
 /**
- * CTA Box Block Registration
+ * CTA Box Block Registration.
  *
- * @package wbcom-essential
+ * @package WBCOM_Essential
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,15 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register the CTA Box block.
+ * Registers the block using the metadata loaded from block.json.
  */
-function wbcom_essential_register_cta_box_block() {
-	$block_path = WBCOM_ESSENTIAL_PATH . 'plugins/gutenberg/blocks/cta-box/build';
-
-	if ( ! file_exists( $block_path . '/block.json' ) ) {
-		return;
+function wbcom_essential_cta_box_block_init() {
+	$build_path = WBCOM_ESSENTIAL_PATH . 'build/blocks/cta-box/';
+	if ( file_exists( $build_path . 'block.json' ) ) {
+		register_block_type( $build_path );
 	}
-
-	register_block_type( $block_path );
 }
-add_action( 'init', 'wbcom_essential_register_cta_box_block' );
+add_action( 'init', 'wbcom_essential_cta_box_block_init' );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Members Lists Block
+ * Members Lists Block Registration.
  *
  * @package WBCOM_Essential
  */

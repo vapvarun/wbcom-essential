@@ -1,6 +1,6 @@
 <?php
 /**
- * Advanced Tabs Block
+ * Advanced Tabs Block Registration.
  *
  * @package WBCOM_Essential
  */

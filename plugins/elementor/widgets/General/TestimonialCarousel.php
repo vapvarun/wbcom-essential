@@ -67,6 +67,13 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'testimonial', 'carousel', 'reviews', 'slider', 'quotes' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {

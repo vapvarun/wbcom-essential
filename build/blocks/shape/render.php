@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors = $attributes['useThemeColors'] ?? false;
 $point1           = $attributes['point1'] ?? 30;
 $point2           = $attributes['point2'] ?? 70;
 $point3           = $attributes['point3'] ?? 70;
@@ -113,34 +114,44 @@ $svg_height_css = $svg_height > 0 ? $svg_height . 'px' : 'auto';
 // Icon background.
 $icon_bg_css = $icon_bg_color ? esc_attr( $icon_bg_color ) : 'transparent';
 
-// Build CSS custom properties.
+// Build CSS custom properties - dimensions always applied.
 $style_vars = sprintf(
-	'--shape-width: %dpx; --shape-height: %dpx; --shape-radius: %s; --shape-rotation: %ddeg; --shape-background: %s; --shape-icon-color: %s; --shape-icon-size: %dpx; --shape-icon-rotation: %ddeg; --shape-align: %s; --shape-border: %s; --shape-box-shadow: %s; --shape-svg-width: %s; --shape-svg-height: %s; --shape-icon-bg: %s; --shape-icon-bg-size: %dpx; --shape-icon-bg-radius: %d%%;',
+	'--shape-width: %dpx; --shape-height: %dpx; --shape-radius: %s; --shape-rotation: %ddeg; --shape-icon-size: %dpx; --shape-icon-rotation: %ddeg; --shape-align: %s; --shape-svg-width: %s; --shape-svg-height: %s; --shape-icon-bg-size: %dpx; --shape-icon-bg-radius: %d%%;',
 	$width,
 	$height,
 	esc_attr( $border_radius ),
 	$rotation,
-	$background_style,
-	esc_attr( $icon_color ),
 	$icon_size,
 	$icon_rotation,
 	esc_attr( $alignment ),
-	$border_css ? esc_attr( $border_css ) : 'none',
-	esc_attr( $box_shadow_css ),
 	esc_attr( $svg_width_css ),
 	esc_attr( $svg_height_css ),
-	$icon_bg_css,
 	$icon_bg_size,
 	$icon_bg_radius
 );
 
+// Add color CSS variables only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$style_vars .= sprintf( ' --shape-background: %s;', $background_style );
+	$style_vars .= sprintf( ' --shape-icon-color: %s;', esc_attr( $icon_color ) );
+	$style_vars .= sprintf( ' --shape-border: %s;', $border_css ? esc_attr( $border_css ) : 'none' );
+	$style_vars .= sprintf( ' --shape-box-shadow: %s;', esc_attr( $box_shadow_css ) );
+	$style_vars .= sprintf( ' --shape-icon-bg: %s;', $icon_bg_css );
+}
+
 // Animation class.
 $animation_class = $hover_animation ? 'wbcom-shape-animation-' . esc_attr( $hover_animation ) : '';
+
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-shape';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-shape',
+		'class' => $wrapper_classes,
 		'style' => $style_vars,
 	)
 );

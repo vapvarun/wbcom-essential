@@ -36,6 +36,9 @@ $enable_animation = $attributes['enableAnimation'] ?? false;
 $animation_type   = $attributes['animationType'] ?? 'fade-in';
 $animation_delay  = $attributes['animationDelay'] ?? 1000;
 
+// Theme colors toggle.
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+
 // Style settings.
 $enable_custom_style = $attributes['enableCustomStyle'] ?? false;
 $main_color          = $attributes['mainColor'] ?? '#1d76da';
@@ -194,9 +197,20 @@ if ( ! function_exists( 'wbcom_pr_block_get_thumbnail' ) ) {
 	}
 }
 
+// Build wrapper classes.
+$wrapper_classes = array(
+	'wbcom-essential-posts-revolution',
+	esc_attr( $display_type ),
+	'wbselector-' . esc_attr( $instance ),
+);
+
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-posts-revolution ' . esc_attr( $display_type ) . ' wbselector-' . esc_attr( $instance ),
+		'class' => implode( ' ', $wrapper_classes ),
 	)
 );
 

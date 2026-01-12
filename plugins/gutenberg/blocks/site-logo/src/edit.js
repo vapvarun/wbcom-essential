@@ -28,6 +28,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		logoSource,
 		desktopLogoId,
 		desktopLogoUrl,
@@ -277,6 +278,16 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme colors instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+
 					<SelectControl
 						label={ __( 'Alignment', 'wbcom-essential' ) }
 						value={ alignment }
@@ -313,16 +324,18 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 400 }
 					/>
 
-					<div style={ { marginTop: '16px' } }>
-						<p style={ { fontWeight: '500', marginBottom: '8px' } }>
-							{ __( 'Background Color', 'wbcom-essential' ) }
-						</p>
-						<ColorPalette
-							value={ backgroundColor }
-							onChange={ ( value ) => setAttributes( { backgroundColor: value } ) }
-							clearable={ true }
-						/>
-					</div>
+					{ ! useThemeColors && (
+						<div style={ { marginTop: '16px' } }>
+							<p style={ { fontWeight: '500', marginBottom: '8px' } }>
+								{ __( 'Background Color', 'wbcom-essential' ) }
+							</p>
+							<ColorPalette
+								value={ backgroundColor }
+								onChange={ ( value ) => setAttributes( { backgroundColor: value } ) }
+								clearable={ true }
+							/>
+						</div>
+					) }
 
 					<div style={ { marginTop: '16px' } }>
 						<p style={ { fontWeight: '500', marginBottom: '8px' } }>
@@ -350,14 +363,18 @@ export default function Edit( { attributes, setAttributes } ) {
 									min={ 0 }
 									max={ 20 }
 								/>
-								<p style={ { fontWeight: '500', marginTop: '8px', marginBottom: '8px' } }>
-									{ __( 'Border Color', 'wbcom-essential' ) }
-								</p>
-								<ColorPalette
-									value={ borderColor }
-									onChange={ ( value ) => setAttributes( { borderColor: value } ) }
-									clearable={ true }
-								/>
+								{ ! useThemeColors && (
+									<>
+										<p style={ { fontWeight: '500', marginTop: '8px', marginBottom: '8px' } }>
+											{ __( 'Border Color', 'wbcom-essential' ) }
+										</p>
+										<ColorPalette
+											value={ borderColor }
+											onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+											clearable={ true }
+										/>
+									</>
+								) }
 							</>
 						) }
 
@@ -370,15 +387,17 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					</div>
 
-					<div style={ { marginTop: '16px' } }>
-						<TextControl
-							label={ __( 'Box Shadow', 'wbcom-essential' ) }
-							help={ __( 'CSS box-shadow value (e.g., 0 4px 6px rgba(0,0,0,0.1))', 'wbcom-essential' ) }
-							value={ boxShadow }
-							onChange={ ( value ) => setAttributes( { boxShadow: value } ) }
-							placeholder="0 4px 6px rgba(0,0,0,0.1)"
-						/>
-					</div>
+					{ ! useThemeColors && (
+						<div style={ { marginTop: '16px' } }>
+							<TextControl
+								label={ __( 'Box Shadow', 'wbcom-essential' ) }
+								help={ __( 'CSS box-shadow value (e.g., 0 4px 6px rgba(0,0,0,0.1))', 'wbcom-essential' ) }
+								value={ boxShadow }
+								onChange={ ( value ) => setAttributes( { boxShadow: value } ) }
+								placeholder="0 4px 6px rgba(0,0,0,0.1)"
+							/>
+						</div>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors     = $attributes['useThemeColors'] ?? false;
 $slides               = $attributes['slides'] ?? array();
 $slider_height        = $attributes['sliderHeight'] ?? array( 'size' => 700, 'unit' => 'px' );
 $slider_height_tablet = $attributes['sliderHeightTablet'] ?? array( 'size' => 500, 'unit' => 'px' );
@@ -66,33 +67,44 @@ if ( empty( $slides ) ) {
 // Generate unique ID for the slider.
 $slider_id = 'wbcom-slider-' . wp_unique_id();
 
-// Build responsive CSS variables.
+// Build responsive CSS variables - sizes always applied.
 $responsive_styles  = '--slider-height-desktop: ' . esc_attr( $slider_height['size'] . $slider_height['unit'] ) . ';';
 $responsive_styles .= '--slider-height-tablet: ' . esc_attr( $slider_height_tablet['size'] . $slider_height_tablet['unit'] ) . ';';
 $responsive_styles .= '--slider-height-mobile: ' . esc_attr( $slider_height_mobile['size'] . $slider_height_mobile['unit'] ) . ';';
 $responsive_styles .= '--slider-transition-duration: ' . esc_attr( $transition_duration ) . 'ms;';
-$responsive_styles .= '--slider-arrow-color: ' . esc_attr( $arrow_color ) . ';';
-$responsive_styles .= '--slider-arrow-hover-color: ' . esc_attr( $arrow_hover_color ) . ';';
-$responsive_styles .= '--slider-arrow-bg-color: ' . esc_attr( $arrow_bg_color ) . ';';
-$responsive_styles .= '--slider-arrow-bg-hover-color: ' . esc_attr( $arrow_bg_hover_color ) . ';';
 $responsive_styles .= '--slider-arrow-size: ' . esc_attr( $arrow_size ) . 'px;';
 $responsive_styles .= '--slider-arrow-box-size: ' . esc_attr( $arrow_box_size ) . 'px;';
 $responsive_styles .= '--slider-arrow-border-radius: ' . esc_attr( $arrow_border_radius ) . '%;';
-$responsive_styles .= '--slider-dots-color: ' . esc_attr( $dots_color ) . ';';
-$responsive_styles .= '--slider-dots-active-color: ' . esc_attr( $dots_active_color ) . ';';
 $responsive_styles .= '--slider-dots-size: ' . esc_attr( $dots_size ) . 'px;';
 $responsive_styles .= '--slider-dots-spacing: ' . esc_attr( $dots_spacing ) . 'px;';
 $responsive_styles .= '--slider-dots-bottom-offset: ' . esc_attr( $dots_bottom_offset ) . 'px;';
 
+// Add color CSS variables only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$responsive_styles .= 'background-color: ' . esc_attr( $slide_bg_color ) . ';';
+	$responsive_styles .= '--slider-arrow-color: ' . esc_attr( $arrow_color ) . ';';
+	$responsive_styles .= '--slider-arrow-hover-color: ' . esc_attr( $arrow_hover_color ) . ';';
+	$responsive_styles .= '--slider-arrow-bg-color: ' . esc_attr( $arrow_bg_color ) . ';';
+	$responsive_styles .= '--slider-arrow-bg-hover-color: ' . esc_attr( $arrow_bg_hover_color ) . ';';
+	$responsive_styles .= '--slider-dots-color: ' . esc_attr( $dots_color ) . ';';
+	$responsive_styles .= '--slider-dots-active-color: ' . esc_attr( $dots_active_color ) . ';';
+}
+
+// Build wrapper classes.
+$wrapper_classes = 'wbcom-essential-slider';
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
 // Build dots position class.
 $dots_position_class = ( 'outside' === $dots_position ) ? 'wbcom-dots-outside' : 'wbcom-dots-inside';
+$wrapper_classes    .= ' ' . $dots_position_class;
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'id'    => $slider_id,
-		'class' => 'wbcom-essential-slider ' . $dots_position_class,
-		'style' => 'background-color: ' . esc_attr( $slide_bg_color ) . '; ' . $responsive_styles,
+		'class' => $wrapper_classes,
+		'style' => $responsive_styles,
 	)
 );
 
@@ -163,13 +175,13 @@ if ( $nav_dots_mobile ) {
 					<div class="wbcom-slider-text-wrapper">
 						<div class="wbcom-slider-text-box">
 							<?php if ( ! empty( $slide['title'] ) ) : ?>
-								<h1 class="wbcom-slider-title" style="color: <?php echo esc_attr( $title_color ); ?>;">
+								<h1 class="wbcom-slider-title"<?php echo ! $use_theme_colors ? ' style="color: ' . esc_attr( $title_color ) . ';"' : ''; ?>>
 									<?php echo wp_kses_post( $slide['title'] ); ?>
 								</h1>
 							<?php endif; ?>
 
 							<?php if ( ! empty( $slide['content'] ) ) : ?>
-								<div class="wbcom-slider-desc" style="color: <?php echo esc_attr( $content_color ); ?>;">
+								<div class="wbcom-slider-desc"<?php echo ! $use_theme_colors ? ' style="color: ' . esc_attr( $content_color ) . ';"' : ''; ?>>
 									<?php echo wp_kses_post( $slide['content'] ); ?>
 								</div>
 							<?php endif; ?>

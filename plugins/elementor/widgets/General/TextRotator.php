@@ -65,6 +65,13 @@ class TextRotator extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'text', 'rotator', 'animation', 'headline', 'typing' );
+	}
+
+	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {

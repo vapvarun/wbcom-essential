@@ -348,6 +348,14 @@ class GroupCarousel extends \Elementor\Widget_Base {
 	 * @return void
 	 */
 	protected function render() {
+		// Check if BuddyPress is active before rendering.
+		if ( ! function_exists( 'buddypress' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'BuddyPress is required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
+
 		$settings = $this->get_settings_for_display();
 
 		$current_component = static function () {

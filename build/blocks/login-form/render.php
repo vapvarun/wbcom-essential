@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors       = $attributes['useThemeColors'] ?? false;
 $show_logo              = $attributes['showLogo'] ?? true;
 $logo_url               = $attributes['logoUrl'] ?? '';
 $logo_width             = $attributes['logoWidth'] ?? 150;
@@ -133,69 +134,71 @@ $inline_styles = array(
 	'--logged-in-msg-align'    => $logged_in_msg_align,
 );
 
-// Add color variables only if they're explicitly set (not empty)
-if ( ! empty( $form_bg_color ) ) {
-	$inline_styles['--form-bg-color'] = $form_bg_color;
-}
-if ( ! empty( $form_border_color ) ) {
-	$inline_styles['--form-border-color'] = $form_border_color;
-}
-if ( ! empty( $title_color ) ) {
-	$inline_styles['--title-color'] = $title_color;
-}
-if ( ! empty( $subtitle_color ) ) {
-	$inline_styles['--subtitle-color'] = $subtitle_color;
-}
-if ( ! empty( $label_color ) ) {
-	$inline_styles['--label-color'] = $label_color;
-}
-if ( ! empty( $input_bg_color ) ) {
-	$inline_styles['--input-bg-color'] = $input_bg_color;
-}
-if ( ! empty( $input_border_color ) ) {
-	$inline_styles['--input-border-color'] = $input_border_color;
-}
-if ( ! empty( $input_text_color ) ) {
-	$inline_styles['--input-text-color'] = $input_text_color;
-}
-if ( ! empty( $input_placeholder_color ) ) {
-	$inline_styles['--input-placeholder-color'] = $input_placeholder_color;
-}
-if ( ! empty( $input_focus_border_color ) ) {
-	$inline_styles['--input-focus-border-color'] = $input_focus_border_color;
-}
-if ( ! empty( $input_focus_bg_color ) ) {
-	$inline_styles['--input-focus-bg-color'] = $input_focus_bg_color;
-}
-if ( ! empty( $button_bg_color ) ) {
-	$inline_styles['--button-bg-color'] = $button_bg_color;
-}
-if ( ! empty( $button_text_color ) ) {
-	$inline_styles['--button-text-color'] = $button_text_color;
-}
-if ( ! empty( $button_hover_bg_color ) ) {
-	$inline_styles['--button-hover-bg-color'] = $button_hover_bg_color;
-}
-if ( ! empty( $button_hover_text_color ) ) {
-	$inline_styles['--button-hover-text-color'] = $button_hover_text_color;
-}
-if ( ! empty( $button_border_color ) ) {
-	$inline_styles['--button-border-color'] = $button_border_color;
-}
-if ( ! empty( $button_hover_border_color ) ) {
-	$inline_styles['--button-hover-border-color'] = $button_hover_border_color;
-}
-if ( ! empty( $link_color ) ) {
-	$inline_styles['--link-color'] = $link_color;
-}
-if ( ! empty( $link_hover_color ) ) {
-	$inline_styles['--link-hover-color'] = $link_hover_color;
-}
-if ( ! empty( $checkbox_color ) ) {
-	$inline_styles['--checkbox-color'] = $checkbox_color;
-}
-if ( ! empty( $logged_in_msg_color ) ) {
-	$inline_styles['--logged-in-msg-color'] = $logged_in_msg_color;
+// Add color variables only if NOT using theme colors and they're explicitly set (not empty).
+if ( ! $use_theme_colors ) {
+	if ( ! empty( $form_bg_color ) ) {
+		$inline_styles['--form-bg-color'] = $form_bg_color;
+	}
+	if ( ! empty( $form_border_color ) ) {
+		$inline_styles['--form-border-color'] = $form_border_color;
+	}
+	if ( ! empty( $title_color ) ) {
+		$inline_styles['--title-color'] = $title_color;
+	}
+	if ( ! empty( $subtitle_color ) ) {
+		$inline_styles['--subtitle-color'] = $subtitle_color;
+	}
+	if ( ! empty( $label_color ) ) {
+		$inline_styles['--label-color'] = $label_color;
+	}
+	if ( ! empty( $input_bg_color ) ) {
+		$inline_styles['--input-bg-color'] = $input_bg_color;
+	}
+	if ( ! empty( $input_border_color ) ) {
+		$inline_styles['--input-border-color'] = $input_border_color;
+	}
+	if ( ! empty( $input_text_color ) ) {
+		$inline_styles['--input-text-color'] = $input_text_color;
+	}
+	if ( ! empty( $input_placeholder_color ) ) {
+		$inline_styles['--input-placeholder-color'] = $input_placeholder_color;
+	}
+	if ( ! empty( $input_focus_border_color ) ) {
+		$inline_styles['--input-focus-border-color'] = $input_focus_border_color;
+	}
+	if ( ! empty( $input_focus_bg_color ) ) {
+		$inline_styles['--input-focus-bg-color'] = $input_focus_bg_color;
+	}
+	if ( ! empty( $button_bg_color ) ) {
+		$inline_styles['--button-bg-color'] = $button_bg_color;
+	}
+	if ( ! empty( $button_text_color ) ) {
+		$inline_styles['--button-text-color'] = $button_text_color;
+	}
+	if ( ! empty( $button_hover_bg_color ) ) {
+		$inline_styles['--button-hover-bg-color'] = $button_hover_bg_color;
+	}
+	if ( ! empty( $button_hover_text_color ) ) {
+		$inline_styles['--button-hover-text-color'] = $button_hover_text_color;
+	}
+	if ( ! empty( $button_border_color ) ) {
+		$inline_styles['--button-border-color'] = $button_border_color;
+	}
+	if ( ! empty( $button_hover_border_color ) ) {
+		$inline_styles['--button-hover-border-color'] = $button_hover_border_color;
+	}
+	if ( ! empty( $link_color ) ) {
+		$inline_styles['--link-color'] = $link_color;
+	}
+	if ( ! empty( $link_hover_color ) ) {
+		$inline_styles['--link-hover-color'] = $link_hover_color;
+	}
+	if ( ! empty( $checkbox_color ) ) {
+		$inline_styles['--checkbox-color'] = $checkbox_color;
+	}
+	if ( ! empty( $logged_in_msg_color ) ) {
+		$inline_styles['--logged-in-msg-color'] = $logged_in_msg_color;
+	}
 }
 
 $style_string = '';
@@ -204,9 +207,11 @@ foreach ( $inline_styles as $prop => $value ) {
 }
 
 // Wrapper attributes.
+$wrapper_classes    = 'wbcom-essential-login-form-wrapper';
+$wrapper_classes   .= $use_theme_colors ? ' use-theme-colors' : '';
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-login-form-wrapper',
+		'class' => $wrapper_classes,
 		'style' => $style_string,
 	)
 );

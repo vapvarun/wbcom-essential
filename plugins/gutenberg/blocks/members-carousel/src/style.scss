@@ -5,15 +5,28 @@
  */
 
 .wbcom-essential-members-carousel {
-	// Layout
+	// Layout CSS variables (overridden by inline styles).
 	--card-radius: 8px;
 	--space-between: 30px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--card-bg: var(--wbcom-card-bg, #ffffff);
-	--name-color: var(--wbcom-heading-color, #122b46);
-	--meta-color: var(--wbcom-meta-color, #a3a5a9);
-	--arrow-color: var(--wbcom-heading-color, #122b46);
-	--dot-color: var(--wbcom-heading-color, #122b46);
+
+	// Default color CSS variables (overridden by inline styles when custom colors used).
+	--card-bg: #ffffff;
+	--name-color: #122b46;
+	--meta-color: #a3a5a9;
+	--arrow-color: #122b46;
+	--dot-color: #122b46;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122b46));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #a3a5a9));
+		--arrow-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122b46));
+		--dot-color: var(--wbcom-color-primary, #122b46);
+	}
 }
 
 .wbcom-members-carousel-container {

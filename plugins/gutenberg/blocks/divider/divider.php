@@ -1,8 +1,8 @@
 <?php
 /**
- * Divider Block Registration
+ * Divider Block Registration.
  *
- * @package wbcom-essential
+ * @package WBCOM_Essential
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,13 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register the Divider block.
+ * Registers the block using the metadata loaded from block.json.
  */
-function wbcom_essential_register_divider_block() {
-	$block_path = WBCOM_ESSENTIAL_PATH . 'plugins/gutenberg/blocks/divider/build';
-	if ( ! file_exists( $block_path . '/block.json' ) ) {
-		return;
+function wbcom_essential_divider_block_init() {
+	$build_path = WBCOM_ESSENTIAL_PATH . 'build/blocks/divider/';
+	if ( file_exists( $build_path . 'block.json' ) ) {
+		register_block_type( $build_path );
 	}
-	register_block_type( $block_path );
 }
-add_action( 'init', 'wbcom_essential_register_divider_block' );
+add_action( 'init', 'wbcom_essential_divider_block_init' );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Text Rotator Block
+ * Text Rotator Block Registration.
  *
  * @package WBCOM_Essential
  */

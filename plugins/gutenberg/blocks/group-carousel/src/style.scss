@@ -5,15 +5,29 @@
  */
 
 .wbcom-essential-group-carousel {
-	// Layout
+	// Layout CSS variables (overridden by inline styles).
 	--card-radius: 8px;
 	--space-between: 30px;
-	// Colors - inherit from theme via inline variables set in render.php
-	--card-bg: var(--card-bg, #ffffff);
-	--name-color: var(--name-color, #122B46);
-	--meta-color: var(--meta-color, #A3A5A9);
-	--arrow-color: var(--arrow-color, #122B46);
-	--dot-color: var(--dot-color, #122B46);
+	--slides-per-view: 4;
+
+	// Default color CSS variables (overridden by inline styles when custom colors used).
+	--card-bg: #ffffff;
+	--name-color: #122B46;
+	--meta-color: #A3A5A9;
+	--arrow-color: #122B46;
+	--dot-color: #122B46;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #A3A5A9));
+		--arrow-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--dot-color: var(--wbcom-color-primary, #122B46);
+	}
 }
 
 .wbcom-group-carousel-container {

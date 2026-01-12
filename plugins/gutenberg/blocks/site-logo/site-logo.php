@@ -1,6 +1,6 @@
 <?php
 /**
- * Site Logo Block
+ * Site Logo Block Registration.
  *
  * @package WBCOM_Essential
  */

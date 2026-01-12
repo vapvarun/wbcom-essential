@@ -19,6 +19,7 @@ if ( ! class_exists( 'bbPress' ) || ! function_exists( 'buddypress' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors          = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $show_forum_title          = $attributes['showForumTitle'] ?? true;
 $show_meta                 = $attributes['showMeta'] ?? true;
 $show_excerpt              = $attributes['showExcerpt'] ?? true;
@@ -40,22 +41,24 @@ $button_color              = $attributes['buttonColor'] ?? '#122B46';
 $button_border_color       = $attributes['buttonBorderColor'] ?? '#e3e3e3';
 $button_align              = $attributes['buttonAlign'] ?? 'right';
 
-// Build inline styles - CSS variables for colors and layout.
-// These inline CSS variables take precedence over stylesheet defaults.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_styles = array(
-	// Layout.
-	'--box-radius'         => $box_border_radius . 'px',
-	'--box-padding'        => $box_padding . 'px',
-	// Colors.
-	'--box-bg'             => $box_bg_color,
-	'--box-border-color'   => $box_border_color,
-	'--forum-title-color'  => $forum_title_color,
-	'--topic-title-color'  => $topic_title_color,
-	'--meta-color'         => $meta_color,
-	'--excerpt-color'      => $excerpt_color,
-	'--button-color'       => $button_color,
-	'--button-border-color' => $button_border_color,
+	// Layout styles - always applied.
+	'--box-radius'  => $box_border_radius . 'px',
+	'--box-padding' => $box_padding . 'px',
 );
+
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--box-bg']              = $box_bg_color;
+	$inline_styles['--box-border-color']    = $box_border_color;
+	$inline_styles['--forum-title-color']   = $forum_title_color;
+	$inline_styles['--topic-title-color']   = $topic_title_color;
+	$inline_styles['--meta-color']          = $meta_color;
+	$inline_styles['--excerpt-color']       = $excerpt_color;
+	$inline_styles['--button-color']        = $button_color;
+	$inline_styles['--button-border-color'] = $button_border_color;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
@@ -67,6 +70,10 @@ $wrapper_classes = array(
 	'wbcom-essential-forums-activity-wrapper',
 	'button-align-' . $button_align,
 );
+
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
 
 if ( $show_my_discussions ) {
 	$wrapper_classes[] = 'wbcom-essential-forums-activity-wrapper--ismy';

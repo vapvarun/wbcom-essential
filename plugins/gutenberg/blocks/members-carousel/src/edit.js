@@ -16,6 +16,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		sortType,
 		totalMembers,
 		showLastActive,
@@ -43,17 +44,23 @@ export default function Edit( { attributes, setAttributes } ) {
 		grabCursor,
 	} = attributes;
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: useThemeColors ? 'use-theme-colors' : '',
+	} );
 
-	// Build inline styles.
+	// Build inline styles - layout always applied, colors only when not using theme colors.
 	const containerStyle = {
-		'--card-bg': cardBgColor,
+		// Layout styles - always applied.
 		'--card-radius': `${ cardBorderRadius }px`,
-		'--name-color': nameColor,
-		'--meta-color': metaColor,
-		'--arrow-color': arrowColor,
-		'--dot-color': dotColor,
 		'--space-between': `${ spaceBetween }px`,
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
+			'--card-bg': cardBgColor,
+			'--name-color': nameColor,
+			'--meta-color': metaColor,
+			'--arrow-color': arrowColor,
+			'--dot-color': dotColor,
+		} ),
 	};
 
 	// Demo members for preview.
@@ -229,12 +236,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Card Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ cardBgColor }
-						onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
-					/>
-
 					<RangeControl
 						label={ __( 'Border Radius', 'wbcom-essential' ) }
 						value={ cardBorderRadius }
@@ -251,29 +252,48 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Name Color', 'wbcom-essential' ) }
-						value={ nameColor }
-						onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Card Background', 'wbcom-essential' ) }
+								value={ cardBgColor }
+								onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Meta Color', 'wbcom-essential' ) }
-						value={ metaColor }
-						onChange={ ( value ) => setAttributes( { metaColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Name Color', 'wbcom-essential' ) }
+								value={ nameColor }
+								onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Arrow Color', 'wbcom-essential' ) }
-						value={ arrowColor }
-						onChange={ ( value ) => setAttributes( { arrowColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Meta Color', 'wbcom-essential' ) }
+								value={ metaColor }
+								onChange={ ( value ) => setAttributes( { metaColor: value } ) }
+							/>
 
-					<ColorControl
-						label={ __( 'Dot Color', 'wbcom-essential' ) }
-						value={ dotColor }
-						onChange={ ( value ) => setAttributes( { dotColor: value } ) }
-					/>
+							<ColorControl
+								label={ __( 'Arrow Color', 'wbcom-essential' ) }
+								value={ arrowColor }
+								onChange={ ( value ) => setAttributes( { arrowColor: value } ) }
+							/>
+
+							<ColorControl
+								label={ __( 'Dot Color', 'wbcom-essential' ) }
+								value={ dotColor }
+								onChange={ ( value ) => setAttributes( { dotColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

@@ -9,6 +9,10 @@
 	"keywords": [ "forums", "topics", "bbpress", "discussion", "community" ],
 	"textdomain": "wbcom-essential",
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"headingText": {
 			"type": "string",
 			"default": "Forums"

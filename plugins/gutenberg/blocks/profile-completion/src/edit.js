@@ -31,6 +31,7 @@ const SKIN_OPTIONS = [
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		skinStyle,
 		alignment,
 		hideWidget,
@@ -99,10 +100,13 @@ export default function Edit( { attributes, setAttributes } ) {
 	// Demo progress for preview.
 	const demoPercent = 65;
 
-	const blockProps = useBlockProps( {
-		className: `wbcom-essential-profile-completion wbcom-profile-completion-skin-${ skinStyle } wbcom-profile-completion-align-${ alignment }`,
-		style: {
-			'--progress-width': `${ progressBorderWidth }px`,
+	// Build style object - layout always applied, colors only when not using theme colors.
+	const blockStyle = {
+		// Layout styles - always applied.
+		'--progress-width': `${ progressBorderWidth }px`,
+		'--progress-percent': demoPercent,
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
 			'--completion-color': completionColor,
 			'--incomplete-color': incompleteColor,
 			'--ring-border-color': ringBorderColor,
@@ -112,8 +116,12 @@ export default function Edit( { attributes, setAttributes } ) {
 			'--button-color': buttonColor,
 			'--button-bg': buttonBgColor,
 			'--button-border': buttonBorderColor,
-			'--progress-percent': demoPercent,
-		},
+		} ),
+	};
+
+	const blockProps = useBlockProps( {
+		className: `wbcom-essential-profile-completion wbcom-profile-completion-skin-${ skinStyle } wbcom-profile-completion-align-${ alignment }${ useThemeColors ? ' use-theme-colors' : '' }`,
+		style: blockStyle,
 	} );
 
 	return (
@@ -338,91 +346,114 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Completion Color', 'wbcom-essential' ) }
-						value={ completionColor }
-						onChange={ ( value ) =>
-							setAttributes( { completionColor: value } )
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
 						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<>
+							<hr />
+							<ColorControl
+								label={ __( 'Completion Color', 'wbcom-essential' ) }
+								value={ completionColor }
+								onChange={ ( value ) =>
+									setAttributes( { completionColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __( 'Incomplete Color', 'wbcom-essential' ) }
-						value={ incompleteColor }
-						onChange={ ( value ) =>
-							setAttributes( { incompleteColor: value } )
-						}
-					/>
+							<ColorControl
+								label={ __( 'Incomplete Color', 'wbcom-essential' ) }
+								value={ incompleteColor }
+								onChange={ ( value ) =>
+									setAttributes( { incompleteColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __(
-							'Progress Background',
-							'wbcom-essential'
-						) }
-						value={ ringBorderColor }
-						onChange={ ( value ) =>
-							setAttributes( { ringBorderColor: value } )
-						}
-					/>
+							<ColorControl
+								label={ __(
+									'Progress Background',
+									'wbcom-essential'
+								) }
+								value={ ringBorderColor }
+								onChange={ ( value ) =>
+									setAttributes( { ringBorderColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __( 'Number Color', 'wbcom-essential' ) }
-						value={ ringNumColor }
-						onChange={ ( value ) =>
-							setAttributes( { ringNumColor: value } )
-						}
-					/>
+							<ColorControl
+								label={ __( 'Number Color', 'wbcom-essential' ) }
+								value={ ringNumColor }
+								onChange={ ( value ) =>
+									setAttributes( { ringNumColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __( 'Text Color', 'wbcom-essential' ) }
-						value={ ringTextColor }
-						onChange={ ( value ) =>
-							setAttributes( { ringTextColor: value } )
-						}
-					/>
+							<ColorControl
+								label={ __( 'Text Color', 'wbcom-essential' ) }
+								value={ ringTextColor }
+								onChange={ ( value ) =>
+									setAttributes( { ringTextColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __(
-							'Details Background',
-							'wbcom-essential'
-						) }
-						value={ detailsColor }
-						onChange={ ( value ) =>
-							setAttributes( { detailsColor: value } )
-						}
-					/>
+							<ColorControl
+								label={ __(
+									'Details Background',
+									'wbcom-essential'
+								) }
+								value={ detailsColor }
+								onChange={ ( value ) =>
+									setAttributes( { detailsColor: value } )
+								}
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody
 					title={ __( 'Button Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<ColorControl
-						label={ __( 'Button Color', 'wbcom-essential' ) }
-						value={ buttonColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonColor: value } )
-						}
-					/>
+					{ ! useThemeColors && (
+						<>
+							<ColorControl
+								label={ __( 'Button Color', 'wbcom-essential' ) }
+								value={ buttonColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __(
-							'Button Background',
-							'wbcom-essential'
-						) }
-						value={ buttonBgColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonBgColor: value } )
-						}
-					/>
+							<ColorControl
+								label={ __(
+									'Button Background',
+									'wbcom-essential'
+								) }
+								value={ buttonBgColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonBgColor: value } )
+								}
+							/>
 
-					<ColorControl
-						label={ __( 'Button Border', 'wbcom-essential' ) }
-						value={ buttonBorderColor }
-						onChange={ ( value ) =>
-							setAttributes( { buttonBorderColor: value } )
-						}
-					/>
+							<ColorControl
+								label={ __( 'Button Border', 'wbcom-essential' ) }
+								value={ buttonBorderColor }
+								onChange={ ( value ) =>
+									setAttributes( { buttonBorderColor: value } )
+								}
+							/>
+						</>
+					) }
+					{ useThemeColors && (
+						<p className="components-base-control__help">
+							{ __( 'Button colors are inherited from theme when using theme colors.', 'wbcom-essential' ) }
+						</p>
+					) }
 				</PanelBody>
 			</InspectorControls>
 

@@ -67,6 +67,13 @@ class Slider extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'slider', 'slideshow', 'carousel', 'banner', 'hero' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {

@@ -1,8 +1,8 @@
 <?php
 /**
- * Counter Block Registration
+ * Counter Block Registration.
  *
- * @package wbcom-essential
+ * @package WBCOM_Essential
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,15 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register the Counter block.
+ * Registers the block using the metadata loaded from block.json.
  */
-function wbcom_essential_register_counter_block() {
-	$block_path = WBCOM_ESSENTIAL_PATH . 'plugins/gutenberg/blocks/counter/build';
-
-	if ( ! file_exists( $block_path . '/block.json' ) ) {
-		return;
+function wbcom_essential_counter_block_init() {
+	$build_path = WBCOM_ESSENTIAL_PATH . 'build/blocks/counter/';
+	if ( file_exists( $build_path . 'block.json' ) ) {
+		register_block_type( $build_path );
 	}
-
-	register_block_type( $block_path );
 }
-add_action( 'init', 'wbcom_essential_register_counter_block' );
+add_action( 'init', 'wbcom_essential_counter_block_init' );

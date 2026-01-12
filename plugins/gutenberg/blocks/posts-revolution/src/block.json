@@ -17,6 +17,10 @@
 		}
 	},
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"displayType": {
 			"type": "string",
 			"default": "posts_type1"

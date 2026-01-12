@@ -116,6 +116,12 @@ class PostsTicker extends Widget_Base {
 		return array( 'wbcom-elements' );
 	}
 
+	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'posts', 'ticker', 'news', 'scroll', 'marquee' );
+	}
 
 	/**
 	 * Get post type categories.
@@ -744,7 +750,7 @@ class PostsTicker extends Widget_Base {
 					});
 					</script>';
 			$return .= '<div  class="acme-news-ticker wb-newsticker-type2">';
-			$return .= '<div class="acme-news-ticker-label">' . $wbcom_newsticker_label . '</div>
+			$return .= '<div class="acme-news-ticker-label">' . esc_html( $wbcom_newsticker_label ) . '</div>
 			';
 			$return .= '<div class="acme-news-ticker-box">';
 			$return .= '<ul class="my-news-ticker" id="wb-newsticker-type2-' . $instance . '">';
@@ -753,7 +759,7 @@ class PostsTicker extends Widget_Base {
 				while ( $loop->have_posts() ) :
 					$loop->the_post();
 
-					$return .= ' <li><a href="' . get_the_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
+					$return .= ' <li><a href="' . esc_url( get_the_permalink() ) . '" title="' . esc_attr( get_the_title() ) . '">' . esc_html( get_the_title() ) . '</a></li>';
 
 				endwhile;
 			}

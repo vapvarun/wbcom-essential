@@ -5,15 +5,29 @@
  */
 
 .wbcom-essential-posts-ticker-wrapper {
-	// Layout
+	// Layout.
 	--ticker-height: 50px;
-	// Colors - set dynamically via inline styles from block attributes
+
+	// Default colors (static fallbacks for custom color mode).
 	--label-bg-color: #1d76da;
 	--label-text-color: #ffffff;
 	--ticker-bg-color: #f8f9fa;
 	--text-color: #122B46;
 	--hover-color: #1d76da;
 	--border-color: #e3e3e3;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--label-bg-color: var(--wbcom-color-primary, #1d76da);
+		--label-text-color: var(--wbcom-button-text, var(--wbcom-color-base, #ffffff));
+		--ticker-bg-color: var(--wbcom-card-bg, var(--wbcom-color-base, #f8f9fa));
+		--text-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--hover-color: var(--wbcom-color-primary, #1d76da);
+		--border-color: var(--wbcom-card-border, var(--wbcom-color-border, #e3e3e3));
+	}
 }
 
 .wbcom-essential-posts-ticker {

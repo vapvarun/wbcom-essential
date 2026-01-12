@@ -9,6 +9,10 @@
 	"keywords": [ "forums", "activity", "discussion", "bbpress", "user", "topics" ],
 	"textdomain": "wbcom-essential",
 	"attributes": {
+		"useThemeColors": {
+			"type": "boolean",
+			"default": false
+		},
 		"showForumTitle": {
 			"type": "boolean",
 			"default": true

@@ -24,6 +24,7 @@ import ColorControl from './components/color-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		greetingText,
 		descriptionText,
 		showAvatar,
@@ -50,29 +51,33 @@ export default function Edit( { attributes, setAttributes } ) {
 		loggedOutMessage,
 	} = attributes;
 
-	// Preview styles.
+	// Preview styles - layout always applied, colors only when not using theme colors.
 	const containerStyle = {
-		'--greeting-color': greetingColor,
+		// Layout styles - always applied.
 		'--greeting-font-size': `${ greetingFontSize }px`,
-		'--name-color': nameColor,
 		'--name-font-size': `${ nameFontSize }px`,
-		'--description-color': descriptionColor,
 		'--description-font-size': `${ descriptionFontSize }px`,
 		'--gap': `${ gap }px`,
-		'--container-bg': containerBgColor || 'transparent',
 		'--container-padding': `${ containerPadding }px`,
 		'--container-radius': `${ containerBorderRadius }px`,
 		'--avatar-size': `${ avatarSize }px`,
 		'--avatar-radius': `${ avatarBorderRadius }%`,
 		'--avatar-border-style': avatarBorderStyle,
 		'--avatar-border-width': `${ avatarBorderWidth }px`,
-		'--avatar-border-color': avatarBorderColor,
 		'--avatar-padding': `${ avatarPadding }px`,
 		'--avatar-shadow': `${ avatarShadow.horizontal }px ${ avatarShadow.vertical }px ${ avatarShadow.blur }px ${ avatarShadow.spread }px ${ avatarShadow.color }`,
+		// Color styles - only when not using theme colors.
+		...( ! useThemeColors && {
+			'--greeting-color': greetingColor,
+			'--name-color': nameColor,
+			'--description-color': descriptionColor,
+			'--container-bg': containerBgColor || 'transparent',
+			'--avatar-border-color': avatarBorderColor,
+		} ),
 	};
 
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-dashboard-intro layout-${ layout } align-${ contentAlign }`,
+		className: `wbcom-essential-dashboard-intro layout-${ layout } align-${ contentAlign }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: containerStyle,
 	} );
 
@@ -260,11 +265,13 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Container Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<ColorControl
-						label={ __( 'Background Color', 'wbcom-essential' ) }
-						value={ containerBgColor }
-						onChange={ ( value ) => setAttributes( { containerBgColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<ColorControl
+							label={ __( 'Background Color', 'wbcom-essential' ) }
+							value={ containerBgColor }
+							onChange={ ( value ) => setAttributes( { containerBgColor: value } ) }
+						/>
+					) }
 					<RangeControl
 						label={ __( 'Padding', 'wbcom-essential' ) }
 						value={ containerPadding }
@@ -282,14 +289,28 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Typography & Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<h3>{ __( 'Greeting Text', 'wbcom-essential' ) }</h3>
-					<ColorControl
-						label={ __( 'Color', 'wbcom-essential' ) }
-						value={ greetingColor }
-						onChange={ ( value ) => setAttributes( { greetingColor: value } ) }
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
+					{ ! useThemeColors && (
+						<>
+							<hr />
+							<h3>{ __( 'Greeting Text', 'wbcom-essential' ) }</h3>
+							<ColorControl
+								label={ __( 'Color', 'wbcom-essential' ) }
+								value={ greetingColor }
+								onChange={ ( value ) => setAttributes( { greetingColor: value } ) }
+							/>
+						</>
+					) }
 					<RangeControl
-						label={ __( 'Font Size', 'wbcom-essential' ) }
+						label={ __( 'Greeting Font Size', 'wbcom-essential' ) }
 						value={ greetingFontSize }
 						onChange={ ( value ) => setAttributes( { greetingFontSize: value } ) }
 						min={ 10 }
@@ -297,11 +318,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<hr />
 					<h3>{ __( 'User Name', 'wbcom-essential' ) }</h3>
-					<ColorControl
-						label={ __( 'Color', 'wbcom-essential' ) }
-						value={ nameColor }
-						onChange={ ( value ) => setAttributes( { nameColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<ColorControl
+							label={ __( 'Color', 'wbcom-essential' ) }
+							value={ nameColor }
+							onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+						/>
+					) }
 					<RangeControl
 						label={ __( 'Font Size', 'wbcom-essential' ) }
 						value={ nameFontSize }
@@ -311,11 +334,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<hr />
 					<h3>{ __( 'Description Text', 'wbcom-essential' ) }</h3>
-					<ColorControl
-						label={ __( 'Color', 'wbcom-essential' ) }
-						value={ descriptionColor }
-						onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<ColorControl
+							label={ __( 'Color', 'wbcom-essential' ) }
+							value={ descriptionColor }
+							onChange={ ( value ) => setAttributes( { descriptionColor: value } ) }
+						/>
+					) }
 					<RangeControl
 						label={ __( 'Font Size', 'wbcom-essential' ) }
 						value={ descriptionFontSize }

@@ -5,19 +5,35 @@
  */
 
 .wbcom-essential-post-timeline {
-	// Layout
+	// Layout CSS variables.
 	--bar-width: 4px;
 	--dot-size: 16px;
 	--card-radius: 8px;
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--bar-color: var(--wbcom-border-color, #e2e8f0);
-	--dot-color: var(--wbcom-color-primary, #3182ce);
-	--date-color: var(--wbcom-meta-color, #718096);
-	--card-bg: var(--wbcom-card-bg, #fff);
-	--title-color: var(--wbcom-heading-color, #1a202c);
-	--excerpt-color: var(--wbcom-text-color, #4a5568);
-	--button-bg: var(--wbcom-color-primary, #3182ce);
-	--button-text: var(--wbcom-button-text, #fff);
+
+	// Default color CSS variables (overridden by inline styles when custom colors used).
+	--bar-color: #e2e8f0;
+	--dot-color: #3182ce;
+	--date-color: #718096;
+	--card-bg: #fff;
+	--title-color: #1a202c;
+	--excerpt-color: #4a5568;
+	--button-bg: #3182ce;
+	--button-text: #fff;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--bar-color: var(--wbcom-border-color, var(--wbcom-color-border, #e2e8f0));
+		--dot-color: var(--wbcom-color-primary, #3182ce);
+		--date-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #718096));
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #1a202c));
+		--excerpt-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #4a5568));
+		--button-bg: var(--wbcom-color-primary, #3182ce);
+		--button-text: var(--wbcom-button-text, #fff);
+	}
 
 	position: relative;
 	padding: 40px 0;

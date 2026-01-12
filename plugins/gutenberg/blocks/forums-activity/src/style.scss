@@ -5,6 +5,31 @@
  */
 
 .wbcom-essential-forums-activity-wrapper {
+	// Default CSS variables for colors (overridden by inline styles when custom colors used).
+	--box-bg: #ffffff;
+	--box-border-color: #e3e3e3;
+	--forum-title-color: #A3A5A9;
+	--topic-title-color: #122B46;
+	--meta-color: #A3A5A9;
+	--excerpt-color: #666666;
+	--button-color: #122B46;
+	--button-border-color: #e3e3e3;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--box-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--box-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e3e3e3));
+		--forum-title-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #A3A5A9));
+		--topic-title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #A3A5A9));
+		--excerpt-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #666666));
+		--button-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+		--button-border-color: var(--wbcom-border-color, var(--wbcom-color-border, #e3e3e3));
+	}
+
 	// CSS variables are set via inline style from render.php/edit.js
 	// Use fallback chain pattern: inline style -> theme -> default
 	position: relative;
@@ -44,8 +69,8 @@
 		font-size: 13px;
 		border-radius: 100px;
 		padding: 4px 15px;
-		color: var(--wbcom-meta-color, #939597);
-		border: 1px solid var(--button-border-color, var(--wbcom-border-color, #e3e3e3));
+		color: var(--meta-color);
+		border: 1px solid var(--button-border-color);
 		text-decoration: none;
 		transition: all 0.3s ease;
 
@@ -55,15 +80,15 @@
 		}
 
 		&:hover {
-			color: var(--wbcom-color-primary, #007CFF);
+			color: var(--topic-title-color);
 		}
 	}
 }
 
 // Main container.
 .wbcom-essential-forums-activity {
-	background: var(--box-bg, var(--wbcom-card-bg, #ffffff));
-	border: 1px solid var(--box-border-color, var(--wbcom-border-color, #e3e3e3));
+	background: var(--box-bg);
+	border: 1px solid var(--box-border-color);
 	border-radius: var(--box-radius, 4px);
 	padding: var(--box-padding, 20px);
 	position: relative;
@@ -76,7 +101,7 @@
 	.wbcom-essential-fa__forum-title {
 		text-transform: uppercase;
 		font-size: 13px;
-		color: var(--forum-title-color, var(--wbcom-meta-color, #A3A5A9));
+		color: var(--forum-title-color);
 		font-weight: 500;
 		margin-bottom: 5px;
 	}
@@ -86,7 +111,7 @@
 			font-weight: 500;
 			margin: 0 0 10px;
 			line-height: 1.2;
-			color: var(--topic-title-color, var(--wbcom-heading-color, #122B46));
+			color: var(--topic-title-color);
 		}
 	}
 
@@ -95,7 +120,7 @@
 		margin: 0 0 20px;
 
 		span {
-			color: var(--meta-color, var(--wbcom-meta-color, #A3A5A9));
+			color: var(--meta-color);
 			font-size: 13px;
 		}
 
@@ -108,7 +133,7 @@
 		font-size: 14px;
 		margin: 0 0 20px;
 		line-height: 1.4;
-		color: var(--excerpt-color, var(--wbcom-text-color, #666666));
+		color: var(--excerpt-color);
 	}
 
 	.wbcom-essential-fa__link {
@@ -118,16 +143,16 @@
 			display: inline-block;
 			font-size: 14px;
 			padding: 6px 20px;
-			border: 1px solid var(--button-border-color, var(--wbcom-border-color, #e3e3e3));
+			border: 1px solid var(--button-border-color);
 			border-radius: 30px;
-			color: var(--button-color, var(--wbcom-heading-color, #122B46));
+			color: var(--button-color);
 			text-decoration: none;
 			transition: all 0.3s ease;
 
 			&:hover {
-				background: var(--topic-title-color, var(--wbcom-heading-color, #122B46));
-				color: var(--wbcom-button-text, #fff);
-				border-color: var(--topic-title-color, var(--wbcom-heading-color, #122B46));
+				background: var(--topic-title-color);
+				color: #fff;
+				border-color: var(--topic-title-color);
 			}
 		}
 
@@ -163,7 +188,7 @@
 
 	.wbcom-essential-no-data__msg {
 		font-size: 14px;
-		color: var(--wbcom-text-color, #666);
+		color: var(--excerpt-color);
 		margin-bottom: 15px;
 	}
 
@@ -171,16 +196,16 @@
 		display: inline-block;
 		font-size: 14px;
 		padding: 6px 20px;
-		border: 1px solid var(--button-border-color, var(--wbcom-border-color, #e3e3e3));
+		border: 1px solid var(--button-border-color);
 		border-radius: 30px;
-		color: var(--button-color, var(--wbcom-heading-color, #122B46));
+		color: var(--button-color);
 		text-decoration: none;
 		transition: all 0.3s ease;
 
 		&:hover {
-			background: var(--topic-title-color, var(--wbcom-heading-color, #122B46));
-			color: var(--wbcom-button-text, #fff);
-			border-color: var(--topic-title-color, var(--wbcom-heading-color, #122B46));
+			background: var(--topic-title-color);
+			color: #fff;
+			border-color: var(--topic-title-color);
 		}
 	}
 }

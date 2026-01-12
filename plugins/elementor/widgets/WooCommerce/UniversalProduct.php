@@ -1962,6 +1962,14 @@ class UniversalProduct extends \Elementor\Widget_Base {
 
 	protected function render( $instance = array() ) {
 
+		// Check if WooCommerce is active before rendering.
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'WooCommerce is required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
+
 		$settings        = $this->get_settings_for_display();
 		$product_type    = $this->get_settings_for_display( 'wbcom_product_grid_product_filter' );
 		$per_page        = $this->get_settings_for_display( 'wbcom_product_grid_products_count' );
@@ -1972,7 +1980,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 		$columns         = $this->get_settings_for_display( 'wbcom_product_grid_column' );
 		$same_height_box = $this->get_settings_for_display( 'same_height_box' );
 
-        // Query Argument.
+		// Query Argument.
 		$query_args = array(
 			'per_page'     => $per_page,
 			'product_type' => $product_type,
@@ -2095,403 +2103,480 @@ class UniversalProduct extends \Elementor\Widget_Base {
 
 		$title_html_tag = wbcom_validate_html_tag( $settings['product_title_html_tag'] );
 
-        ?>
-            <?php if ( $settings['product_layout_style'] == 'tab' ) { ?>
-                <div class="product-tab-list wb-text-center">
-                    <ul class="wb-tab-menus">
-                        <?php
-                            $m=0;
-                            if( is_array( $product_cats ) && count( $product_cats ) > 0 ){
+		?>
+			<?php if ( $settings['product_layout_style'] == 'tab' ) { ?>
+				<div class="product-tab-list wb-text-center">
+					<ul class="wb-tab-menus">
+						<?php
+							$m = 0;
+						if ( is_array( $product_cats ) && count( $product_cats ) > 0 ) {
 
-                                // Category retrive.                                
-								$prod_categories = get_terms( array(
-									'taxonomy' => 'product_cat',
-									'orderby' => 'name',
-									'order' => 'ASC',
+							// Category retrive.
+							$prod_categories = get_terms(
+								array(
+									'taxonomy'   => 'product_cat',
+									'orderby'    => 'name',
+									'order'      => 'ASC',
 									'hide_empty' => true,
-									'slug' => $product_cats,
-								) );
+									'slug'       => $product_cats,
+								)
+							);
 
-                                foreach( $prod_categories as $prod_cats ){
-                                    $m++;
+							foreach ( $prod_categories as $prod_cats ) {
+								++$m;
 
-                                    $field_name = is_numeric( $product_cats[0] ) ? 'term_id' : 'slug';
-                                    $args['tax_query'] = array(
-                                        array(
-                                            'taxonomy' => 'product_cat',
-                                            'terms' => $prod_cats,
-                                            'field' => $field_name,
-                                            'include_children' => false
-                                        ),
-                                    );
-                                    if( 'featured' == $product_type ){
-                                        $args['tax_query'][] = array(
-                                            'taxonomy' => 'product_visibility',
-                                            'field'    => 'name',
-                                            'terms'    => 'featured',
-                                            'operator' => 'IN',
-                                        );
-                                    }
-                                    $fetchproduct = new \WP_Query( $args );
+								$field_name        = is_numeric( $product_cats[0] ) ? 'term_id' : 'slug';
+								$args['tax_query'] = array(
+									array(
+										'taxonomy'         => 'product_cat',
+										'terms'            => $prod_cats,
+										'field'            => $field_name,
+										'include_children' => false,
+									),
+								);
+								if ( 'featured' == $product_type ) {
+									$args['tax_query'][] = array(
+										'taxonomy' => 'product_visibility',
+										'field'    => 'name',
+										'terms'    => 'featured',
+										'operator' => 'IN',
+									);
+								}
+								$fetchproduct = new \WP_Query( $args );
 
-                                    if( $fetchproduct->have_posts() ){
-                                        ?>
-                                            <li><a class="<?php if($m==1){ echo 'htactive';}?>" href="#wbcomtab<?php echo esc_attr( $tabuniqid . $m );?>">
-                                                <?php echo esc_html( $prod_cats->name );?>
-                                            </a></li>
-                                        <?php
-                                    }
-                                }
-                            }
-                        ?>
-                    </ul>
-                </div>
-            <?php } ?>
+								if ( $fetchproduct->have_posts() ) {
+									?>
+											<li><a class="
+											<?php
+											if ( $m == 1 ) {
+												echo 'htactive';}
+											?>
+											" href="#wbcomtab<?php echo esc_attr( $tabuniqid . $m ); ?>">
+											<?php echo esc_html( $prod_cats->name ); ?>
+											</a></li>
+										<?php
+								}
+							}
+						}
+						?>
+					</ul>
+				</div>
+			<?php } ?>
 
-            <?php if( is_array( $product_cats ) && (count( $product_cats ) > 0) && ( $settings['product_layout_style'] == 'tab' ) ): ?>
-                <div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce">
-                    
-                    <?php
-                    $z=0;
-                    $tabcatargs = array(
-                        'orderby'    => 'name',
-                        'order'      => 'ASC',
-                        'hide_empty' => true,
-                        'slug'       => $product_cats,
-                    );
-                    $tabcatargs['taxonomy'] = 'product_cat';
-                    $tabcat_fach = get_terms( $tabcatargs );
-                    foreach( $tabcat_fach as $cats ):
-                        $z++;
-                        $field_name = is_numeric( $product_cats[0] ) ? 'term_id' : 'slug';
-                        $args['tax_query'] = array(
-                            array(
-                                'taxonomy' => 'product_cat',
-                                'terms' => $cats,
-                                'field' => $field_name,
-                                'include_children' => false
-                            ),
-                        );
-                        if( 'featured' == $product_type ){
-                            $args['tax_query'][] = array(
-                                'taxonomy' => 'product_visibility',
-                                'field'    => 'name',
-                                'terms'    => 'featured',
-                                'operator' => 'IN',
-                            );
-                        }
-                        $products = new \WP_Query( $args );
+			<?php if ( is_array( $product_cats ) && ( count( $product_cats ) > 0 ) && ( $settings['product_layout_style'] == 'tab' ) ) : ?>
+				<div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce">
+					
+					<?php
+					$z                      = 0;
+					$tabcatargs             = array(
+						'orderby'    => 'name',
+						'order'      => 'ASC',
+						'hide_empty' => true,
+						'slug'       => $product_cats,
+					);
+					$tabcatargs['taxonomy'] = 'product_cat';
+					$tabcat_fach            = get_terms( $tabcatargs );
+					foreach ( $tabcat_fach as $cats ) :
+						++$z;
+						$field_name        = is_numeric( $product_cats[0] ) ? 'term_id' : 'slug';
+						$args['tax_query'] = array(
+							array(
+								'taxonomy'         => 'product_cat',
+								'terms'            => $cats,
+								'field'            => $field_name,
+								'include_children' => false,
+							),
+						);
+						if ( 'featured' == $product_type ) {
+							$args['tax_query'][] = array(
+								'taxonomy' => 'product_visibility',
+								'field'    => 'name',
+								'terms'    => 'featured',
+								'operator' => 'IN',
+							);
+						}
+						$products = new \WP_Query( $args );
 
-                        if( $products->have_posts() ):
-                    ?>
-                        <div class="wb-tab-pane <?php if( $z==1 ){ echo 'htactive'; } ?>" id="<?php echo esc_attr( 'wbcomtab' . $tabuniqid . $z );?>">
-                            <div class="wb-row">
+						if ( $products->have_posts() ) :
+							?>
+						<div class="wb-tab-pane 
+							<?php
+							if ( $z == 1 ) {
+								echo 'htactive'; }
+							?>
+							" id="<?php echo esc_attr( 'wbcomtab' . $tabuniqid . $z ); ?>">
+							<div class="wb-row">
 
-                                <?php
-                                while( $products->have_posts() ): $products->the_post();
+								<?php
+								while ( $products->have_posts() ) :
+									$products->the_post();
 
-                                    // Sale Schedule.
-                                    $offer_start_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_from', true );
-                                    $offer_start_date = $offer_start_date_timestamp ? date_i18n( 'Y/m/d', $offer_start_date_timestamp ) : '';
-                                    $offer_end_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_to', true );
-                                    $offer_end_date = $offer_end_date_timestamp ? date_i18n( 'Y/m/d', $offer_end_date_timestamp ) : '';
+									// Sale Schedule.
+									$offer_start_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_from', true );
+									$offer_start_date           = $offer_start_date_timestamp ? date_i18n( 'Y/m/d', $offer_start_date_timestamp ) : '';
+									$offer_end_date_timestamp   = get_post_meta( get_the_ID(), '_sale_price_dates_to', true );
+									$offer_end_date             = $offer_end_date_timestamp ? date_i18n( 'Y/m/d', $offer_end_date_timestamp ) : '';
 
-                                    // Gallery Image.
-                                    global $product;
-                                    $gallery_images_ids = $product->get_gallery_image_ids() ? $product->get_gallery_image_ids() : array();
-                                    if ( has_post_thumbnail() ){
-                                        array_unshift( $gallery_images_ids, $product->get_image_id() );
-                                    }
-                                    
-                                ?>
+									// Gallery Image.
+									global $product;
+									$gallery_images_ids = $product->get_gallery_image_ids() ? $product->get_gallery_image_ids() : array();
+									if ( has_post_thumbnail() ) {
+										array_unshift( $gallery_images_ids, $product->get_image_id() );
+									}
 
-                                    <!--Product Start-->
-                                    <div class="<?php echo esc_attr( $collumval ); ?>">
-                                        <div class="wb-product-inner">
+									?>
 
-                                            <div class="wb-product-image-wrap">
-                                                <?php
+									<!--Product Start-->
+									<div class="<?php echo esc_attr( $collumval ); ?>">
+										<div class="wb-product-inner">
+
+											<div class="wb-product-image-wrap">
+												<?php
 												if ( class_exists( 'WooCommerce' ) ) {
 													wbcom_custom_product_badge();
 													wbcom_sale_flash();
 												}
-                                                ?>
-                                                <div class="wb-product-image">
-                                                    <?php if ( $settings['thumbnails_style'] == 2 && $gallery_images_ids ) : ?>
-                                                        <div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>">
-                                                            <?php
-                                                                foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-                                                                    echo '<a href="'.esc_url( get_the_permalink() ).'" class="item">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ).'</a>';
-                                                                }
-                                                            ?>
-                                                        </div>
+												?>
+												<div class="wb-product-image">
+													<?php if ( $settings['thumbnails_style'] == 2 && $gallery_images_ids ) : ?>
+														<div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>">
+															<?php
+															foreach ( $gallery_images_ids as $gallery_attachment_id ) {
+																echo '<a href="' . esc_url( get_the_permalink() ) . '" class="item">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a>';
+															}
+															?>
+														</div>
 
-                                                    <?php elseif( $settings['thumbnails_style'] == 3 && $gallery_images_ids ) : $tabactive = ''; ?>
-                                                        <div class="wb-product-cus-tab">
-                                                            <?php
-                                                                $i = 0;
-                                                                foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-                                                                    $i++;
-                                                                    if( $i == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                                    echo '<div class="wb-product-cus-tab-pane ' . esc_attr( $tabactive ) . '" id="image-' . esc_attr( $i . get_the_ID() ) . '"><a href="' . esc_url( get_the_permalink() ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
-                                                                }
-                                                            ?>
-                                                        </div>
-                                                        <ul class="wb-product-cus-tab-links">
-                                                            <?php
-                                                                $j = 0;
-                                                                foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-                                                                    $j++;
-                                                                    if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                                    echo '<li><a href="#image-' . esc_attr( $j . get_the_ID() ) . '" class="' . esc_attr( $tabactive ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ) . '</a></li>';
-                                                                }
-                                                            ?>
-                                                        </ul>
+														<?php
+													elseif ( $settings['thumbnails_style'] == 3 && $gallery_images_ids ) :
+														$tabactive = '';
+														?>
+														<div class="wb-product-cus-tab">
+															<?php
+																$i = 0;
+															foreach ( $gallery_images_ids as $gallery_attachment_id ) {
+																++$i;
+																if ( $i == 1 ) {
+																	$tabactive = 'htactive';
+																} else {
+																	$tabactive = ' '; }
+																echo '<div class="wb-product-cus-tab-pane ' . esc_attr( $tabactive ) . '" id="image-' . esc_attr( $i . get_the_ID() ) . '"><a href="' . esc_url( get_the_permalink() ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
+															}
+															?>
+														</div>
+														<ul class="wb-product-cus-tab-links">
+															<?php
+																$j = 0;
+															foreach ( $gallery_images_ids as $gallery_attachment_id ) {
+																++$j;
+																if ( $j == 1 ) {
+																	$tabactive = 'htactive';
+																} else {
+																	$tabactive = ' '; }
+																echo '<li><a href="#image-' . esc_attr( $j . get_the_ID() ) . '" class="' . esc_attr( $tabactive ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ) . '</a></li>';
+															}
+															?>
+														</ul>
 
-                                                    <?php else: ?>
-                                                        <a href="<?php the_permalink();?>"> 
-                                                            <?php woocommerce_template_loop_product_thumbnail(); ?> 
-                                                        </a>
-                                                    <?php endif; ?>
+													<?php else : ?>
+														<a href="<?php the_permalink(); ?>"> 
+															<?php woocommerce_template_loop_product_thumbnail(); ?> 
+														</a>
+													<?php endif; ?>
 
-                                                </div>
+												</div>
 
-                                                <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] != 'contentbottom' ): ?>
-                                                    <div class="wb-product-action">
-                                                        <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
-                                                        <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
-                                                            <?php
-                                                                if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
-                                                                    echo '<li>';
-                                                                        wbcom_compare_button(
-                                                                            array(
-                                                                                'style'=>2,
-                                                                                'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
-                                                                                'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
-                                                                            )
-                                                                        );
-                                                                    echo '</li>';
-                                                                }
-                                                            ?>
-                                                            <li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
-                                                        </ul>
-                                                    </div>
-                                                <?php endif; } ?>
+												<?php
+												if ( $settings['show_action_button'] == 'yes' ) {
+													if ( $settings['action_button_position'] != 'contentbottom' ) :
+														?>
+													<div class="wb-product-action">
+																											<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
+														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
+																												<?php
+																												if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
+																													echo '<li>';
+																														wbcom_compare_button(
+																															array(
+																																'style' => 2,
+																																'btn_text' => '<i class="wbe-icons wbe-icon-spin5"></i>',
+																																'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
+																															)
+																														);
+																													echo '</li>';
+																												}
+																												?>
+															<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
+														</ul>
+													</div>
+																									<?php endif; } ?>
 
-                                            </div>
+											</div>
 
-                                            <div class="wb-product-content">
-                                                <div class="wb-product-content-inner">
-                                                    <div class="wb-product-categories"><?php wbcom_get_product_category_list(); ?></div>
-                                                    <?php do_action( 'wbcom_universal_before_title' ); ?>
-                                                    <?php echo wp_kses_post( sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", esc_html( $title_html_tag ), esc_url( get_the_permalink() ), esc_html( get_the_title() ), esc_html( $title_html_tag ) ) ); ?>
-                                                    <?php do_action( 'wbcom_universal_after_title' ); ?>
-                                                    <?php do_action( 'wbcom_universal_before_price' ); ?>
-                                                    <div class="wb-product-price"><?php woocommerce_template_loop_price();?></div>
-                                                    <?php do_action( 'wbcom_universal_after_price' ); ?>
-                                                    <div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Function returns escaped HTML ?></div>
+											<div class="wb-product-content">
+												<div class="wb-product-content-inner">
+													<div class="wb-product-categories"><?php wbcom_get_product_category_list(); ?></div>
+													<?php do_action( 'wbcom_universal_before_title' ); ?>
+													<?php echo wp_kses_post( sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", esc_html( $title_html_tag ), esc_url( get_the_permalink() ), esc_html( get_the_title() ), esc_html( $title_html_tag ) ) ); ?>
+													<?php do_action( 'wbcom_universal_after_title' ); ?>
+													<?php do_action( 'wbcom_universal_before_price' ); ?>
+													<div class="wb-product-price"><?php woocommerce_template_loop_price(); ?></div>
+													<?php do_action( 'wbcom_universal_after_price' ); ?>
+													<div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Function returns escaped HTML ?></div>
 
-                                                    <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] == 'contentbottom' ): ?>
-                                                        <div class="wb-product-action">
-                                                            <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
-                                                        <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
-                                                                <?php
-                                                                    if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
-                                                                        echo '<li>';
-                                                                            wbcom_compare_button(
-                                                                                array(
-                                                                                    'style'=>2,
-                                                                                    'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
-                                                                                    'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
-                                                                                )
-                                                                            );
-                                                                        echo '</li>';
-                                                                    }
-                                                                ?>
-                                                                <li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
-                                                            </ul>
-                                                        </div>
-                                                    <?php endif; } ?>
+													<?php
+													if ( $settings['show_action_button'] == 'yes' ) {
+														if ( $settings['action_button_position'] == 'contentbottom' ) :
+															?>
+														<div class="wb-product-action">
+																													<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
+														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
+																<?php
+																if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
+																	echo '<li>';
+																		wbcom_compare_button(
+																			array(
+																				'style' => 2,
+																				'btn_text' => '<i class="wbe-icons wbe-icon-spin5"></i>',
+																				'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
+																			)
+																		);
+																	echo '</li>';
+																}
+																?>
+																<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
+															</ul>
+														</div>
+																											<?php endif; } ?>
 
-                                                </div>
-                                            </div>
+												</div>
+											</div>
 
-                                        </div>
-                                    </div>
-                                    <!--Product End-->
+										</div>
+									</div>
+									<!--Product End-->
 
-                                <?php endwhile; wp_reset_query(); wp_reset_postdata(); ?>
+									<?php
+								endwhile;
+								wp_reset_query();
+								wp_reset_postdata();
+								?>
 
-                            </div>
-                        </div>
-                    <?php endif; endforeach; ?>
-                    
-                </div>
+							</div>
+						</div>
+							<?php
+					endif;
+endforeach;
+					?>
+					
+				</div>
 
-            <?php else: ?>
-                <?php
-                    $slider_main_div_style = '';
-                    if( $settings['product_layout_style'] == 'slider' ){
-                        $slider_main_div_style = "style='display:none'";
-                        echo '<div class="wb-row">'; 
-                    } 
-                ?>
-                    <div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce <?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( 'product-slider' ); } else{ echo 'wb-row'; } ?>" dir="<?php echo esc_attr( $direction ); ?>" data-settings='<?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( wp_json_encode( $slider_settings ) ); } ?>' <?php echo esc_attr( $slider_main_div_style ); ?> >
+			<?php else : ?>
+				<?php
+					$slider_main_div_style = '';
+				if ( $settings['product_layout_style'] == 'slider' ) {
+					$slider_main_div_style = "style='display:none'";
+					echo '<div class="wb-row">';
+				}
+				?>
+					<div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce 
+					<?php
+					if ( $settings['product_layout_style'] == 'slider' ) {
+						echo esc_attr( 'product-slider' );
+					} else {
+						echo 'wb-row'; }
+					?>
+					" dir="<?php echo esc_attr( $direction ); ?>" data-settings='
+					<?php
+					if ( $settings['product_layout_style'] == 'slider' ) {
+										echo esc_attr( wp_json_encode( $slider_settings ) ); }
+					?>
+' <?php echo esc_attr( $slider_main_div_style ); ?> >
 
-                        <?php
-                            if( $products->have_posts() ):
+						<?php
+						if ( $products->have_posts() ) :
 
-                                while( $products->have_posts() ): $products->the_post();
+							while ( $products->have_posts() ) :
+								$products->the_post();
 
-                                    // Sale Schedule.
-                                    $offer_start_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_from', true );
-                                    $offer_start_date = $offer_start_date_timestamp ? date_i18n( 'Y/m/d', $offer_start_date_timestamp ) : '';
-                                    $offer_end_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_to', true );
-                                    $offer_end_date = $offer_end_date_timestamp ? date_i18n( 'Y/m/d', $offer_end_date_timestamp ) : '';
+								// Sale Schedule.
+								$offer_start_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_from', true );
+								$offer_start_date           = $offer_start_date_timestamp ? date_i18n( 'Y/m/d', $offer_start_date_timestamp ) : '';
+								$offer_end_date_timestamp   = get_post_meta( get_the_ID(), '_sale_price_dates_to', true );
+								$offer_end_date             = $offer_end_date_timestamp ? date_i18n( 'Y/m/d', $offer_end_date_timestamp ) : '';
 
-                                    // Gallery Image.
-                                    global $product;
-                                    $gallery_images_ids = $product->get_gallery_image_ids() ? $product->get_gallery_image_ids() : array();
-                                    if ( has_post_thumbnail() ){
-                                        array_unshift( $gallery_images_ids, $product->get_image_id() );
-                                    }
+								// Gallery Image.
+								global $product;
+								$gallery_images_ids = $product->get_gallery_image_ids() ? $product->get_gallery_image_ids() : array();
+								if ( has_post_thumbnail() ) {
+									array_unshift( $gallery_images_ids, $product->get_image_id() );
+								}
 
-                        ?>
+								?>
 
-                            <!--Product Start-->
-                            <div class="<?php echo esc_attr( $collumval ); ?>">
-                                <div class="wb-product-inner">
+							<!--Product Start-->
+							<div class="<?php echo esc_attr( $collumval ); ?>">
+								<div class="wb-product-inner">
 
-                                    <div class="wb-product-image-wrap">
-                                        <?php
-                                            if( class_exists('WooCommerce') ){
-                                                wbcom_custom_product_badge(); 
-                                                wbcom_sale_flash();
-                                            }
-                                        ?>
-                                        <div class="wb-product-image">
-                                            <?php  if( $settings['thumbnails_style'] == 2 && $gallery_images_ids ): ?>
-                                                <div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>" data-slick='{"rtl":<?php if( is_rtl() ){ echo 'true'; }else{ echo 'false'; } ?> }'>
-                                                    <?php
-                                                        foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-                                                            echo '<a href="'.esc_url( get_the_permalink() ).'" class="item">'.wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ).'</a>';
-                                                        }
-                                                    ?>
-                                                </div>
+									<div class="wb-product-image-wrap">
+									<?php
+									if ( class_exists( 'WooCommerce' ) ) {
+										wbcom_custom_product_badge();
+										wbcom_sale_flash();
+									}
+									?>
+										<div class="wb-product-image">
+										<?php if ( $settings['thumbnails_style'] == 2 && $gallery_images_ids ) : ?>
+												<div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>" data-slick='{"rtl":
+												<?php
+												if ( is_rtl() ) {
+													echo 'true';
+												} else {
+													echo 'false'; }
+												?>
+												}'>
+													<?php
+													foreach ( $gallery_images_ids as $gallery_attachment_id ) {
+														echo '<a href="' . esc_url( get_the_permalink() ) . '" class="item">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a>';
+													}
+													?>
+												</div>
 
-                                            <?php elseif( $settings['thumbnails_style'] == 3 && $gallery_images_ids ) : $tabactive = ''; ?>
-                                                <div class="wb-product-cus-tab">
-                                                    <?php
-                                                        $i = 0;
-                                                        foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-                                                            $i++;
-                                                            if( $i == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                            echo '<div class="wb-product-cus-tab-pane ' . esc_attr( $tabactive ) . '" id="image-' . esc_attr( $i . get_the_ID() ) . '"><a href="#">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
-                                                        }
-                                                    ?>
-                                                </div>
-                                                <ul class="wb-product-cus-tab-links">
-                                                    <?php
-                                                        $j = 0;
-                                                        foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-                                                            $j++;
-                                                            if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
-                                                            echo '<li><a href="#image-' . esc_attr( $j . get_the_ID() ) . '" class="' . esc_attr( $tabactive ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ) . '</a></li>';
-                                                        }
-                                                    ?>
-                                                </ul>
+											<?php
+											elseif ( $settings['thumbnails_style'] == 3 && $gallery_images_ids ) :
+												$tabactive = '';
+												?>
+												<div class="wb-product-cus-tab">
+													<?php
+														$i = 0;
+													foreach ( $gallery_images_ids as $gallery_attachment_id ) {
+														++$i;
+														if ( $i == 1 ) {
+															$tabactive = 'htactive';
+														} else {
+															$tabactive = ' '; }
+														echo '<div class="wb-product-cus-tab-pane ' . esc_attr( $tabactive ) . '" id="image-' . esc_attr( $i . get_the_ID() ) . '"><a href="#">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
+													}
+													?>
+												</div>
+												<ul class="wb-product-cus-tab-links">
+													<?php
+														$j = 0;
+													foreach ( $gallery_images_ids as $gallery_attachment_id ) {
+														++$j;
+														if ( $j == 1 ) {
+															$tabactive = 'htactive';
+														} else {
+															$tabactive = ' '; }
+														echo '<li><a href="#image-' . esc_attr( $j . get_the_ID() ) . '" class="' . esc_attr( $tabactive ) . '">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_gallery_thumbnail' ) . '</a></li>';
+													}
+													?>
+												</ul>
 
-                                            <?php else: ?>
-                                                <a href="<?php the_permalink();?>"> 
-                                                    <?php woocommerce_template_loop_product_thumbnail(); ?> 
-                                                </a>
-                                            <?php endif; ?>
+											<?php else : ?>
+												<a href="<?php the_permalink(); ?>"> 
+													<?php woocommerce_template_loop_product_thumbnail(); ?> 
+												</a>
+											<?php endif; ?>
 
-                                        </div>
+										</div>
 
-                                        <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] != 'contentbottom' ): ?>
-                                            <div class="wb-product-action">
-                                                <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
-                                                        <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
-                                                    <?php
-                                                        if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
-                                                            echo '<li>';
-                                                                wbcom_compare_button(
-                                                                    array(
-                                                                        'style'=>2,
-                                                                        'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
-                                                                        'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
-                                                                    )
-                                                                );
-                                                            echo '</li>';
-                                                        }
-                                                    ?>
-                                                    <li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
-                                                </ul>
-                                            </div>
-                                        <?php endif; }?>
+										<?php
+										if ( $settings['show_action_button'] == 'yes' ) {
+											if ( $settings['action_button_position'] != 'contentbottom' ) :
+												?>
+											<div class="wb-product-action">
+																							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
+														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
+																								<?php
+																								if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
+																									echo '<li>';
+																										wbcom_compare_button(
+																											array(
+																												'style' => 2,
+																												'btn_text' => '<i class="wbe-icons wbe-icon-spin5"></i>',
+																												'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
+																											)
+																										);
+																									echo '</li>';
+																								}
+																								?>
+													<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
+												</ul>
+											</div>
+																					<?php endif; } ?>
 
-                                    </div>
+									</div>
 
-                                    <div class="wb-product-content">
-                                        <div class="wb-product-content-inner">
-                                            <div class="wb-product-categories"><?php wbcom_get_product_category_list(); ?></div>
-                                            <?php do_action( 'wbcom_universal_before_title' ); ?>
-                                            <?php echo wp_kses_post( sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", esc_html( $title_html_tag ), esc_url( get_the_permalink() ), esc_html( get_the_title() ), esc_html( $title_html_tag ) ) ); ?>
-                                            <?php do_action( 'wbcom_universal_after_title' ); ?>
-                                            <?php do_action( 'wbcom_universal_before_price' ); ?>
-                                            <div class="wb-product-price"><?php woocommerce_template_loop_price();?></div>
-                                            <?php do_action( 'wbcom_universal_after_price' ); ?>
-                                            <div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Function returns escaped HTML ?></div>
+									<div class="wb-product-content">
+										<div class="wb-product-content-inner">
+											<div class="wb-product-categories"><?php wbcom_get_product_category_list(); ?></div>
+											<?php do_action( 'wbcom_universal_before_title' ); ?>
+											<?php echo wp_kses_post( sprintf( "<%s class='wb-product-title'><a href='%s'>%s</a></%s>", esc_html( $title_html_tag ), esc_url( get_the_permalink() ), esc_html( get_the_title() ), esc_html( $title_html_tag ) ) ); ?>
+											<?php do_action( 'wbcom_universal_after_title' ); ?>
+											<?php do_action( 'wbcom_universal_before_price' ); ?>
+											<div class="wb-product-price"><?php woocommerce_template_loop_price(); ?></div>
+											<?php do_action( 'wbcom_universal_after_price' ); ?>
+											<div class="wb-product-ratting-wrap"><?php echo wbcom_wc_get_rating_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Function returns escaped HTML ?></div>
 
-                                            <?php if( $settings['show_action_button'] == 'yes' ){ if( $settings['action_button_position'] == 'contentbottom' ): ?>
-                                                <div class="wb-product-action">
-                                                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
-                                                        <ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
-                                                        <?php
-                                                            if( function_exists('wbcom_compare_button') && true === wbcom_exist_compare_plugin() ){
-                                                                echo '<li>';
-                                                                    wbcom_compare_button(
-                                                                        array(
-                                                                            'style'=>2,
-                                                                            'btn_text'=>'<i class="wbe-icons wbe-icon-spin5"></i>',
-                                                                            'btn_added_txt'=>'<i class="wbe-icons wbe-icon-check-circle"></i>'
-                                                                        )
-                                                                    );
-                                                                echo '</li>';
-                                                            }
-                                                        ?>
-                                                        <li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
-                                                    </ul>
-                                                </div>
-                                            <?php endif; } ?>
-                                        </div>
-                                    </div>
+											<?php
+											if ( $settings['show_action_button'] == 'yes' ) {
+												if ( $settings['action_button_position'] == 'contentbottom' ) :
+													?>
+												<div class="wb-product-action">
+																									<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor method ?>
+														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
+																										<?php
+																										if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
+																											echo '<li>';
+																												wbcom_compare_button(
+																													array(
+																														'style' => 2,
+																														'btn_text' => '<i class="wbe-icons wbe-icon-spin5"></i>',
+																														'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
+																													)
+																												);
+																											echo '</li>';
+																										}
+																										?>
+														<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
+													</ul>
+												</div>
+																							<?php endif; } ?>
+										</div>
+									</div>
 
-                                </div>
-                            </div>
-                            <!--Product End-->
+								</div>
+							</div>
+							<!--Product End-->
 
-                        <?php endwhile; wp_reset_query(); wp_reset_postdata(); endif; ?>
-                    </div>
-                <?php if( $settings['product_layout_style'] == 'slider' ){ echo '</div>'; } ?>
-            <?php endif; ?>
+								<?php
+						endwhile;
+							wp_reset_query();
+							wp_reset_postdata();
+endif;
+						?>
+					</div>
+				<?php
+				if ( $settings['product_layout_style'] == 'slider' ) {
+					echo '</div>'; }
+				?>
+			<?php endif; ?>
 
-            <?php if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) { ?>
-                <script>
-                    ;jQuery(document).ready(function($) {
-                        'use strict';
-                        $(".wb-product-image-thumbnaisl-<?php echo esc_js( $tabuniqid ); ?>").slick({
-                            dots: true,
-                            arrows: true,
-                            prevArrow: '<button class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
-                            nextArrow: '<button class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
-                        });
-                    });
-                </script>
-            <?php } ?>
+			<?php if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) { ?>
+				<script>
+					;jQuery(document).ready(function($) {
+						'use strict';
+						$(".wb-product-image-thumbnaisl-<?php echo esc_js( $tabuniqid ); ?>").slick({
+							dots: true,
+							arrows: true,
+							prevArrow: '<button class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
+							nextArrow: '<button class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
+						});
+					});
+				</script>
+			<?php } ?>
 
-        <?php
-
-    }
+		<?php
+	}
 }

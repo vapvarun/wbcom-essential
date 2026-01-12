@@ -64,6 +64,13 @@ class PricingTable extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'pricing', 'table', 'price', 'plan', 'subscription' );
+	}
+
+	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Countdown Block
+ * Countdown Block Registration.
  *
  * @package WBCOM_Essential
  */

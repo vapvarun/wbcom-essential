@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Slider Block
+ * Post Slider Block Registration.
  *
  * @package WBCOM_Essential
  */

@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Theme colors toggle.
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+
 // Sanitize attributes.
 $post_type     = isset( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : 'post';
 $order         = isset( $attributes['order'] ) ? sanitize_text_field( $attributes['order'] ) : 'DESC';
@@ -151,52 +154,72 @@ $carousel_id = 'wbcom-post-carousel-' . wp_unique_id();
 
 // Generate inline styles.
 $inline_styles = '';
-if ( ! empty( $card_bg_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card { background-color: {$card_bg_color}; }";
+
+// Color styles - only apply when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	if ( ! empty( $card_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card { background-color: {$card_bg_color}; }";
+	}
+	if ( ! empty( $card_hover_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card:hover { background-color: {$card_hover_bg_color}; }";
+	}
+	if ( ! empty( $card_badge_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { background-color: {$card_badge_bg_color}; }";
+	}
+	if ( ! empty( $card_badge_hover_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { background-color: {$card_badge_hover_bg_color}; }";
+	}
+	if ( ! empty( $card_badge_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { color: {$card_badge_color}; }";
+	}
+	if ( ! empty( $card_footer_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-footer { background-color: {$card_footer_bg_color}; }";
+	}
+	if ( ! empty( $card_category_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats, #{$carousel_id} .wbcom-posts-card-cats a { color: {$card_category_color}; }";
+	}
+	if ( ! empty( $card_category_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { color: {$card_category_hover_color}; }";
+	}
+	if ( ! empty( $card_title_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title, #{$carousel_id} .wbcom-posts-card-title a { color: {$card_title_color}; }";
+	}
+	if ( ! empty( $card_title_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title a:hover { color: {$card_title_hover_color}; }";
+	}
+	if ( ! empty( $card_excerpt_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-excerpt p { color: {$card_excerpt_color}; }";
+	}
+	if ( ! empty( $card_author_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link { color: {$card_author_color}; }";
+	}
+	if ( ! empty( $card_author_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link:hover { color: {$card_author_hover_color}; }";
+	}
+	if ( ! empty( $card_date_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link { color: {$card_date_color}; }";
+	}
+	if ( ! empty( $card_date_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link:hover { color: {$card_date_hover_color}; }";
+	}
+	if ( ! empty( $nav_arrow_color ) && '#ffffff' !== $nav_arrow_color ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev i, #{$carousel_id} .wbcom-post-carousel-next i { color: " . esc_attr( $nav_arrow_color ) . ' !important; }';
+	}
+	if ( ! empty( $nav_arrow_hover_color ) && '#ffffff' !== $nav_arrow_hover_color ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover i, #{$carousel_id} .wbcom-post-carousel-next:hover i { color: " . esc_attr( $nav_arrow_hover_color ) . ' !important; }';
+	}
+	if ( ! empty( $nav_arrow_bg_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev, #{$carousel_id} .wbcom-post-carousel-next { background-color: " . esc_attr( $nav_arrow_bg_color ) . ' !important; }';
+	}
+	if ( ! empty( $nav_arrow_bg_hover_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover, #{$carousel_id} .wbcom-post-carousel-next:hover { background-color: " . esc_attr( $nav_arrow_bg_hover_color ) . ' !important; }';
+	}
+	if ( ! empty( $nav_dots_color ) ) {
+		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-dots li.slick-active button { background-color: {$nav_dots_color}; }";
+	}
 }
-if ( ! empty( $card_hover_bg_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card:hover { background-color: {$card_hover_bg_color}; }";
-}
-if ( ! empty( $card_badge_bg_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { background-color: {$card_badge_bg_color}; }";
-}
-if ( ! empty( $card_badge_hover_bg_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { background-color: {$card_badge_hover_bg_color}; }";
-}
-if ( ! empty( $card_badge_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { color: {$card_badge_color}; }";
-}
-if ( ! empty( $card_footer_bg_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-footer { background-color: {$card_footer_bg_color}; }";
-}
-if ( ! empty( $card_category_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats, #{$carousel_id} .wbcom-posts-card-cats a { color: {$card_category_color}; }";
-}
-if ( ! empty( $card_category_hover_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { color: {$card_category_hover_color}; }";
-}
-if ( ! empty( $card_title_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title, #{$carousel_id} .wbcom-posts-card-title a { color: {$card_title_color}; }";
-}
-if ( ! empty( $card_title_hover_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title a:hover { color: {$card_title_hover_color}; }";
-}
-if ( ! empty( $card_excerpt_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-excerpt p { color: {$card_excerpt_color}; }";
-}
-if ( ! empty( $card_author_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link { color: {$card_author_color}; }";
-}
-if ( ! empty( $card_author_hover_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link:hover { color: {$card_author_hover_color}; }";
-}
-if ( ! empty( $card_date_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link { color: {$card_date_color}; }";
-}
-if ( ! empty( $card_date_hover_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link:hover { color: {$card_date_hover_color}; }";
-}
-// Image hover effects.
+
+// Image hover effects - always apply (not a color setting).
 if ( 'zoom' === $card_img_hover_effect ) {
 	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: scale(1.1); }";
 } elseif ( 'zoom-out' === $card_img_hover_effect ) {
@@ -206,26 +229,14 @@ if ( 'zoom' === $card_img_hover_effect ) {
 } elseif ( 'rotate' === $card_img_hover_effect ) {
 	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: rotate(3deg) scale(1.05); }";
 }
-if ( ! empty( $nav_arrow_color ) && '#ffffff' !== $nav_arrow_color ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev i, #{$carousel_id} .wbcom-post-carousel-next i { color: " . esc_attr( $nav_arrow_color ) . ' !important; }';
-}
-if ( ! empty( $nav_arrow_hover_color ) && '#ffffff' !== $nav_arrow_hover_color ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover i, #{$carousel_id} .wbcom-post-carousel-next:hover i { color: " . esc_attr( $nav_arrow_hover_color ) . ' !important; }';
-}
-if ( ! empty( $nav_arrow_bg_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev, #{$carousel_id} .wbcom-post-carousel-next { background-color: " . esc_attr( $nav_arrow_bg_color ) . ' !important; }';
-}
-if ( ! empty( $nav_arrow_bg_hover_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover, #{$carousel_id} .wbcom-post-carousel-next:hover { background-color: " . esc_attr( $nav_arrow_bg_hover_color ) . ' !important; }';
-}
-if ( ! empty( $nav_dots_color ) ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-dots li.slick-active button { background-color: {$nav_dots_color}; }";
-}
 
 // Build carousel classes.
 $classes   = array( 'wbcom-post-carousel' );
 $classes[] = 'wbcom-posts-' . $card_layout;
 $classes[] = 'wbcom-posts-columns-' . $columns;
+if ( $use_theme_colors ) {
+	$classes[] = 'use-theme-colors';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(

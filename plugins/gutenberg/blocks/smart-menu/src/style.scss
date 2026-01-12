@@ -6,7 +6,7 @@
  */
 
 .wp-block-wbcom-essential-smart-menu {
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
+	// Default colors - used when inline styles are not provided.
 	--toggle-bg: var(--wbcom-color-primary, #007cba);
 	--toggle-color: var(--wbcom-button-text, #fff);
 	--toggle-hover-bg: var(--wbcom-color-primary-dark, #005a87);
@@ -26,6 +26,50 @@
 	--sub-item-bg-active: var(--wbcom-card-bg-alt, #f8f9fa);
 	--mobile-bg: var(--wbcom-card-bg, #fff);
 	--mobile-border-color: var(--wbcom-border-color-light, #f0f0f0);
+
+	/**
+	 * Theme Colors Mode
+	 * When enabled, all colors inherit from the active theme's CSS custom properties.
+	 * This overrides any custom inline color values set by the user.
+	 */
+	&.use-theme-colors {
+		// Mobile toggle colors.
+		--toggle-bg: var(--wbcom-color-primary, #007cba);
+		--toggle-color: var(--wbcom-button-text, #fff);
+		--toggle-hover-bg: var(--wbcom-color-primary-dark, #005a87);
+
+		// Main menu item colors.
+		--item-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #333));
+		--item-bg: transparent;
+		--item-color-hover: var(--wbcom-color-primary, #007cba);
+		--item-bg-hover: var(--wbcom-color-primary-light, rgba(0, 124, 186, 0.05));
+		--item-color-active: var(--wbcom-color-primary, #007cba);
+		--item-bg-active: var(--wbcom-color-primary-light, rgba(0, 124, 186, 0.1));
+
+		// Sub menu colors.
+		--sub-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+		--sub-border-color: var(--wbcom-border-color, var(--wbcom-card-border, #e0e0e0));
+		--sub-item-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #555));
+		--sub-item-bg: transparent;
+		--sub-item-color-hover: var(--wbcom-color-primary, #007cba);
+		--sub-item-bg-hover: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, #f8f9fa));
+		--sub-item-color-active: var(--wbcom-color-primary, #007cba);
+		--sub-item-bg-active: var(--wbcom-card-bg-alt, var(--wbcom-color-base-2, #f8f9fa));
+
+		// Mobile menu colors.
+		--mobile-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+		--mobile-border-color: var(--wbcom-border-color-light, var(--wbcom-card-border, #f0f0f0));
+
+		// Apply colors to mobile toggle button.
+		.smart-menu-toggle {
+			background: var(--toggle-bg);
+			color: var(--toggle-color);
+
+			&:hover {
+				background: var(--toggle-hover-bg);
+			}
+		}
+	}
 
 	position: relative;
 

@@ -80,6 +80,13 @@ class ForumsActivity extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'forums', 'activity', 'bbpress', 'recent', 'discussions' );
+	}
+
+	/**
 	 * Register Controls.
 	 */
 	protected function register_controls() {
@@ -854,6 +861,13 @@ class ForumsActivity extends \Elementor\Widget_Base {
 	 * @return void
 	 */
 	protected function render() {
+		// Check if BuddyPress and bbPress are active before rendering.
+		if ( ! function_exists( 'buddypress' ) || ! class_exists( 'bbPress' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'BuddyPress and bbPress are required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
 
 		$settings            = $this->get_settings_for_display();
 		$my_discussions_link = trailingslashit( bp_loggedin_user_domain() . bbp_maybe_get_root_slug() );

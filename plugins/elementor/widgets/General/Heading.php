@@ -63,6 +63,13 @@ class Heading extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'heading', 'title', 'text', 'headline', 'typography' );
+	}
+
+	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {

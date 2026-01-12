@@ -1279,6 +1279,14 @@ class ProductTab extends \Elementor\Widget_Base {
 
 	protected function render( $instance = array() ) {
 
+		// Check if WooCommerce is active before rendering.
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . esc_html__( 'WooCommerce is required for this widget.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
+
 		$settings        = $this->get_settings_for_display();
 		$product_type    = $this->get_settings_for_display( 'wbcom_product_grid_product_filter' );
 		$per_page        = $this->get_settings_for_display( 'wbcom_product_grid_products_count' );
@@ -1414,14 +1422,16 @@ class ProductTab extends \Elementor\Widget_Base {
 							$m = 0;
 						if ( is_array( $product_cats ) && count( $product_cats ) > 0 ) {
 
-							// Category retrive.							
-							$prod_categories = get_terms( array(
-								'taxonomy' => 'product_cat',
-								'orderby' => 'name',
-								'order' => 'ASC',
-								'hide_empty' => true,
-								'slug' => $product_cats,
-							) );
+							// Category retrive.
+							$prod_categories = get_terms(
+								array(
+									'taxonomy'   => 'product_cat',
+									'orderby'    => 'name',
+									'order'      => 'ASC',
+									'hide_empty' => true,
+									'slug'       => $product_cats,
+								)
+							);
 
 							foreach ( $prod_categories as $prod_cats ) {
 								++$m;

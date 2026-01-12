@@ -19,7 +19,6 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Core\Schemes;
 use Elementor\Group_Control_Typography;
 
 /**
@@ -78,6 +77,13 @@ class DashboardIntro extends \Elementor\Widget_Base {
 	 */
 	public function get_categories() {
 		return array( 'wbcom-elements' );
+	}
+
+	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'dashboard', 'intro', 'welcome', 'user', 'buddypress' );
 	}
 
 	/**

@@ -2,12 +2,27 @@
  * Mini Cart Block - Frontend Styles
  */
 .wbcom-essential-mini-cart {
+	// Layout.
 	--icon-size: 24px;
+
+	// Default colors (static fallbacks for custom color mode).
 	--icon-color: inherit;
 	--count-bg-color: #e53935;
 	--count-text-color: #fff;
 	--total-color: inherit;
 	--dropdown-bg: #fff;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--icon-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--count-bg-color: var(--wbcom-color-primary, #e53935);
+		--count-text-color: var(--wbcom-button-text, var(--wbcom-color-base, #fff));
+		--total-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--dropdown-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+	}
 
 	position: relative;
 	display: inline-block;

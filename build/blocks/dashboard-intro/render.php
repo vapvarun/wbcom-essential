@@ -58,6 +58,7 @@ if ( function_exists( 'bp_core_get_user_domain' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors     = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $greeting_text        = $attributes['greetingText'] ?? 'Hello,';
 $description_text     = $attributes['descriptionText'] ?? '';
 $show_avatar          = $attributes['showAvatar'] ?? true;
@@ -97,26 +98,31 @@ $shadow_string = sprintf(
 	$avatar_shadow['color'] ?? 'rgba(0,0,0,0.5)'
 );
 
-// Build inline styles.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_styles = array(
+	// Layout styles - always applied.
 	'--gap'                   => $gap . 'px',
-	'--container-bg'          => $container_bg_color,
 	'--container-padding'     => $container_padding . 'px',
 	'--container-radius'      => $container_radius . 'px',
 	'--avatar-size'           => $avatar_size . 'px',
 	'--avatar-radius'         => $avatar_border_radius . '%',
 	'--avatar-border-style'   => $avatar_border_style,
 	'--avatar-border-width'   => $avatar_border_width . 'px',
-	'--avatar-border-color'   => $avatar_border_color,
 	'--avatar-padding'        => $avatar_padding . 'px',
 	'--avatar-shadow'         => $shadow_string,
-	'--greeting-color'        => $greeting_color,
 	'--greeting-font-size'    => $greeting_font_size . 'px',
-	'--name-color'            => $name_color,
 	'--name-font-size'        => $name_font_size . 'px',
-	'--description-color'     => $description_color,
 	'--description-font-size' => $description_font_size . 'px',
 );
+
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--container-bg']       = $container_bg_color;
+	$inline_styles['--avatar-border-color'] = $avatar_border_color;
+	$inline_styles['--greeting-color']     = $greeting_color;
+	$inline_styles['--name-color']         = $name_color;
+	$inline_styles['--description-color']  = $description_color;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
@@ -129,6 +135,10 @@ $container_classes = array(
 	'layout-' . $layout,
 	'align-' . $content_align,
 );
+
+if ( $use_theme_colors ) {
+	$container_classes[] = 'use-theme-colors';
+}
 
 // Wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(

@@ -290,21 +290,49 @@
 	--card-radius: 8px;
 	--card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	--card-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
-	// Colors - inherit from theme via bridge variables (theme-colors.css)
-	--card-bg: var(--wbcom-card-bg, #ffffff);
-	--title-color: var(--wbcom-heading-color, #333);
-	--title-hover-color: var(--wbcom-color-primary, #007cba);
-	--excerpt-color: var(--wbcom-text-color, #666);
-	--meta-color: var(--wbcom-meta-color, #888);
-	--border-color: var(--wbcom-border-color, #eee);
-	--nav-bg: var(--wbcom-card-bg, rgba(255, 255, 255, 0.9));
-	--nav-color: var(--wbcom-heading-color, #333);
-	--nav-hover-bg: var(--wbcom-color-primary, #007cba);
-	--nav-hover-color: var(--wbcom-button-text, #fff);
-	--dot-color: var(--wbcom-border-color, #ddd);
-	--dot-active-color: var(--wbcom-color-primary, #007cba);
+	// Colors - default values (can be overridden by inline styles or theme colors)
+	--card-bg: #ffffff;
+	--title-color: #333;
+	--title-hover-color: #007cba;
+	--excerpt-color: #666;
+	--meta-color: #888;
+	--border-color: #eee;
+	--nav-bg: rgba(255, 255, 255, 0.9);
+	--nav-color: #333;
+	--nav-hover-bg: #007cba;
+	--nav-hover-color: #fff;
+	--dot-color: #ddd;
+	--dot-active-color: #007cba;
 	--category-bg: rgba(0, 0, 0, 0.7);
-	--category-color: var(--wbcom-button-text, #fff);
+	--category-color: #fff;
+
+	/**
+	 * Theme Colors Mode
+	 * When enabled, colors inherit from the active theme's CSS custom properties.
+	 */
+	&.use-theme-colors {
+		// Card colors - use theme card and text variables.
+		--card-bg: var(--wbcom-card-bg, var(--wbcom-color-base, #ffffff));
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #333));
+		--title-hover-color: var(--wbcom-color-primary, #007cba);
+		--excerpt-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #666));
+		--meta-color: var(--wbcom-meta-color, var(--wbcom-color-contrast-2, #888));
+		--border-color: var(--wbcom-border-color, var(--wbcom-card-border, #eee));
+
+		// Navigation colors - use theme primary.
+		--nav-bg: var(--wbcom-card-bg, var(--wbcom-color-base, rgba(255, 255, 255, 0.9)));
+		--nav-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #333));
+		--nav-hover-bg: var(--wbcom-color-primary, #007cba);
+		--nav-hover-color: var(--wbcom-button-text, #fff);
+
+		// Dots colors - use theme primary.
+		--dot-color: var(--wbcom-border-color, var(--wbcom-color-contrast-2, #ddd));
+		--dot-active-color: var(--wbcom-color-primary, #007cba);
+
+		// Category badge colors - use theme primary.
+		--category-bg: var(--wbcom-color-primary, rgba(0, 0, 0, 0.7));
+		--category-color: var(--wbcom-button-text, #fff);
+	}
 
 	&.wbcom-post-carousel {
 		opacity: 1; // Override the initial opacity: 0

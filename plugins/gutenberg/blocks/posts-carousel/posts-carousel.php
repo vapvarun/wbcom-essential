@@ -1,6 +1,6 @@
 <?php
 /**
- * Posts Carousel Block
+ * Posts Carousel Block Registration.
  *
  * @package WBCOM_Essential
  */

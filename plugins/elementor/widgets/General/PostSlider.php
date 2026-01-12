@@ -67,6 +67,13 @@ class PostSlider extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get keywords.
+	 */
+	public function get_keywords() {
+		return array( 'post', 'slider', 'slideshow', 'blog', 'featured' );
+	}
+
+	/**
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {

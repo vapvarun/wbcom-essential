@@ -26,6 +26,10 @@
     }
   },
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "showLogo": {
       "type": "boolean",
       "default": true

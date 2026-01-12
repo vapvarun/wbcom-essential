@@ -18,6 +18,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 export default function save( { attributes } ) {
 	const {
+		useThemeColors,
 		text,
 		size,
 		buttonIcon,
@@ -68,73 +69,91 @@ export default function save( { attributes } ) {
 		return `radial-gradient(circle, ${ colorStart } ${ startPos }%, ${ colorEnd } ${ endPos }%)`;
 	};
 
-	const wrapperStyle = {
-		'--dropdown-hover-text-color': dropdownHoverTextColor || '#2271b1',
-		'--dropdown-hover-bg-color': dropdownHoverBgColor || '#f5f5f5',
-		'--separator-color': separatorColor || '#eee',
-		'--animation-color': animationColor || 'rgba(255, 255, 255, 0.2)'
-	};
+	// Build wrapper style - colors only when NOT using theme colors
+	const wrapperStyle = {};
 
-	// Add hover gradient CSS variable if enabled
-	if ( enableHoverGradient ) {
-		wrapperStyle['--hover-gradient'] = generateGradient(
-			hoverGradientType,
-			hoverGradientAngle,
-			hoverGradientColorStart,
-			hoverGradientColorEnd,
-			hoverGradientStartPosition,
-			hoverGradientEndPosition
-		);
+	if ( ! useThemeColors ) {
+		wrapperStyle['--dropdown-hover-text-color'] = dropdownHoverTextColor || '#2271b1';
+		wrapperStyle['--dropdown-hover-bg-color'] = dropdownHoverBgColor || '#f5f5f5';
+		wrapperStyle['--separator-color'] = separatorColor || '#eee';
+		wrapperStyle['--animation-color'] = animationColor || 'rgba(255, 255, 255, 0.2)';
+
+		// Add hover gradient CSS variable if enabled
+		if ( enableHoverGradient ) {
+			wrapperStyle['--hover-gradient'] = generateGradient(
+				hoverGradientType,
+				hoverGradientAngle,
+				hoverGradientColorStart,
+				hoverGradientColorEnd,
+				hoverGradientStartPosition,
+				hoverGradientEndPosition
+			);
+		}
+
+		if ( buttonHoverBgColor && ! enableHoverGradient ) {
+			wrapperStyle['--hover-bg-color'] = buttonHoverBgColor;
+		}
+
+		if ( buttonHoverTextColor ) {
+			wrapperStyle['--hover-text-color'] = buttonHoverTextColor;
+		}
+
+		// Set hover border - either to hover values or to normal values to maintain appearance
+		if ( borderStyleHover && borderStyleHover !== 'none' ) {
+			// User specified a hover border
+			wrapperStyle['--hover-border'] = `${ borderWidthHover }px ${ borderStyleHover } ${ borderColorHover || '#000' }`;
+		} else if ( borderStyle && borderStyle !== 'none' ) {
+			// No hover border specified, use normal border to maintain appearance on hover
+			wrapperStyle['--hover-border'] = `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`;
+		} else {
+			// No border at all
+			wrapperStyle['--hover-border'] = 'none';
+		}
 	}
 
-	if ( buttonHoverBgColor && ! enableHoverGradient ) {
-		wrapperStyle['--hover-bg-color'] = buttonHoverBgColor;
-	}
+	// Build button style - colors only when NOT using theme colors
+	const buttonStyle = {};
 
-	if ( buttonHoverTextColor ) {
-		wrapperStyle['--hover-text-color'] = buttonHoverTextColor;
-	}
-
-	// Set hover border - either to hover values or to normal values to maintain appearance
-	if ( borderStyleHover && borderStyleHover !== 'none' ) {
-		// User specified a hover border
-		wrapperStyle['--hover-border'] = `${ borderWidthHover }px ${ borderStyleHover } ${ borderColorHover || '#000' }`;
-	} else if ( borderStyle && borderStyle !== 'none' ) {
-		// No hover border specified, use normal border to maintain appearance on hover
-		wrapperStyle['--hover-border'] = `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`;
-	} else {
-		// No border at all
-		wrapperStyle['--hover-border'] = 'none';
-	}
-
-	const buttonStyle = {
-		color: buttonTextColor || '#ffffff',
-		backgroundColor: enableGradient ? 'transparent' : ( buttonBgColor || '#2271b1' ),
-		border: borderStyle !== 'none' && borderStyle
+	if ( ! useThemeColors ) {
+		buttonStyle.color = buttonTextColor || '#ffffff';
+		buttonStyle.backgroundColor = enableGradient ? 'transparent' : ( buttonBgColor || '#2271b1' );
+		buttonStyle.border = borderStyle !== 'none' && borderStyle
 			? `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`
-			: 'none'
-	};
+			: 'none';
 
-	if ( enableGradient ) {
-		buttonStyle.backgroundImage = generateGradient(
-			gradientType,
-			gradientAngle,
-			gradientColorStart,
-			gradientColorEnd,
-			gradientStartPosition,
-			gradientEndPosition
-		);
+		if ( enableGradient ) {
+			buttonStyle.backgroundImage = generateGradient(
+				gradientType,
+				gradientAngle,
+				gradientColorStart,
+				gradientColorEnd,
+				gradientStartPosition,
+				gradientEndPosition
+			);
+		}
 	}
 
-	const iconStyle = {
-		backgroundColor: iconBgColor || 'transparent'
-	};
+	// Build icon style - colors only when NOT using theme colors
+	const iconStyle = {};
 
-	const dropdownStyle = {
-		color: dropdownTextColor,
-		backgroundColor: dropdownBgColor,
-		boxShadow: dropdownShadow || '0 4px 12px rgba(0, 0, 0, 0.15)'
-	};
+	if ( ! useThemeColors && iconBgColor ) {
+		iconStyle.backgroundColor = iconBgColor;
+	}
+
+	// Build dropdown style - colors only when NOT using theme colors
+	const dropdownStyle = {};
+
+	if ( ! useThemeColors ) {
+		if ( dropdownTextColor ) {
+			dropdownStyle.color = dropdownTextColor;
+		}
+		if ( dropdownBgColor ) {
+			dropdownStyle.backgroundColor = dropdownBgColor;
+		}
+		if ( dropdownShadow ) {
+			dropdownStyle.boxShadow = dropdownShadow;
+		}
+	}
 
 	const renderIcon = ( iconName ) => {
 		const iconMap = {
@@ -149,7 +168,7 @@ export default function save( { attributes } ) {
 	};
 
 	const blockProps = useBlockProps.save( {
-		className: `dropdown-button-wrapper size-${ size } ${ buttonSkin !== 'none' ? buttonSkin : '' }`,
+		className: `dropdown-button-wrapper size-${ size } ${ buttonSkin !== 'none' ? buttonSkin : '' }${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: wrapperStyle
 	} );
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Dashboard Intro Block
+ * Dashboard Intro Block Registration.
  *
  * @package WBCOM_Essential
  */

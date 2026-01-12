@@ -1,6 +1,6 @@
 <?php
 /**
- * Login Form Block
+ * Login Form Block Registration.
  *
  * @package WBCOM_Essential
  */
@@ -102,10 +102,12 @@ function wbcom_essential_ajax_login() {
 		}
 	}
 
-	wp_send_json_success( array(
-		'message'  => __( 'Login successful! Redirecting...', 'wbcom-essential' ),
-		'redirect' => $redirect_url,
-	) );
+	wp_send_json_success(
+		array(
+			'message'  => __( 'Login successful! Redirecting...', 'wbcom-essential' ),
+			'redirect' => $redirect_url,
+		)
+	);
 }
 add_action( 'wp_ajax_nopriv_wbcom_essential_ajax_login', 'wbcom_essential_ajax_login' );
 add_action( 'wp_ajax_wbcom_essential_ajax_login', 'wbcom_essential_ajax_login' );

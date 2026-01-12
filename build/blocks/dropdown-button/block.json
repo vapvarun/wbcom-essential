@@ -16,6 +16,10 @@
   "textdomain": "wbcom-essential",
   "example": {},
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "text": {
       "type": "string",
       "default": "Click Here"

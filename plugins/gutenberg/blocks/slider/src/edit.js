@@ -46,6 +46,7 @@ import { ColorPalette } from '@wordpress/block-editor';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		slides,
 		sliderHeight,
 		sliderHeightTablet,
@@ -85,31 +86,36 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const [ activeSlideIndex, setActiveSlideIndex ] = useState( 0 );
 
+	// Build responsive styles - sizes always applied, colors only when NOT using theme colors.
 	const responsiveStyles = {
-		'--slider-height-desktop': `${sliderHeight.size}${sliderHeight.unit}`,
-		'--slider-height-tablet': `${sliderHeightTablet.size}${sliderHeightTablet.unit}`,
-		'--slider-height-mobile': `${sliderHeightMobile.size}${sliderHeightMobile.unit}`,
-		'--slide-bg-color': slideBgColor,
-		'--title-color': titleColor,
-		'--content-color': contentColor,
-		'--arrow-color': arrowColor,
-		'--arrow-hover-color': arrowHoverColor,
-		'--arrow-bg-color': arrowBgColor,
-		'--arrow-bg-hover-color': arrowBgHoverColor,
-		'--arrow-size': `${arrowSize}px`,
-		'--arrow-box-size': `${arrowBoxSize}px`,
-		'--arrow-border-radius': `${arrowBorderRadius}%`,
-		'--dots-color': dotsColor,
-		'--dots-active-color': dotsActiveColor,
-		'--dots-size': `${dotsSize}px`,
-		'--dots-spacing': `${dotsSpacing}px`,
+		// Sizes - always applied.
+		'--slider-height-desktop': `${ sliderHeight.size }${ sliderHeight.unit }`,
+		'--slider-height-tablet': `${ sliderHeightTablet.size }${ sliderHeightTablet.unit }`,
+		'--slider-height-mobile': `${ sliderHeightMobile.size }${ sliderHeightMobile.unit }`,
+		'--arrow-size': `${ arrowSize }px`,
+		'--arrow-box-size': `${ arrowBoxSize }px`,
+		'--arrow-border-radius': `${ arrowBorderRadius }%`,
+		'--dots-size': `${ dotsSize }px`,
+		'--dots-spacing': `${ dotsSpacing }px`,
 		'--dots-position': dotsPosition,
-		'--dots-bottom-offset': `${dotsBottomOffset}px`,
-		minHeight: `${sliderHeight.size}${sliderHeight.unit}`,
+		'--dots-bottom-offset': `${ dotsBottomOffset }px`,
+		minHeight: `${ sliderHeight.size }${ sliderHeight.unit }`,
+		// Colors - only when NOT using theme colors.
+		...( ! useThemeColors && {
+			'--slide-bg-color': slideBgColor,
+			'--title-color': titleColor,
+			'--content-color': contentColor,
+			'--arrow-color': arrowColor,
+			'--arrow-hover-color': arrowHoverColor,
+			'--arrow-bg-color': arrowBgColor,
+			'--arrow-bg-hover-color': arrowBgHoverColor,
+			'--dots-color': dotsColor,
+			'--dots-active-color': dotsActiveColor,
+		} ),
 	};
 
 	const blockProps = useBlockProps( {
-		className: 'wp-block-wbcom-essential-slider',
+		className: `wp-block-wbcom-essential-slider${ useThemeColors ? ' use-theme-colors' : '' }`,
 		style: responsiveStyles,
 	} );
 
@@ -357,92 +363,111 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) }>
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Slide Background Color', 'wbcom-essential' ) }
-						</label>
-						<input
-							type="color"
-							value={ slideBgColor }
-							onChange={ ( e ) => setAttributes( { slideBgColor: e.target.value } ) }
-							className="components-color-picker__input"
-						/>
-					</div>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+					{ ! useThemeColors && (
+						<>
+							<hr />
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Slide Background Color', 'wbcom-essential' ) }
+								</label>
+								<input
+									type="color"
+									value={ slideBgColor }
+									onChange={ ( e ) => setAttributes( { slideBgColor: e.target.value } ) }
+									className="components-color-picker__input"
+								/>
+							</div>
 
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Title Color', 'wbcom-essential' ) }
-						</label>
-						<input
-							type="color"
-							value={ titleColor }
-							onChange={ ( e ) => setAttributes( { titleColor: e.target.value } ) }
-							className="components-color-picker__input"
-						/>
-					</div>
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Title Color', 'wbcom-essential' ) }
+								</label>
+								<input
+									type="color"
+									value={ titleColor }
+									onChange={ ( e ) => setAttributes( { titleColor: e.target.value } ) }
+									className="components-color-picker__input"
+								/>
+							</div>
 
-					<div className="components-base-control">
-						<label className="components-base-control__label">
-							{ __( 'Content Color', 'wbcom-essential' ) }
-						</label>
-						<input
-							type="color"
-							value={ contentColor }
-							onChange={ ( e ) => setAttributes( { contentColor: e.target.value } ) }
-							className="components-color-picker__input"
-						/>
-					</div>
+							<div className="components-base-control">
+								<label className="components-base-control__label">
+									{ __( 'Content Color', 'wbcom-essential' ) }
+								</label>
+								<input
+									type="color"
+									value={ contentColor }
+									onChange={ ( e ) => setAttributes( { contentColor: e.target.value } ) }
+									className="components-color-picker__input"
+								/>
+							</div>
+						</>
+					) }
 				</PanelBody>
 
 				{ showArrows && (
 					<PanelBody title={ __( 'Arrow Styling', 'wbcom-essential' ) } initialOpen={ false }>
-						<div className="components-base-control">
-							<label className="components-base-control__label">
-								{ __( 'Arrow Color', 'wbcom-essential' ) }
-							</label>
-							<input
-								type="color"
-								value={ arrowColor }
-								onChange={ ( e ) => setAttributes( { arrowColor: e.target.value } ) }
-								className="components-color-picker__input"
-							/>
-						</div>
+						{ ! useThemeColors && (
+							<>
+								<div className="components-base-control">
+									<label className="components-base-control__label">
+										{ __( 'Arrow Color', 'wbcom-essential' ) }
+									</label>
+									<input
+										type="color"
+										value={ arrowColor }
+										onChange={ ( e ) => setAttributes( { arrowColor: e.target.value } ) }
+										className="components-color-picker__input"
+									/>
+								</div>
 
-						<div className="components-base-control">
-							<label className="components-base-control__label">
-								{ __( 'Arrow Hover Color', 'wbcom-essential' ) }
-							</label>
-							<input
-								type="color"
-								value={ arrowHoverColor }
-								onChange={ ( e ) => setAttributes( { arrowHoverColor: e.target.value } ) }
-								className="components-color-picker__input"
-							/>
-						</div>
+								<div className="components-base-control">
+									<label className="components-base-control__label">
+										{ __( 'Arrow Hover Color', 'wbcom-essential' ) }
+									</label>
+									<input
+										type="color"
+										value={ arrowHoverColor }
+										onChange={ ( e ) => setAttributes( { arrowHoverColor: e.target.value } ) }
+										className="components-color-picker__input"
+									/>
+								</div>
 
-						<div className="components-base-control">
-							<label className="components-base-control__label">
-								{ __( 'Arrow Background Color', 'wbcom-essential' ) }
-							</label>
-							<input
-								type="color"
-								value={ arrowBgColor.startsWith( 'rgba' ) ? '#000000' : arrowBgColor }
-								onChange={ ( e ) => setAttributes( { arrowBgColor: e.target.value } ) }
-								className="components-color-picker__input"
-							/>
-						</div>
+								<div className="components-base-control">
+									<label className="components-base-control__label">
+										{ __( 'Arrow Background Color', 'wbcom-essential' ) }
+									</label>
+									<input
+										type="color"
+										value={ arrowBgColor.startsWith( 'rgba' ) ? '#000000' : arrowBgColor }
+										onChange={ ( e ) => setAttributes( { arrowBgColor: e.target.value } ) }
+										className="components-color-picker__input"
+									/>
+								</div>
 
-						<div className="components-base-control">
-							<label className="components-base-control__label">
-								{ __( 'Arrow Background Hover Color', 'wbcom-essential' ) }
-							</label>
-							<input
-								type="color"
-								value={ arrowBgHoverColor.startsWith( 'rgba' ) ? '#000000' : arrowBgHoverColor }
-								onChange={ ( e ) => setAttributes( { arrowBgHoverColor: e.target.value } ) }
-								className="components-color-picker__input"
-							/>
-						</div>
+								<div className="components-base-control">
+									<label className="components-base-control__label">
+										{ __( 'Arrow Background Hover Color', 'wbcom-essential' ) }
+									</label>
+									<input
+										type="color"
+										value={ arrowBgHoverColor.startsWith( 'rgba' ) ? '#000000' : arrowBgHoverColor }
+										onChange={ ( e ) => setAttributes( { arrowBgHoverColor: e.target.value } ) }
+										className="components-color-picker__input"
+									/>
+								</div>
+								<hr />
+							</>
+						) }
 
 						<RangeControl
 							label={ __( 'Arrow Icon Size (px)', 'wbcom-essential' ) }
@@ -475,29 +500,34 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{ showDots && (
 					<PanelBody title={ __( 'Dots Styling', 'wbcom-essential' ) } initialOpen={ false }>
-						<div className="components-base-control">
-							<label className="components-base-control__label">
-								{ __( 'Dots Color', 'wbcom-essential' ) }
-							</label>
-							<input
-								type="color"
-								value={ dotsColor.startsWith( 'rgba' ) ? '#ffffff' : dotsColor }
-								onChange={ ( e ) => setAttributes( { dotsColor: e.target.value } ) }
-								className="components-color-picker__input"
-							/>
-						</div>
+						{ ! useThemeColors && (
+							<>
+								<div className="components-base-control">
+									<label className="components-base-control__label">
+										{ __( 'Dots Color', 'wbcom-essential' ) }
+									</label>
+									<input
+										type="color"
+										value={ dotsColor.startsWith( 'rgba' ) ? '#ffffff' : dotsColor }
+										onChange={ ( e ) => setAttributes( { dotsColor: e.target.value } ) }
+										className="components-color-picker__input"
+									/>
+								</div>
 
-						<div className="components-base-control">
-							<label className="components-base-control__label">
-								{ __( 'Active Dot Color', 'wbcom-essential' ) }
-							</label>
-							<input
-								type="color"
-								value={ dotsActiveColor }
-								onChange={ ( e ) => setAttributes( { dotsActiveColor: e.target.value } ) }
-								className="components-color-picker__input"
-							/>
-						</div>
+								<div className="components-base-control">
+									<label className="components-base-control__label">
+										{ __( 'Active Dot Color', 'wbcom-essential' ) }
+									</label>
+									<input
+										type="color"
+										value={ dotsActiveColor }
+										onChange={ ( e ) => setAttributes( { dotsActiveColor: e.target.value } ) }
+										className="components-color-picker__input"
+									/>
+								</div>
+								<hr />
+							</>
+						) }
 
 						<RangeControl
 							label={ __( 'Dot Size (px)', 'wbcom-essential' ) }

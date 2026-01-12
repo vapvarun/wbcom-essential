@@ -35,6 +35,7 @@ const ALIGNMENT_OPTIONS = [
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		alignment,
 		showProfileDropdown,
 		profileMenu,
@@ -100,15 +101,19 @@ export default function Edit( { attributes, setAttributes } ) {
 			} );
 	}, [] );
 
-	const blockProps = useBlockProps( {
-		className: `wbcom-essential-header-bar wbcom-header-bar-align-${ alignment }`,
-		style: {
-			'--space-between': `${ spaceBetween }px`,
-			'--icon-size': `${ iconSize }px`,
-			'--avatar-size': `${ avatarSize }px`,
-			'--avatar-radius': `${ avatarBorderRadius }%`,
+	// Build inline styles - colors only when NOT using theme colors
+	const blockStyle = {
+		// Layout dimensions (always applied)
+		'--space-between': `${ spaceBetween }px`,
+		'--icon-size': `${ iconSize }px`,
+		'--avatar-size': `${ avatarSize }px`,
+		'--avatar-radius': `${ avatarBorderRadius }%`,
+		'--separator-width': separatorWidth ? `${ separatorWidth }px` : undefined,
+		'--dropdown-border-width': dropdownBorderWidth ? `${ dropdownBorderWidth }px` : undefined,
+		'--dropdown-border-radius': `${ dropdownBorderRadius }px`,
+		// Colors - only when NOT using theme colors
+		...( ! useThemeColors && {
 			'--separator-color': separatorColor || undefined,
-			'--separator-width': separatorWidth ? `${ separatorWidth }px` : undefined,
 			'--icon-color': iconColor || undefined,
 			'--search-icon-color': searchIconColor || undefined,
 			'--messages-icon-color': messagesIconColor || undefined,
@@ -124,12 +129,15 @@ export default function Edit( { attributes, setAttributes } ) {
 			'--dropdown-hover-bg': dropdownHoverBgColor || undefined,
 			'--dropdown-hover-text': dropdownHoverTextColor || undefined,
 			'--dropdown-border-color': dropdownBorderColor || undefined,
-			'--dropdown-border-width': dropdownBorderWidth ? `${ dropdownBorderWidth }px` : undefined,
-			'--dropdown-border-radius': `${ dropdownBorderRadius }px`,
 			'--dropdown-shadow': dropdownBoxShadow || undefined,
 			'--user-name-color': userNameColor || undefined,
 			'--user-name-hover-color': userNameHoverColor || undefined,
-		},
+		} ),
+	};
+
+	const blockProps = useBlockProps( {
+		className: `wbcom-essential-header-bar wbcom-header-bar-align-${ alignment }${ useThemeColors ? ' use-theme-colors' : '' }`,
+		style: blockStyle,
 	} );
 
 	const menuOptions = [
@@ -403,7 +411,24 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 
-				{ /* Icon Colors Panel */ }
+				{ /* Theme Colors Panel */ }
+				<PanelBody
+					title={ __( 'Theme Colors', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
+					/>
+				</PanelBody>
+
+				{ /* Icon Colors Panel - only show when NOT using theme colors */ }
+				{ ! useThemeColors && (
 				<PanelBody
 					title={ __( 'Icon Colors', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -476,8 +501,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						placeholder="1px 1px 2px rgba(0,0,0,0.3)"
 					/>
 				</PanelBody>
+				) }
 
-				{ /* Counter Style Panel */ }
+				{ /* Counter Style Panel - only show when NOT using theme colors */ }
+				{ ! useThemeColors && (
 				<PanelBody
 					title={ __( 'Counter Style', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -508,8 +535,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						placeholder="0 2px 4px rgba(0,0,0,0.2)"
 					/>
 				</PanelBody>
+				) }
 
-				{ /* Dropdown Style Panel */ }
+				{ /* Dropdown Style Panel - only show when NOT using theme colors */ }
+				{ ! useThemeColors && (
 				<PanelBody
 					title={ __( 'Dropdown Style', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -584,8 +613,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						placeholder="0 4px 20px rgba(0,0,0,0.15)"
 					/>
 				</PanelBody>
+				) }
 
-				{ /* Separator Style Panel */ }
+				{ /* Separator Style Panel - only show when NOT using theme colors */ }
+				{ ! useThemeColors && (
 				<PanelBody
 					title={ __( 'Separator', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -598,8 +629,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 				</PanelBody>
+				) }
 
-				{ /* Profile Dropdown Style Panel */ }
+				{ /* Profile Dropdown Style Panel - only show when NOT using theme colors */ }
+				{ ! useThemeColors && (
 				<PanelBody
 					title={ __( 'Profile Style', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -620,8 +653,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 				</PanelBody>
+				) }
 
-				{ /* Logged Out State Panel */ }
+				{ /* Logged Out State Panel - only show when NOT using theme colors */ }
+				{ ! useThemeColors && (
 				<PanelBody
 					title={ __( 'Logged Out State', 'wbcom-essential' ) }
 					initialOpen={ false }
@@ -684,6 +719,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						max={ 25 }
 					/>
 				</PanelBody>
+				) }
 			</InspectorControls>
 
 			<div { ...blockProps }>

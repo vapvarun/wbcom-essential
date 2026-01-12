@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors        = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $slider_post_type        = $attributes['postType'] ?? 'post';
 $categories              = $attributes['categories'] ?? array();
 $tags                    = $attributes['tags'] ?? array();
@@ -127,28 +128,36 @@ if ( 'fade' === $transition ) {
 }
 
 // CSS custom properties for styling.
+// Layout styles - always applied.
 $style_vars = sprintf(
-	'--slider-height: %d%s; --overlay-color: %s; --content-width: %dpx; --content-padding: %dpx; --title-color: %s; --excerpt-color: %s; --date-color: %s; --button-bg: %s; --button-text: %s; --button-hover-bg: %s; --button-hover-text: %s; --button-radius: %dpx; --nav-color: %s; --bg-anim-duration: %ds; --bg-position: %s; --bg-size: %s; --divider-color: %s; --divider-width: %dpx;',
+	'--slider-height: %d%s; --content-width: %dpx; --content-padding: %dpx; --button-radius: %dpx; --bg-anim-duration: %ds; --bg-position: %s; --bg-size: %s; --divider-width: %dpx;',
 	absint( $slider_height ),
 	esc_attr( $slider_height_unit ),
-	esc_attr( $overlay_color ),
 	absint( $content_width ),
 	absint( $content_padding ),
-	esc_attr( $title_color ),
-	esc_attr( $excerpt_color ),
-	esc_attr( $date_color ),
-	esc_attr( $button_bg_color ),
-	esc_attr( $button_text_color ),
-	esc_attr( $button_hover_bg_color ),
-	esc_attr( $button_hover_text_color ),
 	absint( $button_border_radius ),
-	esc_attr( $nav_color ),
 	absint( $bg_animation_duration ),
 	esc_attr( $bg_position ),
 	esc_attr( $bg_size ),
-	esc_attr( $divider_color ),
 	absint( $divider_width )
 );
+
+// Color styles - only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$style_vars .= sprintf(
+		' --overlay-color: %s; --title-color: %s; --excerpt-color: %s; --date-color: %s; --button-bg: %s; --button-text: %s; --button-hover-bg: %s; --button-hover-text: %s; --nav-color: %s; --divider-color: %s;',
+		esc_attr( $overlay_color ),
+		esc_attr( $title_color ),
+		esc_attr( $excerpt_color ),
+		esc_attr( $date_color ),
+		esc_attr( $button_bg_color ),
+		esc_attr( $button_text_color ),
+		esc_attr( $button_hover_bg_color ),
+		esc_attr( $button_hover_text_color ),
+		esc_attr( $nav_color ),
+		esc_attr( $divider_color )
+	);
+}
 
 // Build classes.
 $wrapper_classes = array(
@@ -165,6 +174,10 @@ if ( $hide_nav_on_hover ) {
 
 if ( $show_divider ) {
 	$wrapper_classes[] = 'has-divider';
+}
+
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
 }
 
 // Get wrapper attributes.

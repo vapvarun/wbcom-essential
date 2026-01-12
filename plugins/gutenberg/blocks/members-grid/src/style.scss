@@ -5,7 +5,7 @@
  */
 
 .wbcom-essential-members-grid {
-    // Layout
+    // Layout CSS variables (overridden by inline styles).
     --grid-columns: 3;
     --grid-columns-tablet: 2;
     --grid-columns-mobile: 1;
@@ -13,20 +13,25 @@
     --card-radius: 8px;
     --card-padding: 20px;
     --avatar-size: 126px;
-    // Colors - use user values directly
-    --wbcom-card-bg: var(--wbcom-card-bg);
-    --wbcom-name-color: var(--wbcom-name-color);
-    --wbcom-meta-color: var(--wbcom-meta-color);
-    --button-color: var(--wbcom-button-color);
-    --button-text: var(--wbcom-button-text);
-}
 
-.wbcom-essential-members-grid .wbcom-member-grid-name a {
-    color: var(--wbcom-name-color) !important;
-}
+    // Default color CSS variables (overridden by inline styles when custom colors used).
+    --wbcom-card-bg: #ffffff;
+    --wbcom-name-color: #122B46;
+    --wbcom-meta-color: #A3A5A9;
+    --wbcom-button-color: #3182ce;
+    --wbcom-button-text: #ffffff;
 
-.wbcom-essential-members-grid .wbcom-member-grid-meta {
-    color: var(--wbcom-meta-color) !important;
+    /**
+     * Theme Colors Mode
+     * Maps theme CSS variables to block-specific variables.
+     */
+    &.use-theme-colors {
+        --wbcom-card-bg: var(--wbcom-color-base, var(--wbcom-card-bg, #ffffff));
+        --wbcom-name-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, #122B46));
+        --wbcom-meta-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, #A3A5A9));
+        --wbcom-button-color: var(--wbcom-color-primary, #3182ce);
+        --wbcom-button-text: var(--wbcom-color-base, #ffffff);
+    }
 }
 
 .wbcom-essential-members-grid-list {

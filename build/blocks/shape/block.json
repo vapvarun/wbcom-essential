@@ -18,6 +18,10 @@
   "textdomain": "wbcom-essential",
   "example": {},
   "attributes": {
+    "useThemeColors": {
+      "type": "boolean",
+      "default": false
+    },
     "shapePreset": {
       "type": "string",
       "default": "blob-1"

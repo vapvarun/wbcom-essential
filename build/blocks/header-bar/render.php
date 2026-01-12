@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors     = $attributes['useThemeColors'] ?? false;
 $alignment            = $attributes['alignment'] ?? 'right';
 $show_profile         = $attributes['showProfileDropdown'] ?? true;
 $profile_menu         = $attributes['profileMenu'] ?? '';
@@ -83,83 +84,88 @@ $notifications_active = $bp_active && function_exists( 'bp_is_active' ) && bp_is
 $wc_active            = class_exists( 'WooCommerce' );
 
 // Build inline styles with CSS custom properties.
+// Dimension styles - always applied.
 $inline_styles = array(
 	'--space-between'          => $space_between . 'px',
 	'--icon-size'              => $icon_size . 'px',
 	'--avatar-size'            => $avatar_size . 'px',
 	'--avatar-radius'          => $avatar_border_radius . '%',
-	'--separator-color'        => $separator_color,
 	'--separator-width'        => $separator_width . 'px',
-	'--icon-color'             => $icon_color,
-	'--counter-bg-color'       => $counter_bg_color,
-	'--counter-text-color'     => $counter_text_color,
-	'--dropdown-bg-color'      => $dropdown_bg_color,
-	'--dropdown-text-color'    => $dropdown_text_color,
 	'--dropdown-border-radius' => $dropdown_border_radius . 'px',
-	'--user-name-color'        => $user_name_color,
 	'--sign-up-border-radius'  => $sign_up_border_radius . 'px',
 );
 
-// Add optional styles only if set.
-if ( ! empty( $friend_requests_icon_color ) ) {
-	$inline_styles['--friend-requests-icon-color'] = $friend_requests_icon_color;
-}
-if ( ! empty( $search_icon_color ) ) {
-	$inline_styles['--search-icon-color'] = $search_icon_color;
-}
-if ( ! empty( $messages_icon_color ) ) {
-	$inline_styles['--messages-icon-color'] = $messages_icon_color;
-}
-if ( ! empty( $notifications_icon_color ) ) {
-	$inline_styles['--notifications-icon-color'] = $notifications_icon_color;
-}
-if ( ! empty( $cart_icon_color ) ) {
-	$inline_styles['--cart-icon-color'] = $cart_icon_color;
-}
-if ( ! empty( $dark_mode_icon_color ) ) {
-	$inline_styles['--dark-mode-icon-color'] = $dark_mode_icon_color;
-}
-if ( ! empty( $icon_text_shadow ) ) {
-	$inline_styles['--icon-text-shadow'] = $icon_text_shadow;
-}
-if ( ! empty( $counter_box_shadow ) ) {
-	$inline_styles['--counter-box-shadow'] = $counter_box_shadow;
-}
-if ( ! empty( $dropdown_hover_bg ) ) {
-	$inline_styles['--dropdown-hover-bg-color'] = $dropdown_hover_bg;
-}
-if ( ! empty( $dropdown_hover_text ) ) {
-	$inline_styles['--dropdown-hover-text-color'] = $dropdown_hover_text;
-}
-if ( ! empty( $dropdown_border_color ) ) {
-	$inline_styles['--dropdown-border-color'] = $dropdown_border_color;
-}
-if ( $dropdown_border_width > 0 ) {
-	$inline_styles['--dropdown-border-width'] = $dropdown_border_width . 'px';
-}
-if ( ! empty( $dropdown_box_shadow ) ) {
-	$inline_styles['--dropdown-box-shadow'] = $dropdown_box_shadow;
-}
-if ( ! empty( $user_name_hover_color ) ) {
-	$inline_styles['--user-name-hover-color'] = $user_name_hover_color;
-}
-if ( ! empty( $sign_in_color ) ) {
-	$inline_styles['--sign-in-color'] = $sign_in_color;
-}
-if ( ! empty( $sign_in_hover_color ) ) {
-	$inline_styles['--sign-in-hover-color'] = $sign_in_hover_color;
-}
-if ( ! empty( $sign_up_bg_color ) ) {
-	$inline_styles['--sign-up-bg-color'] = $sign_up_bg_color;
-}
-if ( ! empty( $sign_up_text_color ) ) {
-	$inline_styles['--sign-up-text-color'] = $sign_up_text_color;
-}
-if ( ! empty( $sign_up_hover_bg ) ) {
-	$inline_styles['--sign-up-hover-bg-color'] = $sign_up_hover_bg;
-}
-if ( ! empty( $sign_up_hover_text ) ) {
-	$inline_styles['--sign-up-hover-text-color'] = $sign_up_hover_text;
+// Color styles - only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--separator-color']    = $separator_color;
+	$inline_styles['--icon-color']         = $icon_color;
+	$inline_styles['--counter-bg-color']   = $counter_bg_color;
+	$inline_styles['--counter-text-color'] = $counter_text_color;
+	$inline_styles['--dropdown-bg-color']  = $dropdown_bg_color;
+	$inline_styles['--dropdown-text-color'] = $dropdown_text_color;
+	$inline_styles['--user-name-color']    = $user_name_color;
+
+	// Add optional color styles only if set.
+	if ( ! empty( $friend_requests_icon_color ) ) {
+		$inline_styles['--friend-requests-icon-color'] = $friend_requests_icon_color;
+	}
+	if ( ! empty( $search_icon_color ) ) {
+		$inline_styles['--search-icon-color'] = $search_icon_color;
+	}
+	if ( ! empty( $messages_icon_color ) ) {
+		$inline_styles['--messages-icon-color'] = $messages_icon_color;
+	}
+	if ( ! empty( $notifications_icon_color ) ) {
+		$inline_styles['--notifications-icon-color'] = $notifications_icon_color;
+	}
+	if ( ! empty( $cart_icon_color ) ) {
+		$inline_styles['--cart-icon-color'] = $cart_icon_color;
+	}
+	if ( ! empty( $dark_mode_icon_color ) ) {
+		$inline_styles['--dark-mode-icon-color'] = $dark_mode_icon_color;
+	}
+	if ( ! empty( $icon_text_shadow ) ) {
+		$inline_styles['--icon-text-shadow'] = $icon_text_shadow;
+	}
+	if ( ! empty( $counter_box_shadow ) ) {
+		$inline_styles['--counter-box-shadow'] = $counter_box_shadow;
+	}
+	if ( ! empty( $dropdown_hover_bg ) ) {
+		$inline_styles['--dropdown-hover-bg-color'] = $dropdown_hover_bg;
+	}
+	if ( ! empty( $dropdown_hover_text ) ) {
+		$inline_styles['--dropdown-hover-text-color'] = $dropdown_hover_text;
+	}
+	if ( ! empty( $dropdown_border_color ) ) {
+		$inline_styles['--dropdown-border-color'] = $dropdown_border_color;
+	}
+	if ( $dropdown_border_width > 0 ) {
+		$inline_styles['--dropdown-border-width'] = $dropdown_border_width . 'px';
+	}
+	if ( ! empty( $dropdown_box_shadow ) ) {
+		$inline_styles['--dropdown-box-shadow'] = $dropdown_box_shadow;
+	}
+	if ( ! empty( $user_name_hover_color ) ) {
+		$inline_styles['--user-name-hover-color'] = $user_name_hover_color;
+	}
+	if ( ! empty( $sign_in_color ) ) {
+		$inline_styles['--sign-in-color'] = $sign_in_color;
+	}
+	if ( ! empty( $sign_in_hover_color ) ) {
+		$inline_styles['--sign-in-hover-color'] = $sign_in_hover_color;
+	}
+	if ( ! empty( $sign_up_bg_color ) ) {
+		$inline_styles['--sign-up-bg-color'] = $sign_up_bg_color;
+	}
+	if ( ! empty( $sign_up_text_color ) ) {
+		$inline_styles['--sign-up-text-color'] = $sign_up_text_color;
+	}
+	if ( ! empty( $sign_up_hover_bg ) ) {
+		$inline_styles['--sign-up-hover-bg-color'] = $sign_up_hover_bg;
+	}
+	if ( ! empty( $sign_up_hover_text ) ) {
+		$inline_styles['--sign-up-hover-text-color'] = $sign_up_hover_text;
+	}
 }
 
 $style_string = '';
@@ -168,9 +174,13 @@ foreach ( $inline_styles as $prop => $value ) {
 }
 
 // Get wrapper attributes.
+$wrapper_classes = 'wbcom-essential-header-bar wbcom-header-bar-align-' . esc_attr( $alignment );
+if ( $use_theme_colors ) {
+	$wrapper_classes .= ' use-theme-colors';
+}
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-header-bar wbcom-header-bar-align-' . esc_attr( $alignment ),
+		'class' => $wrapper_classes,
 		'style' => $style_string,
 	)
 );
