@@ -101,7 +101,7 @@ if ( ! function_exists( 'wbcom_essential_calculate_profile_completion' ) ) {
 
 					$group_id = $single_group_details->id;
 
-					// Skip if not in selected groups.
+					// Skip if not in selected groups (check both string and int types for compatibility).
 					if ( ! in_array( (string) $group_id, $selected_groups, true ) && ! in_array( $group_id, $selected_groups, true ) ) {
 						continue;
 					}
@@ -163,14 +163,24 @@ if ( ! function_exists( 'wbcom_essential_format_profile_progress' ) ) {
 		$loggedin_user_domain = bp_loggedin_user_domain();
 		$profile_slug         = bp_get_profile_slug();
 
+		// Initialize the return array to prevent undefined variable bug.
+		$user_prgress_formatted = array(
+			'completion_percentage' => 0,
+			'groups'                => array(),
+		);
+
 		if ( $user_progress_arr['total_fields'] > 0 ) {
-			$profile_completion_percentage = round( ( $user_progress_arr['completed_fields'] * 100 ) / $user_progress_arr['total_fields'] );
-			$user_prgress_formatted        = array(
-				'completion_percentage' => $profile_completion_percentage,
-			);
+			$profile_completion_percentage                   = round( ( $user_progress_arr['completed_fields'] * 100 ) / $user_progress_arr['total_fields'] );
+			$user_prgress_formatted['completion_percentage'] = $profile_completion_percentage;
 		}
 
 		$listing_number = 1;
+
+		// Ensure groups key exists to prevent foreach errors.
+		if ( ! isset( $user_progress_arr['groups'] ) || ! is_array( $user_progress_arr['groups'] ) ) {
+			$user_progress_arr['groups'] = array();
+		}
+
 		foreach ( $user_progress_arr['groups'] as $group_id => $group_details ) {
 			$group_link = trailingslashit( $loggedin_user_domain . $profile_slug . '/edit/group/' . $group_id );
 

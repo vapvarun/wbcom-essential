@@ -66,9 +66,11 @@
 		margin-bottom: 12px;
 
 		img {
-			max-width: 100%;
+			width: 100%;
 			height: auto;
-			border-radius: 6px;
+			border-radius: var(--image-border-radius, 8px);
+			display: block;
+			object-fit: cover;
 		}
 	}
 
@@ -101,34 +103,34 @@
 	}
 
 	.wbcom-timeline-block {
+		position: relative;
+		justify-content: flex-end;
+
+		// Icon centered on timeline bar
+		.wbcom-timeline-icon {
+			position: absolute;
+			left: 50%;
+			top: 20px;
+			transform: translateX(-50%);
+			margin: 0;
+		}
+
+		// Odd items (left side content)
 		&.odd {
-			flex-direction: row;
-
-			.wbcom-timeline-icon {
-				order: 1;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
 			.wbcom-timeline-content {
-				margin-right: 20px;
+				margin-right: calc(50% + 50px);
 				margin-left: 0;
 				width: calc(50% - 50px);
 				flex-grow: 0;
 			}
 		}
 
+		// Even items (right side content)
 		&.even {
-			flex-direction: row-reverse;
-
-			.wbcom-timeline-icon {
-				order: 1;
-				margin-left: auto;
-				margin-right: auto;
-			}
+			justify-content: flex-start;
 
 			.wbcom-timeline-content {
-				margin-left: 20px;
+				margin-left: calc(50% + 50px);
 				margin-right: 0;
 				width: calc(50% - 50px);
 				flex-grow: 0;
@@ -151,18 +153,25 @@
 
 	.wbcom-timeline-image-btn {
 		width: 100%;
-		min-height: 60px;
+		min-height: 80px;
+		max-height: 120px;
 		margin: 8px 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		border: 1px dashed #ccc;
 		background: #f7f7f7;
+		border-radius: 4px;
+		overflow: hidden;
+		padding: 0;
+		cursor: pointer;
 
 		img {
-			max-width: 100%;
-			max-height: 80px;
-			object-fit: cover;
+			width: 100%;
+			height: auto;
+			max-height: 120px;
+			object-fit: contain; // Changed from 'cover' to show full image without distortion
+			display: block;
 		}
 	}
 

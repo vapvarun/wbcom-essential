@@ -154,10 +154,6 @@
 			"type": "string",
 			"default": "rgba(0, 0, 0, 0.08)"
 		},
-		"dateFontFamily": {
-			"type": "string",
-			"default": ""
-		},
 		"dateFontWeight": {
 			"type": "string",
 			"default": "600"

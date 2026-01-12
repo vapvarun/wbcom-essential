@@ -4,38 +4,33 @@
  * @package wbcom-essential
  */
 
+// Default CSS variables at root level - can be overridden by inline styles
+:root {
+	--wbcom-forums-box-border-type: solid;
+	--wbcom-forums-box-border-width: 1px;
+	--wbcom-forums-box-radius: 4px 4px 4px 4px;
+	--wbcom-forums-avatar-size: 52px;
+	--wbcom-forums-avatar-border-type: none;
+	--wbcom-forums-avatar-border-width: 0px;
+	--wbcom-forums-avatar-radius: 50% 50% 50% 50%;
+	--wbcom-forums-avatar-opacity: 1;
+	--wbcom-forums-avatar-spacing: 15px;
+	--wbcom-forums-row-space: 20px;
+	--wbcom-forums-title-font-size: 14px;
+	--wbcom-forums-title-font-weight: 400;
+	--wbcom-forums-title-line-height: 1.5;
+	--wbcom-forums-meta-font-size: 13px;
+}
+
 .wbcom-essential-forums {
-	// Layout variables
-	--box-border-type: solid;
-	--box-border-width: 1px;
-	--box-radius: 4px 4px 4px 4px;
-	--avatar-size: 52px;
-	--avatar-border-type: none;
-	--avatar-border-width: 0px;
-	--avatar-radius: 50% 50% 50% 50%;
-	--avatar-opacity: 1;
-	--avatar-spacing: 15px;
-	--row-space: 20px;
-
-	// Typography variables
-	--title-font-size: 14px;
-	--title-font-weight: 400;
-	--title-line-height: 1.5;
-	--meta-font-size: 13px;
-
-	// Color variables - inherit from theme via bridge variables (theme-colors.css)
-	--box-bg: var(--wbcom-card-bg, #ffffff);
-	--box-border-color: var(--wbcom-border-color, #e3e3e3);
-	--title-color: var(--wbcom-heading-color, #122B46);
-	--title-hover: var(--wbcom-color-primary, #007CFF);
-	--meta-color: var(--wbcom-meta-color, #A3A5A9);
-	--last-reply-color: var(--wbcom-text-color, #4D5C6D);
-	--link-color: var(--wbcom-color-primary, #1d76da);
-	--avatar-border-color: transparent;
-
-	background: var(--box-bg);
-	border: var(--box-border-width) var(--box-border-type) var(--box-border-color);
-	border-radius: var(--box-radius);
+	// Use CSS variables with fallback chain: inline style -> theme -> default
+	// The inline style sets --box-bg, etc. directly on the element via style attribute
+	// which takes precedence over these fallbacks.
+	background: var(--box-bg, var(--wbcom-card-bg, #ffffff));
+	border-width: var(--box-border-width, 1px);
+	border-style: var(--box-border-type, solid);
+	border-color: var(--box-border-color, var(--wbcom-border-color, #e3e3e3));
+	border-radius: var(--box-radius, 4px 4px 4px 4px);
 	padding: 20px;
 	position: relative;
 }
@@ -62,7 +57,7 @@
 			display: inline-flex;
 			align-items: center;
 			gap: 4px;
-			color: var(--link-color);
+			color: var(--link-color, var(--wbcom-color-primary, #1d76da));
 			text-decoration: none;
 
 			&:hover {
@@ -86,9 +81,9 @@
 	padding: 0;
 
 	> li {
-		border-bottom: 1px solid var(--box-border-color);
-		padding-bottom: var(--row-space);
-		margin-bottom: var(--row-space);
+		border-bottom: 1px solid var(--box-border-color, var(--wbcom-border-color, #e3e3e3));
+		padding-bottom: var(--row-space, 20px);
+		margin-bottom: var(--row-space, 20px);
 
 		&:last-child {
 			border-bottom: 0;
@@ -101,7 +96,7 @@
 // Item layout.
 .wbcom-forums-flex {
 	display: flex;
-	gap: var(--avatar-spacing);
+	gap: var(--avatar-spacing, 15px);
 }
 
 // Avatar.
@@ -114,12 +109,14 @@
 	}
 
 	img.avatar {
-		width: var(--avatar-size);
-		height: var(--avatar-size);
-		max-width: var(--avatar-size);
-		border-radius: var(--avatar-radius);
-		border: var(--avatar-border-width) var(--avatar-border-type) var(--avatar-border-color);
-		opacity: var(--avatar-opacity);
+		width: var(--avatar-size, 52px);
+		height: var(--avatar-size, 52px);
+		max-width: var(--avatar-size, 52px);
+		border-radius: var(--avatar-radius, 50% 50% 50% 50%);
+		border-width: var(--avatar-border-width, 0px);
+		border-style: var(--avatar-border-type, none);
+		border-color: var(--avatar-border-color, transparent);
+		opacity: var(--avatar-opacity, 1);
 		object-fit: cover;
 	}
 
@@ -139,32 +136,32 @@
 	margin-bottom: 3px;
 
 	a {
-		font-size: var(--title-font-size);
-		font-weight: var(--title-font-weight);
-		line-height: var(--title-line-height);
-		color: var(--title-color);
+		font-size: var(--title-font-size, 14px);
+		font-weight: var(--title-font-weight, 400);
+		line-height: var(--title-line-height, 1.5);
+		color: var(--title-color, var(--wbcom-heading-color, #122B46));
 		text-decoration: none;
 
 		&:hover {
-			color: var(--title-hover);
+			color: var(--title-hover, var(--wbcom-color-primary, #007CFF));
 		}
 	}
 }
 
 // Meta data.
 .wbcom-essential-forums .item-meta {
-	font-size: var(--meta-font-size);
-	color: var(--meta-color);
+	font-size: var(--meta-font-size, 13px);
+	color: var(--meta-color, var(--wbcom-text-color, #666));
 	line-height: 1;
 }
 
 .wbcom-essential-forums__ww {
 	.bs-replied {
 		a {
-			color: var(--title-color);
+			color: var(--title-color, var(--wbcom-heading-color, #122B46));
 
 			&:hover {
-				color: var(--title-hover);
+				color: var(--title-hover, var(--wbcom-color-primary, #007CFF));
 			}
 		}
 	}
@@ -190,9 +187,9 @@
 
 .wbcom-essential-forums .bs-last-reply {
 	display: block;
-	color: var(--last-reply-color);
+	color: var(--last-reply-color, var(--wbcom-text-color, #666));
 	line-height: 1.4;
-	font-size: var(--meta-font-size);
+	font-size: var(--meta-font-size, 13px);
 }
 
 // No data state.
@@ -226,14 +223,14 @@
 		padding: 8px 20px;
 		border: 1px solid var(--wbcom-border-color, #e3e3e3);
 		border-radius: 30px;
-		color: var(--title-color);
+		color: var(--title-color, var(--wbcom-heading-color, #122B46));
 		text-decoration: none;
 		transition: all 0.3s ease;
 
 		&:hover {
-			background: var(--title-color);
+			background: var(--title-color, var(--wbcom-heading-color, #122B46));
 			color: var(--wbcom-button-text, #fff);
-			border-color: var(--title-color);
+			border-color: var(--title-color, var(--wbcom-heading-color, #122B46));
 		}
 	}
 }

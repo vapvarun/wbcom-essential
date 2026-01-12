@@ -238,18 +238,87 @@ export default function Edit( { attributes, setAttributes } ) {
 								onChange={ ( value ) => setAttributes( { logoPadding: { ...logoPadding, left: value } } ) }
 								help={ __( 'Default: 0', 'wbcom-essential' ) }
 							/>
-							<wp.components.TextControl
-								label={ __( 'Logo Width', 'wbcom-essential' ) }
-								value={ logoWidth }
-								onChange={ ( value ) => setAttributes( { logoWidth: value } ) }
-								help={ __( 'Set logo width (e.g., 200px, 50%, auto)', 'wbcom-essential' ) }
-							/>
-							<wp.components.TextControl
-								label={ __( 'Logo Height', 'wbcom-essential' ) }
-								value={ logoHeight }
-								onChange={ ( value ) => setAttributes( { logoHeight: value } ) }
-								help={ __( 'Set logo height (e.g., 100px, auto)', 'wbcom-essential' ) }
-							/>
+							<wp.components.PanelBody title={ __( 'Logo Size', 'wbcom-essential' ) } initialOpen={ true }>
+								<wp.components.BaseControl label={ __( 'Logo Width', 'wbcom-essential' ) }>
+									<div style={ { display: 'flex', gap: '8px', alignItems: 'flex-start' } }>
+										{ logoWidth !== 'auto' && (
+											<wp.components.RangeControl
+												value={ parseInt( logoWidth ) || 200 }
+												onChange={ ( value ) => {
+													const unit = logoWidth.replace( /[\d.]/g, '' ) || 'px';
+													setAttributes( { logoWidth: `${ value }${ unit }` } );
+												} }
+												min={ 0 }
+												max={ logoWidth.includes( '%' ) ? 100 : 500 }
+												step={ 1 }
+												withInputField={ true }
+												style={ { flex: 1 } }
+											/>
+										) }
+										<wp.components.SelectControl
+											value={ logoWidth === 'auto' ? 'auto' : ( logoWidth.replace( /[\d.]/g, '' ) || 'px' ) }
+											options={ [
+												{ label: 'px', value: 'px' },
+												{ label: '%', value: '%' },
+												{ label: 'em', value: 'em' },
+												{ label: 'rem', value: 'rem' },
+												{ label: 'vw', value: 'vw' },
+												{ label: __( 'Auto', 'wbcom-essential' ), value: 'auto' },
+											] }
+											onChange={ ( unit ) => {
+												if ( unit === 'auto' ) {
+													setAttributes( { logoWidth: 'auto' } );
+												} else {
+													const value = parseInt( logoWidth ) || 200;
+													setAttributes( { logoWidth: `${ value }${ unit }` } );
+												}
+											} }
+											style={ { width: '80px' } }
+										/>
+									</div>
+								</wp.components.BaseControl>
+								<wp.components.BaseControl label={ __( 'Logo Height', 'wbcom-essential' ) }>
+									<div style={ { display: 'flex', gap: '8px', alignItems: 'flex-start' } }>
+										{ logoHeight !== 'auto' && (
+											<wp.components.RangeControl
+												value={ parseInt( logoHeight ) || 100 }
+												onChange={ ( value ) => {
+													const unit = logoHeight.replace( /[\d.]/g, '' ) || 'px';
+													setAttributes( { logoHeight: `${ value }${ unit }` } );
+												} }
+												min={ 0 }
+												max={ logoHeight.includes( '%' ) ? 100 : 500 }
+												step={ 1 }
+												withInputField={ true }
+												style={ { flex: 1 } }
+											/>
+										) }
+										<wp.components.SelectControl
+											value={ logoHeight === 'auto' ? 'auto' : ( logoHeight.replace( /[\d.]/g, '' ) || 'px' ) }
+											options={ [
+												{ label: 'px', value: 'px' },
+												{ label: '%', value: '%' },
+												{ label: 'em', value: 'em' },
+												{ label: 'rem', value: 'rem' },
+												{ label: 'vh', value: 'vh' },
+												{ label: __( 'Auto', 'wbcom-essential' ), value: 'auto' },
+											] }
+											onChange={ ( unit ) => {
+												if ( unit === 'auto' ) {
+													setAttributes( { logoHeight: 'auto' } );
+												} else {
+													const value = parseInt( logoHeight ) || 100;
+													setAttributes( { logoHeight: `${ value }${ unit }` } );
+												}
+											} }
+											style={ { width: '80px' } }
+										/>
+									</div>
+								</wp.components.BaseControl>
+								<p className="components-base-control__help" style={ { marginTop: '8px', fontSize: '12px', color: '#757575' } }>
+									{ __( 'Select "Auto" to let the logo scale naturally.', 'wbcom-essential' ) }
+								</p>
+							</wp.components.PanelBody>
 						</>
 					) }
 				</wp.components.PanelBody>

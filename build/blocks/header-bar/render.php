@@ -545,7 +545,11 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 			<?php if ( $show_dark_mode ) : ?>
 				<div class="switch-mode">
 					<button type="button" class="buddyx-switch-mode" title="<?php esc_attr_e( 'Toggle Dark Mode', 'wbcom-essential' ); ?>" aria-label="<?php esc_attr_e( 'Toggle Dark Mode', 'wbcom-essential' ); ?>">
-						<i class="color-mode"></i>
+						<?php if ( ! empty( $dark_mode_icon ) ) : ?>
+							<?php echo wbcom_header_bar_render_icon( $dark_mode_icon, 'dashicons-admin-appearance', 'dark-mode-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php else : ?>
+							<i class="color-mode"></i>
+						<?php endif; ?>
 					</button>
 				</div>
 			<?php endif; ?>
@@ -658,7 +662,11 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 			<?php if ( $show_dark_mode ) : ?>
 				<div class="switch-mode">
 					<button type="button" class="buddyx-switch-mode" title="<?php esc_attr_e( 'Toggle Dark Mode', 'wbcom-essential' ); ?>" aria-label="<?php esc_attr_e( 'Toggle Dark Mode', 'wbcom-essential' ); ?>">
-						<i class="color-mode"></i>
+						<?php if ( ! empty( $dark_mode_icon ) ) : ?>
+							<?php echo wbcom_header_bar_render_icon( $dark_mode_icon, 'dashicons-admin-appearance', 'dark-mode-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php else : ?>
+							<i class="color-mode"></i>
+						<?php endif; ?>
 					</button>
 				</div>
 			<?php endif; ?>

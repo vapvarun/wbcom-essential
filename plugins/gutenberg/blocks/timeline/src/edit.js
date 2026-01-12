@@ -63,7 +63,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		contentBoxShadowBlur,
 		contentBoxShadowSpread,
 		contentBoxShadowColor,
-		dateFontFamily,
 		dateFontWeight,
 		dateTextTransform,
 		dateLineHeight,
@@ -140,7 +139,6 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	// Date typography style.
 	const dateTypographyStyle = {
-		fontFamily: dateFontFamily || 'inherit',
 		fontWeight: dateFontWeight,
 		textTransform: dateTextTransform,
 		lineHeight: dateLineHeight,
@@ -180,8 +178,14 @@ export default function Edit( { attributes, setAttributes } ) {
 							<MediaUploadCheck>
 								<MediaUpload
 									onSelect={ ( media ) => {
-										updateItem( index, 'imageId', media.id );
-										updateItem( index, 'imageUrl', media.url );
+										// Update both imageId and imageUrl in a single call to avoid state race condition.
+										const newItems = [ ...items ];
+										newItems[ index ] = {
+											...newItems[ index ],
+											imageId: media.id,
+											imageUrl: media.url,
+										};
+										setAttributes( { items: newItems } );
 									} }
 									allowedTypes={ [ 'image' ] }
 									value={ item.imageId }
@@ -201,8 +205,14 @@ export default function Edit( { attributes, setAttributes } ) {
 									isDestructive
 									isSmall
 									onClick={ () => {
-										updateItem( index, 'imageId', 0 );
-										updateItem( index, 'imageUrl', '' );
+										// Update both imageId and imageUrl in a single call to avoid state race condition.
+										const newItems = [ ...items ];
+										newItems[ index ] = {
+											...newItems[ index ],
+											imageId: 0,
+											imageUrl: '',
+										};
+										setAttributes( { items: newItems } );
 									} }
 								>
 									{ __( 'Remove Image', 'wbcom-essential' ) }

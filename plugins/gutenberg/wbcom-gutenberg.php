@@ -161,12 +161,16 @@ class WBCOM_Essential_Gutenberg {
 				'title' => __( 'Starter Pack - BuddyPress', 'wbcom-essential' ),
 				'icon'  => 'groups',
 			),
-			array(
+		);
+
+		// Only register WooCommerce category when WooCommerce is active.
+		if ( class_exists( 'WooCommerce' ) ) {
+			$starter_categories[] = array(
 				'slug'  => 'starter-woocommerce',
 				'title' => __( 'Starter Pack - WooCommerce', 'wbcom-essential' ),
 				'icon'  => 'cart',
-			),
-		);
+			);
+		}
 
 		return array_merge( $starter_categories, $categories );
 	}

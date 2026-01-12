@@ -95,9 +95,16 @@ export default function save( { attributes } ) {
 		wrapperStyle['--hover-text-color'] = buttonHoverTextColor;
 	}
 
-	// Add hover border if specified
+	// Set hover border - either to hover values or to normal values to maintain appearance
 	if ( borderStyleHover && borderStyleHover !== 'none' ) {
+		// User specified a hover border
 		wrapperStyle['--hover-border'] = `${ borderWidthHover }px ${ borderStyleHover } ${ borderColorHover || '#000' }`;
+	} else if ( borderStyle && borderStyle !== 'none' ) {
+		// No hover border specified, use normal border to maintain appearance on hover
+		wrapperStyle['--hover-border'] = `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`;
+	} else {
+		// No border at all
+		wrapperStyle['--hover-border'] = 'none';
 	}
 
 	const buttonStyle = {

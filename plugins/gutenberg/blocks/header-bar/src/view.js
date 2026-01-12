@@ -15,11 +15,11 @@
 	function initHeaderBar( container ) {
 		// Profile dropdown toggle.
 		const profileDropdown = container.querySelector(
-			'.wbcom-header-bar-profile'
+			'.user-wrap-container'
 		);
 		if ( profileDropdown ) {
 			const profileLink = profileDropdown.querySelector(
-				'.wbcom-profile-link'
+				'.user-link'
 			);
 
 			if ( profileLink ) {
@@ -27,8 +27,8 @@
 					// Only toggle on arrow click or if clicking the name area.
 					const target = e.target;
 					if (
-						target.classList.contains( 'wbcom-profile-arrow' ) ||
-						target.classList.contains( 'wbcom-profile-name' )
+						target.classList.contains( 'fa-angle-down' ) ||
+						target.classList.contains( 'user-name' )
 					) {
 						e.preventDefault();
 						profileDropdown.classList.toggle( 'is-open' );
@@ -39,7 +39,7 @@
 
 		// Search toggle.
 		const searchButton = container.querySelector(
-			'.wbcom-header-bar-search'
+			'.header-search-link'
 		);
 		const searchOverlay = container.querySelector(
 			'.wbcom-header-bar-search-overlay'
@@ -87,10 +87,16 @@
 
 		// Close dropdowns when clicking outside.
 		document.addEventListener( 'click', function ( e ) {
-			const dropdowns = container.querySelectorAll(
-				'.wbcom-header-bar-dropdown.is-open'
+			// Close profile dropdown when clicking outside.
+			if ( profileDropdown && ! profileDropdown.contains( e.target ) ) {
+				profileDropdown.classList.remove( 'is-open' );
+			}
+
+			// Close notification dropdowns when clicking outside.
+			const notificationDropdowns = container.querySelectorAll(
+				'.notification-wrap.menu-item-has-children'
 			);
-			dropdowns.forEach( function ( dropdown ) {
+			notificationDropdowns.forEach( function ( dropdown ) {
 				if ( ! dropdown.contains( e.target ) ) {
 					dropdown.classList.remove( 'is-open' );
 				}
@@ -99,7 +105,7 @@
 
 		// Dark mode toggle.
 		const darkModeButton = container.querySelector(
-			'.wbcom-header-bar-dark-mode'
+			'.buddyx-switch-mode'
 		);
 
 		if ( darkModeButton ) {
@@ -118,6 +124,189 @@
 				// Save preference to localStorage.
 				localStorage.setItem( 'wbcom-dark-mode', isDarkMode.toString() );
 			} );
+		}
+
+		// Initialize notification Mark as Read functionality.
+		initNotificationMarkAsRead( container );
+	}
+
+	/**
+	 * Initialize notification Mark as Read functionality.
+	 *
+	 * @param {HTMLElement} container The block container.
+	 */
+	function initNotificationMarkAsRead( container ) {
+		// Get the notifications container.
+		const notificationsWrap = container.querySelector( '.notifications-wrap' );
+		if ( ! notificationsWrap ) {
+			return;
+		}
+
+		// Handle "Mark all as read" button.
+		const markAllReadBtn = notificationsWrap.querySelector( '.mark-read-all' );
+		if ( markAllReadBtn ) {
+			markAllReadBtn.addEventListener( 'click', function ( e ) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const notificationId = this.getAttribute( 'data-notification-id' );
+				if ( notificationId === 'all' ) {
+					markNotificationsAsRead( 'all', container );
+				}
+			} );
+		}
+
+		// Handle individual "Mark as read" buttons.
+		const markReadBtns = notificationsWrap.querySelectorAll( '.mark-read.action-unread' );
+		markReadBtns.forEach( function ( btn ) {
+			btn.addEventListener( 'click', function ( e ) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const notificationId = this.getAttribute( 'data-notification-id' );
+				if ( notificationId ) {
+					markNotificationsAsRead( notificationId, container, this );
+				}
+			} );
+		} );
+	}
+
+	/**
+	 * Mark notifications as read via AJAX.
+	 *
+	 * @param {string}      notificationId The notification ID or 'all'.
+	 * @param {HTMLElement} container      The block container.
+	 * @param {HTMLElement} clickedBtn     The clicked button element (for single notifications).
+	 */
+	function markNotificationsAsRead( notificationId, container, clickedBtn ) {
+		// Check if BuddyPress AJAX is available.
+		if ( typeof bp === 'undefined' || typeof bp.ajax === 'undefined' ) {
+			// Try using the WordPress AJAX approach.
+			markNotificationsViaWpAjax( notificationId, container, clickedBtn );
+			return;
+		}
+
+		// Use BuddyPress AJAX if available.
+		const data = {
+			action: 'buddypress_mark_notification_read',
+			notification_id: notificationId,
+			_wpnonce: bp.ajax.nonce,
+		};
+
+		// Use fetch for the AJAX call.
+		fetch( bp.ajax.url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: new URLSearchParams( data ).toString(),
+		} )
+			.then( ( response ) => response.json() )
+			.then( ( response ) => {
+				if ( response.success ) {
+					updateNotificationUI( notificationId, container, clickedBtn );
+				}
+			} )
+			.catch( ( error ) => {
+				console.error( 'Error marking notification as read:', error );
+			} );
+	}
+
+	/**
+	 * Mark notifications as read via WordPress AJAX.
+	 *
+	 * @param {string}      notificationId The notification ID or 'all'.
+	 * @param {HTMLElement} container      The block container.
+	 * @param {HTMLElement} clickedBtn     The clicked button element.
+	 */
+	function markNotificationsViaWpAjax( notificationId, container, clickedBtn ) {
+		// Get ajaxurl from WordPress.
+		const ajaxUrl = typeof ajaxurl !== 'undefined' ? ajaxurl : '/wp-admin/admin-ajax.php';
+
+		const data = new FormData();
+		data.append( 'action', 'buddypress_mark_notification_read' );
+		data.append( 'notification_id', notificationId );
+
+		// Try to get nonce from various sources.
+		const nonceField = document.querySelector( 'input[name="_wpnonce"]' );
+		if ( nonceField ) {
+			data.append( '_wpnonce', nonceField.value );
+		}
+
+		fetch( ajaxUrl, {
+			method: 'POST',
+			credentials: 'same-origin',
+			body: data,
+		} )
+			.then( ( response ) => response.json() )
+			.then( ( response ) => {
+				if ( response.success ) {
+					updateNotificationUI( notificationId, container, clickedBtn );
+				}
+			} )
+			.catch( ( error ) => {
+				console.error( 'Error marking notification as read:', error );
+				// Update UI anyway for better UX.
+				updateNotificationUI( notificationId, container, clickedBtn );
+			} );
+	}
+
+	/**
+	 * Update the notification UI after marking as read.
+	 *
+	 * @param {string}      notificationId The notification ID or 'all'.
+	 * @param {HTMLElement} container      The block container.
+	 * @param {HTMLElement} clickedBtn     The clicked button element.
+	 */
+	function updateNotificationUI( notificationId, container, clickedBtn ) {
+		const notificationsWrap = container.querySelector( '.notifications-wrap' );
+		if ( ! notificationsWrap ) {
+			return;
+		}
+
+		if ( notificationId === 'all' ) {
+			// Mark all notifications as read.
+			const unreadItems = notificationsWrap.querySelectorAll( '.dropdown-item.unread' );
+			unreadItems.forEach( function ( item ) {
+				item.classList.remove( 'unread' );
+			} );
+
+			// Hide the "Mark all as read" button.
+			const markAllBtn = notificationsWrap.querySelector( '.mark-read-all' );
+			if ( markAllBtn ) {
+				markAllBtn.style.display = 'none';
+			}
+
+			// Update the counter.
+			const counter = notificationsWrap.querySelector( '.count' );
+			if ( counter ) {
+				counter.style.display = 'none';
+			}
+		} else {
+			// Mark single notification as read.
+			if ( clickedBtn ) {
+				const dropdownItem = clickedBtn.closest( '.dropdown-item' );
+				if ( dropdownItem ) {
+					dropdownItem.classList.remove( 'unread' );
+				}
+			}
+
+			// Update the counter.
+			const counter = notificationsWrap.querySelector( '.count' );
+			if ( counter ) {
+				const currentCount = parseInt( counter.textContent, 10 );
+				if ( currentCount > 1 ) {
+					counter.textContent = currentCount - 1;
+				} else {
+					counter.style.display = 'none';
+
+					// Also hide "Mark all as read" when no more unread.
+					const markAllBtn = notificationsWrap.querySelector( '.mark-read-all' );
+					if ( markAllBtn ) {
+						markAllBtn.style.display = 'none';
+					}
+				}
+			}
 		}
 	}
 

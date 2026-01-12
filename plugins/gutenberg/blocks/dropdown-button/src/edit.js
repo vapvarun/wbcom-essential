@@ -104,13 +104,46 @@ export default function Edit( { attributes, setAttributes } ) {
 	const wrapperStyle = {
 		'--dropdown-hover-text-color': dropdownHoverTextColor || '#2271b1',
 		'--dropdown-hover-bg-color': dropdownHoverBgColor || '#f5f5f5',
-		'--separator-color': separatorColor || '#eee'
+		'--separator-color': separatorColor || '#eee',
+		'--animation-color': animationColor || 'rgba(255, 255, 255, 0.2)'
 	};
+
+	// Add button hover CSS variables.
+	if ( buttonHoverTextColor ) {
+		wrapperStyle['--hover-text-color'] = buttonHoverTextColor;
+	}
+
+	if ( buttonHoverBgColor && ! enableHoverGradient ) {
+		wrapperStyle['--hover-bg-color'] = buttonHoverBgColor;
+	}
+
+	// Add hover gradient CSS variable if enabled.
+	if ( enableHoverGradient ) {
+		wrapperStyle['--hover-gradient'] = generateGradient(
+			hoverGradientType,
+			hoverGradientAngle,
+			hoverGradientColorStart,
+			hoverGradientColorEnd,
+			hoverGradientStartPosition,
+			hoverGradientEndPosition
+		);
+	}
+
+	// Set hover border - either to hover values or to normal values to maintain appearance.
+	if ( borderStyleHover && borderStyleHover !== 'none' ) {
+		// User specified a hover border.
+		wrapperStyle['--hover-border'] = `${ borderWidthHover }px ${ borderStyleHover } ${ borderColorHover || '#000' }`;
+	} else if ( borderStyle && borderStyle !== 'none' ) {
+		// No hover border specified, use normal border to maintain appearance on hover.
+		wrapperStyle['--hover-border'] = `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`;
+	} else {
+		// No border at all.
+		wrapperStyle['--hover-border'] = 'none';
+	}
 
 	const buttonStyle = {
 		color: buttonTextColor || '#ffffff',
 		backgroundColor: enableGradient ? 'transparent' : ( buttonBgColor || '#2271b1' ),
-		'--animation-color': animationColor || 'rgba(255, 255, 255, 0.2)',
 		border: borderStyle !== 'none' && borderStyle
 			? `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`
 			: 'none'

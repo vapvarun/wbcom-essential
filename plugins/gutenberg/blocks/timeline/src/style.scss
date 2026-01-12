@@ -19,9 +19,6 @@
 	// Colors - inherit from theme via bridge variables (theme-colors.css)
 	--bar-color: var(--wbcom-border-color, #e2e8f0);
 	--content-background: var(--wbcom-card-bg-alt, #f7fafc);
-	--date-color: var(--wbcom-color-primary, inherit);
-	--title-color: var(--wbcom-heading-color, inherit);
-	--text-color: var(--wbcom-text-color, inherit);
 
 	padding: 40px 0;
 
@@ -93,12 +90,18 @@
 	}
 
 	.wbcom-timeline-image {
+		// Negative margins to extend beyond content padding for full-width images
+		margin: calc(var(--content-padding) * -1);
 		margin-bottom: 16px;
+		overflow: hidden;
 
 		img {
-			max-width: 100%;
+			width: 100%;
 			height: auto;
-			border-radius: var(--image-border-radius);
+			// Top corners rounded, bottom corners square (connects to content)
+			border-radius: var(--image-border-radius) var(--image-border-radius) 0 0;
+			display: block;
+			object-fit: cover;
 		}
 	}
 
@@ -138,25 +141,27 @@
 		}
 
 		.wbcom-timeline-block {
+			justify-content: flex-end;
+			position: relative;
+
+			// Icon positioned absolutely at center
 			.wbcom-timeline-icon {
-				order: 1;
-				margin-left: calc(50% - var(--icon-container-size) / 2);
-				margin-right: 0;
+				position: absolute;
+				left: 50%;
+				top: 20px;
+				transform: translateX(-50%);
+				margin: 0;
 			}
 
 			.wbcom-timeline-content {
 				width: calc(50% - var(--icon-container-size) / 2 - 30px);
 				flex-grow: 0;
 				margin-left: 0;
-				margin-right: 30px;
+				margin-right: calc(50% + var(--icon-container-size) / 2 + 30px);
 			}
 
-			// Odd items (left side)
+			// Odd items (left side content)
 			&.odd {
-				.wbcom-timeline-icon {
-					margin-left: calc(50% - var(--icon-container-size) / 2);
-				}
-
 				.wbcom-timeline-content::before {
 					right: auto;
 					left: 100%;
@@ -169,18 +174,22 @@
 				}
 			}
 
-			// Even items (right side)
+			// Even items (right side content)
 			&.even {
-				flex-direction: row-reverse;
-
-				.wbcom-timeline-icon {
-					margin-right: calc(50% - var(--icon-container-size) / 2);
-					margin-left: 0;
-				}
+				justify-content: flex-start;
 
 				.wbcom-timeline-content {
 					margin-right: 0;
-					margin-left: 30px;
+					margin-left: calc(50% + var(--icon-container-size) / 2 + 30px);
+				}
+
+				.wbcom-timeline-content::before {
+					right: 100%;
+					left: auto;
+				}
+
+				.wbcom-timeline-content.show-arrow::before {
+					border-right-color: var(--content-background);
 				}
 			}
 		}
@@ -188,13 +197,11 @@
 
 	@media screen and (max-width: 1024px) {
 		.wbcom-timeline-block {
-			&.even {
-				flex-direction: row;
-			}
-
 			.wbcom-timeline-icon {
-				margin-left: 0 !important;
-				margin-right: 0 !important;
+				position: static;
+				transform: none;
+				margin-left: 0;
+				margin-right: 0;
 			}
 
 			.wbcom-timeline-content {

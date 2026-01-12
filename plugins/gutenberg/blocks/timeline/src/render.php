@@ -182,8 +182,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 
 			// Get image if set.
 			$image_html = '';
-			if ( $item_image_id ) {
-				$image_html = wp_get_attachment_image( $item_image_id, 'medium', false, array(
+			if ( ! empty( $item_image_id ) && $item_image_id > 0 ) {
+				$image_html = wp_get_attachment_image( $item_image_id, 'large', false, array(
 					'class' => 'wbcom-timeline-img',
 				) );
 			}
