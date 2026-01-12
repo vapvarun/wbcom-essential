@@ -2,15 +2,38 @@
  * Product Grid Block - Frontend Styles
  */
 .wbcom-essential-product-grid {
+	// Layout variables (always set via inline styles).
 	--product-columns: 4;
 	--product-gap: 24px;
-	--card-bg-color: #fff;
 	--card-border-radius: 8px;
+	--image-ratio: 1;
+
+	// Color variables - static defaults (overridden by inline styles in custom color mode).
+	--card-bg-color: #fff;
 	--title-color: inherit;
 	--price-color: inherit;
 	--sale-badge-color: #fff;
 	--sale-badge-bg-color: #e53935;
-	--image-ratio: 1;
+	--button-bg: #333;
+	--button-color: #fff;
+	--button-hover-bg: #555;
+	--sale-price-color: #e53935;
+
+	/**
+	 * Theme Colors Mode
+	 * Maps theme CSS variables to block-specific variables.
+	 */
+	&.use-theme-colors {
+		--card-bg-color: var(--wbcom-card-bg, var(--wbcom-color-base, #fff));
+		--title-color: var(--wbcom-heading-color, var(--wbcom-color-contrast, inherit));
+		--price-color: var(--wbcom-text-color, var(--wbcom-color-contrast-2, inherit));
+		--sale-badge-color: var(--wbcom-button-text, var(--wbcom-color-base, #fff));
+		--sale-badge-bg-color: var(--wbcom-color-primary, #e53935);
+		--button-bg: var(--wbcom-button-bg, var(--wbcom-color-contrast, #333));
+		--button-color: var(--wbcom-button-text, var(--wbcom-color-base, #fff));
+		--button-hover-bg: var(--wbcom-button-hover-bg, var(--wbcom-color-primary, #555));
+		--sale-price-color: var(--wbcom-color-primary, #e53935);
+	}
 
 	&__items {
 		display: grid;
@@ -119,7 +142,7 @@
 
 		ins {
 			text-decoration: none;
-			color: #e53935;
+			color: var(--sale-price-color);
 		}
 	}
 
@@ -131,8 +154,8 @@
 			display: inline-block;
 			width: 100%;
 			padding: 12px 20px;
-			background: #333;
-			color: #fff;
+			background: var(--button-bg);
+			color: var(--button-color);
 			text-align: center;
 			border: none;
 			border-radius: 4px;
@@ -143,7 +166,7 @@
 			text-decoration: none;
 
 			&:hover {
-				background: #555;
+				background: var(--button-hover-bg);
 			}
 
 			&.added {

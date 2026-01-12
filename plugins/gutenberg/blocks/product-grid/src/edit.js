@@ -20,6 +20,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		useThemeColors,
 		columns,
 		rows,
 		category,
@@ -190,37 +191,48 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 0 }
 						max={ 30 }
 					/>
-					<p>{ __( 'Background Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ cardBgColor }
-						onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
-					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Typography Colors', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Title Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ titleColor }
-						onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+				<PanelBody title={ __( 'Color Settings', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Use Theme Colors', 'wbcom-essential' ) }
+						help={ useThemeColors
+							? __( 'Colors inherit from your theme color palette.', 'wbcom-essential' )
+							: __( 'Enable to use theme color scheme instead of custom colors.', 'wbcom-essential' )
+						}
+						checked={ useThemeColors }
+						onChange={ ( value ) => setAttributes( { useThemeColors: value } ) }
 					/>
-					<p>{ __( 'Price Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ priceColor }
-						onChange={ ( value ) => setAttributes( { priceColor: value } ) }
-					/>
-				</PanelBody>
-
-				<PanelBody title={ __( 'Sale Badge Style', 'wbcom-essential' ) } initialOpen={ false }>
-					<p>{ __( 'Badge Text Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ saleBadgeColor }
-						onChange={ ( value ) => setAttributes( { saleBadgeColor: value } ) }
-					/>
-					<p>{ __( 'Badge Background Color', 'wbcom-essential' ) }</p>
-					<ColorPalette
-						value={ saleBadgeBgColor }
-						onChange={ ( value ) => setAttributes( { saleBadgeBgColor: value } ) }
-					/>
+					{ ! useThemeColors && (
+						<>
+							<hr />
+							<p>{ __( 'Card Background', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ cardBgColor }
+								onChange={ ( value ) => setAttributes( { cardBgColor: value } ) }
+							/>
+							<p>{ __( 'Title Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ titleColor }
+								onChange={ ( value ) => setAttributes( { titleColor: value } ) }
+							/>
+							<p>{ __( 'Price Color', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ priceColor }
+								onChange={ ( value ) => setAttributes( { priceColor: value } ) }
+							/>
+							<p>{ __( 'Sale Badge Text', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ saleBadgeColor }
+								onChange={ ( value ) => setAttributes( { saleBadgeColor: value } ) }
+							/>
+							<p>{ __( 'Sale Badge Background', 'wbcom-essential' ) }</p>
+							<ColorPalette
+								value={ saleBadgeBgColor }
+								onChange={ ( value ) => setAttributes( { saleBadgeBgColor: value } ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 			</InspectorControls>
 
