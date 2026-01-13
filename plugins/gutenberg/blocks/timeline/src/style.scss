@@ -278,6 +278,9 @@
 	.wbcom-timeline-icon.animate-in,
 	.wbcom-timeline-content.animate-in {
 		opacity: 1;
+	}
+
+	.wbcom-timeline-content.animate-in {
 		transform: translateY(0);
 	}
 
