@@ -33,6 +33,7 @@
 		// Build Swiper config.
 		const swiperConfig = {
 			slidesPerView: options.slidesPerView || 4,
+			slidesPerGroup: options.slidesToScroll || 1,
 			spaceBetween: options.spaceBetween || 30,
 			speed: options.speed || 500,
 			loop: options.loop !== false,
@@ -41,9 +42,18 @@
 			grabCursor: options.grabCursor !== false,
 			keyboard: options.keyboard || { enabled: true },
 			breakpoints: options.breakpoints || {
-				320: { slidesPerView: 1 },
-				768: { slidesPerView: 2 },
-				1024: { slidesPerView: options.slidesPerView || 4 },
+				320: { 
+					slidesPerView: 1,
+					slidesPerGroup: Math.min(options.slidesToScroll || 1, 1)
+				},
+				768: { 
+					slidesPerView: 2,
+					slidesPerGroup: Math.min(options.slidesToScroll || 1, 2)
+				},
+				1024: { 
+					slidesPerView: options.slidesPerView || 4,
+					slidesPerGroup: options.slidesToScroll || 1
+				},
 			},
 		};
 
