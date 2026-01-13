@@ -385,5 +385,5 @@ Mini Cart, Product Grid
 **Start Building Better WordPress Sites**
 
 ### CTA Buttons
-**Primary:** Download Free Version
+**Primary:** Download Free
 **Secondary:** View Documentation
