@@ -19,19 +19,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WBCOM_Essential_Smart_Menu_Walker extends Walker_Nav_Menu {
 
 	/**
-	 * Icon SVG markup.
+	 * Icon SVG markup for top-level dropdown items.
 	 *
 	 * @var string
 	 */
 	private $icon_svg;
 
 	/**
+	 * Icon SVG markup for submenu indicator (nested items).
+	 *
+	 * @var string
+	 */
+	private $submenu_icon_svg;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param string $icon_svg Icon SVG markup.
+	 * @param string $icon_svg        Icon SVG markup for top-level items.
+	 * @param string $submenu_icon_svg Icon SVG markup for nested submenu items.
 	 */
-	public function __construct( $icon_svg = '' ) {
-		$this->icon_svg = $icon_svg;
+	public function __construct( $icon_svg = '', $submenu_icon_svg = '' ) {
+		$this->icon_svg         = $icon_svg;
+		$this->submenu_icon_svg = $submenu_icon_svg ? $submenu_icon_svg : $icon_svg;
 	}
 
 	/**
@@ -82,7 +91,9 @@ class WBCOM_Essential_Smart_Menu_Walker extends Walker_Nav_Menu {
 
 		// Add dropdown icon if item has children.
 		if ( in_array( 'menu-item-has-children', $classes, true ) ) {
-			$item_output .= '<span class="dropdown-icon">' . $this->icon_svg . '</span>';
+			// Use different icons: dropdown icon for top-level, submenu indicator for nested items.
+			$icon         = ( $depth > 0 ) ? $this->submenu_icon_svg : $this->icon_svg;
+			$item_output .= '<span class="dropdown-icon">' . $icon . '</span>';
 		}
 
 		$item_output .= '</a>';

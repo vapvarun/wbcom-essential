@@ -55,8 +55,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		dropdownIcon,
 		mainMenuBackground,
 		mainMenuTransitionDuration,
-		mainMenuIcon,
-		mainMenuIconSize,
+		dropdownIconSize,
 		mainMenuItemColor,
 		mainMenuItemBg,
 		mainMenuItemColorHover,
@@ -380,50 +379,14 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Main Menu Items', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
-					<SelectControl
-						label={ __( 'Dropdown Menu Icon', 'wbcom-essential' ) }
-						value={ mainMenuIcon }
-						options={ [
-							{
-								label: __( 'Caret', 'wbcom-essential' ),
-								value: 'caret',
-							},
-							{
-								label: __( 'Caret-Square', 'wbcom-essential' ),
-								value: 'caret-square',
-							},
-							{
-								label: __( 'Chevron', 'wbcom-essential' ),
-								value: 'chevron',
-							},
-							{
-								label: __(
-									'Chevron-Circle',
-									'wbcom-essential'
-								),
-								value: 'chevron-circle',
-							},
-							{
-								label: __( 'Plus', 'wbcom-essential' ),
-								value: 'plus',
-							},
-							{
-								label: __( 'Plus-Circle', 'wbcom-essential' ),
-								value: 'plus-circle',
-							},
-						] }
-						onChange={ ( value ) =>
-							setAttributes( { mainMenuIcon: value } )
-						}
-					/>
 					<RangeControl
 						label={ __(
-							'Dropdown Menu Icon Size',
+							'Dropdown Icon Size',
 							'wbcom-essential'
 						) }
-						value={ mainMenuIconSize }
+						value={ dropdownIconSize }
 						onChange={ ( value ) =>
-							setAttributes( { mainMenuIconSize: value } )
+							setAttributes( { dropdownIconSize: value } )
 						}
 						min={ 8 }
 						max={ 50 }

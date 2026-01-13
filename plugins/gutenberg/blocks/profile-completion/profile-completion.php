@@ -170,7 +170,8 @@ if ( ! function_exists( 'wbcom_essential_format_profile_progress' ) ) {
 		);
 
 		if ( $user_progress_arr['total_fields'] > 0 ) {
-			$profile_completion_percentage                   = round( ( $user_progress_arr['completed_fields'] * 100 ) / $user_progress_arr['total_fields'] );
+			// Cast to int because round() returns float, and render.php uses strict comparison (===).
+			$profile_completion_percentage                   = (int) round( ( $user_progress_arr['completed_fields'] * 100 ) / $user_progress_arr['total_fields'] );
 			$user_prgress_formatted['completion_percentage'] = $profile_completion_percentage;
 		}
 

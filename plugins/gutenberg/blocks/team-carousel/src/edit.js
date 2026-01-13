@@ -142,8 +142,14 @@ export default function Edit( { attributes, setAttributes } ) {
 							<MediaUploadCheck>
 								<MediaUpload
 									onSelect={ ( media ) => {
-										updateMember( index, 'imageId', media.id );
-										updateMember( index, 'imageUrl', media.url );
+										// Update both imageId and imageUrl in a single call to avoid state race condition.
+										const newMembers = [ ...members ];
+										newMembers[ index ] = {
+											...newMembers[ index ],
+											imageId: media.id,
+											imageUrl: media.url,
+										};
+										setAttributes( { members: newMembers } );
 									} }
 									allowedTypes={ [ 'image' ] }
 									value={ member.imageId }

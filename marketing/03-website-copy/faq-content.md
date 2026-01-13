@@ -286,7 +286,7 @@ This usually happens after updates when block attributes change. Recovery typica
 
 ### Where can I find documentation?
 
-Full documentation available at [developer.wbcomdesigns.com/docs](https://developer.wbcomdesigns.com/docs)
+Full documentation available at [docs.wbcomdesigns.com](https://docs.wbcomdesigns.com)
 
 Includes:
 - Installation guide

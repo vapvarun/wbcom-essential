@@ -125,7 +125,9 @@ class Wbcom_Essential_Widget_Showcase {
 	}
 
 	/**
-	 * Enqueue admin styles
+	 * Enqueue admin styles.
+	 *
+	 * @param string $hook The current admin page hook suffix.
 	 */
 	public function enqueue_admin_styles( $hook ) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -319,13 +321,13 @@ class Wbcom_Essential_Widget_Showcase {
 						<h3><?php esc_html_e( 'Need Help?', 'wbcom-essential' ); ?></h3>
 						<ul>
 							<li>
-								<a href="https://developer.wbcomdesigns.com/docs/wbcom-essential/" target="_blank">
+								<a href="https://docs.wbcomdesigns.com/wbcom-essential/" target="_blank">
 									<span class="dashicons dashicons-book"></span>
 									<?php esc_html_e( 'Documentation', 'wbcom-essential' ); ?>
 								</a>
 							</li>
 							<li>
-								<a href="https://developer.wbcomdesigns.com/support/" target="_blank">
+								<a href="https://wbcomdesigns.com/support/" target="_blank">
 									<span class="dashicons dashicons-sos"></span>
 									<?php esc_html_e( 'Get Support', 'wbcom-essential' ); ?>
 								</a>

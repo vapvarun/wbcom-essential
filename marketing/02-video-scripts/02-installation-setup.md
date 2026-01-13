@@ -158,7 +158,7 @@
 **NARRATOR:**
 "Thanks for watching. If you have questions, leave a comment or contact support."
 
-**ON-SCREEN TEXT:** "Documentation: developer.wbcomdesigns.com/docs"
+**ON-SCREEN TEXT:** "Documentation: docs.wbcomdesigns.com"
 
 ---
 

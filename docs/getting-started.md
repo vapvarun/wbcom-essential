@@ -193,5 +193,5 @@ This keeps your site consistent without manual color matching.
 
 ## Need Help?
 
-- **Documentation:** https://developer.wbcomdesigns.com/docs/wbcom-essential/
-- **Support:** https://developer.wbcomdesigns.com/support/
+- **Documentation:** https://docs.wbcomdesigns.com/wbcom-essential/
+- **Support:** https://wbcomdesigns.com/support/

@@ -32,13 +32,13 @@ if ( ! $menu_id ) {
 // Extract attributes with defaults.
 $use_theme_colors = $attributes['useThemeColors'] ?? false;
 $menu_layout      = $attributes['menuLayout'] ?? 'horizontal';
-$menu_align     = $attributes['menuAlign'] ?? ( $attributes['menuHAlign'] ?? 'flex-start' );
-$vertical_width = $attributes['verticalMenuWidth'] ?? '100%';
-$show_toggle    = $attributes['showMobileToggle'] ?? ( $attributes['menuToggle'] ?? true );
-$toggle_text    = $attributes['mobileToggleText'] ?? ( $attributes['menuToggleText'] ?? 'MENU' );
-$toggle_align   = $attributes['mobileToggleAlign'] ?? ( $attributes['menuToggleTextHAlign'] ?? 'flex-start' );
-$dropdown_icon  = $attributes['dropdownIcon'] ?? 'chevron-down';
-$breakpoint     = $attributes['mobileBreakpoint'] ?? ( $attributes['menuBreakpoint'] ?? 1024 );
+$menu_align       = $attributes['menuAlign'] ?? ( $attributes['menuHAlign'] ?? 'flex-start' );
+$vertical_width   = $attributes['verticalMenuWidth'] ?? '100%';
+$show_toggle      = $attributes['showMobileToggle'] ?? ( $attributes['menuToggle'] ?? true );
+$toggle_text      = $attributes['mobileToggleText'] ?? ( $attributes['menuToggleText'] ?? 'MENU' );
+$toggle_align     = $attributes['mobileToggleAlign'] ?? ( $attributes['menuToggleTextHAlign'] ?? 'flex-start' );
+$dropdown_icon    = $attributes['dropdownIcon'] ?? 'chevron-down';
+$breakpoint       = $attributes['mobileBreakpoint'] ?? ( $attributes['menuBreakpoint'] ?? 1024 );
 
 // Handle verticalMenuWidth - could be string or object.
 if ( is_array( $vertical_width ) && isset( $vertical_width['size'] ) ) {
@@ -46,47 +46,51 @@ if ( is_array( $vertical_width ) && isset( $vertical_width['size'] ) ) {
 }
 
 // Styling attributes.
-$main_menu_bg              = $attributes['mainMenuBackground'] ?? array();
-$main_menu_transition      = $attributes['mainMenuTransitionDuration'] ?? 0.2;
-$main_menu_icon            = $attributes['mainMenuIcon'] ?? 'caret';
-$main_menu_icon_size       = $attributes['mainMenuIconSize'] ?? 14;
-$main_menu_item_color      = $attributes['mainMenuItemColor'] ?? '';
-$main_menu_item_bg         = $attributes['mainMenuItemBg'] ?? '';
-$main_menu_item_color_hover = $attributes['mainMenuItemColorHover'] ?? '';
-$main_menu_item_bg_hover   = $attributes['mainMenuItemBgHover'] ?? '';
+$main_menu_bg                = $attributes['mainMenuBackground'] ?? array();
+$main_menu_transition        = $attributes['mainMenuTransitionDuration'] ?? 0.2;
+$dropdown_icon_size          = $attributes['dropdownIconSize'] ?? 14;
+$main_menu_item_color        = $attributes['mainMenuItemColor'] ?? '';
+$main_menu_item_bg           = $attributes['mainMenuItemBg'] ?? '';
+$main_menu_item_color_hover  = $attributes['mainMenuItemColorHover'] ?? '';
+$main_menu_item_bg_hover     = $attributes['mainMenuItemBgHover'] ?? '';
 $main_menu_item_color_active = $attributes['mainMenuItemColorActive'] ?? '';
-$main_menu_item_bg_active  = $attributes['mainMenuItemBgActive'] ?? '';
+$main_menu_item_bg_active    = $attributes['mainMenuItemBgActive'] ?? '';
 
-$sub_menu_bg               = $attributes['subMenuBg'] ?? '';
-$sub_menu_item_color       = $attributes['subMenuItemColor'] ?? '';
-$sub_menu_item_bg          = $attributes['subMenuItemBg'] ?? '';
-$sub_menu_item_color_hover = $attributes['subMenuItemColorHover'] ?? '';
-$sub_menu_item_bg_hover    = $attributes['subMenuItemBgHover'] ?? '';
+$sub_menu_bg                = $attributes['subMenuBg'] ?? '';
+$sub_menu_item_color        = $attributes['subMenuItemColor'] ?? '';
+$sub_menu_item_bg           = $attributes['subMenuItemBg'] ?? '';
+$sub_menu_item_color_hover  = $attributes['subMenuItemColorHover'] ?? '';
+$sub_menu_item_bg_hover     = $attributes['subMenuItemBgHover'] ?? '';
 $sub_menu_item_color_active = $attributes['subMenuItemColorActive'] ?? '';
-$sub_menu_item_bg_active   = $attributes['subMenuItemBgActive'] ?? '';
-$mobile_menu_color         = $attributes['mobileMenuColor'] ?? '';
-$mobile_menu_bg            = $attributes['mobileMenuBackground'] ?? array();
-$mobile_menu_width         = $attributes['mobileMenuWidth'] ?? array();
+$sub_menu_item_bg_active    = $attributes['subMenuItemBgActive'] ?? '';
+$mobile_menu_color          = $attributes['mobileMenuColor'] ?? '';
+$mobile_menu_bg             = $attributes['mobileMenuBackground'] ?? array();
+$mobile_menu_width          = $attributes['mobileMenuWidth'] ?? array();
 
 // New submenu attributes.
-$collapsible_behavior      = $attributes['collapsibleBehavior'] ?? 'link';
-$submenu_animation         = $attributes['submenuAnimation'] ?? '';
-$submenu_min_width         = $attributes['submenuMinWidth'] ?? array( 'size' => 10, 'unit' => 'em' );
-$submenu_max_width         = $attributes['submenuMaxWidth'] ?? array( 'size' => 20, 'unit' => 'em' );
-$submenu_offset_x          = $attributes['submenuOffsetX'] ?? 0;
-$submenu_offset_y          = $attributes['submenuOffsetY'] ?? 0;
-$submenu_level2_offset_x   = $attributes['submenuLevel2OffsetX'] ?? 0;
-$submenu_level2_offset_y   = $attributes['submenuLevel2OffsetY'] ?? 0;
-$submenu_transition        = $attributes['submenuTransitionDuration'] ?? 0.3;
-$submenu_indicator_icon    = $attributes['submenuIndicatorIcon'] ?? 'caret';
-$submenu_indicator_size    = $attributes['submenuIndicatorIconSize'] ?? 12;
+$collapsible_behavior    = $attributes['collapsibleBehavior'] ?? 'link';
+$submenu_animation       = $attributes['submenuAnimation'] ?? '';
+$submenu_min_width       = $attributes['submenuMinWidth'] ?? array(
+	'size' => 10,
+	'unit' => 'em',
+);
+$submenu_max_width       = $attributes['submenuMaxWidth'] ?? array(
+	'size' => 20,
+	'unit' => 'em',
+);
+$submenu_offset_x        = $attributes['submenuOffsetX'] ?? 0;
+$submenu_offset_y        = $attributes['submenuOffsetY'] ?? 0;
+$submenu_level2_offset_x = $attributes['submenuLevel2OffsetX'] ?? 0;
+$submenu_level2_offset_y = $attributes['submenuLevel2OffsetY'] ?? 0;
+$submenu_transition      = $attributes['submenuTransitionDuration'] ?? 0.3;
+$submenu_indicator_icon  = $attributes['submenuIndicatorIcon'] ?? 'caret';
+$submenu_indicator_size  = $attributes['submenuIndicatorIconSize'] ?? 12;
 
 // Build classes.
 $container_classes = array( 'smart-menu-container' );
 $menu_classes      = array(
 	'smart-menu',
 	$menu_layout,
-	'icon-' . $main_menu_icon,
 );
 
 // Add alignment class to menu classes.
@@ -123,11 +127,14 @@ if ( ! empty( $mobile_menu_width['size'] ) ) {
 	$toggle_style .= 'width: ' . esc_attr( $mobile_menu_width['size'] ) . ( $mobile_menu_width['unit'] ?? 'px' ) . ';';
 }
 
-// Get SVG icon for dropdown.
+// Get SVG icon for dropdown (main menu items).
 $icon_svg = wbcom_essential_smart_menu_get_icon_svg( $dropdown_icon );
 
+// Get SVG icon for submenu indicator (nested items) - rotated 90deg for horizontal pointing.
+$submenu_icon_svg = wbcom_essential_smart_menu_get_icon_svg( $submenu_indicator_icon );
+
 // Build menu CSS variables style - sizes and layout always applied.
-$menu_style  = '--icon-size: ' . esc_attr( $main_menu_icon_size ) . 'px;';
+$menu_style  = '--icon-size: ' . esc_attr( $dropdown_icon_size ) . 'px;';
 $menu_style .= '--submenu-min-width: ' . esc_attr( $submenu_min_width['size'] . $submenu_min_width['unit'] ) . ';';
 $menu_style .= '--submenu-max-width: ' . esc_attr( $submenu_max_width['size'] . $submenu_max_width['unit'] ) . ';';
 $menu_style .= '--submenu-offset-x: ' . esc_attr( $submenu_offset_x ) . 'px;';
@@ -194,7 +201,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $wrapper_c
 						'menu'       => $menu_id,
 						'menu_class' => '',
 						'container'  => false,
-						'walker'     => new WBCOM_Essential_Smart_Menu_Walker( $icon_svg ),
+						'walker'     => new WBCOM_Essential_Smart_Menu_Walker( $icon_svg, $submenu_icon_svg ),
 						'items_wrap' => '%3$s',
 					)
 				);

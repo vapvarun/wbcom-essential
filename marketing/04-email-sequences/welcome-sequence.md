@@ -32,8 +32,8 @@ Select any block, find "Use Theme Colors" in settings, and toggle it on. The blo
 That's it. You're ready to build.
 
 **Quick links:**
-- [Documentation](https://developer.wbcomdesigns.com/docs) - Full guide for every block
-- [BuddyPress setup](https://developer.wbcomdesigns.com/docs/buddypress) - If you're building a community site
+- [Documentation](https://docs.wbcomdesigns.com) - Full guide for every block
+- [BuddyPress setup](https://docs.wbcomdesigns.com/buddypress) - If you're building a community site
 - [Video walkthrough](link) - See blocks in action
 
 Questions? Reply to this email and we'll help.
