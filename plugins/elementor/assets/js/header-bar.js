@@ -41,6 +41,54 @@
 			function (e) {
 				if (e.keyCode === 27) {
 					$( 'body' ).removeClass( 'search-visible-el' );
+					// Close cart drawer on ESC key
+					var $cartDrawer = $( '.header-cart-drawer' );
+					if ( $cartDrawer.length && $cartDrawer.attr( 'aria-hidden' ) === 'false' ) {
+						$cartDrawer.attr( 'aria-hidden', 'true' );
+						$( 'body' ).removeClass( 'header-cart-drawer-open' );
+					}
+				}
+			}
+		);
+
+		// Cart Side Drawer - Open on click
+		$( document ).on(
+			'click',
+			'.header-cart-drawer-trigger',
+			function ( e ) {
+				e.preventDefault();
+				var $cartDrawer = $( '.header-cart-drawer' );
+				if ( $cartDrawer.length ) {
+					$cartDrawer.attr( 'aria-hidden', 'false' );
+					$( 'body' ).addClass( 'header-cart-drawer-open' );
+				}
+			}
+		);
+
+		// Cart Side Drawer - Close on overlay click
+		$( document ).on(
+			'click',
+			'.header-cart-drawer__overlay',
+			function ( e ) {
+				e.preventDefault();
+				var $cartDrawer = $( '.header-cart-drawer' );
+				if ( $cartDrawer.length ) {
+					$cartDrawer.attr( 'aria-hidden', 'true' );
+					$( 'body' ).removeClass( 'header-cart-drawer-open' );
+				}
+			}
+		);
+
+		// Cart Side Drawer - Close on close button click
+		$( document ).on(
+			'click',
+			'.header-cart-drawer__close',
+			function ( e ) {
+				e.preventDefault();
+				var $cartDrawer = $( '.header-cart-drawer' );
+				if ( $cartDrawer.length ) {
+					$cartDrawer.attr( 'aria-hidden', 'true' );
+					$( 'body' ).removeClass( 'header-cart-drawer-open' );
 				}
 			}
 		);

@@ -522,8 +522,8 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 				$cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_contents_count() : 0;
 				$cart_url    = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
 				?>
-				<div class="dropdown-passive dropdown-right notification-wrap header-cart-link-wrap cart-wrap menu-item-has-children">
-					<a href="<?php echo esc_url( $cart_url ); ?>" class="header-cart-link notification-link">
+				<div class="notification-wrap header-cart-link-wrap cart-wrap">
+					<a href="<?php echo esc_url( $cart_url ); ?>" class="header-cart-link notification-link header-cart-drawer-trigger">
 						<span data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">
 							<?php if ( ! empty( $cart_icon ) ) : ?>
 								<?php echo wbcom_header_bar_render_icon( $cart_icon, 'dashicons-cart', 'cart-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -535,11 +535,20 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 							<?php endif; ?>
 						</span>
 					</a>
-					<section class="notification-dropdown">
-						<header class="notification-header">
-							<h2 class="title"><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></h2>
-						</header>
-						<div class="header-mini-cart">
+				</div>
+
+				<!-- Side Drawer for Cart -->
+				<div class="header-cart-drawer" aria-hidden="true">
+					<div class="header-cart-drawer__overlay"></div>
+					<div class="header-cart-drawer__content">
+						<div class="header-cart-drawer__header">
+							<h3 class="header-cart-drawer__title"><?php esc_html_e( 'Shopping Cart', 'wbcom-essential' ); ?></h3>
+							<button type="button" class="header-cart-drawer__close" aria-label="<?php esc_attr_e( 'Close cart', 'wbcom-essential' ); ?>">
+								<span class="widget-close-text"><?php esc_html_e( 'Close', 'wbcom-essential' ); ?></span>
+								<span class="widget-close-icon">&mdash;</span>
+							</button>
+						</div>
+						<div class="header-cart-drawer__body">
 							<div class="widget_shopping_cart_content">
 								<?php
 								if ( function_exists( 'woocommerce_mini_cart' ) ) {
@@ -548,7 +557,7 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 								?>
 							</div>
 						</div>
-					</section>
+					</div>
 				</div>
 			<?php endif; ?>
 
@@ -639,8 +648,8 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 				$cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_contents_count() : 0;
 				$cart_url    = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : '#';
 				?>
-				<div class="dropdown-passive dropdown-right notification-wrap header-cart-link-wrap cart-wrap menu-item-has-children">
-					<a href="<?php echo esc_url( $cart_url ); ?>" class="header-cart-link notification-link">
+				<div class="notification-wrap header-cart-link-wrap cart-wrap">
+					<a href="<?php echo esc_url( $cart_url ); ?>" class="header-cart-link notification-link header-cart-drawer-trigger">
 						<span data-balloon-pos="down" data-balloon="<?php esc_attr_e( 'Cart', 'wbcom-essential' ); ?>">
 							<?php if ( ! empty( $cart_icon ) ) : ?>
 								<?php echo wbcom_header_bar_render_icon( $cart_icon, 'dashicons-cart', 'cart-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -652,11 +661,20 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 							<?php endif; ?>
 						</span>
 					</a>
-					<section class="notification-dropdown">
-						<header class="notification-header">
-							<h2 class="title"><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></h2>
-						</header>
-						<div class="header-mini-cart">
+				</div>
+
+				<!-- Side Drawer for Cart -->
+				<div class="header-cart-drawer" aria-hidden="true">
+					<div class="header-cart-drawer__overlay"></div>
+					<div class="header-cart-drawer__content">
+						<div class="header-cart-drawer__header">
+							<h3 class="header-cart-drawer__title"><?php esc_html_e( 'Shopping Cart', 'wbcom-essential' ); ?></h3>
+							<button type="button" class="header-cart-drawer__close" aria-label="<?php esc_attr_e( 'Close cart', 'wbcom-essential' ); ?>">
+								<span class="widget-close-text"><?php esc_html_e( 'Close', 'wbcom-essential' ); ?></span>
+								<span class="widget-close-icon">&mdash;</span>
+							</button>
+						</div>
+						<div class="header-cart-drawer__body">
 							<div class="widget_shopping_cart_content">
 								<?php
 								if ( function_exists( 'woocommerce_mini_cart' ) ) {
@@ -665,7 +683,7 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 								?>
 							</div>
 						</div>
-					</section>
+					</div>
 				</div>
 			<?php endif; ?>
 

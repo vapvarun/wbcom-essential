@@ -128,6 +128,71 @@
 
 		// Initialize notification Mark as Read functionality.
 		initNotificationMarkAsRead( container );
+
+		// Initialize cart drawer functionality.
+		initCartDrawer( container );
+	}
+
+	/**
+	 * Initialize cart drawer functionality.
+	 *
+	 * @param {HTMLElement} container The block container.
+	 */
+	function initCartDrawer( container ) {
+		const cartTrigger = container.querySelector( '.header-cart-drawer-trigger' );
+		const cartDrawer = container.querySelector( '.header-cart-drawer' );
+
+		if ( ! cartTrigger || ! cartDrawer ) {
+			return;
+		}
+
+		const overlay = cartDrawer.querySelector( '.header-cart-drawer__overlay' );
+		const closeBtn = cartDrawer.querySelector( '.header-cart-drawer__close' );
+
+		/**
+		 * Open the cart drawer.
+		 */
+		function openDrawer() {
+			cartDrawer.setAttribute( 'aria-hidden', 'false' );
+			document.body.classList.add( 'header-cart-drawer-open' );
+		}
+
+		/**
+		 * Close the cart drawer.
+		 */
+		function closeDrawer() {
+			cartDrawer.setAttribute( 'aria-hidden', 'true' );
+			document.body.classList.remove( 'header-cart-drawer-open' );
+		}
+
+		// Open drawer on cart icon click.
+		cartTrigger.addEventListener( 'click', function ( e ) {
+			e.preventDefault();
+			openDrawer();
+		} );
+
+		// Close drawer on overlay click.
+		if ( overlay ) {
+			overlay.addEventListener( 'click', function ( e ) {
+				e.preventDefault();
+				closeDrawer();
+			} );
+		}
+
+		// Close drawer on close button click.
+		if ( closeBtn ) {
+			closeBtn.addEventListener( 'click', function ( e ) {
+				e.preventDefault();
+				closeDrawer();
+			} );
+		}
+
+		// Close drawer on ESC key.
+		document.addEventListener( 'keydown', function ( e ) {
+			if ( e.key === 'Escape' && cartDrawer.getAttribute( 'aria-hidden' ) === 'false' ) {
+				closeDrawer();
+			}
+		} );
 	}
 
 	/**
