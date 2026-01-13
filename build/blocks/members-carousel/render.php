@@ -19,43 +19,48 @@ if ( ! function_exists( 'buddypress' ) ) {
 }
 
 // Extract attributes.
-$sort_type          = $attributes['sortType'] ?? 'newest';
-$total_members      = $attributes['totalMembers'] ?? 12;
-$show_last_active   = $attributes['showLastActive'] ?? true;
-$slides_to_show     = $attributes['slidesToShow'] ?? 4;
+$use_theme_colors      = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+$sort_type             = $attributes['sortType'] ?? 'newest';
+$total_members         = $attributes['totalMembers'] ?? 12;
+$show_last_active      = $attributes['showLastActive'] ?? true;
+$slides_to_show        = $attributes['slidesToShow'] ?? 4;
 $slides_to_show_tablet = $attributes['slidesToShowTablet'] ?? 2;
 $slides_to_show_mobile = $attributes['slidesToShowMobile'] ?? 1;
-$slides_to_scroll   = $attributes['slidesToScroll'] ?? 1;
-$navigation         = $attributes['navigation'] ?? 'both';
-$autoplay           = $attributes['autoplay'] ?? true;
-$pause_on_hover     = $attributes['pauseOnHover'] ?? true;
-$autoplay_speed     = $attributes['autoplaySpeed'] ?? 5000;
-$infinite_loop      = $attributes['infiniteLoop'] ?? true;
-$animation_speed    = $attributes['animationSpeed'] ?? 500;
-$space_between      = $attributes['spaceBetween'] ?? 30;
-$card_bg_color      = $attributes['cardBgColor'] ?? '#ffffff';
-$card_radius        = $attributes['cardBorderRadius'] ?? 8;
-$card_shadow        = $attributes['cardShadow'] ?? true;
-$name_color         = $attributes['nameColor'] ?? '#122B46';
-$meta_color         = $attributes['metaColor'] ?? '#A3A5A9';
-$arrow_color        = $attributes['arrowColor'] ?? '#122B46';
-$dot_color          = $attributes['dotColor'] ?? '#122B46';
-$pause_on_interaction = $attributes['pauseOnInteraction'] ?? false;
-$effect             = $attributes['effect'] ?? 'slide';
-$enable_keyboard    = $attributes['enableKeyboard'] ?? true;
-$grab_cursor        = $attributes['grabCursor'] ?? true;
+$slides_to_scroll      = $attributes['slidesToScroll'] ?? 1;
+$navigation            = $attributes['navigation'] ?? 'both';
+$autoplay              = $attributes['autoplay'] ?? true;
+$pause_on_hover        = $attributes['pauseOnHover'] ?? true;
+$autoplay_speed        = $attributes['autoplaySpeed'] ?? 5000;
+$infinite_loop         = $attributes['infiniteLoop'] ?? true;
+$animation_speed       = $attributes['animationSpeed'] ?? 500;
+$space_between         = $attributes['spaceBetween'] ?? 30;
+$card_bg_color         = $attributes['cardBgColor'] ?? '#ffffff';
+$card_radius           = $attributes['cardBorderRadius'] ?? 8;
+$card_shadow           = $attributes['cardShadow'] ?? true;
+$name_color            = $attributes['nameColor'] ?? '#122B46';
+$meta_color            = $attributes['metaColor'] ?? '#A3A5A9';
+$arrow_color           = $attributes['arrowColor'] ?? '#122B46';
+$dot_color             = $attributes['dotColor'] ?? '#122B46';
+$pause_on_interaction  = $attributes['pauseOnInteraction'] ?? false;
+$effect                = $attributes['effect'] ?? 'slide';
+$enable_keyboard       = $attributes['enableKeyboard'] ?? true;
+$grab_cursor           = $attributes['grabCursor'] ?? true;
 
-// Build inline styles for layout and colors.
-// Color values override theme defaults but can still be customized by themes.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_styles = array(
+	// Layout styles - always applied.
 	'--card-radius'   => $card_radius . 'px',
 	'--space-between' => $space_between . 'px',
-	'--card-bg'       => $card_bg_color,
-	'--name-color'    => $name_color,
-	'--meta-color'     => $meta_color,
-	'--arrow-color'    => $arrow_color,
-	'--dot-color'      => $dot_color,
 );
+
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--card-bg']     = $card_bg_color;
+	$inline_styles['--name-color']  = $name_color;
+	$inline_styles['--meta-color']  = $meta_color;
+	$inline_styles['--arrow-color'] = $arrow_color;
+	$inline_styles['--dot-color']   = $dot_color;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
@@ -118,10 +123,16 @@ $members_args = array(
 	'search_terms'    => false,
 );
 
+// Wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-members-carousel' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-members-carousel',
+		'class' => implode( ' ', $wrapper_classes ),
 		'style' => $style_string,
 	)
 );

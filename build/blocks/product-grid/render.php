@@ -15,6 +15,8 @@ if ( ! class_exists( 'WooCommerce' ) ) {
 	return;
 }
 
+// Extract attributes.
+$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $columns            = isset( $attributes['columns'] ) ? absint( $attributes['columns'] ) : 4;
 $rows               = isset( $attributes['rows'] ) ? absint( $attributes['rows'] ) : 2;
 $category           = ! empty( $attributes['category'] ) ? sanitize_text_field( $attributes['category'] ) : '';
@@ -95,28 +97,44 @@ if ( ! $products->have_posts() ) {
 	return;
 }
 
-// Build inline styles.
-$inline_styles = array(
-	'--product-columns'     => $columns,
-	'--product-gap'         => $gap . 'px',
-	'--card-bg-color'       => $card_bg_color,
-	'--card-border-radius'  => $card_border_radius . 'px',
-	'--title-color'         => $title_color,
-	'--price-color'         => $price_color,
-	'--sale-badge-color'    => $sale_badge_color,
-	'--sale-badge-bg-color' => $sale_badge_bg,
-	'--image-ratio'         => $image_ratio,
+// Build inline styles - Layout variables (always applied).
+$layout_vars = array(
+	'--product-columns'    => $columns,
+	'--product-gap'        => $gap . 'px',
+	'--card-border-radius' => $card_border_radius . 'px',
+	'--image-ratio'        => $image_ratio,
 );
 
-$inline_styles = array_filter( $inline_styles );
-$style_string  = '';
-foreach ( $inline_styles as $property => $value ) {
+// Build style string for layout.
+$style_string = '';
+foreach ( $layout_vars as $property => $value ) {
 	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
+}
+
+// Color variables (only when NOT using theme colors).
+if ( ! $use_theme_colors ) {
+	$color_vars = array(
+		'--card-bg-color'       => $card_bg_color,
+		'--title-color'         => $title_color,
+		'--price-color'         => $price_color,
+		'--sale-badge-color'    => $sale_badge_color,
+		'--sale-badge-bg-color' => $sale_badge_bg,
+	);
+	$color_vars = array_filter( $color_vars );
+	foreach ( $color_vars as $property => $value ) {
+		$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
+	}
+}
+
+// Build wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-product-grid' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
 }
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-product-grid',
+		'class' => implode( ' ', $wrapper_classes ),
 		'style' => $style_string,
 	)
 );

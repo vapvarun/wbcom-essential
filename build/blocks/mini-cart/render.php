@@ -19,6 +19,11 @@ $show_count       = isset( $attributes['showCount'] ) ? $attributes['showCount']
 $show_total       = isset( $attributes['showTotal'] ) ? $attributes['showTotal'] : true;
 $show_dropdown    = isset( $attributes['showDropdown'] ) ? $attributes['showDropdown'] : true;
 $icon_size        = isset( $attributes['iconSize'] ) ? absint( $attributes['iconSize'] ) : 24;
+
+// Theme colors toggle.
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+
+// Colors.
 $icon_color       = ! empty( $attributes['iconColor'] ) ? $attributes['iconColor'] : '';
 $count_bg_color   = ! empty( $attributes['countBgColor'] ) ? $attributes['countBgColor'] : '#e53935';
 $count_text_color = ! empty( $attributes['countTextColor'] ) ? $attributes['countTextColor'] : '#ffffff';
@@ -31,15 +36,19 @@ $cart_count  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_
 $cart_total  = ( $wc_instance && $wc_instance->cart ) ? $wc_instance->cart->get_cart_total() : wc_price( 0 );
 $cart_url    = wc_get_cart_url();
 
-// Build inline styles.
+// Build inline styles - layout always, colors only when not using theme colors.
 $inline_styles = array(
-	'--icon-size'        => $icon_size . 'px',
-	'--icon-color'       => $icon_color,
-	'--count-bg-color'   => $count_bg_color,
-	'--count-text-color' => $count_text_color,
-	'--total-color'      => $total_color,
-	'--dropdown-bg'      => $dropdown_bg,
+	'--icon-size' => $icon_size . 'px',
 );
+
+// Add color styles only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--icon-color']       = $icon_color;
+	$inline_styles['--count-bg-color']   = $count_bg_color;
+	$inline_styles['--count-text-color'] = $count_text_color;
+	$inline_styles['--total-color']      = $total_color;
+	$inline_styles['--dropdown-bg']      = $dropdown_bg;
+}
 
 $inline_styles = array_filter( $inline_styles );
 $style_string  = '';
@@ -47,14 +56,18 @@ foreach ( $inline_styles as $property => $value ) {
 	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
 }
 
-$wrapper_class = 'wbcom-essential-mini-cart';
+// Build wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-mini-cart' );
 if ( $show_dropdown ) {
-	$wrapper_class .= ' has-dropdown';
+	$wrapper_classes[] = 'has-dropdown';
+}
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
 }
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'         => $wrapper_class,
+		'class'         => implode( ' ', $wrapper_classes ),
 		'style'         => $style_string,
 		'data-dropdown' => $show_dropdown ? 'true' : 'false',
 	)

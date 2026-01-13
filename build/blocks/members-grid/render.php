@@ -19,6 +19,7 @@ if ( ! function_exists( 'buddypress' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $sort_type        = $attributes['sortType'] ?? 'newest';
 $total_members    = $attributes['totalMembers'] ?? 12;
 $columns          = $attributes['columns'] ?? 3;
@@ -42,8 +43,9 @@ $button_text      = $attributes['buttonTextColor'] ?? '#ffffff';
 // Build unique ID for each block instance to avoid CSS conflicts.
 $unique_id = 'wbcom-members-grid-' . wp_unique_id();
 
-// Build inline styles with unique ID wrapper.
+// Build inline styles - layout always applied, colors only when not using theme colors.
 $inline_styles = array(
+	// Layout styles - always applied.
 	'--wbcom-grid-columns'        => $columns,
 	'--wbcom-grid-columns-tablet' => $columns_tablet,
 	'--wbcom-grid-columns-mobile' => $columns_mobile,
@@ -51,12 +53,16 @@ $inline_styles = array(
 	'--wbcom-card-radius'         => $card_radius . 'px',
 	'--wbcom-card-padding'        => $card_padding . 'px',
 	'--wbcom-avatar-size'         => $avatar_size . 'px',
-	'--wbcom-card-bg'             => $card_bg_color,
-	'--wbcom-name-color'          => $name_color,
-	'--wbcom-meta-color'          => $meta_color,
-	'--wbcom-button-color'        => $button_color,
-	'--wbcom-button-text'         => $button_text,
 );
+
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--wbcom-card-bg']      = $card_bg_color;
+	$inline_styles['--wbcom-name-color']   = $name_color;
+	$inline_styles['--wbcom-meta-color']   = $meta_color;
+	$inline_styles['--wbcom-button-color'] = $button_color;
+	$inline_styles['--wbcom-button-text']  = $button_text;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
@@ -90,10 +96,16 @@ $members_args = array(
 	'search_terms'    => false,
 );
 
+// Wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-members-grid' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-members-grid',
+		'class' => implode( ' ', $wrapper_classes ),
 		'id'    => $unique_id,
 		'style' => $style_string,
 	)

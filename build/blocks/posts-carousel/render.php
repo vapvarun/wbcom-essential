@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors       = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $display_type           = $attributes['displayType'] ?? 'card';
 $post_type              = $attributes['postType'] ?? 'post';
 $categories             = $attributes['categories'] ?? array();
@@ -86,20 +87,38 @@ $swiper_config = array(
 );
 
 // CSS custom properties for styling.
+// Layout styles - always applied.
 $style_vars = sprintf(
-	'--card-bg: %s; --card-radius: %dpx; --category-color: %s; --title-color: %s; --excerpt-color: %s; --meta-color: %s; --nav-color: %s;',
-	esc_attr( $card_background ),
-	absint( $card_border_radius ),
-	esc_attr( $category_color ),
-	esc_attr( $title_color ),
-	esc_attr( $excerpt_color ),
-	esc_attr( $meta_color ),
-	esc_attr( $nav_color )
+	'--card-radius: %dpx;',
+	absint( $card_border_radius )
 );
+
+// Color styles - only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$style_vars .= sprintf(
+		' --card-bg: %s; --category-color: %s; --title-color: %s; --excerpt-color: %s; --meta-color: %s; --nav-color: %s;',
+		esc_attr( $card_background ),
+		esc_attr( $category_color ),
+		esc_attr( $title_color ),
+		esc_attr( $excerpt_color ),
+		esc_attr( $meta_color ),
+		esc_attr( $nav_color )
+	);
+}
+
+// Build wrapper classes.
+$wrapper_classes = array(
+	'wbcom-essential-posts-carousel',
+	'display-type-' . esc_attr( $display_type ),
+);
+
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => 'wbcom-essential-posts-carousel display-type-' . esc_attr( $display_type ),
+	'class' => implode( ' ', $wrapper_classes ),
 	'style' => $style_vars,
 	'id'    => $carousel_id,
 ) );

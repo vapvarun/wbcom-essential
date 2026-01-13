@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes.
+$use_theme_colors       = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $items                  = $attributes['items'] ?? array();
 $filters                = $attributes['filters'] ?? array();
 $show_filters           = $attributes['showFilters'] ?? true;
@@ -141,23 +142,14 @@ if ( ! empty( $item_hover_box_shadow['enabled'] ) ) {
 	);
 }
 
-// Build CSS custom properties.
-$style_vars = sprintf(
-	'--portfolio-columns: %d; --portfolio-columns-tablet: %d; --portfolio-columns-mobile: %d; --portfolio-gap: %dpx; --portfolio-item-bg: %s; --portfolio-item-radius: %dpx; --portfolio-overlay: %s; --portfolio-overlay-hover: %s; --portfolio-title-color: %s; --portfolio-desc-color: %s; --portfolio-filter-active: %s; --portfolio-filter-text: %s; --portfolio-filter-bg: %s; --portfolio-filter-active-bg: %s; --portfolio-filter-radius: %dpx; --portfolio-aspect-ratio: %s; --portfolio-title-size: %dpx; --portfolio-title-weight: %s; --portfolio-desc-size: %dpx; --portfolio-desc-clamp: %d; --portfolio-box-shadow: %s; --portfolio-box-shadow-hover: %s; --portfolio-border-width: %dpx; --portfolio-border-color: %s; --portfolio-image-radius: %dpx; --portfolio-overlay-valign: %s; --portfolio-text-align: %s; --portfolio-content-padding: %dpx %dpx %dpx %dpx; --portfolio-content-margin: %dpx %dpx %dpx %dpx; --portfolio-content-bg: %s; --portfolio-content-radius: %dpx; --portfolio-filter-padding: %dpx %dpx %dpx %dpx; --portfolio-title-margin: %dpx %dpx %dpx %dpx;',
+// Build CSS custom properties - Layout variables (always applied).
+$layout_vars = sprintf(
+	'--portfolio-columns: %d; --portfolio-columns-tablet: %d; --portfolio-columns-mobile: %d; --portfolio-gap: %dpx; --portfolio-item-radius: %dpx; --portfolio-filter-radius: %dpx; --portfolio-aspect-ratio: %s; --portfolio-title-size: %dpx; --portfolio-title-weight: %s; --portfolio-desc-size: %dpx; --portfolio-desc-clamp: %d; --portfolio-box-shadow: %s; --portfolio-box-shadow-hover: %s; --portfolio-border-width: %dpx; --portfolio-image-radius: %dpx; --portfolio-overlay-valign: %s; --portfolio-text-align: %s; --portfolio-content-padding: %dpx %dpx %dpx %dpx; --portfolio-content-margin: %dpx %dpx %dpx %dpx; --portfolio-content-radius: %dpx; --portfolio-filter-padding: %dpx %dpx %dpx %dpx; --portfolio-title-margin: %dpx %dpx %dpx %dpx;',
 	$columns,
 	$columns_tablet,
 	$columns_mobile,
 	$gap,
-	esc_attr( $item_background ),
 	$item_border_radius,
-	esc_attr( $overlay_color ),
-	esc_attr( $overlay_hover_color ),
-	esc_attr( $title_color ),
-	esc_attr( $description_color ),
-	esc_attr( $filter_active ),
-	esc_attr( $filter_text ),
-	esc_attr( $filter_bg ),
-	esc_attr( $filter_active_bg ),
 	$filter_border_radius,
 	$aspect_padding > 0 ? $aspect_padding . '%' : 'auto',
 	$title_font_size,
@@ -167,7 +159,6 @@ $style_vars = sprintf(
 	esc_attr( $box_shadow_css ),
 	esc_attr( $hover_box_shadow_css ),
 	$item_border_width,
-	esc_attr( $item_border_color ),
 	$image_border_radius,
 	esc_attr( $overlay_vertical_align ),
 	esc_attr( $text_align ),
@@ -179,7 +170,6 @@ $style_vars = sprintf(
 	$content_margin['right'] ?? 0,
 	$content_margin['bottom'] ?? 0,
 	$content_margin['left'] ?? 0,
-	esc_attr( $content_background ),
 	$content_border_radius,
 	$filter_padding['top'] ?? 8,
 	$filter_padding['right'] ?? 20,
@@ -191,12 +181,38 @@ $style_vars = sprintf(
 	$title_margin['left'] ?? 0
 );
 
+// Color variables (only when NOT using theme colors).
+$color_vars = '';
+if ( ! $use_theme_colors ) {
+	$color_vars = sprintf(
+		' --portfolio-item-bg: %s; --portfolio-overlay: %s; --portfolio-overlay-hover: %s; --portfolio-title-color: %s; --portfolio-desc-color: %s; --portfolio-filter-active: %s; --portfolio-filter-text: %s; --portfolio-filter-bg: %s; --portfolio-filter-active-bg: %s; --portfolio-border-color: %s; --portfolio-content-bg: %s;',
+		esc_attr( $item_background ),
+		esc_attr( $overlay_color ),
+		esc_attr( $overlay_hover_color ),
+		esc_attr( $title_color ),
+		esc_attr( $description_color ),
+		esc_attr( $filter_active ),
+		esc_attr( $filter_text ),
+		esc_attr( $filter_bg ),
+		esc_attr( $filter_active_bg ),
+		esc_attr( $item_border_color ),
+		esc_attr( $content_background )
+	);
+}
+
+// Combine style vars.
+$style_vars = $layout_vars . $color_vars;
+
 // Build wrapper classes.
 $wrapper_classes = array(
 	'wbcom-essential-portfolio-grid',
 	'hover-effect-' . sanitize_html_class( $hover_effect ),
 	'text-placement-' . sanitize_html_class( $text_placement ),
 );
+
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
 
 if ( ! empty( $hover_animation ) ) {
 	$wrapper_classes[] = 'hover-animation-' . sanitize_html_class( $hover_animation );

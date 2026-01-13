@@ -19,6 +19,7 @@ if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'groups' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors         = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $groups_order             = $attributes['groupsOrder'] ?? 'active';
 $group_types              = $attributes['groupTypes'] ?? array();
 $groups_count             = $attributes['groupsCount'] ?? 5;
@@ -40,25 +41,28 @@ $filter_normal_color      = $attributes['filterNormalColor'] ?? '#9c9c9c';
 $filter_active_color      = $attributes['filterActiveColor'] ?? '#303030';
 $filter_active_border     = $attributes['filterActiveBorderColor'] ?? '#1d76da';
 
-// Build CSS variables - include both layout/spacing and user-selected colors.
-// User colors override theme defaults but maintain theme color integration.
-$css_vars = array(
-	'--box-border-radius'        => $box_border_radius . 'px',
-	'--avatar-size'              => $avatar_size . 'px',
-	'--avatar-border-radius'     => $avatar_border_radius . 'px',
-	// User-selected colors
-	'--box-bg'                  => $box_bg_color,
-	'--box-border-color'         => $box_border_color,
-	'--title-color'              => $title_color,
-	'--meta-color'               => $meta_color,
-	'--link-color'               => $link_color,
-	'--filter-normal-color'      => $filter_normal_color,
-	'--filter-active-color'      => $filter_active_color,
-	'--filter-active-border'     => $filter_active_border,
+// Build inline styles - layout always applied, colors only when not using theme colors.
+$inline_styles = array(
+	// Layout styles - always applied.
+	'--box-border-radius'    => $box_border_radius . 'px',
+	'--avatar-size'          => $avatar_size . 'px',
+	'--avatar-border-radius' => $avatar_border_radius . 'px',
 );
 
+// Color styles - only when not using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--box-bg']              = $box_bg_color;
+	$inline_styles['--box-border-color']    = $box_border_color;
+	$inline_styles['--title-color']         = $title_color;
+	$inline_styles['--meta-color']          = $meta_color;
+	$inline_styles['--link-color']          = $link_color;
+	$inline_styles['--filter-normal-color'] = $filter_normal_color;
+	$inline_styles['--filter-active-color'] = $filter_active_color;
+	$inline_styles['--filter-active-border'] = $filter_active_border;
+}
+
 $style_string = '';
-foreach ( $css_vars as $prop => $value ) {
+foreach ( $inline_styles as $prop => $value ) {
 	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
 }
 
@@ -69,10 +73,16 @@ $filter_types = array(
 	'newest'  => __( 'Newest', 'wbcom-essential' ),
 );
 
+// Wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-groups-lists' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-essential-groups-lists',
+		'class' => implode( ' ', $wrapper_classes ),
 		'style' => $style_string,
 	)
 );

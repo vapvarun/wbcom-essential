@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Extract attributes with defaults.
+$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 $post_type          = $attributes['postType'] ?? 'post';
 $categories         = $attributes['categories'] ?? array();
 $number_of_posts    = $attributes['numberOfPosts'] ?? 6;
@@ -60,24 +61,42 @@ if ( ! $posts_query->have_posts() ) {
 }
 
 // CSS custom properties for styling.
+// Layout styles - always applied.
 $style_vars = sprintf(
-	'--bar-color: %s; --bar-width: %dpx; --dot-color: %s; --dot-size: %dpx; --card-bg: %s; --card-radius: %dpx; --title-color: %s; --excerpt-color: %s; --date-color: %s; --button-bg: %s; --button-text: %s;',
-	esc_attr( $bar_color ),
+	'--bar-width: %dpx; --dot-size: %dpx; --card-radius: %dpx;',
 	absint( $bar_width ),
-	esc_attr( $dot_color ),
 	absint( $dot_size ),
-	esc_attr( $card_background ),
-	absint( $card_border_radius ),
-	esc_attr( $title_color ),
-	esc_attr( $excerpt_color ),
-	esc_attr( $date_color ),
-	esc_attr( $button_bg_color ),
-	esc_attr( $button_text_color )
+	absint( $card_border_radius )
 );
+
+// Color styles - only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$style_vars .= sprintf(
+		' --bar-color: %s; --dot-color: %s; --card-bg: %s; --title-color: %s; --excerpt-color: %s; --date-color: %s; --button-bg: %s; --button-text: %s;',
+		esc_attr( $bar_color ),
+		esc_attr( $dot_color ),
+		esc_attr( $card_background ),
+		esc_attr( $title_color ),
+		esc_attr( $excerpt_color ),
+		esc_attr( $date_color ),
+		esc_attr( $button_bg_color ),
+		esc_attr( $button_text_color )
+	);
+}
+
+// Build wrapper classes.
+$wrapper_classes = array(
+	'wbcom-essential-post-timeline',
+	'layout-' . esc_attr( $layout ),
+);
+
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => 'wbcom-essential-post-timeline layout-' . esc_attr( $layout ),
+	'class' => implode( ' ', $wrapper_classes ),
 	'style' => $style_vars,
 ) );
 ?>

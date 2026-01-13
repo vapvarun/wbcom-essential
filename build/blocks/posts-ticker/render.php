@@ -29,6 +29,9 @@ $posts_per_page  = $attributes['postsPerPage'] ?? 10;
 $order_by        = $attributes['orderBy'] ?? 'date';
 $order           = $attributes['order'] ?? 'DESC';
 
+// Theme colors toggle.
+$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+
 // Colors.
 $label_bg_color   = $attributes['labelBgColor'] ?? '#1d76da';
 $label_text_color = $attributes['labelTextColor'] ?? '#ffffff';
@@ -58,26 +61,35 @@ if ( empty( $posts ) ) {
 	return;
 }
 
-// Build inline styles - layout and colors.
-// Colors are set as CSS variables to allow dynamic theming.
+// Build inline styles - layout always, colors only when not using theme colors.
 $inline_styles = array(
-	'--ticker-height'     => $height . 'px',
-	'--label-bg-color'    => $label_bg_color,
-	'--label-text-color'  => $label_text_color,
-	'--ticker-bg-color'   => $ticker_bg_color,
-	'--text-color'        => $text_color,
-	'--hover-color'       => $hover_color,
-	'--border-color'      => $border_color,
+	'--ticker-height' => $height . 'px',
 );
+
+// Add color styles only when NOT using theme colors.
+if ( ! $use_theme_colors ) {
+	$inline_styles['--label-bg-color']   = $label_bg_color;
+	$inline_styles['--label-text-color'] = $label_text_color;
+	$inline_styles['--ticker-bg-color']  = $ticker_bg_color;
+	$inline_styles['--text-color']       = $text_color;
+	$inline_styles['--hover-color']      = $hover_color;
+	$inline_styles['--border-color']     = $border_color;
+}
 
 $style_string = '';
 foreach ( $inline_styles as $prop => $value ) {
 	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
 }
 
+// Build wrapper classes.
+$wrapper_classes = array( 'wbcom-essential-posts-ticker-wrapper' );
+if ( $use_theme_colors ) {
+	$wrapper_classes[] = 'use-theme-colors';
+}
+
 // Wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => 'wbcom-essential-posts-ticker-wrapper',
+	'class' => implode( ' ', $wrapper_classes ),
 	'style' => $style_string,
 ) );
 
