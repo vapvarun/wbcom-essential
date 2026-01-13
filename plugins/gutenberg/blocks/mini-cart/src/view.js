@@ -15,39 +15,57 @@
 
 		miniCarts.forEach( ( cart ) => {
 			const trigger = cart.querySelector( '.wbcom-essential-mini-cart__trigger' );
-			const dropdown = cart.querySelector( '.wbcom-essential-mini-cart__dropdown' );
+			const drawer = cart.querySelector( '.wbcom-essential-mini-cart__drawer' );
 
-			if ( ! trigger || ! dropdown ) {
+			if ( ! trigger || ! drawer ) {
 				return;
 			}
 
-			// Show dropdown on hover.
-			cart.addEventListener( 'mouseenter', () => {
-				dropdown.classList.add( 'is-visible' );
-			} );
+			const overlay = drawer.querySelector( '.wbcom-essential-mini-cart__drawer-overlay' );
+			const closeBtn = drawer.querySelector( '.wbcom-essential-mini-cart__drawer-close' );
 
-			// Hide dropdown on mouse leave.
-			cart.addEventListener( 'mouseleave', () => {
-				dropdown.classList.remove( 'is-visible' );
-			} );
+			/**
+			 * Open the cart drawer.
+			 */
+			function openDrawer() {
+				drawer.setAttribute( 'aria-hidden', 'false' );
+				document.body.classList.add( 'mini-cart-drawer-open' );
+			}
 
-			// Toggle on click for mobile.
+			/**
+			 * Close the cart drawer.
+			 */
+			function closeDrawer() {
+				drawer.setAttribute( 'aria-hidden', 'true' );
+				document.body.classList.remove( 'mini-cart-drawer-open' );
+			}
+
+			// Open drawer on cart icon click.
 			trigger.addEventListener( 'click', ( e ) => {
-				if ( window.innerWidth <= 768 ) {
-					e.preventDefault();
-					dropdown.classList.toggle( 'is-visible' );
-				}
+				e.preventDefault();
+				openDrawer();
 			} );
-		} );
 
-		// Close dropdown when clicking outside.
-		document.addEventListener( 'click', ( e ) => {
-			miniCarts.forEach( ( cart ) => {
-				if ( ! cart.contains( e.target ) ) {
-					const dropdown = cart.querySelector( '.wbcom-essential-mini-cart__dropdown' );
-					if ( dropdown ) {
-						dropdown.classList.remove( 'is-visible' );
-					}
+			// Close drawer on overlay click.
+			if ( overlay ) {
+				overlay.addEventListener( 'click', ( e ) => {
+					e.preventDefault();
+					closeDrawer();
+				} );
+			}
+
+			// Close drawer on close button click.
+			if ( closeBtn ) {
+				closeBtn.addEventListener( 'click', ( e ) => {
+					e.preventDefault();
+					closeDrawer();
+				} );
+			}
+
+			// Close drawer on ESC key.
+			document.addEventListener( 'keydown', ( e ) => {
+				if ( e.key === 'Escape' && drawer.getAttribute( 'aria-hidden' ) === 'false' ) {
+					closeDrawer();
 				}
 			} );
 		} );

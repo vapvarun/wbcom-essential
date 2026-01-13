@@ -95,52 +95,26 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</a>
 
 	<?php if ( $show_dropdown ) : ?>
-		<div class="wbcom-essential-mini-cart__dropdown">
-			<div class="wbcom-essential-mini-cart__dropdown-content">
-				<?php if ( $cart_count > 0 ) : ?>
-					<ul class="wbcom-essential-mini-cart__items">
+		<!-- Side Drawer for Cart -->
+		<div class="wbcom-essential-mini-cart__drawer" aria-hidden="true">
+			<div class="wbcom-essential-mini-cart__drawer-overlay"></div>
+			<div class="wbcom-essential-mini-cart__drawer-content">
+				<div class="wbcom-essential-mini-cart__drawer-header">
+					<h3 class="wbcom-essential-mini-cart__drawer-title"><?php esc_html_e( 'Shopping Cart', 'wbcom-essential' ); ?></h3>
+					<button type="button" class="wbcom-essential-mini-cart__drawer-close" aria-label="<?php esc_attr_e( 'Close cart', 'wbcom-essential' ); ?>">
+						<span class="close-text"><?php esc_html_e( 'Close', 'wbcom-essential' ); ?></span>
+						<span class="close-icon">&mdash;</span>
+					</button>
+				</div>
+				<div class="wbcom-essential-mini-cart__drawer-body">
+					<div class="widget_shopping_cart_content">
 						<?php
-						foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) :
-							$product   = $cart_item['data'];
-							$quantity  = $cart_item['quantity'];
-							$subtotal  = WC()->cart->get_product_subtotal( $product, $quantity );
-							$permalink = $product->get_permalink( $cart_item );
-							?>
-							<li class="wbcom-essential-mini-cart__item">
-								<div class="wbcom-essential-mini-cart__item-image">
-									<?php echo $product->get_image( 'thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-								</div>
-								<div class="wbcom-essential-mini-cart__item-details">
-									<a href="<?php echo esc_url( $permalink ); ?>" class="wbcom-essential-mini-cart__item-title">
-										<?php echo esc_html( $product->get_name() ); ?>
-									</a>
-									<span class="wbcom-essential-mini-cart__item-quantity">
-										<?php echo esc_html( $quantity ); ?> &times; <?php echo wp_kses_post( $product->get_price_html() ); ?>
-									</span>
-								</div>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-
-					<div class="wbcom-essential-mini-cart__footer">
-						<div class="wbcom-essential-mini-cart__subtotal">
-							<span><?php esc_html_e( 'Subtotal:', 'wbcom-essential' ); ?></span>
-							<span><?php echo wp_kses_post( $cart_total ); ?></span>
-						</div>
-						<div class="wbcom-essential-mini-cart__buttons">
-							<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="wbcom-essential-mini-cart__button wbcom-essential-mini-cart__button--view">
-								<?php esc_html_e( 'View Cart', 'wbcom-essential' ); ?>
-							</a>
-							<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="wbcom-essential-mini-cart__button wbcom-essential-mini-cart__button--checkout">
-								<?php esc_html_e( 'Checkout', 'wbcom-essential' ); ?>
-							</a>
-						</div>
+						if ( function_exists( 'woocommerce_mini_cart' ) ) {
+							woocommerce_mini_cart();
+						}
+						?>
 					</div>
-				<?php else : ?>
-					<p class="wbcom-essential-mini-cart__empty">
-						<?php esc_html_e( 'Your cart is empty.', 'wbcom-essential' ); ?>
-					</p>
-				<?php endif; ?>
+				</div>
 			</div>
 		</div>
 	<?php endif; ?>
