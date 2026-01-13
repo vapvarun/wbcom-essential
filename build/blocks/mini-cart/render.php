@@ -14,11 +14,11 @@ if ( ! class_exists( 'WooCommerce' ) ) {
 	return;
 }
 
-$show_icon        = isset( $attributes['showIcon'] ) ? $attributes['showIcon'] : true;
-$show_count       = isset( $attributes['showCount'] ) ? $attributes['showCount'] : true;
-$show_total       = isset( $attributes['showTotal'] ) ? $attributes['showTotal'] : true;
-$show_dropdown    = isset( $attributes['showDropdown'] ) ? $attributes['showDropdown'] : true;
-$icon_size        = isset( $attributes['iconSize'] ) ? absint( $attributes['iconSize'] ) : 24;
+$show_icon     = isset( $attributes['showIcon'] ) ? $attributes['showIcon'] : true;
+$show_count    = isset( $attributes['showCount'] ) ? $attributes['showCount'] : true;
+$show_total    = isset( $attributes['showTotal'] ) ? $attributes['showTotal'] : true;
+$show_dropdown = isset( $attributes['showDropdown'] ) ? $attributes['showDropdown'] : true;
+$icon_size     = isset( $attributes['iconSize'] ) ? absint( $attributes['iconSize'] ) : 24;
 
 // Theme colors toggle.
 $use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;

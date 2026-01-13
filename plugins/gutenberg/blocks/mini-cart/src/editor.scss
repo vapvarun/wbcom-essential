@@ -2,10 +2,21 @@
  * Mini Cart Block - Editor Styles
  */
 .wbcom-essential-mini-cart {
+	// Ensure proper containment in editor
+	display: block !important;
+	position: relative !important;
+	width: fit-content;
+	margin: 0 auto 1em auto;
+	padding: 1em;
+	border: 1px dashed #ccc;
+	border-radius: 4px;
+	background: #f8f9fa;
+
 	&__editor-note {
 		font-size: 12px;
 		color: #666;
 		margin-top: 8px;
 		font-style: italic;
+		text-align: center;
 	}
 }
