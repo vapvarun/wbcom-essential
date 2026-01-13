@@ -50,9 +50,9 @@
 
 	// Use CSS variables with fallback chain.
 	background: var(--box-bg);
-	border-width: var(--box-border-width, 1px);
-	border-style: var(--box-border-type, solid);
-	border-color: var(--box-border-color);
+	border-width: var(--box-border-width, 1px) !important;
+	border-style: var(--box-border-type, solid) !important;
+	border-color: var(--box-border-color) !important;
 	border-radius: var(--box-radius, 4px 4px 4px 4px);
 	padding: 20px;
 	position: relative;
