@@ -121,3 +121,12 @@ If installed from WordPress.org, updates appear automatically in **Dashboard →
 3. Click **Delete**
 
 > **Warning:** Pages using Wbcom Essential widgets/blocks will show fallback content or errors after uninstallation. Replace with alternative content before uninstalling.
+
+---
+
+## Related Documentation
+
+- [Getting Started](./getting-started.md) - Build your first page
+- [Gutenberg Blocks Guide](./blocks-guide.md) - All 45 blocks reference
+- [Elementor Widgets Guide](./widgets-guide.md) - All 43 widgets reference
+- [FAQ & Troubleshooting](./faq.md) - Common issues and fixes
