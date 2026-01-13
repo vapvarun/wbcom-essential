@@ -62,17 +62,18 @@ export default function Edit( { attributes, setAttributes } ) {
 		} ),
 	};
 
-	// Container classes.
-	const containerClasses = [
+	// Outer wrapper classes (block editor wrapper).
+	const outerClasses = [
 		'wbcom-essential-forums-activity-editor',
 		`button-align-${ buttonAlign }`,
-		useThemeColors ? 'use-theme-colors' : '',
 	].filter( Boolean ).join( ' ' );
 
 	const blockProps = useBlockProps( {
-		className: containerClasses,
-		style: containerStyle,
+		className: outerClasses,
 	} );
+
+	// Inner wrapper classes - includes use-theme-colors for CSS variable fallbacks.
+	const innerClasses = `wbcom-essential-forums-activity-wrapper${ useThemeColors ? ' use-theme-colors' : '' }`;
 
 	return (
 		<>
@@ -220,7 +221,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<div className="wbcom-essential-forums-activity-wrapper">
+				<div className={ innerClasses } style={ containerStyle }>
 					{ showMyDiscussionsButton && (
 						<div className="wbcom-essential-forums-activity-btn">
 							<span className="wbcom-essential-forums-activity-btn__link">

@@ -95,9 +95,11 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const blockProps = useBlockProps( {
-		className: `wbcom-essential-forums-editor${ useThemeColors ? ' use-theme-colors' : '' }`,
-		style: containerStyle,
+		className: 'wbcom-essential-forums-editor',
 	} );
+
+	// Inner container classes - includes use-theme-colors for CSS variable fallbacks.
+	const innerClasses = `wbcom-essential-forums${ useThemeColors ? ' use-theme-colors' : '' }`;
 
 	// Generate preview items.
 	const previewItems = Array.from( { length: Math.min( forumsCount, 3 ) }, ( _, i ) => ( {
@@ -371,7 +373,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<div className="wbcom-essential-forums">
+				<div className={ innerClasses } style={ containerStyle }>
 					<div className="wbcom-essential-block-header">
 						<div className="wbcom-essential-block-header__title">
 							<h3>{ headingText }</h3>

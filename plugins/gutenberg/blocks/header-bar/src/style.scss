@@ -20,7 +20,7 @@
 	--messages-icon-color: var(--icon-color);
 	--notifications-icon-color: var(--icon-color);
 	--cart-icon-color: var(--icon-color);
-	--dark-mode-icon-color: var(--icon-color);
+	--dark-mode-icon-color: #ffffff;
 	--icon-text-shadow: none;
 
 	// Counter styles
@@ -66,7 +66,7 @@
 		--messages-icon-color: var(--icon-color);
 		--notifications-icon-color: var(--icon-color);
 		--cart-icon-color: var(--icon-color);
-		--dark-mode-icon-color: var(--icon-color);
+		--dark-mode-icon-color: #ffffff;
 
 		// Separator
 		--separator-color: var(--wbcom-border-color, var(--wbcom-color-border, rgba(0, 0, 0, 0.1)));
@@ -859,12 +859,30 @@
 			border: none;
 			padding: 0;
 			cursor: pointer;
-			color: var(--icon-color);
+			// Use dark mode specific icon color if set, otherwise default to white for visibility
+			color: var(--dark-mode-icon-color, #ffffff);
 
+			// Legacy class - kept for backward compatibility
 			.color-mode {
 				font-size: var(--icon-size);
 				width: var(--icon-size);
 				height: var(--icon-size);
+			}
+
+			// SVG icon styling for dark mode toggle
+			.dark-mode-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: var(--icon-size, 20px);
+				height: var(--icon-size, 20px);
+
+				svg {
+					width: 100%;
+					height: 100%;
+					stroke: currentColor;
+					fill: none;
+				}
 			}
 
 			&:hover {

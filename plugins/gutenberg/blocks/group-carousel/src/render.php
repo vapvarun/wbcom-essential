@@ -72,6 +72,7 @@ foreach ( $inline_styles as $prop => $value ) {
 $swiper_options = array(
 	'slidesPerView'  => $slides_to_show,
 	'slidesToScroll' => $slides_to_scroll,
+	'slidesPerGroup' => $slides_to_scroll,
 	'spaceBetween'   => $space_between,
 	'speed'          => $animation_speed,
 	'loop'           => $infinite_loop,
@@ -89,13 +90,16 @@ $swiper_options = array(
 	'pagination'     => in_array( $navigation, array( 'dots', 'both' ), true ),
 	'breakpoints'    => array(
 		320  => array(
-			'slidesPerView' => $slides_to_show_mobile,
+			'slidesPerView'  => $slides_to_show_mobile,
+			'slidesPerGroup' => 1,
 		),
 		768  => array(
-			'slidesPerView' => $slides_to_show_tablet,
+			'slidesPerView'  => $slides_to_show_tablet,
+			'slidesPerGroup' => min( $slides_to_scroll, $slides_to_show_tablet ),
 		),
 		1024 => array(
-			'slidesPerView' => $slides_to_show,
+			'slidesPerView'  => $slides_to_show,
+			'slidesPerGroup' => $slides_to_scroll,
 		),
 	),
 );

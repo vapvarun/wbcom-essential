@@ -69,16 +69,36 @@ export default function save( { attributes } ) {
 		return `radial-gradient(circle, ${ colorStart } ${ startPos }%, ${ colorEnd } ${ endPos }%)`;
 	};
 
-	// Build wrapper style - colors only when NOT using theme colors
+	// Build wrapper style - ALL styles as CSS variables (enables :hover to work)
 	const wrapperStyle = {};
 
 	if ( ! useThemeColors ) {
-		wrapperStyle['--dropdown-hover-text-color'] = dropdownHoverTextColor || '#2271b1';
-		wrapperStyle['--dropdown-hover-bg-color'] = dropdownHoverBgColor || '#f5f5f5';
-		wrapperStyle['--separator-color'] = separatorColor || '#eee';
-		wrapperStyle['--animation-color'] = animationColor || 'rgba(255, 255, 255, 0.2)';
+		// Normal state button styles - as CSS variables so :hover can override
+		wrapperStyle['--button-text'] = buttonTextColor || '#ffffff';
+		wrapperStyle['--button-bg'] = enableGradient ? 'transparent' : ( buttonBgColor || '#2271b1' );
+		wrapperStyle['--button-border'] = borderStyle !== 'none' && borderStyle
+			? `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`
+			: 'none';
 
-		// Add hover gradient CSS variable if enabled
+		// Normal gradient
+		if ( enableGradient ) {
+			wrapperStyle['--button-gradient'] = generateGradient(
+				gradientType,
+				gradientAngle,
+				gradientColorStart,
+				gradientColorEnd,
+				gradientStartPosition,
+				gradientEndPosition
+			);
+		} else {
+			wrapperStyle['--button-gradient'] = 'none';
+		}
+
+		// Hover state button styles
+		wrapperStyle['--hover-text-color'] = buttonHoverTextColor || buttonTextColor || '#ffffff';
+		wrapperStyle['--hover-bg-color'] = enableHoverGradient ? 'transparent' : ( buttonHoverBgColor || buttonBgColor || '#2271b1' );
+
+		// Hover gradient
 		if ( enableHoverGradient ) {
 			wrapperStyle['--hover-gradient'] = generateGradient(
 				hoverGradientType,
@@ -88,50 +108,28 @@ export default function save( { attributes } ) {
 				hoverGradientStartPosition,
 				hoverGradientEndPosition
 			);
+		} else {
+			wrapperStyle['--hover-gradient'] = 'none';
 		}
 
-		if ( buttonHoverBgColor && ! enableHoverGradient ) {
-			wrapperStyle['--hover-bg-color'] = buttonHoverBgColor;
-		}
-
-		if ( buttonHoverTextColor ) {
-			wrapperStyle['--hover-text-color'] = buttonHoverTextColor;
-		}
-
-		// Set hover border - either to hover values or to normal values to maintain appearance
+		// Hover border
 		if ( borderStyleHover && borderStyleHover !== 'none' ) {
-			// User specified a hover border
 			wrapperStyle['--hover-border'] = `${ borderWidthHover }px ${ borderStyleHover } ${ borderColorHover || '#000' }`;
 		} else if ( borderStyle && borderStyle !== 'none' ) {
-			// No hover border specified, use normal border to maintain appearance on hover
 			wrapperStyle['--hover-border'] = `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`;
 		} else {
-			// No border at all
 			wrapperStyle['--hover-border'] = 'none';
 		}
+
+		// Dropdown styles
+		wrapperStyle['--dropdown-hover-text-color'] = dropdownHoverTextColor || '#2271b1';
+		wrapperStyle['--dropdown-hover-bg-color'] = dropdownHoverBgColor || '#f5f5f5';
+		wrapperStyle['--separator-color'] = separatorColor || '#eee';
+		wrapperStyle['--animation-color'] = animationColor || 'rgba(255, 255, 255, 0.2)';
 	}
 
-	// Build button style - colors only when NOT using theme colors
+	// Button gets NO inline styles for bg/border - CSS handles everything via variables
 	const buttonStyle = {};
-
-	if ( ! useThemeColors ) {
-		buttonStyle.color = buttonTextColor || '#ffffff';
-		buttonStyle.backgroundColor = enableGradient ? 'transparent' : ( buttonBgColor || '#2271b1' );
-		buttonStyle.border = borderStyle !== 'none' && borderStyle
-			? `${ borderWidth }px ${ borderStyle } ${ borderColor || '#000' }`
-			: 'none';
-
-		if ( enableGradient ) {
-			buttonStyle.backgroundImage = generateGradient(
-				gradientType,
-				gradientAngle,
-				gradientColorStart,
-				gradientColorEnd,
-				gradientStartPosition,
-				gradientEndPosition
-			);
-		}
-	}
 
 	// Build icon style - colors only when NOT using theme colors
 	const iconStyle = {};

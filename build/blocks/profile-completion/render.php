@@ -87,6 +87,16 @@ if ( empty( $profile_percent ) ) {
 
 $completion_percentage = $profile_percent['completion_percentage'];
 
+// Debug output for troubleshooting hide on 100% issue.
+if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+	echo '<!-- WBCOM Profile Completion Debug:';
+	echo ' hideWidget=' . ( $hide_widget ? 'true' : 'false' );
+	echo ', completion_percentage=' . absint( $completion_percentage );
+	echo ', type=' . esc_html( gettype( $completion_percentage ) );
+	echo ', strict_100_check=' . ( 100 === $completion_percentage ? 'PASS' : 'FAIL' );
+	echo ' -->';
+}
+
 // Hide widget if completion is 100% and hideWidget is enabled.
 if ( $hide_widget && 100 === $completion_percentage ) {
 	echo '<div class="wbcom-essential-profile-completion wbcom-essential-profile-completion--blank"></div>';

@@ -84,12 +84,12 @@
 		align-items: center;
 		gap: 8px;
 		padding: 12px 24px;
-		border: none;
 		border-radius: 4px;
-		// Background and color use inline styles directly from save.js
-		// Default fallback only if no inline style is set
-		background-color: var(--wbcom-button-bg, #2271b1);
-		color: var(--wbcom-button-text, #ffffff);
+		// Normal state - from CSS variables (set on wrapper via inline style)
+		background-color: var(--button-bg);
+		background-image: var(--button-gradient);
+		color: var(--button-text);
+		border: var(--button-border);
 		font-size: 16px;
 		font-weight: 500;
 		cursor: pointer;
@@ -99,13 +99,11 @@
 		z-index: 0;
 
 		&:hover {
-			// Hover colors read from CSS variables set via inline style
-			color: var(--hover-text-color, var(--wbcom-button-text, currentColor));
-			background-color: var(--hover-bg-color, var(--wbcom-button-hover-bg, rgba(0, 0, 0, 0.1)));
-			// Apply hover gradient if CSS variable is set
-			background-image: var(--hover-gradient, none);
-			// Apply hover border - always set by save.js
-			border: var(--hover-border, none);
+			// Hover state - from CSS variables (set on wrapper via inline style)
+			color: var(--hover-text-color);
+			background-color: var(--hover-bg-color);
+			background-image: var(--hover-gradient);
+			border: var(--hover-border);
 			opacity: 0.9;
 			transform: translateY(-1px);
 		}

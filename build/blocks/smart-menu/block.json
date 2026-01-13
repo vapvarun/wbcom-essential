@@ -64,11 +64,7 @@
       "type": "number",
       "default": 0.2
     },
-    "mainMenuIcon": {
-      "type": "string",
-      "default": "caret"
-    },
-    "mainMenuIconSize": {
+    "dropdownIconSize": {
       "type": "number",
       "default": 14
     },

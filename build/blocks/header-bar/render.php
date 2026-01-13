@@ -567,7 +567,7 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 						<?php if ( ! empty( $dark_mode_icon ) ) : ?>
 							<?php echo wbcom_header_bar_render_icon( $dark_mode_icon, 'dashicons-admin-appearance', 'dark-mode-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php else : ?>
-							<i class="color-mode"></i>
+							<span class="dark-mode-icon wbcom-custom-icon"><?php echo wbcom_header_bar_get_icon_svg( 'sun-moon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 						<?php endif; ?>
 					</button>
 				</div>
@@ -693,7 +693,7 @@ if ( ! function_exists( 'wbcom_header_bar_get_icon_svg' ) ) {
 						<?php if ( ! empty( $dark_mode_icon ) ) : ?>
 							<?php echo wbcom_header_bar_render_icon( $dark_mode_icon, 'dashicons-admin-appearance', 'dark-mode-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php else : ?>
-							<i class="color-mode"></i>
+							<span class="dark-mode-icon wbcom-custom-icon"><?php echo wbcom_header_bar_get_icon_svg( 'sun-moon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 						<?php endif; ?>
 					</button>
 				</div>

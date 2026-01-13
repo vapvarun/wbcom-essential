@@ -40,19 +40,23 @@
 			return;
 		}
 
+		// Get slides to scroll (Swiper calls this slidesPerGroup).
+		const slidesPerGroup = options.slidesPerGroup || options.slidesToScroll || 1;
+
 		// Build Swiper config.
 		const swiperConfig = {
 			slidesPerView: options.slidesPerView || 4,
+			slidesPerGroup: slidesPerGroup,
 			spaceBetween: options.spaceBetween || 30,
 			speed: options.speed || 500,
 			loop: options.loop !== false,
 			effect: options.effect || 'slide',
 			grabCursor: options.grabCursor !== false,
 			keyboard: options.keyboard || { enabled: true },
-			breakpoints: options.breakpoints || {
-				320: { slidesPerView: 1 },
-				768: { slidesPerView: 2 },
-				1024: { slidesPerView: options.slidesPerView || 4 },
+			breakpoints: options.breakpoints ? options.breakpoints : {
+				320: { slidesPerView: 1, slidesPerGroup: 1 },
+				768: { slidesPerView: 2, slidesPerGroup: Math.min( slidesPerGroup, 2 ) },
+				1024: { slidesPerView: options.slidesPerView || 4, slidesPerGroup: slidesPerGroup },
 			},
 		};
 
