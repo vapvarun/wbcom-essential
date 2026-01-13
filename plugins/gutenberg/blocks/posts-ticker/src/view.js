@@ -25,6 +25,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		const pauseBtn = ticker.querySelector( '.wbcom-essential-posts-ticker__pause' );
 
 		let isPaused = false;
+		let manuallyPaused = false; // Track manual pause separately from hover pause.
 		let currentIndex = 0;
 		let animationId = null;
 		let position = 0;
@@ -204,14 +205,16 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		};
 
 		const togglePause = () => {
-			isPaused = ! isPaused;
+			// Toggle manual pause state - this takes precedence over hover.
+			manuallyPaused = ! manuallyPaused;
+			isPaused = manuallyPaused;
 
 			const pauseIcon = pauseBtn?.querySelector( '.pause-icon' );
 			const playIcon = pauseBtn?.querySelector( '.play-icon' );
 
 			if ( pauseIcon && playIcon ) {
-				pauseIcon.style.display = isPaused ? 'none' : 'block';
-				playIcon.style.display = isPaused ? 'block' : 'none';
+				pauseIcon.style.display = manuallyPaused ? 'none' : 'block';
+				playIcon.style.display = manuallyPaused ? 'block' : 'none';
 			}
 		};
 
@@ -228,14 +231,18 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			pauseBtn.addEventListener( 'click', togglePause );
 		}
 
-		// Pause on hover.
+		// Pause on hover - only when NOT manually paused.
 		if ( pauseOnHover ) {
 			ticker.addEventListener( 'mouseenter', () => {
-				isPaused = true;
+				if ( ! manuallyPaused ) {
+					isPaused = true;
+				}
 			} );
 
 			ticker.addEventListener( 'mouseleave', () => {
-				isPaused = false;
+				if ( ! manuallyPaused ) {
+					isPaused = false;
+				}
 			} );
 		}
 
