@@ -237,6 +237,9 @@ $classes[] = 'wbcom-posts-columns-' . $columns;
 if ( $use_theme_colors ) {
 	$classes[] = 'use-theme-colors';
 }
+if ( $adaptive_height ) {
+	$classes[] = 'adaptive-height';
+}
 
 // Get wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(

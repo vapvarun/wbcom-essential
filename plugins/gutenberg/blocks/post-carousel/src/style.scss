@@ -71,6 +71,16 @@
     margin: 0;
 }
 
+// Adaptive height mode - allow slides to have natural height.
+.adaptive-height .slick-slide {
+    height: auto;
+}
+
+.adaptive-height .slick-track {
+    display: flex;
+    align-items: flex-start;
+}
+
 [dir=rtl] .slick-slide {
     float: right;
 }

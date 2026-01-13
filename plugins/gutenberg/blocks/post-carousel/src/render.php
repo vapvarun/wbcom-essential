@@ -17,15 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 $use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
 
 // Sanitize attributes.
-$post_type     = isset( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : 'post';
-$order         = isset( $attributes['order'] ) ? sanitize_text_field( $attributes['order'] ) : 'DESC';
-$orderby       = isset( $attributes['orderby'] ) ? sanitize_text_field( $attributes['orderby'] ) : 'post_date';
-$taxonomy      = isset( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : array();
-$tags          = isset( $attributes['tags'] ) ? $attributes['tags'] : array();
-$authors       = isset( $attributes['authors'] ) ? $attributes['authors'] : array();
-$max_posts     = isset( $attributes['maxPosts'] ) ? intval( $attributes['maxPosts'] ) : 6;
-$include_posts = isset( $attributes['includePosts'] ) ? sanitize_text_field( $attributes['includePosts'] ) : '';
-$exclude_posts = isset( $attributes['excludePosts'] ) ? sanitize_text_field( $attributes['excludePosts'] ) : '';
+$post_type      = isset( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : 'post';
+$order          = isset( $attributes['order'] ) ? sanitize_text_field( $attributes['order'] ) : 'DESC';
+$orderby        = isset( $attributes['orderby'] ) ? sanitize_text_field( $attributes['orderby'] ) : 'post_date';
+$taxonomy       = isset( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : array();
+$tags           = isset( $attributes['tags'] ) ? $attributes['tags'] : array();
+$authors        = isset( $attributes['authors'] ) ? $attributes['authors'] : array();
+$max_posts      = isset( $attributes['maxPosts'] ) ? intval( $attributes['maxPosts'] ) : 6;
+$include_posts  = isset( $attributes['includePosts'] ) ? sanitize_text_field( $attributes['includePosts'] ) : '';
+$exclude_posts  = isset( $attributes['excludePosts'] ) ? sanitize_text_field( $attributes['excludePosts'] ) : '';
 $excerpt_length = isset( $attributes['excerptLength'] ) ? intval( $attributes['excerptLength'] ) : 140;
 
 $display_only_thumbnail = isset( $attributes['displayOnlyThumbnail'] ) ? $attributes['displayOnlyThumbnail'] : false;
@@ -36,39 +36,39 @@ $display_author_name    = isset( $attributes['displayAuthorName'] ) ? $attribute
 $display_author_avatar  = isset( $attributes['displayAuthorAvatar'] ) ? $attributes['displayAuthorAvatar'] : false;
 $display_author_url     = isset( $attributes['displayAuthorUrl'] ) ? $attributes['displayAuthorUrl'] : false;
 
-$columns         = isset( $attributes['columns'] ) ? sanitize_text_field( $attributes['columns'] ) : 'three';
-$img_size        = isset( $attributes['imgSize'] ) ? sanitize_text_field( $attributes['imgSize'] ) : 'large';
-$display_nav     = isset( $attributes['displayNav'] ) ? $attributes['displayNav'] : false;
-$display_dots    = isset( $attributes['displayDots'] ) ? $attributes['displayDots'] : true;
-$infinite        = isset( $attributes['infinite'] ) ? $attributes['infinite'] : false;
-$autoplay        = isset( $attributes['autoplay'] ) ? $attributes['autoplay'] : false;
+$columns           = isset( $attributes['columns'] ) ? sanitize_text_field( $attributes['columns'] ) : 'three';
+$img_size          = isset( $attributes['imgSize'] ) ? sanitize_text_field( $attributes['imgSize'] ) : 'large';
+$display_nav       = isset( $attributes['displayNav'] ) ? $attributes['displayNav'] : false;
+$display_dots      = isset( $attributes['displayDots'] ) ? $attributes['displayDots'] : true;
+$infinite          = isset( $attributes['infinite'] ) ? $attributes['infinite'] : false;
+$autoplay          = isset( $attributes['autoplay'] ) ? $attributes['autoplay'] : false;
 $autoplay_duration = isset( $attributes['autoplayDuration'] ) ? intval( $attributes['autoplayDuration'] ) : 5;
-$adaptive_height = isset( $attributes['adaptiveHeight'] ) ? $attributes['adaptiveHeight'] : false;
+$adaptive_height   = isset( $attributes['adaptiveHeight'] ) ? $attributes['adaptiveHeight'] : false;
 
 $card_layout = isset( $attributes['cardLayout'] ) ? sanitize_text_field( $attributes['cardLayout'] ) : 'vertical';
 
 // Color settings.
-$card_bg_color            = isset( $attributes['cardBgColor'] ) ? sanitize_hex_color( $attributes['cardBgColor'] ) : '';
-$card_hover_bg_color      = isset( $attributes['cardHoverBgColor'] ) ? sanitize_hex_color( $attributes['cardHoverBgColor'] ) : '';
-$card_category_color      = isset( $attributes['cardCategoryColor'] ) ? sanitize_hex_color( $attributes['cardCategoryColor'] ) : '';
+$card_bg_color             = isset( $attributes['cardBgColor'] ) ? sanitize_hex_color( $attributes['cardBgColor'] ) : '';
+$card_hover_bg_color       = isset( $attributes['cardHoverBgColor'] ) ? sanitize_hex_color( $attributes['cardHoverBgColor'] ) : '';
+$card_category_color       = isset( $attributes['cardCategoryColor'] ) ? sanitize_hex_color( $attributes['cardCategoryColor'] ) : '';
 $card_category_hover_color = isset( $attributes['cardCategoryHoverColor'] ) ? sanitize_hex_color( $attributes['cardCategoryHoverColor'] ) : '';
-$card_badge_bg_color      = isset( $attributes['cardBadgeBgColor'] ) ? sanitize_hex_color( $attributes['cardBadgeBgColor'] ) : '';
+$card_badge_bg_color       = isset( $attributes['cardBadgeBgColor'] ) ? sanitize_hex_color( $attributes['cardBadgeBgColor'] ) : '';
 $card_badge_hover_bg_color = isset( $attributes['cardBadgeHoverBgColor'] ) ? sanitize_hex_color( $attributes['cardBadgeHoverBgColor'] ) : '';
-$card_badge_color         = isset( $attributes['cardBadgeColor'] ) ? sanitize_hex_color( $attributes['cardBadgeColor'] ) : '';
-$card_footer_bg_color     = isset( $attributes['cardFooterBgColor'] ) ? sanitize_hex_color( $attributes['cardFooterBgColor'] ) : '';
-$card_title_color         = isset( $attributes['cardTitleColor'] ) ? sanitize_hex_color( $attributes['cardTitleColor'] ) : '';
-$card_title_hover_color   = isset( $attributes['cardTitleHoverColor'] ) ? sanitize_hex_color( $attributes['cardTitleHoverColor'] ) : '';
-$card_excerpt_color       = isset( $attributes['cardExcerptColor'] ) ? sanitize_hex_color( $attributes['cardExcerptColor'] ) : '';
-$card_author_color        = isset( $attributes['cardAuthorColor'] ) ? sanitize_hex_color( $attributes['cardAuthorColor'] ) : '';
-$card_author_hover_color  = isset( $attributes['cardAuthorHoverColor'] ) ? sanitize_hex_color( $attributes['cardAuthorHoverColor'] ) : '';
-$card_date_color          = isset( $attributes['cardDateColor'] ) ? sanitize_hex_color( $attributes['cardDateColor'] ) : '';
-$card_date_hover_color    = isset( $attributes['cardDateHoverColor'] ) ? sanitize_hex_color( $attributes['cardDateHoverColor'] ) : '';
-$card_img_hover_effect    = isset( $attributes['cardImgHoverEffect'] ) ? sanitize_text_field( $attributes['cardImgHoverEffect'] ) : 'zoom';
-$nav_arrow_color          = isset( $attributes['navArrowColor'] ) ? $attributes['navArrowColor'] : '#ffffff';
-$nav_arrow_bg_color       = isset( $attributes['navArrowBgColor'] ) ? $attributes['navArrowBgColor'] : '#333333';
-$nav_arrow_hover_color    = isset( $attributes['navArrowHoverColor'] ) ? $attributes['navArrowHoverColor'] : '#ffffff';
-$nav_arrow_bg_hover_color = isset( $attributes['navArrowBgHoverColor'] ) ? $attributes['navArrowBgHoverColor'] : '#007cba';
-$nav_dots_color           = isset( $attributes['navDotsColor'] ) ? sanitize_hex_color( $attributes['navDotsColor'] ) : '#000000';
+$card_badge_color          = isset( $attributes['cardBadgeColor'] ) ? sanitize_hex_color( $attributes['cardBadgeColor'] ) : '';
+$card_footer_bg_color      = isset( $attributes['cardFooterBgColor'] ) ? sanitize_hex_color( $attributes['cardFooterBgColor'] ) : '';
+$card_title_color          = isset( $attributes['cardTitleColor'] ) ? sanitize_hex_color( $attributes['cardTitleColor'] ) : '';
+$card_title_hover_color    = isset( $attributes['cardTitleHoverColor'] ) ? sanitize_hex_color( $attributes['cardTitleHoverColor'] ) : '';
+$card_excerpt_color        = isset( $attributes['cardExcerptColor'] ) ? sanitize_hex_color( $attributes['cardExcerptColor'] ) : '';
+$card_author_color         = isset( $attributes['cardAuthorColor'] ) ? sanitize_hex_color( $attributes['cardAuthorColor'] ) : '';
+$card_author_hover_color   = isset( $attributes['cardAuthorHoverColor'] ) ? sanitize_hex_color( $attributes['cardAuthorHoverColor'] ) : '';
+$card_date_color           = isset( $attributes['cardDateColor'] ) ? sanitize_hex_color( $attributes['cardDateColor'] ) : '';
+$card_date_hover_color     = isset( $attributes['cardDateHoverColor'] ) ? sanitize_hex_color( $attributes['cardDateHoverColor'] ) : '';
+$card_img_hover_effect     = isset( $attributes['cardImgHoverEffect'] ) ? sanitize_text_field( $attributes['cardImgHoverEffect'] ) : 'zoom';
+$nav_arrow_color           = isset( $attributes['navArrowColor'] ) ? $attributes['navArrowColor'] : '#ffffff';
+$nav_arrow_bg_color        = isset( $attributes['navArrowBgColor'] ) ? $attributes['navArrowBgColor'] : '#333333';
+$nav_arrow_hover_color     = isset( $attributes['navArrowHoverColor'] ) ? $attributes['navArrowHoverColor'] : '#ffffff';
+$nav_arrow_bg_hover_color  = isset( $attributes['navArrowBgHoverColor'] ) ? $attributes['navArrowBgHoverColor'] : '#007cba';
+$nav_dots_color            = isset( $attributes['navDotsColor'] ) ? sanitize_hex_color( $attributes['navDotsColor'] ) : '#000000';
 
 // Build query arguments.
 $query_args = array(
@@ -81,12 +81,12 @@ $query_args = array(
 
 // Include/exclude posts.
 if ( ! empty( $include_posts ) ) {
-	$include_ids             = array_map( 'intval', explode( ',', $include_posts ) );
+	$include_ids            = array_map( 'intval', explode( ',', $include_posts ) );
 	$query_args['post__in'] = $include_ids;
 }
 
 if ( ! empty( $exclude_posts ) ) {
-	$exclude_ids                 = array_map( 'intval', explode( ',', $exclude_posts ) );
+	$exclude_ids                = array_map( 'intval', explode( ',', $exclude_posts ) );
 	$query_args['post__not_in'] = $exclude_ids;
 }
 
@@ -236,6 +236,9 @@ $classes[] = 'wbcom-posts-' . $card_layout;
 $classes[] = 'wbcom-posts-columns-' . $columns;
 if ( $use_theme_colors ) {
 	$classes[] = 'use-theme-colors';
+}
+if ( $adaptive_height ) {
+	$classes[] = 'adaptive-height';
 }
 
 // Get wrapper attributes.
