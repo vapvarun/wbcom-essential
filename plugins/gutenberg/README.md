@@ -678,53 +678,147 @@ transforms: {
 - [Data Module Documentation](https://developer.wordpress.org/block-editor/reference-guides/data/)
 - [Block Patterns Directory](https://wordpress.org/patterns/)
 
-## 🎯 Available Blocks
+## Available Blocks
 
-This section lists all currently available blocks. New blocks are automatically added here when created following the standard structure.
+WBcom Essential provides **45 Gutenberg blocks** organized into 7 categories. All blocks support the "Use Theme Colors" toggle for automatic theme color inheritance.
 
-### 🏷️ Branding Block
-**Purpose**: Display site branding with title, description, and logo
-**Type**: Dynamic (server-side rendering)
-**Key Features**:
-- Title or Logo display modes
-- Complete typography controls
-- Advanced styling options
-- Responsive design
-**Files**: `branding.php`, `render.php`
+### Block Summary
 
-### 🔽 Dropdown Button Block
-**Purpose**: Interactive dropdown button with customizable menu items
-**Type**: Static (client-side rendering)
-**Key Features**:
-- Customizable button text and menu items
-- Multiple animation effects
-- Icon support and positioning
-- Comprehensive styling controls
-**Files**: `dropdown-button.php`, `view.js`
+| Category | Count | Description |
+|----------|-------|-------------|
+| Header | 4 | Site branding, navigation, header elements |
+| Design | 14 | Visual elements, shapes, carousels |
+| Content | 8 | Text, accordions, tabs, testimonials |
+| Blog | 8 | Post grids, sliders, timelines |
+| Marketing | 4 | CTAs, pricing tables, progress bars |
+| BuddyPress | 11 | Member grids, group carousels, forums |
+| WooCommerce | 2 | Product grids, mini cart |
 
-### 📋 Accordion Block
-**Purpose**: Create expandable accordion sections with rich content and customization options
-**Type**: Dynamic (server-side rendering)
-**Key Features**:
-- Multiple accordion items with titles and content
-- Single/multiple item expansion modes
-- Auto-scroll to opened items
-- Customizable animations and timing
-- Full typography controls for titles and content
-- Advanced color and styling options
-- FAQ schema markup support for SEO
-- Responsive design with mobile optimization
-**Files**: `accordion.php`, `render.php`, `view.js`
+---
 
+### Header Blocks (4)
 
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Branding** | `branding` | Site logo with title/description display modes |
+| **Site Logo** | `site-logo` | Customizable site logo with link options |
+| **Header Bar** | `header-bar` | Navigation bar with search, cart, notifications |
+| **Smart Menu** | `smart-menu` | Mega menu navigation with dropdowns |
 
-### ➕ Adding Your Block to This List
+---
 
-When you create a new block following the standards above, add a section here documenting:
-- **Purpose**: What the block does
-- **Type**: Static or Dynamic
-- **Key Features**: Main functionality
-- **Files**: PHP files used (registration, render, view)
+### Design Blocks (14)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Countdown** | `countdown` | Countdown timer for events and launches |
+| **Counter** | `counter` | Animated number counter with prefix/suffix |
+| **Divider** | `divider` | Decorative divider with multiple styles |
+| **Flip Box** | `flip-box` | 3D flip card with front/back content |
+| **Heading** | `heading` | Styled heading with typography controls |
+| **Icon Box** | `icon-box` | Icon with title and description |
+| **Shape** | `shape` | Decorative SVG shapes and separators |
+| **Slider** | `slider` | Image/content slider with autoplay |
+| **Social Icons** | `social-icons` | Social media icon links |
+| **Star Rating** | `star-rating` | Star rating display |
+| **Team Carousel** | `team-carousel` | Team members in carousel layout |
+| **Testimonial** | `testimonial` | Single testimonial with avatar |
+| **Testimonial Carousel** | `testimonial-carousel` | Multiple testimonials in carousel |
+| **Text Rotator** | `text-rotator` | Animated rotating text effects |
+
+---
+
+### Content Blocks (8)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Accordion** | `accordion` | Collapsible content sections with FAQ schema |
+| **Advanced Tabs** | `advanced-tabs` | Tabbed content panels |
+| **Dropdown Button** | `dropdown-button` | Button with dropdown menu |
+| **Login Form** | `login-form` | User login/registration form |
+| **Progress Bar** | `progress-bar` | Animated progress bar with percentage |
+| **Timeline** | `timeline` | Vertical timeline layout |
+| **CTA Box** | `cta-box` | Call-to-action box with button |
+| **Portfolio Grid** | `portfolio-grid` | Portfolio items in grid layout |
+
+---
+
+### Blog Blocks (8)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Post Carousel** | `post-carousel` | Single post carousel |
+| **Posts Carousel** | `posts-carousel` | Multiple posts carousel |
+| **Post Slider** | `post-slider` | Full-width post slider |
+| **Posts Revolution** | `posts-revolution` | Revolution slider for posts |
+| **Posts Ticker** | `posts-ticker` | Scrolling news ticker |
+| **Post Timeline** | `post-timeline` | Posts in timeline layout |
+| **Pricing Table** | `pricing-table` | Pricing comparison table |
+| **Dashboard Intro** | `dashboard-intro` | BuddyPress dashboard intro panel |
+
+---
+
+### BuddyPress Blocks (11)
+
+These blocks only appear when BuddyPress is active.
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Members Grid** | `members-grid` | BuddyPress members in grid layout |
+| **Members Lists** | `members-lists` | BuddyPress members in list layout |
+| **Members Carousel** | `members-carousel` | BuddyPress members in carousel |
+| **Groups Grid** | `groups-grid` | BuddyPress groups in grid layout |
+| **Groups Lists** | `groups-lists` | BuddyPress groups in list layout |
+| **Group Carousel** | `group-carousel` | BuddyPress groups in carousel |
+| **Profile Completion** | `profile-completion` | User profile completion progress |
+| **Forums** | `forums` | bbPress forums list |
+| **Forums Activity** | `forums-activity` | bbPress recent activity feed |
+| **Header Bar** | `header-bar` | Header with BP notifications/messages |
+| **Dashboard Intro** | `dashboard-intro` | Welcome panel for logged-in users |
+
+---
+
+### WooCommerce Blocks (2)
+
+These blocks only appear when WooCommerce is active.
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Product Grid** | `product-grid` | WooCommerce products in grid layout |
+| **Mini Cart** | `mini-cart` | Shopping cart icon with dropdown |
+
+---
+
+### Theme Colors Support
+
+All 45 blocks implement the "Use Theme Colors" toggle:
+
+1. Add any block to your content
+2. Open block settings in the sidebar
+3. Find the **Color Settings** panel
+4. Enable **Use Theme Colors** toggle
+5. Block colors now follow your theme's color scheme
+
+When enabled, blocks use these CSS custom properties:
+
+| Variable | Purpose |
+|----------|---------|
+| `--wbcom-color-primary` | Primary accent color |
+| `--wbcom-color-secondary` | Secondary accent color |
+| `--wbcom-color-base` | Background color |
+| `--wbcom-color-contrast` | Text color |
+| `--wbcom-heading-color` | Heading color |
+| `--wbcom-card-bg` | Card backgrounds |
+
+---
+
+### Adding New Blocks
+
+When creating a new block:
+
+1. Follow the step-by-step guide in the [Adding New Blocks](#-adding-new-blocks) section
+2. Add the `useThemeColors` attribute to support theme color toggle
+3. Update this README with the block's purpose and key features
 
 ## 🔧 PHP Integration
 
@@ -796,6 +890,7 @@ Each block's PHP file:
 
 ---
 
-**Last Updated**: November 2025
-**Maintained by**: WBCOM Essential Team
+**Last Updated**: January 2025
+**Version**: 4.0.2
+**Maintained by**: WBCOM Designs
 **Block Development Standards**: WordPress Gutenberg Best Practices
