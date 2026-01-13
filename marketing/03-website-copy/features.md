@@ -69,7 +69,7 @@ Some clients prefer Gutenberg. Others love Elementor. With WBcom Essential, you 
 **11 Blocks Built for Community Sites**
 
 ### Description
-Display members, groups, forums, and activity with blocks that actually understand BuddyPress data. Built by the team behind BuddyX theme.
+Display members, groups, forums, and activity with blocks that actually understand BuddyPress data. Built by the team behind Theme Reign and BuddyX themes.
 
 ### Blocks Included
 

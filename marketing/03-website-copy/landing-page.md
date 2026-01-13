@@ -240,7 +240,7 @@ Members Grid in Gutenberg. Members Grid in Elementor. Same functionality, your p
 ## Trust Section
 
 ### Section Headline
-**Built by the BuddyX Team**
+**Built by the Wbcom Designs Team**
 
 ### Credibility Points
 

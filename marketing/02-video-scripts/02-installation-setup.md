@@ -36,7 +36,7 @@
 **VISUAL:** Navigate to download page
 
 **NARRATOR:**
-"First, download the plugin. Go to developer.wbcomdesigns.com and find WBcom Essential."
+"First, download the plugin. Go to wbcomdesigns.com/downloads/wbcom-essential."
 
 **VISUAL:** Click download button
 

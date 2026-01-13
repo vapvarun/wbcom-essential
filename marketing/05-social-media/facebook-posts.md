@@ -55,7 +55,7 @@ Step by step (takes about 5 minutes):
 
 No code needed. Works with any BuddyPress site.
 
-Try it with the free version: [Link]
+Download free: wbcomdesigns.com/downloads/wbcom-essential
 
 ---
 

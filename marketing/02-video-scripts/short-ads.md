@@ -199,9 +199,9 @@ Scripts for 15-second, 30-second, and 60-second video ads.
 
 ### For Theme Users
 
-**Hook:** "Get more from your BuddyX theme"
+**Hook:** "Get more from your theme"
 **Focus:** Theme integration, same team, color matching
-**CTA:** "Built for BuddyX, works everywhere"
+**CTA:** "Built for Theme Reign and BuddyX, works everywhere"
 
 ### For Small Business
 

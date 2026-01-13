@@ -139,11 +139,11 @@ WBcom Essential is a companion plugin designed to make our themes better. All 45
 
 ## Get Started
 
-**Download:** developer.wbcomdesigns.com/downloads/wbcom-essential
+**Download:** wbcomdesigns.com/downloads/wbcom-essential
 
-**Documentation:** developer.wbcomdesigns.com/docs
+**Documentation:** wbcomdesigns.com/docs/wbcom-essential
 
-**Support:** developer.wbcomdesigns.com/support
+**Support:** wbcomdesigns.com/support
 
 ---
 
@@ -160,7 +160,7 @@ WBcom Essential is a companion plugin designed to make our themes better. All 45
 
 ## Contact
 
-**Website:** developer.wbcomdesigns.com
+**Website:** wbcomdesigns.com
 
 **Email:** support@wbcomdesigns.com
 

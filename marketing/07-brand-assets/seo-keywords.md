@@ -74,13 +74,13 @@ Target keywords, meta content, and search optimization reference.
 **Description:**
 "11 dedicated BuddyPress blocks for Gutenberg: Members Grid, Groups Carousel, Profile Completion, Forums, and more. Make your community site professional."
 
-### Pricing Page
+### Download Page
 
 **Title:**
-"WBcom Essential Pricing - Single Site, 5 Sites, Unlimited"
+"WBcom Essential - Free Download | 45 Blocks + 43 Widgets"
 
 **Description:**
-"Get WBcom Essential Pro from $49/year. Includes 45 blocks, 43 widgets, priority support, and all BuddyPress integrations."
+"Download WBcom Essential free. Includes 45 Gutenberg blocks, 43 Elementor widgets, and 11 BuddyPress integrations. No premium tier, everything included."
 
 ---
 
