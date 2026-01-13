@@ -930,6 +930,10 @@
 	.search-form {
 		display: flex;
 		gap: 10px;
+
+		label {
+			width: 100%;
+		}
 	}
 
 	input[type="search"],
@@ -1807,6 +1811,8 @@
 	transition: color 0.2s ease;
 
 	&:hover {
+		background: none;
+		border: none;
 		color: var(--wbcom-color-primary, #1d76da);
 	}
 
@@ -1837,6 +1843,8 @@
 			border-bottom: 1px solid var(--wbcom-card-border, #e8e8e8);
 
 			a {
+				display: flex;
+				gap: 10px;
 				color: var(--wbcom-heading-color, #303030);
 				text-decoration: none;
 
