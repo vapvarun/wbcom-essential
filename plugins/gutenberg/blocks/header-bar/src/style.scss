@@ -1023,7 +1023,7 @@
 		.user-menu-dropdown-menu {
 			position: absolute;
 			top: 100%;
-			right: 0;
+			right: -15px;
 			min-width: 320px;
 			max-width: 360px;
 			background: var(--dropdown-bg-color);
@@ -1380,6 +1380,16 @@
 		.dashicons,
 		.wbcom-header-bar-icon-inner {
 			font-size: var(--icon-size);
+		}
+
+		.wbcom-custom-icon {
+			display: flex;
+			align-items: center;
+
+			svg {
+				width: var(--icon-size);
+				height: var(--icon-size);
+			}
 		}
 
 		.count {
