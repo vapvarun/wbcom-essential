@@ -39,6 +39,8 @@ console.log(`📦 Found ${blockDirs.length} block(s): ${blockDirs.join(', ')}\n`
 // Build each block
 let successCount = 0;
 let failureCount = 0;
+let skippedCount = 0;
+const skippedBlocks = [];
 
 blockDirs.forEach(blockName => {
     const blockPath = path.join(blocksDir, blockName);
@@ -46,15 +48,16 @@ blockDirs.forEach(blockName => {
     const blockBuildDir = path.join(blockPath, 'build');
     const centralizedBlockBuildDir = path.join(buildDir, blockName);
 
+    // Check if package.json exists (skip non-Gutenberg blocks)
+    if (!fs.existsSync(packageJsonPath)) {
+        skippedCount++;
+        skippedBlocks.push(blockName);
+        return;
+    }
+
     console.log(`🏗️  Building ${blockName}...`);
 
     try {
-        // Check if package.json exists
-        if (!fs.existsSync(packageJsonPath)) {
-            console.log(`   ❌ package.json not found for ${blockName}`);
-            failureCount++;
-            return;
-        }
 
         // Change to block directory and run npm run build (dependencies managed at root)
         process.chdir(blockPath);
@@ -97,6 +100,9 @@ blockDirs.forEach(blockName => {
 console.log(`\n📊 Build Summary:`);
 console.log(`   ✅ Successful: ${successCount}`);
 console.log(`   ❌ Failed: ${failureCount}`);
+if (skippedCount > 0) {
+    console.log(`   ⏭️  Skipped: ${skippedCount} (${skippedBlocks.join(', ')})`);
+}
 
 if (failureCount > 0) {
     console.log('\n❌ Some blocks failed to build. Please check the errors above.');

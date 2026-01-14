@@ -30,19 +30,21 @@ console.log(`📦 Starting development for ${blockDirs.length} block(s): ${block
 
 // Start development servers for each block
 const processes = [];
+const skippedBlocks = [];
 
 blockDirs.forEach(blockName => {
     const blockPath = path.join(blocksDir, blockName);
     const packageJsonPath = path.join(blockPath, 'package.json');
 
+    // Check if package.json exists (skip non-Gutenberg blocks)
+    if (!fs.existsSync(packageJsonPath)) {
+        skippedBlocks.push(blockName);
+        return;
+    }
+
     console.log(`🏗️  Starting ${blockName} development server...`);
 
     try {
-        // Check if package.json exists
-        if (!fs.existsSync(packageJsonPath)) {
-            console.log(`   ❌ package.json not found for ${blockName}`);
-            return;
-        }
 
         // Start npm run start in the block directory
         const npmProcess = spawn('npm', ['run', 'start'], {
@@ -68,6 +70,10 @@ blockDirs.forEach(blockName => {
         console.log(`   ❌ Failed to start ${blockName}:`, error.message);
     }
 });
+
+if (skippedBlocks.length > 0) {
+    console.log(`\n⏭️  Skipped ${skippedBlocks.length} non-Gutenberg block(s): ${skippedBlocks.join(', ')}`);
+}
 
 // Handle process termination
 process.on('SIGINT', () => {
