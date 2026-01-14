@@ -1584,6 +1584,7 @@
 			padding: 0;
 
 			.dropdown-item-inner {
+				width: 100%;
 				display: flex;
 				align-items: center;
 				gap: 12px;
@@ -1645,6 +1646,7 @@
 					justify-content: center;
 					width: 32px;
 					height: 32px;
+					padding: 0;
 					border-radius: 50%;
 					text-decoration: none;
 					transition: background 0.2s ease, color 0.2s ease;
