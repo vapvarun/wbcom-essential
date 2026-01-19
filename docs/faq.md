@@ -350,8 +350,7 @@ Gather this information:
 ### Support resources
 
 - **Documentation**: You're reading it
-- **Support tickets**: [developer.wbcomdesigns.com/support/](https://developer.wbcomdesigns.com/support/)
-- **Community**: [developer.wbcomdesigns.com/community/](https://developer.wbcomdesigns.com/community/)
+- **Support tickets**: [wbcomdesigns.com/support/](https://wbcomdesigns.com/support/)
 
 ### Response time
 

@@ -198,6 +198,5 @@ Now that everything is working:
 
 If you're still having issues:
 
-- **Documentation**: [developer.wbcomdesigns.com/docs/](https://developer.wbcomdesigns.com/docs/)
-- **Support**: [developer.wbcomdesigns.com/support/](https://developer.wbcomdesigns.com/support/)
-- **Community**: [developer.wbcomdesigns.com/community/](https://developer.wbcomdesigns.com/community/)
+- **Documentation**: [docs.wbcomdesigns.com/docs/wbcom-essential/](https://docs.wbcomdesigns.com/docs/wbcom-essential/)
+- **Support**: [wbcomdesigns.com/support/](https://wbcomdesigns.com/support/)

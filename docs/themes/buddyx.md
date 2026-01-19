@@ -283,7 +283,7 @@ H3: 1.5rem (24px)
 
 ## Resources
 
-- **BuddyX Theme**: [developer.wbcomdesigns.com/themes/buddyx/](https://developer.wbcomdesigns.com/themes/buddyx/)
-- **BuddyX Documentation**: [developer.wbcomdesigns.com/docs/buddyx/](https://developer.wbcomdesigns.com/docs/buddyx/)
+- **BuddyX Theme**: [wbcomdesigns.com/downloads/buddyx-theme/](https://wbcomdesigns.com/downloads/buddyx-theme/)
+- **BuddyX Documentation**: [docs.wbcomdesigns.com/docs/buddyx-free-theme/](https://docs.wbcomdesigns.com/docs/buddyx-free-theme/)
 - **BuddyPress Setup**: [BuddyPress Integration Guide](../integrations/buddypress.md)
-- **Support**: [developer.wbcomdesigns.com/support/](https://developer.wbcomdesigns.com/support/)
+- **Support**: [wbcomdesigns.com/support/](https://wbcomdesigns.com/support/)

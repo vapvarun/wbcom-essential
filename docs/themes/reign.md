@@ -34,7 +34,7 @@ Build powerful social networks and marketplaces with the multi-purpose Reign the
 
 ### Step 1: Install Reign Theme
 
-1. Purchase from [WBcom Designs](https://developer.wbcomdesigns.com/themes/reign/)
+1. Purchase from [WBcom Designs](https://wbcomdesigns.com/downloads/reign-buddypress-theme/)
 2. Download the theme package
 3. Go to **Appearance > Themes > Add New > Upload**
 4. Upload and activate Reign
@@ -450,8 +450,7 @@ Reign works well with:
 
 ## Resources
 
-- **Reign Theme**: [developer.wbcomdesigns.com/themes/reign/](https://developer.wbcomdesigns.com/themes/reign/)
-- **Documentation**: [developer.wbcomdesigns.com/docs/reign/](https://developer.wbcomdesigns.com/docs/reign/)
-- **Demo Sites**: [developer.wbcomdesigns.com/themes/reign/demos/](https://developer.wbcomdesigns.com/themes/reign/demos/)
+- **Reign Theme**: [wbcomdesigns.com/downloads/reign-buddypress-theme/](https://wbcomdesigns.com/downloads/reign-buddypress-theme/)
+- **Documentation**: [docs.wbcomdesigns.com/docs/wb-reign-theme/](https://docs.wbcomdesigns.com/docs/wb-reign-theme/)
 - **Video Tutorials**: [YouTube Channel](https://youtube.com/wbcomdesigns)
-- **Support**: [Support Portal](https://developer.wbcomdesigns.com/support/)
+- **Support**: [Support Portal](https://wbcomdesigns.com/support/)

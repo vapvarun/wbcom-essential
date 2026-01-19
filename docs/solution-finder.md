@@ -270,6 +270,6 @@ Design    Marketing  Support    Training
 
 ## Still Not Sure?
 
-**Contact Support**: [developer.wbcomdesigns.com/support/](https://developer.wbcomdesigns.com/support/)
+**Contact Support**: [wbcomdesigns.com/support/](https://wbcomdesigns.com/support/)
 
 Describe what you want to build and we'll recommend the best blocks!

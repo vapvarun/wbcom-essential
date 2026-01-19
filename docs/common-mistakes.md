@@ -318,4 +318,4 @@ Print this and keep it handy:
 - **[Getting Started Guide](./getting-started.md)** - Build your first page
 - **[Solution Finder](./solution-finder.md)** - Find the right block
 - **[Performance Guide](./features/performance.md)** - Speed up your site
-- **[Support](https://developer.wbcomdesigns.com/support/)** - Get expert help
+- **[Support](https://wbcomdesigns.com/support/)** - Get expert help

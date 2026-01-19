@@ -38,7 +38,7 @@ Premium community building with advanced features, layouts, and integrations.
 
 ### Step 1: Install BuddyX Pro
 
-1. Purchase from [WBcom Designs](https://developer.wbcomdesigns.com/themes/buddyx-pro/)
+1. Purchase from [WBcom Designs](https://wbcomdesigns.com/downloads/buddyx-pro-theme/)
 2. Download the theme zip file
 3. Go to **Appearance > Themes > Add New > Upload**
 4. Upload and activate BuddyX Pro
@@ -324,7 +324,7 @@ BuddyX Pro works with:
 
 ## Support & Resources
 
-- **BuddyX Pro Theme**: [developer.wbcomdesigns.com/themes/buddyx-pro/](https://developer.wbcomdesigns.com/themes/buddyx-pro/)
-- **Documentation**: [developer.wbcomdesigns.com/docs/buddyx-pro/](https://developer.wbcomdesigns.com/docs/buddyx-pro/)
+- **BuddyX Pro Theme**: [wbcomdesigns.com/downloads/buddyx-pro-theme/](https://wbcomdesigns.com/downloads/buddyx-pro-theme/)
+- **Documentation**: [docs.wbcomdesigns.com/docs/buddyx-theme/](https://docs.wbcomdesigns.com/docs/buddyx-theme/)
 - **Video Tutorials**: [YouTube Channel](https://youtube.com/wbcomdesigns)
-- **Premium Support**: [Support Portal](https://developer.wbcomdesigns.com/support/)
+- **Premium Support**: [Support Portal](https://wbcomdesigns.com/support/)

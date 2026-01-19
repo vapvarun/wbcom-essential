@@ -151,5 +151,4 @@ Step-by-step guides for common projects:
 ## Support
 
 - **Documentation**: You're here!
-- **Support Tickets**: [developer.wbcomdesigns.com/support/](https://developer.wbcomdesigns.com/support/)
-- **Community**: [developer.wbcomdesigns.com/community/](https://developer.wbcomdesigns.com/community/)
+- **Support Tickets**: [wbcomdesigns.com/support/](https://wbcomdesigns.com/support/)
