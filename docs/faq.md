@@ -395,7 +395,7 @@ To rule out browser extensions and cache:
 
 - [Installation Guide](./installation.md) - Setup and requirements
 - [Getting Started](./getting-started.md) - Build your first page
-- [Gutenberg Blocks Guide](./blocks-guide.md) - All 45 blocks reference
-- [Elementor Widgets Guide](./widgets-guide.md) - All 43 widgets reference
+- [Gutenberg Blocks](./blocks/index.md) - All 45 blocks reference
+- [Elementor Widgets](./widgets/index.md) - All 43 widgets reference
 - [Theme Colors Guide](./features/theme-colors.md) - Color inheritance feature
 

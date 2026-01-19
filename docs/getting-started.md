@@ -184,7 +184,8 @@ This keeps your site consistent without manual color matching.
 
 ## Next Steps
 
-- [Block Reference](./blocks-guide.md) - Detailed guide to all 45 blocks
+- [Block Reference](./blocks/index.md) - Detailed guide to all 45 blocks
+- [Widget Reference](./widgets/index.md) - All 43 Elementor widgets
 - [Theme Colors Guide](./features/theme-colors.md) - Master the theme colors feature
 - [BuddyPress Integration](./integrations/buddypress.md) - Build community pages
 - [FAQ & Troubleshooting](./faq.md) - Common issues and fixes

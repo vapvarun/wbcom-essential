@@ -32,7 +32,7 @@ Native WordPress blocks for the block editor. No Elementor required!
 | Category | Blocks | What You Can Build |
 |----------|--------|-------------------|
 | [Header](./blocks/header.md) | 4 | Site branding, navigation, user menus |
-| [Design](./blocks/design.md) | 14 | Sliders, counters, icons, animations |
+| [Design](./blocks/design.md) | 12 | Sliders, counters, icons, animations |
 | [Content](./blocks/content.md) | 8 | Accordions, tabs, timelines, forms |
 | [Blog](./blocks/blog.md) | 6 | Post carousels, sliders, tickers |
 | [Marketing](./blocks/marketing.md) | 4 | Pricing tables, CTAs, testimonials |

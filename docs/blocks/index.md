@@ -9,7 +9,7 @@ WBcom Essential includes **45 ready-to-use blocks** for the WordPress block edit
 | Category | Blocks | Best For |
 |----------|--------|----------|
 | [Header Blocks](./header.md) | 4 | Site navigation and branding |
-| [Design Blocks](./design.md) | 14 | Visual elements and layouts |
+| [Design Blocks](./design.md) | 12 | Visual elements and layouts |
 | [Content Blocks](./content.md) | 8 | Text, tabs, and interactive content |
 | [Blog Blocks](./blog.md) | 6 | Displaying your posts |
 | [Marketing Blocks](./marketing.md) | 4 | Conversions and sales |

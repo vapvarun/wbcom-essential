@@ -1,6 +1,6 @@
 # Design Blocks
 
-14 blocks for creating visually stunning pages. Add animations, sliders, icons, and decorative elements.
+12 blocks for creating visually stunning pages. Add animations, sliders, icons, and decorative elements.
 
 ---
 
@@ -353,69 +353,6 @@ Team members in scrolling carousel format.
 - About us pages
 - Team sections
 - Staff directories
-
----
-
-## Testimonial
-
-Single featured testimonial.
-
-<!-- SCREENSHOT: Testimonial on frontend -->
-
-### What You Can Do
-
-- Display quote with author info
-- Include star rating
-- Add author photo
-- Style quote marks
-
-### Settings
-
-| Setting | Options |
-|---------|---------|
-| Quote | Text |
-| Author Name | Text |
-| Author Role | Text |
-| Company | Text |
-| Avatar | Image |
-| Rating | 0-5 stars |
-
-### Best For
-
-- Hero testimonials
-- Featured reviews
-- Case study quotes
-
----
-
-## Testimonial Carousel
-
-Multiple testimonials in sliding carousel.
-
-<!-- SCREENSHOT: Testimonial Carousel on frontend -->
-
-### What You Can Do
-
-- Add unlimited testimonials
-- Choose card or minimal layout
-- Show star ratings
-- Enable autoplay
-
-### Settings
-
-| Setting | Options |
-|---------|---------|
-| Testimonials | Add multiple |
-| Layout | Cards, Minimal |
-| Slides Per View | 1-3 |
-| Show Ratings | Yes/No |
-| Autoplay | Yes/No |
-
-### Best For
-
-- Testimonials section
-- Client reviews
-- Social proof
 
 ---
 

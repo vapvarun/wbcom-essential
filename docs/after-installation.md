@@ -189,7 +189,8 @@ Now that everything is working:
 1. **[Build Your First Page](./getting-started.md)** - Step-by-step guide
 2. **[Solution Finder](./solution-finder.md)** - Find the right block for your needs
 3. **[Theme Integration](./themes/buddyx.md)** - Optimize for your theme
-4. **[Browse All Blocks](./blocks-guide.md)** - Complete reference
+4. **[Browse All Blocks](./blocks/index.md)** - Complete block reference
+5. **[Browse All Widgets](./widgets/index.md)** - Complete widget reference
 
 ---
 

@@ -127,6 +127,6 @@ If installed from WordPress.org, updates appear automatically in **Dashboard →
 ## Related Documentation
 
 - [Getting Started](./getting-started.md) - Build your first page
-- [Gutenberg Blocks Guide](./blocks-guide.md) - All 45 blocks reference
-- [Elementor Widgets Guide](./widgets-guide.md) - All 43 widgets reference
+- [Gutenberg Blocks](./blocks/index.md) - All 45 blocks reference
+- [Elementor Widgets](./widgets/index.md) - All 43 widgets reference
 - [FAQ & Troubleshooting](./faq.md) - Common issues and fixes
