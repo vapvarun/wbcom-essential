@@ -8,8 +8,7 @@
 
 Animated numbers that count up when visitors scroll to them.
 
-<!-- SCREENSHOT: Counter block in editor -->
-<!-- SCREENSHOT: Counter animation on frontend -->
+![Counter block in editor](../images/blocks/counter-block-editor.png)
 
 ### What You Can Do
 
@@ -42,8 +41,7 @@ Animated numbers that count up when visitors scroll to them.
 
 Timer counting down to a specific date.
 
-<!-- SCREENSHOT: Countdown block in editor -->
-<!-- SCREENSHOT: Countdown on frontend -->
+![Countdown block in editor](../images/blocks/countdown-block-editor.png)
 
 ### What You Can Do
 
@@ -75,7 +73,7 @@ Timer counting down to a specific date.
 
 Decorative separator between sections.
 
-<!-- SCREENSHOT: Divider styles on frontend -->
+![Divider block](../images/blocks/divider-block-editor.png)
 
 ### What You Can Do
 
@@ -106,8 +104,7 @@ Decorative separator between sections.
 
 Two-sided card that flips on hover to reveal more content.
 
-<!-- SCREENSHOT: Flip Box front side -->
-<!-- SCREENSHOT: Flip Box back side (on hover) -->
+![Flip Box block in editor](../images/blocks/flip-box-block-editor.png)
 
 ### What You Can Do
 
@@ -139,7 +136,7 @@ Two-sided card that flips on hover to reveal more content.
 
 Styled headings with decorative options.
 
-<!-- SCREENSHOT: Heading styles on frontend -->
+![Heading block in editor](../images/blocks/heading-block-editor.png)
 
 ### What You Can Do
 
@@ -170,7 +167,7 @@ Styled headings with decorative options.
 
 Icon paired with title and description.
 
-<!-- SCREENSHOT: Icon Box examples -->
+![Icon Box block in editor](../images/blocks/icon-box-block-editor.png)
 
 ### What You Can Do
 
@@ -202,7 +199,7 @@ Icon paired with title and description.
 
 Decorative SVG dividers between sections.
 
-<!-- SCREENSHOT: Shape divider examples -->
+![Shape block in editor](../images/blocks/shape-block-editor.png)
 
 ### What You Can Do
 
@@ -234,8 +231,7 @@ Decorative SVG dividers between sections.
 
 Image and content slider for hero sections.
 
-<!-- SCREENSHOT: Slider in editor -->
-<!-- SCREENSHOT: Slider on frontend -->
+![Slider block in editor](../images/blocks/slider-block-editor.png)
 
 ### What You Can Do
 
@@ -268,7 +264,7 @@ Image and content slider for hero sections.
 
 Social media profile links.
 
-<!-- SCREENSHOT: Social Icons styles -->
+![Social Icons block in editor](../images/blocks/social-icons-block-editor.png)
 
 ### What You Can Do
 
@@ -299,7 +295,7 @@ Social media profile links.
 
 Display star ratings for reviews and ratings.
 
-<!-- SCREENSHOT: Star Rating examples -->
+![Star Rating block in editor](../images/blocks/star-rating-block-editor.png)
 
 ### What You Can Do
 
@@ -329,7 +325,7 @@ Display star ratings for reviews and ratings.
 
 Team members in scrolling carousel format.
 
-<!-- SCREENSHOT: Team Carousel on frontend -->
+![Team Carousel block](../images/blocks/team-carousel-block.png)
 
 ### What You Can Do
 
@@ -360,7 +356,7 @@ Team members in scrolling carousel format.
 
 Animated rotating text effect for dynamic headlines.
 
-<!-- SCREENSHOT: Text Rotator animation -->
+![Text Rotator block in editor](../images/blocks/text-rotator-block-editor.png)
 
 ### What You Can Do
 

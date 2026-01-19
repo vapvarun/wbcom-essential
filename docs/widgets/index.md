@@ -21,8 +21,6 @@ WBcom Essential includes **43 drag-and-drop widgets** for Elementor. Build stunn
 3. Search "Starter Templates" or scroll to find our widgets
 4. Drag any widget onto your page
 
-<!-- SCREENSHOT: Elementor widget panel showing Starter Templates -->
-
 ---
 
 ## Widget Settings
@@ -34,8 +32,6 @@ Every widget has 3 tabs:
 | **Content** | Text, items, what to show |
 | **Style** | Colors, fonts, spacing |
 | **Advanced** | Position, animations, responsive |
-
-<!-- SCREENSHOT: Widget settings tabs -->
 
 ---
 

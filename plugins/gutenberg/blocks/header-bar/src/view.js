@@ -272,8 +272,8 @@
 					updateNotificationUI( notificationId, container, clickedBtn );
 				}
 			} )
-			.catch( ( error ) => {
-				console.error( 'Error marking notification as read:', error );
+			.catch( () => {
+				// Silent fail - notification marking is non-critical.
 			} );
 	}
 
@@ -309,9 +309,8 @@
 					updateNotificationUI( notificationId, container, clickedBtn );
 				}
 			} )
-			.catch( ( error ) => {
-				console.error( 'Error marking notification as read:', error );
-				// Update UI anyway for better UX.
+			.catch( () => {
+				// Silent fail - update UI anyway for better UX.
 				updateNotificationUI( notificationId, container, clickedBtn );
 			} );
 	}

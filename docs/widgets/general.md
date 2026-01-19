@@ -10,8 +10,6 @@
 
 Display your site logo with desktop and mobile versions.
 
-<!-- SCREENSHOT: Branding widget -->
-
 **Key Settings:**
 - Logo Source: Site logo or custom image
 - Desktop Logo: Main logo
@@ -26,8 +24,6 @@ Display your site logo with desktop and mobile versions.
 
 Advanced navigation menu with mega menu support.
 
-<!-- SCREENSHOT: Smart Menu widget -->
-
 **Key Settings:**
 - Menu: Select WordPress menu
 - Layout: Horizontal or Vertical
@@ -41,8 +37,6 @@ Advanced navigation menu with mega menu support.
 ### Notification Area
 
 Display site-wide notifications or alerts.
-
-<!-- SCREENSHOT: Notification Area widget -->
 
 **Key Settings:**
 - Message Text: Your notification
@@ -60,8 +54,6 @@ Display site-wide notifications or alerts.
 
 Full-featured image and content slider.
 
-<!-- SCREENSHOT: Slider widget -->
-
 **Key Settings:**
 - Slides: Add unlimited slides
 - Transition: Slide or Fade
@@ -75,8 +67,6 @@ Full-featured image and content slider.
 ### Post Carousel
 
 Display blog posts in carousel format.
-
-<!-- SCREENSHOT: Post Carousel widget -->
 
 **Key Settings:**
 - Query: Category, tag, or custom
@@ -92,8 +82,6 @@ Display blog posts in carousel format.
 
 Alternative post carousel with card layout.
 
-<!-- SCREENSHOT: Posts Carousel widget -->
-
 **Key Settings:**
 - Query: Filter posts
 - Card Style: Multiple designs
@@ -107,8 +95,6 @@ Alternative post carousel with card layout.
 ### Post Slider
 
 Full-width hero slider with posts.
-
-<!-- SCREENSHOT: Post Slider widget -->
 
 **Key Settings:**
 - Posts: Select or query
@@ -124,8 +110,6 @@ Full-width hero slider with posts.
 
 Team members in sliding format.
 
-<!-- SCREENSHOT: Team Carousel widget -->
-
 **Key Settings:**
 - Members: Add unlimited
 - Fields: Photo, name, role, bio, social
@@ -139,8 +123,6 @@ Team members in sliding format.
 ### Testimonial Carousel
 
 Customer testimonials in carousel.
-
-<!-- SCREENSHOT: Testimonial Carousel widget -->
 
 **Key Settings:**
 - Testimonials: Add multiple
@@ -158,8 +140,6 @@ Customer testimonials in carousel.
 
 Collapsible content panels.
 
-<!-- SCREENSHOT: Accordion widget -->
-
 **Key Settings:**
 - Items: Title and content pairs
 - Icon: Open/close indicator
@@ -173,8 +153,6 @@ Collapsible content panels.
 ### Tabs
 
 Tabbed content panels.
-
-<!-- SCREENSHOT: Tabs widget -->
 
 **Key Settings:**
 - Tabs: Title, icon, content
@@ -190,8 +168,6 @@ Tabbed content panels.
 
 Two-sided card with flip animation.
 
-<!-- SCREENSHOT: Flip Box widget -->
-
 **Key Settings:**
 - Front: Icon, title, description
 - Back: Icon, title, description, button
@@ -206,8 +182,6 @@ Two-sided card with flip animation.
 
 Vertical timeline layout.
 
-<!-- SCREENSHOT: Timeline widget -->
-
 **Key Settings:**
 - Items: Date, title, content, icon
 - Alternating: Sides switch
@@ -221,8 +195,6 @@ Vertical timeline layout.
 ### Text Rotator
 
 Animated rotating text effect.
-
-<!-- SCREENSHOT: Text Rotator widget -->
 
 **Key Settings:**
 - Before/After Text: Static parts
@@ -240,8 +212,6 @@ Animated rotating text effect.
 
 Posts grid with animated filtering.
 
-<!-- SCREENSHOT: Posts Revolution widget -->
-
 **Key Settings:**
 - Layout: Grid or Masonry
 - Filter Tabs: By category
@@ -256,8 +226,6 @@ Posts grid with animated filtering.
 
 Scrolling news ticker.
 
-<!-- SCREENSHOT: Posts Ticker widget -->
-
 **Key Settings:**
 - Label: "Breaking News" etc.
 - Speed: Scroll rate
@@ -271,8 +239,6 @@ Scrolling news ticker.
 ### Post Timeline
 
 Posts in timeline format.
-
-<!-- SCREENSHOT: Post Timeline widget -->
 
 **Key Settings:**
 - Style: Vertical timeline
@@ -289,8 +255,6 @@ Posts in timeline format.
 
 Timer counting down to date.
 
-<!-- SCREENSHOT: Countdown widget -->
-
 **Key Settings:**
 - Target Date: Date/time picker
 - Show: Days, hours, minutes, seconds
@@ -304,8 +268,6 @@ Timer counting down to date.
 ### Pricing Table
 
 Pricing plan display.
-
-<!-- SCREENSHOT: Pricing Table widget -->
 
 **Key Settings:**
 - Title: Plan name
@@ -323,8 +285,6 @@ Pricing plan display.
 
 Single featured testimonial.
 
-<!-- SCREENSHOT: Testimonial widget -->
-
 **Key Settings:**
 - Quote: Customer text
 - Author: Name, role, company
@@ -341,8 +301,6 @@ Single featured testimonial.
 
 Advanced heading with decoration.
 
-<!-- SCREENSHOT: Heading widget -->
-
 **Key Settings:**
 - Text: Main heading
 - Tag: H1-H6
@@ -356,8 +314,6 @@ Advanced heading with decoration.
 ### Shape
 
 Decorative SVG dividers.
-
-<!-- SCREENSHOT: Shape widget -->
 
 **Key Settings:**
 - Shape: Wave, Curve, Triangle, etc.
@@ -373,8 +329,6 @@ Decorative SVG dividers.
 
 User login form.
 
-<!-- SCREENSHOT: Login Form widget -->
-
 **Key Settings:**
 - Labels: Customize text
 - Remember Me: Show/hide
@@ -389,8 +343,6 @@ User login form.
 
 Button with dropdown menu.
 
-<!-- SCREENSHOT: Dropdown Button widget -->
-
 **Key Settings:**
 - Button Text: Label
 - Menu Items: Add links
@@ -404,8 +356,6 @@ Button with dropdown menu.
 ### Portfolio Grid
 
 Portfolio items with filters.
-
-<!-- SCREENSHOT: Portfolio Grid widget -->
 
 **Key Settings:**
 - Items: Add portfolio pieces

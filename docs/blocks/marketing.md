@@ -8,8 +8,7 @@
 
 Display pricing plans for your products or services.
 
-<!-- SCREENSHOT: Pricing Table in editor -->
-<!-- SCREENSHOT: Pricing Table on frontend -->
+![Pricing Table block](../images/blocks/pricing-table-block.png)
 
 ### What You Can Do
 
@@ -55,7 +54,7 @@ Display pricing plans for your products or services.
 
 Single featured testimonial for maximum impact.
 
-<!-- SCREENSHOT: Testimonial on frontend -->
+![Testimonial block](../images/blocks/testimonial-block.png)
 
 ### What You Can Do
 
@@ -89,7 +88,7 @@ Single featured testimonial for maximum impact.
 
 Multiple testimonials in sliding format.
 
-<!-- SCREENSHOT: Testimonial Carousel on frontend -->
+![Testimonial Carousel block](../images/blocks/testimonial-carousel-block.png)
 
 ### What You Can Do
 
@@ -128,7 +127,7 @@ Multiple testimonials in sliding format.
 
 Call-to-action box to drive conversions.
 
-<!-- SCREENSHOT: CTA Box variations -->
+![CTA Box block](../images/blocks/cta-box-block-editor.png)
 
 ### What You Can Do
 
@@ -176,8 +175,6 @@ Call-to-action box to drive conversions.
 3. **Testimonials** for social proof
 4. **Pricing** with clear options
 5. **CTA** to close the deal
-
-<!-- SCREENSHOT: Complete marketing page example -->
 
 ### Placement Tips
 

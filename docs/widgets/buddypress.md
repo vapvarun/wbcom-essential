@@ -10,8 +10,6 @@
 
 Display community members in sliding carousel.
 
-<!-- SCREENSHOT: Members Carousel widget -->
-
 **Key Settings:**
 - Count: Number of members
 - Type: Active, Popular, Newest, All
@@ -26,8 +24,6 @@ Display community members in sliding carousel.
 ## Members Grid
 
 Display members in organized grid layout.
-
-<!-- SCREENSHOT: Members Grid widget -->
 
 **Key Settings:**
 - Columns: 2-6
@@ -44,8 +40,6 @@ Display members in organized grid layout.
 
 Compact member list display.
 
-<!-- SCREENSHOT: Members Lists widget -->
-
 **Key Settings:**
 - Count: Number to show
 - Type: Active, Popular, etc.
@@ -59,8 +53,6 @@ Compact member list display.
 ## Group Carousel
 
 BuddyPress groups in carousel format.
-
-<!-- SCREENSHOT: Group Carousel widget -->
 
 **Key Settings:**
 - Count: Number of groups
@@ -77,8 +69,6 @@ BuddyPress groups in carousel format.
 
 Groups in grid layout.
 
-<!-- SCREENSHOT: Groups Grid widget -->
-
 **Key Settings:**
 - Columns: 2-4
 - Per Page: With pagination
@@ -92,8 +82,6 @@ Groups in grid layout.
 ## Groups Lists
 
 Compact group listing.
-
-<!-- SCREENSHOT: Groups Lists widget -->
 
 **Key Settings:**
 - Count: Groups to show
@@ -109,8 +97,6 @@ Compact group listing.
 
 Show user profile completion progress.
 
-<!-- SCREENSHOT: Profile Completion widget -->
-
 **Key Settings:**
 - Show Percentage: Number display
 - Progress Bar: Visual indicator
@@ -124,8 +110,6 @@ Show user profile completion progress.
 ## Dashboard Intro
 
 Personalized welcome panel for logged-in users.
-
-<!-- SCREENSHOT: Dashboard Intro widget -->
 
 **Key Settings:**
 - Greeting: Custom text
@@ -142,8 +126,6 @@ Personalized welcome panel for logged-in users.
 
 Navigation bar with BuddyPress elements.
 
-<!-- SCREENSHOT: Header Bar widget -->
-
 **Key Settings:**
 - Notifications: Dropdown with count
 - Messages: Message dropdown
@@ -159,8 +141,6 @@ Navigation bar with BuddyPress elements.
 
 Display bbPress forums listing.
 
-<!-- SCREENSHOT: Forums widget -->
-
 **Key Settings:**
 - Layout: List or Grid
 - Show Counts: Topics/replies
@@ -174,8 +154,6 @@ Display bbPress forums listing.
 ## Forums Activity
 
 Recent forum activity feed.
-
-<!-- SCREENSHOT: Forums Activity widget -->
 
 **Key Settings:**
 - Count: Activities to show
@@ -204,8 +182,6 @@ Recent forum activity feed.
 
 [CTA] - "Join Our Community"
 ```
-
-<!-- SCREENSHOT: Complete community page example -->
 
 ---
 

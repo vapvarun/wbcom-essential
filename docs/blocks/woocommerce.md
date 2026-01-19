@@ -10,8 +10,7 @@
 
 Display WooCommerce products in customizable grid.
 
-<!-- SCREENSHOT: Product Grid in editor -->
-<!-- SCREENSHOT: Product Grid on frontend -->
+![Product Grid block](../images/blocks/product-grid-block.png)
 
 ### What You Can Do
 
@@ -74,8 +73,7 @@ Products: 4
 
 Shopping cart icon with dropdown preview.
 
-<!-- SCREENSHOT: Mini Cart closed -->
-<!-- SCREENSHOT: Mini Cart dropdown open -->
+![Mini Cart block](../images/blocks/mini-cart-block.png)
 
 ### What You Can Do
 
@@ -152,8 +150,6 @@ Shopping cart icon with dropdown preview.
 ## Combining with Header Bar
 
 For the best e-commerce header experience, combine Mini Cart with Header Bar:
-
-<!-- SCREENSHOT: Header with Mini Cart and search -->
 
 **Header Bar Settings:**
 - Show Search: Yes

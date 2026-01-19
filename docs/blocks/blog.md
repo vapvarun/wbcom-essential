@@ -8,8 +8,7 @@
 
 Blog posts in horizontal carousel format.
 
-<!-- SCREENSHOT: Post Carousel in editor -->
-<!-- SCREENSHOT: Post Carousel on frontend -->
+![Post Carousel block in editor](../images/blocks/post-carousel-block-editor.png)
 
 ### What You Can Do
 
@@ -44,7 +43,7 @@ Blog posts in horizontal carousel format.
 
 Alternative post carousel with card layout.
 
-<!-- SCREENSHOT: Posts Carousel on frontend -->
+![Posts Carousel block](../images/blocks/posts-carousel-block-editor.png)
 
 ### What You Can Do
 
@@ -75,7 +74,7 @@ Alternative post carousel with card layout.
 
 Full-width hero slider featuring posts.
 
-<!-- SCREENSHOT: Post Slider on frontend -->
+![Post Slider block](../images/blocks/post-slider-block-editor.png)
 
 ### What You Can Do
 
@@ -109,7 +108,7 @@ Full-width hero slider featuring posts.
 
 Dynamic posts grid with filtering animation.
 
-<!-- SCREENSHOT: Posts Revolution with filters -->
+![Posts Revolution block](../images/blocks/posts-revolution-block.png)
 
 ### What You Can Do
 
@@ -141,7 +140,7 @@ Dynamic posts grid with filtering animation.
 
 Scrolling news ticker bar.
 
-<!-- SCREENSHOT: Posts Ticker on frontend -->
+![Posts Ticker block](../images/blocks/posts-ticker-block.png)
 
 ### What You Can Do
 
@@ -174,7 +173,7 @@ Scrolling news ticker bar.
 
 Posts displayed in timeline format.
 
-<!-- SCREENSHOT: Post Timeline on frontend -->
+![Post Timeline block in editor](../images/blocks/post-timeline-block-editor.png)
 
 ### What You Can Do
 

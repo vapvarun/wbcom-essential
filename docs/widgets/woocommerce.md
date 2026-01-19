@@ -10,8 +10,6 @@
 
 Display WooCommerce products with full styling control.
 
-<!-- SCREENSHOT: Universal Product widget -->
-
 **Key Settings:**
 - Columns: 2-6 products wide
 - Per Page: Products to show
@@ -39,8 +37,6 @@ Display WooCommerce products with full styling control.
 
 Display product reviews as testimonials.
 
-<!-- SCREENSHOT: Customer Review widget -->
-
 **Key Settings:**
 - Product: Select product for reviews
 - Reviews Count: How many to show
@@ -59,8 +55,6 @@ Display product reviews as testimonials.
 
 Display product information in tabs.
 
-<!-- SCREENSHOT: Product Tab widget -->
-
 **Key Settings:**
 - Tabs: Description, Specs, Reviews
 - Custom Tabs: Add your own
@@ -77,8 +71,6 @@ Display product information in tabs.
 ## Add Banner
 
 Promotional banner for products.
-
-<!-- SCREENSHOT: Add Banner widget -->
 
 **Key Settings:**
 - Image: Banner background
@@ -97,8 +89,6 @@ Promotional banner for products.
 ## WC Testimonial
 
 Customer testimonials for products.
-
-<!-- SCREENSHOT: WC Testimonial widget -->
 
 **Key Settings:**
 - Testimonials: Add multiple

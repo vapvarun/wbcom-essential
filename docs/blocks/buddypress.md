@@ -10,8 +10,7 @@
 
 Display community members in a sliding carousel.
 
-<!-- SCREENSHOT: Members Carousel in editor -->
-<!-- SCREENSHOT: Members Carousel on frontend -->
+![Members Carousel block](../images/blocks/members-carousel-block.png)
 
 ### What You Can Do
 
@@ -44,7 +43,7 @@ Display community members in a sliding carousel.
 
 Display members in grid layout with optional filters.
 
-<!-- SCREENSHOT: Members Grid on frontend -->
+![Members Grid block](../images/blocks/members-grid-block.png)
 
 ### What You Can Do
 
@@ -76,7 +75,7 @@ Display members in grid layout with optional filters.
 
 Compact member listing format.
 
-<!-- SCREENSHOT: Members Lists on frontend -->
+![Members Lists block](../images/blocks/members-lists-block.png)
 
 ### What You Can Do
 
@@ -107,7 +106,7 @@ Compact member listing format.
 
 Display BuddyPress groups in carousel.
 
-<!-- SCREENSHOT: Group Carousel on frontend -->
+![Group Carousel block](../images/blocks/group-carousel-block.png)
 
 ### What You Can Do
 
@@ -139,7 +138,7 @@ Display BuddyPress groups in carousel.
 
 Display groups in grid layout.
 
-<!-- SCREENSHOT: Groups Grid on frontend -->
+![Groups Grid block](../images/blocks/groups-grid-block.png)
 
 ### What You Can Do
 
@@ -170,7 +169,7 @@ Display groups in grid layout.
 
 Compact group listing.
 
-<!-- SCREENSHOT: Groups Lists on frontend -->
+![Groups Lists block](../images/blocks/groups-lists-block.png)
 
 ### What You Can Do
 
@@ -200,7 +199,7 @@ Compact group listing.
 
 Show users their profile completion progress.
 
-<!-- SCREENSHOT: Profile Completion on frontend -->
+![Profile Completion block](../images/blocks/profile-completion-block.png)
 
 ### What You Can Do
 
@@ -230,7 +229,7 @@ Show users their profile completion progress.
 
 Welcome panel for logged-in users.
 
-<!-- SCREENSHOT: Dashboard Intro on frontend -->
+![Dashboard Intro block](../images/blocks/dashboard-intro-block.png)
 
 ### What You Can Do
 
@@ -261,7 +260,7 @@ Welcome panel for logged-in users.
 
 Navigation bar with BuddyPress features.
 
-<!-- SCREENSHOT: Header Bar with BP features -->
+![Header Bar block](../images/blocks/header-bar-block.png)
 
 ### What You Can Do
 
@@ -292,7 +291,7 @@ Navigation bar with BuddyPress features.
 
 Display bbPress forums list.
 
-<!-- SCREENSHOT: Forums block on frontend -->
+![Forums block](../images/blocks/forums-block.png)
 
 ### What You Can Do
 
@@ -322,7 +321,7 @@ Display bbPress forums list.
 
 Show recent forum activity feed.
 
-<!-- SCREENSHOT: Forums Activity on frontend -->
+![Forums Activity block](../images/blocks/forums-activity-block.png)
 
 ### What You Can Do
 
@@ -363,8 +362,6 @@ Show recent forum activity feed.
 
 [CTA Box] - "Join our community today!"
 ```
-
-<!-- SCREENSHOT: Complete community homepage -->
 
 ---
 

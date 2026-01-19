@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Check if BuddyPress is active.
 if ( ! function_exists( 'buddypress' ) ) {
+	echo '<p>' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
 	return;
 }
 

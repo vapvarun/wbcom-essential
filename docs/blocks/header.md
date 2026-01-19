@@ -8,8 +8,7 @@ Build professional site headers with these 4 blocks. Perfect for navigation, bra
 
 Display your site logo with optional title and tagline.
 
-<!-- SCREENSHOT: Branding block in editor -->
-<!-- SCREENSHOT: Branding block on frontend -->
+![Branding block in editor](../images/blocks/branding-block-editor.png)
 
 ### What You Can Do
 
@@ -39,8 +38,7 @@ Display your site logo with optional title and tagline.
 
 Simple logo display with size controls.
 
-<!-- SCREENSHOT: Site Logo block in editor -->
-<!-- SCREENSHOT: Site Logo block on frontend -->
+![Site Logo block in editor](../images/blocks/site-logo-block-editor.png)
 
 ### What You Can Do
 
@@ -70,9 +68,7 @@ Simple logo display with size controls.
 
 Complete navigation bar with user account features.
 
-<!-- SCREENSHOT: Header Bar block in editor -->
-<!-- SCREENSHOT: Header Bar block on frontend (logged in) -->
-<!-- SCREENSHOT: Header Bar block on frontend (logged out) -->
+![Header Bar block](../images/blocks/header-bar-block.png)
 
 ### What You Can Do
 
@@ -110,9 +106,7 @@ Complete navigation bar with user account features.
 
 Advanced navigation with mega menu support.
 
-<!-- SCREENSHOT: Smart Menu block in editor -->
-<!-- SCREENSHOT: Smart Menu dropdown on frontend -->
-<!-- SCREENSHOT: Smart Menu mobile hamburger -->
+![Smart Menu block in editor](../images/blocks/smart-menu-block-editor.png)
 
 ### What You Can Do
 
@@ -152,8 +146,6 @@ Combine these blocks for a professional header:
 ```
 [Branding] + [Smart Menu] + [Header Bar]
 ```
-
-<!-- SCREENSHOT: Complete header example -->
 
 ### Recommended Layout
 

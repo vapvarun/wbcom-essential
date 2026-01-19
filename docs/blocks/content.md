@@ -8,8 +8,7 @@
 
 Collapsible content panels - perfect for FAQs.
 
-<!-- SCREENSHOT: Accordion in editor -->
-<!-- SCREENSHOT: Accordion on frontend (expanded) -->
+![Accordion block in editor](../images/blocks/accordion-block-editor.png)
 
 ### What You Can Do
 
@@ -46,8 +45,7 @@ Enable FAQ Schema for better Google search results - your questions may appear d
 
 Organize content into tabbed panels.
 
-<!-- SCREENSHOT: Advanced Tabs in editor -->
-<!-- SCREENSHOT: Advanced Tabs on frontend -->
+![Advanced Tabs block in editor](../images/blocks/advanced-tabs-block-editor.png)
 
 ### What You Can Do
 
@@ -79,8 +77,7 @@ Organize content into tabbed panels.
 
 Button that reveals a dropdown menu.
 
-<!-- SCREENSHOT: Dropdown Button closed -->
-<!-- SCREENSHOT: Dropdown Button open -->
+![Dropdown Button block in editor](../images/blocks/dropdown-button-block-editor.png)
 
 ### What You Can Do
 
@@ -111,7 +108,7 @@ Button that reveals a dropdown menu.
 
 User login and registration form.
 
-<!-- SCREENSHOT: Login Form on frontend -->
+![Login Form block](../images/blocks/login-form-block-editor.png)
 
 ### What You Can Do
 
@@ -142,7 +139,7 @@ User login and registration form.
 
 Animated progress indicator.
 
-<!-- SCREENSHOT: Progress Bar examples -->
+![Progress Bar block](../images/blocks/progress-bar-block.png)
 
 ### What You Can Do
 
@@ -174,7 +171,7 @@ Animated progress indicator.
 
 Vertical timeline for showing history or steps.
 
-<!-- SCREENSHOT: Timeline on frontend -->
+![Timeline block in editor](../images/blocks/timeline-block-editor.png)
 
 ### What You Can Do
 
@@ -206,7 +203,7 @@ Vertical timeline for showing history or steps.
 
 Call-to-action box to drive conversions.
 
-<!-- SCREENSHOT: CTA Box examples -->
+![CTA Box block in editor](../images/blocks/cta-box-block-editor.png)
 
 ### What You Can Do
 
@@ -243,8 +240,7 @@ Place CTA boxes at the end of important pages and after testimonials for best co
 
 Display portfolio items in a filterable grid.
 
-<!-- SCREENSHOT: Portfolio Grid on frontend -->
-<!-- SCREENSHOT: Portfolio hover effect -->
+![Portfolio Grid block in editor](../images/blocks/portfolio-grid-block-editor.png)
 
 ### What You Can Do
 
