@@ -1,0 +1,58 @@
+# Gutenberg Blocks Manifest
+# Generated: 2025-01-19
+# Total: 45
+
+## Design Blocks
+- wbcom-essential/accordion | plugins/gutenberg/blocks/accordion | documented
+- wbcom-essential/advanced-tabs | plugins/gutenberg/blocks/advanced-tabs | documented
+- wbcom-essential/branding | plugins/gutenberg/blocks/branding | documented
+- wbcom-essential/countdown | plugins/gutenberg/blocks/countdown | documented
+- wbcom-essential/counter | plugins/gutenberg/blocks/counter | documented
+- wbcom-essential/cta-box | plugins/gutenberg/blocks/cta-box | documented
+- wbcom-essential/divider | plugins/gutenberg/blocks/divider | documented
+- wbcom-essential/dropdown-button | plugins/gutenberg/blocks/dropdown-button | documented
+- wbcom-essential/flip-box | plugins/gutenberg/blocks/flip-box | documented
+- wbcom-essential/heading | plugins/gutenberg/blocks/heading | documented
+- wbcom-essential/icon-box | plugins/gutenberg/blocks/icon-box | documented
+- wbcom-essential/progress-bar | plugins/gutenberg/blocks/progress-bar | documented
+- wbcom-essential/shape | plugins/gutenberg/blocks/shape | documented
+- wbcom-essential/site-logo | plugins/gutenberg/blocks/site-logo | documented
+- wbcom-essential/slider | plugins/gutenberg/blocks/slider | documented
+- wbcom-essential/social-icons | plugins/gutenberg/blocks/social-icons | documented
+- wbcom-essential/star-rating | plugins/gutenberg/blocks/star-rating | documented
+
+## Content Blocks
+- wbcom-essential/login-form | plugins/gutenberg/blocks/login-form | documented
+- wbcom-essential/portfolio-grid | plugins/gutenberg/blocks/portfolio-grid | documented
+- wbcom-essential/pricing-table | plugins/gutenberg/blocks/pricing-table | documented
+- wbcom-essential/smart-menu | plugins/gutenberg/blocks/smart-menu | documented
+- wbcom-essential/team-carousel | plugins/gutenberg/blocks/team-carousel | documented
+- wbcom-essential/testimonial | plugins/gutenberg/blocks/testimonial | documented
+- wbcom-essential/testimonial-carousel | plugins/gutenberg/blocks/testimonial-carousel | documented
+- wbcom-essential/text-rotator | plugins/gutenberg/blocks/text-rotator | documented
+- wbcom-essential/timeline | plugins/gutenberg/blocks/timeline | documented
+
+## Blog Blocks
+- wbcom-essential/post-carousel | plugins/gutenberg/blocks/post-carousel | documented
+- wbcom-essential/post-slider | plugins/gutenberg/blocks/post-slider | documented
+- wbcom-essential/post-timeline | plugins/gutenberg/blocks/post-timeline | documented
+- wbcom-essential/posts-carousel | plugins/gutenberg/blocks/posts-carousel | documented
+- wbcom-essential/posts-revolution | plugins/gutenberg/blocks/posts-revolution | documented
+- wbcom-essential/posts-ticker | plugins/gutenberg/blocks/posts-ticker | documented
+
+## BuddyPress Blocks
+- wbcom-essential/dashboard-intro | plugins/gutenberg/blocks/dashboard-intro | documented
+- wbcom-essential/forums | plugins/gutenberg/blocks/forums | documented
+- wbcom-essential/forums-activity | plugins/gutenberg/blocks/forums-activity | documented
+- wbcom-essential/group-carousel | plugins/gutenberg/blocks/group-carousel | documented
+- wbcom-essential/groups-grid | plugins/gutenberg/blocks/groups-grid | documented
+- wbcom-essential/groups-lists | plugins/gutenberg/blocks/groups-lists | documented
+- wbcom-essential/header-bar | plugins/gutenberg/blocks/header-bar | documented
+- wbcom-essential/members-carousel | plugins/gutenberg/blocks/members-carousel | documented
+- wbcom-essential/members-grid | plugins/gutenberg/blocks/members-grid | documented
+- wbcom-essential/members-lists | plugins/gutenberg/blocks/members-lists | documented
+- wbcom-essential/profile-completion | plugins/gutenberg/blocks/profile-completion | documented
+
+## WooCommerce Blocks
+- wbcom-essential/mini-cart | plugins/gutenberg/blocks/mini-cart | documented
+- wbcom-essential/product-grid | plugins/gutenberg/blocks/product-grid | documented

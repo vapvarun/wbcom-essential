@@ -1,0 +1,88 @@
+# Classes Manifest
+# Generated: 2025-01-19
+# Total: 68
+
+## License Classes
+- WBCOM_ESSENTIAL_License_Manager | license/class-wbcom-essential-license-manager.php:5 | documented
+- EDD_SL_Plugin_Updater | license/EDD_SL_Plugin_Updater.php:14 | documented
+- WBCOM_ESSENTIAL_License_Updater | license/class-wbcom-essential-license-updater.php:8 | documented
+- WBCOM_ESSENTIAL_EDD_Updater_Wrapper | license/class-wbcom-essential-edd-updater-wrapper.php:26 | documented
+
+## Gutenberg Classes
+- WBCOM_Essential_Gutenberg | plugins/gutenberg/wbcom-gutenberg.php:19 | documented
+- WBCOM_Essential_Smart_Menu_Walker | plugins/gutenberg/blocks/smart-menu/class-wbcom-essential-smart-menu-walker.php:19 | documented
+
+## Elementor Core Classes
+- Plugin | plugins/elementor/Plugins.php:22 | documented
+- ElementorHooks | plugins/elementor/hooks/ElementorHooks.php:30 | documented
+
+## Elementor Template Classes
+- WBcom_Essential_elementor_Templates_Source_Api | plugins/elementor/templates/sources/wbcom-essential-elementor-sections-api.php:28 | documented
+- WBcom_Essential_elementor_Templates_Source_Base | plugins/elementor/templates/sources/base.php:26 | documented
+- WBcom_Essential_elementor_Templates_Page_Api | plugins/elementor/templates/sources/wbcom-essential-elementor-pages-api.php:28 | documented
+- WBcom_Essential_elementor_Sections_Document | plugins/elementor/templates/documents/section.php:26 | documented
+- WBcom_Essential_elementor_Document_Base | plugins/elementor/templates/documents/base.php:29 | documented
+- WBcom_Essential_elementor_Pages_Document | plugins/elementor/templates/documents/page.php:26 | documented
+
+## Elementor Skin Classes
+- Skin_Classic | plugins/elementor/helper/skins/skin-classic.php:27 | documented
+- Skin_Base | plugins/elementor/helper/skins/skin-base.php:34 | documented
+- Skin_Cards | plugins/elementor/helper/skins/skin-cards.php:36 | documented
+
+## Elementor Query Classes
+- Group_Control_Posts | plugins/elementor/widgets/querycontrol/group-control-posts.php:21 | documented
+- Query | plugins/elementor/widgets/querycontrol/query.php:11 | documented
+
+## WooCommerce Widgets (5)
+- AddBanner | plugins/elementor/widgets/WooCommerce/AddBanner.php:30 | documented
+- UniversalProduct | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:32 | documented
+- ProductTab | plugins/elementor/widgets/WooCommerce/ProductTab.php:30 | documented
+- WcTestimonial | plugins/elementor/widgets/WooCommerce/WcTestimonial.php:32 | documented
+- CustomerReview | plugins/elementor/widgets/WooCommerce/CustomerReview.php:33 | documented
+
+## General Widgets (27)
+- Slider | plugins/elementor/widgets/General/Slider.php:22 | documented
+- Tabs | plugins/elementor/widgets/General/Tabs.php:20 | documented
+- PostsCarousel | plugins/elementor/widgets/General/PostsCarousel.php:24 | documented
+- PortfolioGrid | plugins/elementor/widgets/General/PortfolioGrid.php:23 | documented
+- Branding | plugins/elementor/widgets/General/Branding.php:32 | documented
+- LoginForm | plugins/elementor/widgets/General/LoginForm.php:22 | documented
+- SmartMenu | plugins/elementor/widgets/General/SmartMenu.php:22 | documented
+- Accordion | plugins/elementor/widgets/General/Accordion.php:24 | documented
+- Countdown | plugins/elementor/widgets/General/Countdown.php:24 | documented
+- ProgressBar | plugins/elementor/widgets/General/ProgressBar.php:22 | documented
+- Heading | plugins/elementor/widgets/General/Heading.php:22 | documented
+- NotificationArea | plugins/elementor/widgets/General/NotificationArea.php:31 | documented
+- Testimonial | plugins/elementor/widgets/General/Testimonial.php:22 | documented
+- FlipBox | plugins/elementor/widgets/General/FlipBox.php:23 | documented
+- Shape | plugins/elementor/widgets/General/Shape.php:21 | documented
+- PostCarousel | plugins/elementor/widgets/General/PostCarousel.php:24 | documented
+- TeamCarousel | plugins/elementor/widgets/General/TeamCarousel.php:24 | documented
+- PricingTable | plugins/elementor/widgets/General/PricingTable.php:23 | documented
+- PostsTicker | plugins/elementor/widgets/General/PostsTicker.php:24 | documented
+- Timeline | plugins/elementor/widgets/General/Timeline.php:22 | documented
+- TextRotator | plugins/elementor/widgets/General/TextRotator.php:21 | documented
+- SiteLogo | plugins/elementor/widgets/General/SiteLogo.php:20 | documented
+- PostsRevolution | plugins/elementor/widgets/General/PostsRevolution.php:24 | documented
+- DropdownButton | plugins/elementor/widgets/General/DropdownButton.php:25 | documented
+- PostSlider | plugins/elementor/widgets/General/PostSlider.php:22 | documented
+- TestimonialCarousel | plugins/elementor/widgets/General/TestimonialCarousel.php:22 | documented
+- PostTimeline | plugins/elementor/widgets/General/PostTimeline.php:25 | documented
+
+## BuddyPress Widgets (11)
+- GroupCarousel | plugins/elementor/widgets/Buddypress/GroupCarousel.php:31 | documented
+- DashboardIntro | plugins/elementor/widgets/Buddypress/DashboardIntro.php:32 | documented
+- Forums | plugins/elementor/widgets/Buddypress/Forums.php:33 | documented
+- MembersGrid | plugins/elementor/widgets/Buddypress/MembersGrid.php:31 | documented
+- MembersLists | plugins/elementor/widgets/Buddypress/MembersLists.php:31 | documented
+- GroupsLists | plugins/elementor/widgets/Buddypress/GroupsLists.php:31 | documented
+- ProfileCompletion | plugins/elementor/widgets/Buddypress/ProfileCompletion.php:32 | documented
+- GroupGrid | plugins/elementor/widgets/Buddypress/GroupGrid.php:31 | documented
+- HeaderBar | plugins/elementor/widgets/Buddypress/HeaderBar.php:33 | documented
+- MemeberCarousel | plugins/elementor/widgets/Buddypress/MemeberCarousel.php:30 | documented
+- ForumsActivity | plugins/elementor/widgets/Buddypress/ForumsActivity.php:32 | documented
+
+## Admin Classes
+- Wbcom_Shared_Loader | includes/shared-admin/class-wbcom-shared-loader.php:12 | documented
+- Wbcom_Shared_Dashboard | includes/shared-admin/class-wbcom-shared-dashboard.php:12 | documented
+- Wbcom_Essential_Widget_Showcase | admin/class-wbcom-essential-widget-showcase.php:17 | documented

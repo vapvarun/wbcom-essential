@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.0.2
+Stable tag: 4.2.0
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -98,6 +98,22 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.2.0 =
+* Major Release: All 45 Gutenberg blocks production-ready
+* Added: AJAX handler for Mark as Read notifications in header bar
+* Added: Architecture documentation (docs/architecture/)
+* Fixed: Header bar dark mode icon visibility
+* Fixed: Header bar cart and search UI improvements
+* Fixed: Header bar friend list action button UI
+* Fixed: CTA box hover secondary button UI
+* Fixed: Forum box border styling
+* Fixed: Post carousel adaptive height for Slick carousel
+* Fixed: Member carousel Slides to Scroll functionality
+* Fixed: Icon display after backend settings change
+* Fixed: Block build process (npm run build:blocks)
+* Updated: Complete block-to-widget mapping (98% coverage)
+* Updated: Documentation with manifest files
 
 = 4.0.2 =
 * Added: "Use Theme Colors" toggle to all 45 Gutenberg blocks

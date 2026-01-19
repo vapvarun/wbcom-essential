@@ -1,0 +1,25 @@
+# AJAX Handlers Manifest
+# Generated: 2025-01-19
+# Total: 12
+
+## License Management
+- wp_ajax_wbcom_essential_activate_license | license/class-wbcom-essential-license-manager.php:21 | documented
+- wp_ajax_wbcom_essential_deactivate_license | license/class-wbcom-essential-license-manager.php:22 | documented
+- wp_ajax_wbcom_essential_check_license | license/class-wbcom-essential-license-manager.php:23 | documented
+- wp_ajax_save_license_key | license/class-wbcom-essential-license-manager.php:24 | documented
+
+## Login Form Block
+- wp_ajax_nopriv_wbcom_essential_ajax_login | plugins/gutenberg/blocks/login-form/login-form.php:112 | documented
+- wp_ajax_wbcom_essential_ajax_login | plugins/gutenberg/blocks/login-form/login-form.php:113 | documented
+
+## Header Bar Block
+- wp_ajax_buddypress_mark_notification_read | plugins/gutenberg/blocks/header-bar/header-bar.php:135 | documented
+
+## Elementor Templates
+- wp_ajax_wbcom_essential_elementor_sections_get_templates | plugins/elementor/templates/classes/manager.php:62 | documented
+- wp_ajax_wbcom_essential_elementor_sections_inner_template | plugins/elementor/templates/classes/manager.php:63 | documented
+- wp_ajax_elementor_get_template_data | plugins/elementor/templates/classes/manager.php:68 | documented
+
+## Elementor Core
+- wp_ajax_wbcom_essential_dismiss_elementor_notice | plugins/elementor/wbcom-essential-elementor.php:139 | documented
+- wp_ajax_nopriv_wbcom_ajax_login | plugins/elementor/wbcom-essential-elementor.php:476 | documented

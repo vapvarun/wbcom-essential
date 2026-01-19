@@ -1,0 +1,10 @@
+# REST API Endpoints Manifest
+# Generated: 2025-01-19
+# Total: 5
+
+## Gutenberg Block REST Routes
+- GET wbcom-essential/v1/member-types | plugins/gutenberg/blocks/members-lists/members-lists.php:32 | documented
+- GET wbcom-essential/v1/post-categories | plugins/gutenberg/blocks/posts-carousel/posts-carousel.php:98 | documented
+- GET wbcom-essential/v1/nav-menus | plugins/gutenberg/blocks/header-bar/header-bar.php:46 | documented
+- GET wbcom-essential/v1/group-types | plugins/gutenberg/blocks/groups-lists/groups-lists.php:32 | documented
+- GET wbcom-essential/v1/blocks | plugins/gutenberg/wbcom-gutenberg.php:192 | documented

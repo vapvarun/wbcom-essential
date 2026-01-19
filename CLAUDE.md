@@ -3,8 +3,30 @@
 ## Project Overview
 
 **Plugin**: Wbcom Essential
-**Version**: 4.0.2 (development branch)
+**Version**: 4.2.0
 **Purpose**: Companion plugin for BuddyX theme providing Elementor widgets and Gutenberg blocks for BuddyPress, WooCommerce, and general WordPress functionality.
+
+## Architecture Documentation
+
+Full architecture documentation available in `docs/architecture/`:
+- [PLUGIN_ARCHITECTURE.md](docs/architecture/PLUGIN_ARCHITECTURE.md) - Complete reference
+- [FINAL_REPORT.md](docs/architecture/FINAL_REPORT.md) - Validation report
+- [manifest/](docs/architecture/manifest/) - Index files (classes, blocks, hooks, etc.)
+
+## Recent Changes
+
+| Date | Description |
+|------|-------------|
+| 2026-01-14 | Fix hover secondary button UI with cta box block |
+| 2026-01-14 | Fix block failed during npm run build:blocks |
+| 2026-01-14 | Manage header bar friend list action button UI |
+| 2026-01-14 | Fix icon is not showing after being changed in backend |
+| 2026-01-13 | fix(header-bar): Add AJAX handler for Mark as Read notifications |
+| 2026-01-13 | Fix forum box border is not working |
+| 2026-01-13 | Manage header bar cart and search UI |
+| 2026-01-13 | fix(header-bar): Dark mode icon visibility improvements |
+| 2026-01-13 | fix(post-carousel): enable adaptive height for Slick carousel |
+| 2026-01-13 | Manage member carousel Slides to Scroll |
 
 ## Project Management
 

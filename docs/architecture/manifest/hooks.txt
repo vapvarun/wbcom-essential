@@ -1,0 +1,47 @@
+# Hooks Manifest (Actions & Filters)
+# Generated: 2025-01-19
+
+## Custom Action Hooks (Plugin-specific)
+- wbcom_essential/init | Core initialization
+- wbcom_essential/widget/branding/settings | Branding widget settings
+- wbcom_essential/widget/groups-grid/settings | Groups grid settings
+- wbcom_essential/widget/groups-listing/settings | Groups listing settings
+- wbcom_essential/widget/members-listing/settings | Members listing settings
+- wbcom_essential_header_user_menu_items | Header user menu items
+- wbcom_essential_branding_elementor_controls | Branding Elementor controls
+- wbcom-essential-elementor-templates/types/register | Template types registration
+- wbcom_recaptcha_login_form | reCAPTCHA login form
+- wbcom_addon_after_price | WooCommerce price addon
+- wbcom_universal_before_title | Universal product before title
+- wbcom_universal_after_title | Universal product after title
+- wbcom_universal_before_price | Universal product before price
+- wbcom_universal_after_price | Universal product after price
+- wbtm_bp_directory_groups_data | BuddyPress groups directory data
+- wbtm_before_group_avatar_group_directory | Before group avatar
+
+## Custom Filter Hooks (Plugin-specific)
+- wbcom_essential/get_elements | Get registered elements
+- wbcom_essential/members-loop/before/template | Members loop before template
+- wbcom_essential/members-loop/after/template | Members loop after template
+- wbcom_essential/groups-loop/before/template | Groups loop before template
+- wbcom_essential/groups-loop/after/template | Groups loop after template
+- wbcom_essential_login_lost_password_url | Login lost password URL
+- wbcom_essential_login_register_url | Login register URL
+- wbcom_essential_user_progress_formatted | Profile progress formatted
+- wbcom_essential_locate_template | Template location
+- wbcom_essential_posts_revolution_elementor_thumbs | Posts revolution thumbs
+- wbcom_essential_posts_revolution_elementor_format_icon | Posts revolution format icon
+- wbcom_taxonomy_list_options | Taxonomy list options
+- wbcom_post_name_query_args | Post name query args
+- wbcom_post_name_options | Post name options
+- wbcom_product_query_args | Product query args
+- wbcom_default_html_tag | Default HTML tag
+- wbcom_show_custom_product_badge | Show custom product badge
+- wbcom_custom_saleflash_text | Custom sale flash text
+- wbcom_sale_badge_text | Sale badge text
+- wbcom_shop_out_of_stock_text | Out of stock text
+- wbcom_submenu_label | Submenu label
+- wbcom_ele_notification_login_url | Elementor notification login URL
+- wbcom_ele_notification_registration_url | Elementor notification registration URL
+- wba_number_of_users_per_query | Number of users per query
+- reign_notification_area_output | Notification area output
