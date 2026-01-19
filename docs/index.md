@@ -1,6 +1,6 @@
 # WBcom Essential Documentation
 
-Build stunning WordPress sites with **43 Elementor widgets** and **45 Gutenberg blocks** for BuddyPress communities, WooCommerce stores, and content-rich websites.
+Build stunning WordPress sites with **45 Gutenberg blocks** and **43 Elementor widgets** for BuddyPress communities, WooCommerce stores, and content-rich websites.
 
 **Version 4.2.0** | Perfect companion for BuddyX, BuddyX Pro & Reign themes
 
@@ -10,39 +10,16 @@ Build stunning WordPress sites with **43 Elementor widgets** and **45 Gutenberg 
 
 | I want to... | Go to |
 |--------------|-------|
-| Install the plugin | [Installation Guide](./installation.md) |
-| Verify everything is working | [After Installation Checklist](./after-installation.md) |
+| Install the plugin | [Installation](./installation.md) |
+| Verify everything works | [After Installation](./after-installation.md) |
 | Find the right block for my needs | [Solution Finder](./solution-finder.md) |
 | Build my first page | [Getting Started](./getting-started.md) |
-| Avoid common mistakes | [Common Mistakes Guide](./common-mistakes.md) |
-| Use with BuddyX theme | [BuddyX Integration](./themes/buddyx.md) |
-| Use with BuddyX Pro theme | [BuddyX Pro Integration](./themes/buddyx-pro.md) |
-| Use with Reign theme | [Reign Integration](./themes/reign.md) |
-| Learn about a specific block | [Block Reference](./blocks-guide.md) |
-| Learn about a specific widget | [Widget Reference](./widgets-guide.md) |
-| Set up BuddyPress features | [BuddyPress Integration](./integrations/buddypress.md) |
-| Set up WooCommerce features | [WooCommerce Integration](./integrations/woocommerce.md) |
-| Use Theme Colors feature | [Theme Colors Guide](./features/theme-colors.md) |
-
----
-
-## Why WBcom Essential?
-
-WBcom Essential is the **official companion plugin** for WBcom themes, providing:
-
-- **45 Gutenberg Blocks** - Native WordPress blocks for the block editor and Full Site Editing
-- **43 Elementor Widgets** - Drag-and-drop widgets with advanced styling controls
-- **BuddyPress Integration** - 11 dedicated blocks/widgets for community features
-- **WooCommerce Integration** - Product grids, mini cart, and e-commerce elements
-- **Theme Color System** - Automatic color inheritance from your theme
-
-### Perfect For
-
-| Theme | Integration |
-|-------|-------------|
-| **BuddyX** | Full integration with community layouts |
-| **BuddyX Pro** | Premium features and advanced customization |
-| **Reign** | Multi-purpose design with BuddyPress/WooCommerce support |
+| Avoid common mistakes | [Common Mistakes](./common-mistakes.md) |
+| Learn about Gutenberg blocks | [All Blocks](./blocks/index.md) |
+| Learn about Elementor widgets | [All Widgets](./widgets/index.md) |
+| Use with BuddyX theme | [BuddyX Guide](./themes/buddyx.md) |
+| Use with BuddyX Pro theme | [BuddyX Pro Guide](./themes/buddyx-pro.md) |
+| Use with Reign theme | [Reign Guide](./themes/reign.md) |
 
 ---
 
@@ -50,123 +27,49 @@ WBcom Essential is the **official companion plugin** for WBcom themes, providing
 
 ### Gutenberg Blocks (45)
 
-Native WordPress blocks that work without Elementor. Perfect for the block editor and Full Site Editing.
+Native WordPress blocks for the block editor. No Elementor required!
 
 | Category | Blocks | What You Can Build |
 |----------|--------|-------------------|
-| **Header** | 4 | Site branding, navigation, mega menus |
-| **Design** | 14 | Sliders, carousels, flip boxes, shapes |
-| **Content** | 8 | Accordions, tabs, timelines, forms |
-| **Blog** | 8 | Post grids, sliders, tickers, timelines |
-| **Marketing** | 4 | Pricing tables, CTAs, testimonials |
-| **BuddyPress** | 11 | Member grids, group carousels, forums |
-| **WooCommerce** | 2 | Product grids, mini cart |
+| [Header](./blocks/header.md) | 4 | Site branding, navigation, user menus |
+| [Design](./blocks/design.md) | 14 | Sliders, counters, icons, animations |
+| [Content](./blocks/content.md) | 8 | Accordions, tabs, timelines, forms |
+| [Blog](./blocks/blog.md) | 6 | Post carousels, sliders, tickers |
+| [Marketing](./blocks/marketing.md) | 4 | Pricing tables, CTAs, testimonials |
+| [BuddyPress](./blocks/buddypress.md) | 11 | Members, groups, forums |
+| [WooCommerce](./blocks/woocommerce.md) | 2 | Products, mini cart |
 
-[View Complete Block Reference](./blocks-guide.md)
+[Browse All Blocks →](./blocks/index.md)
 
 ### Elementor Widgets (43)
 
-Drag-and-drop widgets for the Elementor page builder with advanced styling controls.
+Drag-and-drop widgets with advanced styling controls.
 
 | Category | Widgets | What You Can Build |
 |----------|---------|-------------------|
-| **General** | 27 | Sliders, carousels, accordions, forms |
-| **BuddyPress** | 11 | Community pages, member directories |
-| **WooCommerce** | 5 | Product showcases, testimonials |
+| [General](./widgets/general.md) | 27 | Sliders, carousels, forms, layouts |
+| [BuddyPress](./widgets/buddypress.md) | 11 | Community pages, member directories |
+| [WooCommerce](./widgets/woocommerce.md) | 5 | Product showcases, reviews |
 
-[View Complete Widget Reference](./widgets-guide.md)
-
----
-
-## Documentation Sections
-
-### Getting Started
-
-New to WBcom Essential? Start here.
-
-- **[Installation](./installation.md)** - System requirements and setup
-- **[After Installation Checklist](./after-installation.md)** - Verify everything works
-- **[Getting Started](./getting-started.md)** - Build your first page in 10 minutes
-- **[Solution Finder](./solution-finder.md)** - Find the right block for your needs
-- **[Common Mistakes](./common-mistakes.md)** - Avoid pitfalls and build better
-- **[FAQ](./faq.md)** - Common questions answered
-
-### Theme Integration
-
-Optimize WBcom Essential for your theme.
-
-- **[BuddyX Theme](./themes/buddyx.md)** - Community-focused layouts
-- **[BuddyX Pro Theme](./themes/buddyx-pro.md)** - Premium community features
-- **[Reign Theme](./themes/reign.md)** - Multi-purpose design integration
-
-### Features
-
-Learn about key features that make WBcom Essential powerful.
-
-- **[Theme Colors](./features/theme-colors.md)** - Automatic color inheritance from your theme
-- **[Responsive Design](./features/responsive.md)** - Mobile-first approach
-- **[Performance](./features/performance.md)** - Optimized loading and caching
-
-### Block & Widget Reference
-
-Detailed documentation for every block and widget.
-
-- **[All Gutenberg Blocks](./blocks-guide.md)** - Complete reference for 45 blocks
-- **[All Elementor Widgets](./widgets-guide.md)** - Complete reference for 43 widgets
-
-### Integrations
-
-Connect WBcom Essential with other plugins.
-
-- **[BuddyPress Integration](./integrations/buddypress.md)** - Build community sites (includes bbPress forums)
-- **[WooCommerce Integration](./integrations/woocommerce.md)** - Build online stores
-
-### Tutorials
-
-Step-by-step guides for common projects.
-
-- **[Building a Landing Page](./tutorials/landing-page.md)** - Hero, features, testimonials, CTA
-- **[Creating a Community Site](./tutorials/community-site.md)** - Members, groups, activity
-- **[Setting Up an Online Store](./tutorials/online-store.md)** - Products, cart, checkout
+[Browse All Widgets →](./widgets/index.md)
 
 ---
 
-## Version Information
+## Getting Started
 
-| | |
-|-----------------|-------|
-| **Current Version** | 4.2.0 |
-| **WordPress Required** | 6.0+ |
-| **PHP Required** | 8.0+ |
-| **Elementor Required** | 3.0+ (for widgets) |
-| **Last Updated** | January 2026 |
+New to WBcom Essential? Start here:
 
-### What's New in 4.2.0
-
-This major release marks the completion of all 45 Gutenberg blocks with full production readiness:
-
-- **All 45 Blocks Production-Ready** - Complete feature parity with Elementor widgets
-- **Theme Colors Toggle** - All blocks inherit theme colors automatically
-- **Architecture Documentation** - Full developer documentation
-- **Header Bar Improvements** - Dark mode, cart, search, notifications
-- **Carousel Enhancements** - Adaptive height, slides to scroll controls
-- **Bug Fixes** - CTA box, forum box, icon display, build process
-
-[View Full Changelog](./changelog.md)
+1. **[Installation](./installation.md)** - System requirements and setup
+2. **[After Installation](./after-installation.md)** - Verify everything works
+3. **[Getting Started](./getting-started.md)** - Build your first page
+4. **[Solution Finder](./solution-finder.md)** - Find the right block
+5. **[Common Mistakes](./common-mistakes.md)** - Avoid pitfalls
 
 ---
 
-## Support
+## Theme Integration
 
-- **Documentation**: You're here
-- **Support Tickets**: [developer.wbcomdesigns.com/support/](https://developer.wbcomdesigns.com/support/)
-- **Community**: [developer.wbcomdesigns.com/community/](https://developer.wbcomdesigns.com/community/)
-
----
-
-## Recommended Themes
-
-WBcom Essential is designed to work perfectly with these themes:
+WBcom Essential works best with these themes:
 
 ### BuddyX (Free)
 
@@ -175,9 +78,8 @@ Community-focused theme with BuddyPress integration.
 - Member profiles and directories
 - Group pages and activity streams
 - Forum integration with bbPress
-- WooCommerce support
 
-[Learn More](./themes/buddyx.md) | [Download](https://developer.wbcomdesigns.com/themes/buddyx/)
+[BuddyX Guide →](./themes/buddyx.md)
 
 ### BuddyX Pro (Premium)
 
@@ -185,10 +87,9 @@ Premium version with advanced community features.
 
 - Multiple layout options
 - Advanced header builder
-- Premium BuddyPress features
 - LearnDash integration
 
-[Learn More](./themes/buddyx-pro.md) | [Purchase](https://developer.wbcomdesigns.com/themes/buddyx-pro/)
+[BuddyX Pro Guide →](./themes/buddyx-pro.md)
 
 ### Reign (Premium)
 
@@ -197,6 +98,58 @@ Multi-purpose theme for communities and marketplaces.
 - BuddyPress + WooCommerce integration
 - Social marketplace features
 - Multiple demo imports
-- Elementor full compatibility
 
-[Learn More](./themes/reign.md) | [Purchase](https://developer.wbcomdesigns.com/themes/reign/)
+[Reign Guide →](./themes/reign.md)
+
+---
+
+## Features
+
+- **[Theme Colors](./features/theme-colors.md)** - Automatic color inheritance
+- **[Responsive Design](./features/responsive.md)** - Mobile-first approach
+- **[Performance](./features/performance.md)** - Optimized for speed
+
+---
+
+## Plugin Integrations
+
+- **[BuddyPress](./integrations/buddypress.md)** - Community features (Members, Groups, Forums)
+- **[WooCommerce](./integrations/woocommerce.md)** - E-commerce features
+
+---
+
+## Tutorials
+
+Step-by-step guides for common projects:
+
+- **[Building a Landing Page](./tutorials/landing-page.md)**
+- **[Creating a Community Site](./tutorials/community-site.md)**
+- **[Setting Up an Online Store](./tutorials/online-store.md)**
+
+---
+
+## FAQ & Troubleshooting
+
+- **[Frequently Asked Questions](./faq.md)**
+- **[Common Mistakes](./common-mistakes.md)**
+
+---
+
+## Version Information
+
+| | |
+|-----------------|-------|
+| Current Version | 4.2.0 |
+| WordPress Required | 6.0+ |
+| PHP Required | 8.0+ |
+| Elementor Required | 3.0+ (for widgets) |
+
+[View Changelog →](./changelog.md)
+
+---
+
+## Support
+
+- **Documentation**: You're here!
+- **Support Tickets**: [developer.wbcomdesigns.com/support/](https://developer.wbcomdesigns.com/support/)
+- **Community**: [developer.wbcomdesigns.com/community/](https://developer.wbcomdesigns.com/community/)
