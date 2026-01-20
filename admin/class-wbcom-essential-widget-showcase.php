@@ -245,9 +245,9 @@ class Wbcom_Essential_Widget_Showcase {
 								<h3><?php esc_html_e( 'Gutenberg Blocks', 'wbcom-essential' ); ?></h3>
 								<p><?php esc_html_e( 'Works natively with the WordPress Block Editor. No page builder required.', 'wbcom-essential' ); ?></p>
 								<ul>
-									<li><?php esc_html_e( '21 General blocks (Accordion, Tabs, Slider, etc.)', 'wbcom-essential' ); ?></li>
+									<li><?php esc_html_e( '26 General blocks (Accordion, Tabs, Slider, etc.)', 'wbcom-essential' ); ?></li>
 									<li><?php esc_html_e( '11 BuddyPress blocks (Members, Groups, Forums)', 'wbcom-essential' ); ?></li>
-									<li><?php esc_html_e( '6 Post blocks (Carousel, Timeline, Ticker)', 'wbcom-essential' ); ?></li>
+									<li><?php esc_html_e( '8 Blog blocks (Carousel, Timeline, Ticker)', 'wbcom-essential' ); ?></li>
 								</ul>
 							</div>
 							<div class="wbcom-feature">
@@ -321,7 +321,7 @@ class Wbcom_Essential_Widget_Showcase {
 						<h3><?php esc_html_e( 'Need Help?', 'wbcom-essential' ); ?></h3>
 						<ul>
 							<li>
-								<a href="https://docs.wbcomdesigns.com/wbcom-essential/" target="_blank">
+								<a href="https://docs.wbcomdesigns.com/docs/wbcom-essential/" target="_blank">
 									<span class="dashicons dashicons-book"></span>
 									<?php esc_html_e( 'Documentation', 'wbcom-essential' ); ?>
 								</a>
@@ -333,7 +333,7 @@ class Wbcom_Essential_Widget_Showcase {
 								</a>
 							</li>
 							<li>
-								<a href="https://developer.wbcomdesigns.com/changelog/wbcom-essential/" target="_blank">
+								<a href="https://docs.wbcomdesigns.com/docs/wbcom-essential/changelog/" target="_blank">
 									<span class="dashicons dashicons-backup"></span>
 									<?php esc_html_e( 'Changelog', 'wbcom-essential' ); ?>
 								</a>
@@ -349,7 +349,7 @@ class Wbcom_Essential_Widget_Showcase {
 							<li><strong>BuddyX Pro</strong> - <?php esc_html_e( 'Premium features', 'wbcom-essential' ); ?></li>
 							<li><strong>Reign</strong> - <?php esc_html_e( 'Community theme', 'wbcom-essential' ); ?></li>
 						</ul>
-						<a href="https://developer.wbcomdesigns.com/themes/" target="_blank" class="wbcom-btn">
+						<a href="https://wbcomdesigns.com/themes/" target="_blank" class="wbcom-btn">
 							<?php esc_html_e( 'View Themes', 'wbcom-essential' ); ?>
 						</a>
 					</div>
@@ -389,7 +389,7 @@ class Wbcom_Essential_Widget_Showcase {
 	 */
 	private function get_stats() {
 		return array(
-			'blocks'  => 38,
+			'blocks'  => 45,
 			'widgets' => 43,
 		);
 	}

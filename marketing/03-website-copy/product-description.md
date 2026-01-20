@@ -118,7 +118,7 @@ Toggle "Use Theme Colors" and blocks match your theme automatically. Works with 
 * Optional: WooCommerce 7.0+ (for WC blocks)
 
 = Documentation =
-Full documentation available at [developer.wbcomdesigns.com](https://developer.wbcomdesigns.com/)
+Full documentation available at [docs.wbcomdesigns.com](https://docs.wbcomdesigns.com/docs/wbcom-essential/)
 
 ---
 

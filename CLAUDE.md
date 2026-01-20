@@ -17,6 +17,7 @@ Full architecture documentation available in `docs/architecture/`:
 
 | Date | Description |
 |------|-------------|
+| 2026-01-20 | Fix admin page: block count 38→45, fix URLs (developer.wbcomdesigns.com→correct domains) |
 | 2026-01-14 | Fix hover secondary button UI with cta box block |
 | 2026-01-14 | Fix block failed during npm run build:blocks |
 | 2026-01-14 | Manage header bar friend list action button UI |

@@ -190,7 +190,7 @@ class Wbcom_Shared_Dashboard
             <p class="about-description" style="color: #515b67; font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
                 <?php esc_html_e('Your central hub for managing premium WordPress and BuddyPress solutions. At Wbcom Designs, we specialize in creating powerful community plugins, custom development services, and comprehensive support solutions. Our Care Plan ensures your site stays optimized and secure with priority support, regular updates, and expert maintenance.', 'wbcom-essential'); ?>
             </p>
-            <div class="wbcom-care-plan-notice" style="background: linear-gradient(135deg, #dc3545 0%, #e85d6b 100%); color: white; padding: 30px; border-radius: 12px; margin: 25px 0; box-shadow: 0 8px 25px rgba(220, 53, 69, 0.25); border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
+            <div class="wbcom-care-plan-notice" style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%); color: white; padding: 30px; border-radius: 12px; margin: 25px 0; box-shadow: 0 8px 25px rgba(44, 82, 130, 0.25); border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
                 <!-- Security Shield Background Pattern -->
                 <div style="position: absolute; top: -20px; right: -20px; opacity: 0.1; font-size: 120px; transform: rotate(15deg);">🛡️</div>
 
@@ -209,10 +209,10 @@ class Wbcom_Shared_Dashboard
 
                         <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
                             <a href="https://wbcomdesigns.com/start-a-project/" target="_blank"
-                                style="background: #fff; color: #dc3545; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; border: none;"
+                                style="background: #fff; color: #2c5282; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; border: none;"
                                 onmouseover="this.style.background='#f8f9fa'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.3)'"
                                 onmouseout="this.style.background='#fff'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)'">
-                                <span style="background: linear-gradient(135deg, #dc3545, #e85d6b); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px;">📞</span>
+                                <span style="background: linear-gradient(135deg, #2c5282, #1e3a5f); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px;">📞</span>
                                 <?php esc_html_e('Schedule Free Consultation', 'wbcom-essential'); ?>
                             </a>
 
@@ -229,10 +229,10 @@ class Wbcom_Shared_Dashboard
                 <div class="wbcom-welcome-panel-column">
                     <h3 style="color: #153045; font-size: 18px; font-weight: 600; margin: 0 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid #f0f0f1;"><?php esc_html_e('Our Services', 'wbcom-essential'); ?></h3>
                     <div class="wbcom-action-list" style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="https://wbcomdesigns.com/downloads/wordpress-care-plans/" target="_blank" style="display: block; background: linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%); color: #ffffff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(29, 118, 218, 0.2);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(29, 118, 218, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(29, 118, 218, 0.2)';"><?php esc_html_e('Get Care Plan', 'wbcom-essential'); ?></a>
-                        <a href="https://wbcomdesigns.com/plugins/" target="_blank" style="display: block; background: #fff; border: 1px solid #1d76da; color: #1d76da; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#f0f4ff'; this.style.borderColor='#0e62c3'; this.style.color='#0e62c3';" onmouseout="this.style.background='#fff'; this.style.borderColor='#1d76da'; this.style.color='#1d76da';"><?php esc_html_e('Premium Plugins', 'wbcom-essential'); ?></a>
-                        <a href="https://wbcomdesigns.com/start-a-project/" target="_blank" style="display: block; background: #fff; border: 1px solid #1d76da; color: #1d76da; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#f0f4ff'; this.style.borderColor='#0e62c3'; this.style.color='#0e62c3';" onmouseout="this.style.background='#fff'; this.style.borderColor='#1d76da'; this.style.color='#1d76da';"><?php esc_html_e('Custom Development', 'wbcom-essential'); ?></a>
-                        <a href="https://wbcomdesigns.com/support/" target="_blank" style="display: block; background: #fff; border: 1px solid #1d76da; color: #1d76da; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#f0f4ff'; this.style.borderColor='#0e62c3'; this.style.color='#0e62c3';" onmouseout="this.style.background='#fff'; this.style.borderColor='#1d76da'; this.style.color='#1d76da';"><?php esc_html_e('Get Support', 'wbcom-essential'); ?></a>
+                        <a href="https://wbcomdesigns.com/downloads/wordpress-care-plans/" target="_blank" style="display: block; background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%); color: #ffffff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(44, 82, 130, 0.2);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(44, 82, 130, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(44, 82, 130, 0.2)';"><?php esc_html_e('Get Care Plan', 'wbcom-essential'); ?></a>
+                        <a href="https://wbcomdesigns.com/plugins/" target="_blank" style="display: block; background: #fff; border: 1px solid #2c5282; color: #2c5282; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#f0f4ff'; this.style.borderColor='#1e3a5f'; this.style.color='#1e3a5f';" onmouseout="this.style.background='#fff'; this.style.borderColor='#2c5282'; this.style.color='#2c5282';"><?php esc_html_e('Premium Plugins', 'wbcom-essential'); ?></a>
+                        <a href="https://wbcomdesigns.com/start-a-project/" target="_blank" style="display: block; background: #fff; border: 1px solid #2c5282; color: #2c5282; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#f0f4ff'; this.style.borderColor='#1e3a5f'; this.style.color='#1e3a5f';" onmouseout="this.style.background='#fff'; this.style.borderColor='#2c5282'; this.style.color='#2c5282';"><?php esc_html_e('Custom Development', 'wbcom-essential'); ?></a>
+                        <a href="https://wbcomdesigns.com/support/" target="_blank" style="display: block; background: #fff; border: 1px solid #2c5282; color: #2c5282; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#f0f4ff'; this.style.borderColor='#1e3a5f'; this.style.color='#1e3a5f';" onmouseout="this.style.background='#fff'; this.style.borderColor='#2c5282'; this.style.color='#2c5282';"><?php esc_html_e('Get Support', 'wbcom-essential'); ?></a>
                     </div>
                 </div>
 
@@ -240,17 +240,17 @@ class Wbcom_Shared_Dashboard
                     <h3 style="color: #153045; font-size: 18px; font-weight: 600; margin: 0 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid #f0f0f1;"><?php esc_html_e('System Status', 'wbcom-essential'); ?></h3>
                     <div class="wbcom-system-status" style="display: flex; flex-direction: column; gap: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
-                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo version_compare(get_bloginfo('version'), '5.0', '>=') ? '#1d76da' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
+                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo version_compare(get_bloginfo('version'), '5.0', '>=') ? '#2c5282' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('WordPress Version', 'wbcom-essential'); ?></span>
                             <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo esc_html( get_bloginfo('version') ); ?></span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
-                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo function_exists('buddypress') ? '#1d76da' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
+                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo function_exists('buddypress') ? '#2c5282' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('BuddyPress', 'wbcom-essential'); ?></span>
                             <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo function_exists('buddypress') ? esc_html__('Active', 'wbcom-essential') : esc_html__('Inactive', 'wbcom-essential'); ?></span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
-                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo defined('WP_DEBUG') && WP_DEBUG ? '#e74c3c' : '#1d76da'; ?>; flex-shrink: 0;"></span>
+                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo defined('WP_DEBUG') && WP_DEBUG ? '#e74c3c' : '#2c5282'; ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('Production Mode', 'wbcom-essential'); ?></span>
                             <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo defined('WP_DEBUG') && WP_DEBUG ? esc_html__('Debug On', 'wbcom-essential') : esc_html__('Active', 'wbcom-essential'); ?></span>
                         </div>
@@ -275,11 +275,11 @@ class Wbcom_Shared_Dashboard
             <?php if (empty($this->registered_plugins)) : ?>
                 <div class="wbcom-no-plugins" style="background: #fff; border: 1px solid #e1e5e9; border-radius: 12px; padding: 60px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.07);">
                     <div class="no-plugins-icon">
-                        <span class="dashicons dashicons-admin-plugins" style="font-size: 64px; color: #1d76da; margin-bottom: 20px;"></span>
+                        <span class="dashicons dashicons-admin-plugins" style="font-size: 64px; color: #2c5282; margin-bottom: 20px;"></span>
                     </div>
                     <h3 style="color: #153045; font-size: 20px; font-weight: 600; margin: 0 0 12px 0;"><?php esc_html_e('No Wbcom Plugins Found', 'wbcom-essential'); ?></h3>
                     <p style="color: #515b67; font-size: 15px; line-height: 1.6; margin: 0 0 24px 0;"><?php esc_html_e('Looks like you haven\'t installed any Wbcom Designs plugins yet.', 'wbcom-essential'); ?></p>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=wbcom-designs&tab=premium')); ?>" style="display: inline-block; background: linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%); color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(29, 118, 218, 0.3);" onmouseover="this.style.background='linear-gradient(135deg, #0e62c3 0%, #1d76da 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(29, 118, 218, 0.4)';" onmouseout="this.style.background='linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(29, 118, 218, 0.3)';">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wbcom-designs&tab=premium')); ?>" style="display: inline-block; background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%); color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);" onmouseover="this.style.background='linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)';" onmouseout="this.style.background='linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(44, 82, 130, 0.3)';">
                         <?php esc_html_e('Browse Premium Plugins', 'wbcom-essential'); ?>
                     </a>
                 </div>
@@ -349,7 +349,7 @@ class Wbcom_Shared_Dashboard
                                     <?php endif; ?>
                                 </div>
                                 <div style="flex-shrink: 0; margin-left: 20px;">
-                                    <span class="price-amount" style="font-size: 24px; font-weight: 800; color: #1d76da; background: linear-gradient(135deg, #faf9ff 0%, #f0f4ff 100%); padding: 8px 16px; border-radius: 8px; border: 2px solid #1d76da; display: inline-block; min-width: 80px; text-align: center;">
+                                    <span class="price-amount" style="font-size: 24px; font-weight: 800; color: #2c5282; background: linear-gradient(135deg, #faf9ff 0%, #f0f4ff 100%); padding: 8px 16px; border-radius: 8px; border: 2px solid #2c5282; display: inline-block; min-width: 80px; text-align: center;">
                                         <?php echo esc_html($plugin['price']); ?>
                                     </span>
                                 </div>
@@ -365,7 +365,7 @@ class Wbcom_Shared_Dashboard
                                 <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
                                     <?php foreach ($plugin['features'] as $feature) : ?>
                                         <li style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #153045; padding: 6px 0;">
-                                            <span class="dashicons dashicons-yes" style="color: #1d76da; font-size: 16px; flex-shrink: 0;"></span>
+                                            <span class="dashicons dashicons-yes" style="color: #2c5282; font-size: 16px; flex-shrink: 0;"></span>
                                             <span><?php echo esc_html($feature); ?></span>
                                         </li>
                                     <?php endforeach; ?>
@@ -373,7 +373,7 @@ class Wbcom_Shared_Dashboard
                             </div>
 
                             <?php if (isset($plugin['highlight'])) : ?>
-                                <div class="plugin-highlight" style="background: linear-gradient(135deg, #faf9ff 0%, #f0f4ff 100%); color: #153045; padding: 16px; border-radius: 10px; margin-bottom: 20px; text-align: center; border: 2px solid #1d76da;">
+                                <div class="plugin-highlight" style="background: linear-gradient(135deg, #faf9ff 0%, #f0f4ff 100%); color: #153045; padding: 16px; border-radius: 10px; margin-bottom: 20px; text-align: center; border: 2px solid #2c5282;">
                                     <p style="margin: 0; font-size: 14px; font-weight: 600; line-height: 1.4;">
                                         ⭐ <?php echo esc_html($plugin['highlight']); ?>
                                     </p>
@@ -382,9 +382,9 @@ class Wbcom_Shared_Dashboard
 
                             <div class="plugin-actions" style="margin-top: 20px;">
                                 <a href="<?php echo esc_url($plugin['url']); ?>" target="_blank" rel="noopener"
-                                    style="display: block; width: 100%; background: linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%); color: #ffffff; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(29, 118, 218, 0.3);"
-                                    onmouseover="this.style.background='linear-gradient(135deg, #0e62c3 0%, #1d76da 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(29, 118, 218, 0.4)';"
-                                    onmouseout="this.style.background='linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(29, 118, 218, 0.3)';">
+                                    style="display: block; width: 100%; background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%); color: #ffffff; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);"
+                                    onmouseover="this.style.background='linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)';"
+                                    onmouseout="this.style.background='linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(44, 82, 130, 0.3)';">
                                     Get <?php echo esc_html($plugin['name']); ?>
                                 </a>
                             </div>
@@ -396,9 +396,9 @@ class Wbcom_Shared_Dashboard
             <div class="premium-footer">
                 <p class="center-text">
                     <a href="https://wbcomdesigns.com/plugins/" target="_blank" rel="noopener"
-                        style="display: inline-block; background: linear-gradient(135deg, rgb(29, 118, 218) 0%, rgb(60, 140, 230) 100%); color: rgb(255, 255, 255); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: rgba(29, 118, 218, 0.3) 0px 4px 12px; transform: translateY(0px);"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(29, 118, 218, 0.4)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(29, 118, 218, 0.3)'">
+                        style="display: inline-block; background: linear-gradient(135deg, rgb(29, 118, 218) 0%, rgb(60, 140, 230) 100%); color: rgb(255, 255, 255); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: rgba(44, 82, 130, 0.3) 0px 4px 12px; transform: translateY(0px);"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(44, 82, 130, 0.3)'">
                         <?php esc_html_e('Browse All Premium Plugins', 'wbcom-essential'); ?>
                         <span class="dashicons dashicons-external" style="vertical-align: middle; margin-left: 5px;"></span>
                     </a>
@@ -441,7 +441,7 @@ class Wbcom_Shared_Dashboard
                                 </div>
 
                                 <div style="flex-shrink: 0; margin-left: 20px;">
-                                    <span class="price-amount" style="font-size: 24px; font-weight: 800; color: #1d76da; background: linear-gradient(135deg, #faf9ff 0%, #f0f4ff 100%); padding: 8px 16px; border-radius: 8px; border: 2px solid #1d76da; display: inline-block; min-width: 80px; text-align: center;">
+                                    <span class="price-amount" style="font-size: 24px; font-weight: 800; color: #2c5282; background: linear-gradient(135deg, #faf9ff 0%, #f0f4ff 100%); padding: 8px 16px; border-radius: 8px; border: 2px solid #2c5282; display: inline-block; min-width: 80px; text-align: center;">
                                         <?php echo esc_html($theme['price']); ?>
                                     </span>
                                 </div>
@@ -457,7 +457,7 @@ class Wbcom_Shared_Dashboard
                                 <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
                                     <?php foreach ($theme['features'] as $feature) : ?>
                                         <li style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #153045; padding: 6px 0;">
-                                            <span class="dashicons dashicons-yes" style="color: #1d76da; font-size: 16px; flex-shrink: 0;"></span>
+                                            <span class="dashicons dashicons-yes" style="color: #2c5282; font-size: 16px; flex-shrink: 0;"></span>
                                             <span><?php echo esc_html($feature); ?></span>
                                         </li>
                                     <?php endforeach; ?>
@@ -466,8 +466,8 @@ class Wbcom_Shared_Dashboard
 
                             <div class="theme-actions" style="display: flex; flex-direction: column; gap: 8px; margin-top: 20px;">
                                 <a href="<?php echo esc_url($theme['url']); ?>" target="_blank" rel="noopener"
-                                    style="width: 100%; background: linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%); color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; transition: all 0.3s ease; box-sizing: border-box;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(29, 118, 218, 0.4)';"
+                                    style="width: 100%; background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%); color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; transition: all 0.3s ease; box-sizing: border-box;"
+                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)';"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
                                     View Theme
                                 </a>
@@ -480,9 +480,9 @@ class Wbcom_Shared_Dashboard
             <div class="themes-footer">
                 <p class="center-text">
                     <a href="https://wbcomdesigns.com/downloads/category/themes/" target="_blank" rel="noopener"
-                        style="display: inline-block; background: linear-gradient(135deg, rgb(29, 118, 218) 0%, rgb(60, 140, 230) 100%); color: rgb(255, 255, 255); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: rgba(29, 118, 218, 0.3) 0px 4px 12px; transform: translateY(0px);"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(29, 118, 218, 0.4)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(29, 118, 218, 0.3)'">
+                        style="display: inline-block; background: linear-gradient(135deg, rgb(29, 118, 218) 0%, rgb(60, 140, 230) 100%); color: rgb(255, 255, 255); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: rgba(44, 82, 130, 0.3) 0px 4px 12px; transform: translateY(0px);"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(44, 82, 130, 0.3)'">
                         <?php esc_html_e('Browse All Premium Themes', 'wbcom-essential'); ?>
                         <span class="dashicons dashicons-external" style="vertical-align: middle; margin-left: 5px;"></span>
                     </a>
@@ -514,9 +514,9 @@ class Wbcom_Shared_Dashboard
             <div class="news-footer">
                 <p class="center-text">
                     <a href="https://wbcomdesigns.com/blog/" target="_blank" rel="noopener"
-                        style="display: inline-block; background: linear-gradient(135deg, rgb(29, 118, 218) 0%, rgb(60, 140, 230) 100%); color: rgb(255, 255, 255); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: rgba(29, 118, 218, 0.3) 0px 4px 12px; transform: translateY(0px);"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(29, 118, 218, 0.4)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(29, 118, 218, 0.3)'">
+                        style="display: inline-block; background: linear-gradient(135deg, rgb(29, 118, 218) 0%, rgb(60, 140, 230) 100%); color: rgb(255, 255, 255); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: rgba(44, 82, 130, 0.3) 0px 4px 12px; transform: translateY(0px);"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(44, 82, 130, 0.3)'">
                         <?php esc_html_e('Visit Our Blog', 'wbcom-essential'); ?>
                         <span class="dashicons dashicons-external" style="vertical-align: middle; margin-left: 5px;"></span>
                     </a>
@@ -621,7 +621,7 @@ class Wbcom_Shared_Dashboard
             .wbcom-sidebar-widget:hover {
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                 transform: translateY(-2px);
-                border-color: #1d76da;
+                border-color: #2c5282;
             }
 
             .service-header {
@@ -649,9 +649,9 @@ class Wbcom_Shared_Dashboard
                 padding: 3px 8px;
                 border-radius: 12px;
                 letter-spacing: 0.5px;
-                background: linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%);
+                background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%);
                 color: #ffffff;
-                border: 1px solid #1d76da;
+                border: 1px solid #2c5282;
                 flex-shrink: 0;
                 margin-left: 15px;
             }
@@ -662,13 +662,13 @@ class Wbcom_Shared_Dashboard
                 padding: 15px;
                 background: linear-gradient(135deg, #faf9ff 0%, #f0f4ff 100%);
                 border-radius: 8px;
-                border: 2px solid #1d76da;
+                border: 2px solid #2c5282;
             }
 
             .service-pricing .price {
                 font-size: 24px;
                 font-weight: 700;
-                color: #1d76da;
+                color: #2c5282;
                 display: block;
                 min-width: 80px;
             }
@@ -730,29 +730,29 @@ class Wbcom_Shared_Dashboard
             }
 
             .service-btn.primary {
-                background: linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%);
-                border-color: #1d76da;
+                background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%);
+                border-color: #2c5282;
                 color: #fff;
             }
 
             .service-btn.primary:hover {
-                background: linear-gradient(135deg, #0e62c3 0%, #1d76da 100%);
-                border-color: #0e62c3;
+                background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+                border-color: #1e3a5f;
                 transform: translateY(-1px);
-                box-shadow: 0 2px 4px rgba(29, 118, 218, 0.3);
+                box-shadow: 0 2px 4px rgba(44, 82, 130, 0.3);
             }
 
             .service-btn.secondary {
-                background: linear-gradient(135deg, #1d76da 0%, #3c8ce6 100%);
-                border-color: #1d76da;
+                background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%);
+                border-color: #2c5282;
                 color: #fff;
             }
 
             .service-btn.secondary:hover {
-                background: linear-gradient(135deg, #0e62c3 0%, #1d76da 100%);
-                border-color: #0e62c3;
+                background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+                border-color: #1e3a5f;
                 transform: translateY(-1px);
-                box-shadow: 0 2px 4px rgba(29, 118, 218, 0.3);
+                box-shadow: 0 2px 4px rgba(44, 82, 130, 0.3);
             }
 
             .service-btn.outline {

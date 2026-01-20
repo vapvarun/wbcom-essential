@@ -299,7 +299,7 @@ Includes:
 
 ### How do I contact support?
 
-**Support forums:** Available at developer.wbcomdesigns.com/support
+**Support forums:** Available at wbcomdesigns.com/support
 
 Include these details for faster help:
 - WordPress version
@@ -315,7 +315,7 @@ Include these details for faster help:
 
 You can submit bug reports and feature requests through:
 
-1. Support forums at developer.wbcomdesigns.com
+1. Support at wbcomdesigns.com/support
 2. GitHub repository issues (if available)
 
 We regularly review feedback and incorporate improvements into plugin updates.
