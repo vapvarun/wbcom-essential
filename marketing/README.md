@@ -1,4 +1,4 @@
-# WBcom Essential v4.0.2 - Marketing Materials
+# WBcom Essential v4.2.0 - Marketing Materials
 
 Quick reference index for all marketing content.
 
@@ -7,7 +7,7 @@ Quick reference index for all marketing content.
 ## Product Summary
 
 **Product:** WBcom Essential
-**Version:** 4.0.2
+**Version:** 4.2.0
 **Tagline:** Build stunning WordPress sites with blocks and widgets that actually work together.
 
 **What It Is:**

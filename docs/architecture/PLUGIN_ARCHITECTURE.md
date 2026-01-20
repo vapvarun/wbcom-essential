@@ -1,6 +1,6 @@
 # Wbcom Essential - Plugin Architecture
 
-**Version**: 4.0.2
+**Version**: 4.2.0
 **Generated**: 2025-01-19
 **Scope**: Hybrid (Conceptual 95%, Reference 50%)
 

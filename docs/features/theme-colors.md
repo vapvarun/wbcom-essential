@@ -201,7 +201,7 @@ Replace the color values with your brand colors.
 
 ### Toggle Not Appearing
 
-1. **Update the plugin** - Theme colors requires v4.0.2 or later
+1. **Update the plugin** - Theme colors requires v4.2.0 or later
 2. **Check block type** - Only "Starter Pack" blocks have this feature
 3. **Try another block** - If one block has issues, try a different one
 

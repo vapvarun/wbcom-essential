@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 
 	// Project configuration
 	var pluginSlug = 'wbcom-essential';
-	var pluginVersion = '4.0.2';
+	var pluginVersion = '4.2.0';
 
 	grunt.initConfig(
 		{

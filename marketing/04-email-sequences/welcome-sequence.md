@@ -78,7 +78,7 @@ Since you're building a BuddyPress site, here are the 11 blocks you'll want to k
 
 [Screenshot showing Members Grid on a homepage]
 
-Here's a 3-minute video showing how to set up a member directory: [Link]
+Here's a 3-minute video showing how to set up a member directory: https://www.youtube.com/@wbcomdesigns
 
 Building something specific? Reply and let us know—we might have a tutorial for it.
 
@@ -167,7 +167,7 @@ Members Grid + Group Carousel + recent Posts Carousel. Shows an active site to n
 **Templates coming soon:**
 We're working on pre-built page templates. Want to suggest a layout? Reply and let us know.
 
-In the meantime, here's the documentation: [Link]
+In the meantime, here's the documentation: https://docs.wbcomdesigns.com
 
 [Name]
 Wbcom Designs Team
@@ -268,9 +268,9 @@ At this point, you've probably:
 Or maybe you installed it and haven't had time to explore yet. Either way, we're here if you need anything.
 
 **Resources:**
-- Documentation: [Link]
-- Support forums: [Link]
-- Video tutorials: [Link]
+- Documentation: https://docs.wbcomdesigns.com
+- Support forums: https://wbcomdesigns.com/support
+- Video tutorials: https://www.youtube.com/@wbcomdesigns
 
 **Feedback welcome:**
 Reply to this email with any thoughts—what's working, what could be better, what you wish we'd add. We read everything.

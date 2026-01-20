@@ -891,6 +891,6 @@ Each block's PHP file:
 ---
 
 **Last Updated**: January 2025
-**Version**: 4.0.2
+**Version**: 4.2.0
 **Maintained by**: WBCOM Designs
 **Block Development Standards**: WordPress Gutenberg Best Practices

@@ -1,6 +1,6 @@
 # WBcom Essential Documentation
 
-**Version:** 4.0.2
+**Version:** 4.2.0
 **Requires WordPress:** 6.0+
 **Requires PHP:** 8.0+
 **License:** GPL v2 or later

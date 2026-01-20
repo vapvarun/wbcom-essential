@@ -34,7 +34,7 @@ We just shipped [Feature Name] in WBcom Essential v[X.X.X].
 
 [Screenshot or GIF showing the feature]
 
-**Full documentation:** [Link]
+**Full documentation:** https://docs.wbcomdesigns.com
 
 This was one of our most requested features. Thanks to everyone who suggested it.
 
@@ -74,7 +74,7 @@ WBcom Essential v[X.X.X] is available with bug fixes and improvements.
 **How to update:**
 Go to Dashboard → Updates and click "Update Now" for WBcom Essential.
 
-Full changelog: [Link]
+Full changelog: https://wbcomdesigns.com/downloads/wbcom-essential/#changelog
 
 As always, we recommend backing up before updating. Though this is a minor release, backups are good practice.
 
@@ -242,7 +242,7 @@ WBcom Essential v[X.X.X] includes changes that might affect your site. Please re
 You can continue using your current version. However, we recommend updating within [timeframe] for security and compatibility reasons.
 
 **Need help?**
-Reply to this email or submit a support ticket: [Link]
+Reply to this email or submit a support ticket: https://wbcomdesigns.com/support
 
 We don't make breaking changes lightly. This one was necessary for [reason].
 

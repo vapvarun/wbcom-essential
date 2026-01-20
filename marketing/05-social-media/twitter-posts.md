@@ -17,7 +17,7 @@ WBcom Essential gives you 45 Gutenberg blocks including:
 
 Works with any theme. Theme Colors toggle matches your design automatically.
 
-[Link]
+https://wbcomdesigns.com/downloads/wbcom-essential/
 
 ---
 
@@ -30,7 +30,7 @@ Add block → Enable Theme Colors → Done.
 
 Works best with themes using CSS custom properties.
 
-[Link]
+https://wbcomdesigns.com/downloads/wbcom-essential/
 
 ---
 
@@ -43,7 +43,7 @@ WBcom Essential supports both:
 
 Same features, your preferred editor.
 
-[Link]
+https://wbcomdesigns.com/downloads/wbcom-essential/
 
 ---
 
@@ -58,7 +58,7 @@ We built 11 blocks specifically for community sites:
 
 Because your community deserves better layouts.
 
-[Link]
+https://wbcomdesigns.com/downloads/wbcom-essential/
 
 ---
 
@@ -202,7 +202,7 @@ Preview on mobile (columns adjust automatically) and publish.
 
 Professional member directory without code.
 
-Full guide: [Link]
+Full guide: https://wbcomdesigns.com/downloads/wbcom-essential/
 
 ---
 
@@ -231,7 +231,7 @@ Tip: Post Ticker for announcements. Scrolling text draws attention without takin
 ## Release/Update Posts
 
 ### Version Update Template
-WBcom Essential v4.0.2 released.
+WBcom Essential v4.2.0 released.
 
 What's new:
 - [Feature 1]
@@ -240,7 +240,7 @@ What's new:
 
 Update from your WordPress dashboard.
 
-Changelog: [Link]
+Changelog: https://wbcomdesigns.com/downloads/wbcom-essential/
 
 ---
 

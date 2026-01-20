@@ -1,7 +1,7 @@
 # Architecture Documentation - Final Report
 
 **Plugin**: Wbcom Essential
-**Version**: 4.0.2
+**Version**: 4.2.0
 **Generated**: 2025-01-19
 **Scope**: Hybrid
 

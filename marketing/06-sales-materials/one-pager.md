@@ -166,5 +166,5 @@ WBcom Essential is a companion plugin designed to make our themes better. All 45
 
 ---
 
-*WBcom Essential v4.0.2*
+*WBcom Essential v4.2.0*
 *Free companion plugin for Theme Reign, BuddyX, and BuddyX Pro themes*

@@ -25,13 +25,13 @@ Before installing Wbcom Essential, ensure your environment meets these requireme
 
 1. Go to **Plugins → Add New**
 2. Click **Upload Plugin**
-3. Choose the `wbcom-essential-4.0.2.zip` file
+3. Choose the `wbcom-essential-4.2.0.zip` file
 4. Click **Install Now**
 5. Click **Activate**
 
 ### Method 2: FTP Upload
 
-1. Extract `wbcom-essential-4.0.2.zip`
+1. Extract `wbcom-essential-4.2.0.zip`
 2. Upload the `wbcom-essential` folder to `/wp-content/plugins/`
 3. Go to **Plugins** in WordPress admin
 4. Find "Wbcom Essential" and click **Activate**
@@ -40,7 +40,7 @@ Before installing Wbcom Essential, ensure your environment meets these requireme
 
 ```bash
 # Upload and activate
-wp plugin install wbcom-essential-4.0.2.zip --activate
+wp plugin install wbcom-essential-4.2.0.zip --activate
 ```
 
 ## Post-Installation Setup
