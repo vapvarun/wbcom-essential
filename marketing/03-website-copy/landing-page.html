@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WBcom Essential - The Essential Companion for Your WordPress Theme</title>
+    <meta name="description" content="45 Gutenberg blocks. 43 Elementor widgets. 11 BuddyPress integrations. A free plugin that makes Theme Reign, BuddyX, and BuddyX Pro even more powerful.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-dark: #1e3a5f;
+            --color-primary: #2c5282;
+            --color-light: #4a6fa1;
+            --color-accent: #60a5fa;
+            --color-surface: #f8fafc;
+            --color-surface-2: #e2e8f0;
+            --color-text: #1e293b;
+            --color-text-muted: #64748b;
+            --color-white: #ffffff;
+
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2.5rem;
+            --space-xl: 4rem;
+            --space-2xl: 6rem;
+            --space-3xl: 10rem;
+
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: var(--color-white);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.75rem, 6vw, 5rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            margin-bottom: var(--space-md);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+        }
+
+        p {
+            color: var(--color-text-muted);
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .container--wide {
+            max-width: 1400px;
+        }
+
+        section {
+            padding: var(--space-2xl) 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn--primary {
+            background: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-primary);
+        }
+
+        .btn--primary:hover {
+            background: var(--color-dark);
+            border-color: var(--color-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -8px rgba(44, 82, 130, 0.4);
+        }
+
+        .btn--secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border-color: var(--color-surface-2);
+        }
+
+        .btn--secondary:hover {
+            border-color: var(--color-primary);
+            background: var(--color-surface);
+        }
+
+        .btn--large {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: var(--space-sm) 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-dark);
+            text-decoration: none;
+        }
+
+        .nav__logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .nav__link {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav__link:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-white) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, rgba(44, 82, 130, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--color-white);
+            border: 1px solid var(--color-surface-2);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero__badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero__title {
+            color: var(--color-dark);
+            margin-bottom: var(--space-md);
+            animation: fadeInUp 0.6s ease-out 0.1s backwards;
+        }
+
+        .hero__title em {
+            font-style: italic;
+            color: var(--color-primary);
+        }
+
+        .hero__description {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-lg);
+            max-width: 540px;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+        }
+
+        .hero__cta {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s backwards;
+        }
+
+        .hero__stats {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-surface-2);
+            animation: fadeInUp 0.6s ease-out 0.4s backwards;
+        }
+
+        .hero__stat {
+            text-align: left;
+        }
+
+        .hero__stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--color-dark);
+            line-height: 1;
+        }
+
+        .hero__stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero__visual {
+            position: relative;
+            animation: fadeIn 1s ease-out 0.5s backwards;
+        }
+
+        .hero__blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+        }
+
+        .hero__block {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+            border: 1px solid var(--color-surface-2);
+            transition: all 0.3s ease;
+        }
+
+        .hero__block:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(30, 58, 95, 0.12);
+        }
+
+        .hero__block-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-2) 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-xs);
+            font-size: 1.5rem;
+        }
+
+        .hero__block-title {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--color-dark);
+            color: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a6fa1' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .problem h2 {
+            color: var(--color-white);
+        }
+
+        .problem__header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
+            position: relative;
+        }
+
+        .problem__header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .problem__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            position: relative;
+        }
+
+        .problem__card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: all 0.3s ease;
+        }
+
+        .problem__card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .problem__card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-light));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .problem__card h3 {
+            color: var(--color-white);
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .problem__card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            position: relative;
+        }
+
+        .solution__header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .solution__benefits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+
+        .solution__benefit {
+            text-align: center;
+            padding: var(--space-lg);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .solution__benefit:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(30, 58, 95, 0.1);
+        }
+
+        .solution__benefit-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            font-size: 2rem;
+            box-shadow: 0 4px 16px rgba(30, 58, 95, 0.08);
+        }
+
+        .solution__benefit h3 {
+            font-size: 1.25rem;
+            color: var(--color-dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .solution__benefit p {
+            font-size: 0.95rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--color-surface);
+        }
+
+        .features__header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .features__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+
+        .feature-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid var(--color-surface-2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 16px 40px rgba(30, 58, 95, 0.1);
+            border-color: transparent;
+        }
+
+        .feature-card__category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            color: var(--color-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-card__list {
+            list-style: none;
+            margin-top: var(--space-md);
+        }
+
+        .feature-card__list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            border-bottom: 1px solid var(--color-surface);
+        }
+
+        .feature-card__list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-card__list li::before {
+            content: '→';
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        /* BuddyPress Section */
+        .buddypress {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buddypress__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+
+        .buddypress__content h2 {
+            margin-bottom: var(--space-md);
+        }
+
+        .buddypress__features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .buddypress__feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: var(--space-sm);
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+        }
+
+        .buddypress__feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .buddypress__feature-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .buddypress__visual {
+            position: relative;
+        }
+
+        .buddypress__showcase {
+            background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            color: white;
+        }
+
+        .buddypress__showcase-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .buddypress__showcase-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .buddypress__members {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-sm);
+        }
+
+        .buddypress__member {
+            text-align: center;
+        }
+
+        .buddypress__member-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            border-radius: 50%;
+            margin: 0 auto var(--space-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .buddypress__member-name {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Theme Colors Section */
+        .theme-colors {
+            background: var(--color-surface);
+        }
+
+        .theme-colors__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+
+        .theme-colors__demo {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            box-shadow: 0 8px 32px rgba(30, 58, 95, 0.1);
+        }
+
+        .theme-colors__toggle {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid var(--color-surface-2);
+        }
+
+        .toggle {
+            width: 52px;
+            height: 28px;
+            background: var(--color-primary);
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-label {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .theme-colors__preview {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .color-swatch {
+            flex: 1;
+            height: 80px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: flex-end;
+            padding: var(--space-sm);
+        }
+
+        .color-swatch span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            text-align: center;
+        }
+
+        .how-it-works__header {
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .how-it-works__steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            position: relative;
+        }
+
+        .how-it-works__steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-surface-2) 10%, var(--color-surface-2) 90%, transparent);
+        }
+
+        .step {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step__number {
+            width: 80px;
+            height: 80px;
+            background: var(--color-white);
+            border: 2px solid var(--color-surface-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-primary);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover .step__number {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            transform: scale(1.1);
+        }
+
+        .step h3 {
+            font-size: 1.15rem;
+            color: var(--color-dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .step p {
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--color-surface);
+        }
+
+        .faq__header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .faq__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq__item {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid var(--color-surface-2);
+        }
+
+        .faq__question {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .faq__answer {
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+            color: var(--color-white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .cta__content {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            color: var(--color-white);
+            margin-bottom: var(--space-md);
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.25rem;
+            margin-bottom: var(--space-lg);
+        }
+
+        .cta__buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .cta .btn--primary {
+            background: var(--color-white);
+            color: var(--color-dark);
+            border-color: var(--color-white);
+        }
+
+        .cta .btn--primary:hover {
+            background: var(--color-surface);
+            transform: translateY(-2px);
+        }
+
+        .cta .btn--secondary {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--color-white);
+        }
+
+        .cta .btn--secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: var(--space-lg) 0;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero__grid,
+            .buddypress__grid,
+            .theme-colors__grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .hero__visual {
+                order: -1;
+            }
+
+            .solution__benefits,
+            .features__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .how-it-works__steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .how-it-works__steps::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: var(--space-xl) 0;
+            }
+
+            .nav__links {
+                display: none;
+            }
+
+            .hero__blocks {
+                grid-template-columns: repeat(2, 1fr);
+                transform: none;
+            }
+
+            .problem__grid,
+            .solution__benefits,
+            .features__grid,
+            .how-it-works__steps,
+            .faq__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero__stats {
+                flex-wrap: wrap;
+                gap: var(--space-md);
+            }
+
+            .buddypress__features {
+                grid-template-columns: 1fr;
+            }
+
+            .buddypress__members {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav__inner">
+            <a href="#" class="nav__logo">
+                <span class="nav__logo-icon">W</span>
+                WBcom Essential
+            </a>
+            <ul class="nav__links">
+                <li><a href="#features" class="nav__link">Features</a></li>
+                <li><a href="#buddypress" class="nav__link">BuddyPress</a></li>
+                <li><a href="#how-it-works" class="nav__link">How It Works</a></li>
+                <li><a href="#faq" class="nav__link">FAQ</a></li>
+                <li><a href="#download" class="btn btn--primary">Download Free</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero__grid">
+            <div class="hero__content">
+                <span class="hero__badge">100% Free Plugin</span>
+                <h1 class="hero__title">The <em>Essential</em> Companion for Your WordPress Theme</h1>
+                <p class="hero__description">45 Gutenberg blocks. 43 Elementor widgets. 11 BuddyPress integrations. Built by Wbcom Designs to complement our themes—works beautifully with any WordPress site.</p>
+                <div class="hero__cta">
+                    <a href="#download" class="btn btn--primary btn--large">Download Free</a>
+                    <a href="#features" class="btn btn--secondary btn--large">See All Features</a>
+                </div>
+                <div class="hero__stats">
+                    <div class="hero__stat">
+                        <div class="hero__stat-number">45</div>
+                        <div class="hero__stat-label">Gutenberg Blocks</div>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="hero__stat-number">43</div>
+                        <div class="hero__stat-label">Elementor Widgets</div>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="hero__stat-number">11</div>
+                        <div class="hero__stat-label">BuddyPress Blocks</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <div class="hero__blocks">
+                    <div class="hero__block">
+                        <div class="hero__block-icon">📊</div>
+                        <div class="hero__block-title">Pricing Table</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">💬</div>
+                        <div class="hero__block-title">Testimonials</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">👥</div>
+                        <div class="hero__block-title">Members Grid</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">🎠</div>
+                        <div class="hero__block-title">Post Carousel</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">⏱️</div>
+                        <div class="hero__block-title">Countdown</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">📋</div>
+                        <div class="hero__block-title">Accordion</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">🏢</div>
+                        <div class="hero__block-title">Team Carousel</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">📈</div>
+                        <div class="hero__block-title">Progress Bar</div>
+                    </div>
+                    <div class="hero__block">
+                        <div class="hero__block-icon">🔗</div>
+                        <div class="hero__block-title">Smart Menu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="problem__header">
+                <h2>Great Theme. Now You Need Great Blocks.</h2>
+                <p>Generic plugins create generic sites. Here's what happens when you settle for less.</p>
+            </div>
+            <div class="problem__grid">
+                <div class="problem__card">
+                    <div class="problem__card-icon">🎨</div>
+                    <h3>Generic blocks look generic</h3>
+                    <p>You add a testimonial carousel, and it looks nothing like your site. Then you spend an hour adjusting colors, fonts, and spacing just to make it fit.</p>
+                </div>
+                <div class="problem__card">
+                    <div class="problem__card-icon">👥</div>
+                    <h3>BuddyPress layouts need work</h3>
+                    <p>Out-of-the-box BuddyPress looks dated. You want member grids, group carousels, and profile widgets that look like they belong on a modern website.</p>
+                </div>
+                <div class="problem__card">
+                    <div class="problem__card-icon">🔌</div>
+                    <h3>Too many plugins for basic features</h3>
+                    <p>One plugin for sliders. Another for pricing tables. A third for testimonials. Your site slows down, conflicts appear, and updates become a headache.</p>
+                </div>
+                <div class="problem__card">
+                    <div class="problem__card-icon">⚔️</div>
+                    <h3>Elementor OR Gutenberg, not both</h3>
+                    <p>Some pages work better with Elementor. Others with Gutenberg. You end up maintaining different solutions for different needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution__header">
+                <h2>One Free Plugin. Both Editors. Professional Results.</h2>
+                <p class="lead">WBcom Essential gives you production-ready blocks and widgets that inherit your theme's colors automatically.</p>
+            </div>
+            <div class="solution__benefits">
+                <div class="solution__benefit">
+                    <div class="solution__benefit-icon">🔄</div>
+                    <h3>Works with Both Editors</h3>
+                    <p>Use Gutenberg blocks or Elementor widgets. Same features, same quality, your choice of editor.</p>
+                </div>
+                <div class="solution__benefit">
+                    <div class="solution__benefit-icon">🎨</div>
+                    <h3>Matches Your Theme</h3>
+                    <p>Turn on "Theme Colors" and blocks inherit your theme's color scheme. No manual color picking.</p>
+                </div>
+                <div class="solution__benefit">
+                    <div class="solution__benefit-icon">👥</div>
+                    <h3>BuddyPress-Ready</h3>
+                    <p>11 blocks built specifically for community sites. Members grids, group carousels, profile completion—all designed for BuddyPress.</p>
+                </div>
+                <div class="solution__benefit">
+                    <div class="solution__benefit-icon">🆓</div>
+                    <h3>Completely Free</h3>
+                    <p>All 45 blocks and 43 widgets included. No premium tier, no feature restrictions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features__header">
+                <h2>Everything You Need, Nothing You Don't</h2>
+                <p class="lead">Professional blocks organized by purpose. Find what you need, fast.</p>
+            </div>
+            <div class="features__grid">
+                <div class="feature-card">
+                    <div class="feature-card__category">Content & Layout</div>
+                    <h3>Display Content Beautifully</h3>
+                    <p>Professional layouts without custom code.</p>
+                    <ul class="feature-card__list">
+                        <li>Post Carousel & Slider</li>
+                        <li>Testimonial Carousel</li>
+                        <li>Pricing Table</li>
+                        <li>Team Carousel</li>
+                        <li>Timeline & Accordion</li>
+                        <li>Advanced Tabs</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__category">BuddyPress</div>
+                    <h3>Community Site Essentials</h3>
+                    <p>Make your community look professional.</p>
+                    <ul class="feature-card__list">
+                        <li>Members Grid & Carousel</li>
+                        <li>Groups Grid & Carousel</li>
+                        <li>Profile Completion</li>
+                        <li>Forums & Activity</li>
+                        <li>Dashboard Intro</li>
+                        <li>Header Bar</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__category">Marketing & Conversion</div>
+                    <h3>Turn Visitors into Customers</h3>
+                    <p>Drive action with conversion blocks.</p>
+                    <ul class="feature-card__list">
+                        <li>CTA Box</li>
+                        <li>Countdown Timer</li>
+                        <li>Counter & Progress Bar</li>
+                        <li>Social Icons</li>
+                        <li>Star Rating</li>
+                        <li>Login Form</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BuddyPress Section -->
+    <section id="buddypress" class="buddypress">
+        <div class="container buddypress__grid">
+            <div class="buddypress__content">
+                <h2>Built for BuddyPress. Actually.</h2>
+                <p class="lead">Most block plugins ignore BuddyPress. We built 11 blocks specifically for community sites because that's what we do—our team created BuddyX theme and we understand community sites.</p>
+                <p>These aren't generic blocks adapted for BuddyPress. They're built to understand member data, group information, and community activity from the ground up.</p>
+                <div class="buddypress__features">
+                    <div class="buddypress__feature">
+                        <div class="buddypress__feature-icon">👤</div>
+                        <span class="buddypress__feature-text">Members Grid</span>
+                    </div>
+                    <div class="buddypress__feature">
+                        <div class="buddypress__feature-icon">🎠</div>
+                        <span class="buddypress__feature-text">Members Carousel</span>
+                    </div>
+                    <div class="buddypress__feature">
+                        <div class="buddypress__feature-icon">👥</div>
+                        <span class="buddypress__feature-text">Groups Grid</span>
+                    </div>
+                    <div class="buddypress__feature">
+                        <div class="buddypress__feature-icon">📊</div>
+                        <span class="buddypress__feature-text">Profile Completion</span>
+                    </div>
+                    <div class="buddypress__feature">
+                        <div class="buddypress__feature-icon">💬</div>
+                        <span class="buddypress__feature-text">Forums & Activity</span>
+                    </div>
+                    <div class="buddypress__feature">
+                        <div class="buddypress__feature-icon">🏠</div>
+                        <span class="buddypress__feature-text">Dashboard Intro</span>
+                    </div>
+                </div>
+            </div>
+            <div class="buddypress__visual">
+                <div class="buddypress__showcase">
+                    <div class="buddypress__showcase-header">
+                        <span class="buddypress__showcase-title">Members Grid Preview</span>
+                    </div>
+                    <div class="buddypress__members">
+                        <div class="buddypress__member">
+                            <div class="buddypress__member-avatar">👩</div>
+                            <div class="buddypress__member-name">Sarah M.</div>
+                        </div>
+                        <div class="buddypress__member">
+                            <div class="buddypress__member-avatar">👨</div>
+                            <div class="buddypress__member-name">John D.</div>
+                        </div>
+                        <div class="buddypress__member">
+                            <div class="buddypress__member-avatar">👩</div>
+                            <div class="buddypress__member-name">Emily R.</div>
+                        </div>
+                        <div class="buddypress__member">
+                            <div class="buddypress__member-avatar">👨</div>
+                            <div class="buddypress__member-name">Mike T.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Theme Colors Section -->
+    <section class="theme-colors">
+        <div class="container theme-colors__grid">
+            <div class="theme-colors__demo">
+                <div class="theme-colors__toggle">
+                    <div class="toggle"></div>
+                    <span class="toggle-label">Use Theme Colors</span>
+                </div>
+                <div class="theme-colors__preview">
+                    <div class="color-swatch" style="background: var(--color-dark);">
+                        <span>Primary</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--color-primary);">
+                        <span>Secondary</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--color-light);">
+                        <span>Accent</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--color-text);">
+                        <span>Text</span>
+                    </div>
+                </div>
+            </div>
+            <div class="theme-colors__content">
+                <h2>Stop Picking Colors. Let the Block Match Your Theme.</h2>
+                <p class="lead">Every block includes a "Use Theme Colors" toggle. Enable it, and the block inherits your theme's color palette through CSS custom properties.</p>
+                <p>Works best with Theme Reign, BuddyX, and BuddyX Pro themes—but provides sensible defaults for any theme.</p>
+                <p><strong>Before:</strong> Add block → Pick primary color → Pick secondary → Pick text → Pick background → Adjust, adjust, adjust</p>
+                <p><strong>After:</strong> Add block → Enable Theme Colors → Done ✓</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="how-it-works__header">
+                <h2>Up and Running in 5 Minutes</h2>
+                <p class="lead">No complex setup, no API keys, no license activation.</p>
+            </div>
+            <div class="how-it-works__steps">
+                <div class="step">
+                    <div class="step__number">1</div>
+                    <h3>Install the Plugin</h3>
+                    <p>Upload and activate like any WordPress plugin.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">2</div>
+                    <h3>Add Blocks or Widgets</h3>
+                    <p>Search "Starter Pack" in Gutenberg or Elementor.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">3</div>
+                    <h3>Enable Theme Colors</h3>
+                    <p>Toggle "Use Theme Colors" to match your theme.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">4</div>
+                    <h3>Customize & Publish</h3>
+                    <p>Adjust settings, add content, and publish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="faq__header">
+                <h2>Common Questions</h2>
+                <p>Everything you need to know about WBcom Essential.</p>
+            </div>
+            <div class="faq__grid">
+                <div class="faq__item">
+                    <h3 class="faq__question">Do I need both Elementor and Gutenberg?</h3>
+                    <p class="faq__answer">No. Pick whichever editor you prefer. The plugin provides blocks for Gutenberg AND widgets for Elementor—use one or both.</p>
+                </div>
+                <div class="faq__item">
+                    <h3 class="faq__question">Will it work with my theme?</h3>
+                    <p class="faq__answer">Yes. WBcom Essential works with any properly coded WordPress theme. It's optimized for Theme Reign, BuddyX, and BuddyX Pro, but works everywhere.</p>
+                </div>
+                <div class="faq__item">
+                    <h3 class="faq__question">Do I need BuddyPress?</h3>
+                    <p class="faq__answer">No. BuddyPress blocks only appear when BuddyPress is active. The other 34 blocks work on any WordPress site.</p>
+                </div>
+                <div class="faq__item">
+                    <h3 class="faq__question">Is it really free?</h3>
+                    <p class="faq__answer">Yes. All 45 blocks and 43 widgets are included. No premium version, no feature restrictions, no upsells. Ever.</p>
+                </div>
+                <div class="faq__item">
+                    <h3 class="faq__question">Why would you give this away?</h3>
+                    <p class="faq__answer">WBcom Essential makes our themes better. Happy theme users build great sites and recommend us to others.</p>
+                </div>
+                <div class="faq__item">
+                    <h3 class="faq__question">What about WooCommerce?</h3>
+                    <p class="faq__answer">The plugin includes 2 WooCommerce blocks (Product Grid, Mini Cart) that appear when WooCommerce is active.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="download" class="cta">
+        <div class="container">
+            <div class="cta__content">
+                <h2>Ready to Build Better WordPress Sites?</h2>
+                <p>Join thousands of WordPress users who've stopped fighting with generic blocks and started building professional sites faster.</p>
+                <div class="cta__buttons">
+                    <a href="https://wordpress.org/plugins/starter-templates/" class="btn btn--primary btn--large">Download Free</a>
+                    <a href="https://docs.wbcomdesigns.com/wbcom-essential/" class="btn btn--secondary btn--large">View Documentation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Built with ❤️ by <a href="https://wbcomdesigns.com">Wbcom Designs</a> — Creators of Theme Reign, BuddyX, and BuddyX Pro</p>
+            <p style="margin-top: 0.5rem;"><a href="https://wbcomdesigns.com/support/">Contact Support</a> · <a href="https://docs.wbcomdesigns.com/">Documentation</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.problem__card, .solution__benefit, .feature-card, .step, .faq__item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // Add staggered animation delay
+        document.querySelectorAll('.problem__card, .solution__benefit, .feature-card, .step').forEach((el, index) => {
+            el.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
