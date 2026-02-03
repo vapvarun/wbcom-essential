@@ -33,6 +33,8 @@ ul.wbcom-login-form-links li {
 
 #wb_login_form input,
 #wb_login_form textarea,
+.wb_login_form input,
+.wb_login_form textarea,
 ul.wbcom-login-form-links li a {
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -40,11 +42,14 @@ ul.wbcom-login-form-links li a {
 }
 
 #wb_login_form input,
-#wb_login_form textarea {
+#wb_login_form textarea,
+.wb_login_form input,
+.wb_login_form textarea {
     max-width: 100%
 }
 
-#wb_login_form label {
+#wb_login_form label,
+.wb_login_form label {
     display: block
 }
 
