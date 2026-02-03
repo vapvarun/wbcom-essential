@@ -184,7 +184,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		 */
 		public function get_templates() {
 
-			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'template-nonce' ) ) {
+			if ( ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'template-nonce' ) ) {
 				return false;
 			}
 
@@ -235,7 +235,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		 */
 		public function insert_inner_template() {
 
-			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'template-nonce' ) ) {
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'template-nonce' ) ) {
 				return false;
 			}
 
@@ -243,7 +243,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				wp_send_json_error();
 			}
 
-			$template = ( isset( $_REQUEST['template'] ) && is_array( $_REQUEST['template'] ) ) ? $_REQUEST['template'] : false;
+			$template = ( isset( $_REQUEST['template'] ) && is_array( $_REQUEST['template'] ) ) ? array_map( 'sanitize_text_field', wp_unslash( $_REQUEST['template'] ) ) : false;
 
 			if ( ! $template ) {
 				wp_send_json_error();
