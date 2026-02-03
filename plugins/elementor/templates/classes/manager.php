@@ -77,7 +77,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 					'localize_tabs',
 				)
 			);
-
 		}
 
 		/**
@@ -102,7 +101,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 			$data['defaultTab'] = $default;
 
 			return $data;
-
 		}
 
 		/**
@@ -132,7 +130,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 
 				$this->add_source( $key, $class );
 			}
-
 		}
 
 		/**
@@ -148,7 +145,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		public function get_template_tabs() {
 
 			return Templates\wbcom_essential_elementor_templates()->types->get_types_for_popup();
-
 		}
 
 		/**
@@ -187,7 +183,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		 * @access public
 		 */
 		public function get_templates() {
-			
+
 			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'template-nonce' ) ) {
 				return false;
 			}
@@ -227,7 +223,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 			}
 
 			wp_send_json_success( $result );
-
 		}
 
 		/**
@@ -239,7 +234,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		 * @access public
 		 */
 		public function insert_inner_template() {
-						
+
 			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'template-nonce' ) ) {
 				return false;
 			}
@@ -287,7 +282,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 			}
 
 			wp_send_json_success();
-
 		}
 
 		/**
@@ -301,17 +295,18 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 		 * @param object $ajax_manager Ajax actions.
 		 */
 		public function register_ajax_actions( $ajax_manager ) {
-
+			// phpcs:disable WordPress.Security.NonceVerification -- Nonce verified by Elementor's Ajax handler before this hook fires.
 			if ( ! isset( $_POST['actions'] ) ) {
 				return;
 			}
 
-			// Verify user capabilities
+			// Verify user capabilities.
 			if ( ! current_user_can( 'edit_posts' ) ) {
 				return;
 			}
 
-			$actions = json_decode( stripslashes( $_REQUEST['actions'] ), true );
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- JSON decoded and validated below.
+			$actions = json_decode( wp_unslash( $_REQUEST['actions'] ), true );
 
 			if ( ! is_array( $actions ) ) {
 				return;
@@ -332,7 +327,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				return;
 			}
 
-			if ( ! isset( $data['data'] ) ) {
+			if ( ! isset( $data['data'] ) || ! is_array( $data['data'] ) ) {
 				return;
 			}
 
@@ -356,7 +351,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 					return $this->get_template_data_array( $data );
 				}
 			);
-
+			// phpcs:enable WordPress.Security.NonceVerification
 		}
 
 		/**
@@ -398,7 +393,6 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 			}
 
 			return $source->get_item( $data['template_id'], $data['tab'] );
-
 		}
 
 		/**
