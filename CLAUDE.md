@@ -17,6 +17,7 @@ Full architecture documentation available in `docs/architecture/`:
 
 | Date | Description |
 |------|-------------|
+| 2026-02-03 | v4.2.1: Fix PHP 8+ TypeError in Elementor AJAX handler, harden type safety across license and template APIs |
 | 2026-01-20 | Fix admin page: block count 38→45, fix URLs (developer.wbcomdesigns.com→correct domains) |
 | 2026-01-14 | Fix hover secondary button UI with cta box block |
 | 2026-01-14 | Fix block failed during npm run build:blocks |

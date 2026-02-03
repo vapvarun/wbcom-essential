@@ -429,8 +429,8 @@ function wbcom_ajax_login() {
 	check_ajax_referer( 'wbcom-ajax-login-nonce', 'security' );
 
 	$info = array(
-		'user_login'    => sanitize_text_field( $_POST['log'] ),
-		'user_password' => $_POST['pwd'], //phpcs:ignore
+		'user_login'    => isset( $_POST['log'] ) && is_string( $_POST['log'] ) ? sanitize_text_field( $_POST['log'] ) : '',
+		'user_password' => isset( $_POST['pwd'] ) && is_string( $_POST['pwd'] ) ? $_POST['pwd'] : '', //phpcs:ignore
 		'remember'      => ! empty( $_POST['rememberme'] ) ? true : false,
 	);
 
@@ -458,7 +458,7 @@ function wbcom_ajax_login() {
 			)
 		);
 	} else {
-		$redirect_url = ! empty( $_POST['redirect_to'] ) ? esc_url( $_POST['redirect_to'] ) : home_url();
+		$redirect_url = ( ! empty( $_POST['redirect_to'] ) && is_string( $_POST['redirect_to'] ) ) ? esc_url( $_POST['redirect_to'] ) : home_url();
 
 		echo wp_json_encode(
 			array(

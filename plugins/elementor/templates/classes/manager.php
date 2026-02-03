@@ -248,15 +248,15 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				wp_send_json_error();
 			}
 
-			$template = isset( $_REQUEST['template'] ) ? $_REQUEST['template'] : false;
+			$template = ( isset( $_REQUEST['template'] ) && is_array( $_REQUEST['template'] ) ) ? $_REQUEST['template'] : false;
 
 			if ( ! $template ) {
 				wp_send_json_error();
 			}
 
-			$template_id = isset( $template['template_id'] ) ? esc_attr( $template['template_id'] ) : false;
-			$source_name = isset( $template['source'] ) ? esc_attr( $template['source'] ) : false;
-			$source      = isset( $this->sources[ $source_name ] ) ? $this->sources[ $source_name ] : false;
+			$template_id = ( isset( $template['template_id'] ) && is_string( $template['template_id'] ) ) ? sanitize_text_field( $template['template_id'] ) : false;
+			$source_name = ( isset( $template['source'] ) && is_string( $template['source'] ) ) ? sanitize_text_field( $template['source'] ) : false;
+			$source      = ( $source_name && isset( $this->sources[ $source_name ] ) ) ? $this->sources[ $source_name ] : false;
 
 			if ( ! $source || ! $template_id ) {
 				wp_send_json_error();
@@ -312,9 +312,17 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 			}
 
 			$actions = json_decode( stripslashes( $_REQUEST['actions'] ), true );
-			$data    = false;
+
+			if ( ! is_array( $actions ) ) {
+				return;
+			}
+
+			$data = false;
 
 			foreach ( $actions as $id => $action_data ) {
+				if ( ! is_array( $action_data ) ) {
+					continue;
+				}
 				if ( ! isset( $action_data['get_template_data'] ) ) {
 					$data = $action_data;
 				}
@@ -333,6 +341,10 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 			}
 
 			$source = $data['data']['source'];
+
+			if ( ! is_string( $source ) || '' === $source ) {
+				return;
+			}
 
 			if ( ! isset( $this->sources[ $source ] ) ) {
 				return;
@@ -369,7 +381,7 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				return false;
 			}
 
-			$source_name = isset( $data['source'] ) ? esc_attr( $data['source'] ) : '';
+			$source_name = ( isset( $data['source'] ) && is_string( $data['source'] ) ) ? sanitize_text_field( $data['source'] ) : '';
 
 			if ( ! $source_name ) {
 				return false;

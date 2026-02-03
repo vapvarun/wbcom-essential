@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.2.0
+Stable tag: 4.2.1
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -98,6 +98,15 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.2.1 =
+* Fixed: Fatal TypeError in Elementor AJAX handler when source value is non-scalar (PHP 8+)
+* Fixed: Missing array validation after json_decode in register_ajax_actions
+* Fixed: Missing type checks in insert_inner_template for $_REQUEST values
+* Fixed: Null pointer errors in license activation, deactivation, and check APIs
+* Fixed: Null pointer in EDD updater cached version info
+* Fixed: Type safety in AJAX login handler for non-string POST values
+* Security: Replaced esc_attr with sanitize_text_field for source/template validation
 
 = 4.2.0 =
 * Major Release: All 45 Gutenberg blocks production-ready

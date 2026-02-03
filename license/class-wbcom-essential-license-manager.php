@@ -491,7 +491,11 @@ class WBCOM_ESSENTIAL_License_Manager {
         }
         
         $license_data = json_decode( wp_remote_retrieve_body( $response ) );
-        
+
+        if ( ! is_object( $license_data ) ) {
+            return new WP_Error( 'api_error', __( 'Invalid response from license server.', 'wbcom-essential' ) );
+        }
+
         if ( false === $license_data->success ) {
             switch ( $license_data->error ) {
                 case 'expired':
@@ -569,7 +573,11 @@ class WBCOM_ESSENTIAL_License_Manager {
         
         // decode the license data
         $license_data = json_decode( wp_remote_retrieve_body( $response ) );
-        
+
+        if ( ! is_object( $license_data ) || ! isset( $license_data->license ) ) {
+            return new WP_Error( 'api_error', __( 'Invalid response from license server.', 'wbcom-essential' ) );
+        }
+
         // $license_data->license will be either "deactivated" or "failed"
         if ( 'deactivated' === $license_data->license ) {
             delete_option( 'wbcom_essential_license_status' );
@@ -608,7 +616,11 @@ class WBCOM_ESSENTIAL_License_Manager {
         }
         
         $license_data = json_decode( wp_remote_retrieve_body( $response ) );
-        
+
+        if ( ! is_object( $license_data ) || ! isset( $license_data->license ) ) {
+            return new WP_Error( 'api_error', __( 'Invalid response from license server.', 'wbcom-essential' ) );
+        }
+
         update_option( 'wbcom_essential_license_status', $license_data->license );
         update_option( 'wbcom_essential_license_data', $license_data );
         

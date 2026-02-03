@@ -654,6 +654,9 @@ class EDD_SL_Plugin_Updater {
 
 		// We need to turn the icons into an array, thanks to WP Core forcing these into an object at some point.
 		$cache['value'] = json_decode( $cache['value'] );
+		if ( ! is_object( $cache['value'] ) ) {
+			return false;
+		}
 		if ( ! empty( $cache['value']->icons ) ) {
 			$cache['value']->icons = (array) $cache['value']->icons;
 		}
