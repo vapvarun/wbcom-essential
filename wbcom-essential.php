@@ -218,25 +218,10 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		}
 		
 		/**
-		 * Get license key for display purposes
+		 * Get license key for display purposes.
 		 */
 		private function get_license_key() {
-			// Try to get from new license system first
-			if ( class_exists( 'WBCOM_ESSENTIAL_License_Manager' ) ) {
-				$license_manager = WBCOM_ESSENTIAL_License_Manager::get_instance();
-				$license_key = $license_manager->get_license_key();
-				if ( ! empty( $license_key ) ) {
-					return $license_key;
-				}
-			}
-			
-			// Fallback to old option names
-			$license_key = get_option( 'wbcom_essential_license_key' );
-			if ( empty( $license_key ) ) {
-				$license_key = get_option( 'edd-wbcom-essential-license-key' );
-			}
-			
-			return $license_key;
+			return get_option( 'wbcom_essential_license_key' );
 		}
 
 	}

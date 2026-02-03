@@ -36,10 +36,9 @@ define( 'WBCOM_ESSENTIAL_PATH', plugin_dir_path( WBCOM_ESSENTIAL_FILE ) );
 define( 'WBCOM_ESSENTIAL_URL', plugins_url( '/', WBCOM_ESSENTIAL_FILE ) );
 define( 'WBCOM_ESSENTIAL_ASSETS_URL', WBCOM_ESSENTIAL_URL . 'assets/' );
 
-// License constants
+// License constants.
 define( 'WBCOM_ESSENTIAL_STORE_URL', 'https://wbcomdesigns.com' );
 define( 'WBCOM_ESSENTIAL_ITEM_ID', 1545975 );
-define( 'WBCOM_ESSENTIAL_ITEM_NAME', 'Wbcom Essential' );
 /**
  * Backward compatibility constants
  *
@@ -48,6 +47,29 @@ define( 'WBCOM_ESSENTIAL_ITEM_NAME', 'Wbcom Essential' );
 define( 'WBCOM_ESSENTIAL_PLUGIN_DIR', WBCOM_ESSENTIAL_PATH );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', WBCOM_ESSENTIAL_PLUGIN_BASE );
 
+
+// Load EDD SL SDK for license and update handling.
+$wbcom_essential_sdk = WBCOM_ESSENTIAL_PATH . 'vendor/easy-digital-downloads/edd-sl-sdk/edd-sl-sdk.php';
+if ( file_exists( $wbcom_essential_sdk ) ) {
+	require_once $wbcom_essential_sdk;
+}
+
+add_action(
+	'edd_sl_sdk_registry',
+	function ( $registry ) {
+		$registry->register(
+			array(
+				'id'          => 'wbcom-essential',
+				'url'         => WBCOM_ESSENTIAL_STORE_URL,
+				'item_id'     => WBCOM_ESSENTIAL_ITEM_ID,
+				'version'     => WBCOM_ESSENTIAL_VERSION,
+				'file'        => WBCOM_ESSENTIAL_FILE,
+				'option_name' => 'wbcom_essential_license_key',
+				'type'        => 'plugin',
+			)
+		);
+	}
+);
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/wbcom-essential-function.php';

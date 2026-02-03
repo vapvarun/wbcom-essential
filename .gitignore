@@ -7,4 +7,12 @@ bower_components
 nbproject
 public/assets/.DS_Store
 src/.DS_Store
-/vendor
+# Ignore dev tools installed by composer, but keep production vendor.
+# Run "composer install --no-dev" before committing.
+/vendor/bin
+/vendor/squizlabs
+/vendor/dealerdirect
+/vendor/phpcompatibility
+/vendor/php-parallel-lint
+/vendor/wp-coding-standards
+/vendor/wptrt

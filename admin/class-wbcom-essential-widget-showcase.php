@@ -17,13 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Wbcom_Essential_Widget_Showcase {
 
 	/**
-	 * License manager instance
-	 *
-	 * @var object
-	 */
-	private $license_manager;
-
-	/**
 	 * Initialize the class
 	 */
 	public function __construct() {
@@ -31,7 +24,6 @@ class Wbcom_Essential_Widget_Showcase {
 			add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		}
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
-		add_action( 'init', array( $this, 'init_license_components' ) );
 	}
 
 	/**
@@ -58,35 +50,10 @@ class Wbcom_Essential_Widget_Showcase {
 	}
 
 	/**
-	 * Initialize license components
-	 */
-	public function init_license_components() {
-		$license_manager_file = WBCOM_ESSENTIAL_PATH . '/license/class-wbcom-essential-license-manager.php';
-
-		if ( file_exists( $license_manager_file ) ) {
-			require_once $license_manager_file;
-
-			if ( class_exists( 'WBCOM_ESSENTIAL_License_Manager' ) ) {
-				$this->license_manager = \WBCOM_ESSENTIAL_License_Manager::get_instance();
-			}
-		}
-
-		$license_updater_file = WBCOM_ESSENTIAL_PATH . '/license/class-wbcom-essential-license-updater.php';
-		if ( file_exists( $license_updater_file ) ) {
-			require_once $license_updater_file;
-
-			if ( class_exists( 'WBCOM_ESSENTIAL_License_Updater' ) ) {
-				\WBCOM_ESSENTIAL_License_Updater::get_instance();
-			}
-		}
-	}
-
-	/**
 	 * Static method to render admin page (for wrapper callback)
 	 */
 	public static function render_admin_page() {
 		$instance = new self();
-		$instance->init_license_components();
 		$instance->render_page();
 	}
 
@@ -143,42 +110,13 @@ class Wbcom_Essential_Widget_Showcase {
 			array(),
 			WBCOM_ESSENTIAL_VERSION
 		);
-
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$current_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
-
-		if ( 'license' === $current_tab ) {
-			wp_enqueue_script(
-				'wbcom-essential-license',
-				WBCOM_ESSENTIAL_URL . 'license/license.js',
-				array( 'jquery' ),
-				WBCOM_ESSENTIAL_VERSION,
-				true
-			);
-
-			wp_localize_script(
-				'wbcom-essential-license',
-				'wbcomEssentialLicense',
-				array(
-					'ajax_url' => admin_url( 'admin-ajax.php' ),
-					'nonce'    => wp_create_nonce( 'wbcom_essential_license_nonce' ),
-					'strings'  => array(
-						'activating'   => esc_html__( 'Activating...', 'wbcom-essential' ),
-						'deactivating' => esc_html__( 'Deactivating...', 'wbcom-essential' ),
-						'checking'     => esc_html__( 'Checking...', 'wbcom-essential' ),
-					),
-				)
-			);
-		}
 	}
 
 	/**
 	 * Render the admin page
 	 */
 	public function render_page() {
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$current_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
-		$stats       = $this->get_stats();
+		$stats = $this->get_stats();
 		?>
 		<div class="wbcom-essential-wrap">
 			<!-- Header -->
@@ -188,26 +126,7 @@ class Wbcom_Essential_Widget_Showcase {
 					<span class="wbcom-version">v<?php echo esc_html( WBCOM_ESSENTIAL_VERSION ); ?></span>
 				</div>
 				<p class="wbcom-tagline"><?php esc_html_e( 'Free companion plugin for BuddyX, BuddyX Pro, and Reign themes', 'wbcom-essential' ); ?></p>
-
-				<!-- Tabs -->
-				<nav class="wbcom-tabs">
-					<a href="?page=wbcom-essential&tab=overview" class="wbcom-tab <?php echo 'overview' === $current_tab ? 'active' : ''; ?>">
-						<span class="dashicons dashicons-info-outline"></span>
-						<?php esc_html_e( 'Overview', 'wbcom-essential' ); ?>
-					</a>
-					<a href="?page=wbcom-essential&tab=license" class="wbcom-tab <?php echo 'license' === $current_tab ? 'active' : ''; ?>">
-						<span class="dashicons dashicons-admin-network"></span>
-						<?php esc_html_e( 'License', 'wbcom-essential' ); ?>
-					</a>
-				</nav>
 			</header>
-
-			<?php if ( 'license' === $current_tab ) : ?>
-				<!-- License Tab -->
-				<div class="wbcom-license-page">
-					<?php $this->render_license_tab(); ?>
-				</div>
-			<?php else : ?>
 				<!-- Overview Tab -->
 				<!-- Stats Cards -->
 				<div class="wbcom-stats">
@@ -354,32 +273,6 @@ class Wbcom_Essential_Widget_Showcase {
 						</a>
 					</div>
 				</aside>
-			<?php endif; ?>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Render license tab content
-	 */
-	private function render_license_tab() {
-		if ( ! $this->license_manager ) {
-			$this->init_license_components();
-		}
-		?>
-		<div class="wbcom-license-content">
-			<?php
-			if ( $this->license_manager ) {
-				$this->license_manager->render_license_tab();
-			} else {
-				?>
-				<div class="wbcom-section">
-					<h2><?php esc_html_e( 'License', 'wbcom-essential' ); ?></h2>
-					<p><?php esc_html_e( 'License management is not available. The license system files may be missing.', 'wbcom-essential' ); ?></p>
-				</div>
-				<?php
-			}
-			?>
 		</div>
 		<?php
 	}
