@@ -103,8 +103,8 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			$this->includes();
 			$this->init_wbcom_wrapper();
 		}
-		
-		
+
+
 		/**
 		 * Load plugin textdomain
 		 */
@@ -123,7 +123,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
 
-			// Include Gutenberg blocks
+			// Include Gutenberg blocks.
 			require_once WBCOM_ESSENTIAL_PATH . '/plugins/gutenberg/wbcom-gutenberg.php';
 		}
 
@@ -132,7 +132,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 *
 		 * @since 1.0.0
 		 * @access public
-		 * 
+		 *
 		 * @return void
 		 */
 		public function wbcom_essential_elementor_add_image_sizes() {
@@ -140,25 +140,25 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			add_image_size( 'wbcom-essential-elementor-normal', 800, 800, true );
 			add_image_size( 'wbcom-essential-elementor-type1', 800, 500, true );
 		}
-		
+
 		/**
-		 * Initialize Advanced WBcom Shared Admin System
+		 * Initialize Advanced Wbcom Shared Admin System
 		 */
 		public function init_wbcom_wrapper() {
-			// Register with the shared system EARLY - before admin_menu hook fires
+			// Register with the shared system EARLY - before admin_menu hook fires.
 			add_action( 'plugins_loaded', array( $this, 'register_with_shared_system' ), 15 );
-			
-			// Fallback to old integration system if advanced doesn't work
+
+			// Fallback to old integration system if advanced doesn't work.
 			add_action( 'init', array( $this, 'init_fallback_integration' ) );
 		}
-		
+
 		/**
 		 * Initialize fallback integration after init
 		 */
 		public function init_fallback_integration() {
-			// Only use fallback if the shared loader registration didn't work
+			// Only use fallback if the shared loader registration didn't work.
 			if ( ! class_exists( 'Wbcom_Shared_Loader' ) && function_exists( 'wbcom_integrate_plugin' ) ) {
-				wbcom_integrate_plugin( 
+				wbcom_integrate_plugin(
 					WBCOM_ESSENTIAL_FILE,
 					array(
 						'menu_title'   => __( 'Essential Widgets', 'wbcom-essential' ),
@@ -171,58 +171,46 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 				);
 			}
 		}
-		
+
 		/**
 		 * Register with the shared system
 		 */
 		public function register_with_shared_system() {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			}
-			
-			// Try to load the shared loader if not already loaded
+			// Try to load the shared loader if not already loaded.
 			if ( ! class_exists( 'Wbcom_Shared_Loader' ) ) {
 				$shared_loader_file = WBCOM_ESSENTIAL_PATH . '/includes/shared-admin/class-wbcom-shared-loader.php';
 				if ( file_exists( $shared_loader_file ) ) {
 					require_once $shared_loader_file;
 				}
 			}
-			
+
 			if ( ! class_exists( 'Wbcom_Shared_Loader' ) ) {
-				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				}
 				return;
 			}
-			
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			}
-			
-			// Use the advanced quick registration system
+
+			// Use the advanced quick registration system.
 			\Wbcom_Shared_Loader::quick_register(
 				WBCOM_ESSENTIAL_FILE,
 				array(
-					'menu_title'    => 'Essential Widgets',
-					'slug'          => 'wbcom-essential',
-					'priority'      => 5,
-					'icon'          => 'dashicons-screenoptions',
-					'description'   => '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.',
-					'settings_url'  => admin_url( 'admin.php?page=wbcom-essential' ),
-					'status'        => 'active',
-					'version'       => WBCOM_ESSENTIAL_VERSION,
-					'license_key'   => '', // Temporarily remove license key to test
-					'callback'      => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),
+					'menu_title'   => 'Essential Widgets',
+					'slug'         => 'wbcom-essential',
+					'priority'     => 5,
+					'icon'         => 'dashicons-screenoptions',
+					'description'  => '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.',
+					'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
+					'status'       => 'active',
+					'version'      => WBCOM_ESSENTIAL_VERSION,
+					'license_key'  => '', // Temporarily remove license key to test.
+					'callback'     => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),
 				)
 			);
-			
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			}
 		}
-		
+
 		/**
 		 * Get license key for display purposes.
 		 */
 		private function get_license_key() {
 			return get_option( 'wbcom_essential_license_key' );
 		}
-
 	}
 }

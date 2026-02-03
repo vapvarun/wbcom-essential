@@ -1,6 +1,6 @@
 <?php
 /**
- * WBcom Essential Admin Page
+ * Wbcom Essential Admin Page
  *
  * @package WBCOM_Essential
  */
@@ -27,7 +27,7 @@ class Wbcom_Essential_Widget_Showcase {
 	}
 
 	/**
-	 * Check if we should use the WBcom wrapper
+	 * Check if we should use the Wbcom wrapper
 	 */
 	private function should_use_wrapper() {
 		if ( class_exists( 'Wbcom_Shared_Loader' ) ) {
@@ -62,8 +62,8 @@ class Wbcom_Essential_Widget_Showcase {
 	 */
 	public function add_admin_menu() {
 		add_menu_page(
-			esc_html__( 'WBcom Designs', 'wbcom-essential' ),
-			esc_html__( 'WBcom Designs', 'wbcom-essential' ),
+			esc_html__( 'Wbcom Designs', 'wbcom-essential' ),
+			esc_html__( 'Wbcom Designs', 'wbcom-essential' ),
 			'manage_options',
 			'wbcom-designs',
 			array( $this, 'render_page' ),
@@ -122,7 +122,7 @@ class Wbcom_Essential_Widget_Showcase {
 			<!-- Header -->
 			<header class="wbcom-header">
 				<div class="wbcom-header-content">
-					<h1><?php esc_html_e( 'WBcom Essential', 'wbcom-essential' ); ?></h1>
+					<h1><?php esc_html_e( 'Wbcom Essential', 'wbcom-essential' ); ?></h1>
 					<span class="wbcom-version">v<?php echo esc_html( WBCOM_ESSENTIAL_VERSION ); ?></span>
 				</div>
 				<p class="wbcom-tagline"><?php esc_html_e( 'Free companion plugin for BuddyX, BuddyX Pro, and Reign themes', 'wbcom-essential' ); ?></p>
@@ -196,8 +196,8 @@ class Wbcom_Essential_Widget_Showcase {
 							<div class="wbcom-howto-item">
 								<span class="wbcom-howto-step">2</span>
 								<div>
-									<h4><?php esc_html_e( 'Search "WBcom"', 'wbcom-essential' ); ?></h4>
-									<p><?php esc_html_e( 'Click the + button and search for "WBcom" to find all blocks.', 'wbcom-essential' ); ?></p>
+									<h4><?php esc_html_e( 'Search "Wbcom"', 'wbcom-essential' ); ?></h4>
+									<p><?php esc_html_e( 'Click the + button and search for "Wbcom" to find all blocks.', 'wbcom-essential' ); ?></p>
 								</div>
 							</div>
 							<div class="wbcom-howto-item">
@@ -262,7 +262,7 @@ class Wbcom_Essential_Widget_Showcase {
 
 					<div class="wbcom-sidebar-card wbcom-themes">
 						<h3><?php esc_html_e( 'Best With Our Themes', 'wbcom-essential' ); ?></h3>
-						<p><?php esc_html_e( 'WBcom Essential is designed to work perfectly with:', 'wbcom-essential' ); ?></p>
+						<p><?php esc_html_e( 'Wbcom Essential is designed to work perfectly with:', 'wbcom-essential' ); ?></p>
 						<ul>
 							<li><strong>BuddyX</strong> - <?php esc_html_e( 'Free community theme', 'wbcom-essential' ); ?></li>
 							<li><strong>BuddyX Pro</strong> - <?php esc_html_e( 'Premium features', 'wbcom-essential' ); ?></li>

@@ -11,11 +11,11 @@
  * @package           Wbcom_Essential
  *
  * @wordpress-plugin
- * Plugin Name:       WBcom Essential
+ * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com/downloads/wbcom-essential/
  * Description:       Premium Elementor widgets for BuddyPress, WooCommerce, and WordPress. Create stunning websites with 40+ professional widgets and seamless integrations.
  * Version:           4.2.1
- * Author:            WBcom Designs
+ * Author:            Wbcom Designs
  * Author URI:        https://wbcomdesigns.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
