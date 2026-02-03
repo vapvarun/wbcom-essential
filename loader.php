@@ -15,6 +15,9 @@
  * Plugin URI:        https://wbcomdesigns.com/downloads/wbcom-essential/
  * Description:       Premium Elementor widgets for BuddyPress, WooCommerce, and WordPress. Create stunning websites with 40+ professional widgets and seamless integrations.
  * Version:           4.2.1
+ * Requires at least: 6.0
+ * Tested up to:      6.9
+ * Requires PHP:      8.0
  * Author:            Wbcom Designs
  * Author URI:        https://wbcomdesigns.com/
  * License:           GPL-2.0+
