@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 
 	// Project configuration
 	var pluginSlug = 'wbcom-essential';
-	var pluginVersion = '4.2.0';
+	var pluginVersion = '4.2.1';
 
 	grunt.initConfig(
 		{
@@ -61,7 +61,9 @@ module.exports = function (grunt) {
 								'!plugins/gutenberg/blocks/*/package.json',
 								'!plugins/gutenberg/blocks/*/package-lock.json',
 								// Templates
-								'templates/**'
+								'templates/**',
+								// Vendor (EDD SDK)
+								'vendor/**'
 							],
 							dest: 'dist/' + pluginSlug + '/'
 						}
@@ -114,6 +116,7 @@ module.exports = function (grunt) {
 							'*.php',
 							'**/*.php',
 							'!node_modules/**',
+							'!vendor/**',
 							'!options/framework/**',
 							'!tests/**',
 							'!dist/**'
@@ -129,7 +132,7 @@ module.exports = function (grunt) {
 					options: {
 						cwd: '.', // Directory of files to internationalize.
 						domainPath: 'languages/', // Where to save the POT file.
-						exclude: ['node_modules/*', 'options/framework/*', 'dist/*'], // List of files or directories to ignore.
+						exclude: ['node_modules/*', 'vendor/*', 'options/framework/*', 'dist/*'], // List of files or directories to ignore.
 						mainFile: 'wbcom-essential.php', // Main project file.
 						potFilename: 'wbcom-essential.pot', // Name of the POT file.
 						potHeaders: { // Headers to add to the generated POT file.
