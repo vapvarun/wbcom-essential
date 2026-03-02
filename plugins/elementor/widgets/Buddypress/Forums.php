@@ -562,18 +562,19 @@ class Forums extends \Elementor\Widget_Base {
 												<?php if ( $settings['switch_meta'] ) : ?>
 													<div class="wbcom-essential-forums__ww">
 														<span class="bs-replied">
-															<?php
-															$bbp_author_link = str_replace(
-																'&nbsp;',
-																'',
-																bbp_author_link(
-																	array(
-																		'post_id' => bbp_get_topic_last_active_id(),
-																		'size'    => 1,
-																	)
-																)
-															);
-															?>
+														<?php
+														$author_link = bbp_author_link(
+															array(
+																'post_id' => bbp_get_topic_last_active_id(),
+																'size'    => 1,
+															)
+														);
+														$bbp_author_link = str_replace(
+															'&nbsp;',
+															'',
+															$author_link ?? ''
+														);
+														?>
 															<span class="bbp-topic-freshness-author"><?php // echo $bbp_author_link; ?></span> <?php esc_html_e( 'replied', 'wbcom-essential' ); ?> <?php bbp_topic_freshness_link(); ?>
 														</span>
 														<?php if ( $settings['switch_meta_replies'] ) : ?>
