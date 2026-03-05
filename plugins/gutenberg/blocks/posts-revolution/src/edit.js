@@ -4,7 +4,7 @@
  * @package wbcom-essential
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -12,6 +12,7 @@ import {
 	RangeControl,
 	SelectControl,
 	TextControl,
+	FormTokenField,
 	__experimentalDivider as Divider,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
@@ -42,6 +43,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		enableCustomStyle,
 		mainColor,
 		hoverColor,
+		sectionLabel,
 	} = attributes;
 
 	// Fetch post types.
@@ -89,6 +91,17 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { displayType: value } ) }
 					/>
 
+					{ querySource === 'wp_posts' && categoryOptions.length > 0 && (
+						<FormTokenField
+							label={ __( 'Filter by Categories', 'wbcom-essential' ) }
+							value={ categories }
+							suggestions={ categoryOptions.map( ( c ) => c.value ) }
+							onChange={ ( tokens ) => setAttributes( { categories: tokens } ) }
+							__experimentalExpandOnFocus
+							__experimentalAutoSelectFirstMatch
+						/>
+					) }
+
 					<ToggleControl
 						label={ __( 'Show Excerpt', 'wbcom-essential' ) }
 						checked={ showExcerpt }
@@ -135,6 +148,13 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( value ) => setAttributes( { columns: parseInt( value, 10 ) } ) }
 						/>
 					) }
+
+					<TextControl
+						label={ __( 'Section Label (Editor Only)', 'wbcom-essential' ) }
+						value={ sectionLabel }
+						onChange={ ( value ) => setAttributes( { sectionLabel: value } ) }
+						help={ __( 'A label shown only in the editor to identify this section.', 'wbcom-essential' ) }
+					/>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Query', 'wbcom-essential' ) } initialOpen={ false }>
@@ -166,17 +186,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							value={ customPostType }
 							options={ [ { label: __( 'Select...', 'wbcom-essential' ), value: '' }, ...postTypeOptions ] }
 							onChange={ ( value ) => setAttributes( { customPostType: value } ) }
-						/>
-					) }
-
-					{ querySource === 'wp_posts' && categoryOptions.length > 0 && (
-						<SelectControl
-							label={ __( 'Categories', 'wbcom-essential' ) }
-							value={ categories }
-							options={ categoryOptions }
-							multiple
-							onChange={ ( value ) => setAttributes( { categories: value } ) }
-							help={ __( 'Hold Ctrl/Cmd to select multiple categories', 'wbcom-essential' ) }
 						/>
 					) }
 
@@ -356,6 +365,22 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
+				{ sectionLabel && (
+					<div className="wbcom-pr-section-label">
+						<span className="wbcom-pr-section-label__text">{ sectionLabel }</span>
+					</div>
+				) }
+				<div className="wbcom-pr-category-status">
+					{ categories.length > 0
+						? sprintf( __( 'Filtered by: %s', 'wbcom-essential' ), categories.join( ', ' ) )
+						: __( 'Showing: All Posts', 'wbcom-essential' )
+					}
+				</div>
+				{ sectionLabel && categories.length === 0 && (
+					<div className="wbcom-pr-setup-notice">
+						{ __( 'Click this block and select categories in the Content panel to filter this section.', 'wbcom-essential' ) }
+					</div>
+				) }
 				<ServerSideRender
 					block="wbcom-essential/posts-revolution"
 					attributes={ attributes }

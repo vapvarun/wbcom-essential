@@ -111,6 +111,10 @@
     "hoverColor": {
       "type": "string",
       "default": "#1d76da"
+    },
+    "sectionLabel": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "wbcom-essential",

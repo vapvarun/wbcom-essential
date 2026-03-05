@@ -79,6 +79,14 @@ if ( ! empty( $categories ) && 'post' === $query_args['post_type'] ) {
 	$query_args['category_name'] = implode( ',', array_map( 'sanitize_title', $categories ) );
 }
 
+// Only include posts with featured images since all layouts are image-driven.
+$query_args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+	array(
+		'key'     => '_thumbnail_id',
+		'compare' => 'EXISTS',
+	),
+);
+
 // Handle sticky posts.
 if ( 'onlystickyposts' === $sticky_posts && 'post' === $query_args['post_type'] ) {
 	$sticky = get_option( 'sticky_posts' );
@@ -139,16 +147,46 @@ if ( $enable_custom_style ) {
 
 if ( ! function_exists( 'wbcom_pr_block_get_excerpt' ) ) {
 	/**
-	 * Helper function to get excerpt.
+	 * Helper function to get a clean, word-boundary excerpt.
 	 *
-	 * @param int $length Excerpt length.
+	 * Handles posts with no manual excerpt by generating from content.
+	 * Always truncates at word boundaries, never mid-word.
+	 *
+	 * @param int $length Excerpt length in characters.
 	 * @return string
 	 */
 	function wbcom_pr_block_get_excerpt( $length ) {
 		$excerpt = get_the_excerpt();
-		if ( mb_strlen( $excerpt, 'UTF-8' ) > $length ) {
-			$excerpt = mb_substr( $excerpt, 0, $length, 'UTF-8' ) . '...';
+
+		// Strip WordPress auto-excerpt artifacts.
+		$excerpt = str_replace( array( '[…]', '[&hellip;]', '&hellip;' ), '', $excerpt );
+		$excerpt = trim( $excerpt );
+
+		// If excerpt is empty or too short, generate from post content.
+		if ( mb_strlen( $excerpt, 'UTF-8' ) < 20 ) {
+			$content = get_the_content();
+			$content = wp_strip_all_tags( strip_shortcodes( $content ) );
+			$content = preg_replace( '/\s+/', ' ', trim( $content ) );
+			if ( mb_strlen( $content, 'UTF-8' ) > 0 ) {
+				$excerpt = $content;
+			}
 		}
+
+		if ( empty( $excerpt ) ) {
+			return '';
+		}
+
+		// Truncate at word boundary.
+		if ( mb_strlen( $excerpt, 'UTF-8' ) > $length ) {
+			$excerpt = mb_substr( $excerpt, 0, $length, 'UTF-8' );
+			// Find last space to avoid cutting mid-word.
+			$last_space = mb_strrpos( $excerpt, ' ', 0, 'UTF-8' );
+			if ( false !== $last_space && $last_space > $length * 0.6 ) {
+				$excerpt = mb_substr( $excerpt, 0, $last_space, 'UTF-8' );
+			}
+			$excerpt = rtrim( $excerpt, '.,;:!? ' ) . '…';
+		}
+
 		return $excerpt;
 	}
 }
