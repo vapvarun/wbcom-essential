@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.2.1
+Stable tag: 4.3.0
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -98,6 +98,20 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.3.0 =
+* New: Category Grid block - display categories in a visual grid with post counts and images
+* New: Magazine block patterns - News Dashboard, Magazine Homepage, Blog Editorial, Blog Featured List
+* New: Additional blog patterns - Blog Listing, Blog Masonry, Blog Timeline, Category Archive
+* New: Single post template system with 4 templates (Classic, Modern, Magazine, Minimal)
+* New: Single post patterns - Author Bio, Related Posts, Share Section, Newsletter CTA
+* New: Pattern registration system (wbcom-patterns.php)
+* Enhanced: Posts Revolution - sectionLabel attribute for editor-only section guidance in patterns
+* Enhanced: Posts Revolution - category picker moved to Content panel with FormTokenField autocomplete
+* Enhanced: Posts Revolution - inline category status badges and setup prompts in editor
+* Enhanced: Posts Revolution - require featured images in query for consistent grid presentation
+* Enhanced: Posts Revolution - smarter excerpt generation with word-boundary truncation and content fallback
+* Fixed: PHP Deprecated warning for str_replace() parameter type in Elementor Forums widget
 
 = 4.2.1 =
 * Fixed: Fatal TypeError in Elementor AJAX handler when source value is non-scalar (PHP 8+)
