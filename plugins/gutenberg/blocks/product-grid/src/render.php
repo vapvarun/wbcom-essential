@@ -158,7 +158,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							if ( has_post_thumbnail() ) {
 								the_post_thumbnail( 'woocommerce_thumbnail' );
 							} else {
-								echo wc_placeholder_img( 'woocommerce_thumbnail' );
+								echo wc_placeholder_img( 'woocommerce_thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce core function returns safe HTML.
 							}
 							?>
 						</a>
@@ -178,7 +178,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							<div class="wbcom-essential-product-grid__rating">
 								<?php
 								$rating = $product->get_average_rating();
-								echo wc_get_rating_html( $rating );
+								echo wc_get_rating_html( $rating ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce core function returns safe HTML.
 								?>
 							</div>
 						<?php endif; ?>
