@@ -192,9 +192,10 @@ if ( ! class_exists( 'WBcom_Essential_elementor_Templates_Manager' ) ) {
 				wp_send_json_error();
 			}
 
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Tab is validated against available tabs below via array key check.
 			$tab     = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
 			$tabs    = $this->get_template_tabs();
-			$sources = $tabs[ $tab ]['sources'];
+			$sources = isset( $tabs[ $tab ] ) ? $tabs[ $tab ]['sources'] : array();
 
 			$result = array(
 				'templates'  => array(),

@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $menu_link                 = trailingslashit( bp_loggedin_user_domain() . bp_get_notifications_slug() );
 $notifications             = bp_notifications_get_unread_notification_count( bp_loggedin_user_id() );
 $unread_notification_count = ! empty( $notifications ) ? $notifications : 0;

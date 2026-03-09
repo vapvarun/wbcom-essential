@@ -333,7 +333,7 @@ class ElementorHooks {
 				'multiple'    => true,
 				'filter_type' => 'by_id',
 				'condition'   => array(
-					'exclude' => 'manual_selection',
+					'exclude' => 'manual_selection', // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Elementor control condition, not a WP_Query parameter.
 				),
 			)
 		);
@@ -383,7 +383,7 @@ class ElementorHooks {
 		} else {
 			$query_args['post_type']      = $post_type;
 			$query_args['posts_per_page'] = $settings['posts_per_page'];
-			$query_args['tax_query']      = array();
+			$query_args['tax_query']      = array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Required for taxonomy filtering.
 
 			if ( 0 < $settings['offset'] ) {
 				// Due to a WordPress bug, the offset will be set later.
@@ -413,7 +413,9 @@ class ElementorHooks {
 		if ( ! empty( $settings['exclude'] ) ) {
 			$post__not_in = array();
 			if ( in_array( 'current_post', $settings['exclude'] ) ) {
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading post_id in Elementor Ajax context, nonce verified by Elementor.
 				if ( wp_doing_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
+					// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Same as above.
 					$post__not_in[] = absint( $_REQUEST['post_id'] );
 				} elseif ( is_singular() ) {
 					$post__not_in[] = get_queried_object_id();
@@ -424,7 +426,8 @@ class ElementorHooks {
 				$post__not_in = array_merge( $post__not_in, $settings['exclude_ids'] );
 			}
 
-			$query_args['post__not_in'] = $post__not_in;
+			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Required for excluding current post in Elementor widgets.
+		$query_args['post__not_in'] = $post__not_in;
 		}
 
 		return $query_args;

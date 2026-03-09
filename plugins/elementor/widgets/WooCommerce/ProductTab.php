@@ -1459,7 +1459,7 @@ class ProductTab extends \Elementor\Widget_Base {
 											<li><a class="
 											<?php
 											if ( $m == 1 ) {
-												echo 'htactive';}
+												echo esc_attr( 'htactive' );}
 											?>
 											" href="#wbcomtab<?php echo esc_attr( $tabuniqid . $m ); ?>">
 											<?php echo esc_html( $prod_cats->name ); ?>
@@ -1511,7 +1511,7 @@ class ProductTab extends \Elementor\Widget_Base {
 					<div class="wb-tab-pane
 						<?php
 						if ( $j == 1 ) {
-							echo 'htactive';}
+							echo esc_attr( 'htactive' );}
 						?>
 					" id="<?php echo esc_attr( 'wbcomtab' . $tabuniqid . $j ); ?>">
 						
@@ -1526,9 +1526,9 @@ class ProductTab extends \Elementor\Widget_Base {
 								<div class="product-item 
 									<?php
 									if ( $rows > 1 && ( $k % $rows != 0 ) ) {
-										echo 'mb-30 ';
+										echo esc_attr( 'mb-30 ' );
 									} if ( $settings['wbcom_product_style'] == 3 ) {
-										echo 'product_style_three'; }
+										echo esc_attr( 'product_style_three' ); }
 									?>
 								">
 
@@ -1590,7 +1590,7 @@ class ProductTab extends \Elementor\Widget_Base {
 												<div class="actions 
 												<?php
 												if ( $settings['wbcom_product_style'] == 2 ) {
-													echo 'style_two'; }
+													echo esc_attr( 'style_two' ); }
 												?>
 													">
 													<?php
@@ -1653,9 +1653,9 @@ class ProductTab extends \Elementor\Widget_Base {
 								<div class="product-item 
 									<?php
 									if ( $rows > 1 && ( $k % $rows != 0 ) ) {
-										echo 'mb-30';
+										echo esc_attr( 'mb-30' );
 									} if ( $settings['wbcom_product_style'] == 3 ) {
-										echo 'product_style_three'; }
+										echo esc_attr( 'product_style_three' ); }
 									?>
 								">
 
@@ -1723,7 +1723,7 @@ class ProductTab extends \Elementor\Widget_Base {
 												<div class="actions 
 												<?php
 												if ( $settings['wbcom_product_style'] == 2 ) {
-													echo 'style_two'; }
+													echo esc_attr( 'style_two' ); }
 												?>
 													">
 													<?php

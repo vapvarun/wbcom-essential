@@ -12,6 +12,10 @@
  * @subpackage Wbcom_Essential/templates/reign/buddypress/nouveau/members
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 bp_nouveau_before_loop(); ?>
 
 <?php if ( bp_get_current_member_type() ) : ?>

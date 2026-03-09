@@ -91,7 +91,8 @@ class Wbcom_Shared_Dashboard
      */
     public function render_dashboard()
     {
-        $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'overview';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Admin dashboard tab parameter, no state change.
+        $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 ?>
         <div class="wrap wbcom-shared-dashboard">
             <h1>
@@ -146,7 +147,7 @@ class Wbcom_Shared_Dashboard
             <nav class="nav-tab-wrapper">
                 <?php foreach ($tabs as $tab_key => $tab_data) : ?>
                     <a href="<?php echo esc_url(admin_url('admin.php?page=wbcom-designs&tab=' . $tab_key)); ?>"
-                        class="nav-tab <?php echo $active_tab === $tab_key ? 'nav-tab-active' : ''; ?>">
+                        class="nav-tab <?php echo esc_attr( $active_tab === $tab_key ? 'nav-tab-active' : '' ); ?>">
                         <span class="dashicons <?php echo esc_attr($tab_data['icon']); ?>"></span>
                         <?php echo esc_html($tab_data['title']); ?>
                     </a>
@@ -240,17 +241,17 @@ class Wbcom_Shared_Dashboard
                     <h3 style="color: #153045; font-size: 18px; font-weight: 600; margin: 0 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid #f0f0f1;"><?php esc_html_e('System Status', 'wbcom-essential'); ?></h3>
                     <div class="wbcom-system-status" style="display: flex; flex-direction: column; gap: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
-                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo version_compare(get_bloginfo('version'), '5.0', '>=') ? '#2c5282' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
+                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo esc_attr( version_compare(get_bloginfo('version'), '5.0', '>=') ? '#2c5282' : '#e74c3c' ); ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('WordPress Version', 'wbcom-essential'); ?></span>
                             <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo esc_html( get_bloginfo('version') ); ?></span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
-                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo function_exists('buddypress') ? '#2c5282' : '#e74c3c'; ?>; flex-shrink: 0;"></span>
+                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo esc_attr( function_exists('buddypress') ? '#2c5282' : '#e74c3c' ); ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('BuddyPress', 'wbcom-essential'); ?></span>
                             <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo function_exists('buddypress') ? esc_html__('Active', 'wbcom-essential') : esc_html__('Inactive', 'wbcom-essential'); ?></span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
-                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo defined('WP_DEBUG') && WP_DEBUG ? '#e74c3c' : '#2c5282'; ?>; flex-shrink: 0;"></span>
+                            <span class="status-indicator" style="width: 12px; height: 12px; border-radius: 50%; background-color: <?php echo esc_attr( defined('WP_DEBUG') && WP_DEBUG ? '#e74c3c' : '#2c5282' ); ?>; flex-shrink: 0;"></span>
                             <span style="font-size: 14px; color: #153045; font-weight: 500;"><?php esc_html_e('Production Mode', 'wbcom-essential'); ?></span>
                             <span style="font-size: 13px; color: #515b67; margin-left: auto;"><?php echo defined('WP_DEBUG') && WP_DEBUG ? esc_html__('Debug On', 'wbcom-essential') : esc_html__('Active', 'wbcom-essential'); ?></span>
                         </div>

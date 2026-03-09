@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <label>
 	<input type="radio" value="{{ slug }}" name="wbcom-essential-template-modal-header-tab">

@@ -2210,7 +2210,7 @@ class PostCarousel extends \Elementor\Widget_Base {
         ?>
         <div id="wbcom-post-carousel-<?php echo esc_attr($widget_id); ?>" class="wbcom-post-carousel <?php echo esc_attr($settings['overflow_hidden']); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? esc_attr( $settings['nav_arrow_prev_icon']['value'] ) : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? esc_attr( $settings['nav_arrow_next_icon']['value'] ) : ''; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-infinite="<?php if ($settings['infinite']) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ($settings['display_nav']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['display_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr($settings['columns']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>">
 			<?php while($custom_query->have_posts()) : $custom_query->the_post(); ?>
-			<div <?php if ($settings['add_classes']) { post_class('wbcom-carousel-item'); } else { echo 'class="wbcom-carousel-item"'; } ?>>
+			<div <?php if ($settings['add_classes']) { post_class('wbcom-carousel-item'); } else { echo 'class="wbcom-carousel-item"'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML attribute string. } ?>>
 				<div class="wbcom-posts-card wbcom-posts-<?php echo esc_attr($settings['card_layout']); ?>">
 				<?php if ((has_post_thumbnail()) && ($settings['display_thumbnail'])) { ?>
 				<?php
@@ -2271,7 +2271,8 @@ class PostCarousel extends \Elementor\Widget_Base {
 							<?php $avatar_size = ( ! empty( $settings['avatar_size'] ) ) ? esc_attr( $settings['avatar_size'] ) : ''; ?>
 							<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), $avatar_size ); ?></a>
 							<?php } else { ?>
-							<?php echo get_avatar( get_the_author_meta( 'ID' ), $settings['avatar_size'] ); ?>
+							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_avatar() is a WordPress core function that returns escaped HTML. ?>
+						<?php echo get_avatar( get_the_author_meta( 'ID' ), $settings['avatar_size'] ); ?>
 							<?php } ?>
 						</div>
 						<?php } ?>

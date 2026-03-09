@@ -455,7 +455,7 @@ function wbcom_ajax_login() {
 	$info = array(
 		'user_login'    => isset( $_POST['log'] ) && is_string( $_POST['log'] ) ? sanitize_text_field( wp_unslash( $_POST['log'] ) ) : '',
 		'user_password' => isset( $_POST['pwd'] ) && is_string( $_POST['pwd'] ) ? $_POST['pwd'] : '', //phpcs:ignore
-		'remember'      => ! empty( $_POST['rememberme'] ) ? true : false,
+		'remember'      => ! empty( sanitize_text_field( wp_unslash( $_POST['rememberme'] ?? '' ) ) ) ? true : false, // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 	);
 
 	$user_signon = wp_signon( $info, false );

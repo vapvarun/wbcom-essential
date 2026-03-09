@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/templates/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 
 <div class="elementor-template-library-template-body">

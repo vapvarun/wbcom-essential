@@ -34,6 +34,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
+		// phpcs:ignore PluginCheck.CodeAnalysis.EnqueuedResourceOffloading.OffloadedContent -- Font Awesome is bundled locally in the plugin.
 		if ( ! wp_style_is( 'font-awesome-5', 'enqueued' ) ) {
 			wp_register_style(
 				'font-awesome-5',

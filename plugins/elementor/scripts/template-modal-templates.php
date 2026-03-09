@@ -9,5 +9,9 @@
  * @subpackage Wbcom_Essential/plugins/elementor/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div id="wbcom-essential-modal-templates-container"></div>

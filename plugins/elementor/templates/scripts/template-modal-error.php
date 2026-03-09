@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/templates/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div class="wbcomessentialelementor-template-modal-error">
 </div>

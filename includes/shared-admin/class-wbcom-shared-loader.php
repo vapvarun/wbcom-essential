@@ -294,6 +294,7 @@ class Wbcom_Shared_Loader
     private static function detect_shared_path()
     {
         // Get calling file path
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace -- Used for path auto-detection, not debugging.
         $backtrace = debug_backtrace();
         $calling_file = '';
 
@@ -487,7 +488,8 @@ class Wbcom_Shared_Loader
      */
     public function show_plugin_page()
     {
-        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET page parameter for routing, no state change.
+        $current_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 
         // Find the plugin that matches this page
         foreach ($this->registered_plugins as $plugin) {
@@ -812,7 +814,8 @@ class Wbcom_Shared_Loader
                 'ajaxUrl' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('wbcom_shared_nonce'),
                 'pluginCount' => count($this->registered_plugins),
-                'currentPage' => isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '',
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Admin page param for localization, read-only.
+                'currentPage' => isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '',
                 'strings' => array(
                     'loading' => __('Loading...', 'wbcom-essential'),
                     'error' => __('Error loading content.', 'wbcom-essential'),
@@ -829,7 +832,8 @@ class Wbcom_Shared_Loader
     private function is_wbcom_admin_page($hook_suffix)
     {
         // Get current page parameter
-        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET page for admin page check, read-only.
+        $current_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 
         // STRICT CHECK: Only load shared assets on main dashboard pages
 
@@ -971,7 +975,8 @@ class Wbcom_Shared_Loader
             'registered_plugins' => array_keys($this->registered_plugins),
             'dashboard_class_exists' => class_exists('Wbcom_Shared_Dashboard'),
             'current_hook' => isset($GLOBALS['hook_suffix']) ? $GLOBALS['hook_suffix'] : 'unknown',
-            'current_page' => isset($_GET['page']) ? sanitize_text_field($_GET['page']) : 'none',
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Debug info, read-only.
+            'current_page' => isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : 'none',
             'assets_url' => $this->get_shared_assets_url(),
         );
     }

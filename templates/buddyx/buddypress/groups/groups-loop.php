@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/templates/buddyx/buddypress/groups
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 bp_nouveau_before_loop(); ?>
 
 <?php if ( bp_get_current_group_directory_type() ) : ?>

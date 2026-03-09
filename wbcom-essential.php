@@ -109,6 +109,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 * Load plugin textdomain
 		 */
 		public function load_textdomain() {
+			// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Custom language path required for this plugin structure.
 			load_plugin_textdomain(
 				'wbcom-essential',
 				false,

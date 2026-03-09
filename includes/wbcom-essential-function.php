@@ -12,6 +12,10 @@
  * @subpackage Wbcom_Essential/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Gets and includes template files.
  *

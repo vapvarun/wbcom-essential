@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <label class="wbcom-essential-template-filter-label">
 	<input type="radio" value="{{ slug }}" <# if ( '' === slug ) { #> checked<# } #> name="wbcom-essential-template-filter">

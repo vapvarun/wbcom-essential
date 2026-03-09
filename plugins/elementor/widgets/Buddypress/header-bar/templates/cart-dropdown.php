@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $cart_icon = ( isset( $settings['cart_icon']['value'] ) && '' !== $settings['cart_icon']['value'] ) ? $settings['cart_icon']['value'] : 'wbe-icon-shopping-cart';
 ?>
 

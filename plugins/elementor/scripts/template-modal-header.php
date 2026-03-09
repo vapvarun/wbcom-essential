@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div id="wbcom-essential-template-modal-header-title">
 	<span class="wbcom-essential-template-modal-header-title__logo"><img src="<?php echo esc_url( get_template_directory_uri() . '/inc/plugins/elementor/assets/editor/templates/img/wbcom-icon.jpg' ); ?>" /></span>

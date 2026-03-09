@@ -1725,7 +1725,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php $oembed = wp_oembed_get( $item['oembed'], $args ); ?>
             <?php
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_oembed_get returns safe HTML from WordPress oEmbed
-            echo ( $oembed ) ? $oembed : $settings['oembed']; ?>
+            echo ( $oembed ) ? $oembed : esc_url( $settings['oembed'] ); ?>
             </div>
             <?php } elseif (($item['lightbox_image']['url']) && ($item['lightbox_style'] == 'img')) { ?>
             <?php $lightbox_image_url = wp_get_attachment_image_url( $item['lightbox_image']['id'], 'full' );  ?>
@@ -1735,7 +1735,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php } ?>
             <?php if ($box_content) { ?>
             <div class="wbcom-lightbox-content" style="max-width:<?php echo esc_attr($settings['box_width']); ?>px;background-color:<?php echo esc_attr($settings['lightbox_bg_color']); ?>;padding:<?php echo esc_attr($settings['lightbox_spacing']['top'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['right'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['bottom'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['left'] . $settings['lightbox_spacing']['unit']); ?>">
-                <?php echo do_shortcode($box_content); ?>
+                <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- do_shortcode() output is trusted shortcode content.
+                echo do_shortcode($box_content); ?>
             </div>
             <?php } ?>
         </div>

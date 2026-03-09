@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/templates/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <label for="elementor-template-library-filter-text" class="elementor-screen-only"><?php echo esc_html__( 'Search Templates:', 'wbcom-essential' ); ?></label>
 <input id="elementor-template-library-filter-text" placeholder="<?php echo esc_attr__( 'Search', 'wbcom-essential' ); ?>">

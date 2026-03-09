@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress/header-bar/templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 global $messages_template;
 $menu_link            = trailingslashit( bp_loggedin_user_domain() . bp_get_messages_slug() );
 $unread_message_count = messages_get_unread_count();
@@ -123,7 +127,8 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 
 							$prefix                   = apply_filters( 'bp_core_get_table_prefix', $wpdb->base_prefix );
 							$groups_table             = $prefix . 'bp_groups';
-							$group_name               = $wpdb->get_var( $wpdb->prepare( "SELECT `name` FROM `{$groups_table}` WHERE `id` = %d", absint( $group_id ) ) ); // db call ok; no-cache ok;.
+							// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Table name is safe (prefix + constant), value is prepared with %d.
+						$group_name               = $wpdb->get_var( $wpdb->prepare( "SELECT `name` FROM `{$groups_table}` WHERE `id` = %d", absint( $group_id ) ) ); // db call ok; no-cache ok;.
 							$group_link               = 'javascript:void(0);';
 							$group_avatar             = buddypress()->plugin_url . 'bp-core/images/mystery-group.png';
 							$legacy_group_avatar_name = '-groupavatar-full';

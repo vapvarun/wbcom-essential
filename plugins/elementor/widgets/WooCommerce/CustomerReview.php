@@ -666,7 +666,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's get_render_attribute_string() handles escaping.
 		echo '<div ' . $this->get_render_attribute_string( 'review_area_attr' ) . '>';
-		echo '<div class="wb-row ' . ( $settings['no_gutters'] === 'yes' ? 'wb-gutters' : '' ) . '">';
+		echo '<div class="wb-row ' . esc_attr( $settings['no_gutters'] === 'yes' ? 'wb-gutters' : '' ) . '">';
 		?>
 			<?php foreach ( $review_list as $review ) : ?>
 			<div class="<?php echo esc_attr( $collumval ); ?>">
@@ -774,6 +774,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 			</div>
 				<?php
 			endforeach;
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded closing HTML tags.
 			echo '</div></div>';
 	}
 
@@ -782,6 +783,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 			$rating          = $ratting_num;
 			$rating_whole    = floor( $ratting_num );
 			$rating_fraction = $rating - $rating_whole;
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- All strings are hardcoded HTML with no user data.
 			echo '<ul class="rating">';
 			for ( $i = 1; $i <= 5; $i++ ) {
 				if ( $i <= $rating_whole ) {
@@ -794,6 +796,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 				}
 			}
 			echo '</ul>';
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 }

@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/templates/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div class="wbcomessentialelementor-filters-list"></div>
 <div class="wbcomessentialelementor-templates-wrap">

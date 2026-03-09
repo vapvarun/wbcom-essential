@@ -12,6 +12,10 @@
  * @subpackage Wbcom_Essential/templates/reign/buddypress/nouveau/groups
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div id="groups-dir-list" class="groups dir-list">
 <?php if ( bp_has_groups( bp_ajax_querystring( 'groups' ) . $query_string ) ) : ?>

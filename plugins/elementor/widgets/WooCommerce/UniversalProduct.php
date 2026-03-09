@@ -2149,7 +2149,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 											<li><a class="
 											<?php
 											if ( $m == 1 ) {
-												echo 'htactive';}
+												echo esc_attr( 'htactive' );}
 											?>
 											" href="#wbcomtab<?php echo esc_attr( $tabuniqid . $m ); ?>">
 											<?php echo esc_html( $prod_cats->name ); ?>
@@ -2164,7 +2164,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			<?php } ?>
 
 			<?php if ( is_array( $product_cats ) && ( count( $product_cats ) > 0 ) && ( $settings['product_layout_style'] == 'tab' ) ) : ?>
-				<div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce">
+				<div class="<?php echo esc_attr( $same_height_box == 'yes' ? 'wbcom-product-same-height' : '' ); ?> wb-products woocommerce">
 					
 					<?php
 					$z                      = 0;
@@ -2202,7 +2202,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						<div class="wb-tab-pane 
 							<?php
 							if ( $z == 1 ) {
-								echo 'htactive'; }
+								echo esc_attr( 'htactive' ); }
 							?>
 							" id="<?php echo esc_attr( 'wbcomtab' . $tabuniqid . $z ); ?>">
 							<div class="wb-row">
@@ -2295,7 +2295,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
 																												<?php
 																												if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
-																													echo '<li>';
+																													echo '<li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																														wbcom_compare_button(
 																															array(
 																																'style' => 2,
@@ -2303,7 +2303,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 																																'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
 																															)
 																														);
-																													echo '</li>';
+																													echo '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																												}
 																												?>
 															<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
@@ -2333,7 +2333,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
 																<?php
 																if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
-																	echo '<li>';
+																	echo '<li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																		wbcom_compare_button(
 																			array(
 																				'style' => 2,
@@ -2341,7 +2341,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 																				'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
 																			)
 																		);
-																	echo '</li>';
+																	echo '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																}
 																?>
 																<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
@@ -2376,15 +2376,16 @@ endforeach;
 					$slider_main_div_style = '';
 				if ( $settings['product_layout_style'] == 'slider' ) {
 					$slider_main_div_style = "style='display:none'";
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 					echo '<div class="wb-row">';
 				}
 				?>
-					<div class="<?php echo $same_height_box == 'yes' ? 'wbcom-product-same-height' : ''; ?> wb-products woocommerce 
+					<div class="<?php echo esc_attr( $same_height_box == 'yes' ? 'wbcom-product-same-height' : '' ); ?> wb-products woocommerce 
 					<?php
 					if ( $settings['product_layout_style'] == 'slider' ) {
 						echo esc_attr( 'product-slider' );
 					} else {
-						echo 'wb-row'; }
+						echo esc_attr( 'wb-row' ); }
 					?>
 					" dir="<?php echo esc_attr( $direction ); ?>" data-settings='
 					<?php
@@ -2490,7 +2491,7 @@ endforeach;
 														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
 																								<?php
 																								if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
-																									echo '<li>';
+																									echo '<li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																										wbcom_compare_button(
 																											array(
 																												'style' => 2,
@@ -2498,7 +2499,7 @@ endforeach;
 																												'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
 																											)
 																										);
-																									echo '</li>';
+																									echo '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																								}
 																								?>
 													<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
@@ -2528,7 +2529,7 @@ endforeach;
 														<ul <?php echo $this->get_render_attribute_string( 'action_btn_attr' ); ?>>
 																										<?php
 																										if ( function_exists( 'wbcom_compare_button' ) && true === wbcom_exist_compare_plugin() ) {
-																											echo '<li>';
+																											echo '<li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																												wbcom_compare_button(
 																													array(
 																														'style' => 2,
@@ -2536,7 +2537,7 @@ endforeach;
 																														'btn_added_txt' => '<i class="wbe-icons wbe-icon-check-circle"></i>',
 																													)
 																												);
-																											echo '</li>';
+																											echo '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 																										}
 																										?>
 														<li class="wbcom-cart"><?php woocommerce_template_loop_add_to_cart(); ?></li>
@@ -2559,6 +2560,7 @@ endif;
 					</div>
 				<?php
 				if ( $settings['product_layout_style'] == 'slider' ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML tag.
 					echo '</div>'; }
 				?>
 			<?php endif; ?>

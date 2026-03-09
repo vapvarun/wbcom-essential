@@ -12,6 +12,10 @@
  * @subpackage Wbcom_Essential/templates/reign/buddypress/legacy/members
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 
 	<?php

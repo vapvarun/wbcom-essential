@@ -9,6 +9,10 @@
  * @subpackage Wbcom_Essential/plugins/elementor/templates/scripts
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <button class="elementor-template-library-template-action wbcomessentialelementor-template-insert elementor-button elementor-button-success">
 	<i class="eicon-file-download"></i><span class="elementor-button-title">
