@@ -359,6 +359,10 @@ $desc_tag     = in_array( $description_html_tag, $allowed_tags, true ) ? $descri
 				if ( empty( $full_image_url ) && ! empty( $image_url ) ) {
 					$full_image_url = $image_url;
 				}
+				// translators: %s is the portfolio item title.
+				$lightbox_aria_label = esc_attr( sprintf( __( 'Open %s in lightbox', 'wbcom-essential' ), $item['title'] ?? '' ) );
+				// translators: %s is the portfolio item title.
+				$view_aria_label = esc_attr( sprintf( __( 'View %s', 'wbcom-essential' ), $item['title'] ?? '' ) );
 				?>
 				<div
 					class="wbcom-portfolio-item <?php echo esc_attr( $filter_class_str ); ?><?php echo ! $is_visible ? ' is-hidden' : ''; ?>"
@@ -381,7 +385,7 @@ $desc_tag     = in_array( $description_html_tag, $allowed_tags, true ) ? $descri
 										class="wbcom-portfolio-lightbox-btn"
 										data-src="<?php echo esc_url( $full_image_url ); ?>"
 										data-title="<?php echo esc_attr( $item['title'] ?? '' ); ?>"
-										aria-label="<?php echo esc_attr( sprintf( __( 'Open %s in lightbox', 'wbcom-essential' ), $item['title'] ?? '' ) ); ?>"
+										aria-label="<?php echo $lightbox_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped above ?>"
 									>
 										<?php echo $lightbox_icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									</button>
@@ -422,11 +426,10 @@ $desc_tag     = in_array( $description_html_tag, $allowed_tags, true ) ? $descri
 									<?php endif; ?>
 
 									<?php if ( ! empty( $item['link'] ) && ! $enable_lightbox ) : ?>
-										<?php /* translators: %s: Portfolio item title */ ?>
 										<a
 											href="<?php echo esc_url( $item['link'] ); ?>"
 											class="wbcom-portfolio-link"
-											aria-label="<?php echo esc_attr( sprintf( __( 'View %s', 'wbcom-essential' ), $item['title'] ?? '' ) ); ?>"
+											aria-label="<?php echo $view_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped above ?>"
 											<?php echo ( '_blank' === ( $item['linkTarget'] ?? '_self' ) ) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
 										>
 											<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -463,8 +466,8 @@ $desc_tag     = in_array( $description_html_tag, $allowed_tags, true ) ? $descri
 
 								<?php if ( ! empty( $item['link'] ) ) : ?>
 									<a
-										href="<?php echo esc_url( $item['link'] ); ?>"
-										class="wbcom-portfolio-link"
+											href="<?php echo esc_url( $item['link'] ); ?>"
+											class="wbcom-portfolio-link"
 										<?php echo ( '_blank' === ( $item['linkTarget'] ?? '_self' ) ) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
 									>
 										<?php esc_html_e( 'View Project', 'wbcom-essential' ); ?>

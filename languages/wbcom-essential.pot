@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-02 11:18:16+00:00\n"
+"POT-Creation-Date: 2026-03-09 11:16:41+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,7 +62,7 @@ msgstr ""
 #: admin/class-wbcom-essential-widget-showcase.php:66
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:44
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:45
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:99
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:100
 msgid "Wbcom Designs"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgid "Documentation"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:251
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:235
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:236
 msgid "Get Support"
 msgstr ""
 
@@ -275,7 +275,7 @@ msgstr ""
 msgid "replied"
 msgstr ""
 
-#: build/blocks/forums/render.php:220 build/blocks/members-lists/render.php:33
+#: build/blocks/forums/render.php:220 build/blocks/members-lists/render.php:34
 #: plugins/elementor/widgets/Buddypress/Forums.php:584
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:252
 #: plugins/gutenberg/blocks/forums/src/render.php:220
@@ -294,8 +294,8 @@ msgstr ""
 msgid "Replies"
 msgstr ""
 
-#: build/blocks/forums/render.php:223 includes/wbcom-essential-function.php:250
-#: includes/wbcom-essential-function.php:312
+#: build/blocks/forums/render.php:223 includes/wbcom-essential-function.php:254
+#: includes/wbcom-essential-function.php:316
 #: plugins/gutenberg/blocks/forums/src/render.php:223
 msgid "Reply"
 msgstr ""
@@ -350,8 +350,8 @@ msgstr ""
 #: plugins/gutenberg/blocks/group-carousel/src/render.php:187
 #: plugins/gutenberg/blocks/groups-grid/src/render.php:149
 #: plugins/gutenberg/blocks/groups-lists/src/render.php:174
-#: templates/buddyx/buddypress/groups/groups-loop.php:62
-#: templates/reign/buddypress/nouveau/groups/groups-loop.php:99
+#: templates/buddyx/buddypress/groups/groups-loop.php:66
+#: templates/reign/buddypress/nouveau/groups/groups-loop.php:103
 #. translators: %s: Group last active time
 #. translators: %s: Get group last active
 #. translators: %s: Group last active time
@@ -367,16 +367,16 @@ msgid "Sorry, no groups were found."
 msgstr ""
 
 #: build/blocks/groups-lists/render.php:71
-#: build/blocks/members-lists/render.php:76
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:250
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:255
+#: build/blocks/members-lists/render.php:77
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:116
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:510
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:116
 #: plugins/elementor/widgets/General/PostSlider.php:1705
 #: plugins/elementor/widgets/General/Slider.php:1803
-#: plugins/elementor/widgets/General/SmartMenu.php:559
-#: plugins/elementor/widgets/General/SmartMenu.php:915
+#: plugins/elementor/widgets/General/SmartMenu.php:560
+#: plugins/elementor/widgets/General/SmartMenu.php:916
 #: plugins/elementor/widgets/General/Tabs.php:257
 #: plugins/gutenberg/blocks/groups-lists/src/render.php:71
 #: plugins/gutenberg/blocks/members-lists/src/render.php:77
@@ -384,7 +384,7 @@ msgid "Active"
 msgstr ""
 
 #: build/blocks/groups-lists/render.php:72
-#: build/blocks/members-lists/render.php:77
+#: build/blocks/members-lists/render.php:78
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:115
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:115
 #: plugins/gutenberg/blocks/groups-lists/src/render.php:72
@@ -393,7 +393,7 @@ msgid "Popular"
 msgstr ""
 
 #: build/blocks/groups-lists/render.php:73
-#: build/blocks/members-lists/render.php:78
+#: build/blocks/members-lists/render.php:79
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:138
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:111
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:114
@@ -429,8 +429,8 @@ msgstr ""
 
 #: build/blocks/header-bar/render.php:277
 #: build/blocks/header-bar/render.php:636
-#: plugins/elementor/scripts/template-modal-search-item.php:14
-#: plugins/elementor/templates/scripts/template-modal-search-item.php:14
+#: plugins/elementor/scripts/template-modal-search-item.php:18
+#: plugins/elementor/templates/scripts/template-modal-search-item.php:18
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:184
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:95
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:128
@@ -472,8 +472,8 @@ msgstr ""
 #: build/blocks/header-bar/render.php:377
 #: build/blocks/header-bar/render.php:390
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:196
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:21
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:30
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:25
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:34
 #: plugins/gutenberg/blocks/header-bar/src/render.php:377
 #: plugins/gutenberg/blocks/header-bar/src/render.php:390
 msgid "Messages"
@@ -492,15 +492,15 @@ msgstr ""
 #: build/blocks/header-bar/render.php:458
 #: build/blocks/header-bar/render.php:471
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:209
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:22
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:31
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:26
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:35
 #: plugins/gutenberg/blocks/header-bar/src/render.php:458
 #: plugins/gutenberg/blocks/header-bar/src/render.php:471
 msgid "Notifications"
 msgstr ""
 
 #: build/blocks/header-bar/render.php:473
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:33
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:37
 #: plugins/gutenberg/blocks/header-bar/src/render.php:473
 msgid "Mark all as read"
 msgstr ""
@@ -523,7 +523,7 @@ msgstr ""
 #: build/blocks/header-bar/render.php:527
 #: build/blocks/header-bar/render.php:653
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:222
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:17
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:21
 #: plugins/gutenberg/blocks/header-bar/src/render.php:527
 #: plugins/gutenberg/blocks/header-bar/src/render.php:653
 msgid "Cart"
@@ -531,7 +531,7 @@ msgstr ""
 
 #: build/blocks/header-bar/render.php:545
 #: build/blocks/header-bar/render.php:671 build/blocks/mini-cart/render.php:103
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:38
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:42
 #: plugins/gutenberg/blocks/header-bar/src/render.php:545
 #: plugins/gutenberg/blocks/header-bar/src/render.php:671
 #: plugins/gutenberg/blocks/mini-cart/src/render.php:103
@@ -540,7 +540,7 @@ msgstr ""
 
 #: build/blocks/header-bar/render.php:546
 #: build/blocks/header-bar/render.php:672 build/blocks/mini-cart/render.php:104
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:39
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:43
 #: plugins/gutenberg/blocks/header-bar/src/render.php:546
 #: plugins/gutenberg/blocks/header-bar/src/render.php:672
 #: plugins/gutenberg/blocks/mini-cart/src/render.php:104
@@ -549,9 +549,9 @@ msgstr ""
 
 #: build/blocks/header-bar/render.php:547
 #: build/blocks/header-bar/render.php:673 build/blocks/mini-cart/render.php:105
-#: plugins/elementor/scripts/template-modal-header.php:20
-#: plugins/elementor/templates/scripts/template-modal-header.php:20
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:40
+#: plugins/elementor/scripts/template-modal-header.php:24
+#: plugins/elementor/templates/scripts/template-modal-header.php:24
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:44
 #: plugins/gutenberg/blocks/header-bar/src/render.php:547
 #: plugins/gutenberg/blocks/header-bar/src/render.php:673
 #: plugins/gutenberg/blocks/mini-cart/src/render.php:105
@@ -592,18 +592,27 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: build/blocks/members-carousel/render.php:205
-#: build/blocks/members-grid/render.php:159
-#: build/blocks/members-lists/render.php:189
+#: build/blocks/members-carousel/render.php:18
+#: build/blocks/members-grid/render.php:18
+#: build/blocks/members-lists/render.php:18
+#: plugins/gutenberg/blocks/members-carousel/src/render.php:18
+#: plugins/gutenberg/blocks/members-grid/src/render.php:18
+#: plugins/gutenberg/blocks/members-lists/src/render.php:18
+msgid "BuddyPress is required for this block."
+msgstr ""
+
+#: build/blocks/members-carousel/render.php:206
+#: build/blocks/members-grid/render.php:160
+#: build/blocks/members-lists/render.php:190
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:719
 #: plugins/gutenberg/blocks/members-carousel/src/render.php:206
 #: plugins/gutenberg/blocks/members-grid/src/render.php:160
 #: plugins/gutenberg/blocks/members-lists/src/render.php:190
-#: templates/reign/buddypress/legacy/members/members-loop.php:125
+#: templates/reign/buddypress/legacy/members/members-loop.php:129
 msgid "Sorry, no members were found."
 msgstr ""
 
-#: build/blocks/members-lists/render.php:34
+#: build/blocks/members-lists/render.php:35
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:266
 #: plugins/gutenberg/blocks/members-lists/src/render.php:35
 msgid "All Members"
@@ -619,39 +628,40 @@ msgstr ""
 msgid "List view"
 msgstr ""
 
-#: build/blocks/portfolio-grid/render.php:384
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:384
+#: build/blocks/portfolio-grid/render.php:363
+#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:363
+#. translators: %s is the portfolio item title.
 msgid "Open %s in lightbox"
 msgstr ""
 
-#: build/blocks/portfolio-grid/render.php:429
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:429
-#. translators: %s: Portfolio item title
+#: build/blocks/portfolio-grid/render.php:365
+#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:365
+#. translators: %s is the portfolio item title.
 msgid "View %s"
 msgstr ""
 
-#: build/blocks/portfolio-grid/render.php:470
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:470
+#: build/blocks/portfolio-grid/render.php:473
+#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:473
 msgid "View Project"
 msgstr ""
 
-#: build/blocks/portfolio-grid/render.php:484
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:484
+#: build/blocks/portfolio-grid/render.php:487
+#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:487
 msgid "No portfolio items added yet. Add items in the block settings."
 msgstr ""
 
-#: build/blocks/portfolio-grid/render.php:493
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:493
+#: build/blocks/portfolio-grid/render.php:496
+#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:496
 msgid "Close lightbox"
 msgstr ""
 
-#: build/blocks/portfolio-grid/render.php:499
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:499
+#: build/blocks/portfolio-grid/render.php:502
+#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:502
 msgid "Previous image"
 msgstr ""
 
-#: build/blocks/portfolio-grid/render.php:504
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:504
+#: build/blocks/portfolio-grid/render.php:507
+#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:507
 msgid "Next image"
 msgstr ""
 
@@ -659,12 +669,12 @@ msgstr ""
 #: build/blocks/post-slider/render.php:109
 #: build/blocks/post-timeline/render.php:59
 #: build/blocks/posts-carousel/render.php:64
-#: build/blocks/posts-revolution/render.php:96
+#: build/blocks/posts-revolution/render.php:104
 #: plugins/gutenberg/blocks/post-carousel/src/render.php:123
 #: plugins/gutenberg/blocks/post-slider/src/render.php:109
 #: plugins/gutenberg/blocks/post-timeline/src/render.php:59
 #: plugins/gutenberg/blocks/posts-carousel/src/render.php:64
-#: plugins/gutenberg/blocks/posts-revolution/src/render.php:96
+#: plugins/gutenberg/blocks/posts-revolution/src/render.php:104
 msgid "No posts found."
 msgstr ""
 
@@ -696,7 +706,7 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:293
 #: plugins/elementor/helper/skins/skin-base.php:704
 #: plugins/elementor/widgets/General/PostSlider.php:248
-#: plugins/elementor/widgets/General/PostTimeline.php:315
+#: plugins/elementor/widgets/General/PostTimeline.php:316
 #: plugins/gutenberg/blocks/post-slider/src/render.php:30
 #: plugins/gutenberg/blocks/post-timeline/src/render.php:27
 msgid "Read More"
@@ -708,13 +718,13 @@ msgstr ""
 msgid "By %s"
 msgstr ""
 
-#: build/blocks/posts-revolution/render.php:541
-#: plugins/gutenberg/blocks/posts-revolution/src/render.php:541
+#: build/blocks/posts-revolution/render.php:579
+#: plugins/gutenberg/blocks/posts-revolution/src/render.php:579
 msgid "Older posts"
 msgstr ""
 
-#: build/blocks/posts-revolution/render.php:542
-#: plugins/gutenberg/blocks/posts-revolution/src/render.php:542
+#: build/blocks/posts-revolution/render.php:580
+#: plugins/gutenberg/blocks/posts-revolution/src/render.php:580
 msgid "Newer posts"
 msgstr ""
 
@@ -840,32 +850,32 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:124
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:125
 msgid "Overview"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:128
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:129
 msgid "Installed Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:132
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:233
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:133
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:234
 msgid "Premium Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:136
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:137
 msgid "Premium Themes"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:140
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:141
 msgid "News & Updates"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:189
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:190
 msgid "Welcome to Wbcom Designs Dashboard"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:191
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:192
 msgid ""
 "Your central hub for managing premium WordPress and BuddyPress solutions. "
 "At Wbcom Designs, we specialize in creating powerful community plugins, "
@@ -874,11 +884,11 @@ msgid ""
 "regular updates, and expert maintenance."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:204
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:205
 msgid "Don't Risk Your Website's Success"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:207
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:208
 msgid ""
 "WordPress updates can break your site, security vulnerabilities expose your "
 "data, and performance issues drive visitors away. Our Care Plan ensures all "
@@ -887,67 +897,67 @@ msgid ""
 "business."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:216
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:217
 msgid "Schedule Free Consultation"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:230
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:231
 msgid "Our Services"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:232
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:233
 msgid "Get Care Plan"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:234
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:235
 msgid "Custom Development"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:240
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:241
 msgid "System Status"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:244
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:245
 msgid "WordPress Version"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:249
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:250
 msgid "BuddyPress"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:250
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
 msgid "Inactive"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:254
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:255
 msgid "Production Mode"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:255
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
 msgid "Debug On"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:271
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:272
 msgid "Installed Wbcom Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:280
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:281
 msgid "No Wbcom Plugins Found"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:281
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:282
 msgid "Looks like you haven't installed any Wbcom Designs plugins yet."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:283
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:284
 msgid "Browse Premium Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:298
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:299
 msgid "Version:"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:307
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:308
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:126
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:99
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:99
@@ -957,100 +967,100 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:329
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:330
 msgid "Premium BuddyPress Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:330
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:331
 msgid ""
 "Enhance your community with these powerful premium plugins designed "
 "specifically for BuddyPress."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:402
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:403
 msgid "Browse All Premium Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:421
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:422
 msgid "Premium Community Themes"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:422
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:423
 msgid ""
 "Transform your vision with these powerful multi-purpose themes designed to "
 "create any type of community platform."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:486
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:487
 msgid "Browse All Premium Themes"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:503
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:504
 msgid "Latest News from Wbcom Designs"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:504
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:505
 msgid ""
 "Stay updated with the latest plugin releases, updates, and WordPress "
 "community news."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:510
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:511
 msgid "Loading latest news..."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:520
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:521
 msgid "Visit Our Blog"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:805
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:806
 msgid "Not Active"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:843
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:844
 msgid "Welcome to Wbcom Designs!"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:844
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:845
 msgid "No Wbcom plugins are currently active. Activate plugins to see them here."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:817
+#: includes/shared-admin/class-wbcom-shared-loader.php:820
 msgid "Loading..."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:818
+#: includes/shared-admin/class-wbcom-shared-loader.php:821
 msgid "Error loading content."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:819
+#: includes/shared-admin/class-wbcom-shared-loader.php:822
 msgid "Settings saved successfully."
 msgstr ""
 
-#: includes/wbcom-essential-function.php:428
-#: includes/wbcom-essential-function.php:438
+#: includes/wbcom-essential-function.php:432
+#: includes/wbcom-essential-function.php:442
 #. translators: %s is the category name
 #. translators: %s is the taxonomy term name
 msgid "View all posts in %s"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:521
+#: includes/wbcom-essential-function.php:525
 msgid "Views"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:567
+#: includes/wbcom-essential-function.php:571
 msgid "Click to share this post on Facebook"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:572
+#: includes/wbcom-essential-function.php:576
 msgid "Click to share this post on Twitter"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:577
+#: includes/wbcom-essential-function.php:581
 msgid "Click to share this post on Linkedin"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:582
+#: includes/wbcom-essential-function.php:586
 msgid "Click to share this post on Pinterest"
 msgstr ""
 
@@ -1108,12 +1118,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PortfolioGrid.php:922
 #: plugins/elementor/widgets/General/PostCarousel.php:834
 #: plugins/elementor/widgets/General/PostSlider.php:954
-#: plugins/elementor/widgets/General/PostTimeline.php:1245
-#: plugins/elementor/widgets/General/PostTimeline.php:1583
+#: plugins/elementor/widgets/General/PostTimeline.php:1246
+#: plugins/elementor/widgets/General/PostTimeline.php:1584
 #: plugins/elementor/widgets/General/PricingTable.php:231
 #: plugins/elementor/widgets/General/Slider.php:269
 #: plugins/elementor/widgets/General/Slider.php:863
-#: plugins/elementor/widgets/General/SmartMenu.php:1055
+#: plugins/elementor/widgets/General/SmartMenu.php:1056
 #: plugins/elementor/widgets/General/Tabs.php:384
 #: plugins/elementor/widgets/General/TeamCarousel.php:787
 #: plugins/elementor/widgets/General/Testimonial.php:520
@@ -1153,12 +1163,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PortfolioGrid.php:930
 #: plugins/elementor/widgets/General/PostCarousel.php:842
 #: plugins/elementor/widgets/General/PostSlider.php:962
-#: plugins/elementor/widgets/General/PostTimeline.php:1253
-#: plugins/elementor/widgets/General/PostTimeline.php:1591
+#: plugins/elementor/widgets/General/PostTimeline.php:1254
+#: plugins/elementor/widgets/General/PostTimeline.php:1592
 #: plugins/elementor/widgets/General/PricingTable.php:235
 #: plugins/elementor/widgets/General/Slider.php:277
 #: plugins/elementor/widgets/General/Slider.php:871
-#: plugins/elementor/widgets/General/SmartMenu.php:1063
+#: plugins/elementor/widgets/General/SmartMenu.php:1064
 #: plugins/elementor/widgets/General/Tabs.php:392
 #: plugins/elementor/widgets/General/TeamCarousel.php:795
 #: plugins/elementor/widgets/General/Testimonial.php:528
@@ -1187,7 +1197,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:98
 #: plugins/elementor/widgets/General/FlipBox.php:87
 #: plugins/elementor/widgets/General/PostSlider.php:280
-#: plugins/elementor/widgets/General/PostTimeline.php:107
+#: plugins/elementor/widgets/General/PostTimeline.php:108
 #: plugins/elementor/widgets/General/PricingTable.php:87
 #: plugins/elementor/widgets/General/Slider.php:297
 #: plugins/elementor/widgets/General/Testimonial.php:755
@@ -1248,7 +1258,7 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:128
 #: plugins/elementor/widgets/General/PostCarousel.php:373
 #: plugins/elementor/widgets/General/PostSlider.php:1567
-#: plugins/elementor/widgets/General/PostTimeline.php:441
+#: plugins/elementor/widgets/General/PostTimeline.php:442
 #: plugins/elementor/widgets/General/Slider.php:1669
 #: plugins/elementor/widgets/General/TeamCarousel.php:461
 #: plugins/elementor/widgets/General/Testimonial.php:1024
@@ -1257,7 +1267,7 @@ msgid "Thumbnail Size"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:141
-#: plugins/elementor/widgets/General/Timeline.php:519
+#: plugins/elementor/widgets/General/Timeline.php:520
 msgid "Image Width"
 msgstr ""
 
@@ -1296,8 +1306,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:141
 #: plugins/elementor/widgets/General/PostCarousel.php:1444
 #: plugins/elementor/widgets/General/PostSlider.php:139
-#: plugins/elementor/widgets/General/PostTimeline.php:171
-#: plugins/elementor/widgets/General/PostTimeline.php:701
+#: plugins/elementor/widgets/General/PostTimeline.php:172
+#: plugins/elementor/widgets/General/PostTimeline.php:702
 #: plugins/elementor/widgets/General/PricingTable.php:132
 #: plugins/elementor/widgets/General/PricingTable.php:721
 #: plugins/elementor/widgets/General/ProgressBar.php:110
@@ -1307,9 +1317,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Tabs.php:193
 #: plugins/elementor/widgets/General/TeamCarousel.php:972
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:113
-#: plugins/elementor/widgets/General/Timeline.php:194
-#: plugins/elementor/widgets/General/Timeline.php:196
-#: plugins/elementor/widgets/General/Timeline.php:565
+#: plugins/elementor/widgets/General/Timeline.php:195
+#: plugins/elementor/widgets/General/Timeline.php:197
+#: plugins/elementor/widgets/General/Timeline.php:566
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:200
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:224
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1004
@@ -1471,10 +1481,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:140
 #: plugins/elementor/widgets/General/PostCarousel.php:1756
 #: plugins/elementor/widgets/General/PostSlider.php:138
-#: plugins/elementor/widgets/General/PostTimeline.php:170
-#: plugins/elementor/widgets/General/PostTimeline.php:817
-#: plugins/elementor/widgets/General/Timeline.php:166
-#: plugins/elementor/widgets/General/Timeline.php:647
+#: plugins/elementor/widgets/General/PostTimeline.php:171
+#: plugins/elementor/widgets/General/PostTimeline.php:818
+#: plugins/elementor/widgets/General/Timeline.php:167
+#: plugins/elementor/widgets/General/Timeline.php:648
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:222
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:286
 msgid "Date"
@@ -1503,9 +1513,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Countdown.php:431
 #: plugins/elementor/widgets/General/PostCarousel.php:721
 #: plugins/elementor/widgets/General/PostCarousel.php:1225
-#: plugins/elementor/widgets/General/PostTimeline.php:371
+#: plugins/elementor/widgets/General/PostTimeline.php:372
 #: plugins/elementor/widgets/General/Tabs.php:310
-#: plugins/elementor/widgets/General/Timeline.php:250
+#: plugins/elementor/widgets/General/Timeline.php:251
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:127
 msgid "Layout"
 msgstr ""
@@ -1528,8 +1538,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:277
 #: plugins/elementor/widgets/General/Heading.php:491
 #: plugins/elementor/widgets/General/Heading.php:615
-#: plugins/elementor/widgets/General/PostTimeline.php:1241
-#: plugins/elementor/widgets/General/PostTimeline.php:1579
+#: plugins/elementor/widgets/General/PostTimeline.php:1242
+#: plugins/elementor/widgets/General/PostTimeline.php:1580
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:347
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:291
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1012
@@ -1583,9 +1593,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:958
 #: plugins/elementor/widgets/General/PostSlider.php:1258
 #: plugins/elementor/widgets/General/PostSlider.php:1590
-#: plugins/elementor/widgets/General/PostTimeline.php:595
-#: plugins/elementor/widgets/General/PostTimeline.php:1249
-#: plugins/elementor/widgets/General/PostTimeline.php:1587
+#: plugins/elementor/widgets/General/PostTimeline.php:596
+#: plugins/elementor/widgets/General/PostTimeline.php:1250
+#: plugins/elementor/widgets/General/PostTimeline.php:1588
 #: plugins/elementor/widgets/General/PricingTable.php:513
 #: plugins/elementor/widgets/General/PricingTable.php:660
 #: plugins/elementor/widgets/General/PricingTable.php:1047
@@ -1603,9 +1613,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:867
 #: plugins/elementor/widgets/General/Slider.php:1360
 #: plugins/elementor/widgets/General/Slider.php:1692
-#: plugins/elementor/widgets/General/SmartMenu.php:151
-#: plugins/elementor/widgets/General/SmartMenu.php:261
-#: plugins/elementor/widgets/General/SmartMenu.php:1059
+#: plugins/elementor/widgets/General/SmartMenu.php:152
+#: plugins/elementor/widgets/General/SmartMenu.php:262
+#: plugins/elementor/widgets/General/SmartMenu.php:1060
 #: plugins/elementor/widgets/General/Tabs.php:332
 #: plugins/elementor/widgets/General/Tabs.php:388
 #: plugins/elementor/widgets/General/Tabs.php:563
@@ -1626,7 +1636,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:689
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:807
 #: plugins/elementor/widgets/General/TextRotator.php:196
-#: plugins/elementor/widgets/General/Timeline.php:148
+#: plugins/elementor/widgets/General/Timeline.php:149
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:355
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:299
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1020
@@ -1640,8 +1650,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Tabs.php:128
 #: plugins/elementor/widgets/General/Tabs.php:653
 #: plugins/elementor/widgets/General/TeamCarousel.php:223
-#: plugins/elementor/widgets/General/Timeline.php:132
-#: plugins/elementor/widgets/General/Timeline.php:510
+#: plugins/elementor/widgets/General/Timeline.php:133
+#: plugins/elementor/widgets/General/Timeline.php:511
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:170
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:422
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:185
@@ -1701,13 +1711,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1103
 #: plugins/elementor/widgets/General/PostSlider.php:1682
 #: plugins/elementor/widgets/General/PostSlider.php:1737
-#: plugins/elementor/widgets/General/PostTimeline.php:536
-#: plugins/elementor/widgets/General/PostTimeline.php:649
-#: plugins/elementor/widgets/General/PostTimeline.php:931
-#: plugins/elementor/widgets/General/PostTimeline.php:1069
-#: plugins/elementor/widgets/General/PostTimeline.php:1151
-#: plugins/elementor/widgets/General/PostTimeline.php:1407
-#: plugins/elementor/widgets/General/PostTimeline.php:1489
+#: plugins/elementor/widgets/General/PostTimeline.php:537
+#: plugins/elementor/widgets/General/PostTimeline.php:650
+#: plugins/elementor/widgets/General/PostTimeline.php:932
+#: plugins/elementor/widgets/General/PostTimeline.php:1070
+#: plugins/elementor/widgets/General/PostTimeline.php:1152
+#: plugins/elementor/widgets/General/PostTimeline.php:1408
+#: plugins/elementor/widgets/General/PostTimeline.php:1490
 #: plugins/elementor/widgets/General/PricingTable.php:589
 #: plugins/elementor/widgets/General/PricingTable.php:697
 #: plugins/elementor/widgets/General/PricingTable.php:882
@@ -1728,10 +1738,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1205
 #: plugins/elementor/widgets/General/Slider.php:1780
 #: plugins/elementor/widgets/General/Slider.php:1835
-#: plugins/elementor/widgets/General/SmartMenu.php:329
-#: plugins/elementor/widgets/General/SmartMenu.php:776
-#: plugins/elementor/widgets/General/SmartMenu.php:857
-#: plugins/elementor/widgets/General/SmartMenu.php:1093
+#: plugins/elementor/widgets/General/SmartMenu.php:330
+#: plugins/elementor/widgets/General/SmartMenu.php:777
+#: plugins/elementor/widgets/General/SmartMenu.php:858
+#: plugins/elementor/widgets/General/SmartMenu.php:1094
 #: plugins/elementor/widgets/General/Tabs.php:413
 #: plugins/elementor/widgets/General/Tabs.php:618
 #: plugins/elementor/widgets/General/Tabs.php:732
@@ -1745,9 +1755,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:350
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:854
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1230
-#: plugins/elementor/widgets/General/Timeline.php:354
-#: plugins/elementor/widgets/General/Timeline.php:458
-#: plugins/elementor/widgets/General/Timeline.php:541
+#: plugins/elementor/widgets/General/Timeline.php:355
+#: plugins/elementor/widgets/General/Timeline.php:459
+#: plugins/elementor/widgets/General/Timeline.php:542
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:406
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:439
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:375
@@ -1813,7 +1823,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:214
 #: plugins/elementor/widgets/General/FlipBox.php:894
 #: plugins/elementor/widgets/General/FlipBox.php:1331
-#: plugins/elementor/widgets/General/PostTimeline.php:579
+#: plugins/elementor/widgets/General/PostTimeline.php:580
 #: plugins/elementor/widgets/General/PostsCarousel.php:193
 #: plugins/elementor/widgets/General/PostsRevolution.php:187
 #: plugins/elementor/widgets/General/PostsTicker.php:192
@@ -1825,9 +1835,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Testimonial.php:576
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:139
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:741
-#: plugins/elementor/widgets/General/Timeline.php:110
-#: plugins/elementor/widgets/General/Timeline.php:204
-#: plugins/elementor/widgets/General/Timeline.php:414
+#: plugins/elementor/widgets/General/Timeline.php:111
+#: plugins/elementor/widgets/General/Timeline.php:205
+#: plugins/elementor/widgets/General/Timeline.php:415
 msgid "Content"
 msgstr ""
 
@@ -1889,8 +1899,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1195
 #: plugins/elementor/widgets/General/PostSlider.php:1773
 #: plugins/elementor/widgets/General/PostSlider.php:1853
-#: plugins/elementor/widgets/General/PostTimeline.php:729
-#: plugins/elementor/widgets/General/PostTimeline.php:782
+#: plugins/elementor/widgets/General/PostTimeline.php:730
+#: plugins/elementor/widgets/General/PostTimeline.php:783
 #: plugins/elementor/widgets/General/PricingTable.php:730
 #: plugins/elementor/widgets/General/PricingTable.php:779
 #: plugins/elementor/widgets/General/PricingTable.php:830
@@ -1910,13 +1920,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1297
 #: plugins/elementor/widgets/General/Slider.php:1871
 #: plugins/elementor/widgets/General/Slider.php:1951
-#: plugins/elementor/widgets/General/SmartMenu.php:482
-#: plugins/elementor/widgets/General/SmartMenu.php:522
-#: plugins/elementor/widgets/General/SmartMenu.php:566
-#: plugins/elementor/widgets/General/SmartMenu.php:826
-#: plugins/elementor/widgets/General/SmartMenu.php:878
-#: plugins/elementor/widgets/General/SmartMenu.php:922
-#: plugins/elementor/widgets/General/SmartMenu.php:1004
+#: plugins/elementor/widgets/General/SmartMenu.php:483
+#: plugins/elementor/widgets/General/SmartMenu.php:523
+#: plugins/elementor/widgets/General/SmartMenu.php:567
+#: plugins/elementor/widgets/General/SmartMenu.php:827
+#: plugins/elementor/widgets/General/SmartMenu.php:879
+#: plugins/elementor/widgets/General/SmartMenu.php:923
+#: plugins/elementor/widgets/General/SmartMenu.php:1005
 #: plugins/elementor/widgets/General/Tabs.php:219
 #: plugins/elementor/widgets/General/Tabs.php:264
 #: plugins/elementor/widgets/General/Tabs.php:459
@@ -1930,9 +1940,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1045
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1117
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1457
-#: plugins/elementor/widgets/General/Timeline.php:574
-#: plugins/elementor/widgets/General/Timeline.php:615
-#: plugins/elementor/widgets/General/Timeline.php:656
+#: plugins/elementor/widgets/General/Timeline.php:575
+#: plugins/elementor/widgets/General/Timeline.php:616
+#: plugins/elementor/widgets/General/Timeline.php:657
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:208
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:250
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:292
@@ -1983,9 +1993,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:989
 #: plugins/elementor/widgets/General/Slider.php:897
 #: plugins/elementor/widgets/General/Slider.php:1091
-#: plugins/elementor/widgets/General/SmartMenu.php:407
-#: plugins/elementor/widgets/General/SmartMenu.php:808
-#: plugins/elementor/widgets/General/SmartMenu.php:995
+#: plugins/elementor/widgets/General/SmartMenu.php:408
+#: plugins/elementor/widgets/General/SmartMenu.php:809
+#: plugins/elementor/widgets/General/SmartMenu.php:996
 #: plugins/elementor/widgets/General/TeamCarousel.php:994
 #: plugins/elementor/widgets/General/TeamCarousel.php:1112
 #: plugins/elementor/widgets/General/Testimonial.php:598
@@ -2062,11 +2072,11 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:484
 #: plugins/elementor/widgets/General/PostSlider.php:546
 #: plugins/elementor/widgets/General/PostSlider.php:1184
-#: plugins/elementor/widgets/General/PostTimeline.php:274
-#: plugins/elementor/widgets/General/PostTimeline.php:287
-#: plugins/elementor/widgets/General/PostTimeline.php:301
-#: plugins/elementor/widgets/General/PostTimeline.php:326
-#: plugins/elementor/widgets/General/PostTimeline.php:615
+#: plugins/elementor/widgets/General/PostTimeline.php:275
+#: plugins/elementor/widgets/General/PostTimeline.php:288
+#: plugins/elementor/widgets/General/PostTimeline.php:302
+#: plugins/elementor/widgets/General/PostTimeline.php:327
+#: plugins/elementor/widgets/General/PostTimeline.php:616
 #: plugins/elementor/widgets/General/ProgressBar.php:161
 #: plugins/elementor/widgets/General/ProgressBar.php:193
 #: plugins/elementor/widgets/General/Slider.php:429
@@ -2075,8 +2085,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:525
 #: plugins/elementor/widgets/General/Slider.php:587
 #: plugins/elementor/widgets/General/Slider.php:1286
-#: plugins/elementor/widgets/General/SmartMenu.php:230
-#: plugins/elementor/widgets/General/SmartMenu.php:738
+#: plugins/elementor/widgets/General/SmartMenu.php:231
+#: plugins/elementor/widgets/General/SmartMenu.php:739
 #: plugins/elementor/widgets/General/TeamCarousel.php:387
 #: plugins/elementor/widgets/General/TeamCarousel.php:400
 #: plugins/elementor/widgets/General/TeamCarousel.php:413
@@ -2087,7 +2097,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:240
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:254
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:380
-#: plugins/elementor/widgets/General/Timeline.php:424
+#: plugins/elementor/widgets/General/Timeline.php:425
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:266
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:528
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:143
@@ -2134,11 +2144,11 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:485
 #: plugins/elementor/widgets/General/PostSlider.php:547
 #: plugins/elementor/widgets/General/PostSlider.php:1185
-#: plugins/elementor/widgets/General/PostTimeline.php:275
-#: plugins/elementor/widgets/General/PostTimeline.php:288
-#: plugins/elementor/widgets/General/PostTimeline.php:302
-#: plugins/elementor/widgets/General/PostTimeline.php:327
-#: plugins/elementor/widgets/General/PostTimeline.php:616
+#: plugins/elementor/widgets/General/PostTimeline.php:276
+#: plugins/elementor/widgets/General/PostTimeline.php:289
+#: plugins/elementor/widgets/General/PostTimeline.php:303
+#: plugins/elementor/widgets/General/PostTimeline.php:328
+#: plugins/elementor/widgets/General/PostTimeline.php:617
 #: plugins/elementor/widgets/General/ProgressBar.php:149
 #: plugins/elementor/widgets/General/ProgressBar.php:162
 #: plugins/elementor/widgets/General/ProgressBar.php:194
@@ -2148,8 +2158,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:526
 #: plugins/elementor/widgets/General/Slider.php:588
 #: plugins/elementor/widgets/General/Slider.php:1287
-#: plugins/elementor/widgets/General/SmartMenu.php:231
-#: plugins/elementor/widgets/General/SmartMenu.php:739
+#: plugins/elementor/widgets/General/SmartMenu.php:232
+#: plugins/elementor/widgets/General/SmartMenu.php:740
 #: plugins/elementor/widgets/General/TeamCarousel.php:388
 #: plugins/elementor/widgets/General/TeamCarousel.php:401
 #: plugins/elementor/widgets/General/TeamCarousel.php:414
@@ -2160,7 +2170,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:241
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:255
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:381
-#: plugins/elementor/widgets/General/Timeline.php:425
+#: plugins/elementor/widgets/General/Timeline.php:426
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:267
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:527
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:144
@@ -2224,11 +2234,11 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1082
 #: plugins/elementor/widgets/General/PostSlider.php:1353
 #: plugins/elementor/widgets/General/PostSlider.php:1865
-#: plugins/elementor/widgets/General/PostTimeline.php:626
-#: plugins/elementor/widgets/General/PostTimeline.php:1038
-#: plugins/elementor/widgets/General/PostTimeline.php:1110
-#: plugins/elementor/widgets/General/PostTimeline.php:1376
-#: plugins/elementor/widgets/General/PostTimeline.php:1448
+#: plugins/elementor/widgets/General/PostTimeline.php:627
+#: plugins/elementor/widgets/General/PostTimeline.php:1039
+#: plugins/elementor/widgets/General/PostTimeline.php:1111
+#: plugins/elementor/widgets/General/PostTimeline.php:1377
+#: plugins/elementor/widgets/General/PostTimeline.php:1449
 #: plugins/elementor/widgets/General/PricingTable.php:842
 #: plugins/elementor/widgets/General/PricingTable.php:988
 #: plugins/elementor/widgets/General/PricingTable.php:1826
@@ -2244,13 +2254,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1184
 #: plugins/elementor/widgets/General/Slider.php:1455
 #: plugins/elementor/widgets/General/Slider.php:1963
-#: plugins/elementor/widgets/General/SmartMenu.php:493
-#: plugins/elementor/widgets/General/SmartMenu.php:535
-#: plugins/elementor/widgets/General/SmartMenu.php:581
-#: plugins/elementor/widgets/General/SmartMenu.php:756
-#: plugins/elementor/widgets/General/SmartMenu.php:837
-#: plugins/elementor/widgets/General/SmartMenu.php:891
-#: plugins/elementor/widgets/General/SmartMenu.php:937
+#: plugins/elementor/widgets/General/SmartMenu.php:494
+#: plugins/elementor/widgets/General/SmartMenu.php:536
+#: plugins/elementor/widgets/General/SmartMenu.php:582
+#: plugins/elementor/widgets/General/SmartMenu.php:757
+#: plugins/elementor/widgets/General/SmartMenu.php:838
+#: plugins/elementor/widgets/General/SmartMenu.php:892
+#: plugins/elementor/widgets/General/SmartMenu.php:938
 #: plugins/elementor/widgets/General/Tabs.php:243
 #: plugins/elementor/widgets/General/Tabs.php:288
 #: plugins/elementor/widgets/General/Tabs.php:606
@@ -2266,7 +2276,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1327
 #: plugins/elementor/widgets/General/TextRotator.php:266
 #: plugins/elementor/widgets/General/TextRotator.php:363
-#: plugins/elementor/widgets/General/Timeline.php:435
+#: plugins/elementor/widgets/General/Timeline.php:436
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:719
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:771
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:873
@@ -2296,10 +2306,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:1105
 #: plugins/elementor/widgets/General/LoginForm.php:1259
 #: plugins/elementor/widgets/General/LoginForm.php:1320
-#: plugins/elementor/widgets/General/PostTimeline.php:1026
-#: plugins/elementor/widgets/General/PostTimeline.php:1099
-#: plugins/elementor/widgets/General/PostTimeline.php:1364
-#: plugins/elementor/widgets/General/PostTimeline.php:1437
+#: plugins/elementor/widgets/General/PostTimeline.php:1027
+#: plugins/elementor/widgets/General/PostTimeline.php:1100
+#: plugins/elementor/widgets/General/PostTimeline.php:1365
+#: plugins/elementor/widgets/General/PostTimeline.php:1438
 #: plugins/elementor/widgets/General/PricingTable.php:1567
 #: plugins/elementor/widgets/General/PricingTable.php:1814
 #: plugins/elementor/widgets/General/PricingTable.php:1877
@@ -2319,8 +2329,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:735
 #: plugins/elementor/widgets/General/FlipBox.php:263
 #: plugins/elementor/widgets/General/PostSlider.php:1892
-#: plugins/elementor/widgets/General/PostTimeline.php:1227
-#: plugins/elementor/widgets/General/PostTimeline.php:1565
+#: plugins/elementor/widgets/General/PostTimeline.php:1228
+#: plugins/elementor/widgets/General/PostTimeline.php:1566
 #: plugins/elementor/widgets/General/PricingTable.php:853
 #: plugins/elementor/widgets/General/Slider.php:1990
 #: plugins/elementor/widgets/General/Tabs.php:489
@@ -2360,11 +2370,11 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1818
 #: plugins/elementor/widgets/General/PostSlider.php:1134
 #: plugins/elementor/widgets/General/PostSlider.php:1277
-#: plugins/elementor/widgets/General/PostTimeline.php:564
-#: plugins/elementor/widgets/General/PostTimeline.php:689
-#: plugins/elementor/widgets/General/PostTimeline.php:761
-#: plugins/elementor/widgets/General/PostTimeline.php:802
-#: plugins/elementor/widgets/General/PostTimeline.php:959
+#: plugins/elementor/widgets/General/PostTimeline.php:565
+#: plugins/elementor/widgets/General/PostTimeline.php:690
+#: plugins/elementor/widgets/General/PostTimeline.php:762
+#: plugins/elementor/widgets/General/PostTimeline.php:803
+#: plugins/elementor/widgets/General/PostTimeline.php:960
 #: plugins/elementor/widgets/General/PricingTable.php:629
 #: plugins/elementor/widgets/General/PricingTable.php:952
 #: plugins/elementor/widgets/General/PricingTable.php:1166
@@ -2374,8 +2384,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1042
 #: plugins/elementor/widgets/General/Slider.php:1236
 #: plugins/elementor/widgets/General/Slider.php:1379
-#: plugins/elementor/widgets/General/SmartMenu.php:384
-#: plugins/elementor/widgets/General/SmartMenu.php:1133
+#: plugins/elementor/widgets/General/SmartMenu.php:385
+#: plugins/elementor/widgets/General/SmartMenu.php:1134
 #: plugins/elementor/widgets/General/Tabs.php:437
 #: plugins/elementor/widgets/General/TeamCarousel.php:957
 #: plugins/elementor/widgets/General/TeamCarousel.php:1075
@@ -2393,11 +2403,11 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1258
 #: plugins/elementor/widgets/General/TextRotator.php:308
 #: plugins/elementor/widgets/General/TextRotator.php:405
-#: plugins/elementor/widgets/General/Timeline.php:498
-#: plugins/elementor/widgets/General/Timeline.php:553
-#: plugins/elementor/widgets/General/Timeline.php:594
-#: plugins/elementor/widgets/General/Timeline.php:635
-#: plugins/elementor/widgets/General/Timeline.php:676
+#: plugins/elementor/widgets/General/Timeline.php:499
+#: plugins/elementor/widgets/General/Timeline.php:554
+#: plugins/elementor/widgets/General/Timeline.php:595
+#: plugins/elementor/widgets/General/Timeline.php:636
+#: plugins/elementor/widgets/General/Timeline.php:677
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:220
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:271
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:481
@@ -2503,13 +2513,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1053
 #: plugins/elementor/widgets/General/PostSlider.php:1116
 #: plugins/elementor/widgets/General/PostSlider.php:1444
-#: plugins/elementor/widgets/General/PostTimeline.php:549
-#: plugins/elementor/widgets/General/PostTimeline.php:662
-#: plugins/elementor/widgets/General/PostTimeline.php:944
-#: plugins/elementor/widgets/General/PostTimeline.php:1082
-#: plugins/elementor/widgets/General/PostTimeline.php:1164
-#: plugins/elementor/widgets/General/PostTimeline.php:1420
-#: plugins/elementor/widgets/General/PostTimeline.php:1502
+#: plugins/elementor/widgets/General/PostTimeline.php:550
+#: plugins/elementor/widgets/General/PostTimeline.php:663
+#: plugins/elementor/widgets/General/PostTimeline.php:945
+#: plugins/elementor/widgets/General/PostTimeline.php:1083
+#: plugins/elementor/widgets/General/PostTimeline.php:1165
+#: plugins/elementor/widgets/General/PostTimeline.php:1421
+#: plugins/elementor/widgets/General/PostTimeline.php:1503
 #: plugins/elementor/widgets/General/PricingTable.php:602
 #: plugins/elementor/widgets/General/PricingTable.php:895
 #: plugins/elementor/widgets/General/PricingTable.php:1011
@@ -2525,15 +2535,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1155
 #: plugins/elementor/widgets/General/Slider.php:1218
 #: plugins/elementor/widgets/General/Slider.php:1546
-#: plugins/elementor/widgets/General/SmartMenu.php:342
-#: plugins/elementor/widgets/General/SmartMenu.php:789
-#: plugins/elementor/widgets/General/SmartMenu.php:1106
+#: plugins/elementor/widgets/General/SmartMenu.php:343
+#: plugins/elementor/widgets/General/SmartMenu.php:790
+#: plugins/elementor/widgets/General/SmartMenu.php:1107
 #: plugins/elementor/widgets/General/Tabs.php:631
 #: plugins/elementor/widgets/General/Tabs.php:745
 #: plugins/elementor/widgets/General/TeamCarousel.php:647
 #: plugins/elementor/widgets/General/TeamCarousel.php:1336
-#: plugins/elementor/widgets/General/Timeline.php:367
-#: plugins/elementor/widgets/General/Timeline.php:471
+#: plugins/elementor/widgets/General/Timeline.php:368
+#: plugins/elementor/widgets/General/Timeline.php:472
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1196
 msgid "Box Shadow"
 msgstr ""
@@ -2566,74 +2576,74 @@ msgstr ""
 msgid "Manual Selection"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-empty.php:16
-#: plugins/elementor/templates/scripts/template-modal-empty.php:16
+#: plugins/elementor/scripts/template-modal-empty.php:20
+#: plugins/elementor/templates/scripts/template-modal-empty.php:20
 msgid "No Templates Found"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-header-logo.php:16
+#: plugins/elementor/scripts/template-modal-header-logo.php:20
 #: plugins/elementor/templates/classes/config.php:60
-#: plugins/elementor/templates/scripts/template-modal-header-logo.php:16
+#: plugins/elementor/templates/scripts/template-modal-header-logo.php:20
 msgid "WBCom Essential Elementor Sections"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-header.php:15
-#: plugins/elementor/templates/scripts/template-modal-header.php:15
+#: plugins/elementor/scripts/template-modal-header.php:19
+#: plugins/elementor/templates/scripts/template-modal-header.php:19
 msgid "WBCom Essential Templates"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-insert-button.php:16
-#: plugins/elementor/scripts/template-modal-item.php:54
-#: plugins/elementor/templates/scripts/template-modal-insert-button.php:16
-#: plugins/elementor/templates/scripts/template-modal-item.php:60
+#: plugins/elementor/scripts/template-modal-insert-button.php:20
+#: plugins/elementor/scripts/template-modal-item.php:58
+#: plugins/elementor/templates/scripts/template-modal-insert-button.php:20
+#: plugins/elementor/templates/scripts/template-modal-item.php:64
 msgid "Insert"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-item.php:22
-#: plugins/elementor/templates/scripts/template-modal-item.php:22
+#: plugins/elementor/scripts/template-modal-item.php:26
+#: plugins/elementor/templates/scripts/template-modal-item.php:26
 msgid "Elementor Pro"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-item.php:26
-#: plugins/elementor/scripts/template-modal-item.php:34
-#: plugins/elementor/templates/scripts/template-modal-item.php:26
-#: plugins/elementor/templates/scripts/template-modal-item.php:34
+#: plugins/elementor/scripts/template-modal-item.php:30
+#: plugins/elementor/scripts/template-modal-item.php:38
+#: plugins/elementor/templates/scripts/template-modal-item.php:30
+#: plugins/elementor/templates/scripts/template-modal-item.php:38
 msgid "LearnDash"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-item.php:30
-#: plugins/elementor/scripts/template-modal-item.php:37
-#: plugins/elementor/templates/scripts/template-modal-item.php:30
-#: plugins/elementor/templates/scripts/template-modal-item.php:37
+#: plugins/elementor/scripts/template-modal-item.php:34
+#: plugins/elementor/scripts/template-modal-item.php:41
+#: plugins/elementor/templates/scripts/template-modal-item.php:34
+#: plugins/elementor/templates/scripts/template-modal-item.php:41
 msgid "LifterLMS"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-item.php:41
-#: plugins/elementor/templates/scripts/template-modal-item.php:41
+#: plugins/elementor/scripts/template-modal-item.php:45
+#: plugins/elementor/templates/scripts/template-modal-item.php:45
 msgid "WooCommerce"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-item.php:44
-#: plugins/elementor/templates/scripts/template-modal-item.php:47
+#: plugins/elementor/scripts/template-modal-item.php:48
+#: plugins/elementor/templates/scripts/template-modal-item.php:51
 msgid "The Events Calendar"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-loading.php:20
-#: plugins/elementor/templates/scripts/template-modal-loading.php:20
+#: plugins/elementor/scripts/template-modal-loading.php:24
+#: plugins/elementor/templates/scripts/template-modal-loading.php:24
 msgid "Loading"
 msgstr ""
 
-#: plugins/elementor/scripts/template-modal-search-item.php:13
-#: plugins/elementor/templates/scripts/template-modal-search-item.php:13
+#: plugins/elementor/scripts/template-modal-search-item.php:17
+#: plugins/elementor/templates/scripts/template-modal-search-item.php:17
 msgid "Search Templates:"
 msgstr ""
 
-#: plugins/elementor/templates/classes/manager.php:217
+#: plugins/elementor/templates/classes/manager.php:218
 #: plugins/elementor/widgets/General/PortfolioGrid.php:388
 msgid "All"
 msgstr ""
 
-#: plugins/elementor/templates/scripts/template-modal-item.php:44
+#: plugins/elementor/templates/scripts/template-modal-item.php:48
 msgid "Reign"
 msgstr ""
 
@@ -2859,13 +2869,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1095
 #: plugins/elementor/widgets/General/PostSlider.php:1674
 #: plugins/elementor/widgets/General/PostSlider.php:1729
-#: plugins/elementor/widgets/General/PostTimeline.php:528
-#: plugins/elementor/widgets/General/PostTimeline.php:641
-#: plugins/elementor/widgets/General/PostTimeline.php:923
-#: plugins/elementor/widgets/General/PostTimeline.php:1061
-#: plugins/elementor/widgets/General/PostTimeline.php:1143
-#: plugins/elementor/widgets/General/PostTimeline.php:1399
-#: plugins/elementor/widgets/General/PostTimeline.php:1481
+#: plugins/elementor/widgets/General/PostTimeline.php:529
+#: plugins/elementor/widgets/General/PostTimeline.php:642
+#: plugins/elementor/widgets/General/PostTimeline.php:924
+#: plugins/elementor/widgets/General/PostTimeline.php:1062
+#: plugins/elementor/widgets/General/PostTimeline.php:1144
+#: plugins/elementor/widgets/General/PostTimeline.php:1400
+#: plugins/elementor/widgets/General/PostTimeline.php:1482
 #: plugins/elementor/widgets/General/PricingTable.php:581
 #: plugins/elementor/widgets/General/PricingTable.php:689
 #: plugins/elementor/widgets/General/PricingTable.php:874
@@ -2885,15 +2895,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1197
 #: plugins/elementor/widgets/General/Slider.php:1772
 #: plugins/elementor/widgets/General/Slider.php:1827
-#: plugins/elementor/widgets/General/SmartMenu.php:321
-#: plugins/elementor/widgets/General/SmartMenu.php:505
-#: plugins/elementor/widgets/General/SmartMenu.php:549
-#: plugins/elementor/widgets/General/SmartMenu.php:597
-#: plugins/elementor/widgets/General/SmartMenu.php:768
-#: plugins/elementor/widgets/General/SmartMenu.php:849
-#: plugins/elementor/widgets/General/SmartMenu.php:905
-#: plugins/elementor/widgets/General/SmartMenu.php:953
-#: plugins/elementor/widgets/General/SmartMenu.php:1085
+#: plugins/elementor/widgets/General/SmartMenu.php:322
+#: plugins/elementor/widgets/General/SmartMenu.php:506
+#: plugins/elementor/widgets/General/SmartMenu.php:550
+#: plugins/elementor/widgets/General/SmartMenu.php:598
+#: plugins/elementor/widgets/General/SmartMenu.php:769
+#: plugins/elementor/widgets/General/SmartMenu.php:850
+#: plugins/elementor/widgets/General/SmartMenu.php:906
+#: plugins/elementor/widgets/General/SmartMenu.php:954
+#: plugins/elementor/widgets/General/SmartMenu.php:1086
 #: plugins/elementor/widgets/General/TeamCarousel.php:624
 #: plugins/elementor/widgets/General/TeamCarousel.php:872
 #: plugins/elementor/widgets/General/TeamCarousel.php:927
@@ -2905,8 +2915,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1222
 #: plugins/elementor/widgets/General/TextRotator.php:293
 #: plugins/elementor/widgets/General/TextRotator.php:390
-#: plugins/elementor/widgets/General/Timeline.php:346
-#: plugins/elementor/widgets/General/Timeline.php:450
+#: plugins/elementor/widgets/General/Timeline.php:347
+#: plugins/elementor/widgets/General/Timeline.php:451
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:398
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:431
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:367
@@ -2971,10 +2981,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1703
 #: plugins/elementor/widgets/General/PostCarousel.php:1806
 #: plugins/elementor/widgets/General/PostSlider.php:1153
-#: plugins/elementor/widgets/General/PostTimeline.php:384
-#: plugins/elementor/widgets/General/PostTimeline.php:677
-#: plugins/elementor/widgets/General/PostTimeline.php:1182
-#: plugins/elementor/widgets/General/PostTimeline.php:1520
+#: plugins/elementor/widgets/General/PostTimeline.php:385
+#: plugins/elementor/widgets/General/PostTimeline.php:678
+#: plugins/elementor/widgets/General/PostTimeline.php:1183
+#: plugins/elementor/widgets/General/PostTimeline.php:1521
 #: plugins/elementor/widgets/General/PricingTable.php:617
 #: plugins/elementor/widgets/General/PricingTable.php:709
 #: plugins/elementor/widgets/General/PricingTable.php:758
@@ -2991,10 +3001,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/SiteLogo.php:372
 #: plugins/elementor/widgets/General/Slider.php:1061
 #: plugins/elementor/widgets/General/Slider.php:1255
-#: plugins/elementor/widgets/General/SmartMenu.php:372
-#: plugins/elementor/widgets/General/SmartMenu.php:615
-#: plugins/elementor/widgets/General/SmartMenu.php:971
-#: plugins/elementor/widgets/General/SmartMenu.php:1121
+#: plugins/elementor/widgets/General/SmartMenu.php:373
+#: plugins/elementor/widgets/General/SmartMenu.php:616
+#: plugins/elementor/widgets/General/SmartMenu.php:972
+#: plugins/elementor/widgets/General/SmartMenu.php:1122
 #: plugins/elementor/widgets/General/Tabs.php:425
 #: plugins/elementor/widgets/General/Tabs.php:524
 #: plugins/elementor/widgets/General/Tabs.php:639
@@ -3012,8 +3022,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1167
 #: plugins/elementor/widgets/General/TextRotator.php:320
 #: plugins/elementor/widgets/General/TextRotator.php:417
-#: plugins/elementor/widgets/General/Timeline.php:263
-#: plugins/elementor/widgets/General/Timeline.php:486
+#: plugins/elementor/widgets/General/Timeline.php:264
+#: plugins/elementor/widgets/General/Timeline.php:487
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:374
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:494
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:550
@@ -3166,18 +3176,18 @@ msgstr ""
 #: plugins/elementor/widgets/General/PortfolioGrid.php:713
 #: plugins/elementor/widgets/General/PortfolioGrid.php:734
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1074
-#: plugins/elementor/widgets/General/PostTimeline.php:1051
-#: plugins/elementor/widgets/General/PostTimeline.php:1122
-#: plugins/elementor/widgets/General/PostTimeline.php:1389
-#: plugins/elementor/widgets/General/PostTimeline.php:1460
+#: plugins/elementor/widgets/General/PostTimeline.php:1052
+#: plugins/elementor/widgets/General/PostTimeline.php:1123
+#: plugins/elementor/widgets/General/PostTimeline.php:1390
+#: plugins/elementor/widgets/General/PostTimeline.php:1461
 #: plugins/elementor/widgets/General/PricingTable.php:571
 #: plugins/elementor/widgets/General/PricingTable.php:679
 #: plugins/elementor/widgets/General/PricingTable.php:1204
 #: plugins/elementor/widgets/General/PricingTable.php:1627
 #: plugins/elementor/widgets/General/PricingTable.php:2032
 #: plugins/elementor/widgets/General/Shape.php:383
-#: plugins/elementor/widgets/General/SmartMenu.php:311
-#: plugins/elementor/widgets/General/SmartMenu.php:1016
+#: plugins/elementor/widgets/General/SmartMenu.php:312
+#: plugins/elementor/widgets/General/SmartMenu.php:1017
 #: plugins/elementor/widgets/General/TeamCarousel.php:862
 #: plugins/elementor/widgets/General/TeamCarousel.php:917
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:388
@@ -3239,19 +3249,19 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1000
 #: plugins/elementor/widgets/General/PostSlider.php:1333
 #: plugins/elementor/widgets/General/PostSlider.php:1651
-#: plugins/elementor/widgets/General/PostTimeline.php:453
-#: plugins/elementor/widgets/General/PostTimeline.php:1019
-#: plugins/elementor/widgets/General/PostTimeline.php:1231
-#: plugins/elementor/widgets/General/PostTimeline.php:1357
-#: plugins/elementor/widgets/General/PostTimeline.php:1569
+#: plugins/elementor/widgets/General/PostTimeline.php:454
+#: plugins/elementor/widgets/General/PostTimeline.php:1020
+#: plugins/elementor/widgets/General/PostTimeline.php:1232
+#: plugins/elementor/widgets/General/PostTimeline.php:1358
+#: plugins/elementor/widgets/General/PostTimeline.php:1570
 #: plugins/elementor/widgets/General/PricingTable.php:445
 #: plugins/elementor/widgets/General/PricingTable.php:1807
 #: plugins/elementor/widgets/General/Slider.php:908
 #: plugins/elementor/widgets/General/Slider.php:1102
 #: plugins/elementor/widgets/General/Slider.php:1435
 #: plugins/elementor/widgets/General/Slider.php:1749
-#: plugins/elementor/widgets/General/SmartMenu.php:475
-#: plugins/elementor/widgets/General/SmartMenu.php:819
+#: plugins/elementor/widgets/General/SmartMenu.php:476
+#: plugins/elementor/widgets/General/SmartMenu.php:820
 #: plugins/elementor/widgets/General/Tabs.php:212
 #: plugins/elementor/widgets/General/TeamCarousel.php:549
 #: plugins/elementor/widgets/General/TeamCarousel.php:839
@@ -3299,15 +3309,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1945
 #: plugins/elementor/widgets/General/PostSlider.php:1063
 #: plugins/elementor/widgets/General/PostSlider.php:1368
-#: plugins/elementor/widgets/General/PostTimeline.php:486
-#: plugins/elementor/widgets/General/PostTimeline.php:1092
-#: plugins/elementor/widgets/General/PostTimeline.php:1430
+#: plugins/elementor/widgets/General/PostTimeline.php:487
+#: plugins/elementor/widgets/General/PostTimeline.php:1093
+#: plugins/elementor/widgets/General/PostTimeline.php:1431
 #: plugins/elementor/widgets/General/PricingTable.php:1870
 #: plugins/elementor/widgets/General/Slider.php:971
 #: plugins/elementor/widgets/General/Slider.php:1165
 #: plugins/elementor/widgets/General/Slider.php:1470
-#: plugins/elementor/widgets/General/SmartMenu.php:515
-#: plugins/elementor/widgets/General/SmartMenu.php:871
+#: plugins/elementor/widgets/General/SmartMenu.php:516
+#: plugins/elementor/widgets/General/SmartMenu.php:872
 #: plugins/elementor/widgets/General/TeamCarousel.php:582
 #: plugins/elementor/widgets/General/TeamCarousel.php:894
 #: plugins/elementor/widgets/General/TeamCarousel.php:1472
@@ -3378,8 +3388,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:135
 #: plugins/elementor/widgets/General/LoginForm.php:253
 #: plugins/elementor/widgets/General/PostSlider.php:246
-#: plugins/elementor/widgets/General/PostTimeline.php:313
-#: plugins/elementor/widgets/General/PostTimeline.php:338
+#: plugins/elementor/widgets/General/PostTimeline.php:314
+#: plugins/elementor/widgets/General/PostTimeline.php:339
 #: plugins/elementor/widgets/General/PricingTable.php:411
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:166
 msgid "Button Text"
@@ -3522,7 +3532,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:204
 #: plugins/elementor/widgets/General/PostSlider.php:322
 #: plugins/elementor/widgets/General/Slider.php:339
-#: plugins/elementor/widgets/General/SmartMenu.php:286
+#: plugins/elementor/widgets/General/SmartMenu.php:287
 #: plugins/elementor/widgets/General/TeamCarousel.php:1044
 #: plugins/elementor/widgets/General/TeamCarousel.php:1162
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:133
@@ -3643,7 +3653,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:114
 #: plugins/elementor/widgets/General/PostCarousel.php:142
 #: plugins/elementor/widgets/General/PostSlider.php:140
-#: plugins/elementor/widgets/General/PostTimeline.php:172
+#: plugins/elementor/widgets/General/PostTimeline.php:173
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:226
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:290
 msgid "Random"
@@ -3894,8 +3904,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Shape.php:330
 #: plugins/elementor/widgets/General/SiteLogo.php:290
 #: plugins/elementor/widgets/General/Slider.php:1309
-#: plugins/elementor/widgets/General/SmartMenu.php:183
-#: plugins/elementor/widgets/General/SmartMenu.php:1025
+#: plugins/elementor/widgets/General/SmartMenu.php:184
+#: plugins/elementor/widgets/General/SmartMenu.php:1026
 #: plugins/elementor/widgets/General/Tabs.php:354
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1369
 msgid "Width"
@@ -4250,88 +4260,88 @@ msgstr ""
 msgid "Profile Fields"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:117
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:121
 #. translators: %s: Group Name
 msgid "Group logo of %s"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:191
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:196
 msgid "Deleted Group"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:345
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:350
 msgid "Deleted User"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:350
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:444
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:355
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:449
 msgid "Suspended Member"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:352
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:446
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:357
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:451
 msgid "Blocked Member"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:384
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:389
 msgid "sent a photo"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:386
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:391
 msgid "sent some photos"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:398
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:403
 msgid "sent a video"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:400
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:405
 msgid "sent some videos"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:412
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:417
 msgid "sent a document"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:414
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:419
 msgid "sent some documents"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:423
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:428
 msgid "sent a gif"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:430
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:435
 msgid "This content has been hidden as the member is suspended."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:432
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:437
 msgid "This content has been hidden as you have blocked this member."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:437
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:442
 msgid "You"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:463
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:468
 msgid "No new messages!"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:473
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:478
 msgid "View Inbox"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:61
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:65
 msgid "No new notifications"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:69
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:73
 msgid "View Notifications"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Accordion.php:53
 #: plugins/elementor/widgets/General/Accordion.php:405
-#: plugins/elementor/widgets/General/SmartMenu.php:289
+#: plugins/elementor/widgets/General/SmartMenu.php:290
 msgid "Accordion"
 msgstr ""
 
@@ -4350,7 +4360,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:1128
 #: plugins/elementor/widgets/General/PostCarousel.php:1734
 #: plugins/elementor/widgets/General/PostCarousel.php:1837
-#: plugins/elementor/widgets/General/PostTimeline.php:1276
+#: plugins/elementor/widgets/General/PostTimeline.php:1277
 #: plugins/elementor/widgets/General/PricingTable.php:124
 #: plugins/elementor/widgets/General/PricingTable.php:358
 #: plugins/elementor/widgets/General/Shape.php:274
@@ -4361,7 +4371,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TeamCarousel.php:721
 #: plugins/elementor/widgets/General/TeamCarousel.php:1208
 #: plugins/elementor/widgets/General/TeamCarousel.php:1217
-#: plugins/elementor/widgets/General/Timeline.php:120
+#: plugins/elementor/widgets/General/Timeline.php:121
 msgid "Icon"
 msgstr ""
 
@@ -4392,7 +4402,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Tabs.php:153
 #: plugins/elementor/widgets/General/TeamCarousel.php:328
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:155
-#: plugins/elementor/widgets/General/Timeline.php:221
+#: plugins/elementor/widgets/General/Timeline.php:222
 msgid "Title #1"
 msgstr ""
 
@@ -4408,7 +4418,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Tabs.php:159
 #: plugins/elementor/widgets/General/TeamCarousel.php:336
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:161
-#: plugins/elementor/widgets/General/Timeline.php:227
+#: plugins/elementor/widgets/General/Timeline.php:228
 msgid "Title #2"
 msgstr ""
 
@@ -4504,7 +4514,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1952
 #: plugins/elementor/widgets/General/PostSlider.php:1340
 #: plugins/elementor/widgets/General/PostSlider.php:1375
-#: plugins/elementor/widgets/General/PostTimeline.php:899
+#: plugins/elementor/widgets/General/PostTimeline.php:900
 #: plugins/elementor/widgets/General/PricingTable.php:367
 #: plugins/elementor/widgets/General/Shape.php:448
 #: plugins/elementor/widgets/General/Slider.php:1442
@@ -4513,7 +4523,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TeamCarousel.php:1479
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1314
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1349
-#: plugins/elementor/widgets/General/Timeline.php:398
+#: plugins/elementor/widgets/General/Timeline.php:399
 msgid "Icon Color"
 msgstr ""
 
@@ -4590,7 +4600,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:557
 #: plugins/elementor/widgets/General/PricingTable.php:533
 #: plugins/elementor/widgets/General/SiteLogo.php:264
-#: plugins/elementor/widgets/General/SmartMenu.php:646
+#: plugins/elementor/widgets/General/SmartMenu.php:647
 msgid "Maximum Width"
 msgstr ""
 
@@ -4630,7 +4640,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Shape.php:410
 #: plugins/elementor/widgets/General/SiteLogo.php:237
 #: plugins/elementor/widgets/General/Slider.php:1684
-#: plugins/elementor/widgets/General/SmartMenu.php:143
+#: plugins/elementor/widgets/General/SmartMenu.php:144
 #: plugins/elementor/widgets/General/Tabs.php:324
 #: plugins/elementor/widgets/General/Tabs.php:709
 #: plugins/elementor/widgets/General/TeamCarousel.php:486
@@ -4673,7 +4683,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:927
 #: plugins/elementor/widgets/General/PostSlider.php:1254
 #: plugins/elementor/widgets/General/PostSlider.php:1586
-#: plugins/elementor/widgets/General/PostTimeline.php:591
+#: plugins/elementor/widgets/General/PostTimeline.php:592
 #: plugins/elementor/widgets/General/PricingTable.php:509
 #: plugins/elementor/widgets/General/PricingTable.php:656
 #: plugins/elementor/widgets/General/PricingTable.php:1043
@@ -4689,8 +4699,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:242
 #: plugins/elementor/widgets/General/Slider.php:1356
 #: plugins/elementor/widgets/General/Slider.php:1688
-#: plugins/elementor/widgets/General/SmartMenu.php:147
-#: plugins/elementor/widgets/General/SmartMenu.php:257
+#: plugins/elementor/widgets/General/SmartMenu.php:148
+#: plugins/elementor/widgets/General/SmartMenu.php:258
 #: plugins/elementor/widgets/General/Tabs.php:328
 #: plugins/elementor/widgets/General/Tabs.php:559
 #: plugins/elementor/widgets/General/Tabs.php:713
@@ -4706,7 +4716,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:601
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:643
 #: plugins/elementor/widgets/General/TextRotator.php:192
-#: plugins/elementor/widgets/General/Timeline.php:144
+#: plugins/elementor/widgets/General/Timeline.php:145
 msgid "Start"
 msgstr ""
 
@@ -4741,7 +4751,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:935
 #: plugins/elementor/widgets/General/PostSlider.php:1262
 #: plugins/elementor/widgets/General/PostSlider.php:1594
-#: plugins/elementor/widgets/General/PostTimeline.php:599
+#: plugins/elementor/widgets/General/PostTimeline.php:600
 #: plugins/elementor/widgets/General/PricingTable.php:517
 #: plugins/elementor/widgets/General/PricingTable.php:664
 #: plugins/elementor/widgets/General/PricingTable.php:1051
@@ -4757,8 +4767,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:250
 #: plugins/elementor/widgets/General/Slider.php:1364
 #: plugins/elementor/widgets/General/Slider.php:1696
-#: plugins/elementor/widgets/General/SmartMenu.php:155
-#: plugins/elementor/widgets/General/SmartMenu.php:265
+#: plugins/elementor/widgets/General/SmartMenu.php:156
+#: plugins/elementor/widgets/General/SmartMenu.php:266
 #: plugins/elementor/widgets/General/Tabs.php:336
 #: plugins/elementor/widgets/General/Tabs.php:567
 #: plugins/elementor/widgets/General/Tabs.php:717
@@ -4774,7 +4784,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:609
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:651
 #: plugins/elementor/widgets/General/TextRotator.php:200
-#: plugins/elementor/widgets/General/Timeline.php:152
+#: plugins/elementor/widgets/General/Timeline.php:153
 msgid "End"
 msgstr ""
 
@@ -4782,7 +4792,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:222
 #: plugins/elementor/widgets/General/PostCarousel.php:726
 #: plugins/elementor/widgets/General/PostsTicker.php:265
-#: plugins/elementor/widgets/General/SmartMenu.php:132
+#: plugins/elementor/widgets/General/SmartMenu.php:133
 #: plugins/elementor/widgets/General/Tabs.php:314
 msgid "Horizontal"
 msgstr ""
@@ -4796,7 +4806,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:221
 #: plugins/elementor/widgets/General/PostCarousel.php:725
 #: plugins/elementor/widgets/General/PostsTicker.php:266
-#: plugins/elementor/widgets/General/SmartMenu.php:134
+#: plugins/elementor/widgets/General/SmartMenu.php:135
 #: plugins/elementor/widgets/General/Tabs.php:315
 msgid "Vertical"
 msgstr ""
@@ -4853,56 +4863,56 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:99
 #: plugins/elementor/widgets/General/FlipBox.php:88
-#: plugins/elementor/widgets/General/PostTimeline.php:108
+#: plugins/elementor/widgets/General/PostTimeline.php:109
 #: plugins/elementor/widgets/General/PricingTable.php:88
 msgid "Animation 1"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:100
 #: plugins/elementor/widgets/General/FlipBox.php:89
-#: plugins/elementor/widgets/General/PostTimeline.php:109
+#: plugins/elementor/widgets/General/PostTimeline.php:110
 #: plugins/elementor/widgets/General/PricingTable.php:89
 msgid "Animation 2"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:101
 #: plugins/elementor/widgets/General/FlipBox.php:90
-#: plugins/elementor/widgets/General/PostTimeline.php:110
+#: plugins/elementor/widgets/General/PostTimeline.php:111
 #: plugins/elementor/widgets/General/PricingTable.php:90
 msgid "Animation 3"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:102
 #: plugins/elementor/widgets/General/FlipBox.php:91
-#: plugins/elementor/widgets/General/PostTimeline.php:111
+#: plugins/elementor/widgets/General/PostTimeline.php:112
 #: plugins/elementor/widgets/General/PricingTable.php:91
 msgid "Animation 4"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:103
 #: plugins/elementor/widgets/General/FlipBox.php:92
-#: plugins/elementor/widgets/General/PostTimeline.php:112
+#: plugins/elementor/widgets/General/PostTimeline.php:113
 #: plugins/elementor/widgets/General/PricingTable.php:92
 msgid "Animation 5"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:104
 #: plugins/elementor/widgets/General/FlipBox.php:93
-#: plugins/elementor/widgets/General/PostTimeline.php:113
+#: plugins/elementor/widgets/General/PostTimeline.php:114
 #: plugins/elementor/widgets/General/PricingTable.php:93
 msgid "Animation 6"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:105
 #: plugins/elementor/widgets/General/FlipBox.php:94
-#: plugins/elementor/widgets/General/PostTimeline.php:114
+#: plugins/elementor/widgets/General/PostTimeline.php:115
 #: plugins/elementor/widgets/General/PricingTable.php:94
 msgid "Animation 7"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:106
 #: plugins/elementor/widgets/General/FlipBox.php:95
-#: plugins/elementor/widgets/General/PostTimeline.php:115
+#: plugins/elementor/widgets/General/PostTimeline.php:116
 #: plugins/elementor/widgets/General/PricingTable.php:95
 msgid "Animation 8"
 msgstr ""
@@ -4919,8 +4929,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:149
 #: plugins/elementor/widgets/General/FlipBox.php:268
 #: plugins/elementor/widgets/General/PostSlider.php:1573
-#: plugins/elementor/widgets/General/PostTimeline.php:1232
-#: plugins/elementor/widgets/General/PostTimeline.php:1570
+#: plugins/elementor/widgets/General/PostTimeline.php:1233
+#: plugins/elementor/widgets/General/PostTimeline.php:1571
 #: plugins/elementor/widgets/General/PricingTable.php:446
 #: plugins/elementor/widgets/General/Slider.php:1675
 msgid "Large"
@@ -4928,8 +4938,8 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:150
 #: plugins/elementor/widgets/General/FlipBox.php:269
-#: plugins/elementor/widgets/General/PostTimeline.php:1233
-#: plugins/elementor/widgets/General/PostTimeline.php:1571
+#: plugins/elementor/widgets/General/PostTimeline.php:1234
+#: plugins/elementor/widgets/General/PostTimeline.php:1572
 #: plugins/elementor/widgets/General/PricingTable.php:447
 msgid "Small"
 msgstr ""
@@ -4943,7 +4953,7 @@ msgid "Dropdown Text Align"
 msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:237
-#: plugins/elementor/widgets/General/PostTimeline.php:1267
+#: plugins/elementor/widgets/General/PostTimeline.php:1268
 msgid "Button Icon"
 msgstr ""
 
@@ -4955,7 +4965,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:299
 #: plugins/elementor/widgets/General/FlipBox.php:315
 #: plugins/elementor/widgets/General/Heading.php:545
-#: plugins/elementor/widgets/General/PostTimeline.php:1288
+#: plugins/elementor/widgets/General/PostTimeline.php:1289
 msgid "After"
 msgstr ""
 
@@ -4963,7 +4973,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:300
 #: plugins/elementor/widgets/General/FlipBox.php:316
 #: plugins/elementor/widgets/General/Heading.php:421
-#: plugins/elementor/widgets/General/PostTimeline.php:1289
+#: plugins/elementor/widgets/General/PostTimeline.php:1290
 msgid "Before"
 msgstr ""
 
@@ -4989,7 +4999,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:295
 #: plugins/elementor/widgets/General/FlipBox.php:311
-#: plugins/elementor/widgets/General/PostTimeline.php:1284
+#: plugins/elementor/widgets/General/PostTimeline.php:1285
 msgid "Icon Position"
 msgstr ""
 
@@ -5026,10 +5036,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:389
 #: plugins/elementor/widgets/General/FlipBox.php:350
 #: plugins/elementor/widgets/General/FlipBox.php:1424
-#: plugins/elementor/widgets/General/PostTimeline.php:1000
-#: plugins/elementor/widgets/General/PostTimeline.php:1338
+#: plugins/elementor/widgets/General/PostTimeline.php:1001
+#: plugins/elementor/widgets/General/PostTimeline.php:1339
 #: plugins/elementor/widgets/General/PricingTable.php:1788
-#: plugins/elementor/widgets/General/SmartMenu.php:638
+#: plugins/elementor/widgets/General/SmartMenu.php:639
 #: plugins/elementor/widgets/General/TeamCarousel.php:810
 #: plugins/elementor/widgets/General/TeamCarousel.php:1229
 #: plugins/elementor/widgets/General/TextRotator.php:214
@@ -5038,8 +5048,8 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/DropdownButton.php:520
 #: plugins/elementor/widgets/General/FlipBox.php:1555
-#: plugins/elementor/widgets/General/PostTimeline.php:1131
-#: plugins/elementor/widgets/General/PostTimeline.php:1469
+#: plugins/elementor/widgets/General/PostTimeline.php:1132
+#: plugins/elementor/widgets/General/PostTimeline.php:1470
 #: plugins/elementor/widgets/General/PricingTable.php:1899
 msgid "Animation Color"
 msgstr ""
@@ -5053,7 +5063,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/FlipBox.php:324
 #: plugins/elementor/widgets/General/PostCarousel.php:1742
 #: plugins/elementor/widgets/General/PostCarousel.php:1861
-#: plugins/elementor/widgets/General/PostTimeline.php:1297
+#: plugins/elementor/widgets/General/PostTimeline.php:1298
 #: plugins/elementor/widgets/General/PricingTable.php:1607
 msgid "Icon Padding"
 msgstr ""
@@ -5065,8 +5075,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/DropdownButton.php:618
 #: plugins/elementor/widgets/General/FlipBox.php:1618
 #: plugins/elementor/widgets/General/LoginForm.php:1406
-#: plugins/elementor/widgets/General/PostTimeline.php:1194
-#: plugins/elementor/widgets/General/PostTimeline.php:1532
+#: plugins/elementor/widgets/General/PostTimeline.php:1195
+#: plugins/elementor/widgets/General/PostTimeline.php:1533
 #: plugins/elementor/widgets/General/PricingTable.php:1974
 msgid "Button Width"
 msgstr ""
@@ -5224,14 +5234,14 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:1578
 #: plugins/elementor/widgets/General/PortfolioGrid.php:620
 #: plugins/elementor/widgets/General/PortfolioGrid.php:918
-#: plugins/elementor/widgets/General/PostTimeline.php:587
+#: plugins/elementor/widgets/General/PostTimeline.php:588
 #: plugins/elementor/widgets/General/PricingTable.php:505
 #: plugins/elementor/widgets/General/PricingTable.php:652
 #: plugins/elementor/widgets/General/PricingTable.php:1039
 #: plugins/elementor/widgets/General/PricingTable.php:1389
-#: plugins/elementor/widgets/General/SmartMenu.php:1051
+#: plugins/elementor/widgets/General/SmartMenu.php:1052
 #: plugins/elementor/widgets/General/TextRotator.php:188
-#: plugins/elementor/widgets/General/Timeline.php:140
+#: plugins/elementor/widgets/General/Timeline.php:141
 msgid "Text Align"
 msgstr ""
 
@@ -5242,10 +5252,10 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/FlipBox.php:772
 #: plugins/elementor/widgets/General/FlipBox.php:1209
-#: plugins/elementor/widgets/General/PostTimeline.php:864
+#: plugins/elementor/widgets/General/PostTimeline.php:865
 #: plugins/elementor/widgets/General/PricingTable.php:1594
 #: plugins/elementor/widgets/General/Shape.php:463
-#: plugins/elementor/widgets/General/Timeline.php:382
+#: plugins/elementor/widgets/General/Timeline.php:383
 msgid "Icon Size"
 msgstr ""
 
@@ -5279,16 +5289,16 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:113
 #: plugins/elementor/widgets/General/PostCarousel.php:1452
 #: plugins/elementor/widgets/General/PostSlider.php:804
-#: plugins/elementor/widgets/General/PostTimeline.php:710
+#: plugins/elementor/widgets/General/PostTimeline.php:711
 #: plugins/elementor/widgets/General/Slider.php:796
 #: plugins/elementor/widgets/General/TextRotator.php:168
-#: plugins/elementor/widgets/General/Timeline.php:175
+#: plugins/elementor/widgets/General/Timeline.php:176
 msgid "HTML Tag"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Heading.php:133
 #: plugins/elementor/widgets/General/SiteLogo.php:178
-#: plugins/elementor/widgets/General/SmartMenu.php:288
+#: plugins/elementor/widgets/General/SmartMenu.php:289
 msgid "Link"
 msgstr ""
 
@@ -5769,19 +5779,19 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:105
 #: plugins/elementor/widgets/General/PostSlider.php:103
-#: plugins/elementor/widgets/General/PostTimeline.php:135
+#: plugins/elementor/widgets/General/PostTimeline.php:136
 msgid "Posts"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:113
 #: plugins/elementor/widgets/General/PostSlider.php:111
-#: plugins/elementor/widgets/General/PostTimeline.php:143
+#: plugins/elementor/widgets/General/PostTimeline.php:144
 msgid "Post Type"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:123
 #: plugins/elementor/widgets/General/PostSlider.php:121
-#: plugins/elementor/widgets/General/PostTimeline.php:153
+#: plugins/elementor/widgets/General/PostTimeline.php:154
 #: plugins/elementor/widgets/General/PostsCarousel.php:382
 #: plugins/elementor/widgets/General/PostsRevolution.php:339
 #: plugins/elementor/widgets/General/PostsTicker.php:355
@@ -5792,7 +5802,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:127
 #: plugins/elementor/widgets/General/PostSlider.php:125
-#: plugins/elementor/widgets/General/PostTimeline.php:157
+#: plugins/elementor/widgets/General/PostTimeline.php:158
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:241
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:305
 msgid "Descending"
@@ -5800,7 +5810,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:128
 #: plugins/elementor/widgets/General/PostSlider.php:126
-#: plugins/elementor/widgets/General/PostTimeline.php:158
+#: plugins/elementor/widgets/General/PostTimeline.php:159
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:242
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:306
 msgid "Ascending"
@@ -5808,7 +5818,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:136
 #: plugins/elementor/widgets/General/PostSlider.php:134
-#: plugins/elementor/widgets/General/PostTimeline.php:166
+#: plugins/elementor/widgets/General/PostTimeline.php:167
 #: plugins/elementor/widgets/General/PostsCarousel.php:395
 #: plugins/elementor/widgets/General/PostsRevolution.php:352
 #: plugins/elementor/widgets/General/PostsTicker.php:368
@@ -5817,7 +5827,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:143
 #: plugins/elementor/widgets/General/PostSlider.php:141
-#: plugins/elementor/widgets/General/PostTimeline.php:173
+#: plugins/elementor/widgets/General/PostTimeline.php:174
 msgid "Comment Count"
 msgstr ""
 
@@ -5825,7 +5835,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:567
 #: plugins/elementor/widgets/General/PostCarousel.php:1273
 #: plugins/elementor/widgets/General/PostSlider.php:149
-#: plugins/elementor/widgets/General/PostTimeline.php:181
+#: plugins/elementor/widgets/General/PostTimeline.php:182
 #: plugins/elementor/widgets/General/PostsCarousel.php:369
 #: plugins/elementor/widgets/General/PostsRevolution.php:326
 #: plugins/elementor/widgets/General/PostsTicker.php:342
@@ -5834,59 +5844,59 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:164
 #: plugins/elementor/widgets/General/PostSlider.php:162
-#: plugins/elementor/widgets/General/PostTimeline.php:194
+#: plugins/elementor/widgets/General/PostTimeline.php:195
 msgid "Tags"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:177
 #: plugins/elementor/widgets/General/PostSlider.php:175
-#: plugins/elementor/widgets/General/PostTimeline.php:207
+#: plugins/elementor/widgets/General/PostTimeline.php:208
 msgid "Authors"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:190
 #: plugins/elementor/widgets/General/PostSlider.php:188
-#: plugins/elementor/widgets/General/PostTimeline.php:220
+#: plugins/elementor/widgets/General/PostTimeline.php:221
 msgid "Maximum number of posts"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:202
 #: plugins/elementor/widgets/General/PostSlider.php:200
-#: plugins/elementor/widgets/General/PostTimeline.php:233
+#: plugins/elementor/widgets/General/PostTimeline.php:234
 msgid "Include posts by ID"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:203
 #: plugins/elementor/widgets/General/PostSlider.php:201
-#: plugins/elementor/widgets/General/PostTimeline.php:234
+#: plugins/elementor/widgets/General/PostTimeline.php:235
 msgid "To include multiple posts, add comma between IDs."
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:212
 #: plugins/elementor/widgets/General/PostSlider.php:210
-#: plugins/elementor/widgets/General/PostTimeline.php:243
+#: plugins/elementor/widgets/General/PostTimeline.php:244
 msgid "Exclude posts by ID"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:213
 #: plugins/elementor/widgets/General/PostSlider.php:211
-#: plugins/elementor/widgets/General/PostTimeline.php:244
+#: plugins/elementor/widgets/General/PostTimeline.php:245
 msgid "To exclude multiple posts, add comma between IDs."
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:222
 #: plugins/elementor/widgets/General/PostSlider.php:256
-#: plugins/elementor/widgets/General/PostTimeline.php:260
+#: plugins/elementor/widgets/General/PostTimeline.php:261
 msgid "Excerpt length (To remove excerpt, enter \"0\")"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:241
-#: plugins/elementor/widgets/General/PostTimeline.php:285
+#: plugins/elementor/widgets/General/PostTimeline.php:286
 msgid "Display only posts with thumbnail"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:254
-#: plugins/elementor/widgets/General/PostTimeline.php:272
+#: plugins/elementor/widgets/General/PostTimeline.php:273
 msgid "Display post thumbnail"
 msgstr ""
 
@@ -6085,8 +6095,8 @@ msgid "Card Image"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:979
-#: plugins/elementor/widgets/General/PostTimeline.php:460
-#: plugins/elementor/widgets/General/PostTimeline.php:493
+#: plugins/elementor/widgets/General/PostTimeline.php:461
+#: plugins/elementor/widgets/General/PostTimeline.php:494
 #: plugins/elementor/widgets/General/TeamCarousel.php:556
 #: plugins/elementor/widgets/General/TeamCarousel.php:589
 #: plugins/elementor/widgets/General/TeamCarousel.php:846
@@ -6153,7 +6163,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostCarousel.php:1498
 #: plugins/elementor/widgets/General/PostCarousel.php:1674
 #: plugins/elementor/widgets/General/PostCarousel.php:1777
-#: plugins/elementor/widgets/General/PostTimeline.php:741
+#: plugins/elementor/widgets/General/PostTimeline.php:742
 #: plugins/elementor/widgets/General/PostsCarousel.php:555
 #: plugins/elementor/widgets/General/PostsRevolution.php:557
 #: plugins/elementor/widgets/General/PostsTicker.php:528
@@ -6249,8 +6259,8 @@ msgstr ""
 msgid "Dots Bottom Margin (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:2465
-#: plugins/elementor/widgets/General/PostTimeline.php:1767
+#: plugins/elementor/widgets/General/PostCarousel.php:2466
+#: plugins/elementor/widgets/General/PostTimeline.php:1768
 msgid "Nothing was found!"
 msgstr ""
 
@@ -6636,106 +6646,106 @@ msgstr ""
 msgid "No post found!"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:62
+#: plugins/elementor/widgets/General/PostTimeline.php:63
 msgid "Post Timeline"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:221
+#: plugins/elementor/widgets/General/PostTimeline.php:222
 msgid "Load more button loads this number of posts each time."
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:299
+#: plugins/elementor/widgets/General/PostTimeline.php:300
 msgid "Display Read More Button"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:324
+#: plugins/elementor/widgets/General/PostTimeline.php:325
 msgid "Load More"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:340
+#: plugins/elementor/widgets/General/PostTimeline.php:341
 msgid "LOAD MORE"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:349
+#: plugins/elementor/widgets/General/PostTimeline.php:350
 msgid "Disabled Button Text"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:351
+#: plugins/elementor/widgets/General/PostTimeline.php:352
 msgid "LOADING..."
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:363
-#: plugins/elementor/widgets/General/Timeline.php:59
-#: plugins/elementor/widgets/General/Timeline.php:242
+#: plugins/elementor/widgets/General/PostTimeline.php:364
+#: plugins/elementor/widgets/General/Timeline.php:60
+#: plugins/elementor/widgets/General/Timeline.php:243
 msgid "Timeline"
-msgstr ""
-
-#: plugins/elementor/widgets/General/PostTimeline.php:375
-#: plugins/elementor/widgets/General/Timeline.php:254
-msgid "Two Column"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostTimeline.php:376
 #: plugins/elementor/widgets/General/Timeline.php:255
+msgid "Two Column"
+msgstr ""
+
+#: plugins/elementor/widgets/General/PostTimeline.php:377
+#: plugins/elementor/widgets/General/Timeline.php:256
 msgid "One Column"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:403
-#: plugins/elementor/widgets/General/Timeline.php:282
+#: plugins/elementor/widgets/General/PostTimeline.php:404
+#: plugins/elementor/widgets/General/Timeline.php:283
 msgid "Bar Thickness"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:418
-#: plugins/elementor/widgets/General/Timeline.php:297
+#: plugins/elementor/widgets/General/PostTimeline.php:419
+#: plugins/elementor/widgets/General/Timeline.php:298
 msgid "Bar Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:432
+#: plugins/elementor/widgets/General/PostTimeline.php:433
 msgid "Post Image"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:476
-#: plugins/elementor/widgets/General/PostTimeline.php:509
+#: plugins/elementor/widgets/General/PostTimeline.php:477
+#: plugins/elementor/widgets/General/PostTimeline.php:510
 #: plugins/elementor/widgets/General/TeamCarousel.php:572
 #: plugins/elementor/widgets/General/TeamCarousel.php:605
 msgid "CSS Filters"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:613
-#: plugins/elementor/widgets/General/Timeline.php:422
+#: plugins/elementor/widgets/General/PostTimeline.php:614
+#: plugins/elementor/widgets/General/Timeline.php:423
 msgid "Display arrow"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:773
-#: plugins/elementor/widgets/General/Timeline.php:606
+#: plugins/elementor/widgets/General/PostTimeline.php:774
+#: plugins/elementor/widgets/General/Timeline.php:607
 msgid "Paragraph"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:825
+#: plugins/elementor/widgets/General/PostTimeline.php:826
 #: plugins/elementor/widgets/General/Testimonial.php:584
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:749
 msgid "Font Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:852
+#: plugins/elementor/widgets/General/PostTimeline.php:853
 msgid "Date Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:880
-#: plugins/elementor/widgets/General/Timeline.php:316
+#: plugins/elementor/widgets/General/PostTimeline.php:881
+#: plugins/elementor/widgets/General/Timeline.php:317
 msgid "Icon Container Size"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:913
-#: plugins/elementor/widgets/General/Timeline.php:336
+#: plugins/elementor/widgets/General/PostTimeline.php:914
+#: plugins/elementor/widgets/General/Timeline.php:337
 msgid "Icon Container Background"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:974
+#: plugins/elementor/widgets/General/PostTimeline.php:975
 msgid "Read More Button"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostTimeline.php:1312
+#: plugins/elementor/widgets/General/PostTimeline.php:1313
 msgid "Load More Button"
 msgstr ""
 
@@ -7235,7 +7245,7 @@ msgid "Mobile"
 msgstr ""
 
 #: plugins/elementor/widgets/General/SiteLogo.php:214
-#: plugins/elementor/widgets/General/SmartMenu.php:219
+#: plugins/elementor/widgets/General/SmartMenu.php:220
 msgid "Mobile Breakpoint"
 msgstr ""
 
@@ -7286,137 +7296,137 @@ msgstr ""
 msgid "Thumbnail Max. Height"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:60
-#: plugins/elementor/widgets/General/SmartMenu.php:112
+#: plugins/elementor/widgets/General/SmartMenu.php:61
+#: plugins/elementor/widgets/General/SmartMenu.php:113
 msgid "Smart Menu"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:120
+#: plugins/elementor/widgets/General/SmartMenu.php:121
 msgid "Select a Menu"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:129
+#: plugins/elementor/widgets/General/SmartMenu.php:130
 msgid "Menu Layout"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:133
+#: plugins/elementor/widgets/General/SmartMenu.php:134
 msgid "Horizontal-Justified"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:228
-#: plugins/elementor/widgets/General/SmartMenu.php:986
+#: plugins/elementor/widgets/General/SmartMenu.php:229
+#: plugins/elementor/widgets/General/SmartMenu.php:987
 msgid "Mobile Menu Toggle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:241
+#: plugins/elementor/widgets/General/SmartMenu.php:242
 msgid "Mobile Menu Toggle Text"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:243
+#: plugins/elementor/widgets/General/SmartMenu.php:244
 msgid "MENU"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:253
+#: plugins/elementor/widgets/General/SmartMenu.php:254
 msgid "Mobile Menu Toggle Alignment"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:283
+#: plugins/elementor/widgets/General/SmartMenu.php:284
 msgid "Collapsible Behavior"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:287
+#: plugins/elementor/widgets/General/SmartMenu.php:288
 msgid "Toggle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:290
+#: plugins/elementor/widgets/General/SmartMenu.php:291
 msgid "Accordion-Toggle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:291
+#: plugins/elementor/widgets/General/SmartMenu.php:292
 msgid "Accordion-Link"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:302
+#: plugins/elementor/widgets/General/SmartMenu.php:303
 msgid "Menu Container"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:350
+#: plugins/elementor/widgets/General/SmartMenu.php:351
 msgid "Transition Duration (ms)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:398
+#: plugins/elementor/widgets/General/SmartMenu.php:399
 msgid "Main Menu Items"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:416
+#: plugins/elementor/widgets/General/SmartMenu.php:417
 msgid "Dropdown Menu Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:419
+#: plugins/elementor/widgets/General/SmartMenu.php:420
 msgid "Caret"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:420
+#: plugins/elementor/widgets/General/SmartMenu.php:421
 msgid "Caret-Square"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:421
+#: plugins/elementor/widgets/General/SmartMenu.php:422
 msgid "Chevron"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:422
+#: plugins/elementor/widgets/General/SmartMenu.php:423
 msgid "Chevron-Circle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:423
+#: plugins/elementor/widgets/General/SmartMenu.php:424
 msgid "Plus"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:424
+#: plugins/elementor/widgets/General/SmartMenu.php:425
 msgid "Plus-Circle"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:433
+#: plugins/elementor/widgets/General/SmartMenu.php:434
 msgid "Dropdown Menu Icon Size"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:444
+#: plugins/elementor/widgets/General/SmartMenu.php:445
 msgid "Icon Color (Mobile)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:455
+#: plugins/elementor/widgets/General/SmartMenu.php:456
 msgid "Icon Background Color (Mobile)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:630
+#: plugins/elementor/widgets/General/SmartMenu.php:631
 msgid "Sub Menus"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:673
+#: plugins/elementor/widgets/General/SmartMenu.php:674
 msgid "Minimum Width"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:700
+#: plugins/elementor/widgets/General/SmartMenu.php:701
 msgid "First-level Offset X"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:709
+#: plugins/elementor/widgets/General/SmartMenu.php:710
 msgid "First-level Offset Y"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:718
+#: plugins/elementor/widgets/General/SmartMenu.php:719
 msgid "Second-level Offset X"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:727
+#: plugins/elementor/widgets/General/SmartMenu.php:728
 msgid "Second-level Offset Y"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:736
+#: plugins/elementor/widgets/General/SmartMenu.php:737
 msgid "Right to Left"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:799
+#: plugins/elementor/widgets/General/SmartMenu.php:800
 msgid "Sub Menu Items"
 msgstr ""
 
@@ -7594,9 +7604,9 @@ msgid "Testimonials"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Testimonial.php:131
-#: plugins/elementor/widgets/General/Timeline.php:206
-#: plugins/elementor/widgets/General/Timeline.php:223
-#: plugins/elementor/widgets/General/Timeline.php:229
+#: plugins/elementor/widgets/General/Timeline.php:207
+#: plugins/elementor/widgets/General/Timeline.php:224
+#: plugins/elementor/widgets/General/Timeline.php:230
 msgid ""
 "Enim ad commodo do est proident excepteur nulla enim pariatur. Proident et "
 "laborum reprehenderit voluptate velit Lorem culpa ullamco."
@@ -7725,13 +7735,13 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Timeline.php:168
-#: plugins/elementor/widgets/General/Timeline.php:220
-#: plugins/elementor/widgets/General/Timeline.php:226
+#: plugins/elementor/widgets/General/Timeline.php:169
+#: plugins/elementor/widgets/General/Timeline.php:221
+#: plugins/elementor/widgets/General/Timeline.php:227
 msgid "Jan 14"
 msgstr ""
 
-#: plugins/elementor/widgets/General/Timeline.php:214
+#: plugins/elementor/widgets/General/Timeline.php:215
 msgid "Items"
 msgstr ""
 
@@ -8530,10 +8540,42 @@ msgstr ""
 msgid "Login successful! Redirecting..."
 msgstr ""
 
-#: plugins/gutenberg/blocks/members-carousel/src/render.php:18
-#: plugins/gutenberg/blocks/members-grid/src/render.php:18
-#: plugins/gutenberg/blocks/members-lists/src/render.php:18
-msgid "BuddyPress is required for this block."
+#: plugins/gutenberg/patterns/blog-editorial.php:19
+msgid "Blog Editorial"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-editorial.php:20
+msgid "An editorial-style blog layout with hero slider and magazine grid."
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-featured-list.php:19
+msgid "Blog Featured List"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-featured-list.php:20
+msgid ""
+"A featured hero post with sidebar grid, followed by a side-by-side post "
+"list."
+msgstr ""
+
+#: plugins/gutenberg/patterns/magazine-homepage.php:19
+msgid "Magazine Homepage"
+msgstr ""
+
+#: plugins/gutenberg/patterns/magazine-homepage.php:20
+msgid ""
+"A full news site homepage with breaking news ticker, hero post slider, "
+"featured posts grid, and category grid."
+msgstr ""
+
+#: plugins/gutenberg/patterns/news-dashboard.php:19
+msgid "News Dashboard"
+msgstr ""
+
+#: plugins/gutenberg/patterns/news-dashboard.php:20
+msgid ""
+"A multi-section news dashboard with hero, category spotlight columns, and "
+"more stories."
 msgstr ""
 
 #: plugins/gutenberg/wbcom-gutenberg.php:136
@@ -8564,20 +8606,20 @@ msgstr ""
 msgid "Starter Pack - WooCommerce"
 msgstr ""
 
-#: templates/buddypress/groups/groups-loop.php:58
+#: templates/buddypress/groups/groups-loop.php:62
 #. translators: %s: last activity timestamp (e.g. "Active 1 hour ago")
 msgid "Active %s"
 msgstr ""
 
-#: templates/reign/buddypress/legacy/groups/groups-loop.php:138
+#: templates/reign/buddypress/legacy/groups/groups-loop.php:142
 msgid "There were no groups found."
 msgstr ""
 
-#: templates/reign/buddypress/nouveau/members/members-loop.php:118
+#: templates/reign/buddypress/nouveau/members/members-loop.php:122
 msgid "More Options"
 msgstr ""
 
-#: wbcom-essential.php:164
+#: wbcom-essential.php:165
 msgid "Essential Widgets"
 msgstr ""
 

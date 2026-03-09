@@ -3,6 +3,10 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $tabs = $attributes['tabs'] ?? array();
 $layout = $attributes['layout'] ?? 'horizontal';
 $enable_url_hash = $attributes['enableUrlHash'] ?? false;
