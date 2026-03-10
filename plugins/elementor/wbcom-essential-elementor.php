@@ -25,10 +25,8 @@ define( 'ELEMENTOR_WBCOMESSENTIAL__DIR__', __DIR__ );
  * @since 1.0.0
  */
 function wbcom_essential_elementor_load() {
-	// Notice if the Elementor is not active.
+	// If Elementor is not active, silently skip — Gutenberg blocks work independently.
 	if ( ! did_action( 'elementor/loaded' ) ) {
-		add_action( 'admin_notices', 'wbcom_essential_elementor_fail_load' );
-
 		return;
 	}
 

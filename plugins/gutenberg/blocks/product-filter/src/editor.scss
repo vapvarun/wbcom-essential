@@ -1,0 +1,33 @@
+// Editor-only styles.
+
+.wbcom-product-filter-editor {
+	border: 2px dashed #c3d1e0;
+	border-radius: 8px;
+	background: #f8fafc;
+
+	.wbcom-filter-btn {
+		cursor: default;
+		user-select: none;
+	}
+}
+
+// Inspector panel item styling.
+.wbcom-filter-item-panel {
+	margin-bottom: 16px;
+	padding: 10px;
+	background: #f0f0f0;
+	border-radius: 4px;
+	border: 1px solid #e0e0e0;
+
+	.wbcom-filter-item-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+
+	.wbcom-filter-item-actions {
+		display: flex;
+		gap: 2px;
+	}
+}

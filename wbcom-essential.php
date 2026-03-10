@@ -126,6 +126,9 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 
 			// Include Gutenberg blocks.
 			require_once WBCOM_ESSENTIAL_PATH . '/plugins/gutenberg/wbcom-gutenberg.php';
+
+			// EDD Product Catalog REST API endpoints (powers product-catalog block).
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/edd-product-catalog-rest.php';
 		}
 
 		/**

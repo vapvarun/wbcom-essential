@@ -1,0 +1,92 @@
+/**
+ * EDD Enhanced Checkout Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+// Remove Gutenberg's default block outline.
+.wp-block[data-type="wbcom-essential/edd-checkout-enhanced"] {
+	outline: none !important;
+
+	&.is-selected,
+	&.has-child-selected {
+		outline: none !important;
+	}
+}
+
+.wbcom-essential-edd-checkout-enhanced-editor {
+	.wbcom-edd-checkout-enhanced-placeholder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		min-height: 200px;
+		padding: 40px 24px;
+		background: #f8fafc;
+		border: 2px dashed #cbd5e1;
+		border-radius: 8px;
+		text-align: center;
+	}
+
+	.wbcom-edd-checkout-enhanced-placeholder__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		background: #eff6ff;
+		border-radius: 50%;
+		color: #2563eb;
+
+		svg {
+			display: block;
+		}
+	}
+
+	.wbcom-edd-checkout-enhanced-placeholder__title {
+		margin: 0;
+		font-size: 16px;
+		font-weight: 600;
+		color: #1e293b;
+	}
+
+	.wbcom-edd-checkout-enhanced-placeholder__description {
+		margin: 0;
+		font-size: 13px;
+		color: #64748b;
+		max-width: 320px;
+		line-height: 1.5;
+	}
+
+	.wbcom-edd-checkout-enhanced-placeholder__badges {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-top: 4px;
+	}
+
+	.wbcom-edd-checkout-enhanced-placeholder__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 4px 10px;
+		font-size: 11px;
+		font-weight: 500;
+		border-radius: 20px;
+		line-height: 1.4;
+
+		&--progress {
+			background: #eff6ff;
+			color: #2563eb;
+			border: 1px solid #bfdbfe;
+		}
+
+		&--trust {
+			background: #f0fdf4;
+			color: #16a34a;
+			border: 1px solid #bbf7d0;
+		}
+	}
+}
