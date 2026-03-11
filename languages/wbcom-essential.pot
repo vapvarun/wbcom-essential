@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 05:58:12+00:00\n"
+"POT-Creation-Date: 2026-03-11 05:08:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -73,7 +73,7 @@ msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:125
 #: plugins/elementor/hooks/ElementorHooks.php:120
-#: plugins/elementor/wbcom-essential-elementor.php:102
+#: plugins/elementor/wbcom-essential-elementor.php:100
 msgid "Wbcom Essential"
 msgstr ""
 
@@ -225,6 +225,19 @@ msgstr ""
 msgid "No accordion items found. Please add items in the editor."
 msgstr ""
 
+#: build/blocks/category-grid/render.php:51
+#: plugins/gutenberg/blocks/category-grid/src/render.php:51
+msgid "No categories found."
+msgstr ""
+
+#: build/blocks/category-grid/render.php:132
+#: plugins/gutenberg/blocks/category-grid/src/render.php:132
+#. translators: %s: number of posts
+msgid "%s Post"
+msgid_plural "%s Posts"
+msgstr[0] ""
+msgstr[1] ""
+
 #: build/blocks/countdown/render.php:23
 #: plugins/elementor/widgets/General/Countdown.php:123
 #: plugins/elementor/widgets/General/Countdown.php:135
@@ -264,6 +277,269 @@ msgstr ""
 #: build/blocks/dashboard-intro/render.php:21
 #: plugins/gutenberg/blocks/dashboard-intro/src/render.php:21
 msgid "Please log in to see your dashboard."
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:20
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:20
+msgid "Easy Digital Downloads is required to display this block."
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:29
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:29
+msgid "My Tickets"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:50
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:50
+msgid "Sign In to Your Account"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:51
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:51
+msgid "Please log in to access your purchases, downloads, and account settings."
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:84
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:56
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:57
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:84
+msgid "Dashboard"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:90
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:241
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:90
+msgid "Subscriptions"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:96
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:256
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:96
+msgid "Downloads"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:102
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:102
+msgid "Licenses"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:108
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:282
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:108
+msgid "Order History"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:113
+#: build/blocks/profile-completion/render.php:33
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:283
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:293
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:113
+#: plugins/gutenberg/blocks/profile-completion/src/render.php:33
+msgid "Edit Profile"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:157
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:157
+msgid "Account navigation"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:200
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:200
+msgid "Sign Out"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:206
+#: plugins/gutenberg/blocks/edd-account-dashboard/src/render.php:206
+msgid "Account content"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:19
+#: build/blocks/edd-order-success/render.php:18
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:19
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:18
+msgid "Easy Digital Downloads is required for this block."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:27
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:27
+msgid "Secure checkout powered by Stripe"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:47
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:47
+msgid "Checkout steps"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:50
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:50
+msgid "Cart - completed"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:58
+#: build/blocks/header-bar/render.php:527
+#: build/blocks/header-bar/render.php:653
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:222
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:21
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:58
+#: plugins/gutenberg/blocks/header-bar/src/render.php:527
+#: plugins/gutenberg/blocks/header-bar/src/render.php:653
+msgid "Cart"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:61
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:61
+msgid "Details - current step"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:67
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:67
+msgid "Details"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:70
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:70
+msgid "Payment - upcoming"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:76
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:76
+msgid "Payment"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:79
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:79
+msgid "Complete - upcoming"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:85
+#: build/blocks/profile-completion/render.php:31
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:248
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:85
+#: plugins/gutenberg/blocks/profile-completion/src/render.php:31
+msgid "Complete"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:97
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:97
+msgid "Security and trust information"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:109
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:109
+msgid "Your payment information is encrypted and secure."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:121
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:121
+msgid "14-Day Money Back"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:122
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:122
+msgid "Full refund if you are not satisfied."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:133
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:133
+msgid "Priority Support"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:134
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:134
+msgid "Dedicated support for all customers."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:140
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:140
+msgid "Accepted payments"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:232
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:232
+msgid "What Our Customers Say"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:251
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:251
+#. translators: %d: Number of reviews.
+msgid "from %d review"
+msgid_plural "from %d reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:304
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:304
+msgid "Customers Also Purchased"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:368
+#: plugins/gutenberg/blocks/edd-checkout-enhanced/src/render.php:368
+msgid "Add to Cart"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:24
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:24
+msgid "Thank you for your purchase!"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:86
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:86
+msgid "Order confirmed"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:97
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:97
+msgid "Your order has been confirmed and is being processed."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:109
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:109
+msgid "What's Next?"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:124
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:124
+msgid "Download Your Files"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:127
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:127
+msgid "Access and download the files included in your purchase."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:130
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:130
+msgid "View Downloads"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:143
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:143
+msgid "View License Keys"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:146
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:146
+msgid "Find and manage the license keys for your purchased products."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:149
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:149
+msgid "View Licenses"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:163
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:163
+msgid "Manage Your Account"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:166
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:166
+msgid "View your purchase history, update details, and manage your profile."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:169
+#: plugins/gutenberg/blocks/edd-order-success/src/render.php:169
+msgid "Go to Account"
 msgstr ""
 
 #: build/blocks/forums/render.php:213
@@ -520,15 +796,6 @@ msgstr ""
 msgid "All Notifications"
 msgstr ""
 
-#: build/blocks/header-bar/render.php:527
-#: build/blocks/header-bar/render.php:653
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:222
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:21
-#: plugins/gutenberg/blocks/header-bar/src/render.php:527
-#: plugins/gutenberg/blocks/header-bar/src/render.php:653
-msgid "Cart"
-msgstr ""
-
 #: build/blocks/header-bar/render.php:545
 #: build/blocks/header-bar/render.php:671 build/blocks/mini-cart/render.php:103
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:42
@@ -771,22 +1038,10 @@ msgstr ""
 msgid "Complete your profile"
 msgstr ""
 
-#: build/blocks/profile-completion/render.php:31
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:248
-#: plugins/gutenberg/blocks/profile-completion/src/render.php:31
-msgid "Complete"
-msgstr ""
-
 #: build/blocks/profile-completion/render.php:32
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:264
 #: plugins/gutenberg/blocks/profile-completion/src/render.php:32
 msgid "Complete Profile"
-msgstr ""
-
-#: build/blocks/profile-completion/render.php:33
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:283
-#: plugins/gutenberg/blocks/profile-completion/src/render.php:33
-msgid "Edit Profile"
 msgstr ""
 
 #: build/blocks/progress-bar/render.php:18
@@ -843,11 +1098,6 @@ msgstr ""
 #: build/blocks/smart-menu/render.php:185
 #: plugins/gutenberg/blocks/smart-menu/src/render.php:185
 msgid "Toggle menu"
-msgstr ""
-
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:56
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:57
-msgid "Dashboard"
 msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:125
@@ -1037,6 +1287,119 @@ msgstr ""
 msgid "Settings saved successfully."
 msgstr ""
 
+#: includes/single-post/class-wbcom-single-post-settings.php:33
+msgid "None (Use Theme Default)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:34
+msgid "Classic (Content + Sidebar)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:35
+msgid "Magazine (Full-Width Hero)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:36
+msgid "Minimal (Centered, Clean)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:37
+msgid "Modern (Progress Bar + ToC)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:62
+msgid "Post Templates"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:69
+msgid "Default Single Post Template"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:80
+msgid ""
+"Choose a default template for single blog posts. Individual posts can "
+"override this in their edit screen."
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:93
+msgid "This applies to all single posts unless overridden per-post."
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:138
+msgid "Post Template"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:158
+msgid "Global Default"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:159
+msgid "Inherits the site-wide setting"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:162
+#: plugins/elementor/helper/skins/skin-classic.php:40
+msgid "Classic"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:163
+msgid "Content with right sidebar"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:166
+msgid "Magazine"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:167
+msgid "Full-width hero with overlay"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:170
+msgid "Minimal"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:171
+msgid "Centered, clean typography"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:174
+msgid "Modern"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:175
+msgid "Progress bar, ToC sidebar, share bar"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:178
+#: plugins/elementor/helper/skins/skin-base.php:102
+#: plugins/elementor/helper/skins/skin-cards.php:562
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:215
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:728
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:365
+#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:223
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:351
+#: plugins/elementor/widgets/General/DropdownButton.php:98
+#: plugins/elementor/widgets/General/FlipBox.php:87
+#: plugins/elementor/widgets/General/PostSlider.php:280
+#: plugins/elementor/widgets/General/PostTimeline.php:108
+#: plugins/elementor/widgets/General/PricingTable.php:87
+#: plugins/elementor/widgets/General/Slider.php:297
+#: plugins/elementor/widgets/General/Testimonial.php:755
+#: plugins/elementor/widgets/General/TestimonialCarousel.php:920
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:220
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:284
+msgid "None"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:179
+msgid "Use theme default template"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:210
+#. translators: %s: template name
+msgid "Site default: %s"
+msgstr ""
+
 #: includes/wbcom-essential-function.php:432
 #: includes/wbcom-essential-function.php:442
 #. translators: %s is the category name
@@ -1185,26 +1548,6 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:471
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1784
 msgid "Right"
-msgstr ""
-
-#: plugins/elementor/helper/skins/skin-base.php:102
-#: plugins/elementor/helper/skins/skin-cards.php:562
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:215
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:728
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:365
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:223
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:351
-#: plugins/elementor/widgets/General/DropdownButton.php:98
-#: plugins/elementor/widgets/General/FlipBox.php:87
-#: plugins/elementor/widgets/General/PostSlider.php:280
-#: plugins/elementor/widgets/General/PostTimeline.php:108
-#: plugins/elementor/widgets/General/PricingTable.php:87
-#: plugins/elementor/widgets/General/Slider.php:297
-#: plugins/elementor/widgets/General/Testimonial.php:755
-#: plugins/elementor/widgets/General/TestimonialCarousel.php:920
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:220
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:284
-msgid "None"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:111
@@ -1487,6 +1830,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Timeline.php:648
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:222
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:286
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:192
 msgid "Date"
 msgstr ""
 
@@ -2560,10 +2904,6 @@ msgstr ""
 msgid "Meta Border Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-classic.php:40
-msgid "Classic"
-msgstr ""
-
 #: plugins/elementor/hooks/ElementorHooks.php:314
 msgid "Exclude"
 msgstr ""
@@ -2655,25 +2995,25 @@ msgstr ""
 msgid "Sections"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:80
+#: plugins/elementor/wbcom-essential-elementor.php:78
 msgid "Activate Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:94
+#: plugins/elementor/wbcom-essential-elementor.php:92
 msgid "Install Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:103
+#: plugins/elementor/wbcom-essential-elementor.php:101
 msgid ""
 "Gutenberg blocks are ready to use! Want even more options? Install "
 "Elementor to unlock 43+ additional widgets."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:110
+#: plugins/elementor/wbcom-essential-elementor.php:108
 msgid "View All Widgets & Blocks"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:163
+#: plugins/elementor/wbcom-essential-elementor.php:161
 #. translators: %1$s: Plugin name, %2$s: Required plugin name, %3$s: Required
 #. version
 msgid ""
@@ -2681,35 +3021,35 @@ msgid ""
 "all features."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:174
+#: plugins/elementor/wbcom-essential-elementor.php:172
 msgid "Update Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:440
+#: plugins/elementor/wbcom-essential-elementor.php:438
 msgid "Full"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:467
+#: plugins/elementor/wbcom-essential-elementor.php:465
 msgid "Invalid username. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:469
+#: plugins/elementor/wbcom-essential-elementor.php:467
 msgid "Incorrect password. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:471
+#: plugins/elementor/wbcom-essential-elementor.php:469
 msgid "Username field is empty. Please enter your username."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:473
+#: plugins/elementor/wbcom-essential-elementor.php:471
 msgid "Password field is empty. Please enter your password."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:475
+#: plugins/elementor/wbcom-essential-elementor.php:473
 msgid "Login failed. Please check your credentials."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:490
+#: plugins/elementor/wbcom-essential-elementor.php:488
 msgid "Login successful, redirecting..."
 msgstr ""
 
@@ -5797,6 +6137,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostsTicker.php:355
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:237
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:301
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:191
 msgid "Order"
 msgstr ""
 
@@ -8516,6 +8857,71 @@ msgstr ""
 msgid "Image Area Border Color"
 msgstr ""
 
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:144
+#. translators: %s: User's first name or display name.
+msgid "Welcome back, %s!"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:153
+msgid "Total Orders"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:157
+msgid "Total Spent"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:162
+msgid "Active Licenses"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:168
+msgid "Active Subscriptions"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:187
+msgid "Recent Orders"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:193
+msgid "Amount"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:194
+msgid "Status"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:242
+msgid "Manage your active and past subscriptions."
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:245
+msgid "No subscriptions found."
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:257
+msgid "Access and download the files from your purchases."
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:267
+msgid "License Keys"
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:268
+msgid "View and manage your license keys and activations."
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:271
+msgid "No licenses found."
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:283
+msgid "View your complete purchase history and order details."
+msgstr ""
+
+#: plugins/gutenberg/blocks/edd-account-dashboard/edd-account-dashboard.php:294
+msgid "Update your account information and preferences."
+msgstr ""
+
 #: plugins/gutenberg/blocks/login-form/login-form.php:48
 msgid "Security check failed."
 msgstr ""
@@ -8558,6 +8964,38 @@ msgid ""
 "list."
 msgstr ""
 
+#: plugins/gutenberg/patterns/blog-listing.php:19
+msgid "Blog Listing"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-listing.php:20
+msgid "A clean blog listing with side-by-side post cards and pagination."
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-masonry.php:19
+msgid "Blog Masonry"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-masonry.php:20
+msgid "A masonry-style 3-column blog grid with category navigation."
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-timeline.php:19
+msgid "Blog Timeline"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-timeline.php:20
+msgid "A chronological two-column timeline layout for blog posts."
+msgstr ""
+
+#: plugins/gutenberg/patterns/category-archive.php:19
+msgid "Category Archive"
+msgstr ""
+
+#: plugins/gutenberg/patterns/category-archive.php:20
+msgid "A category archive page with a post grid and sidebar featuring latest posts."
+msgstr ""
+
 #: plugins/gutenberg/patterns/magazine-homepage.php:19
 msgid "Magazine Homepage"
 msgstr ""
@@ -8576,6 +9014,46 @@ msgstr ""
 msgid ""
 "A multi-section news dashboard with hero, category spotlight columns, and "
 "more stories."
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-author-bio.php:19
+msgid "Author Bio Section"
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-author-bio.php:20
+msgid "A polished author bio section with divider and testimonial-style layout."
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-newsletter-cta.php:19
+msgid "Newsletter CTA"
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-newsletter-cta.php:20
+msgid "A centered newsletter subscribe call-to-action box."
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-related-posts.php:19
+msgid "Related Posts Carousel"
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-related-posts.php:20
+msgid "A related posts carousel section with divider and heading."
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-share-section.php:19
+msgid "Share Section"
+msgstr ""
+
+#: plugins/gutenberg/patterns/single-post-share-section.php:20
+msgid "A share section with text and social media icons."
+msgstr ""
+
+#: plugins/gutenberg/patterns/wbcom-patterns.php:25
+msgid "WBcom Essential - Magazine"
+msgstr ""
+
+#: plugins/gutenberg/patterns/wbcom-patterns.php:32
+msgid "WBcom Essential - Single Post"
 msgstr ""
 
 #: plugins/gutenberg/wbcom-gutenberg.php:136
@@ -8619,7 +9097,58 @@ msgstr ""
 msgid "More Options"
 msgstr ""
 
-#: wbcom-essential.php:165
+#: templates/single-post/partials/post-navigation.php:23
+msgid "Post navigation"
+msgstr ""
+
+#: templates/single-post/partials/related-posts.php:45
+msgid "Related Posts"
+msgstr ""
+
+#: templates/single-post/partials/share-buttons.php:24
+msgid "Share on Twitter"
+msgstr ""
+
+#: templates/single-post/partials/share-buttons.php:31
+msgid "Share on Facebook"
+msgstr ""
+
+#: templates/single-post/partials/share-buttons.php:38
+msgid "Share on LinkedIn"
+msgstr ""
+
+#: templates/single-post/partials/toc.php:41
+msgid "Table of Contents"
+msgstr ""
+
+#: templates/single-post/partials/toc.php:42
+msgid "Contents"
+msgstr ""
+
+#: templates/single-post/template-classic.php:63
+#: templates/single-post/template-magazine.php:60
+#: templates/single-post/template-magazine.php:95
+#: templates/single-post/template-minimal.php:48
+#: templates/single-post/template-modern.php:89
+#: templates/single-post/template-modern.php:124
+#. translators: %d: number of minutes
+msgid "%d min read"
+msgid_plural "%d min read"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/single-post/template-classic.php:89
+#: templates/single-post/template-magazine.php:126
+#: templates/single-post/template-modern.php:163
+msgid "Tags:"
+msgstr ""
+
+#: templates/single-post/template-magazine.php:135
+#: templates/single-post/template-modern.php:172
+msgid "Share this article"
+msgstr ""
+
+#: wbcom-essential.php:168
 msgid "Essential Widgets"
 msgstr ""
 
