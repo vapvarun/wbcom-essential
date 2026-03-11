@@ -16,3 +16,5 @@ src/.DS_Store
 /vendor/php-parallel-lint
 /vendor/wp-coding-standards
 /vendor/wptrt
+tests/
+test-results/
