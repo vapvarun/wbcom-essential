@@ -100,18 +100,19 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 == Changelog ==
 
 = 4.3.0 =
-* New: Category Grid block - display categories in a visual grid with post counts and images
-* New: Magazine block patterns - News Dashboard, Magazine Homepage, Blog Editorial, Blog Featured List
-* New: Additional blog patterns - Blog Listing, Blog Masonry, Blog Timeline, Category Archive
-* New: Single post template system with 4 templates (Classic, Modern, Magazine, Minimal)
-* New: Single post patterns - Author Bio, Related Posts, Share Section, Newsletter CTA
-* New: Pattern registration system (wbcom-patterns.php)
-* Enhanced: Posts Revolution - sectionLabel attribute for editor-only section guidance in patterns
-* Enhanced: Posts Revolution - category picker moved to Content panel with FormTokenField autocomplete
-* Enhanced: Posts Revolution - inline category status badges and setup prompts in editor
-* Enhanced: Posts Revolution - require featured images in query for consistent grid presentation
-* Enhanced: Posts Revolution - smarter excerpt generation with word-boundary truncation and content fallback
-* Fixed: PHP Deprecated warning for str_replace() parameter type in Elementor Forums widget
+* New: Blog Index layouts - choose from Grid, List, Magazine, or Newspaper layouts for your blog and archive pages
+* New: Magazine layout with multi-section content areas, each configurable with its own category and display style
+* New: Newspaper layout featuring breaking news ticker, hero slider, and dual-column article sections
+* New: Category Grid block to showcase your categories in a visual grid with post counts and images
+* New: Ready-to-use magazine and blog patterns including News Dashboard, Magazine Homepage, Blog Editorial, and more
+* New: Single post templates (Classic, Modern, Magazine, Minimal) with matching patterns for author bios, related posts, and share sections
+* New: EDD (Easy Digital Downloads) blocks with enhanced checkout, trust badges, reviews, and product recommendations
+* Enhanced: Posts Revolution block now includes an easy-to-use category picker with autocomplete search
+* Enhanced: Posts Revolution automatically assigns categories across sections for quick setup
+* Enhanced: Smarter post excerpts with proper word-boundary truncation
+* Enhanced: WordPress version support headers added for better compatibility checks
+* Fixed: PHP deprecated warning for str_replace() in Elementor Forums widget
+* Fixed: PHPCS coding standards and internationalization improvements across blocks
 
 = 4.2.1 =
 * Fixed: Fatal TypeError in Elementor AJAX handler when source value is non-scalar (PHP 8+)

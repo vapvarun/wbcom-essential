@@ -1,0 +1,53 @@
+# Development files
+.git
+.gitignore
+.distignore
+.editorconfig
+.eslintrc*
+.prettierrc*
+.stylelintrc*
+.babelrc
+
+# Node / Build tooling
+node_modules
+package.json
+package-lock.json
+webpack.blocks.js
+gruntfile.js
+scripts/
+
+# Block source files (compiled output is in build/)
+plugins/gutenberg/blocks/*/src
+plugins/gutenberg/blocks/*/node_modules
+plugins/gutenberg/blocks/*/package.json
+plugins/gutenberg/blocks/*/package-lock.json
+
+# Composer dev
+composer.json
+composer.lock
+vendor/bin
+vendor/squizlabs
+vendor/dealerdirect
+vendor/phpcompatibility
+vendor/php-parallel-lint
+vendor/wp-coding-standards
+vendor/wptrt
+
+# Documentation & meta
+docs/
+CLAUDE.md
+README.md
+marketing/
+
+# Tests
+tests/
+test-results/
+phpunit.xml*
+phpstan*
+
+# Dist folder itself
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db

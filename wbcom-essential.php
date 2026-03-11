@@ -129,6 +129,18 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 
 			// EDD Product Catalog REST API endpoints (powers product-catalog block).
 			require_once WBCOM_ESSENTIAL_PATH . '/includes/edd-product-catalog-rest.php';
+
+			// Single post template settings and template loader.
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/single-post/class-wbcom-single-post-settings.php';
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/single-post/class-wbcom-single-post-templates.php';
+			new \Wbcom_Single_Post_Settings();
+			new \Wbcom_Single_Post_Templates();
+
+			// Blog index layout settings and template loader.
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/blog-index/class-wbcom-blog-index-settings.php';
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/blog-index/class-wbcom-blog-index-templates.php';
+			new \Wbcom_Blog_Index_Settings();
+			new \Wbcom_Blog_Index_Templates();
 		}
 
 		/**
