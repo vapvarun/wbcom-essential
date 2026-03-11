@@ -44,7 +44,8 @@ ul.wbcom-login-form-links li a {
     max-width: 100%
 }
 
-#wb_login_form label {
+.wb_login_form label,
+[id^="wb_login_form_"] label {
     display: block
 }
 
