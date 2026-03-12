@@ -456,7 +456,7 @@ function wbcom_ajax_login() {
 		'remember'      => ! empty( sanitize_text_field( wp_unslash( $_POST['rememberme'] ?? '' ) ) ) ? true : false, // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 	);
 
-	$user_signon = wp_signon( $info, false );
+	$user_signon = wp_signon( $info, is_ssl() );
 
 	if ( is_wp_error( $user_signon ) ) {
 		$error_codes = $user_signon->get_error_codes();
