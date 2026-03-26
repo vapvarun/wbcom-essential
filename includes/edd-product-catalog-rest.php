@@ -180,9 +180,13 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 				break;
 		}
 		if ( isset( $args['meta_query'] ) ) {
-			$args['meta_query'][] = $price_query; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'relation' => 'AND',
+				$args['meta_query'],
+				$price_query,
+			);
 		} else {
-			$args['meta_query'] = array( $price_query ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$args['meta_query'] = $price_query; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		}
 	}
 

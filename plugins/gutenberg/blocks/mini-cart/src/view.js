@@ -7,6 +7,9 @@
 ( function() {
 	'use strict';
 
+	// Module-level reference so listenForCartEvents() can open the drawer.
+	let activeDrawerOpen = null;
+
 	/**
 	 * Initialize mini cart interactions.
 	 */
@@ -39,6 +42,9 @@
 				drawer.setAttribute( 'aria-hidden', 'true' );
 				document.body.classList.remove( 'mini-cart-drawer-open' );
 			}
+
+			// Store the last initialised drawer opener at module level.
+			activeDrawerOpen = openDrawer;
 
 			// Open drawer on cart icon click.
 			trigger.addEventListener( 'click', ( e ) => {
@@ -167,6 +173,11 @@
 
 		// Listen for cart update events.
 		jQuery( document.body ).on( 'added_to_cart removed_from_cart', function( event, fragments ) {
+			// Open the side drawer when a product is added.
+			if ( event.type === 'added_to_cart' && activeDrawerOpen ) {
+				activeDrawerOpen();
+			}
+
 			// Extract cart count from fragments if available.
 			if ( fragments ) {
 				for ( const selector in fragments ) {

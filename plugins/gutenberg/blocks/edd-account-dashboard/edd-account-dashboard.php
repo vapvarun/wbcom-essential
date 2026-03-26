@@ -72,6 +72,18 @@ add_action( 'rest_api_init', 'wbcom_essential_edd_account_rest_routes' );
 function wbcom_essential_edd_account_tab_callback( $request ) {
 	$tab = $request->get_param( 'tab' );
 
+	// Temporarily override REQUEST_URI so that add_query_arg() calls inside
+	// EDD shortcodes (e.g. [edd_subscriptions]) generate front-end page URLs
+	// instead of REST API URLs.
+	$original_request_uri        = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+	$referer                     = wp_get_referer();
+	if ( $referer ) {
+		$parsed = wp_parse_url( $referer );
+		if ( ! empty( $parsed['path'] ) ) {
+			$_SERVER['REQUEST_URI'] = $parsed['path'] . ( ! empty( $parsed['query'] ) ? '?' . $parsed['query'] : '' );
+		}
+	}
+
 	ob_start();
 
 	switch ( $tab ) {
@@ -96,6 +108,9 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 	}
 
 	$html = ob_get_clean();
+
+	// Restore the original REQUEST_URI.
+	$_SERVER['REQUEST_URI'] = $original_request_uri;
 
 	return rest_ensure_response( array( 'html' => $html ) );
 }
