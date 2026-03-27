@@ -388,10 +388,13 @@
 					return res.json();
 				} )
 				.then( function ( data ) {
-					state.categories = data;
+					state.categories = Array.isArray( data ) ? data : [];
 					if ( ! state.loading ) {
 						render();
 					}
+				} )
+				.catch( function () {
+					state.categories = [];
 				} );
 		}
 
@@ -421,15 +424,14 @@
 					return res.json();
 				} )
 				.then( function ( data ) {
+					var items = ( data && data.products ) || [];
 					if ( append ) {
-						state.products = state.products.concat(
-							data.products
-						);
+						state.products = state.products.concat( items );
 					} else {
-						state.products = data.products;
+						state.products = items;
 					}
-					state.total = data.total;
-					state.totalPages = data.total_pages;
+					state.total = ( data && data.total ) || 0;
+					state.totalPages = ( data && data.total_pages ) || 1;
 					state.loading = false;
 					render();
 				} )

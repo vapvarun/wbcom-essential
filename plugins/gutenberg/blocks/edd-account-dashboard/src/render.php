@@ -209,7 +209,7 @@ $initial_content = ob_get_clean();
 				<span class="wbcom-edd-account__spinner"></span>
 			</div>
 			<div class="wbcom-edd-account__inner">
-				<?php echo $initial_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Content rendered through EDD functions and wp_kses_post() internally ?>
+				<?php echo wp_kses_post( $initial_content ); ?>
 			</div>
 		</div>
 	</main>

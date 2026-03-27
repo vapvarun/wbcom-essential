@@ -99,7 +99,7 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 	$args = array(
 		'post_type'      => 'download',
 		'post_status'    => 'publish',
-		'posts_per_page' => min( $request['per_page'], 48 ),
+		'posts_per_page' => max( 1, min( $request['per_page'], 48 ) ),
 		'paged'          => $request['page'],
 		'order'          => $request['order'],
 	);
@@ -120,19 +120,29 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 		$args['s'] = $request['search'];
 	}
 
-	// Sort.
+	// Sort — use named meta_query clauses to avoid JOIN conflicts with price filter.
 	switch ( $request['orderby'] ) {
 		case 'price':
-			$args['meta_key'] = 'edd_price'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-			$args['orderby']  = 'meta_value_num';
+			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'price_clause' => array(
+					'key'  => 'edd_price',
+					'type' => 'NUMERIC',
+				),
+			);
+			$args['orderby'] = array( 'price_clause' => $request['order'] );
 			break;
 		case 'popular':
-			$args['meta_key'] = '_edd_download_sales'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-			$args['orderby']  = 'meta_value_num';
-			$args['order']    = 'DESC';
+			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'sales_clause' => array(
+					'key'  => '_edd_download_sales',
+					'type' => 'NUMERIC',
+				),
+			);
+			$args['orderby'] = array( 'sales_clause' => 'DESC' );
+			$args['order']   = 'DESC';
 			break;
 		default:
-			$args['orderby'] = $request['orderby'];
+			$args['orderby'] = ( 'date' === $request['orderby'] ) ? 'date' : 'title';
 	}
 
 	// Price range filter via meta_query.

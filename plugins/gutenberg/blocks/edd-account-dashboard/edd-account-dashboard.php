@@ -80,6 +80,15 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 	$original_wp_request  = $wp->request;
 	$referer_url          = wp_get_referer();
 
+	// Validate referer belongs to this site before trusting it.
+	if ( $referer_url ) {
+		$referer_host = wp_parse_url( $referer_url, PHP_URL_HOST );
+		$site_host    = wp_parse_url( home_url(), PHP_URL_HOST );
+		if ( $referer_host !== $site_host ) {
+			$referer_url = null;
+		}
+	}
+
 	if ( $referer_url ) {
 		$parsed = wp_parse_url( $referer_url );
 		if ( ! empty( $parsed['path'] ) ) {
@@ -98,39 +107,42 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 		add_filter( 'edd_get_current_page_url', $edd_url_filter, 99 );
 	}
 
-	ob_start();
+	// Use try/finally to ensure globals are always restored, even on errors.
+	try {
+		ob_start();
 
-	switch ( $tab ) {
-		case 'dashboard':
-			wbcom_essential_edd_render_dashboard_tab();
-			break;
-		case 'subscriptions':
-			wbcom_essential_edd_render_subscriptions_tab();
-			break;
-		case 'downloads':
-			wbcom_essential_edd_render_downloads_tab();
-			break;
-		case 'licenses':
-			wbcom_essential_edd_render_licenses_tab();
-			break;
-		case 'purchases':
-			wbcom_essential_edd_render_purchases_tab();
-			break;
-		case 'profile':
-			wbcom_essential_edd_render_profile_tab();
-			break;
+		switch ( $tab ) {
+			case 'dashboard':
+				wbcom_essential_edd_render_dashboard_tab();
+				break;
+			case 'subscriptions':
+				wbcom_essential_edd_render_subscriptions_tab();
+				break;
+			case 'downloads':
+				wbcom_essential_edd_render_downloads_tab();
+				break;
+			case 'licenses':
+				wbcom_essential_edd_render_licenses_tab();
+				break;
+			case 'purchases':
+				wbcom_essential_edd_render_purchases_tab();
+				break;
+			case 'profile':
+				wbcom_essential_edd_render_profile_tab();
+				break;
+		}
+
+		$html = ob_get_clean();
+	} finally {
+		// Restore originals.
+		$_SERVER['REQUEST_URI'] = $original_request_uri;
+		$wp->request            = $original_wp_request;
+		if ( $edd_url_filter ) {
+			remove_filter( 'edd_get_current_page_url', $edd_url_filter, 99 );
+		}
 	}
 
-	$html = ob_get_clean();
-
-	// Restore originals.
-	$_SERVER['REQUEST_URI'] = $original_request_uri;
-	$wp->request            = $original_wp_request;
-	if ( $edd_url_filter ) {
-		remove_filter( 'edd_get_current_page_url', $edd_url_filter, 99 );
-	}
-
-	return rest_ensure_response( array( 'html' => $html ) );
+	return rest_ensure_response( array( 'html' => wp_kses_post( $html ) ) );
 }
 
 /**
@@ -972,27 +984,27 @@ function wbcom_essential_edd_render_profile_tab() {
 				<?php esc_html_e( 'Billing Address', 'wbcom-essential' ); ?>
 			</h3>
 			<div class="wbcom-edd-profile__field">
-				<label for="edd_address_line1" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 1', 'wbcom-essential' ); ?></label>
-				<input type="text" id="edd_address_line1" name="edd_address_line1" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line1'] ); ?>">
+				<label for="card_address" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 1', 'wbcom-essential' ); ?></label>
+				<input type="text" id="card_address" name="card_address" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line1'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__field">
-				<label for="edd_address_line2" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 2', 'wbcom-essential' ); ?></label>
-				<input type="text" id="edd_address_line2" name="edd_address_line2" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line2'] ); ?>">
+				<label for="card_address_2" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 2', 'wbcom-essential' ); ?></label>
+				<input type="text" id="card_address_2" name="card_address_2" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line2'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
-					<label for="edd_address_city" class="wbcom-edd-profile__label"><?php esc_html_e( 'City', 'wbcom-essential' ); ?></label>
-					<input type="text" id="edd_address_city" name="edd_address_city" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['city'] ); ?>">
+					<label for="card_city" class="wbcom-edd-profile__label"><?php esc_html_e( 'City', 'wbcom-essential' ); ?></label>
+					<input type="text" id="card_city" name="card_city" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['city'] ); ?>">
 				</div>
 				<div class="wbcom-edd-profile__field">
-					<label for="edd_address_zip" class="wbcom-edd-profile__label"><?php esc_html_e( 'Postal / ZIP Code', 'wbcom-essential' ); ?></label>
-					<input type="text" id="edd_address_zip" name="edd_address_zip" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['zip'] ); ?>">
+					<label for="card_zip" class="wbcom-edd-profile__label"><?php esc_html_e( 'Postal / ZIP Code', 'wbcom-essential' ); ?></label>
+					<input type="text" id="card_zip" name="card_zip" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['zip'] ); ?>">
 				</div>
 			</div>
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
-					<label for="edd_address_country" class="wbcom-edd-profile__label"><?php esc_html_e( 'Country', 'wbcom-essential' ); ?></label>
-					<select id="edd_address_country" name="edd_address_country" class="wbcom-edd-profile__select">
+					<label for="card_country" class="wbcom-edd-profile__label"><?php esc_html_e( 'Country', 'wbcom-essential' ); ?></label>
+					<select id="card_country" name="card_country" class="wbcom-edd-profile__select">
 						<option value=""><?php esc_html_e( 'Select country', 'wbcom-essential' ); ?></option>
 						<?php foreach ( $countries as $code => $label ) : ?>
 							<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $sel_country, $code ); ?>><?php echo esc_html( $label ); ?></option>
@@ -1000,16 +1012,16 @@ function wbcom_essential_edd_render_profile_tab() {
 					</select>
 				</div>
 				<div class="wbcom-edd-profile__field">
-					<label for="edd_address_state" class="wbcom-edd-profile__label"><?php esc_html_e( 'State / Province', 'wbcom-essential' ); ?></label>
+					<label for="card_state" class="wbcom-edd-profile__label"><?php esc_html_e( 'State / Province', 'wbcom-essential' ); ?></label>
 					<?php if ( ! empty( $states ) ) : ?>
-						<select id="edd_address_state" name="edd_address_state" class="wbcom-edd-profile__select">
+						<select id="card_state" name="card_state" class="wbcom-edd-profile__select">
 							<option value=""><?php esc_html_e( 'Select state', 'wbcom-essential' ); ?></option>
 							<?php foreach ( $states as $code => $label ) : ?>
 								<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $address['state'], $code ); ?>><?php echo esc_html( $label ); ?></option>
 							<?php endforeach; ?>
 						</select>
 					<?php else : ?>
-						<input type="text" id="edd_address_state" name="edd_address_state" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['state'] ); ?>">
+						<input type="text" id="card_state" name="card_state" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['state'] ); ?>">
 					<?php endif; ?>
 				</div>
 			</div>
