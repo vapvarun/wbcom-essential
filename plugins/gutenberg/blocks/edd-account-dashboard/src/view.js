@@ -243,14 +243,21 @@
 				} )
 				.then( function ( data ) {
 					var html = ( data && data.html ) ? data.html : '';
-					contentCache[ tab ] = html;
-					renderHtml( tab, inner, html );
+					// Only cache non-empty responses to allow retry on empty/error.
+					if ( html ) {
+						contentCache[ tab ] = html;
+					}
+					renderHtml( tab, inner, html || '<p class="wbcom-edd-account__error">No content available for this tab.</p>' );
 				} )
-				.catch( function () {
+				.catch( function ( err ) {
+					var msg = 'Could not load content. Please refresh the page.';
+					if ( err && err.message && err.message.indexOf( '403' ) !== -1 ) {
+						msg = 'Your session has expired. Please refresh the page to continue.';
+					}
 					renderHtml(
 						tab,
 						inner,
-						'<p class="wbcom-edd-account__error">Could not load content. Please refresh the page.</p>'
+						'<p class="wbcom-edd-account__error">' + msg + '</p>'
 					);
 				} )
 				.finally( function () {

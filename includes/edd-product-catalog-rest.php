@@ -203,6 +203,11 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 	$query    = new WP_Query( $args );
 	$products = array();
 
+	// Prime meta cache to avoid N+1 queries in the format loop.
+	if ( ! empty( $query->posts ) ) {
+		update_post_meta_cache( wp_list_pluck( $query->posts, 'ID' ) );
+	}
+
 	foreach ( $query->posts as $post ) {
 		$products[] = wbcom_essential_product_catalog_format_product( $post );
 	}
@@ -231,9 +236,14 @@ function wbcom_essential_product_catalog_format_product( $post ) {
 	if ( function_exists( 'edd_has_variable_prices' ) && edd_has_variable_prices( $post->ID ) ) {
 		$prices  = edd_get_variable_prices( $post->ID );
 		$amounts = wp_list_pluck( $prices, 'amount' );
-		$min     = min( $amounts );
-		$max     = max( $amounts );
-		$price   = html_entity_decode( edd_currency_filter( edd_format_amount( $min ) ) . ' – ' . edd_currency_filter( edd_format_amount( $max ) ) );
+		$amounts = array_filter( $amounts, 'is_numeric' );
+		if ( ! empty( $amounts ) ) {
+			$min   = min( $amounts );
+			$max   = max( $amounts );
+			$price = html_entity_decode( edd_currency_filter( edd_format_amount( $min ) ) . ' – ' . edd_currency_filter( edd_format_amount( $max ) ) );
+		} else {
+			$price = __( 'Price varies', 'wbcom-essential' );
+		}
 	} elseif ( function_exists( 'edd_get_download_price' ) ) {
 		$amount = edd_get_download_price( $post->ID );
 		if ( (float) $amount > 0 ) {
@@ -256,7 +266,7 @@ function wbcom_essential_product_catalog_format_product( $post ) {
 		'title'   => $post->post_title,
 		'excerpt' => $excerpt,
 		'url'     => get_permalink( $post->ID ),
-		'image'   => get_the_post_thumbnail_url( $post->ID, 'large' ),
+		'image'   => get_the_post_thumbnail_url( $post->ID, 'large' ) ?: '',
 		'price'   => $price,
 		'is_free' => $is_free,
 	);

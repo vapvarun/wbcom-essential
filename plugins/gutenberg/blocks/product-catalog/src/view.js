@@ -385,6 +385,9 @@
 			var url = getRestUrl( '/wbcom/v1/product-categories' );
 			fetch( url )
 				.then( function ( res ) {
+					if ( ! res.ok ) {
+						throw new Error( 'HTTP ' + res.status );
+					}
 					return res.json();
 				} )
 				.then( function ( data ) {
@@ -421,10 +424,13 @@
 
 			fetch( url )
 				.then( function ( res ) {
+					if ( ! res.ok ) {
+						throw new Error( 'HTTP ' + res.status );
+					}
 					return res.json();
 				} )
 				.then( function ( data ) {
-					var items = ( data && data.products ) || [];
+					var items = ( data && Array.isArray( data.products ) ) ? data.products : [];
 					if ( append ) {
 						state.products = state.products.concat( items );
 					} else {
@@ -437,7 +443,9 @@
 				} )
 				.catch( function () {
 					state.loading = false;
-					state.products = [];
+					if ( ! append ) {
+						state.products = [];
+					}
 					render();
 				} );
 		}

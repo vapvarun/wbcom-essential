@@ -107,25 +107,30 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 		add_filter( 'edd_get_current_page_url', $edd_url_filter, 99 );
 	}
 
-	// Use try/finally to ensure globals are always restored, even on errors.
+	// Fetch customer once, pass to all render functions to avoid repeated queries.
+	$user     = wp_get_current_user();
+	$customer = edd_get_customer_by( 'user_id', $user->ID );
+
+	// Use try/catch/finally for error recovery and guaranteed global restore.
+	$html = '';
 	try {
 		ob_start();
 
 		switch ( $tab ) {
 			case 'dashboard':
-				wbcom_essential_edd_render_dashboard_tab();
+				wbcom_essential_edd_render_dashboard_tab( $customer );
 				break;
 			case 'subscriptions':
-				wbcom_essential_edd_render_subscriptions_tab();
+				wbcom_essential_edd_render_subscriptions_tab( $customer );
 				break;
 			case 'downloads':
-				wbcom_essential_edd_render_downloads_tab();
+				wbcom_essential_edd_render_downloads_tab( $customer );
 				break;
 			case 'licenses':
-				wbcom_essential_edd_render_licenses_tab();
+				wbcom_essential_edd_render_licenses_tab( $customer );
 				break;
 			case 'purchases':
-				wbcom_essential_edd_render_purchases_tab();
+				wbcom_essential_edd_render_purchases_tab( $customer );
 				break;
 			case 'profile':
 				wbcom_essential_edd_render_profile_tab();
@@ -133,6 +138,9 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 		}
 
 		$html = ob_get_clean();
+	} catch ( \Throwable $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+		ob_end_clean();
+		$html = '<p class="wbcom-edd-account__error">' . esc_html__( 'An error occurred loading this tab. Please try again.', 'wbcom-essential' ) . '</p>';
 	} finally {
 		// Restore originals.
 		$_SERVER['REQUEST_URI'] = $original_request_uri;
@@ -147,10 +155,11 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 
 /**
  * Render Dashboard overview tab.
+ *
+ * @param EDD_Customer|false $customer EDD customer object or false.
  */
-function wbcom_essential_edd_render_dashboard_tab() {
-	$user     = wp_get_current_user();
-	$customer = edd_get_customer_by( 'user_id', $user->ID );
+function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
+	$user = wp_get_current_user();
 
 	$order_count = $customer ? $customer->purchase_count : 0;
 	$total_value = $customer ? (float) $customer->purchase_value : 0.0;
@@ -226,6 +235,9 @@ function wbcom_essential_edd_render_dashboard_tab() {
 					'order'       => 'DESC',
 				)
 			);
+			if ( is_wp_error( $recent_orders ) || ! is_array( $recent_orders ) ) {
+				$recent_orders = array();
+			}
 			?>
 			<?php if ( ! empty( $recent_orders ) ) : ?>
 			<div class="wbcom-edd-dashboard__recent">
@@ -280,22 +292,16 @@ function wbcom_essential_edd_tab_header( $title, $description = '' ) {
 
 /**
  * Render Subscriptions tab with premium card layout.
+ *
+ * @param EDD_Customer|false $customer EDD customer object or false.
  */
-function wbcom_essential_edd_render_subscriptions_tab() {
+function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'Subscriptions', 'wbcom-essential' ),
 		__( 'Manage your active and past subscriptions.', 'wbcom-essential' )
 	);
 
-	if ( ! class_exists( 'EDD_Recurring' ) ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No subscriptions found.', 'wbcom-essential' ) . '</p>';
-		return;
-	}
-
-	$user     = wp_get_current_user();
-	$customer = edd_get_customer_by( 'user_id', $user->ID );
-
-	if ( ! $customer ) {
+	if ( ! class_exists( 'EDD_Recurring' ) || ! $customer ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No subscriptions found.', 'wbcom-essential' ) . '</p>';
 		return;
 	}
@@ -307,11 +313,18 @@ function wbcom_essential_edd_render_subscriptions_tab() {
 			'number'      => 100,
 		)
 	);
+	if ( ! is_array( $subs ) ) {
+		$subs = array();
+	}
 
 	if ( empty( $subs ) ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No subscriptions found.', 'wbcom-essential' ) . '</p>';
 		return;
 	}
+
+	// Prime post caches to avoid N+1 queries in the loop.
+	$download_ids = wp_list_pluck( $subs, 'product_id' );
+	_prime_post_caches( array_unique( array_filter( $download_ids ) ), true, true );
 
 	echo '<div class="wbcom-edd-subs">';
 
@@ -445,15 +458,14 @@ function wbcom_essential_edd_render_subscriptions_tab() {
 
 /**
  * Render Downloads tab with premium card layout.
+ *
+ * @param EDD_Customer|false $customer EDD customer object or false.
  */
-function wbcom_essential_edd_render_downloads_tab() {
+function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'Downloads', 'wbcom-essential' ),
 		__( 'Access and download the files from your purchases.', 'wbcom-essential' )
 	);
-
-	$user     = wp_get_current_user();
-	$customer = edd_get_customer_by( 'user_id', $user->ID );
 
 	if ( ! $customer ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No downloads found.', 'wbcom-essential' ) . '</p>';
@@ -469,6 +481,9 @@ function wbcom_essential_edd_render_downloads_tab() {
 			'order'       => 'DESC',
 		)
 	);
+	if ( is_wp_error( $orders ) || ! is_array( $orders ) ) {
+		$orders = array();
+	}
 
 	if ( empty( $orders ) ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No downloads found.', 'wbcom-essential' ) . '</p>';
@@ -570,27 +585,27 @@ function wbcom_essential_edd_render_downloads_tab() {
 
 /**
  * Render Licenses tab with premium card layout.
+ *
+ * @param EDD_Customer|false $customer EDD customer object or false.
  */
-function wbcom_essential_edd_render_licenses_tab() {
+function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'License Keys', 'wbcom-essential' ),
 		__( 'View and manage your license keys and activations.', 'wbcom-essential' )
 	);
 
-	if ( ! function_exists( 'edd_software_licensing' ) ) {
+	if ( ! function_exists( 'edd_software_licensing' ) || ! $customer ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No licenses found.', 'wbcom-essential' ) . '</p>';
 		return;
 	}
 
-	$user     = wp_get_current_user();
-	$customer = edd_get_customer_by( 'user_id', $user->ID );
-
-	if ( ! $customer ) {
+	$sl = edd_software_licensing();
+	if ( ! $sl || ! isset( $sl->licenses_db ) || ! is_object( $sl->licenses_db ) ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No licenses found.', 'wbcom-essential' ) . '</p>';
 		return;
 	}
 
-	$licenses = edd_software_licensing()->licenses_db->get_licenses(
+	$licenses = $sl->licenses_db->get_licenses(
 		array(
 			'customer_id' => $customer->id,
 			'number'      => 100,
@@ -601,6 +616,10 @@ function wbcom_essential_edd_render_licenses_tab() {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No licenses found.', 'wbcom-essential' ) . '</p>';
 		return;
 	}
+
+	// Prime post caches to avoid N+1 queries in the loop.
+	$download_ids = wp_list_pluck( $licenses, 'download_id' );
+	_prime_post_caches( array_unique( array_filter( $download_ids ) ), true, true );
 
 	echo '<div class="wbcom-edd-licenses">';
 
@@ -747,15 +766,14 @@ function wbcom_essential_edd_render_licenses_tab() {
 
 /**
  * Render Purchases/Order History tab with premium card layout.
+ *
+ * @param EDD_Customer|false $customer EDD customer object or false.
  */
-function wbcom_essential_edd_render_purchases_tab() {
+function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'Order History', 'wbcom-essential' ),
 		__( 'View your complete purchase history and order details.', 'wbcom-essential' )
 	);
-
-	$user     = wp_get_current_user();
-	$customer = edd_get_customer_by( 'user_id', $user->ID );
 
 	if ( ! $customer ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No orders found.', 'wbcom-essential' ) . '</p>';
@@ -770,6 +788,9 @@ function wbcom_essential_edd_render_purchases_tab() {
 			'order'       => 'DESC',
 		)
 	);
+	if ( is_wp_error( $orders ) || ! is_array( $orders ) ) {
+		$orders = array();
+	}
 
 	if ( empty( $orders ) ) {
 		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No orders found.', 'wbcom-essential' ) . '</p>';
@@ -779,8 +800,11 @@ function wbcom_essential_edd_render_purchases_tab() {
 	echo '<div class="wbcom-edd-orders">';
 
 	foreach ( $orders as $order ) {
-		$items       = $order->get_items();
-		$item_count  = count( $items );
+		$items = $order->get_items();
+		if ( ! is_array( $items ) ) {
+			$items = array();
+		}
+		$item_count = count( $items );
 		$receipt_url = edd_get_receipt_page_uri( $order->id );
 		$status      = $order->status;
 		$total       = edd_display_amount( $order->total, $order->currency );
