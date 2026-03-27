@@ -10,8 +10,7 @@
 	"keywords": [ "catalog", "products", "filter", "shop", "edd", "downloads" ],
 	"supports": {
 		"html": false,
-		"align": [ "wide", "full" ],
-		"multiple": false
+		"align": [ "wide", "full" ]
 	},
 	"textdomain": "wbcom-essential",
 	"editorScript": "file:./index.js",

@@ -107,13 +107,107 @@
 		 * @param {string}      html Sanitised server HTML.
 		 */
 		function renderHtml( tab, el, html ) {
+			// Content is server-sanitised via WP kses/esc functions in
+			// wbcom_essential_edd_account_tab_callback(). Safe to render.
 			/* eslint-disable no-unsanitized/property */
-			el.innerHTML = html; // Server-sanitised via WP kses/esc functions.
+			el.innerHTML = html;
 			/* eslint-enable no-unsanitized/property */
 			if ( tabContent ) {
 				tabContent.dataset.tabContent = tab;
 			}
 			setActiveLink( tab );
+			fixFormActions( tab, el );
+			bindInteractions( el );
+		}
+
+		/**
+		 * Fix form action URLs after AJAX tab load.
+		 *
+		 * EDD shortcode forms (e.g. profile editor) may have action URLs
+		 * pointing to the REST API path. Rewrite them to the current page
+		 * and ensure ?tab= is preserved so the user returns to the same
+		 * tab after form submission.
+		 *
+		 * @param {string}      tab Tab key.
+		 * @param {HTMLElement} el  Container element.
+		 */
+		function fixFormActions( tab, el ) {
+			var forms = el.querySelectorAll( 'form' );
+			if ( ! forms.length ) {
+				return;
+			}
+
+			var pageUrl = new URL( window.location.href );
+			pageUrl.searchParams.set( 'tab', tab );
+			var correctAction = pageUrl.toString();
+
+			forms.forEach( function ( form ) {
+				var action = form.getAttribute( 'action' ) || '';
+				// Fix if action is empty, points to REST API, or missing tab param.
+				if ( ! action || action.indexOf( 'wp-json' ) !== -1 || action.indexOf( '/wbcom/v1/' ) !== -1 ) {
+					form.setAttribute( 'action', correctAction );
+				} else if ( action.indexOf( 'tab=' ) === -1 ) {
+					// Existing frontend action but missing tab param.
+					var sep = action.indexOf( '?' ) !== -1 ? '&' : '?';
+					form.setAttribute( 'action', action + sep + 'tab=' + encodeURIComponent( tab ) );
+				}
+			} );
+		}
+
+		/**
+		 * Bind interactive elements: copy-to-clipboard, cancel confirmation.
+		 *
+		 * @param {HTMLElement} el Container element.
+		 */
+		function bindInteractions( el ) {
+			// Copy license key to clipboard.
+			el.querySelectorAll( '.wbcom-edd-license__copy-btn' ).forEach( function ( btn ) {
+				btn.addEventListener( 'click', function () {
+					var key = btn.dataset.copy;
+					if ( ! key ) {
+						return;
+					}
+
+					function onCopied() {
+						var label = btn.querySelector( 'span' );
+						if ( label ) {
+							label.textContent = 'Copied!';
+						}
+						btn.classList.add( 'is-copied' );
+						setTimeout( function () {
+							if ( label ) {
+								label.textContent = 'Copy';
+							}
+							btn.classList.remove( 'is-copied' );
+						}, 2000 );
+					}
+
+					// Use Clipboard API if available, otherwise fallback.
+					if ( navigator.clipboard && navigator.clipboard.writeText ) {
+						navigator.clipboard.writeText( key ).then( onCopied );
+					} else {
+						var ta = document.createElement( 'textarea' );
+						ta.value = key;
+						ta.style.position = 'fixed';
+						ta.style.opacity = '0';
+						document.body.appendChild( ta );
+						ta.select();
+						document.execCommand( 'copy' );
+						document.body.removeChild( ta );
+						onCopied();
+					}
+				} );
+			} );
+
+			// Cancel subscription confirmation.
+			el.querySelectorAll( '[data-confirm]' ).forEach( function ( link ) {
+				link.addEventListener( 'click', function ( e ) {
+					var msg = link.dataset.confirm;
+					if ( msg && ! window.confirm( msg ) ) { // eslint-disable-line no-alert
+						e.preventDefault();
+					}
+				} );
+			} );
 		}
 
 		/**

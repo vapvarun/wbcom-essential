@@ -8,8 +8,11 @@ import {
 	ToggleControl,
 	RangeControl,
 	SelectControl,
+	Spinner,
 } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import apiFetch from '@wordpress/api-fetch';
 import './style.scss';
 import './editor.scss';
 
@@ -23,7 +26,32 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 			showPriceFilter,
 			showSort,
 			defaultSort,
+			defaultCategory,
 		} = attributes;
+
+		const [ categories, setCategories ] = useState( [] );
+		const [ loadingCats, setLoadingCats ] = useState( true );
+
+		useEffect( () => {
+			apiFetch( { path: '/wbcom/v1/product-categories' } )
+				.then( ( data ) => {
+					setCategories( data || [] );
+					setLoadingCats( false );
+				} )
+				.catch( () => setLoadingCats( false ) );
+		}, [] );
+
+		const categoryOptions = [
+			{ label: __( 'All Categories', 'wbcom-essential' ), value: 0 },
+			...categories.map( ( cat ) => ( {
+				label: cat.name + ' (' + cat.count + ')',
+				value: cat.id,
+			} ) ),
+		];
+
+		const selectedCatName = defaultCategory
+			? ( categories.find( ( c ) => c.id === defaultCategory ) || {} ).name
+			: null;
 
 		const blockProps = useBlockProps( {
 			className: 'wbcom-catalog-editor',
@@ -63,6 +91,34 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 							max={ 48 }
 							step={ 3 }
 						/>
+					</PanelBody>
+					<PanelBody
+						title={ __(
+							'Category',
+							'wbcom-essential'
+						) }
+					>
+						{ loadingCats ? (
+							<Spinner />
+						) : (
+							<SelectControl
+								label={ __(
+									'Show products from',
+									'wbcom-essential'
+								) }
+								value={ defaultCategory }
+								options={ categoryOptions }
+								onChange={ ( val ) =>
+									setAttributes( {
+										defaultCategory: parseInt( val, 10 ),
+									} )
+								}
+								help={ __(
+									'Select a category to only display its products. Leave as "All Categories" to show everything.',
+									'wbcom-essential'
+								) }
+							/>
+						) }
 					</PanelBody>
 					<PanelBody
 						title={ __(
@@ -158,7 +214,7 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 							) }
 							{ showCategoryFilter && (
 								<div className="wbcom-catalog-preview__filter">
-									<span>All Categories</span>
+									<span>{ selectedCatName || 'All Categories' }</span>
 								</div>
 							) }
 							{ showPriceFilter && (
@@ -207,13 +263,13 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 			showPriceFilter,
 			showSort,
 			defaultSort,
+			defaultCategory,
 		} = attributes;
 		const blockProps = useBlockProps.save();
 
 		return (
 			<div
 				{ ...blockProps }
-				id="wbcom-product-catalog"
 				data-columns={ columns }
 				data-per-page={ perPage }
 				data-show-search={ showSearch ? 'true' : 'false' }
@@ -221,6 +277,7 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 				data-show-price={ showPriceFilter ? 'true' : 'false' }
 				data-show-sort={ showSort ? 'true' : 'false' }
 				data-default-sort={ defaultSort }
+				data-default-category={ defaultCategory || 0 }
 			>
 				<div className="wbcom-catalog__loading">
 					Loading products...
