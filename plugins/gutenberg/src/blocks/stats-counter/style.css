@@ -1,39 +1,142 @@
-.wbe-stats {
-	padding: 48px 24px;
-	text-align: center;
+/**
+ * Stats Counter Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Design tokens */
+.wbe-stats-counter {
+	--wbe-sc-number-color: #1e1e2e;
+	--wbe-sc-label-color: #6c757d;
+	--wbe-sc-sep-color: #e9ecef;
+	--wbe-sc-columns: 4;
+	--wbe-sc-number-size: clamp( 2.5rem, 5vw, 3.5rem );
+	--wbe-sc-label-size: 0.875rem;
+	--wbe-sc-gap: 2px;
+
+	width: 100%;
 }
 
-.wbe-stats__grid {
+/* ---- Grid ---- */
+.wbe-stats-counter__grid {
 	display: grid;
-	gap: 32px;
+	grid-template-columns: repeat( var( --wbe-sc-columns ), 1fr );
+	gap: 0;
 }
 
-.wbe-stats__item {
-	padding: 16px;
+/* ---- Individual stat item ---- */
+.wbe-stats-counter__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 32px 24px;
+	position: relative;
 }
 
-.wbe-stats__number {
-	display: block;
-	font-size: clamp(2rem, 5vw, 3rem);
-	font-weight: 800;
+/* Vertical separator between items (not after last in row) */
+.wbe-stats-counter__item + .wbe-stats-counter__item::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 20%;
+	height: 60%;
+	width: 1px;
+	background: var( --wbe-sc-sep-color );
+}
+
+/* ---- Number row ---- */
+.wbe-stats-counter__number-wrap {
+	display: flex;
+	align-items: baseline;
+	gap: 2px;
 	line-height: 1;
-	margin-bottom: 8px;
+	font-weight: 700;
+	color: var( --wbe-sc-number-color );
+}
+
+.wbe-stats-counter__prefix,
+.wbe-stats-counter__suffix {
+	font-size: calc( var( --wbe-sc-number-size ) * 0.55 );
+	font-weight: 600;
+	color: var( --wbe-sc-number-color );
+}
+
+.wbe-stats-counter__number {
+	font-size: var( --wbe-sc-number-size );
 	font-variant-numeric: tabular-nums;
+	color: var( --wbe-sc-number-color );
 }
 
-.wbe-stats__label {
-	display: block;
-	font-size: 0.95rem;
+/* ---- Label ---- */
+.wbe-stats-counter__label {
+	margin-top: 10px;
+	font-size: var( --wbe-sc-label-size );
 	font-weight: 500;
-	opacity: 0.7;
+	color: var( --wbe-sc-label-color );
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
 }
 
-@media (max-width: 640px) {
-	.wbe-stats__grid {
-		grid-template-columns: repeat(2, 1fr) !important;
+/* ---- Visibility ---- */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ---- Responsive ---- */
+
+/* Tablet: max 2 columns */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
 	}
 
-	.wbe-stats__number {
-		font-size: 1.75rem;
+	.wbe-stats-counter {
+		--wbe-sc-columns: min( var( --wbe-sc-columns ), 2 );
+		--wbe-sc-number-size: clamp( 2rem, 4vw, 3rem );
+	}
+
+	.wbe-stats-counter__grid {
+		grid-template-columns: repeat( min( var( --wbe-sc-columns ), 2 ), 1fr );
+	}
+
+	/* Re-draw separators for 2-column layout */
+	.wbe-stats-counter__item:nth-child( 2n + 1 )::before {
+		display: none;
+	}
+}
+
+/* Mobile: 1 column */
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-stats-counter {
+		--wbe-sc-number-size: 2.5rem;
+	}
+
+	.wbe-stats-counter__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.wbe-stats-counter__item::before {
+		display: none !important;
+	}
+
+	.wbe-stats-counter__item {
+		border-bottom: 1px solid var( --wbe-sc-sep-color );
+		padding: 24px 16px;
+	}
+
+	.wbe-stats-counter__item:last-child {
+		border-bottom: none;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
 	}
 }

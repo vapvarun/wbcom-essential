@@ -1,53 +1,123 @@
-import { useBlockProps } from '@wordpress/block-editor';
+/**
+ * Countdown Timer Block - Save Component
+ *
+ * @package wbcom-essential
+ */
 
-export default function Save( { attributes } ) {
+import { useBlockProps } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
+import { generateBlockCSS } from '../../shared/utils/css';
+
+export default function save( { attributes } ) {
 	const {
+		uniqueId,
 		targetDate,
-		heading,
-		expiredMessage,
-		backgroundColor,
-		textColor,
-		accentColor,
-		showLabels,
-		size,
+		expireMessage,
+		showDays,
+		showHours,
+		showMinutes,
+		showSeconds,
+		separatorStyle,
+		layout,
+		numberColor,
+		labelColor,
+		boxBg,
+		boxBorderColor,
+		hideOnDesktop,
+		hideOnTablet,
+		hideOnMobile,
 	} = attributes;
 
+	const visibilityClasses = [
+		hideOnDesktop ? 'wbe-hide-desktop' : '',
+		hideOnTablet ? 'wbe-hide-tablet' : '',
+		hideOnMobile ? 'wbe-hide-mobile' : '',
+	]
+		.filter( Boolean )
+		.join( ' ' );
+
 	const blockProps = useBlockProps.save( {
-		className: `wbe-countdown wbe-countdown--${ size }`,
-		style: { backgroundColor, color: textColor },
-		'data-target': targetDate,
-		'data-expired-message': expiredMessage,
+		className: `wbe-block-${ uniqueId } wbe-countdown-timer wbe-countdown-timer--${ layout }${ visibilityClasses ? ' ' + visibilityClasses : '' }`,
+		'data-target-date': targetDate,
+		'data-expire-message': expireMessage,
+		'data-show-days': showDays ? 'true' : 'false',
+		'data-show-hours': showHours ? 'true' : 'false',
+		'data-show-minutes': showMinutes ? 'true' : 'false',
+		'data-show-seconds': showSeconds ? 'true' : 'false',
+		'data-separator': separatorStyle,
 	} );
+
+	const css = generateBlockCSS( uniqueId, attributes );
+
+	const tokenPropsCss = [
+		`.wbe-block-${ uniqueId } {`,
+		`  --wbe-cd-number-color: ${ numberColor };`,
+		`  --wbe-cd-label-color: ${ labelColor };`,
+		`  --wbe-cd-box-bg: ${ boxBg };`,
+		`  --wbe-cd-box-border: ${ boxBorderColor };`,
+		`}`,
+	].join( '\n' );
+
+	const getSepChar = () => {
+		switch ( separatorStyle ) {
+			case 'dot':
+				return '\u00B7'; // ·
+			case 'none':
+				return '';
+			case 'colon':
+			default:
+				return ':';
+		}
+	};
+
+	const visibleUnits = [
+		{ key: 'days', show: showDays, label: 'Days' },
+		{ key: 'hours', show: showHours, label: 'Hours' },
+		{ key: 'minutes', show: showMinutes, label: 'Mins' },
+		{ key: 'seconds', show: showSeconds, label: 'Secs' },
+	].filter( ( u ) => u.show );
 
 	return (
 		<div { ...blockProps }>
-			{ heading && (
-				<h2 className="wbe-countdown__heading">{ heading }</h2>
-			) }
-			<div className="wbe-countdown__digits">
-				{ [
-					{ key: 'days', label: 'Days' },
-					{ key: 'hours', label: 'Hours' },
-					{ key: 'minutes', label: 'Minutes' },
-					{ key: 'seconds', label: 'Seconds' },
-				].map( ( { key, label } ) => (
-					<div
-						key={ key }
-						className="wbe-countdown__unit"
-						style={ { borderColor: accentColor } }
-					>
-						<span
-							className="wbe-countdown__number"
-							data-unit={ key }
+			{ css && <style>{ css }</style> }
+			<style>{ tokenPropsCss }</style>
+
+			{ /* Expire message - hidden until countdown reaches 0 */ }
+			<div
+				className="wbe-countdown-timer__expire"
+				aria-live="polite"
+				hidden
+			>
+				{ expireMessage }
+			</div>
+
+			{ /* Unit boxes - view.js populates the number spans */ }
+			<div className="wbe-countdown-timer__units">
+				{ visibleUnits.map( ( unit, idx ) => (
+					<>
+						<div
+							key={ unit.key }
+							className={ `wbe-countdown-timer__unit wbe-countdown-timer__unit--${ unit.key }` }
 						>
-							00
-						</span>
-						{ showLabels && (
-							<span className="wbe-countdown__label">
-								{ label }
+							<span
+								className="wbe-countdown-timer__number"
+								aria-label={ unit.label }
+							>
+								00
+							</span>
+							<span className="wbe-countdown-timer__label">
+								{ unit.label }
+							</span>
+						</div>
+						{ idx < visibleUnits.length - 1 && separatorStyle !== 'none' && (
+							<span
+								className="wbe-countdown-timer__sep"
+								aria-hidden="true"
+							>
+								{ getSepChar() }
 							</span>
 						) }
-					</div>
+					</>
 				) ) }
 			</div>
 		</div>

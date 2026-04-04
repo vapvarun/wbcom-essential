@@ -1,1 +1,26 @@
-/* Editor-only: no special overrides needed */
+/**
+ * Stats Counter Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Sidebar: each stat editing row */
+.wbe-stat-editor-row {
+	padding: 12px;
+	background: #f6f7f7;
+	border-radius: 4px;
+	border: 1px solid #e2e4e7;
+	margin-bottom: 8px;
+}
+
+.wbe-stat-editor-row__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8px;
+}
+
+/* Show actual count in editor (not animated 0) */
+.block-editor-block-list__block .wbe-stats-counter__number {
+	/* Numbers display their real values in editor context */
+}

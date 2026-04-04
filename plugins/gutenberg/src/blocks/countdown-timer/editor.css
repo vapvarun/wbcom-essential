@@ -1,1 +1,18 @@
-/* Editor-only: no special overrides needed */
+/**
+ * Countdown Timer Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+.block-editor-block-list__block .wbe-countdown-timer {
+	/* Ensure preview is always visible in editor */
+}
+
+.wbe-field-label {
+	margin-bottom: 4px;
+}
+
+/* DateTimePicker wrapper */
+.block-editor-block-list__block .components-datetime {
+	padding: 0;
+}

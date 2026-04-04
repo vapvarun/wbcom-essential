@@ -1,0 +1,242 @@
+/**
+ * Timeline Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ---- Design tokens ---- */
+.wbe-timeline {
+	--wbe-tl-line-color: #e9ecef;
+	--wbe-tl-dot-color: #667eea;
+	--wbe-tl-dot-size: 40px;
+	--wbe-tl-card-bg: #ffffff;
+	--wbe-tl-date-color: #667eea;
+	--wbe-tl-title-color: #1e1e2e;
+	--wbe-tl-desc-color: #6c757d;
+	--wbe-tl-card-radius: 8px;
+	--wbe-tl-card-shadow: none;
+	--wbe-tl-gap: 48px;
+	--wbe-tl-line-width: 2px;
+	--wbe-tl-connector-offset: calc( var( --wbe-tl-dot-size ) / 2 );
+
+	width: 100%;
+	position: relative;
+}
+
+/* ---- Track: the vertical container ---- */
+.wbe-timeline__track {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: var( --wbe-tl-gap );
+	padding: 0 0 0 0;
+}
+
+/* ---- Central line via pseudo-element on track ---- */
+.wbe-timeline__track::before {
+	content: '';
+	position: absolute;
+	top: var( --wbe-tl-connector-offset );
+	bottom: var( --wbe-tl-connector-offset );
+	left: 50%;
+	transform: translateX( -50% );
+	width: var( --wbe-tl-line-width );
+	background-color: var( --wbe-tl-line-color );
+	z-index: 0;
+}
+
+/* ---- Layout: left (line on left) ---- */
+.wbe-timeline--left .wbe-timeline__track::before,
+.wbe-timeline--right .wbe-timeline__track::before {
+	left: calc( var( --wbe-tl-connector-offset ) + 16px );
+	transform: none;
+}
+
+.wbe-timeline--right .wbe-timeline__track::before {
+	left: auto;
+	right: calc( var( --wbe-tl-connector-offset ) + 16px );
+}
+
+/* ---- Item wrapper ---- */
+.wbe-timeline__item {
+	display: grid;
+	grid-template-columns: 1fr var( --wbe-tl-dot-size ) 1fr;
+	grid-template-rows: auto;
+	align-items: start;
+	gap: 0 16px;
+	position: relative;
+	z-index: 1;
+}
+
+/* ---- Dot ---- */
+.wbe-timeline__dot {
+	grid-column: 2;
+	grid-row: 1;
+	width: var( --wbe-tl-dot-size );
+	height: var( --wbe-tl-dot-size );
+	border-radius: 50%;
+	background-color: var( --wbe-tl-dot-color );
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	z-index: 2;
+	position: relative;
+}
+
+.wbe-timeline__dot-icon {
+	font-size: calc( var( --wbe-tl-dot-size ) * 0.45 );
+	line-height: 1;
+	color: #ffffff;
+}
+
+/* ---- Card ---- */
+.wbe-timeline__card {
+	background: var( --wbe-tl-card-bg );
+	border-radius: var( --wbe-tl-card-radius );
+	box-shadow: var( --wbe-tl-card-shadow );
+	padding: 20px 24px;
+	border: 1px solid rgba( 0, 0, 0, 0.06 );
+}
+
+/* ---- Alternating layout: odd items left, even items right ---- */
+.wbe-timeline--alternating .wbe-timeline__item:nth-child( odd ) .wbe-timeline__card {
+	grid-column: 1;
+	grid-row: 1;
+	text-align: right;
+}
+
+.wbe-timeline--alternating .wbe-timeline__item:nth-child( even ) .wbe-timeline__card {
+	grid-column: 3;
+	grid-row: 1;
+	text-align: left;
+}
+
+/* Dot stays in center for alternating */
+.wbe-timeline--alternating .wbe-timeline__dot {
+	grid-column: 2;
+}
+
+/* ---- Left layout: all cards on the right ---- */
+.wbe-timeline--left .wbe-timeline__item {
+	grid-template-columns: var( --wbe-tl-dot-size ) 1fr;
+	padding-left: 16px;
+}
+
+.wbe-timeline--left .wbe-timeline__dot {
+	grid-column: 1;
+}
+
+.wbe-timeline--left .wbe-timeline__card {
+	grid-column: 2;
+}
+
+/* ---- Right layout: all cards on the left ---- */
+.wbe-timeline--right .wbe-timeline__item {
+	grid-template-columns: 1fr var( --wbe-tl-dot-size );
+	padding-right: 16px;
+}
+
+.wbe-timeline--right .wbe-timeline__dot {
+	grid-column: 2;
+}
+
+.wbe-timeline--right .wbe-timeline__card {
+	grid-column: 1;
+	text-align: right;
+}
+
+/* ---- Date ---- */
+.wbe-timeline__date {
+	display: block;
+	font-size: 0.8rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var( --wbe-tl-date-color );
+	margin-bottom: 6px;
+}
+
+/* ---- Title ---- */
+.wbe-timeline__title {
+	margin: 0 0 8px;
+	font-size: 1.05rem;
+	font-weight: 700;
+	color: var( --wbe-tl-title-color );
+	line-height: 1.4;
+}
+
+/* ---- Description ---- */
+.wbe-timeline__description {
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.65;
+	color: var( --wbe-tl-desc-color );
+}
+
+/* ---- Visibility utilities ---- */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ---- Tablet ---- */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	.wbe-timeline {
+		--wbe-tl-gap: 36px;
+	}
+}
+
+/* ---- Mobile: always single-column left layout ---- */
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-timeline {
+		--wbe-tl-gap: 28px;
+		--wbe-tl-dot-size: 32px;
+	}
+
+	/* Override all layouts to single-column on mobile */
+	.wbe-timeline__track::before {
+		left: calc( var( --wbe-tl-connector-offset ) + 8px ) !important;
+		right: auto !important;
+		transform: none !important;
+	}
+
+	.wbe-timeline--alternating .wbe-timeline__item,
+	.wbe-timeline--right .wbe-timeline__item {
+		grid-template-columns: var( --wbe-tl-dot-size ) 1fr;
+		padding-left: 8px;
+		padding-right: 0;
+	}
+
+	.wbe-timeline--alternating .wbe-timeline__dot,
+	.wbe-timeline--right .wbe-timeline__dot {
+		grid-column: 1;
+	}
+
+	.wbe-timeline--alternating .wbe-timeline__item .wbe-timeline__card,
+	.wbe-timeline--right .wbe-timeline__item .wbe-timeline__card {
+		grid-column: 2 !important;
+		text-align: left !important;
+	}
+
+	.wbe-timeline__card {
+		padding: 14px 16px;
+	}
+
+	.wbe-timeline__title {
+		font-size: 1rem;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}

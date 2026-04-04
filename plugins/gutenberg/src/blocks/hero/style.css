@@ -1,87 +1,168 @@
+/* ==========================================================================
+   Hero Section Block — Frontend + Editor Styles
+   BEM: .wbe-hero__element--modifier
+   Mobile-first, uses --wbe-* design tokens
+   ========================================================================== */
+
+/* Base wrapper */
 .wbe-hero {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	padding: 80px 24px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
+/* Overlay (image backgrounds) */
 .wbe-hero__overlay {
 	position: absolute;
 	inset: 0;
-	background: #000;
 	pointer-events: none;
+	z-index: 1;
 }
 
+/* Content container */
 .wbe-hero__content {
 	position: relative;
-	z-index: 1;
-	max-width: 800px;
+	z-index: 2;
 	width: 100%;
+	max-width: 860px;
+	margin-inline: auto;
+	padding-inline: var(--wbe-space-md, 16px);
+	box-sizing: border-box;
 }
 
+.wbe-hero__content--left {
+	text-align: left;
+	align-items: flex-start;
+}
+
+.wbe-hero__content--center {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.wbe-hero__content--right {
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+/* Heading */
 .wbe-hero__heading {
-	font-size: clamp(2rem, 5vw, 3.5rem);
-	font-weight: 800;
-	line-height: 1.15;
-	margin: 0 0 16px;
+	margin: 0 0 var(--wbe-space-md, 16px);
+	font-size: clamp(var(--wbe-font-3xl, 30px), 5vw, var(--wbe-font-5xl, 48px));
+	font-weight: var(--wbe-weight-bold, 700);
+	line-height: var(--wbe-leading-tight, 1.25);
+	color: #ffffff;
 }
 
+/* Subheading */
 .wbe-hero__subheading {
-	font-size: clamp(1rem, 2.5vw, 1.25rem);
-	font-weight: 400;
-	line-height: 1.6;
-	margin: 0 0 32px;
-	opacity: 0.9;
+	margin: 0 0 var(--wbe-space-xl, 32px);
+	font-size: clamp(var(--wbe-font-md, 16px), 2vw, var(--wbe-font-xl, 20px));
+	line-height: var(--wbe-leading-relaxed, 1.75);
+	color: rgba(255, 255, 255, 0.8);
+	max-width: 640px;
 }
 
+/* Buttons row */
 .wbe-hero__buttons {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 12px;
+	gap: var(--wbe-space-md, 16px);
 	justify-content: inherit;
+	align-items: center;
 }
 
-.wbe-btn {
-	display: inline-block;
+/* Button base */
+.wbe-hero__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	padding: 14px 32px;
-	border-radius: 8px;
-	font-size: 1rem;
-	font-weight: 600;
+	border-radius: var(--wbe-radius-md, 8px);
+	font-size: var(--wbe-font-md, 16px);
+	font-weight: var(--wbe-weight-semibold, 600);
+	line-height: 1;
 	text-decoration: none;
 	cursor: pointer;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-	line-height: 1.4;
+	transition: opacity var(--wbe-transition-normal, 300ms ease),
+	            transform var(--wbe-transition-normal, 300ms ease),
+	            box-shadow var(--wbe-transition-normal, 300ms ease);
+	white-space: nowrap;
 }
 
-.wbe-btn:hover {
+.wbe-hero__btn:hover,
+.wbe-hero__btn:focus-visible {
+	opacity: 0.88;
 	transform: translateY(-2px);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
 }
 
-.wbe-btn--primary {
-	background: #fff;
-	color: #1e1e1e;
+.wbe-hero__btn:active {
+	transform: translateY(0);
 }
 
-.wbe-btn--secondary {
-	background: transparent;
-	color: inherit;
+.wbe-hero__btn--secondary {
+	background-color: transparent;
 	border: 2px solid currentColor;
 }
 
-@media (max-width: 640px) {
-	.wbe-hero {
-		padding: 48px 16px;
+/* Visibility utility classes */
+@media (min-width: 1025px) {
+	.wbe-hide-desktop {
+		display: none !important;
+	}
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	.wbe-hero__heading {
+		font-size: var(--wbe-font-4xl, 36px);
+	}
+
+	.wbe-hero__subheading {
+		font-size: var(--wbe-font-lg, 18px);
+	}
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-hero__content {
+		padding-inline: var(--wbe-space-md, 16px);
+	}
+
+	.wbe-hero__heading {
+		font-size: var(--wbe-font-3xl, 30px);
+	}
+
+	.wbe-hero__subheading {
+		font-size: var(--wbe-font-md, 16px);
 	}
 
 	.wbe-hero__buttons {
 		flex-direction: column;
-		align-items: stretch;
+		width: 100%;
 	}
 
-	.wbe-btn {
+	.wbe-hero__btn {
+		width: 100%;
+		max-width: 320px;
 		text-align: center;
 	}
 }

@@ -4,54 +4,72 @@
 	"name": "wbcom-essential/countdown-timer",
 	"version": "1.0.0",
 	"title": "Countdown Timer",
-	"category": "wbcom-essential",
+	"category": "starter-marketing",
 	"icon": "clock",
-	"description": "Live countdown timer to a target date with days, hours, minutes, and seconds.",
-	"keywords": [ "countdown", "timer", "sale", "launch", "event" ],
-	"supports": {
-		"html": false,
-		"align": [ "wide", "full" ],
-		"spacing": {
-			"padding": true,
-			"margin": true
+	"description": "Animated live countdown to a target date and time with expiry message.",
+	"keywords": ["countdown", "timer", "date", "clock", "event", "offer"],
+	"textdomain": "wbcom-essential",
+	"example": {
+		"attributes": {
+			"targetDate": "2027-01-01T00:00:00",
+			"layout": "boxes"
 		}
 	},
 	"attributes": {
-		"targetDate": {
-			"type": "string",
-			"default": ""
+		"uniqueId": { "type": "string", "default": "" },
+		"targetDate": { "type": "string", "default": "" },
+		"expireMessage": { "type": "string", "default": "This offer has expired!" },
+		"showDays": { "type": "boolean", "default": true },
+		"showHours": { "type": "boolean", "default": true },
+		"showMinutes": { "type": "boolean", "default": true },
+		"showSeconds": { "type": "boolean", "default": true },
+		"separatorStyle": { "type": "string", "default": "colon" },
+		"layout": { "type": "string", "default": "boxes" },
+		"numberColor": { "type": "string", "default": "#1e1e2e" },
+		"labelColor": { "type": "string", "default": "#6c757d" },
+		"boxBg": { "type": "string", "default": "#f8f9fa" },
+		"boxBorderColor": { "type": "string", "default": "#e9ecef" },
+		"padding": {
+			"type": "object",
+			"default": { "top": 24, "right": 24, "bottom": 24, "left": 24 }
 		},
-		"heading": {
-			"type": "string",
-			"default": ""
+		"paddingTablet": { "type": "object", "default": null },
+		"paddingMobile": { "type": "object", "default": null },
+		"paddingUnit": { "type": "string", "default": "px" },
+		"margin": {
+			"type": "object",
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
 		},
-		"expiredMessage": {
-			"type": "string",
-			"default": "This offer has ended!"
+		"marginTablet": { "type": "object", "default": null },
+		"marginMobile": { "type": "object", "default": null },
+		"marginUnit": { "type": "string", "default": "px" },
+		"boxShadow": { "type": "boolean", "default": false },
+		"shadowHorizontal": { "type": "number", "default": 0 },
+		"shadowVertical": { "type": "number", "default": 4 },
+		"shadowBlur": { "type": "number", "default": 8 },
+		"shadowSpread": { "type": "number", "default": 0 },
+		"shadowColor": { "type": "string", "default": "rgba(0, 0, 0, 0.12)" },
+		"borderRadius": {
+			"type": "object",
+			"default": { "top": 8, "right": 8, "bottom": 8, "left": 8 }
 		},
-		"backgroundColor": {
-			"type": "string",
-			"default": "#1e1e1e"
+		"borderRadiusUnit": { "type": "string", "default": "px" },
+		"hideOnDesktop": { "type": "boolean", "default": false },
+		"hideOnTablet": { "type": "boolean", "default": false },
+		"hideOnMobile": { "type": "boolean", "default": false }
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"color": {
+			"background": true,
+			"text": true
 		},
-		"textColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"accentColor": {
-			"type": "string",
-			"default": "#6366f1"
-		},
-		"showLabels": {
-			"type": "boolean",
-			"default": true
-		},
-		"size": {
-			"type": "string",
-			"default": "large",
-			"enum": [ "small", "large" ]
+		"spacing": {
+			"margin": true,
+			"padding": true
 		}
 	},
-	"textdomain": "wbcom-essential",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

@@ -1,20 +1,81 @@
+/**
+ * Feature Grid Block - Editor Component
+ *
+ * @package wbcom-essential
+ */
+
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	InspectorControls,
+	RichText,
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
-	TextControl,
-	TextareaControl,
 	RangeControl,
 	SelectControl,
+	TextControl,
 	Button,
+	ColorPalette,
+	BaseControl,
+	__experimentalDivider as Divider,
 } from '@wordpress/components';
 
-export default function Edit( { attributes, setAttributes } ) {
-	const { features, columns, cardStyle, iconSize, textAlign } = attributes;
+import {
+	SpacingControl,
+	BoxShadowControl,
+	BorderRadiusControl,
+	DeviceVisibility,
+} from '../../../src/shared/components';
+import { useUniqueId } from '../../../src/shared/hooks';
+import { generateBlockCSS } from '../../../src/shared/utils/css';
+import '../../../src/shared/design-tokens.css';
+import '../../../src/shared/base.css';
 
+export default function Edit( { attributes, setAttributes, clientId } ) {
+	const {
+		uniqueId,
+		columns,
+		cardStyle,
+		features,
+		cardBg,
+		titleColor,
+		descriptionColor,
+		iconSize,
+		padding,
+		paddingUnit,
+		paddingTablet,
+		paddingMobile,
+		margin,
+		marginUnit,
+		marginTablet,
+		marginMobile,
+		boxShadow,
+		shadowHorizontal,
+		shadowVertical,
+		shadowBlur,
+		shadowSpread,
+		shadowColor,
+		borderRadius,
+		borderRadiusUnit,
+		hideOnDesktop,
+		hideOnTablet,
+		hideOnMobile,
+	} = attributes;
+
+	useUniqueId( clientId, uniqueId, setAttributes );
+
+	const blockCSS = generateBlockCSS( uniqueId, attributes );
+
+	const blockProps = useBlockProps( {
+		className: `wbe-block-${ uniqueId } wbe-feature-grid`,
+	} );
+
+	/** Update a single feature field */
 	const updateFeature = ( index, key, value ) => {
-		const updated = [ ...features ];
-		updated[ index ] = { ...updated[ index ], [ key ]: value };
+		const updated = features.map( ( feat, i ) =>
+			i === index ? { ...feat, [ key ]: value } : feat
+		);
 		setAttributes( { features: updated } );
 	};
 
@@ -22,31 +83,69 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( {
 			features: [
 				...features,
-				{ icon: '⭐', title: '', description: '' },
+				{ icon: '✨', title: 'New Feature', description: 'Describe your feature here.' },
 			],
 		} );
 	};
 
 	const removeFeature = ( index ) => {
-		setAttributes( {
-			features: features.filter( ( _, i ) => i !== index ),
-		} );
+		if ( features.length <= 1 ) return;
+		setAttributes( { features: features.filter( ( _, i ) => i !== index ) } );
 	};
-
-	const blockProps = useBlockProps( {
-		className: `wbe-features wbe-features--${ cardStyle }`,
-	} );
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Layout', 'wbcom-essential' ) }>
+				{ /* Content Panel */ }
+				<PanelBody title={ __( 'Content', 'wbcom-essential' ) } initialOpen={ true }>
+					{ features.map( ( feat, index ) => (
+						<PanelBody
+							key={ index }
+							title={ feat.title || `${ __( 'Feature', 'wbcom-essential' ) } ${ index + 1 }` }
+							initialOpen={ false }
+						>
+							<TextControl
+								label={ __( 'Icon / Emoji', 'wbcom-essential' ) }
+								value={ feat.icon }
+								onChange={ ( value ) => updateFeature( index, 'icon', value ) }
+							/>
+							<TextControl
+								label={ __( 'Title', 'wbcom-essential' ) }
+								value={ feat.title }
+								onChange={ ( value ) => updateFeature( index, 'title', value ) }
+							/>
+							<TextControl
+								label={ __( 'Description', 'wbcom-essential' ) }
+								value={ feat.description }
+								onChange={ ( value ) => updateFeature( index, 'description', value ) }
+							/>
+							{ features.length > 1 && (
+								<Button
+									isDestructive
+									variant="link"
+									onClick={ () => removeFeature( index ) }
+									style={ { marginTop: 4 } }
+								>
+									{ __( 'Remove feature', 'wbcom-essential' ) }
+								</Button>
+							) }
+						</PanelBody>
+					) ) }
+					<Button
+						variant="primary"
+						onClick={ addFeature }
+						style={ { marginTop: 8, width: '100%', justifyContent: 'center' } }
+					>
+						{ __( '+ Add Feature', 'wbcom-essential' ) }
+					</Button>
+				</PanelBody>
+
+				{ /* Layout Panel */ }
+				<PanelBody title={ __( 'Layout', 'wbcom-essential' ) } initialOpen={ false }>
 					<RangeControl
 						label={ __( 'Columns', 'wbcom-essential' ) }
 						value={ columns }
-						onChange={ ( val ) =>
-							setAttributes( { columns: val } )
-						}
+						onChange={ ( value ) => setAttributes( { columns: value } ) }
 						min={ 1 }
 						max={ 4 }
 					/>
@@ -54,106 +153,130 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Card Style', 'wbcom-essential' ) }
 						value={ cardStyle }
 						options={ [
-							{ label: 'Bordered', value: 'bordered' },
-							{ label: 'Shadow', value: 'shadow' },
-							{ label: 'Flat', value: 'flat' },
+							{ value: 'elevated', label: __( 'Elevated (Shadow)', 'wbcom-essential' ) },
+							{ value: 'bordered', label: __( 'Bordered', 'wbcom-essential' ) },
+							{ value: 'flat', label: __( 'Flat', 'wbcom-essential' ) },
 						] }
-						onChange={ ( val ) =>
-							setAttributes( { cardStyle: val } )
-						}
+						onChange={ ( value ) => setAttributes( { cardStyle: value } ) }
 					/>
+				</PanelBody>
+
+				{ /* Style Panel */ }
+				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
 					<RangeControl
 						label={ __( 'Icon Size (px)', 'wbcom-essential' ) }
 						value={ iconSize }
-						onChange={ ( val ) =>
-							setAttributes( { iconSize: val } )
-						}
+						onChange={ ( value ) => setAttributes( { iconSize: value } ) }
 						min={ 24 }
-						max={ 80 }
+						max={ 96 }
 					/>
-					<SelectControl
-						label={ __( 'Text Alignment', 'wbcom-essential' ) }
-						value={ textAlign }
-						options={ [
-							{ label: 'Left', value: 'left' },
-							{ label: 'Center', value: 'center' },
-						] }
-						onChange={ ( val ) =>
-							setAttributes( { textAlign: val } )
-						}
-					/>
+					<BaseControl label={ __( 'Card Background', 'wbcom-essential' ) }>
+						<ColorPalette
+							value={ cardBg }
+							onChange={ ( value ) => setAttributes( { cardBg: value || '#ffffff' } ) }
+							clearable={ false }
+						/>
+					</BaseControl>
+					<BaseControl label={ __( 'Title Color', 'wbcom-essential' ) }>
+						<ColorPalette
+							value={ titleColor }
+							onChange={ ( value ) => setAttributes( { titleColor: value || '#1e1e2e' } ) }
+							clearable={ false }
+						/>
+					</BaseControl>
+					<BaseControl label={ __( 'Description Color', 'wbcom-essential' ) }>
+						<ColorPalette
+							value={ descriptionColor }
+							onChange={ ( value ) => setAttributes( { descriptionColor: value || '#6c757d' } ) }
+							clearable={ false }
+						/>
+					</BaseControl>
 				</PanelBody>
-				{ features.map( ( f, i ) => (
-					<PanelBody
-						key={ i }
-						title={ f.title || `Feature ${ i + 1 }` }
-						initialOpen={ false }
-					>
-						<TextControl
-							label={ __(
-								'Icon (emoji or text)',
-								'wbcom-essential'
-							) }
-							value={ f.icon }
-							onChange={ ( val ) =>
-								updateFeature( i, 'icon', val )
-							}
-						/>
-						<TextControl
-							label={ __( 'Title', 'wbcom-essential' ) }
-							value={ f.title }
-							onChange={ ( val ) =>
-								updateFeature( i, 'title', val )
-							}
-						/>
-						<TextareaControl
-							label={ __( 'Description', 'wbcom-essential' ) }
-							value={ f.description }
-							onChange={ ( val ) =>
-								updateFeature( i, 'description', val )
-							}
-							rows={ 3 }
-						/>
-						{ features.length > 1 && (
-							<Button
-								variant="link"
-								isDestructive
-								onClick={ () => removeFeature( i ) }
-							>
-								{ __( 'Remove', 'wbcom-essential' ) }
-							</Button>
-						) }
-					</PanelBody>
-				) ) }
-				<PanelBody>
-					<Button variant="secondary" onClick={ addFeature }>
-						{ __( 'Add Feature', 'wbcom-essential' ) }
-					</Button>
+
+				{ /* Advanced Panel */ }
+				<PanelBody title={ __( 'Advanced', 'wbcom-essential' ) } initialOpen={ false }>
+					<SpacingControl
+						label={ __( 'Padding', 'wbcom-essential' ) }
+						values={ padding }
+						unit={ paddingUnit }
+						onChange={ ( value ) => setAttributes( { padding: value } ) }
+						onUnitChange={ ( value ) => setAttributes( { paddingUnit: value } ) }
+					/>
+					<SpacingControl
+						label={ __( 'Margin', 'wbcom-essential' ) }
+						values={ margin }
+						unit={ marginUnit }
+						onChange={ ( value ) => setAttributes( { margin: value } ) }
+						onUnitChange={ ( value ) => setAttributes( { marginUnit: value } ) }
+					/>
+					<Divider />
+					<BoxShadowControl
+						enabled={ boxShadow }
+						horizontal={ shadowHorizontal }
+						vertical={ shadowVertical }
+						blur={ shadowBlur }
+						spread={ shadowSpread }
+						color={ shadowColor }
+						onToggle={ ( value ) => setAttributes( { boxShadow: value } ) }
+						onChangeHorizontal={ ( value ) => setAttributes( { shadowHorizontal: value } ) }
+						onChangeVertical={ ( value ) => setAttributes( { shadowVertical: value } ) }
+						onChangeBlur={ ( value ) => setAttributes( { shadowBlur: value } ) }
+						onChangeSpread={ ( value ) => setAttributes( { shadowSpread: value } ) }
+						onChangeColor={ ( value ) => setAttributes( { shadowColor: value } ) }
+					/>
+					<Divider />
+					<BorderRadiusControl
+						values={ borderRadius }
+						unit={ borderRadiusUnit }
+						onChange={ ( value ) => setAttributes( { borderRadius: value } ) }
+						onUnitChange={ ( value ) => setAttributes( { borderRadiusUnit: value } ) }
+					/>
+					<Divider />
+					<DeviceVisibility
+						hideOnDesktop={ hideOnDesktop }
+						hideOnTablet={ hideOnTablet }
+						hideOnMobile={ hideOnMobile }
+						onChange={ ( value ) => setAttributes( value ) }
+					/>
 				</PanelBody>
 			</InspectorControls>
 
+			{ blockCSS && <style>{ blockCSS }</style> }
+
 			<div { ...blockProps }>
 				<div
-					className="wbe-features__grid"
-					style={ {
-						gridTemplateColumns: `repeat(${ columns }, 1fr)`,
-						textAlign,
-					} }
+					className={ `wbe-feature-grid__grid wbe-feature-grid__grid--style-${ cardStyle }` }
+					style={ { '--wbe-feature-cols': columns } }
 				>
-					{ features.map( ( f, i ) => (
-						<div key={ i } className="wbe-features__card">
-							<span
-								className="wbe-features__icon"
-								style={ { fontSize: `${ iconSize }px` } }
+					{ features.map( ( feat, index ) => (
+						<div
+							key={ index }
+							className={ `wbe-feature-grid__card wbe-feature-grid__card--${ cardStyle }` }
+							style={ { backgroundColor: cardBg } }
+						>
+							<div
+								className="wbe-feature-grid__icon"
+								style={ { fontSize: iconSize } }
+								aria-hidden="true"
 							>
-								{ f.icon }
-							</span>
-							<h3 className="wbe-features__title">
-								{ f.title }
-							</h3>
-							<p className="wbe-features__description">
-								{ f.description }
-							</p>
+								{ feat.icon }
+							</div>
+							<RichText
+								tagName="h3"
+								className="wbe-feature-grid__title"
+								value={ feat.title }
+								onChange={ ( value ) => updateFeature( index, 'title', value ) }
+								placeholder={ __( 'Feature title', 'wbcom-essential' ) }
+								style={ { color: titleColor } }
+							/>
+							<RichText
+								tagName="p"
+								className="wbe-feature-grid__description"
+								value={ feat.description }
+								onChange={ ( value ) => updateFeature( index, 'description', value ) }
+								placeholder={ __( 'Feature description', 'wbcom-essential' ) }
+								style={ { color: descriptionColor } }
+							/>
 						</div>
 					) ) }
 				</div>

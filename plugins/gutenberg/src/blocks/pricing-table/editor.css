@@ -1,3 +1,18 @@
-.wbe-pricing .wbe-btn--pricing {
-	cursor: default;
+/* ==========================================================================
+   Pricing Cards Block — Editor-only Styles
+   ========================================================================== */
+
+/* Editor always shows the cards at desktop layout for preview */
+.wp-block-wbcom-essential-pricing-cards .wbe-pricing-cards__grid {
+	grid-template-columns: repeat(var(--wbe-pricing-cols, 3), 1fr) !important;
+}
+
+/* Featured card scale is reduced in editor to fit the block panel */
+.wp-block-wbcom-essential-pricing-cards .wbe-pricing-cards__card--featured {
+	transform: scale(1.01);
+}
+
+/* Button links are not navigable in editor */
+.wp-block-wbcom-essential-pricing-cards .wbe-pricing-cards__btn {
+	pointer-events: none;
 }

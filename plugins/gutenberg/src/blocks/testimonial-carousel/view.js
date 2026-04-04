@@ -1,64 +1,83 @@
-document.addEventListener( 'DOMContentLoaded', () => {
-	document.querySelectorAll( '.wbe-testimonials' ).forEach( ( el ) => {
-		const track = el.querySelector( '.wbe-testimonials__track' );
-		if ( ! track ) return;
+/**
+ * Testimonial Carousel Block - Frontend Script
+ *
+ * Initializes Swiper carousels for testimonial display.
+ *
+ * @package wbcom-essential
+ */
 
-		const slides = Array.from( track.children );
-		if ( slides.length < 2 ) return;
+( function () {
+	'use strict';
 
-		const dots = el.querySelectorAll( '.wbe-testimonials__dot' );
-		const prevBtn = el.querySelector( '.wbe-testimonials__arrow--prev' );
-		const nextBtn = el.querySelector( '.wbe-testimonials__arrow--next' );
-		const autoplay = el.dataset.autoplay === 'true';
-		const speed = parseInt( el.dataset.speed, 10 ) || 5000;
+	/**
+	 * Initialize all testimonial carousels.
+	 */
+	function initTestimonialCarousels() {
+		const blocks = document.querySelectorAll( '.wbe-testimonial-carousel' );
 
-		let current = 0;
-		let timer = null;
-
-		function goTo( index ) {
-			slides[ current ].style.display = 'none';
-			current = ( index + slides.length ) % slides.length;
-			slides[ current ].style.display = 'block';
-
-			dots.forEach( ( dot, i ) => {
-				dot.classList.toggle( 'is-active', i === current );
-			} );
+		if ( ! blocks.length ) {
+			return;
 		}
 
-		function startAutoplay() {
-			if ( autoplay ) {
-				timer = setInterval( () => goTo( current + 1 ), speed );
+		if ( typeof Swiper === 'undefined' ) {
+			// Swiper not available — silently exit.
+			return;
+		}
+
+		blocks.forEach( ( block ) => {
+			const el = block.querySelector( '.swiper' );
+			if ( ! el || el._swiperInstance ) {
+				return;
 			}
-		}
 
-		function stopAutoplay() {
-			clearInterval( timer );
-		}
+			const autoplayEnabled = el.dataset.autoplay === 'true';
+			const delay            = parseInt( el.dataset.delay, 10 ) || 5000;
+			const loop             = el.dataset.loop === 'true';
+			const slides           = parseInt( el.dataset.slides, 10 ) || 1;
+			const showDots         = el.dataset.showDots !== 'false';
+			const showArrows       = el.dataset.showArrows !== 'false';
 
-		if ( prevBtn ) {
-			prevBtn.addEventListener( 'click', () => {
-				stopAutoplay();
-				goTo( current - 1 );
-				startAutoplay();
-			} );
-		}
+			const swiperConfig = {
+				loop,
+				autoplay: autoplayEnabled
+					? { delay, disableOnInteraction: false, pauseOnMouseEnter: true }
+					: false,
+				pagination: showDots
+					? { el: el.querySelector( '.swiper-pagination' ), clickable: true }
+					: false,
+				navigation: showArrows
+					? {
+						prevEl: el.querySelector( '.swiper-button-prev' ),
+						nextEl: el.querySelector( '.swiper-button-next' ),
+					}
+					: false,
+				breakpoints: {
+					0: { slidesPerView: 1, spaceBetween: 16 },
+					768: { slidesPerView: Math.min( slides, 2 ), spaceBetween: 24 },
+					1024: { slidesPerView: slides, spaceBetween: 32 },
+				},
+				a11y: {
+					prevSlideMessage: 'Previous testimonial',
+					nextSlideMessage: 'Next testimonial',
+				},
+				grabCursor: true,
+			};
 
-		if ( nextBtn ) {
-			nextBtn.addEventListener( 'click', () => {
-				stopAutoplay();
-				goTo( current + 1 );
-				startAutoplay();
-			} );
-		}
+			// Respect prefers-reduced-motion.
+			if ( window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
+				swiperConfig.autoplay = false;
+				swiperConfig.speed = 0;
+			}
 
-		dots.forEach( ( dot, i ) => {
-			dot.addEventListener( 'click', () => {
-				stopAutoplay();
-				goTo( i );
-				startAutoplay();
-			} );
+			const instance = new Swiper( el, swiperConfig );
+			el._swiperInstance = instance;
 		} );
+	}
 
-		startAutoplay();
-	} );
-} );
+	// Run on DOMContentLoaded.
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', initTestimonialCarousels );
+	} else {
+		initTestimonialCarousels();
+	}
+} )();

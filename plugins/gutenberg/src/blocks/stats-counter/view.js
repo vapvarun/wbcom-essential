@@ -1,49 +1,118 @@
-document.addEventListener( 'DOMContentLoaded', () => {
-	const counters = document.querySelectorAll( '.wbe-stats' );
+/**
+ * Stats Counter Block - Frontend View Script
+ * Vanilla JS, no framework, no jQuery.
+ * Uses IntersectionObserver + requestAnimationFrame.
+ *
+ * @package wbcom-essential
+ */
 
-	const observer = new IntersectionObserver(
-		( entries ) => {
-			entries.forEach( ( entry ) => {
-				if ( ! entry.isIntersecting ) return;
+( function () {
+	'use strict';
 
-				const el = entry.target;
-				observer.unobserve( el );
+	/**
+	 * Ease-out cubic easing function.
+	 *
+	 * @param {number} t Progress 0-1.
+	 * @return {number} Eased progress 0-1.
+	 */
+	function easeOutCubic( t ) {
+		return 1 - Math.pow( 1 - t, 3 );
+	}
 
-				const duration =
-					parseInt( el.dataset.duration, 10 ) || 2000;
+	/**
+	 * Animate a counter element from 0 to target.
+	 *
+	 * @param {HTMLElement} numberEl  The element displaying the number.
+	 * @param {number}      target    The target number.
+	 * @param {number}      duration  Animation duration in ms.
+	 */
+	function animateCounter( numberEl, target, duration ) {
+		const prefersReduced =
+			window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
 
-				el.querySelectorAll( '.wbe-stats__number' ).forEach(
-					( numEl ) => {
-						const target =
-							parseInt( numEl.dataset.target, 10 ) || 0;
-						const prefix = numEl.dataset.prefix || '';
-						const suffix = numEl.dataset.suffix || '';
-						const start = performance.now();
+		if ( prefersReduced ) {
+			numberEl.textContent = target.toLocaleString();
+			return;
+		}
 
-						function animate( now ) {
-							const elapsed = now - start;
-							const progress = Math.min( elapsed / duration, 1 );
-							// Ease out cubic
-							const eased =
-								1 - Math.pow( 1 - progress, 3 );
-							const current = Math.round( target * eased );
-							numEl.textContent =
-								prefix +
-								current.toLocaleString() +
-								suffix;
+		let startTime = null;
 
-							if ( progress < 1 ) {
-								requestAnimationFrame( animate );
-							}
-						}
+		function step( timestamp ) {
+			if ( startTime === null ) {
+				startTime = timestamp;
+			}
 
-						requestAnimationFrame( animate );
+			const elapsed = timestamp - startTime;
+			const progress = Math.min( elapsed / duration, 1 );
+			const easedProgress = easeOutCubic( progress );
+			const current = Math.floor( easedProgress * target );
+
+			numberEl.textContent = current.toLocaleString();
+
+			if ( progress < 1 ) {
+				requestAnimationFrame( step );
+			} else {
+				numberEl.textContent = target.toLocaleString();
+			}
+		}
+
+		requestAnimationFrame( step );
+	}
+
+	/**
+	 * Initialise stats counter with IntersectionObserver.
+	 *
+	 * @param {HTMLElement} block The .wbe-stats-counter root element.
+	 */
+	function initCounter( block ) {
+		const items = block.querySelectorAll( '.wbe-stats-counter__item' );
+		if ( items.length === 0 ) {
+			return;
+		}
+
+		const observer = new IntersectionObserver(
+			( entries ) => {
+				entries.forEach( ( entry ) => {
+					if ( ! entry.isIntersecting ) {
+						return;
 					}
-				);
-			} );
-		},
-		{ threshold: 0.3 }
-	);
 
-	counters.forEach( ( el ) => observer.observe( el ) );
-} );
+					const item = entry.target;
+
+					// Only animate once
+					if ( item.dataset.counted ) {
+						return;
+					}
+					item.dataset.counted = 'true';
+					observer.unobserve( item );
+
+					const target = parseInt( item.dataset.target, 10 );
+					const duration = parseInt( item.dataset.duration, 10 ) || 2000;
+					const numberEl = item.querySelector( '.wbe-stats-counter__number' );
+
+					if ( ! numberEl || isNaN( target ) ) {
+						return;
+					}
+
+					animateCounter( numberEl, target, duration );
+				} );
+			},
+			{
+				threshold: 0.25, // Trigger when 25% visible
+			}
+		);
+
+		items.forEach( ( item ) => observer.observe( item ) );
+	}
+
+	function init() {
+		const blocks = document.querySelectorAll( '.wbe-stats-counter' );
+		blocks.forEach( initCounter );
+	}
+
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', init );
+	} else {
+		init();
+	}
+} )();

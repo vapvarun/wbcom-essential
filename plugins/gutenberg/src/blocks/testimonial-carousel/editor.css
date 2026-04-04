@@ -1,19 +1,39 @@
-.wbe-testimonials .wbe-testimonials__slide {
-	display: block !important;
-	margin-bottom: 24px;
-	padding-bottom: 24px;
-	border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+/**
+ * Testimonial Carousel Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Item list in sidebar */
+.wbe-tc-items-list {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-bottom: 8px;
 }
 
-.wbe-testimonials .wbe-testimonials__slide:last-child {
-	border-bottom: none;
-	margin-bottom: 0;
-	padding-bottom: 0;
+.wbe-tc-item-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 10px;
+	border: 1px solid #e9ecef;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.15s;
 }
 
-.wbe-testimonials__editor-note {
+.wbe-tc-item-row:hover,
+.wbe-tc-item-row.is-selected {
+	background: #f0f4ff;
+	border-color: #667eea;
+}
+
+.wbe-tc-item-name {
+	flex: 1;
 	font-size: 0.8rem;
-	opacity: 0.5;
-	font-style: italic;
-	margin-top: 16px;
+	font-weight: 500;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

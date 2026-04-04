@@ -1,0 +1,44 @@
+/**
+ * Timeline Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Item list in sidebar */
+.wbe-tl-items-list {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-bottom: 8px;
+}
+
+.wbe-tl-item-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 8px;
+	border: 1px solid #e9ecef;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+.wbe-tl-item-row:hover,
+.wbe-tl-item-row.is-selected {
+	background: #f0f4ff;
+	border-color: #667eea;
+}
+
+.wbe-tl-item-icon {
+	font-size: 1rem;
+	flex-shrink: 0;
+}
+
+.wbe-tl-item-title {
+	flex: 1;
+	font-size: 0.8rem;
+	font-weight: 500;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

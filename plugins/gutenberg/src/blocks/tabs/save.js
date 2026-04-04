@@ -1,52 +1,104 @@
-import { useBlockProps } from '@wordpress/block-editor';
+/**
+ * Tabs Block - Save Component
+ * Implements WAI-ARIA Tabs Pattern.
+ *
+ * @package wbcom-essential
+ */
 
-export default function Save( { attributes } ) {
-	const { tabs, accentColor, tabStyle } = attributes;
+import { useBlockProps } from '@wordpress/block-editor';
+import { generateBlockCSS } from '../../shared/utils/css';
+
+export default function save( { attributes } ) {
+	const {
+		uniqueId,
+		tabs,
+		tabStyle,
+		tabAlign,
+		activeColor,
+		inactiveColor,
+		contentBg,
+		borderColor,
+		hideOnDesktop,
+		hideOnTablet,
+		hideOnMobile,
+	} = attributes;
+
+	const visibilityClasses = [
+		hideOnDesktop ? 'wbe-hide-desktop' : '',
+		hideOnTablet ? 'wbe-hide-tablet' : '',
+		hideOnMobile ? 'wbe-hide-mobile' : '',
+	]
+		.filter( Boolean )
+		.join( ' ' );
 
 	const blockProps = useBlockProps.save( {
-		className: `wbe-tabs wbe-tabs--${ tabStyle }`,
-		'data-accent': accentColor,
+		className: `wbe-block-${ uniqueId } wbe-tabs wbe-tabs--${ tabStyle } wbe-tabs--align-${ tabAlign }${ visibilityClasses ? ' ' + visibilityClasses : '' }`,
 	} );
+
+	const css = generateBlockCSS( uniqueId, attributes );
+
+	const tokenPropsCss = [
+		`.wbe-block-${ uniqueId } {`,
+		`  --wbe-tabs-active-color: ${ activeColor };`,
+		`  --wbe-tabs-inactive-color: ${ inactiveColor };`,
+		`  --wbe-tabs-content-bg: ${ contentBg };`,
+		`  --wbe-tabs-border-color: ${ borderColor };`,
+		`}`,
+	].join( '\n' );
 
 	return (
 		<div { ...blockProps }>
-			<div className="wbe-tabs__nav" role="tablist">
-				{ tabs.map( ( tab, i ) => (
-					<button
-						key={ i }
-						role="tab"
-						className={ `wbe-tabs__tab${
-							i === 0 ? ' is-active' : ''
-						}` }
-						aria-selected={ i === 0 ? 'true' : 'false' }
-						data-tab={ i }
-						style={
-							i === 0
-								? {
-										borderColor: accentColor,
-										color: accentColor,
-								  }
-								: {}
-						}
-					>
-						{ tab.title }
-					</button>
-				) ) }
+			{ css && <style>{ css }</style> }
+			<style>{ tokenPropsCss }</style>
+
+			{ /* Tab list - WAI-ARIA tablist pattern */ }
+			<div
+				className="wbe-tabs__nav"
+				role="tablist"
+			>
+				{ tabs.map( ( tab, index ) => {
+					const tabId = `wbe-tab-${ uniqueId }-${ index }`;
+					const panelId = `wbe-panel-${ uniqueId }-${ index }`;
+					const isFirst = index === 0;
+
+					return (
+						<button
+							key={ index }
+							id={ tabId }
+							role="tab"
+							type="button"
+							className={ `wbe-tabs__tab${ isFirst ? ' is-active' : '' }` }
+							aria-selected={ isFirst ? 'true' : 'false' }
+							aria-controls={ panelId }
+							tabIndex={ isFirst ? '0' : '-1' }
+						>
+							{ tab.title }
+						</button>
+					);
+				} ) }
 			</div>
+
+			{ /* Tab panels */ }
 			<div className="wbe-tabs__panels">
-				{ tabs.map( ( tab, i ) => (
-					<div
-						key={ i }
-						className="wbe-tabs__panel"
-						role="tabpanel"
-						data-panel={ i }
-						style={ {
-							display: i === 0 ? 'block' : 'none',
-						} }
-					>
-						<p>{ tab.content }</p>
-					</div>
-				) ) }
+				{ tabs.map( ( tab, index ) => {
+					const tabId = `wbe-tab-${ uniqueId }-${ index }`;
+					const panelId = `wbe-panel-${ uniqueId }-${ index }`;
+					const isFirst = index === 0;
+
+					return (
+						<div
+							key={ index }
+							id={ panelId }
+							role="tabpanel"
+							aria-labelledby={ tabId }
+							className={ `wbe-tabs__panel${ isFirst ? ' is-active' : '' }` }
+							hidden={ ! isFirst }
+							tabIndex={ 0 }
+						>
+							<p>{ tab.content }</p>
+						</div>
+					);
+				} ) }
 			</div>
 		</div>
 	);

@@ -1,0 +1,182 @@
+/**
+ * Flip Box Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ---- Design tokens ---- */
+.wbe-flip-box {
+	--wbe-flip-front-bg: #667eea;
+	--wbe-flip-front-color: #ffffff;
+	--wbe-flip-back-bg: #764ba2;
+	--wbe-flip-back-color: #ffffff;
+	--wbe-flip-height: 300px;
+	--wbe-flip-radius: 12px;
+	--wbe-flip-shadow: none;
+	--wbe-flip-transition: 0.6s;
+	--wbe-flip-btn-bg: rgba( 255, 255, 255, 0.2 );
+	--wbe-flip-btn-border: rgba( 255, 255, 255, 0.6 );
+
+	display: block;
+	perspective: 1200px;
+	width: 100%;
+	height: var( --wbe-flip-height );
+	cursor: pointer;
+}
+
+/* ---- Inner flipper ---- */
+.wbe-flip-box__inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform var( --wbe-flip-transition ) ease;
+	border-radius: var( --wbe-flip-radius );
+	box-shadow: var( --wbe-flip-shadow );
+}
+
+/* ---- Flip on hover and focus-within ---- */
+.wbe-flip-box--horizontal:hover .wbe-flip-box__inner,
+.wbe-flip-box--horizontal:focus-within .wbe-flip-box__inner {
+	transform: rotateY( 180deg );
+}
+
+.wbe-flip-box--vertical:hover .wbe-flip-box__inner,
+.wbe-flip-box--vertical:focus-within .wbe-flip-box__inner {
+	transform: rotateX( 180deg );
+}
+
+/* ---- Shared face styles ---- */
+.wbe-flip-box__front,
+.wbe-flip-box__back {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 32px 24px;
+	gap: 12px;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	border-radius: var( --wbe-flip-radius );
+	overflow: hidden;
+	text-align: center;
+}
+
+/* ---- Front face ---- */
+.wbe-flip-box__front {
+	background-color: var( --wbe-flip-front-bg );
+	color: var( --wbe-flip-front-color );
+}
+
+/* ---- Back face — pre-rotated ---- */
+.wbe-flip-box--horizontal .wbe-flip-box__back {
+	background-color: var( --wbe-flip-back-bg );
+	color: var( --wbe-flip-back-color );
+	transform: rotateY( 180deg );
+}
+
+.wbe-flip-box--vertical .wbe-flip-box__back {
+	background-color: var( --wbe-flip-back-bg );
+	color: var( --wbe-flip-back-color );
+	transform: rotateX( 180deg );
+}
+
+/* ---- Icon ---- */
+.wbe-flip-box__icon {
+	font-size: 2.5rem;
+	line-height: 1;
+	display: block;
+}
+
+/* ---- Title ---- */
+.wbe-flip-box__title {
+	margin: 0;
+	font-size: 1.25rem;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+/* ---- Description ---- */
+.wbe-flip-box__description {
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	opacity: 0.9;
+}
+
+/* ---- Button ---- */
+.wbe-flip-box__btn {
+	display: inline-block;
+	margin-top: 8px;
+	padding: 10px 24px;
+	background: var( --wbe-flip-btn-bg );
+	border: 1px solid var( --wbe-flip-btn-border );
+	border-radius: 999px;
+	color: inherit;
+	font-size: 0.875rem;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background 0.2s ease, opacity 0.2s ease;
+	cursor: pointer;
+}
+
+.wbe-flip-box__btn:hover {
+	background: rgba( 255, 255, 255, 0.35 );
+	opacity: 1;
+}
+
+.wbe-flip-box__btn:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+/* ---- Visibility utilities (shared with other blocks) ---- */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ---- Reduced-motion: instant flip, no transition ---- */
+@media ( prefers-reduced-motion: reduce ) {
+	.wbe-flip-box__inner {
+		transition: none;
+	}
+}
+
+/* ---- Tablet ---- */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	.wbe-flip-box {
+		--wbe-flip-height: calc( var( --wbe-flip-height, 300px ) * 0.9 );
+	}
+}
+
+/* ---- Mobile ---- */
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-flip-box {
+		/* Use a sensible minimum on mobile */
+		height: max( calc( var( --wbe-flip-height, 300px ) * 0.8 ), 220px );
+	}
+
+	.wbe-flip-box__title {
+		font-size: 1.1rem;
+	}
+
+	.wbe-flip-box__description {
+		font-size: 0.85rem;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}

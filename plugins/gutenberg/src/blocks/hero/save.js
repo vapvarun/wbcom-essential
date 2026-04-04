@@ -1,83 +1,108 @@
+/**
+ * Hero Section Block - Save Component
+ *
+ * @package wbcom-essential
+ */
+
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-export default function Save( { attributes } ) {
+export default function save( { attributes } ) {
 	const {
+		uniqueId,
 		heading,
 		subheading,
-		gradientFrom,
-		gradientTo,
-		gradientAngle,
-		overlayOpacity,
+		buttonOneText,
+		buttonOneUrl,
+		buttonTwoText,
+		buttonTwoUrl,
+		backgroundType,
+		backgroundColor,
+		gradientStart,
+		gradientEnd,
 		backgroundImage,
+		overlayColor,
+		overlayOpacity,
+		headingColor,
+		subheadingColor,
+		buttonOneBg,
+		buttonOneColor,
+		buttonTwoBg,
+		buttonTwoColor,
+		contentAlign,
 		minHeight,
-		textColor,
-		textAlign,
-		primaryButtonText,
-		primaryButtonUrl,
-		secondaryButtonText,
-		secondaryButtonUrl,
-		showSecondaryButton,
+		minHeightUnit,
+		hideOnDesktop,
+		hideOnTablet,
+		hideOnMobile,
 	} = attributes;
 
-	const gradient = `linear-gradient(${ gradientAngle }deg, ${ gradientFrom }, ${ gradientTo })`;
+	const visibilityClasses = [
+		hideOnDesktop ? 'wbe-hide-desktop' : '',
+		hideOnTablet ? 'wbe-hide-tablet' : '',
+		hideOnMobile ? 'wbe-hide-mobile' : '',
+	]
+		.filter( Boolean )
+		.join( ' ' );
 
-	const sectionStyle = {
-		background: backgroundImage
-			? `${ gradient }, url(${ backgroundImage }) center/cover no-repeat`
-			: gradient,
-		minHeight: `${ minHeight }px`,
-		color: textColor,
-		textAlign,
-	};
+	const backgroundStyle = {};
+	if ( backgroundType === 'gradient' ) {
+		backgroundStyle.background = `linear-gradient(135deg, ${ gradientStart } 0%, ${ gradientEnd } 100%)`;
+	} else if ( backgroundType === 'color' ) {
+		backgroundStyle.backgroundColor = backgroundColor;
+	} else if ( backgroundType === 'image' && backgroundImage && backgroundImage.url ) {
+		backgroundStyle.backgroundImage = `url(${ backgroundImage.url })`;
+		backgroundStyle.backgroundSize = 'cover';
+		backgroundStyle.backgroundPosition = 'center';
+	}
 
 	const blockProps = useBlockProps.save( {
-		className: 'wbe-hero',
-		style: sectionStyle,
+		className: `wbe-block-${ uniqueId } wbe-hero${ visibilityClasses ? ' ' + visibilityClasses : '' }`,
+		style: {
+			minHeight: `${ minHeight }${ minHeightUnit }`,
+			...backgroundStyle,
+		},
 	} );
 
 	return (
 		<div { ...blockProps }>
-			{ backgroundImage && overlayOpacity > 0 && (
+			{ backgroundType === 'image' && backgroundImage?.url && (
 				<div
 					className="wbe-hero__overlay"
-					style={ { opacity: overlayOpacity / 100 } }
-					aria-hidden="true"
+					style={ { backgroundColor: overlayColor, opacity: overlayOpacity / 100 } }
 				/>
 			) }
-			<div className="wbe-hero__content">
-				{ heading && (
-					<RichText.Content
-						tagName="h1"
-						className="wbe-hero__heading"
-						value={ heading }
-					/>
-				) }
-				{ subheading && (
-					<RichText.Content
-						tagName="p"
-						className="wbe-hero__subheading"
-						value={ subheading }
-					/>
-				) }
+			<div className={ `wbe-hero__content wbe-hero__content--${ contentAlign }` }>
+				<RichText.Content
+					tagName="h1"
+					className="wbe-hero__heading"
+					value={ heading }
+					style={ { color: headingColor } }
+				/>
+				<RichText.Content
+					tagName="p"
+					className="wbe-hero__subheading"
+					value={ subheading }
+					style={ { color: subheadingColor } }
+				/>
 				<div className="wbe-hero__buttons">
-					{ primaryButtonText && (
-						<a
-							className="wbe-btn wbe-btn--primary"
-							href={ primaryButtonUrl || '#' }
-							rel="noopener"
-						>
-							{ primaryButtonText }
-						</a>
-					) }
-					{ showSecondaryButton && secondaryButtonText && (
-						<a
-							className="wbe-btn wbe-btn--secondary"
-							href={ secondaryButtonUrl || '#' }
-							rel="noopener"
-						>
-							{ secondaryButtonText }
-						</a>
-					) }
+					<a
+						className="wbe-hero__btn wbe-hero__btn--primary"
+						href={ buttonOneUrl }
+						style={ { backgroundColor: buttonOneBg, color: buttonOneColor } }
+					>
+						<RichText.Content value={ buttonOneText } />
+					</a>
+					<a
+						className="wbe-hero__btn wbe-hero__btn--secondary"
+						href={ buttonTwoUrl }
+						style={ {
+							backgroundColor: buttonTwoBg,
+							color: buttonTwoColor,
+							border: `2px solid ${ buttonTwoColor }`,
+						} }
+					>
+						<RichText.Content value={ buttonTwoText } />
+					</a>
 				</div>
 			</div>
 		</div>

@@ -1,57 +1,150 @@
-.wbe-faq {
-	max-width: 800px;
-	margin: 0 auto;
+/**
+ * FAQ Accordion Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Design tokens with fallbacks */
+.wbe-faq-accordion {
+	--wbe-faq-question-color: #1e1e2e;
+	--wbe-faq-answer-color: #6c757d;
+	--wbe-faq-question-bg: #f8f9fa;
+	--wbe-faq-border-color: #e9ecef;
+	--wbe-faq-icon-color: #667eea;
+	--wbe-faq-radius: 6px;
+	--wbe-faq-transition: 300ms ease;
+
+	width: 100%;
 }
 
-.wbe-faq__item {
-	border-bottom: 1px solid #e5e7eb;
+.wbe-faq-accordion__list {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
 }
 
-.wbe-faq__question {
+/* ---- Item ---- */
+.wbe-faq-accordion__item {
+	border: 1px solid var( --wbe-faq-border-color );
+	border-radius: var( --wbe-faq-radius );
+	overflow: hidden;
+}
+
+.wbe-faq-accordion__item + .wbe-faq-accordion__item {
+	border-top: none;
+	border-radius: 0;
+}
+
+.wbe-faq-accordion__item:first-child {
+	border-radius: var( --wbe-faq-radius ) var( --wbe-faq-radius ) 0 0;
+}
+
+.wbe-faq-accordion__item:last-child {
+	border-radius: 0 0 var( --wbe-faq-radius ) var( --wbe-faq-radius );
+}
+
+.wbe-faq-accordion__item:only-child {
+	border-radius: var( --wbe-faq-radius );
+}
+
+/* ---- Question Button ---- */
+.wbe-faq-accordion__question {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 12px;
 	width: 100%;
-	padding: 20px 0;
-	background: none;
+	padding: 18px 20px;
+	background-color: var( --wbe-faq-question-bg );
+	color: var( --wbe-faq-question-color );
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5;
+	text-align: left;
 	border: none;
 	cursor: pointer;
-	font-size: 1.05rem;
-	font-weight: 600;
-	text-align: left;
-	gap: 16px;
-	transition: opacity 0.2s ease;
+	transition: background-color var( --wbe-faq-transition );
 }
 
-.wbe-faq__question:hover {
-	opacity: 0.8;
+.wbe-faq-accordion__question:hover {
+	filter: brightness( 0.96 );
 }
 
-.wbe-faq__icon {
-	font-size: 1.4rem;
+.wbe-faq-accordion__question:focus-visible {
+	outline: 2px solid var( --wbe-faq-icon-color );
+	outline-offset: -2px;
+}
+
+.wbe-faq-accordion__question-text {
+	flex: 1;
+}
+
+/* ---- Icon ---- */
+.wbe-faq-accordion__icon {
 	flex-shrink: 0;
-	width: 24px;
-	text-align: center;
-	transition: transform 0.2s ease;
+	color: var( --wbe-faq-icon-color );
+	font-size: 0.85em;
+	transition: transform var( --wbe-faq-transition );
+	line-height: 1;
 }
 
-.wbe-faq__item.is-open .wbe-faq__icon {
-	transform: rotate(180deg);
+.wbe-faq-accordion__item.is-open .wbe-faq-accordion__icon {
+	/* view.js updates text content; CSS can reinforce rotation for chevron */
+	transform: none;
 }
 
-.wbe-faq__answer {
-	padding: 0 0 20px;
-	animation: wbeFaqOpen 0.3s ease;
+/* ---- Answer Panel ---- */
+.wbe-faq-accordion__answer {
+	overflow: hidden;
+	max-height: 0;
+	/* Transition is applied dynamically by view.js */
 }
 
-@keyframes wbeFaqOpen {
-	from { opacity: 0; transform: translateY(-8px); }
-	to { opacity: 1; transform: translateY(0); }
+/* When hidden attr is removed, allow natural height */
+.wbe-faq-accordion__answer:not( [hidden] ) {
+	max-height: none;
 }
 
-.wbe-faq__answer p {
+.wbe-faq-accordion__answer p,
+.wbe-faq-accordion__answer > * {
 	margin: 0;
-	font-size: 0.95rem;
+	padding: 18px 20px;
+	color: var( --wbe-faq-answer-color );
+	font-size: 0.9375rem;
 	line-height: 1.7;
-	color: #4b5563;
+	border-top: 1px solid var( --wbe-faq-border-color );
+}
+
+/* ---- Visibility Helpers ---- */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+}
+
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-faq-accordion__question {
+		padding: 14px 16px;
+		font-size: 0.9375rem;
+	}
+
+	.wbe-faq-accordion__answer p,
+	.wbe-faq-accordion__answer > * {
+		padding: 14px 16px;
+		font-size: 0.875rem;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
 }

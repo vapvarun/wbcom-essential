@@ -1,72 +1,94 @@
+/**
+ * Pricing Cards Block - Save Component
+ *
+ * @package wbcom-essential
+ */
+
 import { useBlockProps } from '@wordpress/block-editor';
 
-export default function Save( { attributes } ) {
-	const { plans, columns } = attributes;
+export default function save( { attributes } ) {
+	const {
+		uniqueId,
+		columns,
+		plans,
+		currency,
+		cardBg,
+		featuredBg,
+		featuredColor,
+		priceColor,
+		featureColor,
+		buttonBg,
+		buttonColor,
+		hideOnDesktop,
+		hideOnTablet,
+		hideOnMobile,
+	} = attributes;
+
+	const visibilityClasses = [
+		hideOnDesktop ? 'wbe-hide-desktop' : '',
+		hideOnTablet ? 'wbe-hide-tablet' : '',
+		hideOnMobile ? 'wbe-hide-mobile' : '',
+	]
+		.filter( Boolean )
+		.join( ' ' );
 
 	const blockProps = useBlockProps.save( {
-		className: 'wbe-pricing',
+		className: `wbe-block-${ uniqueId } wbe-pricing-cards${ visibilityClasses ? ' ' + visibilityClasses : '' }`,
 	} );
 
 	return (
 		<div { ...blockProps }>
 			<div
-				className="wbe-pricing__grid"
-				style={ {
-					gridTemplateColumns: `repeat(${ columns }, 1fr)`,
-				} }
+				className="wbe-pricing-cards__grid"
+				style={ { '--wbe-pricing-cols': columns } }
 			>
-				{ plans.map( ( plan, i ) => (
+				{ plans.map( ( plan, index ) => (
 					<div
-						key={ i }
-						className={ `wbe-pricing__card${
-							plan.featured
-								? ' wbe-pricing__card--featured'
-								: ''
-						}` }
+						key={ index }
+						className={ `wbe-pricing-cards__card${ plan.featured ? ' wbe-pricing-cards__card--featured' : '' }` }
 						style={ {
-							borderTopColor: plan.accentColor,
+							backgroundColor: plan.featured ? featuredBg : cardBg,
+							color: plan.featured ? featuredColor : 'inherit',
 						} }
 					>
 						{ plan.featured && (
-							<span className="wbe-pricing__badge">
-								Most Popular
-							</span>
+							<div className="wbe-pricing-cards__badge">Most Popular</div>
 						) }
-						<h3 className="wbe-pricing__name">{ plan.name }</h3>
-						<div className="wbe-pricing__price">
-							<span className="wbe-pricing__amount">
-								{ plan.price }
-							</span>
-							<span className="wbe-pricing__period">
-								{ plan.period }
-							</span>
+						<div className="wbe-pricing-cards__header">
+							<div className="wbe-pricing-cards__name">{ plan.name }</div>
+							<div
+								className="wbe-pricing-cards__price"
+								style={ { color: plan.featured ? featuredColor : priceColor } }
+							>
+								<span className="wbe-pricing-cards__currency">{ currency }</span>
+								<span className="wbe-pricing-cards__amount">{ plan.price }</span>
+								<span className="wbe-pricing-cards__period">{ plan.period }</span>
+							</div>
 						</div>
-						<ul className="wbe-pricing__features">
-							{ plan.features
-								.split( '\n' )
-								.filter( Boolean )
-								.map( ( f, fi ) => (
-									<li key={ fi }>{ f }</li>
-								) ) }
+						<ul className="wbe-pricing-cards__features">
+							{ plan.features.map( ( feat, fi ) => (
+								<li
+									key={ fi }
+									className="wbe-pricing-cards__feature"
+									style={ { color: plan.featured ? featuredColor : featureColor } }
+								>
+									<span className="wbe-pricing-cards__feature-check" aria-hidden="true">&#10003;</span>
+									{ feat }
+								</li>
+							) ) }
 						</ul>
-						{ plan.buttonText && (
+						<div className="wbe-pricing-cards__footer">
 							<a
-								className="wbe-btn wbe-btn--pricing"
-								href={ plan.buttonUrl || '#' }
-								rel="noopener"
+								className="wbe-pricing-cards__btn"
+								href={ plan.buttonUrl }
 								style={ {
-									backgroundColor: plan.featured
-										? plan.accentColor
-										: 'transparent',
-									color: plan.featured
-										? '#fff'
-										: plan.accentColor,
-									borderColor: plan.accentColor,
+									backgroundColor: plan.featured ? '#ffffff' : buttonBg,
+									color: plan.featured ? featuredBg : buttonColor,
 								} }
 							>
 								{ plan.buttonText }
 							</a>
-						) }
+						</div>
 					</div>
 				) ) }
 			</div>

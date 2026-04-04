@@ -1,1 +1,19 @@
-/* Editor-only: no special overrides needed */
+/* ==========================================================================
+   Feature Grid Block — Editor-only Styles
+   ========================================================================== */
+
+/* Always show desktop column count in editor */
+.wp-block-wbcom-essential-feature-grid .wbe-feature-grid__grid {
+	grid-template-columns: repeat(var(--wbe-feature-cols, 3), 1fr) !important;
+}
+
+/* RichText fields are inline — force block rendering */
+.wp-block-wbcom-essential-feature-grid .wbe-feature-grid__title,
+.wp-block-wbcom-essential-feature-grid .wbe-feature-grid__description {
+	display: block;
+}
+
+/* Icon field: use input-like styling for text edit */
+.wp-block-wbcom-essential-feature-grid .wbe-feature-grid__icon {
+	cursor: default;
+}

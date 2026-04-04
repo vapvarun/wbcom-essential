@@ -1,76 +1,164 @@
+/* ==========================================================================
+   CTA Section Block — Frontend + Editor Styles
+   BEM: .wbe-cta__element--modifier
+   Mobile-first, uses --wbe-* design tokens
+   ========================================================================== */
+
+/* Base wrapper */
 .wbe-cta {
-	padding: 64px 24px;
-	background-size: cover;
-	background-position: center;
-}
-
-.wbe-cta--stacked .wbe-cta__text {
-	max-width: 680px;
-	margin: 0 auto;
-}
-
-.wbe-cta--stacked .wbe-cta__action {
-	margin-top: 24px;
-}
-
-.wbe-cta--inline {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	gap: 32px;
+	gap: var(--wbe-space-xl, 32px);
+	box-sizing: border-box;
+	width: 100%;
 }
 
-.wbe-cta--inline .wbe-cta__text {
-	flex: 1;
+/* Stacked layout (default) */
+.wbe-cta--stacked {
+	flex-direction: column;
+}
+
+/* Inline layout */
+.wbe-cta--inline {
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.wbe-cta--inline .wbe-cta__body {
+	flex: 1 1 auto;
+	min-width: 0;
 }
 
 .wbe-cta--inline .wbe-cta__action {
-	flex-shrink: 0;
+	flex: 0 0 auto;
 }
 
+/* Alignment */
+.wbe-cta--align-center.wbe-cta--stacked {
+	text-align: center;
+	align-items: center;
+}
+
+.wbe-cta--align-left.wbe-cta--stacked {
+	text-align: left;
+	align-items: flex-start;
+}
+
+.wbe-cta--align-right.wbe-cta--stacked {
+	text-align: right;
+	align-items: flex-end;
+}
+
+/* Body */
+.wbe-cta__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wbe-space-sm, 8px);
+}
+
+/* Heading */
 .wbe-cta__heading {
-	font-size: clamp(1.5rem, 3vw, 2.25rem);
-	font-weight: 700;
-	line-height: 1.2;
-	margin: 0 0 12px;
-}
-
-.wbe-cta__description {
-	font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-	line-height: 1.6;
 	margin: 0;
-	opacity: 0.85;
+	font-size: clamp(var(--wbe-font-2xl, 24px), 3.5vw, var(--wbe-font-4xl, 36px));
+	font-weight: var(--wbe-weight-bold, 700);
+	line-height: var(--wbe-leading-tight, 1.25);
+	color: #1e1e2e;
 }
 
-.wbe-btn--cta {
-	display: inline-block;
-	padding: 16px 40px;
-	border-radius: 8px;
-	font-size: 1.05rem;
-	font-weight: 600;
+/* Description */
+.wbe-cta__description {
+	margin: 0;
+	font-size: var(--wbe-font-md, 16px);
+	line-height: var(--wbe-leading-relaxed, 1.75);
+	color: #6c757d;
+}
+
+/* Action area */
+.wbe-cta__action {
+	display: flex;
+	align-items: center;
+}
+
+/* Button */
+.wbe-cta__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 14px 36px;
+	border-radius: var(--wbe-radius-md, 8px);
+	font-size: var(--wbe-font-md, 16px);
+	font-weight: var(--wbe-weight-semibold, 600);
+	line-height: 1;
 	text-decoration: none;
 	cursor: pointer;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-	line-height: 1.4;
+	white-space: nowrap;
+	background-color: #667eea;
+	color: #ffffff;
+	transition: background-color var(--wbe-transition-normal, 300ms ease),
+	            transform var(--wbe-transition-normal, 300ms ease),
+	            box-shadow var(--wbe-transition-normal, 300ms ease);
 }
 
-.wbe-btn--cta:hover {
+.wbe-cta__btn:hover,
+.wbe-cta__btn:focus-visible {
+	background-color: var(--wbe-cta-btn-hover-bg, #5a6fd6);
 	transform: translateY(-2px);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+	text-decoration: none;
 }
 
-@media (max-width: 640px) {
-	.wbe-cta {
-		padding: 40px 16px;
+.wbe-cta__btn:active {
+	transform: translateY(0);
+}
+
+/* Visibility utility classes */
+@media (min-width: 1025px) {
+	.wbe-hide-desktop {
+		display: none !important;
+	}
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+	.wbe-hide-tablet {
+		display: none !important;
 	}
 
+	.wbe-cta__heading {
+		font-size: var(--wbe-font-3xl, 30px);
+	}
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	/* Inline becomes stacked on mobile */
 	.wbe-cta--inline {
 		flex-direction: column;
 		text-align: center;
+		align-items: center;
 	}
 
-	.wbe-btn--cta {
-		width: 100%;
+	.wbe-cta--inline .wbe-cta__body {
 		text-align: center;
+		align-items: center;
+	}
+
+	.wbe-cta__heading {
+		font-size: var(--wbe-font-2xl, 24px);
+	}
+
+	.wbe-cta__description {
+		font-size: var(--wbe-font-sm, 14px);
+	}
+
+	.wbe-cta__btn {
+		width: 100%;
+		max-width: 320px;
+		justify-content: center;
 	}
 }

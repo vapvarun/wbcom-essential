@@ -1,1 +1,66 @@
-/* Editor-only: no special overrides needed */
+/**
+ * Tabs Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Sidebar tab list */
+.wbe-tabs-list {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-bottom: 8px;
+}
+
+.wbe-tabs-list__row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 10px;
+	background: #f0f0f1;
+	border-radius: 4px;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: border-color 0.15s ease;
+	font-size: 13px;
+}
+
+.wbe-tabs-list__row:hover {
+	background: #e8e8e9;
+}
+
+.wbe-tabs-list__row.is-selected {
+	border-color: #667eea;
+	background: #f0efff;
+}
+
+.wbe-tabs-list__num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	background: #667eea;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 11px;
+	font-weight: 700;
+	flex-shrink: 0;
+}
+
+.wbe-tabs-list__title {
+	flex: 1;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* In editor, show all panels (opacity only) */
+.block-editor-block-list__block .wbe-tabs__panel[hidden] {
+	display: block !important;
+	opacity: 0.35;
+}
+
+.block-editor-block-list__block .wbe-tabs__panel.is-active {
+	opacity: 1;
+}
