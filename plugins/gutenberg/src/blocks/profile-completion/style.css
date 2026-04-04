@@ -1,0 +1,225 @@
+/**
+ * Profile Completion Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ---- Design tokens ---- */
+.wbe-profile-completion {
+	--wbe-prc-progress: #667eea;
+	--wbe-prc-track: #e9ecef;
+	--wbe-prc-text: #1e1e2e;
+	--wbe-prc-done: #28a745;
+	--wbe-prc-todo: #6c757d;
+	--wbe-prc-bg: #ffffff;
+	--wbe-prc-radius: 12px;
+
+	width: 100%;
+}
+
+/* ── Inner wrapper ────────────────────────────────────────────────────────── */
+.wbe-profile-completion__inner {
+	background: var( --wbe-prc-bg );
+	border-radius: var( --wbe-prc-radius );
+	padding: 28px 24px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────── */
+/*  CIRCLE SKIN                                                                 */
+/* ──────────────────────────────────────────────────────────────────────────── */
+
+.wbe-profile-completion__circle-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.wbe-profile-completion__svg {
+	display: block;
+	overflow: visible;
+}
+
+/* Animate the progress arc on load */
+.wbe-profile-completion__progress {
+	transition: stroke-dashoffset 0.8s ease;
+}
+
+.wbe-profile-completion__label {
+	margin: 0;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var( --wbe-prc-todo );
+	text-align: center;
+}
+
+.wbe-profile-completion__pct-text {
+	font-family: inherit;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────── */
+/*  LINEAR SKIN                                                                 */
+/* ──────────────────────────────────────────────────────────────────────────── */
+
+.wbe-profile-completion__linear-wrap {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.wbe-profile-completion__linear-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.wbe-profile-completion__linear-label {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var( --wbe-prc-text );
+}
+
+.wbe-profile-completion__linear-pct {
+	font-size: 0.875rem;
+	font-weight: 700;
+}
+
+.wbe-profile-completion__bar-track {
+	width: 100%;
+	height: 10px;
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+.wbe-profile-completion__bar-fill {
+	height: 100%;
+	border-radius: 999px;
+	background: var( --wbe-prc-progress );
+	background-image: linear-gradient(
+		90deg,
+		var( --wbe-prc-progress ) 0%,
+		color-mix( in srgb, var( --wbe-prc-progress ) 70%, #fff ) 100%
+	);
+	transition: width 0.8s ease;
+	min-width: 4px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────── */
+/*  GROUP CHECKLIST                                                             */
+/* ──────────────────────────────────────────────────────────────────────────── */
+
+.wbe-profile-completion__group-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+}
+
+.wbe-profile-completion__group-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 0;
+	border-bottom: 1px solid rgba( 0, 0, 0, 0.06 );
+}
+
+.wbe-profile-completion__group-item:last-child {
+	border-bottom: none;
+}
+
+.wbe-profile-completion__group-icon {
+	flex-shrink: 0;
+	line-height: 0;
+	display: inline-flex;
+	align-items: center;
+}
+
+.wbe-profile-completion__group-label {
+	flex: 1;
+	font-size: 0.875rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+}
+
+.wbe-profile-completion__group-label:hover {
+	text-decoration: underline;
+}
+
+.is-done .wbe-profile-completion__group-label {
+	text-decoration: line-through;
+	opacity: 0.7;
+}
+
+.wbe-profile-completion__group-count {
+	flex-shrink: 0;
+	font-size: 0.75rem;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ── Empty / loading states ───────────────────────────────────────────────── */
+.wbe-profile-completion__loading,
+.wbe-profile-completion__error {
+	padding: 32px;
+	text-align: center;
+	color: #6c757d;
+	border: 2px dashed #e9ecef;
+	border-radius: 8px;
+}
+
+/* ── Visibility utilities ─────────────────────────────────────────────────── */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ── Tablet ───────────────────────────────────────────────────────────────── */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	.wbe-profile-completion__inner {
+		padding: 24px 18px;
+	}
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-profile-completion__inner {
+		padding: 20px 14px;
+		gap: 18px;
+	}
+
+	.wbe-profile-completion__group-item {
+		gap: 8px;
+		padding: 8px 0;
+	}
+
+	.wbe-profile-completion__group-label {
+		font-size: 0.82rem;
+	}
+
+	.wbe-profile-completion__linear-label,
+	.wbe-profile-completion__linear-pct {
+		font-size: 0.82rem;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}

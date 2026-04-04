@@ -1,0 +1,14 @@
+/**
+ * Profile Completion Block - Editor-only Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-profile-completion {
+	min-height: 60px;
+}
+
+/* ServerSideRender loading state */
+.wp-block-wbcom-essential-profile-completion .components-placeholder {
+	min-height: 120px;
+}

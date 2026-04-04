@@ -1,0 +1,256 @@
+/**
+ * Group Carousel Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ---- Design tokens ---- */
+.wbe-group-carousel {
+	--wbe-gc-card-bg: #ffffff;
+	--wbe-gc-name-color: #1e1e2e;
+	--wbe-gc-meta-color: #6c757d;
+	--wbe-gc-accent: var( --wbcom-color-primary, #667eea );
+	--wbe-gc-card-radius: 12px;
+	--wbe-gc-badge-bg: color-mix( in srgb, var( --wbe-gc-accent ) 12%, transparent );
+	--wbe-gc-card-hover-shadow: 0 8px 24px rgba( 0, 0, 0, 0.12 );
+
+	width: 100%;
+	position: relative;
+}
+
+/* ── Swiper container ─────────────────────────────────────────────────────── */
+.wbe-group-carousel__swiper {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 48px; /* room for pagination dots */
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.wbe-group-carousel__card {
+	background: var( --wbe-gc-card-bg );
+	border-radius: var( --wbe-gc-card-radius );
+	padding: 28px 16px 20px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	border: 1px solid rgba( 0, 0, 0, 0.06 );
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wbe-group-carousel__card:hover {
+	transform: translateY( -4px );
+	box-shadow: var( --wbe-gc-card-hover-shadow );
+}
+
+/* ── Avatar ───────────────────────────────────────────────────────────────── */
+.wbe-group-carousel__avatar {
+	margin-bottom: 16px;
+}
+
+.wbe-group-carousel__avatar a {
+	display: inline-block;
+	line-height: 0;
+}
+
+.wbe-group-carousel__avatar-img,
+.wbe-group-carousel__avatar img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	display: block;
+	border: 3px solid rgba( 0, 0, 0, 0.06 );
+	transition: border-color 0.2s ease;
+}
+
+.wbe-group-carousel__card:hover .wbe-group-carousel__avatar-img,
+.wbe-group-carousel__card:hover .wbe-group-carousel__avatar img {
+	border-color: var( --wbe-gc-accent );
+}
+
+/* ── Info ─────────────────────────────────────────────────────────────────── */
+.wbe-group-carousel__info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 8px;
+}
+
+/* ── Name ─────────────────────────────────────────────────────────────────── */
+.wbe-group-carousel__name {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.wbe-group-carousel__name a {
+	color: var( --wbe-gc-name-color );
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.wbe-group-carousel__name a:hover {
+	color: var( --wbe-gc-accent );
+}
+
+/* ── Member count badge ───────────────────────────────────────────────────── */
+.wbe-group-carousel__count {
+	display: inline-block;
+	padding: 3px 12px;
+	background: var( --wbe-gc-badge-bg );
+	color: var( --wbe-gc-accent );
+	border-radius: 999px;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
+/* ── Description ──────────────────────────────────────────────────────────── */
+.wbe-group-carousel__desc {
+	margin: 0;
+	font-size: 0.82rem;
+	line-height: 1.55;
+	color: var( --wbe-gc-meta-color );
+	text-align: center;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* ── Navigation arrows ────────────────────────────────────────────────────── */
+.wbe-group-carousel__swiper .swiper-button-prev,
+.wbe-group-carousel__swiper .swiper-button-next {
+	width: 40px;
+	height: 40px;
+	background: #ffffff;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.15 );
+	color: var( --wbe-gc-accent );
+	font-size: 22px;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+	top: calc( 50% - 24px );
+}
+
+.wbe-group-carousel__swiper .swiper-button-prev::after,
+.wbe-group-carousel__swiper .swiper-button-next::after {
+	display: none;
+}
+
+.wbe-group-carousel__swiper .swiper-button-prev:hover,
+.wbe-group-carousel__swiper .swiper-button-next:hover {
+	background: var( --wbe-gc-accent );
+	color: #ffffff;
+}
+
+.wbe-group-carousel__swiper .swiper-button-prev {
+	left: 8px;
+}
+
+.wbe-group-carousel__swiper .swiper-button-next {
+	right: 8px;
+}
+
+/* ── Pagination dots ──────────────────────────────────────────────────────── */
+.wbe-group-carousel__swiper .swiper-pagination {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+}
+
+.wbe-group-carousel__swiper .swiper-pagination-bullet {
+	width: 8px;
+	height: 8px;
+	background: #d0d0d0;
+	opacity: 1;
+	border-radius: 50%;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.wbe-group-carousel__swiper .swiper-pagination-bullet-active {
+	background: var( --wbe-gc-accent );
+	transform: scale( 1.3 );
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.wbe-group-carousel__empty {
+	text-align: center;
+	padding: 40px 20px;
+	color: var( --wbe-gc-meta-color );
+	margin: 0;
+	border: 2px dashed #e9ecef;
+	border-radius: 8px;
+}
+
+/* ── Loading / error (editor) ─────────────────────────────────────────────── */
+.wbe-group-carousel__loading,
+.wbe-group-carousel__error {
+	padding: 32px;
+	text-align: center;
+	color: #6c757d;
+	border: 2px dashed #e9ecef;
+	border-radius: 8px;
+}
+
+/* ── Visibility utilities ─────────────────────────────────────────────────── */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ── Tablet ───────────────────────────────────────────────────────────────── */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	.wbe-group-carousel__swiper .swiper-button-prev,
+	.wbe-group-carousel__swiper .swiper-button-next {
+		display: none;
+	}
+
+	.wbe-group-carousel__card {
+		padding: 20px 12px 16px;
+	}
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-group-carousel__avatar-img,
+	.wbe-group-carousel__avatar img {
+		width: 64px;
+		height: 64px;
+	}
+
+	.wbe-group-carousel__name {
+		font-size: 14px;
+	}
+
+	.wbe-group-carousel__card {
+		padding: 16px 10px 14px;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}

@@ -1,0 +1,19 @@
+/**
+ * Group Carousel Block - Editor-only Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-wbcom-essential-group-carousel {
+	min-height: 60px;
+}
+
+/* ServerSideRender loading state */
+.wp-block-wbcom-essential-group-carousel .components-placeholder {
+	min-height: 120px;
+}
+
+/* Prevent Swiper gestures from interfering with editor interaction */
+.wp-block-wbcom-essential-group-carousel .swiper {
+	pointer-events: none;
+}
