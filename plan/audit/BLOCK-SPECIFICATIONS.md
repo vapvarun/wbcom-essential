@@ -350,6 +350,11 @@ For each of our 30 blocks: what it renders, what controls it needs, and what Kad
 ## Phase 2: BuddyPress Blocks (6)
 
 All require `function_exists('buddypress')`. All dynamic render.
+Full audit: `plan/audit/bp-elementor-widgets.md`
+
+**Critical:** All BP blocks must handle BuddyPress version differences:
+- BP 12.0+: `bp_group_url()`, `bp_members_get_user_url()`
+- Older BP: `bp_group_permalink()`, `bp_core_get_user_domain()`
 
 ---
 
@@ -357,23 +362,49 @@ All require `function_exists('buddypress')`. All dynamic render.
 
 **What it does:** BuddyPress member cards in a grid layout.
 
+**Existing Elementor widgets merged:** MembersGrid + MembersLists (2 → 1 block with layout toggle)
+
 **Our Spec:**
-- **Render:** Dynamic (`render.php` with `BP_User_Query`)
-- **Query:** Count (4-24), type (active, newest, popular, alphabetical), exclude admins toggle
-- **Card:** Avatar (size responsive), display name (linked to profile), last active, friend button (if logged in), member type badge
-- **Layout:** Columns 2-4 (responsive), gap
-- **Colors:** Card bg, name color + hover, meta color, button colors
+- **Render:** Dynamic (`render.php` with `bp_has_members()`)
+- **Query args:** `type` (active/newest/popular), `per_page` (1-100, default 12), `max`, `member_type` (multi-select profile types)
+- **Card data per member:**
+  - Avatar (bp_member_avatar, size responsive)
+  - Display name + profile link
+  - Last active timestamp (relative)
+  - Online status indicator (5-min activity threshold)
+  - Member type badge (if BP 12.0+)
+  - Action buttons via `bp_directory_members_actions` hook: Add Friend, Follow, Message
+- **Layout modes:** Grid (2-4 columns responsive) or List (compact rows)
+- **Grid columns:** Desktop 3-4, tablet 2, mobile 1
+- **Filtering:** Member type filter tabs (optional, from registered bp_member_types)
+- **Show/hide toggles:** Avatar, last active, action buttons, online status, member type, filter bar
+- **View all link:** Toggle + custom text + URL
+- **Colors:** Card bg, name color + hover, meta color, button colors, online indicator color
+- **Empty state:** "Sorry, no members were found" message
 - **Standard:** All 38
 
 ---
 
 ### 14. Members Carousel (`wbcom-essential/members-carousel`)
 
-**What it does:** Same data as Members Grid but in carousel format.
+**What it does:** Same member data in Swiper carousel format.
+
+**Existing Elementor widget:** MemeberCarousel (Swiper.js based)
 
 **Our Spec:**
-- Same query and card as Members Grid
-- **Carousel:** Visible cards (responsive: 4/3/1), autoplay, dots, arrows
+- **Render:** Dynamic (same `bp_has_members()` query as Members Grid)
+- **Card:** Same data as Members Grid (avatar, name, last active, optional action buttons)
+- **Carousel (Swiper-compatible settings):**
+  - `slidesPerView`: responsive (desktop 3-4 / tablet 2 / mobile 1)
+  - `slidesPerGroup`: responsive
+  - `navigation`: arrows / dots / both / none
+  - `autoplay`: toggle + speed (1000-10000ms, default 5000)
+  - `pauseOnHover`: toggle
+  - `loop`: infinite loop toggle
+  - `effect`: slide / fade
+  - `speed`: animation speed (300-1500ms)
+  - `direction`: ltr / rtl
+- **Show/hide:** Last active timestamp, action buttons
 - **Standard:** All 38
 
 ---
@@ -382,36 +413,60 @@ All require `function_exists('buddypress')`. All dynamic render.
 
 **What it does:** BuddyPress group cards in a grid layout.
 
+**Existing Elementor widgets merged:** GroupGrid + GroupsLists (2 → 1 block with layout toggle)
+
 **Our Spec:**
-- **Render:** Dynamic (`render.php` with `BP_Groups_Group::get()`)
-- **Query:** Count (4-24), type (active, newest, popular, alphabetical), show hidden toggle (admins only)
-- **Card:** Group avatar, group name (linked), member count, group type badge, join/leave button (if logged in), short description
-- **Layout:** Columns 2-4 (responsive), gap
+- **Render:** Dynamic (`render.php` with `bp_has_groups()`)
+- **Query args:** `type` (active/newest/popular/random/alphabetical), `per_page` (1-100, default 12), `max`, `group_type` (multi-select group types)
+- **Card data per group:**
+  - Group avatar (bp_group_avatar, size responsive)
+  - Group name + group URL link (BP version-aware)
+  - Member count (e.g., "25 members")
+  - Last active timestamp
+  - Group type badge
+  - Group description excerpt
+  - Group admins (names/avatars)
+  - Action buttons via `bp_directory_groups_actions` hook: Join/Leave, Message
+- **Layout modes:** Grid (2-4 columns responsive) or List (compact rows)
+- **Filtering:** Group type filter tabs (optional, from registered bp_group_types)
+- **Show/hide toggles:** Avatar, member count, description, admins, action buttons, filter bar
+- **View all link:** Toggle + custom text + URL
+- **Empty state:** "There were no groups found" + optional "Create a group" link
 - **Standard:** All 38
 
 ---
 
 ### 16. Group Carousel (`wbcom-essential/group-carousel`)
 
-**What it does:** Same data as Groups Grid but in carousel format.
+**What it does:** Same group data in Swiper carousel format.
+
+**Existing Elementor widget:** GroupCarousel (Swiper.js based)
 
 **Our Spec:**
-- Same query and card as Groups Grid
-- **Carousel:** Visible cards (responsive: 4/3/1), autoplay, dots, arrows
+- **Render:** Dynamic (same `bp_has_groups()` query as Groups Grid)
+- **Card:** Same data as Groups Grid (avatar, name, member count)
+- **Carousel:** Same Swiper settings as Members Carousel (slidesPerView, navigation, autoplay, loop, effect, speed, direction — all responsive)
 - **Standard:** All 38
 
 ---
 
 ### 17. Activity Feed (`wbcom-essential/activity-feed`)
 
-**What it does:** BuddyPress activity stream — latest site-wide or per-component activities.
+**What it does:** BuddyPress activity stream — latest site-wide or per-component activities. NEW block (no Elementor equivalent).
 
 **Our Spec:**
 - **Render:** Dynamic (`render.php` with `bp_has_activities()`)
-- **Query:** Count (5-20), component filter (all, activity, groups, friends, mentions), type filter
-- **Item:** User avatar, user name, action text, timestamp (relative), content preview
-- **Layout:** List (vertical), compact option (smaller avatars, less spacing)
-- **Load more:** Button to load next page (AJAX)
+- **Query:** Count (5-20), component filter (all, activity, groups, friends, mentions), type filter, scope
+- **Item data:**
+  - User avatar (linked to profile)
+  - User name
+  - Action text (activity description)
+  - Timestamp (relative, e.g., "2 hours ago")
+  - Content preview (if activity has content)
+  - Activity type icon
+- **Layout:** List (vertical feed), compact option (smaller avatars, less spacing)
+- **Load more:** Button to load next page (AJAX via REST endpoint)
+- **Logged out:** Show public activities only, no action buttons
 - **Standard:** All 38
 
 ---
@@ -420,28 +475,45 @@ All require `function_exists('buddypress')`. All dynamic render.
 
 **What it does:** Progress indicator showing how complete the logged-in user's profile is.
 
+**Existing Elementor widget:** ProfileCompletion
+
 **Our Spec:**
-- **Render:** Dynamic (`render.php` with xprofile field checks)
-- **Progress:** Percentage bar (0-100%), step checklist
-- **Steps:** Avatar uploaded, cover image, profile fields filled (per field group)
-- **Layout:** Horizontal bar + checklist below, or circular progress + checklist
-- **Colors:** Progress bar color, incomplete step color, complete step color
-- **Logged out:** Show generic "Complete your profile" CTA with login link
+- **Render:** Dynamic (`render.php` with xprofile field group checks)
+- **Progress calculation:**
+  - Avatar uploaded (yes/no)
+  - Cover image uploaded (yes/no)
+  - Each xprofile field group: % of required fields filled
+  - Overall percentage (weighted)
+- **Display:**
+  - Progress bar (horizontal, 0-100%) OR circular progress
+  - Step checklist below showing what's complete / incomplete
+  - Each step links to the relevant profile edit section
+- **Layout:** Horizontal bar + checklist (default), or circular + checklist
+- **Colors:** Progress bar filled color (accent), unfilled color, complete step color, incomplete step color
+- **Logged out:** Show "Complete your profile" CTA with login link (or hide block)
+- **Logged in, 100% complete:** Show "Profile complete!" message with optional confetti
 - **Standard:** All 38
 
 ---
 
-## Phase 3: WooCommerce + EDD Blocks (7)
+## Phase 3: WooCommerce + EDD Blocks (10)
+
+Full EDD audit: `plan/audit/edd-existing-blocks.md`
+Existing EDD blocks have significant functionality — we must preserve ALL of it.
 
 ---
 
 ### 19. Product Grid (`wbcom-essential/product-grid`)
 
+**Existing block:** product-grid (WooCommerce, 24 attributes)
+
 **Our Spec:**
-- **Render:** Dynamic (WC_Product_Query)
-- **Query:** Category, tag, on-sale, featured, stock status, count, order
-- **Card:** Product image, title, price (regular + sale), rating stars, add-to-cart button
-- **Layout:** Columns 2-4 (responsive)
+- **Render:** Dynamic (`render.php` with `WC_Product_Query`)
+- **Query:** Category, tag, on-sale filter, featured filter, stock status, count (rows × columns), orderBy, order
+- **Card:** Product image (aspect ratio control), title, price (regular + sale with badge), rating stars, add-to-cart button
+- **Display toggles:** showSaleBadge, showRating, showPrice, showAddToCart
+- **Layout:** Columns 2-4 (responsive), gap, image ratio (1:1, 4:3, 16:9)
+- **Colors:** Card bg, card border radius, title color, price color, sale badge color + bg
 - **Standard:** All 38
 
 ---
@@ -450,7 +522,7 @@ All require `function_exists('buddypress')`. All dynamic render.
 
 **Our Spec:**
 - Same query and card as Product Grid
-- **Carousel:** Visible cards (responsive), autoplay, dots, arrows
+- **Carousel:** Swiper settings (slidesPerView responsive, autoplay, dots, arrows, loop, speed)
 - **Standard:** All 38
 
 ---
@@ -458,10 +530,11 @@ All require `function_exists('buddypress')`. All dynamic render.
 ### 21. Customer Reviews (`wbcom-essential/customer-reviews`)
 
 **Our Spec:**
-- **Render:** Dynamic (WC product reviews query)
-- **Query:** Product ID (or latest across all), count, rating filter
-- **Card:** Reviewer name, rating stars, review text, date, verified badge
-- **Layout:** Carousel or grid
+- **Render:** Dynamic (`get_comments()` with type=review or edd_review)
+- **Query:** Product ID (specific or latest across all), count (1-6), min rating filter
+- **Card:** Reviewer name, star rating (1-5), review text (word-limited), date, verified badge, product name
+- **Aggregate:** Average rating + total count displayed above cards
+- **Layout:** Carousel or grid (2-3 columns)
 - **Standard:** All 38
 
 ---
@@ -470,18 +543,101 @@ All require `function_exists('buddypress')`. All dynamic render.
 
 **Our Spec:**
 - **Render:** Dynamic
-- **Content:** Background image/color, heading, subheading, CTA button, badge text
-- **Layout:** Full-width, overlay text positioning (left/center/right)
+- **Content:** Background image/color/gradient, heading (RichText), subheading (RichText), CTA button, badge text
+- **Layout:** Full-width, overlay text positioning (left/center/right), min-height responsive
 - **Standard:** All 38
 
 ---
 
-### 23-25. EDD Blocks (migrate existing 3)
+### 23. EDD Account Dashboard (`wbcom-essential/edd-account-dashboard`)
 
-Migrate `edd-account-dashboard`, `edd-checkout-enhanced`, `edd-order-success` to new standard:
-- Add all 38 common denominator features
-- Keep existing functionality
-- Update to shared component system
+**Existing block:** Fully built with REST API, AJAX tabs, 6 tab views. KEEP ALL FUNCTIONALITY.
+
+**Our Spec (migrate to new standard, preserve features):**
+- **Render:** Dynamic
+- **Attributes:** defaultTab (dashboard/downloads/purchases/profile/subscriptions/licenses), showSupport (toggle), supportUrl, supportLabel
+- **Tab system (6 tabs):**
+  - **Dashboard:** User greeting, stats cards (total orders, total spent, active licenses, active subscriptions), recent orders table (3 latest)
+  - **Downloads:** Grouped by product, file list with download links
+  - **Purchases:** Order history table (number, date, amount, status)
+  - **Profile:** Renders `[edd_profile_editor]` shortcode
+  - **Subscriptions:** (conditional on EDD Recurring) — product, plan, status, amount/period, renewal date, countdown urgency, cancel URL
+  - **Licenses:** (conditional on EDD Software Licensing) — license key with copy-to-clipboard, status, activations
+- **REST API:** `POST wbcom/v1/edd-account/{tab}` — AJAX tab switching with client-side cache
+- **Frontend JS:** Tab switching via fetch(), History API URL updates, license key copy, cancel confirmation dialog
+- **Security:** Nonce validation, tab whitelist, wp_kses_post output, referer check
+- **Sidebar nav:** Sticky, active state (aria-current), logout link, support link (target=_blank)
+- **Logged out:** Show login form with redirect back
+- **CSS variables:** `--edd-sidebar-width`, `--edd-sidebar-bg`, `--edd-nav-active-color`, font scale
+- **Standard:** All 38
+
+---
+
+### 24. EDD Checkout Enhanced (`wbcom-essential/edd-checkout-enhanced`)
+
+**Existing block:** Progress bar + trust badges + reviews + recommendations. KEEP ALL.
+
+**Our Spec (migrate to new standard):**
+- **Render:** Dynamic
+- **Attributes:** showProgressBar (toggle), showTrustBadges (toggle), trustBadgeText (string), showReviews (toggle), reviewCount (1-6), showRecommendations (toggle), recommendationCount (1-6)
+- **Sections:**
+  - **Progress bar:** 4 steps (Cart → Details → Payment → Complete), checkmark for completed, connector lines
+  - **Checkout form:** Renders `[download_checkout]` shortcode
+  - **Trust badges:** 3 badges (secure checkout, money-back, priority support) + payment method icons (Visa, Mastercard, PayPal, Stripe SVGs)
+  - **Reviews:** (conditional on EDD Reviews) — star ratings from cart products, review cards (title, text trimmed to 25 words, author, product, rating)
+  - **Recommendations:** (conditional on EDD Recommendations Plus) — `edd_rp_get_multi_suggestions()`, product cards with thumbnail, name, rating, price, add-to-cart button
+- **Standard:** All 38
+
+---
+
+### 25. EDD Order Success (`wbcom-essential/edd-order-success`)
+
+**Existing block:** Success header + receipt + next steps. KEEP ALL.
+
+**Our Spec (migrate to new standard):**
+- **Render:** Dynamic
+- **Attributes:** showSuccessHeader (toggle), successMessage (string), showNextSteps (toggle), accountPageUrl (string)
+- **Sections:**
+  - **Success header:** Animated SVG checkmark (#16a34a), heading, subtitle
+  - **Receipt:** Renders `[edd_receipt]` shortcode
+  - **Next steps cards:** "Download Your Files" (always), "View License Keys" (if EDD SL), "Manage Subscription" (if EDD Recurring) — each links to account dashboard with tab parameter
+- **Account page URL resolution:** 1) attribute, 2) search for page with our dashboard block, 3) EDD purchase_history_page option, 4) home_url
+- **Standard:** All 38
+
+---
+
+### 26. EDD Product Catalog (`wbcom-essential/edd-product-catalog`)
+
+**Existing block:** AJAX-powered product grid with filters. KEEP ALL.
+
+**Our Spec (migrate to new standard):**
+- **Render:** Dynamic
+- **Attributes:** columns (1-4, default 3), perPage (default 12), showSearch (toggle), showCategoryFilter (toggle), showPriceFilter (toggle), showSort (toggle), defaultCategory, defaultSort
+- **AJAX:** Product grid with real-time category, price range, and search filtering
+- **Standard:** All 38
+
+---
+
+### 27. EDD Product Filter (`wbcom-essential/edd-product-filter`)
+
+**Existing block:** Sticky filter navigation bar. KEEP ALL.
+
+**Our Spec (migrate to new standard):**
+- **Render:** Dynamic
+- **Attributes:** filters (array of {label, target} objects, 9 defaults), sticky (toggle), stopAtCover (toggle)
+- **Frontend JS:** Sticky positioning, scroll-to-section on filter click, active state tracking
+- **Standard:** All 38
+
+---
+
+### 28. Category Grid (`wbcom-essential/category-grid`)
+
+**Existing block:** WordPress category display grid. KEEP ALL.
+
+**Our Spec (migrate to new standard):**
+- **Render:** Dynamic
+- **Attributes (16):** columns (responsive: desktop/tablet/mobile), gap, cardBorderRadius, selectedCategories (array), excludeEmpty, maxCategories, showPostCount, showImage, imageRatio, orderBy, order, useThemeColors, cardBgColor, nameColor, countColor, overlayColor
+- **Standard:** All 38
 
 ---
 
@@ -489,7 +645,7 @@ Migrate `edd-account-dashboard`, `edd-checkout-enhanced`, `edd-order-success` to
 
 ---
 
-### 26. Login Form (`wbcom-essential/login-form`)
+### 29. Login Form (`wbcom-essential/login-form`)
 
 **Our Spec:**
 - **Render:** Dynamic
@@ -500,7 +656,7 @@ Migrate `edd-account-dashboard`, `edd-checkout-enhanced`, `edd-order-success` to
 
 ---
 
-### 27. Progress Bar (`wbcom-essential/progress-bar`)
+### 30. Progress Bar (`wbcom-essential/progress-bar`)
 
 **Our Spec:**
 - **Render:** Dynamic
@@ -511,7 +667,7 @@ Migrate `edd-account-dashboard`, `edd-checkout-enhanced`, `edd-order-success` to
 
 ---
 
-### 28. Text Rotator (`wbcom-essential/text-rotator`)
+### 31. Text Rotator (`wbcom-essential/text-rotator`)
 
 **Our Spec:**
 - **Render:** Dynamic
@@ -522,7 +678,7 @@ Migrate `edd-account-dashboard`, `edd-checkout-enhanced`, `edd-order-success` to
 
 ---
 
-### 29. Portfolio Grid (`wbcom-essential/portfolio-grid`)
+### 32. Portfolio Grid (`wbcom-essential/portfolio-grid`)
 
 **Our Spec:**
 - **Render:** Dynamic (WP_Query for portfolio/project CPT or any CPT)
@@ -533,7 +689,7 @@ Migrate `edd-account-dashboard`, `edd-checkout-enhanced`, `edd-order-success` to
 
 ---
 
-### 30. Posts Ticker (`wbcom-essential/posts-ticker`)
+### 33. Posts Ticker (`wbcom-essential/posts-ticker`)
 
 **Our Spec:**
 - **Render:** Dynamic (WP_Query)
@@ -549,9 +705,27 @@ Migrate `edd-account-dashboard`, `edd-checkout-enhanced`, `edd-order-success` to
 | Phase | Blocks | Render Type |
 |-------|--------|-------------|
 | 1 (Marketing) | 12 | Dynamic (PHP generates scoped CSS) |
-| 2 (BuddyPress) | 6 | Dynamic (server-side BP/bbPress queries) |
-| 3 (WooCommerce + EDD) | 7 | Dynamic (WC/EDD queries) |
+| 2 (BuddyPress) | 6 | Dynamic (server-side BP queries) |
+| 3 (WooCommerce + EDD) | 10 | Dynamic (WC/EDD queries + REST API) |
 | 4 (Nice-to-have) | 5 | Dynamic |
-| **Total** | **30** | **All dynamic render** |
+| **Total** | **33** | **All dynamic render** |
+
+### Phase 3 Breakdown (10 blocks)
+| # | Block | Source | Status |
+|---|-------|--------|--------|
+| 19 | product-grid | Existing (WooCommerce) | Rebuild to standard |
+| 20 | product-carousel | New | New block |
+| 21 | customer-reviews | Existing (WC/EDD) | Rebuild to standard |
+| 22 | promo-banner | New | New block |
+| 23 | edd-account-dashboard | Existing (complex, REST API, 6 tabs) | Migrate — preserve ALL functionality |
+| 24 | edd-checkout-enhanced | Existing (progress bar, badges, reviews, recs) | Migrate — preserve ALL functionality |
+| 25 | edd-order-success | Existing (success header, receipt, next steps) | Migrate — preserve ALL functionality |
+| 26 | edd-product-catalog | Existing (AJAX filters) | Migrate — preserve ALL functionality |
+| 27 | edd-product-filter | Existing (sticky nav) | Migrate — preserve ALL functionality |
+| 28 | category-grid | Existing (WordPress core) | Migrate — preserve ALL functionality |
 
 Every block: 38 common denominator features + block-specific features listed above.
+
+### Audit Source Files
+- `plan/audit/bp-elementor-widgets.md` — Full BP widget audit (11 widgets, all controls, queries, templates)
+- `plan/audit/edd-existing-blocks.md` — Full EDD block audit (8 blocks, all attributes, render output, REST endpoints)

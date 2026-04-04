@@ -168,19 +168,23 @@ All dynamic render (render.php). Conditional on `function_exists('buddypress')`.
 
 ---
 
-## Phase 3: WooCommerce + EDD Blocks (7)
+## Phase 3: WooCommerce + EDD Blocks (10)
 
 Dynamic render. Conditional on WooCommerce/EDD active.
+Full EDD audit: `plan/audit/edd-existing-blocks.md`
 
 | # | Block | Source | Notes |
 |---|-------|--------|-------|
-| 19 | `product-grid` | UniversalProduct | WC_Product_Query, grid layout |
-| 20 | `product-carousel` | (from UniversalProduct) | Same query, carousel viewScript |
-| 21 | `customer-reviews` | CustomerReview + WcTestimonial | WC product reviews, carousel |
+| 19 | `product-grid` | Existing WC block (24 attrs) | Rebuild with standard |
+| 20 | `product-carousel` | New | Same WC query, carousel viewScript |
+| 21 | `customer-reviews` | CustomerReview + WcTestimonial | WC/EDD reviews, carousel |
 | 22 | `promo-banner` | AddBanner | Category/promo image banner |
-| 23 | `edd-account-dashboard` | (existing EDD block) | **Migrate** existing block to new standard |
-| 24 | `edd-checkout-enhanced` | (existing EDD block) | **Migrate** existing block to new standard |
-| 25 | `edd-order-success` | (existing EDD block) | **Migrate** existing block to new standard |
+| 23 | `edd-account-dashboard` | Existing (REST API, 6 tabs, AJAX) | **Migrate** — preserve ALL functionality |
+| 24 | `edd-checkout-enhanced` | Existing (progress bar, badges, reviews, recs) | **Migrate** — preserve ALL functionality |
+| 25 | `edd-order-success` | Existing (success header, receipt, next steps) | **Migrate** — preserve ALL functionality |
+| 26 | `edd-product-catalog` | Existing (AJAX product grid + filters) | **Migrate** — preserve ALL functionality |
+| 27 | `edd-product-filter` | Existing (sticky filter bar) | **Migrate** — preserve ALL functionality |
+| 28 | `category-grid` | Existing (16 attrs, WP categories) | **Migrate** — preserve ALL functionality |
 
 ---
 
@@ -188,11 +192,11 @@ Dynamic render. Conditional on WooCommerce/EDD active.
 
 | # | Block | Priority |
 |---|-------|----------|
-| 26 | `login-form` | Medium |
-| 27 | `progress-bar` | Medium |
-| 28 | `text-rotator` | Medium |
-| 29 | `portfolio-grid` | Medium |
-| 30 | `posts-ticker` | Low |
+| 29 | `login-form` | Medium |
+| 30 | `progress-bar` | Medium |
+| 31 | `text-rotator` | Medium |
+| 32 | `portfolio-grid` | Medium |
+| 33 | `posts-ticker` | Low |
 
 ---
 
@@ -249,9 +253,9 @@ Phase 1: Core Marketing (12 blocks)     ← ~6 hrs
 Phase 2: BuddyPress (6 blocks)          ← ~4 hrs
   All dynamic render.php + server-side queries
 
-Phase 3: WooCommerce + EDD (7 blocks)   ← ~4 hrs
-  3 EDD blocks = migrate existing to new standard
-  4 WC blocks = new dynamic render
+Phase 3: WooCommerce + EDD (10 blocks)  ← ~6 hrs
+  6 existing blocks = migrate to new standard (preserve ALL functionality)
+  4 new blocks = new dynamic render
 
 Phase 4: Nice-to-Have (5 blocks)        ← ~3 hrs
 
@@ -294,10 +298,12 @@ Final: Build + Test + Patterns           ← ~2 hrs
 
 | What | Count |
 |------|-------|
-| Blocks to create | 30 |
-| Blocks to delete | 21 |
+| Blocks to create/rebuild | 33 |
+| Blocks to delete (not rebuild) | 18 |
 | Shared components | 7 |
 | Shared utils | 3 |
 | PHP classes | 3 |
 | Block patterns | 13 (update) |
-| Total JS files | ~150 (30 blocks × 5 files avg) |
+| Total JS files | ~165 (33 blocks × 5 files avg) |
+| Blocks with REST API | 2 (edd-account-dashboard, activity-feed) |
+| Blocks requiring Swiper.js | 4 (members-carousel, group-carousel, product-carousel, testimonial-carousel) |
