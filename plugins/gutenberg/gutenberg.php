@@ -15,6 +15,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 // BlockRegistrar lives next to this file.
 require_once __DIR__ . '/BlockRegistrar.php';
 
+// Shared PHP infrastructure for v2 blocks.
+require_once __DIR__ . '/includes/class-wbe-css.php';
+require_once __DIR__ . '/includes/class-wbe-schema.php';
+require_once __DIR__ . '/includes/class-wbe-fonts.php';
+
+// Initialize shared infrastructure.
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::init();
+\WBCOM_ESSENTIAL\Gutenberg\WBE_Schema::init();
+\WBCOM_ESSENTIAL\Gutenberg\WBE_Fonts::init();
+
 /**
  * Register the "wbcom-essential" block category so all blocks are grouped together.
  */
