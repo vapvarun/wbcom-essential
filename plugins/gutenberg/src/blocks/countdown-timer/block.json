@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/countdown-timer",
+	"version": "1.0.0",
+	"title": "Countdown Timer",
+	"category": "wbcom-essential",
+	"icon": "clock",
+	"description": "Live countdown timer to a target date with days, hours, minutes, and seconds.",
+	"keywords": [ "countdown", "timer", "sale", "launch", "event" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"targetDate": {
+			"type": "string",
+			"default": ""
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"expiredMessage": {
+			"type": "string",
+			"default": "This offer has ended!"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#1e1e1e"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"showLabels": {
+			"type": "boolean",
+			"default": true
+		},
+		"size": {
+			"type": "string",
+			"default": "large",
+			"enum": [ "small", "large" ]
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

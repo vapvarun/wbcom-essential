@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/stats-counter",
+	"version": "1.0.0",
+	"title": "Stats Counter",
+	"category": "wbcom-essential",
+	"icon": "chart-bar",
+	"description": "Animated number counters that count up when scrolled into view.",
+	"keywords": [ "stats", "counter", "numbers", "metrics", "achievements" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"stats": {
+			"type": "array",
+			"default": [
+				{ "number": 10000, "label": "Happy Customers", "prefix": "", "suffix": "+" },
+				{ "number": 99, "label": "Satisfaction Rate", "prefix": "", "suffix": "%" },
+				{ "number": 50, "label": "Countries", "prefix": "", "suffix": "+" },
+				{ "number": 24, "label": "Support", "prefix": "", "suffix": "/7" }
+			]
+		},
+		"columns": {
+			"type": "number",
+			"default": 4
+		},
+		"duration": {
+			"type": "number",
+			"default": 2000
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#111827"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#6366f1"
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

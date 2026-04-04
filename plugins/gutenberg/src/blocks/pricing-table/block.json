@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/pricing-table",
+	"version": "1.0.0",
+	"title": "Pricing Table",
+	"category": "wbcom-essential",
+	"icon": "money-alt",
+	"description": "Pricing comparison table with multiple plan columns, feature lists, and CTA buttons.",
+	"keywords": [ "pricing", "plans", "table", "comparison" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"plans": {
+			"type": "array",
+			"default": [
+				{
+					"name": "Free",
+					"price": "$0",
+					"period": "/month",
+					"features": "5 Projects\n10 GB Storage\nEmail Support",
+					"buttonText": "Get Started",
+					"buttonUrl": "",
+					"featured": false,
+					"accentColor": "#6366f1"
+				},
+				{
+					"name": "Pro",
+					"price": "$29",
+					"period": "/month",
+					"features": "Unlimited Projects\n100 GB Storage\nPriority Support\nAdvanced Analytics",
+					"buttonText": "Start Free Trial",
+					"buttonUrl": "",
+					"featured": true,
+					"accentColor": "#6366f1"
+				},
+				{
+					"name": "Enterprise",
+					"price": "$99",
+					"period": "/month",
+					"features": "Everything in Pro\nUnlimited Storage\nDedicated Support\nCustom Integrations\nSLA Guarantee",
+					"buttonText": "Contact Sales",
+					"buttonUrl": "",
+					"featured": false,
+					"accentColor": "#6366f1"
+				}
+			]
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

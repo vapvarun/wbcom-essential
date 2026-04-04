@@ -1,0 +1,11 @@
+.wbe-cta .wbe-cta__heading [data-rich-text-placeholder] {
+	opacity: 0.5;
+}
+
+.wbe-cta .wbe-cta__description [data-rich-text-placeholder] {
+	opacity: 0.4;
+}
+
+.wbe-cta .wbe-btn--cta {
+	cursor: default;
+}

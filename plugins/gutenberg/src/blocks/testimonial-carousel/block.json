@@ -1,0 +1,77 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/testimonial-carousel",
+	"version": "1.0.0",
+	"title": "Testimonial Carousel",
+	"category": "wbcom-essential",
+	"icon": "format-quote",
+	"description": "Rotating testimonial carousel with quotes, author details, and navigation.",
+	"keywords": [ "testimonial", "review", "carousel", "quote", "social proof" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"testimonials": {
+			"type": "array",
+			"default": [
+				{
+					"quote": "This product completely transformed our workflow. Highly recommended!",
+					"name": "Sarah Johnson",
+					"role": "CEO, TechCorp",
+					"avatar": ""
+				},
+				{
+					"quote": "Outstanding support and incredible features. Best decision we made.",
+					"name": "Mike Chen",
+					"role": "CTO, StartupXYZ",
+					"avatar": ""
+				},
+				{
+					"quote": "Simple to use yet incredibly powerful. Our team loves it.",
+					"name": "Emily Davis",
+					"role": "Product Manager, DesignCo",
+					"avatar": ""
+				}
+			]
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplaySpeed": {
+			"type": "number",
+			"default": 5000
+		},
+		"showDots": {
+			"type": "boolean",
+			"default": true
+		},
+		"showArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#f8fafc"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#1e1e1e"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#6366f1"
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

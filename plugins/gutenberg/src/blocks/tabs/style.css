@@ -1,0 +1,65 @@
+.wbe-tabs {
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.wbe-tabs__nav {
+	display: flex;
+	overflow-x: auto;
+	border-bottom: 1px solid #e5e7eb;
+	background: #f9fafb;
+}
+
+.wbe-tabs__tab {
+	padding: 14px 24px;
+	border: none;
+	background: none;
+	font-size: 0.95rem;
+	font-weight: 500;
+	color: #6b7280;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: color 0.2s ease;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+}
+
+.wbe-tabs__tab:hover {
+	color: #374151;
+}
+
+.wbe-tabs--underline .wbe-tabs__tab.is-active {
+	border-bottom-color: currentColor;
+	background: #fff;
+}
+
+.wbe-tabs--boxed .wbe-tabs__tab.is-active {
+	background: #fff;
+	border-bottom-color: #fff;
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 -1px 0 #e5e7eb;
+}
+
+.wbe-tabs__panels {
+	padding: 24px;
+	background: #fff;
+}
+
+.wbe-tabs__panel p {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.7;
+	color: #4b5563;
+}
+
+@media (max-width: 640px) {
+	.wbe-tabs__tab {
+		padding: 10px 16px;
+		font-size: 0.85rem;
+	}
+
+	.wbe-tabs__panels {
+		padding: 16px;
+	}
+}

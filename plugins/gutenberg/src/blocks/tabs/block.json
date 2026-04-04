@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/tabs",
+	"version": "1.0.0",
+	"title": "Tabs",
+	"category": "wbcom-essential",
+	"icon": "table-row-after",
+	"description": "Tabbed content panels for organizing information.",
+	"keywords": [ "tabs", "tabbed", "panels", "sections" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"tabs": {
+			"type": "array",
+			"default": [
+				{ "title": "Tab 1", "content": "Content for the first tab goes here." },
+				{ "title": "Tab 2", "content": "Content for the second tab goes here." },
+				{ "title": "Tab 3", "content": "Content for the third tab goes here." }
+			]
+		},
+		"activeTab": {
+			"type": "number",
+			"default": 0
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"tabStyle": {
+			"type": "string",
+			"default": "underline",
+			"enum": [ "underline", "boxed" ]
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,89 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/hero",
+	"version": "1.0.0",
+	"title": "Hero Section",
+	"category": "wbcom-essential",
+	"icon": "cover-image",
+	"description": "Full-width hero section with gradient background, heading, subheading, and CTA buttons.",
+	"keywords": [ "hero", "banner", "header", "landing" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"subheading": {
+			"type": "string",
+			"default": ""
+		},
+		"gradientFrom": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"gradientTo": {
+			"type": "string",
+			"default": "#8b5cf6"
+		},
+		"gradientAngle": {
+			"type": "number",
+			"default": 135
+		},
+		"overlayOpacity": {
+			"type": "number",
+			"default": 0
+		},
+		"backgroundImage": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundImageId": {
+			"type": "number",
+			"default": 0
+		},
+		"minHeight": {
+			"type": "number",
+			"default": 500
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"primaryButtonText": {
+			"type": "string",
+			"default": "Get Started"
+		},
+		"primaryButtonUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"secondaryButtonText": {
+			"type": "string",
+			"default": "Learn More"
+		},
+		"secondaryButtonUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"showSecondaryButton": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

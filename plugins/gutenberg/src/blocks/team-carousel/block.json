@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/team-carousel",
+	"version": "1.0.0",
+	"title": "Team Carousel",
+	"category": "wbcom-essential",
+	"icon": "groups",
+	"description": "Carousel of team member cards with photo, name, role, and bio.",
+	"keywords": [ "team", "carousel", "members", "staff", "people" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"members": {
+			"type": "array",
+			"default": [
+				{
+					"name": "Jane Smith",
+					"role": "CEO & Founder",
+					"bio": "Visionary leader with 15+ years in the industry.",
+					"photo": ""
+				},
+				{
+					"name": "John Doe",
+					"role": "CTO",
+					"bio": "Full-stack engineer passionate about scalable architecture.",
+					"photo": ""
+				},
+				{
+					"name": "Emily Chen",
+					"role": "Head of Design",
+					"bio": "Award-winning designer focused on user experience.",
+					"photo": ""
+				},
+				{
+					"name": "Mike Wilson",
+					"role": "VP of Marketing",
+					"bio": "Growth strategist with a track record of 10x results.",
+					"photo": ""
+				}
+			]
+		},
+		"visibleCards": {
+			"type": "number",
+			"default": 3
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplaySpeed": {
+			"type": "number",
+			"default": 4000
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

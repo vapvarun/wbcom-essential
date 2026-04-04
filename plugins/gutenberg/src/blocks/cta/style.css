@@ -1,0 +1,76 @@
+.wbe-cta {
+	padding: 64px 24px;
+	background-size: cover;
+	background-position: center;
+}
+
+.wbe-cta--stacked .wbe-cta__text {
+	max-width: 680px;
+	margin: 0 auto;
+}
+
+.wbe-cta--stacked .wbe-cta__action {
+	margin-top: 24px;
+}
+
+.wbe-cta--inline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.wbe-cta--inline .wbe-cta__text {
+	flex: 1;
+}
+
+.wbe-cta--inline .wbe-cta__action {
+	flex-shrink: 0;
+}
+
+.wbe-cta__heading {
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+	line-height: 1.2;
+	margin: 0 0 12px;
+}
+
+.wbe-cta__description {
+	font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+	line-height: 1.6;
+	margin: 0;
+	opacity: 0.85;
+}
+
+.wbe-btn--cta {
+	display: inline-block;
+	padding: 16px 40px;
+	border-radius: 8px;
+	font-size: 1.05rem;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	line-height: 1.4;
+}
+
+.wbe-btn--cta:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 640px) {
+	.wbe-cta {
+		padding: 40px 16px;
+	}
+
+	.wbe-cta--inline {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.wbe-btn--cta {
+		width: 100%;
+		text-align: center;
+	}
+}

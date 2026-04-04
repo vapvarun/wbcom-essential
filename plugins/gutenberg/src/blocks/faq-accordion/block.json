@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/faq-accordion",
+	"version": "1.0.0",
+	"title": "FAQ Accordion",
+	"category": "wbcom-essential",
+	"icon": "editor-help",
+	"description": "Collapsible FAQ accordion with question and answer pairs.",
+	"keywords": [ "faq", "accordion", "questions", "answers", "collapse" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"question": "What is this product?",
+					"answer": "A powerful solution designed to streamline your workflow and boost productivity."
+				},
+				{
+					"question": "How does pricing work?",
+					"answer": "We offer flexible plans starting from free. Upgrade anytime as your needs grow."
+				},
+				{
+					"question": "Is there a free trial?",
+					"answer": "Yes! Start with our free plan — no credit card required. Upgrade when you're ready."
+				}
+			]
+		},
+		"firstOpen": {
+			"type": "boolean",
+			"default": true
+		},
+		"allowMultiple": {
+			"type": "boolean",
+			"default": false
+		},
+		"accentColor": {
+			"type": "string",
+			"default": "#6366f1"
+		},
+		"iconStyle": {
+			"type": "string",
+			"default": "plus",
+			"enum": [ "plus", "chevron" ]
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

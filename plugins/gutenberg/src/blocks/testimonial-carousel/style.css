@@ -1,0 +1,141 @@
+.wbe-testimonials {
+	padding: 64px 24px;
+	text-align: center;
+	position: relative;
+}
+
+.wbe-testimonials__track {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.wbe-testimonials__slide {
+	animation: wbeFadeIn 0.4s ease;
+}
+
+@keyframes wbeFadeIn {
+	from { opacity: 0; transform: translateY(8px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+.wbe-testimonials__quote {
+	font-size: clamp(1.1rem, 2vw, 1.35rem);
+	font-style: italic;
+	line-height: 1.7;
+	margin: 0 0 24px;
+	padding: 0;
+	border: none;
+	quotes: "\201C" "\201D";
+}
+
+.wbe-testimonials__quote::before {
+	content: open-quote;
+	font-size: 2em;
+	line-height: 0;
+	vertical-align: -0.35em;
+	opacity: 0.3;
+	margin-right: 4px;
+}
+
+.wbe-testimonials__quote::after {
+	content: close-quote;
+	font-size: 2em;
+	line-height: 0;
+	vertical-align: -0.35em;
+	opacity: 0.3;
+	margin-left: 4px;
+}
+
+.wbe-testimonials__author {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+}
+
+.wbe-testimonials__avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.wbe-testimonials__name {
+	display: block;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.wbe-testimonials__role {
+	display: block;
+	font-size: 0.85rem;
+	opacity: 0.7;
+}
+
+.wbe-testimonials__arrows {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 12px;
+	pointer-events: none;
+	transform: translateY(-50%);
+}
+
+.wbe-testimonials__arrow {
+	pointer-events: auto;
+	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	font-size: 1.5rem;
+	line-height: 1;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s ease, transform 0.2s ease;
+	color: #374151;
+}
+
+.wbe-testimonials__arrow:hover {
+	background: #fff;
+	transform: scale(1.1);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wbe-testimonials__dots {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	margin-top: 24px;
+}
+
+.wbe-testimonials__dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: none;
+	background: rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+	padding: 0;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.wbe-testimonials__dot.is-active {
+	background: #6366f1;
+	transform: scale(1.3);
+}
+
+@media (max-width: 640px) {
+	.wbe-testimonials {
+		padding: 40px 16px;
+	}
+
+	.wbe-testimonials__arrows {
+		display: none;
+	}
+}

@@ -1,0 +1,39 @@
+.wbe-stats {
+	padding: 48px 24px;
+	text-align: center;
+}
+
+.wbe-stats__grid {
+	display: grid;
+	gap: 32px;
+}
+
+.wbe-stats__item {
+	padding: 16px;
+}
+
+.wbe-stats__number {
+	display: block;
+	font-size: clamp(2rem, 5vw, 3rem);
+	font-weight: 800;
+	line-height: 1;
+	margin-bottom: 8px;
+	font-variant-numeric: tabular-nums;
+}
+
+.wbe-stats__label {
+	display: block;
+	font-size: 0.95rem;
+	font-weight: 500;
+	opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+	.wbe-stats__grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+
+	.wbe-stats__number {
+		font-size: 1.75rem;
+	}
+}

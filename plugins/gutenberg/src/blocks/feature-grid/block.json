@@ -1,0 +1,77 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/feature-grid",
+	"version": "1.0.0",
+	"title": "Feature Grid",
+	"category": "wbcom-essential",
+	"icon": "grid-view",
+	"description": "Grid of feature cards with icon, title, and description.",
+	"keywords": [ "features", "grid", "cards", "services", "benefits" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"attributes": {
+		"features": {
+			"type": "array",
+			"default": [
+				{
+					"icon": "🚀",
+					"title": "Lightning Fast",
+					"description": "Optimized performance that keeps your site blazing fast."
+				},
+				{
+					"icon": "🔒",
+					"title": "Secure by Default",
+					"description": "Enterprise-grade security baked into every feature."
+				},
+				{
+					"icon": "📱",
+					"title": "Fully Responsive",
+					"description": "Looks perfect on every device, from desktop to mobile."
+				},
+				{
+					"icon": "🎨",
+					"title": "Customizable",
+					"description": "Tailor every detail to match your brand perfectly."
+				},
+				{
+					"icon": "🔌",
+					"title": "Easy Integration",
+					"description": "Works seamlessly with your existing tools and plugins."
+				},
+				{
+					"icon": "💬",
+					"title": "24/7 Support",
+					"description": "Our expert team is always ready to help you succeed."
+				}
+			]
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "bordered",
+			"enum": [ "bordered", "shadow", "flat" ]
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 48
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"textdomain": "wbcom-essential",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
