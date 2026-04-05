@@ -1,0 +1,221 @@
+/**
+ * Login Form Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Design tokens with fallbacks */
+.wbe-login-form {
+	--wbe-lf-form-bg: #ffffff;
+	--wbe-lf-btn-bg: #667eea;
+	--wbe-lf-btn-color: #ffffff;
+	--wbe-lf-label-color: #1e1e2e;
+	--wbe-lf-link-color: #667eea;
+	--wbe-lf-input-border: #d1d5db;
+	--wbe-lf-input-focus: #667eea;
+	--wbe-lf-input-bg: #f9fafb;
+	--wbe-lf-input-radius: 8px;
+	--wbe-lf-gap: 20px;
+
+	width: 100%;
+}
+
+/* ---- Outer container ---- */
+.wbe-login-form__inner,
+.wbe-login-form__logged-in {
+	background: var( --wbe-lf-form-bg );
+	padding: inherit; /* inherited from wrapper block padding */
+	max-width: 480px;
+	margin-inline: auto;
+}
+
+/* ---- WP login form reset + custom styles ---- */
+.wbe-login-form #loginform,
+.wbe-login-form form[id*="wbe-login-form"] {
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+/* Labels */
+.wbe-login-form .login-username label,
+.wbe-login-form .login-password label,
+.wbe-login-form label {
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var( --wbe-lf-label-color );
+	margin-bottom: 6px;
+}
+
+/* Input fields */
+.wbe-login-form input[type="text"],
+.wbe-login-form input[type="password"],
+.wbe-login-form input[type="email"] {
+	display: block;
+	width: 100%;
+	padding: 10px 14px;
+	font-size: 1rem;
+	color: var( --wbe-lf-label-color );
+	background: var( --wbe-lf-input-bg );
+	border: 1px solid var( --wbe-lf-input-border );
+	border-radius: var( --wbe-lf-input-radius );
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	box-sizing: border-box;
+	line-height: 1.5;
+}
+
+.wbe-login-form input[type="text"]:focus,
+.wbe-login-form input[type="password"]:focus,
+.wbe-login-form input[type="email"]:focus {
+	outline: none;
+	border-color: var( --wbe-lf-input-focus );
+	box-shadow: 0 0 0 3px color-mix( in srgb, var( --wbe-lf-input-focus ) 20%, transparent );
+}
+
+/* Field rows */
+.wbe-login-form .login-username,
+.wbe-login-form .login-password,
+.wbe-login-form p {
+	margin-bottom: var( --wbe-lf-gap );
+}
+
+/* Remember me row */
+.wbe-login-form .login-remember {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: var( --wbe-lf-gap );
+}
+
+.wbe-login-form .login-remember label {
+	margin-bottom: 0;
+	font-weight: 400;
+	font-size: 0.875rem;
+	cursor: pointer;
+}
+
+.wbe-login-form input[type="checkbox"] {
+	width: 16px;
+	height: 16px;
+	accent-color: var( --wbe-lf-btn-bg );
+	cursor: pointer;
+}
+
+/* Submit button */
+.wbe-login-form input[type="submit"],
+.wbe-login-form .login-submit input {
+	display: block;
+	width: 100%;
+	padding: 12px 24px;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var( --wbe-lf-btn-color );
+	background: var( --wbe-lf-btn-bg );
+	border: none;
+	border-radius: var( --wbe-lf-input-radius );
+	cursor: pointer;
+	transition: opacity 0.2s ease, transform 0.1s ease;
+	line-height: 1.5;
+}
+
+.wbe-login-form input[type="submit"]:hover {
+	opacity: 0.88;
+}
+
+.wbe-login-form input[type="submit"]:active {
+	transform: translateY( 1px );
+}
+
+.wbe-login-form input[type="submit"]:focus-visible {
+	outline: 2px solid var( --wbe-lf-btn-bg );
+	outline-offset: 3px;
+}
+
+/* ---- Links row ---- */
+.wbe-login-form__links {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 16px;
+}
+
+.wbe-login-form__link {
+	font-size: 0.875rem;
+	color: var( --wbe-lf-link-color );
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+}
+
+.wbe-login-form__link:hover,
+.wbe-login-form__link:focus {
+	opacity: 0.75;
+	text-decoration: underline;
+}
+
+/* ---- Logged-in state ---- */
+.wbe-login-form__logged-in {
+	text-align: center;
+	padding-block: 32px;
+}
+
+.wbe-login-form__logged-in-message {
+	font-size: 1rem;
+	color: var( --wbe-lf-label-color );
+	margin-bottom: 12px;
+}
+
+.wbe-login-form__profile-link {
+	display: inline-block;
+	padding: 10px 24px;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var( --wbe-lf-btn-color );
+	background: var( --wbe-lf-btn-bg );
+	border-radius: var( --wbe-lf-input-radius );
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+}
+
+.wbe-login-form__profile-link:hover {
+	opacity: 0.88;
+	color: var( --wbe-lf-btn-color );
+}
+
+/* ---- Visibility utilities ---- */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ---- Responsive ---- */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+}
+
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-login-form__inner,
+	.wbe-login-form__logged-in {
+		max-width: 100%;
+	}
+
+	.wbe-login-form__links {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}

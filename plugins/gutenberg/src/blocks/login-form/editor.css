@@ -1,0 +1,15 @@
+/**
+ * Login Form Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ServerSideRender iframe wrapper spacing */
+.block-editor-block-list__block .wbe-login-form .components-server-side-render__placeholder {
+	min-height: 200px;
+}
+
+/* Ensure the SSR preview fills the editor column */
+.block-editor-block-list__block .wbe-login-form {
+	width: 100%;
+}

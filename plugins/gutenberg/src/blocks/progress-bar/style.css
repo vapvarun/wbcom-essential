@@ -1,0 +1,116 @@
+/**
+ * Progress Bar Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Design tokens */
+.wbe-progress-bar {
+	--wbe-pb-track-color: #e9ecef;
+	--wbe-pb-label-color: #1e1e2e;
+	--wbe-pb-percent-color: #6c757d;
+	--wbe-pb-height: 12px;
+	--wbe-pb-radius: 6px;
+	--wbe-pb-gap: 20px;
+	--wbe-pb-meta-gap: 8px;
+	--wbe-pb-label-size: 0.9375rem;
+	--wbe-pb-percent-size: 0.875rem;
+	--wbe-pb-transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+
+	width: 100%;
+}
+
+/* ---- Bar list ---- */
+.wbe-progress-bar__list {
+	display: flex;
+	flex-direction: column;
+	gap: var( --wbe-pb-gap );
+}
+
+/* ---- Single bar item ---- */
+.wbe-progress-bar__item {
+	display: flex;
+	flex-direction: column;
+	gap: var( --wbe-pb-meta-gap );
+}
+
+/* ---- Label / Percentage row ---- */
+.wbe-progress-bar__meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.wbe-progress-bar__label {
+	font-size: var( --wbe-pb-label-size );
+	font-weight: 600;
+	color: var( --wbe-pb-label-color );
+	line-height: 1.4;
+}
+
+.wbe-progress-bar__percent {
+	font-size: var( --wbe-pb-percent-size );
+	font-weight: 500;
+	color: var( --wbe-pb-percent-color );
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ---- Track ---- */
+.wbe-progress-bar__track {
+	width: 100%;
+	height: var( --wbe-pb-height );
+	background: var( --wbe-pb-track-color );
+	border-radius: var( --wbe-pb-radius );
+	overflow: hidden;
+}
+
+/* ---- Fill ---- */
+.wbe-progress-bar__fill {
+	height: 100%;
+	border-radius: var( --wbe-pb-radius );
+	transition: var( --wbe-pb-transition );
+	will-change: width;
+}
+
+/* ---- Visibility utilities ---- */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ---- Responsive ---- */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	.wbe-progress-bar {
+		--wbe-pb-label-size: 0.875rem;
+	}
+}
+
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-progress-bar {
+		--wbe-pb-gap: 16px;
+		--wbe-pb-label-size: 0.8125rem;
+		--wbe-pb-percent-size: 0.8125rem;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}
+
+/* Respect reduced-motion preference: no transition */
+@media ( prefers-reduced-motion: reduce ) {
+	.wbe-progress-bar__fill {
+		transition: none;
+	}
+}

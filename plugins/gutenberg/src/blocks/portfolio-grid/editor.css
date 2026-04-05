@@ -1,0 +1,23 @@
+/**
+ * Portfolio Grid Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* SSR loading / error placeholders */
+.wbe-portfolio-grid-editor .components-placeholder {
+	min-height: 140px;
+}
+
+.wbe-portfolio-grid__loading,
+.wbe-portfolio-grid__error {
+	min-height:      140px;
+	display:         flex;
+	align-items:     center;
+	justify-content: center;
+	border:          2px dashed #ccd0d4;
+	border-radius:   4px;
+	padding:         24px;
+	color:           #6c7781;
+	font-size:       0.9rem;
+}

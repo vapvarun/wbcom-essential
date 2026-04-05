@@ -1,0 +1,121 @@
+/**
+ * Text Rotator Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Design tokens */
+.wbe-text-rotator {
+	--wbe-tr-text-color: #1e1e2e;
+	--wbe-tr-rotating-color: #667eea;
+	--wbe-tr-font-size: 36px;
+	--wbe-tr-font-size-tablet: 28px;
+	--wbe-tr-font-size-mobile: 22px;
+	--wbe-tr-text-align: center;
+	--wbe-tr-cursor-color: currentColor;
+
+	width: 100%;
+}
+
+/* ---- Sentence container ---- */
+.wbe-text-rotator__sentence {
+	font-size: var( --wbe-tr-font-size );
+	color: var( --wbe-tr-text-color );
+	text-align: var( --wbe-tr-text-align );
+	line-height: 1.3;
+	font-weight: 700;
+	margin: 0;
+	/* Prevent layout jump when long rotating texts wrap */
+	word-break: break-word;
+}
+
+/* ---- Static text parts ---- */
+.wbe-text-rotator__before,
+.wbe-text-rotator__after {
+	color: var( --wbe-tr-text-color );
+}
+
+/* ---- Rotating span ---- */
+.wbe-text-rotator__rotating {
+	display: inline-block;
+	color: var( --wbe-tr-rotating-color );
+	white-space: nowrap;
+	/* Initial opacity & transform state; animation overrides via JS inline styles */
+	opacity: 1;
+	transform: translateY( 0 );
+	/* overflow:hidden clips slide animation */
+	vertical-align: baseline;
+}
+
+/* Fade animation base */
+.wbe-text-rotator__rotating {
+	transition: opacity 0.4s ease;
+}
+
+/* Slide animation needs overflow hidden on the parent sentence */
+.wbe-text-rotator__sentence {
+	overflow: hidden;
+}
+
+/* ---- Typing cursor ---- */
+.wbe-text-rotator__rotating--typing::after {
+	content: '|';
+	display: inline-block;
+	color: var( --wbe-tr-cursor-color );
+	opacity: 1;
+	margin-left: 1px;
+	animation: wbe-tr-blink 0.8s step-end infinite;
+}
+
+@keyframes wbe-tr-blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0; }
+}
+
+/* ---- Visibility utilities ---- */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ---- Responsive font sizes ---- */
+@media ( max-width: 1024px ) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	.wbe-text-rotator__sentence {
+		font-size: var( --wbe-tr-font-size-tablet );
+	}
+}
+
+@media ( max-width: 640px ) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-text-rotator__sentence {
+		font-size: var( --wbe-tr-font-size-mobile );
+	}
+
+	/* On narrow screens allow wrapping */
+	.wbe-text-rotator__rotating {
+		white-space: normal;
+	}
+}
+
+@media ( min-width: 641px ) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}
+
+/* Respect reduced-motion preference */
+@media ( prefers-reduced-motion: reduce ) {
+	.wbe-text-rotator__rotating {
+		transition: none !important;
+	}
+
+	.wbe-text-rotator__rotating--typing::after {
+		animation: none;
+	}
+}

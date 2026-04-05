@@ -1,0 +1,31 @@
+/**
+ * Posts Ticker Block - Editor-Only Styles
+ *
+ * Pause the ticker animation in the editor to prevent it from
+ * spinning while configuring attributes.
+ *
+ * @package wbcom-essential
+ */
+
+/* Pause animation in the block editor so it doesn't scroll while editing */
+.wbe-posts-ticker-editor .wbe-posts-ticker__track {
+	animation-play-state: paused !important;
+}
+
+/* SSR loading / error placeholders */
+.wbe-posts-ticker-editor .components-placeholder {
+	min-height: 50px;
+}
+
+.wbe-posts-ticker__loading,
+.wbe-posts-ticker__error {
+	min-height:      50px;
+	display:         flex;
+	align-items:     center;
+	justify-content: center;
+	border:          2px dashed #ccd0d4;
+	border-radius:   4px;
+	padding:         12px 24px;
+	color:           #6c7781;
+	font-size:       0.9rem;
+}
