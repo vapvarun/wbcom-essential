@@ -1,7 +1,5 @@
 /**
- * Activity Feed Block - Editor Component
- *
- * Uses ServerSideRender for live preview since this is a dynamic block.
+ * Activity Feed Block — Editor Component (v2 Premium)
  *
  * @package wbcom-essential
  */
@@ -13,9 +11,8 @@ import {
 	SelectControl,
 	RangeControl,
 	ToggleControl,
-	ColorPicker,
+	ColorPalette,
 	BaseControl,
-	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 
@@ -28,28 +25,60 @@ import {
 import { useUniqueId } from '../../shared/hooks';
 import { generateBlockCSS } from '../../shared/utils/css';
 
+const LAYOUT_OPTIONS = [
+	{ label: __( 'Cards', 'wbcom-essential' ), value: 'cards' },
+	{ label: __( 'Timeline', 'wbcom-essential' ), value: 'timeline' },
+	{ label: __( 'Compact', 'wbcom-essential' ), value: 'compact' },
+];
+
+const ACTIVITY_TYPES = [
+	{ label: __( 'All Activity', 'wbcom-essential' ), value: '' },
+	{ label: __( 'Status Updates', 'wbcom-essential' ), value: 'activity_update' },
+	{ label: __( 'New Members', 'wbcom-essential' ), value: 'new_member' },
+	{ label: __( 'Friendships', 'wbcom-essential' ), value: 'friendship_created' },
+	{ label: __( 'Joined Group', 'wbcom-essential' ), value: 'joined_group' },
+	{ label: __( 'Created Group', 'wbcom-essential' ), value: 'created_group' },
+	{ label: __( 'New Blog Post', 'wbcom-essential' ), value: 'new_blog_post' },
+];
+
+const COLORS = [
+	{ name: 'Primary', color: '#667eea' },
+	{ name: 'Purple', color: '#764ba2' },
+	{ name: 'Dark', color: '#1e1e2e' },
+	{ name: 'Gray', color: '#4a5568' },
+	{ name: 'Light Gray', color: '#a0aec0' },
+	{ name: 'White', color: '#ffffff' },
+	{ name: 'Red', color: '#e53e3e' },
+	{ name: 'Green', color: '#38a169' },
+	{ name: 'Blue BG', color: '#eef2ff' },
+	{ name: 'Light BG', color: '#f7fafc' },
+];
+
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const {
 		uniqueId,
 		totalActivities,
 		activityType,
+		layout,
 		showAvatar,
 		showTime,
 		showAction,
 		showContent,
+		showTypeIcon,
+		showFavoriteBtn,
+		showCommentCount,
+		showMediaPreview,
 		avatarSize,
 		cardBg,
 		nameColor,
 		contentColor,
 		timeColor,
 		borderColor,
+		accentColor,
+		iconBg,
 		padding,
-		paddingTablet,
-		paddingMobile,
 		paddingUnit,
 		margin,
-		marginTablet,
-		marginMobile,
 		marginUnit,
 		boxShadow,
 		shadowHorizontal,
@@ -69,115 +98,172 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	const blockCSS = generateBlockCSS( uniqueId, attributes );
 
 	const blockProps = useBlockProps( {
-		className: `wbe-block-${ uniqueId } wbe-activity-feed`,
+		className: `wbe-block-${ uniqueId } wbe-activity-feed wbe-activity-feed--${ layout }`,
 	} );
 
 	return (
 		<>
 			<InspectorControls>
-				{ /* Content */ }
-				<PanelBody title={ __( 'Content', 'wbcom-essential' ) } initialOpen={ true }>
+				<PanelBody title={ __( 'Content', 'wbcom-essential' ) } initialOpen>
 					<RangeControl
 						label={ __( 'Number of Activities', 'wbcom-essential' ) }
 						value={ totalActivities }
-						onChange={ ( value ) => setAttributes( { totalActivities: value } ) }
+						onChange={ ( v ) => setAttributes( { totalActivities: v } ) }
 						min={ 1 }
 						max={ 50 }
 					/>
 					<SelectControl
 						label={ __( 'Activity Type', 'wbcom-essential' ) }
 						value={ activityType }
-						options={ [
-							{ label: __( 'All Activity', 'wbcom-essential' ), value: '' },
-							{ label: __( 'Status Updates', 'wbcom-essential' ), value: 'activity_update' },
-							{ label: __( 'New Members', 'wbcom-essential' ), value: 'new_member' },
-							{ label: __( 'Friendships', 'wbcom-essential' ), value: 'friendship_created' },
-							{ label: __( 'Joined Group', 'wbcom-essential' ), value: 'joined_group' },
-							{ label: __( 'Created Group', 'wbcom-essential' ), value: 'created_group' },
-							{ label: __( 'New Blog Post', 'wbcom-essential' ), value: 'new_blog_post' },
-						] }
-						onChange={ ( value ) => setAttributes( { activityType: value } ) }
+						options={ ACTIVITY_TYPES }
+						onChange={ ( v ) => setAttributes( { activityType: v } ) }
+						__nextHasNoMarginBottom
 					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Layout', 'wbcom-essential' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Layout Style', 'wbcom-essential' ) }
+						value={ layout }
+						options={ LAYOUT_OPTIONS }
+						onChange={ ( v ) => setAttributes( { layout: v } ) }
+						__nextHasNoMarginBottom
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Display', 'wbcom-essential' ) } initialOpen={ false }>
 					<ToggleControl
 						label={ __( 'Show Avatar', 'wbcom-essential' ) }
 						checked={ showAvatar }
-						onChange={ ( value ) => setAttributes( { showAvatar: value } ) }
+						onChange={ ( v ) => setAttributes( { showAvatar: v } ) }
+						__nextHasNoMarginBottom
+					/>
+					<ToggleControl
+						label={ __( 'Show Type Icon', 'wbcom-essential' ) }
+						checked={ showTypeIcon }
+						onChange={ ( v ) => setAttributes( { showTypeIcon: v } ) }
 						__nextHasNoMarginBottom
 					/>
 					<ToggleControl
 						label={ __( 'Show Action Text', 'wbcom-essential' ) }
 						checked={ showAction }
-						onChange={ ( value ) => setAttributes( { showAction: value } ) }
+						onChange={ ( v ) => setAttributes( { showAction: v } ) }
 						__nextHasNoMarginBottom
 					/>
 					<ToggleControl
 						label={ __( 'Show Content', 'wbcom-essential' ) }
 						checked={ showContent }
-						onChange={ ( value ) => setAttributes( { showContent: value } ) }
+						onChange={ ( v ) => setAttributes( { showContent: v } ) }
+						__nextHasNoMarginBottom
+					/>
+					<ToggleControl
+						label={ __( 'Show Media Preview', 'wbcom-essential' ) }
+						checked={ showMediaPreview }
+						onChange={ ( v ) => setAttributes( { showMediaPreview: v } ) }
 						__nextHasNoMarginBottom
 					/>
 					<ToggleControl
 						label={ __( 'Show Timestamp', 'wbcom-essential' ) }
 						checked={ showTime }
-						onChange={ ( value ) => setAttributes( { showTime: value } ) }
+						onChange={ ( v ) => setAttributes( { showTime: v } ) }
 						__nextHasNoMarginBottom
 					/>
-				</PanelBody>
-
-				{ /* Style */ }
-				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Show Favorite Button', 'wbcom-essential' ) }
+						checked={ showFavoriteBtn }
+						onChange={ ( v ) => setAttributes( { showFavoriteBtn: v } ) }
+						__nextHasNoMarginBottom
+					/>
+					<ToggleControl
+						label={ __( 'Show Comment Count', 'wbcom-essential' ) }
+						checked={ showCommentCount }
+						onChange={ ( v ) => setAttributes( { showCommentCount: v } ) }
+						__nextHasNoMarginBottom
+					/>
 					{ showAvatar && (
 						<RangeControl
-							label={ __( 'Avatar Size (px)', 'wbcom-essential' ) }
+							label={ __( 'Avatar Size', 'wbcom-essential' ) }
 							value={ avatarSize }
-							onChange={ ( value ) => setAttributes( { avatarSize: value } ) }
-							min={ 30 }
-							max={ 100 }
+							onChange={ ( v ) => setAttributes( { avatarSize: v } ) }
+							min={ 28 }
+							max={ 80 }
 						/>
 					) }
-					<BaseControl label={ __( 'Item Background', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ cardBg }
-							onChange={ ( value ) => setAttributes( { cardBg: value } ) }
-							enableAlpha
+				</PanelBody>
+
+				<PanelBody title={ __( 'Colors', 'wbcom-essential' ) } initialOpen={ false }>
+					<BaseControl label={ __( 'Accent Color', 'wbcom-essential' ) }>
+						<ColorPalette
+							colors={ COLORS }
+							value={ accentColor }
+							onChange={ ( v ) => setAttributes( { accentColor: v || '#667eea' } ) }
 						/>
 					</BaseControl>
-					<BaseControl label={ __( 'Name / Link Color', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ nameColor }
-							onChange={ ( value ) => setAttributes( { nameColor: value } ) }
-							enableAlpha
+					<BaseControl label={ __( 'Card Background', 'wbcom-essential' ) }>
+						<ColorPalette
+							colors={ COLORS }
+							value={ cardBg }
+							onChange={ ( v ) => setAttributes( { cardBg: v || '#ffffff' } ) }
+						/>
+					</BaseControl>
+					<BaseControl label={ __( 'Name Color', 'wbcom-essential' ) }>
+						<ColorPalette
+							colors={ COLORS }
+							value={ nameColor }
+							onChange={ ( v ) => setAttributes( { nameColor: v || '#1e1e2e' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Content Color', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ contentColor }
-							onChange={ ( value ) => setAttributes( { contentColor: value } ) }
-							enableAlpha
+						<ColorPalette
+							colors={ COLORS }
+							value={ contentColor }
+							onChange={ ( v ) => setAttributes( { contentColor: v || '#4a5568' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Timestamp Color', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ timeColor }
-							onChange={ ( value ) => setAttributes( { timeColor: value } ) }
-							enableAlpha
+						<ColorPalette
+							colors={ COLORS }
+							value={ timeColor }
+							onChange={ ( v ) => setAttributes( { timeColor: v || '#a0aec0' } ) }
 						/>
 					</BaseControl>
-					<BaseControl label={ __( 'Separator Color', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ borderColor }
-							onChange={ ( value ) => setAttributes( { borderColor: value } ) }
-							enableAlpha
+					<BaseControl label={ __( 'Border Color', 'wbcom-essential' ) }>
+						<ColorPalette
+							colors={ COLORS }
+							value={ borderColor }
+							onChange={ ( v ) => setAttributes( { borderColor: v || '#edf2f7' } ) }
 						/>
 					</BaseControl>
-					<Spacer marginTop={ 3 } />
+					<BaseControl label={ __( 'Icon Background', 'wbcom-essential' ) }>
+						<ColorPalette
+							colors={ COLORS }
+							value={ iconBg }
+							onChange={ ( v ) => setAttributes( { iconBg: v || '#eef2ff' } ) }
+						/>
+					</BaseControl>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Spacing', 'wbcom-essential' ) } initialOpen={ false }>
+					<SpacingControl
+						label={ __( 'Padding', 'wbcom-essential' ) }
+						values={ padding }
+						unit={ paddingUnit }
+						onChange={ ( v ) => setAttributes( { padding: v } ) }
+						onUnitChange={ ( v ) => setAttributes( { paddingUnit: v } ) }
+					/>
+					<SpacingControl
+						label={ __( 'Margin', 'wbcom-essential' ) }
+						values={ margin }
+						unit={ marginUnit }
+						onChange={ ( v ) => setAttributes( { margin: v } ) }
+						onUnitChange={ ( v ) => setAttributes( { marginUnit: v } ) }
+					/>
 					<BorderRadiusControl
 						values={ borderRadius }
 						unit={ borderRadiusUnit }
-						onChange={ ( value ) => setAttributes( { borderRadius: value } ) }
-						onUnitChange={ ( value ) => setAttributes( { borderRadiusUnit: value } ) }
+						onChange={ ( v ) => setAttributes( { borderRadius: v } ) }
+						onUnitChange={ ( v ) => setAttributes( { borderRadiusUnit: v } ) }
 					/>
-					<Spacer marginTop={ 3 } />
 					<BoxShadowControl
 						enabled={ boxShadow }
 						horizontal={ shadowHorizontal }
@@ -185,36 +271,21 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						blur={ shadowBlur }
 						spread={ shadowSpread }
 						color={ shadowColor }
-						onChange={ ( value ) => setAttributes( value ) }
+						onToggle={ ( v ) => setAttributes( { boxShadow: v } ) }
+						onChangeHorizontal={ ( v ) => setAttributes( { shadowHorizontal: v } ) }
+						onChangeVertical={ ( v ) => setAttributes( { shadowVertical: v } ) }
+						onChangeBlur={ ( v ) => setAttributes( { shadowBlur: v } ) }
+						onChangeSpread={ ( v ) => setAttributes( { shadowSpread: v } ) }
+						onChangeColor={ ( v ) => setAttributes( { shadowColor: v } ) }
 					/>
 				</PanelBody>
 
-				{ /* Spacing */ }
-				<PanelBody title={ __( 'Spacing', 'wbcom-essential' ) } initialOpen={ false }>
-					<SpacingControl
-						label={ __( 'Padding', 'wbcom-essential' ) }
-						values={ padding }
-						unit={ paddingUnit }
-						onChange={ ( value ) => setAttributes( { padding: value } ) }
-						onUnitChange={ ( value ) => setAttributes( { paddingUnit: value } ) }
-					/>
-					<Spacer marginTop={ 3 } />
-					<SpacingControl
-						label={ __( 'Margin', 'wbcom-essential' ) }
-						values={ margin }
-						unit={ marginUnit }
-						onChange={ ( value ) => setAttributes( { margin: value } ) }
-						onUnitChange={ ( value ) => setAttributes( { marginUnit: value } ) }
-					/>
-				</PanelBody>
-
-				{ /* Advanced */ }
 				<PanelBody title={ __( 'Advanced', 'wbcom-essential' ) } initialOpen={ false }>
 					<DeviceVisibility
 						hideOnDesktop={ hideOnDesktop }
 						hideOnTablet={ hideOnTablet }
 						hideOnMobile={ hideOnMobile }
-						onChange={ ( value ) => setAttributes( value ) }
+						onChange={ ( v ) => setAttributes( v ) }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -225,13 +296,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					block="wbcom-essential/activity-feed"
 					attributes={ attributes }
 					LoadingResponsePlaceholder={ () => (
-						<div className="wbe-activity-feed__loading">
-							<p>{ __( 'Loading activity…', 'wbcom-essential' ) }</p>
+						<div className="wbe-af__loading">
+							<p>{ __( 'Loading activity...', 'wbcom-essential' ) }</p>
 						</div>
 					) }
 					ErrorResponsePlaceholder={ () => (
-						<div className="wbe-activity-feed__error">
-							<p>{ __( 'Could not load activity preview. The block will render correctly on the frontend.', 'wbcom-essential' ) }</p>
+						<div className="wbe-af__error">
+							<p>{ __( 'Could not load preview. The block renders correctly on the frontend.', 'wbcom-essential' ) }</p>
 						</div>
 					) }
 				/>

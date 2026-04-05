@@ -1,176 +1,409 @@
 /**
- * Activity Feed Block - Frontend + Editor Styles
- *
- * @package wbcom-essential
+ * Activity Feed Block — Premium Styles
  */
 
-/* ---- Design tokens ---- */
+/* ── Tokens ───────────────────────────────────────────────────────────────── */
 .wbe-activity-feed {
 	--wbe-af-card-bg: #ffffff;
-	--wbe-af-name-color: #1e1e2e;
-	--wbe-af-content-color: #6c757d;
-	--wbe-af-time-color: #999999;
-	--wbe-af-border-color: #e9ecef;
-	--wbe-af-accent: var( --wbcom-color-primary, #667eea );
-	--wbe-af-avatar-size: 50px;
-
+	--wbe-af-name: #1e1e2e;
+	--wbe-af-content: #4a5568;
+	--wbe-af-time: #a0aec0;
+	--wbe-af-border: #edf2f7;
+	--wbe-af-accent: #667eea;
+	--wbe-af-icon-bg: #eef2ff;
+	--wbe-af-avatar: 44px;
 	width: 100%;
 }
 
-/* ── List container ───────────────────────────────────────────────────────── */
-.wbe-activity-feed__list {
+/* ── Feed container ───────────────────────────────────────────────────────── */
+.wbe-af__list {
 	display: flex;
 	flex-direction: column;
+	gap: 16px;
 }
 
-/* ── Single activity item ─────────────────────────────────────────────────── */
-.wbe-activity-feed__item {
-	display: flex;
-	gap: 14px;
-	align-items: flex-start;
-	padding: 16px 0;
-	border-bottom: 1px solid var( --wbe-af-border-color );
+/* ── Card layout ──────────────────────────────────────────────────────────── */
+.wbe-activity-feed--cards .wbe-af__card {
+	background: var(--wbe-af-card-bg);
+	border: 1px solid var(--wbe-af-border);
+	border-radius: 12px;
+	padding: 20px;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.wbe-activity-feed__item:last-child {
+.wbe-activity-feed--cards .wbe-af__card:hover {
+	border-color: transparent;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Timeline layout ──────────────────────────────────────────────────────── */
+.wbe-activity-feed--timeline .wbe-af__list {
+	gap: 0;
+	padding-left: 28px;
+	border-left: 2px solid var(--wbe-af-border);
+}
+
+.wbe-activity-feed--timeline .wbe-af__card {
+	position: relative;
+	padding: 16px 0 16px 24px;
+	border-bottom: 1px solid var(--wbe-af-border);
+}
+
+.wbe-activity-feed--timeline .wbe-af__card:last-child {
 	border-bottom: none;
 }
 
-/* ── Avatar column ────────────────────────────────────────────────────────── */
-.wbe-activity-feed__avatar {
+.wbe-activity-feed--timeline .wbe-af__card::before {
+	content: "";
+	position: absolute;
+	left: -35px;
+	top: 24px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: var(--wbe-af-accent);
+	border: 3px solid var(--wbe-af-card-bg);
+	box-shadow: 0 0 0 2px var(--wbe-af-border);
+}
+
+/* ── Compact layout ───────────────────────────────────────────────────────── */
+.wbe-activity-feed--compact .wbe-af__list {
+	gap: 0;
+}
+
+.wbe-activity-feed--compact .wbe-af__card {
+	padding: 12px 0;
+	border-bottom: 1px solid var(--wbe-af-border);
+}
+
+.wbe-activity-feed--compact .wbe-af__card:last-child {
+	border-bottom: none;
+}
+
+.wbe-activity-feed--compact .wbe-af__body {
+	display: none;
+}
+
+.wbe-activity-feed--compact .wbe-af__media {
+	display: none;
+}
+
+.wbe-activity-feed--compact .wbe-af__footer {
+	display: none;
+}
+
+/* ── Header: avatar + meta ────────────────────────────────────────────────── */
+.wbe-af__header {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+/* ── Avatar with type badge ───────────────────────────────────────────────── */
+.wbe-af__avatar-wrap {
+	position: relative;
 	flex-shrink: 0;
 }
 
-.wbe-activity-feed__avatar a {
-	display: inline-block;
-	line-height: 0;
-}
-
-.wbe-activity-feed__avatar-img,
-.wbe-activity-feed__avatar img {
-	width: var( --wbe-af-avatar-size );
-	height: var( --wbe-af-avatar-size );
-	border-radius: 50%;
-	object-fit: cover;
+.wbe-af__avatar-link {
 	display: block;
+	line-height: 0;
+	text-decoration: none;
 }
 
-/* ── Body column ──────────────────────────────────────────────────────────── */
-.wbe-activity-feed__body {
+.wbe-af__avatar {
+	width: var(--wbe-af-avatar) !important;
+	height: var(--wbe-af-avatar) !important;
+	border-radius: 50% !important;
+	object-fit: cover;
+}
+
+.wbe-af__type-badge {
+	position: absolute;
+	bottom: -2px;
+	right: -4px;
+	width: 22px;
+	height: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--wbe-af-icon-bg);
+	color: var(--wbe-af-accent);
+	border-radius: 50%;
+	border: 2px solid var(--wbe-af-card-bg);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.wbe-af__type-badge svg {
+	width: 11px;
+	height: 11px;
+}
+
+/* ── Meta: action + time ──────────────────────────────────────────────────── */
+.wbe-af__meta {
 	flex: 1;
 	min-width: 0;
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
+	padding-top: 2px;
 }
 
-/* ── Action text ──────────────────────────────────────────────────────────── */
-.wbe-activity-feed__action {
-	font-size: 0.875rem;
-	line-height: 1.5;
-	color: var( --wbe-af-name-color );
+.wbe-af__action {
+	font-size: 0.9rem;
+	line-height: 1.45;
+	color: var(--wbe-af-name);
 }
 
-.wbe-activity-feed__action a {
-	color: var( --wbe-af-accent );
+.wbe-af__action a {
+	color: var(--wbe-af-accent);
 	text-decoration: none;
 	font-weight: 600;
-	transition: color 0.2s ease;
 }
 
-.wbe-activity-feed__action a:hover {
+.wbe-af__action a:hover {
 	text-decoration: underline;
 }
 
-/* ── Content area ─────────────────────────────────────────────────────────── */
-.wbe-activity-feed__content {
-	font-size: 0.875rem;
+/* Strip the inline timestamp BP puts inside action text */
+.wbe-af__action .activity-time-since,
+.wbe-af__action .time-since,
+.wbe-af__action > a:last-child[href*="activity"] {
+	display: none;
+}
+
+.wbe-af__time {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 0.78rem;
+	color: var(--wbe-af-time);
+	margin-top: 3px;
+	letter-spacing: 0.01em;
+}
+
+/* ── Body (content) ───────────────────────────────────────────────────────── */
+.wbe-af__body {
+	margin-top: 10px;
+	font-size: 0.9rem;
 	line-height: 1.6;
-	color: var( --wbe-af-content-color );
+	color: var(--wbe-af-content);
+	word-break: break-word;
 }
 
-.wbe-activity-feed__content p {
-	margin: 0 0 6px;
+.wbe-af__body p {
+	margin: 0 0 8px;
 }
 
-.wbe-activity-feed__content p:last-child {
+.wbe-af__body p:last-child {
 	margin-bottom: 0;
 }
 
-.wbe-activity-feed__content a {
-	color: var( --wbe-af-accent );
+.wbe-af__body a {
+	color: var(--wbe-af-accent);
 	text-decoration: none;
 }
 
-.wbe-activity-feed__content a:hover {
+.wbe-af__body a:hover {
 	text-decoration: underline;
 }
 
-/* ── Timestamp ────────────────────────────────────────────────────────────── */
-.wbe-activity-feed__time {
+/* ── Media preview ────────────────────────────────────────────────────────── */
+.wbe-af__media {
+	margin-top: 12px;
+	border-radius: 8px;
+	overflow: hidden;
+	line-height: 0;
+}
+
+.wbe-af__media-img {
+	width: 100%;
+	height: auto;
+	max-height: 320px;
+	object-fit: cover;
 	display: block;
-	font-size: 0.75rem;
-	color: var( --wbe-af-time-color );
-	margin-top: 2px;
+	border-radius: 8px;
+}
+
+/* ── Footer: actions ──────────────────────────────────────────────────────── */
+.wbe-af__footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid var(--wbe-af-border);
+}
+
+.wbe-af__actions {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.wbe-af__action-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--wbe-af-time);
+	font-size: 0.8rem;
+	cursor: pointer;
+	transition: color 0.15s ease;
+	line-height: 1;
+}
+
+.wbe-af__action-btn:hover {
+	color: var(--wbe-af-accent);
+}
+
+.wbe-af__action-btn svg {
+	transition: transform 0.15s ease;
+}
+
+.wbe-af__action-btn:hover svg {
+	transform: scale(1.1);
+}
+
+/* Favorite active state */
+.wbe-af__fav-btn--active,
+.wbe-af__action-btn--active {
+	color: #e53e3e;
+}
+
+.wbe-af__action-btn--active:hover {
+	color: #c53030;
+}
+
+.wbe-af__count {
+	font-weight: 600;
+	font-size: 0.78rem;
+	color: var(--wbe-af-name);
+}
+
+/* ── Type label (shown when no avatar) ────────────────────────────────────── */
+.wbe-af__type-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 0.72rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--wbe-af-accent);
+	background: var(--wbe-af-icon-bg);
+	padding: 3px 10px;
+	border-radius: 999px;
+}
+
+.wbe-af__type-label svg {
+	width: 12px;
+	height: 12px;
 }
 
 /* ── Empty state ──────────────────────────────────────────────────────────── */
-.wbe-activity-feed__empty {
+.wbe-af__empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	padding: 48px 24px;
 	text-align: center;
-	padding: 40px 20px;
-	color: var( --wbe-af-content-color );
-	border: 2px dashed var( --wbe-af-border-color );
-	border-radius: 8px;
+	color: var(--wbe-af-time);
+	border: 2px dashed var(--wbe-af-border);
+	border-radius: 12px;
+}
+
+.wbe-af__empty svg {
+	opacity: 0.5;
+}
+
+.wbe-af__empty p {
 	margin: 0;
+	font-size: 0.9rem;
 }
 
 /* ── Loading / error (editor) ─────────────────────────────────────────────── */
-.wbe-activity-feed__loading,
-.wbe-activity-feed__error {
+.wbe-af__loading,
+.wbe-af__error {
 	padding: 32px;
 	text-align: center;
-	color: #6c757d;
-	border: 2px dashed #e9ecef;
-	border-radius: 8px;
-}
-
-/* ── Visibility utilities ─────────────────────────────────────────────────── */
-.wbe-hide-desktop {
-	display: none !important;
+	color: var(--wbe-af-time);
+	border: 2px dashed var(--wbe-af-border);
+	border-radius: 12px;
 }
 
 /* ── Tablet ───────────────────────────────────────────────────────────────── */
-@media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
+@media (max-width: 1024px) {
+	.wbe-activity-feed--cards .wbe-af__card {
+		padding: 16px;
 	}
 }
 
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
-@media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
+@media (max-width: 640px) {
+	.wbe-af__list {
+		gap: 12px;
 	}
 
-	.wbe-activity-feed__item {
+	.wbe-activity-feed--cards .wbe-af__card {
+		padding: 14px;
+		border-radius: 10px;
+	}
+
+	.wbe-af__header {
 		gap: 10px;
-		padding: 12px 0;
 	}
 
-	.wbe-activity-feed__avatar-img,
-	.wbe-activity-feed__avatar img {
-		width: 38px;
-		height: 38px;
+	.wbe-af__avatar {
+		width: 36px !important;
+		height: 36px !important;
 	}
 
-	.wbe-activity-feed__action,
-	.wbe-activity-feed__content {
+	.wbe-af__type-badge {
+		width: 18px;
+		height: 18px;
+		bottom: -1px;
+		right: -3px;
+	}
+
+	.wbe-af__type-badge svg {
+		width: 9px;
+		height: 9px;
+	}
+
+	.wbe-af__action {
 		font-size: 0.82rem;
+	}
+
+	.wbe-af__body {
+		font-size: 0.82rem;
+	}
+
+	.wbe-af__media-img {
+		max-height: 200px;
+	}
+
+	.wbe-af__footer {
+		margin-top: 10px;
+		padding-top: 10px;
+	}
+
+	.wbe-activity-feed--timeline .wbe-af__list {
+		padding-left: 20px;
+	}
+
+	.wbe-activity-feed--timeline .wbe-af__card::before {
+		left: -27px;
+		width: 10px;
+		height: 10px;
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+	.wbe-af__card,
+	.wbe-af__action-btn,
+	.wbe-af__action-btn svg {
+		transition: none !important;
 	}
 }
