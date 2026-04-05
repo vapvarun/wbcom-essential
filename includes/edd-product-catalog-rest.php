@@ -205,7 +205,7 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 
 	// Prime meta cache to avoid N+1 queries in the format loop.
 	if ( ! empty( $query->posts ) ) {
-		update_post_meta_cache( wp_list_pluck( $query->posts, 'ID' ) );
+		update_meta_cache( 'post', wp_list_pluck( $query->posts, 'ID' ) );
 	}
 
 	foreach ( $query->posts as $post ) {
