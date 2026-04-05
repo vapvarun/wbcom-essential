@@ -26,7 +26,7 @@ register_block_pattern(
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/heading {"headingText":"Editor\'s Picks","textAlign":"left","useThemeColors":true} /-->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Editor\'s Picks</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>

@@ -26,13 +26,13 @@ register_block_pattern(
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/divider {"style":"solid","width":100,"alignment":"center","useThemeColors":true} /-->
+<!-- wp:separator {"className":"is-style-wide"} --><hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/><!-- /wp:separator -->
 
 <!-- wp:spacer {"height":"32px"} -->
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/heading {"headingText":"Latest Articles","textAlign":"left","useThemeColors":true} /-->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Latest Articles</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
