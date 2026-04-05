@@ -26,6 +26,48 @@ require_once __DIR__ . '/includes/class-wbe-fonts.php';
 \WBCOM_ESSENTIAL\Gutenberg\WBE_Fonts::init();
 
 /**
+ * Enqueue shared design tokens + base styles on frontend and editor.
+ * These provide --wbe-* CSS custom properties used by all blocks.
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( ! has_block( 'wbcom-essential' ) ) {
+			return;
+		}
+		wp_enqueue_style(
+			'wbe-design-tokens',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/design-tokens.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+		wp_enqueue_style(
+			'wbe-base',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/base.css',
+			array( 'wbe-design-tokens' ),
+			WBCOM_ESSENTIAL_VERSION
+		);
+	}
+);
+add_action(
+	'enqueue_block_editor_assets',
+	function () {
+		wp_enqueue_style(
+			'wbe-design-tokens',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/design-tokens.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+		wp_enqueue_style(
+			'wbe-base',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/base.css',
+			array( 'wbe-design-tokens' ),
+			WBCOM_ESSENTIAL_VERSION
+		);
+	}
+);
+
+/**
  * Register block categories for all WBcom Essential blocks.
  */
 add_filter(

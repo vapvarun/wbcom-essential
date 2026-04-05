@@ -1,36 +1,43 @@
-// Product Catalog — Frontend styles.
+// Product Catalog — Premium Frontend Styles.
 
+// ─── Toolbar ────────────────────────────────────────────────
 .wbcom-catalog__toolbar {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
 	align-items: center;
-	margin-bottom: 24px;
-	padding: 16px 20px;
-	background: var(--wbe-color-surface);
+	margin-bottom: var(--wbe-space-lg);
+	padding: 14px 20px;
+	background: var(--wbe-color-white);
 	border: 1px solid var(--wbe-color-border);
-	border-radius: 12px;
+	border-radius: var(--wbe-radius-lg);
+	box-shadow: var(--wbe-shadow-sm);
 }
 
 .wbcom-catalog__search {
 	flex: 1;
-	min-width: 200px;
+	min-width: 220px;
+	position: relative;
 }
 
 .wbcom-catalog__search-input {
 	width: 100%;
-	padding: 10px 16px;
-	border: 1px solid var(--wbe-color-border);
-	border-radius: 8px;
-	font-size: 15px;
+	padding: 11px 16px 11px 42px;
+	border: 1.5px solid var(--wbe-color-border);
+	border-radius: var(--wbe-radius-md);
+	font-size: 14px;
 	font-family: inherit;
-	background: var(--wbe-color-white);
-	transition: border-color 0.2s;
+	background: var(--wbe-color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 14px center;
+	transition: border-color var(--wbe-transition-fast), box-shadow var(--wbe-transition-fast);
 
 	&:focus {
 		outline: none;
 		border-color: var(--wbe-color-accent);
-		box-shadow: 0 0 0 2px var(--wbe-color-accent-ring);
+		box-shadow: 0 0 0 3px var(--wbe-color-accent-ring);
+	}
+
+	&::placeholder {
+		color: var(--wbe-color-text-light);
 	}
 }
 
@@ -42,73 +49,84 @@
 }
 
 .wbcom-catalog__select {
-	padding: 10px 32px 10px 14px;
-	border: 1px solid var(--wbe-color-border);
-	border-radius: 8px;
-	font-size: 14px;
+	padding: 10px 36px 10px 14px;
+	border: 1.5px solid var(--wbe-color-border);
+	border-radius: var(--wbe-radius-md);
+	font-size: 13px;
+	font-weight: 500;
 	font-family: inherit;
+	color: var(--wbe-color-text);
 	background: var(--wbe-color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 12px center;
 	appearance: none;
 	cursor: pointer;
-	transition: border-color 0.2s;
+	transition: border-color var(--wbe-transition-fast);
 
 	&:focus {
 		outline: none;
 		border-color: var(--wbe-color-accent);
+		box-shadow: 0 0 0 3px var(--wbe-color-accent-ring);
+	}
+
+	&:hover {
+		border-color: var(--wbe-color-text-light);
 	}
 }
 
+// ─── Results Count ──────────────────────────────────────────
 .wbcom-catalog__results-count {
-	font-size: 14px;
+	font-size: var(--wbe-font-sm);
 	color: var(--wbe-color-text-light);
-	margin-bottom: 16px;
-	padding: 0 4px;
+	margin-bottom: var(--wbe-space-md);
+	padding: 0 2px;
+	font-weight: 500;
 }
 
-// Product grid.
+// ─── Product Grid ───────────────────────────────────────────
 .wbcom-catalog__grid {
 	display: grid;
-	gap: 24px;
+	gap: var(--wbe-space-lg);
 
-	&--2 {
-		grid-template-columns: repeat(2, 1fr);
-	}
-	&--3 {
-		grid-template-columns: repeat(3, 1fr);
-	}
-	&--4 {
-		grid-template-columns: repeat(4, 1fr);
-	}
+	&--2 { grid-template-columns: repeat(2, 1fr); }
+	&--3 { grid-template-columns: repeat(3, 1fr); }
+	&--4 { grid-template-columns: repeat(4, 1fr); }
 }
 
-// Product card.
+// ─── Product Card ───────────────────────────────────────────
 .wbcom-catalog__card {
 	background: var(--wbe-color-white);
 	border: 1px solid var(--wbe-color-border);
-	border-radius: 12px;
+	border-radius: var(--wbe-radius-lg);
 	overflow: hidden;
-	transition: box-shadow 0.3s, transform 0.3s;
 	display: flex;
 	flex-direction: column;
+	transition: transform var(--wbe-transition-normal), box-shadow var(--wbe-transition-normal), border-color var(--wbe-transition-normal);
 
 	&:hover {
-		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-		transform: translateY(-4px);
+		transform: translateY(-6px);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+		border-color: transparent;
 	}
 }
 
+// Card image with zoom on hover.
 .wbcom-catalog__card-image {
 	display: block;
 	width: 100%;
-	height: 200px;
+	aspect-ratio: 16 / 10;
 	overflow: hidden;
 	background: var(--wbe-color-surface-alt);
+	position: relative;
 
 	img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		display: block;
+		transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+
+	.wbcom-catalog__card:hover & img {
+		transform: scale(1.06);
 	}
 }
 
@@ -116,24 +134,38 @@
 	width: 100%;
 	height: 100%;
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&::after {
+		content: "";
+		width: 48px;
+		height: 48px;
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: var(--wbe-radius-lg);
+	}
 }
 
+// Card body.
 .wbcom-catalog__card-body {
-	padding: 16px 20px 20px;
+	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	gap: 6px;
 }
 
 .wbcom-catalog__card-title {
-	margin: 0 0 8px;
-	font-size: 18px;
+	margin: 0;
+	font-size: 16px;
 	font-weight: 600;
-	line-height: 1.3;
+	line-height: 1.35;
 
 	a {
 		color: var(--wbe-color-text);
 		text-decoration: none;
+		transition: color var(--wbe-transition-fast);
 
 		&:hover {
 			color: var(--wbe-color-accent);
@@ -142,54 +174,105 @@
 }
 
 .wbcom-catalog__card-excerpt {
-	font-size: 14px;
+	font-size: var(--wbe-font-sm);
 	line-height: 1.6;
-	color: var(--wbe-color-text-light);
-	margin: 0 0 12px;
+	color: var(--wbe-color-text-muted);
+	margin: 0;
 	flex: 1;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
+// Price badge.
 .wbcom-catalog__card-price {
-	font-size: 20px;
+	display: inline-flex;
+	align-items: center;
+	font-size: 15px;
 	font-weight: 700;
-	color: var(--wbe-color-accent);
-	margin-bottom: 12px;
+	color: var(--wbe-color-text);
+	margin-top: 6px;
+	margin-bottom: 4px;
+	letter-spacing: -0.01em;
 
 	&--free {
-		color: #10b981;
+		color: var(--wbe-color-success);
+		font-size: 14px;
+		font-weight: 600;
+		padding: 3px 10px;
+		background: var(--wbe-color-success-bg);
+		border-radius: var(--wbe-radius-full);
+		letter-spacing: 0;
 	}
 }
 
-.wbcom-catalog__card-btn {
-	display: inline-block;
-	background: var(--wbe-color-accent);
-	color: var(--wbe-color-white);
-	border: none;
-	border-radius: 8px;
-	padding: 10px 24px;
-	font-size: 15px;
-	font-weight: 600;
-	text-decoration: none;
-	text-align: center;
-	cursor: pointer;
-	transition: background 0.2s;
+// CTA button — theme-proof with scoped isolation.
+.wp-block-wbcom-essential-product-catalog {
 
-	&:hover {
-		background: var(--wbe-color-accent-hover);
-		color: var(--wbe-color-white);
+	// Reset all theme link styles inside the catalog.
+	a {
+		text-decoration: none;
 	}
 
-	&--free {
-		background: #10b981;
+	.wbcom-catalog__card-title a {
+		color: var(--wbe-color-text);
 
 		&:hover {
-			background: #059669;
+			color: var(--wbe-color-accent);
+		}
+	}
+
+	.wbcom-catalog__card-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--wbe-color-accent);
+		color: var(--wbe-color-white);
+		border: none;
+		border-radius: var(--wbe-radius-md);
+		padding: 12px 24px;
+		font-size: 14px;
+		font-weight: 600;
+		font-family: inherit;
+		text-decoration: none;
+		text-align: center;
+		cursor: pointer;
+		transition: background-color var(--wbe-transition-fast), transform var(--wbe-transition-fast), box-shadow var(--wbe-transition-fast);
+		margin-top: auto;
+		line-height: 1;
+		width: 100%;
+
+		&:hover,
+		&:focus,
+		&:visited {
+			background-color: var(--wbe-color-accent-hover);
+			color: var(--wbe-color-white);
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			text-decoration: none;
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+
+		&--free {
+			background-color: var(--wbe-color-success);
+
+			&:hover,
+			&:focus {
+				background-color: #059669;
+				color: var(--wbe-color-white);
+			}
 		}
 	}
 }
 
-// Loading skeleton.
+// ─── Loading Skeleton ───────────────────────────────────────
 .wbcom-catalog__card--skeleton {
+	pointer-events: none;
+
 	.wbcom-catalog__card-image {
 		background: linear-gradient(
 			90deg,
@@ -198,82 +281,106 @@
 			var(--wbe-color-surface-alt) 75%
 		);
 		background-size: 200% 100%;
-		animation: shimmer 1.5s infinite;
+		animation: wbe-shimmer 1.8s ease-in-out infinite;
+	}
+
+	.wbcom-catalog__card-body {
+		gap: 10px;
+	}
+
+	.wbcom-catalog__card-title,
+	.wbcom-catalog__card-excerpt,
+	.wbcom-catalog__card-price {
+		background: var(--wbe-color-surface-alt);
+		border-radius: var(--wbe-radius-sm);
+		color: transparent;
 	}
 
 	.wbcom-catalog__card-title {
-		height: 20px;
-		width: 70%;
-		background: var(--wbe-color-border);
-		border-radius: 4px;
-		margin: 16px 20px 8px;
+		height: 18px;
+		width: 75%;
 	}
 
 	.wbcom-catalog__card-excerpt {
 		height: 14px;
-		width: 90%;
-		background: var(--wbe-color-border);
-		border-radius: 4px;
-		margin: 0 20px 8px;
+		width: 92%;
 	}
 
 	.wbcom-catalog__card-price {
-		height: 24px;
-		width: 40%;
-		background: var(--wbe-color-border);
-		border-radius: 4px;
-		margin: 0 20px 16px;
+		height: 20px;
+		width: 35%;
 	}
 }
 
-@keyframes shimmer {
-	0% {
-		background-position: -200% 0;
-	}
-	100% {
-		background-position: 200% 0;
-	}
+@keyframes wbe-shimmer {
+	0% { background-position: -200% 0; }
+	100% { background-position: 200% 0; }
 }
 
-// Empty state.
+// ─── Empty State ────────────────────────────────────────────
 .wbcom-catalog__empty {
 	grid-column: 1 / -1;
 	text-align: center;
-	padding: 60px 20px;
-	color: #94a3b8;
-	font-size: 16px;
+	padding: 64px 24px;
+	color: var(--wbe-color-text-light);
+
+	&::before {
+		content: "";
+		display: block;
+		width: 56px;
+		height: 56px;
+		margin: 0 auto 16px;
+		background: var(--wbe-color-surface-alt);
+		border-radius: var(--wbe-radius-full);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3Cline x1='8' y1='11' x2='14' y2='11'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	font-size: 15px;
+	font-weight: 500;
 }
 
-// Load more.
+// ─── Load More ──────────────────────────────────────────────
 .wbcom-catalog__loadmore-wrap {
 	text-align: center;
-	margin-top: 32px;
+	margin-top: var(--wbe-space-xl);
 }
 
 .wbcom-catalog__loadmore-btn {
 	background: var(--wbe-color-white);
 	color: var(--wbe-color-accent);
 	border: 2px solid var(--wbe-color-accent);
-	border-radius: 8px;
-	padding: 12px 32px;
-	font-size: 15px;
+	border-radius: var(--wbe-radius-md);
+	padding: 12px 36px;
+	font-size: 14px;
 	font-weight: 600;
 	cursor: pointer;
-	transition: all 0.2s;
 	font-family: inherit;
+	transition: all var(--wbe-transition-fast);
 
 	&:hover {
 		background: var(--wbe-color-accent);
 		color: var(--wbe-color-white);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 	}
 
 	&:disabled {
-		opacity: 0.6;
+		opacity: 0.5;
 		cursor: not-allowed;
+		transform: none;
+		box-shadow: none;
 	}
 }
 
-// Responsive.
+// ─── Responsive ─────────────────────────────────────────────
+@media (max-width: 1024px) {
+	.wbcom-catalog__grid {
+		&--4 { grid-template-columns: repeat(3, 1fr); }
+	}
+}
+
 @media (max-width: 768px) {
 	.wbcom-catalog__grid {
 		&--3,
@@ -284,6 +391,7 @@
 
 	.wbcom-catalog__toolbar {
 		flex-direction: column;
+		gap: 10px;
 	}
 
 	.wbcom-catalog__search {
@@ -296,6 +404,7 @@
 
 	.wbcom-catalog__select {
 		flex: 1;
+		min-width: 0;
 	}
 }
 
@@ -306,5 +415,32 @@
 		&--4 {
 			grid-template-columns: 1fr;
 		}
+	}
+
+	.wbcom-catalog__card-body {
+		padding: 16px;
+	}
+}
+
+// ─── Reduced Motion ─────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+	.wbcom-catalog__card,
+	.wbcom-catalog__card-image img,
+	.wbcom-catalog__card-btn,
+	.wbcom-catalog__loadmore-btn {
+		transition: none;
+		transform: none;
+	}
+
+	.wbcom-catalog__card:hover {
+		transform: none;
+	}
+
+	.wbcom-catalog__card:hover .wbcom-catalog__card-image img {
+		transform: none;
+	}
+
+	.wbcom-catalog__card--skeleton .wbcom-catalog__card-image {
+		animation: none;
 	}
 }
