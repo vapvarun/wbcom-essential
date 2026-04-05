@@ -62,6 +62,7 @@ export default function save( { attributes } ) {
 				<a
 					className="wbe-cta__btn"
 					href={ buttonUrl }
+					role="button"
 					style={ { backgroundColor: buttonBg, color: buttonColor } }
 				>
 					<RichText.Content value={ buttonText } />

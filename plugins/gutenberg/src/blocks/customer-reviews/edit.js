@@ -24,6 +24,7 @@ import {
 	DeviceVisibility,
 } from '../../shared/components';
 import { useUniqueId } from '../../shared/hooks';
+import { generateBlockCSS } from '../../shared/utils/css';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const {
@@ -64,6 +65,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	} = attributes;
 
 	useUniqueId( clientId, uniqueId, setAttributes );
+	const blockCSS = generateBlockCSS( uniqueId, attributes );
 
 	const blockProps = useBlockProps( {
 		className: `wbe-block-${ uniqueId } wbe-customer-reviews-editor`,
@@ -244,6 +246,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
+
+			{ blockCSS && <style>{ blockCSS }</style> }
 
 			<div { ...blockProps }>
 				<ServerSideRender

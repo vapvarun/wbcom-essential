@@ -81,6 +81,7 @@ export default function save( { attributes } ) {
 							<a
 								className="wbe-pricing-cards__btn"
 								href={ plan.buttonUrl }
+								role="button"
 								style={ {
 									backgroundColor: plan.featured ? '#ffffff' : buttonBg,
 									color: plan.featured ? featuredBg : buttonColor,

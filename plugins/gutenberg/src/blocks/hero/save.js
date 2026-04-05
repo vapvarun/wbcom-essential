@@ -88,6 +88,7 @@ export default function save( { attributes } ) {
 					<a
 						className="wbe-hero__btn wbe-hero__btn--primary"
 						href={ buttonOneUrl }
+						role="button"
 						style={ { backgroundColor: buttonOneBg, color: buttonOneColor } }
 					>
 						<RichText.Content value={ buttonOneText } />
@@ -95,6 +96,7 @@ export default function save( { attributes } ) {
 					<a
 						className="wbe-hero__btn wbe-hero__btn--secondary"
 						href={ buttonTwoUrl }
+						role="button"
 						style={ {
 							backgroundColor: buttonTwoBg,
 							color: buttonTwoColor,

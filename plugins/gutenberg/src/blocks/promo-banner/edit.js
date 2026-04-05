@@ -33,6 +33,7 @@ import {
 	DeviceVisibility,
 } from '../../shared/components';
 import { useUniqueId } from '../../shared/hooks';
+import { generateBlockCSS } from '../../shared/utils/css';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const {
@@ -68,6 +69,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	} = attributes;
 
 	useUniqueId( clientId, uniqueId, setAttributes );
+	const blockCSS = generateBlockCSS( uniqueId, attributes );
 
 	const isOverlay = bannerStyle === 'overlay';
 	const hasBgImage = backgroundImage && backgroundImage.url;
@@ -275,6 +277,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
+
+			{ blockCSS && <style>{ blockCSS }</style> }
 
 			<div { ...blockProps }>
 				{ /* Overlay layer (overlay mode only) */ }
