@@ -315,6 +315,131 @@
 	font-size: 0.9rem;
 }
 
+/* ============================================================================
+   COMMENTS SECTION
+   ============================================================================ */
+.wbe-af__comments {
+	padding: 0 16px 12px;
+}
+
+.wbe-af__comments-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+/* Single comment */
+.wbe-af__comment-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.wbe-af__comment-avatar {
+	width: 28px !important;
+	height: 28px !important;
+	border-radius: 50% !important;
+	object-fit: cover;
+	flex-shrink: 0;
+	margin-top: 2px;
+}
+
+.wbe-af__comment-bubble {
+	flex: 1;
+	background: var(--wbe-af-icon-bg);
+	border-radius: 12px;
+	padding: 8px 12px;
+	min-width: 0;
+}
+
+.wbe-af__comment-name {
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--wbe-af-name);
+	line-height: 1.3;
+}
+
+.wbe-af__comment-name a {
+	color: var(--wbe-af-name);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.wbe-af__comment-text {
+	font-size: 0.84rem;
+	color: var(--wbe-af-content);
+	line-height: 1.45;
+}
+
+.wbe-af__comment-text p {
+	margin: 0;
+}
+
+.wbe-af__comment-time {
+	display: block;
+	font-size: 0.7rem;
+	color: var(--wbe-af-time);
+	margin-top: 3px;
+}
+
+/* Comment form */
+.wbe-af__comment-form {
+	display: flex;
+	gap: 8px;
+	align-items: flex-end;
+}
+
+.wbe-af__comment-input {
+	flex: 1;
+	min-height: 36px;
+	padding: 8px 12px;
+	border: 1px solid var(--wbe-af-border);
+	border-radius: 18px;
+	font-size: 0.84rem;
+	line-height: 1.4;
+	color: var(--wbe-af-name);
+	background: var(--wbe-af-card-bg);
+	resize: none;
+	overflow: hidden;
+	font-family: inherit;
+}
+
+.wbe-af__comment-input:focus {
+	outline: none;
+	border-color: var(--wbe-af-accent);
+	box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.15);
+}
+
+.wbe-af__comment-input::placeholder {
+	color: var(--wbe-af-time);
+}
+
+.wbe-af__comment-submit {
+	flex-shrink: 0;
+	padding: 7px 16px !important;
+	background: var(--wbe-af-accent) !important;
+	color: #fff !important;
+	border-color: var(--wbe-af-accent) !important;
+	font-weight: 600 !important;
+}
+
+.wbe-af__comment-submit:hover {
+	opacity: 0.9;
+}
+
+.wbe-af__comment-submit:disabled {
+	opacity: 0.5;
+	cursor: wait;
+}
+
+.wbe-af__comment-error {
+	color: #e53e3e;
+	font-size: 0.8rem;
+	margin: 4px 0 0;
+}
+
 /* ── Load more ────────────────────────────────────────────────────────────── */
 .wbe-af__load-more-wrap {
 	display: flex;

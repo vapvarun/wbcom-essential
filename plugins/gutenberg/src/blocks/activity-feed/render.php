@@ -91,10 +91,13 @@ $config = array(
 		'favorite'    => __( 'Mark as Favorite', 'wbcom-essential' ),
 		'favorited'   => __( 'Favorited', 'wbcom-essential' ),
 		'loadMore'    => __( 'Load More', 'wbcom-essential' ),
-		'loading'     => __( 'Loading...', 'wbcom-essential' ),
-		'empty'       => __( 'No activity to show yet.', 'wbcom-essential' ),
-		'timeAgo'     => __( 'ago', 'wbcom-essential' ),
-		'justNow'     => __( 'Just now', 'wbcom-essential' ),
+		'loading'            => __( 'Loading...', 'wbcom-essential' ),
+		'empty'              => __( 'No activity to show yet.', 'wbcom-essential' ),
+		'timeAgo'            => __( 'ago', 'wbcom-essential' ),
+		'justNow'            => __( 'Just now', 'wbcom-essential' ),
+		'commentPlaceholder' => __( 'Write a comment...', 'wbcom-essential' ),
+		'postComment'        => __( 'Post', 'wbcom-essential' ),
+		'commentError'       => __( 'Could not post comment. Please try again.', 'wbcom-essential' ),
 	),
 );
 ?>

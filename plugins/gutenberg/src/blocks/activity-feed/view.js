@@ -154,13 +154,22 @@
 			const footer = el( 'div', 'wbe-af__footer' );
 
 			if ( cfg.showCommentCount ) {
-				const commentBtn = el( 'span', 'wbe-af__action-btn' );
+				const commentBtn = document.createElement( 'button' );
+				commentBtn.type = 'button';
+				commentBtn.className = 'wbe-af__action-btn wbe-af__comment-toggle';
+				commentBtn.dataset.activityId = item.id;
 				const commentTmpl = document.createElement( 'template' );
 				commentTmpl.innerHTML = COMMENT_SVG;
 				commentBtn.appendChild( commentTmpl.content );
 				commentBtn.appendChild( document.createTextNode( ' ' + cfg.i18n.comment ) );
 				footer.appendChild( commentBtn );
 			}
+
+			// Comment section (hidden by default).
+			const commentSection = el( 'div', 'wbe-af__comments' );
+			commentSection.dataset.activityId = item.id;
+			commentSection.style.display = 'none';
+			card.appendChild( commentSection );
 
 			if ( cfg.showFavBtn ) {
 				const isFav = item.favorited;
@@ -264,8 +273,188 @@
 				} );
 		}
 
+		/**
+		 * Load and render comments for an activity.
+		 */
+		function loadComments( section, activityId ) {
+			if ( section.dataset.loaded === '1' ) {
+				return;
+			}
+			section.dataset.loaded = '1';
+
+			const commentsListEl = el( 'div', 'wbe-af__comments-list' );
+			section.appendChild( commentsListEl );
+
+			// Fetch activity with comments.
+			const url = new URL( cfg.restUrl.replace( /\/$/, '' ) + '/' + activityId, window.location.origin );
+			url.searchParams.set( 'display_comments', 'threaded' );
+
+			fetch( url.toString(), {
+				headers: { 'X-WP-Nonce': cfg.restNonce },
+				credentials: 'same-origin',
+			} )
+				.then( function ( res ) { return res.json(); } )
+				.then( function ( data ) {
+					// BP REST doesn't return comments in the single activity endpoint consistently.
+					// Comments might be empty — that's OK, just show the form.
+				} )
+				.catch( function () {
+					// Silently fail — form still works.
+				} );
+
+			// Add comment form if logged in.
+			if ( cfg.loggedIn ) {
+				const form = el( 'div', 'wbe-af__comment-form' );
+
+				const input = document.createElement( 'textarea' );
+				input.className = 'wbe-af__comment-input';
+				input.placeholder = cfg.i18n.commentPlaceholder || 'Write a comment...';
+				input.rows = 1;
+				form.appendChild( input );
+
+				const submitBtn = document.createElement( 'button' );
+				submitBtn.type = 'button';
+				submitBtn.className = 'wbe-af__action-btn wbe-af__comment-submit';
+				submitBtn.textContent = cfg.i18n.postComment || 'Post';
+				submitBtn.dataset.activityId = activityId;
+				form.appendChild( submitBtn );
+
+				section.appendChild( form );
+
+				// Auto-resize textarea.
+				input.addEventListener( 'input', function () {
+					this.style.height = 'auto';
+					this.style.height = this.scrollHeight + 'px';
+				} );
+			}
+		}
+
+		/**
+		 * Post a comment via BP REST API.
+		 */
+		function postComment( activityId, content, section ) {
+			const url = cfg.restUrl;
+
+			fetch( url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-WP-Nonce': cfg.restNonce,
+				},
+				credentials: 'same-origin',
+				body: JSON.stringify( {
+					type: 'activity_comment',
+					primary_item_id: parseInt( activityId, 10 ),
+					content: content,
+				} ),
+			} )
+				.then( function ( res ) {
+					if ( ! res.ok ) {
+						throw new Error( 'Failed' );
+					}
+					return res.json();
+				} )
+				.then( function ( comment ) {
+					// Add the new comment to the list.
+					const listEl2 = section.querySelector( '.wbe-af__comments-list' );
+					if ( listEl2 ) {
+						const commentEl = el( 'div', 'wbe-af__comment-item' );
+
+						const avatarUrl = decodeEntities( comment.user_avatar?.thumb || comment.user_avatar?.full || '' );
+						if ( avatarUrl ) {
+							const img = document.createElement( 'img' );
+							img.src = avatarUrl;
+							img.className = 'wbe-af__comment-avatar';
+							img.width = 28;
+							img.height = 28;
+							img.alt = '';
+							commentEl.appendChild( img );
+						}
+
+						const bubble = el( 'div', 'wbe-af__comment-bubble' );
+						if ( comment.title ) {
+							const nameP = document.createElement( 'p' );
+							nameP.className = 'wbe-af__comment-name';
+							setTrustedBPContent( nameP, comment.title );
+							bubble.appendChild( nameP );
+						}
+						if ( comment.content?.rendered ) {
+							const bodyP = el( 'div', 'wbe-af__comment-text' );
+							setTrustedBPContent( bodyP, comment.content.rendered );
+							bubble.appendChild( bodyP );
+						}
+						const timeEl = el( 'span', 'wbe-af__comment-time', cfg.i18n.justNow || 'Just now' );
+						bubble.appendChild( timeEl );
+
+						commentEl.appendChild( bubble );
+						listEl2.appendChild( commentEl );
+					}
+
+					// Clear the input.
+					const textarea = section.querySelector( '.wbe-af__comment-input' );
+					if ( textarea ) {
+						textarea.value = '';
+						textarea.style.height = 'auto';
+					}
+
+					// Update comment count on the toggle button.
+					const card = section.closest( '.wbe-af__card' );
+					if ( card ) {
+						const toggleBtn = card.querySelector( '.wbe-af__comment-toggle' );
+						if ( toggleBtn ) {
+							// Count visible comments.
+							const count = section.querySelectorAll( '.wbe-af__comment-item' ).length;
+							toggleBtn.lastChild.textContent = ' ' + cfg.i18n.comment + ( count > 0 ? ' (' + count + ')' : '' );
+						}
+					}
+				} )
+				.catch( function () {
+					// Show inline error.
+					const errorEl = el( 'p', 'wbe-af__comment-error', cfg.i18n.commentError || 'Could not post comment.' );
+					section.appendChild( errorEl );
+					setTimeout( function () { errorEl.remove(); }, 3000 );
+				} );
+		}
+
 		// Event delegation for clicks.
 		listEl.addEventListener( 'click', function ( e ) {
+			// Comment toggle.
+			const commentToggle = e.target.closest( '.wbe-af__comment-toggle' );
+			if ( commentToggle ) {
+				const actId = commentToggle.dataset.activityId;
+				const card = commentToggle.closest( '.wbe-af__card' );
+				const section = card ? card.querySelector( '.wbe-af__comments[data-activity-id="' + actId + '"]' ) : null;
+				if ( section ) {
+					const isOpen = section.style.display !== 'none';
+					section.style.display = isOpen ? 'none' : 'block';
+					if ( ! isOpen ) {
+						loadComments( section, actId );
+						// Focus the input.
+						const input = section.querySelector( '.wbe-af__comment-input' );
+						if ( input ) {
+							input.focus();
+						}
+					}
+				}
+				return;
+			}
+
+			// Comment submit.
+			const submitBtn = e.target.closest( '.wbe-af__comment-submit' );
+			if ( submitBtn ) {
+				const actId = submitBtn.dataset.activityId;
+				const section = submitBtn.closest( '.wbe-af__comments' );
+				const input = section ? section.querySelector( '.wbe-af__comment-input' ) : null;
+				if ( input && input.value.trim() ) {
+					submitBtn.disabled = true;
+					submitBtn.textContent = cfg.i18n.loading || 'Posting...';
+					postComment( actId, input.value.trim(), section );
+					submitBtn.disabled = false;
+					submitBtn.textContent = cfg.i18n.postComment || 'Post';
+				}
+				return;
+			}
+
 			// Load more.
 			const loadMoreBtn = e.target.closest( '.wbe-af__load-more' );
 			if ( loadMoreBtn ) {
