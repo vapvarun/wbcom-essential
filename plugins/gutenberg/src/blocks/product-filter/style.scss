@@ -44,9 +44,34 @@
 	}
 }
 
+// Sticky shadow when stuck.
+#wbcom-product-filter.is-stuck,
+.wp-block-wbcom-essential-product-filter.is-stuck {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 // Admin bar offset for sticky positioning.
 @media screen and (max-width: 782px) {
 	body.admin-bar #wbcom-product-filter {
 		top: 46px !important;
+	}
+}
+
+// Mobile: horizontal scroll with fade masks.
+@media (max-width: 480px) {
+	.wbcom-filter-wrap {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		justify-content: flex-start;
+		padding-bottom: 4px;
+		mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+		-webkit-mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+
+		// Hide scrollbar.
+		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 }

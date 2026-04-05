@@ -185,7 +185,8 @@
 		transition: background-color 0.2s ease;
 
 		&:hover,
-		&:focus {
+		&:focus,
+		&:visited {
 			background-color: #1d4ed8;
 			color: var(--wbe-color-white);
 			text-decoration: none;
@@ -194,6 +195,17 @@
 		&:focus-visible {
 			outline: 2px solid var( --wbcom-link-color, #2563eb );
 			outline-offset: 2px;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Reduced Motion
+	// -------------------------------------------------------------------------
+	@media (prefers-reduced-motion: reduce) {
+		&__checkmark {
+			animation: none;
+			opacity: 1;
+			transform: scale(1);
 		}
 	}
 

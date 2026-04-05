@@ -242,7 +242,14 @@ function wbcom_essential_product_catalog_format_product( $post ) {
 			$max   = max( $amounts );
 			$price = html_entity_decode( edd_currency_filter( edd_format_amount( $min ) ) . ' – ' . edd_currency_filter( edd_format_amount( $max ) ) );
 		} else {
-			$price = __( 'Price varies', 'wbcom-essential' );
+			// Variable pricing enabled but no tiers — fall back to base price.
+			$amount = function_exists( 'edd_get_download_price' ) ? edd_get_download_price( $post->ID ) : 0;
+			if ( (float) $amount > 0 ) {
+				$price = html_entity_decode( edd_currency_filter( edd_format_amount( $amount ) ) );
+			} else {
+				$price   = 'Free';
+				$is_free = true;
+			}
 		}
 	} elseif ( function_exists( 'edd_get_download_price' ) ) {
 		$amount = edd_get_download_price( $post->ID );

@@ -32,7 +32,8 @@ require_once __DIR__ . '/includes/class-wbe-fonts.php';
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		if ( ! has_block( 'wbcom-essential' ) ) {
+		global $post;
+		if ( ! $post || false === strpos( $post->post_content, '<!-- wp:wbcom-essential/' ) ) {
 			return;
 		}
 		wp_enqueue_style(
@@ -45,6 +46,12 @@ add_action(
 			'wbe-base',
 			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/base.css',
 			array( 'wbe-design-tokens' ),
+			WBCOM_ESSENTIAL_VERSION
+		);
+		wp_enqueue_style(
+			'wbe-theme-isolation',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/theme-isolation.css',
+			array( 'wbe-base' ),
 			WBCOM_ESSENTIAL_VERSION
 		);
 	}
@@ -62,6 +69,12 @@ add_action(
 			'wbe-base',
 			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/base.css',
 			array( 'wbe-design-tokens' ),
+			WBCOM_ESSENTIAL_VERSION
+		);
+		wp_enqueue_style(
+			'wbe-theme-isolation',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/theme-isolation.css',
+			array( 'wbe-base' ),
 			WBCOM_ESSENTIAL_VERSION
 		);
 	}

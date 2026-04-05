@@ -18,11 +18,31 @@
 
 		// Apply sticky positioning.
 		if ( isSticky ) {
-			bar.style.position = 'sticky';
-			bar.style.zIndex = '100';
-			bar.style.top = document.body.classList.contains( 'admin-bar' )
+			var stickyTop = document.body.classList.contains( 'admin-bar' )
 				? '32px'
 				: '0';
+			bar.style.position = 'sticky';
+			bar.style.zIndex = '100';
+			bar.style.top = stickyTop;
+
+			// Toggle .is-stuck class when the bar becomes sticky.
+			if ( 'IntersectionObserver' in window ) {
+				var sentinel = document.createElement( 'div' );
+				sentinel.style.height = '1px';
+				sentinel.style.marginBottom = '-1px';
+				bar.parentElement.insertBefore( sentinel, bar );
+
+				var observer = new IntersectionObserver(
+					function ( entries ) {
+						bar.classList.toggle(
+							'is-stuck',
+							! entries[ 0 ].isIntersecting
+						);
+					},
+					{ threshold: 0 }
+				);
+				observer.observe( sentinel );
+			}
 		}
 
 		var btns = bar.querySelectorAll( '.wbcom-filter-btn' );
