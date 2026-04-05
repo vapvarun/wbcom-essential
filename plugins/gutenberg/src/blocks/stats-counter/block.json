@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/stats-counter",
 	"version": "1.0.0",
 	"title": "Stats Counter",
-	"category": "starter-design",
+	"category": "essential-design",
 	"icon": "chart-bar",
 	"description": "Animated count-up numbers that trigger on scroll. Display up to 6 stats in a responsive grid.",
 	"keywords": ["stats", "counter", "numbers", "animated", "count", "facts"],

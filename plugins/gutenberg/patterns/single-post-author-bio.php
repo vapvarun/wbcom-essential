@@ -32,6 +32,6 @@ register_block_pattern(
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/testimonial {"showRating":false,"layout":"row","useThemeColors":true} /-->',
+<!-- wp:wbcom-essential/testimonial-carousel {"showRating":false,"layout":"row","useThemeColors":true} /-->',
 	)
 );

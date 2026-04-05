@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/posts-ticker",
 	"version": "1.0.0",
 	"title": "Posts Ticker",
-	"category": "starter-blog",
+	"category": "essential-blog",
 	"icon": "megaphone",
 	"description": "Horizontally scrolling news ticker with configurable speed, direction, label, and separator styles.",
 	"keywords": ["ticker", "news", "scroll", "marquee", "posts", "headlines"],

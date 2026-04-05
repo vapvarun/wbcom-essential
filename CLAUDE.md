@@ -3,8 +3,9 @@
 ## Project Overview
 
 **Plugin**: Wbcom Essential
-**Version**: 4.2.0
+**Version**: 4.5.0
 **Purpose**: Companion plugin for BuddyX theme providing Elementor widgets and Gutenberg blocks for BuddyPress, WooCommerce, and general WordPress functionality.
+**Branch**: `4.5.0` — V2 block rebuild (competitive audit-driven quality standard)
 
 ## Architecture Documentation
 
@@ -17,6 +18,7 @@ Full architecture documentation available in `docs/architecture/`:
 
 | Date | Description |
 |------|-------------|
+| 2026-04-05 | v4.5.0: V2 block rebuild — 32 blocks rebuilt from shared infrastructure, 21 legacy blocks removed, competitive audit quality standard |
 | 2026-03-05 | v4.3.0: Category Grid block, magazine patterns, single post templates, Posts Revolution category mapping UX |
 | 2026-02-03 | v4.2.1: Fix PHP 8+ TypeError in Elementor AJAX handler, harden type safety across license and template APIs |
 | 2026-01-20 | Fix admin page: block count 38→45, fix URLs (developer.wbcomdesigns.com→correct domains) |
@@ -49,7 +51,7 @@ Full architecture documentation available in `docs/architecture/`:
 wbcom-essential/
 ├── admin/                      # Admin panel functionality
 ├── build/                      # Compiled block assets (generated)
-│   └── blocks/                 # Built block JS/CSS (45 blocks)
+│   └── blocks/                 # Built block JS/CSS (32 V2 blocks)
 ├── includes/                   # Core plugin functionality
 │   ├── shared-admin/           # Shared admin components
 │   └── wbcom-essential-function.php  # Shared helper functions
@@ -57,21 +59,22 @@ wbcom-essential/
 │   ├── elementor/              # Elementor integration
 │   │   ├── assets/             # Elementor CSS/JS
 │   │   ├── widgets/            # Widget classes
-│   │   │   ├── General/        # General purpose widgets (27)
-│   │   │   ├── Buddypress/     # BuddyPress widgets (11)
-│   │   │   ├── WooCommerce/    # WooCommerce widgets (5)
-│   │   │   └── querycontrol/   # Query control helpers
 │   │   ├── Plugins.php         # Widget registration
 │   │   └── wbcom-essential-elementor.php
-│   └── gutenberg/              # Gutenberg blocks
-│       ├── assets/css/         # Shared CSS (theme-colors, blocks-reset)
-│       ├── blocks/             # Block source files (45 blocks)
-│       ├── README.md           # Gutenberg documentation
-│       └── wbcom-gutenberg.php # Block registration & REST routes
-├── languages/                  # Translations
-├── node_modules/               # NPM dependencies
+│   └── gutenberg/              # Gutenberg V2 blocks
+│       ├── src/
+│       │   ├── shared/         # Shared infrastructure (components, hooks, utils, tokens)
+│       │   └── blocks/         # 32 V2 block source files
+│       ├── includes/           # PHP infrastructure (WBE_CSS, WBE_Schema, WBE_Fonts)
+│       ├── patterns/           # 13 block patterns
+│       ├── BlockRegistrar.php  # Auto-register from build/blocks/
+│       ├── gutenberg.php       # Loader, categories, REST routes
+│       └── README.md
+├── plan/                       # V2 rebuild plan + competitive audit
+│   ├── GUTENBERG-V2-REBUILD.md
+│   └── audit/                  # Kadence, Stackable, Spectra, Otter audits
 ├── scripts/                    # Build scripts
-│   ├── build-blocks.js         # Production build
+│   ├── build-blocks.js         # Production build (src/blocks → build/blocks)
 │   └── dev-blocks.js           # Development watch
 ├── package.json                # NPM configuration
 └── wbcom-essential.php         # Main plugin file
@@ -79,226 +82,135 @@ wbcom-essential/
 
 ---
 
-## Widget to Block Mapping Status
+## V2 Block Inventory (32 blocks)
 
-**Last Updated**: January 2025
-
-### Legend
-- ✅ Block complete with full feature parity
-- ⭐ Bonus block (no Elementor widget equivalent)
-- ⏭️ Skipped (WooCommerce provides native blocks)
-- ❌ Missing
+**Last Updated**: April 2026
+**Quality Standard**: `plan/audit/QUALITY-STANDARD.md` (derived from Kadence, Stackable, Spectra, Otter audit)
+**Shared Infrastructure**: `plugins/gutenberg/src/shared/` (7 components, 2 hooks, 3 utils)
 
 ### Summary
 
-| Category | Elementor Widgets | Gutenberg Blocks | Coverage |
-|----------|------------------|------------------|----------|
-| General | 27 | 26 + 7 bonus | 96% |
-| BuddyPress | 11 | 11 | 100% |
-| WooCommerce | 5 | 3 (rest skipped) | N/A |
-| **Total** | **43** | **45** | **98%** |
+| Category | Block Count |
+|----------|------------|
+| Essential - Marketing | 7 |
+| Essential - Content | 5 |
+| Essential - Blog | 3 |
+| Essential - Design | 6 |
+| Essential - BuddyPress | 5 |
+| Essential - WooCommerce | 4 |
+| Essential - EDD (conditional) | 2 |
+| **Total** | **32** |
 
-### General Widgets (27 total → 26 blocks + 1 gap)
+### V2 Blocks (32 total)
 
-| # | Widget | Block | Status |
-|---|--------|-------|--------|
-| 1 | Accordion | `accordion` | ✅ Complete |
-| 2 | Branding | `branding` | ✅ Complete |
-| 3 | Countdown | `countdown` | ✅ Complete |
-| 4 | Dropdown Button | `dropdown-button` | ✅ Complete |
-| 5 | Flip Box | `flip-box` | ✅ Complete |
-| 6 | Heading | `heading` | ✅ Complete |
-| 7 | Login Form | `login-form` | ✅ Complete |
-| 8 | Notification Area | - | ❌ **Gap** |
-| 9 | Portfolio Grid | `portfolio-grid` | ✅ Complete |
-| 10 | Post Carousel | `post-carousel` | ✅ Complete |
-| 11 | Posts Carousel | `posts-carousel` | ✅ Complete |
-| 12 | Post Slider | `post-slider` | ✅ Complete |
-| 13 | Posts Revolution | `posts-revolution` | ✅ Complete |
-| 14 | Posts Ticker | `posts-ticker` | ✅ Complete |
-| 15 | Post Timeline | `post-timeline` | ✅ Complete |
-| 16 | Pricing Table | `pricing-table` | ✅ Complete |
-| 17 | Progress Bar | `progress-bar` | ✅ Complete |
-| 18 | Shape | `shape` | ✅ Complete |
-| 19 | Site Logo | `site-logo` | ✅ Complete |
-| 20 | Slider | `slider` | ✅ Complete |
-| 21 | Smart Menu | `smart-menu` | ✅ Complete |
-| 22 | Tabs | `advanced-tabs` | ✅ Complete |
-| 23 | Team Carousel | `team-carousel` | ✅ Complete |
-| 24 | Testimonial | `testimonial` | ✅ Complete |
-| 25 | Testimonial Carousel | `testimonial-carousel` | ✅ Complete |
-| 26 | Text Rotator | `text-rotator` | ✅ Complete |
-| 27 | Timeline | `timeline` | ✅ Complete |
+| # | Block Slug | Category | Type |
+|---|-----------|----------|------|
+| 1 | `hero` | Marketing | Static |
+| 2 | `cta` | Marketing | Static |
+| 3 | `pricing-table` | Marketing | Static |
+| 4 | `testimonial-carousel` | Marketing | Static + viewScript |
+| 5 | `feature-grid` | Marketing | Static |
+| 6 | `promo-banner` | Marketing | Static |
+| 7 | `countdown-timer` | Marketing | Static + viewScript |
+| 8 | `faq-accordion` | Content | Static + viewScript + JSON-LD |
+| 9 | `tabs` | Content | Static + viewScript |
+| 10 | `login-form` | Content | Dynamic (render.php) |
+| 11 | `portfolio-grid` | Content | Dynamic |
+| 12 | `timeline` | Content | Dynamic |
+| 13 | `post-carousel` | Blog | Dynamic + viewScript |
+| 14 | `posts-ticker` | Blog | Dynamic + viewScript |
+| 15 | `category-grid` | Blog | Dynamic |
+| 16 | `flip-box` | Design | Static |
+| 17 | `progress-bar` | Design | Static + viewScript |
+| 18 | `text-rotator` | Design | Static + viewScript |
+| 19 | `stats-counter` | Design | Static + viewScript |
+| 20 | `edd-account-dashboard` | Design | Dynamic (REST API) |
+| 21 | `edd-checkout-enhanced` | Design | Dynamic |
+| 22 | `activity-feed` | BuddyPress | Dynamic (BP REST API) |
+| 23 | `members-grid` | BuddyPress | Dynamic |
+| 24 | `members-carousel` | BuddyPress | Dynamic + viewScript |
+| 25 | `groups-grid` | BuddyPress | Dynamic |
+| 26 | `group-carousel` | BuddyPress | Dynamic + viewScript |
+| 27 | `product-grid` | WooCommerce | Dynamic |
+| 28 | `product-carousel` | WooCommerce | Dynamic + viewScript |
+| 29 | `customer-reviews` | WooCommerce | Dynamic |
+| 30 | `edd-order-success` | WooCommerce | Dynamic |
+| 31 | `product-catalog` | EDD (conditional) | Dynamic + viewScript |
+| 32 | `product-filter` | EDD (conditional) | Dynamic |
 
-### BuddyPress Widgets (11 total → 11 blocks = 100%)
+### Blocks Removed in V2 (21 merged/replaced)
 
-| # | Widget | Block | Status |
-|---|--------|-------|--------|
-| 1 | Dashboard Intro | `dashboard-intro` | ✅ Complete |
-| 2 | Forums | `forums` | ✅ Complete |
-| 3 | Forums Activity | `forums-activity` | ✅ Complete |
-| 4 | Group Carousel | `group-carousel` | ✅ Complete |
-| 5 | Groups Grid | `groups-grid` | ✅ Complete |
-| 6 | Groups Lists | `groups-lists` | ✅ Complete |
-| 7 | Header Bar | `header-bar` | ✅ Complete |
-| 8 | Members Grid | `members-grid` | ✅ Complete |
-| 9 | Members Lists | `members-lists` | ✅ Complete |
-| 10 | Members Carousel | `members-carousel` | ✅ Complete |
-| 11 | Profile Completion | `profile-completion` | ✅ Complete |
-
-### WooCommerce Widgets (5 total → Mostly Skipped)
-
-WooCommerce provides native Gutenberg blocks for products, reviews, and tabs. We only created blocks for functionality WooCommerce doesn't offer natively.
-
-| # | Widget | Block | Status |
-|---|--------|-------|--------|
-| 1 | Add Banner | - | ⏭️ Skipped (use WC blocks) |
-| 2 | Customer Review | - | ⏭️ Skipped (use WC Reviews block) |
-| 3 | Product Tab | - | ⏭️ Skipped (use WC Product Details) |
-| 4 | Universal Product | `product-grid` | ✅ Complete |
-| 5 | WC Testimonial | - | ⏭️ Skipped (use testimonial block) |
-
-### Bonus Blocks (7 blocks with no Elementor widget)
-
-These blocks were created specifically for Gutenberg to enhance the block library:
-
-| # | Block | Category | Purpose |
-|---|-------|----------|---------|
-| 1 | `counter` | Design | Animated number counter with prefix/suffix |
-| 2 | `cta-box` | Marketing | Call-to-action box with button |
-| 3 | `divider` | Design | Decorative divider with styles |
-| 4 | `icon-box` | Design | Icon with title and description |
-| 5 | `mini-cart` | WooCommerce | Mini shopping cart for headers |
-| 6 | `social-icons` | Design | Social media icon links |
-| 7 | `star-rating` | Content | Star rating display |
-
-### All 45 Blocks (Complete List)
-
-```
-plugins/gutenberg/blocks/
-├── accordion/              # Collapsible content sections
-├── advanced-tabs/          # Tabbed content panels
-├── branding/               # Site logo and branding
-├── countdown/              # Countdown timer
-├── counter/                # Animated number counter (bonus)
-├── cta-box/                # Call-to-action box (bonus)
-├── dashboard-intro/        # BuddyPress dashboard intro
-├── divider/                # Decorative divider (bonus)
-├── dropdown-button/        # Button with dropdown menu
-├── flip-box/               # 3D flip card
-├── forums/                 # bbPress forums list
-├── forums-activity/        # bbPress activity feed
-├── group-carousel/         # BuddyPress groups carousel
-├── groups-grid/            # BuddyPress groups grid
-├── groups-lists/           # BuddyPress groups list
-├── header-bar/             # Header navigation bar
-├── heading/                # Styled heading
-├── icon-box/               # Icon with text (bonus)
-├── login-form/             # User login form
-├── members-carousel/       # BuddyPress members carousel
-├── members-grid/           # BuddyPress members grid
-├── members-lists/          # BuddyPress members list
-├── mini-cart/              # WooCommerce mini cart (bonus)
-├── portfolio-grid/         # Portfolio items grid
-├── post-carousel/          # Single post carousel
-├── post-slider/            # Full-width post slider
-├── post-timeline/          # Posts in timeline layout
-├── posts-carousel/         # Multiple posts carousel
-├── posts-revolution/       # Posts revolution slider
-├── posts-ticker/           # Scrolling posts ticker
-├── pricing-table/          # Pricing comparison table
-├── product-grid/           # WooCommerce products grid
-├── profile-completion/     # BuddyPress profile progress
-├── progress-bar/           # Animated progress bar
-├── shape/                  # Decorative shapes
-├── site-logo/              # Site logo block
-├── slider/                 # Image/content slider
-├── smart-menu/             # Mega menu navigation
-├── social-icons/           # Social media icons (bonus)
-├── star-rating/            # Star rating display (bonus)
-├── team-carousel/          # Team members carousel
-├── testimonial/            # Single testimonial
-├── testimonial-carousel/   # Testimonials carousel
-├── text-rotator/           # Animated text rotation
-└── timeline/               # Vertical timeline
-```
+`heading`, `branding`, `site-logo`, `shape`, `slider`, `smart-menu`, `divider`, `social-icons`, `star-rating`, `icon-box`, `header-bar`, `mini-cart`, `dashboard-intro`, `forums`, `forums-activity`, `groups-lists`, `members-lists`, `dropdown-button`, `posts-revolution`, `post-slider`, `posts-carousel`, `counter`, `cta-box`, `accordion`, `advanced-tabs`, `countdown`, `post-timeline`, `testimonial`, `team-carousel`, `profile-completion`
 
 ---
 
 ## Block Categories
 
-All blocks are organized into 7 categories for easy discovery:
-
 | Category Slug | Display Name | Block Count |
 |--------------|--------------|-------------|
-| `starter-header` | Starter Pack - Header | 4 |
-| `starter-design` | Starter Pack - Design | 14 |
-| `starter-content` | Starter Pack - Content | 8 |
-| `starter-blog` | Starter Pack - Blog | 8 |
-| `starter-marketing` | Starter Pack - Marketing | 4 |
-| `starter-buddypress` | Starter Pack - BuddyPress | 11 |
-| `starter-woocommerce` | Starter Pack - WooCommerce | 2 |
+| `essential-marketing` | Essential - Marketing | 7 |
+| `essential-content` | Essential - Content | 5 |
+| `essential-blog` | Essential - Blog | 3 |
+| `essential-design` | Essential - Design | 6 |
+| `essential-buddypress` | Essential - BuddyPress | 5 |
+| `essential-woocommerce` | Essential - WooCommerce | 4 |
+| `wbcom-essential` | WBcom Essential | (fallback) |
 
 ---
 
-## Technical Features
+## Technical Features (V2)
 
-### Use Theme Colors Pattern
+### Shared Infrastructure
 
-All 45 blocks support the "Use Theme Colors" toggle:
-- **Disabled (default)**: Custom colors via ColorPicker controls
-- **Enabled**: Inherit colors from theme CSS custom properties
+All 32 blocks inherit from shared components in `plugins/gutenberg/src/shared/`:
 
-Implementation files:
-- `plugins/gutenberg/assets/css/theme-colors.css` - CSS variable mappings
-- `plugins/gutenberg/assets/css/blocks-reset.css` - Reset styles
+| Component | Purpose |
+|-----------|---------|
+| `ResponsiveControl.js` | Desktop/Tablet/Mobile switcher |
+| `SpacingControl.js` | Per-side padding/margin with linked toggle |
+| `TypographyControl.js` | Font family/size/weight/line-height (responsive) |
+| `BoxShadowControl.js` | Shadow editor |
+| `BorderRadiusControl.js` | Per-corner radius control |
+| `ColorHoverControl.js` | Color picker with Normal/Hover tabs |
+| `DeviceVisibility.js` | Hide on desktop/tablet/mobile toggles |
+| `useUniqueId.js` | Auto-generate unique ID on insert |
+| `useResponsiveValue.js` | Get value for current preview device |
+| `attributes.js` | Standard attribute schemas |
+| `css.js` | Generate scoped CSS from attributes |
+| `design-tokens.css` | `--wbe-*` CSS custom properties |
+| `base.css` | Block reset + responsive visibility + prefers-reduced-motion |
 
-### Block File Structure
+PHP classes: `WBE_CSS.php` (per-instance CSS), `WBE_Schema.php` (JSON-LD), `WBE_Fonts.php` (Google Fonts)
 
-Each block follows this standard structure:
+### Block File Structure (V2)
 
 ```
-blocks/{block-name}/
-├── {block-name}.php         # Block registration
-└── src/
-    ├── block.json           # Block metadata
-    ├── index.js             # Entry point
-    ├── edit.js              # Editor component
-    ├── save.js              # Save (null for SSR)
-    ├── render.php           # Server-side render
-    ├── view.js              # Frontend JS (if needed)
-    ├── style.scss           # Frontend + Editor styles
-    └── editor.scss          # Editor-only styles
+src/blocks/{block-name}/
+├── block.json           # Block metadata (apiVersion 3)
+├── index.js             # Entry point
+├── edit.js              # Editor component (uses shared components)
+├── save.js              # Save component
+├── render.php           # Server-side render (dynamic blocks)
+├── view.js              # Frontend JS (interactive blocks)
+├── style.css            # Frontend styles (design tokens)
+└── editor.css           # Editor-only styles
 ```
 
 ### Build System
 
 ```bash
-# Production build (all blocks)
-npm run build:blocks
-
-# Development with watch
-npm run dev:blocks
-
-# Clean build directory
-npm run clean:blocks
+npm run build:blocks     # Build all 32 blocks (src/blocks → build/blocks)
+npm run dev:blocks       # Development with watch
+npm run clean:blocks     # Remove build/blocks
 ```
 
-### Conditional Loading
+### Quality Standard (every block)
 
-Blocks are conditionally loaded based on plugin availability:
-
-```php
-// BuddyPress blocks - only when BP active
-// Checks: function_exists('buddypress')
-// Blocks: dashboard-intro, forums, forums-activity, group-carousel,
-//         groups-grid, groups-lists, header-bar, members-grid,
-//         members-lists, members-carousel, profile-completion
-
-// WooCommerce blocks - only when WC active
-// Checks: class_exists('WooCommerce')
-// Blocks: mini-cart, product-grid, header-bar (cart icon)
-```
+- apiVersion 3, responsive 3-breakpoint, per-side spacing, device visibility
+- Box shadow, per-corner radius, unique ID scoping (.wbe-block-{uniqueId})
+- BEM naming (.wbe-{block}__{element}), design tokens (--wbe-*)
+- ARIA attributes, keyboard navigable, prefers-reduced-motion
+- No jQuery, mobile-first CSS, tested on 5 themes
 
 ---
 

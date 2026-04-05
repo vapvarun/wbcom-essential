@@ -4,353 +4,184 @@
   "name": "wbcom-essential/login-form",
   "version": "1.0.0",
   "title": "Login Form",
-  "category": "starter-header",
+  "category": "essential-content",
   "icon": "admin-users",
-  "description": "Display a customizable login form with AJAX support.",
+  "description": "WordPress login form with customisable colours, redirect URL, and optional register/lost-password links.",
   "keywords": [
     "login",
     "form",
-    "user",
+    "sign in",
     "authentication",
-    "sign in"
+    "user",
+    "account"
   ],
+  "textdomain": "wbcom-essential",
+  "example": {
+    "attributes": {
+      "buttonText": "Log In",
+      "showRememberMe": true,
+      "showRegisterLink": true,
+      "showLostPassword": true
+    }
+  },
+  "attributes": {
+    "uniqueId": {
+      "type": "string",
+      "default": ""
+    },
+    "redirectUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "showRememberMe": {
+      "type": "boolean",
+      "default": true
+    },
+    "showRegisterLink": {
+      "type": "boolean",
+      "default": true
+    },
+    "showLostPassword": {
+      "type": "boolean",
+      "default": true
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Log In"
+    },
+    "loggedInMessage": {
+      "type": "string",
+      "default": "You are already logged in."
+    },
+    "formBg": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonBg": {
+      "type": "string",
+      "default": "#667eea"
+    },
+    "buttonColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "labelColor": {
+      "type": "string",
+      "default": "#1e1e2e"
+    },
+    "linkColor": {
+      "type": "string",
+      "default": "#667eea"
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40
+      }
+    },
+    "paddingTablet": {
+      "type": "object",
+      "default": null
+    },
+    "paddingMobile": {
+      "type": "object",
+      "default": null
+    },
+    "paddingUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "marginTablet": {
+      "type": "object",
+      "default": null
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": null
+    },
+    "marginUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "boxShadow": {
+      "type": "boolean",
+      "default": false
+    },
+    "shadowHorizontal": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowVertical": {
+      "type": "number",
+      "default": 4
+    },
+    "shadowBlur": {
+      "type": "number",
+      "default": 8
+    },
+    "shadowSpread": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.12)"
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 12,
+        "right": 12,
+        "bottom": 12,
+        "left": 12
+      }
+    },
+    "borderRadiusUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "hideOnDesktop": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideOnTablet": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideOnMobile": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "supports": {
     "html": false,
     "align": [
       "wide",
       "full"
     ],
+    "color": {
+      "background": true,
+      "text": true
+    },
     "spacing": {
       "margin": true,
       "padding": true
     }
   },
-  "attributes": {
-    "useThemeColors": {
-      "type": "boolean",
-      "default": false
-    },
-    "showLogo": {
-      "type": "boolean",
-      "default": true
-    },
-    "logoUrl": {
-      "type": "string",
-      "default": ""
-    },
-    "logoId": {
-      "type": "number",
-      "default": 0
-    },
-    "logoWidth": {
-      "type": "number",
-      "default": 150
-    },
-    "logoAlign": {
-      "type": "string",
-      "default": "center"
-    },
-    "logoBorderRadius": {
-      "type": "number",
-      "default": 0
-    },
-    "logoMarginBottom": {
-      "type": "number",
-      "default": 24
-    },
-    "showTitle": {
-      "type": "boolean",
-      "default": true
-    },
-    "title": {
-      "type": "string",
-      "default": "Welcome Back"
-    },
-    "titleTag": {
-      "type": "string",
-      "default": "h2"
-    },
-    "titleAlign": {
-      "type": "string",
-      "default": "center"
-    },
-    "titleMarginBottom": {
-      "type": "number",
-      "default": 8
-    },
-    "showSubtitle": {
-      "type": "boolean",
-      "default": true
-    },
-    "subtitle": {
-      "type": "string",
-      "default": "Please login to your account"
-    },
-    "subtitleTag": {
-      "type": "string",
-      "default": "p"
-    },
-    "subtitleAlign": {
-      "type": "string",
-      "default": "center"
-    },
-    "subtitleMarginBottom": {
-      "type": "number",
-      "default": 24
-    },
-    "usernameLabel": {
-      "type": "string",
-      "default": "Username or Email Address"
-    },
-    "usernamePlaceholder": {
-      "type": "string",
-      "default": "Enter your username or email"
-    },
-    "passwordLabel": {
-      "type": "string",
-      "default": "Password"
-    },
-    "passwordPlaceholder": {
-      "type": "string",
-      "default": "Enter your password"
-    },
-    "showLabels": {
-      "type": "boolean",
-      "default": true
-    },
-    "showRememberMe": {
-      "type": "boolean",
-      "default": true
-    },
-    "rememberMeLabel": {
-      "type": "string",
-      "default": "Remember Me"
-    },
-    "buttonText": {
-      "type": "string",
-      "default": "Log In"
-    },
-    "showLostPassword": {
-      "type": "boolean",
-      "default": true
-    },
-    "lostPasswordText": {
-      "type": "string",
-      "default": "Lost Password"
-    },
-    "showRegister": {
-      "type": "boolean",
-      "default": false
-    },
-    "registerText": {
-      "type": "string",
-      "default": "Register"
-    },
-    "linkSeparator": {
-      "type": "string",
-      "default": "|"
-    },
-    "redirectEnabled": {
-      "type": "boolean",
-      "default": false
-    },
-    "redirectUrl": {
-      "type": "string",
-      "default": ""
-    },
-    "showLoggedInMessage": {
-      "type": "boolean",
-      "default": true
-    },
-    "loggedInMessage": {
-      "type": "string",
-      "default": "You are logged in as "
-    },
-    "testMode": {
-      "type": "boolean",
-      "default": false
-    },
-    "formWidth": {
-      "type": "number",
-      "default": 100
-    },
-    "formWidthUnit": {
-      "type": "string",
-      "default": "%"
-    },
-    "formAlign": {
-      "type": "string",
-      "default": "center"
-    },
-    "rowsGap": {
-      "type": "number",
-      "default": 20
-    },
-    "formBgColor": {
-      "type": "string",
-      "default": ""
-    },
-    "formPadding": {
-      "type": "number",
-      "default": 30
-    },
-    "formBorderRadius": {
-      "type": "number",
-      "default": 8
-    },
-    "formBorderColor": {
-      "type": "string",
-      "default": ""
-    },
-    "formBorderWidth": {
-      "type": "number",
-      "default": 0
-    },
-    "formBoxShadow": {
-      "type": "boolean",
-      "default": true
-    },
-    "titleColor": {
-      "type": "string",
-      "default": ""
-    },
-    "subtitleColor": {
-      "type": "string",
-      "default": ""
-    },
-    "labelColor": {
-      "type": "string",
-      "default": ""
-    },
-    "labelAlign": {
-      "type": "string",
-      "default": "left"
-    },
-    "inputBgColor": {
-      "type": "string",
-      "default": ""
-    },
-    "inputBorderColor": {
-      "type": "string",
-      "default": ""
-    },
-    "inputTextColor": {
-      "type": "string",
-      "default": ""
-    },
-    "inputPlaceholderColor": {
-      "type": "string",
-      "default": ""
-    },
-    "inputFocusBorderColor": {
-      "type": "string",
-      "default": ""
-    },
-    "inputFocusBgColor": {
-      "type": "string",
-      "default": ""
-    },
-    "inputBorderRadius": {
-      "type": "number",
-      "default": 6
-    },
-    "inputPaddingV": {
-      "type": "number",
-      "default": 12
-    },
-    "inputPaddingH": {
-      "type": "number",
-      "default": 16
-    },
-    "inputWidth": {
-      "type": "number",
-      "default": 100
-    },
-    "inputAlign": {
-      "type": "string",
-      "default": "left"
-    },
-    "buttonBgColor": {
-      "type": "string",
-      "default": ""
-    },
-    "buttonTextColor": {
-      "type": "string",
-      "default": ""
-    },
-    "buttonHoverBgColor": {
-      "type": "string",
-      "default": ""
-    },
-    "buttonHoverTextColor": {
-      "type": "string",
-      "default": ""
-    },
-    "buttonBorderColor": {
-      "type": "string",
-      "default": ""
-    },
-    "buttonHoverBorderColor": {
-      "type": "string",
-      "default": ""
-    },
-    "buttonBorderRadius": {
-      "type": "number",
-      "default": 6
-    },
-    "buttonBorderWidth": {
-      "type": "number",
-      "default": 0
-    },
-    "buttonPaddingV": {
-      "type": "number",
-      "default": 14
-    },
-    "buttonPaddingH": {
-      "type": "number",
-      "default": 24
-    },
-    "buttonWidth": {
-      "type": "number",
-      "default": 100
-    },
-    "buttonAlign": {
-      "type": "string",
-      "default": "center"
-    },
-    "linkColor": {
-      "type": "string",
-      "default": ""
-    },
-    "linkHoverColor": {
-      "type": "string",
-      "default": ""
-    },
-    "linksAlign": {
-      "type": "string",
-      "default": "flex-end"
-    },
-    "linksMarginTop": {
-      "type": "number",
-      "default": 0
-    },
-    "checkboxColor": {
-      "type": "string",
-      "default": ""
-    },
-    "loggedInMsgColor": {
-      "type": "string",
-      "default": ""
-    },
-    "loggedInMsgAlign": {
-      "type": "string",
-      "default": "left"
-    }
-  },
-  "textdomain": "wbcom-essential",
+  "render": "file:./render.php",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "render": "file:./render.php",
-  "viewScript": "file:./view.js"
+  "style": "file:./style-index.css"
 }

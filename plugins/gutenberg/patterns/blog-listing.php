@@ -26,6 +26,6 @@ register_block_pattern(
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/posts-revolution {"displayType":"posts_type4","postsPerPage":8,"columns":2,"showExcerpt":true,"excerptLength":120,"enablePagination":true,"paginationType":"numeric","useThemeColors":true} /-->',
+<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type4","postsPerPage":8,"columns":2,"showExcerpt":true,"excerptLength":120,"enablePagination":true,"paginationType":"numeric","useThemeColors":true} /-->',
 	)
 );

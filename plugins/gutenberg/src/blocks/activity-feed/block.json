@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/activity-feed",
 	"version": "2.0.0",
 	"title": "Activity Feed",
-	"category": "starter-buddypress",
+	"category": "essential-buddypress",
 	"icon": "buddicons-activity",
 	"description": "Premium BuddyPress activity stream with card layout, type icons, human-readable timestamps, and interaction counts.",
 	"keywords": [ "activity", "feed", "stream", "buddypress", "community", "social" ],

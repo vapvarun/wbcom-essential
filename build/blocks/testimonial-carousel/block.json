@@ -4,82 +4,77 @@
   "name": "wbcom-essential/testimonial-carousel",
   "version": "1.0.0",
   "title": "Testimonial Carousel",
-  "category": "starter-marketing",
+  "category": "essential-marketing",
   "icon": "format-quote",
-  "description": "Display multiple testimonials in an interactive carousel.",
+  "description": "Testimonial quotes in a Swiper.js carousel with dots, arrows, and autoplay.",
   "keywords": [
     "testimonial",
     "carousel",
     "reviews",
     "quotes",
     "slider",
-    "feedback"
+    "swiper"
   ],
-  "supports": {
-    "html": false,
-    "align": [
-      "wide",
-      "full"
-    ]
+  "textdomain": "wbcom-essential",
+  "example": {
+    "attributes": {
+      "slidesPerView": 1,
+      "autoplay": false,
+      "testimonials": [
+        {
+          "quote": "This product changed our business completely.",
+          "name": "Sarah Johnson",
+          "role": "CEO, TechCorp",
+          "avatar": ""
+        }
+      ]
+    }
   },
   "attributes": {
-    "useThemeColors": {
-      "type": "boolean",
-      "default": false
+    "uniqueId": {
+      "type": "string",
+      "default": ""
     },
     "testimonials": {
       "type": "array",
       "default": [
         {
-          "id": 1,
-          "content": "This product has transformed our workflow completely. Highly recommended!",
-          "authorName": "Sarah Johnson",
-          "authorRole": "Marketing Director",
-          "imageId": 1,
-          "imageUrl": "",
-          "rating": 5
+          "quote": "This product changed our business completely. Highly recommended!",
+          "name": "Sarah Johnson",
+          "role": "CEO, TechCorp",
+          "avatar": ""
         },
         {
-          "id": 2,
-          "content": "Outstanding customer support and an amazing product. Worth every penny.",
-          "authorName": "Michael Chen",
-          "authorRole": "CTO, TechStart",
-          "imageId": 2,
-          "imageUrl": "",
-          "rating": 5
+          "quote": "The best solution we've found. Outstanding support team.",
+          "name": "Michael Chen",
+          "role": "CTO, StartupXYZ",
+          "avatar": ""
         },
         {
-          "id": 3,
-          "content": "We've seen a 40% increase in productivity since implementing this solution.",
-          "authorName": "Emily Davis",
-          "authorRole": "Operations Manager",
-          "imageId": 3,
-          "imageUrl": "",
-          "rating": 4
+          "quote": "Incredible value for money. We saw results from day one.",
+          "name": "Emily Davis",
+          "role": "Marketing Director",
+          "avatar": ""
         }
       ]
     },
     "slidesPerView": {
       "type": "number",
-      "default": 2
-    },
-    "slidesPerViewTablet": {
-      "type": "number",
       "default": 1
     },
-    "slidesPerViewMobile": {
-      "type": "number",
-      "default": 1
-    },
-    "spaceBetween": {
-      "type": "number",
-      "default": 30
-    },
-    "showNavigation": {
+    "autoplay": {
       "type": "boolean",
       "default": true
     },
-    "showPagination": {
+    "autoplayDelay": {
+      "type": "number",
+      "default": 5000
+    },
+    "showDots": {
+      "type": "boolean",
+      "default": true
+    },
+    "showArrows": {
       "type": "boolean",
       "default": true
     },
@@ -87,111 +82,138 @@
       "type": "boolean",
       "default": true
     },
-    "autoplay": {
-      "type": "boolean",
-      "default": false
-    },
-    "autoplayDelay": {
-      "type": "number",
-      "default": 5000
-    },
-    "showRating": {
-      "type": "boolean",
-      "default": true
-    },
-    "cardBackground": {
+    "quoteBg": {
       "type": "string",
       "default": "#ffffff"
     },
-    "cardBorderRadius": {
-      "type": "number",
-      "default": 12
-    },
     "quoteColor": {
       "type": "string",
-      "default": "#4a5568"
+      "default": "#1e1e2e"
     },
     "nameColor": {
       "type": "string",
-      "default": "#1a202c"
+      "default": "#1e1e2e"
     },
     "roleColor": {
       "type": "string",
-      "default": "#718096"
+      "default": "#6c757d"
     },
-    "ratingColor": {
+    "accentColor": {
       "type": "string",
-      "default": "#f6ad55"
+      "default": "#667eea"
     },
-    "navColor": {
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "paddingTablet": {
+      "type": "object",
+      "default": null
+    },
+    "paddingMobile": {
+      "type": "object",
+      "default": null
+    },
+    "paddingUnit": {
       "type": "string",
-      "default": "#3182ce"
+      "default": "px"
     },
-    "pauseOnInteraction": {
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "marginTablet": {
+      "type": "object",
+      "default": null
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": null
+    },
+    "marginUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "boxShadow": {
       "type": "boolean",
       "default": false
     },
-    "effect": {
-      "type": "string",
-      "default": "slide"
-    },
-    "enableKeyboard": {
-      "type": "boolean",
-      "default": true
-    },
-    "grabCursor": {
-      "type": "boolean",
-      "default": true
-    },
-    "cardPadding": {
-      "type": "number",
-      "default": 24
-    },
-    "cardBorderWidth": {
+    "shadowHorizontal": {
       "type": "number",
       "default": 0
     },
-    "cardBorderColor": {
-      "type": "string",
-      "default": "#e2e8f0"
+    "shadowVertical": {
+      "type": "number",
+      "default": 8
     },
-    "cardShadow": {
+    "shadowBlur": {
+      "type": "number",
+      "default": 24
+    },
+    "shadowSpread": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.08)"
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 12,
+        "right": 12,
+        "bottom": 12,
+        "left": 12
+      }
+    },
+    "borderRadiusUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "hideOnDesktop": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
-    "avatarSize": {
-      "type": "number",
-      "default": 60
+    "hideOnTablet": {
+      "type": "boolean",
+      "default": false
     },
-    "avatarBorderRadius": {
-      "type": "number",
-      "default": 50
-    },
-    "quoteFontSize": {
-      "type": "number",
-      "default": 16
-    },
-    "nameFontSize": {
-      "type": "number",
-      "default": 16
-    },
-    "roleFontSize": {
-      "type": "number",
-      "default": 14
-    },
-    "paginationColor": {
-      "type": "string",
-      "default": "#cbd5e0"
-    },
-    "paginationActiveColor": {
-      "type": "string",
-      "default": "#3182ce"
+    "hideOnMobile": {
+      "type": "boolean",
+      "default": false
     }
   },
-  "textdomain": "wbcom-essential",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": false
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js",
-  "render": "file:./render.php"
+  "viewScript": [
+    "file:./view.js",
+    "wbcom-swiper"
+  ]
 }

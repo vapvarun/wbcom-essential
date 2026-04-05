@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side render for EDD Account Dashboard block.
+ * Server-side render for EDD Account Dashboard block (v2).
  *
  * @package WBCOM_Essential
  *
@@ -23,7 +23,12 @@ if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
 	return;
 }
 
-// Extract attributes.
+// Shared infrastructure: unique ID + CSS output + visibility classes.
+$unique_id   = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
+
+// Extract existing block attributes.
 $show_support  = isset( $attributes['showSupport'] ) ? (bool) $attributes['showSupport'] : true;
 $support_url   = isset( $attributes['supportUrl'] ) ? esc_url( $attributes['supportUrl'] ) : '';
 $support_label = isset( $attributes['supportLabel'] ) ? $attributes['supportLabel'] : __( 'My Tickets', 'wbcom-essential' );
@@ -36,8 +41,12 @@ if ( ! in_array( $default_tab, $valid_tabs, true ) ) {
 
 // Guest: show login form with redirect back to this page.
 if ( ! is_user_logged_in() ) {
-	$redirect_url = esc_url( get_permalink() );
-	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'wbcom-edd-account wbcom-edd-account--guest' ) );
+	$redirect_url       = esc_url( get_permalink() );
+	$wrapper_attributes = get_block_wrapper_attributes(
+		array(
+			'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-account wbcom-edd-account--guest ' . $vis_classes ),
+		)
+	);
 	?>
 	<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 		<div class="wbcom-edd-account__login-card">
@@ -70,8 +79,8 @@ if ( ! in_array( $active_tab, $valid_tabs, true ) ) {
 	$active_tab = $default_tab;
 }
 
-// Unique identifier for CSS scoping.
-$block_id = wp_unique_id( 'wbcom-edd-account-' );
+// Unique identifier for CSS scoping (use block's uniqueId, fallback to wp_unique_id).
+$block_id = ! empty( $unique_id ) ? 'wbcom-edd-account-' . $unique_id : wp_unique_id( 'wbcom-edd-account-' );
 
 // REST URL and nonce for frontend JS tab switching.
 $rest_url = rest_url( 'wbcom/v1/edd-account/' );
@@ -117,10 +126,10 @@ $tabs['profile'] = array(
 // Wrapper attributes with data- attributes for JS.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'          => 'wbcom-edd-account',
-		'id'             => esc_attr( $block_id ),
-		'data-rest-url'  => esc_attr( $rest_url ),
-		'data-nonce'     => esc_attr( $nonce ),
+		'class'           => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-account ' . $vis_classes ),
+		'id'              => esc_attr( $block_id ),
+		'data-rest-url'   => esc_attr( $rest_url ),
+		'data-nonce'      => esc_attr( $nonce ),
 		'data-active-tab' => esc_attr( $active_tab ),
 	)
 );

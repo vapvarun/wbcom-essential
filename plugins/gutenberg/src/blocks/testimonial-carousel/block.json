@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/testimonial-carousel",
 	"version": "1.0.0",
 	"title": "Testimonial Carousel",
-	"category": "starter-marketing",
+	"category": "essential-marketing",
 	"icon": "format-quote",
 	"description": "Testimonial quotes in a Swiper.js carousel with dots, arrows, and autoplay.",
 	"keywords": ["testimonial", "carousel", "reviews", "quotes", "slider", "swiper"],

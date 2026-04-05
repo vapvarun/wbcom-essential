@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/pricing-table",
 	"version": "1.0.0",
 	"title": "Pricing Table",
-	"category": "starter-marketing",
+	"category": "essential-marketing",
 	"icon": "tickets-alt",
 	"description": "Pricing comparison table with 1–4 plan columns, featured plan highlighting, and per-plan CTA buttons.",
 	"keywords": [ "pricing", "plans", "table", "comparison", "cards", "packages" ],

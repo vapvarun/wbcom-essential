@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/timeline",
 	"version": "1.0.0",
 	"title": "Timeline",
-	"category": "starter-content",
+	"category": "essential-content",
 	"icon": "list-view",
 	"description": "Vertical timeline with alternating sides, icon dots, and date labels.",
 	"keywords": ["timeline", "history", "milestones", "events", "dates", "steps"],

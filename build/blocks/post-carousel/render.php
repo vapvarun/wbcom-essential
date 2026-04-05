@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side render for Post Carousel block.
+ * Post Carousel Block - Server-Side Render
  *
  * @package WBCOM_Essential
  *
@@ -13,358 +13,251 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Theme colors toggle.
-$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+use WBCOM_ESSENTIAL\Gutenberg\WBE_CSS;
 
-// Sanitize attributes.
-$post_type      = isset( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : 'post';
-$order          = isset( $attributes['order'] ) ? sanitize_text_field( $attributes['order'] ) : 'DESC';
-$orderby        = isset( $attributes['orderby'] ) ? sanitize_text_field( $attributes['orderby'] ) : 'post_date';
-$taxonomy       = isset( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : array();
-$tags           = isset( $attributes['tags'] ) ? $attributes['tags'] : array();
-$authors        = isset( $attributes['authors'] ) ? $attributes['authors'] : array();
-$max_posts      = isset( $attributes['maxPosts'] ) ? intval( $attributes['maxPosts'] ) : 6;
-$include_posts  = isset( $attributes['includePosts'] ) ? sanitize_text_field( $attributes['includePosts'] ) : '';
-$exclude_posts  = isset( $attributes['excludePosts'] ) ? sanitize_text_field( $attributes['excludePosts'] ) : '';
-$excerpt_length = isset( $attributes['excerptLength'] ) ? intval( $attributes['excerptLength'] ) : 140;
+// ── Extract attributes ────────────────────────────────────────────────────────
+$unique_id     = sanitize_html_class( $attributes['uniqueId'] ?? '' );
+$post_type     = sanitize_key( $attributes['postType'] ?? 'post' );
+$posts_per     = absint( $attributes['postsPerPage'] ?? 6 );
+$cat_ids       = array_map( 'absint', (array) ( $attributes['categories'] ?? array() ) );
+$order_by      = sanitize_key( $attributes['orderBy'] ?? 'date' );
+$order         = in_array( strtoupper( $attributes['order'] ?? 'DESC' ), array( 'ASC', 'DESC' ), true )
+	? strtoupper( $attributes['order'] )
+	: 'DESC';
+$display_mode  = sanitize_key( $attributes['displayMode'] ?? 'carousel' );
+$slides        = absint( $attributes['slidesPerView'] ?? 3 );
+$autoplay      = ! empty( $attributes['autoplay'] );
+$autoplay_delay = absint( $attributes['autoplayDelay'] ?? 5000 );
+$show_image    = ! empty( $attributes['showImage'] );
+$show_excerpt  = ! empty( $attributes['showExcerpt'] );
+$show_date     = ! empty( $attributes['showDate'] );
+$show_category = ! empty( $attributes['showCategory'] );
+$show_author   = ! empty( $attributes['showAuthor'] );
+$excerpt_len   = absint( $attributes['excerptLength'] ?? 20 );
+$image_ratio   = sanitize_text_field( $attributes['imageRatio'] ?? '16/9' );
+$card_bg       = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' ) ?: '#ffffff';
+$title_color   = sanitize_hex_color( $attributes['titleColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
+$excerpt_color = sanitize_hex_color( $attributes['excerptColor'] ?? '#6c757d' ) ?: '#6c757d';
+$meta_color    = sanitize_hex_color( $attributes['metaColor'] ?? '#999999' ) ?: '#999999';
+$accent_color  = sanitize_hex_color( $attributes['accentColor'] ?? '#667eea' ) ?: '#667eea';
 
-$display_only_thumbnail = isset( $attributes['displayOnlyThumbnail'] ) ? $attributes['displayOnlyThumbnail'] : false;
-$display_thumbnail      = isset( $attributes['displayThumbnail'] ) ? $attributes['displayThumbnail'] : true;
-$display_category       = isset( $attributes['displayCategory'] ) ? $attributes['displayCategory'] : false;
-$display_date           = isset( $attributes['displayDate'] ) ? $attributes['displayDate'] : false;
-$display_author_name    = isset( $attributes['displayAuthorName'] ) ? $attributes['displayAuthorName'] : false;
-$display_author_avatar  = isset( $attributes['displayAuthorAvatar'] ) ? $attributes['displayAuthorAvatar'] : false;
-$display_author_url     = isset( $attributes['displayAuthorUrl'] ) ? $attributes['displayAuthorUrl'] : false;
+// Visibility classes.
+$visibility_classes = '';
+if ( class_exists( 'WBCOM_ESSENTIAL\Gutenberg\WBE_CSS' ) ) {
+	$visibility_classes = WBE_CSS::get_visibility_classes( $attributes );
+}
 
-$columns           = isset( $attributes['columns'] ) ? sanitize_text_field( $attributes['columns'] ) : 'three';
-$img_size          = isset( $attributes['imgSize'] ) ? sanitize_text_field( $attributes['imgSize'] ) : 'large';
-$display_nav       = isset( $attributes['displayNav'] ) ? $attributes['displayNav'] : false;
-$display_dots      = isset( $attributes['displayDots'] ) ? $attributes['displayDots'] : true;
-$infinite          = isset( $attributes['infinite'] ) ? $attributes['infinite'] : false;
-$autoplay          = isset( $attributes['autoplay'] ) ? $attributes['autoplay'] : false;
-$autoplay_duration = isset( $attributes['autoplayDuration'] ) ? intval( $attributes['autoplayDuration'] ) : 5;
-$adaptive_height   = isset( $attributes['adaptiveHeight'] ) ? $attributes['adaptiveHeight'] : false;
+// ── Scoped spacing / shadow / radius CSS ─────────────────────────────────────
+if ( ! empty( $unique_id ) && class_exists( 'WBCOM_ESSENTIAL\Gutenberg\WBE_CSS' ) ) {
+	WBE_CSS::add( $unique_id, $attributes );
+	WBE_CSS::init();
+}
 
-$card_layout = isset( $attributes['cardLayout'] ) ? sanitize_text_field( $attributes['cardLayout'] ) : 'vertical';
-
-// Color settings.
-$card_bg_color             = isset( $attributes['cardBgColor'] ) ? sanitize_hex_color( $attributes['cardBgColor'] ) : '';
-$card_hover_bg_color       = isset( $attributes['cardHoverBgColor'] ) ? sanitize_hex_color( $attributes['cardHoverBgColor'] ) : '';
-$card_category_color       = isset( $attributes['cardCategoryColor'] ) ? sanitize_hex_color( $attributes['cardCategoryColor'] ) : '';
-$card_category_hover_color = isset( $attributes['cardCategoryHoverColor'] ) ? sanitize_hex_color( $attributes['cardCategoryHoverColor'] ) : '';
-$card_badge_bg_color       = isset( $attributes['cardBadgeBgColor'] ) ? sanitize_hex_color( $attributes['cardBadgeBgColor'] ) : '';
-$card_badge_hover_bg_color = isset( $attributes['cardBadgeHoverBgColor'] ) ? sanitize_hex_color( $attributes['cardBadgeHoverBgColor'] ) : '';
-$card_badge_color          = isset( $attributes['cardBadgeColor'] ) ? sanitize_hex_color( $attributes['cardBadgeColor'] ) : '';
-$card_footer_bg_color      = isset( $attributes['cardFooterBgColor'] ) ? sanitize_hex_color( $attributes['cardFooterBgColor'] ) : '';
-$card_title_color          = isset( $attributes['cardTitleColor'] ) ? sanitize_hex_color( $attributes['cardTitleColor'] ) : '';
-$card_title_hover_color    = isset( $attributes['cardTitleHoverColor'] ) ? sanitize_hex_color( $attributes['cardTitleHoverColor'] ) : '';
-$card_excerpt_color        = isset( $attributes['cardExcerptColor'] ) ? sanitize_hex_color( $attributes['cardExcerptColor'] ) : '';
-$card_author_color         = isset( $attributes['cardAuthorColor'] ) ? sanitize_hex_color( $attributes['cardAuthorColor'] ) : '';
-$card_author_hover_color   = isset( $attributes['cardAuthorHoverColor'] ) ? sanitize_hex_color( $attributes['cardAuthorHoverColor'] ) : '';
-$card_date_color           = isset( $attributes['cardDateColor'] ) ? sanitize_hex_color( $attributes['cardDateColor'] ) : '';
-$card_date_hover_color     = isset( $attributes['cardDateHoverColor'] ) ? sanitize_hex_color( $attributes['cardDateHoverColor'] ) : '';
-$card_img_hover_effect     = isset( $attributes['cardImgHoverEffect'] ) ? sanitize_text_field( $attributes['cardImgHoverEffect'] ) : 'zoom';
-$nav_arrow_color           = isset( $attributes['navArrowColor'] ) ? $attributes['navArrowColor'] : '#ffffff';
-$nav_arrow_bg_color        = isset( $attributes['navArrowBgColor'] ) ? $attributes['navArrowBgColor'] : '#333333';
-$nav_arrow_hover_color     = isset( $attributes['navArrowHoverColor'] ) ? $attributes['navArrowHoverColor'] : '#ffffff';
-$nav_arrow_bg_hover_color  = isset( $attributes['navArrowBgHoverColor'] ) ? $attributes['navArrowBgHoverColor'] : '#007cba';
-$nav_dots_color            = isset( $attributes['navDotsColor'] ) ? sanitize_hex_color( $attributes['navDotsColor'] ) : '#000000';
-
-// Build query arguments.
-$query_args = array(
-	'post_type'      => $post_type,
-	'post_status'    => 'publish',
-	'posts_per_page' => $max_posts,
-	'order'          => $order,
-	'orderby'        => $orderby,
+// ── Build token CSS ──────────────────────────────────────────────────────────
+$border_radius = $attributes['borderRadius'] ?? array( 'top' => 8, 'right' => 8, 'bottom' => 8, 'left' => 8 );
+$radius_unit   = sanitize_text_field( $attributes['borderRadiusUnit'] ?? 'px' );
+$radius_val    = sprintf(
+	'%s%s %s%s %s%s %s%s',
+	absint( $border_radius['top'] ?? 8 ), $radius_unit,
+	absint( $border_radius['right'] ?? 8 ), $radius_unit,
+	absint( $border_radius['bottom'] ?? 8 ), $radius_unit,
+	absint( $border_radius['left'] ?? 8 ), $radius_unit
 );
 
-// Include/exclude posts.
-if ( ! empty( $include_posts ) ) {
-	$include_ids            = array_map( 'intval', explode( ',', $include_posts ) );
-	$query_args['post__in'] = $include_ids;
-}
-
-if ( ! empty( $exclude_posts ) ) {
-	$exclude_ids                = array_map( 'intval', explode( ',', $exclude_posts ) );
-	$query_args['post__not_in'] = $exclude_ids;
-}
-
-// Taxonomy filters.
-$tax_query = array();
-if ( ! empty( $taxonomy ) && is_array( $taxonomy ) ) {
-	$tax_query[] = array(
-		'taxonomy' => 'category',
-		'field'    => 'term_id',
-		'terms'    => $taxonomy,
+$box_shadow_val = 'none';
+if ( ! empty( $attributes['boxShadow'] ) ) {
+	$box_shadow_val = sprintf(
+		'%dpx %dpx %dpx %dpx %s',
+		intval( $attributes['shadowHorizontal'] ?? 0 ),
+		intval( $attributes['shadowVertical'] ?? 8 ),
+		absint( $attributes['shadowBlur'] ?? 24 ),
+		intval( $attributes['shadowSpread'] ?? 0 ),
+		sanitize_text_field( $attributes['shadowColor'] ?? 'rgba(0,0,0,0.08)' )
 	);
 }
 
-if ( ! empty( $tags ) && is_array( $tags ) ) {
-	$tax_query[] = array(
-		'taxonomy' => 'post_tag',
-		'field'    => 'term_id',
-		'terms'    => $tags,
-	);
-}
+// Ratio for CSS aspect-ratio.
+$ratio_css = esc_attr( str_replace( '/', ' / ', $image_ratio ) );
 
-if ( ! empty( $tax_query ) ) {
-	$query_args['tax_query'] = $tax_query;
-}
+// ── WP_Query ─────────────────────────────────────────────────────────────────
+$query_args = array(
+	'post_type'      => $post_type,
+	'posts_per_page' => $posts_per,
+	'orderby'        => $order_by,
+	'order'          => $order,
+	'post_status'    => 'publish',
+	'no_found_rows'  => true,
+);
 
-// Author filter.
-if ( ! empty( $authors ) && is_array( $authors ) ) {
-	$query_args['author__in'] = $authors;
+if ( ! empty( $cat_ids ) && 'post' === $post_type ) {
+	$query_args['category__in'] = $cat_ids;
 }
 
 $query = new WP_Query( $query_args );
 
 if ( ! $query->have_posts() ) {
-	echo '<div class="wp-block-wbcom-essential-post-carousel"><p>' . esc_html__( 'No posts found.', 'wbcom-essential' ) . '</p></div>';
+	echo '<div class="wbe-post-carousel wbe-post-carousel--empty"><p>' . esc_html__( 'No posts found.', 'wbcom-essential' ) . '</p></div>';
 	return;
 }
 
-// Filter posts to only include those with thumbnails if setting is enabled.
-if ( $display_only_thumbnail ) {
-	$filtered_posts = array();
-	while ( $query->have_posts() ) {
-		$query->the_post();
-		if ( has_post_thumbnail( get_the_ID() ) ) {
-			$filtered_posts[] = get_post();
-		}
-	}
+// ── Wrapper attributes ───────────────────────────────────────────────────────
+$wrapper_class = trim( implode( ' ', array_filter( array(
+	'wbe-post-carousel',
+	'wbe-post-carousel--' . $display_mode,
+	$unique_id ? 'wbe-block-' . $unique_id : '',
+	$visibility_classes,
+) ) ) );
 
-	// Create a new query with filtered posts.
-	if ( empty( $filtered_posts ) ) {
-		echo '<div class="wp-block-wbcom-essential-post-carousel"><p>' . esc_html__( 'No posts with thumbnails found.', 'wbcom-essential' ) . '</p></div>';
-		return;
-	}
+$wrapper_attrs = get_block_wrapper_attributes( array(
+	'class' => $wrapper_class,
+) );
 
-	$query = new WP_Query(
-		array(
-			'post__in'  => wp_list_pluck( $filtered_posts, 'ID' ),
-			'orderby'   => 'post__in',
-			'post_type' => 'any',
-		)
+// ── Token CSS ────────────────────────────────────────────────────────────────
+$token_css = '';
+if ( $unique_id ) {
+	$token_css = sprintf(
+		'.wbe-block-%1$s { --wbe-pc-card-bg: %2$s; --wbe-pc-title-color: %3$s; --wbe-pc-excerpt-color: %4$s; --wbe-pc-meta-color: %5$s; --wbe-pc-accent: %6$s; --wbe-pc-card-radius: %7$s; --wbe-pc-card-shadow: %8$s; --wbe-pc-image-ratio: %9$s; }',
+		esc_attr( $unique_id ),
+		esc_attr( $card_bg ),
+		esc_attr( $title_color ),
+		esc_attr( $excerpt_color ),
+		esc_attr( $meta_color ),
+		esc_attr( $accent_color ),
+		esc_attr( $radius_val ),
+		esc_attr( $box_shadow_val ),
+		esc_attr( $ratio_css )
 	);
 }
 
-// Generate unique ID for the carousel.
-$carousel_id = 'wbcom-post-carousel-' . wp_unique_id();
+// ── Helper: build a post card ─────────────────────────────────────────────────
+function wbe_post_carousel_card( $post, $show_image, $show_category, $show_excerpt, $excerpt_len, $show_date, $show_author ) {
+	$post_id    = $post->ID;
+	$permalink  = get_permalink( $post_id );
+	$title      = get_the_title( $post_id );
+	$thumb_id   = get_post_thumbnail_id( $post_id );
+	$thumb_url  = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : '';
+	$categories = get_the_category( $post_id );
+	$date_str   = get_the_date( '', $post_id );
+	$date_iso   = get_the_date( 'c', $post_id );
+	$author     = get_the_author_meta( 'display_name', $post->post_author );
 
-// Generate inline styles.
-$inline_styles = '';
+	// Excerpt.
+	$raw_excerpt = $post->post_excerpt ?: $post->post_content;
+	$words       = explode( ' ', wp_strip_all_tags( $raw_excerpt ) );
+	$excerpt     = implode( ' ', array_slice( $words, 0, $excerpt_len ) );
+	if ( count( $words ) > $excerpt_len ) {
+		$excerpt .= '&hellip;';
+	}
 
-// Color styles - only apply when NOT using theme colors.
-if ( ! $use_theme_colors ) {
-	if ( ! empty( $card_bg_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card { background-color: {$card_bg_color}; }";
-	}
-	if ( ! empty( $card_hover_bg_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card:hover { background-color: {$card_hover_bg_color}; }";
-	}
-	if ( ! empty( $card_badge_bg_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { background-color: {$card_badge_bg_color}; }";
-	}
-	if ( ! empty( $card_badge_hover_bg_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { background-color: {$card_badge_hover_bg_color}; }";
-	}
-	if ( ! empty( $card_badge_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a { color: {$card_badge_color}; }";
-	}
-	if ( ! empty( $card_footer_bg_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-footer { background-color: {$card_footer_bg_color}; }";
-	}
-	if ( ! empty( $card_category_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats, #{$carousel_id} .wbcom-posts-card-cats a { color: {$card_category_color}; }";
-	}
-	if ( ! empty( $card_category_hover_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-cats a:hover { color: {$card_category_hover_color}; }";
-	}
-	if ( ! empty( $card_title_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title, #{$carousel_id} .wbcom-posts-card-title a { color: {$card_title_color}; }";
-	}
-	if ( ! empty( $card_title_hover_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-title a:hover { color: {$card_title_hover_color}; }";
-	}
-	if ( ! empty( $card_excerpt_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-excerpt p { color: {$card_excerpt_color}; }";
-	}
-	if ( ! empty( $card_author_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link { color: {$card_author_color}; }";
-	}
-	if ( ! empty( $card_author_hover_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-author-link:hover { color: {$card_author_hover_color}; }";
-	}
-	if ( ! empty( $card_date_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link { color: {$card_date_color}; }";
-	}
-	if ( ! empty( $card_date_hover_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-posts-card-date-link:hover { color: {$card_date_hover_color}; }";
-	}
-	if ( ! empty( $nav_arrow_color ) && '#ffffff' !== $nav_arrow_color ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev i, #{$carousel_id} .wbcom-post-carousel-next i { color: " . esc_attr( $nav_arrow_color ) . ' !important; }';
-	}
-	if ( ! empty( $nav_arrow_hover_color ) && '#ffffff' !== $nav_arrow_hover_color ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover i, #{$carousel_id} .wbcom-post-carousel-next:hover i { color: " . esc_attr( $nav_arrow_hover_color ) . ' !important; }';
-	}
-	if ( ! empty( $nav_arrow_bg_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev, #{$carousel_id} .wbcom-post-carousel-next { background-color: " . esc_attr( $nav_arrow_bg_color ) . ' !important; }';
-	}
-	if ( ! empty( $nav_arrow_bg_hover_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-prev:hover, #{$carousel_id} .wbcom-post-carousel-next:hover { background-color: " . esc_attr( $nav_arrow_bg_hover_color ) . ' !important; }';
-	}
-	if ( ! empty( $nav_dots_color ) ) {
-		$inline_styles .= "#{$carousel_id} .wbcom-post-carousel-dots li.slick-active button { background-color: {$nav_dots_color}; }";
-	}
+	ob_start();
+	?>
+	<article class="wbe-post-carousel__card" aria-label="<?php echo esc_attr( $title ); ?>">
+		<?php if ( $show_image ) : ?>
+		<div class="wbe-post-carousel__image-wrap">
+			<a href="<?php echo esc_url( $permalink ); ?>" tabindex="-1" aria-hidden="true">
+				<?php if ( $thumb_url ) : ?>
+				<img
+					src="<?php echo esc_url( $thumb_url ); ?>"
+					alt="<?php echo esc_attr( $title ); ?>"
+					class="wbe-post-carousel__image"
+					loading="lazy"
+					decoding="async"
+				/>
+				<?php else : ?>
+				<div class="wbe-post-carousel__image wbe-post-carousel__image--placeholder" aria-hidden="true"></div>
+				<?php endif; ?>
+			</a>
+		</div>
+		<?php endif; ?>
+
+		<div class="wbe-post-carousel__body">
+			<?php if ( $show_category && ! empty( $categories ) ) : ?>
+			<div class="wbe-post-carousel__cats">
+				<?php foreach ( array_slice( $categories, 0, 2 ) as $cat ) : ?>
+				<a
+					href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>"
+					class="wbe-post-carousel__cat-badge"
+				>
+					<?php echo esc_html( $cat->name ); ?>
+				</a>
+				<?php endforeach; ?>
+			</div>
+			<?php endif; ?>
+
+			<h3 class="wbe-post-carousel__title">
+				<a href="<?php echo esc_url( $permalink ); ?>">
+					<?php echo esc_html( $title ); ?>
+				</a>
+			</h3>
+
+			<?php if ( $show_excerpt && $excerpt ) : ?>
+			<p class="wbe-post-carousel__excerpt"><?php echo wp_kses_post( $excerpt ); ?></p>
+			<?php endif; ?>
+
+			<?php if ( $show_date || $show_author ) : ?>
+			<div class="wbe-post-carousel__meta">
+				<?php if ( $show_date ) : ?>
+				<time class="wbe-post-carousel__date" datetime="<?php echo esc_attr( $date_iso ); ?>">
+					<?php echo esc_html( $date_str ); ?>
+				</time>
+				<?php endif; ?>
+				<?php if ( $show_author ) : ?>
+				<span class="wbe-post-carousel__author"><?php echo esc_html( $author ); ?></span>
+				<?php endif; ?>
+			</div>
+			<?php endif; ?>
+		</div>
+	</article>
+	<?php
+	return ob_get_clean();
 }
 
-// Image hover effects - always apply (not a color setting).
-if ( 'zoom' === $card_img_hover_effect ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: scale(1.1); }";
-} elseif ( 'zoom-out' === $card_img_hover_effect ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; transform: scale(1.1); } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: scale(1); }";
-} elseif ( 'slide' === $card_img_hover_effect ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: translateX(10px); }";
-} elseif ( 'rotate' === $card_img_hover_effect ) {
-	$inline_styles .= "#{$carousel_id} .wbcom-posts-card-featured-img a img { transition: transform 0.3s ease; } #{$carousel_id} .wbcom-posts-card:hover .wbcom-posts-card-featured-img a img { transform: rotate(3deg) scale(1.05); }";
-}
-
-// Build carousel classes.
-$classes   = array( 'wbcom-post-carousel' );
-$classes[] = 'wbcom-posts-' . $card_layout;
-$classes[] = 'wbcom-posts-columns-' . $columns;
-if ( $use_theme_colors ) {
-	$classes[] = 'use-theme-colors';
-}
-if ( $adaptive_height ) {
-	$classes[] = 'adaptive-height';
-}
-
-// Get wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes(
-	array(
-		'id'                     => $carousel_id,
-		'class'                  => implode( ' ', $classes ),
-		'data-columns'           => esc_attr( $columns ),
-		'data-infinite'          => esc_attr( $infinite ? 'true' : 'false' ),
-		'data-autoplay'          => esc_attr( $autoplay ? 'true' : 'false' ),
-		'data-autoplay-duration' => esc_attr( $autoplay_duration * 1000 ),
-		'data-adaptive-height'   => esc_attr( $adaptive_height ? 'true' : 'false' ),
-		'data-show-dots'         => esc_attr( $display_dots ? 'true' : 'false' ),
-		'data-show-arrows'       => esc_attr( $display_nav ? 'true' : 'false' ),
-	)
-);
-
-$title_tag = isset( $attributes['cardTitleHtml'] ) ? sanitize_text_field( $attributes['cardTitleHtml'] ) : 'h3';
+// ── Output ───────────────────────────────────────────────────────────────────
 ?>
+<div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<?php if ( $token_css ) : ?>
+	<style><?php echo esc_html( $token_css ); ?></style>
+	<?php endif; ?>
 
-<?php if ( ! empty( $inline_styles ) ) : ?>
-<style><?php echo $inline_styles; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style>
-<?php endif; ?>
-
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<div class="wbcom-post-carousel-wrapper">
-		<div class="wbcom-post-carousel-inner">
-			<?php
-			while ( $query->have_posts() ) :
-				$query->the_post();
-				$post_id = get_the_ID();
-				?>
-				<div class="wbcom-posts-card">
-					<?php if ( $display_category ) : ?>
-						<?php $categories = get_the_category( $post_id ); ?>
-						<?php if ( ! empty( $categories ) ) : ?>
-							<div class="wbcom-posts-card-cats">
-								<?php foreach ( $categories as $category ) : ?>
-									<a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
-								<?php endforeach; ?>
-							</div>
-						<?php endif; ?>
-					<?php endif; ?>
-
-					<?php if ( $display_thumbnail && has_post_thumbnail( $post_id ) ) : ?>
-						<div class="wbcom-posts-card-img-wrapper">
-							<div class="wbcom-posts-card-featured-img">
-								<a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">
-									<img src="<?php echo esc_url( get_the_post_thumbnail_url( $post_id, $img_size ) ); ?>" alt="<?php echo esc_attr( get_post_meta( get_post_thumbnail_id( $post_id ), '_wp_attachment_image_alt', true ) ); ?>" />
-								</a>
-							</div>
-						</div>
-					<?php endif; ?>
-
-					<div class="wbcom-posts-card-body-wrapper">
-						<div class="wbcom-posts-card-body">
-							<<?php echo esc_attr( $title_tag ); ?> class="wbcom-posts-card-title">
-								<a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>"><?php echo esc_html( get_the_title( $post_id ) ); ?></a>
-							</<?php echo esc_attr( $title_tag ); ?>>
-
-							<?php if ( $excerpt_length > 0 ) : ?>
-								<?php
-								$excerpt = get_the_excerpt( $post_id );
-								if ( strlen( $excerpt ) > $excerpt_length ) {
-									$excerpt = substr( $excerpt, 0, $excerpt_length ) . '...';
-								}
-								?>
-								<?php if ( ! empty( $excerpt ) ) : ?>
-									<div class="wbcom-posts-excerpt">
-										<p><?php echo esc_html( $excerpt ); ?></p>
-									</div>
-								<?php endif; ?>
-							<?php endif; ?>
-						</div>
-
-						<div class="wbcom-posts-card-footer">
-							<?php if ( $display_author_name ) : ?>
-								<?php
-								$author_id   = get_the_author_meta( 'ID' );
-								$author_name = get_the_author();
-								$author_url  = $display_author_url ? get_author_posts_url( $author_id ) : '';
-								?>
-								<div class="wbcom-posts-card-author">
-									<?php if ( $display_author_avatar ) : ?>
-										<div class="wbcom-posts-card-author-img">
-											<img src="<?php echo esc_url( get_avatar_url( $author_id, array( 'size' => 40 ) ) ); ?>" alt="<?php echo esc_attr( $author_name ); ?>" />
-										</div>
-									<?php endif; ?>
-
-									<?php if ( ! empty( $author_url ) ) : ?>
-										<a href="<?php echo esc_url( $author_url ); ?>" class="wbcom-posts-card-author-link"><?php echo esc_html( $author_name ); ?></a>
-									<?php else : ?>
-										<span class="wbcom-posts-card-author-link"><?php echo esc_html( $author_name ); ?></span>
-									<?php endif; ?>
-								</div>
-							<?php endif; ?>
-
-							<?php if ( $display_date ) : ?>
-								<div class="wbcom-posts-card-date">
-									<a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" class="wbcom-posts-card-date-link"><?php echo esc_html( get_the_date( '', $post_id ) ); ?></a>
-								</div>
-							<?php endif; ?>
-						</div>
-					</div>
+	<?php if ( in_array( $display_mode, array( 'carousel', 'slider' ), true ) ) : ?>
+		<?php
+		$swiper_slides = ( 'slider' === $display_mode ) ? 1 : $slides;
+		?>
+		<div
+			class="swiper"
+			data-autoplay="<?php echo $autoplay ? 'true' : 'false'; ?>"
+			data-delay="<?php echo esc_attr( $autoplay_delay ); ?>"
+			data-loop="true"
+			data-slides="<?php echo esc_attr( $swiper_slides ); ?>"
+			data-mode="<?php echo esc_attr( $display_mode ); ?>"
+		>
+			<div class="swiper-wrapper">
+				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+				<div class="swiper-slide">
+					<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo wbe_post_carousel_card( get_post(), $show_image, $show_category, $show_excerpt, $excerpt_len, $show_date, $show_author );
+					?>
 				</div>
-			<?php endwhile; ?>
+				<?php endwhile; ?>
+			</div>
+
+			<div class="swiper-pagination" aria-label="<?php esc_attr_e( 'Post carousel navigation', 'wbcom-essential' ); ?>"></div>
+			<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous post', 'wbcom-essential' ); ?>"></button>
+			<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next post', 'wbcom-essential' ); ?>"></button>
 		</div>
 
-		<?php if ( $display_nav ) : ?>
+	<?php else : ?>
+		<?php // Grid mode — pure CSS, no JS. ?>
+		<div class="wbe-post-carousel__grid">
+			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 			<?php
-			$next_icon = isset( $attributes['navArrowNextIcon']['value'] ) ? $attributes['navArrowNextIcon']['value'] : 'fas fa-arrow-right';
-			$prev_icon = isset( $attributes['navArrowPrevIcon']['value'] ) ? $attributes['navArrowPrevIcon']['value'] : 'fas fa-arrow-left';
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wbe_post_carousel_card( get_post(), $show_image, $show_category, $show_excerpt, $excerpt_len, $show_date, $show_author );
 			?>
-			<button class="wbcom-post-carousel-prev" aria-label="<?php esc_attr_e( 'Previous', 'wbcom-essential' ); ?>">
-				<i class="<?php echo esc_attr( $prev_icon ); ?>"></i>
-			</button>
-			<button class="wbcom-post-carousel-next" aria-label="<?php esc_attr_e( 'Next', 'wbcom-essential' ); ?>">
-				<i class="<?php echo esc_attr( $next_icon ); ?>"></i>
-			</button>
-		<?php endif; ?>
-
-		<?php if ( $display_dots ) : ?>
-			<div class="wbcom-post-carousel-dots"></div>
-		<?php endif; ?>
-	</div>
+			<?php endwhile; ?>
+		</div>
+	<?php endif; ?>
 </div>
-
 <?php
 wp_reset_postdata();

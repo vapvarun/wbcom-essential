@@ -4,12 +4,7 @@
   "url": "https://github.com/vapvarun/wbcom-essential",
   "license": "GPL-2.0+",
   "description": "Theme Addon plugin for Wbcom Designs",
-  "workspaces": [
-    "plugins/gutenberg/blocks/*"
-  ],
   "scripts": {
-    "build": "webpack --mode=production",
-    "dev": "webpack --mode=development --watch",
     "build:blocks": "node scripts/build-blocks.js",
     "dev:blocks": "node scripts/dev-blocks.js",
     "clean:blocks": "rm -rf build/blocks",

@@ -2,207 +2,255 @@
 /**
  * Product Grid Block - Server-Side Render
  *
- * @package wbcom-essential
+ * @package WBCOM_Essential
+ *
+ * @var array    $attributes Block attributes.
+ * @var string   $content    Block content.
+ * @var WP_Block $block      Block instance.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Check if WooCommerce is active.
 if ( ! class_exists( 'WooCommerce' ) ) {
-	echo '<p>' . esc_html__( 'WooCommerce is required for this block.', 'wbcom-essential' ) . '</p>';
 	return;
 }
 
-// Extract attributes.
-$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
-$columns            = isset( $attributes['columns'] ) ? absint( $attributes['columns'] ) : 4;
-$rows               = isset( $attributes['rows'] ) ? absint( $attributes['rows'] ) : 2;
-$category           = ! empty( $attributes['category'] ) ? sanitize_text_field( $attributes['category'] ) : '';
-$order_by           = ! empty( $attributes['orderBy'] ) ? sanitize_text_field( $attributes['orderBy'] ) : 'date';
-$order              = ! empty( $attributes['order'] ) ? sanitize_text_field( $attributes['order'] ) : 'desc';
-$show_on_sale       = ! empty( $attributes['showOnSale'] );
-$show_featured      = ! empty( $attributes['showFeatured'] );
-$show_sale_badge    = isset( $attributes['showSaleBadge'] ) ? $attributes['showSaleBadge'] : true;
-$show_rating        = isset( $attributes['showRating'] ) ? $attributes['showRating'] : true;
-$show_price         = isset( $attributes['showPrice'] ) ? $attributes['showPrice'] : true;
-$show_add_to_cart   = isset( $attributes['showAddToCart'] ) ? $attributes['showAddToCart'] : true;
-$gap                = isset( $attributes['gap'] ) ? absint( $attributes['gap'] ) : 24;
-$image_ratio        = ! empty( $attributes['imageRatio'] ) ? $attributes['imageRatio'] : '1';
-$card_bg_color      = ! empty( $attributes['cardBgColor'] ) ? $attributes['cardBgColor'] : '';
-$card_border_radius = isset( $attributes['cardBorderRadius'] ) ? absint( $attributes['cardBorderRadius'] ) : 8;
-$title_color        = ! empty( $attributes['titleColor'] ) ? $attributes['titleColor'] : '';
-$price_color        = ! empty( $attributes['priceColor'] ) ? $attributes['priceColor'] : '';
-$sale_badge_color   = ! empty( $attributes['saleBadgeColor'] ) ? $attributes['saleBadgeColor'] : '#ffffff';
-$sale_badge_bg      = ! empty( $attributes['saleBadgeBgColor'] ) ? $attributes['saleBadgeBgColor'] : '#e53935';
+use WBCOM_ESSENTIAL\Gutenberg\WBE_CSS;
 
-// Build query args.
-$args = array(
-	'post_type'      => 'product',
-	'posts_per_page' => $columns * $rows,
-	'post_status'    => 'publish',
-	'orderby'        => $order_by,
-	'order'          => strtoupper( $order ),
-);
+// ── Extract attributes ────────────────────────────────────────────────────────
+$unique_id      = sanitize_html_class( $attributes['uniqueId'] ?? '' );
+$columns        = absint( $attributes['columns'] ?? 4 );
+$cols_tablet    = absint( $attributes['columnsTablet'] ?? 2 );
+$cols_mobile    = absint( $attributes['columnsMobile'] ?? 1 );
+$posts_per      = absint( $attributes['postsPerPage'] ?? 8 );
+$cat_ids        = array_map( 'absint', (array) ( $attributes['categories'] ?? array() ) );
+$order_by       = sanitize_key( $attributes['orderBy'] ?? 'date' );
+$order          = in_array( strtoupper( $attributes['order'] ?? 'DESC' ), array( 'ASC', 'DESC' ), true )
+	? strtoupper( $attributes['order'] )
+	: 'DESC';
+$show_image     = ! empty( $attributes['showImage'] );
+$show_price     = ! empty( $attributes['showPrice'] );
+$show_rating    = ! empty( $attributes['showRating'] );
+$show_atc       = ! empty( $attributes['showAddToCart'] );
+$show_sale      = ! empty( $attributes['showSaleBadge'] );
+$image_ratio    = sanitize_text_field( $attributes['imageRatio'] ?? '1/1' );
+$gap            = absint( $attributes['gap'] ?? 24 );
+$card_bg        = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' ) ?: '#ffffff';
+$title_color    = sanitize_hex_color( $attributes['titleColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
+$price_color    = sanitize_hex_color( $attributes['priceColor'] ?? '#667eea' ) ?: '#667eea';
+$sale_color     = sanitize_hex_color( $attributes['saleBadgeColor'] ?? '#e74c3c' ) ?: '#e74c3c';
 
-// Handle WooCommerce-specific ordering.
-if ( 'price' === $order_by ) {
-	$args['meta_key'] = '_price';
-	$args['orderby']  = 'meta_value_num';
-} elseif ( 'popularity' === $order_by ) {
-	$args['meta_key'] = 'total_sales';
-	$args['orderby']  = 'meta_value_num';
-} elseif ( 'rating' === $order_by ) {
-	$args['meta_key'] = '_wc_average_rating';
-	$args['orderby']  = 'meta_value_num';
+// Visibility classes.
+$visibility_classes = '';
+if ( class_exists( 'WBCOM_ESSENTIAL\Gutenberg\WBE_CSS' ) ) {
+	$visibility_classes = WBE_CSS::get_visibility_classes( $attributes );
 }
 
-// Category filter.
-if ( ! empty( $category ) ) {
-	$args['tax_query'] = array(
+// ── Scoped CSS ────────────────────────────────────────────────────────────────
+if ( ! empty( $unique_id ) && class_exists( 'WBCOM_ESSENTIAL\Gutenberg\WBE_CSS' ) ) {
+	WBE_CSS::add( $unique_id, $attributes );
+	WBE_CSS::init();
+}
+
+// ── Border radius & box-shadow ────────────────────────────────────────────────
+$border_radius = $attributes['borderRadius'] ?? array( 'top' => 8, 'right' => 8, 'bottom' => 8, 'left' => 8 );
+$radius_unit   = sanitize_text_field( $attributes['borderRadiusUnit'] ?? 'px' );
+$radius_val    = sprintf(
+	'%s%s %s%s %s%s %s%s',
+	absint( $border_radius['top'] ?? 8 ), $radius_unit,
+	absint( $border_radius['right'] ?? 8 ), $radius_unit,
+	absint( $border_radius['bottom'] ?? 8 ), $radius_unit,
+	absint( $border_radius['left'] ?? 8 ), $radius_unit
+);
+
+$box_shadow_val = 'none';
+if ( ! empty( $attributes['boxShadow'] ) ) {
+	$box_shadow_val = sprintf(
+		'%dpx %dpx %dpx %dpx %s',
+		intval( $attributes['shadowHorizontal'] ?? 0 ),
+		intval( $attributes['shadowVertical'] ?? 8 ),
+		absint( $attributes['shadowBlur'] ?? 24 ),
+		intval( $attributes['shadowSpread'] ?? 0 ),
+		sanitize_text_field( $attributes['shadowColor'] ?? 'rgba(0,0,0,0.08)' )
+	);
+}
+
+$ratio_css = esc_attr( str_replace( '/', ' / ', $image_ratio ) );
+
+// ── Map orderby to WP_Query args ──────────────────────────────────────────────
+$meta_key     = '';
+$orderby_val  = $order_by;
+if ( 'price' === $order_by ) {
+	$orderby_val = 'meta_value_num';
+	$meta_key    = '_price';
+} elseif ( 'popularity' === $order_by ) {
+	$orderby_val = 'meta_value_num';
+	$meta_key    = 'total_sales';
+} elseif ( 'rating' === $order_by ) {
+	$orderby_val = 'meta_value_num';
+	$meta_key    = '_wc_average_rating';
+}
+
+// ── Query ─────────────────────────────────────────────────────────────────────
+$query_args = array(
+	'post_type'      => 'product',
+	'posts_per_page' => $posts_per,
+	'orderby'        => $orderby_val,
+	'order'          => $order,
+	'post_status'    => 'publish',
+	'no_found_rows'  => true,
+);
+if ( $meta_key ) {
+	$query_args['meta_key'] = $meta_key; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+}
+if ( ! empty( $cat_ids ) ) {
+	$query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		array(
 			'taxonomy' => 'product_cat',
-			'field'    => 'slug',
-			'terms'    => $category,
+			'field'    => 'term_id',
+			'terms'    => $cat_ids,
 		),
 	);
 }
 
-// On sale filter.
-if ( $show_on_sale ) {
-	$args['meta_query'][] = array(
-		'key'     => '_sale_price',
-		'value'   => '',
-		'compare' => '!=',
-	);
-}
+$query = new WP_Query( $query_args );
 
-// Featured filter.
-if ( $show_featured ) {
-	$args['tax_query'][] = array(
-		'taxonomy' => 'product_visibility',
-		'field'    => 'name',
-		'terms'    => 'featured',
-	);
-	if ( count( $args['tax_query'] ) > 1 ) {
-		$args['tax_query']['relation'] = 'AND';
-	}
-}
-
-$products = new WP_Query( $args );
-
-if ( ! $products->have_posts() ) {
-	echo '<p>' . esc_html__( 'No products found.', 'wbcom-essential' ) . '</p>';
+if ( ! $query->have_posts() ) {
+	echo '<div class="wbe-product-grid wbe-product-grid--empty"><p>' . esc_html__( 'No products found.', 'wbcom-essential' ) . '</p></div>';
 	return;
 }
 
-// Build inline styles - Layout variables (always applied).
-$layout_vars = array(
-	'--product-columns'    => $columns,
-	'--product-gap'        => $gap . 'px',
-	'--card-border-radius' => $card_border_radius . 'px',
-	'--image-ratio'        => $image_ratio,
-);
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+$wrapper_class = trim( implode( ' ', array_filter( array(
+	'wbe-product-grid',
+	$unique_id ? 'wbe-block-' . $unique_id : '',
+	$visibility_classes,
+) ) ) );
 
-// Build style string for layout.
-$style_string = '';
-foreach ( $layout_vars as $property => $value ) {
-	$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
-}
+$wrapper_attrs = get_block_wrapper_attributes( array(
+	'class' => $wrapper_class,
+) );
 
-// Color variables (only when NOT using theme colors).
-if ( ! $use_theme_colors ) {
-	$color_vars = array(
-		'--card-bg-color'       => $card_bg_color,
-		'--title-color'         => $title_color,
-		'--price-color'         => $price_color,
-		'--sale-badge-color'    => $sale_badge_color,
-		'--sale-badge-bg-color' => $sale_badge_bg,
+// ── Token CSS ─────────────────────────────────────────────────────────────────
+$token_css = '';
+if ( $unique_id ) {
+	$token_css = sprintf(
+		'.wbe-block-%1$s { --wbe-pg-cols: %2$d; --wbe-pg-cols-tablet: %3$d; --wbe-pg-cols-mobile: %4$d; --wbe-pg-gap: %5$dpx; --wbe-pg-card-bg: %6$s; --wbe-pg-title-color: %7$s; --wbe-pg-price-color: %8$s; --wbe-pg-sale-color: %9$s; --wbe-pg-card-radius: %10$s; --wbe-pg-card-shadow: %11$s; --wbe-pg-image-ratio: %12$s; }',
+		esc_attr( $unique_id ),
+		$columns,
+		$cols_tablet,
+		$cols_mobile,
+		$gap,
+		esc_attr( $card_bg ),
+		esc_attr( $title_color ),
+		esc_attr( $price_color ),
+		esc_attr( $sale_color ),
+		esc_attr( $radius_val ),
+		esc_attr( $box_shadow_val ),
+		esc_attr( $ratio_css )
 	);
-	$color_vars = array_filter( $color_vars );
-	foreach ( $color_vars as $property => $value ) {
-		$style_string .= esc_attr( $property ) . ':' . esc_attr( $value ) . ';';
-	}
+
+	// Responsive column overrides scoped to this block instance.
+	$token_css .= sprintf(
+		'@media (max-width:1024px){ .wbe-block-%1$s { --wbe-pg-cols: %2$d; } }',
+		esc_attr( $unique_id ),
+		$cols_tablet
+	);
+	$token_css .= sprintf(
+		'@media (max-width:640px){ .wbe-block-%1$s { --wbe-pg-cols: %2$d; } }',
+		esc_attr( $unique_id ),
+		$cols_mobile
+	);
 }
 
-// Build wrapper classes.
-$wrapper_classes = array( 'wbcom-essential-product-grid' );
-if ( $use_theme_colors ) {
-	$wrapper_classes[] = 'use-theme-colors';
-}
-
-$wrapper_attributes = get_block_wrapper_attributes(
-	array(
-		'class' => implode( ' ', $wrapper_classes ),
-		'style' => $style_string,
-	)
-);
 ?>
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<div class="wbcom-essential-product-grid__items">
-		<?php
-		while ( $products->have_posts() ) :
-			$products->the_post();
-			global $product;
+<div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<?php if ( $token_css ) : ?>
+	<style><?php echo esc_html( $token_css ); ?></style>
+	<?php endif; ?>
 
-			if ( ! $product instanceof WC_Product ) {
+	<div class="wbe-product-grid__inner">
+		<?php
+		while ( $query->have_posts() ) :
+			$query->the_post();
+			$product = wc_get_product( get_the_ID() );
+			if ( ! $product ) {
 				continue;
 			}
+
+			$product_id   = $product->get_id();
+			$permalink    = get_permalink( $product_id );
+			$title        = $product->get_name();
+			$is_on_sale   = $product->is_on_sale();
+			$rating       = (float) $product->get_average_rating();
+			$rating_count = $product->get_rating_count();
+			$thumb_id     = $product->get_image_id();
+			$thumb_url    = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'woocommerce_thumbnail' ) : wc_placeholder_img_src( 'woocommerce_thumbnail' );
+			$price_html   = $product->get_price_html();
 			?>
-			<div class="wbcom-essential-product-grid__item">
-				<div class="wbcom-essential-product-grid__card">
-					<div class="wbcom-essential-product-grid__image">
-						<a href="<?php the_permalink(); ?>">
-							<?php
-							if ( has_post_thumbnail() ) {
-								the_post_thumbnail( 'woocommerce_thumbnail' );
+			<article class="wbe-product-grid__card" aria-label="<?php echo esc_attr( $title ); ?>">
+				<?php if ( $show_image ) : ?>
+				<div class="wbe-product-grid__image-wrap">
+					<a href="<?php echo esc_url( $permalink ); ?>" tabindex="-1" aria-hidden="true">
+						<img
+							src="<?php echo esc_url( $thumb_url ); ?>"
+							alt="<?php echo esc_attr( $title ); ?>"
+							class="wbe-product-grid__image"
+							loading="lazy"
+							decoding="async"
+						/>
+					</a>
+					<?php if ( $show_sale && $is_on_sale ) : ?>
+					<span class="wbe-product-grid__sale-badge" aria-label="<?php esc_attr_e( 'Sale', 'wbcom-essential' ); ?>">
+						<?php esc_html_e( 'Sale', 'wbcom-essential' ); ?>
+					</span>
+					<?php endif; ?>
+				</div>
+				<?php endif; ?>
+
+				<div class="wbe-product-grid__body">
+					<h3 class="wbe-product-grid__title">
+						<a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $title ); ?></a>
+					</h3>
+
+					<?php if ( $show_rating && $rating_count > 0 ) : ?>
+					<div class="wbe-product-grid__rating" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'wbcom-essential' ), number_format( $rating, 1 ) ) ); ?>">
+						<?php
+						for ( $i = 1; $i <= 5; $i++ ) :
+							if ( $rating >= $i ) {
+								$star_class = 'wbe-product-grid__star wbe-product-grid__star--full';
+							} elseif ( $rating >= $i - 0.5 ) {
+								$star_class = 'wbe-product-grid__star wbe-product-grid__star--half';
 							} else {
-								echo wc_placeholder_img( 'woocommerce_thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce core function returns safe HTML.
+								$star_class = 'wbe-product-grid__star wbe-product-grid__star--empty';
 							}
 							?>
-						</a>
-						<?php if ( $show_sale_badge && $product->is_on_sale() ) : ?>
-							<span class="wbcom-essential-product-grid__sale-badge">
-								<?php esc_html_e( 'Sale!', 'wbcom-essential' ); ?>
-							</span>
-						<?php endif; ?>
+							<span class="<?php echo esc_attr( $star_class ); ?>" aria-hidden="true"></span>
+						<?php endfor; ?>
 					</div>
+					<?php endif; ?>
 
-					<div class="wbcom-essential-product-grid__content">
-						<h3 class="wbcom-essential-product-grid__title">
-							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-						</h3>
-
-						<?php if ( $show_rating && wc_review_ratings_enabled() ) : ?>
-							<div class="wbcom-essential-product-grid__rating">
-								<?php
-								$rating = $product->get_average_rating();
-								echo wc_get_rating_html( $rating ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce core function returns safe HTML.
-								?>
-							</div>
-						<?php endif; ?>
-
-						<?php if ( $show_price ) : ?>
-							<div class="wbcom-essential-product-grid__price">
-								<?php echo $product->get_price_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-							</div>
-						<?php endif; ?>
-
-						<?php if ( $show_add_to_cart ) : ?>
-							<div class="wbcom-essential-product-grid__actions">
-								<?php
-								woocommerce_template_loop_add_to_cart(
-									array(
-										'class' => 'wbcom-essential-product-grid__add-to-cart button',
-									)
-								);
-								?>
-							</div>
-						<?php endif; ?>
+					<?php if ( $show_price && $price_html ) : ?>
+					<div class="wbe-product-grid__price">
+						<?php echo wp_kses_post( $price_html ); ?>
 					</div>
+					<?php endif; ?>
+
+					<?php if ( $show_atc ) : ?>
+					<div class="wbe-product-grid__atc">
+						<?php
+						woocommerce_template_loop_add_to_cart(
+							array(
+								'quantity' => 1,
+							)
+						);
+						?>
+					</div>
+					<?php endif; ?>
 				</div>
-			</div>
+			</article>
 		<?php endwhile; ?>
 	</div>
 </div>

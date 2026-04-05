@@ -4,155 +4,201 @@
   "name": "wbcom-essential/pricing-table",
   "version": "1.0.0",
   "title": "Pricing Table",
-  "category": "starter-marketing",
-  "icon": "money-alt",
-  "description": "Display pricing plans with features, pricing, and CTA buttons",
+  "category": "essential-marketing",
+  "icon": "tickets-alt",
+  "description": "Pricing comparison table with 1–4 plan columns, featured plan highlighting, and per-plan CTA buttons.",
   "keywords": [
     "pricing",
-    "price",
+    "plans",
     "table",
-    "plan",
-    "subscription"
+    "comparison",
+    "cards",
+    "packages"
   ],
   "textdomain": "wbcom-essential",
-  "example": {},
+  "example": {
+    "attributes": {
+      "columns": 3
+    }
+  },
   "attributes": {
-    "useThemeColors": {
-      "type": "boolean",
-      "default": false
-    },
-    "title": {
-      "type": "string",
-      "default": "Basic Plan"
-    },
-    "description": {
-      "type": "string",
-      "default": "Perfect for getting started"
-    },
-    "headingTag": {
-      "type": "string",
-      "default": "h3"
-    },
-    "pricePrefix": {
-      "type": "string",
-      "default": "$"
-    },
-    "price": {
-      "type": "string",
-      "default": "49"
-    },
-    "priceSuffix": {
-      "type": "string",
-      "default": ".99"
-    },
-    "originalPrice": {
+    "uniqueId": {
       "type": "string",
       "default": ""
     },
-    "period": {
-      "type": "string",
-      "default": "/month"
+    "columns": {
+      "type": "number",
+      "default": 3
     },
-    "features": {
+    "plans": {
       "type": "array",
       "default": [
         {
-          "text": "10 Users Included",
-          "icon": "yes"
+          "name": "Basic",
+          "price": "9",
+          "period": "/mo",
+          "features": [
+            "5 Projects",
+            "10GB Storage",
+            "Email Support"
+          ],
+          "buttonText": "Choose Basic",
+          "buttonUrl": "#",
+          "featured": false
         },
         {
-          "text": "5GB Storage",
-          "icon": "yes"
+          "name": "Pro",
+          "price": "29",
+          "period": "/mo",
+          "features": [
+            "25 Projects",
+            "100GB Storage",
+            "Priority Support",
+            "API Access"
+          ],
+          "buttonText": "Choose Pro",
+          "buttonUrl": "#",
+          "featured": true
         },
         {
-          "text": "Email Support",
-          "icon": "yes"
+          "name": "Enterprise",
+          "price": "99",
+          "period": "/mo",
+          "features": [
+            "Unlimited Projects",
+            "1TB Storage",
+            "24/7 Support",
+            "API Access",
+            "Custom Domain"
+          ],
+          "buttonText": "Choose Enterprise",
+          "buttonUrl": "#",
+          "featured": false
         }
       ]
     },
-    "buttonText": {
+    "currency": {
       "type": "string",
-      "default": "Get Started"
+      "default": "$"
     },
-    "buttonUrl": {
-      "type": "string",
-      "default": "#"
-    },
-    "buttonTarget": {
-      "type": "boolean",
-      "default": false
-    },
-    "footerText": {
-      "type": "string",
-      "default": ""
-    },
-    "showRibbon": {
-      "type": "boolean",
-      "default": false
-    },
-    "ribbonText": {
-      "type": "string",
-      "default": "POPULAR"
-    },
-    "ribbonStyle": {
-      "type": "string",
-      "default": "ribbon"
-    },
-    "headerBackground": {
-      "type": "string",
-      "default": "#4a5568"
-    },
-    "headerTextColor": {
+    "cardBg": {
       "type": "string",
       "default": "#ffffff"
     },
-    "containerBackground": {
+    "featuredBg": {
       "type": "string",
-      "default": "#f7fafc"
+      "default": "#667eea"
+    },
+    "featuredColor": {
+      "type": "string",
+      "default": "#ffffff"
     },
     "priceColor": {
       "type": "string",
-      "default": "#1a202c"
+      "default": "#1e1e2e"
     },
-    "buttonBackground": {
+    "featureColor": {
       "type": "string",
-      "default": "#3182ce"
+      "default": "#6c757d"
     },
-    "buttonTextColor": {
+    "buttonBg": {
       "type": "string",
-      "default": "#ffffff"
+      "default": "#667eea"
     },
-    "buttonHoverBackground": {
-      "type": "string",
-      "default": "#2c5aa0"
-    },
-    "buttonHoverTextColor": {
+    "buttonColor": {
       "type": "string",
       "default": "#ffffff"
     },
-    "buttonHoverBorder": {
-      "type": "string",
-      "default": "#2c5aa0"
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 48,
+        "right": 24,
+        "bottom": 48,
+        "left": 24
+      }
     },
-    "buttonSkin": {
-      "type": "string",
-      "default": ""
+    "paddingTablet": {
+      "type": "object",
+      "default": null
     },
-    "buttonSize": {
-      "type": "string",
-      "default": "wbcom-btn-md"
+    "paddingMobile": {
+      "type": "object",
+      "default": null
     },
-    "ribbonBackground": {
+    "paddingUnit": {
       "type": "string",
-      "default": "#48bb78"
+      "default": "px"
     },
-    "ribbonTextColor": {
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "marginTablet": {
+      "type": "object",
+      "default": null
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": null
+    },
+    "marginUnit": {
       "type": "string",
-      "default": "#ffffff"
+      "default": "px"
     },
-    "borderRadius": {
+    "boxShadow": {
+      "type": "boolean",
+      "default": false
+    },
+    "shadowHorizontal": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowVertical": {
+      "type": "number",
+      "default": 4
+    },
+    "shadowBlur": {
       "type": "number",
       "default": 8
+    },
+    "shadowSpread": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.12)"
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "borderRadiusUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "hideOnDesktop": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideOnTablet": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideOnMobile": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -161,13 +207,10 @@
       "wide",
       "full"
     ],
-    "spacing": {
-      "margin": true,
-      "padding": true
-    }
+    "color": false,
+    "spacing": false
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "style": "file:./style-index.css"
 }

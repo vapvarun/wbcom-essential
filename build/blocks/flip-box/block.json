@@ -4,178 +4,175 @@
   "name": "wbcom-essential/flip-box",
   "version": "1.0.0",
   "title": "Flip Box",
-  "category": "starter-design",
-  "icon": "image-flip-horizontal",
-  "description": "A 3D flip box with front and back content revealed on hover.",
+  "category": "essential-design",
+  "icon": "layout",
+  "description": "3D card that flips on hover to reveal a back face with title, description, and button.",
   "keywords": [
     "flip",
     "card",
-    "box",
     "hover",
     "3d",
-    "animation",
-    "interactive"
+    "box",
+    "front",
+    "back"
   ],
   "textdomain": "wbcom-essential",
-  "example": {},
+  "example": {
+    "attributes": {
+      "frontTitle": "Front Title",
+      "frontDescription": "Hover to see the back",
+      "flipDirection": "horizontal"
+    }
+  },
   "attributes": {
-    "useThemeColors": {
-      "type": "boolean",
-      "default": false
-    },
-    "frontIcon": {
+    "uniqueId": {
       "type": "string",
-      "default": "star-filled"
+      "default": ""
     },
     "frontTitle": {
       "type": "string",
       "default": "Front Title"
     },
-    "frontTitleTag": {
+    "frontDescription": {
       "type": "string",
-      "default": "h3"
+      "default": "Hover to see the back"
     },
-    "frontContent": {
+    "frontIcon": {
       "type": "string",
-      "default": "Add your front content here."
+      "default": "⚡"
     },
-    "backIcon": {
+    "frontBg": {
       "type": "string",
-      "default": ""
+      "default": "#667eea"
+    },
+    "frontColor": {
+      "type": "string",
+      "default": "#ffffff"
     },
     "backTitle": {
       "type": "string",
       "default": "Back Title"
     },
-    "backTitleTag": {
+    "backDescription": {
       "type": "string",
-      "default": "h3"
+      "default": "This is the back of the card"
     },
-    "backContent": {
-      "type": "string",
-      "default": "Add your back content here."
-    },
-    "buttonText": {
+    "backButtonText": {
       "type": "string",
       "default": "Learn More"
     },
-    "buttonUrl": {
+    "backButtonUrl": {
       "type": "string",
-      "default": ""
+      "default": "#"
     },
-    "buttonNewTab": {
-      "type": "boolean",
-      "default": false
+    "backBg": {
+      "type": "string",
+      "default": "#764ba2"
+    },
+    "backColor": {
+      "type": "string",
+      "default": "#ffffff"
     },
     "flipDirection": {
       "type": "string",
-      "default": "flip-right"
+      "default": "horizontal"
     },
-    "animationDuration": {
-      "type": "number",
-      "default": 0.6
-    },
-    "animationTiming": {
-      "type": "string",
-      "default": "ease"
-    },
-    "boxWidth": {
+    "height": {
       "type": "number",
       "default": 300
     },
-    "boxHeight": {
-      "type": "number",
-      "default": 300
-    },
-    "boxAlign": {
+    "heightUnit": {
       "type": "string",
-      "default": "center"
+      "default": "px"
     },
-    "frontBackground": {
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "paddingTablet": {
+      "type": "object",
+      "default": null
+    },
+    "paddingMobile": {
+      "type": "object",
+      "default": null
+    },
+    "paddingUnit": {
       "type": "string",
-      "default": "#f5f5f5"
+      "default": "px"
     },
-    "frontTitleColor": {
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "marginTablet": {
+      "type": "object",
+      "default": null
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": null
+    },
+    "marginUnit": {
       "type": "string",
-      "default": "#1a1a1a"
+      "default": "px"
     },
-    "frontContentColor": {
-      "type": "string",
-      "default": "#666666"
-    },
-    "frontIconColor": {
-      "type": "string",
-      "default": "#3182ce"
-    },
-    "frontIconSize": {
-      "type": "number",
-      "default": 48
-    },
-    "backBackground": {
-      "type": "string",
-      "default": "#3182ce"
-    },
-    "backTitleColor": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "backContentColor": {
-      "type": "string",
-      "default": "rgba(255, 255, 255, 0.9)"
-    },
-    "backIconColor": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "backIconSize": {
-      "type": "number",
-      "default": 48
-    },
-    "buttonBackground": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "buttonTextColor": {
-      "type": "string",
-      "default": "#3182ce"
-    },
-    "borderRadius": {
-      "type": "number",
-      "default": 8
-    },
-    "buttonSkin": {
-      "type": "string",
-      "default": ""
-    },
-    "buttonHoverBackground": {
-      "type": "string",
-      "default": "#2c5aa0"
-    },
-    "buttonHoverTextColor": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "frontBorderWidth": {
-      "type": "number",
-      "default": 0
-    },
-    "frontBorderColor": {
-      "type": "string",
-      "default": "#e0e0e0"
-    },
-    "frontBoxShadow": {
+    "boxShadow": {
       "type": "boolean",
       "default": false
     },
-    "backBorderWidth": {
+    "shadowHorizontal": {
       "type": "number",
       "default": 0
     },
-    "backBorderColor": {
-      "type": "string",
-      "default": "#e0e0e0"
+    "shadowVertical": {
+      "type": "number",
+      "default": 8
     },
-    "backBoxShadow": {
+    "shadowBlur": {
+      "type": "number",
+      "default": 24
+    },
+    "shadowSpread": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.15)"
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 12,
+        "right": 12,
+        "bottom": 12,
+        "left": 12
+      }
+    },
+    "borderRadiusUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "hideOnDesktop": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideOnTablet": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideOnMobile": {
       "type": "boolean",
       "default": false
     }
@@ -186,6 +183,10 @@
       "wide",
       "full"
     ],
+    "color": {
+      "background": false,
+      "text": false
+    },
     "spacing": {
       "margin": true,
       "padding": true
@@ -193,6 +194,5 @@
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "style": "file:./style-index.css"
 }

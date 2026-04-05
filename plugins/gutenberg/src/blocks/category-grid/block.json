@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/category-grid",
 	"version": "2.0.0",
 	"title": "Category Grid",
-	"category": "starter-blog",
+	"category": "essential-blog",
 	"icon": "category",
 	"description": "Display WordPress categories in a customizable grid layout with images, post counts, and hover effects.",
 	"keywords": ["categories", "grid", "taxonomy", "blog", "magazine"],

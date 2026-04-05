@@ -1,6 +1,6 @@
 <?php
 /**
- * EDD Order Success Block - Server-Side Render.
+ * EDD Order Success Block - Server-Side Render (v2).
  *
  * @package wbcom-essential
  *
@@ -19,13 +19,18 @@ if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
 	return;
 }
 
-// Extract attributes with defaults.
+// Shared infrastructure: unique ID + CSS output + visibility classes.
+$unique_id   = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
+
+// Extract block-specific attributes with defaults.
 $show_success_header = isset( $attributes['showSuccessHeader'] ) ? (bool) $attributes['showSuccessHeader'] : true;
 $success_message     = ! empty( $attributes['successMessage'] ) ? $attributes['successMessage'] : __( 'Thank you for your purchase!', 'wbcom-essential' );
 $show_next_steps     = isset( $attributes['showNextSteps'] ) ? (bool) $attributes['showNextSteps'] : true;
 $account_page_url    = ! empty( $attributes['accountPageUrl'] ) ? $attributes['accountPageUrl'] : '';
 
-// Resolve account page URL: attribute > page with account dashboard block > EDD purchase history > home.
+// Resolve account page URL: attribute > page with account dashboard block > EDD settings > home.
 if ( empty( $account_page_url ) ) {
 	// First, find a page containing our EDD Account Dashboard block.
 	$account_pages = get_posts(
@@ -57,13 +62,13 @@ if ( empty( $account_page_url ) ) {
 $account_page_url = esc_url( $account_page_url );
 
 // Unique ID for animation scoping.
-$unique_id = wp_unique_id( 'wbcom-edd-success-' );
+$unique_block_id = ! empty( $unique_id ) ? 'wbcom-edd-success-' . $unique_id : wp_unique_id( 'wbcom-edd-success-' );
 
 // Build wrapper attributes.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-edd-success',
-		'id'    => esc_attr( $unique_id ),
+		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-success ' . $vis_classes ),
+		'id'    => esc_attr( $unique_block_id ),
 	)
 );
 ?>

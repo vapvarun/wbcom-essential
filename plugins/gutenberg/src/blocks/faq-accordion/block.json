@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/faq-accordion",
 	"version": "1.0.0",
 	"title": "FAQ Accordion",
-	"category": "starter-content",
+	"category": "essential-content",
 	"icon": "editor-help",
 	"description": "Collapsible Q&A accordion with JSON-LD FAQPage schema output for SEO.",
 	"keywords": ["faq", "accordion", "questions", "answers", "schema", "collapse"],

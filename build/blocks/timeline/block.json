@@ -4,186 +4,187 @@
   "name": "wbcom-essential/timeline",
   "version": "1.0.0",
   "title": "Timeline",
-  "category": "starter-content",
-  "icon": "backup",
-  "description": "Display events or milestones in a vertical timeline layout.",
+  "category": "essential-content",
+  "icon": "list-view",
+  "description": "Vertical timeline with alternating sides, icon dots, and date labels.",
   "keywords": [
     "timeline",
     "history",
-    "events",
     "milestones",
-    "chronology",
-    "roadmap"
+    "events",
+    "dates",
+    "steps"
   ],
   "textdomain": "wbcom-essential",
-  "example": {},
+  "example": {
+    "attributes": {
+      "layout": "alternating",
+      "items": [
+        {
+          "date": "2024",
+          "title": "Founded",
+          "description": "Our company was founded.",
+          "icon": "🚀"
+        },
+        {
+          "date": "2025",
+          "title": "Growth",
+          "description": "Expanded to thousands.",
+          "icon": "📈"
+        }
+      ]
+    }
+  },
   "attributes": {
-    "useThemeColors": {
-      "type": "boolean",
-      "default": false
+    "uniqueId": {
+      "type": "string",
+      "default": ""
     },
     "items": {
       "type": "array",
       "default": [
         {
-          "id": 1,
-          "icon": "star",
-          "imageId": 0,
-          "imageUrl": "",
-          "date": "Jan 2024",
-          "titleTag": "h3",
-          "title": "Project Launch",
-          "content": "We successfully launched our new project with great enthusiasm and dedication.",
-          "textAlign": "left"
+          "date": "2024",
+          "title": "Founded",
+          "description": "Our company was founded with a vision.",
+          "icon": "🚀"
         },
         {
-          "id": 2,
-          "icon": "flag",
-          "imageId": 0,
-          "imageUrl": "",
-          "date": "Mar 2024",
-          "titleTag": "h3",
-          "title": "First Milestone",
-          "content": "Reached our first major milestone ahead of schedule.",
-          "textAlign": "left"
+          "date": "2025",
+          "title": "Growth",
+          "description": "Expanded to serve thousands of customers.",
+          "icon": "📈"
+        },
+        {
+          "date": "2026",
+          "title": "Innovation",
+          "description": "Launched groundbreaking new features.",
+          "icon": "💡"
         }
       ]
     },
     "layout": {
       "type": "string",
-      "default": "two-column"
+      "default": "alternating"
     },
-    "showArrow": {
-      "type": "boolean",
-      "default": true
-    },
-    "enableAnimation": {
-      "type": "boolean",
-      "default": true
-    },
-    "barThickness": {
-      "type": "number",
-      "default": 4
-    },
-    "barColor": {
+    "lineColor": {
       "type": "string",
-      "default": "#e2e8f0"
+      "default": "#e9ecef"
     },
-    "iconContainerSize": {
-      "type": "number",
-      "default": 60
-    },
-    "iconContainerBackground": {
+    "dotColor": {
       "type": "string",
-      "default": "#3182ce"
+      "default": "#667eea"
     },
-    "iconContainerBorderRadius": {
-      "type": "number",
-      "default": 50
-    },
-    "iconSize": {
-      "type": "number",
-      "default": 24
-    },
-    "iconColor": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "contentBackground": {
-      "type": "string",
-      "default": "#f7fafc"
-    },
-    "contentBorderRadius": {
-      "type": "number",
-      "default": 12
-    },
-    "dateColor": {
-      "type": "string",
-      "default": "#718096"
-    },
-    "titleColor": {
-      "type": "string",
-      "default": "#1a202c"
-    },
-    "textColor": {
-      "type": "string",
-      "default": "#4a5568"
-    },
-    "contentPadding": {
-      "type": "number",
-      "default": 24
-    },
-    "contentBoxShadow": {
-      "type": "boolean",
-      "default": true
-    },
-    "dateFontSize": {
-      "type": "number",
-      "default": 14
-    },
-    "titleFontSize": {
-      "type": "number",
-      "default": 20
-    },
-    "textFontSize": {
-      "type": "number",
-      "default": 16
-    },
-    "itemSpacing": {
+    "dotSize": {
       "type": "number",
       "default": 40
     },
-    "contentBorderType": {
+    "cardBg": {
       "type": "string",
-      "default": "none"
+      "default": "#ffffff"
     },
-    "contentBorderWidth": {
-      "type": "number",
-      "default": 1
-    },
-    "contentBorderColor": {
+    "dateColor": {
       "type": "string",
-      "default": "#e2e8f0"
+      "default": "#667eea"
     },
-    "contentBoxShadowHorizontal": {
+    "titleColor": {
+      "type": "string",
+      "default": "#1e1e2e"
+    },
+    "descriptionColor": {
+      "type": "string",
+      "default": "#6c757d"
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "paddingTablet": {
+      "type": "object",
+      "default": null
+    },
+    "paddingMobile": {
+      "type": "object",
+      "default": null
+    },
+    "paddingUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "marginTablet": {
+      "type": "object",
+      "default": null
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": null
+    },
+    "marginUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "boxShadow": {
+      "type": "boolean",
+      "default": false
+    },
+    "shadowHorizontal": {
       "type": "number",
       "default": 0
     },
-    "contentBoxShadowVertical": {
+    "shadowVertical": {
       "type": "number",
       "default": 4
     },
-    "contentBoxShadowBlur": {
+    "shadowBlur": {
       "type": "number",
-      "default": 15
+      "default": 12
     },
-    "contentBoxShadowSpread": {
+    "shadowSpread": {
       "type": "number",
       "default": 0
     },
-    "contentBoxShadowColor": {
+    "shadowColor": {
       "type": "string",
       "default": "rgba(0, 0, 0, 0.08)"
     },
-    "dateFontWeight": {
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 8,
+        "right": 8,
+        "bottom": 8,
+        "left": 8
+      }
+    },
+    "borderRadiusUnit": {
       "type": "string",
-      "default": "600"
+      "default": "px"
     },
-    "dateTextTransform": {
-      "type": "string",
-      "default": "none"
+    "hideOnDesktop": {
+      "type": "boolean",
+      "default": false
     },
-    "dateLineHeight": {
-      "type": "number",
-      "default": 1.4
+    "hideOnTablet": {
+      "type": "boolean",
+      "default": false
     },
-    "dateLetterSpacing": {
-      "type": "number",
-      "default": 0
-    },
-    "imageBorderRadius": {
-      "type": "number",
-      "default": 8
+    "hideOnMobile": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -192,6 +193,10 @@
       "wide",
       "full"
     ],
+    "color": {
+      "background": true,
+      "text": false
+    },
     "spacing": {
       "margin": true,
       "padding": true
@@ -199,7 +204,5 @@
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js",
-  "render": "file:./render.php"
+  "style": "file:./style-index.css"
 }

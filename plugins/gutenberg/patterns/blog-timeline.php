@@ -26,6 +26,6 @@ register_block_pattern(
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/post-timeline {"postsPerPage":10,"showExcerpt":true,"excerptLength":120,"useThemeColors":true} /-->',
+<!-- wp:wbcom-essential/timeline {"postsPerPage":10,"showExcerpt":true,"excerptLength":120,"useThemeColors":true} /-->',
 	)
 );

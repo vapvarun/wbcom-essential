@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/countdown-timer",
 	"version": "1.0.0",
 	"title": "Countdown Timer",
-	"category": "starter-marketing",
+	"category": "essential-marketing",
 	"icon": "clock",
 	"description": "Animated live countdown to a target date and time with expiry message.",
 	"keywords": ["countdown", "timer", "date", "clock", "event", "offer"],

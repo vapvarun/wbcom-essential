@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/customer-reviews",
 	"version": "1.0.0",
 	"title": "Customer Reviews",
-	"category": "starter-woocommerce",
+	"category": "essential-woocommerce",
 	"icon": "star-filled",
 	"description": "Display WooCommerce product reviews in a Swiper carousel with avatar, star rating, reviewer name, and product link.",
 	"keywords": ["woocommerce", "reviews", "testimonials", "ratings", "customers", "carousel"],

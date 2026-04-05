@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/tabs",
 	"version": "1.0.0",
 	"title": "Tabs",
-	"category": "starter-content",
+	"category": "essential-content",
 	"icon": "table-row-before",
 	"description": "Click-to-switch tabbed content panels with underline or boxed styles. Fully ARIA-compliant.",
 	"keywords": ["tabs", "tabbed", "panel", "content", "switch", "navigation"],

@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side render for EDD Enhanced Checkout block.
+ * Server-side render for EDD Enhanced Checkout block (v2).
  *
  * @package WBCOM_Essential
  *
@@ -21,7 +21,12 @@ if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
 	return;
 }
 
-// Extract attributes.
+// Shared infrastructure: unique ID + CSS output + visibility classes.
+$unique_id   = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
+
+// Extract block-specific attributes.
 $show_progress_bar     = $attributes['showProgressBar'] ?? true;
 $show_trust_badges     = $attributes['showTrustBadges'] ?? true;
 $trust_badge_text      = $attributes['trustBadgeText'] ?? __( 'Secure checkout powered by Stripe', 'wbcom-essential' );
@@ -31,12 +36,12 @@ $show_recommendations  = $attributes['showRecommendations'] ?? true;
 $recommendation_count  = $attributes['recommendationCount'] ?? 3;
 
 // Unique ID for scoping.
-$block_id = wp_unique_id( 'wbcom-edd-checkout-' );
+$block_id = ! empty( $unique_id ) ? 'wbcom-edd-checkout-' . $unique_id : wp_unique_id( 'wbcom-edd-checkout-' );
 
 // Wrapper attributes with BEM root class.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wbcom-edd-checkout',
+		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-checkout ' . $vis_classes ),
 		'id'    => esc_attr( $block_id ),
 	)
 );
@@ -201,8 +206,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		}
 
 		// Deduplicate and limit.
-		$seen_ids    = array();
-		$unique      = array();
+		$seen_ids = array();
+		$unique   = array();
 		foreach ( $all_reviews as $r ) {
 			if ( ! isset( $seen_ids[ $r->comment_ID ] ) ) {
 				$seen_ids[ $r->comment_ID ] = true;
@@ -294,8 +299,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		$cart_contents = edd_get_cart_contents();
 
 		if ( ! empty( $cart_contents ) ) :
-			$cart_ids       = wp_list_pluck( $cart_contents, 'id' );
-			$user_id        = is_user_logged_in() ? get_current_user_id() : false;
+			$cart_ids        = wp_list_pluck( $cart_contents, 'id' );
+			$user_id         = is_user_logged_in() ? get_current_user_id() : false;
 			$recommendations = edd_rp_get_multi_suggestions( $cart_ids, $user_id, $recommendation_count );
 
 			if ( ! empty( $recommendations ) ) :

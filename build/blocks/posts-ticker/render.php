@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side render for Posts Ticker block.
+ * Posts Ticker Block - Server-Side Render
  *
  * @package WBCOM_Essential
  *
@@ -13,151 +13,233 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Extract attributes.
-$ticker_type     = $attributes['tickerType'] ?? 'horizontal';
-$ticker_label    = $attributes['tickerLabel'] ?? 'Latest News';
-$show_label      = $attributes['showLabel'] ?? true;
-$speed           = $attributes['speed'] ?? 50;
-$pause_on_hover  = $attributes['pauseOnHover'] ?? true;
-$show_controls   = $attributes['showControls'] ?? true;
-$show_thumbnail  = $attributes['showThumbnail'] ?? false;
-$show_date       = $attributes['showDate'] ?? false;
-$date_format     = $attributes['dateFormat'] ?? 'M j, Y';
-$post_type       = $attributes['postType'] ?? 'post';
-$categories      = $attributes['categories'] ?? array();
-$posts_per_page  = $attributes['postsPerPage'] ?? 10;
-$order_by        = $attributes['orderBy'] ?? 'date';
-$order           = $attributes['order'] ?? 'DESC';
+use WBCOM_ESSENTIAL\Gutenberg\WBE_CSS;
 
-// Theme colors toggle.
-$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
+// ── Shared infrastructure ─────────────────────────────────────────────────────
+$unique_id   = ! empty( $attributes['uniqueId'] ) ? sanitize_html_class( $attributes['uniqueId'] ) : '';
+$vis_classes = class_exists( 'WBCOM_ESSENTIAL\Gutenberg\WBE_CSS' ) ? WBE_CSS::get_visibility_classes( $attributes ) : '';
 
-// Colors.
-$label_bg_color   = $attributes['labelBgColor'] ?? '#1d76da';
-$label_text_color = $attributes['labelTextColor'] ?? '#ffffff';
-$ticker_bg_color  = $attributes['tickerBgColor'] ?? '#f8f9fa';
-$text_color       = $attributes['textColor'] ?? '#122B46';
-$hover_color      = $attributes['hoverColor'] ?? '#1d76da';
-$border_color     = $attributes['borderColor'] ?? '#e3e3e3';
-$height           = $attributes['height'] ?? 50;
-
-// Build query args.
-$query_args = array(
-	'post_type'      => $post_type,
-	'posts_per_page' => $posts_per_page,
-	'orderby'        => $order_by,
-	'order'          => $order,
-	'post_status'    => 'publish',
-);
-
-// Add category filter if set.
-if ( ! empty( $categories ) && 'post' === $post_type ) {
-	$query_args['cat'] = implode( ',', $categories );
+if ( ! empty( $unique_id ) && class_exists( 'WBCOM_ESSENTIAL\Gutenberg\WBE_CSS' ) ) {
+	WBE_CSS::add( $unique_id, $attributes );
+	WBE_CSS::init();
 }
 
-$posts = get_posts( $query_args );
+// ── Extract attributes ────────────────────────────────────────────────────────
+$posts_per       = max( 2, absint( $attributes['postsPerPage'] ?? 10 ) );
+$cat_ids         = array_map( 'absint', (array) ( $attributes['categories'] ?? array() ) );
+$speed           = max( 1, absint( $attributes['speed'] ?? 30 ) );
+$direction       = in_array( $attributes['direction'] ?? 'left', array( 'left', 'right' ), true )
+	? $attributes['direction']
+	: 'left';
+$pause_on_hover  = ! empty( $attributes['pauseOnHover'] );
+$show_date       = ! empty( $attributes['showDate'] );
+$show_category   = ! empty( $attributes['showCategory'] );
+$label           = sanitize_text_field( $attributes['label'] ?? __( 'Latest News', 'wbcom-essential' ) );
+$label_bg        = sanitize_text_field( $attributes['labelBg'] ?? '#667eea' );
+$label_color     = sanitize_hex_color( $attributes['labelColor'] ?? '#ffffff' ) ?: '#ffffff';
+$ticker_bg       = sanitize_text_field( $attributes['tickerBg'] ?? '#f8f9fa' );
+$text_color      = sanitize_hex_color( $attributes['textColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
+$link_color      = sanitize_hex_color( $attributes['linkColor'] ?? '#667eea' ) ?: '#667eea';
+$separator       = sanitize_key( $attributes['separatorStyle'] ?? 'dot' );
+$height          = max( 32, absint( $attributes['height'] ?? 44 ) );
 
-if ( empty( $posts ) ) {
+// Separator character map.
+$sep_chars = array(
+	'dot'   => '&bull;',
+	'pipe'  => '&#124;',
+	'slash' => '&#47;',
+	'none'  => '',
+);
+$sep_char = $sep_chars[ $separator ] ?? '&bull;';
+
+// ── Box shadow ────────────────────────────────────────────────────────────────
+$box_shadow_val = 'none';
+if ( ! empty( $attributes['boxShadow'] ) ) {
+	$box_shadow_val = sprintf(
+		'%dpx %dpx %dpx %dpx %s',
+		intval( $attributes['shadowHorizontal'] ?? 0 ),
+		intval( $attributes['shadowVertical'] ?? 4 ),
+		absint( $attributes['shadowBlur'] ?? 8 ),
+		intval( $attributes['shadowSpread'] ?? 0 ),
+		sanitize_text_field( $attributes['shadowColor'] ?? 'rgba(0,0,0,0.12)' )
+	);
+}
+
+// ── Border radius ─────────────────────────────────────────────────────────────
+$border_radius = $attributes['borderRadius'] ?? array( 'top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0 );
+$radius_unit   = sanitize_text_field( $attributes['borderRadiusUnit'] ?? 'px' );
+$radius_val    = sprintf(
+	'%s%s %s%s %s%s %s%s',
+	absint( $border_radius['top'] ?? 0 ), $radius_unit,
+	absint( $border_radius['right'] ?? 0 ), $radius_unit,
+	absint( $border_radius['bottom'] ?? 0 ), $radius_unit,
+	absint( $border_radius['left'] ?? 0 ), $radius_unit
+);
+
+// ── WP_Query ──────────────────────────────────────────────────────────────────
+$query_args = array(
+	'post_type'      => 'post',
+	'posts_per_page' => $posts_per,
+	'orderby'        => 'date',
+	'order'          => 'DESC',
+	'post_status'    => 'publish',
+	'no_found_rows'  => true,
+);
+
+if ( ! empty( $cat_ids ) ) {
+	$query_args['category__in'] = $cat_ids;
+}
+
+$query = new WP_Query( $query_args );
+
+if ( ! $query->have_posts() ) {
+	echo '<div class="wbe-posts-ticker wbe-posts-ticker--empty"><p>' . esc_html__( 'No posts found.', 'wbcom-essential' ) . '</p></div>';
 	return;
 }
 
-// Build inline styles - layout always, colors only when not using theme colors.
-$inline_styles = array(
-	'--ticker-height' => $height . 'px',
-);
+// Collect posts for rendering (needed twice for seamless loop).
+$ticker_posts = array();
+while ( $query->have_posts() ) {
+	$query->the_post();
+	$ticker_posts[] = array(
+		'id'         => get_the_ID(),
+		'permalink'  => get_permalink(),
+		'title'      => get_the_title(),
+		'date'       => get_the_date( '', get_the_ID() ),
+		'date_iso'   => get_the_date( 'c', get_the_ID() ),
+		'categories' => get_the_category( get_the_ID() ),
+	);
+}
+wp_reset_postdata();
 
-// Add color styles only when NOT using theme colors.
-if ( ! $use_theme_colors ) {
-	$inline_styles['--label-bg-color']   = $label_bg_color;
-	$inline_styles['--label-text-color'] = $label_text_color;
-	$inline_styles['--ticker-bg-color']  = $ticker_bg_color;
-	$inline_styles['--text-color']       = $text_color;
-	$inline_styles['--hover-color']      = $hover_color;
-	$inline_styles['--border-color']     = $border_color;
+// ── Compute animation duration from speed ────────────────────────────────────
+// Each post item is roughly 250px wide. Animation duration = (items * 250) / speed.
+$item_count    = count( $ticker_posts );
+$anim_duration = round( ( $item_count * 250 ) / $speed, 2 );
+
+// ── Scoped token CSS ──────────────────────────────────────────────────────────
+$token_css = '';
+if ( $unique_id ) {
+	$token_css = sprintf(
+		'.wbe-block-%1$s {
+			--wbe-tk-label-bg:    %2$s;
+			--wbe-tk-label-color: %3$s;
+			--wbe-tk-bg:          %4$s;
+			--wbe-tk-text:        %5$s;
+			--wbe-tk-link:        %6$s;
+			--wbe-tk-height:      %7$dpx;
+			--wbe-tk-duration:    %8$ss;
+			--wbe-tk-shadow:      %9$s;
+			--wbe-tk-radius:      %10$s;
+		}',
+		esc_attr( $unique_id ),
+		esc_attr( $label_bg ),
+		esc_attr( $label_color ),
+		esc_attr( $ticker_bg ),
+		esc_attr( $text_color ),
+		esc_attr( $link_color ),
+		$height,
+		$anim_duration,
+		esc_attr( $box_shadow_val ),
+		esc_attr( $radius_val )
+	);
 }
 
-$style_string = '';
-foreach ( $inline_styles as $prop => $value ) {
-	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
-}
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+$wrapper_class = trim( implode( ' ', array_filter( array(
+	'wbe-posts-ticker',
+	'wbe-posts-ticker--dir-' . $direction,
+	$pause_on_hover ? 'wbe-posts-ticker--pause-hover' : '',
+	$unique_id ? 'wbe-block-' . $unique_id : '',
+	$vis_classes,
+) ) ) );
 
-// Build wrapper classes.
-$wrapper_classes = array( 'wbcom-essential-posts-ticker-wrapper' );
-if ( $use_theme_colors ) {
-	$wrapper_classes[] = 'use-theme-colors';
-}
-
-// Wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes( array(
-	'class' => implode( ' ', $wrapper_classes ),
-	'style' => $style_string,
+$wrapper_attrs = get_block_wrapper_attributes( array(
+	'class'            => $wrapper_class,
+	'role'             => 'marquee',
+	'aria-label'       => esc_attr( $label ),
+	'data-pause-hover' => $pause_on_hover ? 'true' : 'false',
+	'data-direction'   => esc_attr( $direction ),
 ) );
 
-// Generate unique ID.
-$ticker_id = 'wbcom-ticker-' . wp_unique_id();
+/**
+ * Render a single ticker item as an HTML string.
+ *
+ * @param array  $post_data     Post data array.
+ * @param bool   $show_date     Whether to show date.
+ * @param bool   $show_category Whether to show category badge.
+ * @param string $sep_char      Separator character (HTML entity).
+ * @return string
+ */
+function wbe_ticker_item( $post_data, $show_date, $show_category, $sep_char ) {
+	ob_start();
+	$first_cat = ! empty( $post_data['categories'] ) ? $post_data['categories'][0] : null;
+	?>
+	<span class="wbe-posts-ticker__item">
+		<?php if ( $show_category && $first_cat ) : ?>
+		<a
+			href="<?php echo esc_url( get_category_link( $first_cat->term_id ) ); ?>"
+			class="wbe-posts-ticker__cat"
+			tabindex="-1"
+			aria-hidden="true"
+		>
+			<?php echo esc_html( $first_cat->name ); ?>
+		</a>
+		<?php endif; ?>
+
+		<a
+			href="<?php echo esc_url( $post_data['permalink'] ); ?>"
+			class="wbe-posts-ticker__link"
+		>
+			<?php echo esc_html( $post_data['title'] ); ?>
+		</a>
+
+		<?php if ( $show_date ) : ?>
+		<time
+			class="wbe-posts-ticker__date"
+			datetime="<?php echo esc_attr( $post_data['date_iso'] ); ?>"
+			aria-hidden="true"
+		>
+			<?php echo esc_html( $post_data['date'] ); ?>
+		</time>
+		<?php endif; ?>
+
+		<?php if ( $sep_char ) : ?>
+		<span class="wbe-posts-ticker__sep" aria-hidden="true"><?php echo $sep_char; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML entities only. ?></span>
+		<?php endif; ?>
+	</span>
+	<?php
+	return ob_get_clean();
+}
 ?>
+<div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<?php if ( $token_css ) : ?>
+	<style><?php echo esc_html( $token_css ); ?></style>
+	<?php endif; ?>
 
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
-	<div
-		class="wbcom-essential-posts-ticker wbcom-essential-posts-ticker--<?php echo esc_attr( $ticker_type ); ?>"
-		id="<?php echo esc_attr( $ticker_id ); ?>"
-		data-ticker-type="<?php echo esc_attr( $ticker_type ); ?>"
-		data-speed="<?php echo esc_attr( $speed ); ?>"
-		data-pause-on-hover="<?php echo $pause_on_hover ? 'true' : 'false'; ?>"
-	>
-		<?php if ( $show_label ) : ?>
-			<div class="wbcom-essential-posts-ticker__label">
-				<span><?php echo esc_html( $ticker_label ); ?></span>
-			</div>
-		<?php endif; ?>
+	<?php if ( $label ) : ?>
+	<div class="wbe-posts-ticker__label" aria-hidden="true">
+		<?php echo esc_html( $label ); ?>
+	</div>
+	<?php endif; ?>
 
-		<div class="wbcom-essential-posts-ticker__content">
-			<div class="wbcom-essential-posts-ticker__track">
-				<ul class="wbcom-essential-posts-ticker__list">
-					<?php foreach ( $posts as $post ) : ?>
-						<li class="wbcom-essential-posts-ticker__item">
-							<?php if ( $show_thumbnail && has_post_thumbnail( $post->ID ) ) : ?>
-								<span class="wbcom-essential-posts-ticker__thumb">
-									<?php echo get_the_post_thumbnail( $post->ID, 'thumbnail' ); ?>
-								</span>
-							<?php endif; ?>
-
-							<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" class="wbcom-essential-posts-ticker__link">
-								<?php echo esc_html( get_the_title( $post->ID ) ); ?>
-							</a>
-
-							<?php if ( $show_date ) : ?>
-								<span class="wbcom-essential-posts-ticker__date">
-									<?php echo esc_html( get_the_date( $date_format, $post->ID ) ); ?>
-								</span>
-							<?php endif; ?>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
+	<div class="wbe-posts-ticker__viewport" aria-live="off">
+		<div
+			class="wbe-posts-ticker__track"
+			data-direction="<?php echo esc_attr( $direction ); ?>"
+		>
+			<?php
+			// First copy.
+			foreach ( $ticker_posts as $post_data ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wbe_ticker_item( $post_data, $show_date, $show_category, $sep_char );
+			}
+			// Duplicate copy for seamless loop.
+			foreach ( $ticker_posts as $post_data ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wbe_ticker_item( $post_data, $show_date, $show_category, $sep_char );
+			}
+			?>
 		</div>
-
-		<?php if ( $show_controls ) : ?>
-			<div class="wbcom-essential-posts-ticker__controls">
-				<button type="button" class="wbcom-essential-posts-ticker__prev" aria-label="<?php esc_attr_e( 'Previous', 'wbcom-essential' ); ?>">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-					</svg>
-				</button>
-				<button type="button" class="wbcom-essential-posts-ticker__pause" aria-label="<?php esc_attr_e( 'Pause', 'wbcom-essential' ); ?>">
-					<svg class="pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-					</svg>
-					<svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
-						<path d="M8 5v14l11-7z"/>
-					</svg>
-				</button>
-				<button type="button" class="wbcom-essential-posts-ticker__next" aria-label="<?php esc_attr_e( 'Next', 'wbcom-essential' ); ?>">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-					</svg>
-				</button>
-			</div>
-		<?php endif; ?>
 	</div>
 </div>

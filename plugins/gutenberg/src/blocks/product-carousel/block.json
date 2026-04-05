@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/product-carousel",
 	"version": "1.0.0",
 	"title": "Product Carousel",
-	"category": "starter-woocommerce",
+	"category": "essential-woocommerce",
 	"icon": "slides",
 	"description": "Display WooCommerce products in a Swiper carousel with autoplay, navigation arrows, dots, and responsive slides-per-view.",
 	"keywords": ["woocommerce", "products", "carousel", "slider", "shop", "ecommerce", "swiper"],

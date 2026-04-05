@@ -2,124 +2,188 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "wbcom-essential/members-carousel",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "title": "Members Carousel",
-  "category": "starter-buddypress",
+  "category": "essential-buddypress",
   "icon": "slides",
-  "description": "Display BuddyPress members in an interactive carousel.",
+  "description": "Display BuddyPress members in an interactive Swiper carousel.",
   "keywords": [
     "members",
     "carousel",
     "slider",
     "buddypress",
-    "community"
+    "community",
+    "swiper"
   ],
   "textdomain": "wbcom-essential",
   "example": {},
   "attributes": {
-    "useThemeColors": {
-      "type": "boolean",
-      "default": false
-    },
-    "sortType": {
+    "uniqueId": {
       "type": "string",
-      "default": "newest"
+      "default": ""
     },
     "totalMembers": {
       "type": "number",
       "default": 12
     },
-    "showLastActive": {
-      "type": "boolean",
-      "default": true
+    "sortType": {
+      "type": "string",
+      "default": "newest"
     },
-    "slidesToShow": {
+    "slidesPerView": {
       "type": "number",
       "default": 4
     },
-    "slidesToShowTablet": {
+    "slidesPerViewTablet": {
       "type": "number",
       "default": 2
     },
-    "slidesToShowMobile": {
+    "slidesPerViewMobile": {
       "type": "number",
       "default": 1
-    },
-    "slidesToScroll": {
-      "type": "number",
-      "default": 1
-    },
-    "navigation": {
-      "type": "string",
-      "default": "both"
     },
     "autoplay": {
       "type": "boolean",
       "default": true
     },
-    "pauseOnHover": {
+    "autoplayDelay": {
+      "type": "number",
+      "default": 3000
+    },
+    "loop": {
       "type": "boolean",
       "default": true
     },
-    "autoplaySpeed": {
-      "type": "number",
-      "default": 5000
-    },
-    "infiniteLoop": {
+    "showDots": {
       "type": "boolean",
       "default": true
     },
-    "animationSpeed": {
-      "type": "number",
-      "default": 500
+    "showArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "showLastActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "showFriendButton": {
+      "type": "boolean",
+      "default": true
     },
     "spaceBetween": {
       "type": "number",
-      "default": 30
+      "default": 24
     },
-    "cardBgColor": {
+    "cardBg": {
       "type": "string",
       "default": "#ffffff"
     },
-    "cardBorderRadius": {
-      "type": "number",
-      "default": 8
-    },
-    "cardShadow": {
-      "type": "boolean",
-      "default": true
-    },
     "nameColor": {
       "type": "string",
-      "default": "#122B46"
+      "default": "#1e1e2e"
     },
     "metaColor": {
       "type": "string",
-      "default": "#A3A5A9"
+      "default": "#6c757d"
     },
-    "arrowColor": {
+    "avatarSize": {
+      "type": "number",
+      "default": 80
+    },
+    "cardBorderRadius": {
+      "type": "number",
+      "default": 12
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "paddingTablet": {
+      "type": "object",
+      "default": null
+    },
+    "paddingMobile": {
+      "type": "object",
+      "default": null
+    },
+    "paddingUnit": {
       "type": "string",
-      "default": "#122B46"
+      "default": "px"
     },
-    "dotColor": {
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "marginTablet": {
+      "type": "object",
+      "default": null
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": null
+    },
+    "marginUnit": {
       "type": "string",
-      "default": "#122B46"
+      "default": "px"
     },
-    "pauseOnInteraction": {
+    "boxShadow": {
       "type": "boolean",
       "default": false
     },
-    "effect": {
+    "shadowHorizontal": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowVertical": {
+      "type": "number",
+      "default": 4
+    },
+    "shadowBlur": {
+      "type": "number",
+      "default": 8
+    },
+    "shadowSpread": {
+      "type": "number",
+      "default": 0
+    },
+    "shadowColor": {
       "type": "string",
-      "default": "slide"
+      "default": "rgba(0, 0, 0, 0.12)"
     },
-    "enableKeyboard": {
-      "type": "boolean",
-      "default": true
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
     },
-    "grabCursor": {
+    "borderRadiusUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "hideOnDesktop": {
       "type": "boolean",
-      "default": true
+      "default": false
+    },
+    "hideOnTablet": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideOnMobile": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -128,17 +192,15 @@
       "wide",
       "full"
     ],
-    "spacing": {
-      "margin": true,
-      "padding": true
-    }
+    "color": false,
+    "spacing": false
   },
+  "render": "file:./render.php",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "viewScript": [
     "file:./view.js",
     "swiper"
-  ],
-  "render": "file:./render.php"
+  ]
 }

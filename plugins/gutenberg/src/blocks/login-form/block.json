@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/login-form",
 	"version": "1.0.0",
 	"title": "Login Form",
-	"category": "starter-content",
+	"category": "essential-content",
 	"icon": "admin-users",
 	"description": "WordPress login form with customisable colours, redirect URL, and optional register/lost-password links.",
 	"keywords": ["login", "form", "sign in", "authentication", "user", "account"],

@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/promo-banner",
 	"version": "1.0.0",
 	"title": "Promo Banner",
-	"category": "starter-marketing",
+	"category": "essential-marketing",
 	"icon": "megaphone",
 	"description": "Promotional image banner with text overlay and CTA button. Supports overlay and split layout styles.",
 	"keywords": ["promo", "banner", "promotion", "sale", "cta", "marketing", "advertisement"],

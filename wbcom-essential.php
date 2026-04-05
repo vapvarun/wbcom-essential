@@ -124,8 +124,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
 
-			// Include Gutenberg blocks.
-			require_once WBCOM_ESSENTIAL_PATH . '/plugins/gutenberg/wbcom-gutenberg.php';
+			// Gutenberg V2 blocks — registered via BlockRegistrar from build/blocks/.
 			require_once WBCOM_ESSENTIAL_PATH . '/plugins/gutenberg/gutenberg.php';
 
 			// EDD Product Catalog REST API endpoints (powers product-catalog block).

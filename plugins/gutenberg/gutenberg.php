@@ -26,26 +26,61 @@ require_once __DIR__ . '/includes/class-wbe-fonts.php';
 \WBCOM_ESSENTIAL\Gutenberg\WBE_Fonts::init();
 
 /**
- * Register the "wbcom-essential" block category so all blocks are grouped together.
+ * Register block categories for all WBcom Essential blocks.
  */
 add_filter(
 	'block_categories_all',
 	function ( $categories ) {
-		// Avoid duplicate registration.
-		foreach ( $categories as $cat ) {
-			if ( 'wbcom-essential' === $cat['slug'] ) {
-				return $categories;
-			}
-		}
-
-		array_unshift(
-			$categories,
+		$wbe_categories = array(
+			array(
+				'slug'  => 'essential-header',
+				'title' => __( 'Essential - Header', 'wbcom-essential' ),
+				'icon'  => 'screenoptions',
+			),
+			array(
+				'slug'  => 'essential-design',
+				'title' => __( 'Essential - Design', 'wbcom-essential' ),
+				'icon'  => 'art',
+			),
+			array(
+				'slug'  => 'essential-content',
+				'title' => __( 'Essential - Content', 'wbcom-essential' ),
+				'icon'  => 'edit',
+			),
+			array(
+				'slug'  => 'essential-blog',
+				'title' => __( 'Essential - Blog', 'wbcom-essential' ),
+				'icon'  => 'admin-post',
+			),
+			array(
+				'slug'  => 'essential-marketing',
+				'title' => __( 'Essential - Marketing', 'wbcom-essential' ),
+				'icon'  => 'megaphone',
+			),
+			array(
+				'slug'  => 'essential-buddypress',
+				'title' => __( 'Essential - BuddyPress', 'wbcom-essential' ),
+				'icon'  => 'groups',
+			),
+			array(
+				'slug'  => 'essential-woocommerce',
+				'title' => __( 'Essential - WooCommerce', 'wbcom-essential' ),
+				'icon'  => 'cart',
+			),
 			array(
 				'slug'  => 'wbcom-essential',
 				'title' => __( 'WBcom Essential', 'wbcom-essential' ),
 				'icon'  => 'screenoptions',
-			)
+			),
 		);
+
+		// Avoid duplicate registration.
+		$existing_slugs = array_column( $categories, 'slug' );
+		foreach ( $wbe_categories as $cat ) {
+			if ( ! in_array( $cat['slug'], $existing_slugs, true ) ) {
+				array_unshift( $categories, $cat );
+			}
+		}
 
 		return $categories;
 	}
@@ -57,7 +92,74 @@ add_filter(
  * Points to the build/blocks/ directory where compiled block.json + assets live.
  */
 $wbcom_block_registrar = new \WBCOM_ESSENTIAL\Gutenberg\BlockRegistrar(
-	__DIR__ . '/build/blocks/'
+	WBCOM_ESSENTIAL_PATH . 'build/blocks/'
 );
 $wbcom_block_registrar->init();
 
+/**
+ * Register REST API routes for block editor.
+ */
+add_action(
+	'rest_api_init',
+	function () {
+		// BuddyPress xProfile groups endpoint for profile-completion and members blocks.
+		register_rest_route(
+			'wbcom-essential/v1',
+			'/xprofile-groups',
+			array(
+				'methods'             => 'GET',
+				'callback'            => 'wbe_get_xprofile_groups',
+				'permission_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+	}
+);
+
+/**
+ * Get BuddyPress xProfile groups for the block editor.
+ *
+ * @return WP_REST_Response
+ */
+function wbe_get_xprofile_groups() {
+	$groups = array();
+
+	if ( ! function_exists( 'bp_xprofile_get_groups' ) ) {
+		return rest_ensure_response( $groups );
+	}
+
+	$profile_groups = bp_xprofile_get_groups();
+
+	if ( ! empty( $profile_groups ) ) {
+		foreach ( $profile_groups as $group ) {
+			$groups[] = array(
+				'id'   => $group->id,
+				'name' => $group->name,
+			);
+		}
+	}
+
+	$photo_options = array();
+
+	if ( function_exists( 'bp_disable_avatar_uploads' ) && ! bp_disable_avatar_uploads() ) {
+		$photo_options[] = array(
+			'id'   => 'profile_photo',
+			'name' => __( 'Profile Photo', 'wbcom-essential' ),
+		);
+	}
+
+	if ( function_exists( 'bp_disable_cover_image_uploads' ) && ! bp_disable_cover_image_uploads() ) {
+		$photo_options[] = array(
+			'id'   => 'cover_photo',
+			'name' => __( 'Cover Photo', 'wbcom-essential' ),
+		);
+	}
+
+	return rest_ensure_response(
+		array(
+			'fieldGroups'  => $groups,
+			'photoOptions' => $photo_options,
+		)
+	);
+}

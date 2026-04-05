@@ -31,7 +31,7 @@ register_block_pattern(
 
 <!-- wp:column {"width":"66.66%"} -->
 <div class="wp-block-column" style="flex-basis:66.66%">
-<!-- wp:wbcom-essential/posts-revolution {"displayType":"posts_type3","postsPerPage":6,"columns":2,"enablePagination":true,"useThemeColors":true} /-->
+<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type3","postsPerPage":6,"columns":2,"enablePagination":true,"useThemeColors":true} /-->
 </div>
 <!-- /wp:column -->
 

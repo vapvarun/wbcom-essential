@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/product-grid",
 	"version": "1.0.0",
 	"title": "Product Grid",
-	"category": "starter-woocommerce",
+	"category": "essential-woocommerce",
 	"icon": "grid-view",
 	"description": "Display WooCommerce products in a responsive CSS Grid with category filter, sale badge, star rating, and add-to-cart button.",
 	"keywords": ["woocommerce", "products", "grid", "shop", "ecommerce", "catalog"],

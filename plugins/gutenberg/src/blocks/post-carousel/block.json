@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/post-carousel",
 	"version": "1.0.0",
 	"title": "Post Carousel",
-	"category": "starter-blog",
+	"category": "essential-blog",
 	"icon": "admin-post",
 	"description": "Display WordPress posts in a carousel, slider, or grid with category filter and flexible card design.",
 	"keywords": ["posts", "carousel", "slider", "grid", "blog", "articles", "query"],

@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/cta",
 	"version": "1.0.0",
 	"title": "CTA Section",
-	"category": "starter-marketing",
+	"category": "essential-marketing",
 	"icon": "megaphone",
 	"description": "Call-to-action section with heading, description, and a single CTA button. Supports stacked and inline layouts.",
 	"keywords": [ "cta", "call-to-action", "button", "conversion", "banner" ],

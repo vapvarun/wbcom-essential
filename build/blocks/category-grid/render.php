@@ -1,6 +1,6 @@
 <?php
 /**
- * Category Grid Block - Server-Side Render.
+ * Category Grid Block - Server-Side Render (v2).
  *
  * @package WBCOM_Essential
  *
@@ -13,7 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Extract attributes with defaults.
+// Shared infrastructure: unique ID + CSS output + visibility classes.
+$unique_id   = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
+
+// Extract block-specific attributes with defaults.
 $use_theme_colors    = ! empty( $attributes['useThemeColors'] );
 $columns             = isset( $attributes['columns'] ) ? absint( $attributes['columns'] ) : 4;
 $columns_tablet      = isset( $attributes['columnsTablet'] ) ? absint( $attributes['columnsTablet'] ) : 2;
@@ -77,14 +82,20 @@ if ( ! $use_theme_colors ) {
 	}
 }
 
-$classes = array( 'wbcom-essential-category-grid' );
+$classes = array(
+	'wbe-block-' . $unique_id,
+	'wbcom-essential-category-grid',
+);
 if ( $use_theme_colors ) {
 	$classes[] = 'use-theme-colors';
+}
+if ( $vis_classes ) {
+	$classes[] = $vis_classes;
 }
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => implode( ' ', $classes ),
+		'class' => implode( ' ', array_filter( $classes ) ),
 		'style' => implode( '; ', $style_vars ),
 	)
 );

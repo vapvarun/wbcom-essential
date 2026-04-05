@@ -215,9 +215,10 @@ class Wbcom_Essential_Widget_Showcase {
 				<h3><?php esc_html_e( 'Gutenberg Blocks', 'wbcom-essential' ); ?></h3>
 				<p><?php esc_html_e( 'Works natively with the WordPress Block Editor. No page builder required.', 'wbcom-essential' ); ?></p>
 				<ul>
-					<li><?php esc_html_e( '26 General blocks (Accordion, Tabs, Slider, etc.)', 'wbcom-essential' ); ?></li>
-					<li><?php esc_html_e( '11 BuddyPress blocks (Members, Groups, Forums)', 'wbcom-essential' ); ?></li>
-					<li><?php esc_html_e( '8 Blog blocks (Carousel, Timeline, Ticker)', 'wbcom-essential' ); ?></li>
+					<li><?php esc_html_e( '17 Marketing, Content & Design blocks', 'wbcom-essential' ); ?></li>
+					<li><?php esc_html_e( '5 BuddyPress blocks (Members, Groups, Activity)', 'wbcom-essential' ); ?></li>
+					<li><?php esc_html_e( '7 Blog & WooCommerce blocks', 'wbcom-essential' ); ?></li>
+					<li><?php esc_html_e( '3 EDD blocks (Account, Checkout, Catalog)', 'wbcom-essential' ); ?></li>
 				</ul>
 			</div>
 			<div class="wbcom-feature">
@@ -274,7 +275,7 @@ class Wbcom_Essential_Widget_Showcase {
 	 */
 	private function get_stats() {
 		return array(
-			'blocks'  => 45,
+			'blocks'  => 32,
 			'widgets' => 43,
 		);
 	}

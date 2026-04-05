@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/feature-grid",
 	"version": "1.0.0",
 	"title": "Feature Grid",
-	"category": "starter-marketing",
+	"category": "essential-marketing",
 	"icon": "grid-view",
 	"description": "Display feature cards in a responsive grid with icon/emoji, title, and description. Supports elevated, bordered, and flat card styles.",
 	"keywords": [ "features", "grid", "cards", "icons", "benefits", "services" ],

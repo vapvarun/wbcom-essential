@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/text-rotator",
 	"version": "1.0.0",
 	"title": "Text Rotator",
-	"category": "starter-design",
+	"category": "essential-design",
 	"icon": "text",
 	"description": "Animated rotating text with fade, slide, or typewriter effects. Ideal for hero sections and taglines.",
 	"keywords": ["text", "rotator", "typing", "animation", "heading", "hero", "typewriter"],

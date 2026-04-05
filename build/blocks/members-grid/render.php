@@ -2,6 +2,10 @@
 /**
  * Server-side render for Members Grid block.
  *
+ * Two modes:
+ *  - Editor (REST_REQUEST): Full SSR via BP template tags for live preview.
+ *  - Frontend: Outputs a container div hydrated by view.js via BP REST API.
+ *
  * @package WBCOM_Essential
  *
  * @var array    $attributes Block attributes.
@@ -13,151 +17,146 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Check if BuddyPress is active.
 if ( ! function_exists( 'buddypress' ) ) {
-	echo '<p>' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
 	return;
 }
 
-// Extract attributes.
-$use_theme_colors = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
-$sort_type        = $attributes['sortType'] ?? 'newest';
-$total_members    = $attributes['totalMembers'] ?? 12;
-$columns          = $attributes['columns'] ?? 3;
-$columns_tablet   = $attributes['columnsTablet'] ?? 2;
-$columns_mobile   = $attributes['columnsMobile'] ?? 1;
-$gap              = $attributes['gap'] ?? 30;
-$show_avatar      = $attributes['showAvatar'] ?? true;
-$show_name        = $attributes['showName'] ?? true;
-$show_last_active = $attributes['showLastActive'] ?? true;
-$show_friend_btn  = $attributes['showFriendButton'] ?? true;
-$avatar_size      = $attributes['avatarSize'] ?? 126;
-$card_bg_color    = $attributes['cardBgColor'] ?? '#ffffff';
-$card_radius      = $attributes['cardBorderRadius'] ?? 8;
-$card_padding     = $attributes['cardPadding'] ?? 20;
-$card_shadow      = $attributes['cardShadow'] ?? true;
-$name_color       = $attributes['nameColor'] ?? '#122B46';
-$meta_color       = $attributes['metaColor'] ?? '#A3A5A9';
-$button_color     = $attributes['buttonColor'] ?? '#3182ce';
-$button_text      = $attributes['buttonTextColor'] ?? '#ffffff';
+$unique_id   = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
 
-// Build unique ID for each block instance to avoid CSS conflicts.
-$unique_id = 'wbcom-members-grid-' . wp_unique_id();
+$total       = absint( $attributes['totalMembers'] ?? 12 );
+$sort        = sanitize_text_field( $attributes['sortType'] ?? 'newest' );
+$cols        = absint( $attributes['columns'] ?? 4 );
+$cols_tab    = absint( $attributes['columnsTablet'] ?? 2 );
+$cols_mob    = absint( $attributes['columnsMobile'] ?? 1 );
+$gap         = absint( $attributes['gap'] ?? 24 );
+$avatar_size = absint( $attributes['avatarSize'] ?? 80 );
+$card_bg     = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' );
+$name_color  = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' );
+$meta_color  = sanitize_hex_color( $attributes['metaColor'] ?? '#6c757d' );
+$card_radius = absint( $attributes['cardBorderRadius'] ?? 12 );
 
-// Build inline styles - layout always applied, colors only when not using theme colors.
-$inline_styles = array(
-	// Layout styles - always applied.
-	'--wbcom-grid-columns'        => $columns,
-	'--wbcom-grid-columns-tablet' => $columns_tablet,
-	'--wbcom-grid-columns-mobile' => $columns_mobile,
-	'--wbcom-grid-gap'            => $gap . 'px',
-	'--wbcom-card-radius'         => $card_radius . 'px',
-	'--wbcom-card-padding'        => $card_padding . 'px',
-	'--wbcom-avatar-size'         => $avatar_size . 'px',
-);
-
-// Color styles - only when not using theme colors.
-if ( ! $use_theme_colors ) {
-	$inline_styles['--wbcom-card-bg']      = $card_bg_color;
-	$inline_styles['--wbcom-name-color']   = $name_color;
-	$inline_styles['--wbcom-meta-color']   = $meta_color;
-	$inline_styles['--wbcom-button-color'] = $button_color;
-	$inline_styles['--wbcom-button-text']  = $button_text;
-}
-
-$style_string = '';
-foreach ( $inline_styles as $prop => $value ) {
-	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
-}
-
-// Classes.
-$grid_classes = array(
-	'wbcom-essential-members-grid-list',
-);
-
-if ( $card_shadow ) {
-	$grid_classes[] = 'has-shadow';
-}
-
-// Avatar args.
-$avatar_args = array(
-	'type'   => 'full',
-	'width'  => $avatar_size,
-	'height' => $avatar_size,
-	'class'  => 'avatar',
-);
-
-// Members query args.
-$members_args = array(
-	'user_id'         => 0,
-	'type'            => $sort_type,
-	'per_page'        => $total_members,
-	'max'             => $total_members,
-	'populate_extras' => true,
-	'search_terms'    => false,
-);
-
-// Wrapper classes.
-$wrapper_classes = array( 'wbcom-essential-members-grid' );
-if ( $use_theme_colors ) {
-	$wrapper_classes[] = 'use-theme-colors';
-}
-
-// Wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes(
+$wrapper = get_block_wrapper_attributes(
 	array(
-		'class' => implode( ' ', $wrapper_classes ),
-		'id'    => $unique_id,
-		'style' => $style_string,
+		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbe-members-grid ' . $vis_classes ),
+		'style' => sprintf(
+			'--wbe-mg-cols: %d; --wbe-mg-cols-tab: %d; --wbe-mg-cols-mob: %d; --wbe-mg-gap: %dpx; --wbe-mg-card-radius: %dpx;',
+			$cols,
+			$cols_tab,
+			$cols_mob,
+			$gap,
+			$card_radius
+		),
 	)
 );
+
+// ── Detect context ────────────────────────────────────────────────────────────
+$is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 ?>
 
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
-	<?php if ( bp_has_members( $members_args ) ) : ?>
-		<div class="<?php echo esc_attr( implode( ' ', $grid_classes ) ); ?>">
-			<?php
-			while ( bp_members() ) :
-				bp_the_member();
-				?>
-				<div class="wbcom-member-grid-item">
-					<div class="wbcom-member-grid-card">
-						<?php if ( $show_avatar ) : ?>
-							<div class="wbcom-member-grid-avatar">
-								<a href="<?php bp_member_permalink(); ?>">
-									<?php bp_member_avatar( $avatar_args ); ?>
-								</a>
-							</div>
-						<?php endif; ?>
+<div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 
-						<div class="wbcom-member-grid-content">
-							<?php if ( $show_name ) : ?>
-								<h4 class="wbcom-member-grid-name">
-									<a href="<?php bp_member_permalink(); ?>">
-										<?php bp_member_name(); ?>
-									</a>
-								</h4>
-							<?php endif; ?>
+	<?php if ( $is_editor ) : ?>
+		<?php
+		// ── Editor: static SSR preview using BP template tags ────────────────────
+		$members_args = array(
+			'user_id'         => 0,
+			'type'            => $sort,
+			'per_page'        => $total,
+			'max'             => $total,
+			'populate_extras' => true,
+			'search_terms'    => false,
+		);
 
-							<?php if ( $show_last_active ) : ?>
-								<p class="wbcom-member-grid-meta">
+		$avatar_args = array(
+			'type'   => 'full',
+			'width'  => $avatar_size,
+			'height' => $avatar_size,
+			'class'  => 'wbe-members-grid__avatar-img',
+		);
+		?>
+		<?php if ( bp_has_members( $members_args ) ) : ?>
+			<div class="wbe-members-grid__list">
+				<?php
+				while ( bp_members() ) :
+					bp_the_member();
+
+					$card_styles = '';
+					if ( $card_bg ) {
+						$card_styles .= '--wbe-mg-card-bg: ' . esc_attr( $card_bg ) . '; ';
+					}
+					if ( $name_color ) {
+						$card_styles .= '--wbe-mg-name-color: ' . esc_attr( $name_color ) . '; ';
+					}
+					if ( $meta_color ) {
+						$card_styles .= '--wbe-mg-meta-color: ' . esc_attr( $meta_color ) . '; ';
+					}
+					?>
+					<div class="wbe-members-grid__card" style="<?php echo esc_attr( $card_styles ); ?>">
+						<div class="wbe-members-grid__avatar">
+							<a href="<?php bp_member_permalink(); ?>">
+								<?php bp_member_avatar( $avatar_args ); ?>
+							</a>
+						</div>
+						<div class="wbe-members-grid__info">
+							<h3 class="wbe-members-grid__name">
+								<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
+							</h3>
+							<?php if ( ! empty( $attributes['showLastActive'] ) ) : ?>
+								<span class="wbe-members-grid__meta">
 									<?php bp_member_last_active(); ?>
-								</p>
+								</span>
 							<?php endif; ?>
-
-							<?php if ( $show_friend_btn && bp_is_active( 'friends' ) && is_user_logged_in() ) : ?>
-								<div class="wbcom-member-grid-action">
+							<?php if ( ! empty( $attributes['showFriendButton'] ) && is_user_logged_in() && bp_is_active( 'friends' ) ) : ?>
+								<div class="wbe-members-grid__action">
 									<?php bp_add_friend_button( bp_get_member_user_id() ); ?>
 								</div>
 							<?php endif; ?>
 						</div>
 					</div>
-				</div>
-			<?php endwhile; ?>
-		</div>
+				<?php endwhile; ?>
+			</div>
+		<?php else : ?>
+			<p class="wbe-members-grid__empty"><?php esc_html_e( 'No members found.', 'wbcom-essential' ); ?></p>
+		<?php endif; ?>
+
 	<?php else : ?>
-		<div class="wbcom-essential-no-data">
-			<p><?php esc_html_e( 'Sorry, no members were found.', 'wbcom-essential' ); ?></p>
+		<?php
+		// ── Frontend: JS-hydrated container ──────────────────────────────────────
+		$config = array(
+			'restUrl'         => rest_url( 'buddypress/v1/members' ),
+			'restNonce'       => wp_create_nonce( 'wp_rest' ),
+			'perPage'         => $total,
+			'sortType'        => $sort,
+			'showLastActive'  => ! empty( $attributes['showLastActive'] ),
+			'showFriendButton'=> ! empty( $attributes['showFriendButton'] ) && bp_is_active( 'friends' ),
+			'avatarSize'      => $avatar_size,
+			'columns'         => $cols,
+			'columnsTablet'   => $cols_tab,
+			'columnsMobile'   => $cols_mob,
+			'gap'             => $gap,
+			'loggedIn'        => is_user_logged_in(),
+			'colors'          => array(
+				'cardBg'    => $card_bg,
+				'nameColor' => $name_color,
+				'metaColor' => $meta_color,
+			),
+			'i18n'            => array(
+				'loading'    => __( 'Loading members...', 'wbcom-essential' ),
+				'empty'      => __( 'No members found.', 'wbcom-essential' ),
+				'addFriend'  => __( 'Add Friend', 'wbcom-essential' ),
+				'friends'    => __( 'Friends', 'wbcom-essential' ),
+				'pending'    => __( 'Pending', 'wbcom-essential' ),
+				'activeAgo'  => __( 'Active %s', 'wbcom-essential' ),
+			),
+		);
+		?>
+		<div class="wbe-members-grid__list"
+			data-wbe-mg-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>"
+			aria-label="<?php esc_attr_e( 'Members Grid', 'wbcom-essential' ); ?>">
+			<p class="wbe-members-grid__loading"><?php esc_html_e( 'Loading members...', 'wbcom-essential' ); ?></p>
 		</div>
+
 	<?php endif; ?>
 </div>

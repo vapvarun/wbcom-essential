@@ -26,7 +26,7 @@ register_block_pattern(
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/post-slider {"useThemeColors":true,"postsPerPage":4} /-->
+<!-- wp:wbcom-essential/post-carousel {"useThemeColors":true,"postsPerPage":4} /-->
 
 <!-- wp:spacer {"height":"48px"} -->
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -38,7 +38,7 @@ register_block_pattern(
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/posts-revolution {"displayType":"posts_type6","postsPerPage":6,"columns":3,"useThemeColors":true,"sectionLabel":"Latest Stories \u2014 Select Categories to Filter"} /-->
+<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type6","postsPerPage":6,"columns":3,"useThemeColors":true,"sectionLabel":"Latest Stories \u2014 Select Categories to Filter"} /-->
 
 <!-- wp:spacer {"height":"48px"} -->
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>

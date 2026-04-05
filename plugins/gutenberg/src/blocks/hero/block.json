@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/hero",
 	"version": "1.0.0",
 	"title": "Hero Section",
-	"category": "starter-marketing",
+	"category": "essential-marketing",
 	"icon": "cover-image",
 	"description": "Full-width hero section with gradient or image background, heading, subheading, and two CTA buttons.",
 	"keywords": [ "hero", "banner", "header", "fullwidth", "cta", "gradient" ],

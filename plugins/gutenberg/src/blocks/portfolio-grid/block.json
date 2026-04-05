@@ -4,7 +4,7 @@
 	"name": "wbcom-essential/portfolio-grid",
 	"version": "1.0.0",
 	"title": "Portfolio Grid",
-	"category": "starter-content",
+	"category": "essential-content",
 	"icon": "grid-view",
 	"description": "Filterable portfolio or project grid with category tabs, hover effects, and responsive columns.",
 	"keywords": ["portfolio", "grid", "projects", "filter", "gallery", "work"],
