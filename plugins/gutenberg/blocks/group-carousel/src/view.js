@@ -1,106 +1,222 @@
 /**
- * Group Carousel Block - Frontend JavaScript
+ * Group Carousel Block — Frontend JS
  *
- * @package wbcom-essential
+ * Fetches groups from the BuddyPress REST API, builds slide cards,
+ * then initialises Swiper. Replaces the previous Swiper-init-only
+ * implementation with a full REST-API-hydrated approach.
+ *
+ * DOM safety: all user-supplied strings are assigned via textContent or as
+ * attribute values. Avatar URLs are decoded via DOMParser (no script
+ * execution context). Group descriptions are plain-text truncated client-side.
  */
 
 ( function () {
 	'use strict';
 
-	// Wait for Swiper to be available
-	function initWhenReady() {
-		if ( typeof Swiper !== 'undefined' ) {
-			initAll();
-		} else {
-			// Wait a bit and check again
-			setTimeout( initWhenReady, 100 );
+	// ── Helpers ───────────────────────────────────────────────────────────────
+
+	/**
+	 * Create an element with an optional class and text content.
+	 *
+	 * @param {string} tag         Tag name.
+	 * @param {string} [className] CSS class string.
+	 * @param {string} [text]      Text content.
+	 * @return {HTMLElement}
+	 */
+	function el( tag, className, text ) {
+		const node = document.createElement( tag );
+		if ( className ) {
+			node.className = className;
 		}
+		if ( text ) {
+			node.textContent = text;
+		}
+		return node;
 	}
 
 	/**
-	 * Initialize a group carousel instance.
+	 * Decode HTML entities using DOMParser (no script execution).
 	 *
-	 * @param {HTMLElement} container The carousel container.
+	 * @param {string} str Raw string possibly containing entities.
+	 * @return {string}
 	 */
-	function initGroupCarousel( container ) {
-		// Check if Swiper is available.
+	function decodeEntities( str ) {
+		if ( ! str ) {
+			return '';
+		}
+		const doc = new DOMParser().parseFromString( str, 'text/html' );
+		return doc.documentElement.textContent;
+	}
+
+	// ── Slide builder ─────────────────────────────────────────────────────────
+
+	/**
+	 * Build a single swiper-slide for a group.
+	 *
+	 * @param {object} group BP REST group object.
+	 * @param {object} cfg   Block config from data attribute.
+	 * @return {HTMLDivElement} The .swiper-slide element.
+	 */
+	function buildSlide( group, cfg ) {
+		const slide = el( 'div', 'swiper-slide' );
+		const card  = el( 'div', 'wbcom-group-carousel-card' );
+
+		// Avatar.
+		const avatarWrap = el( 'div', 'wbcom-group-carousel-avatar' );
+		const avatarLink = document.createElement( 'a' );
+		avatarLink.href  = group.link || '#';
+
+		const avatarSrc = decodeEntities( group.avatar_urls?.thumb || group.avatar_urls?.full || '' );
+		const img       = document.createElement( 'img' );
+		img.src         = avatarSrc;
+		img.alt         = '';
+		img.className   = 'avatar';
+		img.loading     = 'lazy';
+		avatarLink.appendChild( img );
+		avatarWrap.appendChild( avatarLink );
+		card.appendChild( avatarWrap );
+
+		// Content section.
+		const content = el( 'div', 'wbcom-group-carousel-content' );
+
+		const nameEl   = el( 'h4', 'wbcom-group-carousel-name' );
+		const nameLink = document.createElement( 'a' );
+		nameLink.href        = group.link || '#';
+		nameLink.textContent = group.name || '';
+		nameEl.appendChild( nameLink );
+		content.appendChild( nameEl );
+
+		// Last active meta.
+		if ( cfg.showMeta && group.last_activity_diff ) {
+			const metaText = cfg.i18n.activeAgo.replace( '%s', group.last_activity_diff );
+			content.appendChild( el( 'p', 'wbcom-group-carousel-meta', metaText ) );
+		}
+
+		card.appendChild( content );
+		slide.appendChild( card );
+		return slide;
+	}
+
+	// ── Swiper initialisation ─────────────────────────────────────────────────
+
+	/**
+	 * Initialise Swiper on a container, resolving nav/pagination selectors
+	 * to DOM nodes so multiple carousels on the same page don't conflict.
+	 *
+	 * @param {HTMLElement} container The .swiper element.
+	 * @param {object}      options   Raw Swiper options from config.
+	 */
+	function initSwiper( container, options ) {
 		if ( typeof Swiper === 'undefined' ) {
 			return;
 		}
 
-		const optionsAttr = container.getAttribute( 'data-swiper-options' );
-		if ( ! optionsAttr ) {
-			return;
-		}
-
-		let options;
-		try {
-			options = JSON.parse( optionsAttr );
-		} catch ( e ) {
-			return;
-		}
-
-		// Get slides to scroll (Swiper calls this slidesPerGroup).
 		const slidesPerGroup = options.slidesPerGroup || options.slidesToScroll || 1;
+		const swiperConfig   = Object.assign( {}, options, { slidesPerGroup } );
 
-		// Build Swiper config.
-		const swiperConfig = {
-			slidesPerView: options.slidesPerView || 4,
-			slidesPerGroup: slidesPerGroup,
-			spaceBetween: options.spaceBetween || 30,
-			speed: options.speed || 500,
-			loop: options.loop !== false,
-			effect: options.effect || 'slide',
-			grabCursor: options.grabCursor !== false,
-			keyboard: options.keyboard || { enabled: true },
-			breakpoints: options.breakpoints ? options.breakpoints : {
-				320: { slidesPerView: 1, slidesPerGroup: 1 },
-				768: { slidesPerView: 2, slidesPerGroup: Math.min( slidesPerGroup, 2 ) },
-				1024: { slidesPerView: options.slidesPerView || 4, slidesPerGroup: slidesPerGroup },
-			},
-		};
-
-		// Autoplay.
-		if ( options.autoplay ) {
-			swiperConfig.autoplay = {
-				delay: options.autoplay.delay || 5000,
-				disableOnInteraction: options.autoplay.disableOnInteraction !== false,
-				pauseOnMouseEnter: options.autoplay.pauseOnMouseEnter !== false,
-			};
-		}
-
-		// Navigation.
-		if ( options.navigation ) {
+		// Resolve navigation elements relative to this instance.
+		if ( swiperConfig.navigation ) {
 			swiperConfig.navigation = {
 				nextEl: container.querySelector( '.swiper-button-next' ),
 				prevEl: container.querySelector( '.swiper-button-prev' ),
 			};
 		}
 
-		// Pagination.
-		if ( options.pagination ) {
+		if ( swiperConfig.pagination ) {
 			swiperConfig.pagination = {
-				el: container.querySelector( '.swiper-pagination' ),
+				el:        container.querySelector( '.swiper-pagination' ),
 				clickable: true,
 			};
 		}
 
-		// Initialize Swiper.
+		// Respect prefers-reduced-motion.
+		if ( window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
+			swiperConfig.autoplay = false;
+			swiperConfig.speed    = 0;
+		}
+
 		new Swiper( container, swiperConfig );
 	}
 
+	// ── Carousel init ─────────────────────────────────────────────────────────
+
 	/**
-	 * Initialize all group carousel blocks on the page.
+	 * Initialise a single group carousel container.
+	 *
+	 * @param {HTMLElement} container The .wbcom-group-carousel-container element
+	 *                                carrying data-wbe-gc-config.
 	 */
-	function initAll() {
-		const carousels = document.querySelectorAll( '.wbcom-group-carousel-container' );
-		carousels.forEach( initGroupCarousel );
+	function initGroupCarousel( container ) {
+		const cfg = JSON.parse( container.dataset.wbeGcConfig || '{}' );
+		if ( ! cfg.restUrl ) {
+			return;
+		}
+
+		const url = new URL( cfg.restUrl, window.location.origin );
+		url.searchParams.set( 'per_page', cfg.perPage );
+		url.searchParams.set( 'page', 1 );
+		url.searchParams.set( 'type', cfg.sortType || 'active' );
+
+		const headers = { 'Content-Type': 'application/json' };
+		if ( cfg.restNonce ) {
+			headers[ 'X-WP-Nonce' ] = cfg.restNonce;
+		}
+
+		fetch( url.toString(), { headers: headers, credentials: 'same-origin' } )
+			.then( function ( res ) {
+				if ( ! res.ok ) {
+					throw new Error( 'REST error' );
+				}
+				return res.json();
+			} )
+			.then( function ( groups ) {
+				const wrapper = container.querySelector( '.swiper-wrapper' );
+				if ( ! wrapper ) {
+					return;
+				}
+
+				// Clear the loading placeholder.
+				wrapper.textContent = '';
+
+				if ( ! groups.length ) {
+					const noData = el( 'div', 'wbcom-essential-no-data' );
+					noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
+					container.parentNode.replaceChild( noData, container );
+					return;
+				}
+
+				groups.forEach( function ( group ) {
+					wrapper.appendChild( buildSlide( group, cfg ) );
+				} );
+
+				// Initialise Swiper now that slides are in the DOM.
+				initSwiper( container, cfg.swiperOptions || {} );
+			} )
+			.catch( function () {
+				const wrapper = container.querySelector( '.swiper-wrapper' );
+				if ( wrapper ) {
+					wrapper.textContent = '';
+					const noData = el( 'div', 'wbcom-essential-no-data' );
+					noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
+					container.parentNode.replaceChild( noData, container );
+				}
+			} );
 	}
 
-	// Initialize on DOM ready.
-	if ( document.readyState === 'loading' ) {
-		document.addEventListener( 'DOMContentLoaded', initWhenReady );
-	} else {
-		initWhenReady();
+	// ── Boot ──────────────────────────────────────────────────────────────────
+
+	function initAll() {
+		document.querySelectorAll( '[data-wbe-gc-config]' ).forEach( initGroupCarousel );
 	}
+
+	// Initialize on DOM ready, with a check for Swiper availability.
+	function initWhenReady() {
+		if ( document.readyState === 'loading' ) {
+			document.addEventListener( 'DOMContentLoaded', initAll );
+		} else {
+			initAll();
+		}
+	}
+
+	initWhenReady();
 } )();

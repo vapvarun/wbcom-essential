@@ -1,6 +1,10 @@
 <?php
 /**
- * Group Carousel Block - Server-Side Render
+ * Group Carousel Block — Server-Side Render
+ *
+ * Two modes:
+ *  - Editor (REST_REQUEST): Full SSR via BP template tags for live preview.
+ *  - Frontend: Outputs a Swiper container hydrated by view.js via BP REST API.
  *
  * @package WBCOM_Essential
  *
@@ -85,88 +89,141 @@ $wrapper = get_block_wrapper_attributes(
 // ── Inline token CSS ──────────────────────────────────────────────────────────
 $card_style = '--wbe-gc-card-bg: ' . esc_attr( $card_bg ) . '; --wbe-gc-name-color: ' . esc_attr( $name_color ) . ';';
 
-// ── BuddyPress query ──────────────────────────────────────────────────────────
-$groups_args = array(
-	'type'            => $sort_type,
-	'per_page'        => $total_groups,
-	'max'             => $total_groups,
-	'populate_extras' => true,
-);
-
-$avatar_args = array(
-	'type'   => 'full',
-	'width'  => $avatar_size,
-	'height' => $avatar_size,
-	'class'  => 'wbe-group-carousel__avatar-img',
-	'object' => 'group',
-);
+// ── Detect context ────────────────────────────────────────────────────────────
+$is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 ?>
 
 <div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
-	<?php if ( bp_has_groups( $groups_args ) ) : ?>
-		<div class="swiper wbe-group-carousel__swiper"
-			data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>"
-			style="<?php echo esc_attr( $card_style ); ?>">
 
-			<div class="swiper-wrapper">
-				<?php
-				while ( bp_groups() ) :
-					bp_the_group();
+	<?php if ( $is_editor ) : ?>
+		<?php
+		// ── Editor: static SSR preview using BP template tags ────────────────────
+		$groups_args = array(
+			'type'            => $sort_type,
+			'per_page'        => $total_groups,
+			'max'             => $total_groups,
+			'populate_extras' => true,
+		);
 
-					// Group URL — use bp_get_group_url() with fallback.
-					if ( function_exists( 'bp_get_group_url' ) ) {
-						$group_url = bp_get_group_url( groups_get_current_group() );
-					} else {
-						$group_url = bp_get_group_permalink( groups_get_current_group() );
-					}
-					$group_url = esc_url( $group_url );
-					?>
-					<div class="swiper-slide">
-						<div class="wbe-group-carousel__card">
+		$avatar_args = array(
+			'type'   => 'full',
+			'width'  => $avatar_size,
+			'height' => $avatar_size,
+			'class'  => 'wbe-group-carousel__avatar-img',
+			'object' => 'group',
+		);
+		?>
+		<?php if ( bp_has_groups( $groups_args ) ) : ?>
+			<div class="swiper wbe-group-carousel__swiper"
+				data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>"
+				style="<?php echo esc_attr( $card_style ); ?>">
 
-							<div class="wbe-group-carousel__avatar">
-								<a href="<?php echo $group_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- already esc_url'd above ?>" aria-label="<?php echo esc_attr( bp_get_group_name() ); ?>">
-									<?php bp_group_avatar( $avatar_args ); ?>
-								</a>
+				<div class="swiper-wrapper">
+					<?php
+					while ( bp_groups() ) :
+						bp_the_group();
+
+						// Group URL — use bp_get_group_url() with fallback.
+						if ( function_exists( 'bp_get_group_url' ) ) {
+							$group_url = bp_get_group_url( groups_get_current_group() );
+						} else {
+							$group_url = bp_get_group_permalink( groups_get_current_group() );
+						}
+						$group_url = esc_url( $group_url );
+						?>
+						<div class="swiper-slide">
+							<div class="wbe-group-carousel__card">
+
+								<div class="wbe-group-carousel__avatar">
+									<a href="<?php echo $group_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- already esc_url'd above ?>" aria-label="<?php echo esc_attr( bp_get_group_name() ); ?>">
+										<?php bp_group_avatar( $avatar_args ); ?>
+									</a>
+								</div>
+
+								<div class="wbe-group-carousel__info">
+									<h3 class="wbe-group-carousel__name">
+										<a href="<?php echo $group_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php echo esc_html( bp_get_group_name() ); ?></a>
+									</h3>
+
+									<?php if ( $show_count ) : ?>
+										<span class="wbe-group-carousel__count">
+											<?php
+											$member_count = bp_get_group_member_count();
+											echo esc_html( $member_count );
+											?>
+										</span>
+									<?php endif; ?>
+
+									<?php if ( $show_desc ) : ?>
+										<p class="wbe-group-carousel__desc">
+											<?php echo wp_kses_post( bp_get_group_description_excerpt( array( 'length' => 80 ) ) ); ?>
+										</p>
+									<?php endif; ?>
+								</div>
+
 							</div>
-
-							<div class="wbe-group-carousel__info">
-								<h3 class="wbe-group-carousel__name">
-									<a href="<?php echo $group_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php echo esc_html( bp_get_group_name() ); ?></a>
-								</h3>
-
-								<?php if ( $show_count ) : ?>
-									<span class="wbe-group-carousel__count">
-										<?php
-										$member_count = bp_get_group_member_count();
-										echo esc_html( $member_count );
-										?>
-									</span>
-								<?php endif; ?>
-
-								<?php if ( $show_desc ) : ?>
-									<p class="wbe-group-carousel__desc">
-										<?php echo wp_kses_post( bp_get_group_description_excerpt( array( 'length' => 80 ) ) ); ?>
-									</p>
-								<?php endif; ?>
-							</div>
-
 						</div>
-					</div>
-				<?php endwhile; ?>
-			</div>
+					<?php endwhile; ?>
+				</div>
 
+				<?php if ( $show_dots ) : ?>
+					<div class="swiper-pagination"></div>
+				<?php endif; ?>
+
+				<?php if ( $show_arrows ) : ?>
+					<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous', 'wbcom-essential' ); ?>">&#8249;</button>
+					<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next', 'wbcom-essential' ); ?>">&#8250;</button>
+				<?php endif; ?>
+
+			</div>
+		<?php else : ?>
+			<p class="wbe-group-carousel__empty"><?php esc_html_e( 'No groups found.', 'wbcom-essential' ); ?></p>
+		<?php endif; ?>
+
+	<?php else : ?>
+		<?php
+		// ── Frontend: JS-hydrated Swiper container ────────────────────────────────
+		$config = array(
+			'restUrl'         => rest_url( 'buddypress/v1/groups' ),
+			'restNonce'       => wp_create_nonce( 'wp_rest' ),
+			'perPage'         => $total_groups,
+			'sortType'        => $sort_type,
+			'showDescription' => $show_desc,
+			'showMemberCount' => $show_count,
+			'avatarSize'      => $avatar_size,
+			'showDots'        => $show_dots,
+			'showArrows'      => $show_arrows,
+			'swiperOptions'   => $swiper_options,
+			'loggedIn'        => is_user_logged_in(),
+			'colors'          => array(
+				'cardBg'    => $card_bg,
+				'nameColor' => $name_color,
+			),
+			'i18n'            => array(
+				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
+				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
+				'members'     => __( 'Members', 'wbcom-essential' ),
+				'previous'    => __( 'Previous', 'wbcom-essential' ),
+				'next'        => __( 'Next', 'wbcom-essential' ),
+			),
+		);
+		?>
+		<div class="swiper wbe-group-carousel__swiper"
+			data-wbe-gc-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>"
+			style="<?php echo esc_attr( $card_style ); ?>">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide wbe-group-carousel__loading">
+					<p><?php esc_html_e( 'Loading groups...', 'wbcom-essential' ); ?></p>
+				</div>
+			</div>
 			<?php if ( $show_dots ) : ?>
 				<div class="swiper-pagination"></div>
 			<?php endif; ?>
-
 			<?php if ( $show_arrows ) : ?>
 				<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous', 'wbcom-essential' ); ?>">&#8249;</button>
 				<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next', 'wbcom-essential' ); ?>">&#8250;</button>
 			<?php endif; ?>
-
 		</div>
-	<?php else : ?>
-		<p class="wbe-group-carousel__empty"><?php esc_html_e( 'No groups found.', 'wbcom-essential' ); ?></p>
+
 	<?php endif; ?>
 </div>
