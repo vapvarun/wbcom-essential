@@ -315,6 +315,37 @@
 	font-size: 0.9rem;
 }
 
+/* ── Load more ────────────────────────────────────────────────────────────── */
+.wbe-af__load-more-wrap {
+	display: flex;
+	justify-content: center;
+	padding: 8px 0;
+}
+
+.wbe-af__load-more {
+	padding: 8px 24px !important;
+	font-size: 0.85rem !important;
+	border-color: var(--wbe-af-accent) !important;
+	color: var(--wbe-af-accent) !important;
+}
+
+.wbe-af__load-more:hover {
+	background: var(--wbe-af-accent) !important;
+	color: #fff !important;
+}
+
+.wbe-af__load-more:disabled {
+	opacity: 0.6;
+	cursor: wait;
+}
+
+/* ── Loading state ────────────────────────────────────────────────────────── */
+.wbe-af__loading {
+	padding: 32px;
+	text-align: center;
+	color: var(--wbe-af-time);
+}
+
 /* ── Editor placeholders ──────────────────────────────────────────────────── */
 .wbe-af__loading,
 .wbe-af__error {
