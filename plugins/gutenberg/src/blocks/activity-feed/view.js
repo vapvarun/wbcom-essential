@@ -154,6 +154,7 @@
 			const footer = el( 'div', 'wbe-af__footer' );
 
 			if ( cfg.showCommentCount ) {
+				const commentCount = item.comment_count || 0;
 				const commentBtn = document.createElement( 'button' );
 				commentBtn.type = 'button';
 				commentBtn.className = 'wbe-af__action-btn wbe-af__comment-toggle';
@@ -161,14 +162,23 @@
 				const commentTmpl = document.createElement( 'template' );
 				commentTmpl.innerHTML = COMMENT_SVG;
 				commentBtn.appendChild( commentTmpl.content );
-				commentBtn.appendChild( document.createTextNode( ' ' + cfg.i18n.comment ) );
+				const countText = commentCount > 0
+					? ' ' + cfg.i18n.comment + ' (' + commentCount + ')'
+					: ' ' + cfg.i18n.comment;
+				commentBtn.appendChild( document.createTextNode( countText ) );
 				footer.appendChild( commentBtn );
 			}
 
-			// Comment section (hidden by default).
+			// Comment section (hidden by default) — pre-populate with existing comments.
 			const commentSection = el( 'div', 'wbe-af__comments' );
 			commentSection.dataset.activityId = item.id;
 			commentSection.style.display = 'none';
+
+			// Store existing comments data for lazy rendering.
+			if ( item.comments && item.comments.length > 0 ) {
+				commentSection.dataset.commentsJson = JSON.stringify( item.comments );
+			}
+
 			card.appendChild( commentSection );
 
 			if ( cfg.showFavBtn ) {
@@ -189,6 +199,56 @@
 		}
 
 		return card;
+	}
+
+	/**
+	 * Build a single comment item using DOM methods.
+	 */
+	function renderComment( comment, cfg ) {
+		const commentEl = el( 'div', 'wbe-af__comment-item' );
+
+		const avatarUrl = decodeEntities( comment.user_avatar?.thumb || comment.user_avatar?.full || '' );
+		if ( avatarUrl ) {
+			const img = document.createElement( 'img' );
+			img.src = avatarUrl;
+			img.className = 'wbe-af__comment-avatar';
+			img.width = 28;
+			img.height = 28;
+			img.alt = '';
+			commentEl.appendChild( img );
+		}
+
+		const bubble = el( 'div', 'wbe-af__comment-bubble' );
+
+		// Extract just the user name from title (e.g., "<a>Name</a> posted a new activity comment").
+		if ( comment.title ) {
+			const nameEl = document.createElement( 'div' );
+			nameEl.className = 'wbe-af__comment-name';
+			// Only show the first link (the name), not the full action text.
+			const tmp = document.createElement( 'div' );
+			setTrustedBPContent( tmp, comment.title );
+			const firstLink = tmp.querySelector( 'a' );
+			if ( firstLink ) {
+				nameEl.appendChild( firstLink );
+			} else {
+				nameEl.textContent = tmp.textContent;
+			}
+			bubble.appendChild( nameEl );
+		}
+
+		if ( comment.content?.rendered ) {
+			const bodyEl = el( 'div', 'wbe-af__comment-text' );
+			setTrustedBPContent( bodyEl, comment.content.rendered );
+			bubble.appendChild( bodyEl );
+		}
+
+		const time = comment.date_gmt || comment.date
+			? timeAgo( comment.date_gmt || comment.date, cfg.i18n )
+			: cfg.i18n.justNow;
+		bubble.appendChild( el( 'span', 'wbe-af__comment-time', time ) );
+
+		commentEl.appendChild( bubble );
+		return commentEl;
 	}
 
 	/**
@@ -213,6 +273,7 @@
 			const url = new URL( cfg.restUrl, window.location.origin );
 			url.searchParams.set( 'per_page', cfg.perPage );
 			url.searchParams.set( 'page', page );
+			url.searchParams.set( 'display_comments', 'threaded' );
 			if ( cfg.type ) {
 				url.searchParams.set( 'type', cfg.type );
 			}
@@ -285,22 +346,19 @@
 			const commentsListEl = el( 'div', 'wbe-af__comments-list' );
 			section.appendChild( commentsListEl );
 
-			// Fetch activity with comments.
-			const url = new URL( cfg.restUrl.replace( /\/$/, '' ) + '/' + activityId, window.location.origin );
-			url.searchParams.set( 'display_comments', 'threaded' );
-
-			fetch( url.toString(), {
-				headers: { 'X-WP-Nonce': cfg.restNonce },
-				credentials: 'same-origin',
-			} )
-				.then( function ( res ) { return res.json(); } )
-				.then( function ( data ) {
-					// BP REST doesn't return comments in the single activity endpoint consistently.
-					// Comments might be empty — that's OK, just show the form.
-				} )
-				.catch( function () {
-					// Silently fail — form still works.
-				} );
+			// Render existing comments from stored data (fetched with display_comments=threaded).
+			if ( section.dataset.commentsJson ) {
+				try {
+					const existingComments = JSON.parse( section.dataset.commentsJson );
+					existingComments.forEach( function ( c ) {
+						commentsListEl.appendChild( renderComment( c, cfg ) );
+					} );
+				} catch ( err ) {
+					// Ignore parse errors.
+				}
+				// Clean up the stored data.
+				delete section.dataset.commentsJson;
+			}
 
 			// Add comment form if logged in.
 			if ( cfg.loggedIn ) {
@@ -354,40 +412,17 @@
 					}
 					return res.json();
 				} )
-				.then( function ( comment ) {
+				.then( function ( response ) {
+					// BP REST returns an array — get the first item.
+					const comment = Array.isArray( response ) ? response[ 0 ] : response;
+					if ( ! comment ) {
+						return;
+					}
+
 					// Add the new comment to the list.
 					const listEl2 = section.querySelector( '.wbe-af__comments-list' );
 					if ( listEl2 ) {
-						const commentEl = el( 'div', 'wbe-af__comment-item' );
-
-						const avatarUrl = decodeEntities( comment.user_avatar?.thumb || comment.user_avatar?.full || '' );
-						if ( avatarUrl ) {
-							const img = document.createElement( 'img' );
-							img.src = avatarUrl;
-							img.className = 'wbe-af__comment-avatar';
-							img.width = 28;
-							img.height = 28;
-							img.alt = '';
-							commentEl.appendChild( img );
-						}
-
-						const bubble = el( 'div', 'wbe-af__comment-bubble' );
-						if ( comment.title ) {
-							const nameP = document.createElement( 'p' );
-							nameP.className = 'wbe-af__comment-name';
-							setTrustedBPContent( nameP, comment.title );
-							bubble.appendChild( nameP );
-						}
-						if ( comment.content?.rendered ) {
-							const bodyP = el( 'div', 'wbe-af__comment-text' );
-							setTrustedBPContent( bodyP, comment.content.rendered );
-							bubble.appendChild( bodyP );
-						}
-						const timeEl = el( 'span', 'wbe-af__comment-time', cfg.i18n.justNow || 'Just now' );
-						bubble.appendChild( timeEl );
-
-						commentEl.appendChild( bubble );
-						listEl2.appendChild( commentEl );
+						listEl2.appendChild( renderComment( comment, cfg ) );
 					}
 
 					// Clear the input.
