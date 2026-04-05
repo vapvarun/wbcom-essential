@@ -1,5 +1,6 @@
 /**
- * Activity Feed Block — Premium Styles
+ * Activity Feed Block — Self-contained styles (works with any theme)
+ * Follows BuddyPress core activity layout pattern.
  */
 
 /* ── Tokens ───────────────────────────────────────────────────────────────── */
@@ -15,173 +16,141 @@
 	width: 100%;
 }
 
-/* ── Feed container ───────────────────────────────────────────────────────── */
+/* ── Feed list ────────────────────────────────────────────────────────────── */
 .wbe-af__list {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 12px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
-/* ── Card layout ──────────────────────────────────────────────────────────── */
-.wbe-activity-feed--cards .wbe-af__card {
+/* ============================================================================
+   CARD — Each activity item
+   ============================================================================ */
+.wbe-af--cards .wbe-af__card {
 	background: var(--wbe-af-card-bg);
 	border: 1px solid var(--wbe-af-border);
 	border-radius: 12px;
-	padding: 20px;
-	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+	overflow: hidden;
+	transition: box-shadow 0.2s ease;
 }
 
-.wbe-activity-feed--cards .wbe-af__card:hover {
-	border-color: transparent;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+.wbe-af--cards .wbe-af__card:hover {
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-/* ── Timeline layout ──────────────────────────────────────────────────────── */
-.wbe-activity-feed--timeline .wbe-af__list {
-	gap: 0;
-	padding-left: 28px;
-	border-left: 2px solid var(--wbe-af-border);
+/* ── Card head — type label ("Activity", "Groups", etc.) ──────────────────── */
+.wbe-af__card-head {
+	padding: 10px 16px 0;
 }
 
-.wbe-activity-feed--timeline .wbe-af__card {
-	position: relative;
-	padding: 16px 0 16px 24px;
-	border-bottom: 1px solid var(--wbe-af-border);
+.wbe-af__type-label {
+	display: inline-block;
+	font-size: 0.72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--wbe-af-accent);
 }
 
-.wbe-activity-feed--timeline .wbe-af__card:last-child {
-	border-bottom: none;
-}
-
-.wbe-activity-feed--timeline .wbe-af__card::before {
-	content: "";
-	position: absolute;
-	left: -35px;
-	top: 24px;
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	background: var(--wbe-af-accent);
-	border: 3px solid var(--wbe-af-card-bg);
-	box-shadow: 0 0 0 2px var(--wbe-af-border);
-}
-
-/* ── Compact layout ───────────────────────────────────────────────────────── */
-.wbe-activity-feed--compact .wbe-af__list {
-	gap: 0;
-}
-
-.wbe-activity-feed--compact .wbe-af__card {
-	padding: 12px 0;
-	border-bottom: 1px solid var(--wbe-af-border);
-}
-
-.wbe-activity-feed--compact .wbe-af__card:last-child {
-	border-bottom: none;
-}
-
-.wbe-activity-feed--compact .wbe-af__body {
-	display: none;
-}
-
-.wbe-activity-feed--compact .wbe-af__media {
-	display: none;
-}
-
-.wbe-activity-feed--compact .wbe-af__footer {
-	display: none;
-}
-
-/* ── Header: avatar + meta ────────────────────────────────────────────────── */
-.wbe-af__header {
+/* ============================================================================
+   ITEM HEAD — Avatar + Action header (flex row, vertically centered)
+   Matches: BP core .activity-avatar + .activity-header
+   ============================================================================ */
+.wbe-af__item-head {
 	display: flex;
-	align-items: flex-start;
-	gap: 12px;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 16px;
 }
 
-/* ── Avatar with type badge ───────────────────────────────────────────────── */
+/* ── Avatar ───────────────────────────────────────────────────────────────── */
 .wbe-af__avatar-wrap {
-	position: relative;
 	flex-shrink: 0;
+	width: var(--wbe-af-avatar);
+	height: var(--wbe-af-avatar);
+	line-height: 0;
 }
 
-.wbe-af__avatar-link {
+.wbe-af__avatar-wrap a {
 	display: block;
 	line-height: 0;
 	text-decoration: none;
 }
 
-.wbe-af__avatar {
+.wbe-af__avatar-wrap img {
 	width: var(--wbe-af-avatar) !important;
 	height: var(--wbe-af-avatar) !important;
 	border-radius: 50% !important;
 	object-fit: cover;
+	display: block;
 }
 
-.wbe-af__type-badge {
-	position: absolute;
-	bottom: -2px;
-	right: -4px;
-	width: 22px;
-	height: 22px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--wbe-af-icon-bg);
-	color: var(--wbe-af-accent);
-	border-radius: 50%;
-	border: 2px solid var(--wbe-af-card-bg);
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.wbe-af__type-badge svg {
-	width: 11px;
-	height: 11px;
-}
-
-/* ── Meta: action + time ──────────────────────────────────────────────────── */
-.wbe-af__meta {
+/* ── Header — bp_activity_action() output ─────────────────────────────────── */
+/*
+ * BP outputs: <p><a>Name</a> action text <a class="activity-time-since"><span class="time-since">10 hours ago</span></a></p>
+ * We style this inline: name bold, action normal, timestamp on new line muted.
+ */
+.wbe-af__header {
 	flex: 1;
 	min-width: 0;
-	padding-top: 2px;
-}
-
-.wbe-af__action {
-	font-size: 0.9rem;
-	line-height: 1.45;
+	font-size: 0.88rem;
+	line-height: 1.4;
 	color: var(--wbe-af-name);
 }
 
-.wbe-af__action a {
-	color: var(--wbe-af-accent);
+.wbe-af__header p {
+	margin: 0;
+	line-height: 1.4;
+}
+
+/* First link = user name → bold */
+.wbe-af__header a {
+	color: var(--wbe-af-name);
 	text-decoration: none;
 	font-weight: 600;
 }
 
-.wbe-af__action a:hover {
-	text-decoration: underline;
+.wbe-af__header a:hover {
+	color: var(--wbe-af-accent);
 }
 
-/* Strip the inline timestamp BP puts inside action text */
-.wbe-af__action .activity-time-since,
-.wbe-af__action .time-since,
-.wbe-af__action > a:last-child[href*="activity"] {
+/* Timestamp link — display on new line, muted */
+.wbe-af__header a.activity-time-since {
+	display: block;
+	font-weight: 400;
+	font-size: 0.78rem;
+	color: var(--wbe-af-time);
+	margin-top: 1px;
+}
+
+.wbe-af__header a.activity-time-since:hover {
+	color: var(--wbe-af-accent);
+}
+
+/* Hide BP's tooltip attribute styling if any */
+.wbe-af__header .bp-tooltip::before,
+.wbe-af__header .bp-tooltip::after {
 	display: none;
 }
 
-.wbe-af__time {
-	display: inline-flex;
-	align-items: center;
-	gap: 4px;
-	font-size: 0.78rem;
-	color: var(--wbe-af-time);
-	margin-top: 3px;
-	letter-spacing: 0.01em;
+/* Strip small inline group avatars that BP injects */
+.wbe-af__header img.avatar {
+	display: inline-block;
+	width: 20px !important;
+	height: 20px !important;
+	border-radius: 50% !important;
+	vertical-align: middle;
+	margin: 0 2px;
 }
 
-/* ── Body (content) ───────────────────────────────────────────────────────── */
+/* ============================================================================
+   BODY — Activity content (full-width, below the header)
+   ============================================================================ */
 .wbe-af__body {
-	margin-top: 10px;
+	padding: 0 16px 4px;
 	font-size: 0.9rem;
 	line-height: 1.6;
 	color: var(--wbe-af-content);
@@ -189,7 +158,7 @@
 }
 
 .wbe-af__body p {
-	margin: 0 0 8px;
+	margin: 0 0 6px;
 }
 
 .wbe-af__body p:last-child {
@@ -205,102 +174,130 @@
 	text-decoration: underline;
 }
 
-/* ── Media preview ────────────────────────────────────────────────────────── */
-.wbe-af__media {
-	margin-top: 12px;
-	border-radius: 8px;
-	overflow: hidden;
-	line-height: 0;
-}
-
-.wbe-af__media-img {
-	width: 100%;
-	height: auto;
-	max-height: 320px;
-	object-fit: cover;
-	display: block;
-	border-radius: 8px;
-}
-
-/* ── Footer: actions ──────────────────────────────────────────────────────── */
+/* ============================================================================
+   FOOTER — Action buttons (BP-native pill style)
+   ============================================================================ */
 .wbe-af__footer {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	margin-top: 12px;
-	padding-top: 12px;
+	flex-wrap: wrap;
+	gap: 8px;
+	padding: 10px 16px 12px;
 	border-top: 1px solid var(--wbe-af-border);
-}
-
-.wbe-af__actions {
-	display: flex;
-	align-items: center;
-	gap: 16px;
 }
 
 .wbe-af__action-btn {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
-	padding: 0;
-	border: none;
-	background: none;
-	color: var(--wbe-af-time);
+	padding: 6px 14px;
+	border: 1px solid var(--wbe-af-border);
+	background: var(--wbe-af-card-bg);
+	color: var(--wbe-af-content);
 	font-size: 0.8rem;
+	font-weight: 500;
 	cursor: pointer;
-	transition: color 0.15s ease;
+	border-radius: 20px;
+	transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 	line-height: 1;
+	white-space: nowrap;
+	text-decoration: none;
 }
 
 .wbe-af__action-btn:hover {
+	background: var(--wbe-af-icon-bg);
+	border-color: var(--wbe-af-accent);
 	color: var(--wbe-af-accent);
 }
 
 .wbe-af__action-btn svg {
-	transition: transform 0.15s ease;
+	flex-shrink: 0;
 }
 
-.wbe-af__action-btn:hover svg {
-	transform: scale(1.1);
-}
-
-/* Favorite active state */
-.wbe-af__fav-btn--active,
-.wbe-af__action-btn--active {
+.wbe-af__action-btn--fav {
 	color: #e53e3e;
+	border-color: #fed7d7;
+	background: #fff5f5;
 }
 
-.wbe-af__action-btn--active:hover {
+.wbe-af__action-btn--fav:hover {
 	color: #c53030;
+	border-color: #feb2b2;
 }
 
-.wbe-af__count {
-	font-weight: 600;
-	font-size: 0.78rem;
-	color: var(--wbe-af-name);
+/* ============================================================================
+   TIMELINE LAYOUT
+   ============================================================================ */
+.wbe-af--timeline .wbe-af__list {
+	gap: 0;
+	padding-left: 24px;
+	border-left: 2px solid var(--wbe-af-border);
 }
 
-/* ── Type label (shown when no avatar) ────────────────────────────────────── */
-.wbe-af__type-label {
-	display: inline-flex;
-	align-items: center;
-	gap: 5px;
-	font-size: 0.72rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: var(--wbe-af-accent);
-	background: var(--wbe-af-icon-bg);
-	padding: 3px 10px;
-	border-radius: 999px;
+.wbe-af--timeline .wbe-af__card {
+	position: relative;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--wbe-af-border);
 }
 
-.wbe-af__type-label svg {
-	width: 12px;
-	height: 12px;
+.wbe-af--timeline .wbe-af__card:last-child {
+	border-bottom: none;
 }
 
-/* ── Empty state ──────────────────────────────────────────────────────────── */
+.wbe-af--timeline .wbe-af__card::before {
+	content: "";
+	position: absolute;
+	left: -31px;
+	top: 24px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--wbe-af-accent);
+	border: 3px solid var(--wbe-af-card-bg);
+	box-shadow: 0 0 0 2px var(--wbe-af-border);
+}
+
+.wbe-af--timeline .wbe-af__item-head {
+	padding: 0 0 0 16px;
+}
+
+.wbe-af--timeline .wbe-af__body {
+	padding: 0 0 0 16px;
+}
+
+.wbe-af--timeline .wbe-af__footer {
+	padding: 8px 0 0 16px;
+}
+
+/* ============================================================================
+   COMPACT LAYOUT
+   ============================================================================ */
+.wbe-af--compact .wbe-af__list {
+	gap: 0;
+}
+
+.wbe-af--compact .wbe-af__card {
+	padding: 8px 0;
+	border-bottom: 1px solid var(--wbe-af-border);
+}
+
+.wbe-af--compact .wbe-af__card:last-child {
+	border-bottom: none;
+}
+
+.wbe-af--compact .wbe-af__card-head,
+.wbe-af--compact .wbe-af__body,
+.wbe-af--compact .wbe-af__footer {
+	display: none;
+}
+
+.wbe-af--compact .wbe-af__item-head {
+	padding: 0;
+}
+
+/* ============================================================================
+   EMPTY STATE
+   ============================================================================ */
 .wbe-af__empty {
 	display: flex;
 	flex-direction: column;
@@ -313,16 +310,12 @@
 	border-radius: 12px;
 }
 
-.wbe-af__empty svg {
-	opacity: 0.5;
-}
-
 .wbe-af__empty p {
 	margin: 0;
 	font-size: 0.9rem;
 }
 
-/* ── Loading / error (editor) ─────────────────────────────────────────────── */
+/* ── Editor placeholders ──────────────────────────────────────────────────── */
 .wbe-af__loading,
 .wbe-af__error {
 	padding: 32px;
@@ -332,78 +325,52 @@
 	border-radius: 12px;
 }
 
-/* ── Tablet ───────────────────────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-	.wbe-activity-feed--cards .wbe-af__card {
-		padding: 16px;
-	}
-}
-
-/* ── Mobile ───────────────────────────────────────────────────────────────── */
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
 @media (max-width: 640px) {
 	.wbe-af__list {
-		gap: 12px;
+		gap: 8px;
 	}
 
-	.wbe-activity-feed--cards .wbe-af__card {
-		padding: 14px;
-		border-radius: 10px;
+	.wbe-af--cards .wbe-af__card {
+		border-radius: 8px;
 	}
 
-	.wbe-af__header {
-		gap: 10px;
-	}
-
-	.wbe-af__avatar {
-		width: 36px !important;
-		height: 36px !important;
-	}
-
-	.wbe-af__type-badge {
-		width: 18px;
-		height: 18px;
-		bottom: -1px;
-		right: -3px;
-	}
-
-	.wbe-af__type-badge svg {
-		width: 9px;
-		height: 9px;
-	}
-
-	.wbe-af__action {
-		font-size: 0.82rem;
+	.wbe-af__item-head {
+		padding: 10px 12px;
+		gap: 8px;
 	}
 
 	.wbe-af__body {
-		font-size: 0.82rem;
-	}
-
-	.wbe-af__media-img {
-		max-height: 200px;
+		padding: 0 12px 4px;
+		font-size: 0.84rem;
 	}
 
 	.wbe-af__footer {
-		margin-top: 10px;
-		padding-top: 10px;
+		padding: 8px 12px 10px;
 	}
 
-	.wbe-activity-feed--timeline .wbe-af__list {
-		padding-left: 20px;
+	.wbe-af__action-btn {
+		font-size: 0.76rem;
+		padding: 5px 10px;
 	}
 
-	.wbe-activity-feed--timeline .wbe-af__card::before {
-		left: -27px;
-		width: 10px;
-		height: 10px;
+	.wbe-af--timeline .wbe-af__list {
+		padding-left: 16px;
+	}
+
+	.wbe-af--timeline .wbe-af__card::before {
+		left: -23px;
+		width: 8px;
+		height: 8px;
 	}
 }
 
 /* ── Reduced motion ───────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
 	.wbe-af__card,
-	.wbe-af__action-btn,
-	.wbe-af__action-btn svg {
+	.wbe-af__action-btn {
 		transition: none !important;
 	}
 }
