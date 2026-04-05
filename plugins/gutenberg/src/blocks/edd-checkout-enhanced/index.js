@@ -1,0 +1,17 @@
+/**
+ * EDD Enhanced Checkout Block
+ *
+ * @package wbcom-essential
+ */
+
+import { registerBlockType } from '@wordpress/blocks';
+
+import Edit from './edit';
+import metadata from './block.json';
+import './editor.scss';
+import './style.scss';
+
+registerBlockType( metadata.name, {
+	edit: Edit,
+	save: () => null, // Server-side rendered via render.php.
+} );

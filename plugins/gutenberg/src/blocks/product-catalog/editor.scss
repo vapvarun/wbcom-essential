@@ -1,0 +1,109 @@
+// Catalog block — Editor preview styles.
+
+.wbcom-catalog-editor {
+	border: 2px dashed #c3d1e0;
+	border-radius: 8px;
+	background: #f8fafc;
+	padding: 20px;
+}
+
+.wbcom-catalog-preview__toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 20px;
+	padding: 12px;
+	background: #fff;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+}
+
+.wbcom-catalog-preview__search {
+	flex: 1;
+	min-width: 180px;
+	padding: 8px 14px;
+	border: 1px solid #e2e8f0;
+	border-radius: 6px;
+	color: #94a3b8;
+	font-size: 14px;
+}
+
+.wbcom-catalog-preview__filter {
+	padding: 8px 14px;
+	border: 1px solid #e2e8f0;
+	border-radius: 6px;
+	color: #475569;
+	font-size: 14px;
+	background: #fff;
+}
+
+.wbcom-catalog-preview__grid {
+	display: grid;
+	gap: 16px;
+
+	&--2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	&--3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	&--4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.wbcom-catalog-preview__card {
+	background: #fff;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.wbcom-catalog-preview__image {
+	height: 120px;
+	background: linear-gradient(
+		90deg,
+		#e2e8f0 25%,
+		#f1f5f9 50%,
+		#e2e8f0 75%
+	);
+}
+
+.wbcom-catalog-preview__title {
+	height: 14px;
+	width: 60%;
+	background: #e2e8f0;
+	border-radius: 4px;
+	margin: 12px 12px 6px;
+}
+
+.wbcom-catalog-preview__excerpt {
+	height: 10px;
+	width: 80%;
+	background: #f1f5f9;
+	border-radius: 4px;
+	margin: 0 12px 6px;
+}
+
+.wbcom-catalog-preview__price {
+	height: 16px;
+	width: 30%;
+	background: #dbeafe;
+	border-radius: 4px;
+	margin: 0 12px 12px;
+}
+
+.wbcom-catalog-preview__loadmore {
+	text-align: center;
+	margin-top: 16px;
+	padding: 10px 24px;
+	display: inline-block;
+	border: 2px solid #0073aa;
+	border-radius: 6px;
+	color: #0073aa;
+	font-weight: 600;
+	font-size: 14px;
+	margin-left: auto;
+	margin-right: auto;
+	width: fit-content;
+}

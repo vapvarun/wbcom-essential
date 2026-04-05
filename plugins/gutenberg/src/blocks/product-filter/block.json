@@ -1,0 +1,79 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wbcom-essential/product-filter",
+	"version": "2.0.0",
+	"title": "Product Filter",
+	"category": "widgets",
+	"icon": "filter",
+	"description": "A sticky filter bar that shows/hides product sections on a page by their anchor IDs.",
+	"keywords": [ "filter", "products", "categories", "navigation" ],
+	"textdomain": "wbcom-essential",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"multiple": false,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"filters": {
+			"type": "array",
+			"default": [
+				{ "label": "All Products", "target": "all" },
+				{ "label": "Bundles", "target": "bundles" },
+				{ "label": "BuddyPress", "target": "buddypress" },
+				{ "label": "Reign Add-ons", "target": "reign-addons" },
+				{ "label": "WooCommerce", "target": "woocommerce" },
+				{ "label": "PeepSo", "target": "peepso" },
+				{ "label": "LearnDash", "target": "learndash" },
+				{ "label": "Themes", "target": "themes" },
+				{ "label": "Free", "target": "free" }
+			]
+		},
+		"sticky": {
+			"type": "boolean",
+			"default": true
+		},
+		"stopAtCover": {
+			"type": "boolean",
+			"default": true
+		},
+		"uniqueId": { "type": "string", "default": "" },
+		"padding": {
+			"type": "object",
+			"default": { "top": 24, "right": 24, "bottom": 24, "left": 24 }
+		},
+		"paddingTablet": { "type": "object", "default": null },
+		"paddingMobile": { "type": "object", "default": null },
+		"paddingUnit": { "type": "string", "default": "px" },
+		"margin": {
+			"type": "object",
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
+		},
+		"marginTablet": { "type": "object", "default": null },
+		"marginMobile": { "type": "object", "default": null },
+		"marginUnit": { "type": "string", "default": "px" },
+		"boxShadow": { "type": "boolean", "default": false },
+		"shadowHorizontal": { "type": "number", "default": 0 },
+		"shadowVertical": { "type": "number", "default": 4 },
+		"shadowBlur": { "type": "number", "default": 8 },
+		"shadowSpread": { "type": "number", "default": 0 },
+		"shadowColor": { "type": "string", "default": "rgba(0, 0, 0, 0.12)" },
+		"borderRadius": {
+			"type": "object",
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
+		},
+		"borderRadiusUnit": { "type": "string", "default": "px" },
+		"hideOnDesktop": { "type": "boolean", "default": false },
+		"hideOnTablet": { "type": "boolean", "default": false },
+		"hideOnMobile": { "type": "boolean", "default": false }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

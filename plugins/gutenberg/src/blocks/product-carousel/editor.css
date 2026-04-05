@@ -1,0 +1,9 @@
+/**
+ * Product Carousel Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbe-product-carousel-editor .wp-block-wbcom-essential-product-carousel {
+	pointer-events: none;
+}

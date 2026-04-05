@@ -1,0 +1,310 @@
+// Product Catalog — Frontend styles.
+
+.wbcom-catalog__toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	align-items: center;
+	margin-bottom: 24px;
+	padding: 16px 20px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+}
+
+.wbcom-catalog__search {
+	flex: 1;
+	min-width: 200px;
+}
+
+.wbcom-catalog__search-input {
+	width: 100%;
+	padding: 10px 16px;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	font-size: 15px;
+	font-family: inherit;
+	background: #fff;
+	transition: border-color 0.2s;
+
+	&:focus {
+		outline: none;
+		border-color: #0073aa;
+		box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.15);
+	}
+}
+
+.wbcom-catalog__filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+}
+
+.wbcom-catalog__select {
+	padding: 10px 32px 10px 14px;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	font-size: 14px;
+	font-family: inherit;
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 12px center;
+	appearance: none;
+	cursor: pointer;
+	transition: border-color 0.2s;
+
+	&:focus {
+		outline: none;
+		border-color: #0073aa;
+	}
+}
+
+.wbcom-catalog__results-count {
+	font-size: 14px;
+	color: #64748b;
+	margin-bottom: 16px;
+	padding: 0 4px;
+}
+
+// Product grid.
+.wbcom-catalog__grid {
+	display: grid;
+	gap: 24px;
+
+	&--2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	&--3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	&--4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+// Product card.
+.wbcom-catalog__card {
+	background: #fff;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	overflow: hidden;
+	transition: box-shadow 0.3s, transform 0.3s;
+	display: flex;
+	flex-direction: column;
+
+	&:hover {
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+		transform: translateY(-4px);
+	}
+}
+
+.wbcom-catalog__card-image {
+	display: block;
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	background: #f1f5f9;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+}
+
+.wbcom-catalog__card-noimage {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.wbcom-catalog__card-body {
+	padding: 16px 20px 20px;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.wbcom-catalog__card-title {
+	margin: 0 0 8px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.3;
+
+	a {
+		color: #1e293b;
+		text-decoration: none;
+
+		&:hover {
+			color: #0073aa;
+		}
+	}
+}
+
+.wbcom-catalog__card-excerpt {
+	font-size: 14px;
+	line-height: 1.6;
+	color: #64748b;
+	margin: 0 0 12px;
+	flex: 1;
+}
+
+.wbcom-catalog__card-price {
+	font-size: 20px;
+	font-weight: 700;
+	color: #0073aa;
+	margin-bottom: 12px;
+
+	&--free {
+		color: #10b981;
+	}
+}
+
+.wbcom-catalog__card-btn {
+	display: inline-block;
+	background: #0073aa;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	padding: 10px 24px;
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	transition: background 0.2s;
+
+	&:hover {
+		background: #005a87;
+		color: #fff;
+	}
+
+	&--free {
+		background: #10b981;
+
+		&:hover {
+			background: #059669;
+		}
+	}
+}
+
+// Loading skeleton.
+.wbcom-catalog__card--skeleton {
+	.wbcom-catalog__card-image {
+		background: linear-gradient(
+			90deg,
+			#f1f5f9 25%,
+			#e2e8f0 50%,
+			#f1f5f9 75%
+		);
+		background-size: 200% 100%;
+		animation: shimmer 1.5s infinite;
+	}
+
+	.wbcom-catalog__card-title {
+		height: 20px;
+		width: 70%;
+		background: #e2e8f0;
+		border-radius: 4px;
+		margin: 16px 20px 8px;
+	}
+
+	.wbcom-catalog__card-excerpt {
+		height: 14px;
+		width: 90%;
+		background: #e2e8f0;
+		border-radius: 4px;
+		margin: 0 20px 8px;
+	}
+
+	.wbcom-catalog__card-price {
+		height: 24px;
+		width: 40%;
+		background: #e2e8f0;
+		border-radius: 4px;
+		margin: 0 20px 16px;
+	}
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+// Empty state.
+.wbcom-catalog__empty {
+	grid-column: 1 / -1;
+	text-align: center;
+	padding: 60px 20px;
+	color: #94a3b8;
+	font-size: 16px;
+}
+
+// Load more.
+.wbcom-catalog__loadmore-wrap {
+	text-align: center;
+	margin-top: 32px;
+}
+
+.wbcom-catalog__loadmore-btn {
+	background: #fff;
+	color: #0073aa;
+	border: 2px solid #0073aa;
+	border-radius: 8px;
+	padding: 12px 32px;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+	font-family: inherit;
+
+	&:hover {
+		background: #0073aa;
+		color: #fff;
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+// Responsive.
+@media (max-width: 768px) {
+	.wbcom-catalog__grid {
+		&--3,
+		&--4 {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.wbcom-catalog__toolbar {
+		flex-direction: column;
+	}
+
+	.wbcom-catalog__search {
+		width: 100%;
+	}
+
+	.wbcom-catalog__filters {
+		width: 100%;
+	}
+
+	.wbcom-catalog__select {
+		flex: 1;
+	}
+}
+
+@media (max-width: 480px) {
+	.wbcom-catalog__grid {
+		&--2,
+		&--3,
+		&--4 {
+			grid-template-columns: 1fr;
+		}
+	}
+}

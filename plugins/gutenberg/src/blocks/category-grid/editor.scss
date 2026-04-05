@@ -1,0 +1,43 @@
+/**
+ * Category Grid Block - Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-essential-category-grid-editor {
+	// Prevent hover effects in editor.
+	.wbcom-essential-category-grid__card {
+		pointer-events: none;
+
+		&:hover {
+			transform: none;
+			box-shadow: none;
+		}
+	}
+}
+
+// Color control component styles.
+.wbcom-color-control {
+	margin-bottom: 16px;
+
+	.wbcom-color-control-inner {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.wbcom-color-indicator {
+		width: 28px;
+		height: 28px;
+		min-width: 28px;
+		border-radius: 50%;
+		border: 2px solid #ddd;
+		padding: 0;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+
+		&:hover {
+			border-color: #007cba;
+		}
+	}
+}

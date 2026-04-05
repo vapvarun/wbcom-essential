@@ -1,0 +1,116 @@
+/**
+ * Product Filter — Frontend behavior.
+ *
+ * Walks DOM siblings after the filter bar, collects filterable sections,
+ * and shows/hides them based on which filter button the visitor clicks.
+ */
+( function () {
+	'use strict';
+
+	function init() {
+		var bar = document.getElementById( 'wbcom-product-filter' );
+		if ( ! bar ) {
+			return;
+		}
+
+		var isSticky = bar.getAttribute( 'data-sticky' ) === 'true';
+		var stopAtCover = bar.getAttribute( 'data-stop-at-cover' ) === 'true';
+
+		// Apply sticky positioning.
+		if ( isSticky ) {
+			bar.style.position = 'sticky';
+			bar.style.zIndex = '100';
+			bar.style.top = document.body.classList.contains( 'admin-bar' )
+				? '32px'
+				: '0';
+		}
+
+		var btns = bar.querySelectorAll( '.wbcom-filter-btn' );
+		var container = bar.parentElement;
+		if ( ! container ) {
+			return;
+		}
+
+		// Find the filter bar's position among its siblings.
+		var kids = Array.from( container.children );
+		var startIdx = -1;
+		for ( var i = 0; i < kids.length; i++ ) {
+			if ( kids[ i ] === bar ) {
+				startIdx = i;
+				break;
+			}
+		}
+
+		// Collect every sibling after the bar that should be filterable.
+		var filterable = [];
+		for ( var j = startIdx + 1; j < kids.length; j++ ) {
+			var el = kids[ j ];
+
+			// Skip inline style/script nodes.
+			if ( el.tagName === 'STYLE' || el.tagName === 'SCRIPT' ) {
+				continue;
+			}
+
+			// Stop at the bottom CTA (full-width cover block).
+			if ( stopAtCover ) {
+				if (
+					el.classList.contains( 'wp-block-cover' ) &&
+					el.classList.contains( 'alignfull' )
+				) {
+					break;
+				}
+			}
+
+			filterable.push( el );
+		}
+
+		// Bind click handlers.
+		btns.forEach( function ( btn ) {
+			btn.addEventListener( 'click', function () {
+				var filter = this.getAttribute( 'data-filter' );
+
+				// Update active state.
+				btns.forEach( function ( b ) {
+					b.classList.remove( 'active' );
+				} );
+				this.classList.add( 'active' );
+
+				// "All" — show everything and scroll to the bar.
+				if ( filter === 'all' ) {
+					filterable.forEach( function ( section ) {
+						section.style.display = '';
+					} );
+					window.scrollTo( {
+						top: bar.offsetTop - 10,
+						behavior: 'smooth',
+					} );
+					return;
+				}
+
+				// Hide all sections first.
+				filterable.forEach( function ( section ) {
+					section.style.display = 'none';
+				} );
+
+				// Show the matching section and scroll to it.
+				var target = document.getElementById( filter );
+				if ( target ) {
+					target.style.display = '';
+					setTimeout( function () {
+						target.scrollIntoView( {
+							behavior: 'smooth',
+							block: 'start',
+						} );
+					}, 50 );
+				}
+			} );
+		} );
+	}
+
+	// Handle both early and late script execution.
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', init );
+	} else {
+		init();
+	}
+} )();

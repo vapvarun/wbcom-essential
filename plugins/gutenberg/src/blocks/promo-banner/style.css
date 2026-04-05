@@ -1,0 +1,190 @@
+/**
+ * Promo Banner Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ── Base wrapper ─────────────────────────────────────────────────────────── */
+.wbe-promo-banner {
+	--wbe-pb-heading-color: #ffffff;
+	--wbe-pb-desc-color: rgba(255, 255, 255, 0.9);
+	--wbe-pb-btn-bg: #ffffff;
+	--wbe-pb-btn-color: #1e1e2e;
+	--wbe-pb-overlay: rgba(0, 0, 0, 0.4);
+
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	display: block;
+	background-color: #1e1e2e;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* ── Overlay (overlay style only) ────────────────────────────────────────── */
+.wbe-promo-banner__overlay {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* ── Content ──────────────────────────────────────────────────────────────── */
+.wbe-promo-banner__content {
+	position: relative;
+	z-index: 2;
+	padding: 48px 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	justify-content: center;
+	height: 100%;
+}
+
+.wbe-promo-banner__content--left {
+	align-items: flex-start;
+	text-align: left;
+}
+
+.wbe-promo-banner__content--center {
+	align-items: center;
+	text-align: center;
+}
+
+.wbe-promo-banner__content--right {
+	align-items: flex-end;
+	text-align: right;
+}
+
+/* ── Heading ──────────────────────────────────────────────────────────────── */
+.wbe-promo-banner__heading {
+	margin: 0;
+	font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+	font-weight: 800;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
+
+/* ── Description ──────────────────────────────────────────────────────────── */
+.wbe-promo-banner__description {
+	margin: 0;
+	font-size: clamp(0.9375rem, 2vw, 1.125rem);
+	line-height: 1.6;
+	max-width: 560px;
+}
+
+/* ── CTA Button ───────────────────────────────────────────────────────────── */
+.wbe-promo-banner__cta {
+	margin-top: 8px;
+}
+
+.wbe-promo-banner__btn {
+	display: inline-block;
+	padding: 12px 32px;
+	border-radius: 6px;
+	font-size: 0.9375rem;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+	transition: opacity 0.2s ease, transform 0.15s ease;
+	white-space: nowrap;
+}
+
+.wbe-promo-banner__btn:hover {
+	opacity: 0.88;
+	transform: translateY(-2px);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────── */
+/* SPLIT LAYOUT                                                                */
+/* ──────────────────────────────────────────────────────────────────────────── */
+
+.wbe-promo-banner--split {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	background-image: none !important;
+	background-color: #1e1e2e;
+}
+
+.wbe-promo-banner--split .wbe-promo-banner__image-pane {
+	flex: 0 0 50%;
+	max-width: 50%;
+	overflow: hidden;
+	position: relative;
+}
+
+.wbe-promo-banner--split .wbe-promo-banner__bg-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.wbe-promo-banner--split .wbe-promo-banner__content {
+	flex: 1;
+	padding: 48px 40px;
+}
+
+/* ── Visibility utilities ─────────────────────────────────────────────────── */
+.wbe-hide-desktop {
+	display: none !important;
+}
+
+/* ── Tablet ───────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+	.wbe-hide-tablet {
+		display: none !important;
+	}
+
+	/* Split: stack image on top of content */
+	.wbe-promo-banner--split {
+		flex-direction: column;
+	}
+
+	.wbe-promo-banner--split .wbe-promo-banner__image-pane {
+		flex: 0 0 auto;
+		max-width: 100%;
+		width: 100%;
+		height: 220px;
+	}
+
+	.wbe-promo-banner--split .wbe-promo-banner__content {
+		padding: 36px 28px;
+	}
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+	.wbe-hide-mobile {
+		display: none !important;
+	}
+
+	.wbe-promo-banner__content {
+		padding: 32px 20px;
+	}
+
+	.wbe-promo-banner__btn {
+		padding: 10px 24px;
+		font-size: 0.875rem;
+	}
+
+	.wbe-promo-banner--split .wbe-promo-banner__image-pane {
+		height: 180px;
+	}
+
+	.wbe-promo-banner--split .wbe-promo-banner__content {
+		padding: 28px 20px;
+	}
+
+	.wbe-promo-banner__description {
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 641px) {
+	.wbe-hide-desktop {
+		display: revert !important;
+	}
+}
