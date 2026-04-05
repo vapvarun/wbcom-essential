@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "wbcom-essential/members-grid",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"title": "Members Grid",
 	"category": "starter-buddypress",
 	"icon": "screenoptions",
@@ -11,90 +11,58 @@
 	"textdomain": "wbcom-essential",
 	"example": {},
 	"attributes": {
-		"useThemeColors": {
-			"type": "boolean",
-			"default": false
+		"uniqueId": { "type": "string", "default": "" },
+		"totalMembers": { "type": "number", "default": 12 },
+		"columns": { "type": "number", "default": 4 },
+		"columnsTablet": { "type": "number", "default": 2 },
+		"columnsMobile": { "type": "number", "default": 1 },
+		"sortType": { "type": "string", "default": "newest" },
+		"showLastActive": { "type": "boolean", "default": true },
+		"showFriendButton": { "type": "boolean", "default": true },
+		"gap": { "type": "number", "default": 24 },
+		"cardBg": { "type": "string", "default": "#ffffff" },
+		"nameColor": { "type": "string", "default": "#1e1e2e" },
+		"metaColor": { "type": "string", "default": "#6c757d" },
+		"avatarSize": { "type": "number", "default": 80 },
+		"cardBorderRadius": { "type": "number", "default": 12 },
+		"padding": {
+			"type": "object",
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
 		},
-		"sortType": {
-			"type": "string",
-			"default": "newest"
+		"paddingTablet": { "type": "object", "default": null },
+		"paddingMobile": { "type": "object", "default": null },
+		"paddingUnit": { "type": "string", "default": "px" },
+		"margin": {
+			"type": "object",
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
 		},
-		"totalMembers": {
-			"type": "number",
-			"default": 12
+		"marginTablet": { "type": "object", "default": null },
+		"marginMobile": { "type": "object", "default": null },
+		"marginUnit": { "type": "string", "default": "px" },
+		"boxShadow": { "type": "boolean", "default": false },
+		"shadowHorizontal": { "type": "number", "default": 0 },
+		"shadowVertical": { "type": "number", "default": 4 },
+		"shadowBlur": { "type": "number", "default": 8 },
+		"shadowSpread": { "type": "number", "default": 0 },
+		"shadowColor": { "type": "string", "default": "rgba(0, 0, 0, 0.12)" },
+		"borderRadius": {
+			"type": "object",
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
 		},
-		"columns": {
-			"type": "number",
-			"default": 3
-		},
-		"columnsTablet": {
-			"type": "number",
-			"default": 2
-		},
-		"columnsMobile": {
-			"type": "number",
-			"default": 1
-		},
-		"gap": {
-			"type": "number",
-			"default": 30
-		},
-		"showAvatar": {
-			"type": "boolean",
-			"default": true
-		},
-		"showName": {
-			"type": "boolean",
-			"default": true
-		},
-		"showLastActive": {
-			"type": "boolean",
-			"default": true
-		},
-		"showFriendButton": {
-			"type": "boolean",
-			"default": true
-		},
-		"avatarSize": {
-			"type": "number",
-			"default": 126
-		},
-		"cardBgColor": {
-			"type": "string",
-			"default": "#ffffff"
-		},
-		"cardBorderRadius": {
-			"type": "number",
-			"default": 8
-		},
-		"cardPadding": {
-			"type": "number",
-			"default": 20
-		},
-		"cardShadow": {
-			"type": "boolean",
-			"default": true
-		},
-		"nameColor": {
-			"type": "string",
-			"default": "#122B46"
-		},
-		"metaColor": {
-			"type": "string",
-			"default": "#A3A5A9"
-		}
+		"borderRadiusUnit": { "type": "string", "default": "px" },
+		"hideOnDesktop": { "type": "boolean", "default": false },
+		"hideOnTablet": { "type": "boolean", "default": false },
+		"hideOnMobile": { "type": "boolean", "default": false }
 	},
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ],
-		"spacing": {
-			"margin": true,
-			"padding": true
-		}
+		"color": false,
+		"spacing": false
 	},
+	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js",
-	"render": "file:./render.php"
+	"viewScript": "file:./view.js"
 }

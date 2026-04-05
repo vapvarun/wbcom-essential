@@ -17,72 +17,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Check if BuddyPress is active and groups component is enabled.
-if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'groups' ) ) {
+if ( ! function_exists( 'buddypress' ) ) {
 	return;
 }
 
-// ── Extract attributes ────────────────────────────────────────────────────────
-$use_theme_colors   = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
-$sort_type          = $attributes['sortType'] ?? 'active';
-$total_groups       = $attributes['totalGroups'] ?? 12;
-$columns            = $attributes['columns'] ?? 3;
-$columns_tablet     = $attributes['columnsTablet'] ?? 2;
-$columns_mobile     = $attributes['columnsMobile'] ?? 1;
-$gap                = $attributes['gap'] ?? 30;
-$show_avatar        = $attributes['showAvatar'] ?? true;
-$show_name          = $attributes['showName'] ?? true;
-$show_description   = $attributes['showDescription'] ?? false;
-$show_meta          = $attributes['showMeta'] ?? true;
-$show_member_count  = $attributes['showMemberCount'] ?? true;
-$show_join_button   = $attributes['showJoinButton'] ?? true;
-$card_bg_color      = $attributes['cardBgColor'] ?? '#ffffff';
-$card_border_radius = $attributes['cardBorderRadius'] ?? 8;
-$card_shadow        = $attributes['cardShadow'] ?? true;
-$card_padding       = $attributes['cardPadding'] ?? 20;
-$name_color         = $attributes['nameColor'] ?? '#122B46';
-$meta_color         = $attributes['metaColor'] ?? '#A3A5A9';
-$button_bg_color    = $attributes['buttonBgColor'] ?? '#1d76da';
-$button_text_color  = $attributes['buttonTextColor'] ?? '#ffffff';
-
-// ── Build inline styles ───────────────────────────────────────────────────────
-$inline_styles = array(
-	'--columns'        => $columns,
-	'--columns-tablet' => $columns_tablet,
-	'--columns-mobile' => $columns_mobile,
-	'--gap'            => $gap . 'px',
-	'--card-radius'    => $card_border_radius . 'px',
-	'--card-padding'   => $card_padding . 'px',
-);
-
-if ( ! $use_theme_colors ) {
-	$inline_styles['--card-bg']     = $card_bg_color;
-	$inline_styles['--name-color']  = $name_color;
-	$inline_styles['--meta-color']  = $meta_color;
-	$inline_styles['--button-bg']   = $button_bg_color;
-	$inline_styles['--button-text'] = $button_text_color;
+if ( ! bp_is_active( 'groups' ) ) {
+	return;
 }
 
-$style_string = '';
-foreach ( $inline_styles as $prop => $value ) {
-	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
-}
+$unique_id   = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
 
-// ── Classes ───────────────────────────────────────────────────────────────────
-$container_classes = array( 'wbcom-essential-groups-grid-list' );
-if ( $card_shadow ) {
-	$container_classes[] = 'has-shadow';
-}
+$total       = absint( $attributes['totalGroups'] ?? 12 );
+$sort        = sanitize_text_field( $attributes['sortType'] ?? 'active' );
+$cols        = absint( $attributes['columns'] ?? 3 );
+$cols_tab    = absint( $attributes['columnsTablet'] ?? 2 );
+$cols_mob    = absint( $attributes['columnsMobile'] ?? 1 );
+$gap         = absint( $attributes['gap'] ?? 24 );
+$avatar_size = absint( $attributes['avatarSize'] ?? 80 );
+$card_bg     = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' );
+$name_color  = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' );
+$desc_color  = sanitize_hex_color( $attributes['descColor'] ?? '#6c757d' );
+$card_radius = absint( $attributes['cardBorderRadius'] ?? 12 );
 
-$wrapper_classes = array( 'wbcom-essential-groups-grid' );
-if ( $use_theme_colors ) {
-	$wrapper_classes[] = 'use-theme-colors';
-}
-
-$wrapper_attributes = get_block_wrapper_attributes(
+$wrapper = get_block_wrapper_attributes(
 	array(
-		'class' => implode( ' ', $wrapper_classes ),
-		'style' => $style_string,
+		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbe-groups-grid ' . $vis_classes ),
+		'style' => sprintf(
+			'--wbe-gg-cols: %d; --wbe-gg-cols-tab: %d; --wbe-gg-cols-mob: %d; --wbe-gg-gap: %dpx; --wbe-gg-card-radius: %dpx;',
+			$cols,
+			$cols_tab,
+			$cols_mob,
+			$gap,
+			$card_radius
+		),
 	)
 );
 
@@ -90,128 +59,136 @@ $wrapper_attributes = get_block_wrapper_attributes(
 $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 ?>
 
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
+<div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 
 	<?php if ( $is_editor ) : ?>
 		<?php
 		// ── Editor: static SSR preview using BP template tags ────────────────────
 		$groups_args = array(
 			'user_id'         => 0,
-			'type'            => $sort_type,
-			'per_page'        => $total_groups,
-			'max'             => $total_groups,
+			'type'            => $sort,
+			'per_page'        => $total,
+			'max'             => $total,
 			'populate_extras' => true,
 		);
+
+		$avatar_args = array(
+			'type'   => 'full',
+			'width'  => $avatar_size,
+			'height' => $avatar_size,
+			'class'  => 'wbe-groups-grid__avatar-img',
+		);
+
+		// Inline card-level CSS vars.
+		$card_style = '';
+		if ( $card_bg ) {
+			$card_style .= '--wbe-gg-card-bg: ' . esc_attr( $card_bg ) . '; ';
+		}
+		if ( $name_color ) {
+			$card_style .= '--wbe-gg-name-color: ' . esc_attr( $name_color ) . '; ';
+		}
+		if ( $desc_color ) {
+			$card_style .= '--wbe-gg-desc-color: ' . esc_attr( $desc_color ) . '; ';
+		}
 		?>
 		<?php if ( bp_has_groups( $groups_args ) ) : ?>
-			<div class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>">
+			<div class="wbe-groups-grid__list">
 				<?php
 				while ( bp_groups() ) :
 					bp_the_group();
 
+					// Prefer bp_get_group_url() (BP 12+), fall back to bp_get_group_permalink().
 					$group_url = function_exists( 'bp_get_group_url' )
 						? bp_get_group_url()
 						: bp_get_group_permalink();
 					?>
-					<div class="wbcom-groups-grid-card">
-						<?php if ( $show_avatar ) : ?>
-							<div class="wbcom-groups-grid-avatar">
-								<a href="<?php echo esc_url( $group_url ); ?>">
-									<?php
-									bp_group_avatar(
-										array(
-											'type'  => 'full',
-											'class' => 'avatar',
-										)
-									);
-									?>
-								</a>
-							</div>
-						<?php endif; ?>
+					<div class="wbe-groups-grid__card" style="<?php echo esc_attr( $card_style ); ?>">
+						<div class="wbe-groups-grid__avatar">
+							<a href="<?php echo esc_url( $group_url ); ?>">
+								<?php bp_group_avatar( $avatar_args ); ?>
+							</a>
+						</div>
+						<div class="wbe-groups-grid__info">
+							<h3 class="wbe-groups-grid__name">
+								<a href="<?php echo esc_url( $group_url ); ?>"><?php bp_group_name(); ?></a>
+							</h3>
 
-						<div class="wbcom-groups-grid-content">
-							<?php if ( $show_name ) : ?>
-								<h4 class="wbcom-groups-grid-name">
-									<a href="<?php echo esc_url( $group_url ); ?>">
-										<?php bp_group_name(); ?>
-									</a>
-								</h4>
+							<?php if ( ! empty( $attributes['showDescription'] ) ) : ?>
+								<p class="wbe-groups-grid__desc">
+									<?php echo wp_kses_post( wp_trim_words( bp_get_group_description_excerpt(), 15 ) ); ?>
+								</p>
 							<?php endif; ?>
 
-							<?php if ( $show_description ) : ?>
-								<div class="wbcom-groups-grid-description">
-									<?php
-									$description = bp_get_group_description_excerpt();
-									echo wp_kses_post( wp_trim_words( $description, 15 ) );
-									?>
+							<div class="wbe-groups-grid__meta">
+								<?php if ( ! empty( $attributes['showMemberCount'] ) ) : ?>
+									<span class="wbe-groups-grid__count">
+										<?php bp_group_member_count(); ?>
+									</span>
+								<?php endif; ?>
+								<?php if ( ! empty( $attributes['showLastActive'] ) ) : ?>
+									<span class="wbe-groups-grid__active">
+										<?php
+										printf(
+											/* translators: %s: Group last active time */
+											esc_html__( 'Active %s', 'wbcom-essential' ),
+											esc_html( bp_get_group_last_active() )
+										);
+										?>
+									</span>
+								<?php endif; ?>
+							</div>
+
+							<?php if ( ! empty( $attributes['showJoinButton'] ) && is_user_logged_in() ) : ?>
+								<div class="wbe-groups-grid__action">
+									<?php bp_group_join_button(); ?>
 								</div>
 							<?php endif; ?>
-
-							<?php if ( $show_meta ) : ?>
-								<p class="wbcom-groups-grid-meta">
-									<?php
-									/* translators: %s: Group last active time */
-									printf( esc_html__( 'active %s', 'wbcom-essential' ), esc_html( bp_get_group_last_active() ) );
-									?>
-								</p>
-							<?php endif; ?>
-
-							<?php if ( $show_member_count ) : ?>
-								<p class="wbcom-groups-grid-members">
-									<?php bp_group_member_count(); ?>
-								</p>
-							<?php endif; ?>
 						</div>
-
-						<?php if ( $show_join_button && is_user_logged_in() ) : ?>
-							<div class="wbcom-groups-grid-action">
-								<?php bp_group_join_button(); ?>
-							</div>
-						<?php endif; ?>
 					</div>
 				<?php endwhile; ?>
 			</div>
 		<?php else : ?>
-			<div class="wbcom-essential-no-data">
-				<p><?php esc_html_e( 'Sorry, no groups were found.', 'wbcom-essential' ); ?></p>
-			</div>
+			<p class="wbe-groups-grid__empty"><?php esc_html_e( 'No groups found.', 'wbcom-essential' ); ?></p>
 		<?php endif; ?>
 
 	<?php else : ?>
 		<?php
-		// ── Frontend: JS-hydrated container via BP REST API ───────────────────────
+		// ── Frontend: JS-hydrated container ──────────────────────────────────────
 		$config = array(
 			'restUrl'          => rest_url( 'buddypress/v1/groups' ),
 			'restNonce'        => wp_create_nonce( 'wp_rest' ),
-			'perPage'          => $total_groups,
-			'sortType'         => $sort_type,
-			'showAvatar'       => $show_avatar,
-			'showName'         => $show_name,
-			'showDescription'  => $show_description,
-			'showMeta'         => $show_meta,
-			'showMemberCount'  => $show_member_count,
-			'showJoinButton'   => $show_join_button,
-			'useThemeColors'   => $use_theme_colors,
-			'containerClasses' => implode( ' ', $container_classes ),
+			'perPage'          => $total,
+			'sortType'         => $sort,
+			'showDescription'  => ! empty( $attributes['showDescription'] ),
+			'showMemberCount'  => ! empty( $attributes['showMemberCount'] ),
+			'showLastActive'   => ! empty( $attributes['showLastActive'] ),
+			'showJoinButton'   => ! empty( $attributes['showJoinButton'] ),
+			'avatarSize'       => $avatar_size,
+			'columns'          => $cols,
+			'columnsTablet'    => $cols_tab,
+			'columnsMobile'    => $cols_mob,
+			'gap'              => $gap,
 			'loggedIn'         => is_user_logged_in(),
 			'colors'           => array(
-				'cardBg'      => $use_theme_colors ? '' : $card_bg_color,
-				'nameColor'   => $use_theme_colors ? '' : $name_color,
-				'metaColor'   => $use_theme_colors ? '' : $meta_color,
-				'buttonBg'    => $use_theme_colors ? '' : $button_bg_color,
-				'buttonText'  => $use_theme_colors ? '' : $button_text_color,
+				'cardBg'    => $card_bg,
+				'nameColor' => $name_color,
+				'descColor' => $desc_color,
 			),
 			'i18n'             => array(
-				'loading'      => __( 'Loading groups...', 'wbcom-essential' ),
-				'empty'        => __( 'Sorry, no groups were found.', 'wbcom-essential' ),
-				'activeAgo'    => __( 'active %s', 'wbcom-essential' ),
-				'joinGroup'    => __( 'Join Group', 'wbcom-essential' ),
+				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
+				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
+				'members'     => __( 'Members', 'wbcom-essential' ),
+				'activeAgo'   => __( 'Active %s', 'wbcom-essential' ),
+				'joinGroup'   => __( 'Join Group', 'wbcom-essential' ),
+				'memberOf'    => __( 'Member', 'wbcom-essential' ),
+				'requestSent' => __( 'Requested', 'wbcom-essential' ),
 			),
 		);
 		?>
-		<div class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>"
-			data-wbe-gg-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>">
-			<p class="wbcom-essential-loading"><?php esc_html_e( 'Loading groups...', 'wbcom-essential' ); ?></p>
+		<div class="wbe-groups-grid__list"
+			data-wbe-gg-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>"
+			aria-label="<?php esc_attr_e( 'Groups Grid', 'wbcom-essential' ); ?>">
+			<p class="wbe-groups-grid__loading"><?php esc_html_e( 'Loading groups...', 'wbcom-essential' ); ?></p>
 		</div>
 
 	<?php endif; ?>

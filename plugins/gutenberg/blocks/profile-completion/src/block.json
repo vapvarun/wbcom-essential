@@ -5,193 +5,62 @@
 	"version": "1.0.0",
 	"title": "Profile Completion",
 	"category": "starter-buddypress",
-	"icon": "chart-line",
-	"description": "Display BuddyPress member profile completion progress with customizable styles.",
-	"keywords": ["buddypress", "profile", "completion", "progress", "percentage"],
+	"icon": "chart-bar",
+	"description": "Display a BuddyPress profile completion progress indicator with field group checklist for the currently logged-in user.",
+	"keywords": [ "profile", "completion", "progress", "buddypress", "xprofile", "fields" ],
 	"textdomain": "wbcom-essential",
 	"example": {},
 	"attributes": {
-		"useThemeColors": {
-			"type": "boolean",
-			"default": false
-		},
-		"skinStyle": {
-			"type": "string",
-			"default": "circle"
-		},
-		"alignment": {
-			"type": "string",
-			"default": "right"
-		},
-		"profilePhoto": {
-			"type": "boolean",
-			"default": true
-		},
-		"coverPhoto": {
-			"type": "boolean",
-			"default": true
-		},
-		"profileGroups": {
+		"uniqueId": { "type": "string", "default": "" },
+		"selectedGroups": { "type": "array", "default": [] },
+		"checkProfilePhoto": { "type": "boolean", "default": true },
+		"checkCoverPhoto": { "type": "boolean", "default": true },
+		"skin": { "type": "string", "default": "circle" },
+		"progressColor": { "type": "string", "default": "#667eea" },
+		"trackColor": { "type": "string", "default": "#e9ecef" },
+		"textColor": { "type": "string", "default": "#1e1e2e" },
+		"completedColor": { "type": "string", "default": "#28a745" },
+		"incompleteColor": { "type": "string", "default": "#6c757d" },
+		"showGroupList": { "type": "boolean", "default": true },
+		"showPercentage": { "type": "boolean", "default": true },
+		"padding": {
 			"type": "object",
-			"default": {}
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
 		},
-		"profileGroupsInitialized": {
-			"type": "boolean",
-			"default": false
-		},
-		"hideWidget": {
-			"type": "boolean",
-			"default": false
-		},
-		"showProfileBtn": {
-			"type": "boolean",
-			"default": true
-		},
-		"headingText": {
-			"type": "string",
-			"default": "Complete your profile"
-		},
-		"completionText": {
-			"type": "string",
-			"default": "Complete"
-		},
-		"completionButtonText": {
-			"type": "string",
-			"default": "Complete Profile"
-		},
-		"editButtonText": {
-			"type": "string",
-			"default": "Edit Profile"
-		},
-		"showHeading": {
-			"type": "boolean",
-			"default": true
-		},
-		"showCompletionIcon": {
-			"type": "boolean",
-			"default": true
-		},
-		"showCompletionStatus": {
-			"type": "boolean",
-			"default": true
-		},
-		"boxWidth": {
-			"type": "number",
-			"default": 100
-		},
-		"boxBgColor": {
-			"type": "string",
-			"default": "#fff"
-		},
-		"boxBorderStyle": {
-			"type": "string",
-			"default": "solid"
-		},
-		"boxBorderWidth": {
-			"type": "number",
-			"default": 1
-		},
-		"borderColor": {
-			"type": "string",
-			"default": "#E7E9EC"
-		},
-		"boxBorderRadius": {
-			"type": "number",
-			"default": 10
-		},
-		"progressSpacing": {
+		"paddingTablet": { "type": "object", "default": null },
+		"paddingMobile": { "type": "object", "default": null },
+		"paddingUnit": { "type": "string", "default": "px" },
+		"margin": {
 			"type": "object",
-			"default": {
-				"top": "0",
-				"right": "10",
-				"bottom": "0",
-				"left": "10"
-			}
+			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
 		},
-		"progressBorderWidth": {
-			"type": "number",
-			"default": 6
-		},
-		"headingColor": {
-			"type": "string"
-		},
-		"completionColor": {
-			"type": "string",
-			"default": "#1CD991"
-		},
-		"incompleteColor": {
-			"type": "string",
-			"default": "#EF3E46"
-		},
-		"ringBorderColor": {
-			"type": "string",
-			"default": "#DEDFE2"
-		},
-		"ringNumColor": {
-			"type": "string"
-		},
-		"ringTextColor": {
-			"type": "string"
-		},
-		"detailsColor": {
-			"type": "string",
-			"default": "#fff"
-		},
-		"buttonColor": {
-			"type": "string"
-		},
-		"buttonBgColor": {
-			"type": "string"
-		},
-		"buttonBorderColor": {
-			"type": "string"
-		},
-		"buttonColorHover": {
-			"type": "string"
-		},
-		"buttonBgColorHover": {
-			"type": "string"
-		},
-		"buttonBorderColorHover": {
-			"type": "string"
-		},
-		"buttonPadding": {
+		"marginTablet": { "type": "object", "default": null },
+		"marginMobile": { "type": "object", "default": null },
+		"marginUnit": { "type": "string", "default": "px" },
+		"boxShadow": { "type": "boolean", "default": false },
+		"shadowHorizontal": { "type": "number", "default": 0 },
+		"shadowVertical": { "type": "number", "default": 4 },
+		"shadowBlur": { "type": "number", "default": 16 },
+		"shadowSpread": { "type": "number", "default": 0 },
+		"shadowColor": { "type": "string", "default": "rgba(0, 0, 0, 0.08)" },
+		"borderRadius": {
 			"type": "object",
-			"default": {
-				"top": "2",
-				"right": "15",
-				"bottom": "2",
-				"left": "15"
-			}
+			"default": { "top": 12, "right": 12, "bottom": 12, "left": 12 }
 		},
-		"buttonBorderWidth": {
-			"type": "number",
-			"default": 1
-		},
-		"buttonBorderRadius": {
-			"type": "number",
-			"default": 100
-		},
-		"buttonSpacing": {
-			"type": "number",
-			"default": 10
-		}
+		"borderRadiusUnit": { "type": "string", "default": "px" },
+		"hideOnDesktop": { "type": "boolean", "default": false },
+		"hideOnTablet": { "type": "boolean", "default": false },
+		"hideOnMobile": { "type": "boolean", "default": false }
 	},
 	"supports": {
 		"html": false,
-		"align": true,
-		"color": {
-			"background": true,
-			"text": true
-		},
-		"spacing": {
-			"padding": true,
-			"margin": true
-		}
+		"align": [ "wide", "full" ],
+		"color": false,
+		"spacing": false
 	},
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js",
-	"render": "file:./render.php"
+	"style": "file:./style-index.css"
 }

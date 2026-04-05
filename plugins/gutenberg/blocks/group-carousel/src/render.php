@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side render for Group Carousel block.
+ * Group Carousel Block — Server-Side Render
  *
  * Two modes:
  *  - Editor (REST_REQUEST): Full SSR via BP template tags for live preview.
@@ -17,178 +17,150 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Check if BuddyPress is active and groups component is enabled.
-if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'groups' ) ) {
+if ( ! function_exists( 'buddypress' ) ) {
 	return;
 }
 
 // ── Extract attributes ────────────────────────────────────────────────────────
-$use_theme_colors      = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
-$sort_type             = $attributes['sortType'] ?? 'active';
-$total_groups          = $attributes['totalGroups'] ?? 12;
-$show_meta             = $attributes['showMeta'] ?? true;
-$slides_to_show        = $attributes['slidesToShow'] ?? 4;
-$slides_to_show_tablet = $attributes['slidesToShowTablet'] ?? 2;
-$slides_to_show_mobile = $attributes['slidesToShowMobile'] ?? 1;
-$slides_to_scroll      = $attributes['slidesToScroll'] ?? 1;
-$navigation            = $attributes['navigation'] ?? 'both';
-$autoplay              = $attributes['autoplay'] ?? true;
-$pause_on_hover        = $attributes['pauseOnHover'] ?? true;
-$autoplay_speed        = $attributes['autoplaySpeed'] ?? 5000;
-$infinite_loop         = $attributes['infiniteLoop'] ?? true;
-$animation_speed       = $attributes['animationSpeed'] ?? 500;
-$space_between         = $attributes['spaceBetween'] ?? 30;
-$card_bg_color         = $attributes['cardBgColor'] ?? '#ffffff';
-$card_radius           = $attributes['cardBorderRadius'] ?? 8;
-$card_shadow           = $attributes['cardShadow'] ?? true;
-$name_color            = $attributes['nameColor'] ?? '#122B46';
-$meta_color            = $attributes['metaColor'] ?? '#A3A5A9';
-$arrow_color           = $attributes['arrowColor'] ?? '#122B46';
-$dot_color             = $attributes['dotColor'] ?? '#122B46';
-$pause_on_interaction  = $attributes['pauseOnInteraction'] ?? false;
-$effect                = $attributes['effect'] ?? 'slide';
-$enable_keyboard       = $attributes['enableKeyboard'] ?? true;
-$grab_cursor           = $attributes['grabCursor'] ?? true;
+$unique_id       = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$total_groups    = absint( $attributes['totalGroups'] ?? 12 );
+$sort_type       = sanitize_text_field( $attributes['sortType'] ?? 'active' );
+$slides_desktop  = absint( $attributes['slidesPerView'] ?? 3 );
+$slides_tablet   = absint( $attributes['slidesPerViewTablet'] ?? 2 );
+$slides_mobile   = absint( $attributes['slidesPerViewMobile'] ?? 1 );
+$do_autoplay     = ! empty( $attributes['autoplay'] );
+$autoplay_delay  = absint( $attributes['autoplayDelay'] ?? 3000 );
+$do_loop         = ! empty( $attributes['loop'] );
+$show_dots       = ! empty( $attributes['showDots'] );
+$show_arrows     = ! empty( $attributes['showArrows'] );
+$show_desc       = ! empty( $attributes['showDescription'] );
+$show_count      = ! empty( $attributes['showMemberCount'] );
+$space_between   = absint( $attributes['spaceBetween'] ?? 24 );
+$avatar_size     = absint( $attributes['avatarSize'] ?? 80 );
+$card_bg         = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' ) ?: '#ffffff';
+$name_color      = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
 
-// ── Build inline styles ───────────────────────────────────────────────────────
-$inline_styles = array(
-	'--card-radius'     => $card_radius . 'px',
-	'--space-between'   => $space_between . 'px',
-	'--slides-per-view' => $slides_to_show,
-);
+// ── Visibility + CSS ──────────────────────────────────────────────────────────
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
 
-if ( ! $use_theme_colors ) {
-	$inline_styles['--card-bg']     = $card_bg_color;
-	$inline_styles['--name-color']  = $name_color;
-	$inline_styles['--meta-color']  = $meta_color;
-	$inline_styles['--arrow-color'] = $arrow_color;
-	$inline_styles['--dot-color']   = $dot_color;
-}
-
-$style_string = '';
-foreach ( $inline_styles as $prop => $value ) {
-	$style_string .= esc_attr( $prop ) . ': ' . esc_attr( $value ) . '; ';
-}
-
-// ── Swiper options ────────────────────────────────────────────────────────────
+// ── Swiper options (serialized to data attr) ──────────────────────────────────
 $swiper_options = array(
-	'slidesPerView'  => $slides_to_show,
-	'slidesToScroll' => $slides_to_scroll,
-	'slidesPerGroup' => $slides_to_scroll,
-	'spaceBetween'   => $space_between,
-	'speed'          => $animation_speed,
-	'loop'           => $infinite_loop,
-	'effect'         => $effect,
-	'grabCursor'     => $grab_cursor,
-	'keyboard'       => array(
-		'enabled' => $enable_keyboard,
-	),
-	'autoplay'       => $autoplay ? array(
-		'delay'                => $autoplay_speed,
-		'disableOnInteraction' => $pause_on_interaction,
-		'pauseOnMouseEnter'    => $pause_on_hover,
-	) : false,
-	'navigation'     => in_array( $navigation, array( 'arrows', 'both' ), true ),
-	'pagination'     => in_array( $navigation, array( 'dots', 'both' ), true ),
-	'breakpoints'    => array(
-		320  => array(
-			'slidesPerView'  => $slides_to_show_mobile,
-			'slidesPerGroup' => 1,
-		),
-		768  => array(
-			'slidesPerView'  => $slides_to_show_tablet,
-			'slidesPerGroup' => min( $slides_to_scroll, $slides_to_show_tablet ),
-		),
-		1024 => array(
-			'slidesPerView'  => $slides_to_show,
-			'slidesPerGroup' => $slides_to_scroll,
-		),
+	'slidesPerView' => $slides_desktop,
+	'spaceBetween'  => $space_between,
+	'loop'          => $do_loop,
+	'grabCursor'    => true,
+	'breakpoints'   => array(
+		0    => array( 'slidesPerView' => $slides_mobile, 'spaceBetween' => 16 ),
+		768  => array( 'slidesPerView' => $slides_tablet, 'spaceBetween' => $space_between ),
+		1025 => array( 'slidesPerView' => $slides_desktop, 'spaceBetween' => $space_between ),
 	),
 );
 
-$show_arrows = in_array( $navigation, array( 'arrows', 'both' ), true );
-$show_dots   = in_array( $navigation, array( 'dots', 'both' ), true );
-
-// ── Container classes ─────────────────────────────────────────────────────────
-$container_classes = array( 'wbcom-group-carousel-container', 'swiper' );
-if ( $card_shadow ) {
-	$container_classes[] = 'has-shadow';
+if ( $do_autoplay ) {
+	$swiper_options['autoplay'] = array(
+		'delay'                => $autoplay_delay,
+		'disableOnInteraction' => false,
+		'pauseOnMouseEnter'    => true,
+	);
 }
 
-$wrapper_classes = array( 'wbcom-essential-group-carousel' );
-if ( $use_theme_colors ) {
-	$wrapper_classes[] = 'use-theme-colors';
+if ( $show_arrows ) {
+	$swiper_options['navigation'] = array(
+		'nextEl' => '.swiper-button-next',
+		'prevEl' => '.swiper-button-prev',
+	);
 }
 
-$wrapper_attributes = get_block_wrapper_attributes(
+if ( $show_dots ) {
+	$swiper_options['pagination'] = array(
+		'el'        => '.swiper-pagination',
+		'clickable' => true,
+	);
+}
+
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+$wrapper = get_block_wrapper_attributes(
 	array(
-		'class' => implode( ' ', $wrapper_classes ),
-		'style' => $style_string,
+		'class' => trim( 'wbe-group-carousel' . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
 	)
 );
 
-$unique_id = 'group-carousel-' . wp_unique_id();
+// ── Inline token CSS ──────────────────────────────────────────────────────────
+$card_style = '--wbe-gc-card-bg: ' . esc_attr( $card_bg ) . '; --wbe-gc-name-color: ' . esc_attr( $name_color ) . ';';
 
 // ── Detect context ────────────────────────────────────────────────────────────
 $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 ?>
 
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
+<div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 
 	<?php if ( $is_editor ) : ?>
 		<?php
 		// ── Editor: static SSR preview using BP template tags ────────────────────
 		$groups_args = array(
-			'user_id'         => 0,
 			'type'            => $sort_type,
 			'per_page'        => $total_groups,
 			'max'             => $total_groups,
 			'populate_extras' => true,
 		);
+
+		$avatar_args = array(
+			'type'   => 'full',
+			'width'  => $avatar_size,
+			'height' => $avatar_size,
+			'class'  => 'wbe-group-carousel__avatar-img',
+			'object' => 'group',
+		);
 		?>
 		<?php if ( bp_has_groups( $groups_args ) ) : ?>
-			<div id="<?php echo esc_attr( $unique_id ); ?>"
-				class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>"
-				data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>">
+			<div class="swiper wbe-group-carousel__swiper"
+				data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>"
+				style="<?php echo esc_attr( $card_style ); ?>">
 
 				<div class="swiper-wrapper">
 					<?php
 					while ( bp_groups() ) :
 						bp_the_group();
 
-						$group_url = function_exists( 'bp_get_group_url' )
-							? bp_get_group_url()
-							: bp_get_group_permalink();
+						// Group URL — use bp_get_group_url() with fallback.
+						if ( function_exists( 'bp_get_group_url' ) ) {
+							$group_url = bp_get_group_url( groups_get_current_group() );
+						} else {
+							$group_url = bp_get_group_permalink( groups_get_current_group() );
+						}
+						$group_url = esc_url( $group_url );
 						?>
 						<div class="swiper-slide">
-							<div class="wbcom-group-carousel-card">
-								<div class="wbcom-group-carousel-avatar">
-									<a href="<?php echo esc_url( $group_url ); ?>">
-										<?php
-										bp_group_avatar(
-											array(
-												'type'  => 'full',
-												'class' => 'avatar',
-											)
-										);
-										?>
+							<div class="wbe-group-carousel__card">
+
+								<div class="wbe-group-carousel__avatar">
+									<a href="<?php echo $group_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- already esc_url'd above ?>" aria-label="<?php echo esc_attr( bp_get_group_name() ); ?>">
+										<?php bp_group_avatar( $avatar_args ); ?>
 									</a>
 								</div>
-								<div class="wbcom-group-carousel-content">
-									<h4 class="wbcom-group-carousel-name">
-										<a href="<?php echo esc_url( $group_url ); ?>">
-											<?php bp_group_name(); ?>
-										</a>
-									</h4>
-									<?php if ( $show_meta ) : ?>
-										<p class="wbcom-group-carousel-meta">
+
+								<div class="wbe-group-carousel__info">
+									<h3 class="wbe-group-carousel__name">
+										<a href="<?php echo $group_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php echo esc_html( bp_get_group_name() ); ?></a>
+									</h3>
+
+									<?php if ( $show_count ) : ?>
+										<span class="wbe-group-carousel__count">
 											<?php
-											/* translators: %s: Group last active time */
-											printf( esc_html__( 'active %s', 'wbcom-essential' ), esc_html( bp_get_group_last_active() ) );
+											$member_count = bp_get_group_member_count();
+											echo esc_html( $member_count );
 											?>
+										</span>
+									<?php endif; ?>
+
+									<?php if ( $show_desc ) : ?>
+										<p class="wbe-group-carousel__desc">
+											<?php echo wp_kses_post( bp_get_group_description_excerpt( array( 'length' => 80 ) ) ); ?>
 										</p>
 									<?php endif; ?>
 								</div>
+
 							</div>
 						</div>
 					<?php endwhile; ?>
@@ -199,77 +171,57 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 				<?php endif; ?>
 
 				<?php if ( $show_arrows ) : ?>
-					<div class="swiper-button-prev">
-						<svg viewBox="0 0 24 24" width="24" height="24">
-							<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor" />
-						</svg>
-					</div>
-					<div class="swiper-button-next">
-						<svg viewBox="0 0 24 24" width="24" height="24">
-							<path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
-						</svg>
-					</div>
+					<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous', 'wbcom-essential' ); ?>">&#8249;</button>
+					<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next', 'wbcom-essential' ); ?>">&#8250;</button>
 				<?php endif; ?>
+
 			</div>
 		<?php else : ?>
-			<div class="wbcom-essential-no-data">
-				<p><?php esc_html_e( 'Sorry, no groups were found.', 'wbcom-essential' ); ?></p>
-			</div>
+			<p class="wbe-group-carousel__empty"><?php esc_html_e( 'No groups found.', 'wbcom-essential' ); ?></p>
 		<?php endif; ?>
 
 	<?php else : ?>
 		<?php
-		// ── Frontend: JS-hydrated Swiper container via BP REST API ────────────────
+		// ── Frontend: JS-hydrated Swiper container ────────────────────────────────
 		$config = array(
-			'restUrl'        => rest_url( 'buddypress/v1/groups' ),
-			'restNonce'      => wp_create_nonce( 'wp_rest' ),
-			'perPage'        => $total_groups,
-			'sortType'       => $sort_type,
-			'showMeta'       => $show_meta,
-			'swiperOptions'  => $swiper_options,
-			'showArrows'     => $show_arrows,
-			'showDots'       => $show_dots,
-			'useThemeColors' => $use_theme_colors,
-			'loggedIn'       => is_user_logged_in(),
-			'colors'         => array(
-				'cardBg'     => $use_theme_colors ? '' : $card_bg_color,
-				'nameColor'  => $use_theme_colors ? '' : $name_color,
-				'metaColor'  => $use_theme_colors ? '' : $meta_color,
-				'arrowColor' => $use_theme_colors ? '' : $arrow_color,
-				'dotColor'   => $use_theme_colors ? '' : $dot_color,
+			'restUrl'         => rest_url( 'buddypress/v1/groups' ),
+			'restNonce'       => wp_create_nonce( 'wp_rest' ),
+			'perPage'         => $total_groups,
+			'sortType'        => $sort_type,
+			'showDescription' => $show_desc,
+			'showMemberCount' => $show_count,
+			'avatarSize'      => $avatar_size,
+			'showDots'        => $show_dots,
+			'showArrows'      => $show_arrows,
+			'swiperOptions'   => $swiper_options,
+			'loggedIn'        => is_user_logged_in(),
+			'colors'          => array(
+				'cardBg'    => $card_bg,
+				'nameColor' => $name_color,
 			),
-			'i18n'           => array(
-				'loading'   => __( 'Loading groups...', 'wbcom-essential' ),
-				'empty'     => __( 'Sorry, no groups were found.', 'wbcom-essential' ),
-				'activeAgo' => __( 'active %s', 'wbcom-essential' ),
+			'i18n'            => array(
+				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
+				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
+				'members'     => __( 'Members', 'wbcom-essential' ),
+				'previous'    => __( 'Previous', 'wbcom-essential' ),
+				'next'        => __( 'Next', 'wbcom-essential' ),
 			),
 		);
 		?>
-		<div id="<?php echo esc_attr( $unique_id ); ?>"
-			class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>"
-			data-wbe-gc-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>">
-
+		<div class="swiper wbe-group-carousel__swiper"
+			data-wbe-gc-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>"
+			style="<?php echo esc_attr( $card_style ); ?>">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide wbcom-essential-loading-slide">
+				<div class="swiper-slide wbe-group-carousel__loading">
 					<p><?php esc_html_e( 'Loading groups...', 'wbcom-essential' ); ?></p>
 				</div>
 			</div>
-
 			<?php if ( $show_dots ) : ?>
 				<div class="swiper-pagination"></div>
 			<?php endif; ?>
-
 			<?php if ( $show_arrows ) : ?>
-				<div class="swiper-button-prev">
-					<svg viewBox="0 0 24 24" width="24" height="24">
-						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor" />
-					</svg>
-				</div>
-				<div class="swiper-button-next">
-					<svg viewBox="0 0 24 24" width="24" height="24">
-						<path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
-					</svg>
-				</div>
+				<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous', 'wbcom-essential' ); ?>">&#8249;</button>
+				<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next', 'wbcom-essential' ); ?>">&#8250;</button>
 			<?php endif; ?>
 		</div>
 

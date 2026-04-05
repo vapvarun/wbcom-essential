@@ -1,6 +1,13 @@
 <?php
 /**
- * Server-side render for Profile Completion block.
+ * Profile Completion Block — Server-Side Render
+ *
+ * Two-mode rendering pattern:
+ *   - Editor  (REST_REQUEST): Full SSR using BP template tags for accurate preview.
+ *   - Frontend: Minimal container with data-config; view.js hydrates via custom REST endpoint.
+ *
+ * Custom REST endpoint registered here:
+ *   GET /wp-json/wbcom-essential/v1/profile-completion
  *
  * @package WBCOM_Essential
  *
@@ -13,252 +20,426 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Check if BuddyPress is active and user is logged in.
 if ( ! function_exists( 'buddypress' ) || ! is_user_logged_in() ) {
 	return;
 }
 
-// Extract attributes.
-$use_theme_colors       = isset( $attributes['useThemeColors'] ) ? $attributes['useThemeColors'] : false;
-$skin_style             = $attributes['skinStyle'] ?? 'circle';
-$alignment              = $attributes['alignment'] ?? 'right';
-$profile_photo          = $attributes['profilePhoto'] ?? true;
-$cover_photo            = $attributes['coverPhoto'] ?? true;
-$profile_groups_attr    = $attributes['profileGroups'] ?? array();
-$hide_widget            = $attributes['hideWidget'] ?? false;
-$show_profile_btn       = $attributes['showProfileBtn'] ?? true;
-$heading_text           = $attributes['headingText'] ?? __( 'Complete your profile', 'wbcom-essential' );
-$completion_text        = $attributes['completionText'] ?? __( 'Complete', 'wbcom-essential' );
-$completion_btn_text    = $attributes['completionButtonText'] ?? __( 'Complete Profile', 'wbcom-essential' );
-$edit_btn_text          = $attributes['editButtonText'] ?? __( 'Edit Profile', 'wbcom-essential' );
-$show_heading           = $attributes['showHeading'] ?? true;
-$show_completion_icon   = $attributes['showCompletionIcon'] ?? true;
-$show_completion_status = $attributes['showCompletionStatus'] ?? true;
+// ── Register custom REST endpoint (fires on rest_api_init) ───────────────────
+add_action(
+	'rest_api_init',
+	function () {
+		register_rest_route(
+			'wbcom-essential/v1',
+			'/profile-completion',
+			array(
+				'methods'             => 'GET',
+				'callback'            => 'wbcom_essential_rest_profile_completion_data',
+				'permission_callback' => 'is_user_logged_in',
+				'args'                => array(
+					'selected_groups' => array(
+						'type'              => 'string',
+						'default'           => '',
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'check_photo'     => array(
+						'type'              => 'boolean',
+						'default'           => true,
+					),
+					'check_cover'     => array(
+						'type'              => 'boolean',
+						'default'           => true,
+					),
+				),
+			)
+		);
+	}
+);
 
-// Style attributes.
-$progress_border_width = $attributes['progressBorderWidth'] ?? 6;
-$completion_color      = $attributes['completionColor'] ?? '#1CD991';
-$incomplete_color      = $attributes['incompleteColor'] ?? '#EF3E46';
-$ring_border_color     = $attributes['ringBorderColor'] ?? '#DEDFE2';
-$ring_num_color        = $attributes['ringNumColor'] ?? '';
-$ring_text_color       = $attributes['ringTextColor'] ?? '';
-$details_color         = $attributes['detailsColor'] ?? '#fff';
-$button_color          = $attributes['buttonColor'] ?? '';
-$button_bg_color       = $attributes['buttonBgColor'] ?? '';
-$button_border_color   = $attributes['buttonBorderColor'] ?? '';
-
-// Get selected profile groups.
-$selected_groups = array();
-if ( ! empty( $profile_groups_attr ) && is_array( $profile_groups_attr ) ) {
-	foreach ( $profile_groups_attr as $group_id => $enabled ) {
-		if ( $enabled ) {
-			$selected_groups[] = $group_id;
+if ( ! function_exists( 'wbcom_essential_rest_profile_completion_data' ) ) {
+	/**
+	 * REST callback: return pre-calculated profile completion data for the current user.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 * @return WP_REST_Response|WP_Error
+	 */
+	function wbcom_essential_rest_profile_completion_data( WP_REST_Request $request ) {
+		if ( ! function_exists( 'buddypress' ) ) {
+			return new WP_Error( 'bp_inactive', 'BuddyPress is not active.', array( 'status' => 500 ) );
 		}
+
+		$user_id = bp_loggedin_user_id();
+
+		// Parse selected groups from comma-separated string.
+		$groups_param    = $request->get_param( 'selected_groups' );
+		$selected_groups = array();
+		if ( ! empty( $groups_param ) ) {
+			$selected_groups = array_map( 'absint', explode( ',', $groups_param ) );
+		}
+
+		// If no groups specified, use all available groups.
+		if ( empty( $selected_groups ) && function_exists( 'bp_xprofile_get_groups' ) ) {
+			$all_groups = bp_xprofile_get_groups();
+			if ( ! empty( $all_groups ) ) {
+				$selected_groups = array_column( (array) $all_groups, 'id' );
+			}
+		}
+
+		// Build photo_types array based on request params.
+		$photo_types = array();
+		if ( $request->get_param( 'check_photo' ) && ! bp_disable_avatar_uploads() ) {
+			$photo_types[] = 'profile_photo';
+		}
+		if ( $request->get_param( 'check_cover' ) && ! bp_disable_cover_image_uploads() ) {
+			$photo_types[] = 'cover_photo';
+		}
+
+		// Reuse the existing calculation helper (defined in profile-completion.php).
+		if ( ! function_exists( 'wbcom_essential_calculate_profile_completion' ) ) {
+			return new WP_Error( 'fn_missing', 'Completion helper not available.', array( 'status' => 500 ) );
+		}
+
+		// selected_groups must be strings for the helper's in_array check.
+		$selected_groups_str = array_map( 'strval', $selected_groups );
+		$data                = wbcom_essential_calculate_profile_completion( $user_id, $selected_groups_str, $photo_types );
+
+		return rest_ensure_response(
+			array(
+				'percentage' => (int) ( $data['completion_percentage'] ?? 0 ),
+				'groups'     => array_values( $data['groups'] ?? array() ),
+			)
+		);
 	}
 }
 
-// Build photo types array.
-$profile_phototype_selected = array();
-if ( $profile_photo && function_exists( 'bp_disable_avatar_uploads' ) && ! bp_disable_avatar_uploads() ) {
-	$profile_phototype_selected[] = 'profile_photo';
-}
-if ( $cover_photo && function_exists( 'bp_disable_cover_image_uploads' ) && ! bp_disable_cover_image_uploads() ) {
-	$profile_phototype_selected[] = 'cover_photo';
-}
+// ── Extract attributes ────────────────────────────────────────────────────────
+$unique_id        = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
+$selected_groups  = ! empty( $attributes['selectedGroups'] ) ? array_map( 'absint', (array) $attributes['selectedGroups'] ) : array();
+$check_photo      = ! empty( $attributes['checkProfilePhoto'] );
+$check_cover      = ! empty( $attributes['checkCoverPhoto'] );
+$skin             = in_array( $attributes['skin'] ?? 'circle', array( 'circle', 'linear' ), true ) ? $attributes['skin'] : 'circle';
+$progress_color   = sanitize_hex_color( $attributes['progressColor'] ?? '#667eea' ) ?: '#667eea';
+$track_color      = sanitize_hex_color( $attributes['trackColor'] ?? '#e9ecef' ) ?: '#e9ecef';
+$text_color       = sanitize_hex_color( $attributes['textColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
+$completed_color  = sanitize_hex_color( $attributes['completedColor'] ?? '#28a745' ) ?: '#28a745';
+$incomplete_color = sanitize_hex_color( $attributes['incompleteColor'] ?? '#6c757d' ) ?: '#6c757d';
+$show_group_list  = ! empty( $attributes['showGroupList'] );
+$show_percentage  = ! empty( $attributes['showPercentage'] );
 
-// If nothing selected, return.
-if ( empty( $selected_groups ) && empty( $profile_phototype_selected ) ) {
-	return;
-}
+// ── Visibility + CSS ──────────────────────────────────────────────────────────
+$vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
+\WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
 
-// Calculate profile completion.
-$user_id = get_current_user_id();
-
-// Ensure the helper function exists.
-if ( ! function_exists( 'wbcom_essential_calculate_profile_completion' ) ) {
-	return;
-}
-
-$profile_percent = wbcom_essential_calculate_profile_completion( $user_id, $selected_groups, $profile_phototype_selected );
-
-if ( empty( $profile_percent ) ) {
-	return;
-}
-
-$completion_percentage = $profile_percent['completion_percentage'];
-
-// Hide widget if completion is 100% and hideWidget is enabled.
-if ( $hide_widget && 100 === $completion_percentage ) {
-	echo '<div class="wbcom-essential-profile-completion wbcom-essential-profile-completion--blank"></div>';
-	return;
-}
-
-// Build inline styles - layout always applied, colors only when not using theme colors.
-$inline_style = sprintf(
-	'--progress-width: %dpx; --progress-percent: %d;',
-	absint( $progress_border_width ),
-	absint( $completion_percentage )
-);
-
-// Color styles - only when not using theme colors.
-if ( ! $use_theme_colors ) {
-	$inline_style .= sprintf(
-		' --completion-color: %s; --incomplete-color: %s; --progress-border: %s; --details-bg: %s;',
-		esc_attr( $completion_color ),
-		esc_attr( $incomplete_color ),
-		esc_attr( $ring_border_color ),
-		esc_attr( $details_color )
-	);
-
-	if ( ! empty( $ring_num_color ) ) {
-		$inline_style .= sprintf( ' --number-color: %s;', esc_attr( $ring_num_color ) );
-	}
-	if ( ! empty( $ring_text_color ) ) {
-		$inline_style .= sprintf( ' --text-color: %s;', esc_attr( $ring_text_color ) );
-	}
-	if ( ! empty( $button_color ) ) {
-		$inline_style .= sprintf( ' --button-color: %s;', esc_attr( $button_color ) );
-	}
-	if ( ! empty( $button_bg_color ) ) {
-		$inline_style .= sprintf( ' --button-bg: %s;', esc_attr( $button_bg_color ) );
-	}
-	if ( ! empty( $button_border_color ) ) {
-		$inline_style .= sprintf( ' --button-border: %s;', esc_attr( $button_border_color ) );
-	}
-}
-
-// Get wrapper attributes.
-$wrapper_classes = array(
-	'wbcom-essential-profile-completion',
-	'wbcom-profile-completion-skin-' . $skin_style,
-	'wbcom-profile-completion-align-' . $alignment,
-);
-
-if ( $use_theme_colors ) {
-	$wrapper_classes[] = 'use-theme-colors';
-}
-
-$wrapper_attributes = get_block_wrapper_attributes(
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+$wrapper = get_block_wrapper_attributes(
 	array(
-		'class' => implode( ' ', array_filter( $wrapper_classes ) ),
-		'style' => $inline_style,
+		'class' => trim( 'wbe-profile-completion wbe-profile-completion--' . esc_attr( $skin ) . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
 	)
 );
 
-$is_complete = ( 100 === $completion_percentage );
-$profile_url = function_exists( 'bp_loggedin_user_domain' ) ? bp_loggedin_user_domain() . 'profile/edit/' : '#';
+// ── Token CSS ─────────────────────────────────────────────────────────────────
+$token_css = '';
+if ( $unique_id ) {
+	$token_css = sprintf(
+		'.wbe-block-%1$s { --wbe-prc-progress: %2$s; --wbe-prc-track: %3$s; --wbe-prc-text: %4$s; --wbe-prc-done: %5$s; --wbe-prc-todo: %6$s; }',
+		esc_attr( $unique_id ),
+		esc_attr( $progress_color ),
+		esc_attr( $track_color ),
+		esc_attr( $text_color ),
+		esc_attr( $completed_color ),
+		esc_attr( $incomplete_color )
+	);
+}
+
+// ── Detect context: editor SSR vs. frontend ───────────────────────────────────
+$is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
+
+// ── SVG circle ring dimensions (used by both editor preview and view.js config) ──
+$circle_size   = 120;
+$circle_cx     = $circle_size / 2;
+$circle_cy     = $circle_size / 2;
+$circle_r      = 46;
+$circumference = round( 2 * M_PI * $circle_r, 2 );
 ?>
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<div class="wbcom-profile-completion-wrapper">
-		<div class="wbcom-profile-completion-figure">
-			<?php if ( 'circle' === $skin_style ) : ?>
-				<!-- Circle Skin -->
-				<div class="wbcom-profile-completion-progress">
-					<div class="wbcom-progress-ring">
-						<div class="wbcom-progress-ring-inner"></div>
-						<div class="wbcom-progress-data">
-							<span class="wbcom-progress-num"><?php echo absint( $completion_percentage ); ?><span>%</span></span>
-							<span class="wbcom-progress-text"><?php echo esc_html( $completion_text ); ?></span>
-						</div>
-					</div>
-				</div>
 
-				<div class="wbcom-profile-completion-details">
-					<?php if ( $show_heading ) : ?>
-						<div class="wbcom-details-header">
-							<span class="wbcom-details-percent"><?php echo absint( $completion_percentage ); ?>%</span>
-							<span class="wbcom-details-ring-small">
-								<span class="wbcom-progress-ring-small"></span>
-							</span>
-							<span class="wbcom-details-label"><?php echo esc_html( $completion_text ); ?></span>
-						</div>
-					<?php endif; ?>
+<div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
+	<?php if ( $token_css ) : ?>
+		<style><?php echo esc_html( $token_css ); ?></style>
+	<?php endif; ?>
 
-					<ul class="wbcom-profile-completion-list">
-						<?php foreach ( $profile_percent['groups'] as $single_section_details ) : ?>
-							<li class="<?php echo $single_section_details['is_group_completed'] ? 'completed' : 'incomplete'; ?>">
-								<?php if ( $show_completion_icon ) : ?>
-									<span class="wbcom-section-icon">
-										<?php if ( $single_section_details['is_group_completed'] ) : ?>
-											<span class="dashicons dashicons-yes"></span>
-										<?php else : ?>
-											<span class="wbcom-section-dot"></span>
-										<?php endif; ?>
-									</span>
-								<?php endif; ?>
-								<span class="wbcom-section-name">
-									<a href="<?php echo esc_url( $single_section_details['link'] ); ?>"><?php echo esc_html( $single_section_details['label'] ); ?></a>
-								</span>
-								<?php if ( $show_completion_status ) : ?>
-									<span class="wbcom-section-status">
-										<?php echo absint( $single_section_details['completed'] ); ?>/<?php echo absint( $single_section_details['total'] ); ?>
-									</span>
-								<?php endif; ?>
-							</li>
-						<?php endforeach; ?>
-					</ul>
+	<?php if ( $is_editor ) : ?>
+		<?php
+		// ── Editor: Full SSR preview using BP template tags ───────────────────
+		$user_id          = bp_loggedin_user_id();
+		$total_fields     = 0;
+		$completed_fields = 0;
+		$groups_data      = array();
 
-					<?php if ( $show_profile_btn ) : ?>
-						<div class="wbcom-profile-completion-action">
-							<a class="wbcom-profile-button" href="<?php echo esc_url( $profile_url ); ?>">
-								<?php echo esc_html( $is_complete ? $edit_btn_text : $completion_btn_text ); ?>
-								<span class="dashicons dashicons-arrow-right-alt2"></span>
-							</a>
-						</div>
-					<?php endif; ?>
+		if ( function_exists( 'bp_has_profile' ) ) {
+			$profile_args = array( 'user_id' => $user_id );
+			if ( ! empty( $selected_groups ) ) {
+				$profile_args['profile_group_id'] = $selected_groups;
+			}
+
+			if ( bp_has_profile( $profile_args ) ) {
+				while ( bp_profile_groups() ) {
+					bp_the_profile_group();
+
+					$group_total     = 0;
+					$group_completed = 0;
+
+					if ( bp_profile_group_has_fields() ) {
+						while ( bp_profile_fields() ) {
+							bp_the_profile_field();
+							$total_fields++;
+							$group_total++;
+							$value = bp_get_profile_field_data(
+								array(
+									'field'   => bp_get_the_profile_field_id(),
+									'user_id' => $user_id,
+								)
+							);
+							if ( ! empty( $value ) ) {
+								$completed_fields++;
+								$group_completed++;
+							}
+						}
+					}
+
+					$group_id     = bp_get_the_profile_group_id();
+					$profile_slug = function_exists( 'bp_get_profile_slug' ) ? bp_get_profile_slug() : 'profile';
+
+					$groups_data[] = array(
+						'label'     => bp_get_the_profile_group_name(),
+						'completed' => $group_completed,
+						'total'     => $group_total,
+						'is_done'   => ( $group_total > 0 && $group_completed === $group_total ),
+						'link'      => trailingslashit( bp_loggedin_user_domain() . $profile_slug . '/edit/group/' . absint( $group_id ) ),
+					);
+				}
+			}
+		}
+
+		// Profile photo.
+		if ( $check_photo && ! bp_disable_avatar_uploads() ) {
+			$total_fields++;
+			$has_avatar = bp_get_user_has_avatar( $user_id );
+			if ( $has_avatar ) {
+				$completed_fields++;
+			}
+			$groups_data[] = array(
+				'label'     => __( 'Profile Photo', 'wbcom-essential' ),
+				'completed' => $has_avatar ? 1 : 0,
+				'total'     => 1,
+				'is_done'   => $has_avatar,
+				'link'      => trailingslashit( bp_loggedin_user_domain() ) . 'change-avatar/',
+			);
+		}
+
+		// Cover photo.
+		if ( $check_cover && ! bp_disable_cover_image_uploads() ) {
+			$total_fields++;
+			$cover_image = '';
+			if ( function_exists( 'bp_attachments_get_attachment' ) ) {
+				$cover_image = bp_attachments_get_attachment(
+					'url',
+					array(
+						'object_dir' => 'members',
+						'item_id'    => $user_id,
+					)
+				);
+			}
+			$has_cover = ! empty( $cover_image );
+			if ( $has_cover ) {
+				$completed_fields++;
+			}
+			$groups_data[] = array(
+				'label'     => __( 'Cover Photo', 'wbcom-essential' ),
+				'completed' => $has_cover ? 1 : 0,
+				'total'     => 1,
+				'is_done'   => $has_cover,
+				'link'      => trailingslashit( bp_loggedin_user_domain() ) . 'change-cover-image/',
+			);
+		}
+
+		$percentage  = $total_fields > 0 ? round( ( $completed_fields / $total_fields ) * 100 ) : 0;
+		$dash_offset = round( $circumference - ( $percentage / 100 ) * $circumference, 2 );
+		?>
+
+		<div class="wbe-profile-completion__inner">
+
+			<?php if ( 'circle' === $skin ) : ?>
+				<div class="wbe-profile-completion__circle-wrap">
+					<svg
+						class="wbe-profile-completion__svg"
+						width="<?php echo esc_attr( $circle_size ); ?>"
+						height="<?php echo esc_attr( $circle_size ); ?>"
+						viewBox="0 0 <?php echo esc_attr( $circle_size ); ?> <?php echo esc_attr( $circle_size ); ?>"
+						role="img"
+						aria-label="<?php
+							/* translators: %d: profile completion percentage */
+							echo esc_attr( sprintf( __( 'Profile %d%% complete', 'wbcom-essential' ), $percentage ) );
+						?>"
+					>
+						<circle
+							class="wbe-profile-completion__track"
+							cx="<?php echo esc_attr( $circle_cx ); ?>"
+							cy="<?php echo esc_attr( $circle_cy ); ?>"
+							r="<?php echo esc_attr( $circle_r ); ?>"
+							fill="none"
+							stroke="<?php echo esc_attr( $track_color ); ?>"
+							stroke-width="8"
+						/>
+						<circle
+							class="wbe-profile-completion__progress"
+							cx="<?php echo esc_attr( $circle_cx ); ?>"
+							cy="<?php echo esc_attr( $circle_cy ); ?>"
+							r="<?php echo esc_attr( $circle_r ); ?>"
+							fill="none"
+							stroke="<?php echo esc_attr( $progress_color ); ?>"
+							stroke-width="8"
+							stroke-linecap="round"
+							stroke-dasharray="<?php echo esc_attr( $circumference ); ?>"
+							stroke-dashoffset="<?php echo esc_attr( $dash_offset ); ?>"
+							transform="rotate(-90 <?php echo esc_attr( $circle_cx ); ?> <?php echo esc_attr( $circle_cy ); ?>)"
+						/>
+						<?php if ( $show_percentage ) : ?>
+							<text
+								class="wbe-profile-completion__pct-text"
+								x="<?php echo esc_attr( $circle_cx ); ?>"
+								y="<?php echo esc_attr( $circle_cy + 1 ); ?>"
+								text-anchor="middle"
+								dominant-baseline="middle"
+								fill="<?php echo esc_attr( $text_color ); ?>"
+								font-size="18"
+								font-weight="700"
+							><?php echo esc_html( $percentage ); ?>%</text>
+						<?php endif; ?>
+					</svg>
+					<p class="wbe-profile-completion__label">
+						<?php esc_html_e( 'Profile Complete', 'wbcom-essential' ); ?>
+					</p>
 				</div>
 
 			<?php else : ?>
-				<!-- Linear Skin -->
-				<div class="wbcom-profile-completion-progress">
-					<div class="wbcom-progress-linear-header">
-						<h3><?php echo esc_html( $heading_text ); ?></h3>
-						<span class="wbcom-toggle-icon dashicons dashicons-arrow-right-alt2"></span>
-					</div>
-					<div class="wbcom-progress-bar">
-						<div class="wbcom-progress-bar-fill" style="width: <?php echo absint( $completion_percentage ); ?>%"></div>
-					</div>
-					<div class="wbcom-progress-info">
-						<span class="wbcom-progress-num"><?php echo absint( $completion_percentage ); ?>%</span>
-						<span class="wbcom-progress-text"><?php echo esc_html( $completion_text ); ?></span>
-					</div>
-				</div>
-
-				<div class="wbcom-profile-completion-details">
-					<ul class="wbcom-profile-completion-list">
-						<?php foreach ( $profile_percent['groups'] as $single_section_details ) : ?>
-							<li class="<?php echo $single_section_details['is_group_completed'] ? 'completed' : 'incomplete'; ?>">
-								<?php if ( $show_completion_icon ) : ?>
-									<span class="wbcom-section-icon">
-										<?php if ( $single_section_details['is_group_completed'] ) : ?>
-											<span class="dashicons dashicons-yes"></span>
-										<?php else : ?>
-											<span class="wbcom-section-dot"></span>
-										<?php endif; ?>
-									</span>
-								<?php endif; ?>
-								<span class="wbcom-section-name">
-									<a href="<?php echo esc_url( $single_section_details['link'] ); ?>"><?php echo esc_html( $single_section_details['label'] ); ?></a>
-								</span>
-								<?php if ( $show_completion_status ) : ?>
-									<span class="wbcom-section-status">
-										<?php echo absint( $single_section_details['completed'] ); ?>/<?php echo absint( $single_section_details['total'] ); ?>
-									</span>
-								<?php endif; ?>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-
-					<?php if ( $show_profile_btn ) : ?>
-						<div class="wbcom-profile-completion-action">
-							<a class="wbcom-profile-button" href="<?php echo esc_url( $profile_url ); ?>">
-								<?php echo esc_html( $is_complete ? $edit_btn_text : $completion_btn_text ); ?>
-								<span class="dashicons dashicons-arrow-right-alt2"></span>
-							</a>
+				<div class="wbe-profile-completion__linear-wrap">
+					<?php if ( $show_percentage ) : ?>
+						<div class="wbe-profile-completion__linear-header">
+							<span class="wbe-profile-completion__linear-label">
+								<?php esc_html_e( 'Profile Complete', 'wbcom-essential' ); ?>
+							</span>
+							<span class="wbe-profile-completion__linear-pct" style="color: <?php echo esc_attr( $text_color ); ?>;">
+								<?php echo esc_html( $percentage ); ?>%
+							</span>
 						</div>
 					<?php endif; ?>
+					<div
+						class="wbe-profile-completion__bar-track"
+						style="background: <?php echo esc_attr( $track_color ); ?>;"
+						role="progressbar"
+						aria-valuenow="<?php echo esc_attr( $percentage ); ?>"
+						aria-valuemin="0"
+						aria-valuemax="100"
+						aria-label="<?php
+							/* translators: %d: profile completion percentage */
+							echo esc_attr( sprintf( __( 'Profile %d%% complete', 'wbcom-essential' ), $percentage ) );
+						?>"
+					>
+						<div
+							class="wbe-profile-completion__bar-fill"
+							style="width: <?php echo esc_attr( $percentage ); ?>%; background: <?php echo esc_attr( $progress_color ); ?>;"
+						></div>
+					</div>
 				</div>
 			<?php endif; ?>
+
+			<?php if ( $show_group_list && ! empty( $groups_data ) ) : ?>
+				<ul class="wbe-profile-completion__group-list" aria-label="<?php esc_attr_e( 'Profile completion checklist', 'wbcom-essential' ); ?>">
+					<?php foreach ( $groups_data as $group ) : ?>
+						<?php
+						$is_done   = ! empty( $group['is_done'] );
+						$item_cls  = 'wbe-profile-completion__group-item ' . ( $is_done ? 'is-done' : 'is-todo' );
+						$icon_aria = $is_done ? __( 'Completed', 'wbcom-essential' ) : __( 'Incomplete', 'wbcom-essential' );
+						?>
+						<li class="<?php echo esc_attr( $item_cls ); ?>">
+							<span
+								class="wbe-profile-completion__group-icon"
+								aria-label="<?php echo esc_attr( $icon_aria ); ?>"
+								style="color: <?php echo $is_done ? esc_attr( $completed_color ) : esc_attr( $incomplete_color ); ?>;"
+							>
+								<?php if ( $is_done ) : ?>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+										<circle cx="8" cy="8" r="8" fill="currentColor" fill-opacity=".15"/>
+										<path d="M4.5 8.5L7 11L11.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								<?php else : ?>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+										<circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-opacity=".4"/>
+									</svg>
+								<?php endif; ?>
+							</span>
+							<a
+								href="<?php echo esc_url( $group['link'] ); ?>"
+								class="wbe-profile-completion__group-label"
+								style="color: <?php echo esc_attr( $text_color ); ?>;"
+							>
+								<?php echo esc_html( $group['label'] ); ?>
+							</a>
+							<span class="wbe-profile-completion__group-count" style="color: <?php echo esc_attr( $incomplete_color ); ?>;">
+								<?php
+								echo esc_html(
+									sprintf(
+										/* translators: 1: completed count, 2: total count */
+										__( '%1$d / %2$d', 'wbcom-essential' ),
+										absint( $group['completed'] ),
+										absint( $group['total'] )
+									)
+								);
+								?>
+							</span>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+
 		</div>
-	</div>
+
+	<?php else : ?>
+		<?php
+		// ── Frontend: JS-hydrated container ──────────────────────────────────
+		$config = array(
+			'restUrl'        => rest_url( 'wbcom-essential/v1/profile-completion' ),
+			'restNonce'      => wp_create_nonce( 'wp_rest' ),
+			'selectedGroups' => implode( ',', $selected_groups ),
+			'checkPhoto'     => $check_photo,
+			'checkCover'     => $check_cover,
+			'skin'           => $skin,
+			'showGroupList'  => $show_group_list,
+			'showPercentage' => $show_percentage,
+			'circumference'  => $circumference,
+			'circleSize'     => $circle_size,
+			'circleCx'       => $circle_cx,
+			'circleCy'       => $circle_cy,
+			'circleR'        => $circle_r,
+			'i18n'           => array(
+				'profileComplete' => __( 'Profile Complete', 'wbcom-essential' ),
+				'completed'       => __( 'Completed', 'wbcom-essential' ),
+				'incomplete'      => __( 'Incomplete', 'wbcom-essential' ),
+				'loading'         => __( 'Loading...', 'wbcom-essential' ),
+				/* translators: %d: profile completion percentage */
+				'ariaLabel'       => __( 'Profile %d%% complete', 'wbcom-essential' ),
+				'checklist'       => __( 'Profile completion checklist', 'wbcom-essential' ),
+				/* translators: 1: completed count, 2: total count */
+				'countFormat'     => __( '%1$d / %2$d', 'wbcom-essential' ),
+			),
+		);
+		?>
+		<div
+			class="wbe-profile-completion__hydrate"
+			data-wbe-pc-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>"
+			aria-busy="true"
+			aria-label="<?php esc_attr_e( 'Loading profile completion...', 'wbcom-essential' ); ?>"
+		>
+			<div class="wbe-profile-completion__loading"><?php esc_html_e( 'Loading...', 'wbcom-essential' ); ?></div>
+		</div>
+	<?php endif; ?>
 </div>

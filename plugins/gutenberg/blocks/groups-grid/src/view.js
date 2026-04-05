@@ -2,11 +2,12 @@
  * Groups Grid Block — Frontend JS
  *
  * Hydrates the grid container using the BuddyPress REST API.
- * Handles: initial render, join-group link.
+ * Handles: initial render, join-group button.
  *
  * DOM safety: all user-supplied strings are assigned via textContent or as
- * attribute values. Avatar URLs are decoded via DOMParser (no script
- * execution context). Group descriptions are plain-text truncated client-side.
+ * attribute values. Avatar URLs are decoded via a DOMParser text/html parse
+ * (no script execution context). Group descriptions are plain-text truncated
+ * client-side so no HTML is ever inserted into the DOM from user data.
  */
 
 ( function () {
@@ -34,9 +35,10 @@
 	}
 
 	/**
-	 * Decode HTML entities using DOMParser (no script execution).
+	 * Decode HTML entities in BP REST API strings using DOMParser.
+	 * DOMParser.parseFromString with text/html does not execute scripts.
 	 *
-	 * @param {string} str Raw string possibly containing entities.
+	 * @param {string} str Raw string possibly containing entities like &amp;
 	 * @return {string}
 	 */
 	function decodeEntities( str ) {
@@ -50,79 +52,89 @@
 	// ── Card builder ──────────────────────────────────────────────────────────
 
 	/**
-	 * Build a single group card element.
+	 * Build a single group card element using only safe DOM methods.
 	 *
 	 * @param {object} group BP REST group object.
 	 * @param {object} cfg   Block config from data attribute.
 	 * @return {HTMLDivElement}
 	 */
 	function buildCard( group, cfg ) {
-		const card = el( 'div', 'wbcom-groups-grid-card' );
+		const cardStyle = [
+			cfg.colors.cardBg    ? '--wbe-gg-card-bg: '    + cfg.colors.cardBg    + ';' : '',
+			cfg.colors.nameColor ? '--wbe-gg-name-color: ' + cfg.colors.nameColor + ';' : '',
+			cfg.colors.descColor ? '--wbe-gg-desc-color: ' + cfg.colors.descColor + ';' : '',
+		].join( ' ' );
+
+		const card = el( 'div', 'wbe-groups-grid__card' );
+		if ( cardStyle.trim() ) {
+			card.setAttribute( 'style', cardStyle );
+		}
 
 		// Avatar.
-		if ( cfg.showAvatar ) {
-			const avatarWrap = el( 'div', 'wbcom-groups-grid-avatar' );
-			const avatarLink = document.createElement( 'a' );
-			avatarLink.href  = group.link || '#';
+		const avatarWrap = el( 'div', 'wbe-groups-grid__avatar' );
+		const avatarLink = document.createElement( 'a' );
+		avatarLink.href  = group.link || '#';
 
-			const avatarSrc = decodeEntities( group.avatar_urls?.thumb || group.avatar_urls?.full || '' );
-			const img       = document.createElement( 'img' );
-			img.src         = avatarSrc;
-			img.alt         = '';
-			img.className   = 'avatar';
-			img.loading     = 'lazy';
-			avatarLink.appendChild( img );
-			avatarWrap.appendChild( avatarLink );
-			card.appendChild( avatarWrap );
-		}
+		const avatarSrc = decodeEntities( group.avatar_urls?.thumb || group.avatar_urls?.full || '' );
+		const img       = document.createElement( 'img' );
+		img.src         = avatarSrc;
+		img.alt         = '';
+		img.className   = 'wbe-groups-grid__avatar-img';
+		img.width       = cfg.avatarSize;
+		img.height      = cfg.avatarSize;
+		img.loading     = 'lazy';
+		avatarLink.appendChild( img );
+		avatarWrap.appendChild( avatarLink );
+		card.appendChild( avatarWrap );
 
-		// Content section.
-		const content = el( 'div', 'wbcom-groups-grid-content' );
+		// Info section.
+		const info = el( 'div', 'wbe-groups-grid__info' );
 
-		if ( cfg.showName ) {
-			const nameEl   = el( 'h4', 'wbcom-groups-grid-name' );
-			const nameLink = document.createElement( 'a' );
-			nameLink.href        = group.link || '#';
-			nameLink.textContent = group.name || '';
-			nameEl.appendChild( nameLink );
-			content.appendChild( nameEl );
-		}
+		const nameHeading    = el( 'h3', 'wbe-groups-grid__name' );
+		const nameLink       = document.createElement( 'a' );
+		nameLink.href        = group.link || '#';
+		nameLink.textContent = group.name || '';
+		nameHeading.appendChild( nameLink );
+		info.appendChild( nameHeading );
 
-		// Description — strip tags, truncate to ~15 words.
+		// Description — strip tags client-side, truncate to ~15 words.
 		if ( cfg.showDescription && group.description?.rendered ) {
+			const descEl    = el( 'p', 'wbe-groups-grid__desc' );
 			const plainText = decodeEntities( group.description.rendered.replace( /<[^>]+>/g, '' ) ).trim();
 			const wordArr   = plainText.split( /\s+/ );
-			const descEl    = el( 'div', 'wbcom-groups-grid-description' );
 			descEl.textContent = wordArr.slice( 0, 15 ).join( ' ' ) + ( wordArr.length > 15 ? '\u2026' : '' );
-			content.appendChild( descEl );
+			info.appendChild( descEl );
 		}
 
-		// Last active meta.
-		if ( cfg.showMeta && group.last_activity_diff ) {
-			const metaText = cfg.i18n.activeAgo.replace( '%s', group.last_activity_diff );
-			content.appendChild( el( 'p', 'wbcom-groups-grid-meta', metaText ) );
-		}
+		// Meta row.
+		const meta = el( 'div', 'wbe-groups-grid__meta' );
 
-		// Member count.
 		if ( cfg.showMemberCount && group.total_member_count != null ) {
-			content.appendChild(
-				el( 'p', 'wbcom-groups-grid-members', String( group.total_member_count ) )
+			meta.appendChild(
+				el( 'span', 'wbe-groups-grid__count', group.total_member_count + ' ' + cfg.i18n.members )
 			);
 		}
 
-		card.appendChild( content );
-
-		// Join button — links to the group page.
-		if ( cfg.showJoinButton && cfg.loggedIn ) {
-			const actionWrap = el( 'div', 'wbcom-groups-grid-action' );
-			const joinLink   = document.createElement( 'a' );
-			joinLink.href        = group.link || '#';
-			joinLink.className   = 'button join-group-button';
-			joinLink.textContent = cfg.i18n.joinGroup;
-			actionWrap.appendChild( joinLink );
-			card.appendChild( actionWrap );
+		if ( cfg.showLastActive && group.last_activity_diff ) {
+			meta.appendChild(
+				el( 'span', 'wbe-groups-grid__active', cfg.i18n.activeAgo.replace( '%s', group.last_activity_diff ) )
+			);
 		}
 
+		info.appendChild( meta );
+
+		// Join button — links to group page (most reliable cross-BP-version approach).
+		if ( cfg.showJoinButton && cfg.loggedIn ) {
+			const actionWrap = el( 'div', 'wbe-groups-grid__action' );
+			const joinLink   = document.createElement( 'a' );
+			joinLink.href    = group.link || '#';
+			joinLink.className   = 'wbe-groups-grid__join-btn';
+			joinLink.textContent = cfg.i18n.joinGroup;
+			actionWrap.appendChild( joinLink );
+			info.appendChild( actionWrap );
+		}
+
+		card.appendChild( info );
 		return card;
 	}
 
@@ -161,9 +173,7 @@
 				listEl.textContent = '';
 
 				if ( ! groups.length ) {
-					const noData = el( 'div', 'wbcom-essential-no-data' );
-					noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
-					listEl.appendChild( noData );
+					listEl.appendChild( el( 'p', 'wbe-groups-grid__empty', cfg.i18n.empty ) );
 					return;
 				}
 
@@ -173,9 +183,7 @@
 			} )
 			.catch( function () {
 				listEl.textContent = '';
-				const noData = el( 'div', 'wbcom-essential-no-data' );
-				noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
-				listEl.appendChild( noData );
+				listEl.appendChild( el( 'p', 'wbe-groups-grid__empty', cfg.i18n.empty ) );
 			} );
 	}
 

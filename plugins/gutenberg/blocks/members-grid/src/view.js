@@ -2,11 +2,11 @@
  * Members Grid Block — Frontend JS
  *
  * Hydrates the grid container using the BuddyPress REST API.
- * Handles: initial render, friend request buttons with optimistic UI.
+ * Handles: initial render, friend request (add / pending / friends states).
  *
  * DOM safety: all user-supplied strings are assigned via textContent or as
- * attribute values. Avatar URLs are decoded via DOMParser (no script
- * execution context).
+ * attribute values — never via direct HTML assignment. Avatar URLs are decoded
+ * with a textarea element (the standard entity-decode pattern) and set on img.src.
  */
 
 ( function () {
@@ -34,7 +34,8 @@
 	}
 
 	/**
-	 * Decode HTML entities using DOMParser (no script execution).
+	 * Decode HTML entities from BP REST API strings (e.g. avatar URLs).
+	 * Uses DOMParser which does not execute scripts.
 	 *
 	 * @param {string} str Raw string possibly containing entities.
 	 * @return {string}
@@ -54,23 +55,23 @@
 	 *
 	 * @param {string} status BP friendship status slug.
 	 * @param {object} i18n   Translated strings.
-	 * @return {{ label: string, stateClass: string, disabled: boolean }}
+	 * @return {{ label: string, stateClass: string }}
 	 */
 	function friendBtnState( status, i18n ) {
 		switch ( status ) {
 			case 'is_friend':
-				return { label: i18n.friends,   stateClass: 'is-friend',   disabled: true };
+				return { label: i18n.friends,   stateClass: 'wbe-mg-friend--is-friend' };
 			case 'pending':
-				return { label: i18n.pending,   stateClass: 'is-pending',  disabled: true };
+				return { label: i18n.pending,   stateClass: 'wbe-mg-friend--pending' };
 			default:
-				return { label: i18n.addFriend, stateClass: 'not-friends', disabled: false };
+				return { label: i18n.addFriend, stateClass: 'wbe-mg-friend--not-friends' };
 		}
 	}
 
 	/**
-	 * Build the friend action button.
+	 * Create the friend action button for a member card.
 	 *
-	 * @param {object} member BP REST member object.
+	 * @param {object} member Member REST response object.
 	 * @param {object} cfg    Block config.
 	 * @return {HTMLButtonElement}
 	 */
@@ -80,11 +81,11 @@
 		const btn     = document.createElement( 'button' );
 
 		btn.type        = 'button';
-		btn.className   = 'wbcom-member-grid-friend-btn friend-button ' + state.stateClass;
+		btn.className   = 'wbe-members-grid__friend-btn ' + state.stateClass;
 		btn.textContent = state.label;
 		btn.dataset.memberId = member.id;
 		btn.dataset.status   = status;
-		btn.disabled         = state.disabled;
+		btn.disabled         = status !== 'not_friends';
 
 		return btn;
 	}
@@ -99,57 +100,63 @@
 	 * @return {HTMLDivElement}
 	 */
 	function buildCard( member, cfg ) {
-		const item = el( 'div', 'wbcom-member-grid-item' );
-		const card = el( 'div', 'wbcom-member-grid-card' );
+		const cardStyle = [
+			cfg.colors.cardBg    ? '--wbe-mg-card-bg: '    + cfg.colors.cardBg    + ';' : '',
+			cfg.colors.nameColor ? '--wbe-mg-name-color: ' + cfg.colors.nameColor + ';' : '',
+			cfg.colors.metaColor ? '--wbe-mg-meta-color: ' + cfg.colors.metaColor + ';' : '',
+		].join( ' ' );
+
+		const card = el( 'div', 'wbe-members-grid__card' );
+		if ( cardStyle.trim() ) {
+			card.setAttribute( 'style', cardStyle );
+		}
 
 		// Avatar.
-		if ( cfg.showAvatar ) {
-			const avatarWrap = el( 'div', 'wbcom-member-grid-avatar' );
-			const avatarLink = document.createElement( 'a' );
-			avatarLink.href  = member.link || '#';
+		const avatarWrap = el( 'div', 'wbe-members-grid__avatar' );
+		const avatarLink = document.createElement( 'a' );
+		avatarLink.href  = member.link || '#';
 
-			const avatarSrc = decodeEntities( member.avatar_urls?.thumb || member.avatar_urls?.full || '' );
-			const img       = document.createElement( 'img' );
-			img.src         = avatarSrc;
-			img.alt         = '';
-			img.className   = 'avatar';
-			img.loading     = 'lazy';
-			avatarLink.appendChild( img );
-			avatarWrap.appendChild( avatarLink );
-			card.appendChild( avatarWrap );
-		}
+		const avatarSrc  = decodeEntities( member.avatar_urls?.thumb || member.avatar_urls?.full || '' );
+		const img        = document.createElement( 'img' );
+		img.src          = avatarSrc;
+		img.alt          = '';
+		img.className    = 'wbe-members-grid__avatar-img';
+		img.width        = cfg.avatarSize;
+		img.height       = cfg.avatarSize;
+		img.loading      = 'lazy';
+		img.style.borderRadius = '50%';
+		avatarLink.appendChild( img );
+		avatarWrap.appendChild( avatarLink );
+		card.appendChild( avatarWrap );
 
-		// Content section.
-		const content = el( 'div', 'wbcom-member-grid-content' );
+		// Info section.
+		const info = el( 'div', 'wbe-members-grid__info' );
 
-		if ( cfg.showName ) {
-			const nameEl   = el( 'h4', 'wbcom-member-grid-name' );
-			const nameLink = document.createElement( 'a' );
-			nameLink.href        = member.link || '#';
-			nameLink.textContent = member.name || '';
-			nameEl.appendChild( nameLink );
-			content.appendChild( nameEl );
-		}
+		const nameHeading    = el( 'h3', 'wbe-members-grid__name' );
+		const nameLink       = document.createElement( 'a' );
+		nameLink.href        = member.link || '#';
+		nameLink.textContent = member.name || '';
+		nameHeading.appendChild( nameLink );
+		info.appendChild( nameHeading );
 
 		if ( cfg.showLastActive && member.last_activity?.timediff ) {
-			content.appendChild( el( 'p', 'wbcom-member-grid-meta', member.last_activity.timediff ) );
+			info.appendChild( el( 'span', 'wbe-members-grid__meta', member.last_activity.timediff ) );
 		}
 
 		if ( cfg.showFriendButton && cfg.loggedIn ) {
-			const actionWrap = el( 'div', 'wbcom-member-grid-action' );
+			const actionWrap = el( 'div', 'wbe-members-grid__action' );
 			actionWrap.appendChild( buildFriendButton( member, cfg ) );
-			content.appendChild( actionWrap );
+			info.appendChild( actionWrap );
 		}
 
-		card.appendChild( content );
-		item.appendChild( card );
-		return item;
+		card.appendChild( info );
+		return card;
 	}
 
 	// ── Friend request ────────────────────────────────────────────────────────
 
 	/**
-	 * Send a friend request with optimistic UI and error rollback.
+	 * Send a friend request via BP REST API with optimistic UI and error rollback.
 	 *
 	 * @param {HTMLButtonElement} btn Clicked friend button.
 	 * @param {object}            cfg Block config.
@@ -160,10 +167,10 @@
 		const prevLabel  = btn.textContent;
 		const prevClass  = btn.className;
 
-		// Optimistic update — show pending immediately.
+		// Optimistic update.
 		btn.disabled        = true;
 		btn.textContent     = cfg.i18n.pending;
-		btn.className       = 'wbcom-member-grid-friend-btn friend-button is-pending';
+		btn.className       = 'wbe-members-grid__friend-btn wbe-mg-friend--pending';
 		btn.dataset.status  = 'pending';
 
 		const friendsUrl = cfg.restUrl.replace( /\/members([^/]*)$/, '/friends' );
@@ -226,9 +233,7 @@
 				listEl.textContent = '';
 
 				if ( ! members.length ) {
-					const noData = el( 'div', 'wbcom-essential-no-data' );
-					noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
-					listEl.appendChild( noData );
+					listEl.appendChild( el( 'p', 'wbe-members-grid__empty', cfg.i18n.empty ) );
 					return;
 				}
 
@@ -238,14 +243,12 @@
 			} )
 			.catch( function () {
 				listEl.textContent = '';
-				const noData = el( 'div', 'wbcom-essential-no-data' );
-				noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
-				listEl.appendChild( noData );
+				listEl.appendChild( el( 'p', 'wbe-members-grid__empty', cfg.i18n.empty ) );
 			} );
 
 		// Event delegation for friend buttons.
 		listEl.addEventListener( 'click', function ( e ) {
-			const btn = e.target.closest( '.wbcom-member-grid-friend-btn' );
+			const btn = e.target.closest( '.wbe-members-grid__friend-btn' );
 			if ( btn && btn.dataset.status === 'not_friends' && ! btn.disabled ) {
 				sendFriendRequest( btn, cfg );
 			}

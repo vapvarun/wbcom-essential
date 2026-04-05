@@ -2,11 +2,11 @@
  * Members Carousel Block — Frontend JS
  *
  * Fetches members from the BuddyPress REST API, builds slide cards,
- * then initialises Swiper. Replaces the previous Swiper-init-only
- * implementation with a full REST-API-hydrated approach.
+ * then initialises Swiper. Handles friend-request buttons with
+ * optimistic UI and error rollback.
  *
- * DOM safety: all user-supplied strings are assigned via textContent or as
- * attribute values. Avatar URLs are decoded via DOMParser (no script
+ * DOM safety: all user-supplied strings are assigned via textContent or
+ * as attribute values. Avatar URLs are decoded via DOMParser (no script
  * execution context). Swiper is expected to be registered globally by
  * the plugin — no import needed.
  */
@@ -49,6 +49,48 @@
 		return doc.documentElement.textContent;
 	}
 
+	// ── Friend button ─────────────────────────────────────────────────────────
+
+	/**
+	 * Map a friendship_status_slug to button label and state class.
+	 *
+	 * @param {string} status BP friendship status slug.
+	 * @param {object} i18n   Translated strings.
+	 * @return {{ label: string, stateClass: string }}
+	 */
+	function friendBtnState( status, i18n ) {
+		switch ( status ) {
+			case 'is_friend':
+				return { label: i18n.friends,   stateClass: 'wbe-mc-friend--is-friend' };
+			case 'pending':
+				return { label: i18n.pending,   stateClass: 'wbe-mc-friend--pending' };
+			default:
+				return { label: i18n.addFriend, stateClass: 'wbe-mc-friend--not-friends' };
+		}
+	}
+
+	/**
+	 * Build the friend action button.
+	 *
+	 * @param {object} member BP REST member object.
+	 * @param {object} cfg    Block config.
+	 * @return {HTMLButtonElement}
+	 */
+	function buildFriendButton( member, cfg ) {
+		const status  = member.friendship_status_slug || 'not_friends';
+		const state   = friendBtnState( status, cfg.i18n );
+		const btn     = document.createElement( 'button' );
+
+		btn.type        = 'button';
+		btn.className   = 'wbe-members-carousel__friend-btn ' + state.stateClass;
+		btn.textContent = state.label;
+		btn.dataset.memberId = member.id;
+		btn.dataset.status   = status;
+		btn.disabled         = status !== 'not_friends';
+
+		return btn;
+	}
+
 	// ── Slide builder ─────────────────────────────────────────────────────────
 
 	/**
@@ -60,10 +102,10 @@
 	 */
 	function buildSlide( member, cfg ) {
 		const slide = el( 'div', 'swiper-slide' );
-		const card  = el( 'div', 'wbcom-member-carousel-card' );
+		const card  = el( 'div', 'wbe-members-carousel__card' );
 
 		// Avatar.
-		const avatarWrap = el( 'div', 'wbcom-member-carousel-avatar' );
+		const avatarWrap = el( 'div', 'wbe-members-carousel__avatar' );
 		const avatarLink = document.createElement( 'a' );
 		avatarLink.href  = member.link || '#';
 
@@ -71,81 +113,132 @@
 		const img       = document.createElement( 'img' );
 		img.src         = avatarSrc;
 		img.alt         = '';
-		img.className   = 'avatar';
+		img.className   = 'wbe-members-carousel__avatar-img';
+		img.width       = cfg.avatarSize;
+		img.height      = cfg.avatarSize;
 		img.loading     = 'lazy';
+		img.style.borderRadius = '50%';
 		avatarLink.appendChild( img );
 		avatarWrap.appendChild( avatarLink );
 		card.appendChild( avatarWrap );
 
-		// Content section.
-		const content = el( 'div', 'wbcom-member-carousel-content' );
+		// Info section.
+		const info = el( 'div', 'wbe-members-carousel__info' );
 
-		const nameEl   = el( 'h4', 'wbcom-member-carousel-name' );
-		const nameLink = document.createElement( 'a' );
+		const nameHeading    = el( 'h3', 'wbe-members-carousel__name' );
+		const nameLink       = document.createElement( 'a' );
 		nameLink.href        = member.link || '#';
 		nameLink.textContent = member.name || '';
-		nameEl.appendChild( nameLink );
-		content.appendChild( nameEl );
+		nameHeading.appendChild( nameLink );
+		info.appendChild( nameHeading );
 
 		if ( cfg.showLastActive && member.last_activity?.timediff ) {
-			content.appendChild( el( 'p', 'wbcom-member-carousel-meta', member.last_activity.timediff ) );
+			info.appendChild( el( 'span', 'wbe-members-carousel__meta', member.last_activity.timediff ) );
 		}
 
-		card.appendChild( content );
+		if ( cfg.showFriendButton && cfg.loggedIn ) {
+			const actionWrap = el( 'div', 'wbe-members-carousel__action' );
+			actionWrap.appendChild( buildFriendButton( member, cfg ) );
+			info.appendChild( actionWrap );
+		}
+
+		card.appendChild( info );
 		slide.appendChild( card );
 		return slide;
 	}
 
-	// ── Swiper initialisation ─────────────────────────────────────────────────
+	// ── Friend request ────────────────────────────────────────────────────────
 
 	/**
-	 * Initialise Swiper on a container, resolving nav/pagination selectors
+	 * Send a friend request with optimistic UI and error rollback.
+	 *
+	 * @param {HTMLButtonElement} btn Clicked friend button.
+	 * @param {object}            cfg Block config.
+	 */
+	function sendFriendRequest( btn, cfg ) {
+		const memberId   = parseInt( btn.dataset.memberId, 10 );
+		const prevStatus = btn.dataset.status;
+		const prevLabel  = btn.textContent;
+		const prevClass  = btn.className;
+
+		// Optimistic update.
+		btn.disabled        = true;
+		btn.textContent     = cfg.i18n.pending;
+		btn.className       = 'wbe-members-carousel__friend-btn wbe-mc-friend--pending';
+		btn.dataset.status  = 'pending';
+
+		const friendsUrl = cfg.restUrl.replace( /\/members([^/]*)$/, '/friends' );
+
+		fetch( friendsUrl, {
+			method:      'POST',
+			headers:     {
+				'Content-Type': 'application/json',
+				'X-WP-Nonce':  cfg.restNonce,
+			},
+			credentials: 'same-origin',
+			body:        JSON.stringify( { friend_id: memberId } ),
+		} )
+			.then( function ( res ) {
+				if ( ! res.ok ) {
+					throw new Error( 'Request failed' );
+				}
+			} )
+			.catch( function () {
+				// Rollback on error.
+				btn.textContent    = prevLabel;
+				btn.className      = prevClass;
+				btn.dataset.status = prevStatus;
+				btn.disabled       = prevStatus !== 'not_friends';
+			} );
+	}
+
+	// ── Carousel init ─────────────────────────────────────────────────────────
+
+	/**
+	 * Initialise Swiper on an element, resolving nav/pagination selectors
 	 * to DOM nodes so multiple carousels on the same page don't conflict.
 	 *
-	 * @param {HTMLElement} container The .swiper element.
-	 * @param {object}      options   Raw Swiper options from config.
+	 * @param {HTMLElement} swiperEl The .swiper element.
+	 * @param {object}      options  Raw Swiper options from config.
 	 */
-	function initSwiper( container, options ) {
+	function initSwiper( swiperEl, options ) {
 		if ( typeof Swiper === 'undefined' ) {
 			return;
 		}
-
-		const swiperConfig = Object.assign( {}, options );
-
-		// Resolve navigation elements relative to this instance.
-		if ( swiperConfig.navigation ) {
-			swiperConfig.navigation = {
-				nextEl: container.querySelector( '.swiper-button-next' ),
-				prevEl: container.querySelector( '.swiper-button-prev' ),
-			};
+		if ( swiperEl._swiperInstance ) {
+			return;
 		}
 
-		if ( swiperConfig.pagination ) {
-			swiperConfig.pagination = {
-				el:        container.querySelector( '.swiper-pagination' ),
+		// Resolve navigation/pagination elements relative to this instance.
+		if ( options.navigation ) {
+			options.navigation = {
+				nextEl: swiperEl.querySelector( '.swiper-button-next' ),
+				prevEl: swiperEl.querySelector( '.swiper-button-prev' ),
+			};
+		}
+		if ( options.pagination ) {
+			options.pagination = {
+				el:        swiperEl.querySelector( '.swiper-pagination' ),
 				clickable: true,
 			};
 		}
 
 		// Respect prefers-reduced-motion.
 		if ( window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
-			swiperConfig.autoplay = false;
-			swiperConfig.speed    = 0;
+			options.autoplay = false;
+			options.speed    = 0;
 		}
 
-		new Swiper( container, swiperConfig );
+		swiperEl._swiperInstance = new Swiper( swiperEl, options );
 	}
 
-	// ── Carousel init ─────────────────────────────────────────────────────────
-
 	/**
-	 * Initialise a single members carousel container.
+	 * Initialise a single members carousel.
 	 *
-	 * @param {HTMLElement} container The .wbcom-members-carousel-container element
-	 *                                carrying data-wbe-mc-config.
+	 * @param {HTMLElement} swiperEl The .swiper element carrying data-wbe-mc-config.
 	 */
-	function initMembersCarousel( container ) {
-		const cfg = JSON.parse( container.dataset.wbeMcConfig || '{}' );
+	function initCarousel( swiperEl ) {
+		const cfg = JSON.parse( swiperEl.dataset.wbeMcConfig || '{}' );
 		if ( ! cfg.restUrl ) {
 			return;
 		}
@@ -168,7 +261,7 @@
 				return res.json();
 			} )
 			.then( function ( members ) {
-				const wrapper = container.querySelector( '.swiper-wrapper' );
+				const wrapper = swiperEl.querySelector( '.swiper-wrapper' );
 				if ( ! wrapper ) {
 					return;
 				}
@@ -177,10 +270,9 @@
 				wrapper.textContent = '';
 
 				if ( ! members.length ) {
-					const noData = el( 'div', 'wbcom-essential-no-data' );
-					noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
-					// Replace the entire swiper with the no-data message.
-					container.parentNode.replaceChild( noData, container );
+					const emptySlide = el( 'div', 'swiper-slide' );
+					emptySlide.appendChild( el( 'p', 'wbe-members-carousel__empty', cfg.i18n.empty ) );
+					wrapper.appendChild( emptySlide );
 					return;
 				}
 
@@ -189,28 +281,36 @@
 				} );
 
 				// Initialise Swiper now that slides are in the DOM.
-				initSwiper( container, cfg.swiperOptions || {} );
+				initSwiper( swiperEl, Object.assign( {}, cfg.swiperOptions || {} ) );
 			} )
 			.catch( function () {
-				const wrapper = container.querySelector( '.swiper-wrapper' );
+				const wrapper = swiperEl.querySelector( '.swiper-wrapper' );
 				if ( wrapper ) {
 					wrapper.textContent = '';
-					const noData = el( 'div', 'wbcom-essential-no-data' );
-					noData.appendChild( el( 'p', null, cfg.i18n.empty ) );
-					container.parentNode.replaceChild( noData, container );
+					const emptySlide = el( 'div', 'swiper-slide' );
+					emptySlide.appendChild( el( 'p', 'wbe-members-carousel__empty', cfg.i18n.empty ) );
+					wrapper.appendChild( emptySlide );
 				}
 			} );
+
+		// Event delegation for friend buttons.
+		swiperEl.addEventListener( 'click', function ( e ) {
+			const btn = e.target.closest( '.wbe-members-carousel__friend-btn' );
+			if ( btn && btn.dataset.status === 'not_friends' && ! btn.disabled ) {
+				sendFriendRequest( btn, cfg );
+			}
+		} );
 	}
 
 	// ── Boot ──────────────────────────────────────────────────────────────────
 
-	function initAll() {
-		document.querySelectorAll( '[data-wbe-mc-config]' ).forEach( initMembersCarousel );
+	function boot() {
+		document.querySelectorAll( '[data-wbe-mc-config]' ).forEach( initCarousel );
 	}
 
 	if ( document.readyState === 'loading' ) {
-		document.addEventListener( 'DOMContentLoaded', initAll );
+		document.addEventListener( 'DOMContentLoaded', boot );
 	} else {
-		initAll();
+		boot();
 	}
 } )();
