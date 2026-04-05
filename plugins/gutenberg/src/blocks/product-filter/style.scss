@@ -2,8 +2,8 @@
 
 #wbcom-product-filter,
 .wp-block-wbcom-essential-product-filter {
-	background: #fff;
-	border-bottom: 2px solid #e2e8f0;
+	background: var(--wbe-color-white);
+	border-bottom: 2px solid var(--wbe-color-border);
 	padding: 14px 20px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
@@ -19,13 +19,13 @@
 }
 
 .wbcom-filter-btn {
-	background: #f1f5f9;
-	border: 1px solid #e2e8f0;
+	background: var(--wbe-color-surface-alt);
+	border: 1px solid var(--wbe-color-border);
 	border-radius: 20px;
 	padding: 8px 18px;
 	font-size: 14px;
 	font-weight: 500;
-	color: #475569;
+	color: var(--wbe-color-text-muted);
 	cursor: pointer;
 	transition: all 0.2s ease;
 	white-space: nowrap;
@@ -33,14 +33,14 @@
 	line-height: 1.4;
 
 	&:hover {
-		background: #e2e8f0;
-		color: #1e293b;
+		background: var(--wbe-color-border);
+		color: var(--wbe-color-text);
 	}
 
 	&.active {
-		background: #0073aa;
-		color: #fff;
-		border-color: #0073aa;
+		background: var(--wbe-color-accent);
+		color: var(--wbe-color-white);
+		border-color: var(--wbe-color-accent);
 	}
 }
 

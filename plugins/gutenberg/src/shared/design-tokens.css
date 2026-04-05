@@ -46,6 +46,29 @@
 	--wbe-leading-normal: 1.5;
 	--wbe-leading-relaxed: 1.75;
 
+	/* Colors — neutral palette */
+	--wbe-color-white: #ffffff;
+	--wbe-color-text: #1e293b;
+	--wbe-color-text-muted: #475569;
+	--wbe-color-text-light: #64748b;
+	--wbe-color-border: #e2e8f0;
+	--wbe-color-surface: #f8fafc;
+	--wbe-color-surface-alt: #f1f5f9;
+	--wbe-color-accent: var(--wbcom-link-color, #0073aa);
+	--wbe-color-accent-hover: var(--wbcom-link-hover-color, #005a87);
+	--wbe-color-accent-light: rgba(0, 115, 170, 0.08);
+	--wbe-color-accent-ring: rgba(0, 115, 170, 0.2);
+
+	/* Colors — semantic */
+	--wbe-color-success: #16a34a;
+	--wbe-color-success-bg: #dcfce7;
+	--wbe-color-warning: #d97706;
+	--wbe-color-warning-bg: #fef3c7;
+	--wbe-color-danger: #ef4444;
+	--wbe-color-danger-bg: #fef2f2;
+	--wbe-color-info: #2563eb;
+	--wbe-color-info-bg: #eff6ff;
+
 	/* Responsive breakpoints (used by CSS generation utility) */
 	--wbe-bp-tablet: 1024px;
 	--wbe-bp-mobile: 767px;

@@ -50,7 +50,7 @@
 		width: 80px;
 		height: 80px;
 		border-radius: 50%;
-		background-color: #dcfce7;
+		background-color: var(--wbe-color-success-bg);
 		animation: wbcom-edd-success-check 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 
 		svg {
@@ -79,7 +79,7 @@
 	// -------------------------------------------------------------------------
 	&__receipt {
 		background: var( --wbcom-card-bg, #fff );
-		border: 1px solid #e2e8f0;
+		border: 1px solid var(--wbe-color-border);
 		border-radius: 8px;
 		padding: 2rem;
 		margin: 2rem 0;
@@ -94,13 +94,13 @@
 		td {
 			padding: 0.625rem 0.75rem;
 			text-align: left;
-			border-bottom: 1px solid #e2e8f0;
+			border-bottom: 1px solid var(--wbe-color-border);
 		}
 
 		th {
 			font-weight: 600;
 			color: var( --wbcom-color-contrast, #1e293b );
-			background-color: #f8fafc;
+			background-color: var(--wbe-color-surface);
 		}
 
 		tr:last-child td {
@@ -130,7 +130,7 @@
 	}
 
 	&__card {
-		border: 1px solid #e2e8f0;
+		border: 1px solid var(--wbe-color-border);
 		border-radius: 8px;
 		padding: 1.5rem;
 		text-align: center;
@@ -150,7 +150,7 @@
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
-		background-color: #eff6ff;
+		background-color: var(--wbe-color-info-bg);
 		margin-bottom: 1rem;
 
 		svg {
@@ -175,7 +175,7 @@
 	&__card-link {
 		display: inline-block;
 		background-color: var( --wbcom-link-color, #2563eb );
-		color: #fff;
+		color: var(--wbe-color-white);
 		text-decoration: none;
 		padding: 0.5rem 1.25rem;
 		border-radius: 6px;
@@ -187,7 +187,7 @@
 		&:hover,
 		&:focus {
 			background-color: #1d4ed8;
-			color: #fff;
+			color: var(--wbe-color-white);
 			text-decoration: none;
 		}
 
