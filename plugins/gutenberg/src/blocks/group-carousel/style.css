@@ -129,6 +129,14 @@
 	padding-top: 12px;
 }
 
+.wbe-group-carousel__action .generic-button {
+	border: none;
+	padding: 0;
+	margin: 0;
+	background: none;
+	box-shadow: none;
+}
+
 .wbe-group-carousel__action .generic-button a,
 .wbe-group-carousel__action .generic-button button {
 	display: inline-block;

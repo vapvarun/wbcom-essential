@@ -125,6 +125,14 @@
 	padding-top: 8px;
 }
 
+.wbe-groups-grid__action .generic-button {
+	border: none;
+	padding: 0;
+	margin: 0;
+	background: none;
+	box-shadow: none;
+}
+
 .wbe-groups-grid__action .group-button,
 .wbe-groups-grid__action a.group-button,
 .wbe-groups-grid__action button.group-button,

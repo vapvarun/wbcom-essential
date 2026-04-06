@@ -97,6 +97,14 @@
 	padding-top: 12px;
 }
 
+.wbe-members-carousel__action .generic-button {
+	border: none;
+	padding: 0;
+	margin: 0;
+	background: none;
+	box-shadow: none;
+}
+
 .wbe-members-carousel__action .generic-button a,
 .wbe-members-carousel__action .generic-button button,
 .wbe-members-carousel__friend-btn {
