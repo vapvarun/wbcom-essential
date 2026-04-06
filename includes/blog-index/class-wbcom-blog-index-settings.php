@@ -44,81 +44,111 @@ class Wbcom_Blog_Index_Settings {
 	 * Initialize hooks.
 	 */
 	public function __construct() {
-		$this->layout_choices = array(
-			''          => __( 'None (Use Theme Default)', 'wbcom-essential' ),
-			'grid'      => __( 'Grid (Card Layout)', 'wbcom-essential' ),
-			'list'      => __( 'List (Horizontal Cards)', 'wbcom-essential' ),
-			'magazine'  => __( 'Magazine (Multi-Section)', 'wbcom-essential' ),
-			'newspaper' => __( 'Newspaper (Breaking News)', 'wbcom-essential' ),
-		);
-
-		$this->display_types = array(
-			'posts_type1' => __( 'Hero + Sidebar', 'wbcom-essential' ),
-			'posts_type2' => __( 'Featured + List', 'wbcom-essential' ),
-			'posts_type3' => __( 'Grid (Columns)', 'wbcom-essential' ),
-			'posts_type4' => __( 'Side by Side', 'wbcom-essential' ),
-			'posts_type5' => __( 'Hero + Text Sidebar', 'wbcom-essential' ),
-			'posts_type6' => __( 'Magazine (1+3+Rest)', 'wbcom-essential' ),
-			'posts_type7' => __( 'Two Featured + List', 'wbcom-essential' ),
-		);
-
-		self::$layout_defaults = array(
-			'magazine'  => array(
-				array(
-					'title'        => __( 'Featured', 'wbcom-essential' ),
-					'category'     => '',
-					'display_type' => 'posts_type1',
-					'posts_count'  => 5,
-				),
-				array(
-					'title'        => '',
-					'category'     => '',
-					'display_type' => 'posts_type3',
-					'posts_count'  => 6,
-				),
-				array(
-					'title'        => '',
-					'category'     => '',
-					'display_type' => 'posts_type4',
-					'posts_count'  => 4,
-				),
-				array(
-					'title'        => '',
-					'category'     => '',
-					'display_type' => 'posts_type6',
-					'posts_count'  => 5,
-				),
-			),
-			'newspaper' => array(
-				array(
-					'title'        => '',
-					'category'     => '',
-					'display_type' => 'posts_type3',
-					'posts_count'  => 6,
-				),
-				array(
-					'title'        => '',
-					'category'     => '',
-					'display_type' => 'posts_type5',
-					'posts_count'  => 5,
-				),
-				array(
-					'title'        => '',
-					'category'     => '',
-					'display_type' => 'posts_type7',
-					'posts_count'  => 6,
-				),
-				array(
-					'title'        => '',
-					'category'     => '',
-					'display_type' => 'posts_type4',
-					'posts_count'  => 4,
-				),
-			),
-		);
-
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_settings_js' ) );
+	}
+
+	/**
+	 * Lazy-load layout choices to avoid early textdomain calls.
+	 *
+	 * @return array
+	 */
+	public function get_layout_choices() {
+		if ( empty( $this->layout_choices ) ) {
+			$this->layout_choices = array(
+				''          => __( 'None (Use Theme Default)', 'wbcom-essential' ),
+				'grid'      => __( 'Grid (Card Layout)', 'wbcom-essential' ),
+				'list'      => __( 'List (Horizontal Cards)', 'wbcom-essential' ),
+				'magazine'  => __( 'Magazine (Multi-Section)', 'wbcom-essential' ),
+				'newspaper' => __( 'Newspaper (Breaking News)', 'wbcom-essential' ),
+			);
+		}
+		return $this->layout_choices;
+	}
+
+	/**
+	 * Lazy-load display types.
+	 *
+	 * @return array
+	 */
+	public function get_display_types() {
+		if ( empty( $this->display_types ) ) {
+			$this->display_types = array(
+				'posts_type1' => __( 'Hero + Sidebar', 'wbcom-essential' ),
+				'posts_type2' => __( 'Featured + List', 'wbcom-essential' ),
+				'posts_type3' => __( 'Grid (Columns)', 'wbcom-essential' ),
+				'posts_type4' => __( 'Side by Side', 'wbcom-essential' ),
+				'posts_type5' => __( 'Hero + Text Sidebar', 'wbcom-essential' ),
+				'posts_type6' => __( 'Magazine (1+3+Rest)', 'wbcom-essential' ),
+				'posts_type7' => __( 'Two Featured + List', 'wbcom-essential' ),
+			);
+		}
+		return $this->display_types;
+	}
+
+	/**
+	 * Get layout defaults.
+	 *
+	 * @return array
+	 */
+	public static function get_layout_defaults() {
+		if ( empty( self::$layout_defaults ) ) {
+			self::$layout_defaults = array(
+				'magazine'  => array(
+					array(
+						'title'        => __( 'Featured', 'wbcom-essential' ),
+						'category'     => '',
+						'display_type' => 'posts_type1',
+						'posts_count'  => 5,
+					),
+					array(
+						'title'        => '',
+						'category'     => '',
+						'display_type' => 'posts_type3',
+						'posts_count'  => 6,
+					),
+					array(
+						'title'        => '',
+						'category'     => '',
+						'display_type' => 'posts_type4',
+						'posts_count'  => 4,
+					),
+					array(
+						'title'        => '',
+						'category'     => '',
+						'display_type' => 'posts_type6',
+						'posts_count'  => 5,
+					),
+				),
+				'newspaper' => array(
+					array(
+						'title'        => '',
+						'category'     => '',
+						'display_type' => 'posts_type3',
+						'posts_count'  => 6,
+					),
+					array(
+						'title'        => '',
+						'category'     => '',
+						'display_type' => 'posts_type5',
+						'posts_count'  => 5,
+					),
+					array(
+						'title'        => '',
+						'category'     => '',
+						'display_type' => 'posts_type7',
+						'posts_count'  => 6,
+					),
+					array(
+						'title'        => '',
+						'category'     => '',
+						'display_type' => 'posts_type4',
+						'posts_count'  => 4,
+					),
+				),
+			);
+		}
+		return self::$layout_defaults;
 	}
 
 	/**
@@ -238,7 +268,7 @@ class Wbcom_Blog_Index_Settings {
 	public function render_layout_field() {
 		$current = get_option( 'wbcom_essential_blog_index_layout', '' );
 		echo '<select name="wbcom_essential_blog_index_layout" id="wbcom_essential_blog_index_layout">';
-		foreach ( $this->layout_choices as $value => $label ) {
+		foreach ( $this->get_layout_choices() as $value => $label ) {
 			echo '<option value="' . esc_attr( $value ) . '"' . selected( $current, $value, false ) . '>' . esc_html( $label ) . '</option>';
 		}
 		echo '</select>';
@@ -290,7 +320,7 @@ class Wbcom_Blog_Index_Settings {
 		$sections = get_option( 'wbcom_essential_blog_sections', array() );
 
 		// If no sections saved yet, use defaults for the current layout.
-		if ( empty( $sections ) && isset( self::$layout_defaults[ $layout ] ) ) {
+		if ( empty( $sections ) && isset( self::get_layout_defaults()[ $layout ] ) ) {
 			$sections = self::$layout_defaults[ $layout ];
 		}
 
@@ -378,7 +408,7 @@ class Wbcom_Blog_Index_Settings {
 				<label>
 					<span><?php esc_html_e( 'Display Style', 'wbcom-essential' ); ?></span>
 					<select name="<?php echo esc_attr( $name_prefix ); ?>[display_type]">
-						<?php foreach ( $this->display_types as $value => $label ) : ?>
+						<?php foreach ( $this->get_display_types() as $value => $label ) : ?>
 							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $section['display_type'], $value ); ?>>
 								<?php echo esc_html( $label ); ?>
 							</option>
@@ -427,7 +457,7 @@ class Wbcom_Blog_Index_Settings {
 	 * @return string
 	 */
 	private function get_settings_js() {
-		$defaults_json = wp_json_encode( self::$layout_defaults );
+		$defaults_json = wp_json_encode( self::get_layout_defaults() );
 		return <<<JS
 jQuery(function($) {
 	var layoutDefaults = {$defaults_json};
@@ -553,7 +583,7 @@ JS;
 		}
 
 		$sanitized = array();
-		$valid_types = array_keys( $this->display_types );
+		$valid_types = array_keys( $this->get_display_types() );
 
 		foreach ( $value as $section ) {
 			if ( ! is_array( $section ) ) {
@@ -589,7 +619,7 @@ JS;
 	 * @return string Sanitized value.
 	 */
 	public function sanitize_layout_choice( $value ) {
-		$valid = array_keys( $this->layout_choices );
+		$valid = array_keys( $this->get_layout_choices() );
 		return in_array( $value, $valid, true ) ? $value : '';
 	}
 
@@ -600,11 +630,8 @@ JS;
 	 * @return array Default sections.
 	 */
 	public static function get_defaults( $layout ) {
-		if ( empty( self::$layout_defaults ) ) {
-			// Fallback if called before constructor.
-			return array();
-		}
-		return isset( self::$layout_defaults[ $layout ] ) ? self::$layout_defaults[ $layout ] : array();
+		$defaults = self::get_layout_defaults();
+		return isset( $defaults[ $layout ] ) ? $defaults[ $layout ] : array();
 	}
 
 	/**

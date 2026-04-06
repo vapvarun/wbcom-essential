@@ -93,7 +93,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		private function __construct() {
 			add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 5 );
 			add_action( 'init', array( $this, 'wbcom_essential_elementor_add_image_sizes' ) );
-			add_action( 'init', array( $this, 'load_textdomain' ) );
+			// Textdomain auto-loaded by WP 6.7+ via plugin headers (Text Domain + Domain Path).
 		}
 
 		/**
