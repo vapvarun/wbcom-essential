@@ -169,6 +169,7 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 			'columnsMobile'    => $cols_mob,
 			'gap'              => $gap,
 			'loggedIn'         => is_user_logged_in(),
+			'currentUserId'    => get_current_user_id(),
 			'colors'           => array(
 				'cardBg'    => $card_bg,
 				'nameColor' => $name_color,
@@ -180,8 +181,8 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 				'members'     => __( 'Members', 'wbcom-essential' ),
 				'activeAgo'   => __( 'Active %s', 'wbcom-essential' ),
 				'joinGroup'   => __( 'Join Group', 'wbcom-essential' ),
-				'memberOf'    => __( 'Member', 'wbcom-essential' ),
-				'requestSent' => __( 'Requested', 'wbcom-essential' ),
+				'joined'      => __( 'Joined', 'wbcom-essential' ),
+				'pending'     => __( 'Pending', 'wbcom-essential' ),
 			),
 		);
 		?>

@@ -49,6 +49,85 @@
 		return doc.documentElement.textContent;
 	}
 
+	// ── Join button ───────────────────────────────────────────────────────────
+
+	/**
+	 * Build a join/joined button for a group.
+	 *
+	 * @param {object} group        BP REST group object.
+	 * @param {object} cfg          Block config.
+	 * @param {Set}    userGroupIds Set of group IDs the current user belongs to.
+	 * @return {HTMLButtonElement}
+	 */
+	function buildJoinButton( group, cfg, userGroupIds ) {
+		var isMember = userGroupIds.has( group.id );
+		var btn      = document.createElement( 'button' );
+		btn.type     = 'button';
+		btn.dataset.groupId = group.id;
+
+		if ( isMember ) {
+			btn.className   = 'wbe-groups-grid__join-btn wbe-gg-join--member';
+			btn.textContent = cfg.i18n.joined;
+			btn.dataset.status = 'member';
+			btn.disabled    = true;
+		} else {
+			btn.className   = 'wbe-groups-grid__join-btn wbe-gg-join--not-member';
+			btn.textContent = cfg.i18n.joinGroup;
+			btn.dataset.status = 'not_member';
+		}
+		return btn;
+	}
+
+	/**
+	 * Send a join group request via BP REST API with optimistic UI.
+	 *
+	 * @param {HTMLButtonElement} btn Clicked join button.
+	 * @param {object}            cfg Block config.
+	 */
+	function sendJoinRequest( btn, cfg ) {
+		var groupId    = parseInt( btn.dataset.groupId, 10 );
+		var prevLabel  = btn.textContent;
+		var prevClass  = btn.className;
+		var prevStatus = btn.dataset.status;
+
+		// Optimistic update.
+		btn.disabled       = true;
+		btn.textContent    = cfg.i18n.joined;
+		btn.className      = 'wbe-groups-grid__join-btn wbe-gg-join--member';
+		btn.dataset.status = 'member';
+
+		var membersUrl = cfg.restUrl.replace( /\/$/, '' ) + '/' + groupId + '/members';
+
+		fetch( membersUrl, {
+			method:      'POST',
+			headers:     {
+				'Content-Type': 'application/json',
+				'X-WP-Nonce':  cfg.restNonce,
+			},
+			credentials: 'same-origin',
+			body:        JSON.stringify( { user_id: cfg.currentUserId } ),
+		} )
+			.then( function ( res ) {
+				if ( ! res.ok ) {
+					throw new Error( 'Join failed' );
+				}
+				return res.json();
+			} )
+			.then( function ( data ) {
+				if ( data.is_confirmed === false ) {
+					btn.textContent    = cfg.i18n.pending;
+					btn.className      = 'wbe-groups-grid__join-btn wbe-gg-join--pending';
+					btn.dataset.status = 'pending';
+				}
+			} )
+			.catch( function () {
+				btn.textContent    = prevLabel;
+				btn.className      = prevClass;
+				btn.dataset.status = prevStatus;
+				btn.disabled       = prevStatus !== 'not_member';
+			} );
+	}
+
 	// ── Card builder ──────────────────────────────────────────────────────────
 
 	/**
@@ -123,14 +202,10 @@
 
 		info.appendChild( meta );
 
-		// Join button — links to group page (most reliable cross-BP-version approach).
+		// Join button — BP REST API with optimistic UI.
 		if ( cfg.showJoinButton && cfg.loggedIn ) {
 			const actionWrap = el( 'div', 'wbe-groups-grid__action' );
-			const joinLink   = document.createElement( 'a' );
-			joinLink.href    = group.link || '#';
-			joinLink.className   = 'wbe-groups-grid__join-btn';
-			joinLink.textContent = cfg.i18n.joinGroup;
-			actionWrap.appendChild( joinLink );
+			actionWrap.appendChild( buildJoinButton( group, cfg, cfg._userGroupIds ) );
 			info.appendChild( actionWrap );
 		}
 
@@ -170,6 +245,27 @@
 				return res.json();
 			} )
 			.then( function ( groups ) {
+				// If join button enabled, fetch user's groups to determine membership.
+				if ( cfg.showJoinButton && cfg.loggedIn && cfg.currentUserId ) {
+					var userGroupsUrl = new URL( cfg.restUrl, window.location.origin );
+					userGroupsUrl.searchParams.set( 'user_id', cfg.currentUserId );
+					userGroupsUrl.searchParams.set( 'per_page', 100 );
+
+					return fetch( userGroupsUrl.toString(), { headers: headers, credentials: 'same-origin' } )
+						.then( function ( res ) { return res.ok ? res.json() : []; } )
+						.then( function ( userGroups ) {
+							cfg._userGroupIds = new Set( userGroups.map( function ( g ) { return g.id; } ) );
+							return groups;
+						} )
+						.catch( function () {
+							cfg._userGroupIds = new Set();
+							return groups;
+						} );
+				}
+				cfg._userGroupIds = new Set();
+				return groups;
+			} )
+			.then( function ( groups ) {
 				// Clear the loading placeholder.
 				listEl.textContent = '';
 
@@ -180,6 +276,14 @@
 
 				groups.forEach( function ( group ) {
 					listEl.appendChild( buildCard( group, cfg ) );
+				} );
+
+				// Event delegation for join buttons.
+				listEl.addEventListener( 'click', function ( e ) {
+					var btn = e.target.closest( '.wbe-groups-grid__join-btn' );
+					if ( btn && btn.dataset.status === 'not_member' && ! btn.disabled ) {
+						sendJoinRequest( btn, cfg );
+					}
 				} );
 			} )
 			.catch( function () {

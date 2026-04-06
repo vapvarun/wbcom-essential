@@ -122,60 +122,68 @@
 /* Join button */
 .wbe-groups-grid__action {
 	margin-top: auto;
+	padding-top: 8px;
 }
 
 .wbe-groups-grid__action .group-button,
 .wbe-groups-grid__action a.group-button,
-.wbe-groups-grid__action button.group-button {
+.wbe-groups-grid__action button.group-button,
+.wbe-groups-grid__action .generic-button a,
+.wbe-groups-grid__action .generic-button button,
+.wbe-groups-grid__join-btn {
 	display: inline-block;
 	padding: 6px 16px;
 	font-size: 13px;
 	font-weight: 500;
-	background: var( --wbe-gg-join-accent );
-	color: #ffffff;
-	border: none;
-	border-radius: 4px;
+	color: var( --wbe-gg-join-accent );
+	background: transparent;
+	border: 1px solid var( --wbe-gg-join-accent );
+	border-radius: 30px;
 	text-decoration: none;
 	cursor: pointer;
-	transition: opacity 0.2s ease;
+	transition: background 0.2s ease, color 0.2s ease;
+	line-height: 1.4;
 }
 
 .wbe-groups-grid__action .group-button:hover,
-.wbe-groups-grid__action a.group-button:hover,
-.wbe-groups-grid__action button.group-button:hover {
-	opacity: 0.88;
+.wbe-groups-grid__action .generic-button a:hover,
+.wbe-groups-grid__action .generic-button button:hover,
+.wbe-groups-grid__join-btn:hover {
+	color: #ffffff;
+	background: var( --wbe-gg-join-accent );
+}
+
+.wbe-gg-join--member {
+	color: #ffffff;
+	background: var( --wbe-gg-join-accent );
+	border-color: var( --wbe-gg-join-accent );
+	cursor: default;
+	opacity: 0.8;
+}
+
+.wbe-gg-join--pending {
+	color: #6c757d;
+	border-color: #6c757d;
+	cursor: default;
+	opacity: 0.7;
+}
+
+.wbe-gg-join--pending:hover {
+	background: transparent;
+	color: #6c757d;
+}
+
+.wbe-groups-grid__join-btn:disabled {
+	cursor: default;
 }
 
 .wbe-groups-grid__action .group-button.leave-group,
-.wbe-groups-grid__action .group-button.membership-requested {
-	background: #e5e7eb;
-	color: #374151;
-}
-
-.wbe-groups-grid__action .generic-button a,
-.wbe-groups-grid__action .generic-button button {
-	display: inline-block;
-	padding: 6px 16px;
-	font-size: 13px;
-	font-weight: 500;
-	background: var( --wbe-gg-join-accent );
-	color: #ffffff;
-	border: none;
-	border-radius: 4px;
-	text-decoration: none;
-	cursor: pointer;
-	transition: opacity 0.2s ease;
-}
-
-.wbe-groups-grid__action .generic-button a:hover,
-.wbe-groups-grid__action .generic-button button:hover {
-	opacity: 0.88;
-}
-
 .wbe-groups-grid__action .generic-button.leave-group a,
+.wbe-groups-grid__action .group-button.membership-requested,
 .wbe-groups-grid__action .generic-button.membership-requested a {
 	background: #e5e7eb;
 	color: #374151;
+	border-color: #e5e7eb;
 }
 
 /* Empty state */
