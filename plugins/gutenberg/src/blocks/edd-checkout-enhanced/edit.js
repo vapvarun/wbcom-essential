@@ -396,76 +396,121 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 			<div { ...blockProps }>
 				{ blockCSS && <style>{ blockCSS }</style> }
-				<div className="wbcom-edd-checkout-enhanced-placeholder">
-					<div className="wbcom-edd-checkout-enhanced-placeholder__icon">
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							width="28"
-							height="28"
-							aria-hidden="true"
-						>
-							<path
-								d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"
-								stroke="currentColor"
-								strokeWidth="1.75"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<line
-								x1="3"
-								y1="6"
-								x2="21"
-								y2="6"
-								stroke="currentColor"
-								strokeWidth="1.75"
-								strokeLinecap="round"
-							/>
-							<path
-								d="M16 10a4 4 0 01-8 0"
-								stroke="currentColor"
-								strokeWidth="1.75"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-						</svg>
+
+				{ /* Progress Bar Preview */ }
+				{ showProgressBar && (
+					<div className="wbcom-edd-checkout__progress" style={ { pointerEvents: 'none' } }>
+						<div style={ { display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: 600, margin: '0 auto', padding: '24px 0' } }>
+							{ [ { label: __( 'Cart', 'wbcom-essential' ), done: true }, { label: __( 'Details', 'wbcom-essential' ), active: true }, { label: __( 'Payment', 'wbcom-essential' ) }, { label: __( 'Complete', 'wbcom-essential' ) } ].map( ( step, i ) => (
+								<div key={ i } style={ { textAlign: 'center', flex: 1 } }>
+									<div style={ {
+										width: 36, height: 36, borderRadius: '50%', margin: '0 auto 6px',
+										display: 'flex', alignItems: 'center', justifyContent: 'center',
+										background: step.done ? '#0073aa' : step.active ? '#fff' : '#f1f5f9',
+										border: step.active ? '2px solid #0073aa' : step.done ? 'none' : '2px solid #e2e8f0',
+										color: step.done ? '#fff' : step.active ? '#0073aa' : '#94a3b8',
+										fontSize: 14, fontWeight: 600,
+									} }>
+										{ step.done ? '✓' : i + 1 }
+									</div>
+									<span style={ { fontSize: 12, fontWeight: step.active ? 600 : 400, color: step.active ? '#0073aa' : '#64748b' } }>
+										{ step.label }
+									</span>
+								</div>
+							) ) }
+						</div>
 					</div>
+				) }
 
-					<p className="wbcom-edd-checkout-enhanced-placeholder__title">
-						{ __( 'EDD Enhanced Checkout', 'wbcom-essential' ) }
+				{ /* Checkout Form Placeholder */ }
+				<div style={ { background: '#f8fafc', border: '2px dashed #e2e8f0', borderRadius: 8, padding: '40px 24px', textAlign: 'center', margin: '16px 0' } }>
+					<svg viewBox="0 0 24 24" fill="none" width="28" height="28" style={ { margin: '0 auto 8px', display: 'block', color: '#94a3b8' } }>
+						<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+						<line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
+						<path d="M16 10a4 4 0 01-8 0" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+					</svg>
+					<p style={ { margin: 0, fontSize: 14, fontWeight: 600, color: '#475569' } }>
+						{ __( 'EDD Checkout Form', 'wbcom-essential' ) }
 					</p>
-
-					<p className="wbcom-edd-checkout-enhanced-placeholder__description">
-						{ __(
-							"Renders EDD's native checkout form with optional progress bar, trust badges, reviews, and recommendations. Use the block settings to configure.",
-							'wbcom-essential'
-						) }
+					<p style={ { margin: '4px 0 0', fontSize: 12, color: '#94a3b8' } }>
+						{ __( 'The native EDD checkout form renders here on the frontend.', 'wbcom-essential' ) }
 					</p>
-
-					<div className="wbcom-edd-checkout-enhanced-placeholder__badges">
-						{ showProgressBar && (
-							<span className="wbcom-edd-checkout-enhanced-placeholder__badge wbcom-edd-checkout-enhanced-placeholder__badge--progress">
-								{ __( 'Progress bar', 'wbcom-essential' ) }
-							</span>
-						) }
-						{ showTrustBadges && (
-							<span className="wbcom-edd-checkout-enhanced-placeholder__badge wbcom-edd-checkout-enhanced-placeholder__badge--trust">
-								{ __( 'Trust badges', 'wbcom-essential' ) }
-							</span>
-						) }
-						{ showReviews && (
-							<span className="wbcom-edd-checkout-enhanced-placeholder__badge wbcom-edd-checkout-enhanced-placeholder__badge--trust">
-								{ __( 'Reviews', 'wbcom-essential' ) }
-							</span>
-						) }
-						{ showRecommendations && (
-							<span className="wbcom-edd-checkout-enhanced-placeholder__badge wbcom-edd-checkout-enhanced-placeholder__badge--progress">
-								{ __( 'Recommendations', 'wbcom-essential' ) }
-							</span>
-						) }
-					</div>
 				</div>
+
+				{ /* Trust Badges Preview */ }
+				{ showTrustBadges && (
+					<div style={ { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, margin: '16px 0' } }>
+						{ [
+							{ icon: '🛡️', title: trustBadgeText, desc: __( 'Your payment information is encrypted and secure.', 'wbcom-essential' ) },
+							{ icon: '✅', title: __( '14-Day Money Back', 'wbcom-essential' ), desc: __( 'Full refund if you are not satisfied.', 'wbcom-essential' ) },
+							{ icon: '💬', title: __( 'Priority Support', 'wbcom-essential' ), desc: __( 'Dedicated support for all customers.', 'wbcom-essential' ) },
+						].map( ( badge, i ) => (
+							<div key={ i } style={ { display: 'flex', gap: 10, padding: 16, border: '1px solid #e2e8f0', borderRadius: 8, background: '#fff' } }>
+								<span style={ { fontSize: 20, flexShrink: 0 } }>{ badge.icon }</span>
+								<div>
+									<div style={ { fontSize: 13, fontWeight: 600, color: '#1e293b' } }>{ badge.title }</div>
+									<div style={ { fontSize: 12, color: '#64748b', marginTop: 2 } }>{ badge.desc }</div>
+								</div>
+							</div>
+						) ) }
+					</div>
+				) }
+
+				{ /* Payment Icons Preview */ }
+				{ showTrustBadges && (
+					<div style={ { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, padding: '12px 16px', border: '1px solid #e2e8f0', borderRadius: 8, background: '#fff', margin: '0 0 16px' } }>
+						<span style={ { fontSize: 13, color: '#64748b' } }>{ __( 'Accepted payments:', 'wbcom-essential' ) }</span>
+						{ paymentIcons?.visa && <span style={ { fontSize: 12, fontWeight: 700, color: '#1A1F71', background: '#f1f5f9', padding: '4px 8px', borderRadius: 4 } }>VISA</span> }
+						{ paymentIcons?.mastercard && <span style={ { fontSize: 12, fontWeight: 700, color: '#EB001B', background: '#f1f5f9', padding: '4px 8px', borderRadius: 4 } }>MC</span> }
+						{ paymentIcons?.paypal && <span style={ { fontSize: 12, fontWeight: 700, color: '#003087', background: '#f1f5f9', padding: '4px 8px', borderRadius: 4 } }>PayPal</span> }
+						{ paymentIcons?.stripe && <span style={ { fontSize: 12, fontWeight: 700, color: '#6772E5', background: '#f1f5f9', padding: '4px 8px', borderRadius: 4 } }>Stripe</span> }
+						{ paymentIcons?.razorpay && <span style={ { fontSize: 12, fontWeight: 700, color: '#072654', background: '#f1f5f9', padding: '4px 8px', borderRadius: 4 } }>Razorpay</span> }
+					</div>
+				) }
+
+				{ /* Trustpilot Preview */ }
+				{ showTrustpilot && trustpilotReviews.length > 0 && (
+					<div style={ { border: '1px solid #e2e8f0', borderRadius: 12, padding: 20, background: '#fff', margin: '0 0 16px' } }>
+						<div style={ { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid #e2e8f0', flexWrap: 'wrap', gap: 8 } }>
+							<div style={ { display: 'flex', alignItems: 'center', gap: 8 } }>
+								<span style={ { fontSize: 18, color: '#00B67A' } }>★</span>
+								<span style={ { fontSize: 16, fontWeight: 700 } }>Trustpilot</span>
+							</div>
+							<div style={ { display: 'flex', alignItems: 'center', gap: 8 } }>
+								<span style={ { color: '#00B67A', fontWeight: 700 } }>
+									{ '★'.repeat( Math.floor( trustpilotRating ) ) }
+									{ trustpilotRating % 1 >= 0.5 ? '½' : '' }
+								</span>
+								<span style={ { fontSize: 14, color: '#475569' } }>
+									<strong>{ trustpilotRating }</strong>/5
+								</span>
+								{ trustpilotCount > 0 && (
+									<span style={ { fontSize: 12, color: '#94a3b8' } }>
+										{ `(${ trustpilotCount } reviews)` }
+									</span>
+								) }
+							</div>
+						</div>
+						<div style={ { display: 'grid', gridTemplateColumns: `repeat(${ Math.min( trustpilotReviews.length, 3 ) }, 1fr)`, gap: 12 } }>
+							{ trustpilotReviews.map( ( review, i ) => (
+								<div key={ i } style={ { padding: 12, border: '1px solid #e2e8f0', borderRadius: 8, background: '#f8fafc' } }>
+									<div style={ { color: '#00B67A', fontSize: 12, marginBottom: 4 } }>
+										{ '★'.repeat( review.stars ) }
+									</div>
+									<div style={ { fontSize: 13, fontWeight: 600, color: '#1e293b', marginBottom: 4 } }>
+										{ review.title || __( '(no title)', 'wbcom-essential' ) }
+									</div>
+									<div style={ { fontSize: 12, color: '#64748b', marginBottom: 6, lineHeight: 1.5 } }>
+										{ review.text ? review.text.substring( 0, 80 ) + ( review.text.length > 80 ? '...' : '' ) : '' }
+									</div>
+									<div style={ { fontSize: 11, fontWeight: 500, color: '#94a3b8' } }>
+										{ review.name || __( '(anonymous)', 'wbcom-essential' ) }
+									</div>
+								</div>
+							) ) }
+						</div>
+					</div>
+				) }
 			</div>
 		</>
 	);
