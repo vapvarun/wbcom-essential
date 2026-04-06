@@ -18,11 +18,12 @@
 
 		// Apply sticky positioning.
 		if ( isSticky ) {
-			var stickyTop = document.body.classList.contains( 'admin-bar' )
-				? '32px'
-				: '0';
+			var adminBarHeight = document.body.classList.contains( 'admin-bar' ) ? 32 : 0;
+			var header = document.querySelector( '.site-header, header, #masthead, .reign-header' );
+			var headerHeight = header ? header.offsetHeight : 0;
+			var stickyTop = ( adminBarHeight + headerHeight ) + 'px';
 			bar.style.position = 'sticky';
-			bar.style.zIndex = '100';
+			bar.style.zIndex = '99';
 			bar.style.top = stickyTop;
 
 			// Toggle .is-stuck class when the bar becomes sticky.

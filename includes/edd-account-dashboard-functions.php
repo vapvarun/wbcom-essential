@@ -14,6 +14,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Sanitize HTML allowing form elements (input, select, textarea, button, form).
+ *
+ * wp_kses_post() strips form tags. This extends the post allowlist with
+ * form elements required by the EDD profile editor.
+ *
+ * @param string $html Raw HTML.
+ * @return string Sanitized HTML.
+ */
+function wbcom_essential_kses_form( $html ) {
+	$allowed           = wp_kses_allowed_html( 'post' );
+	$allowed['form']   = array( 'id' => true, 'class' => true, 'action' => true, 'method' => true, 'enctype' => true, 'novalidate' => true );
+	$allowed['input']  = array( 'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'placeholder' => true, 'required' => true, 'checked' => true, 'disabled' => true, 'readonly' => true, 'min' => true, 'max' => true, 'step' => true, 'maxlength' => true, 'autocomplete' => true, 'aria-label' => true );
+	$allowed['select'] = array( 'id' => true, 'name' => true, 'class' => true, 'required' => true, 'disabled' => true, 'multiple' => true, 'aria-label' => true );
+	$allowed['option'] = array( 'value' => true, 'selected' => true, 'disabled' => true );
+	$allowed['optgroup'] = array( 'label' => true, 'disabled' => true );
+	$allowed['textarea'] = array( 'id' => true, 'name' => true, 'class' => true, 'rows' => true, 'cols' => true, 'placeholder' => true, 'required' => true, 'disabled' => true, 'readonly' => true, 'maxlength' => true, 'aria-label' => true );
+	$allowed['button'] = array( 'type' => true, 'id' => true, 'name' => true, 'class' => true, 'value' => true, 'disabled' => true, 'aria-label' => true );
+	$allowed['label']  = array( 'for' => true, 'class' => true );
+	$allowed['fieldset'] = array( 'class' => true, 'disabled' => true );
+	$allowed['legend'] = array( 'class' => true );
+
+	return wp_kses( $html, $allowed );
+}
+
+/**
  * Register REST API routes for EDD account tab content.
  */
 function wbcom_essential_edd_account_rest_routes() {
@@ -134,7 +159,7 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 		}
 	}
 
-	return rest_ensure_response( array( 'html' => wp_kses_post( $html ) ) );
+	return rest_ensure_response( array( 'html' => wbcom_essential_kses_form( $html ) ) );
 }
 
 /**

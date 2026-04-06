@@ -218,7 +218,7 @@ $initial_content = ob_get_clean();
 				<span class="wbcom-edd-account__spinner"></span>
 			</div>
 			<div class="wbcom-edd-account__inner">
-				<?php echo wp_kses_post( $initial_content ); ?>
+				<?php echo wbcom_essential_kses_form( $initial_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sanitized by wbcom_essential_kses_form() ?>
 			</div>
 		</div>
 	</main>
