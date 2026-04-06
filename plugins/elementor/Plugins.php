@@ -69,7 +69,7 @@ class Plugin {
 	 *
 	 * @var string
 	 */
-	public static $minimum_elementor_version = '2.0.0';
+	public static $minimum_elementor_version = '3.5.0';
 
 	/**
 	 * The plugin directory.
@@ -309,9 +309,9 @@ class Plugin {
 				'class' => 'Buddypress\MembersGrid',
 			);
 
-			$elements['Buddypress/MemeberCarousel'] = array(
+			$elements['Buddypress/MemberCarousel'] = array(
 				'name'  => 'wbcom-members-carousel',
-				'class' => 'Buddypress\MemeberCarousel',
+				'class' => 'Buddypress\MemberCarousel',
 			);
 
 			if ( bp_is_active( 'groups' ) ) {

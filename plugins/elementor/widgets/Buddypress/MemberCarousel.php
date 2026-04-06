@@ -27,7 +27,7 @@ use Elementor\Group_Control_Box_Shadow;
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/plugins/elementor/widget/buddypress
  */
-class MemeberCarousel extends \Elementor\Widget_Base {
+class MemberCarousel extends \Elementor\Widget_Base {
 
 	/**
 	 * Construct.

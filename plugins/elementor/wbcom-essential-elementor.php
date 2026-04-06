@@ -31,7 +31,7 @@ function wbcom_essential_elementor_load() {
 	}
 
 	// Check required version.
-	$elementor_version_required = '3.0.0';
+	$elementor_version_required = '3.5.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
 		add_action( 'admin_notices', 'wbcom_essential_elementor_fail_load_out_of_date' );
 

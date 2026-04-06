@@ -399,7 +399,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:114
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:111
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:114
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:138
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:138
 #: plugins/gutenberg/blocks/groups-lists/src/render.php:73
 #: plugins/gutenberg/blocks/members-lists/src/render.php:79
 msgid "Newest"
@@ -686,7 +686,7 @@ msgstr ""
 #: build/blocks/post-carousel/render.php:355
 #: build/blocks/posts-ticker/render.php:142
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:474
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:483
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:483
 #: plugins/gutenberg/blocks/post-carousel/src/render.php:355
 #: plugins/gutenberg/blocks/posts-ticker/src/render.php:142
 msgid "Previous"
@@ -695,7 +695,7 @@ msgstr ""
 #: build/blocks/post-carousel/render.php:358
 #: build/blocks/posts-ticker/render.php:155
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:478
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:487
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:487
 #: plugins/gutenberg/blocks/post-carousel/src/render.php:358
 #: plugins/gutenberg/blocks/posts-ticker/src/render.php:155
 msgid "Next"
@@ -961,7 +961,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:126
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:99
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:99
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:126
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:126
 #: plugins/elementor/widgets/General/Accordion.php:242
 #: plugins/elementor/widgets/General/TextRotator.php:160
 msgid "Settings"
@@ -1107,7 +1107,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:333
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:343
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:177
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:341
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:341
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:129
 #: plugins/elementor/widgets/General/Branding.php:124
 #: plugins/elementor/widgets/General/DropdownButton.php:189
@@ -1152,7 +1152,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:334
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:351
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:181
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:342
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:342
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:137
 #: plugins/elementor/widgets/General/Branding.php:132
 #: plugins/elementor/widgets/General/DropdownButton.php:197
@@ -1192,7 +1192,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:215
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:728
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:365
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:223
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:223
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:351
 #: plugins/elementor/widgets/General/DropdownButton.php:98
 #: plugins/elementor/widgets/General/FlipBox.php:87
@@ -2040,10 +2040,10 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:242
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:260
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:291
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:236
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:250
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:268
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:299
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:236
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:250
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:268
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:299
 #: plugins/elementor/widgets/General/LoginForm.php:337
 #: plugins/elementor/widgets/General/PortfolioGrid.php:319
 #: plugins/elementor/widgets/General/PortfolioGrid.php:371
@@ -2112,10 +2112,10 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:243
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:261
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:292
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:237
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:251
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:269
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:300
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:237
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:251
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:269
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:300
 #: plugins/elementor/widgets/General/LoginForm.php:338
 #: plugins/elementor/widgets/General/PortfolioGrid.php:320
 #: plugins/elementor/widgets/General/PortfolioGrid.php:372
@@ -3491,21 +3491,21 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:134
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:107
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:107
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:134
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:134
 msgid "Sort"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:139
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:112
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:112
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:139
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:139
 msgid "Most Active"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:140
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:113
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:113
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:140
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:140
 msgid "Most Popular"
 msgstr ""
 
@@ -3517,7 +3517,7 @@ msgid "Total groups"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:170
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:178
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:178
 #: plugins/elementor/widgets/General/LoginForm.php:265
 msgid "Additional Options"
 msgstr ""
@@ -3528,8 +3528,8 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:183
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:196
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:191
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:204
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:191
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:204
 #: plugins/elementor/widgets/General/PostSlider.php:322
 #: plugins/elementor/widgets/General/Slider.php:339
 #: plugins/elementor/widgets/General/SmartMenu.php:287
@@ -3544,12 +3544,12 @@ msgid "Groups to Scroll"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:194
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:202
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:202
 msgid "Set how many slides are scrolled per swipe."
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:208
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:216
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:216
 #: plugins/elementor/widgets/General/PostsCarousel.php:283
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:813
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1661
@@ -3558,22 +3558,22 @@ msgid "Navigation"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:212
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:220
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:220
 msgid "Arrows and Dots"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:213
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:221
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:221
 msgid "Arrows"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:214
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:222
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:222
 msgid "Dots"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:224
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:232
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:232
 #: plugins/elementor/widgets/General/PostCarousel.php:422
 #: plugins/elementor/widgets/General/PostSlider.php:386
 #: plugins/elementor/widgets/General/Slider.php:427
@@ -3583,22 +3583,22 @@ msgid "Autoplay"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:238
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:246
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:246
 msgid "Pause on Hover"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:256
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:264
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:264
 msgid "Pause on Interaction"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:273
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:281
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:281
 msgid "Autoplay Speed"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:287
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:295
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:295
 #: plugins/elementor/widgets/General/PostCarousel.php:409
 #: plugins/elementor/widgets/General/TeamCarousel.php:411
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:238
@@ -3606,12 +3606,12 @@ msgid "Infinite Loop"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:301
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:309
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:309
 msgid "Effect"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:305
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:313
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:313
 #: plugins/elementor/widgets/General/PostSlider.php:417
 #: plugins/elementor/widgets/General/PostSlider.php:598
 #: plugins/elementor/widgets/General/Slider.php:458
@@ -3620,19 +3620,19 @@ msgid "Slide"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:306
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:314
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:314
 #: plugins/elementor/widgets/General/PostSlider.php:416
 #: plugins/elementor/widgets/General/Slider.php:457
 msgid "Fade"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:318
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:326
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:326
 msgid "Animation Speed"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:329
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:337
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:337
 msgid "Direction"
 msgstr ""
 
@@ -3642,7 +3642,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:1134
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:172
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:608
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:360
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:360
 msgid "BuddyPress is required for this widget."
 msgstr ""
 
@@ -4007,8 +4007,8 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:121
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:124
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:148
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:151
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:148
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:151
 msgid "Total members"
 msgstr ""
 
@@ -4087,19 +4087,19 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:66
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:66
 msgid "Members Carousel"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:158
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:158
 msgid "Hide member last active info"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:188
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:188
 msgid "Members to Show"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/MemeberCarousel.php:200
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:200
 msgid "Members to Scroll"
 msgstr ""
 
