@@ -10,8 +10,12 @@ import {
 	PanelBody,
 	ToggleControl,
 	TextControl,
+	TextareaControl,
 	RangeControl,
+	CheckboxControl,
+	Button,
 	__experimentalDivider as Divider,
+	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 
 import {
@@ -45,6 +49,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		reviewCount,
 		showRecommendations,
 		recommendationCount,
+		showTrustpilot,
+		trustpilotRating,
+		trustpilotCount,
+		trustpilotUrl,
+		trustpilotReviews,
+		paymentIcons,
 		padding,
 		paddingUnit,
 		paddingTablet,
@@ -150,6 +160,158 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							max={ 6 }
 						/>
 					) }
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Trustpilot Reviews', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<ToggleControl
+						label={ __( 'Show Trustpilot Section', 'wbcom-essential' ) }
+						checked={ showTrustpilot }
+						onChange={ ( value ) =>
+							setAttributes( { showTrustpilot: value } )
+						}
+					/>
+
+					{ showTrustpilot && (
+						<>
+							<TextControl
+								label={ __( 'Trustpilot Rating', 'wbcom-essential' ) }
+								type="number"
+								value={ trustpilotRating }
+								onChange={ ( value ) =>
+									setAttributes( { trustpilotRating: parseFloat( value ) || 0 } )
+								}
+								help={ __( 'Your overall Trustpilot rating (e.g. 4.7)', 'wbcom-essential' ) }
+								step="0.1"
+								min="0"
+								max="5"
+							/>
+
+							<TextControl
+								label={ __( 'Total Reviews', 'wbcom-essential' ) }
+								type="number"
+								value={ trustpilotCount }
+								onChange={ ( value ) =>
+									setAttributes( { trustpilotCount: parseInt( value, 10 ) || 0 } )
+								}
+							/>
+
+							<TextControl
+								label={ __( 'Trustpilot URL', 'wbcom-essential' ) }
+								value={ trustpilotUrl }
+								onChange={ ( value ) =>
+									setAttributes( { trustpilotUrl: value } )
+								}
+								help={ __( 'Link to your Trustpilot page', 'wbcom-essential' ) }
+								placeholder="https://www.trustpilot.com/review/yoursite.com"
+							/>
+
+							<Divider />
+							<p style={ { fontWeight: 600, marginBottom: 8 } }>
+								{ __( 'Review Cards', 'wbcom-essential' ) }
+							</p>
+
+							{ trustpilotReviews.map( ( review, index ) => (
+								<div key={ index } style={ { marginBottom: 16, padding: 12, background: '#f8f9fa', borderRadius: 6 } }>
+									<p style={ { fontSize: 12, fontWeight: 600, margin: '0 0 8px', color: '#64748b' } }>
+										{ `${ __( 'Review', 'wbcom-essential' ) } ${ index + 1 }` }
+									</p>
+									<TextControl
+										label={ __( 'Reviewer Name', 'wbcom-essential' ) }
+										value={ review.name }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], name: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+									/>
+									<RangeControl
+										label={ __( 'Stars', 'wbcom-essential' ) }
+										value={ review.stars }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], stars: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+										min={ 1 }
+										max={ 5 }
+									/>
+									<TextControl
+										label={ __( 'Title', 'wbcom-essential' ) }
+										value={ review.title }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], title: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+									/>
+									<TextareaControl
+										label={ __( 'Review Text', 'wbcom-essential' ) }
+										value={ review.text }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], text: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+										rows={ 2 }
+									/>
+									{ trustpilotReviews.length > 1 && (
+										<Button
+											isDestructive
+											isSmall
+											variant="secondary"
+											onClick={ () => {
+												const updated = trustpilotReviews.filter( ( _, i ) => i !== index );
+												setAttributes( { trustpilotReviews: updated } );
+											} }
+										>
+											{ __( 'Remove', 'wbcom-essential' ) }
+										</Button>
+									) }
+								</div>
+							) ) }
+
+							{ trustpilotReviews.length < 5 && (
+								<Button
+									variant="secondary"
+									isSmall
+									onClick={ () => {
+										setAttributes( {
+											trustpilotReviews: [
+												...trustpilotReviews,
+												{ name: '', stars: 5, title: '', text: '' },
+											],
+										} );
+									} }
+								>
+									{ __( '+ Add Review', 'wbcom-essential' ) }
+								</Button>
+							) }
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Payment Icons', 'wbcom-essential' ) }
+					initialOpen={ false }
+				>
+					<p className="components-base-control__help" style={ { marginTop: 0 } }>
+						{ __( 'Choose which payment method logos to display.', 'wbcom-essential' ) }
+					</p>
+					{ [ 'visa', 'mastercard', 'paypal', 'stripe', 'razorpay' ].map( ( key ) => (
+						<CheckboxControl
+							key={ key }
+							label={ key.charAt( 0 ).toUpperCase() + key.slice( 1 ) }
+							checked={ paymentIcons?.[ key ] ?? true }
+							onChange={ ( value ) =>
+								setAttributes( {
+									paymentIcons: { ...paymentIcons, [ key ]: value },
+								} )
+							}
+						/>
+					) ) }
 				</PanelBody>
 
 				<PanelBody
