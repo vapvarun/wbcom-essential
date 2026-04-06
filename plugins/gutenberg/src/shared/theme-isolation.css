@@ -55,6 +55,8 @@
 }
 
 /* ── Form inputs ─────────────────────────────────────────── */
+/* Only reset properties that themes aggressively override (width, height).
+   Leave font-size, color, background, border to each block's own CSS. */
 [class^="wp-block-wbcom-essential"] select,
 [class^="wp-block-wbcom-essential"] input[type="text"],
 [class^="wp-block-wbcom-essential"] input[type="email"],
@@ -64,17 +66,8 @@
 [class^="wp-block-wbcom-essential"] input[type="tel"],
 [class^="wp-block-wbcom-essential"] input[type="url"],
 [class^="wp-block-wbcom-essential"] textarea {
-	appearance: none;
-	-webkit-appearance: none;
 	width: auto;
 	height: auto;
-	background-image: none;
-	padding: inherit;
-	border: inherit;
-	border-radius: inherit;
-	font-size: inherit;
-	color: inherit;
-	background-color: inherit;
 }
 
 /* ── Submit / reset inputs ───────────────────────────────── */

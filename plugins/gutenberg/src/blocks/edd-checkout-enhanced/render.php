@@ -156,7 +156,98 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					<span class="wbcom-edd-checkout__payment-icon" title="Stripe" aria-label="Stripe">
 						<svg viewBox="0 0 38 24" width="38" height="24" aria-hidden="true"><rect width="38" height="24" rx="3" fill="#6772E5"/><path d="M18 10.8c0-1-.5-1.3-1.5-1.3-.7 0-1.5.3-2.1.6l-.3-1.4c.7-.3 1.6-.6 2.7-.6 2 0 2.8.9 2.8 2.7v5.1h-1.5l-.1-.7c-.6.5-1.3.9-2.1.9-1.3 0-2.2-.7-2.2-2 0-1.6 1.5-2.3 3.8-2.7v-.6zm0 1.5c-1.4.3-2.1.7-2.1 1.4 0 .5.4.8.9.8.6 0 1-.3 1.2-.5v-1.7zm5.3-3.3c.7-.8 1.4-1.2 2.3-1.2 1.5 0 2.4 1.1 2.4 3v4.1h-1.7v-3.9c0-1.1-.4-1.6-1.2-1.6-.6 0-1 .3-1.4.7v4.8h-1.7V5.6h1.7v4.7l-.4-.3z" fill="#fff"/></svg>
 					</span>
+					<span class="wbcom-edd-checkout__payment-icon" title="Razorpay" aria-label="Razorpay">
+						<svg viewBox="0 0 38 24" width="38" height="24" aria-hidden="true"><rect width="38" height="24" rx="3" fill="#072654"/><path d="M13.2 7l-1.7 6.3h1.6l.4-1.5h1.9l-.3 1.5h1.6L18.4 7h-2.6zm.8 3.5l.6-2.3h.1l-.3 2.3h-.4zm5.4-3.5l-1.7 6.3h1.6l.7-2.5h.1l-.1.6.4 1.9h1.7l-.6-2.5c.7-.3 1.1-.9 1.3-1.7.3-1.2-.2-2.1-1.5-2.1h-1.9zm.8 1.2h.4c.4 0 .6.3.5.8-.1.5-.4.8-.8.8h-.4l.3-1.6zM10.8 14.6l-.4 1.4H8l.4-1.4h2.4zm.6-2.2l-.4 1.4H8.6l.4-1.4H11.4zm.6-2.2l-.4 1.4H9.2l.4-1.4H12zm5.4 4.4l-.4 1.4h-2.4l.4-1.4H17.4zm.6-2.2l-.4 1.4h-2.4l.4-1.4H18zm.6-2.2l-.4 1.4h-2.4l.4-1.4h2.4zm8.7 6.5h1.5l1.2-4.3c.1-.5.1-.9 0-1.1-.2-.4-.7-.5-1.2-.5h-1.2l-1.5 5.9h1.5l.5-1.8h.4c.2 0 .3.1.2.3l-.4 1.5z" fill="#fff"/></svg>
+					</span>
 				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+
+	<?php
+	// Trustpilot social proof — filterable for live store data.
+	$trustpilot = apply_filters(
+		'wbcom_edd_checkout_trustpilot',
+		array(
+			'enabled' => true,
+			'rating'  => 4.7,
+			'total'   => 87,
+			'url'     => 'https://www.trustpilot.com/review/www.wbcomdesigns.com',
+			'reviews' => array(
+				array(
+					'name'   => 'S W Malcolm',
+					'stars'  => 5,
+					'title'  => 'Excellent Theme, Powerful Plugins and Outstanding Support',
+					'text'   => 'Outstanding customer support: quick, helpful, and always willing to go the extra mile.',
+				),
+				array(
+					'name'   => 'Steve',
+					'stars'  => 5,
+					'title'  => 'Great speedy support and great plugins',
+					'text'   => 'Great speedy support and great plugins. Highly recommended for BuddyPress communities.',
+				),
+				array(
+					'name'   => "Real America's Voice News",
+					'stars'  => 5,
+					'title'  => 'THE BEST DEVELOPMENT TEAM EVER!',
+					'text'   => 'Very professional and productive, completing tasks in a quick and decisive manner.',
+				),
+			),
+		)
+	);
+
+	if ( ! empty( $trustpilot['enabled'] ) && ! empty( $trustpilot['reviews'] ) ) :
+		$tp_rating = (float) $trustpilot['rating'];
+		$tp_total  = (int) $trustpilot['total'];
+		$tp_url    = $trustpilot['url'];
+		?>
+		<div class="wbcom-edd-checkout__trustpilot">
+			<div class="wbcom-edd-checkout__trustpilot-header">
+				<div class="wbcom-edd-checkout__trustpilot-brand">
+					<svg viewBox="0 0 126 31" width="90" height="22" aria-hidden="true"><path d="M33.3 12.1h-5.7l-1.8-5.5-1.8 5.5h-5.7l4.6 3.4-1.8 5.5 4.7-3.4 4.7 3.4-1.8-5.5 4.6-3.4z" fill="#00B67A"/><path d="M29.3 18.7l-.4-1.2-3 2.2 3.4-1z" fill="#005128"/></svg>
+					<span class="wbcom-edd-checkout__trustpilot-label">Trustpilot</span>
+				</div>
+				<div class="wbcom-edd-checkout__trustpilot-rating">
+					<div class="wbcom-edd-checkout__trustpilot-stars" aria-label="<?php echo esc_attr( sprintf( '%s out of 5', $tp_rating ) ); ?>">
+						<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
+							<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+								<rect width="20" height="20" rx="2" fill="<?php echo $i <= floor( $tp_rating ) ? '#00B67A' : ( $i - $tp_rating < 1 ? '#73CF11' : '#dcdce6' ); ?>"/>
+								<path d="M10 3l1.8 4.2L16 7.8l-3 3.2.8 4.4L10 13l-3.8 2.4.8-4.4-3-3.2 4.2-.6z" fill="#fff"/>
+							</svg>
+						<?php endfor; ?>
+					</div>
+					<span class="wbcom-edd-checkout__trustpilot-score">
+						<strong><?php echo esc_html( $tp_rating ); ?></strong>/5
+					</span>
+					<?php if ( $tp_url ) : ?>
+						<a href="<?php echo esc_url( $tp_url ); ?>" class="wbcom-edd-checkout__trustpilot-count" target="_blank" rel="noopener noreferrer">
+							<?php
+							printf(
+								/* translators: %d: number of reviews */
+								esc_html__( 'Based on %d reviews', 'wbcom-essential' ),
+								$tp_total
+							);
+							?>
+						</a>
+					<?php endif; ?>
+				</div>
+			</div>
+			<div class="wbcom-edd-checkout__trustpilot-reviews">
+				<?php foreach ( $trustpilot['reviews'] as $tp_review ) : ?>
+					<div class="wbcom-edd-checkout__trustpilot-card">
+						<div class="wbcom-edd-checkout__trustpilot-card-stars">
+							<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
+								<svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true">
+									<rect width="20" height="20" rx="2" fill="<?php echo $i <= (int) $tp_review['stars'] ? '#00B67A' : '#dcdce6'; ?>"/>
+									<path d="M10 3l1.8 4.2L16 7.8l-3 3.2.8 4.4L10 13l-3.8 2.4.8-4.4-3-3.2 4.2-.6z" fill="#fff"/>
+								</svg>
+							<?php endfor; ?>
+						</div>
+						<p class="wbcom-edd-checkout__trustpilot-card-title"><?php echo esc_html( $tp_review['title'] ); ?></p>
+						<p class="wbcom-edd-checkout__trustpilot-card-text"><?php echo esc_html( $tp_review['text'] ); ?></p>
+						<span class="wbcom-edd-checkout__trustpilot-card-author"><?php echo esc_html( $tp_review['name'] ); ?></span>
+					</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	<?php endif; ?>

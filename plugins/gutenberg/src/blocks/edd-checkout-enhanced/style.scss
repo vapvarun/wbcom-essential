@@ -714,4 +714,119 @@
 			padding: 0.75rem 1rem;
 		}
 	}
+
+	// ─── Trustpilot Social Proof ────────────────────────────────
+	&__trustpilot {
+		margin-top: 2rem;
+		padding: 1.5rem;
+		border: 1px solid var(--wbe-color-border);
+		border-radius: var(--wbe-radius-lg);
+		background: var(--wbe-color-white);
+	}
+
+	&__trustpilot-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-bottom: 1.25rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid var(--wbe-color-border);
+	}
+
+	&__trustpilot-brand {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__trustpilot-label {
+		font-size: var(--edd-font-lg);
+		font-weight: 700;
+		color: var(--wbe-color-text);
+	}
+
+	&__trustpilot-rating {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	&__trustpilot-stars {
+		display: flex;
+		gap: 2px;
+	}
+
+	&__trustpilot-score {
+		font-size: var(--edd-font-base);
+		color: var(--wbe-color-text-muted);
+
+		strong {
+			color: var(--wbe-color-text);
+		}
+	}
+
+	&__trustpilot-count {
+		font-size: var(--edd-font-sm);
+		color: var(--wbe-color-text-light);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+
+		&:hover {
+			color: var(--wbe-color-text-muted);
+		}
+	}
+
+	&__trustpilot-reviews {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+	}
+
+	&__trustpilot-card {
+		padding: 1rem;
+		border: 1px solid var(--wbe-color-border);
+		border-radius: var(--wbe-radius-md);
+		background: var(--wbe-color-surface);
+	}
+
+	&__trustpilot-card-stars {
+		display: flex;
+		gap: 2px;
+		margin-bottom: 0.5rem;
+	}
+
+	&__trustpilot-card-title {
+		font-size: var(--edd-font-base);
+		font-weight: 600;
+		color: var(--wbe-color-text);
+		margin: 0 0 0.375rem;
+		line-height: 1.4;
+	}
+
+	&__trustpilot-card-text {
+		font-size: var(--edd-font-sm);
+		color: var(--wbe-color-text-muted);
+		line-height: 1.6;
+		margin: 0 0 0.5rem;
+	}
+
+	&__trustpilot-card-author {
+		font-size: var(--edd-font-xs);
+		font-weight: 500;
+		color: var(--wbe-color-text-light);
+	}
+
+	@media (max-width: 480px) {
+		&__trustpilot-header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		&__trustpilot-reviews {
+			grid-template-columns: 1fr;
+		}
+	}
 }
