@@ -123,6 +123,75 @@
 	overflow: hidden;
 }
 
+/* ── Join button ─────────────────────────────────────────────────────────── */
+.wbe-group-carousel__action {
+	margin-top: auto;
+	padding-top: 12px;
+}
+
+.wbe-group-carousel__action .generic-button a,
+.wbe-group-carousel__action .generic-button button {
+	display: inline-block;
+	padding: 7px 18px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var( --wbe-gc-accent );
+	background: transparent;
+	border: 1px solid var( --wbe-gc-accent );
+	border-radius: 30px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.wbe-group-carousel__action .generic-button a:hover,
+.wbe-group-carousel__action .generic-button button:hover {
+	color: #ffffff;
+	background: var( --wbe-gc-accent );
+}
+
+.wbe-group-carousel__join-btn {
+	display: inline-block;
+	padding: 7px 18px;
+	font-size: 13px;
+	font-weight: 500;
+	border-radius: 30px;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+	border: 1px solid var( --wbe-gc-accent );
+	line-height: 1.4;
+}
+
+.wbe-gc-join--not-member {
+	color: var( --wbe-gc-accent );
+	background: transparent;
+}
+
+.wbe-gc-join--not-member:hover {
+	color: #ffffff;
+	background: var( --wbe-gc-accent );
+}
+
+.wbe-gc-join--member {
+	color: #ffffff;
+	background: var( --wbe-gc-accent );
+	border-color: var( --wbe-gc-accent );
+	cursor: default;
+	opacity: 0.8;
+}
+
+.wbe-gc-join--pending {
+	color: var( --wbe-gc-meta-color );
+	background: transparent;
+	border-color: var( --wbe-gc-meta-color );
+	cursor: default;
+	opacity: 0.7;
+}
+
+.wbe-group-carousel__join-btn:disabled {
+	cursor: default;
+}
+
 /* ── Navigation arrows ────────────────────────────────────────────────────── */
 .wbe-group-carousel__swiper .swiper-button-prev,
 .wbe-group-carousel__swiper .swiper-button-next {
@@ -246,6 +315,17 @@
 
 	.wbe-group-carousel__card {
 		padding: 16px 10px 14px;
+	}
+
+	.wbe-group-carousel__join-btn {
+		padding: 5px 14px;
+		font-size: 12px;
+	}
+
+	.wbe-group-carousel__action .generic-button a,
+	.wbe-group-carousel__action .generic-button button {
+		padding: 5px 14px;
+		font-size: 12px;
 	}
 }
 

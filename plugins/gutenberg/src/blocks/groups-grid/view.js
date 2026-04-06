@@ -109,7 +109,7 @@
 		// Meta row.
 		const meta = el( 'div', 'wbe-groups-grid__meta' );
 
-		if ( cfg.showMemberCount && group.total_member_count != null ) {
+		if ( cfg.showMemberCount && group.total_member_count ) {
 			meta.appendChild(
 				el( 'span', 'wbe-groups-grid__count', group.total_member_count + ' ' + cfg.i18n.members )
 			);
@@ -155,6 +155,7 @@
 		url.searchParams.set( 'per_page', cfg.perPage );
 		url.searchParams.set( 'page', 1 );
 		url.searchParams.set( 'type', cfg.sortType || 'active' );
+		url.searchParams.set( 'populate_extras', 'true' );
 
 		const headers = { 'Content-Type': 'application/json' };
 		if ( cfg.restNonce ) {

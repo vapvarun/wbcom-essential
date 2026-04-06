@@ -41,12 +41,12 @@ class WcTestimonial extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wb-wc-testimonial', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wc-testimonial.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbe-swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/swiper-base.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wb-wc-testimonial', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wc-testimonial.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery', 'swiper' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 	 */
 	public function get_style_depends() {
 		return array(
-			'wb-lib-slick',
+			'wbe-swiper',
 			'elementor-icons-shared-0-css',
 			'elementor-icons-fa-brands',
 			'elementor-icons-fa-regular',
@@ -90,7 +90,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 	 */
 	public function get_script_depends() {
 		return array(
-			'wb-lib-slick',
+			'swiper',
 			'wbcom-widgets-scripts',
 		);
 	}
@@ -906,7 +906,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 								),
 							),
 							'selectors'  => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'top: {{SIZE}}{{UNIT}};',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'top: {{SIZE}}{{UNIT}};',
 							),
 						)
 					);
@@ -917,7 +917,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'color: {{VALUE}};',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'color: {{VALUE}};',
 							),
 						)
 					);
@@ -928,7 +928,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							'label'     => __( 'Background Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'background-color: {{VALUE}} !important;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'background-color: {{VALUE}} !important;',
 							),
 						)
 					);
@@ -938,7 +938,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 						array(
 							'name'     => 'button_border',
 							'label'    => __( 'Border', 'wbcom-essential' ),
-							'selector' => '{{WRAPPER}} .product-slider .slick-arrow',
+							'selector' => '{{WRAPPER}} .product-slider .elementor-swiper-button',
 						)
 					);
 
@@ -948,7 +948,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 							'type'      => Controls_Manager::DIMENSIONS,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 							),
 						)
 					);
@@ -960,7 +960,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							'type'       => Controls_Manager::DIMENSIONS,
 							'size_units' => array( 'px', '%', 'em' ),
 							'selectors'  => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
 							),
 						)
 					);
@@ -991,7 +991,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 									),
 								),
 								'selectors'  => array(
-									'{{WRAPPER}} .product-slider .slick-dots' => 'left: {{SIZE}}{{UNIT}};',
+									'{{WRAPPER}} .product-slider .swiper-pagination' => 'left: {{SIZE}}{{UNIT}};',
 								),
 							)
 						);
@@ -1002,7 +1002,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 								'label'     => __( 'Background Color', 'wbcom-essential' ),
 								'type'      => Controls_Manager::COLOR,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button' => 'background-color: {{VALUE}} !important;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}} !important;',
 								),
 							)
 						);
@@ -1012,7 +1012,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							array(
 								'name'     => 'dots_border',
 								'label'    => __( 'Border', 'wbcom-essential' ),
-								'selector' => '{{WRAPPER}} .product-slider .slick-dots li button',
+								'selector' => '{{WRAPPER}} .product-slider .swiper-pagination-bullet',
 							)
 						);
 
@@ -1022,7 +1022,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 								'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 								'type'      => Controls_Manager::DIMENSIONS,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 								),
 							)
 						);
@@ -1051,7 +1051,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'color: {{VALUE}};',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'color: {{VALUE}};',
 							),
 						)
 					);
@@ -1062,7 +1062,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							'label'     => __( 'Background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'background-color: {{VALUE}} !important;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'background-color: {{VALUE}} !important;',
 							),
 						)
 					);
@@ -1072,7 +1072,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 						array(
 							'name'     => 'button_hover_border',
 							'label'    => __( 'Border', 'wbcom-essential' ),
-							'selector' => '{{WRAPPER}} .product-slider .slick-arrow:hover',
+							'selector' => '{{WRAPPER}} .product-slider .elementor-swiper-button:hover',
 						)
 					);
 
@@ -1082,7 +1082,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 							'type'      => Controls_Manager::DIMENSIONS,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 							),
 						)
 					);
@@ -1101,8 +1101,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 								'label'     => __( 'Background Color', 'wbcom-essential' ),
 								'type'      => Controls_Manager::COLOR,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'background-color: {{VALUE}} !important;',
-									'{{WRAPPER}} .product-slider .slick-dots li.slick-active button' => 'background-color: {{VALUE}} !important;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover, {{WRAPPER}} .product-slider .swiper-pagination-bullet-active' => 'background-color: {{VALUE}} !important;',
 								),
 							)
 						);
@@ -1112,7 +1111,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 							array(
 								'name'     => 'dots_border_hover',
 								'label'    => __( 'Border', 'wbcom-essential' ),
-								'selector' => '{{WRAPPER}} .product-slider .slick-dots li button:hover',
+								'selector' => '{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover',
 							)
 						);
 
@@ -1122,7 +1121,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 								'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 								'type'      => Controls_Manager::DIMENSIONS,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 								),
 							)
 						);
@@ -1197,16 +1196,21 @@ class WcTestimonial extends \Elementor\Widget_Base {
 			$this->add_render_attribute( 'area_attr', 'class', 'wb-gutters' );
 		}
 		if ( $settings['slider_on'] === 'yes' ) {
-			$this->add_render_attribute( 'area_attr', 'class', 'product-slider' );
+			$this->add_render_attribute( 'area_attr', 'class', 'product-slider swiper-container' );
 			$this->add_render_attribute( 'area_attr', 'data-settings', wp_json_encode( $slider_settings ) );
 		}
 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's get_render_attribute_string() handles escaping.
 		echo '<div ' . $this->get_render_attribute_string( 'area_attr' ) . ' ' . $slider_main_div_style . '>';
 
+		if ( $settings['slider_on'] === 'yes' ) {
+			echo '<div class="swiper-wrapper">';
+		}
+
 		foreach ( $testimonial_list as $testimonial ) :
+			$slide_class = ( $settings['slider_on'] === 'yes' ) ? $collumval . ' swiper-slide' : $collumval;
 			?>
-				<div class="<?php echo esc_attr( $collumval ); ?>">
+				<div class="<?php echo esc_attr( $slide_class ); ?>">
 					<div class="wb-single-testimonial-wrap">
 
 					<?php if ( $settings['testimonial_layout'] === '1' ) : ?>
@@ -1323,6 +1327,13 @@ class WcTestimonial extends \Elementor\Widget_Base {
 				</div>
 			<?php
 			endforeach;
+
+		if ( $settings['slider_on'] === 'yes' ) {
+			echo '</div>'; // close swiper-wrapper
+			echo '<div class="swiper-pagination"></div>';
+			echo '<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>';
+			echo '<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>';
+		}
 
 		echo '</div>';
 	}

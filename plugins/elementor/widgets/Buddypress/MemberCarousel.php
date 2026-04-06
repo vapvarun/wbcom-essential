@@ -39,7 +39,8 @@ class MemberCarousel extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'member-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/member-carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbe-swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/swiper-base.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'member-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/member-carousel.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
 
 		wp_register_script(
 			'swiper',

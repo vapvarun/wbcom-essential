@@ -43,6 +43,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		showArrows,
 		showDescription,
 		showMemberCount,
+		showJoinButton,
 		spaceBetween,
 		cardBg,
 		nameColor,
@@ -110,6 +111,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						label={ __( 'Show Description', 'wbcom-essential' ) }
 						checked={ showDescription }
 						onChange={ ( value ) => setAttributes( { showDescription: value } ) }
+						__nextHasNoMarginBottom
+					/>
+					<ToggleControl
+						label={ __( 'Show Join Button', 'wbcom-essential' ) }
+						checked={ showJoinButton }
+						onChange={ ( value ) => setAttributes( { showJoinButton: value } ) }
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>

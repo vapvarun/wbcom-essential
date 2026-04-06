@@ -184,6 +184,7 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 			'showArrows'       => $show_arrows,
 			'swiperOptions'    => $swiper_options,
 			'loggedIn'         => is_user_logged_in(),
+			'currentUserId'    => get_current_user_id(),
 			'colors'           => array(
 				'cardBg'    => $card_bg,
 				'nameColor' => $name_color,
@@ -193,11 +194,12 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 			'i18n'             => array(
 				'loading'   => __( 'Loading members...', 'wbcom-essential' ),
 				'empty'     => __( 'No members found.', 'wbcom-essential' ),
-				'addFriend' => __( 'Add Friend', 'wbcom-essential' ),
-				'friends'   => __( 'Friends', 'wbcom-essential' ),
-				'pending'   => __( 'Pending', 'wbcom-essential' ),
-				'previous'  => __( 'Previous', 'wbcom-essential' ),
-				'next'      => __( 'Next', 'wbcom-essential' ),
+				'addFriend'   => __( 'Add Friend', 'wbcom-essential' ),
+				'friends'     => __( 'Friends', 'wbcom-essential' ),
+				'pending'     => __( 'Pending', 'wbcom-essential' ),
+				'viewProfile' => __( 'View Profile', 'wbcom-essential' ),
+				'previous'    => __( 'Previous', 'wbcom-essential' ),
+				'next'        => __( 'Next', 'wbcom-essential' ),
 			),
 		);
 		?>

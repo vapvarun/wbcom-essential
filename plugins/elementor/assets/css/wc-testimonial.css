@@ -1,8 +1,8 @@
-.elementor-widget-wl-testimonial .slick-list {
+.elementor-widget-wl-testimonial .swiper-wrapper {
     margin: 0 -15px;
 }
 
-.wb-testimonial-active-1 .slick-list .wb-testimonial-plr-1 {
+.wb-testimonial-active-1 .swiper-wrapper .wb-testimonial-plr-1 {
     padding: 0 15px;
 }
 
@@ -117,7 +117,7 @@
     max-width: 100%;
 }
 
-.product-slider .slick-slide .wb-single-testimonial-wrap img {
+.product-slider .swiper-slide .wb-single-testimonial-wrap img {
     width: auto;
 }
 
@@ -287,7 +287,7 @@
     border: 3px solid transparent;
 }
 
-.wb-testimonial-image-slider .wb-client-img-3.slick-current img {
+.wb-testimonial-image-slider .wb-client-img-3.swiper-slide-active img {
     border: 3px solid #1d76da;
 }
 

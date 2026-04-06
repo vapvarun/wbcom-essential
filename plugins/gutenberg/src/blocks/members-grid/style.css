@@ -98,14 +98,15 @@
 	color: var( --wbe-mg-meta-color );
 }
 
-/* Friend button action */
+/* Friend / View Profile action */
 .wbe-members-grid__action {
 	margin-top: auto;
 	padding-top: 12px;
 }
 
 .wbe-members-grid__action .generic-button a,
-.wbe-members-grid__action .generic-button button {
+.wbe-members-grid__action .generic-button button,
+.wbe-members-grid__friend-btn {
 	display: inline-block;
 	padding: 7px 18px;
 	font-size: 13px;
@@ -117,12 +118,37 @@
 	text-decoration: none;
 	cursor: pointer;
 	transition: background 0.2s ease, color 0.2s ease;
+	line-height: 1.4;
 }
 
 .wbe-members-grid__action .generic-button a:hover,
-.wbe-members-grid__action .generic-button button:hover {
+.wbe-members-grid__action .generic-button button:hover,
+.wbe-members-grid__friend-btn:hover {
 	color: #ffffff;
 	background: var( --wbcom-color-primary, #3182ce );
+}
+
+.wbe-mg-friend--is-friend {
+	color: #ffffff;
+	background: var( --wbcom-color-primary, #3182ce );
+	cursor: default;
+	opacity: 0.8;
+}
+
+.wbe-mg-friend--pending {
+	color: #6c757d;
+	border-color: #6c757d;
+	cursor: default;
+	opacity: 0.7;
+}
+
+.wbe-mg-friend--pending:hover {
+	background: transparent;
+	color: #6c757d;
+}
+
+.wbe-members-grid__friend-btn:disabled {
+	cursor: default;
 }
 
 /* Empty state */

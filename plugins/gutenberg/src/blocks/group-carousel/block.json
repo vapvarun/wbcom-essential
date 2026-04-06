@@ -53,6 +53,7 @@
 			"default": { "top": 12, "right": 12, "bottom": 12, "left": 12 }
 		},
 		"borderRadiusUnit": { "type": "string", "default": "px" },
+		"showJoinButton": { "type": "boolean", "default": true },
 		"hideOnDesktop": { "type": "boolean", "default": false },
 		"hideOnTablet": { "type": "boolean", "default": false },
 		"hideOnMobile": { "type": "boolean", "default": false }

@@ -165,6 +165,10 @@
       "type": "string",
       "default": "px"
     },
+    "showJoinButton": {
+      "type": "boolean",
+      "default": true
+    },
     "hideOnDesktop": {
       "type": "boolean",
       "default": false

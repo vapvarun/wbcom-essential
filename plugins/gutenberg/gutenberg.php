@@ -26,6 +26,51 @@ require_once __DIR__ . '/includes/class-wbe-fonts.php';
 \WBCOM_ESSENTIAL\Gutenberg\WBE_Fonts::init();
 
 /**
+ * Register shared Swiper library for carousel blocks.
+ * block.json viewScript arrays reference the "swiper" handle.
+ */
+add_action(
+	'init',
+	function () {
+		wp_register_style(
+			'wbe-swiper',
+			WBCOM_ESSENTIAL_URL . 'plugins/elementor/assets/css/swiper-base.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+		wp_register_script(
+			'swiper',
+			WBCOM_ESSENTIAL_URL . 'plugins/elementor/assets/js/swiper.min.js',
+			array(),
+			WBCOM_ESSENTIAL_VERSION,
+			true
+		);
+	}
+);
+
+/**
+ * Enqueue Swiper base CSS when any carousel block is on the page.
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		global $post;
+		if ( ! $post ) {
+			return;
+		}
+		if ( false !== strpos( $post->post_content, 'members-carousel' )
+			|| false !== strpos( $post->post_content, 'group-carousel' )
+			|| false !== strpos( $post->post_content, 'post-carousel' )
+			|| false !== strpos( $post->post_content, 'product-carousel' )
+			|| false !== strpos( $post->post_content, 'testimonial-carousel' )
+		) {
+			wp_enqueue_style( 'wbe-swiper' );
+		}
+	},
+	5
+);
+
+/**
  * Enqueue shared design tokens + base styles on frontend and editor.
  * These provide --wbe-* CSS custom properties used by all blocks.
  */

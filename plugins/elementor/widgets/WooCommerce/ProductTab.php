@@ -40,11 +40,11 @@ class ProductTab extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'wbflexboxgrid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbflexboxgrid.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbe-swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/swiper-base.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery', 'swiper' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -74,7 +74,7 @@ class ProductTab extends \Elementor\Widget_Base {
 	public function get_style_depends() {
 		return array(
 			'wbflexboxgrid',
-			'wb-lib-slick',
+			'wbe-swiper',
 			'wbcom-widgets',
 		);
 	}
@@ -84,8 +84,8 @@ class ProductTab extends \Elementor\Widget_Base {
 	 */
 	public function get_script_depends() {
 		return array(
+			'swiper',
 			'wbcom-widgets-scripts',
-			'wb-lib-slick',
 		);
 	}
 
@@ -708,7 +708,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								'type'      => Controls_Manager::COLOR,
 								'default'   => '#dddddd',
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-arrow' => 'color: {{VALUE}};',
+									'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'color: {{VALUE}};',
 								),
 							)
 						);
@@ -720,7 +720,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								'type'      => Controls_Manager::COLOR,
 								'default'   => '#ffffff',
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-arrow' => 'background-color: {{VALUE}} !important;',
+									'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'background-color: {{VALUE}} !important;',
 								),
 							)
 						);
@@ -730,7 +730,7 @@ class ProductTab extends \Elementor\Widget_Base {
 							array(
 								'name'     => 'button_border',
 								'label'    => __( 'Border', 'wbcom-essential' ),
-								'selector' => '{{WRAPPER}} .product-slider .slick-arrow',
+								'selector' => '{{WRAPPER}} .product-slider .elementor-swiper-button',
 							)
 						);
 
@@ -740,7 +740,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 								'type'      => Controls_Manager::DIMENSIONS,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-arrow' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+									'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 								),
 							)
 						);
@@ -752,7 +752,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								'type'       => Controls_Manager::DIMENSIONS,
 								'size_units' => array( 'px', '%', 'em' ),
 								'selectors'  => array(
-									'{{WRAPPER}} .product-slider .slick-arrow' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+									'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
 								),
 							)
 						);
@@ -772,7 +772,7 @@ class ProductTab extends \Elementor\Widget_Base {
 									'type'      => Controls_Manager::COLOR,
 									'default'   => '#ffffff',
 									'selectors' => array(
-										'{{WRAPPER}} .product-slider .slick-dots li button' => 'background-color: {{VALUE}} !important;',
+										'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}} !important;',
 									),
 								)
 							);
@@ -782,7 +782,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								array(
 									'name'     => 'dots_border',
 									'label'    => __( 'Border', 'wbcom-essential' ),
-									'selector' => '{{WRAPPER}} .product-slider .slick-dots li button',
+									'selector' => '{{WRAPPER}} .product-slider .swiper-pagination-bullet',
 								)
 							);
 
@@ -792,7 +792,7 @@ class ProductTab extends \Elementor\Widget_Base {
 									'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 									'type'      => Controls_Manager::DIMENSIONS,
 									'selectors' => array(
-										'{{WRAPPER}} .product-slider .slick-dots li button' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+										'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 									),
 								)
 							);
@@ -822,7 +822,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								'type'      => Controls_Manager::COLOR,
 								'default'   => '#23252a',
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'color: {{VALUE}};',
+									'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'color: {{VALUE}};',
 								),
 							)
 						);
@@ -834,7 +834,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								'type'      => Controls_Manager::COLOR,
 								'default'   => '#ffffff',
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'background-color: {{VALUE}} !important;',
+									'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'background-color: {{VALUE}} !important;',
 								),
 							)
 						);
@@ -844,7 +844,7 @@ class ProductTab extends \Elementor\Widget_Base {
 							array(
 								'name'     => 'button_hover_border',
 								'label'    => __( 'Border', 'wbcom-essential' ),
-								'selector' => '{{WRAPPER}} .product-slider .slick-arrow:hover',
+								'selector' => '{{WRAPPER}} .product-slider .elementor-swiper-button:hover',
 							)
 						);
 
@@ -854,7 +854,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 								'type'      => Controls_Manager::DIMENSIONS,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+									'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 								),
 							)
 						);
@@ -874,8 +874,7 @@ class ProductTab extends \Elementor\Widget_Base {
 									'type'      => Controls_Manager::COLOR,
 									'default'   => '#282828',
 									'selectors' => array(
-										'{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'background-color: {{VALUE}} !important;',
-										'{{WRAPPER}} .product-slider .slick-dots li.slick-active button' => 'background-color: {{VALUE}} !important;',
+										'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover, {{WRAPPER}} .product-slider .swiper-pagination-bullet-active' => 'background-color: {{VALUE}} !important;',
 									),
 								)
 							);
@@ -885,7 +884,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								array(
 									'name'     => 'dots_border_hover',
 									'label'    => __( 'Border', 'wbcom-essential' ),
-									'selector' => '{{WRAPPER}} .product-slider .slick-dots li button:hover',
+									'selector' => '{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover',
 								)
 							);
 
@@ -895,7 +894,7 @@ class ProductTab extends \Elementor\Widget_Base {
 									'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 									'type'      => Controls_Manager::DIMENSIONS,
 									'selectors' => array(
-										'{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+										'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 									),
 								)
 							);
@@ -1638,11 +1637,12 @@ class ProductTab extends \Elementor\Widget_Base {
 						$slider_main_div_style = '';
 					if ( $proslider == 'yes' ) {
 						$slider_main_div_style = "style='display:none'";
-						echo '<div id="product-slider-' . esc_attr( uniqid() ) . '" dir="' . esc_attr( $direction ) . '" class="product-slider" ' . esc_attr( $slider_main_div_style ) . ' data-settings=\'' . esc_attr( wp_json_encode( $slider_settings ) ) . '\'>';
+						echo '<div id="product-slider-' . esc_attr( uniqid() ) . '" dir="' . esc_attr( $direction ) . '" class="product-slider swiper-container" ' . esc_attr( $slider_main_div_style ) . ' data-settings=\'' . esc_attr( wp_json_encode( $slider_settings ) ) . '\'>';
+						echo '<div class="swiper-wrapper">';
 					}
 					?>
 
-						<div class="<?php echo esc_attr( $collumval ); ?>">
+						<div class="<?php echo esc_attr( $proslider == 'yes' ? $collumval . ' swiper-slide' : $collumval ); ?>">
 							<?php
 								$k = 1;
 							if ( $products->have_posts() ) :
@@ -1750,7 +1750,7 @@ class ProductTab extends \Elementor\Widget_Base {
 
 									<?php if ( $k % $rows == 0 && ( $products->post_count != $k ) ) { ?>
 							</div>
-							<div class="<?php echo esc_attr( $collumval ); ?>">
+							<div class="<?php echo esc_attr( $proslider == 'yes' ? $collumval . ' swiper-slide' : $collumval ); ?>">
 										<?php
 									} ++$k;
 								endwhile;
@@ -1761,7 +1761,12 @@ class ProductTab extends \Elementor\Widget_Base {
 							</div>
 					<?php
 					if ( $proslider == 'yes' ) {
-						echo '</div>';}
+						echo '</div>'; // close swiper-wrapper
+						echo '<div class="swiper-pagination"></div>';
+						echo '<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>';
+						echo '<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>';
+						echo '</div>'; // close product-slider
+					}
 					?>
 				</div>
 			<?php endif; ?>

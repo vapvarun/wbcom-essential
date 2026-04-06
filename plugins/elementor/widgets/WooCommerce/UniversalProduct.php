@@ -42,11 +42,11 @@ class UniversalProduct extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'wbflexboxgrid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbflexboxgrid.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbe-swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/swiper-base.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery', 'swiper' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 	public function get_style_depends() {
 		return array(
 			'wbflexboxgrid',
-			'wb-lib-slick',
+			'wbe-swiper',
 			'elementor-icons-shared-0-css',
 			'elementor-icons-fa-brands',
 			'elementor-icons-fa-regular',
@@ -90,8 +90,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
 	 */
 	public function get_script_depends() {
 		return array(
+			'swiper',
 			'wbcom-widgets-scripts',
-			'wb-lib-slick',
 		);
 	}
 
@@ -531,7 +531,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 					'type'      => Controls_Manager::COLOR,
 					'default'   => '#444444',
 					'selectors' => array(
-						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .slick-arrow' => 'color: {{VALUE}} !important;',
+						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .elementor-swiper-button' => 'color: {{VALUE}} !important;',
 					),
 					'condition' => array(
 						'thumbnails_style' => '2',
@@ -546,7 +546,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 					'type'      => Controls_Manager::COLOR,
 					'default'   => '#cccccc',
 					'selectors' => array(
-						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .slick-dots li button' => 'background-color: {{VALUE}} !important;',
+						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}} !important;',
 					),
 					'condition' => array(
 						'thumbnails_style' => '2',
@@ -564,7 +564,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 					),
 					'default'   => '#666666',
 					'selectors' => array(
-						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .slick-dots li.slick-active button' => 'background-color: {{VALUE}} !important;',
+						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .swiper-pagination-bullet-active' => 'background-color: {{VALUE}} !important;',
 					),
 				)
 			);
@@ -1517,7 +1517,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 								'size' => 50,
 							),
 							'selectors'  => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'top: {{SIZE}}{{UNIT}};',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'top: {{SIZE}}{{UNIT}};',
 							),
 						)
 					);
@@ -1529,7 +1529,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							'type'      => Controls_Manager::COLOR,
 							'default'   => '#dddddd',
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'color: {{VALUE}};',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'color: {{VALUE}};',
 							),
 						)
 					);
@@ -1541,7 +1541,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							'type'      => Controls_Manager::COLOR,
 							'default'   => '#ffffff',
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'background-color: {{VALUE}} !important;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'background-color: {{VALUE}} !important;',
 							),
 						)
 					);
@@ -1551,7 +1551,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'name'     => 'button_border',
 							'label'    => __( 'Border', 'wbcom-essential' ),
-							'selector' => '{{WRAPPER}} .product-slider .slick-arrow',
+							'selector' => '{{WRAPPER}} .product-slider .elementor-swiper-button',
 						)
 					);
 
@@ -1561,7 +1561,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 							'type'      => Controls_Manager::DIMENSIONS,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 							),
 						)
 					);
@@ -1573,7 +1573,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							'type'       => Controls_Manager::DIMENSIONS,
 							'size_units' => array( 'px', '%', 'em' ),
 							'selectors'  => array(
-								'{{WRAPPER}} .product-slider .slick-arrow' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
 							),
 						)
 					);
@@ -1608,7 +1608,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 									'size' => 0,
 								),
 								'selectors'  => array(
-									'{{WRAPPER}} .product-slider .slick-dots' => 'left: {{SIZE}}{{UNIT}};',
+									'{{WRAPPER}} .product-slider .swiper-pagination' => 'left: {{SIZE}}{{UNIT}};',
 								),
 							)
 						);
@@ -1620,7 +1620,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 								'type'      => Controls_Manager::COLOR,
 								'default'   => '#ffffff',
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button' => 'background-color: {{VALUE}} !important;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}} !important;',
 								),
 							)
 						);
@@ -1630,7 +1630,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							array(
 								'name'     => 'dots_border',
 								'label'    => __( 'Border', 'wbcom-essential' ),
-								'selector' => '{{WRAPPER}} .product-slider .slick-dots li button',
+								'selector' => '{{WRAPPER}} .product-slider .swiper-pagination-bullet',
 							)
 						);
 
@@ -1640,7 +1640,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 								'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 								'type'      => Controls_Manager::DIMENSIONS,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 								),
 							)
 						);
@@ -1670,7 +1670,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							'type'      => Controls_Manager::COLOR,
 							'default'   => '#23252a',
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'color: {{VALUE}};',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'color: {{VALUE}};',
 							),
 						)
 					);
@@ -1682,7 +1682,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							'type'      => Controls_Manager::COLOR,
 							'default'   => '#ffffff',
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'background-color: {{VALUE}} !important;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'background-color: {{VALUE}} !important;',
 							),
 						)
 					);
@@ -1692,7 +1692,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'name'     => 'button_hover_border',
 							'label'    => __( 'Border', 'wbcom-essential' ),
-							'selector' => '{{WRAPPER}} .product-slider .slick-arrow:hover',
+							'selector' => '{{WRAPPER}} .product-slider .elementor-swiper-button:hover',
 						)
 					);
 
@@ -1702,7 +1702,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 							'type'      => Controls_Manager::DIMENSIONS,
 							'selectors' => array(
-								'{{WRAPPER}} .product-slider .slick-arrow:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 							),
 						)
 					);
@@ -1722,8 +1722,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
 								'type'      => Controls_Manager::COLOR,
 								'default'   => '#282828',
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'background-color: {{VALUE}} !important;',
-									'{{WRAPPER}} .product-slider .slick-dots li.slick-active button' => 'background-color: {{VALUE}} !important;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover' => 'background-color: {{VALUE}} !important;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet-active' => 'background-color: {{VALUE}} !important;',
 								),
 							)
 						);
@@ -1733,7 +1733,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							array(
 								'name'     => 'dots_border_hover',
 								'label'    => __( 'Border', 'wbcom-essential' ),
-								'selector' => '{{WRAPPER}} .product-slider .slick-dots li button:hover',
+								'selector' => '{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover',
 							)
 						);
 
@@ -1743,7 +1743,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 								'label'     => esc_html__( 'Border Radius', 'wbcom-essential' ),
 								'type'      => Controls_Manager::DIMENSIONS,
 								'selectors' => array(
-									'{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+									'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
 								),
 							)
 						);
@@ -2020,7 +2020,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 		$products = new \WP_Query( $args );
 
 		// Calculate Column.
-		$collumval = ( $settings['product_layout_style'] == 'slider' ) ? 'wb-product mb-30 product wb-col-xs-12' : 'wb-product wb-col-lg-4 wb-col-md-6 wb-col-sm-6 wb-col-xs-12 mb-30 product';
+		$collumval = ( $settings['product_layout_style'] == 'slider' ) ? 'swiper-slide wb-product mb-30 product wb-col-xs-12' : 'wb-product wb-col-lg-4 wb-col-md-6 wb-col-sm-6 wb-col-xs-12 mb-30 product';
 		if ( $columns != '' ) {
 			if ( $columns == 5 ) {
 				$collumval = 'wb-product cus-col-5 wb-col-md-6 wb-col-sm-6 wb-col-xs-12 mb-30 product';
@@ -2239,12 +2239,17 @@ class UniversalProduct extends \Elementor\Widget_Base {
 												?>
 												<div class="wb-product-image">
 													<?php if ( $settings['thumbnails_style'] == 2 && $gallery_images_ids ) : ?>
-														<div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>">
+														<div class="wb-product-image-slider swiper-container wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>">
+															<div class="swiper-wrapper">
 															<?php
 															foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-																echo '<a href="' . esc_url( get_the_permalink() ) . '" class="item">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a>';
+																echo '<div class="swiper-slide"><a href="' . esc_url( get_the_permalink() ) . '" class="item">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
 															}
 															?>
+															</div>
+															<div class="swiper-pagination"></div>
+															<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>
+															<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>
 														</div>
 
 														<?php
@@ -2279,8 +2284,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
 														</ul>
 
 													<?php else : ?>
-														<a href="<?php the_permalink(); ?>"> 
-															<?php woocommerce_template_loop_product_thumbnail(); ?> 
+														<a href="<?php the_permalink(); ?>">
+															<?php woocommerce_template_loop_product_thumbnail(); ?>
 														</a>
 													<?php endif; ?>
 
@@ -2380,10 +2385,10 @@ endforeach;
 					echo '<div class="wb-row">';
 				}
 				?>
-					<div class="<?php echo esc_attr( $same_height_box == 'yes' ? 'wbcom-product-same-height' : '' ); ?> wb-products woocommerce 
+					<div class="<?php echo esc_attr( $same_height_box == 'yes' ? 'wbcom-product-same-height' : '' ); ?> wb-products woocommerce
 					<?php
 					if ( $settings['product_layout_style'] == 'slider' ) {
-						echo esc_attr( 'product-slider' );
+						echo esc_attr( 'product-slider swiper-container' );
 					} else {
 						echo esc_attr( 'wb-row' ); }
 					?>
@@ -2393,6 +2398,9 @@ endforeach;
 										echo esc_attr( wp_json_encode( $slider_settings ) ); }
 					?>
 ' <?php echo esc_attr( $slider_main_div_style ); ?> >
+					<?php if ( $settings['product_layout_style'] == 'slider' ) : ?>
+						<div class="swiper-wrapper">
+					<?php endif; ?>
 
 						<?php
 						if ( $products->have_posts() ) :
@@ -2428,19 +2436,17 @@ endforeach;
 									?>
 										<div class="wb-product-image">
 										<?php if ( $settings['thumbnails_style'] == 2 && $gallery_images_ids ) : ?>
-												<div class="wb-product-image-slider wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>" data-slick='{"rtl":
-												<?php
-												if ( is_rtl() ) {
-													echo 'true';
-												} else {
-													echo 'false'; }
-												?>
-												}'>
+												<div class="wb-product-image-slider swiper-container wb-product-image-thumbnaisl-<?php echo esc_attr( $tabuniqid ); ?>">
+													<div class="swiper-wrapper">
 													<?php
 													foreach ( $gallery_images_ids as $gallery_attachment_id ) {
-														echo '<a href="' . esc_url( get_the_permalink() ) . '" class="item">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a>';
+														echo '<div class="swiper-slide"><a href="' . esc_url( get_the_permalink() ) . '" class="item">' . wp_get_attachment_image( $gallery_attachment_id, 'woocommerce_thumbnail' ) . '</a></div>';
 													}
 													?>
+													</div>
+													<div class="swiper-pagination"></div>
+													<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>
+													<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>
 												</div>
 
 											<?php
@@ -2557,6 +2563,12 @@ endforeach;
 							wp_reset_postdata();
 endif;
 						?>
+					<?php if ( $settings['product_layout_style'] == 'slider' ) : ?>
+						</div><!-- /.swiper-wrapper -->
+						<div class="swiper-pagination"></div>
+						<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>
+						<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>
+					<?php endif; ?>
 					</div>
 				<?php
 				if ( $settings['product_layout_style'] == 'slider' ) {
@@ -2569,11 +2581,19 @@ endif;
 				<script>
 					;jQuery(document).ready(function($) {
 						'use strict';
-						$(".wb-product-image-thumbnaisl-<?php echo esc_js( $tabuniqid ); ?>").slick({
-							dots: true,
-							arrows: true,
-							prevArrow: '<button class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
-							nextArrow: '<button class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
+						$(".wb-product-image-thumbnaisl-<?php echo esc_js( $tabuniqid ); ?>").each(function() {
+							new Swiper(this, {
+								slidesPerView: 1,
+								pagination: {
+									el: $(this).find('.swiper-pagination').get(0),
+									type: 'bullets',
+									clickable: true
+								},
+								navigation: {
+									prevEl: $(this).find('.elementor-swiper-button-prev').get(0),
+									nextEl: $(this).find('.elementor-swiper-button-next').get(0)
+								}
+							});
 						});
 					});
 				</script>

@@ -77,6 +77,15 @@
 	 * @return {HTMLButtonElement}
 	 */
 	function buildFriendButton( member, cfg ) {
+		// Current user sees "View Profile" instead of "Add Friend".
+		if ( cfg.currentUserId && member.id === cfg.currentUserId ) {
+			const link       = document.createElement( 'a' );
+			link.href        = member.link || '#';
+			link.className   = 'wbe-members-carousel__friend-btn wbe-mc-friend--view-profile';
+			link.textContent = cfg.i18n.viewProfile || 'View Profile';
+			return link;
+		}
+
 		const status  = member.friendship_status_slug || 'not_friends';
 		const state   = friendBtnState( status, cfg.i18n );
 		const btn     = document.createElement( 'button' );
@@ -176,7 +185,7 @@
 				'X-WP-Nonce':  cfg.restNonce,
 			},
 			credentials: 'same-origin',
-			body:        JSON.stringify( { friend_id: memberId } ),
+			body:        JSON.stringify( { initiator_id: cfg.currentUserId, friend_id: memberId } ),
 		} )
 			.then( function ( res ) {
 				if ( ! res.ok ) {

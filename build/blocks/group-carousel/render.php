@@ -35,6 +35,7 @@ $show_dots       = ! empty( $attributes['showDots'] );
 $show_arrows     = ! empty( $attributes['showArrows'] );
 $show_desc       = ! empty( $attributes['showDescription'] );
 $show_count      = ! empty( $attributes['showMemberCount'] );
+$show_join       = ! empty( $attributes['showJoinButton'] ) && bp_is_active( 'groups' );
 $space_between   = absint( $attributes['spaceBetween'] ?? 24 );
 $avatar_size     = absint( $attributes['avatarSize'] ?? 80 );
 $card_bg         = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' ) ?: '#ffffff';
@@ -159,6 +160,12 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 											<?php echo wp_kses_post( bp_get_group_description_excerpt( array( 'length' => 80 ) ) ); ?>
 										</p>
 									<?php endif; ?>
+
+									<?php if ( $show_join && is_user_logged_in() ) : ?>
+										<div class="wbe-group-carousel__action">
+											<?php bp_group_join_button( groups_get_current_group() ); ?>
+										</div>
+									<?php endif; ?>
 								</div>
 
 							</div>
@@ -190,11 +197,13 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 			'sortType'        => $sort_type,
 			'showDescription' => $show_desc,
 			'showMemberCount' => $show_count,
+			'showJoinButton'  => $show_join,
 			'avatarSize'      => $avatar_size,
 			'showDots'        => $show_dots,
 			'showArrows'      => $show_arrows,
 			'swiperOptions'   => $swiper_options,
 			'loggedIn'        => is_user_logged_in(),
+			'currentUserId'   => get_current_user_id(),
 			'colors'          => array(
 				'cardBg'    => $card_bg,
 				'nameColor' => $name_color,
@@ -205,6 +214,10 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 				'members'     => __( 'Members', 'wbcom-essential' ),
 				'previous'    => __( 'Previous', 'wbcom-essential' ),
 				'next'        => __( 'Next', 'wbcom-essential' ),
+				'joinGroup'   => __( 'Join Group', 'wbcom-essential' ),
+				'leaveGroup'  => __( 'Leave', 'wbcom-essential' ),
+				'joined'      => __( 'Joined', 'wbcom-essential' ),
+				'pending'     => __( 'Pending', 'wbcom-essential' ),
 			),
 		);
 		?>
