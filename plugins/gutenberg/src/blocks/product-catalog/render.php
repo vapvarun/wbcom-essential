@@ -16,6 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
+	echo '<p class="wbe-block-notice">' . esc_html__( 'Easy Digital Downloads plugin is required for this block.', 'wbcom-essential' ) . '</p>';
+	return;
+}
+
 // Shared infrastructure: unique ID + CSS output + visibility classes.
 $unique_id   = ! empty( $attributes['uniqueId'] ) ? $attributes['uniqueId'] : '';
 $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );

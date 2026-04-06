@@ -4,7 +4,7 @@
   "name": "wbcom-essential/edd-checkout-enhanced",
   "version": "2.0.0",
   "title": "EDD Enhanced Checkout",
-  "category": "essential-design",
+  "category": "essential-edd",
   "icon": "cart",
   "description": "Enhanced checkout page with progress bar, trust badges, reviews, and recommendations wrapping EDD's native checkout.",
   "keywords": [

@@ -4,7 +4,7 @@
   "name": "wbcom-essential/product-filter",
   "version": "2.0.0",
   "title": "Product Filter",
-  "category": "widgets",
+  "category": "essential-edd",
   "icon": "filter",
   "description": "A sticky filter bar that shows/hides product sections on a page by their anchor IDs.",
   "keywords": [

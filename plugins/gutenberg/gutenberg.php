@@ -168,6 +168,11 @@ add_filter(
 				'icon'  => 'cart',
 			),
 			array(
+				'slug'  => 'essential-edd',
+				'title' => __( 'Essential - EDD', 'wbcom-essential' ),
+				'icon'  => 'download',
+			),
+			array(
 				'slug'  => 'wbcom-essential',
 				'title' => __( 'WBcom Essential', 'wbcom-essential' ),
 				'icon'  => 'screenoptions',

@@ -4,10 +4,18 @@
 	"name": "wbcom-essential/edd-order-success",
 	"version": "2.0.0",
 	"title": "EDD Order Success",
-	"category": "essential-woocommerce",
+	"category": "essential-edd",
 	"icon": "yes-alt",
 	"description": "Display a purchase confirmation page with a success header, order receipt, and next steps for customers.",
-	"keywords": [ "edd", "order", "success", "purchase", "receipt", "download", "confirmation" ],
+	"keywords": [
+		"edd",
+		"order",
+		"success",
+		"purchase",
+		"receipt",
+		"download",
+		"confirmation"
+	],
 	"textdomain": "wbcom-essential",
 	"example": {
 		"attributes": {
@@ -33,39 +41,108 @@
 			"type": "string",
 			"default": ""
 		},
-		"uniqueId": { "type": "string", "default": "" },
+		"uniqueId": {
+			"type": "string",
+			"default": ""
+		},
 		"padding": {
 			"type": "object",
-			"default": { "top": 24, "right": 24, "bottom": 24, "left": 24 }
+			"default": {
+				"top": 24,
+				"right": 24,
+				"bottom": 24,
+				"left": 24
+			}
 		},
-		"paddingTablet": { "type": "object", "default": null },
-		"paddingMobile": { "type": "object", "default": null },
-		"paddingUnit": { "type": "string", "default": "px" },
+		"paddingTablet": {
+			"type": "object",
+			"default": null
+		},
+		"paddingMobile": {
+			"type": "object",
+			"default": null
+		},
+		"paddingUnit": {
+			"type": "string",
+			"default": "px"
+		},
 		"margin": {
 			"type": "object",
-			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
+			"default": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			}
 		},
-		"marginTablet": { "type": "object", "default": null },
-		"marginMobile": { "type": "object", "default": null },
-		"marginUnit": { "type": "string", "default": "px" },
-		"boxShadow": { "type": "boolean", "default": false },
-		"shadowHorizontal": { "type": "number", "default": 0 },
-		"shadowVertical": { "type": "number", "default": 4 },
-		"shadowBlur": { "type": "number", "default": 8 },
-		"shadowSpread": { "type": "number", "default": 0 },
-		"shadowColor": { "type": "string", "default": "rgba(0, 0, 0, 0.12)" },
+		"marginTablet": {
+			"type": "object",
+			"default": null
+		},
+		"marginMobile": {
+			"type": "object",
+			"default": null
+		},
+		"marginUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"boxShadow": {
+			"type": "boolean",
+			"default": false
+		},
+		"shadowHorizontal": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowVertical": {
+			"type": "number",
+			"default": 4
+		},
+		"shadowBlur": {
+			"type": "number",
+			"default": 8
+		},
+		"shadowSpread": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowColor": {
+			"type": "string",
+			"default": "rgba(0, 0, 0, 0.12)"
+		},
 		"borderRadius": {
 			"type": "object",
-			"default": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
+			"default": {
+				"top": 0,
+				"right": 0,
+				"bottom": 0,
+				"left": 0
+			}
 		},
-		"borderRadiusUnit": { "type": "string", "default": "px" },
-		"hideOnDesktop": { "type": "boolean", "default": false },
-		"hideOnTablet": { "type": "boolean", "default": false },
-		"hideOnMobile": { "type": "boolean", "default": false }
+		"borderRadiusUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"hideOnDesktop": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideOnTablet": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideOnMobile": {
+			"type": "boolean",
+			"default": false
+		}
 	},
 	"supports": {
 		"html": false,
-		"align": [ "wide", "full" ],
+		"align": [
+			"wide",
+			"full"
+		],
 		"spacing": {
 			"margin": true,
 			"padding": true

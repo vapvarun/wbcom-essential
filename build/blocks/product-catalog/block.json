@@ -4,7 +4,7 @@
   "name": "wbcom-essential/product-catalog",
   "version": "2.0.0",
   "title": "Product Catalog",
-  "category": "widgets",
+  "category": "essential-edd",
   "icon": "grid-view",
   "description": "An AJAX-powered product grid with category, price, and search filters for EDD products.",
   "keywords": [

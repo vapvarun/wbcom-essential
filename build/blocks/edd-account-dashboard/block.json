@@ -4,7 +4,7 @@
   "name": "wbcom-essential/edd-account-dashboard",
   "version": "2.0.0",
   "title": "EDD Account Dashboard",
-  "category": "essential-design",
+  "category": "essential-edd",
   "description": "A unified My Account dashboard for Easy Digital Downloads with sidebar navigation, orders, downloads, licenses, and subscriptions.",
   "keywords": [
     "edd",

@@ -4,7 +4,7 @@
   "name": "wbcom-essential/edd-order-success",
   "version": "2.0.0",
   "title": "EDD Order Success",
-  "category": "essential-woocommerce",
+  "category": "essential-edd",
   "icon": "yes-alt",
   "description": "Display a purchase confirmation page with a success header, order receipt, and next steps for customers.",
   "keywords": [
