@@ -171,6 +171,7 @@ $wrapper_attrs = get_block_wrapper_attributes( array(
  * @param string $sep_char      Separator character (HTML entity).
  * @return string
  */
+if ( ! function_exists( 'wbe_ticker_item' ) ) :
 function wbe_ticker_item( $post_data, $show_date, $show_category, $sep_char ) {
 	ob_start();
 	$first_cat = ! empty( $post_data['categories'] ) ? $post_data['categories'][0] : null;
@@ -211,6 +212,7 @@ function wbe_ticker_item( $post_data, $show_date, $show_category, $sep_char ) {
 	<?php
 	return ob_get_clean();
 }
+endif;
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<?php if ( $token_css ) : ?>
