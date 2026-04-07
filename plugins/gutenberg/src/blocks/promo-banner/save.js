@@ -7,6 +7,7 @@
  */
 
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { generateBlockCSS } from '../../shared/utils/css';
 
 export default function save( { attributes } ) {
 	const {
@@ -62,8 +63,11 @@ export default function save( { attributes } ) {
 		style: wrapperStyle,
 	} );
 
+	const css = generateBlockCSS( uniqueId, attributes );
+
 	return (
 		<div { ...blockProps }>
+			{ css && <style>{ css }</style> }
 			{ /* Overlay layer (overlay mode only) */ }
 			{ isOverlay && hasBgImage && (
 				<div

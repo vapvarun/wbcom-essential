@@ -5,6 +5,7 @@
  */
 
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { generateBlockCSS } from '../../shared/utils/css';
 
 export default function save( { attributes } ) {
 	const {
@@ -63,8 +64,11 @@ export default function save( { attributes } ) {
 		},
 	} );
 
+	const css = generateBlockCSS( uniqueId, attributes );
+
 	return (
 		<div { ...blockProps }>
+			{ css && <style>{ css }</style> }
 			{ backgroundType === 'image' && backgroundImage?.url && (
 				<div
 					className="wbe-hero__overlay"

@@ -104,6 +104,7 @@
 	font-size: 0.95rem;
 	font-weight: 700;
 	line-height: 1.4;
+	color: inherit;
 }
 
 .wbe-product-grid__title a {

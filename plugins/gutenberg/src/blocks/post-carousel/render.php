@@ -130,6 +130,7 @@ if ( $unique_id ) {
 }
 
 // ── Helper: build a post card ─────────────────────────────────────────────────
+if ( ! function_exists( 'wbe_post_carousel_card' ) ) :
 function wbe_post_carousel_card( $post, $show_image, $show_category, $show_excerpt, $excerpt_len, $show_date, $show_author ) {
 	$post_id    = $post->ID;
 	$permalink  = get_permalink( $post_id );
@@ -211,6 +212,7 @@ function wbe_post_carousel_card( $post, $show_image, $show_category, $show_excer
 	<?php
 	return ob_get_clean();
 }
+endif;
 
 // ── Output ───────────────────────────────────────────────────────────────────
 ?>

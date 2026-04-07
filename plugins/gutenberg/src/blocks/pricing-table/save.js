@@ -5,6 +5,7 @@
  */
 
 import { useBlockProps } from '@wordpress/block-editor';
+import { generateBlockCSS } from '../../shared/utils/css';
 
 export default function save( { attributes } ) {
 	const {
@@ -36,8 +37,11 @@ export default function save( { attributes } ) {
 		className: `wbe-block-${ uniqueId } wbe-pricing-cards${ visibilityClasses ? ' ' + visibilityClasses : '' }`,
 	} );
 
+	const css = generateBlockCSS( uniqueId, attributes );
+
 	return (
 		<div { ...blockProps }>
+			{ css && <style>{ css }</style> }
 			<div
 				className="wbe-pricing-cards__grid"
 				style={ { '--wbe-pricing-cols': columns } }

@@ -80,7 +80,7 @@
 	font-size: var(--wbe-font-xl, 20px);
 	font-weight: var(--wbe-weight-semibold, 600);
 	line-height: var(--wbe-leading-tight, 1.25);
-	color: #1e1e2e;
+	color: inherit;
 }
 
 /* ---- Description ---- */

@@ -5,6 +5,7 @@
  */
 
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { generateBlockCSS } from '../../shared/utils/css';
 
 export default function save( { attributes } ) {
 	const {
@@ -42,8 +43,11 @@ export default function save( { attributes } ) {
 		},
 	} );
 
+	const css = generateBlockCSS( uniqueId, attributes );
+
 	return (
 		<div { ...blockProps }>
+			{ css && <style>{ css }</style> }
 			<div className="wbe-cta__body">
 				<RichText.Content
 					tagName="h2"

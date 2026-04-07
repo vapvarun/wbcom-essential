@@ -122,6 +122,7 @@
 	font-size: 1rem;
 	font-weight: 700;
 	line-height: 1.4;
+	color: inherit;
 }
 
 .wbe-post-carousel__title a {
