@@ -48,6 +48,7 @@
 	padding: var( --wbe-tabs-tab-padding );
 	background: transparent;
 	border: none;
+	border-radius: 0;
 	cursor: pointer;
 	font-size: 0.9375rem;
 	font-weight: 500;
@@ -55,6 +56,13 @@
 	white-space: nowrap;
 	transition: color var( --wbe-tabs-transition );
 	position: relative;
+	margin: 0;
+	line-height: 1.4;
+	text-decoration: none;
+	box-shadow: none;
+	outline: none;
+	-webkit-appearance: none;
+	appearance: none;
 }
 
 .wbe-tabs__tab:focus-visible {

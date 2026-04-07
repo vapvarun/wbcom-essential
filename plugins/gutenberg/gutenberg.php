@@ -63,6 +63,7 @@ add_action(
 			|| false !== strpos( $post->post_content, 'post-carousel' )
 			|| false !== strpos( $post->post_content, 'product-carousel' )
 			|| false !== strpos( $post->post_content, 'testimonial-carousel' )
+			|| false !== strpos( $post->post_content, 'customer-reviews' )
 		) {
 			wp_enqueue_style( 'wbe-swiper' );
 		}

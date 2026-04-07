@@ -85,6 +85,14 @@
 			filterable.push( el );
 		}
 
+		// Calculate sticky offset for scroll calculations.
+		var stickyOffset = 0;
+		if ( isSticky ) {
+			stickyOffset = ( document.body.classList.contains( 'admin-bar' ) ? 32 : 0 )
+				+ ( header ? header.offsetHeight : 0 )
+				+ bar.offsetHeight + 16;
+		}
+
 		// Bind click handlers.
 		btns.forEach( function ( btn ) {
 			btn.addEventListener( 'click', function () {
@@ -101,28 +109,30 @@
 					filterable.forEach( function ( section ) {
 						section.style.display = '';
 					} );
+					var barTop = bar.getBoundingClientRect().top + window.scrollY - stickyOffset;
 					window.scrollTo( {
-						top: bar.offsetTop - 10,
+						top: Math.max( 0, barTop ),
 						behavior: 'smooth',
 					} );
 					return;
 				}
 
-				// Hide all sections first.
+				// Hide all sections first, show the target.
 				filterable.forEach( function ( section ) {
 					section.style.display = 'none';
 				} );
 
-				// Show the matching section and scroll to it.
 				var target = document.getElementById( filter );
 				if ( target ) {
 					target.style.display = '';
-					setTimeout( function () {
-						target.scrollIntoView( {
+					// Use manual scroll to account for sticky bar height.
+					requestAnimationFrame( function () {
+						var targetTop = target.getBoundingClientRect().top + window.scrollY - stickyOffset;
+						window.scrollTo( {
+							top: Math.max( 0, targetTop ),
 							behavior: 'smooth',
-							block: 'start',
 						} );
-					}, 50 );
+					} );
 				}
 			} );
 		} );

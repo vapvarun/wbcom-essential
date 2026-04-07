@@ -15,6 +15,7 @@ export default function BoxShadowControl( {
 	blur = 8,
 	spread = 0,
 	color = 'rgba(0, 0, 0, 0.12)',
+	onChange,
 	onToggle,
 	onChangeHorizontal,
 	onChangeVertical,
@@ -22,12 +23,19 @@ export default function BoxShadowControl( {
 	onChangeSpread,
 	onChangeColor,
 } ) {
+	const handleToggle = onToggle || ( ( val ) => onChange?.( { boxShadow: val } ) );
+	const handleHorizontal = onChangeHorizontal || ( ( val ) => onChange?.( { shadowHorizontal: val } ) );
+	const handleVertical = onChangeVertical || ( ( val ) => onChange?.( { shadowVertical: val } ) );
+	const handleBlur = onChangeBlur || ( ( val ) => onChange?.( { shadowBlur: val } ) );
+	const handleSpread = onChangeSpread || ( ( val ) => onChange?.( { shadowSpread: val } ) );
+	const handleColor = onChangeColor || ( ( val ) => onChange?.( { shadowColor: val } ) );
+
 	return (
 		<BaseControl className="wbe-box-shadow-control">
 			<ToggleControl
 				label={ __( 'Box Shadow', 'wbcom-essential' ) }
 				checked={ enabled }
-				onChange={ onToggle }
+				onChange={ handleToggle }
 				__nextHasNoMarginBottom
 			/>
 			{ enabled && (
@@ -37,7 +45,7 @@ export default function BoxShadowControl( {
 							<NumberControl
 								label={ __( 'X', 'wbcom-essential' ) }
 								value={ horizontal }
-								onChange={ ( val ) => onChangeHorizontal( Number( val ) ) }
+								onChange={ ( val ) => handleHorizontal( Number( val ) ) }
 								min={ -50 }
 								max={ 50 }
 							/>
@@ -46,7 +54,7 @@ export default function BoxShadowControl( {
 							<NumberControl
 								label={ __( 'Y', 'wbcom-essential' ) }
 								value={ vertical }
-								onChange={ ( val ) => onChangeVertical( Number( val ) ) }
+								onChange={ ( val ) => handleVertical( Number( val ) ) }
 								min={ -50 }
 								max={ 50 }
 							/>
@@ -57,7 +65,7 @@ export default function BoxShadowControl( {
 							<NumberControl
 								label={ __( 'Blur', 'wbcom-essential' ) }
 								value={ blur }
-								onChange={ ( val ) => onChangeBlur( Number( val ) ) }
+								onChange={ ( val ) => handleBlur( Number( val ) ) }
 								min={ 0 }
 								max={ 100 }
 							/>
@@ -66,7 +74,7 @@ export default function BoxShadowControl( {
 							<NumberControl
 								label={ __( 'Spread', 'wbcom-essential' ) }
 								value={ spread }
-								onChange={ ( val ) => onChangeSpread( Number( val ) ) }
+								onChange={ ( val ) => handleSpread( Number( val ) ) }
 								min={ -50 }
 								max={ 50 }
 							/>
@@ -75,7 +83,7 @@ export default function BoxShadowControl( {
 					<BaseControl label={ __( 'Shadow Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ color }
-							onChange={ onChangeColor }
+							onChange={ handleColor }
 							clearable={ false }
 						/>
 					</BaseControl>

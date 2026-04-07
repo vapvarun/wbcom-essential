@@ -151,11 +151,24 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 		$price_query = array( 'relation' => 'AND' );
 		switch ( $price_range ) {
 			case 'free':
-				$price_query[] = array(
-					'key'     => 'edd_price',
-					'value'   => 0,
-					'compare' => '=',
-					'type'    => 'NUMERIC',
+				// Free products may have edd_price=0, empty string, or no meta at all.
+				$price_query = array(
+					'relation' => 'OR',
+					array(
+						'key'     => 'edd_price',
+						'value'   => 0,
+						'compare' => '=',
+						'type'    => 'NUMERIC',
+					),
+					array(
+						'key'     => 'edd_price',
+						'value'   => '',
+						'compare' => '=',
+					),
+					array(
+						'key'     => 'edd_price',
+						'compare' => 'NOT EXISTS',
+					),
 				);
 				break;
 			case 'under25':

@@ -214,6 +214,6 @@
   "style": "file:./style-index.css",
   "viewScript": [
     "file:./view.js",
-    "wbcom-swiper"
+    "swiper"
   ]
 }

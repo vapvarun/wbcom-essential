@@ -69,8 +69,92 @@ function wbcom_essential_edd_account_rest_routes() {
 			),
 		)
 	);
+
+	// States endpoint for dynamic country/state dropdown.
+	register_rest_route(
+		'wbcom/v1',
+		'/edd-account/states/(?P<country>[A-Z]{2})',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'wbcom_essential_edd_get_states',
+			'permission_callback' => function () {
+				return is_user_logged_in();
+			},
+		)
+	);
 }
 add_action( 'rest_api_init', 'wbcom_essential_edd_account_rest_routes' );
+
+/**
+ * REST callback: return states for a given country code.
+ *
+ * @param WP_REST_Request $request Request object.
+ * @return WP_REST_Response
+ */
+function wbcom_essential_edd_get_states( $request ) {
+	$country = sanitize_text_field( $request->get_param( 'country' ) );
+	$states  = function_exists( 'edd_get_shop_states' ) ? edd_get_shop_states( $country ) : array();
+
+	return new WP_REST_Response( $states, 200 );
+}
+
+/**
+ * Handle EDD profile editor form submission — ensure billing address is saved.
+ *
+ * EDD's built-in edd_edit_user_profile handler may not process the billing
+ * address fields from our custom form. This hook runs after EDD's handler
+ * and explicitly updates the customer address.
+ */
+function wbcom_essential_edd_save_profile_address() {
+	if ( ! isset( $_POST['edd_action'] ) || 'edit_user_profile' !== $_POST['edd_action'] ) {
+		return;
+	}
+	if ( ! isset( $_POST['edd_profile_editor_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['edd_profile_editor_nonce'] ) ), 'edd-profile-editor-nonce' ) ) {
+		return;
+	}
+	if ( ! is_user_logged_in() || ! function_exists( 'edd_get_customer_by' ) ) {
+		return;
+	}
+
+	$customer = edd_get_customer_by( 'user_id', get_current_user_id() );
+	if ( ! $customer ) {
+		return;
+	}
+
+	$address_data = array(
+		'address'     => isset( $_POST['card_address'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address'] ) ) : '',
+		'address2'    => isset( $_POST['card_address_2'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address_2'] ) ) : '',
+		'city'        => isset( $_POST['card_city'] ) ? sanitize_text_field( wp_unslash( $_POST['card_city'] ) ) : '',
+		'postal_code' => isset( $_POST['card_zip'] ) ? sanitize_text_field( wp_unslash( $_POST['card_zip'] ) ) : '',
+		'country'     => isset( $_POST['card_country'] ) ? sanitize_text_field( wp_unslash( $_POST['card_country'] ) ) : '',
+		'region'      => isset( $_POST['card_state'] ) ? sanitize_text_field( wp_unslash( $_POST['card_state'] ) ) : '',
+	);
+
+	// Update the customer's primary address.
+	if ( method_exists( $customer, 'add_address' ) ) {
+		// EDD 3.x: use the customer address API.
+		$existing = $customer->get_address();
+		if ( $existing && ! empty( $existing->id ) ) {
+			edd_update_customer_address( $existing->id, $address_data );
+		} else {
+			$address_data['customer_id'] = $customer->id;
+			$address_data['is_primary']  = true;
+			$address_data['type']        = 'billing';
+			edd_add_customer_address( $address_data );
+		}
+	} else {
+		// EDD 2.x fallback: store in customer meta.
+		$customer->update_meta( 'address', array(
+			'line1'   => $address_data['address'],
+			'line2'   => $address_data['address2'],
+			'city'    => $address_data['city'],
+			'zip'     => $address_data['postal_code'],
+			'country' => $address_data['country'],
+			'state'   => $address_data['region'],
+		) );
+	}
+}
+add_action( 'init', 'wbcom_essential_edd_save_profile_address', 20 );
 
 /**
  * REST callback: render the requested tab as HTML.

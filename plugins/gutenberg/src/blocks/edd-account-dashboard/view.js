@@ -155,11 +155,101 @@
 		}
 
 		/**
+		 * Bind country/state dropdown dependency.
+		 * When the country changes, fetch states from the REST API and update the state field.
+		 *
+		 * @param {HTMLElement} el Container element.
+		 */
+		function bindCountryStateHandler( el ) {
+			var countrySelect = el.querySelector( '#card_country' );
+			if ( ! countrySelect ) {
+				return;
+			}
+
+			countrySelect.addEventListener( 'change', function () {
+				var country = this.value;
+				var stateField = el.querySelector( '#card_state' );
+				var stateParent = stateField ? stateField.parentElement : null;
+
+				if ( ! stateParent || ! country ) {
+					return;
+				}
+
+				// Build the states endpoint URL from the tab endpoint base.
+				var statesUrl = restUrl.replace( /edd-account\/$/, 'edd-account/states/' ) + encodeURIComponent( country );
+
+				fetch( statesUrl, {
+					method: 'GET',
+					credentials: 'same-origin',
+					headers: {
+						'X-WP-Nonce': nonce,
+						Accept: 'application/json',
+					},
+				} )
+					.then( function ( response ) {
+						return response.json();
+					} )
+					.then( function ( states ) {
+						// Remove existing state field (keep the label).
+						var oldField = stateParent.querySelector( 'select, input' );
+						if ( oldField ) {
+							oldField.remove();
+						}
+
+						if ( states && Object.keys( states ).length > 0 ) {
+							var select = document.createElement( 'select' );
+							select.id = 'card_state';
+							select.name = 'card_state';
+							select.className = 'wbcom-edd-profile__select';
+
+							var defaultOpt = document.createElement( 'option' );
+							defaultOpt.value = '';
+							defaultOpt.textContent = 'Select state';
+							select.appendChild( defaultOpt );
+
+							for ( var code in states ) {
+								if ( states.hasOwnProperty( code ) ) {
+									var opt = document.createElement( 'option' );
+									opt.value = code;
+									opt.textContent = states[ code ];
+									select.appendChild( opt );
+								}
+							}
+							stateParent.appendChild( select );
+						} else {
+							var input = document.createElement( 'input' );
+							input.type = 'text';
+							input.id = 'card_state';
+							input.name = 'card_state';
+							input.className = 'wbcom-edd-profile__input';
+							input.value = '';
+							stateParent.appendChild( input );
+						}
+					} )
+					.catch( function () {
+						// On error, fall back to text input.
+						var oldField = stateParent.querySelector( 'select, input' );
+						if ( oldField ) {
+							oldField.remove();
+						}
+						var input = document.createElement( 'input' );
+						input.type = 'text';
+						input.id = 'card_state';
+						input.name = 'card_state';
+						input.className = 'wbcom-edd-profile__input';
+						input.value = '';
+						stateParent.appendChild( input );
+					} );
+			} );
+		}
+
+		/**
 		 * Bind interactive elements: copy-to-clipboard, cancel confirmation.
 		 *
 		 * @param {HTMLElement} el Container element.
 		 */
 		function bindInteractions( el ) {
+			bindCountryStateHandler( el );
 			// Copy license key to clipboard.
 			el.querySelectorAll( '.wbcom-edd-license__copy-btn' ).forEach( function ( btn ) {
 				btn.addEventListener( 'click', function () {
