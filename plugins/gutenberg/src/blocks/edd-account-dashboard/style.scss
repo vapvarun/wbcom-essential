@@ -1121,10 +1121,41 @@
 // -------------------------------------------------------------------------
 
 .wbcom-edd-empty {
-	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	padding: 3rem 2rem;
 	text-align: center;
+}
+
+.wbcom-edd-empty__icon {
+	color: var( --wbe-color-border, #cbd5e1 );
+}
+
+.wbcom-edd-empty__text {
 	color: var( --wbcom-text-color, #64748b );
-	font-size: var( --edd-font-md );
+	font-size: 0.9375rem;
+	margin: 0;
+}
+
+.wbcom-edd-empty__cta {
+	display: inline-block;
+	margin-top: 4px;
+	padding: 8px 20px;
+	background: var( --wbcom-color-primary, #3b82f6 );
+	color: #fff;
+	border-radius: 6px;
+	font-size: 0.875rem;
+	font-weight: 600;
+	text-decoration: none;
+	transition: opacity 0.15s ease;
+}
+
+.wbcom-edd-empty__cta:hover {
+	opacity: 0.88;
+	color: #fff;
+	text-decoration: none;
 }
 
 // -------------------------------------------------------------------------

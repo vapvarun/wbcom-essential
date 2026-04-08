@@ -20,6 +20,14 @@
 		var defaultCat =
 			parseInt( container.dataset.defaultCategory, 10 ) || 0;
 
+		// Parse translatable strings from server.
+		var i18n = {};
+		try {
+			i18n = JSON.parse( container.dataset.i18n || '{}' );
+		} catch ( e ) {
+			i18n = {};
+		}
+
 		// Read block settings from data attributes.
 		state = {
 			columns: parseInt( container.dataset.columns, 10 ) || 3,
@@ -99,7 +107,7 @@
 				var searchInput = document.createElement( 'input' );
 				searchInput.type = 'text';
 				searchInput.className = 'wbcom-catalog__search-input';
-				searchInput.placeholder = 'Search products...';
+				searchInput.placeholder = i18n.searchPlaceholder || 'Search products...';
 				searchInput.value = state.search;
 				searchWrap.appendChild( searchInput );
 				toolbar.appendChild( searchWrap );
@@ -114,7 +122,7 @@
 				addOption(
 					catSelect,
 					'0',
-					'All Categories',
+					i18n.allCategories || 'All Categories',
 					state.category === 0
 				);
 				state.categories.forEach( function ( cat ) {
@@ -133,11 +141,11 @@
 				priceSelect.className =
 					'wbcom-catalog__select wbcom-catalog__price-select';
 				var priceOpts = [
-					[ 'all', 'Any Price' ],
-					[ 'free', 'Free' ],
-					[ 'under25', 'Under $25' ],
-					[ '25to99', '$25 \u2013 $99' ],
-					[ '100plus', '$100+' ],
+					[ 'all', i18n.anyPrice || 'Any Price' ],
+					[ 'free', i18n.free || 'Free' ],
+					[ 'under25', i18n.under25 || 'Under $25' ],
+					[ '25to99', i18n.range25to99 || '$25 \u2013 $99' ],
+					[ '100plus', i18n.over100 || '$100+' ],
 				];
 				priceOpts.forEach( function ( opt ) {
 					addOption(
@@ -156,11 +164,11 @@
 					'wbcom-catalog__select wbcom-catalog__sort-select';
 				var currentSort = getCurrentSortValue();
 				var sortOpts = [
-					[ 'title', 'Title (A-Z)' ],
-					[ 'date', 'Newest First' ],
-					[ 'price_asc', 'Price: Low \u2192 High' ],
-					[ 'price_desc', 'Price: High \u2192 Low' ],
-					[ 'popular', 'Most Popular' ],
+					[ 'title', i18n.titleAZ || 'Title (A-Z)' ],
+					[ 'date', i18n.newestFirst || 'Newest First' ],
+					[ 'price_asc', i18n.priceLowHigh || 'Price: Low \u2192 High' ],
+					[ 'price_desc', i18n.priceHighLow || 'Price: High \u2192 Low' ],
+					[ 'popular', i18n.mostPopular || 'Most Popular' ],
 				];
 				sortOpts.forEach( function ( opt ) {
 					addOption(
@@ -179,12 +187,9 @@
 			// Results count.
 			if ( ! state.loading ) {
 				var countDiv = el( 'div', 'wbcom-catalog__results-count' );
-				countDiv.textContent =
-					'Showing ' +
-					state.products.length +
-					' of ' +
-					state.total +
-					' products';
+				countDiv.textContent = ( i18n.showingOf || 'Showing %1$d of %2$d products' )
+					.replace( '%1$d', state.products.length )
+					.replace( '%2$d', state.total );
 				container.appendChild( countDiv );
 			}
 
@@ -216,8 +221,7 @@
 				}
 			} else if ( state.products.length === 0 ) {
 				var empty = el( 'div', 'wbcom-catalog__empty' );
-				empty.textContent =
-					'No products found matching your filters.';
+				empty.textContent = i18n.noProducts || 'No products found matching your filters.';
 				grid.appendChild( empty );
 			} else {
 				state.products.forEach( function ( product ) {
@@ -233,7 +237,7 @@
 				var lmBtn = document.createElement( 'button' );
 				lmBtn.type = 'button';
 				lmBtn.className = 'wbcom-catalog__loadmore-btn';
-				lmBtn.textContent = 'Load More Products';
+				lmBtn.textContent = i18n.loadMore || 'Load More Products';
 				lmWrap.appendChild( lmBtn );
 				container.appendChild( lmWrap );
 			}
@@ -300,8 +304,8 @@
 				? 'wbcom-catalog__card-btn wbcom-catalog__card-btn--free'
 				: 'wbcom-catalog__card-btn';
 			btn.textContent = product.is_free
-				? 'Download Free'
-				: 'View Product';
+				? ( i18n.downloadFree || 'Download Free' )
+				: ( i18n.viewProduct || 'View Product' );
 			body.appendChild( btn );
 
 			card.appendChild( body );

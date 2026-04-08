@@ -36,6 +36,32 @@ $show_sort           = isset( $attributes['showSort'] ) ? (bool) $attributes['sh
 $default_sort        = isset( $attributes['defaultSort'] ) ? sanitize_text_field( $attributes['defaultSort'] ) : 'title';
 $default_category    = isset( $attributes['defaultCategory'] ) ? absint( $attributes['defaultCategory'] ) : 0;
 
+// Build translatable strings + currency for view.js.
+$currency_sym = function_exists( 'edd_currency_symbol' ) ? edd_currency_symbol() : '$';
+$i18n_strings = array(
+	'searchPlaceholder' => __( 'Search products...', 'wbcom-essential' ),
+	'allCategories'     => __( 'All Categories', 'wbcom-essential' ),
+	'anyPrice'          => __( 'Any Price', 'wbcom-essential' ),
+	'free'              => __( 'Free', 'wbcom-essential' ),
+	/* translators: %s: currency symbol */
+	'under25'           => sprintf( __( 'Under %s25', 'wbcom-essential' ), $currency_sym ),
+	/* translators: %s: currency symbol */
+	'range25to99'       => sprintf( __( '%1$s25 – %1$s99', 'wbcom-essential' ), $currency_sym ),
+	/* translators: %s: currency symbol */
+	'over100'           => sprintf( __( '%s100+', 'wbcom-essential' ), $currency_sym ),
+	'titleAZ'           => __( 'Title (A-Z)', 'wbcom-essential' ),
+	'newestFirst'       => __( 'Newest First', 'wbcom-essential' ),
+	'priceLowHigh'      => __( 'Price: Low → High', 'wbcom-essential' ),
+	'priceHighLow'      => __( 'Price: High → Low', 'wbcom-essential' ),
+	'mostPopular'       => __( 'Most Popular', 'wbcom-essential' ),
+	/* translators: %1$d: visible count, %2$d: total count */
+	'showingOf'         => __( 'Showing %1$d of %2$d products', 'wbcom-essential' ),
+	'noProducts'        => __( 'No products found matching your filters.', 'wbcom-essential' ),
+	'loadMore'          => __( 'Load More Products', 'wbcom-essential' ),
+	'downloadFree'      => __( 'Download Free', 'wbcom-essential' ),
+	'viewProduct'       => __( 'View Product', 'wbcom-essential' ),
+);
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class'                 => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wp-block-wbcom-essential-product-catalog ' . $vis_classes ),
@@ -47,6 +73,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		'data-show-sort'        => $show_sort ? 'true' : 'false',
 		'data-default-sort'     => esc_attr( $default_sort ),
 		'data-default-category' => esc_attr( $default_category ),
+		'data-i18n'             => esc_attr( wp_json_encode( $i18n_strings ) ),
 	)
 );
 ?>

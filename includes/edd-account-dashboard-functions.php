@@ -35,6 +35,14 @@ function wbcom_essential_kses_form( $html ) {
 	$allowed['fieldset'] = array( 'class' => true, 'disabled' => true );
 	$allowed['legend'] = array( 'class' => true );
 
+	// SVG icons used in empty states and nav.
+	$allowed['svg']      = array( 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'aria-hidden' => true, 'class' => true, 'xmlns' => true );
+	$allowed['path']     = array( 'd' => true, 'fill' => true, 'stroke' => true );
+	$allowed['circle']   = array( 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true );
+	$allowed['line']     = array( 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'stroke' => true );
+	$allowed['polyline'] = array( 'points' => true, 'fill' => true, 'stroke' => true );
+	$allowed['rect']     = array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true, 'fill' => true, 'stroke' => true );
+
 	return wp_kses( $html, $allowed );
 }
 
@@ -367,6 +375,32 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 }
 
 /**
+ * Output an empty-state card with icon, message, and optional CTA.
+ *
+ * @param string $icon    SVG path data for a 24×24 icon.
+ * @param string $message Primary empty-state text.
+ * @param string $cta_url Optional CTA link URL.
+ * @param string $cta_text Optional CTA button text.
+ */
+function wbcom_essential_edd_empty_state( $icon, $message, $cta_url = '', $cta_text = '' ) {
+	?>
+	<div class="wbcom-edd-empty">
+		<div class="wbcom-edd-empty__icon" aria-hidden="true">
+			<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+				<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded SVG path data ?>
+			</svg>
+		</div>
+		<p class="wbcom-edd-empty__text"><?php echo esc_html( $message ); ?></p>
+		<?php if ( $cta_url && $cta_text ) : ?>
+			<a href="<?php echo esc_url( $cta_url ); ?>" class="wbcom-edd-empty__cta">
+				<?php echo esc_html( $cta_text ); ?>
+			</a>
+		<?php endif; ?>
+	</div>
+	<?php
+}
+
+/**
  * Output a tab section header with title and optional description.
  *
  * @param string $title       Section title.
@@ -395,7 +429,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	);
 
 	if ( ! class_exists( 'EDD_Recurring' ) || ! $customer ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No subscriptions found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -411,7 +445,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	}
 
 	if ( empty( $subs ) ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No subscriptions found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -561,7 +595,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	);
 
 	if ( ! $customer ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No downloads found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -579,7 +613,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	}
 
 	if ( empty( $orders ) ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No downloads found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -634,7 +668,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	}
 
 	if ( empty( $products ) ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No downloadable files found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloadable files found.', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -688,13 +722,13 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	);
 
 	if ( ! function_exists( 'edd_software_licensing' ) || ! $customer ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No licenses found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
 	$sl = edd_software_licensing();
 	if ( ! $sl || ! isset( $sl->licenses_db ) || ! is_object( $sl->licenses_db ) ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No licenses found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -706,7 +740,7 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	);
 
 	if ( empty( $licenses ) ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No licenses found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -869,7 +903,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	);
 
 	if ( ! $customer ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No orders found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -886,7 +920,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	}
 
 	if ( empty( $orders ) ) {
-		echo '<p class="wbcom-edd-empty">' . esc_html__( 'No orders found.', 'wbcom-essential' ) . '</p>';
+		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
