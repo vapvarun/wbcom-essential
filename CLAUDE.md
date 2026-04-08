@@ -18,6 +18,8 @@ Full architecture documentation available in `docs/architecture/`:
 
 | Date | Description |
 |------|-------------|
+| 2026-04-08 | UX audit: 14 fixes — XSS, flip-box touch/keyboard, visibility CSS consolidation, focus-visible, EDD empty states + mobile nav + i18n, BP notices, a11y |
+| 2026-04-07 | Bug fix: 12 Basecamp cards resolved — block styles, Swiper handle, EDD profile, product filter, BoxShadowControl |
 | 2026-04-05 | v4.5.0: V2 block rebuild — 32 blocks rebuilt from shared infrastructure, 21 legacy blocks removed, competitive audit quality standard |
 | 2026-03-05 | v4.3.0: Category Grid block, magazine patterns, single post templates, Posts Revolution category mapping UX |
 | 2026-02-03 | v4.2.1: Fix PHP 8+ TypeError in Elementor AJAX handler, harden type safety across license and template APIs |
