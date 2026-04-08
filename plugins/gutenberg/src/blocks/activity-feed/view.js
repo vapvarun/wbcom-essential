@@ -393,7 +393,7 @@
 		function postComment( activityId, content, section ) {
 			const url = cfg.restUrl;
 
-			fetch( url, {
+			return fetch( url, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -483,9 +483,11 @@
 				if ( input && input.value.trim() ) {
 					submitBtn.disabled = true;
 					submitBtn.textContent = cfg.i18n.loading || 'Posting...';
-					postComment( actId, input.value.trim(), section );
-					submitBtn.disabled = false;
-					submitBtn.textContent = cfg.i18n.postComment || 'Post';
+					postComment( actId, input.value.trim(), section )
+						.finally( function () {
+							submitBtn.disabled = false;
+							submitBtn.textContent = cfg.i18n.postComment || 'Post';
+						} );
 				}
 				return;
 			}

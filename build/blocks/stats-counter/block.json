@@ -13,7 +13,9 @@
     "numbers",
     "animated",
     "count",
-    "facts"
+    "facts",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

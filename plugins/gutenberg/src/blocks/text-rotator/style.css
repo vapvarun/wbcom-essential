@@ -73,26 +73,14 @@
 }
 
 /* ---- Visibility utilities ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Responsive font sizes ---- */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-text-rotator__sentence {
 		font-size: var( --wbe-tr-font-size-tablet );
 	}
 }
 
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-text-rotator__sentence {
 		font-size: var( --wbe-tr-font-size-mobile );
 	}
@@ -100,12 +88,6 @@
 	/* On narrow screens allow wrapping */
 	.wbe-text-rotator__rotating {
 		white-space: normal;
-	}
-}
-
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
 	}
 }
 

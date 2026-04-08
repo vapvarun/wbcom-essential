@@ -13,7 +13,9 @@
 		"filter",
 		"shop",
 		"edd",
-		"downloads"
+		"downloads",
+		"essential",
+		"wbcom"
 	],
 	"textdomain": "wbcom-essential",
 	"supports": {

@@ -100,12 +100,20 @@
 	            box-shadow var(--wbe-transition-normal, 300ms ease);
 }
 
-.wbe-cta__btn:hover,
+.wbe-cta__btn:hover {
+	background-color: var(--wbe-cta-btn-hover-bg, #5a6fd6);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+	text-decoration: none;
+}
+
 .wbe-cta__btn:focus-visible {
 	background-color: var(--wbe-cta-btn-hover-bg, #5a6fd6);
 	transform: translateY(-2px);
 	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 	text-decoration: none;
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
 }
 
 .wbe-cta__btn:active {
@@ -113,18 +121,8 @@
 }
 
 /* Visibility utility classes */
-@media (min-width: 1025px) {
-	.wbe-hide-desktop {
-		display: none !important;
-	}
-}
-
 /* Tablet */
 @media (max-width: 1024px) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-cta__heading {
 		font-size: var(--wbe-font-3xl, 30px);
 	}
@@ -132,10 +130,6 @@
 
 /* Mobile */
 @media (max-width: 767px) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	/* Inline becomes stacked on mobile */
 	.wbe-cta--inline {
 		flex-direction: column;

@@ -190,10 +190,6 @@
 }
 
 /* ── Visibility utilities ─────────────────────────────────────────────────── */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ── Editor preview wrapper ───────────────────────────────────────────────── */
 .wbe-post-carousel-editor .wp-block-wbcom-essential-post-carousel {
 	pointer-events: none;
@@ -201,10 +197,6 @@
 
 /* ── Tablet ───────────────────────────────────────────────────────────────── */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-post-carousel {
 		--wbe-pc-grid-cols: 2;
 	}
@@ -221,10 +213,6 @@
 
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-post-carousel {
 		--wbe-pc-grid-cols: 1;
 	}
@@ -242,8 +230,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

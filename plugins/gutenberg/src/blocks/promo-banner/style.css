@@ -96,6 +96,13 @@
 	transform: translateY(-2px);
 }
 
+.wbe-promo-banner__btn:focus-visible {
+	opacity: 0.88;
+	transform: translateY(-2px);
+	outline: 2px solid #fff;
+	outline-offset: 3px;
+}
+
 /* ──────────────────────────────────────────────────────────────────────────── */
 /* SPLIT LAYOUT                                                                */
 /* ──────────────────────────────────────────────────────────────────────────── */
@@ -128,16 +135,8 @@
 }
 
 /* ── Visibility utilities ─────────────────────────────────────────────────── */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ── Tablet ───────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	/* Split: stack image on top of content */
 	.wbe-promo-banner--split {
 		flex-direction: column;
@@ -157,10 +156,6 @@
 
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-promo-banner__content {
 		padding: 32px 20px;
 	}
@@ -183,8 +178,3 @@
 	}
 }
 
-@media (min-width: 641px) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

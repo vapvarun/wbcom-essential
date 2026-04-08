@@ -13,7 +13,9 @@
     "grid",
     "shop",
     "ecommerce",
-    "catalog"
+    "catalog",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

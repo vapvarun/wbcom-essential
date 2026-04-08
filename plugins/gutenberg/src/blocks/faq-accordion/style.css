@@ -115,22 +115,7 @@
 	border-top: 1px solid var( --wbe-faq-border-color );
 }
 
-/* ---- Visibility Helpers ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
-@media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-}
-
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-faq-accordion__question {
 		padding: 14px 16px;
 		font-size: 0.9375rem;
@@ -143,8 +128,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

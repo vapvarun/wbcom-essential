@@ -187,22 +187,8 @@
 }
 
 /* ---- Visibility utilities ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Responsive ---- */
-@media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-}
-
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-login-form__inner,
 	.wbe-login-form__logged-in {
 		max-width: 100%;
@@ -214,8 +200,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

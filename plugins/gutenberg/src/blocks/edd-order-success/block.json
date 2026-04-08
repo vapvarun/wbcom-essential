@@ -14,7 +14,9 @@
 		"purchase",
 		"receipt",
 		"download",
-		"confirmation"
+		"confirmation",
+		"essential",
+		"wbcom"
 	],
 	"textdomain": "wbcom-essential",
 	"example": {

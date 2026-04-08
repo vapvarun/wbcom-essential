@@ -159,26 +159,14 @@
 }
 
 /* ---- Visibility ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Responsive ---- */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-tabs {
 		--wbe-tabs-tab-padding: 10px 16px;
 	}
 }
 
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-tabs {
 		--wbe-tabs-tab-padding: 10px 14px;
 		--wbe-tabs-content-padding: 16px;
@@ -194,8 +182,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

@@ -12,7 +12,9 @@
     "buddypress",
     "grid",
     "users",
-    "community"
+    "community",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {},

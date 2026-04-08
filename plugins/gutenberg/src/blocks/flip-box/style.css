@@ -35,15 +35,24 @@
 	box-shadow: var( --wbe-flip-shadow );
 }
 
-/* ---- Flip on hover and focus-within ---- */
+/* ---- Flip on hover, focus-within, and JS toggle ---- */
 .wbe-flip-box--horizontal:hover .wbe-flip-box__inner,
-.wbe-flip-box--horizontal:focus-within .wbe-flip-box__inner {
+.wbe-flip-box--horizontal:focus-within .wbe-flip-box__inner,
+.wbe-flip-box--horizontal.is-flipped .wbe-flip-box__inner {
 	transform: rotateY( 180deg );
 }
 
 .wbe-flip-box--vertical:hover .wbe-flip-box__inner,
-.wbe-flip-box--vertical:focus-within .wbe-flip-box__inner {
+.wbe-flip-box--vertical:focus-within .wbe-flip-box__inner,
+.wbe-flip-box--vertical.is-flipped .wbe-flip-box__inner {
 	transform: rotateX( 180deg );
+}
+
+/* Keyboard focus ring on the flip box container */
+.wbe-flip-box:focus-visible {
+	outline: 2px solid var( --wbe-flip-front-bg, #667eea );
+	outline-offset: 4px;
+	border-radius: var( --wbe-flip-radius, 12px );
 }
 
 /* ---- Shared face styles ---- */
@@ -135,10 +144,6 @@
 }
 
 /* ---- Visibility utilities (shared with other blocks) ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Reduced-motion: instant flip, no transition ---- */
 @media ( prefers-reduced-motion: reduce ) {
 	.wbe-flip-box__inner {
@@ -148,10 +153,6 @@
 
 /* ---- Tablet ---- */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-flip-box {
 		--wbe-flip-height: calc( var( --wbe-flip-height, 300px ) * 0.9 );
 	}
@@ -159,10 +160,6 @@
 
 /* ---- Mobile ---- */
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-flip-box {
 		/* Use a sensible minimum on mobile */
 		height: max( calc( var( --wbe-flip-height, 300px ) * 0.8 ), 220px );
@@ -177,8 +174,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

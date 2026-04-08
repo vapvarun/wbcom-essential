@@ -13,7 +13,9 @@
     "testimonials",
     "ratings",
     "customers",
-    "carousel"
+    "carousel",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

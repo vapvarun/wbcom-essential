@@ -14,7 +14,9 @@
     "animation",
     "heading",
     "hero",
-    "typewriter"
+    "typewriter",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

@@ -13,7 +13,9 @@
     "scroll",
     "marquee",
     "posts",
-    "headlines"
+    "headlines",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

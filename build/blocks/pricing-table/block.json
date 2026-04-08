@@ -13,7 +13,9 @@
     "table",
     "comparison",
     "cards",
-    "packages"
+    "packages",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

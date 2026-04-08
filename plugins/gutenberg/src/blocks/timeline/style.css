@@ -175,16 +175,8 @@
 }
 
 /* ---- Visibility utilities ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Tablet ---- */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-timeline {
 		--wbe-tl-gap: 36px;
 	}
@@ -192,10 +184,6 @@
 
 /* ---- Mobile: always single-column left layout ---- */
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-timeline {
 		--wbe-tl-gap: 28px;
 		--wbe-tl-dot-size: 32px;
@@ -235,8 +223,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

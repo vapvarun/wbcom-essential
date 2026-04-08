@@ -80,18 +80,10 @@
 }
 
 /* ---- Visibility ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Responsive ---- */
 
 /* Tablet: max 2 columns */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-stats-counter {
 		--wbe-sc-columns: min( var( --wbe-sc-columns ), 2 );
 		--wbe-sc-number-size: clamp( 2rem, 4vw, 3rem );
@@ -109,10 +101,6 @@
 
 /* Mobile: 1 column */
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-stats-counter {
 		--wbe-sc-number-size: 2.5rem;
 	}
@@ -135,8 +123,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

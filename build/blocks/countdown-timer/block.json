@@ -13,7 +13,9 @@
     "date",
     "clock",
     "event",
-    "offer"
+    "offer",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

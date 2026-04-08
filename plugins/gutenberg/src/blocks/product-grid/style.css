@@ -229,16 +229,8 @@
 }
 
 /* ── Visibility utilities ─────────────────────────────────────────────────── */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ── Tablet ───────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-product-grid__inner {
 		grid-template-columns: repeat(var(--wbe-pg-cols-tablet), 1fr);
 	}
@@ -246,10 +238,6 @@
 
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-product-grid__inner {
 		grid-template-columns: repeat(var(--wbe-pg-cols-mobile), 1fr);
 	}
@@ -263,8 +251,3 @@
 	}
 }
 
-@media (min-width: 641px) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

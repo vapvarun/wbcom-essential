@@ -11,7 +11,9 @@
 		"filter",
 		"products",
 		"categories",
-		"navigation"
+		"navigation",
+		"essential",
+		"wbcom"
 	],
 	"textdomain": "wbcom-essential",
 	"supports": {

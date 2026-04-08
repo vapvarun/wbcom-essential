@@ -12,7 +12,9 @@
     "checkout",
     "payment",
     "cart",
-    "easy digital downloads"
+    "easy digital downloads",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "supports": {

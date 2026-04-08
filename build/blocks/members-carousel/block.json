@@ -13,7 +13,9 @@
     "slider",
     "buddypress",
     "community",
-    "swiper"
+    "swiper",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {},

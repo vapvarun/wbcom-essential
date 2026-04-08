@@ -12,7 +12,9 @@
     "call-to-action",
     "button",
     "conversion",
-    "banner"
+    "banner",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

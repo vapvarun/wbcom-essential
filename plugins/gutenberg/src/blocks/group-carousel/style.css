@@ -285,16 +285,8 @@
 }
 
 /* ── Visibility utilities ─────────────────────────────────────────────────── */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ── Tablet ───────────────────────────────────────────────────────────────── */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-group-carousel__swiper .swiper-button-prev,
 	.wbe-group-carousel__swiper .swiper-button-next {
 		display: none;
@@ -307,10 +299,6 @@
 
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-group-carousel__avatar-img,
 	.wbe-group-carousel__avatar img {
 		width: 64px;
@@ -337,8 +325,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

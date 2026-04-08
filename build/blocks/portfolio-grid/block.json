@@ -13,7 +13,9 @@
     "projects",
     "filter",
     "gallery",
-    "work"
+    "work",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

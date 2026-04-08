@@ -13,7 +13,9 @@
     "sign in",
     "authentication",
     "user",
-    "account"
+    "account",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

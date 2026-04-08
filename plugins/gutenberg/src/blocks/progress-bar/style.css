@@ -75,36 +75,18 @@
 }
 
 /* ---- Visibility utilities ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Responsive ---- */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-progress-bar {
 		--wbe-pb-label-size: 0.875rem;
 	}
 }
 
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-progress-bar {
 		--wbe-pb-gap: 16px;
 		--wbe-pb-label-size: 0.8125rem;
 		--wbe-pb-percent-size: 0.8125rem;
-	}
-}
-
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
 	}
 }
 

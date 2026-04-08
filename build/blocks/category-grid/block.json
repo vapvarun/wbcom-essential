@@ -12,7 +12,9 @@
     "grid",
     "taxonomy",
     "blog",
-    "magazine"
+    "magazine",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {},

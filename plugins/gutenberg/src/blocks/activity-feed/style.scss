@@ -135,23 +135,9 @@
 }
 
 /* ── Visibility utilities ─────────────────────────────────────────────────── */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ── Tablet ───────────────────────────────────────────────────────────────── */
-@media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-}
-
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-activity-feed__item {
 		gap: 10px;
 		padding: 12px 0;
@@ -169,8 +155,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

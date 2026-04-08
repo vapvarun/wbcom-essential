@@ -170,12 +170,6 @@
 }
 
 /* Visibility utility classes */
-@media (min-width: 1025px) {
-	.wbe-hide-desktop {
-		display: none !important;
-	}
-}
-
 /* Tablet — 2 columns */
 @media (min-width: 768px) {
 	.wbe-pricing-cards__grid {
@@ -191,10 +185,6 @@
 }
 
 @media (max-width: 1024px) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-pricing-cards__card--featured {
 		transform: scale(1.01);
 	}
@@ -205,10 +195,6 @@
 }
 
 @media (max-width: 767px) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-pricing-cards__grid {
 		grid-template-columns: 1fr;
 		gap: var(--wbe-space-lg, 24px);

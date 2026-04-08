@@ -102,10 +102,6 @@
 }
 
 /* ---- Visibility ---- */
-.wbe-hide-desktop {
-	display: none !important;
-}
-
 /* ---- Placeholder (editor only) ---- */
 .wbe-countdown-timer__placeholder {
 	text-align: center;
@@ -118,10 +114,6 @@
 
 /* ---- Responsive ---- */
 @media ( max-width: 1024px ) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-countdown-timer {
 		--wbe-cd-number-size: clamp( 2rem, 5vw, 3rem );
 	}
@@ -133,10 +125,6 @@
 }
 
 @media ( max-width: 640px ) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-countdown-timer {
 		--wbe-cd-number-size: 2.25rem;
 		--wbe-cd-gap: 10px;
@@ -153,8 +141,3 @@
 	}
 }
 
-@media ( min-width: 641px ) {
-	.wbe-hide-desktop {
-		display: revert !important;
-	}
-}

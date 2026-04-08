@@ -13,7 +13,9 @@
     "stream",
     "buddypress",
     "community",
-    "social"
+    "social",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {},

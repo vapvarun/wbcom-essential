@@ -92,12 +92,6 @@
 }
 
 /* Visibility utility classes */
-@media (min-width: 1025px) {
-	.wbe-hide-desktop {
-		display: none !important;
-	}
-}
-
 /* Tablet — 2 columns */
 @media (min-width: 768px) {
 	.wbe-feature-grid__grid {
@@ -113,20 +107,12 @@
 }
 
 @media (max-width: 1024px) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-feature-grid__card {
 		padding: var(--wbe-space-xl, 32px) var(--wbe-space-lg, 24px);
 	}
 }
 
 @media (max-width: 767px) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-feature-grid__grid {
 		grid-template-columns: 1fr;
 		gap: var(--wbe-space-lg, 24px);

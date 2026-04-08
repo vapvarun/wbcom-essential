@@ -98,12 +98,20 @@
 	white-space: nowrap;
 }
 
-.wbe-hero__btn:hover,
+.wbe-hero__btn:hover {
+	opacity: 0.88;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
+}
+
 .wbe-hero__btn:focus-visible {
 	opacity: 0.88;
 	transform: translateY(-2px);
 	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 	text-decoration: none;
+	outline: 2px solid #fff;
+	outline-offset: 3px;
 }
 
 .wbe-hero__btn:active {
@@ -116,18 +124,8 @@
 }
 
 /* Visibility utility classes */
-@media (min-width: 1025px) {
-	.wbe-hide-desktop {
-		display: none !important;
-	}
-}
-
 /* Tablet */
 @media (max-width: 1024px) {
-	.wbe-hide-tablet {
-		display: none !important;
-	}
-
 	.wbe-hero__heading {
 		font-size: var(--wbe-font-4xl, 36px);
 	}
@@ -139,10 +137,6 @@
 
 /* Mobile */
 @media (max-width: 767px) {
-	.wbe-hide-mobile {
-		display: none !important;
-	}
-
 	.wbe-hero__content {
 		padding-inline: var(--wbe-space-md, 16px);
 	}

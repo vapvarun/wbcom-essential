@@ -13,7 +13,9 @@
     "questions",
     "answers",
     "schema",
-    "collapse"
+    "collapse",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

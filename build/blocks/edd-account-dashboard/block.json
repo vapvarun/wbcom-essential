@@ -13,7 +13,9 @@
     "downloads",
     "licenses",
     "purchases",
-    "subscriptions"
+    "subscriptions",
+    "essential",
+    "wbcom"
   ],
   "icon": "admin-users",
   "textdomain": "wbcom-essential",

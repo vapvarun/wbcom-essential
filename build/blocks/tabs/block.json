@@ -13,7 +13,9 @@
     "panel",
     "content",
     "switch",
-    "navigation"
+    "navigation",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

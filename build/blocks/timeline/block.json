@@ -13,7 +13,9 @@
     "milestones",
     "events",
     "dates",
-    "steps"
+    "steps",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {

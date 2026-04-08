@@ -14,7 +14,9 @@
     "grid",
     "blog",
     "articles",
-    "query"
+    "query",
+    "essential",
+    "wbcom"
   ],
   "textdomain": "wbcom-essential",
   "example": {
