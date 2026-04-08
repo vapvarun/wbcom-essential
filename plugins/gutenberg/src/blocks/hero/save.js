@@ -88,28 +88,32 @@ export default function save( { attributes } ) {
 					value={ subheading }
 					style={ { color: subheadingColor } }
 				/>
-				<div className="wbe-hero__buttons">
-					<a
-						className="wbe-hero__btn wbe-hero__btn--primary"
-						href={ buttonOneUrl }
-						role="button"
-						style={ { backgroundColor: buttonOneBg, color: buttonOneColor } }
-					>
-						<RichText.Content value={ buttonOneText } />
-					</a>
-					<a
-						className="wbe-hero__btn wbe-hero__btn--secondary"
-						href={ buttonTwoUrl }
-						role="button"
-						style={ {
-							backgroundColor: buttonTwoBg,
-							color: buttonTwoColor,
-							border: `2px solid ${ buttonTwoColor }`,
-						} }
-					>
-						<RichText.Content value={ buttonTwoText } />
-					</a>
-				</div>
+				{ ( buttonOneText || buttonTwoText ) && (
+					<div className="wbe-hero__buttons">
+						{ buttonOneText && (
+							<a
+								className="wbe-hero__btn wbe-hero__btn--primary"
+								href={ buttonOneUrl }
+								style={ { backgroundColor: buttonOneBg, color: buttonOneColor } }
+							>
+								<RichText.Content value={ buttonOneText } />
+							</a>
+						) }
+						{ buttonTwoText && (
+							<a
+								className="wbe-hero__btn wbe-hero__btn--secondary"
+								href={ buttonTwoUrl }
+								style={ {
+									backgroundColor: buttonTwoBg,
+									color: buttonTwoColor,
+									border: `2px solid ${ buttonTwoColor }`,
+								} }
+							>
+								<RichText.Content value={ buttonTwoText } />
+							</a>
+						) }
+					</div>
+				) }
 			</div>
 		</div>
 	);

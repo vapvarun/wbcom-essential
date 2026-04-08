@@ -62,16 +62,17 @@ export default function save( { attributes } ) {
 					style={ { color: descriptionColor } }
 				/>
 			</div>
-			<div className="wbe-cta__action">
-				<a
-					className="wbe-cta__btn"
-					href={ buttonUrl }
-					role="button"
-					style={ { backgroundColor: buttonBg, color: buttonColor } }
-				>
-					<RichText.Content value={ buttonText } />
-				</a>
-			</div>
+			{ buttonText && (
+				<div className="wbe-cta__action">
+					<a
+						className="wbe-cta__btn"
+						href={ buttonUrl }
+						style={ { backgroundColor: buttonBg, color: buttonColor } }
+					>
+						<RichText.Content value={ buttonText } />
+					</a>
+				</div>
+			) }
 		</div>
 	);
 }

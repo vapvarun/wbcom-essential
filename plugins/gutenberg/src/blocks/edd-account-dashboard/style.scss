@@ -1210,7 +1210,10 @@
 	}
 
 	.wbcom-edd-account__nav-link {
-		padding: 0.875rem 1rem;
+		flex-direction: column;
+		align-items: center;
+		gap: 2px;
+		padding: 0.75rem 0.625rem;
 		min-height: 44px;
 		border-left: none;
 		border-bottom: 3px solid transparent;
@@ -1223,12 +1226,15 @@
 	}
 
 	.wbcom-edd-account__nav-label {
-		display: none;
+		font-size: 0.625rem;
+		line-height: 1;
+		letter-spacing: 0.02em;
+		opacity: 0.8;
 	}
 
 	.wbcom-edd-account__nav-icon {
-		width: 1.25rem;
-		height: 1.25rem;
+		width: 1.125rem;
+		height: 1.125rem;
 	}
 
 	.wbcom-edd-account__content {

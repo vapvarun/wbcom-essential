@@ -27,7 +27,7 @@ $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attr
 \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
 
 // Extract block-specific attributes.
-$show_progress_bar     = $attributes['showProgressBar'] ?? true;
+$show_progress_bar     = $attributes['showProgressBar'] ?? false;
 $show_trust_badges     = $attributes['showTrustBadges'] ?? true;
 $trust_badge_text      = $attributes['trustBadgeText'] ?? __( 'Secure checkout powered by Stripe', 'wbcom-essential' );
 $show_reviews          = $attributes['showReviews'] ?? true;

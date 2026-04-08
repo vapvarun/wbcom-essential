@@ -156,7 +156,7 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 
 $wrapper_attrs = get_block_wrapper_attributes( array(
 	'class'            => $wrapper_class,
-	'role'             => 'marquee',
+	'role'             => 'region',
 	'aria-label'       => esc_attr( $label ),
 	'data-pause-hover' => $pause_on_hover ? 'true' : 'false',
 	'data-direction'   => esc_attr( $direction ),

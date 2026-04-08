@@ -195,7 +195,23 @@
 			} );
 		}
 
-		setInterval( rotate, speed );
+		var intervalId = setInterval( rotate, speed );
+
+		// Clean up interval if element is removed from DOM.
+		if ( typeof MutationObserver !== 'undefined' && block.parentNode ) {
+			var observer = new MutationObserver( function ( mutations ) {
+				for ( var i = 0; i < mutations.length; i++ ) {
+					for ( var j = 0; j < mutations[ i ].removedNodes.length; j++ ) {
+						if ( mutations[ i ].removedNodes[ j ] === block || mutations[ i ].removedNodes[ j ].contains( block ) ) {
+							clearInterval( intervalId );
+							observer.disconnect();
+							return;
+						}
+					}
+				}
+			} );
+			observer.observe( block.parentNode, { childList: true } );
+		}
 	}
 
 	function init() {

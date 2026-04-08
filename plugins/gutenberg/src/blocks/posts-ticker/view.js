@@ -60,8 +60,10 @@
 			viewport.addEventListener( 'mouseleave', () => {
 				track.style.animationPlayState = 'running';
 			} );
+		}
 
-			// Also pause on focus within (keyboard nav).
+		// Always pause on focus within for keyboard accessibility.
+		if ( viewport ) {
 			viewport.addEventListener( 'focusin', () => {
 				track.style.animationPlayState = 'paused';
 			} );
