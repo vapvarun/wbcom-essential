@@ -163,7 +163,6 @@
 
 /* ── Swiper customization ─────────────────────────────────────────────────── */
 .wbe-post-carousel .swiper-pagination-bullet {
-	background: var( --wbe-pc-accent );
 	opacity: 0.3;
 	transition: opacity 0.2s, transform 0.2s;
 }
@@ -175,7 +174,41 @@
 
 .wbe-post-carousel .swiper-button-prev,
 .wbe-post-carousel .swiper-button-next {
+	width: 40px;
+	height: 40px;
+	background-color: #ffffff;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.15 );
 	color: var( --wbe-pc-accent );
+	font-size: 22px;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+	top: calc( 50% - 24px );
+	background-size: 10px;
+}
+
+.wbe-post-carousel .swiper-button-prev::after,
+.wbe-post-carousel .swiper-button-next::after {
+	display: none;
+}
+
+.wbe-post-carousel .swiper-button-prev:hover,
+.wbe-post-carousel .swiper-button-next:hover {
+	background-color: rgba(102, 126, 234, 0.5);
+	color: #ffffff;
+}
+
+.wbe-post-carousel .swiper-button-prev {
+	left: 8px;
+}
+
+.wbe-post-carousel .swiper-button-next {
+	right: 8px;
 }
 
 /* ── Empty/error states ───────────────────────────────────────────────────── */
