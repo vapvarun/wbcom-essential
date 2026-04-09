@@ -63,6 +63,15 @@
 	flex: 1;
 }
 
+.wbe-testimonial-carousel__quote:hover {
+	background: none;
+    box-shadow: none;
+}
+
+.wbe-testimonial-carousel__quote::before {
+	content: none;
+}
+
 .wbe-testimonial-carousel__quote p {
 	margin: 0;
 	font-size: 1rem;
@@ -140,6 +149,7 @@
 .wbe-testimonial-carousel .swiper-button-prev,
 .wbe-testimonial-carousel .swiper-button-next {
 	color: var( --wbe-tc-accent );
+	background-size: 12px;
 }
 
 .wbe-testimonial-carousel .swiper-button-prev::after,
