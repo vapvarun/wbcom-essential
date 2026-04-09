@@ -89,7 +89,7 @@
 	transition: color 0.2s;
 }
 
-.wbe-product-carousel__title a:hover {
+.wbe-product-carousel__price {
 	color: var(--wbe-pcar-price-color);
 }
 
@@ -164,7 +164,6 @@
 .wbe-product-carousel__atc .button,
 .wbe-product-carousel__atc .add_to_cart_button {
 	display: block;
-	width: 100%;
 	text-align: center;
 	background: var(--wbe-pcar-atc-bg);
 	color: var(--wbe-pcar-atc-color);
@@ -199,7 +198,41 @@
 
 .wbe-product-carousel .swiper-button-prev,
 .wbe-product-carousel .swiper-button-next {
-	color: var(--wbe-pcar-accent);
+	width: 40px;
+	height: 40px;
+	background-color: #ffffff;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.15 );
+	color: var( --wbe-pcar-accent );
+	font-size: 22px;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+	top: calc( 50% - 24px );
+	background-size: 10px;
+}
+
+.wbe-product-carousel .swiper-button-prev::after,
+.wbe-product-carousel .swiper-button-next::after {
+	display: none;
+}
+
+.wbe-product-carousel .swiper-button-prev:hover,
+.wbe-product-carousel .swiper-button-next:hover {
+	background-color: rgba(102, 126, 234, 0.5);
+	color: #ffffff;
+}
+
+.wbe-product-carousel .swiper-button-prev {
+	left: 8px;
+}
+
+.wbe-product-carousel .swiper-button-next {
+	right: 8px;
 }
 
 /* ── Empty / states ───────────────────────────────────────────────────────── */
