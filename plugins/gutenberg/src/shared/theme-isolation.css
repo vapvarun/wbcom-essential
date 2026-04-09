@@ -25,7 +25,7 @@
 }
 
 /* ── Headings ────────────────────────────────────────────── */
-[class^="wp-block-wbcom-essential"] h1,
+/* [class^="wp-block-wbcom-essential"] h1,
 [class^="wp-block-wbcom-essential"] h2,
 [class^="wp-block-wbcom-essential"] h3,
 [class^="wp-block-wbcom-essential"] h4,
@@ -37,7 +37,7 @@
 	font-weight: inherit;
 	font-size: inherit;
 	line-height: inherit;
-}
+} */
 
 /* ── Buttons ─────────────────────────────────────────────── */
 [class^="wp-block-wbcom-essential"] button:not(.components-button) {
