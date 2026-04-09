@@ -65,7 +65,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	const blockCSS = generateBlockCSS( uniqueId, attributes );
 
 	const blockProps = useBlockProps( {
-		className: `wbe-block-${ uniqueId } wbe-login-form`,
+		// Keep the unique class on the SSR output only. If the editor wrapper
+		// also gets it, the preview ends up with duplicate box-shadow/radius.
+		className: 'wbe-login-form',
 	} );
 
 	return (

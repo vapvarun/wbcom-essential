@@ -121,8 +121,10 @@
 	line-height: 1.5;
 }
 
-.wbe-login-form input[type="submit"]:hover {
+.wbe-login-form input[type="submit"]:hover,
+.wbe-login-form input[type="submit"]:focus {
 	opacity: 0.88;
+	border: none;
 }
 
 .wbe-login-form input[type="submit"]:active {
