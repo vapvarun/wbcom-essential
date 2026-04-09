@@ -67,7 +67,7 @@ export default function save( { attributes } ) {
 							id={ tabId }
 							role="tab"
 							type="button"
-							className={ `wbe-tabs__tab${ isFirst ? ' is-active' : '' }` }
+							className={ `wbe-tabs__tab components-button${ isFirst ? ' is-active' : '' }` }
 							aria-selected={ isFirst ? 'true' : 'false' }
 							aria-controls={ panelId }
 							tabIndex={ isFirst ? '0' : '-1' }

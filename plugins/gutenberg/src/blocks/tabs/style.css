@@ -43,7 +43,9 @@
 }
 
 /* ---- Tab button ---- */
-.wbe-tabs__tab {
+.wbe-tabs__tab,
+.wbe-tabs__tab:hover,
+.wbe-tabs__tab:focus {
 	flex-shrink: 0;
 	padding: var( --wbe-tabs-tab-padding );
 	background: transparent;
