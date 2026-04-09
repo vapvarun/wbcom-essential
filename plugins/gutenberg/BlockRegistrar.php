@@ -25,6 +25,13 @@ final class BlockRegistrar {
 	private $build_dir;
 
 	/**
+	 * Track registered blocks to prevent duplicates.
+	 *
+	 * @var array
+	 */
+	private static $registered_blocks = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string $build_dir Absolute path to build/blocks/.
@@ -56,7 +63,18 @@ final class BlockRegistrar {
 
 		foreach ( $block_dirs as $block_json ) {
 			$block_dir = dirname( $block_json );
+
+			// Extract block name from block.json to check if already registered.
+			$block_data = json_decode( file_get_contents( $block_json ), true );
+			$block_name = $block_data['name'] ?? '';
+
+			// Skip if already registered.
+			if ( empty( $block_name ) || in_array( $block_name, self::$registered_blocks, true ) ) {
+				continue;
+			}
+
 			register_block_type( $block_dir );
+			self::$registered_blocks[] = $block_name;
 		}
 	}
 }
