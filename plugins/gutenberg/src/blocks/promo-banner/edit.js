@@ -22,6 +22,7 @@ import {
 	Button,
 	BaseControl,
 	ColorPalette,
+	ColorPicker,
 	__experimentalDivider as Divider,
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
@@ -188,10 +189,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						<>
 							<Divider />
 							<BaseControl label={ __( 'Overlay Color', 'wbcom-essential' ) }>
-								<ColorPalette
-									value={ overlayColor }
+								<ColorPicker
+									color={ overlayColor }
 									onChange={ ( val ) => setAttributes( { overlayColor: val || 'rgba(0,0,0,0.4)' } ) }
-									clearable={ false }
+									enableAlpha
 								/>
 							</BaseControl>
 						</>
