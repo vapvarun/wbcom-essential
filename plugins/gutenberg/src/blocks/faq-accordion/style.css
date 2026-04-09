@@ -48,7 +48,9 @@
 }
 
 /* ---- Question Button ---- */
-.wbe-faq-accordion__question {
+.wbe-faq-accordion__question,
+.wbe-faq-accordion__question:hover,
+.wbe-faq-accordion__question:focus {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -62,6 +64,7 @@
 	line-height: 1.5;
 	text-align: left;
 	border: none;
+	border-radius: 0;
 	cursor: pointer;
 	transition: background-color var( --wbe-faq-transition );
 }

@@ -106,7 +106,7 @@ export default function save( { attributes } ) {
 							<button
 								id={ itemId }
 								type="button"
-								className="wbe-faq-accordion__question"
+								className="wbe-faq-accordion__question components-button"
 								aria-expanded={ isFirstAndOpen ? 'true' : 'false' }
 								aria-controls={ panelId }
 							>
