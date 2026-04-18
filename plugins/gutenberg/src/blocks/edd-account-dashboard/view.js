@@ -61,16 +61,23 @@
 			contentCache[ activeTab ] = inner.innerHTML;
 		}
 
-		// If the profile editor just redirected back with ?updated=true,
-		// remove that flag from the URL so a page refresh doesn't show the
-		// success notice again. We keep ?tab=profile so the user stays on
-		// the Profile tab.
+		// Strip one-shot notice flags from the URL so a page refresh doesn't
+		// re-display the same success/error banner. We keep ?tab=... so the
+		// user stays on the tab they're already viewing.
 		try {
 			var initialUrl = new URL( window.location.href );
+			var hadFlag    = false;
 			if ( initialUrl.searchParams.get( 'updated' ) === 'true' ) {
 				initialUrl.searchParams.delete( 'updated' );
+				hadFlag = true;
+			}
+			if ( initialUrl.searchParams.has( 'edd-message' ) ) {
+				initialUrl.searchParams.delete( 'edd-message' );
+				hadFlag = true;
+			}
+			if ( hadFlag ) {
 				window.history.replaceState(
-					{ tab: activeTab || 'profile' },
+					{ tab: activeTab },
 					'',
 					initialUrl.toString()
 				);

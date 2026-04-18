@@ -315,6 +315,9 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
  * @param EDD_Customer|false $customer EDD customer object or false.
  */
 function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
+	// Surface feedback if the user landed here from an action elsewhere.
+	wbcom_essential_edd_render_tab_notice();
+
 	$user = wp_get_current_user();
 
 	// Compute stats live from the orders table instead of the customer
@@ -496,6 +499,63 @@ function wbcom_essential_edd_tab_header( $title, $description = '' ) {
 }
 
 /**
+ * Render a contextual success / error notice at the top of a tab.
+ *
+ * Consumes WordPress `?updated=true` (EDD profile editor) and EDD's
+ * `?edd-message=...` convention (subscription cancel, etc.) so every
+ * action inside the dashboard surfaces feedback without the user
+ * having to guess whether it worked.
+ *
+ * The notice is rendered once per request. `view.js` strips `updated`
+ * and `edd-message` query args via `history.replaceState` on load so a
+ * page refresh doesn't re-display the same notice indefinitely.
+ *
+ * @since 4.5.1
+ */
+function wbcom_essential_edd_render_tab_notice() {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only display flags.
+	$updated     = isset( $_GET['updated'] ) ? sanitize_key( wp_unslash( $_GET['updated'] ) ) : '';
+	$edd_message = isset( $_GET['edd-message'] ) ? sanitize_key( wp_unslash( $_GET['edd-message'] ) ) : '';
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+	if ( ! $updated && ! $edd_message ) {
+		return;
+	}
+
+	// Map EDD message keys to (variant, text). Add new mappings here
+	// when we wire up more actions from the dashboard UI.
+	$messages = array(
+		'cancelled'     => array( 'success', __( 'Subscription cancelled. Access continues until the end of your current billing period.', 'wbcom-essential' ) ),
+		'cancel-failed' => array( 'error',   __( 'We could not cancel that subscription. Please try again or contact support.', 'wbcom-essential' ) ),
+		'reactivated'   => array( 'success', __( 'Subscription reactivated.', 'wbcom-essential' ) ),
+		'renewed'       => array( 'success', __( 'Subscription renewed.', 'wbcom-essential' ) ),
+	);
+
+	if ( 'true' === $updated ) {
+		$variant = 'success';
+		$text    = __( 'Your profile has been updated successfully.', 'wbcom-essential' );
+	} elseif ( $edd_message && isset( $messages[ $edd_message ] ) ) {
+		list( $variant, $text ) = $messages[ $edd_message ];
+	} else {
+		return;
+	}
+
+	$class = 'success' === $variant
+		? 'wbcom-edd-profile__notice wbcom-edd-profile__notice--success'
+		: 'wbcom-edd-profile__notice wbcom-edd-profile__notice--error';
+
+	$icon = 'success' === $variant
+		? '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'
+		: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>';
+	?>
+	<div class="<?php echo esc_attr( $class ); ?>" role="status" aria-live="polite">
+		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded SVG path. ?></svg>
+		<span><?php echo esc_html( $text ); ?></span>
+	</div>
+	<?php
+}
+
+/**
  * Render Subscriptions tab with premium card layout.
  *
  * @param EDD_Customer|false $customer EDD customer object or false.
@@ -505,6 +565,9 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		__( 'Subscriptions', 'wbcom-essential' ),
 		__( 'Manage your active and past subscriptions.', 'wbcom-essential' )
 	);
+
+	// Surface EDD messages from cancel/reactivate/renew redirects.
+	wbcom_essential_edd_render_tab_notice();
 
 	if ( ! class_exists( 'EDD_Recurring' ) || ! $customer ) {
 		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
@@ -565,17 +628,22 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		}
 
 		// Cancel URL.
+		// Build against the canonical dashboard page URL with ?tab=subscriptions,
+		// so EDD Recurring's redirect (which just strips _wpnonce/edd_action/sub_id
+		// and adds edd-message=...) lands us back on the subscriptions tab.
+		// Nonce action MUST include the sub_id — EDD Recurring 2.13+ verifies
+		// "edd-recurring-cancel-{$sub_id}" (see edd-recurring-gateway.php L875).
 		$cancel_url = '';
 		if ( 'active' === $status ) {
-			$cancel_url = wp_nonce_url(
-				add_query_arg(
-					array(
-						'edd_action' => 'cancel_subscription',
-						'sub_id'     => $sub->id,
-					)
+			$base_url   = add_query_arg(
+				array(
+					'tab'        => 'subscriptions',
+					'edd_action' => 'cancel_subscription',
+					'sub_id'     => $sub->id,
 				),
-				'edd-recurring-cancel'
+				wbcom_essential_edd_account_current_page_url()
 			);
+			$cancel_url = wp_nonce_url( $base_url, 'edd-recurring-cancel-' . $sub->id );
 		}
 
 		// Upgrade options.
@@ -1171,16 +1239,8 @@ function wbcom_essential_edd_render_profile_tab() {
 	// page (which is what EDD falls back to when edd_redirect is empty).
 	$redirect_target = add_query_arg( 'tab', 'profile', wbcom_essential_edd_account_current_page_url() );
 
-	// Was the profile just saved? EDD appends ?updated=true after success.
-	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only query flag.
-	$just_updated = isset( $_GET['updated'] ) && 'true' === $_GET['updated'];
+	wbcom_essential_edd_render_tab_notice();
 	?>
-	<?php if ( $just_updated ) : ?>
-		<div class="wbcom-edd-profile__notice wbcom-edd-profile__notice--success" role="status" aria-live="polite">
-			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-			<span><?php esc_html_e( 'Your profile has been updated successfully.', 'wbcom-essential' ); ?></span>
-		</div>
-	<?php endif; ?>
 	<form id="edd_profile_editor_form" class="wbcom-edd-profile" action="<?php echo esc_url( $redirect_target ); ?>" method="post">
 		<?php wp_nonce_field( $nonce_action, 'edd_profile_editor_nonce' ); ?>
 		<input type="hidden" name="edd_action" value="edit_user_profile" />
