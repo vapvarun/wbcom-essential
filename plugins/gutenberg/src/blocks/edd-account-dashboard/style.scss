@@ -429,6 +429,42 @@
 	line-height: 1.6;
 }
 
+// The card has text-align:center for the icon/title/description group. The
+// wp_login_form output (username/password labels, Remember Me row, Log In
+// button) belongs to a left-aligned form — override to match the input edge.
+.wbcom-edd-account__login-card form {
+	text-align: left;
+}
+
+.wbcom-edd-account__login-card .login-username label,
+.wbcom-edd-account__login-card .login-password label {
+	display: block;
+	margin-bottom: 0.35rem;
+	font-weight: 600;
+	color: var( --wbcom-heading-color, #122b46 );
+}
+
+.wbcom-edd-account__login-card .login-remember {
+	margin: 1rem 0;
+	label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		cursor: pointer;
+	}
+	input[type="checkbox"] {
+		margin: 0;
+	}
+}
+
+.wbcom-edd-account__login-card .login-submit .button,
+.wbcom-edd-account__login-card .login-submit input[type="submit"] {
+	width: 100%;
+	padding: 0.7rem 1rem;
+	font-weight: 600;
+	border-radius: 8px;
+}
+
 // -------------------------------------------------------------------------
 // EDD Required Notice
 // -------------------------------------------------------------------------
