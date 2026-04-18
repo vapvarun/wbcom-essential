@@ -134,29 +134,36 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
+// Fetch the EDD customer once and pass to every tab render — otherwise
+// the initial server-side render shows the empty state because the tab
+// functions default $customer to false. The REST AJAX callback already
+// does this; the first page load must match.
+$current_user = wp_get_current_user();
+$customer     = ( $current_user && $current_user->ID ) ? edd_get_customer_by( 'user_id', $current_user->ID ) : false;
+
 // Render active tab content server-side.
 ob_start();
 switch ( $active_tab ) {
 	case 'dashboard':
-		wbcom_essential_edd_render_dashboard_tab();
+		wbcom_essential_edd_render_dashboard_tab( $customer );
 		break;
 	case 'subscriptions':
-		wbcom_essential_edd_render_subscriptions_tab();
+		wbcom_essential_edd_render_subscriptions_tab( $customer );
 		break;
 	case 'downloads':
-		wbcom_essential_edd_render_downloads_tab();
+		wbcom_essential_edd_render_downloads_tab( $customer );
 		break;
 	case 'licenses':
-		wbcom_essential_edd_render_licenses_tab();
+		wbcom_essential_edd_render_licenses_tab( $customer );
 		break;
 	case 'purchases':
-		wbcom_essential_edd_render_purchases_tab();
+		wbcom_essential_edd_render_purchases_tab( $customer );
 		break;
 	case 'profile':
 		wbcom_essential_edd_render_profile_tab();
 		break;
 	default:
-		wbcom_essential_edd_render_dashboard_tab();
+		wbcom_essential_edd_render_dashboard_tab( $customer );
 		break;
 }
 $initial_content = ob_get_clean();
