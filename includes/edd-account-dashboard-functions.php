@@ -1333,17 +1333,12 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 		$status      = $order->status;
 		$total       = edd_display_amount( $order->total, $order->currency );
 
-		// Invoice URL (if EDD Invoices active).
+		// Invoice URL — EDD Invoices add-on exposes edd_invoices_get_invoice_url() + edd_invoices_order_has_invoice().
+		// The previous function_exists( 'edd_invoices' ) check always returned false because that function does not exist,
+		// and the manual URL construction used the raw payment_key where the add-on expects md5(order_id.key.email).
 		$invoice_url = '';
-		if ( function_exists( 'edd_invoices' ) ) {
-			$invoice_url = add_query_arg(
-				array(
-					'edd_action' => 'view_invoice',
-					'payment_id' => $order->id,
-					'invoice'    => $order->payment_key,
-				),
-				home_url()
-			);
+		if ( function_exists( 'edd_invoices_order_has_invoice' ) && edd_invoices_order_has_invoice( $order->id ) ) {
+			$invoice_url = edd_invoices_get_invoice_url( $order->id, true );
 		}
 
 		// Get first item name for display.
