@@ -107,6 +107,45 @@ function wbcom_essential_edd_get_states( $request ) {
 }
 
 /**
+ * Redirect legacy EDD Software Licensing URLs to the dashboard's Licenses tab.
+ *
+ * When the store's "Purchase History Page" is set to a page that hosts the
+ * EDD Account Dashboard block, EDD SL's `edd_sl_override_history_content()`
+ * hook fires on it and replaces the entire page content with its own license
+ * management UI — wiping out the dashboard sidebar, navigation, and branding.
+ *
+ * These URLs come from old receipts, notification emails, and shortcode-
+ * driven purchase history pages. We intercept them before EDD SL's filter
+ * runs and route the user to our native Licenses tab instead.
+ *
+ * @since 4.5.1
+ */
+function wbcom_essential_edd_redirect_legacy_license_urls() {
+	// Only act on the frontend, after WP has resolved the post.
+	if ( is_admin() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return;
+	}
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only redirect based on public URL params.
+	if ( empty( $_GET['action'] ) || 'manage_licenses' !== $_GET['action'] ) {
+		return;
+	}
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+	global $post;
+	if ( ! $post || empty( $post->post_content ) ) {
+		return;
+	}
+	if ( false === strpos( $post->post_content, 'wbcom-essential/edd-account-dashboard' ) ) {
+		return;
+	}
+
+	$target = add_query_arg( 'tab', 'licenses', wbcom_essential_edd_account_current_page_url() );
+	wp_safe_redirect( $target );
+	exit;
+}
+add_action( 'template_redirect', 'wbcom_essential_edd_redirect_legacy_license_urls', 5 );
+
+/**
  * Return the canonical URL of the page that hosts the EDD Account Dashboard
  * block, with all query parameters stripped.
  *
@@ -1108,6 +1147,24 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 			}
 		}
 
+		// Only show the "Licenses" button if this specific order actually has
+		// license records. Previously the button appeared for every order
+		// when the Software Licensing add-on was active, leading users to a
+		// license-management page that showed nothing for their click.
+		$has_licenses = false;
+		if ( function_exists( 'edd_software_licensing' ) ) {
+			$sl = edd_software_licensing();
+			if ( isset( $sl->licenses_db ) && is_object( $sl->licenses_db ) && method_exists( $sl->licenses_db, 'get_licenses' ) ) {
+				$order_licenses = $sl->licenses_db->get_licenses(
+					array(
+						'payment_id' => $order->id,
+						'number'     => 1,
+					)
+				);
+				$has_licenses = ! empty( $order_licenses );
+			}
+		}
+
 		?>
 		<div class="wbcom-edd-order">
 			<div class="wbcom-edd-order__row">
@@ -1155,8 +1212,18 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 						<?php esc_html_e( 'Invoice', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
-				<?php if ( function_exists( 'edd_software_licensing' ) ) : ?>
-					<a href="<?php echo esc_url( add_query_arg( array( 'action' => 'manage_licenses', 'payment_id' => $order->id ), edd_get_option( 'purchase_history_page' ) ? get_permalink( edd_get_option( 'purchase_history_page' ) ) : home_url() ) ); ?>" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm">
+				<?php if ( $has_licenses ) : ?>
+					<a
+						href="<?php echo esc_url(
+							add_query_arg(
+								array(
+									'tab' => 'licenses',
+								),
+								wbcom_essential_edd_account_current_page_url()
+							)
+						); ?>"
+						class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm"
+					>
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
 						<?php esc_html_e( 'Licenses', 'wbcom-essential' ); ?>
 					</a>
