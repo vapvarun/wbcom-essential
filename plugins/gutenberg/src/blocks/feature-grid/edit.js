@@ -29,8 +29,8 @@ import {
 } from '../../../src/shared/components';
 import { useUniqueId } from '../../../src/shared/hooks';
 import { generateBlockCSS } from '../../../src/shared/utils/css';
-import '../../../src/shared/design-tokens.css';
-import '../../../src/shared/base.css';
+import '../../../assets/shared/design-tokens.css';
+import '../../../assets/shared/base.css';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const {

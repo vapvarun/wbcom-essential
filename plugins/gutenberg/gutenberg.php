@@ -84,19 +84,19 @@ add_action(
 		}
 		wp_enqueue_style(
 			'wbe-design-tokens',
-			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/design-tokens.css',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/design-tokens.css',
 			array(),
 			WBCOM_ESSENTIAL_VERSION
 		);
 		wp_enqueue_style(
 			'wbe-base',
-			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/base.css',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/base.css',
 			array( 'wbe-design-tokens' ),
 			WBCOM_ESSENTIAL_VERSION
 		);
 		wp_enqueue_style(
 			'wbe-theme-isolation',
-			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/theme-isolation.css',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/theme-isolation.css',
 			array( 'wbe-base' ),
 			WBCOM_ESSENTIAL_VERSION
 		);
@@ -107,19 +107,19 @@ add_action(
 	function () {
 		wp_enqueue_style(
 			'wbe-design-tokens',
-			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/design-tokens.css',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/design-tokens.css',
 			array(),
 			WBCOM_ESSENTIAL_VERSION
 		);
 		wp_enqueue_style(
 			'wbe-base',
-			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/base.css',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/base.css',
 			array( 'wbe-design-tokens' ),
 			WBCOM_ESSENTIAL_VERSION
 		);
 		wp_enqueue_style(
 			'wbe-theme-isolation',
-			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/src/shared/theme-isolation.css',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/theme-isolation.css',
 			array( 'wbe-base' ),
 			WBCOM_ESSENTIAL_VERSION
 		);

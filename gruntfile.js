@@ -62,7 +62,14 @@ module.exports = function (grunt) {
 								'!dist/**',
 
 								// --- Blacklist: block sources (only /build ships) ---
+								// Block JS/PHP sources under plugins/gutenberg/src/blocks/.
+								// Shared runtime CSS (design tokens, base, theme isolation)
+								// was moved to plugins/gutenberg/assets/shared/ so it ships.
 								'!plugins/gutenberg/src/**',
+								// Belt-and-braces: a stray build/ output sometimes appears
+								// under plugins/gutenberg/ from older toolchain runs. Only
+								// the top-level /build/ is canonical for block output.
+								'!plugins/gutenberg/build/**',
 
 								// --- Blacklist: nested node_modules / package manifests ---
 								'!**/node_modules/**',
