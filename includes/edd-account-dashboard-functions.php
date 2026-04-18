@@ -23,17 +23,51 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string Sanitized HTML.
  */
 function wbcom_essential_kses_form( $html ) {
+	// data-* attributes used by the dashboard's frontend JS for click-to-copy,
+	// confirm dialogs, tab switching, and the profile form's country/state
+	// dependency. wp_kses strips any attribute not explicitly whitelisted,
+	// which is why the Copy-license-key button used to render with no
+	// data-copy attribute and silently did nothing.
+	$js_attrs = array(
+		'title'        => true,
+		'data-copy'    => true,
+		'data-confirm' => true,
+		'data-tab'     => true,
+		'data-nonce'   => true,
+		'data-rest-url'=> true,
+		'data-active-tab' => true,
+		// Cancellation survey modal.
+		'data-cancel-sub-id'       => true,
+		'data-cancel-sub-name'     => true,
+		'data-cancel-modal-form'   => true,
+		'data-cancel-modal-close'  => true,
+		'data-cancel-modal-sub-name' => true,
+	);
+
 	$allowed           = wp_kses_allowed_html( 'post' );
-	$allowed['form']   = array( 'id' => true, 'class' => true, 'action' => true, 'method' => true, 'enctype' => true, 'novalidate' => true );
-	$allowed['input']  = array( 'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'placeholder' => true, 'required' => true, 'checked' => true, 'disabled' => true, 'readonly' => true, 'min' => true, 'max' => true, 'step' => true, 'maxlength' => true, 'autocomplete' => true, 'aria-label' => true );
-	$allowed['select'] = array( 'id' => true, 'name' => true, 'class' => true, 'required' => true, 'disabled' => true, 'multiple' => true, 'aria-label' => true );
+	$allowed['form']   = array_merge( array( 'id' => true, 'class' => true, 'action' => true, 'method' => true, 'enctype' => true, 'novalidate' => true ), $js_attrs );
+	// Ensure div/span carry through the modal's data attributes (close on
+	// backdrop click, sub-name placeholder, etc).
+	if ( isset( $allowed['div'] ) && is_array( $allowed['div'] ) ) {
+		$allowed['div'] = array_merge( $allowed['div'], $js_attrs );
+	}
+	if ( isset( $allowed['span'] ) && is_array( $allowed['span'] ) ) {
+		$allowed['span'] = array_merge( $allowed['span'], $js_attrs );
+	}
+	$allowed['input']  = array_merge( array( 'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'placeholder' => true, 'required' => true, 'checked' => true, 'disabled' => true, 'readonly' => true, 'min' => true, 'max' => true, 'step' => true, 'maxlength' => true, 'autocomplete' => true, 'aria-label' => true ), $js_attrs );
+	$allowed['select'] = array_merge( array( 'id' => true, 'name' => true, 'class' => true, 'required' => true, 'disabled' => true, 'multiple' => true, 'aria-label' => true ), $js_attrs );
 	$allowed['option'] = array( 'value' => true, 'selected' => true, 'disabled' => true );
 	$allowed['optgroup'] = array( 'label' => true, 'disabled' => true );
-	$allowed['textarea'] = array( 'id' => true, 'name' => true, 'class' => true, 'rows' => true, 'cols' => true, 'placeholder' => true, 'required' => true, 'disabled' => true, 'readonly' => true, 'maxlength' => true, 'aria-label' => true );
-	$allowed['button'] = array( 'type' => true, 'id' => true, 'name' => true, 'class' => true, 'value' => true, 'disabled' => true, 'aria-label' => true );
+	$allowed['textarea'] = array_merge( array( 'id' => true, 'name' => true, 'class' => true, 'rows' => true, 'cols' => true, 'placeholder' => true, 'required' => true, 'disabled' => true, 'readonly' => true, 'maxlength' => true, 'aria-label' => true ), $js_attrs );
+	$allowed['button'] = array_merge( array( 'type' => true, 'id' => true, 'name' => true, 'class' => true, 'value' => true, 'disabled' => true, 'aria-label' => true ), $js_attrs );
 	$allowed['label']  = array( 'for' => true, 'class' => true );
 	$allowed['fieldset'] = array( 'class' => true, 'disabled' => true );
 	$allowed['legend'] = array( 'class' => true );
+	// Also carry title + data-confirm through on anchors so the cancel-
+	// subscription link can show its confirm dialog.
+	if ( isset( $allowed['a'] ) && is_array( $allowed['a'] ) ) {
+		$allowed['a'] = array_merge( $allowed['a'], $js_attrs );
+	}
 
 	// SVG icons used in empty states and nav.
 	$allowed['svg']      = array( 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'aria-hidden' => true, 'class' => true, 'xmlns' => true );
@@ -107,6 +141,111 @@ function wbcom_essential_edd_get_states( $request ) {
 }
 
 /**
+ * Capture the cancellation-reason survey and notify the site admin.
+ *
+ * The dashboard's cancellation modal appends `?cancel_reason=...&cancel_reason_detail=...`
+ * to the EDD cancel URL. EDD Recurring fires `edd_subscription_cancelled` once
+ * the cancellation is persisted, at which point we:
+ *   - Store the reason as a subscription note (visible in EDD admin).
+ *   - Email the site admin with customer info + reason + optional detail.
+ *
+ * Runs only for cancellations initiated from our dashboard UI (reason param present).
+ *
+ * @since 4.5.1
+ *
+ * @param int $sub_id Subscription ID that was cancelled.
+ */
+function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Nonce was verified by EDD Recurring before this action fires.
+	$reason_key = isset( $_GET['cancel_reason'] ) ? sanitize_key( wp_unslash( $_GET['cancel_reason'] ) ) : '';
+	$detail     = isset( $_GET['cancel_reason_detail'] ) ? sanitize_textarea_field( wp_unslash( $_GET['cancel_reason_detail'] ) ) : '';
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+	if ( empty( $reason_key ) && empty( $detail ) ) {
+		return;
+	}
+
+	$reason_labels = array(
+		'too_expensive'     => __( 'Too expensive', 'wbcom-essential' ),
+		'not_using'         => __( "I'm not using it enough", 'wbcom-essential' ),
+		'found_alternative' => __( 'Found a better alternative', 'wbcom-essential' ),
+		'missing_features'  => __( 'Missing features I need', 'wbcom-essential' ),
+		'technical_issues'  => __( 'Had technical issues', 'wbcom-essential' ),
+		'other'             => __( 'Other', 'wbcom-essential' ),
+	);
+	$reason_label = isset( $reason_labels[ $reason_key ] ) ? $reason_labels[ $reason_key ] : __( 'Not specified', 'wbcom-essential' );
+
+	// Resolve subscription + customer + product for context.
+	if ( ! class_exists( 'EDD_Subscription' ) ) {
+		return;
+	}
+	$subscription = new EDD_Subscription( $sub_id );
+	if ( empty( $subscription->id ) ) {
+		return;
+	}
+
+	$customer      = new EDD_Customer( $subscription->customer_id );
+	$product_title = get_the_title( $subscription->product_id );
+
+	// Save as a note on the subscription (admin-visible, audit trail).
+	$note_lines   = array();
+	$note_lines[] = sprintf( __( 'Cancellation reason: %s', 'wbcom-essential' ), $reason_label );
+	if ( $detail ) {
+		$note_lines[] = __( 'Detail:', 'wbcom-essential' ) . ' ' . $detail;
+	}
+	if ( method_exists( $subscription, 'add_note' ) ) {
+		$subscription->add_note( implode( "\n", $note_lines ) );
+	}
+
+	// Email the site admin.
+	$to      = get_option( 'admin_email' );
+	$site    = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+	/* translators: %s: Site name. */
+	$subject = sprintf( __( '[%s] Subscription cancellation feedback', 'wbcom-essential' ), $site );
+
+	$body  = '';
+	$body .= __( 'A customer just cancelled a subscription.', 'wbcom-essential' ) . "\n\n";
+	$body .= '== ' . __( 'Reason', 'wbcom-essential' ) . " ==\n";
+	$body .= $reason_label . "\n";
+	if ( $detail ) {
+		$body .= "\n== " . __( 'Additional comments', 'wbcom-essential' ) . " ==\n";
+		$body .= $detail . "\n";
+	}
+	$body .= "\n== " . __( 'Customer', 'wbcom-essential' ) . " ==\n";
+	$body .= sprintf( "%s <%s>\n", $customer->name ?: '—', $customer->email ?: '—' );
+	if ( $customer->user_id ) {
+		$body .= sprintf( __( 'User ID: %d', 'wbcom-essential' ), $customer->user_id ) . "\n";
+	}
+	$body .= "\n== " . __( 'Subscription', 'wbcom-essential' ) . " ==\n";
+	$body .= sprintf( __( 'ID: #%d', 'wbcom-essential' ), $subscription->id ) . "\n";
+	$body .= sprintf( __( 'Product: %s', 'wbcom-essential' ), $product_title ?: '—' ) . "\n";
+	$body .= sprintf( __( 'Amount: %s / %s', 'wbcom-essential' ), $subscription->recurring_amount, $subscription->period ) . "\n";
+	$body .= sprintf( __( 'Gateway: %s', 'wbcom-essential' ), $subscription->gateway ) . "\n";
+	$body .= sprintf( __( 'Started: %s', 'wbcom-essential' ), $subscription->created ) . "\n";
+
+	/**
+	 * Filter the cancellation feedback email before it is sent.
+	 *
+	 * @param array            $email        { 'to', 'subject', 'body' }
+	 * @param EDD_Subscription $subscription The subscription being cancelled.
+	 * @param string           $reason_key   Selected reason key.
+	 * @param string           $detail       Free-text detail.
+	 */
+	$email = apply_filters(
+		'wbcom_essential_cancel_feedback_email',
+		array( 'to' => $to, 'subject' => $subject, 'body' => $body ),
+		$subscription,
+		$reason_key,
+		$detail
+	);
+
+	if ( ! empty( $email['to'] ) && ! empty( $email['subject'] ) && ! empty( $email['body'] ) ) {
+		wp_mail( $email['to'], $email['subject'], $email['body'] );
+	}
+}
+add_action( 'edd_subscription_cancelled', 'wbcom_essential_edd_capture_cancel_reason', 20, 1 );
+
+/**
  * Redirect legacy EDD Software Licensing URLs to the dashboard's Licenses tab.
  *
  * When the store's "Purchase History Page" is set to a page that hosts the
@@ -138,6 +277,18 @@ function wbcom_essential_edd_redirect_legacy_license_urls() {
 	if ( false === strpos( $post->post_content, 'wbcom-essential/edd-account-dashboard' ) ) {
 		return;
 	}
+
+	// Pass-through legitimate EDD SL flows that need the full override:
+	//   - License upgrade: ?view=upgrades&license_id=X
+	//   - Single-license view from upgrade checkout: ?license_id=X
+	// Without this bail, users clicking "Upgrade" on a license would be
+	// bounced back to the Licenses tab instead of reaching EDD SL's
+	// upgrade UI.
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+	if ( ! empty( $_GET['view'] ) || ! empty( $_GET['license_id'] ) ) {
+		return;
+	}
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 	$target = add_query_arg( 'tab', 'licenses', wbcom_essential_edd_account_current_page_url() );
 	wp_safe_redirect( $target );
@@ -756,7 +907,8 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 				<?php if ( $cancel_url ) : ?>
 					<a href="<?php echo esc_url( $cancel_url ); ?>"
 						class="wbcom-edd-btn wbcom-edd-btn--danger-outline wbcom-edd-btn--sm"
-						data-confirm="<?php esc_attr_e( 'Are you sure you want to cancel this subscription? You will lose access at the end of your current billing period.', 'wbcom-essential' ); ?>">
+						data-cancel-sub-id="<?php echo esc_attr( (string) $sub->id ); ?>"
+						data-cancel-sub-name="<?php echo esc_attr( $name ); ?>">
 						<?php esc_html_e( 'Cancel', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
@@ -766,6 +918,66 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	}
 
 	echo '</div>';
+
+	// Shared cancellation modal — one instance for all subscription cards.
+	?>
+	<div class="wbcom-edd-cancel-modal" role="dialog" aria-modal="true" aria-labelledby="wbcom-edd-cancel-modal-title" hidden>
+		<div class="wbcom-edd-cancel-modal__backdrop" data-cancel-modal-close="1"></div>
+		<div class="wbcom-edd-cancel-modal__dialog">
+			<button type="button" class="wbcom-edd-cancel-modal__close" data-cancel-modal-close="1" aria-label="<?php esc_attr_e( 'Close', 'wbcom-essential' ); ?>">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+			</button>
+			<h3 id="wbcom-edd-cancel-modal-title" class="wbcom-edd-cancel-modal__title">
+				<?php esc_html_e( 'Cancel your subscription?', 'wbcom-essential' ); ?>
+			</h3>
+			<p class="wbcom-edd-cancel-modal__subtitle">
+				<span data-cancel-modal-sub-name></span>
+				<?php esc_html_e( 'You will keep access until the end of your current billing period.', 'wbcom-essential' ); ?>
+			</p>
+
+			<form class="wbcom-edd-cancel-modal__form" data-cancel-modal-form>
+				<fieldset class="wbcom-edd-cancel-modal__reasons">
+					<legend class="wbcom-edd-cancel-modal__legend">
+						<?php esc_html_e( 'Mind telling us why?', 'wbcom-essential' ); ?>
+						<span class="wbcom-edd-cancel-modal__optional"><?php esc_html_e( '(optional)', 'wbcom-essential' ); ?></span>
+					</legend>
+					<?php
+					$reasons = array(
+						'too_expensive'     => __( 'Too expensive', 'wbcom-essential' ),
+						'not_using'         => __( "I'm not using it enough", 'wbcom-essential' ),
+						'found_alternative' => __( 'Found a better alternative', 'wbcom-essential' ),
+						'missing_features'  => __( 'Missing features I need', 'wbcom-essential' ),
+						'technical_issues'  => __( 'Had technical issues', 'wbcom-essential' ),
+						'other'             => __( 'Other', 'wbcom-essential' ),
+					);
+					foreach ( $reasons as $value => $label ) :
+						?>
+						<label class="wbcom-edd-cancel-modal__reason">
+							<input type="radio" name="cancel_reason" value="<?php echo esc_attr( $value ); ?>">
+							<span><?php echo esc_html( $label ); ?></span>
+						</label>
+						<?php
+					endforeach;
+					?>
+				</fieldset>
+				<label class="wbcom-edd-cancel-modal__details-label" for="wbcom-edd-cancel-reason-detail">
+					<?php esc_html_e( 'Anything else you want to share?', 'wbcom-essential' ); ?>
+					<span class="wbcom-edd-cancel-modal__optional"><?php esc_html_e( '(optional)', 'wbcom-essential' ); ?></span>
+				</label>
+				<textarea id="wbcom-edd-cancel-reason-detail" name="cancel_reason_detail" rows="3" maxlength="500" class="wbcom-edd-cancel-modal__textarea" placeholder="<?php esc_attr_e( 'Your feedback helps us improve.', 'wbcom-essential' ); ?>"></textarea>
+
+				<div class="wbcom-edd-cancel-modal__actions">
+					<button type="button" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm" data-cancel-modal-close="1">
+						<?php esc_html_e( 'Keep Subscription', 'wbcom-essential' ); ?>
+					</button>
+					<button type="submit" class="wbcom-edd-btn wbcom-edd-btn--danger wbcom-edd-btn--sm">
+						<?php esc_html_e( 'Confirm Cancellation', 'wbcom-essential' ); ?>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<?php
 }
 
 /**

@@ -74,6 +74,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 
+	<div class="wbcom-edd-success__topbar">
+		<a class="wbcom-edd-success__back-link" href="<?php echo esc_url( $account_page_url ); ?>">
+			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+			<span><?php esc_html_e( 'Back to Account', 'wbcom-essential' ); ?></span>
+		</a>
+	</div>
+
 	<?php if ( $show_success_header ) : ?>
 		<div class="wbcom-edd-success__header">
 			<div class="wbcom-edd-success__checkmark" aria-hidden="true">

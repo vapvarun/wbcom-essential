@@ -75,6 +75,12 @@
 				initialUrl.searchParams.delete( 'edd-message' );
 				hadFlag = true;
 			}
+			[ 'cancel_reason', 'cancel_reason_detail' ].forEach( function ( p ) {
+				if ( initialUrl.searchParams.has( p ) ) {
+					initialUrl.searchParams.delete( p );
+					hadFlag = true;
+				}
+			} );
 			if ( hadFlag ) {
 				window.history.replaceState(
 					{ tab: activeTab },
@@ -331,6 +337,90 @@
 					}
 				} );
 			} );
+
+			// Cancel subscription — open survey modal instead of browser confirm.
+			bindCancelModal( el );
+		}
+
+		/**
+		 * Wire up the cancellation survey modal and the cancel links that open it.
+		 *
+		 * The modal lives in the subscriptions tab markup (single shared instance).
+		 * Cancel links are rendered with `data-cancel-sub-id` and `data-cancel-sub-name`.
+		 *
+		 * @param {HTMLElement} el Container element that may contain cancel links and/or the modal.
+		 */
+		function bindCancelModal( el ) {
+			// Modal may live in container's parent after AJAX re-render,
+			// so search up to the dashboard root.
+			var modal = container.querySelector( '.wbcom-edd-cancel-modal' ) ||
+				el.querySelector( '.wbcom-edd-cancel-modal' );
+			if ( ! modal ) {
+				return;
+			}
+
+			var form   = modal.querySelector( '[data-cancel-modal-form]' );
+			var subEl  = modal.querySelector( '[data-cancel-modal-sub-name]' );
+			var state  = { href: null };
+
+			function openModal( href, subName ) {
+				state.href = href;
+				if ( subEl ) {
+					subEl.textContent = subName ? subName + ' — ' : '';
+				}
+				if ( form ) {
+					form.reset();
+				}
+				modal.hidden = false;
+				// Focus the first radio for accessibility.
+				var firstRadio = form && form.querySelector( 'input[type="radio"]' );
+				if ( firstRadio ) {
+					setTimeout( function () { firstRadio.focus(); }, 50 );
+				}
+				document.addEventListener( 'keydown', onKey );
+			}
+			function closeModal() {
+				modal.hidden = true;
+				state.href = null;
+				document.removeEventListener( 'keydown', onKey );
+			}
+			function onKey( e ) {
+				if ( e.key === 'Escape' ) { closeModal(); }
+			}
+
+			// Open modal on any cancel link click.
+			el.querySelectorAll( '[data-cancel-sub-id]' ).forEach( function ( link ) {
+				link.addEventListener( 'click', function ( e ) {
+					e.preventDefault();
+					openModal( link.href, link.dataset.cancelSubName || '' );
+				} );
+			} );
+
+			// Close on backdrop / X / Keep Subscription.
+			modal.querySelectorAll( '[data-cancel-modal-close]' ).forEach( function ( closer ) {
+				closer.addEventListener( 'click', function ( e ) {
+					e.preventDefault();
+					closeModal();
+				} );
+			} );
+
+			// Submit → navigate to the cancel URL with reason appended.
+			if ( form ) {
+				form.addEventListener( 'submit', function ( e ) {
+					e.preventDefault();
+					if ( ! state.href ) { return; }
+					var reasonEl = form.querySelector( 'input[name="cancel_reason"]:checked' );
+					var detailEl = form.querySelector( 'textarea[name="cancel_reason_detail"]' );
+					var target   = new URL( state.href, window.location.origin );
+					if ( reasonEl && reasonEl.value ) {
+						target.searchParams.set( 'cancel_reason', reasonEl.value );
+					}
+					if ( detailEl && detailEl.value.trim() ) {
+						target.searchParams.set( 'cancel_reason_detail', detailEl.value.trim() );
+					}
+					window.location.href = target.toString();
+				} );
+			}
 		}
 
 		/**
@@ -383,6 +473,15 @@
 				.finally( function () {
 					hideLoading();
 				} );
+		}
+
+		// Wire up interactive elements in the server-rendered initial tab.
+		// renderHtml() does this after every AJAX load; the first paint
+		// never calls that path, so Copy buttons, country/state handlers
+		// and data-confirm dialogs would silently do nothing until the
+		// user switched tabs once. Run it now for the initial content.
+		if ( inner && inner.innerHTML.trim() ) {
+			bindInteractions( inner );
 		}
 
 		// Attach click handlers to tab navigation links.
