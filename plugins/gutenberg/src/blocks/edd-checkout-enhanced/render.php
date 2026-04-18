@@ -257,6 +257,16 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			$product_ids = wp_list_pluck( $cart_contents, 'id' );
 		}
 
+		// EDD Reviews globally adds `edd_review` to `type__not_in` via a
+		// pre_get_comments hook, so a plain get_comments(type=edd_review)
+		// always returns 0 rows. Temporarily detach the filter, query,
+		// then re-attach so other pages keep the default behaviour.
+		$edd_reviews_obj = edd_reviews();
+		$has_hide_filter = $edd_reviews_obj && has_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
+		if ( $has_hide_filter ) {
+			remove_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
+		}
+
 		// Gather reviews from cart products, or fallback to all recent reviews.
 		$all_reviews = array();
 
@@ -289,6 +299,10 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					'order'   => 'DESC',
 				)
 			);
+		}
+
+		if ( $has_hide_filter ) {
+			add_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
 		}
 
 		// Deduplicate and limit.
@@ -407,6 +421,14 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							$rec_rating = 0;
 							$rec_count  = 0;
 							if ( function_exists( 'edd_reviews' ) && edd_reviews() ) {
+								// Detach EDD Reviews' pre_get_comments filter that
+								// globally adds edd_review to type__not_in.
+								$rec_rev_obj  = edd_reviews();
+								$rec_has_hide = $rec_rev_obj && has_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
+								if ( $rec_has_hide ) {
+									remove_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
+								}
+
 								$rec_reviews = get_comments(
 									array(
 										'post_id' => $download_id,
@@ -430,6 +452,10 @@ $wrapper_attributes = get_block_wrapper_attributes(
 										$ratings_sum += (int) get_comment_meta( $ro->comment_ID, 'edd_rating', true );
 									}
 									$rec_rating = round( $ratings_sum / $rec_count, 1 );
+								}
+
+								if ( $rec_has_hide ) {
+									add_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
 								}
 							}
 							?>
