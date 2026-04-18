@@ -465,6 +465,17 @@
 	border-radius: 8px;
 }
 
+// Honeypot: absolutely hidden from humans + assistive tech, keyboard users,
+// and layout. Bots that fill every field trip it.
+.wbcom-edd-login-form__hp {
+	position: absolute !important;
+	left: -10000px !important;
+	top: auto !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+}
+
 // -------------------------------------------------------------------------
 // EDD Required Notice
 // -------------------------------------------------------------------------

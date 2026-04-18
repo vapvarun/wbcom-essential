@@ -59,13 +59,48 @@ if ( ! is_user_logged_in() ) {
 			<h2 class="wbcom-edd-account__login-title"><?php esc_html_e( 'Sign In to Your Account', 'wbcom-essential' ); ?></h2>
 			<p class="wbcom-edd-account__login-description"><?php esc_html_e( 'Please log in to access your purchases, downloads, and account settings.', 'wbcom-essential' ); ?></p>
 			<?php
-			echo wp_login_form(
-				array(
-					'echo'     => false,
-					'redirect' => $redirect_url,
-				)
-			);
+			// Use the filtered login-post URL so WPS Hide Login (and any plugin
+			// hooking site_url for the 'login_post' context) routes submits to
+			// the renamed endpoint instead of the now-404 /wp-login.php.
+			$login_post_url = site_url( 'wp-login.php', 'login_post' );
 			?>
+			<form name="loginform" id="loginform" class="wbcom-edd-login-form" action="<?php echo esc_url( $login_post_url ); ?>" method="post" autocomplete="on">
+				<?php
+				/**
+				 * Third-party hook: Limit Login Attempts, Wordfence, reCAPTCHA,
+				 * hCaptcha, Turnstile etc. inject their hidden fields or widgets
+				 * here just like they do on /wp-login.php.
+				 */
+				do_action( 'login_form' );
+				?>
+				<p class="login-username">
+					<label for="user_login"><?php esc_html_e( 'Username or Email Address', 'wbcom-essential' ); ?></label>
+					<input type="text" name="log" id="user_login" class="input" value="" size="20" autocomplete="username" required />
+				</p>
+				<p class="login-password">
+					<label for="user_pass"><?php esc_html_e( 'Password', 'wbcom-essential' ); ?></label>
+					<input type="password" name="pwd" id="user_pass" class="input" value="" size="20" autocomplete="current-password" required />
+				</p>
+				<?php
+				// Honeypot: off-screen, tabindex=-1, autocomplete off. Humans never
+				// see/fill it; most bots fill every field. Server-side check in
+				// includes/edd-account-login-security.php rejects any non-empty value.
+				?>
+				<p class="wbcom-edd-login-form__hp" aria-hidden="true">
+					<label for="wbcom_edd_hp_url"><?php esc_html_e( 'Website', 'wbcom-essential' ); ?></label>
+					<input type="text" name="wbcom_edd_hp_url" id="wbcom_edd_hp_url" tabindex="-1" autocomplete="off" value="" />
+				</p>
+				<p class="login-remember">
+					<label>
+						<input name="rememberme" type="checkbox" id="rememberme" value="forever" />
+						<?php esc_html_e( 'Remember Me', 'wbcom-essential' ); ?>
+					</label>
+				</p>
+				<p class="login-submit">
+					<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary" value="<?php esc_attr_e( 'Log In', 'wbcom-essential' ); ?>" />
+					<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_url ); ?>" />
+				</p>
+			</form>
 		</div>
 	</div>
 	<?php

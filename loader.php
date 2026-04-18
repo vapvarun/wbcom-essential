@@ -76,6 +76,7 @@ add_action(
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/wbcom-essential-function.php';
+require_once WBCOM_ESSENTIAL_PATH . 'includes/edd-account-login-security.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-elementor.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/Plugins.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-woocommerce.php';
