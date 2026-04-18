@@ -4,12 +4,12 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.3.0
+Stable tag: 4.5.0
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Companion plugin for BuddyX theme providing 43 Elementor widgets and 45 Gutenberg blocks for BuddyPress, WooCommerce, and WordPress.
+Companion plugin for BuddyX theme providing 43 Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress.
 
 == Description ==
 
@@ -23,31 +23,37 @@ WBcom Essential extends both Elementor and Gutenberg with widgets and blocks des
 * 11 BuddyPress widgets (member grids, group carousels, activity feeds)
 * 5 WooCommerce widgets (product displays, reviews, banners)
 
-**45 Gutenberg Blocks**
+**32 Gutenberg V2 Blocks**
 
-* 26 General blocks with full Elementor widget parity
-* 11 BuddyPress blocks for community features
-* 2 WooCommerce blocks (product grid, mini cart)
-* 7 Bonus blocks (counter, CTA box, divider, icon box, social icons, star rating)
+* 7 Marketing blocks (hero, cta, pricing-table, testimonial-carousel, feature-grid, promo-banner, countdown-timer)
+* 5 Content blocks (faq-accordion, tabs, login-form, portfolio-grid, timeline)
+* 3 Blog blocks (post-carousel, posts-ticker, category-grid)
+* 6 Design blocks (flip-box, progress-bar, text-rotator, stats-counter, edd-account-dashboard, edd-checkout-enhanced)
+* 5 BuddyPress blocks (activity-feed, members-grid, members-carousel, groups-grid, group-carousel)
+* 4 WooCommerce blocks (product-grid, product-carousel, customer-reviews, edd-order-success)
+* 2 EDD blocks (product-catalog, product-filter - conditional on EDD)
 
 = Key Features =
 
-* **Use Theme Colors** - All 45 blocks support automatic theme color inheritance
-* **Server-Side Rendering** - Dynamic blocks for BuddyPress, WooCommerce, and post queries
-* **Responsive Design** - Mobile-first approach with breakpoint controls
+* **Shared Infrastructure** - All 32 blocks inherit from the same components for consistent UX
+* **Responsive 3-Breakpoint** - Desktop/Tablet/Mobile controls on every block
+* **Use Theme Colors** - Automatic theme color inheritance via CSS custom properties
+* **Accessibility** - ARIA attributes, keyboard navigation, prefers-reduced-motion
+* **Server-Side Rendering** - Dynamic blocks for BuddyPress, WooCommerce, EDD, and post queries
 * **Performance Optimized** - Conditional loading based on active plugins
+* **BEM Naming + Scoped CSS** - `.wbe-block-{uniqueId}` isolation for theme-safe styling
 
 = Block Categories =
 
-Blocks are organized into 7 categories:
+All 32 V2 blocks are organized into 7 categories:
 
-* Starter Pack - Header (4 blocks)
-* Starter Pack - Design (14 blocks)
-* Starter Pack - Content (8 blocks)
-* Starter Pack - Blog (8 blocks)
-* Starter Pack - Marketing (4 blocks)
-* Starter Pack - BuddyPress (11 blocks)
-* Starter Pack - WooCommerce (2 blocks)
+* Essential - Marketing (7 blocks)
+* Essential - Content (5 blocks)
+* Essential - Blog (3 blocks)
+* Essential - Design (6 blocks)
+* Essential - BuddyPress (5 blocks)
+* Essential - WooCommerce (4 blocks)
+* Essential - EDD (2 blocks, conditional)
 
 = Best Used With =
 
@@ -61,7 +67,7 @@ Blocks are organized into 7 categories:
 1. Upload `wbcom-essential` to `/wp-content/plugins/`
 2. Activate through the Plugins menu
 3. Elementor widgets appear in the "Starter Templates" category
-4. Gutenberg blocks appear in "Starter Pack" categories
+4. Gutenberg blocks appear in "Essential - *" categories
 
 = Requirements =
 
@@ -83,7 +89,7 @@ BuddyPress blocks only appear when BuddyPress is active. The plugin loads them c
 
 = Can I use theme colors in blocks? =
 
-Yes. All 45 blocks have a "Use Theme Colors" toggle in the Color Settings panel. When enabled, blocks inherit colors from your theme's CSS custom properties.
+Yes. All 32 V2 blocks inherit your theme's colors via CSS custom properties (`--wbcom-color-primary`, `--wbcom-color-base`, etc.) with sensible fallbacks.
 
 = Are blocks compatible with Full Site Editing? =
 
@@ -98,6 +104,20 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.5.0 =
+* Major: Gutenberg V2 rebuild — 32 production-grade blocks rebuilt from a shared infrastructure (7 shared components, 2 hooks, 3 utils, design tokens)
+* Removed: 21 legacy blocks merged/replaced (heading, branding, site-logo, shape, slider, smart-menu, divider, social-icons, star-rating, icon-box, header-bar, mini-cart, dashboard-intro, forums, forums-activity, groups-lists, members-lists, dropdown-button, posts-revolution, post-slider, posts-carousel, counter, cta-box, accordion, advanced-tabs, countdown, post-timeline, testimonial, team-carousel, profile-completion)
+* New: Quality standard derived from competitive audit (Kadence, Stackable, Spectra, Otter)
+* New: Responsive 3-breakpoint controls on every block (Desktop/Tablet/Mobile)
+* New: Per-side spacing, per-corner border-radius, box-shadow, device-visibility controls
+* New: Scoped CSS isolation (`.wbe-block-{uniqueId}`), BEM naming (`.wbe-{block}__{element}`)
+* New: Design tokens (`--wbe-*`), `prefers-reduced-motion` support, ARIA + keyboard navigation
+* New: PHP infrastructure — `WBE_CSS` (per-instance CSS), `WBE_Schema` (JSON-LD), `WBE_Fonts` (Google Fonts)
+* New: Auto block registration via `BlockRegistrar.php` scanning `build/blocks/`
+* New: EDD-specific blocks (product-catalog, product-filter, edd-account-dashboard, edd-checkout-enhanced, edd-order-success)
+* UX: 94-issue audit — 23 fixes shipped (XSS, flip-box touch/keyboard, focus-visible, EDD empty states, BP notices, accessibility)
+* Fixed: 12 Basecamp bug cards — block styles, Swiper handle, EDD profile, product filter, BoxShadowControl
 
 = 4.3.0 =
 * New: Blog Index layouts - choose from Grid, List, Magazine, or Newspaper layouts for your blog and archive pages
@@ -174,8 +194,11 @@ For full changelog, see the changelog.md file in the docs folder.
 
 == Upgrade Notice ==
 
+= 4.5.0 =
+Major V2 rebuild: 32 production-grade blocks replacing 45 legacy blocks. Clear your cache, re-save any pages using removed blocks (heading, slider, icon-box, header-bar, counter, cta-box, posts-revolution, etc.) — see the changelog for the full list. PHP 8.0+ required.
+
 = 4.0.2 =
-Major update: All 45 Gutenberg blocks now support theme color inheritance. Clear your cache after updating.
+Major update: Theme color inheritance across all blocks. Clear your cache after updating.
 
 = 4.0.0 =
 Breaking changes: PHP 8.0+ required. Full Gutenberg block parity with Elementor widgets.
