@@ -34,7 +34,7 @@ function wbcom_essential_product_catalog_register_routes() {
 		array(
 			'methods'             => 'GET',
 			'callback'            => 'wbcom_essential_product_catalog_get_products',
-			'permission_callback' => '__return_true',
+			'permission_callback' => 'wbcom_essential_product_catalog_public_permission',
 			'args'                => array(
 				'category'    => array(
 					'type'              => 'integer',
@@ -81,11 +81,24 @@ function wbcom_essential_product_catalog_register_routes() {
 		array(
 			'methods'             => 'GET',
 			'callback'            => 'wbcom_essential_product_catalog_get_categories',
-			'permission_callback' => '__return_true',
+			'permission_callback' => 'wbcom_essential_product_catalog_public_permission',
 		)
 	);
 }
 add_action( 'rest_api_init', 'wbcom_essential_product_catalog_register_routes' );
+
+/**
+ * Permission callback for public product catalog endpoints.
+ *
+ * Returns true by default so the public storefront block can fetch the
+ * same published products a guest sees in the EDD archive. Site owners
+ * that need to restrict access can hook the filter below.
+ *
+ * @return bool|WP_Error
+ */
+function wbcom_essential_product_catalog_public_permission() {
+	return apply_filters( 'wbcom_essential_product_catalog_public_permission', true );
+}
 
 /**
  * GET /wbcom/v1/products

@@ -328,17 +328,10 @@
 				} );
 			} );
 
-			// Cancel subscription confirmation.
-			el.querySelectorAll( '[data-confirm]' ).forEach( function ( link ) {
-				link.addEventListener( 'click', function ( e ) {
-					var msg = link.dataset.confirm;
-					if ( msg && ! window.confirm( msg ) ) { // eslint-disable-line no-alert
-						e.preventDefault();
-					}
-				} );
-			} );
-
-			// Cancel subscription — open survey modal instead of browser confirm.
+			// Cancel subscription — open the survey modal. The legacy
+			// window.confirm() fallback was removed; bindCancelModal
+			// handles every [data-cancel-sub-id] link and preventDefault()s
+			// the native nav so no extra handler is needed for data-confirm.
 			bindCancelModal( el );
 		}
 

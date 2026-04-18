@@ -445,6 +445,11 @@ function wba_get_image_sizes() {
 /**
  * Handles the AJAX login process for users.
  *
+ * Authorization note: this endpoint is only registered via wp_ajax_nopriv_
+ * (below) so it targets logged-out visitors by definition — a
+ * current_user_can() gate would break the login flow. The nonce here is
+ * CSRF protection for the form, not an authorization check.
+ *
  * @return void
  */
 function wbcom_ajax_login() {
