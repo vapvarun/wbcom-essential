@@ -400,10 +400,12 @@
 
 	.wbcom-catalog__filters {
 		width: 100%;
+		flex-direction: column;
+		align-items: stretch;
 	}
 
 	.wbcom-catalog__select {
-		flex: 1;
+		width: 100%;
 		min-width: 0;
 	}
 }

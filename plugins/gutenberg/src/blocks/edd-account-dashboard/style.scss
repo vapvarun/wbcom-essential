@@ -1427,6 +1427,21 @@
 		position: static;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
+		// Hide browser scrollbar on the horizontal tab strip — the fade
+		// gradient below is the scroll affordance.
+		scrollbar-width: none;
+		&::-webkit-scrollbar { display: none; }
+
+		// Fade the right edge so visitors can tell the tab strip scrolls
+		// when later tabs (Order History, Edit Profile) are offscreen.
+		position: relative;
+		background-image:
+			linear-gradient( to left, var( --edd-sidebar-bg ) 0, transparent 24px ),
+			linear-gradient( to left, rgba( 0, 0, 0, 0.08 ) 0, transparent 24px );
+		background-repeat: no-repeat;
+		background-size: 24px 100%, 24px 100%;
+		background-position: right center, right center;
+		background-attachment: local, scroll;
 	}
 
 	.wbcom-edd-account__nav {
