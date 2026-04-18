@@ -18,6 +18,7 @@ Full architecture documentation available in `docs/architecture/`:
 
 | Date | Description |
 |------|-------------|
+| 2026-04-18 | Drop `product-filter` block (redundant with `product-catalog`'s built-in filters); a11y wrap-up; EDD Invoices button fix on purchases tab; REST permission hardening; uninstall.php + lifecycle hooks; npm transitive CVE overrides |
 | 2026-04-08 | UX audit: 14 fixes — XSS, flip-box touch/keyboard, visibility CSS consolidation, focus-visible, EDD empty states + mobile nav + i18n, BP notices, a11y |
 | 2026-04-07 | Bug fix: 12 Basecamp cards resolved — block styles, Swiper handle, EDD profile, product filter, BoxShadowControl |
 | 2026-04-05 | v4.5.0: V2 block rebuild — 32 blocks rebuilt from shared infrastructure, 21 legacy blocks removed, competitive audit quality standard |
@@ -84,7 +85,7 @@ wbcom-essential/
 
 ---
 
-## V2 Block Inventory (32 blocks)
+## V2 Block Inventory (31 blocks)
 
 **Last Updated**: April 2026
 **Quality Standard**: `plan/audit/QUALITY-STANDARD.md` (derived from Kadence, Stackable, Spectra, Otter audit)
@@ -100,7 +101,7 @@ wbcom-essential/
 | Essential - Design | 6 |
 | Essential - BuddyPress | 5 |
 | Essential - WooCommerce | 4 |
-| Essential - EDD (conditional) | 2 |
+| Essential - EDD (conditional) | 1 |
 | **Total** | **32** |
 
 ### V2 Blocks (32 total)
@@ -138,7 +139,6 @@ wbcom-essential/
 | 29 | `customer-reviews` | WooCommerce | Dynamic |
 | 30 | `edd-order-success` | WooCommerce | Dynamic |
 | 31 | `product-catalog` | EDD (conditional) | Dynamic + viewScript |
-| 32 | `product-filter` | EDD (conditional) | Dynamic |
 
 ### Blocks Removed in V2 (21 merged/replaced)
 
@@ -164,7 +164,7 @@ wbcom-essential/
 
 ### Shared Infrastructure
 
-All 32 blocks inherit from shared components in `plugins/gutenberg/src/shared/`:
+All 31 blocks inherit from shared components in `plugins/gutenberg/src/shared/`:
 
 | Component | Purpose |
 |-----------|---------|
@@ -201,7 +201,7 @@ src/blocks/{block-name}/
 ### Build System
 
 ```bash
-npm run build:blocks     # Build all 32 blocks (src/blocks → build/blocks)
+npm run build:blocks     # Build all 31 blocks (src/blocks → build/blocks)
 npm run dev:blocks       # Development with watch
 npm run clean:blocks     # Remove build/blocks
 ```
