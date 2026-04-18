@@ -24,63 +24,56 @@ module.exports = function (grunt) {
 			},
 
 			// Copy production files to dist/.
-			// Strategy: whitelist what ships, then blacklist dev-only artefacts.
-			// Anything added to the repo must be explicitly listed here, so
-			// /docs, /marketing, /plan, /plan/audit, *.md, node_modules, etc.
-			// never leak into the released zip.
+			//
+			// Strategy: SHIP EVERYTHING BY DEFAULT, then blacklist only
+			// dev-only artefacts. This is deliberate — the previous
+			// extension-whitelist approach silently dropped any asset type
+			// not explicitly listed (fonts, webp, mp4, etc.), breaking
+			// styling on live sites. With an "everything + blacklist" model,
+			// a new file type added to the repo ships automatically; only
+			// known dev paths are stripped.
+			//
+			// If you need to exclude something new, add it to the BLACKLIST
+			// below. NEVER use bare prefix globs like `!**/LICENSE*` or
+			// `!**/README*` — those can match legitimate code files like
+			// `license.js`, `license-control.php`, or (on case-insensitive
+			// filesystems) the WordPress `readme.txt`.
 			copy: {
 				dist: {
 					files: [
 						{
 							expand: true,
+							dot: true, // ensure dotfile excludes below take effect
 							src: [
-								// --- Whitelist (production code only) ---
-								'wbcom-essential.php',
-								'loader.php',
-								'readme.txt',
-								'admin/**',
-								'assets/**',
-								'build/**',                 // Compiled block assets.
-								'includes/**',
-								'languages/**',
-								'templates/**',
-								'vendor/**',                // Composer runtime deps (EDD SDK, etc.).
-								// Plugins (Elementor + Gutenberg runtime only).
-								'plugins/**/*.php',
-								'plugins/**/*.css',
-								'plugins/**/*.js',
-								'plugins/**/*.json',
-								'plugins/**/*.png',
-								'plugins/**/*.jpg',
-								'plugins/**/*.jpeg',
-								'plugins/**/*.svg',
-								'plugins/**/*.gif',
-								'plugins/**/*.webp',
+								// --- Ship everything by default ---
+								'**',
 
-								// --- Blacklist (dev-only artefacts) ---
-								// Top-level dev folders — never shipped.
+								// --- Blacklist: dev-only top-level folders ---
 								'!docs/**',
 								'!marketing/**',
 								'!plan/**',
 								'!scripts/**',
 								'!tests/**',
 								'!node_modules/**',
+								'!.git/**',
 								'!.github/**',
 								'!.vscode/**',
 								'!.idea/**',
 								'!dist/**',
 
-								// Gutenberg block sources (only /build ships).
+								// --- Blacklist: block sources (only /build ships) ---
 								'!plugins/gutenberg/src/**',
-								'!plugins/**/node_modules/**',
-								'!plugins/**/package.json',
-								'!plugins/**/package-lock.json',
 
-								// Top-level tooling / manifest files.
+								// --- Blacklist: nested node_modules / package manifests ---
+								'!**/node_modules/**',
+								'!**/package.json',
+								'!**/package-lock.json',
+								'!**/yarn.lock',
+								'!**/pnpm-lock.yaml',
+
+								// --- Blacklist: top-level tooling / manifests ---
 								'!composer.json',
 								'!composer.lock',
-								'!package.json',
-								'!package-lock.json',
 								'!gruntfile.js',
 								'!Gruntfile.js',
 								'!phpcs.xml',
@@ -90,29 +83,42 @@ module.exports = function (grunt) {
 								'!phpunit.xml',
 								'!phpunit.xml.dist',
 								'!webpack.config.js',
+								'!webpack.config.*.js',
+								'!rollup.config.js',
+								'!babel.config.js',
+								'!jest.config.js',
+								'!playwright.config.*',
 
-								// Strip every markdown/doc/env file anywhere in the tree.
+								// --- Blacklist: docs/markdown anywhere in tree ---
 								'!**/*.md',
 								'!**/*.markdown',
+
+								// --- Blacklist: sourcemaps + editor/os junk ---
 								'!**/*.map',
 								'!**/.DS_Store',
+								'!**/Thumbs.db',
 								'!**/.gitignore',
 								'!**/.gitattributes',
+								'!**/.gitkeep',
 								'!**/.editorconfig',
 								'!**/.eslintrc*',
+								'!**/.eslintignore',
 								'!**/.prettierrc*',
+								'!**/.prettierignore',
 								'!**/.stylelintrc*',
 								'!**/.babelrc*',
+								'!**/.browserslistrc',
 								'!**/.nvmrc',
-								'!**/CHANGELOG*',
-								'!**/CONTRIBUTING*',
-								'!**/LICENSE*',
-								'!**/LICENCE*',
-								'!**/phpunit.xml*',
-								// Note: README.md is caught by !**/*.md. Do NOT add
-								// !**/README* — it would match readme.txt on
-								// case-insensitive filesystems (macOS/Windows) and
-								// drop the WordPress.org plugin readme.
+								'!**/.env',
+								'!**/.env.*',
+
+								// IMPORTANT: Do NOT blacklist `**/LICENSE*`,
+								// `**/LICENCE*`, `**/CHANGELOG*`, `**/CONTRIBUTING*`,
+								// or `**/README*` — those could match legitimate code
+								// files (e.g. vendor/.../license.js,
+								// includes/license-control.php) and, on
+								// case-insensitive filesystems, the WordPress
+								// `readme.txt` (which MUST ship).
 							],
 							dest: 'dist/' + pluginSlug + '/'
 						}
