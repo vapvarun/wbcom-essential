@@ -107,6 +107,43 @@ function wbcom_essential_edd_get_states( $request ) {
 }
 
 /**
+ * Return the canonical URL of the page that hosts the EDD Account Dashboard
+ * block, with all query parameters stripped.
+ *
+ * Works in both contexts:
+ *   • Initial server render — `edd_get_current_page_url()` returns the true
+ *     front-end page URL (with any query args).
+ *   • REST AJAX tab render — `wbcom_essential_edd_account_tab_callback()`
+ *     installs a filter on `edd_get_current_page_url` that returns the
+ *     referer (the actual dashboard page URL), so this still resolves to
+ *     the front-end page rather than the REST endpoint.
+ *
+ * We strip query parameters so callers can reliably append their own
+ * (e.g. `?tab=profile`) without duplicating or inheriting stale ones like
+ * `updated=true` from a prior submission.
+ *
+ * @since 4.5.1
+ *
+ * @return string Absolute URL of the dashboard page, no query string.
+ */
+function wbcom_essential_edd_account_current_page_url() {
+	$url = function_exists( 'edd_get_current_page_url' )
+		? edd_get_current_page_url()
+		: home_url( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/' );
+
+	// Strip query string — callers add their own ?tab=... after this.
+	$parts = wp_parse_url( $url );
+	if ( empty( $parts['scheme'] ) || empty( $parts['host'] ) ) {
+		return home_url( '/' );
+	}
+	$path = isset( $parts['path'] ) ? $parts['path'] : '/';
+
+	return $parts['scheme'] . '://' . $parts['host']
+		. ( isset( $parts['port'] ) ? ':' . $parts['port'] : '' )
+		. $path;
+}
+
+/**
  * Persist billing address when the EDD profile editor is saved.
  *
  * EDD's core `edd_process_profile_editor_updates()` ignores our custom
@@ -1127,11 +1164,28 @@ function wbcom_essential_edd_render_profile_tab() {
 
 	// Nonce for EDD profile editor processing.
 	$nonce_action = 'edd-profile-editor-nonce';
+
+	// Build the redirect target for EDD's wp_safe_redirect after save.
+	// We always want to land back on the same page with ?tab=profile so the
+	// dashboard block renders the profile tab — not the EDD "My Account"
+	// page (which is what EDD falls back to when edd_redirect is empty).
+	$redirect_target = add_query_arg( 'tab', 'profile', wbcom_essential_edd_account_current_page_url() );
+
+	// Was the profile just saved? EDD appends ?updated=true after success.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only query flag.
+	$just_updated = isset( $_GET['updated'] ) && 'true' === $_GET['updated'];
 	?>
-	<form id="edd_profile_editor_form" class="wbcom-edd-profile" action="" method="post">
+	<?php if ( $just_updated ) : ?>
+		<div class="wbcom-edd-profile__notice wbcom-edd-profile__notice--success" role="status" aria-live="polite">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+			<span><?php esc_html_e( 'Your profile has been updated successfully.', 'wbcom-essential' ); ?></span>
+		</div>
+	<?php endif; ?>
+	<form id="edd_profile_editor_form" class="wbcom-edd-profile" action="<?php echo esc_url( $redirect_target ); ?>" method="post">
 		<?php wp_nonce_field( $nonce_action, 'edd_profile_editor_nonce' ); ?>
 		<input type="hidden" name="edd_action" value="edit_user_profile" />
 		<input type="hidden" name="edd_profile_editor_submit" value="1" />
+		<input type="hidden" name="edd_redirect" value="<?php echo esc_url( $redirect_target ); ?>" />
 
 		<div class="wbcom-edd-profile__avatar-section">
 			<img src="<?php echo esc_url( $avatar ); ?>" alt="" class="wbcom-edd-profile__avatar" width="72" height="72">

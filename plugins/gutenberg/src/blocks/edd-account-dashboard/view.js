@@ -61,6 +61,22 @@
 			contentCache[ activeTab ] = inner.innerHTML;
 		}
 
+		// If the profile editor just redirected back with ?updated=true,
+		// remove that flag from the URL so a page refresh doesn't show the
+		// success notice again. We keep ?tab=profile so the user stays on
+		// the Profile tab.
+		try {
+			var initialUrl = new URL( window.location.href );
+			if ( initialUrl.searchParams.get( 'updated' ) === 'true' ) {
+				initialUrl.searchParams.delete( 'updated' );
+				window.history.replaceState(
+					{ tab: activeTab || 'profile' },
+					'',
+					initialUrl.toString()
+				);
+			}
+		} catch ( _ ) { /* older browsers: leave URL as-is */ }
+
 		/**
 		 * Show loading overlay.
 		 */

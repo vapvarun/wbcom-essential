@@ -990,6 +990,33 @@
 // Profile Form
 // -------------------------------------------------------------------------
 
+.wbcom-edd-profile__notice {
+	display: flex;
+	align-items: center;
+	gap: 0.625rem;
+	padding: 0.875rem 1rem;
+	margin-bottom: 1.25rem;
+	border-radius: var( --edd-radius );
+	font-size: 0.9375rem;
+	line-height: 1.4;
+
+	svg {
+		flex-shrink: 0;
+	}
+
+	&--success {
+		background: #ecfdf5;
+		border: 1px solid #34d399;
+		color: #065f46;
+	}
+
+	&--error {
+		background: #fef2f2;
+		border: 1px solid #f87171;
+		color: #991b1b;
+	}
+}
+
 .wbcom-edd-profile {
 	&__avatar-section {
 		display: flex;
