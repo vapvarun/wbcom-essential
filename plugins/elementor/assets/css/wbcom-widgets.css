@@ -355,7 +355,12 @@
 }
 
 .wb-tab-menus li a:focus {
-    outline: none;
+    outline: 2px solid transparent;
+}
+
+.wb-tab-menus li a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }
 
 .wb-tab-menus li a.htactive {
@@ -614,7 +619,12 @@ li.wbcom-cart .button:before {
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .elementor-swiper-button:focus {
-    outline: none;
+    outline: 2px solid transparent;
+}
+
+.wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .elementor-swiper-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .elementor-swiper-button:hover {
@@ -874,7 +884,12 @@ li.wbcom-cart .button:before {
 
 .wb-products .wb-product .wb-product-inner .wb-product-action ul.wbcom-btn-text-cart li a:focus {
     border: 0;
-    outline: none;
+    outline: 2px solid transparent;
+}
+
+.wb-products .wb-product .wb-product-inner .wb-product-action ul.wbcom-btn-text-cart li a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }
 
 .wb-product-action ul.wbcom-btn-text-cart li.wbcom-cart a::before {

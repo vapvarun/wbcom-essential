@@ -454,15 +454,11 @@
 	font-size: 14px;
 }
 
+/* Single focus ring via box-shadow — visible to keyboard + mouse, clears WCAG 2.4.7. */
 .wbcom-license-content input[type="text"]:focus {
-	outline: 2px solid transparent;
+	outline: none;
 	border-color: #2c5282;
-	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.1);
-}
-
-.wbcom-license-content input[type="text"]:focus-visible {
-	outline: 2px solid #2c5282;
-	outline-offset: 1px;
+	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.25);
 }
 
 .wbcom-license-content .description {
@@ -550,15 +546,11 @@
 	font-size: 14px;
 }
 
+/* Single focus ring via box-shadow — visible to keyboard + mouse, clears WCAG 2.4.7. */
 .wbcom-tab-content select:focus {
-	outline: 2px solid transparent;
+	outline: none;
 	border-color: #2c5282;
-	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.1);
-}
-
-.wbcom-tab-content select:focus-visible {
-	outline: 2px solid #2c5282;
-	outline-offset: 1px;
+	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.25);
 }
 
 .wbcom-tab-content .description {

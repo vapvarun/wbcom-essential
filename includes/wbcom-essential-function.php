@@ -573,22 +573,22 @@ function wbcom_essential_posts_revolution_elementor_share() {
         <div class="adpostsnp-share-item">
             <a target="_blank" rel="noopener noreferrer" class="fa fa-facebook-official"
                href="' . esc_url( "https://www.facebook.com/sharer.php?u={$encoded_permalink}&t={$encoded_title}" ) . '"
-               aria-label="' . $facebook_label . '"><span class="screen-reader-text">' . $facebook_label . '</span></a>
+               title="' . $facebook_label . '" aria-label="' . $facebook_label . '"><span class="screen-reader-text">' . $facebook_label . '</span></a>
         </div>
         <div class="adpostsnp-share-item">
             <a target="_blank" rel="noopener noreferrer" class="fa fa-twitter-square"
                href="' . esc_url( "https://twitter.com/home?status={$encoded_permalink}" ) . '"
-               aria-label="' . $twitter_label . '"><span class="screen-reader-text">' . $twitter_label . '</span></a>
+               title="' . $twitter_label . '" aria-label="' . $twitter_label . '"><span class="screen-reader-text">' . $twitter_label . '</span></a>
         </div>
         <div class="adpostsnp-share-item">
             <a target="_blank" rel="noopener noreferrer" class="fa fa-linkedin-square"
                href="' . esc_url( "https://www.linkedin.com/shareArticle?mini=true&url={$encoded_permalink}" ) . '"
-               aria-label="' . $linkedin_label . '"><span class="screen-reader-text">' . $linkedin_label . '</span></a>
+               title="' . $linkedin_label . '" aria-label="' . $linkedin_label . '"><span class="screen-reader-text">' . $linkedin_label . '</span></a>
         </div>
         <div class="adpostsnp-share-item">
             <a target="_blank" rel="noopener noreferrer" class="fa fa-pinterest-square"
                href="' . esc_url( "https://pinterest.com/pin/create/button/?url={$encoded_permalink}&media=" . urlencode( $pinterest_url ) . "&description={$encoded_title}" ) . '"
-               aria-label="' . $pinterest_label . '"><span class="screen-reader-text">' . $pinterest_label . '</span></a>
+               title="' . $pinterest_label . '" aria-label="' . $pinterest_label . '"><span class="screen-reader-text">' . $pinterest_label . '</span></a>
         </div>
     </div>';
 

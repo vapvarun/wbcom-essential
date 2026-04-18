@@ -193,10 +193,10 @@ $swiper_options = array(
 					<article class="wbe-product-carousel__card" aria-label="<?php echo esc_attr( $title ); ?>">
 						<?php if ( $show_image ) : ?>
 						<div class="wbe-product-carousel__image-wrap">
-							<a href="<?php echo esc_url( $permalink ); ?>" tabindex="-1" aria-hidden="true">
+							<a href="<?php echo esc_url( $permalink ); ?>" tabindex="-1">
 								<img
 									src="<?php echo esc_url( $thumb_url ); ?>"
-									alt="<?php echo esc_attr( $title ); ?>"
+									alt=""
 									class="wbe-product-carousel__image"
 									loading="lazy"
 									decoding="async"

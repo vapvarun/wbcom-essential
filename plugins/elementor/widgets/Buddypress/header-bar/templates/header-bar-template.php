@@ -53,7 +53,7 @@ $elem = ( is_front_page() && is_home() ) ? 'h1' : 'div';
 	<div class="header-search-wrap header-search-wrap--elementor">
 		<div class="container">
 			<?php get_search_form(); ?>
-			<a href="#" class="close-search"><i class="eicon-close-circle"></i></a>
+			<a href="#" class="close-search" aria-label="<?php esc_attr_e( 'Close search', 'wbcom-essential' ); ?>"><i class="eicon-close-circle" aria-hidden="true"></i></a>
 		</div>
 	</div>
 </div>

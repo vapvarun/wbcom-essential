@@ -407,9 +407,14 @@
 }
 
 .wbe-af__comment-input:focus {
-	outline: none;
+	outline: 2px solid transparent;
 	border-color: var(--wbe-af-accent);
 	box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.15);
+}
+
+.wbe-af__comment-input:focus-visible {
+	outline: 2px solid var(--wbe-af-accent);
+	outline-offset: 1px;
 }
 
 .wbe-af__comment-input::placeholder {

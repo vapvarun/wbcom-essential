@@ -740,9 +740,19 @@
 	font-size: 16px;
 	width: 100%;
 	height: 76px;
+}
+
+.header-search-wrap--elementor #searchform input[type=text],
+.header-search-wrap--elementor .search-form input[type=search] {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.header-search-wrap--elementor #searchform input[type=text]:focus-visible,
+.header-search-wrap--elementor .search-form input[type=search]:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
 }
 
 .header-search-wrap--elementor #searchform:after,

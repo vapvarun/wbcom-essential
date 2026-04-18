@@ -856,6 +856,9 @@
 	font-family: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, monospace;
 	color: var( --wbcom-color-contrast, #1e293b );
 	background: transparent;
+	// Reset browser/theme default <code> border — key-wrap provides the single border.
+	border: 0;
+	border-radius: 0;
 	user-select: all;
 	white-space: nowrap;
 	overflow: hidden;

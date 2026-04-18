@@ -70,9 +70,16 @@
 .wbe-login-form input[type="text"]:focus,
 .wbe-login-form input[type="password"]:focus,
 .wbe-login-form input[type="email"]:focus {
-	outline: none;
+	outline: 2px solid transparent;
 	border-color: var( --wbe-lf-input-focus );
 	box-shadow: 0 0 0 3px color-mix( in srgb, var( --wbe-lf-input-focus ) 20%, transparent );
+}
+
+.wbe-login-form input[type="text"]:focus-visible,
+.wbe-login-form input[type="password"]:focus-visible,
+.wbe-login-form input[type="email"]:focus-visible {
+	outline: 2px solid var( --wbe-lf-input-focus );
+	outline-offset: 1px;
 }
 
 /* Field rows */

@@ -387,6 +387,7 @@ class Wbcom_Blog_Index_Settings {
 					name="<?php echo esc_attr( $name_prefix ); ?>[title]"
 					value="<?php echo esc_attr( $section['title'] ); ?>"
 					placeholder="<?php esc_attr_e( 'Section title (auto from category)', 'wbcom-essential' ); ?>"
+					aria-label="<?php esc_attr_e( 'Section title', 'wbcom-essential' ); ?>"
 					class="wbcom-section-row__title" />
 				<button type="button" class="wbcom-section-row__remove" title="<?php esc_attr_e( 'Remove', 'wbcom-essential' ); ?>">
 					<span class="dashicons dashicons-trash"></span>
