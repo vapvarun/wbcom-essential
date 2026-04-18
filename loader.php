@@ -96,3 +96,52 @@ function wbcom_essential() {
  * @since 3.0.0
  */
 wbcom_essential();
+
+/**
+ * Fires on plugin activation.
+ *
+ * Stores the activation timestamp and current version so future upgrades
+ * can detect cold installs vs. in-place upgrades. Also exposes a
+ * do_action hook for integrations that want to run setup code.
+ *
+ * @since 4.5.0
+ * @return void
+ */
+function wbcom_essential_activate() {
+	$previous_version = get_option( 'wbcom_essential_version', '' );
+
+	update_option( 'wbcom_essential_version', WBCOM_ESSENTIAL_VERSION );
+
+	if ( ! get_option( 'wbcom_essential_activated_at', 0 ) ) {
+		update_option( 'wbcom_essential_activated_at', time() );
+	}
+
+	/**
+	 * Fires after Wbcom Essential finishes its activation routine.
+	 *
+	 * @since 4.5.0
+	 *
+	 * @param string $previous_version Version stored before activation, empty on fresh install.
+	 */
+	do_action( 'wbcom_essential_activated', $previous_version );
+}
+register_activation_hook( WBCOM_ESSENTIAL_FILE, 'wbcom_essential_activate' );
+
+/**
+ * Fires on plugin deactivation.
+ *
+ * Keeps options intact (removal happens in uninstall.php) but exposes a
+ * do_action hook so integrations can clear their own caches / transients.
+ *
+ * @since 4.5.0
+ * @return void
+ */
+function wbcom_essential_deactivate() {
+	/**
+	 * Fires after Wbcom Essential is deactivated.
+	 *
+	 * @since 4.5.0
+	 */
+	do_action( 'wbcom_essential_deactivated' );
+}
+register_deactivation_hook( WBCOM_ESSENTIAL_FILE, 'wbcom_essential_deactivate' );
