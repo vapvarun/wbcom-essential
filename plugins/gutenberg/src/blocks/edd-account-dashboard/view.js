@@ -49,9 +49,15 @@
 			return;
 		}
 
-		// Pre-warm cache with the server-rendered initial content.
+		// Tabs whose content changes with external state (orders, subscriptions,
+		// licenses) should never be cached — users expect fresh stats after
+		// a purchase or subscription change.
+		var NO_CACHE_TABS = [ 'dashboard', 'subscriptions', 'purchases', 'licenses' ];
+
+		// Pre-warm cache with the server-rendered initial content (except for
+		// live-data tabs, which always re-fetch on click).
 		var contentCache = {};
-		if ( activeTab && inner.innerHTML.trim() ) {
+		if ( activeTab && inner.innerHTML.trim() && NO_CACHE_TABS.indexOf( activeTab ) === -1 ) {
 			contentCache[ activeTab ] = inner.innerHTML;
 		}
 
@@ -334,7 +340,8 @@
 				.then( function ( data ) {
 					var html = ( data && data.html ) ? data.html : '';
 					// Only cache non-empty responses to allow retry on empty/error.
-					if ( html ) {
+					// Skip caching for tabs that depend on live external state.
+					if ( html && NO_CACHE_TABS.indexOf( tab ) === -1 ) {
 						contentCache[ tab ] = html;
 					}
 					renderHtml( tab, inner, html || '<p class="wbcom-edd-account__error">No content available for this tab.</p>' );

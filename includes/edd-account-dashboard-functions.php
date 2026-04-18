@@ -107,28 +107,34 @@ function wbcom_essential_edd_get_states( $request ) {
 }
 
 /**
- * Handle EDD profile editor form submission — ensure billing address is saved.
+ * Persist billing address when the EDD profile editor is saved.
  *
- * EDD's built-in edd_edit_user_profile handler may not process the billing
- * address fields from our custom form. This hook runs after EDD's handler
- * and explicitly updates the customer address.
+ * EDD's core `edd_process_profile_editor_updates()` ignores our custom
+ * `card_*` billing fields and calls `edd_redirect()` on success, which
+ * terminates the request. We therefore hook into `edd_user_profile_updated`
+ * (fired just before that redirect) instead of `init`.
+ *
+ * Nonce + capability checks are already performed by EDD before this action
+ * fires, so we only validate our own input shape.
+ *
+ * @since 4.5.1
+ *
+ * @param int   $user_id  User ID whose profile was updated.
+ * @param array $userdata User data passed by EDD (unused).
  */
-function wbcom_essential_edd_save_profile_address() {
-	if ( ! isset( $_POST['edd_action'] ) || 'edit_user_profile' !== $_POST['edd_action'] ) {
-		return;
-	}
-	if ( ! isset( $_POST['edd_profile_editor_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['edd_profile_editor_nonce'] ) ), 'edd-profile-editor-nonce' ) ) {
-		return;
-	}
-	if ( ! is_user_logged_in() || ! function_exists( 'edd_get_customer_by' ) ) {
+function wbcom_essential_edd_save_profile_address( $user_id, $userdata = array() ) {
+	unset( $userdata );
+
+	if ( ! $user_id || ! function_exists( 'edd_get_customer_by' ) ) {
 		return;
 	}
 
-	$customer = edd_get_customer_by( 'user_id', get_current_user_id() );
+	$customer = edd_get_customer_by( 'user_id', (int) $user_id );
 	if ( ! $customer ) {
 		return;
 	}
 
+	// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified by edd_process_profile_editor_updates() before this action fires.
 	$address_data = array(
 		'address'     => isset( $_POST['card_address'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address'] ) ) : '',
 		'address2'    => isset( $_POST['card_address_2'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address_2'] ) ) : '',
@@ -137,10 +143,15 @@ function wbcom_essential_edd_save_profile_address() {
 		'country'     => isset( $_POST['card_country'] ) ? sanitize_text_field( wp_unslash( $_POST['card_country'] ) ) : '',
 		'region'      => isset( $_POST['card_state'] ) ? sanitize_text_field( wp_unslash( $_POST['card_state'] ) ) : '',
 	);
+	// phpcs:enable WordPress.Security.NonceVerification.Missing
 
-	// Update the customer's primary address.
-	if ( method_exists( $customer, 'add_address' ) ) {
-		// EDD 3.x: use the customer address API.
+	// Bail early if the form did not include any address fields at all.
+	if ( ! array_filter( $address_data ) ) {
+		return;
+	}
+
+	// EDD 3.x: use the customer address API.
+	if ( function_exists( 'edd_update_customer_address' ) && function_exists( 'edd_add_customer_address' ) && method_exists( $customer, 'get_address' ) ) {
 		$existing = $customer->get_address();
 		if ( $existing && ! empty( $existing->id ) ) {
 			edd_update_customer_address( $existing->id, $address_data );
@@ -150,19 +161,26 @@ function wbcom_essential_edd_save_profile_address() {
 			$address_data['type']        = 'billing';
 			edd_add_customer_address( $address_data );
 		}
-	} else {
-		// EDD 2.x fallback: store in customer meta.
-		$customer->update_meta( 'address', array(
-			'line1'   => $address_data['address'],
-			'line2'   => $address_data['address2'],
-			'city'    => $address_data['city'],
-			'zip'     => $address_data['postal_code'],
-			'country' => $address_data['country'],
-			'state'   => $address_data['region'],
-		) );
+
+		return;
+	}
+
+	// EDD 2.x fallback: store in customer meta.
+	if ( method_exists( $customer, 'update_meta' ) ) {
+		$customer->update_meta(
+			'address',
+			array(
+				'line1'   => $address_data['address'],
+				'line2'   => $address_data['address2'],
+				'city'    => $address_data['city'],
+				'zip'     => $address_data['postal_code'],
+				'country' => $address_data['country'],
+				'state'   => $address_data['region'],
+			)
+		);
 	}
 }
-add_action( 'init', 'wbcom_essential_edd_save_profile_address', 20 );
+add_action( 'edd_user_profile_updated', 'wbcom_essential_edd_save_profile_address', 10, 2 );
 
 /**
  * REST callback: render the requested tab as HTML.
@@ -262,8 +280,31 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 	$user = wp_get_current_user();
 
-	$order_count = $customer ? $customer->purchase_count : 0;
-	$total_value = $customer ? (float) $customer->purchase_value : 0.0;
+	// Compute stats live from the orders table instead of the customer
+	// row — purchase_count/purchase_value can lag behind recent purchases
+	// (async jobs, refund transitions, license renewals, etc).
+	$order_count = 0;
+	$total_value = 0.0;
+
+	if ( $customer && function_exists( 'edd_get_orders' ) ) {
+		$order_args = array(
+			'customer_id' => $customer->id,
+			'status__in'  => array( 'complete', 'partially_refunded' ),
+			'type'        => 'sale',
+			'number'      => 9999,
+		);
+
+		$orders = edd_get_orders( $order_args );
+		if ( is_array( $orders ) ) {
+			$order_count = count( $orders );
+			foreach ( $orders as $order ) {
+				if ( isset( $order->total ) ) {
+					$total_value += (float) $order->total;
+				}
+			}
+		}
+	}
+
 	$total_spent = edd_currency_filter( edd_format_amount( $total_value ) );
 
 	// License count via Software Licensing add-on.
