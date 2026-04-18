@@ -455,9 +455,14 @@
 }
 
 .wbcom-license-content input[type="text"]:focus {
-	outline: none;
+	outline: 2px solid transparent;
 	border-color: #2c5282;
 	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.1);
+}
+
+.wbcom-license-content input[type="text"]:focus-visible {
+	outline: 2px solid #2c5282;
+	outline-offset: 1px;
 }
 
 .wbcom-license-content .description {
@@ -546,9 +551,14 @@
 }
 
 .wbcom-tab-content select:focus {
-	outline: none;
+	outline: 2px solid transparent;
 	border-color: #2c5282;
 	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.1);
+}
+
+.wbcom-tab-content select:focus-visible {
+	outline: 2px solid #2c5282;
+	outline-offset: 1px;
 }
 
 .wbcom-tab-content .description {

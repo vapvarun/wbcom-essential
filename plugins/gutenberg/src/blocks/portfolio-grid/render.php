@@ -194,7 +194,7 @@ $wrapper_attrs = get_block_wrapper_attributes( array( 'class' => $wrapper_class 
 				<?php if ( $thumb_url ) : ?>
 				<img
 					src="<?php echo esc_url( $thumb_url ); ?>"
-					alt="<?php echo esc_attr( $title ); ?>"
+					alt=""
 					class="wbe-portfolio-grid__image"
 					loading="lazy"
 					decoding="async"

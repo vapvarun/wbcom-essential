@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <div id="wbcomessentialelementor-template-modal-header-title">
-	<span class="wbcomessentialelementor-template-modal-header-title__logo"><img src="<?php echo esc_url( WBCOM_ESSENTIAL_URL . '/plugins/elementor/assets/editor/templates/img/wbcom-icon.jpg' ); ?>" /></span>
+	<span class="wbcomessentialelementor-template-modal-header-title__logo"><img src="<?php echo esc_url( WBCOM_ESSENTIAL_URL . '/plugins/elementor/assets/editor/templates/img/wbcom-icon.jpg' ); ?>" alt="" /></span>
 	<?php echo esc_html__( 'WBCom Essential Templates', 'wbcom-essential' ); ?>
 </div>
 <div id="wbcomessentialelementor-template-modal-header-tabs"></div>

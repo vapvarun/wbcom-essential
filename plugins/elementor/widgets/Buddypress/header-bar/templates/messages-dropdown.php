@@ -284,7 +284,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 							?>
 							<div class="notification-avatar">
 								<a href="<?php  echo esc_url( bp_message_thread_view_link( bp_get_message_thread_id() ) ); ?>">
-									<img src="<?php echo esc_url( $group_avatar ); ?>"> </a>
+									<img src="<?php echo esc_url( $group_avatar ); ?>" alt=""> </a>
 							</div>
 							<?php
 						} else {
