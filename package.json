@@ -8,7 +8,9 @@
     "build:blocks": "node scripts/build-blocks.js",
     "dev:blocks": "node scripts/dev-blocks.js",
     "clean:blocks": "rm -rf build/blocks",
-    "i18n": "grunt checktextdomain makepot"
+    "i18n": "grunt checktextdomain makepot",
+    "dist": "npm run build:blocks && grunt dist",
+    "release": "npm run build:blocks && grunt release"
   },
   "devDependencies": {
     "@babel/core": "^7.22.0",

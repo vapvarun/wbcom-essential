@@ -8,62 +8,111 @@ module.exports = function (grunt) {
 	// Load webpack task
 	grunt.loadNpmTasks('grunt-webpack');
 
-	// Project configuration
-	var pluginSlug = 'wbcom-essential';
-	var pluginVersion = '4.3.0';
+	// Project configuration.
+	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
+	var pluginSlug    = 'wbcom-essential';
+	var pluginVersion = '4.5.0';
 
 	grunt.initConfig(
 		{
 			pkg: grunt.file.readJSON('package.json'),
 
-			// Clean dist folder
+			// Clean dist folder.
 			clean: {
 				dist: ['dist/'],
 				post: ['dist/' + pluginSlug + '/']
 			},
 
-			// Copy files to dist
+			// Copy production files to dist/.
+			// Strategy: whitelist what ships, then blacklist dev-only artefacts.
+			// Anything added to the repo must be explicitly listed here, so
+			// /docs, /marketing, /plan, /plan/audit, *.md, node_modules, etc.
+			// never leak into the released zip.
 			copy: {
 				dist: {
 					files: [
 						{
 							expand: true,
 							src: [
-								// Main plugin files
-								'*.php',
-								'readme.txt',
-								// Admin
-								'admin/**',
-								// Assets
-								'assets/**',
-								// Build folder (compiled blocks)
-								'build/**',
-								// Includes
-								'includes/**',
-								// Languages
-								'languages/**',
-								// License
-								'license/**',
-								// Loader
+								// --- Whitelist (production code only) ---
+								'wbcom-essential.php',
 								'loader.php',
-								// Plugins (Elementor + Gutenberg)
+								'readme.txt',
+								'admin/**',
+								'assets/**',
+								'build/**',                 // Compiled block assets.
+								'includes/**',
+								'languages/**',
+								'templates/**',
+								'vendor/**',                // Composer runtime deps (EDD SDK, etc.).
+								// Plugins (Elementor + Gutenberg runtime only).
 								'plugins/**/*.php',
 								'plugins/**/*.css',
 								'plugins/**/*.js',
 								'plugins/**/*.json',
 								'plugins/**/*.png',
 								'plugins/**/*.jpg',
+								'plugins/**/*.jpeg',
 								'plugins/**/*.svg',
 								'plugins/**/*.gif',
-								// Exclude block src folders (already in build)
-								'!plugins/gutenberg/blocks/*/src/**',
-								'!plugins/gutenberg/blocks/*/node_modules/**',
-								'!plugins/gutenberg/blocks/*/package.json',
-								'!plugins/gutenberg/blocks/*/package-lock.json',
-								// Templates
-								'templates/**',
-								// Vendor (EDD SDK)
-								'vendor/**'
+								'plugins/**/*.webp',
+
+								// --- Blacklist (dev-only artefacts) ---
+								// Top-level dev folders — never shipped.
+								'!docs/**',
+								'!marketing/**',
+								'!plan/**',
+								'!scripts/**',
+								'!tests/**',
+								'!node_modules/**',
+								'!.github/**',
+								'!.vscode/**',
+								'!.idea/**',
+								'!dist/**',
+
+								// Gutenberg block sources (only /build ships).
+								'!plugins/gutenberg/src/**',
+								'!plugins/**/node_modules/**',
+								'!plugins/**/package.json',
+								'!plugins/**/package-lock.json',
+
+								// Top-level tooling / manifest files.
+								'!composer.json',
+								'!composer.lock',
+								'!package.json',
+								'!package-lock.json',
+								'!gruntfile.js',
+								'!Gruntfile.js',
+								'!phpcs.xml',
+								'!phpcs.xml.dist',
+								'!phpstan.neon',
+								'!phpstan.neon.dist',
+								'!phpunit.xml',
+								'!phpunit.xml.dist',
+								'!webpack.config.js',
+
+								// Strip every markdown/doc/env file anywhere in the tree.
+								'!**/*.md',
+								'!**/*.markdown',
+								'!**/*.map',
+								'!**/.DS_Store',
+								'!**/.gitignore',
+								'!**/.gitattributes',
+								'!**/.editorconfig',
+								'!**/.eslintrc*',
+								'!**/.prettierrc*',
+								'!**/.stylelintrc*',
+								'!**/.babelrc*',
+								'!**/.nvmrc',
+								'!**/CHANGELOG*',
+								'!**/CONTRIBUTING*',
+								'!**/LICENSE*',
+								'!**/LICENCE*',
+								'!**/phpunit.xml*',
+								// Note: README.md is caught by !**/*.md. Do NOT add
+								// !**/README* — it would match readme.txt on
+								// case-insensitive filesystems (macOS/Windows) and
+								// drop the WordPress.org plugin readme.
 							],
 							dest: 'dist/' + pluginSlug + '/'
 						}
