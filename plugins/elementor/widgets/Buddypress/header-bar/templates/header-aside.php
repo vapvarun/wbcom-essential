@@ -14,6 +14,7 @@ $profile_dropdown_menu = isset( $settings['profile_dropdown_menu'] ) ? $settings
 $element_separator     = ! empty( $settings['element_separator'] );
 $show_search           = ! empty( $settings['search_icon_switch'] );
 $show_messages         = ! empty( $settings['messages_icon_switch'] );
+$show_friends          = ! empty( $settings['friends_icon_switch'] );
 $show_notifications    = ! empty( $settings['notifications_icon_switch'] );
 $show_shopping_cart    = ! empty( $settings['cart_icon_switch'] );
 
@@ -102,6 +103,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$messages_dropdown_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/messages-dropdown.php';
 				if ( file_exists( $messages_dropdown_template_path ) ) {
 					require $messages_dropdown_template_path;
+				}
+			endif;
+			?>
+
+			<?php
+			if ( $show_friends && wbcom_essential_has_friend_requests_support() ) :
+				$friends_dropdown_template_path = WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH . '/Buddypress/header-bar/templates/friends-dropdown.php';
+				if ( file_exists( $friends_dropdown_template_path ) ) {
+					require $friends_dropdown_template_path;
 				}
 			endif;
 			?>

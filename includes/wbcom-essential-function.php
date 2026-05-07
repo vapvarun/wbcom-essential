@@ -191,6 +191,218 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 }
 
 
+if ( ! function_exists( 'wbcom_essential_has_friend_requests_support' ) ) {
+	/**
+	 * Check whether the current site supports BuddyPress/BuddyBoss friend requests.
+	 *
+	 * @return bool
+	 */
+	function wbcom_essential_has_friend_requests_support() {
+		return function_exists( 'bp_is_active' ) && bp_is_active( 'friends' ) && function_exists( 'friends_get_friendship_request_user_ids' );
+	}
+}
+
+if ( ! function_exists( 'wbcom_essential_get_user_domain' ) ) {
+	/**
+	 * Get a BuddyPress-compatible member URL.
+	 *
+	 * @param int $user_id User ID.
+	 * @return string
+	 */
+	function wbcom_essential_get_user_domain( $user_id = 0 ) {
+		$user_id = absint( $user_id );
+
+		if ( ! $user_id ) {
+			$user_id = function_exists( 'bp_loggedin_user_id' ) ? bp_loggedin_user_id() : get_current_user_id();
+		}
+
+		if ( ! $user_id ) {
+			return '';
+		}
+
+		if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) && function_exists( 'bp_members_get_user_url' ) ) {
+			return bp_members_get_user_url( $user_id );
+		}
+
+		if ( function_exists( 'bp_core_get_user_domain' ) ) {
+			return bp_core_get_user_domain( $user_id );
+		}
+
+		return get_author_posts_url( $user_id );
+	}
+}
+
+if ( ! function_exists( 'wbcom_essential_get_friend_requests_url' ) ) {
+	/**
+	 * Get the logged-in user's friend requests URL.
+	 *
+	 * @param int $user_id User ID.
+	 * @return string
+	 */
+	function wbcom_essential_get_friend_requests_url( $user_id = 0 ) {
+		if ( ! wbcom_essential_has_friend_requests_support() || ! function_exists( 'bp_get_friends_slug' ) ) {
+			return '';
+		}
+
+		$user_domain = wbcom_essential_get_user_domain( $user_id );
+
+		if ( '' === $user_domain ) {
+			return '';
+		}
+
+		return trailingslashit( trailingslashit( $user_domain ) . bp_get_friends_slug() . '/requests' );
+	}
+}
+
+if ( ! function_exists( 'wbcom_essential_get_friend_requests_count' ) ) {
+	/**
+	 * Get the total pending friend requests count for a user.
+	 *
+	 * @param int $user_id User ID.
+	 * @return int
+	 */
+	function wbcom_essential_get_friend_requests_count( $user_id = 0 ) {
+		if ( ! wbcom_essential_has_friend_requests_support() ) {
+			return 0;
+		}
+
+		$user_id = absint( $user_id );
+
+		if ( ! $user_id ) {
+			$user_id = function_exists( 'bp_loggedin_user_id' ) ? bp_loggedin_user_id() : get_current_user_id();
+		}
+
+		if ( ! $user_id ) {
+			return 0;
+		}
+
+		if ( function_exists( 'bp_friend_get_total_requests_count' ) ) {
+			return (int) bp_friend_get_total_requests_count( $user_id );
+		}
+
+		return count( friends_get_friendship_request_user_ids( $user_id ) );
+	}
+}
+
+if ( ! function_exists( 'wbcom_essential_get_friend_request_action_url' ) ) {
+	/**
+	 * Build a BuddyPress/BuddyBoss friend request action URL without relying on loop globals.
+	 *
+	 * @param int    $friendship_id Friendship ID.
+	 * @param string $action        Supported actions: accept or reject.
+	 * @return string
+	 */
+	function wbcom_essential_get_friend_request_action_url( $friendship_id, $action ) {
+		$friendship_id = absint( $friendship_id );
+		$action        = sanitize_key( $action );
+
+		if ( ! $friendship_id || ! in_array( $action, array( 'accept', 'reject' ), true ) || ! function_exists( 'bp_get_friends_slug' ) ) {
+			return '';
+		}
+
+		$user_domain = wbcom_essential_get_user_domain();
+
+		if ( '' === $user_domain ) {
+			return '';
+		}
+
+		$nonce_action = ( 'accept' === $action ) ? 'friends_accept_friendship' : 'friends_reject_friendship';
+		$url          = trailingslashit( $user_domain ) . bp_get_friends_slug() . '/requests/' . $action . '/' . $friendship_id . '/';
+
+		return wp_nonce_url( $url, $nonce_action );
+	}
+}
+
+if ( ! function_exists( 'wbcom_essential_get_header_counter_label' ) ) {
+	/**
+	 * Format compact header counters the same way as the existing header widgets.
+	 *
+	 * @param int $count Raw count.
+	 * @return string
+	 */
+	function wbcom_essential_get_header_counter_label( $count ) {
+		$count = absint( $count );
+
+		return ( $count > 9 ) ? '9+' : (string) $count;
+	}
+}
+
+if ( ! function_exists( 'wbcom_essential_get_friend_requests' ) ) {
+	/**
+	 * Build a normalized list of pending friend requests for dropdown UIs.
+	 *
+	 * BuddyPress/BuddyBoss already manage the friendship records, notifications,
+	 * and accept/reject actions. This helper only prepares data for plugin UIs.
+	 *
+	 * @param int $user_id User ID.
+	 * @param int $limit   Maximum number of requests to return.
+	 * @return array<int, array<string, mixed>>
+	 */
+	function wbcom_essential_get_friend_requests( $user_id = 0, $limit = 10 ) {
+		if ( ! wbcom_essential_has_friend_requests_support() ) {
+			return array();
+		}
+
+		$user_id = absint( $user_id );
+		$limit   = max( 1, absint( $limit ) );
+
+		if ( ! $user_id ) {
+			$user_id = function_exists( 'bp_loggedin_user_id' ) ? bp_loggedin_user_id() : get_current_user_id();
+		}
+
+		if ( ! $user_id ) {
+			return array();
+		}
+
+		$request_user_ids = friends_get_friendship_request_user_ids( $user_id );
+
+		if ( empty( $request_user_ids ) || ! is_array( $request_user_ids ) ) {
+			return array();
+		}
+
+		$request_user_ids = array_slice( array_map( 'absint', $request_user_ids ), 0, $limit );
+		$requests         = array();
+
+		foreach ( $request_user_ids as $request_user_id ) {
+			if ( ! $request_user_id ) {
+				continue;
+			}
+
+			$friendship_id = function_exists( 'friends_get_friendship_id' ) ? absint( friends_get_friendship_id( $request_user_id, $user_id ) ) : 0;
+			$last_activity = function_exists( 'bp_get_user_last_activity' ) ? bp_get_user_last_activity( $request_user_id ) : '';
+			$last_active   = '';
+
+			if ( ! empty( $last_activity ) && function_exists( 'bp_core_time_since' ) ) {
+				$last_active = bp_core_time_since( strtotime( $last_activity ) );
+			}
+
+			$avatar_html = function_exists( 'bp_core_fetch_avatar' )
+				? bp_core_fetch_avatar(
+					array(
+						'item_id' => $request_user_id,
+						'type'    => 'thumb',
+						'width'   => 40,
+						'height'  => 40,
+					)
+				)
+				: get_avatar( $request_user_id, 40 );
+
+			$requests[] = array(
+				'user_id'       => $request_user_id,
+				'friendship_id' => $friendship_id,
+				'name'          => function_exists( 'bp_core_get_user_displayname' ) ? bp_core_get_user_displayname( $request_user_id ) : get_the_author_meta( 'display_name', $request_user_id ),
+				'link'          => wbcom_essential_get_user_domain( $request_user_id ),
+				'avatar_html'   => $avatar_html,
+				'last_active'   => $last_active,
+				'accept_url'    => wbcom_essential_get_friend_request_action_url( $friendship_id, 'accept' ),
+				'reject_url'    => wbcom_essential_get_friend_request_action_url( $friendship_id, 'reject' ),
+			);
+		}
+
+		return apply_filters( 'wbcom_essential_friend_requests_data', $requests, $user_id, $limit );
+	}
+}
+
 
 if ( ! function_exists( 'wbcom_essential_is_user_online' ) ) {
 	/**

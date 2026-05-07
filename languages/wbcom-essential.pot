@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 05:58:12+00:00\n"
+"POT-Creation-Date: 2026-05-07 05:51:24+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -71,788 +71,1578 @@ msgstr ""
 msgid "Essential"
 msgstr ""
 
-#: admin/class-wbcom-essential-widget-showcase.php:125
+#: admin/class-wbcom-essential-widget-showcase.php:148
 #: plugins/elementor/hooks/ElementorHooks.php:120
-#: plugins/elementor/wbcom-essential-elementor.php:102
+#: plugins/elementor/wbcom-essential-elementor.php:100
 msgid "Wbcom Essential"
 msgstr ""
 
-#: admin/class-wbcom-essential-widget-showcase.php:128
+#: admin/class-wbcom-essential-widget-showcase.php:151
 msgid "Free companion plugin for BuddyX, BuddyX Pro, and Reign themes"
 msgstr ""
 
-#: admin/class-wbcom-essential-widget-showcase.php:137
-#: admin/class-wbcom-essential-widget-showcase.php:164
-msgid "Gutenberg Blocks"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:144
-#: admin/class-wbcom-essential-widget-showcase.php:174
-msgid "Elementor Widgets"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:151
-msgid "Free Forever"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:160
-msgid "What's Included"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:165
-msgid "Works natively with the WordPress Block Editor. No page builder required."
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:167
-msgid "26 General blocks (Accordion, Tabs, Slider, etc.)"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:168
-msgid "11 BuddyPress blocks (Members, Groups, Forums)"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:169
-msgid "8 Blog blocks (Carousel, Timeline, Ticker)"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:175
-msgid "Premium widgets for Elementor with advanced styling options."
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:177
-msgid "27 General widgets"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:178
-msgid "11 BuddyPress widgets"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:179
-msgid "5 WooCommerce widgets"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:187
-msgid "How to Use"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:192
-msgid "Edit a Page"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:193
-msgid "Open any page or post in the Block Editor or Elementor."
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:199
-msgid "Search \"Wbcom\""
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:200
-msgid "Click the + button and search for \"Wbcom\" to find all blocks."
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:206
-msgid "Insert & Customize"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:207
-msgid "Add the block and customize using the sidebar settings."
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:215
-msgid "Requirements"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:219
-msgid "WordPress 6.0+"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:223
-msgid "PHP 8.0+"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:227
-msgid "Elementor (optional, for widgets)"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:231
-msgid "BuddyPress (for community blocks)"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:240
-msgid "Need Help?"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:245
-msgid "Documentation"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:251
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:236
-msgid "Get Support"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:257
-msgid "Changelog"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:264
-msgid "Best With Our Themes"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:265
-msgid "Wbcom Essential is designed to work perfectly with:"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:267
-msgid "Free community theme"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:268
-msgid "Premium features"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:269
-msgid "Community theme"
-msgstr ""
-
-#: admin/class-wbcom-essential-widget-showcase.php:272
-msgid "View Themes"
-msgstr ""
-
-#: build/blocks/accordion/render.php:159
-#: plugins/gutenberg/blocks/accordion/src/render.php:159
-msgid "No accordion items found. Please add items in the editor."
-msgstr ""
-
-#: build/blocks/countdown/render.php:23
-#: plugins/elementor/widgets/General/Countdown.php:123
-#: plugins/elementor/widgets/General/Countdown.php:135
-#: plugins/elementor/widgets/General/Countdown.php:137
-#: plugins/elementor/widgets/General/Countdown.php:655
-#: plugins/gutenberg/blocks/countdown/src/render.php:23
-msgid "Days"
-msgstr ""
-
-#: build/blocks/countdown/render.php:24
-#: plugins/elementor/widgets/General/Countdown.php:147
-#: plugins/elementor/widgets/General/Countdown.php:159
-#: plugins/elementor/widgets/General/Countdown.php:161
-#: plugins/elementor/widgets/General/Countdown.php:758
-#: plugins/gutenberg/blocks/countdown/src/render.php:24
-msgid "Hours"
-msgstr ""
-
-#: build/blocks/countdown/render.php:25
-#: plugins/elementor/widgets/General/Countdown.php:171
-#: plugins/elementor/widgets/General/Countdown.php:183
-#: plugins/elementor/widgets/General/Countdown.php:185
-#: plugins/elementor/widgets/General/Countdown.php:861
-#: plugins/gutenberg/blocks/countdown/src/render.php:25
-msgid "Minutes"
-msgstr ""
-
-#: build/blocks/countdown/render.php:26
-#: plugins/elementor/widgets/General/Countdown.php:195
-#: plugins/elementor/widgets/General/Countdown.php:207
-#: plugins/elementor/widgets/General/Countdown.php:209
-#: plugins/elementor/widgets/General/Countdown.php:964
-#: plugins/gutenberg/blocks/countdown/src/render.php:26
-msgid "Seconds"
-msgstr ""
-
-#: build/blocks/dashboard-intro/render.php:21
-#: plugins/gutenberg/blocks/dashboard-intro/src/render.php:21
-msgid "Please log in to see your dashboard."
-msgstr ""
-
-#: build/blocks/forums/render.php:213
-#: build/blocks/forums-activity/render.php:156
-#: plugins/elementor/widgets/Buddypress/Forums.php:578
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:939
-#: plugins/gutenberg/blocks/forums/src/render.php:213
-#: plugins/gutenberg/blocks/forums-activity/src/render.php:156
-msgid "replied"
-msgstr ""
-
-#: build/blocks/forums/render.php:220 build/blocks/members-lists/render.php:34
-#: plugins/elementor/widgets/Buddypress/Forums.php:584
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:252
-#: plugins/gutenberg/blocks/forums/src/render.php:220
-#: plugins/gutenberg/blocks/members-lists/src/render.php:34
-msgid "Members"
-msgstr ""
-
-#: build/blocks/forums/render.php:220
-#: plugins/elementor/widgets/Buddypress/Forums.php:584
-#: plugins/gutenberg/blocks/forums/src/render.php:220
-msgid "Member"
-msgstr ""
-
-#: build/blocks/forums/render.php:223
-#: plugins/gutenberg/blocks/forums/src/render.php:223
-msgid "Replies"
-msgstr ""
-
-#: build/blocks/forums/render.php:223 includes/wbcom-essential-function.php:254
-#: includes/wbcom-essential-function.php:316
-#: plugins/gutenberg/blocks/forums/src/render.php:223
-msgid "Reply"
-msgstr ""
-
-#: build/blocks/forums/render.php:291
-#: plugins/gutenberg/blocks/forums/src/render.php:291
-msgid "No Forums"
-msgstr ""
-
-#: build/blocks/forums/render.php:293
-#: plugins/gutenberg/blocks/forums/src/render.php:293
-msgid "No topics found."
-msgstr ""
-
-#: build/blocks/forums/render.php:295
-#: plugins/elementor/widgets/Buddypress/Forums.php:664
-#: plugins/gutenberg/blocks/forums/src/render.php:295
-msgid "Start a Discussion"
-msgstr ""
-
-#: build/blocks/forums-activity/render.php:135
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:935
-#: plugins/gutenberg/blocks/forums-activity/src/render.php:135
-msgid "reply"
-msgstr ""
-
-#: build/blocks/forums-activity/render.php:135
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:935
-#: plugins/gutenberg/blocks/forums-activity/src/render.php:135
-msgid "replies"
-msgstr ""
-
-#: build/blocks/forums-activity/render.php:187
-#: plugins/gutenberg/blocks/forums-activity/src/render.php:187
-msgid "No Forums Activity"
-msgstr ""
-
-#: build/blocks/forums-activity/render.php:207
-#: plugins/gutenberg/blocks/forums-activity/src/render.php:207
-msgid "Not Logged In"
-msgstr ""
-
-#: build/blocks/forums-activity/render.php:210
-#: plugins/gutenberg/blocks/forums-activity/src/render.php:210
-msgid "Please log in to see your forum activity."
-msgstr ""
-
-#: build/blocks/group-carousel/render.php:187
-#: build/blocks/groups-grid/render.php:149
-#: build/blocks/groups-lists/render.php:174
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:680
-#: plugins/gutenberg/blocks/group-carousel/src/render.php:187
-#: plugins/gutenberg/blocks/groups-grid/src/render.php:149
-#: plugins/gutenberg/blocks/groups-lists/src/render.php:174
-#: templates/buddyx/buddypress/groups/groups-loop.php:66
-#: templates/reign/buddypress/nouveau/groups/groups-loop.php:103
-#. translators: %s: Group last active time
-#. translators: %s: Get group last active
-#. translators: %s: Group last active time
-#. translators: %s = last activity timestamp (e.g. "active 1 hour ago")
-msgid "active %s"
-msgstr ""
-
-#: build/blocks/group-carousel/render.php:216
-#: build/blocks/groups-grid/render.php:171
-#: plugins/gutenberg/blocks/group-carousel/src/render.php:216
-#: plugins/gutenberg/blocks/groups-grid/src/render.php:171
-msgid "Sorry, no groups were found."
-msgstr ""
-
-#: build/blocks/groups-lists/render.php:71
-#: build/blocks/members-lists/render.php:77
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:116
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:510
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:116
-#: plugins/elementor/widgets/General/PostSlider.php:1705
-#: plugins/elementor/widgets/General/Slider.php:1803
-#: plugins/elementor/widgets/General/SmartMenu.php:560
-#: plugins/elementor/widgets/General/SmartMenu.php:916
-#: plugins/elementor/widgets/General/Tabs.php:257
-#: plugins/gutenberg/blocks/groups-lists/src/render.php:71
-#: plugins/gutenberg/blocks/members-lists/src/render.php:77
-msgid "Active"
-msgstr ""
-
-#: build/blocks/groups-lists/render.php:72
-#: build/blocks/members-lists/render.php:78
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:115
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:115
-#: plugins/gutenberg/blocks/groups-lists/src/render.php:72
-#: plugins/gutenberg/blocks/members-lists/src/render.php:78
-msgid "Popular"
-msgstr ""
-
-#: build/blocks/groups-lists/render.php:73
-#: build/blocks/members-lists/render.php:79
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:138
-#: plugins/elementor/widgets/Buddypress/GroupGrid.php:111
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:114
-#: plugins/elementor/widgets/Buddypress/MembersGrid.php:111
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:114
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:138
-#: plugins/gutenberg/blocks/groups-lists/src/render.php:73
-#: plugins/gutenberg/blocks/members-lists/src/render.php:79
-msgid "Newest"
-msgstr ""
-
-#: build/blocks/groups-lists/render.php:169
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:675
-#: plugins/gutenberg/blocks/groups-lists/src/render.php:169
-#. translators: %s: Group creation date
-#. translators: %s: Get group date created
-#. translators: %s: Group creation date
-msgid "created %s"
-msgstr ""
-
-#: build/blocks/groups-lists/render.php:186
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:701
-#: plugins/gutenberg/blocks/groups-lists/src/render.php:186
-msgid "No groups matched the current filter."
-msgstr ""
-
-#: build/blocks/groups-lists/render.php:193
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:703
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:705
-#: plugins/gutenberg/blocks/groups-lists/src/render.php:193
-msgid "Create a group"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:277
-#: build/blocks/header-bar/render.php:636
-#: plugins/elementor/scripts/template-modal-search-item.php:18
-#: plugins/elementor/templates/scripts/template-modal-search-item.php:18
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:184
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:95
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:128
-#: plugins/gutenberg/blocks/header-bar/src/render.php:277
-#: plugins/gutenberg/blocks/header-bar/src/render.php:636
-msgid "Search"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:293
-#: plugins/gutenberg/blocks/header-bar/src/render.php:293
-msgid "Friend Requests"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:306
-#: plugins/gutenberg/blocks/header-bar/src/render.php:306
-msgid "Friend requests"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:343
-#: plugins/gutenberg/blocks/header-bar/src/render.php:343
-msgid "Accept"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:344
-#: plugins/gutenberg/blocks/header-bar/src/render.php:344
-msgid "Reject"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:353
-#: plugins/gutenberg/blocks/header-bar/src/render.php:353
-msgid "No friend request."
-msgstr ""
-
-#: build/blocks/header-bar/render.php:362
-#: plugins/gutenberg/blocks/header-bar/src/render.php:362
-msgid "All Requests"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:377
-#: build/blocks/header-bar/render.php:390
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:196
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:25
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:34
-#: plugins/gutenberg/blocks/header-bar/src/render.php:377
-#: plugins/gutenberg/blocks/header-bar/src/render.php:390
-msgid "Messages"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:436
-#: plugins/gutenberg/blocks/header-bar/src/render.php:436
-msgid "No new messages"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:443
-#: plugins/gutenberg/blocks/header-bar/src/render.php:443
-msgid "All Messages"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:458
-#: build/blocks/header-bar/render.php:471
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:209
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:26
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:35
-#: plugins/gutenberg/blocks/header-bar/src/render.php:458
-#: plugins/gutenberg/blocks/header-bar/src/render.php:471
-msgid "Notifications"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:473
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:37
-#: plugins/gutenberg/blocks/header-bar/src/render.php:473
-msgid "Mark all as read"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:495
-#: plugins/gutenberg/blocks/header-bar/src/render.php:495
-msgid "Mark as Read"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:505
-#: plugins/gutenberg/blocks/header-bar/src/render.php:505
-msgid "No notifications found."
-msgstr ""
-
-#: build/blocks/header-bar/render.php:512
-#: plugins/gutenberg/blocks/header-bar/src/render.php:512
-msgid "All Notifications"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:527
-#: build/blocks/header-bar/render.php:653
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:222
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:21
-#: plugins/gutenberg/blocks/header-bar/src/render.php:527
-#: plugins/gutenberg/blocks/header-bar/src/render.php:653
-msgid "Cart"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:545
-#: build/blocks/header-bar/render.php:671 build/blocks/mini-cart/render.php:103
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:42
-#: plugins/gutenberg/blocks/header-bar/src/render.php:545
-#: plugins/gutenberg/blocks/header-bar/src/render.php:671
-#: plugins/gutenberg/blocks/mini-cart/src/render.php:103
-msgid "Shopping Cart"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:546
-#: build/blocks/header-bar/render.php:672 build/blocks/mini-cart/render.php:104
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:43
-#: plugins/gutenberg/blocks/header-bar/src/render.php:546
-#: plugins/gutenberg/blocks/header-bar/src/render.php:672
-#: plugins/gutenberg/blocks/mini-cart/src/render.php:104
-msgid "Close cart"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:547
-#: build/blocks/header-bar/render.php:673 build/blocks/mini-cart/render.php:105
-#: plugins/elementor/scripts/template-modal-header.php:24
-#: plugins/elementor/templates/scripts/template-modal-header.php:24
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:44
-#: plugins/gutenberg/blocks/header-bar/src/render.php:547
-#: plugins/gutenberg/blocks/header-bar/src/render.php:673
-#: plugins/gutenberg/blocks/mini-cart/src/render.php:105
-msgid "Close"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:566
-#: build/blocks/header-bar/render.php:692
-#: plugins/gutenberg/blocks/header-bar/src/render.php:566
-#: plugins/gutenberg/blocks/header-bar/src/render.php:692
-msgid "Toggle Dark Mode"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:705
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:155
-#: plugins/gutenberg/blocks/header-bar/src/render.php:705
-msgid "Sign in"
-msgstr ""
-
-#: build/blocks/header-bar/render.php:708
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:158
-#: plugins/gutenberg/blocks/header-bar/src/render.php:708
-msgid "Sign up"
-msgstr ""
-
-#: build/blocks/login-form/render.php:250
-#: plugins/gutenberg/blocks/login-form/src/render.php:250
-msgid "Log Out"
-msgstr ""
-
-#: build/blocks/login-form/render.php:258
-#: plugins/elementor/widgets/General/Branding.php:111
-#: plugins/elementor/widgets/General/LoginForm.php:122
-#: plugins/elementor/widgets/General/LoginForm.php:549
-#: plugins/elementor/widgets/General/SiteLogo.php:105
-#: plugins/elementor/widgets/General/SiteLogo.php:141
-#: plugins/gutenberg/blocks/login-form/src/render.php:258
-msgid "Logo"
-msgstr ""
-
-#: build/blocks/members-carousel/render.php:18
-#: build/blocks/members-grid/render.php:18
-#: build/blocks/members-lists/render.php:18
-#: plugins/gutenberg/blocks/members-carousel/src/render.php:18
-#: plugins/gutenberg/blocks/members-grid/src/render.php:18
-#: plugins/gutenberg/blocks/members-lists/src/render.php:18
-msgid "BuddyPress is required for this block."
-msgstr ""
-
-#: build/blocks/members-carousel/render.php:206
-#: build/blocks/members-grid/render.php:160
-#: build/blocks/members-lists/render.php:190
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:719
-#: plugins/gutenberg/blocks/members-carousel/src/render.php:206
-#: plugins/gutenberg/blocks/members-grid/src/render.php:160
-#: plugins/gutenberg/blocks/members-lists/src/render.php:190
-#: templates/reign/buddypress/legacy/members/members-loop.php:129
-msgid "Sorry, no members were found."
-msgstr ""
-
-#: build/blocks/members-lists/render.php:35
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:266
-#: plugins/gutenberg/blocks/members-lists/src/render.php:35
-msgid "All Members"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:291
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:291
-msgid "Grid view"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:304
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:304
-msgid "List view"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:363
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:363
-#. translators: %s is the portfolio item title.
-msgid "Open %s in lightbox"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:365
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:365
-#. translators: %s is the portfolio item title.
-msgid "View %s"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:473
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:473
-msgid "View Project"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:487
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:487
-msgid "No portfolio items added yet. Add items in the block settings."
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:496
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:496
-msgid "Close lightbox"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:502
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:502
-msgid "Previous image"
-msgstr ""
-
-#: build/blocks/portfolio-grid/render.php:507
-#: plugins/gutenberg/blocks/portfolio-grid/src/render.php:507
-msgid "Next image"
-msgstr ""
-
-#: build/blocks/post-carousel/render.php:123
-#: build/blocks/post-slider/render.php:109
-#: build/blocks/post-timeline/render.php:59
-#: build/blocks/posts-carousel/render.php:64
-#: build/blocks/posts-revolution/render.php:104
-#: plugins/gutenberg/blocks/post-carousel/src/render.php:123
-#: plugins/gutenberg/blocks/post-slider/src/render.php:109
-#: plugins/gutenberg/blocks/post-timeline/src/render.php:59
-#: plugins/gutenberg/blocks/posts-carousel/src/render.php:64
-#: plugins/gutenberg/blocks/posts-revolution/src/render.php:104
-msgid "No posts found."
-msgstr ""
-
-#: build/blocks/post-carousel/render.php:139
-#: plugins/gutenberg/blocks/post-carousel/src/render.php:139
-msgid "No posts with thumbnails found."
-msgstr ""
-
-#: build/blocks/post-carousel/render.php:355
-#: build/blocks/posts-ticker/render.php:142
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:474
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:483
-#: plugins/gutenberg/blocks/post-carousel/src/render.php:355
-#: plugins/gutenberg/blocks/posts-ticker/src/render.php:142
-msgid "Previous"
-msgstr ""
-
-#: build/blocks/post-carousel/render.php:358
-#: build/blocks/posts-ticker/render.php:155
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:478
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:487
-#: plugins/gutenberg/blocks/post-carousel/src/render.php:358
-#: plugins/gutenberg/blocks/posts-ticker/src/render.php:155
-msgid "Next"
-msgstr ""
-
-#: build/blocks/post-slider/render.php:30
-#: build/blocks/post-timeline/render.php:27
-#: plugins/elementor/helper/skins/skin-base.php:293
-#: plugins/elementor/helper/skins/skin-base.php:704
-#: plugins/elementor/widgets/General/PostSlider.php:248
-#: plugins/elementor/widgets/General/PostTimeline.php:316
-#: plugins/gutenberg/blocks/post-slider/src/render.php:30
-#: plugins/gutenberg/blocks/post-timeline/src/render.php:27
-msgid "Read More"
-msgstr ""
-
-#: build/blocks/posts-carousel/render.php:190
-#: plugins/gutenberg/blocks/posts-carousel/src/render.php:190
-#. translators: %s: Author name
-msgid "By %s"
-msgstr ""
-
-#: build/blocks/posts-revolution/render.php:579
-#: plugins/gutenberg/blocks/posts-revolution/src/render.php:579
-msgid "Older posts"
-msgstr ""
-
-#: build/blocks/posts-revolution/render.php:580
-#: plugins/gutenberg/blocks/posts-revolution/src/render.php:580
-msgid "Newer posts"
-msgstr ""
-
-#: build/blocks/posts-ticker/render.php:147
-#: plugins/gutenberg/blocks/posts-ticker/src/render.php:147
-msgid "Pause"
-msgstr ""
-
-#: build/blocks/pricing-table/render.php:18
-#: plugins/gutenberg/blocks/pricing-table/src/render.php:18
-msgid "Basic Plan"
-msgstr ""
-
-#: build/blocks/pricing-table/render.php:27
-#: plugins/gutenberg/blocks/pricing-table/src/render.php:27
-msgid "Get Started"
-msgstr ""
-
-#: build/blocks/pricing-table/render.php:32
-#: plugins/elementor/widgets/General/PricingTable.php:202
-#: plugins/gutenberg/blocks/pricing-table/src/render.php:32
-msgid "POPULAR"
-msgstr ""
-
-#: build/blocks/product-grid/render.php:14
-#: plugins/gutenberg/blocks/product-grid/src/render.php:14
-msgid "WooCommerce is required for this block."
-msgstr ""
-
-#: build/blocks/product-grid/render.php:96
-#: plugins/gutenberg/blocks/product-grid/src/render.php:96
-msgid "No products found."
-msgstr ""
-
-#: build/blocks/product-grid/render.php:167
-#: plugins/elementor/wbcom-essential-woocommerce.php:378
-#: plugins/gutenberg/blocks/product-grid/src/render.php:167
-msgid "Sale!"
-msgstr ""
-
-#: build/blocks/profile-completion/render.php:30
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:230
-#: plugins/gutenberg/blocks/profile-completion/src/render.php:30
-msgid "Complete your profile"
-msgstr ""
-
-#: build/blocks/profile-completion/render.php:31
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:248
-#: plugins/gutenberg/blocks/profile-completion/src/render.php:31
-msgid "Complete"
-msgstr ""
-
-#: build/blocks/profile-completion/render.php:32
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:264
-#: plugins/gutenberg/blocks/profile-completion/src/render.php:32
-msgid "Complete Profile"
-msgstr ""
-
-#: build/blocks/profile-completion/render.php:33
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:283
-#: plugins/gutenberg/blocks/profile-completion/src/render.php:33
-msgid "Edit Profile"
-msgstr ""
-
-#: build/blocks/progress-bar/render.php:18
-#: plugins/gutenberg/blocks/progress-bar/src/render.php:18
-msgid "Progress"
-msgstr ""
-
-#: build/blocks/shape/render.php:178
-#: plugins/gutenberg/blocks/shape/src/render.php:178
-msgid "Shape link"
-msgstr ""
-
-#: build/blocks/site-logo/render.php:130
-#: plugins/gutenberg/blocks/site-logo/src/render.php:130
-msgid "Please add a logo in Appearance → Customize → Site Identity"
-msgstr ""
-
-#: build/blocks/site-logo/render.php:164
-#: plugins/gutenberg/blocks/site-logo/src/render.php:164
-msgid "Please select a logo image."
-msgstr ""
-
-#: build/blocks/slider/render.php:61
-#: plugins/gutenberg/blocks/slider/src/render.php:61
-msgid "No slides to display."
-msgstr ""
-
-#: build/blocks/slider/render.php:201
-#: plugins/gutenberg/blocks/slider/src/render.php:201
-msgid "Learn More"
-msgstr ""
-
-#: build/blocks/slider/render.php:212
-#: plugins/gutenberg/blocks/slider/src/render.php:212
-msgid "Previous slide"
-msgstr ""
-
-#: build/blocks/slider/render.php:213
-#: plugins/gutenberg/blocks/slider/src/render.php:213
-msgid "Next slide"
-msgstr ""
-
-#: build/blocks/slider/render.php:220
-#: plugins/gutenberg/blocks/slider/src/render.php:220
-#. translators: %d: Slide number
-msgid "Go to slide %d"
-msgstr ""
-
-#: build/blocks/smart-menu/render.php:25
-#: plugins/gutenberg/blocks/smart-menu/src/render.php:25
-msgid "Please select a menu."
-msgstr ""
-
-#: build/blocks/smart-menu/render.php:185
-#: plugins/gutenberg/blocks/smart-menu/src/render.php:185
-msgid "Toggle menu"
-msgstr ""
-
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:56
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:57
-msgid "Dashboard"
-msgstr ""
-
+#: admin/class-wbcom-essential-widget-showcase.php:159
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:125
 msgid "Overview"
 msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:163
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:308
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:127
+#: plugins/elementor/widgets/Buddypress/GroupGrid.php:99
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:127
+#: plugins/elementor/widgets/Buddypress/MembersGrid.php:99
+#: plugins/elementor/widgets/General/Accordion.php:242
+#: plugins/elementor/widgets/General/TextRotator.php:160
+msgid "Settings"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:192
+#: admin/class-wbcom-essential-widget-showcase.php:215
+msgid "Gutenberg Blocks"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:199
+#: admin/class-wbcom-essential-widget-showcase.php:226
+msgid "Elementor Widgets"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:206
+msgid "Free Forever"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:216
+msgid "Works natively with the WordPress Block Editor. No page builder required."
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:218
+msgid "17 Marketing, Content & Design blocks"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:219
+msgid "5 BuddyPress blocks (Members, Groups, Activity)"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:220
+msgid "7 Blog & WooCommerce blocks"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:221
+msgid "3 EDD blocks (Account, Checkout, Catalog)"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:227
+msgid "Premium widgets for Elementor with advanced styling options."
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:229
+msgid "27 General widgets"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:230
+msgid "11 BuddyPress widgets"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:231
+msgid "5 WooCommerce widgets"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:240
+msgid "WordPress 6.0+"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:244
+msgid "PHP 8.0+"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:248
+msgid "Elementor (optional, for widgets)"
+msgstr ""
+
+#: admin/class-wbcom-essential-widget-showcase.php:252
+msgid "BuddyPress (for community blocks)"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:21
+#: build/blocks/group-carousel/render.php:21
+#: build/blocks/groups-grid/render.php:21
+#: build/blocks/members-carousel/render.php:21
+#: build/blocks/members-grid/render.php:21
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:21
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:21
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:21
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:21
+#: plugins/gutenberg/src/blocks/members-grid/render.php:21
+msgid "BuddyPress is required for this block."
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:59
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:59
+msgid "Activity"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:60
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:60
+msgid "New Member"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:61
+#: build/blocks/activity-feed/render.php:62
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:61
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:62
+msgid "Friendship"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:63
+#: build/blocks/activity-feed/render.php:64
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:63
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:64
+msgid "Group"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:65
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:65
+msgid "Blog Post"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:66
+#: build/blocks/activity-feed/render.php:91
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:66
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:91
+msgid "Comment"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:67
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:67
+msgid "Profile"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:92
+#: build/blocks/activity-feed/render.php:167
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:92
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:167
+msgid "Mark as Favorite"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:93
+#: build/blocks/activity-feed/render.php:167
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:93
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:167
+msgid "Favorited"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:94
+#: plugins/elementor/widgets/General/PostTimeline.php:325
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:94
+msgid "Load More"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:95
+#: includes/shared-admin/class-wbcom-shared-loader.php:820
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:95
+msgid "Loading..."
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:96
+#: build/blocks/activity-feed/render.php:176
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:96
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:176
+msgid "No activity to show yet."
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:97
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:97
+msgid "ago"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:98
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:98
+msgid "Just now"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:99
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:99
+msgid "Write a comment..."
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:100
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:100
+msgid "Post"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:101
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:101
+msgid "Could not post comment. Please try again."
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:161
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:161
+msgid "Comment %d"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:181
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:181
+msgid "Activity Feed"
+msgstr ""
+
+#: build/blocks/activity-feed/render.php:182
+#: plugins/gutenberg/src/blocks/activity-feed/render.php:182
+msgid "Loading activity..."
+msgstr ""
+
+#: build/blocks/category-grid/render.php:56
+#: plugins/gutenberg/src/blocks/category-grid/render.php:56
+msgid "No categories found."
+msgstr ""
+
+#: build/blocks/category-grid/render.php:143
+#: plugins/gutenberg/src/blocks/category-grid/render.php:143
+#. translators: %s: number of posts
+msgid "%s Post"
+msgid_plural "%s Posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/blocks/customer-reviews/render.php:17
+#: build/blocks/product-carousel/render.php:17
+#: build/blocks/product-grid/render.php:17
+#: plugins/gutenberg/src/blocks/customer-reviews/render.php:17
+#: plugins/gutenberg/src/blocks/product-carousel/render.php:17
+#: plugins/gutenberg/src/blocks/product-grid/render.php:17
+msgid "WooCommerce plugin is required for this block."
+msgstr ""
+
+#: build/blocks/customer-reviews/render.php:85
+#: plugins/gutenberg/src/blocks/customer-reviews/render.php:85
+msgid "No reviews found."
+msgstr ""
+
+#: build/blocks/customer-reviews/render.php:152
+#: plugins/gutenberg/src/blocks/customer-reviews/render.php:152
+msgid "Review by %s"
+msgstr ""
+
+#: build/blocks/customer-reviews/render.php:156
+#: plugins/gutenberg/src/blocks/customer-reviews/render.php:156
+msgid "Rated %d out of 5"
+msgstr ""
+
+#: build/blocks/customer-reviews/render.php:193
+#: plugins/gutenberg/src/blocks/customer-reviews/render.php:193
+msgid "Reviews carousel navigation"
+msgstr ""
+
+#: build/blocks/customer-reviews/render.php:197
+#: plugins/gutenberg/src/blocks/customer-reviews/render.php:197
+msgid "Previous review"
+msgstr ""
+
+#: build/blocks/customer-reviews/render.php:198
+#: plugins/gutenberg/src/blocks/customer-reviews/render.php:198
+msgid "Next review"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:20
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:20
+msgid "Easy Digital Downloads is required to display this block."
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:34
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:34
+msgid "My Tickets"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:59
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:59
+msgid "Sign In to Your Account"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:60
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:60
+msgid "Please log in to access your purchases, downloads, and account settings."
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:77
+#: build/blocks/login-form/render.php:79
+#: plugins/elementor/widgets/General/LoginForm.php:202
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:77
+#: plugins/gutenberg/src/blocks/login-form/render.php:79
+msgid "Username or Email Address"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:81
+#: build/blocks/login-form/render.php:80
+#: plugins/elementor/widgets/General/LoginForm.php:209
+#: plugins/elementor/widgets/General/LoginForm.php:211
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:81
+#: plugins/gutenberg/src/blocks/login-form/render.php:80
+msgid "Password"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:90
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:90
+msgid "Website"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:96
+#: build/blocks/login-form/render.php:81
+#: plugins/elementor/widgets/General/LoginForm.php:218
+#: plugins/elementor/widgets/General/LoginForm.php:220
+#: plugins/elementor/widgets/General/LoginForm.php:323
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:96
+#: plugins/gutenberg/src/blocks/login-form/render.php:81
+msgid "Remember Me"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:100
+#: build/blocks/login-form/render.php:32
+#: plugins/elementor/widgets/General/LoginForm.php:255
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:100
+#: plugins/gutenberg/src/blocks/login-form/render.php:32
+msgid "Log In"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:128
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:56
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:57
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:128
+msgid "Dashboard"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:134
+#: includes/edd-account-dashboard-functions.php:755
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:134
+msgid "Subscriptions"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:140
+#: includes/edd-account-dashboard-functions.php:990
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:140
+msgid "Downloads"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:146
+#: includes/edd-account-dashboard-functions.php:1435
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:146
+msgid "Licenses"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:152
+#: includes/edd-account-dashboard-functions.php:1298
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:152
+msgid "Order History"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:157
+#: includes/edd-account-dashboard-functions.php:1451
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:283
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:157
+msgid "Edit Profile"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:208
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:208
+msgid "Account navigation"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:251
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:251
+msgid "Sign Out"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:257
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:257
+msgid "Account content"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:19
+#: build/blocks/edd-order-success/render.php:18
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:19
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:18
+msgid "Easy Digital Downloads is required for this block."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:32
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:32
+msgid "Secure checkout powered by Stripe"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:52
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:52
+msgid "Checkout steps"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:55
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:55
+msgid "Cart - completed"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:63
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:235
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:21
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:63
+msgid "Cart"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:66
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:66
+msgid "Details - current step"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:72
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:72
+msgid "Details"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:75
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:75
+msgid "Payment - upcoming"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:81
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:81
+msgid "Payment"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:84
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:84
+msgid "Complete - upcoming"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:90
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:248
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:90
+msgid "Complete"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:102
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:102
+msgid "Security and trust information"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:114
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:114
+msgid "Your payment information is encrypted and secure."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:126
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:126
+msgid "14-Day Money Back"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:127
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:127
+msgid "Full refund if you are not satisfied."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:138
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:138
+msgid "Priority Support"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:139
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:139
+msgid "Dedicated support for all customers."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:146
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:146
+msgid "Accepted payments"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:222
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:222
+#. translators: %d: number of reviews
+msgid "Based on %d reviews"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:337
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:337
+msgid "What Our Customers Say"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:356
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:356
+#. translators: %d: Number of reviews.
+msgid "from %d review"
+msgid_plural "from %d reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:409
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:409
+msgid "Customers Also Purchased"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:485
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:485
+msgid "Add to Cart"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:29
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:29
+msgid "Thank you for your purchase!"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:80
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:80
+msgid "Back to Account"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:98
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:98
+msgid "Order confirmed"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:109
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:109
+msgid "Your order has been confirmed and is being processed."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:121
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:121
+msgid "What's Next?"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:136
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:136
+msgid "Download Your Files"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:139
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:139
+msgid "Access and download the files included in your purchase."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:142
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:142
+msgid "View Downloads"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:155
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:155
+msgid "View License Keys"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:158
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:158
+msgid "Find and manage the license keys for your purchased products."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:161
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:161
+msgid "View Licenses"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:175
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:175
+msgid "Manage Your Account"
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:178
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:178
+msgid "View your purchase history, update details, and manage your profile."
+msgstr ""
+
+#: build/blocks/edd-order-success/render.php:181
+#: plugins/gutenberg/src/blocks/edd-order-success/render.php:181
+msgid "Go to Account"
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:182
+#: build/blocks/group-carousel/render.php:216
+#: build/blocks/group-carousel/render.php:237
+#: build/blocks/members-carousel/render.php:165
+#: build/blocks/members-carousel/render.php:202
+#: build/blocks/members-carousel/render.php:219
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:475
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:484
+#: plugins/elementor/widgets/General/PostCarousel.php:2337
+#: plugins/elementor/widgets/General/TeamCarousel.php:1742
+#: plugins/elementor/widgets/General/TestimonialCarousel.php:1584
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:182
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:216
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:237
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:165
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:202
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:219
+msgid "Previous"
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:183
+#: build/blocks/group-carousel/render.php:217
+#: build/blocks/group-carousel/render.php:238
+#: build/blocks/members-carousel/render.php:166
+#: build/blocks/members-carousel/render.php:203
+#: build/blocks/members-carousel/render.php:220
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:479
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:488
+#: plugins/elementor/widgets/General/PostCarousel.php:2341
+#: plugins/elementor/widgets/General/TeamCarousel.php:1746
+#: plugins/elementor/widgets/General/TestimonialCarousel.php:1588
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:183
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:217
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:238
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:166
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:203
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:220
+msgid "Next"
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:188
+#: build/blocks/group-carousel/render.php:214
+#: build/blocks/groups-grid/render.php:152
+#: build/blocks/groups-grid/render.php:181
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:188
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:214
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:152
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:181
+msgid "No groups found."
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:213
+#: build/blocks/group-carousel/render.php:230
+#: build/blocks/groups-grid/render.php:180
+#: build/blocks/groups-grid/render.php:193
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:213
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:230
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:180
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:193
+msgid "Loading groups..."
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:215
+#: build/blocks/groups-grid/render.php:182
+#: plugins/elementor/widgets/Buddypress/Forums.php:584
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:252
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:215
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:182
+msgid "Members"
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:218
+#: build/blocks/groups-grid/render.php:184
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:218
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:184
+msgid "Join Group"
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:219
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:219
+msgid "Leave"
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:220
+#: build/blocks/groups-grid/render.php:185
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:220
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:185
+msgid "Joined"
+msgstr ""
+
+#: build/blocks/group-carousel/render.php:221
+#: build/blocks/groups-grid/render.php:186
+#: build/blocks/members-carousel/render.php:200
+#: build/blocks/members-grid/render.php:152
+#: plugins/gutenberg/src/blocks/group-carousel/render.php:221
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:186
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:200
+#: plugins/gutenberg/src/blocks/members-grid/render.php:152
+msgid "Pending"
+msgstr ""
+
+#: build/blocks/groups-grid/render.php:134
+#: build/blocks/groups-grid/render.php:183
+#: build/blocks/members-grid/render.php:154
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:134
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:183
+#: plugins/gutenberg/src/blocks/members-grid/render.php:154
+#: templates/buddypress/groups/groups-loop.php:62
+#. translators: %s: Group last active time
+#. translators: %s: last activity timestamp (e.g. "Active 1 hour ago")
+msgid "Active %s"
+msgstr ""
+
+#: build/blocks/groups-grid/render.php:192
+#: plugins/elementor/widgets/Buddypress/GroupGrid.php:58
+#: plugins/gutenberg/src/blocks/groups-grid/render.php:192
+msgid "Groups Grid"
+msgstr ""
+
+#: build/blocks/login-form/render.php:33
+#: plugins/gutenberg/src/blocks/login-form/render.php:33
+msgid "You are already logged in."
+msgstr ""
+
+#: build/blocks/login-form/render.php:66
+#: plugins/gutenberg/src/blocks/login-form/render.php:66
+msgid "View your profile"
+msgstr ""
+
+#: build/blocks/login-form/render.php:93
+#: plugins/gutenberg/src/blocks/login-form/render.php:93
+msgid "Lost your password?"
+msgstr ""
+
+#: build/blocks/login-form/render.php:99
+#: plugins/elementor/widgets/General/LoginForm.php:227
+#: plugins/elementor/widgets/General/LoginForm.php:229
+#: plugins/elementor/widgets/General/LoginForm.php:310
+#: plugins/gutenberg/src/blocks/login-form/render.php:99
+msgid "Register"
+msgstr ""
+
+#: build/blocks/members-carousel/render.php:170
+#: build/blocks/members-carousel/render.php:197
+#: build/blocks/members-grid/render.php:122
+#: build/blocks/members-grid/render.php:149
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:170
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:197
+#: plugins/gutenberg/src/blocks/members-grid/render.php:122
+#: plugins/gutenberg/src/blocks/members-grid/render.php:149
+msgid "No members found."
+msgstr ""
+
+#: build/blocks/members-carousel/render.php:196
+#: build/blocks/members-carousel/render.php:212
+#: build/blocks/members-grid/render.php:148
+#: build/blocks/members-grid/render.php:161
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:196
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:212
+#: plugins/gutenberg/src/blocks/members-grid/render.php:148
+#: plugins/gutenberg/src/blocks/members-grid/render.php:161
+msgid "Loading members..."
+msgstr ""
+
+#: build/blocks/members-carousel/render.php:198
+#: build/blocks/members-grid/render.php:150
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:198
+#: plugins/gutenberg/src/blocks/members-grid/render.php:150
+msgid "Add Friend"
+msgstr ""
+
+#: build/blocks/members-carousel/render.php:199
+#: build/blocks/members-grid/render.php:151
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:199
+#: plugins/gutenberg/src/blocks/members-grid/render.php:151
+msgid "Friends"
+msgstr ""
+
+#: build/blocks/members-carousel/render.php:201
+#: build/blocks/members-grid/render.php:153
+#: plugins/gutenberg/src/blocks/members-carousel/render.php:201
+#: plugins/gutenberg/src/blocks/members-grid/render.php:153
+msgid "View Profile"
+msgstr ""
+
+#: build/blocks/members-grid/render.php:160
+#: plugins/elementor/widgets/Buddypress/MembersGrid.php:58
+#: plugins/gutenberg/src/blocks/members-grid/render.php:160
+msgid "Members Grid"
+msgstr ""
+
+#: build/blocks/portfolio-grid/render.php:78
+#: plugins/gutenberg/src/blocks/portfolio-grid/render.php:78
+msgid "No portfolio items found."
+msgstr ""
+
+#: build/blocks/portfolio-grid/render.php:83
+#: plugins/elementor/templates/classes/manager.php:218
+#: plugins/elementor/widgets/General/PortfolioGrid.php:388
+#: plugins/gutenberg/src/blocks/portfolio-grid/render.php:83
+msgid "All"
+msgstr ""
+
+#: build/blocks/portfolio-grid/render.php:153
+#: plugins/gutenberg/src/blocks/portfolio-grid/render.php:153
+msgid "Portfolio filter"
+msgstr ""
+
+#: build/blocks/portfolio-grid/render.php:227
+#: plugins/gutenberg/src/blocks/portfolio-grid/render.php:227
+#. translators: %s: post title
+msgid "View %s"
+msgstr ""
+
+#: build/blocks/post-carousel/render.php:99
+#: build/blocks/posts-ticker/render.php:96
+#: plugins/gutenberg/src/blocks/post-carousel/render.php:99
+#: plugins/gutenberg/src/blocks/posts-ticker/render.php:96
+msgid "No posts found."
+msgstr ""
+
+#: build/blocks/post-carousel/render.php:247
+#: plugins/gutenberg/src/blocks/post-carousel/render.php:247
+msgid "Post carousel navigation"
+msgstr ""
+
+#: build/blocks/post-carousel/render.php:248
+#: plugins/gutenberg/src/blocks/post-carousel/render.php:248
+msgid "Previous post"
+msgstr ""
+
+#: build/blocks/post-carousel/render.php:249
+#: plugins/gutenberg/src/blocks/post-carousel/render.php:249
+msgid "Next post"
+msgstr ""
+
+#: build/blocks/posts-ticker/render.php:37
+#: plugins/gutenberg/src/blocks/posts-ticker/render.php:37
+msgid "Latest News"
+msgstr ""
+
+#: build/blocks/product-carousel/render.php:122
+#: build/blocks/product-grid/render.php:122
+#: plugins/gutenberg/src/blocks/product-carousel/render.php:122
+#: plugins/gutenberg/src/blocks/product-grid/render.php:122
+msgid "No products found."
+msgstr ""
+
+#: build/blocks/product-carousel/render.php:214
+#: build/blocks/product-grid/render.php:220
+#: plugins/gutenberg/src/blocks/product-carousel/render.php:214
+#: plugins/gutenberg/src/blocks/product-grid/render.php:220
+msgid "Rated %s out of 5"
+msgstr ""
+
+#: build/blocks/product-carousel/render.php:248
+#: plugins/gutenberg/src/blocks/product-carousel/render.php:248
+msgid "Product carousel navigation"
+msgstr ""
+
+#: build/blocks/product-carousel/render.php:252
+#: plugins/gutenberg/src/blocks/product-carousel/render.php:252
+msgid "Previous product"
+msgstr ""
+
+#: build/blocks/product-carousel/render.php:253
+#: plugins/gutenberg/src/blocks/product-carousel/render.php:253
+msgid "Next product"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:20
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:20
+msgid "Easy Digital Downloads plugin is required for this block."
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:42
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:42
+msgid "Search products..."
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:43
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:43
+msgid "All Categories"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:44
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:44
+msgid "Any Price"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:45
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:45
+msgid "Free"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:47
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:47
+#. translators: %s: currency symbol
+msgid "Under %s25"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:49
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:49
+#. translators: %s: currency symbol
+msgid "%1$s25 – %1$s99"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:51
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:51
+#. translators: %s: currency symbol
+msgid "%s100+"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:52
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:52
+msgid "Title (A-Z)"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:53
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:53
+msgid "Newest First"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:54
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:54
+msgid "Price: Low → High"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:55
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:55
+msgid "Price: High → Low"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:56
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:141
+#: plugins/elementor/widgets/Buddypress/GroupGrid.php:113
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:141
+#: plugins/elementor/widgets/Buddypress/MembersGrid.php:113
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:56
+msgid "Most Popular"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:58
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:58
+#. translators: %1$d: visible count, %2$d: total count
+msgid "Showing %1$d of %2$d products"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:59
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:59
+msgid "No products found matching your filters."
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:60
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:60
+msgid "Load More Products"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:61
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:61
+msgid "Download Free"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:62
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:62
+msgid "View Product"
+msgstr ""
+
+#: build/blocks/product-catalog/render.php:82
+#: plugins/gutenberg/src/blocks/product-catalog/render.php:82
+msgid "Loading products..."
+msgstr ""
+
+#: build/blocks/product-grid/render.php:207
+#: build/blocks/product-grid/render.php:208
+#: plugins/gutenberg/src/blocks/product-grid/render.php:207
+#: plugins/gutenberg/src/blocks/product-grid/render.php:208
+msgid "Sale"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:59
+#: includes/single-post/class-wbcom-single-post-settings.php:46
+msgid "None (Use Theme Default)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:60
+msgid "Grid (Card Layout)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:61
+msgid "List (Horizontal Cards)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:62
+msgid "Magazine (Multi-Section)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:63
+msgid "Newspaper (Breaking News)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:77
+msgid "Hero + Sidebar"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:78
+msgid "Featured + List"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:79
+msgid "Grid (Columns)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:80
+msgid "Side by Side"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:81
+msgid "Hero + Text Sidebar"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:82
+msgid "Magazine (1+3+Rest)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:83
+msgid "Two Featured + List"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:99
+msgid "Featured"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:220
+msgid "Blog Index"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:227
+msgid "Blog Layout"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:235
+#: plugins/elementor/helper/skins/skin-base.php:209
+msgid "Posts Per Page"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:243
+msgid "Layout Options"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:251
+msgid "Content Sections"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:262
+msgid ""
+"Choose a layout for your blog index and archive pages. Magazine and "
+"Newspaper layouts combine multiple blocks into configurable sections."
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:275
+msgid "Applies to the main blog page and category/tag archives."
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:284
+msgid ""
+"Set to 0 to use the WordPress default. Only applies to Grid and List "
+"layouts."
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:298
+msgid "Show category navigation bar"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:302
+msgid "Show breaking news ticker"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:306
+msgid "Show hero slider"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:309
+msgid "No additional options for this layout."
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:348
+msgid "Add Section"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:351
+msgid ""
+"Leave category as \"Auto\" to automatically assign categories that have "
+"posts. Drag sections to reorder."
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:389
+msgid "Section title (auto from category)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:390
+msgid "Section title"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:392
+msgid "Remove"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:398
+msgid "Category"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:400
+msgid "Auto (random with posts)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:401
+msgid "All Categories (Latest)"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:410
+msgid "Display Style"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:420
+#: plugins/elementor/widgets/General/PostCarousel.php:105
+#: plugins/elementor/widgets/General/PostSlider.php:103
+#: plugins/elementor/widgets/General/PostTimeline.php:136
+msgid "Posts"
+msgstr ""
+
+#: includes/blog-index/class-wbcom-blog-index-settings.php:708
+msgid "Latest"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:169
+#: includes/edd-account-dashboard-functions.php:946
+msgid "Too expensive"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:170
+#: includes/edd-account-dashboard-functions.php:947
+msgid "I'm not using it enough"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:171
+#: includes/edd-account-dashboard-functions.php:948
+msgid "Found a better alternative"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:172
+#: includes/edd-account-dashboard-functions.php:949
+msgid "Missing features I need"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:173
+#: includes/edd-account-dashboard-functions.php:950
+msgid "Had technical issues"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:174
+#: includes/edd-account-dashboard-functions.php:951
+msgid "Other"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:176
+msgid "Not specified"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:192
+msgid "Cancellation reason: %s"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:194
+msgid "Detail:"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:204
+#. translators: %s: Site name.
+msgid "[%s] Subscription cancellation feedback"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:207
+msgid "A customer just cancelled a subscription."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:208
+msgid "Reason"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:211
+msgid "Additional comments"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:214
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:232
+msgid "Customer"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:217
+msgid "User ID: %d"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:219
+msgid "Subscription"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:220
+msgid "ID: #%d"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:221
+msgid "Product: %s"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:222
+msgid "Amount: %s / %s"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:223
+msgid "Gateway: %s"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:224
+msgid "Started: %s"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:489
+msgid "An error occurred loading this tab. Please try again."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:570
+#. translators: %s: User's first name or display name.
+msgid "Welcome back, %s!"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:579
+msgid "Total Orders"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:583
+msgid "Total Spent"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:588
+msgid "Active Licenses"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:594
+msgid "Active Subscriptions"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:616
+msgid "Recent Orders"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:620
+#: plugins/elementor/widgets/General/PostCarousel.php:123
+#: plugins/elementor/widgets/General/PostSlider.php:121
+#: plugins/elementor/widgets/General/PostTimeline.php:154
+#: plugins/elementor/widgets/General/PostsCarousel.php:382
+#: plugins/elementor/widgets/General/PostsRevolution.php:339
+#: plugins/elementor/widgets/General/PostsTicker.php:355
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:237
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:301
+msgid "Order"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:621
+#: plugins/elementor/helper/skins/skin-base.php:331
+#: plugins/elementor/widgets/General/PostCarousel.php:140
+#: plugins/elementor/widgets/General/PostCarousel.php:1756
+#: plugins/elementor/widgets/General/PostSlider.php:138
+#: plugins/elementor/widgets/General/PostTimeline.php:171
+#: plugins/elementor/widgets/General/PostTimeline.php:818
+#: plugins/elementor/widgets/General/Timeline.php:167
+#: plugins/elementor/widgets/General/Timeline.php:648
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:222
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:286
+msgid "Date"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:622
+#: includes/edd-account-dashboard-functions.php:862
+msgid "Amount"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:623
+msgid "Status"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:718
+msgid ""
+"Subscription cancelled. Access continues until the end of your current "
+"billing period."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:719
+msgid "We could not cancel that subscription. Please try again or contact support."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:720
+msgid "Subscription reactivated."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:721
+msgid "Subscription renewed."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:726
+msgid "Your profile has been updated successfully."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:756
+msgid "Manage your active and past subscriptions."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:763
+#: includes/edd-account-dashboard-functions.php:779
+msgid "No subscriptions found."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:763
+#: includes/edd-account-dashboard-functions.php:779
+#: includes/edd-account-dashboard-functions.php:995
+#: includes/edd-account-dashboard-functions.php:1013
+#: includes/edd-account-dashboard-functions.php:1122
+#: includes/edd-account-dashboard-functions.php:1128
+#: includes/edd-account-dashboard-functions.php:1140
+#: includes/edd-account-dashboard-functions.php:1303
+#: includes/edd-account-dashboard-functions.php:1320
+msgid "Browse Products"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:791
+#: includes/edd-account-dashboard-functions.php:1152
+msgid "Unknown Product"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:866
+msgid "Started"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:871
+msgid "Next Renewal"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:879
+#: includes/edd-account-dashboard-functions.php:1245
+#. translators: %d: Number of days.
+msgid "%d day left"
+msgid_plural "%d days left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/edd-account-dashboard-functions.php:889
+msgid "Times Billed"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:895
+msgid "Until cancelled"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:904
+msgid "Upgrade Plan"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:912
+msgid "Cancel"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:927
+#: plugins/elementor/scripts/template-modal-header.php:24
+#: plugins/elementor/templates/scripts/template-modal-header.php:24
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:44
+msgid "Close"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:931
+msgid "Cancel your subscription?"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:935
+msgid "You will keep access until the end of your current billing period."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:941
+msgid "Mind telling us why?"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:942
+#: includes/edd-account-dashboard-functions.php:965
+msgid "(optional)"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:964
+msgid "Anything else you want to share?"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:967
+msgid "Your feedback helps us improve."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:971
+msgid "Keep Subscription"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:974
+msgid "Confirm Cancellation"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:991
+msgid "Access and download the files from your purchases."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:995
+#: includes/edd-account-dashboard-functions.php:1013
+msgid "No downloads found."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1068
+msgid "No downloadable files found."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1117
+msgid "License Keys"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1118
+msgid "View and manage your license keys and activations."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1122
+#: includes/edd-account-dashboard-functions.php:1128
+#: includes/edd-account-dashboard-functions.php:1140
+msgid "No licenses found."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1171
+msgid "Lifetime"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1225
+msgid "License Key"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1228
+msgid "Copy to clipboard"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1230
+msgid "Copy"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1237
+msgid "Expires"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1254
+msgid "Activations"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1259
+msgid "Unlimited"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1275
+msgid "Upgrade License"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1280
+msgid "Renew License"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1299
+msgid "View your complete purchase history and order details."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1303
+#: includes/edd-account-dashboard-functions.php:1320
+msgid "No orders found."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1383
+#. translators: %s: Order number.
+msgid "Order #%s"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1395
+#. translators: %d: Number of additional items.
+msgid "+%d more item"
+msgid_plural "+%d more items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/edd-account-dashboard-functions.php:1414
+msgid "View Receipt"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1419
+msgid "Invoice"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1452
+msgid "Update your account information and preferences."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1535
+msgid "Personal Information"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1539
+msgid "First Name"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1543
+msgid "Last Name"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1548
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:666
+msgid "Display Name"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1556
+msgid "Email Address"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1564
+msgid "Billing Address"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1567
+msgid "Address Line 1"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1571
+msgid "Address Line 2"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1576
+msgid "City"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1580
+msgid "Postal / ZIP Code"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1586
+msgid "Country"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1588
+msgid "Select country"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1595
+msgid "State / Province"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1598
+msgid "Select state"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1613
+msgid "Change Password"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1617
+msgid "New Password"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1621
+msgid "Confirm Password"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1625
+msgid "Leave blank to keep your current password."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1630
+msgid "Save Changes"
+msgstr ""
+
+#: includes/edd-account-login-security.php:134
+msgid "Login attempt rejected."
+msgstr ""
+
+#: includes/edd-account-login-security.php:154
+#. translators: %d: minutes remaining in the lockout.
+msgid "Too many login attempts. Try again in %d minute."
+msgid_plural "Too many login attempts. Try again in %d minutes."
+msgstr[0] ""
+msgstr[1] ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:129
 msgid "Installed Plugins"
@@ -913,6 +1703,10 @@ msgstr ""
 msgid "Custom Development"
 msgstr ""
 
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:236
+msgid "Get Support"
+msgstr ""
+
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:241
 msgid "System Status"
 msgstr ""
@@ -923,6 +1717,19 @@ msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:250
 msgid "BuddyPress"
+msgstr ""
+
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:116
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:510
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:116
+#: plugins/elementor/widgets/General/PostSlider.php:1705
+#: plugins/elementor/widgets/General/Slider.php:1803
+#: plugins/elementor/widgets/General/SmartMenu.php:560
+#: plugins/elementor/widgets/General/SmartMenu.php:916
+#: plugins/elementor/widgets/General/Tabs.php:257
+msgid "Active"
 msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:251
@@ -955,16 +1762,6 @@ msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:299
 msgid "Version:"
-msgstr ""
-
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:308
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:126
-#: plugins/elementor/widgets/Buddypress/GroupGrid.php:99
-#: plugins/elementor/widgets/Buddypress/MembersGrid.php:99
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:126
-#: plugins/elementor/widgets/General/Accordion.php:242
-#: plugins/elementor/widgets/General/TextRotator.php:160
-msgid "Settings"
 msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:330
@@ -1025,10 +1822,6 @@ msgstr ""
 msgid "No Wbcom plugins are currently active. Activate plugins to see them here."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:820
-msgid "Loading..."
-msgstr ""
-
 #: includes/shared-admin/class-wbcom-shared-loader.php:821
 msgid "Error loading content."
 msgstr ""
@@ -1037,31 +1830,145 @@ msgstr ""
 msgid "Settings saved successfully."
 msgstr ""
 
-#: includes/wbcom-essential-function.php:432
-#: includes/wbcom-essential-function.php:442
+#: includes/single-post/class-wbcom-single-post-settings.php:47
+msgid "Classic (Content + Sidebar)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:48
+msgid "Magazine (Full-Width Hero)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:49
+msgid "Minimal (Centered, Clean)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:50
+msgid "Modern (Progress Bar + ToC)"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:72
+msgid "Post Templates"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:79
+msgid "Default Single Post Template"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:90
+msgid ""
+"Choose a default template for single blog posts. Individual posts can "
+"override this in their edit screen."
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:103
+msgid "This applies to all single posts unless overridden per-post."
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:148
+msgid "Post Template"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:168
+msgid "Global Default"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:169
+msgid "Inherits the site-wide setting"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:172
+#: plugins/elementor/helper/skins/skin-classic.php:40
+msgid "Classic"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:173
+msgid "Content with right sidebar"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:176
+msgid "Magazine"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:177
+msgid "Full-width hero with overlay"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:180
+msgid "Minimal"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:181
+msgid "Centered, clean typography"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:184
+msgid "Modern"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:185
+msgid "Progress bar, ToC sidebar, share bar"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:188
+#: plugins/elementor/helper/skins/skin-base.php:102
+#: plugins/elementor/helper/skins/skin-cards.php:562
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:216
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:773
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:224
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:365
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:351
+#: plugins/elementor/widgets/General/DropdownButton.php:98
+#: plugins/elementor/widgets/General/FlipBox.php:87
+#: plugins/elementor/widgets/General/PostSlider.php:280
+#: plugins/elementor/widgets/General/PostTimeline.php:108
+#: plugins/elementor/widgets/General/PricingTable.php:87
+#: plugins/elementor/widgets/General/Slider.php:297
+#: plugins/elementor/widgets/General/Testimonial.php:755
+#: plugins/elementor/widgets/General/TestimonialCarousel.php:920
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:220
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:284
+msgid "None"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:189
+msgid "Use theme default template"
+msgstr ""
+
+#: includes/single-post/class-wbcom-single-post-settings.php:221
+#. translators: %s: template name
+msgid "Site default: %s"
+msgstr ""
+
+#: includes/wbcom-essential-function.php:466
+#: includes/wbcom-essential-function.php:528
+msgid "Reply"
+msgstr ""
+
+#: includes/wbcom-essential-function.php:644
+#: includes/wbcom-essential-function.php:654
 #. translators: %s is the category name
 #. translators: %s is the taxonomy term name
 msgid "View all posts in %s"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:525
+#: includes/wbcom-essential-function.php:737
 msgid "Views"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:571
-msgid "Click to share this post on Facebook"
+#: includes/wbcom-essential-function.php:779
+msgid "Share this post on Facebook"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:576
-msgid "Click to share this post on Twitter"
+#: includes/wbcom-essential-function.php:780
+msgid "Share this post on Twitter"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:581
-msgid "Click to share this post on Linkedin"
+#: includes/wbcom-essential-function.php:781
+msgid "Share this post on LinkedIn"
 msgstr ""
 
-#: includes/wbcom-essential-function.php:586
-msgid "Click to share this post on Pinterest"
+#: includes/wbcom-essential-function.php:782
+msgid "Share this post on Pinterest"
 msgstr ""
 
 #: plugins/elementor/Plugins.php:138 wbcom-essential.php:56
@@ -1104,10 +2011,10 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:131
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:620
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:688
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:333
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:343
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:334
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:371
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:342
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:177
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:341
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:129
 #: plugins/elementor/widgets/General/Branding.php:124
 #: plugins/elementor/widgets/General/DropdownButton.php:189
@@ -1133,10 +2040,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:803
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:923
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:120
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:351
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:349
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:295
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1016
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1095
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1015
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1094
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:467
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1776
 msgid "Left"
@@ -1149,10 +2056,10 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:139
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:628
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:696
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:334
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:351
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:335
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:379
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:343
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:181
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:342
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:137
 #: plugins/elementor/widgets/General/Branding.php:132
 #: plugins/elementor/widgets/General/DropdownButton.php:197
@@ -1178,33 +2085,13 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:811
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:924
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:121
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:359
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:357
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:303
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1024
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1103
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1023
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1102
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:471
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1784
 msgid "Right"
-msgstr ""
-
-#: plugins/elementor/helper/skins/skin-base.php:102
-#: plugins/elementor/helper/skins/skin-cards.php:562
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:215
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:728
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:365
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:223
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:351
-#: plugins/elementor/widgets/General/DropdownButton.php:98
-#: plugins/elementor/widgets/General/FlipBox.php:87
-#: plugins/elementor/widgets/General/PostSlider.php:280
-#: plugins/elementor/widgets/General/PostTimeline.php:108
-#: plugins/elementor/widgets/General/PricingTable.php:87
-#: plugins/elementor/widgets/General/Slider.php:297
-#: plugins/elementor/widgets/General/Testimonial.php:755
-#: plugins/elementor/widgets/General/TestimonialCarousel.php:920
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:220
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:284
-msgid "None"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:111
@@ -1218,6 +2105,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:199
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:212
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:225
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:238
 #: plugins/elementor/widgets/General/Accordion.php:181
 #: plugins/elementor/widgets/General/Accordion.php:201
 #: plugins/elementor/widgets/General/Accordion.php:272
@@ -1240,6 +2128,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:198
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:211
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:224
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:237
 #: plugins/elementor/widgets/General/Accordion.php:177
 #: plugins/elementor/widgets/General/Accordion.php:197
 #: plugins/elementor/widgets/General/Accordion.php:271
@@ -1278,16 +2167,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostsRevolution.php:259
 #: plugins/elementor/widgets/General/TeamCarousel.php:369
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:196
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:241
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:239
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:152
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:153
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:256
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:266
 msgid "Columns"
-msgstr ""
-
-#: plugins/elementor/helper/skins/skin-base.php:209
-msgid "Posts Per Page"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:223
@@ -1322,7 +2207,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Timeline.php:566
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:200
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:224
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1004
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1003
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:288
 msgid "Title"
 msgstr ""
@@ -1344,8 +2229,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/NotificationArea.php:88
 #: plugins/elementor/widgets/General/NotificationArea.php:111
 #: plugins/elementor/widgets/General/NotificationArea.php:135
-#: plugins/elementor/widgets/General/NotificationArea.php:160
-#: plugins/elementor/widgets/General/NotificationArea.php:183
+#: plugins/elementor/widgets/General/NotificationArea.php:159
+#: plugins/elementor/widgets/General/NotificationArea.php:184
+#: plugins/elementor/widgets/General/NotificationArea.php:207
 #: plugins/elementor/widgets/General/PostCarousel.php:483
 #: plugins/elementor/widgets/General/PostCarousel.php:496
 #: plugins/elementor/widgets/General/PostCarousel.php:509
@@ -1400,8 +2286,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/NotificationArea.php:92
 #: plugins/elementor/widgets/General/NotificationArea.php:115
 #: plugins/elementor/widgets/General/NotificationArea.php:139
-#: plugins/elementor/widgets/General/NotificationArea.php:164
-#: plugins/elementor/widgets/General/NotificationArea.php:187
+#: plugins/elementor/widgets/General/NotificationArea.php:163
+#: plugins/elementor/widgets/General/NotificationArea.php:188
+#: plugins/elementor/widgets/General/NotificationArea.php:211
 #: plugins/elementor/widgets/General/PostCarousel.php:482
 #: plugins/elementor/widgets/General/PostCarousel.php:495
 #: plugins/elementor/widgets/General/PostCarousel.php:508
@@ -1458,6 +2345,13 @@ msgstr ""
 msgid "Excerpt Length"
 msgstr ""
 
+#: plugins/elementor/helper/skins/skin-base.php:293
+#: plugins/elementor/helper/skins/skin-base.php:704
+#: plugins/elementor/widgets/General/PostSlider.php:248
+#: plugins/elementor/widgets/General/PostTimeline.php:316
+msgid "Read More"
+msgstr ""
+
 #: plugins/elementor/helper/skins/skin-base.php:306
 msgid "Read More Text"
 msgstr ""
@@ -1475,19 +2369,6 @@ msgstr ""
 #: plugins/elementor/helper/skins/skin-base.php:330
 #: plugins/elementor/widgets/General/PostCarousel.php:1609
 msgid "Author"
-msgstr ""
-
-#: plugins/elementor/helper/skins/skin-base.php:331
-#: plugins/elementor/widgets/General/PostCarousel.php:140
-#: plugins/elementor/widgets/General/PostCarousel.php:1756
-#: plugins/elementor/widgets/General/PostSlider.php:138
-#: plugins/elementor/widgets/General/PostTimeline.php:171
-#: plugins/elementor/widgets/General/PostTimeline.php:818
-#: plugins/elementor/widgets/General/Timeline.php:167
-#: plugins/elementor/widgets/General/Timeline.php:648
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:222
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:286
-msgid "Date"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:332
@@ -1531,7 +2412,7 @@ msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:411
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:127
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:339
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:367
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:173
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:124
 #: plugins/elementor/widgets/General/Branding.php:120
@@ -1540,10 +2421,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:615
 #: plugins/elementor/widgets/General/PostTimeline.php:1242
 #: plugins/elementor/widgets/General/PostTimeline.php:1580
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:347
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:345
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:291
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1012
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1091
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1011
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1090
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1772
 msgid "Alignment"
 msgstr ""
@@ -1552,7 +2433,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:135
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:624
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:692
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:347
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:375
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:133
 #: plugins/elementor/widgets/General/Branding.php:128
 #: plugins/elementor/widgets/General/Countdown.php:316
@@ -1637,10 +2518,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:807
 #: plugins/elementor/widgets/General/TextRotator.php:196
 #: plugins/elementor/widgets/General/Timeline.php:149
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:355
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:353
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:299
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1020
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1099
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1019
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1098
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1780
 msgid "Center"
 msgstr ""
@@ -1652,8 +2533,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/TeamCarousel.php:223
 #: plugins/elementor/widgets/General/Timeline.php:133
 #: plugins/elementor/widgets/General/Timeline.php:511
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:170
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:422
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:168
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:420
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:185
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:604
 msgid "Image"
@@ -1668,8 +2549,8 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:247
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:251
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:354
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:774
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1115
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:819
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1160
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:300
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:427
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:394
@@ -1758,15 +2639,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/Timeline.php:355
 #: plugins/elementor/widgets/General/Timeline.php:459
 #: plugins/elementor/widgets/General/Timeline.php:542
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:406
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:439
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:404
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:437
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:375
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:456
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:740
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:792
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:854
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:895
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:942
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:894
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:941
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1356
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1561
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1640
@@ -1779,7 +2660,7 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:948
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1022
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1082
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1122
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1121
 msgid "Border Radius"
 msgstr ""
 
@@ -1800,6 +2681,9 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:418
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:835
 #: plugins/elementor/widgets/General/PostCarousel.php:935
+#: plugins/elementor/widgets/General/PostsCarousel.php:605
+#: plugins/elementor/widgets/General/PostsRevolution.php:571
+#: plugins/elementor/widgets/General/PostsTicker.php:569
 #: plugins/elementor/widgets/General/TeamCarousel.php:679
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:391
 msgid "Spacing"
@@ -1898,7 +2782,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1070
 #: plugins/elementor/widgets/General/PostSlider.php:1195
 #: plugins/elementor/widgets/General/PostSlider.php:1773
-#: plugins/elementor/widgets/General/PostSlider.php:1853
+#: plugins/elementor/widgets/General/PostSlider.php:1852
 #: plugins/elementor/widgets/General/PostTimeline.php:730
 #: plugins/elementor/widgets/General/PostTimeline.php:783
 #: plugins/elementor/widgets/General/PricingTable.php:730
@@ -1919,7 +2803,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1172
 #: plugins/elementor/widgets/General/Slider.php:1297
 #: plugins/elementor/widgets/General/Slider.php:1871
-#: plugins/elementor/widgets/General/Slider.php:1951
+#: plugins/elementor/widgets/General/Slider.php:1950
 #: plugins/elementor/widgets/General/SmartMenu.php:483
 #: plugins/elementor/widgets/General/SmartMenu.php:523
 #: plugins/elementor/widgets/General/SmartMenu.php:567
@@ -1946,16 +2830,16 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:208
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:250
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:292
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:461
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:518
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:574
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:629
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:459
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:516
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:572
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:627
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:342
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:420
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:707
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:821
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1192
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1252
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1191
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1251
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1245
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1433
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1528
@@ -2015,7 +2899,7 @@ msgid "Meta"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:596
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:420
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:449
 #: plugins/elementor/widgets/General/DropdownButton.php:734
 #: plugins/elementor/widgets/General/DropdownButton.php:777
 msgid "Separator Color"
@@ -2036,14 +2920,14 @@ msgid "Show Image"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:149
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:228
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:242
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:260
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:291
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:236
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:250
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:268
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:299
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:229
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:243
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:261
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:292
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:237
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:251
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:269
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:300
 #: plugins/elementor/widgets/General/LoginForm.php:337
 #: plugins/elementor/widgets/General/PortfolioGrid.php:319
 #: plugins/elementor/widgets/General/PortfolioGrid.php:371
@@ -2098,7 +2982,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:254
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:380
 #: plugins/elementor/widgets/General/Timeline.php:425
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:266
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:264
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:528
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:143
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:652
@@ -2108,14 +2992,14 @@ msgid "Yes"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:150
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:229
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:243
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:261
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:292
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:237
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:251
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:269
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:300
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:230
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:244
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:262
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:293
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:238
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:252
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:270
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:301
 #: plugins/elementor/widgets/General/LoginForm.php:338
 #: plugins/elementor/widgets/General/PortfolioGrid.php:320
 #: plugins/elementor/widgets/General/PortfolioGrid.php:372
@@ -2171,7 +3055,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:255
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:381
 #: plugins/elementor/widgets/General/Timeline.php:426
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:267
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:265
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:527
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:144
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:651
@@ -2233,7 +3117,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostSlider.php:1019
 #: plugins/elementor/widgets/General/PostSlider.php:1082
 #: plugins/elementor/widgets/General/PostSlider.php:1353
-#: plugins/elementor/widgets/General/PostSlider.php:1865
+#: plugins/elementor/widgets/General/PostSlider.php:1864
 #: plugins/elementor/widgets/General/PostTimeline.php:627
 #: plugins/elementor/widgets/General/PostTimeline.php:1039
 #: plugins/elementor/widgets/General/PostTimeline.php:1111
@@ -2253,7 +3137,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Slider.php:1121
 #: plugins/elementor/widgets/General/Slider.php:1184
 #: plugins/elementor/widgets/General/Slider.php:1455
-#: plugins/elementor/widgets/General/Slider.php:1963
+#: plugins/elementor/widgets/General/Slider.php:1962
 #: plugins/elementor/widgets/General/SmartMenu.php:494
 #: plugins/elementor/widgets/General/SmartMenu.php:536
 #: plugins/elementor/widgets/General/SmartMenu.php:582
@@ -2280,8 +3164,8 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:719
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:771
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:873
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1204
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1264
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1203
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1263
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:872
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1540
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1619
@@ -2328,11 +3212,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:501
 #: plugins/elementor/widgets/General/Accordion.php:735
 #: plugins/elementor/widgets/General/FlipBox.php:263
-#: plugins/elementor/widgets/General/PostSlider.php:1892
+#: plugins/elementor/widgets/General/PostSlider.php:1891
 #: plugins/elementor/widgets/General/PostTimeline.php:1228
 #: plugins/elementor/widgets/General/PostTimeline.php:1566
 #: plugins/elementor/widgets/General/PricingTable.php:853
-#: plugins/elementor/widgets/General/Slider.php:1990
+#: plugins/elementor/widgets/General/Slider.php:1989
 #: plugins/elementor/widgets/General/Tabs.php:489
 msgid "Size"
 msgstr ""
@@ -2375,6 +3259,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:762
 #: plugins/elementor/widgets/General/PostTimeline.php:803
 #: plugins/elementor/widgets/General/PostTimeline.php:960
+#: plugins/elementor/widgets/General/PostsCarousel.php:625
+#: plugins/elementor/widgets/General/PostsRevolution.php:591
+#: plugins/elementor/widgets/General/PostsTicker.php:589
 #: plugins/elementor/widgets/General/PricingTable.php:629
 #: plugins/elementor/widgets/General/PricingTable.php:952
 #: plugins/elementor/widgets/General/PricingTable.php:1166
@@ -2410,9 +3297,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Timeline.php:677
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:220
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:271
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:481
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:537
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:593
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:479
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:535
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:591
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:818
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:999
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1053
@@ -2432,7 +3319,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/DashboardIntro.php:194
 #: plugins/elementor/widgets/Buddypress/Forums.php:304
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:301
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:688
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:733
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:386
 msgid "Avatar"
 msgstr ""
@@ -2452,7 +3339,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:741
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:783
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:528
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:762
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:807
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:373
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:382
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:739
@@ -2466,7 +3353,7 @@ msgid "Border Color"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:474
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:739
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:784
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:359
 msgid "Border Width"
 msgstr ""
@@ -2560,10 +3447,6 @@ msgstr ""
 msgid "Meta Border Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-classic.php:40
-msgid "Classic"
-msgstr ""
-
 #: plugins/elementor/hooks/ElementorHooks.php:314
 msgid "Exclude"
 msgstr ""
@@ -2638,9 +3521,12 @@ msgstr ""
 msgid "Search Templates:"
 msgstr ""
 
-#: plugins/elementor/templates/classes/manager.php:218
-#: plugins/elementor/widgets/General/PortfolioGrid.php:388
-msgid "All"
+#: plugins/elementor/scripts/template-modal-search-item.php:18
+#: plugins/elementor/templates/scripts/template-modal-search-item.php:18
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:184
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:96
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:138
+msgid "Search"
 msgstr ""
 
 #: plugins/elementor/templates/scripts/template-modal-item.php:48
@@ -2655,25 +3541,25 @@ msgstr ""
 msgid "Sections"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:80
+#: plugins/elementor/wbcom-essential-elementor.php:78
 msgid "Activate Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:94
+#: plugins/elementor/wbcom-essential-elementor.php:92
 msgid "Install Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:103
+#: plugins/elementor/wbcom-essential-elementor.php:101
 msgid ""
 "Gutenberg blocks are ready to use! Want even more options? Install "
 "Elementor to unlock 43+ additional widgets."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:110
+#: plugins/elementor/wbcom-essential-elementor.php:108
 msgid "View All Widgets & Blocks"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:163
+#: plugins/elementor/wbcom-essential-elementor.php:161
 #. translators: %1$s: Plugin name, %2$s: Required plugin name, %3$s: Required
 #. version
 msgid ""
@@ -2681,35 +3567,35 @@ msgid ""
 "all features."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:174
+#: plugins/elementor/wbcom-essential-elementor.php:172
 msgid "Update Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:440
+#: plugins/elementor/wbcom-essential-elementor.php:438
 msgid "Full"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:467
+#: plugins/elementor/wbcom-essential-elementor.php:470
 msgid "Invalid username. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:469
+#: plugins/elementor/wbcom-essential-elementor.php:472
 msgid "Incorrect password. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:471
+#: plugins/elementor/wbcom-essential-elementor.php:474
 msgid "Username field is empty. Please enter your username."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:473
+#: plugins/elementor/wbcom-essential-elementor.php:476
 msgid "Password field is empty. Please enter your password."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:475
+#: plugins/elementor/wbcom-essential-elementor.php:478
 msgid "Login failed. Please check your credentials."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:490
+#: plugins/elementor/wbcom-essential-elementor.php:493
 msgid "Login successful, redirecting..."
 msgstr ""
 
@@ -2770,6 +3656,10 @@ msgstr ""
 msgid "span"
 msgstr ""
 
+#: plugins/elementor/wbcom-essential-woocommerce.php:378
+msgid "Sale!"
+msgstr ""
+
 #: plugins/elementor/wbcom-essential-woocommerce.php:383
 msgid "Out of stock"
 msgstr ""
@@ -2828,7 +3718,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:240
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:343
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:466
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1104
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1149
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:289
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:416
 #: plugins/elementor/widgets/General/Accordion.php:423
@@ -2917,15 +3807,15 @@ msgstr ""
 #: plugins/elementor/widgets/General/TextRotator.php:390
 #: plugins/elementor/widgets/General/Timeline.php:347
 #: plugins/elementor/widgets/General/Timeline.php:451
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:398
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:431
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:396
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:429
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:367
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:447
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:732
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:784
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:846
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:887
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:934
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:886
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:933
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:885
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1348
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1457
@@ -2940,7 +3830,7 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:940
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1014
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1074
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1114
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1113
 msgid "Border"
 msgstr ""
 
@@ -2985,6 +3875,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostTimeline.php:678
 #: plugins/elementor/widgets/General/PostTimeline.php:1183
 #: plugins/elementor/widgets/General/PostTimeline.php:1521
+#: plugins/elementor/widgets/General/PostsCarousel.php:613
+#: plugins/elementor/widgets/General/PostsRevolution.php:579
+#: plugins/elementor/widgets/General/PostsTicker.php:577
 #: plugins/elementor/widgets/General/PricingTable.php:617
 #: plugins/elementor/widgets/General/PricingTable.php:709
 #: plugins/elementor/widgets/General/PricingTable.php:758
@@ -3024,10 +3917,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/TextRotator.php:417
 #: plugins/elementor/widgets/General/Timeline.php:264
 #: plugins/elementor/widgets/General/Timeline.php:487
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:374
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:494
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:550
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:606
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:372
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:492
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:548
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:604
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:751
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:806
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:860
@@ -3190,7 +4083,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:1017
 #: plugins/elementor/widgets/General/TeamCarousel.php:862
 #: plugins/elementor/widgets/General/TeamCarousel.php:917
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:388
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:386
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:833
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1186
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1226
@@ -3224,11 +4117,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:520
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:712
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:490
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:643
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:810
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:871
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:975
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1039
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:688
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:855
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:916
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1020
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1084
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:710
 #: plugins/elementor/widgets/General/Accordion.php:415
 #: plugins/elementor/widgets/General/Accordion.php:598
@@ -3269,8 +4162,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1307
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:327
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:692
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:926
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1185
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:925
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1184
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:452
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1238
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1486
@@ -3288,11 +4181,11 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:562
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:754
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:541
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:664
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:819
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:906
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:995
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1070
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:709
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:864
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:951
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1040
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1115
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:752
 #: plugins/elementor/widgets/General/Accordion.php:464
 #: plugins/elementor/widgets/General/Accordion.php:651
@@ -3324,8 +4217,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1342
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:413
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:806
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1124
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1246
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1123
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1245
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:451
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1426
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1654
@@ -3351,6 +4244,15 @@ msgstr ""
 msgid "bbPress is required for this widget."
 msgstr ""
 
+#: plugins/elementor/widgets/Buddypress/Forums.php:578
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:939
+msgid "replied"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/Forums.php:584
+msgid "Member"
+msgstr ""
+
 #: plugins/elementor/widgets/Buddypress/Forums.php:596
 #: plugins/elementor/widgets/Buddypress/Forums.php:599
 msgid " Replies"
@@ -3359,6 +4261,10 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/Forums.php:596
 #: plugins/elementor/widgets/Buddypress/Forums.php:599
 msgid " Reply"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/Forums.php:664
+msgid "Start a Discussion"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:58
@@ -3480,56 +4386,66 @@ msgstr ""
 msgid "BuddyPress and bbPress are required for this widget."
 msgstr ""
 
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:935
+msgid "replies"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:935
+msgid "reply"
+msgstr ""
+
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:1004
 msgid "You are not logged in."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:66
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:67
 msgid "Group Carousel"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:134
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:135
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:107
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:135
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:107
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:134
 msgid "Sort"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:139
-#: plugins/elementor/widgets/Buddypress/GroupGrid.php:112
-#: plugins/elementor/widgets/Buddypress/MembersGrid.php:112
+#: plugins/elementor/widgets/Buddypress/GroupGrid.php:111
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:114
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:139
-msgid "Most Active"
+#: plugins/elementor/widgets/Buddypress/MembersGrid.php:111
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:114
+msgid "Newest"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:140
-#: plugins/elementor/widgets/Buddypress/GroupGrid.php:113
-#: plugins/elementor/widgets/Buddypress/MembersGrid.php:113
+#: plugins/elementor/widgets/Buddypress/GroupGrid.php:112
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:140
-msgid "Most Popular"
+#: plugins/elementor/widgets/Buddypress/MembersGrid.php:112
+msgid "Most Active"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:148
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:151
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:149
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:152
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:123
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:126
 msgid "Total groups"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:170
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:178
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:171
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:179
 #: plugins/elementor/widgets/General/LoginForm.php:265
 msgid "Additional Options"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:180
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:181
 msgid "Groups to Show"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:183
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:196
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:191
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:204
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:184
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:197
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:192
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:205
 #: plugins/elementor/widgets/General/PostSlider.php:322
 #: plugins/elementor/widgets/General/Slider.php:339
 #: plugins/elementor/widgets/General/SmartMenu.php:287
@@ -3539,17 +4455,17 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:192
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:193
 msgid "Groups to Scroll"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:194
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:202
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:195
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:203
 msgid "Set how many slides are scrolled per swipe."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:208
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:216
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:209
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:217
 #: plugins/elementor/widgets/General/PostsCarousel.php:283
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:813
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1661
@@ -3557,23 +4473,23 @@ msgstr ""
 msgid "Navigation"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:212
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:220
-msgid "Arrows and Dots"
-msgstr ""
-
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:213
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:221
-msgid "Arrows"
+msgid "Arrows and Dots"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:214
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:222
+msgid "Arrows"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:215
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:223
 msgid "Dots"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:224
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:232
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:225
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:233
 #: plugins/elementor/widgets/General/PostCarousel.php:422
 #: plugins/elementor/widgets/General/PostSlider.php:386
 #: plugins/elementor/widgets/General/Slider.php:427
@@ -3582,36 +4498,36 @@ msgstr ""
 msgid "Autoplay"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:238
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:246
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:239
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:247
 msgid "Pause on Hover"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:256
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:264
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:257
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:265
 msgid "Pause on Interaction"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:273
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:281
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:274
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:282
 msgid "Autoplay Speed"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:287
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:295
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:288
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:296
 #: plugins/elementor/widgets/General/PostCarousel.php:409
 #: plugins/elementor/widgets/General/TeamCarousel.php:411
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:238
 msgid "Infinite Loop"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:301
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:309
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:302
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:310
 msgid "Effect"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:305
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:313
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:306
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:314
 #: plugins/elementor/widgets/General/PostSlider.php:417
 #: plugins/elementor/widgets/General/PostSlider.php:598
 #: plugins/elementor/widgets/General/Slider.php:458
@@ -3619,35 +4535,31 @@ msgstr ""
 msgid "Slide"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:306
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:314
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:307
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:315
 #: plugins/elementor/widgets/General/PostSlider.php:416
 #: plugins/elementor/widgets/General/Slider.php:457
 msgid "Fade"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:318
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:326
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:319
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:327
 msgid "Animation Speed"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:329
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:337
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:330
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:338
 msgid "Direction"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:354
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:355
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:171
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:587
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1134
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1179
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:361
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:172
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:608
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:360
 msgid "BuddyPress is required for this widget."
-msgstr ""
-
-#: plugins/elementor/widgets/Buddypress/GroupGrid.php:58
-msgid "Groups Grid"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:114
@@ -3669,6 +4581,11 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:110
 msgid "Default Groups Order"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:115
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:115
+msgid "Popular"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:124
@@ -3746,12 +4663,34 @@ msgstr ""
 msgid "newest"
 msgstr ""
 
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:675
+#. translators: %s: Get group date created
+msgid "created %s"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:680
+#: templates/buddyx/buddypress/groups/groups-loop.php:66
+#: templates/reign/buddypress/nouveau/groups/groups-loop.php:103
+#. translators: %s: Get group last active
+#. translators: %s = last activity timestamp (e.g. "active 1 hour ago")
+msgid "active %s"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:701
+msgid "No groups matched the current filter."
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:703
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:705
+msgid "Create a group"
+msgstr ""
+
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:67
 msgid "Header Bar"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:131
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:613
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:658
 msgid "Profile Dropdown"
 msgstr ""
 
@@ -3769,130 +4708,152 @@ msgid "Start by creating one <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:173
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:388
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:417
 msgid "Separator"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:236
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:464
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:196
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:25
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:34
+msgid "Messages"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:209
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/friends-dropdown.php:25
+msgid "Connections"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:222
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:26
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:35
+msgid "Notifications"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:249
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:493
 msgid "Icons"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:243
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:531
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:256
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:562
 msgid "Search Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:244
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:257
 msgid "Replace default search icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:257
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:544
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:270
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:575
 msgid "Messages Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:258
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:271
 msgid "Replace default messages icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:272
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:558
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:285
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:589
+msgid "Connections Icon"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:286
+msgid "Replace default connections icon with one of your choice."
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:300
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:603
 msgid "Notifications Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:273
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:301
 msgid "Replace default notifications icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:287
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:572
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:315
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:617
 msgid "Cart Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:288
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:316
 msgid "Replace default cart icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:302
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:330
 msgid "Dark Mode Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:303
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:331
 msgid "Replace default dark mode icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:315
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:343
 msgid "Toggle Sidebar Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:316
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:344
 msgid "Replace default toggle sidebar icon with one of your choice."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:331
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:359
 msgid "Header Bar Layout"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:363
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:391
 msgid "Space Between"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:397
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:426
 msgid "Separator Width"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:432
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:461
 msgid "Counter"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:441
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:470
 msgid "Counter Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:454
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:483
 msgid "Counter Shadow"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:472
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:501
 msgid "Icons Size"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:499
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:529
 msgid "Icons Shadow"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:507
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:537
 msgid "Icons Colors"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:516
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:546
 msgid "All Icons"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:586
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:631
 msgid "Dark Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:598
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:643
 msgid "Sidebar Toggle Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:621
-msgid "Display Name"
-msgstr ""
-
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:631
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:676
 msgid "Typography Display Name"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:650
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:671
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:826
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:695
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:716
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:871
 msgid "Display Name Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:697
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:742
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:309
 #: plugins/elementor/widgets/General/FlipBox.php:698
 #: plugins/elementor/widgets/General/FlipBox.php:1135
@@ -3911,105 +4872,117 @@ msgstr ""
 msgid "Width"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:720
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:765
 msgid "Border Style"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:724
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:769
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:361
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:347
 #: plugins/elementor/widgets/General/PricingTable.php:1745
 msgid "Solid"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:725
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:770
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:362
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:348
 #: plugins/elementor/widgets/General/PricingTable.php:1746
 msgid "Dashed"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:726
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:771
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:363
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:349
 #: plugins/elementor/widgets/General/PricingTable.php:1747
 msgid "Dotted"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:727
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:772
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:364
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:350
 #: plugins/elementor/widgets/General/PricingTable.php:1748
 msgid "Double"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:797
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:842
 #: plugins/elementor/widgets/General/DropdownButton.php:648
 msgid "Dropdown"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:843
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:888
 msgid "Typography Menu"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:851
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:896
 msgid "Dropdown Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:878
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:913
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:923
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:958
 msgid "Menu Item Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:891
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:926
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:936
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:971
 msgid "Menu Item Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:945
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:990
 msgid "Logged Out"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:953
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:998
 msgid "Sign In"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:963
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1008
 msgid "Typography Sign In"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:982
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1002
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1027
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1047
 msgid "Sign In Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1017
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1062
 msgid "Sign Up"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1027
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1072
 msgid "Typography Sign Up"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1046
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1077
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1091
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1122
 msgid "Sign Up Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1057
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1088
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1102
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:1133
 msgid "Sign Up Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/MembersGrid.php:58
-msgid "Members Grid"
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:67
+msgid "Members Carousel"
 msgstr ""
 
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:149
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:152
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:121
 #: plugins/elementor/widgets/Buddypress/MembersGrid.php:124
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:148
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:151
 msgid "Total members"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:159
+msgid "Hide member last active info"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:189
+msgid "Members to Show"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:201
+msgid "Members to Scroll"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:58
@@ -4042,6 +5015,10 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:261
 msgid "Member Link Text"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:266
+msgid "All Members"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:267
@@ -4078,8 +5055,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Testimonial.php:100
 #: plugins/elementor/widgets/General/Testimonial.php:872
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1037
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:141
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:453
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:139
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:451
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:223
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:287
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:156
@@ -4087,20 +5064,9 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:66
-msgid "Members Carousel"
-msgstr ""
-
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:158
-msgid "Hide member last active info"
-msgstr ""
-
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:188
-msgid "Members to Show"
-msgstr ""
-
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:200
-msgid "Members to Scroll"
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:719
+#: templates/reign/buddypress/legacy/members/members-loop.php:129
+msgid "Sorry, no members were found."
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:59
@@ -4122,15 +5088,13 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:167
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:1018
-#: plugins/gutenberg/blocks/profile-completion/profile-completion.php:63
-#: plugins/gutenberg/wbcom-gutenberg.php:235
+#: plugins/gutenberg/gutenberg.php:254
 msgid "Profile Photo"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:170
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:1039
-#: plugins/gutenberg/blocks/profile-completion/profile-completion.php:79
-#: plugins/gutenberg/wbcom-gutenberg.php:242
+#: plugins/gutenberg/gutenberg.php:261
 msgid "Cover Photo"
 msgstr ""
 
@@ -4144,6 +5108,10 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:216
 msgid "Profile Complete Button"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:230
+msgid "Complete your profile"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:243
@@ -4160,6 +5128,10 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:259
 msgid "Button text if progress is less than 100%"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:264
+msgid "Complete Profile"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:277
@@ -4260,6 +5232,51 @@ msgstr ""
 msgid "Profile Fields"
 msgstr ""
 
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:42
+msgid "Shopping Cart"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:43
+msgid "Close cart"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/friends-dropdown.php:34
+msgid "Connection Requests"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/friends-dropdown.php:56
+msgid "Accept request"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/friends-dropdown.php:61
+msgid "Reject request"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/friends-dropdown.php:70
+#: plugins/elementor/widgets/General/NotificationArea.php:535
+msgid "No connection requests found."
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/friends-dropdown.php:77
+msgid "View Requests"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:165
+msgid "Sign in"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:168
+msgid "Sign up"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-bar-nav.php:32
+msgid "More menu items"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-bar-template.php:58
+msgid "Close search"
+msgstr ""
+
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:121
 #. translators: %s: Group Name
 msgid "Group logo of %s"
@@ -4329,6 +5346,10 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:478
 msgid "View Inbox"
+msgstr ""
+
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:37
+msgid "Mark all as read"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/notification-dropdown.php:65
@@ -4509,7 +5530,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:825
 #: plugins/elementor/widgets/General/FlipBox.php:759
 #: plugins/elementor/widgets/General/FlipBox.php:1196
-#: plugins/elementor/widgets/General/NotificationArea.php:211
+#: plugins/elementor/widgets/General/NotificationArea.php:235
 #: plugins/elementor/widgets/General/PostCarousel.php:1917
 #: plugins/elementor/widgets/General/PostCarousel.php:1952
 #: plugins/elementor/widgets/General/PostSlider.php:1340
@@ -4549,6 +5570,14 @@ msgid ""
 "logo to work"
 msgstr ""
 
+#: plugins/elementor/widgets/General/Branding.php:111
+#: plugins/elementor/widgets/General/LoginForm.php:122
+#: plugins/elementor/widgets/General/LoginForm.php:549
+#: plugins/elementor/widgets/General/SiteLogo.php:105
+#: plugins/elementor/widgets/General/SiteLogo.php:141
+msgid "Logo"
+msgstr ""
+
 #: plugins/elementor/widgets/General/Branding.php:146
 msgid "Brand"
 msgstr ""
@@ -4582,6 +5611,34 @@ msgstr ""
 #: plugins/elementor/widgets/General/Countdown.php:114
 #. translators: %s: Timezone string
 msgid "Date set according to your timezone: %s."
+msgstr ""
+
+#: plugins/elementor/widgets/General/Countdown.php:123
+#: plugins/elementor/widgets/General/Countdown.php:135
+#: plugins/elementor/widgets/General/Countdown.php:137
+#: plugins/elementor/widgets/General/Countdown.php:655
+msgid "Days"
+msgstr ""
+
+#: plugins/elementor/widgets/General/Countdown.php:147
+#: plugins/elementor/widgets/General/Countdown.php:159
+#: plugins/elementor/widgets/General/Countdown.php:161
+#: plugins/elementor/widgets/General/Countdown.php:758
+msgid "Hours"
+msgstr ""
+
+#: plugins/elementor/widgets/General/Countdown.php:171
+#: plugins/elementor/widgets/General/Countdown.php:183
+#: plugins/elementor/widgets/General/Countdown.php:185
+#: plugins/elementor/widgets/General/Countdown.php:861
+msgid "Minutes"
+msgstr ""
+
+#: plugins/elementor/widgets/General/Countdown.php:195
+#: plugins/elementor/widgets/General/Countdown.php:207
+#: plugins/elementor/widgets/General/Countdown.php:209
+#: plugins/elementor/widgets/General/Countdown.php:964
+msgid "Seconds"
 msgstr ""
 
 #: plugins/elementor/widgets/General/Countdown.php:219
@@ -5189,7 +6246,7 @@ msgid "Ease In Out"
 msgstr ""
 
 #: plugins/elementor/widgets/General/FlipBox.php:401
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:131
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:129
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:146
 msgid "Custom"
 msgstr ""
@@ -5343,27 +6400,6 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: plugins/elementor/widgets/General/LoginForm.php:202
-msgid "Username or Email Address"
-msgstr ""
-
-#: plugins/elementor/widgets/General/LoginForm.php:209
-#: plugins/elementor/widgets/General/LoginForm.php:211
-msgid "Password"
-msgstr ""
-
-#: plugins/elementor/widgets/General/LoginForm.php:218
-#: plugins/elementor/widgets/General/LoginForm.php:220
-#: plugins/elementor/widgets/General/LoginForm.php:323
-msgid "Remember Me"
-msgstr ""
-
-#: plugins/elementor/widgets/General/LoginForm.php:227
-#: plugins/elementor/widgets/General/LoginForm.php:229
-#: plugins/elementor/widgets/General/LoginForm.php:310
-msgid "Register"
-msgstr ""
-
 #: plugins/elementor/widgets/General/LoginForm.php:236
 msgid "Link Separator"
 msgstr ""
@@ -5372,10 +6408,6 @@ msgstr ""
 #: plugins/elementor/widgets/General/LoginForm.php:246
 #: plugins/elementor/widgets/General/LoginForm.php:298
 msgid "Lost Password"
-msgstr ""
-
-#: plugins/elementor/widgets/General/LoginForm.php:255
-msgid "Log In"
 msgstr ""
 
 #: plugins/elementor/widgets/General/LoginForm.php:273
@@ -5457,7 +6489,7 @@ msgid "Header Notification Area"
 msgstr ""
 
 #: plugins/elementor/widgets/General/NotificationArea.php:77
-#: plugins/elementor/widgets/General/NotificationArea.php:203
+#: plugins/elementor/widgets/General/NotificationArea.php:227
 msgid "Notification Area"
 msgstr ""
 
@@ -5473,32 +6505,53 @@ msgstr ""
 msgid "Enable User Message Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:156
+#: plugins/elementor/widgets/General/NotificationArea.php:155
+msgid "Enable Connections Icon"
+msgstr ""
+
+#: plugins/elementor/widgets/General/NotificationArea.php:180
 msgid "Enable Notification Icon"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:179
+#: plugins/elementor/widgets/General/NotificationArea.php:203
 msgid "Display User Avatar"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:225
+#: plugins/elementor/widgets/General/NotificationArea.php:249
 msgid "Icon Hover Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:239
+#: plugins/elementor/widgets/General/NotificationArea.php:263
 msgid "User Name Font Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:251
+#: plugins/elementor/widgets/General/NotificationArea.php:275
 msgid "User Name Font Color (Hover)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:263
+#: plugins/elementor/widgets/General/NotificationArea.php:287
 msgid "Line Height (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/NotificationArea.php:275
+#: plugins/elementor/widgets/General/NotificationArea.php:299
 msgid "Counter Top Space (px)"
+msgstr ""
+
+#: plugins/elementor/widgets/General/NotificationArea.php:491
+#: plugins/elementor/widgets/General/NotificationArea.php:499
+msgid "Connection requests"
+msgstr ""
+
+#: plugins/elementor/widgets/General/NotificationArea.php:523
+msgid "Accept"
+msgstr ""
+
+#: plugins/elementor/widgets/General/NotificationArea.php:526
+msgid "Reject"
+msgstr ""
+
+#: plugins/elementor/widgets/General/NotificationArea.php:541
+msgid "All Requests"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PortfolioGrid.php:50
@@ -5563,7 +6616,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PortfolioGrid.php:287
 #: plugins/elementor/widgets/General/SiteLogo.php:116
 #: plugins/elementor/widgets/General/SiteLogo.php:152
-#: plugins/elementor/widgets/General/Slider.php:2035
+#: plugins/elementor/widgets/General/Slider.php:2034
 msgid "Image Size"
 msgstr ""
 
@@ -5777,27 +6830,10 @@ msgstr ""
 msgid "Post Carousel"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:105
-#: plugins/elementor/widgets/General/PostSlider.php:103
-#: plugins/elementor/widgets/General/PostTimeline.php:136
-msgid "Posts"
-msgstr ""
-
 #: plugins/elementor/widgets/General/PostCarousel.php:113
 #: plugins/elementor/widgets/General/PostSlider.php:111
 #: plugins/elementor/widgets/General/PostTimeline.php:144
 msgid "Post Type"
-msgstr ""
-
-#: plugins/elementor/widgets/General/PostCarousel.php:123
-#: plugins/elementor/widgets/General/PostSlider.php:121
-#: plugins/elementor/widgets/General/PostTimeline.php:154
-#: plugins/elementor/widgets/General/PostsCarousel.php:382
-#: plugins/elementor/widgets/General/PostsRevolution.php:339
-#: plugins/elementor/widgets/General/PostsTicker.php:355
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:237
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:301
-msgid "Order"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:127
@@ -6134,8 +7170,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/PricingTable.php:1742
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:103
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:192
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:112
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:913
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:110
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:912
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:327
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:430
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:798
@@ -6244,22 +7280,22 @@ msgid "Dot Size (px)"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:2088
-#: plugins/elementor/widgets/General/PostSlider.php:1801
-#: plugins/elementor/widgets/General/Slider.php:1899
+#: plugins/elementor/widgets/General/PostSlider.php:1800
+#: plugins/elementor/widgets/General/Slider.php:1898
 #: plugins/elementor/widgets/General/TeamCarousel.php:1615
-#: plugins/elementor/widgets/General/TestimonialCarousel.php:1485
+#: plugins/elementor/widgets/General/TestimonialCarousel.php:1484
 msgid "Dot Right/Left Padding (px)"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostCarousel.php:2103
-#: plugins/elementor/widgets/General/PostSlider.php:1816
-#: plugins/elementor/widgets/General/Slider.php:1914
+#: plugins/elementor/widgets/General/PostSlider.php:1815
+#: plugins/elementor/widgets/General/Slider.php:1913
 #: plugins/elementor/widgets/General/TeamCarousel.php:1630
-#: plugins/elementor/widgets/General/TestimonialCarousel.php:1500
+#: plugins/elementor/widgets/General/TestimonialCarousel.php:1499
 msgid "Dots Bottom Margin (px)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostCarousel.php:2466
+#: plugins/elementor/widgets/General/PostCarousel.php:2507
 #: plugins/elementor/widgets/General/PostTimeline.php:1768
 msgid "Nothing was found!"
 msgstr ""
@@ -6613,36 +7649,44 @@ msgstr ""
 msgid "Thumbnail Opacity"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostSlider.php:1833
-#: plugins/elementor/widgets/General/Slider.php:1931
+#: plugins/elementor/widgets/General/PostSlider.php:1832
+#: plugins/elementor/widgets/General/Slider.php:1930
 msgid "Loader"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostSlider.php:1841
-#: plugins/elementor/widgets/General/Slider.php:1939
+#: plugins/elementor/widgets/General/PostSlider.php:1840
+#: plugins/elementor/widgets/General/Slider.php:1938
 msgid "Container Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostSlider.php:1877
-#: plugins/elementor/widgets/General/Slider.php:1975
+#: plugins/elementor/widgets/General/PostSlider.php:1876
+#: plugins/elementor/widgets/General/Slider.php:1974
 msgid "Thickness"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostSlider.php:1907
-#: plugins/elementor/widgets/General/Slider.php:2005
+#: plugins/elementor/widgets/General/PostSlider.php:1906
+#: plugins/elementor/widgets/General/Slider.php:2004
 msgid "Animation Duration (seconds)"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostSlider.php:1929
-#: plugins/elementor/widgets/General/Slider.php:2027
+#: plugins/elementor/widgets/General/PostSlider.php:1928
+#: plugins/elementor/widgets/General/Slider.php:2026
 msgid "Custom Loading Image"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostSlider.php:1937
+#: plugins/elementor/widgets/General/PostSlider.php:1936
 msgid "Loading Image Size"
 msgstr ""
 
-#: plugins/elementor/widgets/General/PostSlider.php:2178
+#: plugins/elementor/widgets/General/PostSlider.php:2126
+msgid "Previous slide"
+msgstr ""
+
+#: plugins/elementor/widgets/General/PostSlider.php:2133
+msgid "Next slide"
+msgstr ""
+
+#: plugins/elementor/widgets/General/PostSlider.php:2233
 msgid "No post found!"
 msgstr ""
 
@@ -6656,10 +7700,6 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PostTimeline.php:300
 msgid "Display Read More Button"
-msgstr ""
-
-#: plugins/elementor/widgets/General/PostTimeline.php:325
-msgid "Load More"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostTimeline.php:341
@@ -7023,6 +8063,10 @@ msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:188
 msgid "Show Ribbon"
+msgstr ""
+
+#: plugins/elementor/widgets/General/PricingTable.php:202
+msgid "POPULAR"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PricingTable.php:218
@@ -7754,7 +8798,7 @@ msgid "Banner"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:107
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:116
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:114
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:125
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:331
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:434
@@ -7763,7 +8807,7 @@ msgid "Style One"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:108
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:117
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:115
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:126
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:332
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:435
@@ -7791,15 +8835,15 @@ msgstr ""
 msgid "Button Link"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:64
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:62
 msgid "Customer Review"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:105
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:103
 msgid "Review"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:118
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:116
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:127
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:333
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:436
@@ -7807,48 +8851,48 @@ msgstr ""
 msgid "Style Three"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:119
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:117
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:334
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:134
 msgid "Style Four"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:127
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:125
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:142
 msgid "Review Type"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:143
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:204
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:141
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:202
 msgid "Carolina Monntoya"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:150
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:510
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:148
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:508
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:165
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:706
 msgid "Designation"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:152
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:205
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:150
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:203
 msgid "Managing Director"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:159
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:157
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:174
 msgid "Client Rating"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:187
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:185
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:202
 msgid "Client Say"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:189
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:207
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:214
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:221
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:187
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:205
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:212
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:219
 msgid ""
 "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod "
 "tempor incididunt ut labore et dolore Lorem ipsum dolor sit amet, "
@@ -7856,102 +8900,102 @@ msgid ""
 "dolore magna aliqua."
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:211
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:209
 msgid "Peter Rose"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:212
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:210
 msgid "Manager"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:218
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:216
 msgid "Gerald Gilbert"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:219
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:217
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:226
 msgid "Developer"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:234
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:232
 msgid "Option"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:245
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:243
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:270
 msgid "One"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:246
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:244
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:271
 msgid "Two"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:247
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:245
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:272
 msgid "Three"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:248
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:246
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:273
 msgid "Four"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:249
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:247
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:274
 msgid "Five"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:250
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:248
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:275
 msgid "Six"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:251
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:249
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:276
 msgid "Seven"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:252
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:250
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:277
 msgid "Eight"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:253
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:251
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:278
 msgid "Nine"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:254
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:252
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:279
 msgid "Ten"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:264
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:262
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:289
 msgid "No Gutters"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:276
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:274
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:301
 msgid "Space"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:306
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:304
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:331
 msgid "Bottom Space"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:339
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:337
 msgid "Area"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:566
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:564
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:762
 msgid "Client say"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:622
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:620
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:818
 msgid "Rating"
 msgstr ""
@@ -8050,8 +9094,8 @@ msgid "Tab Menu Style"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:307
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1028
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1107
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1027
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1106
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1788
 msgid "Justified"
 msgstr ""
@@ -8187,61 +9231,61 @@ msgstr ""
 msgid "Navigation Arrow"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:956
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:955
 msgid "Product Image Area Padding"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:968
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:967
 msgid "Product Image Background"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:980
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:979
 msgid "Product Content Area Padding"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:992
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:991
 msgid "Product Content Background"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1050
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1131
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1049
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1130
 msgid "Title color"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1062
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1061
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1066
 msgid "Product Price"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1070
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1069
 msgid "Price color"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1143
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1142
 msgid "Product content background"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1155
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1154
 msgid "Product hover content area padding"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1174
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1173
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:418
 msgid "Action Button"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1216
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1215
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1257
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:837
 msgid "Font Size"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1285
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1284
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1968
 msgid "WooCommerce is required for this widget."
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1556
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:1555
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1683
 msgid ":"
 msgstr ""
@@ -8500,10 +9544,6 @@ msgstr ""
 msgid "Ruth Pierce"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:232
-msgid "Customer"
-msgstr ""
-
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:243
 msgid "Slider On"
 msgstr ""
@@ -8516,28 +9556,40 @@ msgstr ""
 msgid "Image Area Border Color"
 msgstr ""
 
-#: plugins/gutenberg/blocks/login-form/login-form.php:48
-msgid "Security check failed."
+#: plugins/gutenberg/gutenberg.php:138
+msgid "Essential - Header"
 msgstr ""
 
-#: plugins/gutenberg/blocks/login-form/login-form.php:53
-msgid "Please use the standard form submission."
+#: plugins/gutenberg/gutenberg.php:143
+msgid "Essential - Design"
 msgstr ""
 
-#: plugins/gutenberg/blocks/login-form/login-form.php:61
-msgid "Please enter both username and password."
+#: plugins/gutenberg/gutenberg.php:148
+msgid "Essential - Content"
 msgstr ""
 
-#: plugins/gutenberg/blocks/login-form/login-form.php:78
-msgid "Unknown username or email address. Please check again."
+#: plugins/gutenberg/gutenberg.php:153
+msgid "Essential - Blog"
 msgstr ""
 
-#: plugins/gutenberg/blocks/login-form/login-form.php:80
-msgid "The password you entered is incorrect."
+#: plugins/gutenberg/gutenberg.php:158
+msgid "Essential - Marketing"
 msgstr ""
 
-#: plugins/gutenberg/blocks/login-form/login-form.php:107
-msgid "Login successful! Redirecting..."
+#: plugins/gutenberg/gutenberg.php:163
+msgid "Essential - BuddyPress"
+msgstr ""
+
+#: plugins/gutenberg/gutenberg.php:168
+msgid "Essential - WooCommerce"
+msgstr ""
+
+#: plugins/gutenberg/gutenberg.php:173
+msgid "Essential - EDD"
+msgstr ""
+
+#: plugins/gutenberg/gutenberg.php:178
+msgid "WBcom Essential"
 msgstr ""
 
 #: plugins/gutenberg/patterns/blog-editorial.php:19
@@ -8556,6 +9608,38 @@ msgstr ""
 msgid ""
 "A featured hero post with sidebar grid, followed by a side-by-side post "
 "list."
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-listing.php:19
+msgid "Blog Listing"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-listing.php:20
+msgid "A clean blog listing with side-by-side post cards and pagination."
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-masonry.php:19
+msgid "Blog Masonry"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-masonry.php:20
+msgid "A masonry-style 3-column blog grid with category navigation."
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-timeline.php:19
+msgid "Blog Timeline"
+msgstr ""
+
+#: plugins/gutenberg/patterns/blog-timeline.php:20
+msgid "A chronological two-column timeline layout for blog posts."
+msgstr ""
+
+#: plugins/gutenberg/patterns/category-archive.php:19
+msgid "Category Archive"
+msgstr ""
+
+#: plugins/gutenberg/patterns/category-archive.php:20
+msgid "A category archive page with a post grid and sidebar featuring latest posts."
 msgstr ""
 
 #: plugins/gutenberg/patterns/magazine-homepage.php:19
@@ -8578,37 +9662,48 @@ msgid ""
 "more stories."
 msgstr ""
 
-#: plugins/gutenberg/wbcom-gutenberg.php:136
-msgid "Starter Pack - Header"
+#: plugins/gutenberg/patterns/single-post-author-bio.php:19
+msgid "Author Bio Section"
 msgstr ""
 
-#: plugins/gutenberg/wbcom-gutenberg.php:141
-msgid "Starter Pack - Design"
+#: plugins/gutenberg/patterns/single-post-author-bio.php:20
+msgid "A polished author bio section with divider and testimonial-style layout."
 msgstr ""
 
-#: plugins/gutenberg/wbcom-gutenberg.php:146
-msgid "Starter Pack - Content"
+#: plugins/gutenberg/patterns/single-post-newsletter-cta.php:19
+msgid "Newsletter CTA"
 msgstr ""
 
-#: plugins/gutenberg/wbcom-gutenberg.php:151
-msgid "Starter Pack - Blog"
+#: plugins/gutenberg/patterns/single-post-newsletter-cta.php:20
+msgid "A centered newsletter subscribe call-to-action box."
 msgstr ""
 
-#: plugins/gutenberg/wbcom-gutenberg.php:156
-msgid "Starter Pack - Marketing"
+#: plugins/gutenberg/patterns/single-post-related-posts.php:19
+msgid "Related Posts Carousel"
 msgstr ""
 
-#: plugins/gutenberg/wbcom-gutenberg.php:161
-msgid "Starter Pack - BuddyPress"
+#: plugins/gutenberg/patterns/single-post-related-posts.php:20
+msgid "A related posts carousel section with divider and heading."
 msgstr ""
 
-#: plugins/gutenberg/wbcom-gutenberg.php:170
-msgid "Starter Pack - WooCommerce"
+#: plugins/gutenberg/patterns/single-post-share-section.php:19
+msgid "Share Section"
 msgstr ""
 
-#: templates/buddypress/groups/groups-loop.php:62
-#. translators: %s: last activity timestamp (e.g. "Active 1 hour ago")
-msgid "Active %s"
+#: plugins/gutenberg/patterns/single-post-share-section.php:20
+msgid "A share section with text and social media icons."
+msgstr ""
+
+#: plugins/gutenberg/patterns/wbcom-patterns.php:25
+msgid "WBcom Essential - Magazine"
+msgstr ""
+
+#: plugins/gutenberg/patterns/wbcom-patterns.php:32
+msgid "WBcom Essential - Single Post"
+msgstr ""
+
+#: templates/blog-index/template-newspaper.php:40
+msgid "Breaking News"
 msgstr ""
 
 #: templates/reign/buddypress/legacy/groups/groups-loop.php:142
@@ -8619,27 +9714,78 @@ msgstr ""
 msgid "More Options"
 msgstr ""
 
-#: wbcom-essential.php:165
+#: templates/single-post/partials/post-navigation.php:23
+msgid "Post navigation"
+msgstr ""
+
+#: templates/single-post/partials/related-posts.php:45
+msgid "Related Posts"
+msgstr ""
+
+#: templates/single-post/partials/share-buttons.php:24
+msgid "Share on Twitter"
+msgstr ""
+
+#: templates/single-post/partials/share-buttons.php:31
+msgid "Share on Facebook"
+msgstr ""
+
+#: templates/single-post/partials/share-buttons.php:38
+msgid "Share on LinkedIn"
+msgstr ""
+
+#: templates/single-post/partials/toc.php:41
+msgid "Table of Contents"
+msgstr ""
+
+#: templates/single-post/partials/toc.php:42
+msgid "Contents"
+msgstr ""
+
+#: templates/single-post/template-classic.php:63
+#: templates/single-post/template-magazine.php:60
+#: templates/single-post/template-magazine.php:95
+#: templates/single-post/template-minimal.php:48
+#: templates/single-post/template-modern.php:89
+#: templates/single-post/template-modern.php:124
+#. translators: %d: number of minutes
+msgid "%d min read"
+msgid_plural "%d min read"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/single-post/template-classic.php:89
+#: templates/single-post/template-magazine.php:126
+#: templates/single-post/template-modern.php:163
+msgid "Tags:"
+msgstr ""
+
+#: templates/single-post/template-magazine.php:135
+#: templates/single-post/template-modern.php:172
+msgid "Share this article"
+msgstr ""
+
+#: wbcom-essential.php:181
 msgid "Essential Widgets"
 msgstr ""
 
 #: plugins/elementor/hooks/ElementorHooks.php:328
-#: plugins/elementor/widgets/querycontrol/group-control-posts.php:59
+#: plugins/elementor/widgets/querycontrol/group-control-posts.php:58
 msgctxt "Posts Query Control"
 msgid "Search & Select"
 msgstr ""
 
-#: plugins/elementor/widgets/querycontrol/group-control-posts.php:54
+#: plugins/elementor/widgets/querycontrol/group-control-posts.php:53
 msgctxt "Posts Query Control"
 msgid "Source"
 msgstr ""
 
-#: plugins/elementor/widgets/querycontrol/group-control-posts.php:72
+#: plugins/elementor/widgets/querycontrol/group-control-posts.php:71
 msgctxt "Posts Query Control"
 msgid "Author"
 msgstr ""
 
-#: plugins/elementor/widgets/querycontrol/group-control-posts.php:112
+#: plugins/elementor/widgets/querycontrol/group-control-posts.php:111
 msgctxt "Posts Query Control"
 msgid "Manual Selection"
 msgstr ""
