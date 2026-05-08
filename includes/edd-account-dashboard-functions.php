@@ -422,7 +422,7 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 	// add_query_arg() and edd_get_current_page_url() calls inside EDD
 	// shortcodes generate front-end page URLs instead of REST API URLs.
 	global $wp;
-	$original_request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+	$original_request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	$original_wp_request  = $wp->request;
 	$referer_url          = wp_get_referer();
 
@@ -877,7 +877,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 								printf(
 									/* translators: %d: Number of days. */
 									esc_html( _n( '%d day left', '%d days left', $days_left, 'wbcom-essential' ) ),
-									$days_left
+									(int) $days_left
 								);
 								?>
 							</span>
@@ -1243,7 +1243,7 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 								printf(
 									/* translators: %d: Number of days. */
 									esc_html( _n( '%d day left', '%d days left', $days_left, 'wbcom-essential' ) ),
-									$days_left
+									(int) $days_left
 								);
 								?>
 							</span>
@@ -1393,7 +1393,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 								printf(
 									/* translators: %d: Number of additional items. */
 									esc_html( _n( '+%d more item', '+%d more items', $item_count - 1, 'wbcom-essential' ) ),
-									$item_count - 1
+									(int) ( $item_count - 1 )
 								);
 								?>
 							</span>

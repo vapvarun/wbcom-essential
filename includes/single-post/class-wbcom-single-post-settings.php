@@ -205,7 +205,7 @@ class Wbcom_Single_Post_Settings {
 				</label>',
 				esc_attr( $active_cls ),
 				esc_attr( $value ),
-				$checked,
+				$checked, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- checked() returns a safe attribute string.
 				esc_html( $option['label'] ),
 				esc_html( $option['desc'] )
 			);

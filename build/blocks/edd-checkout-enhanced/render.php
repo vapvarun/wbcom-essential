@@ -220,7 +220,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							printf(
 								/* translators: %d: number of reviews */
 								esc_html__( 'Based on %d reviews', 'wbcom-essential' ),
-								$tp_total
+								(int) $tp_total
 							);
 							?>
 						</a>
@@ -354,7 +354,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 								printf(
 									/* translators: %d: Number of reviews. */
 									esc_html( _n( 'from %d review', 'from %d reviews', $rating_count, 'wbcom-essential' ) ),
-									$rating_count
+									(int) $rating_count
 								);
 								?>
 							</span>
@@ -479,12 +479,15 @@ $wrapper_attributes = get_block_wrapper_attributes(
 								</div>
 								<div class="wbcom-edd-checkout__rec-action">
 									<?php
-									echo edd_get_purchase_link(
-										array(
-											'download_id' => $download_id,
-											'text'        => __( 'Add to Cart', 'wbcom-essential' ),
-											'style'       => 'button',
-											'class'       => 'wbcom-edd-checkout__rec-btn',
+									// edd_get_purchase_link() returns escaped HTML built by EDD core.
+									echo wp_kses_post(
+										edd_get_purchase_link(
+											array(
+												'download_id' => $download_id,
+												'text'        => __( 'Add to Cart', 'wbcom-essential' ),
+												'style'       => 'button',
+												'class'       => 'wbcom-edd-checkout__rec-btn',
+											)
 										)
 									);
 									?>
