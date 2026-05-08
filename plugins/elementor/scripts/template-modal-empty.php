@@ -15,6 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <div class="elementor-template-library-blank-icon">
-	<img src="<?php echo esc_url( ELEMENTOR_ASSETS_URL . 'images/no-search-results.svg' ); ?>" class="elementor-template-library-no-results" />
+	<img src="<?php echo esc_url( ELEMENTOR_ASSETS_URL . 'images/no-search-results.svg' ); ?>" class="elementor-template-library-no-results" alt="" />
 </div>
 <div class="elementor-template-library-blank-title"><?php echo esc_html__( 'No Templates Found', 'wbcom-essential' ); ?></div>

@@ -148,6 +148,30 @@ class NotificationArea extends \Elementor\Widget_Base {
 			);
 		}
 
+		if ( class_exists( 'BuddyPress' ) && bp_is_active( 'friends' ) ) {
+			$this->add_responsive_control(
+				'friend_requests_enabled',
+				array(
+					'label'          => esc_html__( 'Enable Connections Icon', 'wbcom-essential' ),
+					'type'           => Controls_Manager::CHOOSE,
+					'options'        => array(
+						'yes' => array(
+							'title' => esc_html__( 'Show', 'wbcom-essential' ),
+							'icon'  => 'eicon-check',
+						),
+						'no'  => array(
+							'title' => esc_html__( 'Hide', 'wbcom-essential' ),
+							'icon'  => 'eicon-close',
+						),
+					),
+					'default'        => 'yes',
+					'tablet_default' => 'yes',
+					'mobile_default' => 'yes',
+					'toggle'         => true,
+				)
+			);
+		}
+
 		if ( class_exists( 'BuddyPress' ) && bp_is_active( 'notifications' ) ) {
 
 			$this->add_responsive_control(
@@ -308,6 +332,11 @@ class NotificationArea extends \Elementor\Widget_Base {
 		$message_visibility_tablet  = isset( $settings['user_message_bell_enabled_tablet'] ) ? $settings['user_message_bell_enabled_tablet'] : 'yes';
 		$message_visibility_mobile  = isset( $settings['user_message_bell_enabled_mobile'] ) ? $settings['user_message_bell_enabled_mobile'] : 'yes';
 
+		// Get friend requests visibility settings per device.
+		$friends_visibility_desktop = isset( $settings['friend_requests_enabled'] ) ? $settings['friend_requests_enabled'] : 'yes';
+		$friends_visibility_tablet  = isset( $settings['friend_requests_enabled_tablet'] ) ? $settings['friend_requests_enabled_tablet'] : 'yes';
+		$friends_visibility_mobile  = isset( $settings['friend_requests_enabled_mobile'] ) ? $settings['friend_requests_enabled_mobile'] : 'yes';
+
 		// Get notification visibility settings per device.
 		$notification_visibility_desktop = isset( $settings['notification_bell_enabled'] ) ? $settings['notification_bell_enabled'] : 'yes';
 		$notification_visibility_tablet  = isset( $settings['notification_bell_enabled_tablet'] ) ? $settings['notification_bell_enabled_tablet'] : 'yes';
@@ -445,6 +474,101 @@ class NotificationArea extends \Elementor\Widget_Base {
 					foreach ( $devices as $device ) {
 						if ( 'yes' === $device['visible'] ) {
 							echo '<div class="' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">' . wp_kses_post( $message_output ) . '</div>';
+						}
+					}
+
+					if ( wbcom_essential_has_friend_requests_support() ) {
+						ob_start();
+
+						if ( locate_template( 'template-parts/header-icons/friends-request.php' ) ) {
+							get_template_part( 'template-parts/header-icons/friends-request' );
+						} else {
+							$friend_requests       = wbcom_essential_get_friend_requests( get_current_user_id(), 10 );
+							$friend_requests_count = wbcom_essential_get_friend_requests_count( get_current_user_id() );
+							$friend_requests_url   = wbcom_essential_get_friend_requests_url();
+							?>
+							<div id="friend-requests-list" class="rg-friend-request header-notifications-dropdown-toggle">
+								<a class="rg-icon-wrap dropdown-toggle" href="<?php echo esc_url( $friend_requests_url ); ?>" id="nav_friend_requests" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="<?php esc_attr_e( 'Connection requests', 'wbcom-essential' ); ?>">
+									<i class="far fa-user-plus"></i>
+									<?php if ( $friend_requests_count > 0 ) : ?>
+										<span class="count rg-count"><?php echo esc_html( wbcom_essential_get_header_counter_label( $friend_requests_count ) ); ?></span>
+									<?php endif; ?>
+								</a>
+								<div class="header-notifications-dropdown-menu" aria-labelledby="nav_friend_requests">
+									<div class="dropdown-title">
+										<?php esc_html_e( 'Connection requests', 'wbcom-essential' ); ?>
+									</div>
+									<div class="dropdown-item-wrapper">
+										<div class="dropdown-item-list">
+											<?php if ( ! empty( $friend_requests ) ) : ?>
+												<?php foreach ( $friend_requests as $friend_request ) : ?>
+													<div class="reign-friend-request">
+														<div class="dropdown-item">
+															<div class="dropdown-item-inner">
+																<div class="item-avatar rounded-avatar">
+																	<a href="<?php echo esc_url( $friend_request['link'] ); ?>">
+																		<?php echo wp_kses_post( $friend_request['avatar_html'] ); ?>
+																	</a>
+																</div>
+																<div class="item-info">
+																	<div class="item-detail-data">
+																		<a class="ellipsis" href="<?php echo esc_url( $friend_request['link'] ); ?>"><?php echo esc_html( $friend_request['name'] ); ?></a>
+																		<?php if ( ! empty( $friend_request['last_active'] ) ) : ?>
+																			<p class="item-time mute response"><?php echo esc_html( $friend_request['last_active'] ); ?></p>
+																		<?php endif; ?>
+																	</div>
+																</div>
+																<div class="request-button">
+																	<?php if ( ! empty( $friend_request['accept_url'] ) ) : ?>
+																		<a class="btn reign-friendship-btn item-btn accept" data-friendship-id="<?php echo esc_attr( $friend_request['friendship_id'] ); ?>" href="<?php echo esc_url( $friend_request['accept_url'] ); ?>"><i class="far fa-check" title="<?php esc_attr_e( 'Accept', 'wbcom-essential' ); ?>"></i></a>
+																	<?php endif; ?>
+																	<?php if ( ! empty( $friend_request['reject_url'] ) ) : ?>
+																		<a class="btn reign-friendship-btn item-btn reject" data-friendship-id="<?php echo esc_attr( $friend_request['friendship_id'] ); ?>" href="<?php echo esc_url( $friend_request['reject_url'] ); ?>"><i class="far fa-times" title="<?php esc_attr_e( 'Reject', 'wbcom-essential' ); ?>"></i></a>
+																	<?php endif; ?>
+																</div>
+															</div>
+														</div>
+													</div>
+												<?php endforeach; ?>
+											<?php else : ?>
+												<div class="alert-message">
+													<div class="alert alert-warning" role="alert"><?php esc_html_e( 'No connection requests found.', 'wbcom-essential' ); ?></div>
+												</div>
+											<?php endif; ?>
+										</div>
+									</div>
+									<div class="dropdown-footer">
+										<a href="<?php echo esc_url( $friend_requests_url ); ?>" class="button read-more"><?php esc_html_e( 'All Requests', 'wbcom-essential' ); ?></a>
+									</div>
+								</div>
+							</div>
+							<?php
+						}
+
+						$friends_output = ob_get_clean();
+
+						$devices = array(
+							'desktop' => array(
+								'visible'            => $friends_visibility_desktop,
+								'class'              => 'friends-desktop',
+								'additional_classes' => 'elementor-hidden-tablet elementor-hidden-mobile',
+							),
+							'tablet'  => array(
+								'visible'            => $friends_visibility_tablet,
+								'class'              => 'friends-tablet',
+								'additional_classes' => 'elementor-hidden-desktop elementor-hidden-mobile',
+							),
+							'mobile'  => array(
+								'visible'            => $friends_visibility_mobile,
+								'class'              => 'friends-mobile',
+								'additional_classes' => 'elementor-hidden-desktop elementor-hidden-tablet',
+							),
+						);
+
+						foreach ( $devices as $device ) {
+							if ( 'yes' === $device['visible'] ) {
+								echo '<div class="' . esc_attr( $device['class'] ) . ' ' . esc_attr( $device['additional_classes'] ) . '">' . wp_kses_post( $friends_output ) . '</div>';
+							}
 						}
 					}
 

@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		);
 		?>
 		<div id="navbar-collapse">
-			<a class="more-button" href="#"><i class="wbcom-essential-icon-menu-dots-h"></i></a>
+			<a class="more-button" href="#" aria-label="<?php esc_attr_e( 'More menu items', 'wbcom-essential' ); ?>"><i class="wbcom-essential-icon-menu-dots-h" aria-hidden="true"></i></a>
 			<ul id="navbar-extend" class="sub-menu"></ul>
 		</div>
 	</div>

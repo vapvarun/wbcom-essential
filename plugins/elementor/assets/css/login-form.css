@@ -39,6 +39,13 @@ ul.wbcom-login-form-links li a {
     outline: 0 !important
 }
 
+#wb_login_form input:focus-visible,
+#wb_login_form textarea:focus-visible,
+ul.wbcom-login-form-links li a:focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: 2px;
+}
+
 #wb_login_form input,
 #wb_login_form textarea {
     max-width: 100%

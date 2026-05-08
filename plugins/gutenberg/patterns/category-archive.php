@@ -20,7 +20,7 @@ register_block_pattern(
 		'description' => __( 'A category archive page with a post grid and sidebar featuring latest posts.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'category', 'archive', 'sidebar', 'blog' ),
-		'content'     => '<!-- wp:wbcom-essential/heading {"text":"Category","alignment":"left","useThemeColors":true} /-->
+		'content'     => '<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Category</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"24px"} -->
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -31,7 +31,7 @@ register_block_pattern(
 
 <!-- wp:column {"width":"66.66%"} -->
 <div class="wp-block-column" style="flex-basis:66.66%">
-<!-- wp:wbcom-essential/posts-revolution {"displayType":"posts_type3","postsPerPage":6,"columns":2,"enablePagination":true,"useThemeColors":true} /-->
+<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type3","postsPerPage":6,"columns":2,"enablePagination":true,"useThemeColors":true} /-->
 </div>
 <!-- /wp:column -->
 

@@ -74,6 +74,11 @@
 	outline: 0;
 }
 
+.wbcom-accordions .wbaccordion__head>button:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
+}
+
 .wbcom-accordions .wbaccordion__head>button:before {
 	display: none;
 }

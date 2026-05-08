@@ -26,25 +26,25 @@ register_block_pattern(
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/post-slider {"useThemeColors":true,"postsPerPage":4} /-->
+<!-- wp:wbcom-essential/post-carousel {"useThemeColors":true,"postsPerPage":4} /-->
 
 <!-- wp:spacer {"height":"48px"} -->
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/heading {"headingText":"Latest Stories","textAlign":"left","useThemeColors":true} /-->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Latest Stories</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/posts-revolution {"displayType":"posts_type6","postsPerPage":6,"columns":3,"useThemeColors":true,"sectionLabel":"Latest Stories \u2014 Select Categories to Filter"} /-->
+<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type6","postsPerPage":6,"columns":3,"useThemeColors":true,"sectionLabel":"Latest Stories \u2014 Select Categories to Filter"} /-->
 
 <!-- wp:spacer {"height":"48px"} -->
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/heading {"headingText":"Browse by Category","textAlign":"left","useThemeColors":true} /-->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Browse by Category</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>

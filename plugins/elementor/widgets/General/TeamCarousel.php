@@ -33,14 +33,14 @@ class TeamCarousel extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wbcom-animations', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/animations.min.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wb-lib-lightbox', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/featherlight.min.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wb-team-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/team-carousel.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbe-swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/swiper-base.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wb-team-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/team-carousel.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 		wp_register_script( 'wb-lib-lightbox', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/featherlight.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wb-team-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/team-carousel.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-team-carousel', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/team-carousel.js', array( 'jquery', 'swiper', 'wb-lib-lightbox' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -82,14 +82,14 @@ class TeamCarousel extends \Elementor\Widget_Base {
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {
-		return array( 'wb-lib-slick', 'wb-lib-lightbox', 'wb-team-carousel' );
+		return array( 'wb-lib-lightbox', 'wb-team-carousel' );
 	}
 
 	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {
-		return array( 'wb-lib-slick', 'elementor-icons-fa-solid', 'wbcom-animations', 'wb-lib-lightbox', 'wb-team-carousel' );
+		return array( 'elementor-icons-fa-solid', 'wbcom-animations', 'wb-lib-lightbox', 'wb-team-carousel' );
 	}
 
 	/**
@@ -680,8 +680,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .slick-slide' => 'margin-left: {{LEFT}}{{UNIT}};margin-right: {{RIGHT}}{{UNIT}};margin-top: {{TOP}}{{UNIT}};margin-bottom: {{BOTTOM}}{{UNIT}};',
-					'{{WRAPPER}} .slick-list'  => 'margin-left: -{{LEFT}}{{UNIT}};margin-right: -{{RIGHT}}{{UNIT}};',
+					'{{WRAPPER}} .swiper-slide'   => 'margin-left: {{LEFT}}{{UNIT}};margin-right: {{RIGHT}}{{UNIT}};margin-top: {{TOP}}{{UNIT}};margin-bottom: {{BOTTOM}}{{UNIT}};',
+					'{{WRAPPER}} .swiper-wrapper' => 'margin-left: -{{LEFT}}{{UNIT}};margin-right: -{{RIGHT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1445,8 +1445,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -1458,8 +1458,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => 'rgba(0,0,0,0)',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev' => 'background-color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1480,8 +1480,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev:hover' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next:hover' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -1493,8 +1493,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => 'rgba(0,0,0,0)',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev:hover' => 'background-color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next:hover' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1519,8 +1519,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 30,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev' => 'font-size: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next' => 'font-size: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev' => 'font-size: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next' => 'font-size: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1535,8 +1535,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 60,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1548,8 +1548,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1564,8 +1564,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 0,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-next' => 'right: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-prev' => 'left: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-next' => 'right: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .elementor-swiper-button-prev' => 'left: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1588,7 +1588,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-dots li button:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -1603,8 +1603,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 20,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-dots li button:before' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-team-carousel .slick-dots li button' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1619,7 +1619,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 2,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-dots li' => 'margin-left: {{VALUE}}px !important;margin-right: {{VALUE}}px !important;',
+					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'margin-left: {{VALUE}}px !important;margin-right: {{VALUE}}px !important;',
 				),
 			)
 		);
@@ -1634,7 +1634,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 20,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .slick-dots' => 'bottom: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination' => 'bottom: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1652,17 +1652,45 @@ class TeamCarousel extends \Elementor\Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$settings = $this->get_settings_for_display(); 
-        if ($settings['gallery']) {
+		$settings  = $this->get_settings_for_display();
+		$widget_id = $this->get_id();
+
+		if ( $settings['gallery'] ) {
+			$columns_map    = array( 'one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5 );
+			$slides_to_show = isset( $columns_map[ $settings['columns'] ] ) ? $columns_map[ $settings['columns'] ] : 3;
+
+			$show_nav  = ! empty( $settings['display_nav'] );
+			$show_dots = ! empty( $settings['display_dots'] );
+			if ( $show_nav && $show_dots ) {
+				$navigation = 'both';
+			} elseif ( $show_nav ) {
+				$navigation = 'arrows';
+			} elseif ( $show_dots ) {
+				$navigation = 'dots';
+			} else {
+				$navigation = 'none';
+			}
+
+			$swiper_options = array(
+				'slides_to_show' => $slides_to_show,
+				'autoplay'       => ! empty( $settings['autoplay'] ) ? 'yes' : 'no',
+				'autoplay_speed' => intval( $settings['autoplay_duration'] ) * 1000,
+				'infinite'       => ! empty( $settings['infinite'] ) ? 'yes' : 'no',
+				'navigation'     => $navigation,
+				'speed'          => 300,
+				'pause_on_hover' => 'yes',
+			);
         ?>
-        <div id="wbcom-team-carousel-<?php echo esc_attr($this->get_id()); ?>" class="wbcom-team-carousel <?php echo esc_attr($settings['carousel_overflow_hidden']); ?>" data-prv="<?php echo isset( $settings['nav_arrow_prev_icon']['value'] ) ? esc_attr( $settings['nav_arrow_prev_icon']['value'] ) : ''; ?>" data-nxt="<?php echo isset( $settings['nav_arrow_next_icon']['value'] ) ? esc_attr( $settings['nav_arrow_next_icon']['value'] ) : ''; ?>" data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-infinite="<?php if ($settings['infinite']) { echo 'true'; } else { echo 'false'; } ?>" data-nav="<?php if ($settings['display_nav']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['display_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-postcolumns="<?php echo esc_attr($settings['columns']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>">
+        <div id="wbcom-team-carousel-<?php echo esc_attr( $widget_id ); ?>" class="wbcom-team-carousel swiper-container <?php echo esc_attr( $settings['carousel_overflow_hidden'] ); ?>" <?php if ( is_rtl() ) { echo 'dir="rtl"'; } ?> data-settings="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>">
+			<div class="swiper-wrapper">
         <?php foreach ( $settings['gallery'] as $item ) { ?>
-            <?php 
-            $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] );  
+            <?php
+            $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] );
             if (!$img_url) {
-            $img_url = $item['image']['url']; 
-            } 
+            $img_url = $item['image']['url'];
+            }
             ?>
+            <div class="swiper-slide">
             <div class="wbcom-carousel-item">
                 <div class="wbcom-team-member-wrapper">
                     <div class="wbcom-team-member <?php echo esc_attr($settings['caption_placement']); ?>">
@@ -1674,7 +1702,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
                         <a href="<?php echo esc_url($item['external_link']['url']); ?>" <?php echo esc_attr( $target ); ?> <?php echo esc_attr( $nofollow ); ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } elseif ($item['lightbox_style'] != 'none') { ?>
                         <a href="#wbcom-lightbox-<?php echo esc_attr($item['_id']); ?>" data-elementor-open-lightbox="no" class="has-lightbox <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
-                        <?php } ?>    
+                        <?php } ?>
                             <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($item['title']); ?>" />
                             <?php if (($settings['caption_style'] == 'name') && (($item['title']) || ($item['subtitle']))) { ?>
                             <div class="wbcom-team-overlay elementor-animation-<?php echo esc_attr($settings['box_content_animation']); ?>  <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
@@ -1695,14 +1723,29 @@ class TeamCarousel extends \Elementor\Widget_Base {
                             <div class="wbcom-team-overlay elementor-animation-<?php echo esc_attr($settings['icon_animation']); ?> <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                                 <div class="wbcom-team-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['thumb_icon'], [ 'aria-hidden' => 'true' ] ); ?></div>
                             </div>
-                            <?php } ?> 
-                        <?php if ($item['lightbox_style'] != 'none') { ?>    
+                            <?php } ?>
+                        <?php if ($item['lightbox_style'] != 'none') { ?>
                         </a>
                         <?php } ?>
                     </div>
                 </div>
             </div>
+            </div>
         <?php } ?>
+			</div>
+			<?php if ( $show_dots ) : ?>
+			<div class="swiper-pagination"></div>
+			<?php endif; ?>
+			<?php if ( $show_nav ) : ?>
+			<div class="elementor-swiper-button elementor-swiper-button-prev">
+				<svg aria-hidden="true" class="e-font-icon-svg e-eicon-chevron-left" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M646 125C629 125 613 133 604 142L308 442C296 454 292 471 292 487 292 504 296 521 308 533L604 854C617 867 629 875 646 875 663 875 679 871 692 858 704 846 713 829 713 812 713 796 708 779 692 767L438 487 692 225C700 217 708 204 708 187 708 171 704 154 692 142 675 129 663 125 646 125Z"></path></svg>
+				<span class="elementor-screen-only"><?php esc_html_e( 'Previous', 'wbcom-essential' ); ?></span>
+			</div>
+			<div class="elementor-swiper-button elementor-swiper-button-next">
+				<svg aria-hidden="true" class="e-font-icon-svg e-eicon-chevron-right" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M696 533C708 521 713 504 713 487 713 471 708 454 696 446L400 146C388 133 375 125 354 125 338 125 325 129 313 142 300 154 292 171 292 187 292 204 296 221 308 233L563 492 304 771C292 783 288 800 288 817 288 833 296 850 308 863 321 871 338 875 354 875 371 875 388 867 400 854L696 533Z"></path></svg>
+				<span class="elementor-screen-only"><?php esc_html_e( 'Next', 'wbcom-essential' ); ?></span>
+			</div>
+			<?php endif; ?>
         </div>
         <?php foreach ( $settings['gallery'] as $item ) { ?>
         <?php 

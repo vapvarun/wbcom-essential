@@ -1,0 +1,228 @@
+/**
+ * Posts Ticker Block - Frontend + Editor Styles
+ *
+ * BEM:    .wbe-posts-ticker__{element}
+ * Tokens: --wbe-tk-*
+ *
+ * @package wbcom-essential
+ */
+
+/* ── Design tokens (defaults) ─────────────────────────────────────────────── */
+.wbe-posts-ticker {
+	--wbe-tk-label-bg:    #667eea;
+	--wbe-tk-label-color: #ffffff;
+	--wbe-tk-bg:          #f8f9fa;
+	--wbe-tk-text:        #1e1e2e;
+	--wbe-tk-link:        #667eea;
+	--wbe-tk-height:      44px;
+	--wbe-tk-duration:    30s;
+	--wbe-tk-shadow:      none;
+	--wbe-tk-radius:      0px;
+
+	display:       flex;
+	align-items:   stretch;
+	width:         100%;
+	height:        var( --wbe-tk-height );
+	background:    var( --wbe-tk-bg );
+	color:         var( --wbe-tk-text );
+	overflow:      hidden;
+	border-radius: var( --wbe-tk-radius );
+	box-shadow:    var( --wbe-tk-shadow );
+	font-size:     0.875rem;
+	line-height:   1.4;
+}
+
+/* ── Label (sticky left) ─────────────────────────────────────────────────── */
+.wbe-posts-ticker__label {
+	flex-shrink:     0;
+	display:         flex;
+	align-items:     center;
+	padding:         0 16px;
+	background:      var( --wbe-tk-label-bg );
+	color:           var( --wbe-tk-label-color );
+	font-weight:     700;
+	font-size:       0.8125rem;
+	text-transform:  uppercase;
+	letter-spacing:  0.05em;
+	white-space:     nowrap;
+	/* Slight right angle indicator */
+	clip-path: polygon( 0 0, calc( 100% - 10px ) 0, 100% 50%, calc( 100% - 10px ) 100%, 0 100% );
+	padding-right:   22px;
+	z-index:         2;
+}
+
+/* ── Viewport (the scrollable lane) ─────────────────────────────────────── */
+.wbe-posts-ticker__viewport {
+	flex:      1;
+	overflow:  hidden;
+	position:  relative;
+	min-width: 0;
+}
+
+/* Fade-out edge masks */
+.wbe-posts-ticker__viewport::before,
+.wbe-posts-ticker__viewport::after {
+	content:    '';
+	position:   absolute;
+	top:        0;
+	bottom:     0;
+	width:      32px;
+	z-index:    1;
+	pointer-events: none;
+}
+
+.wbe-posts-ticker__viewport::before {
+	left:       0;
+	background: linear-gradient( to right, var( --wbe-tk-bg ), transparent );
+}
+
+.wbe-posts-ticker__viewport::after {
+	right:      0;
+	background: linear-gradient( to left, var( --wbe-tk-bg ), transparent );
+}
+
+/* ── Track (animates) ────────────────────────────────────────────────────── */
+.wbe-posts-ticker__track {
+	display:         flex;
+	align-items:     center;
+	white-space:     nowrap;
+	height:          100%;
+	/* Default: no animation until JS adds direction class */
+	will-change:     transform;
+}
+
+/* Left scroll keyframe (translateX 0 → -50%, since content is duplicated) */
+@keyframes wbe-ticker-left {
+	from { transform: translateX( 0 ); }
+	to   { transform: translateX( -50% ); }
+}
+
+/* Right scroll keyframe */
+@keyframes wbe-ticker-right {
+	from { transform: translateX( -50% ); }
+	to   { transform: translateX( 0 ); }
+}
+
+.wbe-posts-ticker__track--left {
+	animation: wbe-ticker-left var( --wbe-tk-duration ) linear infinite;
+}
+
+.wbe-posts-ticker__track--right {
+	animation: wbe-ticker-right var( --wbe-tk-duration ) linear infinite;
+}
+
+/* ── Individual item ─────────────────────────────────────────────────────── */
+.wbe-posts-ticker__item {
+	display:     inline-flex;
+	align-items: center;
+	gap:         8px;
+	padding:     0 8px;
+}
+
+/* ── Category badge ──────────────────────────────────────────────────────── */
+.wbe-posts-ticker__cat {
+	display:         inline-flex;
+	align-items:     center;
+	padding:         2px 8px;
+	background:      color-mix( in srgb, var( --wbe-tk-link ) 12%, transparent );
+	color:           var( --wbe-tk-link );
+	border-radius:   50px;
+	font-size:       0.75rem;
+	font-weight:     600;
+	text-decoration: none;
+	white-space:     nowrap;
+	transition:      background 0.2s ease;
+}
+
+.wbe-posts-ticker__cat:hover {
+	background: color-mix( in srgb, var( --wbe-tk-link ) 22%, transparent );
+}
+
+/* ── Post title link ─────────────────────────────────────────────────────── */
+.wbe-posts-ticker__link {
+	color:           var( --wbe-tk-text );
+	text-decoration: none;
+	font-weight:     500;
+	white-space:     nowrap;
+	transition:      color 0.2s ease;
+}
+
+.wbe-posts-ticker__link:hover {
+	color: var( --wbe-tk-link );
+}
+
+/* ── Date ────────────────────────────────────────────────────────────────── */
+.wbe-posts-ticker__date {
+	font-size:  0.75rem;
+	color:      color-mix( in srgb, var( --wbe-tk-text ) 55%, transparent );
+	white-space: nowrap;
+}
+
+/* ── Separator ───────────────────────────────────────────────────────────── */
+.wbe-posts-ticker__sep {
+	color:      color-mix( in srgb, var( --wbe-tk-text ) 30%, transparent );
+	font-size:  0.9em;
+	user-select: none;
+}
+
+/* ── Static mode (prefers-reduced-motion) ────────────────────────────────── */
+.wbe-posts-ticker--static {
+	height:    auto;
+	min-height: var( --wbe-tk-height );
+	overflow:  visible;
+}
+
+.wbe-posts-ticker--static .wbe-posts-ticker__label {
+	clip-path: none;
+	padding-right: 16px;
+}
+
+.wbe-posts-ticker--static .wbe-posts-ticker__viewport {
+	overflow: visible;
+}
+
+.wbe-posts-ticker--static .wbe-posts-ticker__viewport::before,
+.wbe-posts-ticker--static .wbe-posts-ticker__viewport::after {
+	display: none;
+}
+
+.wbe-posts-ticker--static .wbe-posts-ticker__track {
+	flex-wrap:  wrap;
+	white-space: normal;
+	height:     auto;
+	padding:    8px 12px;
+	gap:        8px 4px;
+}
+
+.wbe-posts-ticker--static .wbe-posts-ticker__item {
+	flex-wrap: wrap;
+}
+
+/* ── Accessibility: reduced motion ───────────────────────────────────────── */
+@media ( prefers-reduced-motion: reduce ) {
+	.wbe-posts-ticker__track {
+		animation: none !important;
+	}
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media ( max-width: 640px ) {
+	.wbe-posts-ticker {
+		--wbe-tk-height: 38px;
+		font-size:       0.8125rem;
+	}
+
+	.wbe-posts-ticker__label {
+		font-size:    0.75rem;
+		padding:      0 12px 0 12px;
+		padding-right: 18px;
+	}
+
+	.wbe-posts-ticker__date {
+		display: none;
+	}
+
+	.wbe-posts-ticker__cat {
+		display: none;
+	}
+}

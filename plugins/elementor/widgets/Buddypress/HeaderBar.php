@@ -202,6 +202,19 @@ class HeaderBar extends \Elementor\Widget_Base {
 			);
 		endif;
 
+		if ( function_exists( 'bp_is_active' ) && bp_is_active( 'friends' ) ) :
+			$this->add_control(
+				'friends_icon_switch',
+				array(
+					'label'     => esc_html__( 'Connections', 'wbcom-essential' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'label_on'  => esc_html__( 'On', 'wbcom-essential' ),
+					'label_off' => esc_html__( 'Off', 'wbcom-essential' ),
+					'default'   => 'yes',
+				)
+			);
+		endif;
+
 		if ( function_exists( 'bp_is_active' ) && bp_is_active( 'notifications' ) ) :
 			$this->add_control(
 				'notifications_icon_switch',
@@ -256,6 +269,21 @@ class HeaderBar extends \Elementor\Widget_Base {
 				array(
 					'label'                  => esc_html__( 'Messages Icon', 'wbcom-essential' ),
 					'description'            => esc_html__( 'Replace default messages icon with one of your choice.', 'wbcom-essential' ),
+					'type'                   => \Elementor\Controls_Manager::ICONS,
+					'skin'                   => 'inline',
+					'exclude_inline_options' => array(
+						'svg',
+					),
+				)
+			);
+		endif;
+
+		if ( function_exists( 'bp_is_active' ) && bp_is_active( 'friends' ) ) :
+			$this->add_control(
+				'friends_icon',
+				array(
+					'label'                  => esc_html__( 'Connections Icon', 'wbcom-essential' ),
+					'description'            => esc_html__( 'Replace default connections icon with one of your choice.', 'wbcom-essential' ),
 					'type'                   => \Elementor\Controls_Manager::ICONS,
 					'skin'                   => 'inline',
 					'exclude_inline_options' => array(
@@ -377,6 +405,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'selectors'  => array(
 					'{{WRAPPER}} .header-aside-inner > *:not(.wbcom-essential-separator)' => 'padding: 0 {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} #header-messages-dropdown-elem'             => 'padding: 0 {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} #header-friends-dropdown-elem'              => 'padding: 0 {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} #header-notifications-dropdown-elem'        => 'padding: 0 {{SIZE}}{{UNIT}};',
 				),
 			)
@@ -486,6 +515,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'selectors'  => array(
 					'{{WRAPPER}} .header-aside .header-search-link i'                => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .header-aside .messages-wrap > a i'                 => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .header-aside .friends-wrap > a i'                  => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .header-aside span[data-balloon="Notifications"] i' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .header-aside a.header-cart-link i'                 => 'font-size: {{SIZE}}{{UNIT}};',
 				),
@@ -519,6 +549,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 				'selectors' => array(
 					'{{WRAPPER}} #header-aside.header-aside .header-search-link i'                => 'color: {{VALUE}}',
 					'{{WRAPPER}} #header-aside.header-aside .messages-wrap > a i'                 => 'color: {{VALUE}}',
+					'{{WRAPPER}} #header-aside.header-aside .friends-wrap > a i'                  => 'color: {{VALUE}}',
 					'{{WRAPPER}} #header-aside.header-aside span[data-balloon="Notifications"] i' => 'color: {{VALUE}}',
 					'{{WRAPPER}} #header-aside.header-aside a.header-cart-link i'                 => 'color: {{VALUE}}',
 				),
@@ -546,6 +577,20 @@ class HeaderBar extends \Elementor\Widget_Base {
 					'default'   => '',
 					'selectors' => array(
 						'{{WRAPPER}} .header-aside .messages-wrap > a i' => 'color: {{VALUE}} !important',
+					),
+				)
+			);
+		endif;
+
+		if ( function_exists( 'bp_is_active' ) && bp_is_active( 'friends' ) ) :
+			$this->add_control(
+				'friends_icon_color',
+				array(
+					'label'     => esc_html__( 'Connections Icon', 'wbcom-essential' ),
+					'type'      => \Elementor\Controls_Manager::COLOR,
+					'default'   => '',
+					'selectors' => array(
+						'{{WRAPPER}} .header-aside .friends-wrap > a i' => 'color: {{VALUE}} !important',
 					),
 				)
 			);

@@ -887,7 +887,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 		?>
 		<div class="wbcom-btn-wrapper wbcom-dropdown-wrapper">
 			<div class="wbcom-dropdown">
-				<div tabindex="1" class="wbcom-dd-button <?php echo esc_attr( $settings['size'] ); ?> <?php echo esc_attr( $settings['skin'] ); ?>">
+				<div tabindex="0" role="button" aria-haspopup="menu" class="wbcom-dd-button <?php echo esc_attr( $settings['size'] ); ?> <?php echo esc_attr( $settings['skin'] ); ?>">
 					<?php
 					if ( $icon_position == 'before' ) {
 						\Elementor\Icons_Manager::render_icon( $settings['icon'], array( 'aria-hidden' => 'true' ) );

@@ -20,12 +20,12 @@ register_block_pattern(
 		'description' => __( 'A clean blog listing with side-by-side post cards and pagination.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'blog', 'listing', 'posts', 'pagination' ),
-		'content'     => '<!-- wp:wbcom-essential/heading {"text":"Blog","alignment":"left","useThemeColors":true} /-->
+		'content'     => '<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Blog</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"24px"} -->
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/posts-revolution {"displayType":"posts_type4","postsPerPage":8,"columns":2,"showExcerpt":true,"excerptLength":120,"enablePagination":true,"paginationType":"numeric","useThemeColors":true} /-->',
+<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type4","postsPerPage":8,"columns":2,"showExcerpt":true,"excerptLength":120,"enablePagination":true,"paginationType":"numeric","useThemeColors":true} /-->',
 	)
 );

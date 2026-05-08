@@ -299,7 +299,7 @@ The `Plugin` class registers:
 | HeaderBar | widgets/Buddypress/HeaderBar.php |
 | MembersGrid | widgets/Buddypress/MembersGrid.php |
 | MembersLists | widgets/Buddypress/MembersLists.php |
-| MemeberCarousel | widgets/Buddypress/MemeberCarousel.php |
+| MemberCarousel | widgets/Buddypress/MemberCarousel.php |
 | ProfileCompletion | widgets/Buddypress/ProfileCompletion.php |
 
 ### WooCommerce Widgets (5)

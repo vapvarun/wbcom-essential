@@ -31,7 +31,7 @@ function wbcom_essential_elementor_load() {
 	}
 
 	// Check required version.
-	$elementor_version_required = '3.0.0';
+	$elementor_version_required = '3.5.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
 		add_action( 'admin_notices', 'wbcom_essential_elementor_fail_load_out_of_date' );
 
@@ -445,6 +445,11 @@ function wba_get_image_sizes() {
 /**
  * Handles the AJAX login process for users.
  *
+ * Authorization note: this endpoint is only registered via wp_ajax_nopriv_
+ * (below) so it targets logged-out visitors by definition — a
+ * current_user_can() gate would break the login flow. The nonce here is
+ * CSRF protection for the form, not an authorization check.
+ *
  * @return void
  */
 function wbcom_ajax_login() {
@@ -456,7 +461,7 @@ function wbcom_ajax_login() {
 		'remember'      => ! empty( sanitize_text_field( wp_unslash( $_POST['rememberme'] ?? '' ) ) ) ? true : false, // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 	);
 
-	$user_signon = wp_signon( $info, false );
+	$user_signon = wp_signon( $info, is_ssl() );
 
 	if ( is_wp_error( $user_signon ) ) {
 		$error_codes = $user_signon->get_error_codes();

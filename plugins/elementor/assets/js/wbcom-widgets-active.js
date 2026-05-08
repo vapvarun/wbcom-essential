@@ -1,25 +1,23 @@
 ;(function($){
     "use strict";
-    
-    /* 
-    * Product Slider 
+
+    /*
+    * Product Slider
     */
     var WidgetProductSliderHandler = function ($scope, $) {
 
         var slider_elem = $scope.find('.product-slider').eq(0);
 
         if (slider_elem.length > 0) {
-            
+
             slider_elem[0].style.display='block';
 
             var settings = slider_elem.data('settings');
             var arrows = settings['arrows'];
             var dots = settings['dots'];
             var autoplay = settings['autoplay'];
-            var rtl = settings['rtl'];
             var autoplay_speed = parseInt(settings['autoplay_speed']) || 3000;
             var animation_speed = parseInt(settings['animation_speed']) || 300;
-            var fade = settings['fade'];
             var pause_on_hover = settings['pause_on_hover'];
             var display_columns = parseInt(settings['product_items']) || 4;
             var scroll_columns = parseInt(settings['scroll_columns']) || 4;
@@ -30,37 +28,35 @@
             var mobile_display_columns = parseInt(settings['mobile_display_columns']) || 1;
             var mobile_scroll_columns = parseInt(settings['mobile_scroll_columns']) || 1;
 
-            slider_elem.not('.slick-initialized').slick({
-                arrows: arrows,
-                prevArrow: '<button type="button" class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
-                nextArrow: '<button type="button" class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
-                dots: dots,
-                infinite: true,
-                autoplay: autoplay,
-                autoplaySpeed: autoplay_speed,
+            var swiperOptions = {
+                slidesPerView: display_columns,
+                slidesPerGroup: scroll_columns,
+                loop: true,
                 speed: animation_speed,
-                fade: false,
-                pauseOnHover: pause_on_hover,
-                slidesToShow: display_columns,
-                slidesToScroll: scroll_columns,
-                rtl: rtl,
-                responsive: [
-                    {
-                        breakpoint: tablet_width,
-                        settings: {
-                            slidesToShow: tablet_display_columns,
-                            slidesToScroll: tablet_scroll_columns
-                        }
-                    },
-                    {
-                        breakpoint: mobile_width,
-                        settings: {
-                            slidesToShow: mobile_display_columns,
-                            slidesToScroll: mobile_scroll_columns
-                        }
-                    }
-                ]
-            });
+                autoplay: autoplay ? { delay: autoplay_speed, disableOnInteraction: false, pauseOnMouseEnter: pause_on_hover } : false,
+                breakpoints: {
+                    0: { slidesPerView: mobile_display_columns, slidesPerGroup: mobile_scroll_columns },
+                    [mobile_width]: { slidesPerView: tablet_display_columns, slidesPerGroup: tablet_scroll_columns },
+                    [tablet_width]: { slidesPerView: display_columns, slidesPerGroup: scroll_columns }
+                }
+            };
+
+            if (arrows) {
+                swiperOptions.navigation = {
+                    prevEl: slider_elem.find('.elementor-swiper-button-prev').get(0),
+                    nextEl: slider_elem.find('.elementor-swiper-button-next').get(0)
+                };
+            }
+
+            if (dots) {
+                swiperOptions.pagination = {
+                    el: slider_elem.find('.swiper-pagination').get(0),
+                    type: 'bullets',
+                    clickable: true
+                };
+            }
+
+            new Swiper(slider_elem.get(0), swiperOptions);
         };
     };
 
@@ -75,27 +71,34 @@
             $this.addClass('htactive').parent().siblings().children('a').removeClass('htactive');
             $( $tabpane + $target ).addClass('htactive').siblings().removeClass('htactive');
 
-            // slick refresh
-            if( $('.slick-slider').length > 0 ){
-                var $id = $this.attr('href');
-                $( $id ).find('.slick-slider').slick('refresh');
-            }
+            // Swiper update
+            var swiperContainers = $($target).find('.swiper-container');
+            swiperContainers.each(function() {
+                if (this.swiper) { this.swiper.update(); }
+            });
 
         });
     }
 
-    /* 
-    * Universal product 
+    /*
+    * Universal product
     */
     function productImageThumbnailsSlider( $slider ){
-        $slider.slick({
-            dots: true,
-            arrows: true,
-            prevArrow: '<button class="slick-prev"><i class="wbe-icons wbe-icon-angle-left"></i></button>',
-            nextArrow: '<button class="slick-next"><i class="wbe-icons wbe-icon-angle-right"></i></button>',
+        $slider.each(function() {
+            var $this = $(this);
+            new Swiper($this.get(0), {
+                slidesPerView: 1,
+                pagination: {
+                    el: $this.find('.swiper-pagination').get(0),
+                    type: 'bullets',
+                    clickable: true
+                },
+                navigation: {
+                    prevEl: $this.find('.elementor-swiper-button-prev').get(0),
+                    nextEl: $this.find('.elementor-swiper-button-next').get(0)
+                }
+            });
         });
-
-        
     }
     if( $(".wb-product-image-slider").length > 0 ) {
         productImageThumbnailsSlider( $(".wb-product-image-slider") );
@@ -155,7 +158,7 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-universal-product.default', WidgetProductSliderHandler);
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-universal-product.default', WidgetWoolentorTooltipHandler);
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-universal-product.default', WidgetThumbnaisImagesHandler);
-        
+
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wbcom-wc-testimonial.default', WidgetProductSliderHandler );
 
     });

@@ -4,16 +4,13 @@
   "url": "https://github.com/vapvarun/wbcom-essential",
   "license": "GPL-2.0+",
   "description": "Theme Addon plugin for Wbcom Designs",
-  "workspaces": [
-    "plugins/gutenberg/blocks/*"
-  ],
   "scripts": {
-    "build": "webpack --mode=production",
-    "dev": "webpack --mode=development --watch",
     "build:blocks": "node scripts/build-blocks.js",
     "dev:blocks": "node scripts/dev-blocks.js",
     "clean:blocks": "rm -rf build/blocks",
-    "i18n": "grunt checktextdomain makepot"
+    "i18n": "grunt checktextdomain makepot",
+    "dist": "npm run build:blocks && grunt dist",
+    "release": "npm run build:blocks && grunt release"
   },
   "devDependencies": {
     "@babel/core": "^7.22.0",
@@ -50,5 +47,14 @@
   "dependencies": {
     "fix": "^0.0.3",
     "load-grunt-tasks": "^3.5.2"
+  },
+  "overrides": {
+    "lodash": "^4.18.1",
+    "minimatch": "^3.1.5",
+    "picomatch": "^2.3.2",
+    "brace-expansion": "^1.1.14",
+    "js-yaml": "^3.14.2",
+    "tmp": "^0.2.5",
+    "serialize-javascript": "^6.0.2"
   }
 }

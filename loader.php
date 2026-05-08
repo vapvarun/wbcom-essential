@@ -13,8 +13,8 @@
  * @wordpress-plugin
  * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com/downloads/wbcom-essential/
- * Description:       Premium Elementor widgets for BuddyPress, WooCommerce, and WordPress. Create stunning websites with 40+ professional widgets and seamless integrations.
- * Version:           4.3.0
+ * Description:       Premium Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design.
+ * Version:           4.5.0
  * Requires at least: 6.0
  * Tested up to:      6.9
  * Requires PHP:      8.0
@@ -30,8 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '4.3.0' );
-define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.2.1' );
+define( 'WBCOM_ESSENTIAL_VERSION', '4.5.0' );
+define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.3.0' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASE', plugin_basename( WBCOM_ESSENTIAL_FILE ) );
@@ -76,6 +76,7 @@ add_action(
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/wbcom-essential-function.php';
+require_once WBCOM_ESSENTIAL_PATH . 'includes/edd-account-login-security.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-elementor.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/Plugins.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-woocommerce.php';
@@ -96,3 +97,52 @@ function wbcom_essential() {
  * @since 3.0.0
  */
 wbcom_essential();
+
+/**
+ * Fires on plugin activation.
+ *
+ * Stores the activation timestamp and current version so future upgrades
+ * can detect cold installs vs. in-place upgrades. Also exposes a
+ * do_action hook for integrations that want to run setup code.
+ *
+ * @since 4.5.0
+ * @return void
+ */
+function wbcom_essential_activate() {
+	$previous_version = get_option( 'wbcom_essential_version', '' );
+
+	update_option( 'wbcom_essential_version', WBCOM_ESSENTIAL_VERSION );
+
+	if ( ! get_option( 'wbcom_essential_activated_at', 0 ) ) {
+		update_option( 'wbcom_essential_activated_at', time() );
+	}
+
+	/**
+	 * Fires after Wbcom Essential finishes its activation routine.
+	 *
+	 * @since 4.5.0
+	 *
+	 * @param string $previous_version Version stored before activation, empty on fresh install.
+	 */
+	do_action( 'wbcom_essential_activated', $previous_version );
+}
+register_activation_hook( WBCOM_ESSENTIAL_FILE, 'wbcom_essential_activate' );
+
+/**
+ * Fires on plugin deactivation.
+ *
+ * Keeps options intact (removal happens in uninstall.php) but exposes a
+ * do_action hook so integrations can clear their own caches / transients.
+ *
+ * @since 4.5.0
+ * @return void
+ */
+function wbcom_essential_deactivate() {
+	/**
+	 * Fires after Wbcom Essential is deactivated.
+	 *
+	 * @since 4.5.0
+	 */
+	do_action( 'wbcom_essential_deactivated' );
+}
+register_deactivation_hook( WBCOM_ESSENTIAL_FILE, 'wbcom_essential_deactivate' );

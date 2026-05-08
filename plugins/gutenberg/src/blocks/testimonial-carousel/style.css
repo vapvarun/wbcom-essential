@@ -1,0 +1,213 @@
+/**
+ * Testimonial Carousel Block - Frontend + Editor Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ---- Design tokens ---- */
+.wbe-testimonial-carousel {
+	--wbe-tc-quote-bg: #ffffff;
+	--wbe-tc-quote-color: #1e1e2e;
+	--wbe-tc-name-color: #1e1e2e;
+	--wbe-tc-role-color: #6c757d;
+	--wbe-tc-accent: #667eea;
+	--wbe-tc-card-radius: 12px;
+	--wbe-tc-card-shadow: none;
+	--wbe-tc-avatar-size: 48px;
+	--wbe-tc-quote-mark-size: 4rem;
+
+	width: 100%;
+	position: relative;
+}
+
+/* ---- Swiper container ---- */
+.wbe-testimonial-carousel .swiper {
+	padding-bottom: 56px; /* Space for pagination dots */
+	overflow: hidden;
+}
+
+/* ---- Card ---- */
+.wbe-testimonial-carousel__card {
+	background: var( --wbe-tc-quote-bg );
+	border-radius: var( --wbe-tc-card-radius );
+	box-shadow: var( --wbe-tc-card-shadow );
+	padding: 40px 36px 32px;
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	border: 1px solid rgba( 0, 0, 0, 0.06 );
+}
+
+/* ---- Large decorative quote mark ---- */
+.wbe-testimonial-carousel__card::before {
+	content: '\201C'; /* Left double quotation mark */
+	position: absolute;
+	top: 16px;
+	left: 28px;
+	font-size: var( --wbe-tc-quote-mark-size );
+	line-height: 1;
+	font-family: Georgia, serif;
+	color: var( --wbe-tc-accent );
+	opacity: 0.2;
+	pointer-events: none;
+	user-select: none;
+}
+
+/* ---- Quote text ---- */
+.wbe-testimonial-carousel__quote {
+	margin: 0;
+	padding: 0;
+	border: none;
+	flex: 1;
+}
+
+.wbe-testimonial-carousel__quote:hover {
+	background: none;
+    box-shadow: none;
+}
+
+.wbe-testimonial-carousel__quote::before {
+	content: none;
+}
+
+.wbe-testimonial-carousel__quote p {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.75;
+	color: var( --wbe-tc-quote-color );
+	font-style: italic;
+	padding-top: 24px; /* Clear the quote mark */
+}
+
+/* ---- Author row ---- */
+.wbe-testimonial-carousel__author {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
+/* ---- Avatar ---- */
+.wbe-testimonial-carousel__avatar {
+	width: var( --wbe-tc-avatar-size );
+	height: var( --wbe-tc-avatar-size );
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.wbe-testimonial-carousel__avatar-placeholder {
+	width: var( --wbe-tc-avatar-size );
+	height: var( --wbe-tc-avatar-size );
+	border-radius: 50%;
+	background: var( --wbe-tc-accent );
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.1rem;
+	font-weight: 700;
+	flex-shrink: 0;
+}
+
+/* ---- Author info ---- */
+.wbe-testimonial-carousel__author-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.wbe-testimonial-carousel__name {
+	display: block;
+	font-size: 0.95rem;
+	font-weight: 700;
+	color: var( --wbe-tc-name-color );
+}
+
+.wbe-testimonial-carousel__role {
+	display: block;
+	font-size: 0.8rem;
+	color: var( --wbe-tc-role-color );
+}
+
+/* ---- Swiper pagination: override with accent color ---- */
+.wbe-testimonial-carousel .swiper-pagination-bullet {
+	background: var( --wbe-tc-accent );
+	opacity: 0.3;
+	width: 8px;
+	height: 8px;
+	transition: opacity 0.2s, transform 0.2s;
+}
+
+.wbe-testimonial-carousel .swiper-pagination-bullet-active {
+	opacity: 1;
+	transform: scale( 1.3 );
+}
+
+/* ---- Swiper navigation arrows ---- */
+.wbe-testimonial-carousel .swiper-button-prev,
+.wbe-testimonial-carousel .swiper-button-next {
+	color: var( --wbe-tc-accent );
+	background-size: 12px;
+}
+
+.wbe-testimonial-carousel .swiper-button-prev::after,
+.wbe-testimonial-carousel .swiper-button-next::after {
+	font-size: 1.25rem;
+}
+
+/* ---- Editor-only static preview dots ---- */
+.wbe-testimonial-carousel__editor-preview {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.wbe-testimonial-carousel__editor-dots {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+}
+
+.wbe-testimonial-carousel__dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: none;
+	background: var( --wbe-tc-accent, #667eea );
+	opacity: 0.35;
+	cursor: pointer;
+	padding: 0;
+	transition: opacity 0.2s, transform 0.2s;
+}
+
+.wbe-testimonial-carousel__dot.is-active {
+	opacity: 1;
+	transform: scale( 1.3 );
+}
+
+/* ---- Visibility utilities ---- */
+/* ---- Tablet ---- */
+@media ( max-width: 1024px ) {
+	.wbe-testimonial-carousel__card {
+		padding: 32px 24px 24px;
+	}
+}
+
+/* ---- Mobile ---- */
+@media ( max-width: 640px ) {
+	.wbe-testimonial-carousel__card {
+		padding: 28px 20px 20px;
+	}
+
+	.wbe-testimonial-carousel__quote p {
+		font-size: 0.925rem;
+	}
+
+	.wbe-testimonial-carousel .swiper-button-prev,
+	.wbe-testimonial-carousel .swiper-button-next {
+		display: none;
+	}
+}
+

@@ -18,3 +18,7 @@ src/.DS_Store
 /vendor/wptrt
 tests/
 test-results/
+# Release artefacts produced by `npm run dist` / `npm run release`.
+dist/
+# Stray local build output under plugins/gutenberg (canonical is top-level /build/).
+plugins/gutenberg/build/

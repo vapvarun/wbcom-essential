@@ -50,7 +50,7 @@ if ( bp_has_members( bp_ajax_querystring( 'members' ) . $query_string ) ) : ?>
 					$cover_img_url = REIGN_INC_DIR_URI . 'reign-settings/imgs/default-cover.jpg';
 				}
 			}
-			echo '<div class="wbtm-mem-cover-img"><img src="' . esc_url( $cover_img_url ) . '" /></div>';
+			echo '<div class="wbtm-mem-cover-img"><img src="' . esc_url( $cover_img_url ) . '" alt="" /></div>';
 		}
 		?>
 

@@ -140,6 +140,12 @@ body.rtl .wba-fpg-toolbar .wba-fpg-view-options {
     outline: 0 !important
 }
 
+.wba-fpg-container li .wba-fpg-inner:focus-visible,
+.wba-fpg-container li a:focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: 2px;
+}
+
 .wba-fpg-container li:hover {
     z-index: 2
 }

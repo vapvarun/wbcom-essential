@@ -34,7 +34,7 @@ function wbcom_essential_product_catalog_register_routes() {
 		array(
 			'methods'             => 'GET',
 			'callback'            => 'wbcom_essential_product_catalog_get_products',
-			'permission_callback' => '__return_true',
+			'permission_callback' => 'wbcom_essential_product_catalog_public_permission',
 			'args'                => array(
 				'category'    => array(
 					'type'              => 'integer',
@@ -81,11 +81,24 @@ function wbcom_essential_product_catalog_register_routes() {
 		array(
 			'methods'             => 'GET',
 			'callback'            => 'wbcom_essential_product_catalog_get_categories',
-			'permission_callback' => '__return_true',
+			'permission_callback' => 'wbcom_essential_product_catalog_public_permission',
 		)
 	);
 }
 add_action( 'rest_api_init', 'wbcom_essential_product_catalog_register_routes' );
+
+/**
+ * Permission callback for public product catalog endpoints.
+ *
+ * Returns true by default so the public storefront block can fetch the
+ * same published products a guest sees in the EDD archive. Site owners
+ * that need to restrict access can hook the filter below.
+ *
+ * @return bool|WP_Error
+ */
+function wbcom_essential_product_catalog_public_permission() {
+	return apply_filters( 'wbcom_essential_product_catalog_public_permission', true );
+}
 
 /**
  * GET /wbcom/v1/products
@@ -99,7 +112,7 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 	$args = array(
 		'post_type'      => 'download',
 		'post_status'    => 'publish',
-		'posts_per_page' => min( $request['per_page'], 48 ),
+		'posts_per_page' => max( 1, min( $request['per_page'], 48 ) ),
 		'paged'          => $request['page'],
 		'order'          => $request['order'],
 	);
@@ -120,19 +133,29 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 		$args['s'] = $request['search'];
 	}
 
-	// Sort.
+	// Sort — use named meta_query clauses to avoid JOIN conflicts with price filter.
 	switch ( $request['orderby'] ) {
 		case 'price':
-			$args['meta_key'] = 'edd_price'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-			$args['orderby']  = 'meta_value_num';
+			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'price_clause' => array(
+					'key'  => 'edd_price',
+					'type' => 'NUMERIC',
+				),
+			);
+			$args['orderby'] = array( 'price_clause' => $request['order'] );
 			break;
 		case 'popular':
-			$args['meta_key'] = '_edd_download_sales'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-			$args['orderby']  = 'meta_value_num';
-			$args['order']    = 'DESC';
+			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'sales_clause' => array(
+					'key'  => '_edd_download_sales',
+					'type' => 'NUMERIC',
+				),
+			);
+			$args['orderby'] = array( 'sales_clause' => 'DESC' );
+			$args['order']   = 'DESC';
 			break;
 		default:
-			$args['orderby'] = $request['orderby'];
+			$args['orderby'] = ( 'date' === $request['orderby'] ) ? 'date' : 'title';
 	}
 
 	// Price range filter via meta_query.
@@ -141,11 +164,24 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 		$price_query = array( 'relation' => 'AND' );
 		switch ( $price_range ) {
 			case 'free':
-				$price_query[] = array(
-					'key'     => 'edd_price',
-					'value'   => 0,
-					'compare' => '=',
-					'type'    => 'NUMERIC',
+				// Free products may have edd_price=0, empty string, or no meta at all.
+				$price_query = array(
+					'relation' => 'OR',
+					array(
+						'key'     => 'edd_price',
+						'value'   => 0,
+						'compare' => '=',
+						'type'    => 'NUMERIC',
+					),
+					array(
+						'key'     => 'edd_price',
+						'value'   => '',
+						'compare' => '=',
+					),
+					array(
+						'key'     => 'edd_price',
+						'compare' => 'NOT EXISTS',
+					),
 				);
 				break;
 			case 'under25':
@@ -180,14 +216,23 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 				break;
 		}
 		if ( isset( $args['meta_query'] ) ) {
-			$args['meta_query'][] = $price_query; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'relation' => 'AND',
+				$args['meta_query'],
+				$price_query,
+			);
 		} else {
-			$args['meta_query'] = array( $price_query ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$args['meta_query'] = $price_query; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		}
 	}
 
 	$query    = new WP_Query( $args );
 	$products = array();
+
+	// Prime meta cache to avoid N+1 queries in the format loop.
+	if ( ! empty( $query->posts ) ) {
+		update_meta_cache( 'post', wp_list_pluck( $query->posts, 'ID' ) );
+	}
 
 	foreach ( $query->posts as $post ) {
 		$products[] = wbcom_essential_product_catalog_format_product( $post );
@@ -217,9 +262,21 @@ function wbcom_essential_product_catalog_format_product( $post ) {
 	if ( function_exists( 'edd_has_variable_prices' ) && edd_has_variable_prices( $post->ID ) ) {
 		$prices  = edd_get_variable_prices( $post->ID );
 		$amounts = wp_list_pluck( $prices, 'amount' );
-		$min     = min( $amounts );
-		$max     = max( $amounts );
-		$price   = html_entity_decode( edd_currency_filter( edd_format_amount( $min ) ) . ' – ' . edd_currency_filter( edd_format_amount( $max ) ) );
+		$amounts = array_filter( $amounts, 'is_numeric' );
+		if ( ! empty( $amounts ) ) {
+			$min   = min( $amounts );
+			$max   = max( $amounts );
+			$price = html_entity_decode( edd_currency_filter( edd_format_amount( $min ) ) . ' – ' . edd_currency_filter( edd_format_amount( $max ) ) );
+		} else {
+			// Variable pricing enabled but no tiers — fall back to base price.
+			$amount = function_exists( 'edd_get_download_price' ) ? edd_get_download_price( $post->ID ) : 0;
+			if ( (float) $amount > 0 ) {
+				$price = html_entity_decode( edd_currency_filter( edd_format_amount( $amount ) ) );
+			} else {
+				$price   = 'Free';
+				$is_free = true;
+			}
+		}
 	} elseif ( function_exists( 'edd_get_download_price' ) ) {
 		$amount = edd_get_download_price( $post->ID );
 		if ( (float) $amount > 0 ) {
@@ -242,7 +299,7 @@ function wbcom_essential_product_catalog_format_product( $post ) {
 		'title'   => $post->post_title,
 		'excerpt' => $excerpt,
 		'url'     => get_permalink( $post->ID ),
-		'image'   => get_the_post_thumbnail_url( $post->ID, 'large' ),
+		'image'   => get_the_post_thumbnail_url( $post->ID, 'large' ) ?: '',
 		'price'   => $price,
 		'is_free' => $is_free,
 	);

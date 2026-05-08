@@ -1,0 +1,20 @@
+/* ==========================================================================
+   CTA Section Block — Editor-only Styles
+   ========================================================================== */
+
+/* RichText spans render inline in editor — force block display */
+.wp-block-wbcom-essential-cta .wbe-cta__heading,
+.wp-block-wbcom-essential-cta .wbe-cta__description {
+	display: block;
+}
+
+/* Button span in editor looks like a real button */
+.wp-block-wbcom-essential-cta .wbe-cta__btn {
+	cursor: text;
+	user-select: text;
+}
+
+/* Visual hint that the action area is separate */
+.wp-block-wbcom-essential-cta .wbe-cta__action {
+	flex-shrink: 0;
+}

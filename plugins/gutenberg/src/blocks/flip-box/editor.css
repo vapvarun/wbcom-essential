@@ -1,0 +1,52 @@
+/**
+ * Flip Box Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Editor: disable CSS hover flip so user can click toggle instead */
+.block-editor-block-list__block .wbe-flip-box--horizontal:hover .wbe-flip-box__inner,
+.block-editor-block-list__block .wbe-flip-box--horizontal:focus-within .wbe-flip-box__inner,
+.block-editor-block-list__block .wbe-flip-box--vertical:hover .wbe-flip-box__inner,
+.block-editor-block-list__block .wbe-flip-box--vertical:focus-within .wbe-flip-box__inner {
+	/* Let the inline style set by React control the transform in the editor */
+	transform: var( --wbe-editor-flip-transform, none );
+}
+
+/* Front / Back toggle bar */
+.wbe-flip-box__editor-toggle {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	z-index: 10;
+	display: flex;
+	gap: 4px;
+	background: rgba( 0, 0, 0, 0.5 );
+	padding: 4px;
+	border-radius: 6px;
+}
+
+.wbe-flip-box__toggle-btn {
+	padding: 4px 12px;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: #fff;
+	font-size: 0.75rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+.wbe-flip-box__toggle-btn.is-active {
+	background: rgba( 255, 255, 255, 0.25 );
+}
+
+.wbe-flip-box__toggle-btn:hover {
+	background: rgba( 255, 255, 255, 0.2 );
+}
+
+/* Make inner div transition-less in editor for instant preview switch */
+.block-editor-block-list__block .wbe-flip-box__inner {
+	transition: transform 0.3s ease;
+}

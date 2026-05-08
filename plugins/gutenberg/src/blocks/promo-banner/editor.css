@@ -1,0 +1,16 @@
+/**
+ * Promo Banner Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* Ensure RichText spans render correctly in the editor */
+.wbe-promo-banner .wbe-promo-banner__btn {
+	pointer-events: none;
+	display: inline-block;
+}
+
+/* Keep split layout image at a fixed editor height */
+.editor-styles-wrapper .wbe-promo-banner--split .wbe-promo-banner__image-pane {
+	min-height: 200px;
+}

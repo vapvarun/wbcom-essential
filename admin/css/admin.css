@@ -454,10 +454,11 @@
 	font-size: 14px;
 }
 
+/* Single focus ring via box-shadow — visible to keyboard + mouse, clears WCAG 2.4.7. */
 .wbcom-license-content input[type="text"]:focus {
 	outline: none;
 	border-color: #2c5282;
-	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.1);
+	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.25);
 }
 
 .wbcom-license-content .description {
@@ -545,10 +546,11 @@
 	font-size: 14px;
 }
 
+/* Single focus ring via box-shadow — visible to keyboard + mouse, clears WCAG 2.4.7. */
 .wbcom-tab-content select:focus {
 	outline: none;
 	border-color: #2c5282;
-	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.1);
+	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.25);
 }
 
 .wbcom-tab-content .description {

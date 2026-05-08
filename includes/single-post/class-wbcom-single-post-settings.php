@@ -29,18 +29,28 @@ class Wbcom_Single_Post_Settings {
 	 * Initialize hooks.
 	 */
 	public function __construct() {
-		$this->template_choices = array(
-			''        => __( 'None (Use Theme Default)', 'wbcom-essential' ),
-			'classic' => __( 'Classic (Content + Sidebar)', 'wbcom-essential' ),
-			'magazine' => __( 'Magazine (Full-Width Hero)', 'wbcom-essential' ),
-			'minimal' => __( 'Minimal (Centered, Clean)', 'wbcom-essential' ),
-			'modern'  => __( 'Modern (Progress Bar + ToC)', 'wbcom-essential' ),
-		);
-
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post_post', array( $this, 'save_meta_box' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_meta_box_styles' ) );
+	}
+
+	/**
+	 * Get template choices (lazy-loaded to avoid early textdomain calls).
+	 *
+	 * @return array
+	 */
+	public function get_template_choices() {
+		if ( empty( $this->template_choices ) ) {
+			$this->template_choices = array(
+				''         => __( 'None (Use Theme Default)', 'wbcom-essential' ),
+				'classic'  => __( 'Classic (Content + Sidebar)', 'wbcom-essential' ),
+				'magazine' => __( 'Magazine (Full-Width Hero)', 'wbcom-essential' ),
+				'minimal'  => __( 'Minimal (Centered, Clean)', 'wbcom-essential' ),
+				'modern'   => __( 'Modern (Progress Bar + ToC)', 'wbcom-essential' ),
+			);
+		}
+		return $this->template_choices;
 	}
 
 	/**
@@ -86,7 +96,7 @@ class Wbcom_Single_Post_Settings {
 	public function render_template_field() {
 		$current = get_option( 'wbcom_essential_single_post_template', '' );
 		echo '<select name="wbcom_essential_single_post_template" id="wbcom_essential_single_post_template">';
-		foreach ( $this->template_choices as $value => $label ) {
+		foreach ( $this->get_template_choices() as $value => $label ) {
 			echo '<option value="' . esc_attr( $value ) . '"' . selected( $current, $value, false ) . '>' . esc_html( $label ) . '</option>';
 		}
 		echo '</select>';
@@ -203,12 +213,13 @@ class Wbcom_Single_Post_Settings {
 		echo '</div>';
 
 		$global = get_option( 'wbcom_essential_single_post_template', '' );
-		if ( $global && isset( $this->template_choices[ $global ] ) ) {
+		$choices = $this->get_template_choices();
+		if ( $global && isset( $choices[ $global ] ) ) {
 			echo '<p class="wbcom-spt-global-note">';
 			printf(
 				/* translators: %s: template name */
 				esc_html__( 'Site default: %s', 'wbcom-essential' ),
-				'<strong>' . esc_html( $this->template_choices[ $global ] ) . '</strong>'
+				'<strong>' . esc_html( $choices[ $global ] ) . '</strong>'
 			);
 			echo '</p>';
 		}

@@ -8,62 +8,124 @@ module.exports = function (grunt) {
 	// Load webpack task
 	grunt.loadNpmTasks('grunt-webpack');
 
-	// Project configuration
-	var pluginSlug = 'wbcom-essential';
-	var pluginVersion = '4.3.0';
+	// Project configuration.
+	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
+	var pluginSlug    = 'wbcom-essential';
+	var pluginVersion = '4.5.0';
 
 	grunt.initConfig(
 		{
 			pkg: grunt.file.readJSON('package.json'),
 
-			// Clean dist folder
+			// Clean dist folder.
 			clean: {
 				dist: ['dist/'],
 				post: ['dist/' + pluginSlug + '/']
 			},
 
-			// Copy files to dist
+			// Copy production files to dist/.
+			//
+			// Strategy: SHIP EVERYTHING BY DEFAULT, then blacklist only
+			// dev-only artefacts. This is deliberate — the previous
+			// extension-whitelist approach silently dropped any asset type
+			// not explicitly listed (fonts, webp, mp4, etc.), breaking
+			// styling on live sites. With an "everything + blacklist" model,
+			// a new file type added to the repo ships automatically; only
+			// known dev paths are stripped.
+			//
+			// If you need to exclude something new, add it to the BLACKLIST
+			// below. NEVER use bare prefix globs like `!**/LICENSE*` or
+			// `!**/README*` — those can match legitimate code files like
+			// `license.js`, `license-control.php`, or (on case-insensitive
+			// filesystems) the WordPress `readme.txt`.
 			copy: {
 				dist: {
 					files: [
 						{
 							expand: true,
+							dot: true, // ensure dotfile excludes below take effect
 							src: [
-								// Main plugin files
-								'*.php',
-								'readme.txt',
-								// Admin
-								'admin/**',
-								// Assets
-								'assets/**',
-								// Build folder (compiled blocks)
-								'build/**',
-								// Includes
-								'includes/**',
-								// Languages
-								'languages/**',
-								// License
-								'license/**',
-								// Loader
-								'loader.php',
-								// Plugins (Elementor + Gutenberg)
-								'plugins/**/*.php',
-								'plugins/**/*.css',
-								'plugins/**/*.js',
-								'plugins/**/*.json',
-								'plugins/**/*.png',
-								'plugins/**/*.jpg',
-								'plugins/**/*.svg',
-								'plugins/**/*.gif',
-								// Exclude block src folders (already in build)
-								'!plugins/gutenberg/blocks/*/src/**',
-								'!plugins/gutenberg/blocks/*/node_modules/**',
-								'!plugins/gutenberg/blocks/*/package.json',
-								'!plugins/gutenberg/blocks/*/package-lock.json',
-								// Templates
-								'templates/**',
-								// Vendor (EDD SDK)
-								'vendor/**'
+								// --- Ship everything by default ---
+								'**',
+
+								// --- Blacklist: dev-only top-level folders ---
+								'!docs/**',
+								'!marketing/**',
+								'!plan/**',
+								'!scripts/**',
+								'!tests/**',
+								'!node_modules/**',
+								'!.git/**',
+								'!.github/**',
+								'!.vscode/**',
+								'!.idea/**',
+								'!dist/**',
+
+								// --- Blacklist: block sources (only /build ships) ---
+								// Block JS/PHP sources under plugins/gutenberg/src/blocks/.
+								// Shared runtime CSS (design tokens, base, theme isolation)
+								// was moved to plugins/gutenberg/assets/shared/ so it ships.
+								'!plugins/gutenberg/src/**',
+								// Belt-and-braces: a stray build/ output sometimes appears
+								// under plugins/gutenberg/ from older toolchain runs. Only
+								// the top-level /build/ is canonical for block output.
+								'!plugins/gutenberg/build/**',
+
+								// --- Blacklist: nested node_modules / package manifests ---
+								'!**/node_modules/**',
+								'!**/package.json',
+								'!**/package-lock.json',
+								'!**/yarn.lock',
+								'!**/pnpm-lock.yaml',
+
+								// --- Blacklist: top-level tooling / manifests ---
+								'!composer.json',
+								'!composer.lock',
+								'!gruntfile.js',
+								'!Gruntfile.js',
+								'!phpcs.xml',
+								'!phpcs.xml.dist',
+								'!phpstan.neon',
+								'!phpstan.neon.dist',
+								'!phpunit.xml',
+								'!phpunit.xml.dist',
+								'!webpack.config.js',
+								'!webpack.config.*.js',
+								'!rollup.config.js',
+								'!babel.config.js',
+								'!jest.config.js',
+								'!playwright.config.*',
+
+								// --- Blacklist: docs/markdown anywhere in tree ---
+								'!**/*.md',
+								'!**/*.markdown',
+
+								// --- Blacklist: sourcemaps + editor/os junk ---
+								'!**/*.map',
+								'!**/.DS_Store',
+								'!**/Thumbs.db',
+								'!**/.gitignore',
+								'!**/.gitattributes',
+								'!**/.gitkeep',
+								'!**/.editorconfig',
+								'!**/.eslintrc*',
+								'!**/.eslintignore',
+								'!**/.prettierrc*',
+								'!**/.prettierignore',
+								'!**/.stylelintrc*',
+								'!**/.babelrc*',
+								'!**/.browserslistrc',
+								'!**/.nvmrc',
+								'!**/.env',
+								'!**/.env.*',
+
+								// IMPORTANT: Do NOT blacklist `**/LICENSE*`,
+								// `**/LICENCE*`, `**/CHANGELOG*`, `**/CONTRIBUTING*`,
+								// or `**/README*` — those could match legitimate code
+								// files (e.g. vendor/.../license.js,
+								// includes/license-control.php) and, on
+								// case-insensitive filesystems, the WordPress
+								// `readme.txt` (which MUST ship).
 							],
 							dest: 'dist/' + pluginSlug + '/'
 						}
@@ -148,84 +210,11 @@ module.exports = function (grunt) {
 				}
 			},
 
-			// Webpack for Gutenberg blocks
-			webpack: {
-				blocks: {
-					mode: 'production',
-					entry: {
-						'index': './plugins/gutenberg/blocks/branding/src/index.js',
-						'style': './plugins/gutenberg/blocks/branding/src/style.scss',
-						'editor': './plugins/gutenberg/blocks/branding/src/editor.scss',
-					},
-					output: {
-						path: require('path').resolve(__dirname, 'plugins/gutenberg/blocks/branding/build'),
-						filename: (pathData) => {
-							const name = pathData.chunk.name;
-							if (name === 'index') return 'index.js';
-							return '[name].js'; // This shouldn't happen for CSS-only entries
-						},
-					},
-					module: {
-						rules: [
-							{
-								test: /\.js$/,
-								exclude: /node_modules/,
-								use: {
-									loader: 'babel-loader',
-									options: {
-										presets: ['@babel/preset-env', '@babel/preset-react'],
-									},
-								},
-							},
-							{
-								test: /\.scss$/,
-								use: [
-									require('mini-css-extract-plugin').loader,
-									'css-loader',
-									'sass-loader',
-								],
-							},
-							{
-								test: /\.css$/,
-								use: [
-									require('mini-css-extract-plugin').loader,
-									'css-loader',
-								],
-							},
-						],
-					},
-					plugins: [
-						new (require('mini-css-extract-plugin'))({
-							filename: (pathData) => {
-								const name = pathData.chunk.name;
-								if (name === 'editor') return 'editor.css';
-								if (name === 'style') return 'style.css';
-								return '[name].css';
-							},
-						}),
-						new (require('clean-webpack-plugin').CleanWebpackPlugin)({
-							cleanOnceBeforeBuildPatterns: ['**/*'],
-						}),
-					],
-					externals: {
-						'react': 'React',
-						'react-dom': 'ReactDOM',
-						'@wordpress/blocks': 'wp.blocks',
-						'@wordpress/i18n': 'wp.i18n',
-						'@wordpress/element': 'wp.element',
-						'@wordpress/block-editor': 'wp.blockEditor',
-						'@wordpress/components': 'wp.components',
-						'@wordpress/data': 'wp.data',
-						'@wordpress/api-fetch': 'wp.apiFetch',
-					},
-				}
-			}
 		}
 	);
 
 	// register tasks
 	grunt.registerTask( 'default', ['checktextdomain', 'makepot'] );
-	grunt.registerTask( 'build-blocks', ['webpack:blocks'] );
 	grunt.registerTask( 'i18n', ['checktextdomain', 'makepot'] );
 	grunt.registerTask( 'dist', ['clean:dist', 'copy:dist', 'compress:dist', 'clean:post'] );
 	grunt.registerTask( 'release', ['i18n', 'dist'] );

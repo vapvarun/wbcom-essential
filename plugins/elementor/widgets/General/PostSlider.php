@@ -31,11 +31,11 @@ class PostSlider extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/library/slick.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wb-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/slider.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbe-swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/swiper-base.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wb-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/slider.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
 
-		wp_register_script( 'wb-lib-slick', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/slick.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wb-post-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/post-slider.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );	
+		wp_register_script( 'swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-post-slider', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/post-slider.js', array( 'jquery', 'swiper' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -77,14 +77,14 @@ class PostSlider extends \Elementor\Widget_Base {
 	 * Get dependent script.
 	 */
 	public function get_script_depends() {
-		return array( 'wb-lib-slick', 'wb-post-slider' );
+		return array( 'wb-post-slider' );
 	}
 
 	/**
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {
-		return array( 'wb-lib-slick', 'wb-slider', 'elementor-icons-fa-solid', 'elementor-icons-fa-regular' );
+		return array( 'wb-slider', 'elementor-icons-fa-solid', 'elementor-icons-fa-regular' );
 	}
 
 	/**
@@ -373,7 +373,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} .wbcom-slider-inner'        => 'height: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .slick-slide'             => 'min-height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .swiper-slide'              => 'min-height: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .wbcom-slider-text-wrapper' => 'height: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .wbcom-slider-loader'       => 'height: {{SIZE}}{{UNIT}};',
 				),
@@ -1341,8 +1341,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-prev' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-slider .slick-next' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -1354,8 +1354,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => 'rgba(0,0,0,0)',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-prev' => 'background-color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-slider .slick-next' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1376,8 +1376,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-prev:hover' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-slider .slick-next:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next:hover' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -1389,8 +1389,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => 'rgba(0,0,0,0)',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-prev:hover' => 'background-color: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-slider .slick-next:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next:hover' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1415,8 +1415,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 30,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-prev' => 'font-size: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-slider .slick-next' => 'font-size: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev' => 'font-size: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next' => 'font-size: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1431,8 +1431,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 60,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-prev' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-slider .slick-next' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next' => 'height: {{VALUE}}px;width: {{VALUE}}px;line-height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1442,7 +1442,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'arrow_shadow',
 				'label'    => esc_html__( 'Box Shadow', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcom-slider .slick-next,{{WRAPPER}} .wbcom-slider .slick-prev',
+				'selector' => '{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next,{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev',
 			)
 		);
 
@@ -1453,8 +1453,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-slider .slick-next' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .wbcom-slider .slick-prev' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1469,8 +1469,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 0,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-next' => 'right: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-slider .slick-prev' => 'left: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-next' => 'right: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .elementor-swiper-button-prev' => 'left: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1537,7 +1537,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-thumbnail-dots li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1549,7 +1549,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-thumbnail-dots li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1631,7 +1631,7 @@ class PostSlider extends \Elementor\Widget_Base {
 					'size' => 100,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-thumbnail-dots li' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide' => 'width: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1662,7 +1662,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 0.1,
 				'default'   => 1,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-thumbnail-dots li img' => 'opacity: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img' => 'opacity: {{VALUE}};',
 				),
 			)
 		);
@@ -1672,7 +1672,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'nav_thumbnail_border',
 				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots li img',
+				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img',
 			)
 		);
 
@@ -1683,7 +1683,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-thumbnail-dots li img' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1693,7 +1693,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'nav_thumbnail_shadow',
 				'label'    => esc_html__( 'Shadow', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots li img',
+				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img',
 			)
 		);
 
@@ -1716,8 +1716,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 0.1,
 				'default'   => 1,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-thumbnail-dots li.slick-active img' => 'opacity: {{VALUE}};',
-					'{{WRAPPER}} .wbcom-thumbnail-dots li img:hover' => 'opacity: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide-thumb-active img' => 'opacity: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img:hover' => 'opacity: {{VALUE}};',
 				),
 			)
 		);
@@ -1727,7 +1727,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'nav_thumbnail_border_hover',
 				'label'    => esc_html__( 'Border', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots li.slick-active img,{{WRAPPER}} .wbcom-thumbnail-dots li img:hover',
+				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide-thumb-active img,{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img:hover',
 			)
 		);
 
@@ -1738,8 +1738,8 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .wbcom-thumbnail-dots li.slick-active img' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .wbcom-thumbnail-dots li img:hover' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide-thumb-active img' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img:hover' => 'border-top-left-radius: {{TOP}}{{UNIT}};border-top-right-radius: {{RIGHT}}{{UNIT}};border-bottom-right-radius: {{BOTTOM}}{{UNIT}};border-bottom-left-radius: {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1749,7 +1749,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'nav_thumbnail_shadow_hover',
 				'label'    => esc_html__( 'Shadow', 'wbcom-essential' ),
-				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots li.slick-active img,{{WRAPPER}} .wbcom-thumbnail-dots li img:hover',
+				'selector' => '{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide-thumb-active img,{{WRAPPER}} .wbcom-thumbnail-dots .swiper-slide img:hover',
 			)
 		);
 
@@ -1774,7 +1774,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-dots li button:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1789,8 +1789,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 20,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-dots li button:before' => 'font-size: {{VALUE}}px !important;line-height: {{VALUE}}px !important;width: {{VALUE}}px;height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-slider .slick-dots li button' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .swiper-pagination-bullet' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1805,7 +1804,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 2,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-dots li' => 'margin-left: {{VALUE}}px !important;margin-right: {{VALUE}}px !important;',
+					'{{WRAPPER}} .wbcom-slider .swiper-pagination-bullet' => 'margin-left: {{VALUE}}px !important;margin-right: {{VALUE}}px !important;',
 				),
 			)
 		);
@@ -1820,7 +1819,7 @@ class PostSlider extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 20,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-slider .slick-dots' => 'bottom: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-slider .swiper-pagination' => 'bottom: {{VALUE}}px;',
 				),
 			)
 		);
@@ -2033,143 +2032,199 @@ class PostSlider extends \Elementor\Widget_Base {
 			)
 		);
 
-		if ($custom_query->have_posts()) { ?>
-			<div class="wbcom-slider-wrapper <?php if ($settings['hide_nav']) { echo esc_attr( 'hide-nav' ); } ?>">
-				<div class="wbcom-slider-loader <?php if (empty($settings['loader_image']['url'])) { ?>wbcom-css3-loader<?php } ?>" style="<?php if (!empty($settings['loader_image']['url'])) { echo 'background-image:url(' . esc_url( $settings['loader_image']['url'] ) . ');'; } ?>"></div>
-				<div id="wbcom-slider-<?php echo esc_attr($wbcomslider_slider_id); ?>" class="wbcom-slider" data-prv="<?php echo isset( $settings['arrow_prev_icon']['value'] ) ? esc_attr( $settings['arrow_prev_icon']['value'] ) : ''; ?>" data-nxt="<?php echo isset( $settings['arrow_next_icon']['value'] ) ? esc_attr( $settings['arrow_next_icon']['value'] ) : ''; ?>"  data-autoplay="<?php if ($settings['autoplay']) { echo 'true'; } else { echo 'false'; } ?>" data-duration="<?php echo esc_attr($settings['autoplay_duration']); ?>000" data-nav="<?php if ($settings['nav_arrows']) { echo 'true'; } else { echo 'false'; } ?>" data-dots="<?php if ($settings['nav_dots']) { echo 'true'; } else { echo 'false'; } ?>" data-navthumbnails="<?php echo esc_attr($settings['nav_thumbnails']); ?>" data-rtl="<?php if (is_rtl()) { echo 'true'; } else { echo 'false'; } ?>" data-slideanim="<?php echo esc_attr($settings['slide_anim']); ?>" data-speed="<?php echo esc_attr($settings['slide_anim_duration']); ?>">
-					<?php while($custom_query->have_posts()) : $custom_query->the_post(); ?>
-					<?php 
-					if (has_post_thumbnail()) {
-						$image_id = get_post_thumbnail_id();
-						$thumb_url_array = wp_get_attachment_image_src($image_id, $settings['nav_thumbnail_size'], true);
-						$thumb_url = $thumb_url_array[0];
-						$image_url_array = wp_get_attachment_image_src($image_id, 'full', true);
-						$image_url = $image_url_array[0];
-					} else {
-						$thumb_url = wp_get_attachment_image_url( $settings['default_image']['id'], 'nav_thumbnail_size' );
-						$image_url = wp_get_attachment_image_url( $settings['default_image']['id'], 'full' );
-					}
-					?>
-					<div class="wbcom-slick-thumb" data-thumbnail="<?php echo esc_url($thumb_url); ?>" data-alt="<?php the_title_attribute(); ?>>">
-						<div class="wbcom-slider-inner animated none <?php echo esc_attr( $settings['bg_entrance_animation'] ); ?>" style="background-image:url(<?php echo esc_url($image_url); ?>);background-position:<?php echo esc_attr( $settings['image_position'] ); ?>;background-repeat:<?php echo esc_attr( $settings['image_repeat'] ); ?>;background-size:<?php echo esc_attr( $settings['image_bg_size'] ); ?>;transition-duration:<?php echo esc_attr( $settings['bg_entrance_animation_duration'] ); ?>s;"></div>
-						<?php if($settings['display_btn'] != 'yes') { ?>
-						<a class="wbcom-slider-url" href="<?php the_permalink(); ?>"></a>
-						<?php } ?>
-						<div class="wbcom-slider-overlay"></div>
-						<div class="wbcom-slider-text-wrapper">
-							<div class="wbcom-slider-text-box noanim animated <?php echo esc_attr( $settings['entrance_animation_duration'] ); ?> <?php echo esc_attr( $settings['entrance_animation'] ); ?>">
-							<?php if ($settings['display_date'] == 'yes') { ?>
-							<div class="wbcom-slider-date"><?php the_time(get_option('date_format')); ?></div>
+		if ( $custom_query->have_posts() ) {
+			// Build Swiper settings JSON.
+			$swiper_settings = array(
+				'slide_anim'        => $settings['slide_anim'],
+				'speed'             => (int) $settings['slide_anim_duration'],
+				'autoplay'          => ! empty( $settings['autoplay'] ),
+				'autoplay_duration' => (int) $settings['autoplay_duration'] * 1000,
+				'nav_arrows'        => ! empty( $settings['nav_arrows'] ),
+				'nav_dots'          => ! empty( $settings['nav_dots'] ),
+				'nav_thumbnails'    => $settings['nav_thumbnails'],
+				'rtl'               => is_rtl(),
+			);
+
+			// Collect thumbnail data for building the thumbnail Swiper.
+			$slides_data = array();
+			while ( $custom_query->have_posts() ) {
+				$custom_query->the_post();
+				if ( has_post_thumbnail() ) {
+					$image_id        = get_post_thumbnail_id();
+					$thumb_url_array = wp_get_attachment_image_src( $image_id, $settings['nav_thumbnail_size'], true );
+					$thumb_url       = $thumb_url_array[0];
+					$image_url_array = wp_get_attachment_image_src( $image_id, 'full', true );
+					$image_url       = $image_url_array[0];
+				} else {
+					$thumb_url = wp_get_attachment_image_url( $settings['default_image']['id'], 'nav_thumbnail_size' );
+					$image_url = wp_get_attachment_image_url( $settings['default_image']['id'], 'full' );
+				}
+				// Pre-compute the trimmed excerpt while in the loop context.
+				$trimmed_excerpt = '';
+				if ( get_the_excerpt() && ! empty( $settings['excerpt_length'] ) && 0 !== (int) $settings['excerpt_length'] ) {
+					$trimmed_excerpt = wba_excerpt( $settings['excerpt_length'] );
+				}
+				$slides_data[] = array(
+					'thumb_url'        => $thumb_url,
+					'image_url'        => $image_url,
+					'title'            => get_the_title(),
+					'title_attr'       => get_the_title(),
+					'permalink'        => get_the_permalink(),
+					'date'             => get_the_time( get_option( 'date_format' ) ),
+					'excerpt'          => get_the_excerpt(),
+					'trimmed_excerpt'  => $trimmed_excerpt,
+				);
+			}
+			wp_reset_postdata();
+
+			$dir_attr = is_rtl() ? ' dir="rtl"' : '';
+			?>
+			<div class="wbcom-slider-wrapper <?php echo ! empty( $settings['hide_nav'] ) ? esc_attr( 'hide-nav' ) : ''; ?>">
+				<div class="wbcom-slider-loader <?php echo empty( $settings['loader_image']['url'] ) ? 'wbcom-css3-loader' : ''; ?>" style="<?php echo ! empty( $settings['loader_image']['url'] ) ? 'background-image:url(' . esc_url( $settings['loader_image']['url'] ) . ');' : ''; ?>"></div>
+				<div id="wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?>" class="wbcom-slider swiper-container swiper"<?php echo $dir_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-settings="<?php echo esc_attr( wp_json_encode( $swiper_settings ) ); ?>">
+					<div class="swiper-wrapper">
+						<?php foreach ( $slides_data as $slide ) : ?>
+						<div class="swiper-slide">
+							<div class="wbcom-slider-inner animated none <?php echo esc_attr( $settings['bg_entrance_animation'] ); ?>" style="background-image:url(<?php echo esc_url( $slide['image_url'] ); ?>);background-position:<?php echo esc_attr( $settings['image_position'] ); ?>;background-repeat:<?php echo esc_attr( $settings['image_repeat'] ); ?>;background-size:<?php echo esc_attr( $settings['image_bg_size'] ); ?>;transition-duration:<?php echo esc_attr( $settings['bg_entrance_animation_duration'] ); ?>s;"></div>
+							<?php if ( 'yes' !== $settings['display_btn'] ) { ?>
+							<a class="wbcom-slider-url" href="<?php echo esc_url( $slide['permalink'] ); ?>"></a>
 							<?php } ?>
-							<?php
-							if (get_the_title()) {
-								echo '<' . esc_attr( $settings['title_html_tag'] ) . ' class="wbcom-slider-title">' . esc_html( get_the_title() ) . '</' . esc_attr( $settings['title_html_tag'] ) . '>';
-							}
-							?>
-							<?php if ($settings['divider_hide'] != 'yes') { ?>
-							<div class="wbcom-slider-divider-wrapper">
-								<div class="wbcom-slider-divider"></div>
-							</div>
-							<?php } ?>
-							<?php
-							if ((get_the_excerpt()) && (!empty($settings['excerpt_length'])) && ($settings['excerpt_length'] != 0)) {
-								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wba_excerpt is safe
-								echo '<div class="wbcom-slider-desc"><p>' . wba_excerpt($settings['excerpt_length']) . '</p></div>';
-							}
-							if($settings['display_btn']) {
-								echo '<a href="' . esc_url( get_the_permalink() ) . '" class="wbcombtn wbcombtn-primary">' . esc_html( $settings['btn_txt'] ) . '</a>';
-							}
-							?>
+							<div class="wbcom-slider-overlay"></div>
+							<div class="wbcom-slider-text-wrapper">
+								<div class="wbcom-slider-text-box noanim animated <?php echo esc_attr( $settings['entrance_animation_duration'] ); ?> <?php echo esc_attr( $settings['entrance_animation'] ); ?>">
+								<?php if ( 'yes' === $settings['display_date'] ) { ?>
+								<div class="wbcom-slider-date"><?php echo esc_html( $slide['date'] ); ?></div>
+								<?php } ?>
+								<?php
+								if ( $slide['title'] ) {
+									echo '<' . esc_attr( $settings['title_html_tag'] ) . ' class="wbcom-slider-title">' . esc_html( $slide['title'] ) . '</' . esc_attr( $settings['title_html_tag'] ) . '>';
+								}
+								?>
+								<?php if ( 'yes' !== $settings['divider_hide'] ) { ?>
+								<div class="wbcom-slider-divider-wrapper">
+									<div class="wbcom-slider-divider"></div>
+								</div>
+								<?php } ?>
+								<?php
+								if ( ! empty( $slide['trimmed_excerpt'] ) ) {
+									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wba_excerpt output is safe
+									echo '<div class="wbcom-slider-desc"><p>' . $slide['trimmed_excerpt'] . '</p></div>';
+								}
+								if ( ! empty( $settings['display_btn'] ) ) {
+									echo '<a href="' . esc_url( $slide['permalink'] ) . '" class="wbcombtn wbcombtn-primary">' . esc_html( $settings['btn_txt'] ) . '</a>';
+								}
+								?>
+								</div>
 							</div>
 						</div>
-					</div>    
-					<?php endwhile; ?>
-					<?php wp_reset_postdata(); ?>
+						<?php endforeach; ?>
+					</div>
+					<?php if ( ! empty( $settings['nav_dots'] ) && empty( $settings['nav_thumbnails'] ) ) : ?>
+					<div class="swiper-pagination"></div>
+					<?php endif; ?>
+					<?php if ( ! empty( $settings['nav_arrows'] ) ) : ?>
+					<div class="elementor-swiper-button-prev" role="button" tabindex="0" aria-label="<?php esc_attr_e( 'Previous slide', 'wbcom-essential' ); ?>">
+						<?php if ( ! empty( $settings['arrow_prev_icon']['value'] ) ) : ?>
+							<i class="<?php echo esc_attr( $settings['arrow_prev_icon']['value'] ); ?>"></i>
+						<?php else : ?>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44" width="1em" height="1em"><path d="M0,22L22,0l2.1,2.1L4.2,22l19.9,19.9L22,44L0,22L0,22z" fill="currentColor"></path></svg>
+						<?php endif; ?>
+					</div>
+					<div class="elementor-swiper-button-next" role="button" tabindex="0" aria-label="<?php esc_attr_e( 'Next slide', 'wbcom-essential' ); ?>">
+						<?php if ( ! empty( $settings['arrow_next_icon']['value'] ) ) : ?>
+							<i class="<?php echo esc_attr( $settings['arrow_next_icon']['value'] ); ?>"></i>
+						<?php else : ?>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44" width="1em" height="1em"><path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" fill="currentColor"></path></svg>
+						<?php endif; ?>
+					</div>
+					<?php endif; ?>
 				</div>
-				<?php if ( ( $settings['nav_dots'] ) && ( $settings['nav_thumbnails'] ) ) { ?>
-				<div id="wbcom-slider-thumbnails-<?php echo esc_js( $wbcomslider_slider_id ); ?>" class="wbcom-slider-thumbnails <?php echo esc_attr( $settings['nav_thumbnails_position'] ); ?>"></div>
-				<?php } ?>
+				<?php if ( ! empty( $settings['nav_dots'] ) && ! empty( $settings['nav_thumbnails'] ) ) : ?>
+				<div id="wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?>" class="wbcom-slider-thumbnails wbcom-thumbnail-dots swiper-container swiper <?php echo esc_attr( $settings['nav_thumbnails_position'] ); ?>"<?php echo $dir_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="swiper-wrapper">
+						<?php foreach ( $slides_data as $slide ) : ?>
+						<div class="swiper-slide">
+							<img src="<?php echo esc_url( $slide['thumb_url'] ); ?>" alt="<?php echo esc_attr( $slide['title_attr'] ); ?>">
+						</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				<?php endif; ?>
 			</div>
 		<style type="text/css">
 			<?php
-			$viewport_lg = '';
-			if ( empty( $viewport_lg ) ) {
-				$viewport_lg = 1024;
-			}
-			$viewport_md = '';
-			if ( empty( $viewport_md ) ) {
-				$viewport_md = 767;
-			}
+			$viewport_lg = 1024;
+			$viewport_md = 767;
 			?>
 			@media screen and (min-width: <?php echo esc_attr( $viewport_lg + 1 ) . 'px'; ?>) {
 				<?php if ( $settings['nav_arrows_desktop'] ) { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-next {
 					display: none !important;
 				}
 				<?php } else { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
-					display: block !important;
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-next {
+					display: flex !important;
 				}
 				<?php } ?>
 				<?php if ( $settings['nav_dots_desktop'] ) { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .swiper-pagination,
 				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
 					display: none !important;
 				}
 				<?php } else { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .swiper-pagination,
 				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
-					display: block !important;
+					display: flex !important;
 				}
 				<?php } ?>
 			}
 			@media only screen and (max-width: <?php echo esc_attr( $viewport_lg ) . 'px'; ?>) {
 				<?php if ( $settings['nav_arrows_tablet'] ) { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-next {
 					display: none !important;
 				}
 				<?php } else { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
-					display: block !important;
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-next {
+					display: flex !important;
 				}
 				<?php } ?>
 				<?php if ( $settings['nav_dots_tablet'] ) { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .swiper-pagination,
 				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
 					display: none !important;
 				}
 				<?php } else { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .swiper-pagination,
 				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
-					display: block !important;
+					display: flex !important;
 				}
 				<?php } ?>
 			}
 			@media screen and (max-width: <?php echo esc_attr( $viewport_md ) . 'px'; ?>) {
 				<?php if ( $settings['nav_arrows_mobile'] ) { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-next {
 					display: none !important;
 				}
 				<?php } else { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-prev,
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-next {
-					display: block !important;
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-prev,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .elementor-swiper-button-next {
+					display: flex !important;
 				}
 				<?php } ?>
 				<?php if ( $settings['nav_dots_mobile'] ) { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .swiper-pagination,
 				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
 					display: none !important;
 				}
 				<?php } else { ?>
-				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .slick-dots,
+				#wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?> .swiper-pagination,
 				#wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?> {
-					display: block !important;
+					display: flex !important;
 				}
 				<?php } ?>
 			}

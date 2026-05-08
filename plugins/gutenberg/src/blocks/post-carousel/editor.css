@@ -1,0 +1,18 @@
+/**
+ * Post Carousel Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+/* ServerSideRender loading / error states */
+.wbe-post-carousel-editor .components-placeholder {
+	min-height: 120px;
+}
+
+.wbe-post-carousel__loading,
+.wbe-post-carousel__error {
+	min-height: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

@@ -2,112 +2,105 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
-const blocksDir = path.join(__dirname, '..', 'plugins', 'gutenberg', 'blocks');
+const srcBlocksDir = path.join(__dirname, '..', 'plugins', 'gutenberg', 'src', 'blocks');
 const buildDir = path.join(__dirname, '..', 'build', 'blocks');
+const rootDir = path.join(__dirname, '..');
 
-console.log('🔨 Building Gutenberg blocks...\n');
+console.log('🔨 Building Gutenberg V2 blocks...\n');
 
 // Clean and create centralized build directory
 if (fs.existsSync(buildDir)) {
     fs.rmSync(buildDir, { recursive: true, force: true });
 }
 fs.mkdirSync(buildDir, { recursive: true });
-console.log('📁 Created centralized build directory:', buildDir);
+console.log('📁 Created build directory:', buildDir);
 
-// Check if blocks directory exists
-if (!fs.existsSync(blocksDir)) {
-    console.log('❌ Blocks directory not found:', blocksDir);
+// Check if src/blocks directory exists
+if (!fs.existsSync(srcBlocksDir)) {
+    console.log('❌ Source blocks directory not found:', srcBlocksDir);
     process.exit(1);
 }
 
-// Get all block directories
-const blockDirs = fs.readdirSync(blocksDir)
+// Get all block directories (must contain block.json + index.js)
+const blockDirs = fs.readdirSync(srcBlocksDir)
     .filter(dir => {
-        const fullPath = path.join(blocksDir, dir);
-        return fs.statSync(fullPath).isDirectory() && !dir.startsWith('.');
+        const fullPath = path.join(srcBlocksDir, dir);
+        return fs.statSync(fullPath).isDirectory()
+            && !dir.startsWith('.')
+            && fs.existsSync(path.join(fullPath, 'block.json'))
+            && fs.existsSync(path.join(fullPath, 'index.js'));
     });
 
 if (blockDirs.length === 0) {
-    console.log('ℹ️  No blocks found to build.');
-    return;
+    console.log('ℹ️  No V2 blocks found to build.');
+    process.exit(0);
 }
 
-console.log(`📦 Found ${blockDirs.length} block(s): ${blockDirs.join(', ')}\n`);
+console.log(`📦 Found ${blockDirs.length} V2 block(s): ${blockDirs.join(', ')}\n`);
 
-// Build each block
+// Build each block using wp-scripts from the root directory
 let successCount = 0;
 let failureCount = 0;
-let skippedCount = 0;
-const skippedBlocks = [];
+const failedBlocks = [];
 
 blockDirs.forEach(blockName => {
-    const blockPath = path.join(blocksDir, blockName);
-    const packageJsonPath = path.join(blockPath, 'package.json');
-    const blockBuildDir = path.join(blockPath, 'build');
-    const centralizedBlockBuildDir = path.join(buildDir, blockName);
-
-    // Check if package.json exists (skip non-Gutenberg blocks)
-    if (!fs.existsSync(packageJsonPath)) {
-        skippedCount++;
-        skippedBlocks.push(blockName);
-        return;
-    }
+    const blockSrcPath = path.join(srcBlocksDir, blockName);
+    const blockOutputDir = path.join(buildDir, blockName);
 
     console.log(`🏗️  Building ${blockName}...`);
 
     try {
+        // Use wp-scripts build with explicit src and output paths
+        const wpScriptsBin = path.join(rootDir, 'node_modules', '.bin', 'wp-scripts');
+        execFileSync(wpScriptsBin, [
+            'build',
+            `--webpack-src-dir=plugins/gutenberg/src/blocks/${blockName}`,
+            `--output-path=build/blocks/${blockName}`,
+            '--webpack-copy-php',
+        ], {
+            cwd: rootDir,
+            stdio: 'pipe',
+            timeout: 60000,
+        });
 
-        // Change to block directory and run npm run build (dependencies managed at root)
-        process.chdir(blockPath);
-        execSync('npm run build', { stdio: 'inherit' });
-
-        // Copy built files to centralized build directory
-        if (fs.existsSync(blockBuildDir)) {
-            // Create block-specific directory in centralized build
-            if (!fs.existsSync(centralizedBlockBuildDir)) {
-                fs.mkdirSync(centralizedBlockBuildDir, { recursive: true });
-            }
-
-            // Copy all files from block build directory to centralized location
-            const files = fs.readdirSync(blockBuildDir);
-            files.forEach(file => {
-                const srcPath = path.join(blockBuildDir, file);
-                const destPath = path.join(centralizedBlockBuildDir, file);
-                fs.copyFileSync(srcPath, destPath);
-            });
-
-            console.log(`   📋 Copied build files to centralized location`);
-
-            // Clean up individual block build directory
-            fs.rmSync(blockBuildDir, { recursive: true, force: true });
-            console.log(`   🧹 Cleaned up individual build directory`);
+        // Verify block.json was copied
+        const builtBlockJson = path.join(blockOutputDir, 'block.json');
+        if (!fs.existsSync(builtBlockJson)) {
+            const srcBlockJson = path.join(blockSrcPath, 'block.json');
+            fs.copyFileSync(srcBlockJson, builtBlockJson);
         }
 
-        console.log(`   ✅ ${blockName} built successfully`);
-        successCount++;
+        // Copy render.php if it exists
+        const renderPhp = path.join(blockSrcPath, 'render.php');
+        if (fs.existsSync(renderPhp)) {
+            fs.copyFileSync(renderPhp, path.join(blockOutputDir, 'render.php'));
+        }
 
+        console.log(`   ✅ ${blockName}`);
+        successCount++;
     } catch (error) {
-        console.log(`   ❌ Failed to build ${blockName}:`, error.message);
+        const stderr = error.stderr ? error.stderr.toString() : '';
+        const errorLines = stderr.split('\n').filter(l => l.includes('ERROR')).slice(0, 3).join('\n   ');
+        console.log(`   ❌ ${blockName}`);
+        if (errorLines) console.log(`   ${errorLines}`);
+        failedBlocks.push(blockName);
         failureCount++;
     }
-
-    // Change back to root directory
-    process.chdir(path.join(__dirname, '..'));
 });
 
 console.log(`\n📊 Build Summary:`);
 console.log(`   ✅ Successful: ${successCount}`);
 console.log(`   ❌ Failed: ${failureCount}`);
-if (skippedCount > 0) {
-    console.log(`   ⏭️  Skipped: ${skippedCount} (${skippedBlocks.join(', ')})`);
+if (failedBlocks.length > 0) {
+    console.log(`   Failed blocks: ${failedBlocks.join(', ')}`);
 }
 
 if (failureCount > 0) {
-    console.log('\n❌ Some blocks failed to build. Please check the errors above.');
+    console.log('\n⚠️  Some blocks failed to build. Check errors above.');
     process.exit(1);
 } else {
-    console.log('\n🎉 All blocks built successfully!');
-    console.log(`📁 Build files are available in: ${buildDir}`);
+    console.log('\n🎉 All V2 blocks built successfully!');
+    console.log(`📁 Output: ${buildDir}`);
 }

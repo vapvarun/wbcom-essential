@@ -2,11 +2,14 @@
     padding-bottom: 0 !important;
     opacity: 0;
     -webkit-transition: opacity .15s ease-in-out;
-    transition: opacity .15s ease-in-out
+    transition: opacity .15s ease-in-out;
+    overflow: hidden;
+    position: relative
 }
 
-.wbcom-team-carousel .slick-next,
-.wbcom-team-carousel .slick-prev {
+.wbcom-team-carousel .elementor-swiper-button-next,
+.wbcom-team-carousel .elementor-swiper-button-prev {
+    position: absolute;
     top: 50%;
     bottom: 10px;
     color: #fff;
@@ -22,34 +25,53 @@
     line-height: 1;
     border: 0;
     -webkit-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out
+    transition: all .2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer
 }
 
-.wbcom-team-carousel .slick-dots {
+.wbcom-team-carousel .elementor-swiper-button-prev {
+    left: 0
+}
+
+.wbcom-team-carousel .elementor-swiper-button-next {
+    right: 0
+}
+
+.wbcom-team-carousel .elementor-swiper-button-prev svg,
+.wbcom-team-carousel .elementor-swiper-button-next svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor
+}
+
+.wbcom-team-carousel .swiper-pagination {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10
+    z-index: 10;
+    text-align: center
 }
 
-.wbcom-team-carousel .slick-dots li {
+.wbcom-team-carousel .swiper-pagination-bullet {
     margin: 0 1px !important;
-    line-height: 20px;
-    width: 20px
-}
-
-.wbcom-team-carousel .slick-dots li button {
     display: inline-block;
-    background: 0 0 !important
+    width: 20px;
+    height: 20px;
+    background: #000;
+    opacity: 0.25;
+    border-radius: 50%;
+    cursor: pointer
 }
 
-.wbcom-team-carousel .slick-dots li:before {
-    color: #000
+.wbcom-team-carousel .swiper-pagination-bullet-active {
+    opacity: 1
 }
 
-.wbcom-team-carousel .slick-slide {
-    margin: 0 10px 5px;
+.wbcom-team-carousel .swiper-slide {
     opacity: 0;
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
@@ -63,7 +85,8 @@
     transform: scale(0.9, .9)
 }
 
-.wbcom-team-carousel .slick-slide.slick-active {
+.wbcom-team-carousel .swiper-slide.swiper-slide-active,
+.wbcom-team-carousel .swiper-slide.swiper-slide-visible {
     opacity: 1;
     -webkit-transition-delay: .3s;
     transition-delay: .3s;
@@ -81,14 +104,14 @@
     opacity: 1 !important;
 }
 
-.wbcom-team-carousel.noanim .slick-slide {
+.wbcom-team-carousel.noanim .swiper-slide {
     opacity: 1;
     -webkit-transform: none;
     transform: none
 }
 
-.wbcom-team-carousel .slick-next:before,
-.wbcom-team-carousel .slick-prev:before {
+.wbcom-team-carousel .elementor-swiper-button-next:before,
+.wbcom-team-carousel .elementor-swiper-button-prev:before {
     display: none
 }
 

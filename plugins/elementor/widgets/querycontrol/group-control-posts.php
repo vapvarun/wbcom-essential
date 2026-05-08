@@ -4,7 +4,6 @@ namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\QueryControl;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Base;
-use ElementorPro\Core\Utils;
 use WBCOM_ESSENTIAL\ELEMENTOR\ElementorHooks;
 
 

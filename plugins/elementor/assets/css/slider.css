@@ -48,8 +48,8 @@ a.wbcombtn:before {
     z-index: 1
 }
 
-.wbcom-slider .slick-next,
-.wbcom-slider .slick-prev {
+.wbcom-slider .elementor-swiper-button-next,
+.wbcom-slider .elementor-swiper-button-prev {
     background: rgba(255, 255, 255, 0);
     width: 60px;
     height: 60px;
@@ -62,27 +62,21 @@ a.wbcombtn:before {
     color: #fff;
     font-size: 30px;
     line-height: 1;
-    border: 0;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out
 }
 
-.wbcom-slider .slick-next:before,
-.wbcom-slider .slick-prev:before {
-    display: none
-}
-
-.wbcom-slider .slick-next {
+.wbcom-slider .elementor-swiper-button-next {
     right: 0;
     left: auto
 }
 
-.wbcom-slider .slick-prev {
+.wbcom-slider .elementor-swiper-button-prev {
     right: auto;
     left: 0
 }
 
-.wbcom-slider .slick-dots {
+.wbcom-slider .swiper-pagination {
     position: absolute;
     bottom: 20px;
     left: 0;
@@ -91,59 +85,58 @@ a.wbcombtn:before {
     z-index: 10
 }
 
-.wbcom-slider .slick-dots li {
-    margin: 0 2px !important
+.wbcom-slider .swiper-pagination-bullet {
+    margin: 0 2px !important;
+    background-color: #fff;
+    opacity: 0.5
 }
 
-.wbcom-slider .slick-dots li button {
-    display: inline-block;
-    background: 0 0 !important
+.wbcom-slider .swiper-pagination-bullet-active {
+    opacity: 1
 }
 
-.wbcom-slider .slick-dots li button:before {
-    color: #fff
-}
-
-.wbcom-slider.slick-dotted.slick-slider {
+.wbcom-slider.swiper-container {
     padding-bottom: 0 !important
 }
 
-.wbcom-thumbnail-dots {
+.wbcom-slider-thumbnails {
+    overflow: hidden
+}
+
+.wbcom-slider-thumbnails .swiper-wrapper {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    list-style: none;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     margin: 0;
-    padding: 0;
-    overflow-x: auto
+    padding: 0
 }
 
-.wbcom-dots-inside .wbcom-thumbnail-dots {
+.wbcom-dots-inside .wbcom-slider-thumbnails {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
     z-index: 10
 }
 
-.wbcom-dots-outside .wbcom-thumbnail-dots img {
+.wbcom-dots-outside .wbcom-slider-thumbnails img {
     width: 100%;
     height: auto
 }
 
-.wbcom-thumbnail-dots li {
+.wbcom-slider-thumbnails .swiper-slide {
     padding: 0;
-    margin: 0
+    margin: 0;
+    width: auto;
+    flex-shrink: 0
 }
 
-.wbcom-thumbnail-dots li img {
+.wbcom-slider-thumbnails .swiper-slide img {
     padding: 0;
     margin: 0;
     vertical-align: bottom;
@@ -158,22 +151,26 @@ a.wbcombtn:before {
     width: auto
 }
 
-.wbcom-thumbnail-dots li img:hover {
+.wbcom-slider-thumbnails .swiper-slide img:hover {
     opacity: 1
 }
 
-.wbcom-slider-wrapper.hide-nav .wbcom-slider .slick-dots,
-.wbcom-slider-wrapper.hide-nav .wbcom-slider .slick-next,
-.wbcom-slider-wrapper.hide-nav .wbcom-slider .slick-prev,
+.wbcom-slider-thumbnails .swiper-slide-thumb-active img {
+    opacity: 1
+}
+
+.wbcom-slider-wrapper.hide-nav .wbcom-slider .swiper-pagination,
+.wbcom-slider-wrapper.hide-nav .wbcom-slider .elementor-swiper-button-next,
+.wbcom-slider-wrapper.hide-nav .wbcom-slider .elementor-swiper-button-prev,
 .wbcom-slider-wrapper.hide-nav .wbcom-slider-thumbnails {
     opacity: 0;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out
 }
 
-.wbcom-slider-wrapper.hide-nav:hover .wbcom-slider .slick-dots,
-.wbcom-slider-wrapper.hide-nav:hover .wbcom-slider .slick-next,
-.wbcom-slider-wrapper.hide-nav:hover .wbcom-slider .slick-prev,
+.wbcom-slider-wrapper.hide-nav:hover .wbcom-slider .swiper-pagination,
+.wbcom-slider-wrapper.hide-nav:hover .wbcom-slider .elementor-swiper-button-next,
+.wbcom-slider-wrapper.hide-nav:hover .wbcom-slider .elementor-swiper-button-prev,
 .wbcom-slider-wrapper.hide-nav:hover .wbcom-slider-thumbnails {
     opacity: 1
 }
@@ -203,16 +200,7 @@ a.wbcombtn:before {
     position: relative
 }
 
-.wbcom-slider>div {
-    display: none
-}
-
-.wbcom-slider.slick-initialized>div,
-.wbcom-slider>div:first-child {
-    display: block
-}
-
-.wbcom-slider .slick-slide {
+.wbcom-slider .swiper-slide {
     position: relative
 }
 
@@ -360,7 +348,7 @@ a.wbcombtn:before {
     padding: 0 !important
 }
 
-.wbcom-slider .slick-slide .wbcom-slider-desc img {
+.wbcom-slider .swiper-slide .wbcom-slider-desc img {
     width: auto;
     height: auto
 }

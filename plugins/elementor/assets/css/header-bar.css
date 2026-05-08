@@ -485,6 +485,39 @@
 	color: #888;
 }
 
+.site-header--elementor .wbcom-essential-friends-list .notification-content {
+	flex: 1 1 auto;
+}
+
+.site-header--elementor .notification-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: auto;
+	padding-left: 12px;
+}
+
+.site-header--elementor .wbcom-essential-friend-action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 999px;
+	background: #f5f7fb;
+	color: #153045;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.site-header--elementor .wbcom-essential-friend-action:hover {
+	background: #e7eefb;
+	color: #1d76da;
+}
+
+.site-header--elementor .wbcom-essential-friend-action.is-reject:hover {
+	color: #d63638;
+}
+
 .site-header--elementor .notification-footer {
 	position: relative;
 	bottom: 0;
@@ -740,9 +773,19 @@
 	font-size: 16px;
 	width: 100%;
 	height: 76px;
+}
+
+.header-search-wrap--elementor #searchform input[type=text],
+.header-search-wrap--elementor .search-form input[type=search] {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.header-search-wrap--elementor #searchform input[type=text]:focus-visible,
+.header-search-wrap--elementor .search-form input[type=search]:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
 }
 
 .header-search-wrap--elementor #searchform:after,

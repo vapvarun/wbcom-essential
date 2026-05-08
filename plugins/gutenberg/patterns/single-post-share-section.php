@@ -20,7 +20,7 @@ register_block_pattern(
 		'description' => __( 'A share section with text and social media icons.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-single-post' ),
 		'keywords'    => array( 'share', 'social', 'icons', 'media' ),
-		'content'     => '<!-- wp:wbcom-essential/divider {"style":"solid","width":100,"alignment":"left","useThemeColors":true} /-->
+		'content'     => '<!-- wp:separator {"className":"is-style-wide"} --><hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/><!-- /wp:separator -->
 
 <!-- wp:spacer {"height":"24px"} -->
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -34,7 +34,7 @@ register_block_pattern(
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center","width":"50%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%"><!-- wp:wbcom-essential/social-icons {"style":"outline","alignment":"right","useThemeColors":true} /--></div>
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%"><!-- wp:social-links {"className":"is-style-logos-only","layout":{"type":"flex","justifyContent":"right"}} --><ul class="wp-block-social-links is-style-logos-only"><!-- wp:social-link {"url":"#","service":"facebook"} /--><!-- wp:social-link {"url":"#","service":"twitter"} /--><!-- wp:social-link {"url":"#","service":"linkedin"} /--></ul><!-- /wp:social-links --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->',
 	)

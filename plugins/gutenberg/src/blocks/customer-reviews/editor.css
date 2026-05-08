@@ -1,0 +1,9 @@
+/**
+ * Customer Reviews Block - Editor-Only Styles
+ *
+ * @package wbcom-essential
+ */
+
+.wbe-customer-reviews-editor .wp-block-wbcom-essential-customer-reviews {
+	pointer-events: none;
+}

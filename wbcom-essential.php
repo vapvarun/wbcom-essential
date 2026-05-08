@@ -93,7 +93,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		private function __construct() {
 			add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 5 );
 			add_action( 'init', array( $this, 'wbcom_essential_elementor_add_image_sizes' ) );
-			add_action( 'init', array( $this, 'load_textdomain' ) );
+			// Textdomain auto-loaded by WP 6.7+ via plugin headers (Text Domain + Domain Path).
 		}
 
 		/**
@@ -124,11 +124,12 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
 
-			// Include Gutenberg blocks.
-			require_once WBCOM_ESSENTIAL_PATH . '/plugins/gutenberg/wbcom-gutenberg.php';
+			// Gutenberg V2 blocks — registered via BlockRegistrar from build/blocks/.
+			require_once WBCOM_ESSENTIAL_PATH . '/plugins/gutenberg/gutenberg.php';
 
-			// EDD Product Catalog REST API endpoints (powers product-catalog block).
+			// EDD block server-side functions (REST API endpoints + tab renderers).
 			require_once WBCOM_ESSENTIAL_PATH . '/includes/edd-product-catalog-rest.php';
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/edd-account-dashboard-functions.php';
 
 			// Single post template settings and template loader.
 			require_once WBCOM_ESSENTIAL_PATH . '/includes/single-post/class-wbcom-single-post-settings.php';

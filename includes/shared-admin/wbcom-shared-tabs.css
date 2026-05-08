@@ -74,9 +74,9 @@
     background: rgba(44, 82, 130, 0.05);
 }
 
-.wbcom-nav-tab:focus {
-    outline: none;
-    box-shadow: none;
+.wbcom-nav-tab:focus-visible {
+    outline: 2px solid #2c5282;
+    outline-offset: 2px;
 }
 
 .wbcom-nav-tab.nav-tab-active {

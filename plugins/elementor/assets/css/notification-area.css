@@ -64,6 +64,38 @@
     bottom: auto;
 }
 
+#masthead.wbcom-notification-area .reign-friend-request .dropdown-item-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#masthead.wbcom-notification-area .reign-friend-request .item-info {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+#masthead.wbcom-notification-area .reign-friend-request .request-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#masthead.wbcom-notification-area .reign-friend-request .request-button .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #f5f7fb;
+    color: #153045;
+}
+
+#masthead.wbcom-notification-area .reign-friend-request .request-button .btn.reject:hover {
+    color: #d63638;
+}
+
 @media screen and (max-width: 960px) {
     .wbcom-notification-area-navbar>div {
         position: static !important;

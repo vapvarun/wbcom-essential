@@ -79,7 +79,7 @@
 - ProfileCompletion | plugins/elementor/widgets/Buddypress/ProfileCompletion.php:32 | documented
 - GroupGrid | plugins/elementor/widgets/Buddypress/GroupGrid.php:31 | documented
 - HeaderBar | plugins/elementor/widgets/Buddypress/HeaderBar.php:33 | documented
-- MemeberCarousel | plugins/elementor/widgets/Buddypress/MemeberCarousel.php:30 | documented
+- MemberCarousel | plugins/elementor/widgets/Buddypress/MemberCarousel.php:30 | documented
 - ForumsActivity | plugins/elementor/widgets/Buddypress/ForumsActivity.php:32 | documented
 
 ## Admin Classes
