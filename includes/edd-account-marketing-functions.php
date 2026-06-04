@@ -260,10 +260,12 @@ function wbcom_essential_edd_render_offers_section() {
 					<strong class="wbcom-edd-offer__title"><?php echo esc_html( $offer->name ); ?></strong>
 					<span class="wbcom-edd-offer__desc">
 						<?php
+						// "20.00%" reads like a machine; customers read "20%".
+						$offer_rate = preg_replace( '/\.0+(?=\D|$)/', '', edd_format_discount_rate( $offer->type, $offer->amount ) );
 						printf(
 							/* translators: 1: formatted discount amount, 2: discount code. */
 							esc_html__( 'Save %1$s with code %2$s', 'wbcom-essential' ),
-							esc_html( edd_format_discount_rate( $offer->type, $offer->amount ) ),
+							esc_html( $offer_rate ),
 							'<code>' . esc_html( $offer->code ) . '</code>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inline above.
 						);
 						?>
@@ -635,3 +637,4 @@ function wbcom_essential_edd_claim_free_callback( $request ) {
 		)
 	);
 }
+

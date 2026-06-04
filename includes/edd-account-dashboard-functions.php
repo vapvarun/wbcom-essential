@@ -48,6 +48,9 @@ function wbcom_essential_kses_form( $html ) {
 		'data-code'                  => true,
 		'data-copied-label'          => true,
 		'data-tab-link'              => true,
+		// Landmark/live-region roles used by dashboard sections injected via
+		// the wbcom_essential_edd_dashboard_* action hooks.
+		'role'                       => true,
 	);
 
 	$allowed         = wp_kses_allowed_html( 'post' );
@@ -714,6 +717,17 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections 
 	}
 	?>
 	<div class="wbcom-edd-dashboard">
+		<?php
+		/**
+		 * Fires at the very top of the dashboard tab, before the greeting.
+		 * Themes/integrations can inject site-specific content (renewal
+		 * notices, announcements) without forking the plugin.
+		 *
+		 * @since 4.6.0
+		 * @param EDD_Customer|false $customer EDD customer or false.
+		 */
+		do_action( 'wbcom_essential_edd_dashboard_top', $customer );
+		?>
 		<h2 class="wbcom-edd-dashboard__greeting">
 			<?php
 			printf(
@@ -725,6 +739,15 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections 
 		</h2>
 
 		<?php
+		/**
+		 * Fires after the dashboard greeting, before the marketing sections.
+		 * Themes/integrations can inject quick actions or shortcuts here.
+		 *
+		 * @since 4.6.0
+		 * @param EDD_Customer|false $customer EDD customer or false.
+		 */
+		do_action( 'wbcom_essential_edd_dashboard_after_greeting', $customer );
+
 		$sections = is_array( $sections ) ? $sections : array( 'offers', 'whatsnew', 'recommendations' );
 		if ( in_array( 'offers', $sections, true ) ) {
 			wbcom_essential_edd_render_offers_section();
@@ -746,13 +769,14 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections 
 				<span class="wbcom-edd-dashboard__stat-number"><?php echo wp_kses_post( $total_spent ); ?></span>
 				<span class="wbcom-edd-dashboard__stat-label"><?php esc_html_e( 'Total Spent', 'wbcom-essential' ); ?></span>
 			</div>
-			<?php if ( function_exists( 'edd_software_licensing' ) ) : ?>
+			<?php // Zero stats report nothing a customer can act on: skip them. ?>
+			<?php if ( function_exists( 'edd_software_licensing' ) && $license_count > 0 ) : ?>
 			<div class="wbcom-edd-dashboard__stat-card">
 				<span class="wbcom-edd-dashboard__stat-number"><?php echo esc_html( $license_count ); ?></span>
 				<span class="wbcom-edd-dashboard__stat-label"><?php esc_html_e( 'Active Licenses', 'wbcom-essential' ); ?></span>
 			</div>
 			<?php endif; ?>
-			<?php if ( class_exists( 'EDD_Recurring' ) ) : ?>
+			<?php if ( class_exists( 'EDD_Recurring' ) && $sub_count > 0 ) : ?>
 			<div class="wbcom-edd-dashboard__stat-card">
 				<span class="wbcom-edd-dashboard__stat-number"><?php echo esc_html( $sub_count ); ?></span>
 				<span class="wbcom-edd-dashboard__stat-label"><?php esc_html_e( 'Active Subscriptions', 'wbcom-essential' ); ?></span>

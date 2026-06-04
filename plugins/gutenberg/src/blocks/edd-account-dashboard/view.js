@@ -589,7 +589,9 @@
 				return;
 			}
 
-			var copyBtn = event.target.closest( '.wbcom-edd-offer__copy' );
+			// .wbcom-edd-copy-btn: generic copy-to-clipboard hook for content
+			// injected via the wbcom_essential_edd_dashboard_* action hooks.
+			var copyBtn = event.target.closest( '.wbcom-edd-offer__copy, .wbcom-edd-copy-btn' );
 			if ( copyBtn ) {
 				event.preventDefault();
 				copyOfferCode( copyBtn );
