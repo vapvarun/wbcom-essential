@@ -525,6 +525,11 @@
 						owned.className   = 'wbcom-edd-free__owned';
 						owned.textContent = data.message || '';
 						button.parentNode.replaceChild( owned, button );
+						// Analytics-agnostic signal: integrations (GA4 etc.)
+						// subscribe to wbcom:* events; the plugin never tracks.
+						document.dispatchEvent( new CustomEvent( 'wbcom:free-claim', {
+							detail: { downloadId: parseInt( button.dataset.downloadId, 10 ) },
+						} ) );
 						if ( data.download_url ) {
 							window.location.href = data.download_url;
 						}
@@ -555,6 +560,9 @@
 			function onCopied() {
 				button.textContent = copiedLabel;
 				button.classList.add( 'is-copied' );
+				document.dispatchEvent( new CustomEvent( 'wbcom:offer-copy', {
+					detail: { code: code },
+				} ) );
 				setTimeout( function () {
 					button.textContent = originalLabel;
 					button.classList.remove( 'is-copied' );
@@ -595,6 +603,16 @@
 			if ( copyBtn ) {
 				event.preventDefault();
 				copyOfferCode( copyBtn );
+				return;
+			}
+
+			// Upgrade CTAs (pro-counterpart links): emit a neutral signal
+			// before navigation so integrations can record the intent.
+			var upgrade = event.target.closest( '.wbcom-edd-free__upgrade, .wbcom-edd-mini-card--upgrade' );
+			if ( upgrade ) {
+				document.dispatchEvent( new CustomEvent( 'wbcom:upgrade-click', {
+					detail: { url: upgrade.href || '' },
+				} ) );
 			}
 		} );
 
