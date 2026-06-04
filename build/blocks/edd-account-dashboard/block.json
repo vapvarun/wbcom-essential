@@ -24,6 +24,18 @@
       "type": "boolean",
       "default": true
     },
+    "showOffers": {
+      "type": "boolean",
+      "default": true
+    },
+    "showWhatsNew": {
+      "type": "boolean",
+      "default": true
+    },
+    "showRecommendations": {
+      "type": "boolean",
+      "default": true
+    },
     "supportUrl": {
       "type": "string",
       "default": ""

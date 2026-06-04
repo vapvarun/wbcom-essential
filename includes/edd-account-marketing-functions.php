@@ -294,7 +294,7 @@ function wbcom_essential_edd_render_whats_new_section() {
 			'order'          => 'DESC',
 		)
 	);
-	$cards = array();
+	$cards  = array();
 	foreach ( $recent as $download ) {
 		if ( wbcom_essential_edd_user_owns_download( $download->ID ) ) {
 			continue;
@@ -569,7 +569,11 @@ function wbcom_essential_edd_claim_free_callback( $request ) {
 				array(
 					'name'        => get_the_title( $download_id ),
 					'id'          => $download_id,
-					'item_number' => array( 'id' => $download_id, 'options' => array(), 'quantity' => 1 ),
+					'item_number' => array(
+						'id'       => $download_id,
+						'options'  => array(),
+						'quantity' => 1,
+					),
 					'item_price'  => 0.00,
 					'quantity'    => 1,
 					'discount'    => 0.00,

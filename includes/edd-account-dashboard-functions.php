@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Sanitize HTML allowing form elements (input, select, textarea, button, form).
  *
- * wp_kses_post() strips form tags. This extends the post allowlist with
+ * Extends the post allowlist because wp_kses_post() strips form tags. This adds
  * form elements required by the EDD profile editor.
  *
  * @param string $html Raw HTML.
@@ -29,29 +29,39 @@ function wbcom_essential_kses_form( $html ) {
 	// which is why the Copy-license-key button used to render with no
 	// data-copy attribute and silently did nothing.
 	$js_attrs = array(
-		'title'        => true,
-		'data-copy'    => true,
-		'data-confirm' => true,
-		'data-tab'     => true,
-		'data-nonce'   => true,
-		'data-rest-url'=> true,
-		'data-active-tab' => true,
+		'title'                      => true,
+		'data-copy'                  => true,
+		'data-confirm'               => true,
+		'data-tab'                   => true,
+		'data-nonce'                 => true,
+		'data-rest-url'              => true,
+		'data-active-tab'            => true,
 		// Cancellation survey modal.
-		'data-cancel-sub-id'       => true,
-		'data-cancel-sub-name'     => true,
-		'data-cancel-modal-form'   => true,
-		'data-cancel-modal-close'  => true,
+		'data-cancel-sub-id'         => true,
+		'data-cancel-sub-name'       => true,
+		'data-cancel-modal-form'     => true,
+		'data-cancel-modal-close'    => true,
 		'data-cancel-modal-sub-name' => true,
 		// Free-plugins tab: claim button + copy-offer code.
-		'data-download-id'         => true,
-		'data-busy-label'          => true,
-		'data-code'                => true,
-		'data-copied-label'        => true,
-		'data-tab-link'            => true,
+		'data-download-id'           => true,
+		'data-busy-label'            => true,
+		'data-code'                  => true,
+		'data-copied-label'          => true,
+		'data-tab-link'              => true,
 	);
 
-	$allowed           = wp_kses_allowed_html( 'post' );
-	$allowed['form']   = array_merge( array( 'id' => true, 'class' => true, 'action' => true, 'method' => true, 'enctype' => true, 'novalidate' => true ), $js_attrs );
+	$allowed         = wp_kses_allowed_html( 'post' );
+	$allowed['form'] = array_merge(
+		array(
+			'id'         => true,
+			'class'      => true,
+			'action'     => true,
+			'method'     => true,
+			'enctype'    => true,
+			'novalidate' => true,
+		),
+		$js_attrs
+	);
 	// Ensure div/span carry through the modal's data attributes (close on
 	// backdrop click, sub-name placeholder, etc).
 	if ( isset( $allowed['div'] ) && is_array( $allowed['div'] ) ) {
@@ -60,15 +70,85 @@ function wbcom_essential_kses_form( $html ) {
 	if ( isset( $allowed['span'] ) && is_array( $allowed['span'] ) ) {
 		$allowed['span'] = array_merge( $allowed['span'], $js_attrs );
 	}
-	$allowed['input']  = array_merge( array( 'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'placeholder' => true, 'required' => true, 'checked' => true, 'disabled' => true, 'readonly' => true, 'min' => true, 'max' => true, 'step' => true, 'maxlength' => true, 'autocomplete' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['select'] = array_merge( array( 'id' => true, 'name' => true, 'class' => true, 'required' => true, 'disabled' => true, 'multiple' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['option'] = array( 'value' => true, 'selected' => true, 'disabled' => true );
-	$allowed['optgroup'] = array( 'label' => true, 'disabled' => true );
-	$allowed['textarea'] = array_merge( array( 'id' => true, 'name' => true, 'class' => true, 'rows' => true, 'cols' => true, 'placeholder' => true, 'required' => true, 'disabled' => true, 'readonly' => true, 'maxlength' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['button'] = array_merge( array( 'type' => true, 'id' => true, 'name' => true, 'class' => true, 'value' => true, 'disabled' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['label']  = array( 'for' => true, 'class' => true );
-	$allowed['fieldset'] = array( 'class' => true, 'disabled' => true );
-	$allowed['legend'] = array( 'class' => true );
+	$allowed['input']    = array_merge(
+		array(
+			'type'         => true,
+			'id'           => true,
+			'name'         => true,
+			'value'        => true,
+			'class'        => true,
+			'placeholder'  => true,
+			'required'     => true,
+			'checked'      => true,
+			'disabled'     => true,
+			'readonly'     => true,
+			'min'          => true,
+			'max'          => true,
+			'step'         => true,
+			'maxlength'    => true,
+			'autocomplete' => true,
+			'aria-label'   => true,
+		),
+		$js_attrs
+	);
+	$allowed['select']   = array_merge(
+		array(
+			'id'         => true,
+			'name'       => true,
+			'class'      => true,
+			'required'   => true,
+			'disabled'   => true,
+			'multiple'   => true,
+			'aria-label' => true,
+		),
+		$js_attrs
+	);
+	$allowed['option']   = array(
+		'value'    => true,
+		'selected' => true,
+		'disabled' => true,
+	);
+	$allowed['optgroup'] = array(
+		'label'    => true,
+		'disabled' => true,
+	);
+	$allowed['textarea'] = array_merge(
+		array(
+			'id'          => true,
+			'name'        => true,
+			'class'       => true,
+			'rows'        => true,
+			'cols'        => true,
+			'placeholder' => true,
+			'required'    => true,
+			'disabled'    => true,
+			'readonly'    => true,
+			'maxlength'   => true,
+			'aria-label'  => true,
+		),
+		$js_attrs
+	);
+	$allowed['button']   = array_merge(
+		array(
+			'type'       => true,
+			'id'         => true,
+			'name'       => true,
+			'class'      => true,
+			'value'      => true,
+			'disabled'   => true,
+			'aria-label' => true,
+		),
+		$js_attrs
+	);
+	$allowed['label']    = array(
+		'for'   => true,
+		'class' => true,
+	);
+	$allowed['fieldset'] = array(
+		'class'    => true,
+		'disabled' => true,
+	);
+	$allowed['legend']   = array( 'class' => true );
 	// Also carry title + data-confirm through on anchors so the cancel-
 	// subscription link can show its confirm dialog.
 	if ( isset( $allowed['a'] ) && is_array( $allowed['a'] ) ) {
@@ -76,12 +156,53 @@ function wbcom_essential_kses_form( $html ) {
 	}
 
 	// SVG icons used in empty states and nav.
-	$allowed['svg']      = array( 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'aria-hidden' => true, 'class' => true, 'xmlns' => true );
-	$allowed['path']     = array( 'd' => true, 'fill' => true, 'stroke' => true );
-	$allowed['circle']   = array( 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true );
-	$allowed['line']     = array( 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'stroke' => true );
-	$allowed['polyline'] = array( 'points' => true, 'fill' => true, 'stroke' => true );
-	$allowed['rect']     = array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true, 'fill' => true, 'stroke' => true );
+	$allowed['svg']      = array(
+		'width'           => true,
+		'height'          => true,
+		'viewbox'         => true,
+		'fill'            => true,
+		'stroke'          => true,
+		'stroke-width'    => true,
+		'stroke-linecap'  => true,
+		'stroke-linejoin' => true,
+		'aria-hidden'     => true,
+		'class'           => true,
+		'xmlns'           => true,
+	);
+	$allowed['path']     = array(
+		'd'      => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
+	$allowed['circle']   = array(
+		'cx'     => true,
+		'cy'     => true,
+		'r'      => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
+	$allowed['line']     = array(
+		'x1'     => true,
+		'y1'     => true,
+		'x2'     => true,
+		'y2'     => true,
+		'stroke' => true,
+	);
+	$allowed['polyline'] = array(
+		'points' => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
+	$allowed['rect']     = array(
+		'x'      => true,
+		'y'      => true,
+		'width'  => true,
+		'height' => true,
+		'rx'     => true,
+		'ry'     => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
 
 	return wp_kses( $html, $allowed );
 }
@@ -179,7 +300,7 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 		'technical_issues'  => __( 'Had technical issues', 'wbcom-essential' ),
 		'other'             => __( 'Other', 'wbcom-essential' ),
 	);
-	$reason_label = isset( $reason_labels[ $reason_key ] ) ? $reason_labels[ $reason_key ] : __( 'Not specified', 'wbcom-essential' );
+	$reason_label  = isset( $reason_labels[ $reason_key ] ) ? $reason_labels[ $reason_key ] : __( 'Not specified', 'wbcom-essential' );
 
 	// Resolve subscription + customer + product for context.
 	if ( ! class_exists( 'EDD_Subscription' ) ) {
@@ -194,7 +315,8 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 	$product_title = get_the_title( $subscription->product_id );
 
 	// Save as a note on the subscription (admin-visible, audit trail).
-	$note_lines   = array();
+	$note_lines = array();
+	/* translators: %s: Human-readable cancellation reason label. */
 	$note_lines[] = sprintf( __( 'Cancellation reason: %s', 'wbcom-essential' ), $reason_label );
 	if ( $detail ) {
 		$note_lines[] = __( 'Detail:', 'wbcom-essential' ) . ' ' . $detail;
@@ -204,8 +326,8 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 	}
 
 	// Email the site admin.
-	$to      = get_option( 'admin_email' );
-	$site    = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+	$to   = get_option( 'admin_email' );
+	$site = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 	/* translators: %s: Site name. */
 	$subject = sprintf( __( '[%s] Subscription cancellation feedback', 'wbcom-essential' ), $site );
 
@@ -218,15 +340,21 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 		$body .= $detail . "\n";
 	}
 	$body .= "\n== " . __( 'Customer', 'wbcom-essential' ) . " ==\n";
-	$body .= sprintf( "%s <%s>\n", $customer->name ?: '—', $customer->email ?: '—' );
+	$body .= sprintf( "%s <%s>\n", $customer->name ? $customer->name : '-', $customer->email ? $customer->email : '-' );
 	if ( $customer->user_id ) {
+		/* translators: %d: WordPress user ID. */
 		$body .= sprintf( __( 'User ID: %d', 'wbcom-essential' ), $customer->user_id ) . "\n";
 	}
 	$body .= "\n== " . __( 'Subscription', 'wbcom-essential' ) . " ==\n";
+	/* translators: %d: EDD subscription ID. */
 	$body .= sprintf( __( 'ID: #%d', 'wbcom-essential' ), $subscription->id ) . "\n";
-	$body .= sprintf( __( 'Product: %s', 'wbcom-essential' ), $product_title ?: '—' ) . "\n";
-	$body .= sprintf( __( 'Amount: %s / %s', 'wbcom-essential' ), $subscription->recurring_amount, $subscription->period ) . "\n";
+	/* translators: %s: Product/download title. */
+	$body .= sprintf( __( 'Product: %s', 'wbcom-essential' ), $product_title ? $product_title : '-' ) . "\n";
+	/* translators: %1$s: Recurring amount. %2$s: Billing period (e.g. month). */
+	$body .= sprintf( __( 'Amount: %1$s / %2$s', 'wbcom-essential' ), $subscription->recurring_amount, $subscription->period ) . "\n";
+	/* translators: %s: Payment gateway slug. */
 	$body .= sprintf( __( 'Gateway: %s', 'wbcom-essential' ), $subscription->gateway ) . "\n";
+	/* translators: %s: Subscription start date. */
 	$body .= sprintf( __( 'Started: %s', 'wbcom-essential' ), $subscription->created ) . "\n";
 
 	/**
@@ -239,7 +367,11 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 	 */
 	$email = apply_filters(
 		'wbcom_essential_cancel_feedback_email',
-		array( 'to' => $to, 'subject' => $subject, 'body' => $body ),
+		array(
+			'to'      => $to,
+			'subject' => $subject,
+			'body'    => $body,
+		),
 		$subscription,
 		$reason_key,
 		$detail
@@ -285,8 +417,8 @@ function wbcom_essential_edd_redirect_legacy_license_urls() {
 	}
 
 	// Pass-through legitimate EDD SL flows that need the full override:
-	//   - License upgrade: ?view=upgrades&license_id=X
-	//   - Single-license view from upgrade checkout: ?license_id=X
+	// - License upgrade: ?view=upgrades&license_id=X
+	// - Single-license view from upgrade checkout: ?license_id=X
 	// Without this bail, users clicking "Upgrade" on a license would be
 	// bounced back to the Licenses tab instead of reaching EDD SL's
 	// upgrade UI.
@@ -559,7 +691,7 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections 
 	// License count via Software Licensing add-on.
 	$license_count = 0;
 	if ( function_exists( 'edd_software_licensing' ) && $customer ) {
-		$licenses = edd_software_licensing()->licenses_db->get_licenses(
+		$licenses      = edd_software_licensing()->licenses_db->get_licenses(
 			array(
 				'customer_id' => $customer->id,
 				'number'      => -1,
@@ -748,7 +880,7 @@ function wbcom_essential_edd_render_tab_notice() {
 	// when we wire up more actions from the dashboard UI.
 	$messages = array(
 		'cancelled'     => array( 'success', __( 'Subscription cancelled. Access continues until the end of your current billing period.', 'wbcom-essential' ) ),
-		'cancel-failed' => array( 'error',   __( 'We could not cancel that subscription. Please try again or contact support.', 'wbcom-essential' ) ),
+		'cancel-failed' => array( 'error', __( 'We could not cancel that subscription. Please try again or contact support.', 'wbcom-essential' ) ),
 		'reactivated'   => array( 'success', __( 'Subscription reactivated.', 'wbcom-essential' ) ),
 		'renewed'       => array( 'success', __( 'Subscription renewed.', 'wbcom-essential' ) ),
 	);
@@ -792,7 +924,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	wbcom_essential_edd_render_tab_notice();
 
 	if ( ! class_exists( 'EDD_Recurring' ) || ! $customer ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -808,7 +940,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	}
 
 	if ( empty( $subs ) ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -819,14 +951,14 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	echo '<div class="wbcom-edd-subs">';
 
 	foreach ( $subs as $sub ) {
-		$download  = edd_get_download( $sub->product_id );
-		$name      = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
-		$price_id  = $sub->price_id;
-		$status    = $sub->status;
-		$amount    = edd_currency_filter( edd_format_amount( $sub->recurring_amount ) );
-		$period    = ucfirst( $sub->period );
-		$created   = $sub->created;
-		$expiry    = $sub->expiration;
+		$download = edd_get_download( $sub->product_id );
+		$name     = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
+		$price_id = $sub->price_id;
+		$status   = $sub->status;
+		$amount   = edd_currency_filter( edd_format_amount( $sub->recurring_amount ) );
+		$period   = ucfirst( $sub->period );
+		$created  = $sub->created;
+		$expiry   = $sub->expiration;
 
 		// Price name (e.g. "Personal License").
 		$price_name = '';
@@ -835,8 +967,8 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		}
 
 		// Days until renewal.
-		$days_left  = '';
-		$urgency    = '';
+		$days_left = '';
+		$urgency   = '';
 		if ( 'active' === $status && $expiry ) {
 			$diff = ( strtotime( $expiry ) - time() ) / DAY_IN_SECONDS;
 			if ( $diff > 0 ) {
@@ -871,7 +1003,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		// Upgrade options.
 		$has_upgrades = false;
 		if ( function_exists( 'edd_sl_get_license_upgrades' ) && $download ) {
-			$upgrades = edd_sl_get_license_upgrades( $download->ID );
+			$upgrades     = edd_sl_get_license_upgrades( $download->ID );
 			$has_upgrades = ! empty( $upgrades );
 		}
 
@@ -1024,7 +1156,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	);
 
 	if ( ! $customer ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -1042,7 +1174,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	}
 
 	if ( empty( $orders ) ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -1059,7 +1191,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 				continue;
 			}
 
-			$price_id   = $item->price_id;
+			$price_id    = $item->price_id;
 			$product_key = $item->product_id . '_' . $price_id;
 
 			// Skip if already processed this product+price combo.
@@ -1079,7 +1211,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 
 			$download_links = array();
 			foreach ( $files as $filekey => $file ) {
-				$url = edd_get_download_file_url( $order->payment_key, $order->email, $filekey, $item->product_id, $price_id );
+				$url              = edd_get_download_file_url( $order->payment_key, $order->email, $filekey, $item->product_id, $price_id );
 				$download_links[] = array(
 					'name' => esc_html( $file['name'] ),
 					'url'  => $url,
@@ -1151,13 +1283,13 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	);
 
 	if ( ! function_exists( 'edd_software_licensing' ) || ! $customer ) {
-		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
 	$sl = edd_software_licensing();
 	if ( ! $sl || ! isset( $sl->licenses_db ) || ! is_object( $sl->licenses_db ) ) {
-		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -1169,7 +1301,7 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	);
 
 	if ( empty( $licenses ) ) {
-		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -1180,14 +1312,14 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	echo '<div class="wbcom-edd-licenses">';
 
 	foreach ( $licenses as $license ) {
-		$download   = edd_get_download( $license->download_id );
-		$name       = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
-		$key        = $license->key;
-		$status     = $license->status;
-		$expiry     = $license->expiration;
+		$download    = edd_get_download( $license->download_id );
+		$name        = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
+		$key         = $license->key;
+		$status      = $license->status;
+		$expiry      = $license->expiration;
 		$is_lifetime = $license->is_lifetime;
-		$limit      = $license->activation_limit;
-		$count      = $license->activation_count;
+		$limit       = $license->activation_limit;
+		$count       = $license->activation_count;
 
 		// Price name.
 		$price_name = '';
@@ -1332,7 +1464,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	);
 
 	if ( ! $customer ) {
-		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -1349,7 +1481,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	}
 
 	if ( empty( $orders ) ) {
-		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -1360,7 +1492,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 		if ( ! is_array( $items ) ) {
 			$items = array();
 		}
-		$item_count = count( $items );
+		$item_count  = count( $items );
 		$receipt_url = edd_get_receipt_page_uri( $order->id );
 		$status      = $order->status;
 		$total       = edd_display_amount( $order->total, $order->currency );
@@ -1400,7 +1532,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 						'number'     => 1,
 					)
 				);
-				$has_licenses = ! empty( $order_licenses );
+				$has_licenses   = ! empty( $order_licenses );
 			}
 		}
 
@@ -1453,14 +1585,18 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 				<?php endif; ?>
 				<?php if ( $has_licenses ) : ?>
 					<a
-						href="<?php echo esc_url(
+						href="
+						<?php
+						echo esc_url(
 							add_query_arg(
 								array(
 									'tab' => 'licenses',
 								),
 								wbcom_essential_edd_account_current_page_url()
 							)
-						); ?>"
+						);
+						?>
+						"
 						class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm"
 					>
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
@@ -1514,12 +1650,12 @@ function wbcom_essential_edd_render_profile_tab() {
 	}
 
 	// Country / state lists via EDD helpers.
-	$countries     = edd_get_country_list();
-	$sel_country   = $address['country'] ? $address['country'] : edd_get_shop_country();
-	$states        = edd_get_shop_states( $sel_country );
+	$countries   = edd_get_country_list();
+	$sel_country = $address['country'] ? $address['country'] : edd_get_shop_country();
+	$states      = edd_get_shop_states( $sel_country );
 
 	// Display name options.
-	$display_options = array();
+	$display_options   = array();
 	$display_options[] = $user->user_login;
 	if ( $user->first_name ) {
 		$display_options[] = $user->first_name;

@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.5.0
+Stable tag: 4.6.0
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,14 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.6.0 - June 2026 =
+
+* New      - Free Plugins tab on the EDD account dashboard with one-click claims for logged-in users.
+* New      - Special offers banner on the account dashboard driven by flagged EDD discounts.
+* New      - What's New and Recommended for You sections with pro-upgrade prioritization.
+* New      - Pro Counterpart field on Download Settings powering upsell recommendations.
+* Dev      - wbcom_essential_free_claim action and wbcom/v1/edd-account/claim-free REST route.
 
 = 4.5.0 =
 * Major: Gutenberg V2 rebuild — 32 production-grade blocks rebuilt from a shared infrastructure (7 shared components, 2 hooks, 3 utils, design tokens)
