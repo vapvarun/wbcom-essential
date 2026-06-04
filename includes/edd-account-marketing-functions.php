@@ -475,3 +475,159 @@ function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) { // p
 	</div>
 	<?php
 }
+
+/**
+ * Register the free-claim REST route.
+ */
+function wbcom_essential_edd_claim_rest_route() {
+	if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
+		return;
+	}
+	register_rest_route(
+		'wbcom/v1',
+		'/edd-account/claim-free',
+		array(
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => 'wbcom_essential_edd_claim_free_callback',
+			'permission_callback' => function () {
+				return is_user_logged_in();
+			},
+			'args'                => array(
+				'download_id' => array(
+					'required'          => true,
+					'type'              => 'integer',
+					'sanitize_callback' => 'absint',
+				),
+			),
+		)
+	);
+}
+add_action( 'rest_api_init', 'wbcom_essential_edd_claim_rest_route' );
+
+/**
+ * Claim a free download: create a completed $0 order, return the file URL.
+ *
+ * Idempotent (re-claim returns the existing access) and rate-limited.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response|WP_Error
+ */
+function wbcom_essential_edd_claim_free_callback( $request ) {
+	$download_id = absint( $request->get_param( 'download_id' ) );
+	$user        = wp_get_current_user();
+
+	// Server-side truth: must be a published, flat-price, genuinely free product.
+	if (
+		'download' !== get_post_type( $download_id )
+		|| 'publish' !== get_post_status( $download_id )
+		|| ! edd_is_free_download( $download_id )
+		|| edd_has_variable_prices( $download_id )
+	) {
+		return new WP_Error( 'wbcom_invalid_download', __( 'This product cannot be claimed.', 'wbcom-essential' ), array( 'status' => 400 ) );
+	}
+
+	// Idempotency: already owned means no new order.
+	if ( ! edd_has_user_purchased( $user->ID, array( $download_id ) ) ) {
+
+		// Rate limit (filterable, default 10/hour/user).
+		$limit_key = 'wbcom_free_claims_' . $user->ID;
+		$claims    = (int) get_transient( $limit_key );
+		/**
+		 * Filter the max free claims per user per hour.
+		 *
+		 * @since 4.6.0
+		 * @param int $max Max claims. Default 10.
+		 */
+		$max_claims = (int) apply_filters( 'wbcom_essential_edd_free_claim_limit', 10 );
+		if ( $claims >= $max_claims ) {
+			return new WP_Error( 'wbcom_claim_limit', __( 'Claim limit reached. Please try again later.', 'wbcom-essential' ), array( 'status' => 429 ) );
+		}
+		set_transient( $limit_key, $claims + 1, HOUR_IN_SECONDS );
+
+		$payment_data = array(
+			'price'        => 0.00,
+			'date'         => gmdate( 'Y-m-d H:i:s' ),
+			'user_email'   => $user->user_email,
+			'purchase_key' => strtolower( md5( uniqid( '', true ) ) ),
+			'currency'     => edd_get_currency(),
+			'downloads'    => array(
+				array(
+					'id'       => $download_id,
+					'options'  => array(),
+					'quantity' => 1,
+				),
+			),
+			'user_info'    => array(
+				'id'         => $user->ID,
+				'email'      => $user->user_email,
+				'first_name' => $user->first_name,
+				'last_name'  => $user->last_name,
+				'discount'   => 'none',
+				'address'    => array(),
+			),
+			'cart_details' => array(
+				array(
+					'name'        => get_the_title( $download_id ),
+					'id'          => $download_id,
+					'item_number' => array( 'id' => $download_id, 'options' => array(), 'quantity' => 1 ),
+					'item_price'  => 0.00,
+					'quantity'    => 1,
+					'discount'    => 0.00,
+					'subtotal'    => 0.00,
+					'tax'         => 0.00,
+					'price'       => 0.00,
+				),
+			),
+			'gateway'      => 'manual',
+			'status'       => 'pending',
+		);
+
+		$payment_id = edd_insert_payment( $payment_data );
+		if ( ! $payment_id ) {
+			return new WP_Error( 'wbcom_claim_failed', __( 'Could not record your claim. Please try again.', 'wbcom-essential' ), array( 'status' => 500 ) );
+		}
+		edd_update_payment_status( $payment_id, 'complete' );
+
+		/**
+		 * Fires after a free download is claimed from the account dashboard.
+		 * CRM/automation (e.g. Groundhogg) can hook this for upsell campaigns.
+		 *
+		 * @since 4.6.0
+		 * @param int $download_id Download ID.
+		 * @param int $user_id     User ID.
+		 * @param int $payment_id  Created order ID.
+		 */
+		do_action( 'wbcom_essential_free_claim', $download_id, $user->ID, $payment_id );
+	}
+
+	// Build a signed file URL from the user's most recent order containing this download.
+	$download_url = '';
+	$orders       = edd_get_orders(
+		array(
+			'user_id'    => $user->ID,
+			'status__in' => array( 'complete' ),
+			'type'       => 'sale',
+			'number'     => 100,
+		)
+	);
+	foreach ( (array) $orders as $order ) {
+		foreach ( $order->get_items() as $item ) {
+			if ( (int) $item->product_id === $download_id ) {
+				$files = edd_get_download_files( $download_id );
+				if ( $files ) {
+					$filekey      = array_key_first( $files );
+					$download_url = edd_get_download_file_url( $order->payment_key, $user->user_email, $filekey, $download_id );
+				}
+				break 2;
+			}
+		}
+	}
+
+	return rest_ensure_response(
+		array(
+			'claimed'      => true,
+			'download_url' => $download_url,
+			'message'      => __( 'Added to your library!', 'wbcom-essential' ),
+		)
+	);
+}
