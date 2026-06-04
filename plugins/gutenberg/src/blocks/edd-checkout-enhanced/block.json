@@ -41,6 +41,10 @@
 			"type": "string",
 			"default": "Secure checkout powered by Stripe"
 		},
+		"guaranteeDays": {
+			"type": "number",
+			"default": 14
+		},
 		"showReviews": {
 			"type": "boolean",
 			"default": true

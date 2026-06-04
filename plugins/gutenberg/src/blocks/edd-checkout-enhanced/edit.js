@@ -4,7 +4,7 @@
  * @package wbcom-essential
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -45,6 +45,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		showProgressBar,
 		showTrustBadges,
 		trustBadgeText,
+		guaranteeDays,
 		showReviews,
 		reviewCount,
 		showRecommendations,
@@ -126,6 +127,22 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							}
 							help={ __(
 								'Text shown in the main security badge.',
+								'wbcom-essential'
+							) }
+						/>
+					) }
+
+					{ showTrustBadges && (
+						<RangeControl
+							label={ __( 'Money-Back Guarantee (days)', 'wbcom-essential' ) }
+							value={ guaranteeDays }
+							onChange={ ( value ) =>
+								setAttributes( { guaranteeDays: value } )
+							}
+							min={ 7 }
+							max={ 90 }
+							help={ __(
+								'Match your refund policy. Shown in the guarantee badge.',
 								'wbcom-essential'
 							) }
 						/>
@@ -442,7 +459,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					<div style={ { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, margin: '16px 0' } }>
 						{ [
 							{ icon: '🛡️', title: trustBadgeText, desc: __( 'Your payment information is encrypted and secure.', 'wbcom-essential' ) },
-							{ icon: '✅', title: __( '14-Day Money Back', 'wbcom-essential' ), desc: __( 'Full refund if you are not satisfied.', 'wbcom-essential' ) },
+							{ icon: '✅', title: sprintf( /* translators: %d: guarantee days. */ __( '%d-Day Money Back', 'wbcom-essential' ), guaranteeDays || 14 ), desc: __( 'Full refund if you are not satisfied.', 'wbcom-essential' ) },
 							{ icon: '💬', title: __( 'Priority Support', 'wbcom-essential' ), desc: __( 'Dedicated support for all customers.', 'wbcom-essential' ) },
 						].map( ( badge, i ) => (
 							<div key={ i } style={ { display: 'flex', gap: 10, padding: 16, border: '1px solid #e2e8f0', borderRadius: 8, background: '#fff' } }>
