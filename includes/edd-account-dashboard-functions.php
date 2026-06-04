@@ -1729,11 +1729,11 @@ function wbcom_essential_edd_render_profile_tab() {
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
 					<label for="edd_first_name" class="wbcom-edd-profile__label"><?php esc_html_e( 'First Name', 'wbcom-essential' ); ?></label>
-					<input type="text" id="edd_first_name" name="edd_first_name" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $user->first_name ); ?>">
+					<input type="text" id="edd_first_name" name="edd_first_name" class="wbcom-edd-profile__input" autocomplete="given-name" value="<?php echo esc_attr( $user->first_name ); ?>">
 				</div>
 				<div class="wbcom-edd-profile__field">
 					<label for="edd_last_name" class="wbcom-edd-profile__label"><?php esc_html_e( 'Last Name', 'wbcom-essential' ); ?></label>
-					<input type="text" id="edd_last_name" name="edd_last_name" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $user->last_name ); ?>">
+					<input type="text" id="edd_last_name" name="edd_last_name" class="wbcom-edd-profile__input" autocomplete="family-name" value="<?php echo esc_attr( $user->last_name ); ?>">
 				</div>
 			</div>
 			<div class="wbcom-edd-profile__field">
@@ -1746,7 +1746,7 @@ function wbcom_essential_edd_render_profile_tab() {
 			</div>
 			<div class="wbcom-edd-profile__field">
 				<label for="edd_email" class="wbcom-edd-profile__label"><?php esc_html_e( 'Email Address', 'wbcom-essential' ); ?></label>
-				<input type="email" id="edd_email" name="edd_email" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $user->user_email ); ?>" required>
+				<input type="email" id="edd_email" name="edd_email" class="wbcom-edd-profile__input" autocomplete="email" value="<?php echo esc_attr( $user->user_email ); ?>" required>
 			</div>
 		</div>
 
@@ -1757,20 +1757,20 @@ function wbcom_essential_edd_render_profile_tab() {
 			</h3>
 			<div class="wbcom-edd-profile__field">
 				<label for="card_address" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 1', 'wbcom-essential' ); ?></label>
-				<input type="text" id="card_address" name="card_address" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line1'] ); ?>">
+				<input type="text" id="card_address" name="card_address" class="wbcom-edd-profile__input" autocomplete="address-line1" value="<?php echo esc_attr( $address['line1'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__field">
 				<label for="card_address_2" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 2', 'wbcom-essential' ); ?></label>
-				<input type="text" id="card_address_2" name="card_address_2" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line2'] ); ?>">
+				<input type="text" id="card_address_2" name="card_address_2" class="wbcom-edd-profile__input" autocomplete="address-line2" value="<?php echo esc_attr( $address['line2'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
 					<label for="card_city" class="wbcom-edd-profile__label"><?php esc_html_e( 'City', 'wbcom-essential' ); ?></label>
-					<input type="text" id="card_city" name="card_city" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['city'] ); ?>">
+					<input type="text" id="card_city" name="card_city" class="wbcom-edd-profile__input" autocomplete="address-level2" value="<?php echo esc_attr( $address['city'] ); ?>">
 				</div>
 				<div class="wbcom-edd-profile__field">
 					<label for="card_zip" class="wbcom-edd-profile__label"><?php esc_html_e( 'Postal / ZIP Code', 'wbcom-essential' ); ?></label>
-					<input type="text" id="card_zip" name="card_zip" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['zip'] ); ?>">
+					<input type="text" id="card_zip" name="card_zip" class="wbcom-edd-profile__input" autocomplete="postal-code" value="<?php echo esc_attr( $address['zip'] ); ?>">
 				</div>
 			</div>
 			<div class="wbcom-edd-profile__grid">
@@ -1793,7 +1793,7 @@ function wbcom_essential_edd_render_profile_tab() {
 							<?php endforeach; ?>
 						</select>
 					<?php else : ?>
-						<input type="text" id="card_state" name="card_state" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['state'] ); ?>">
+						<input type="text" id="card_state" name="card_state" class="wbcom-edd-profile__input" autocomplete="address-level1" value="<?php echo esc_attr( $address['state'] ); ?>">
 					<?php endif; ?>
 				</div>
 			</div>
