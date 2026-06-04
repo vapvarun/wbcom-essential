@@ -39,6 +39,17 @@ if ( ! in_array( $default_tab, $valid_tabs, true ) ) {
 	$default_tab = 'dashboard';
 }
 
+$sections = array();
+if ( ! isset( $attributes['showOffers'] ) || $attributes['showOffers'] ) {
+	$sections[] = 'offers';
+}
+if ( ! isset( $attributes['showWhatsNew'] ) || $attributes['showWhatsNew'] ) {
+	$sections[] = 'whatsnew';
+}
+if ( ! isset( $attributes['showRecommendations'] ) || $attributes['showRecommendations'] ) {
+	$sections[] = 'recommendations';
+}
+
 // Guest: show login form with redirect back to this page.
 if ( ! is_user_logged_in() ) {
 	$redirect_url       = esc_url( get_permalink() );
@@ -166,11 +177,12 @@ $tabs['profile'] = array(
 // Wrapper attributes with data- attributes for JS.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'           => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-account ' . $vis_classes ),
-		'id'              => esc_attr( $block_id ),
-		'data-rest-url'   => esc_attr( $rest_url ),
-		'data-nonce'      => esc_attr( $nonce ),
-		'data-active-tab' => esc_attr( $active_tab ),
+		'class'            => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-account ' . $vis_classes ),
+		'id'               => esc_attr( $block_id ),
+		'data-rest-url'    => esc_attr( $rest_url ),
+		'data-nonce'       => esc_attr( $nonce ),
+		'data-active-tab'  => esc_attr( $active_tab ),
+		'data-sections'    => esc_attr( implode( ',', $sections ) ),
 	)
 );
 
@@ -185,7 +197,7 @@ $customer     = ( $current_user && $current_user->ID ) ? edd_get_customer_by( 'u
 ob_start();
 switch ( $active_tab ) {
 	case 'dashboard':
-		wbcom_essential_edd_render_dashboard_tab( $customer );
+		wbcom_essential_edd_render_dashboard_tab( $customer, $sections );
 		break;
 	case 'subscriptions':
 		wbcom_essential_edd_render_subscriptions_tab( $customer );
@@ -206,7 +218,7 @@ switch ( $active_tab ) {
 		wbcom_essential_edd_render_profile_tab();
 		break;
 	default:
-		wbcom_essential_edd_render_dashboard_tab( $customer );
+		wbcom_essential_edd_render_dashboard_tab( $customer, $sections );
 		break;
 }
 $initial_content = ob_get_clean();

@@ -1578,3 +1578,281 @@
 		grid-template-columns: 1fr;
 	}
 }
+
+// -------------------------------------------------------------------------
+// Special offers banner
+// -------------------------------------------------------------------------
+
+.wbcom-edd-offers {
+	display: grid;
+	gap: 12px;
+	margin: 0 0 24px;
+}
+
+.wbcom-edd-offer {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 16px 20px;
+	border-radius: 10px;
+	background: linear-gradient( 135deg, var( --wbcom-color-primary, #0073aa ), #1a2a3a );
+	color: #fff;
+
+	&__badge {
+		flex: 0 0 auto;
+		display: grid;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: rgba( 255, 255, 255, 0.15 );
+	}
+
+	&__body {
+		flex: 1 1 auto;
+		display: grid;
+		gap: 2px;
+	}
+
+	&__title {
+		font-size: 15px;
+	}
+
+	&__desc {
+		font-size: 13px;
+		opacity: 0.9;
+
+		code {
+			background: rgba( 255, 255, 255, 0.2 );
+			border-radius: 4px;
+			padding: 1px 6px;
+			font-weight: 600;
+			color: inherit;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		gap: 8px;
+		flex: 0 0 auto;
+	}
+
+	&__copy,
+	&__shop {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 13px;
+		font-weight: 600;
+		padding: 8px 14px;
+		border-radius: 6px;
+		border: 1px solid rgba( 255, 255, 255, 0.5 );
+		background: transparent;
+		color: #fff;
+		cursor: pointer;
+		text-decoration: none;
+		min-height: 40px;
+
+		&:hover,
+		&:focus-visible {
+			background: rgba( 255, 255, 255, 0.15 );
+			color: #fff;
+		}
+	}
+
+	&__copy.is-copied {
+		background: #fff;
+		color: var( --wbcom-color-primary, #0073aa );
+	}
+}
+
+// -------------------------------------------------------------------------
+// Mini product cards (what's new / recommendations)
+// -------------------------------------------------------------------------
+
+.wbcom-edd-dashboard__marketing-section {
+	margin: 0 0 24px;
+}
+
+.wbcom-edd-card-row {
+	display: grid;
+	grid-template-columns: repeat( 4, 1fr );
+	gap: 12px;
+}
+
+.wbcom-edd-mini-card {
+	position: relative;
+	display: grid;
+	gap: 6px;
+	padding: 12px;
+	border: 1px solid var( --wbcom-card-border, #ddd );
+	border-radius: 8px;
+	background: var( --wbcom-card-bg, #fff );
+	text-decoration: none;
+	color: inherit;
+	transition: box-shadow 0.15s ease;
+
+	&:hover,
+	&:focus-visible {
+		box-shadow: 0 4px 14px rgba( 0, 0, 0, 0.08 );
+	}
+
+	&__thumb img {
+		width: 100%;
+		height: auto;
+		border-radius: 6px;
+		display: block;
+	}
+
+	&__title {
+		font-size: 14px;
+		font-weight: 600;
+		color: var( --wbcom-heading-color, inherit );
+	}
+
+	&__price {
+		font-size: 13px;
+		color: var( --wbcom-color-contrast-2, #495057 );
+	}
+
+	&__flag {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		z-index: 1;
+		font-size: 11px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		padding: 3px 8px;
+		border-radius: 99px;
+		background: var( --wbcom-color-primary, #0073aa );
+		color: #fff;
+	}
+}
+
+// -------------------------------------------------------------------------
+// Free plugins tab
+// -------------------------------------------------------------------------
+
+.wbcom-edd-free {
+	display: grid;
+	grid-template-columns: repeat( 2, 1fr );
+	gap: 16px;
+}
+
+.wbcom-edd-free__card {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	border: 1px solid var( --wbcom-card-border, #ddd );
+	border-radius: 10px;
+	background: var( --wbcom-card-bg, #fff );
+	overflow: hidden;
+}
+
+.wbcom-edd-free__thumb img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.wbcom-edd-free__body {
+	padding: 14px 16px 0;
+}
+
+.wbcom-edd-free__title {
+	margin: 0 0 6px;
+	font-size: 16px;
+
+	a {
+		color: var( --wbcom-heading-color, inherit );
+		text-decoration: none;
+	}
+}
+
+.wbcom-edd-free__excerpt {
+	margin: 0;
+	font-size: 13px;
+	color: var( --wbcom-color-contrast-2, #495057 );
+}
+
+.wbcom-edd-free__actions {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 14px 16px;
+}
+
+.wbcom-edd-free__claim {
+	min-height: 40px;
+	padding: 8px 16px;
+	border: 0;
+	border-radius: 6px;
+	background: var( --wbcom-color-primary, #0073aa );
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+
+	&:hover,
+	&:focus-visible {
+		filter: brightness( 1.08 );
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: wait;
+	}
+}
+
+.wbcom-edd-free__owned {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1a7f37;
+}
+
+.wbcom-edd-free__upgrade,
+.wbcom-edd-free__goto {
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	color: var( --wbcom-link-color, var( --wbcom-color-primary, #0073aa ) );
+	min-height: 40px;
+	display: inline-flex;
+	align-items: center;
+}
+
+// -------------------------------------------------------------------------
+// Responsive (marketing sections)
+// -------------------------------------------------------------------------
+
+@media ( max-width: 1024px ) {
+	.wbcom-edd-card-row {
+		grid-template-columns: repeat( 2, 1fr );
+	}
+}
+
+@media ( max-width: 640px ) {
+	.wbcom-edd-card-row,
+	.wbcom-edd-free {
+		grid-template-columns: 1fr;
+	}
+
+	.wbcom-edd-offer {
+		flex-direction: column;
+		align-items: flex-start;
+
+		&__actions {
+			width: 100%;
+
+			.wbcom-edd-offer__copy,
+			.wbcom-edd-offer__shop {
+				flex: 1 1 auto;
+			}
+		}
+	}
+}
