@@ -80,3 +80,91 @@ function wbcom_essential_edd_get_pro_counterpart( $download_id ) {
 	}
 	return $pro_id;
 }
+
+/**
+ * Render "Show in account dashboard" checkbox on the discount add/edit screens.
+ *
+ * @param int               $discount_id Discount ID (0 on the add screen).
+ * @param EDD_Discount|null $discount    Discount object or null.
+ */
+function wbcom_essential_edd_discount_account_field( $discount_id = 0, $discount = null ) {
+	$flagged = $discount_id ? (bool) edd_get_adjustment_meta( $discount_id, '_wbcom_show_in_account', true ) : false;
+	wp_nonce_field( 'wbcom_essential_discount_account', 'wbcom_essential_discount_account_nonce' );
+	?>
+	<tr>
+		<th scope="row" valign="top">
+			<label for="wbcom-show-in-account"><?php esc_html_e( 'Account Dashboard', 'wbcom-essential' ); ?></label>
+		</th>
+		<td>
+			<input type="checkbox" id="wbcom-show-in-account" name="wbcom_show_in_account" value="1" <?php checked( $flagged ); ?> />
+			<label for="wbcom-show-in-account" class="description">
+				<?php esc_html_e( 'Show this discount as a special offer on the customer account dashboard.', 'wbcom-essential' ); ?>
+			</label>
+		</td>
+	</tr>
+	<?php
+}
+add_action( 'edd_edit_discount_form_bottom', 'wbcom_essential_edd_discount_account_field', 10, 2 );
+add_action( 'edd_add_discount_form_bottom', 'wbcom_essential_edd_discount_account_field', 10, 2 );
+
+/**
+ * Persist the flag when a discount is added/updated.
+ *
+ * @param array $args        Discount args.
+ * @param int   $discount_id Discount ID.
+ */
+function wbcom_essential_edd_save_discount_account_flag( $args, $discount_id ) {
+	if ( ! current_user_can( 'manage_shop_discounts' ) ) {
+		return;
+	}
+	if (
+		! isset( $_POST['wbcom_essential_discount_account_nonce'] )
+		|| ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['wbcom_essential_discount_account_nonce'] ) ), 'wbcom_essential_discount_account' )
+	) {
+		return;
+	}
+	if ( ! empty( $_POST['wbcom_show_in_account'] ) ) {
+		edd_update_adjustment_meta( $discount_id, '_wbcom_show_in_account', 1 );
+	} else {
+		edd_delete_adjustment_meta( $discount_id, '_wbcom_show_in_account' );
+	}
+}
+add_action( 'edd_post_insert_discount', 'wbcom_essential_edd_save_discount_account_flag', 10, 2 );
+add_action( 'edd_post_update_discount', 'wbcom_essential_edd_save_discount_account_flag', 10, 2 );
+
+/**
+ * Get active, flagged, still-usable discounts for the account banner.
+ *
+ * @return EDD_Discount[] Max 2.
+ */
+function wbcom_essential_edd_get_account_offers() {
+	$discounts = edd_get_discounts(
+		array(
+			'status' => 'active',
+			'number' => 20,
+		)
+	);
+	if ( ! is_array( $discounts ) ) {
+		return array();
+	}
+
+	$offers = array();
+	foreach ( $discounts as $discount ) {
+		if ( ! edd_get_adjustment_meta( $discount->id, '_wbcom_show_in_account', true ) ) {
+			continue;
+		}
+		// Respect date window + max uses (EDD_Discount helpers).
+		if ( method_exists( $discount, 'is_expired' ) && $discount->is_expired( false ) ) {
+			continue;
+		}
+		if ( method_exists( $discount, 'is_maxed_out' ) && $discount->is_maxed_out( false ) ) {
+			continue;
+		}
+		$offers[] = $discount;
+		if ( count( $offers ) >= 2 ) {
+			break;
+		}
+	}
+
+	return $offers;
+}
