@@ -35,6 +35,7 @@
 		var restUrl   = container.dataset.restUrl;
 		var nonce     = container.dataset.nonce;
 		var activeTab = container.dataset.activeTab;
+		var sections  = container.dataset.sections || '';
 
 		if ( ! restUrl || ! nonce ) {
 			return;
@@ -429,7 +430,12 @@
 
 			showLoading();
 
-			fetch( restUrl + encodeURIComponent( tab ), {
+			var tabUrl = restUrl + encodeURIComponent( tab );
+			if ( 'dashboard' === tab && sections ) {
+				tabUrl += ( -1 === tabUrl.indexOf( '?' ) ? '?' : '&' ) + 'sections=' + encodeURIComponent( sections );
+			}
+
+			fetch( tabUrl, {
 				method:      'GET',
 				credentials: 'same-origin',
 				headers: {
@@ -467,6 +473,128 @@
 					hideLoading();
 				} );
 		}
+
+		/**
+		 * Prepend a dismissible error notice to the content area.
+		 * Uses textContent, not innerHTML, to prevent XSS.
+		 *
+		 * @param {string} message Error message text.
+		 */
+		function showInlineError( message ) {
+			var p = document.createElement( 'p' );
+			p.className   = 'wbcom-edd-account__error';
+			p.textContent = message;
+			if ( inner.firstChild ) {
+				inner.insertBefore( p, inner.firstChild );
+			} else {
+				inner.appendChild( p );
+			}
+		}
+
+		/**
+		 * Claim a free plugin download.
+		 *
+		 * @param {HTMLButtonElement} button The claim button.
+		 */
+		function claimFree( button ) {
+			if ( button.disabled ) {
+				return;
+			}
+
+			var originalLabel = button.textContent;
+			button.disabled   = true;
+			button.textContent = button.dataset.busyLabel || '…';
+
+			fetch( restUrl + 'claim-free', {
+				method:  'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-WP-Nonce':   nonce,
+				},
+				body: JSON.stringify( { download_id: parseInt( button.dataset.downloadId, 10 ) } ),
+			} )
+				.then( function ( response ) {
+					return response.json().then( function ( data ) {
+						return { ok: response.ok, data: data };
+					} );
+				} )
+				.then( function ( result ) {
+					var data = result.data;
+					if ( result.ok && data && data.claimed ) {
+						var owned = document.createElement( 'span' );
+						owned.className   = 'wbcom-edd-free__owned';
+						owned.textContent = data.message || '';
+						button.parentNode.replaceChild( owned, button );
+						if ( data.download_url ) {
+							window.location.href = data.download_url;
+						}
+					} else {
+						button.disabled    = false;
+						button.textContent = originalLabel;
+						var msg = ( data && data.message ) ? data.message : 'Could not claim download. Please try again.';
+						showInlineError( msg );
+					}
+				} )
+				.catch( function () {
+					button.disabled    = false;
+					button.textContent = originalLabel;
+					showInlineError( 'Could not claim download. Please refresh the page and try again.' );
+				} );
+		}
+
+		/**
+		 * Copy an offer coupon code to clipboard.
+		 *
+		 * @param {HTMLButtonElement} button The copy button.
+		 */
+		function copyOfferCode( button ) {
+			var code         = button.dataset.code || '';
+			var originalLabel = button.textContent;
+			var copiedLabel  = button.dataset.copiedLabel || 'Copied!';
+
+			function onCopied() {
+				button.textContent = copiedLabel;
+				button.classList.add( 'is-copied' );
+				setTimeout( function () {
+					button.textContent = originalLabel;
+					button.classList.remove( 'is-copied' );
+				}, 2000 );
+			}
+
+			function fallbackCopy() {
+				var ta = document.createElement( 'textarea' );
+				ta.value = code;
+				ta.style.position = 'fixed';
+				ta.style.opacity  = '0';
+				document.body.appendChild( ta );
+				ta.select();
+				document.execCommand( 'copy' );
+				document.body.removeChild( ta );
+				onCopied();
+			}
+
+			if ( navigator.clipboard && navigator.clipboard.writeText ) {
+				navigator.clipboard.writeText( code ).then( onCopied ).catch( fallbackCopy );
+			} else {
+				fallbackCopy();
+			}
+		}
+
+		// Delegated click handler for claim and copy-code buttons.
+		container.addEventListener( 'click', function ( event ) {
+			var button = event.target.closest( '.wbcom-edd-free__claim' );
+			if ( button ) {
+				event.preventDefault();
+				claimFree( button );
+				return;
+			}
+
+			var copyBtn = event.target.closest( '.wbcom-edd-offer__copy' );
+			if ( copyBtn ) {
+				event.preventDefault();
+				copyOfferCode( copyBtn );
+			}
+		} );
 
 		// Wire up interactive elements in the server-rendered initial tab.
 		// renderHtml() does this after every AJAX load; the first paint
