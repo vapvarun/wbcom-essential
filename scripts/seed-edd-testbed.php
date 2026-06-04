@@ -176,7 +176,7 @@ $counts        = edd_count_payments( array( 'user' => $user->user_email ) );
 $actual_orders = $customer ? (int) $counts->complete : 0;
 if ( ! $customer || ! $actual_orders ) {
 	wbe_seed_order( $user, $ids['buddypress-polls'], 0 );          // Owns a free plugin (→ pro reco).
-	wbe_seed_order( $user, $ids['wc-reports-addon'], 29 );          // Paid order.
+	wbe_seed_order( $user, $ids['plain'], 29 );                     // Paid order.
 	wbe_seed_order( $user, $ids['buddyx-pro-theme'], 59 );          // Licensed product.
 }
 // Sync customer stats (EDD caches purchase_count; recalculate to reflect actual orders).
