@@ -130,6 +130,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			// EDD block server-side functions (REST API endpoints + tab renderers).
 			require_once WBCOM_ESSENTIAL_PATH . '/includes/edd-product-catalog-rest.php';
 			require_once WBCOM_ESSENTIAL_PATH . '/includes/edd-account-dashboard-functions.php';
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/edd-account-marketing-functions.php';
 
 			// Single post template settings and template loader.
 			require_once WBCOM_ESSENTIAL_PATH . '/includes/single-post/class-wbcom-single-post-settings.php';
