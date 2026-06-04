@@ -168,3 +168,66 @@ function wbcom_essential_edd_get_account_offers() {
 
 	return $offers;
 }
+
+/**
+ * Render "Pro counterpart" select in the Download Settings metabox.
+ *
+ * @param int $post_id Download post ID.
+ */
+function wbcom_essential_edd_render_pro_counterpart_row( $post_id ) {
+	$current   = absint( get_post_meta( $post_id, '_wbcom_pro_counterpart', true ) );
+	$downloads = get_posts(
+		array(
+			'post_type'      => 'download',
+			'post_status'    => 'publish',
+			'posts_per_page' => 200,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			'exclude'        => array( $post_id ),
+		)
+	);
+	?>
+	<div class="edd-form-group edd-product-options-wrapper">
+		<div class="edd-form-group__control">
+			<label for="wbcom_pro_counterpart" class="edd-form-group__label">
+				<?php esc_html_e( 'Pro Counterpart', 'wbcom-essential' ); ?>
+			</label>
+			<select name="_wbcom_pro_counterpart" id="wbcom_pro_counterpart" class="edd-form-group__input">
+				<option value=""><?php esc_html_e( 'None', 'wbcom-essential' ); ?></option>
+				<?php foreach ( $downloads as $download ) : ?>
+					<option value="<?php echo esc_attr( $download->ID ); ?>" <?php selected( $current, $download->ID ); ?>>
+						<?php echo esc_html( $download->post_title ); ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+			<p class="edd-form-group__help description">
+				<?php esc_html_e( 'Used by the account dashboard to recommend the pro upgrade to owners of this product.', 'wbcom-essential' ); ?>
+			</p>
+		</div>
+	</div>
+	<?php
+}
+add_action( 'edd_meta_box_settings_fields', 'wbcom_essential_edd_render_pro_counterpart_row', 35 );
+
+/**
+ * Register the meta key with EDD's metabox save routine.
+ *
+ * @param array $fields Meta keys EDD persists on save.
+ * @return array
+ */
+function wbcom_essential_edd_register_counterpart_save( $fields ) {
+	$fields[] = '_wbcom_pro_counterpart';
+	return $fields;
+}
+add_filter( 'edd_metabox_fields_save', 'wbcom_essential_edd_register_counterpart_save' );
+
+/**
+ * Sanitize the counterpart value on save (EDD applies edd_metabox_save_{key}).
+ *
+ * @param mixed $value Raw value.
+ * @return int
+ */
+function wbcom_essential_edd_sanitize_counterpart( $value ) {
+	return absint( $value );
+}
+add_filter( 'edd_metabox_save__wbcom_pro_counterpart', 'wbcom_essential_edd_sanitize_counterpart' );
