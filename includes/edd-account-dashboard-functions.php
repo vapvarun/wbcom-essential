@@ -42,6 +42,12 @@ function wbcom_essential_kses_form( $html ) {
 		'data-cancel-modal-form'   => true,
 		'data-cancel-modal-close'  => true,
 		'data-cancel-modal-sub-name' => true,
+		// Free-plugins tab: claim button + copy-offer code.
+		'data-download-id'         => true,
+		'data-busy-label'          => true,
+		'data-code'                => true,
+		'data-copied-label'        => true,
+		'data-tab-link'            => true,
 	);
 
 	$allowed           = wp_kses_allowed_html( 'post' );
@@ -457,6 +463,14 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 	$user     = wp_get_current_user();
 	$customer = edd_get_customer_by( 'user_id', $user->ID );
 
+	// Section toggles travel as a comma list from the block's data attribute.
+	$sections_param = $request->get_param( 'sections' );
+	$sections       = null;
+	if ( null !== $sections_param ) {
+		$allowed  = array( 'offers', 'whatsnew', 'recommendations' );
+		$sections = array_values( array_intersect( $allowed, array_map( 'sanitize_key', explode( ',', (string) $sections_param ) ) ) );
+	}
+
 	// Use try/catch/finally for error recovery and guaranteed global restore.
 	$html = '';
 	try {
@@ -464,7 +478,7 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 
 		switch ( $tab ) {
 			case 'dashboard':
-				wbcom_essential_edd_render_dashboard_tab( $customer );
+				wbcom_essential_edd_render_dashboard_tab( $customer, $sections );
 				break;
 			case 'subscriptions':
 				wbcom_essential_edd_render_subscriptions_tab( $customer );
@@ -503,8 +517,10 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
  * Render Dashboard overview tab.
  *
  * @param EDD_Customer|false $customer EDD customer object or false.
+ * @param string[]|null      $sections Which marketing sections to show: 'offers', 'whatsnew',
+ *                                     'recommendations'. Null renders all three.
  */
-function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
+function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections = null ) {
 	// Surface feedback if the user landed here from an action elsewhere.
 	wbcom_essential_edd_render_tab_notice();
 
@@ -572,6 +588,19 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 			);
 			?>
 		</h2>
+
+		<?php
+		$sections = is_array( $sections ) ? $sections : array( 'offers', 'whatsnew', 'recommendations' );
+		if ( in_array( 'offers', $sections, true ) ) {
+			wbcom_essential_edd_render_offers_section();
+		}
+		if ( in_array( 'whatsnew', $sections, true ) ) {
+			wbcom_essential_edd_render_whats_new_section();
+		}
+		if ( in_array( 'recommendations', $sections, true ) ) {
+			wbcom_essential_edd_render_recommendations_section( $customer );
+		}
+		?>
 
 		<div class="wbcom-edd-dashboard__stats">
 			<div class="wbcom-edd-dashboard__stat-card">
