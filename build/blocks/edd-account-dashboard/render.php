@@ -234,6 +234,7 @@ $initial_content = ob_get_clean();
 					class="wbcom-edd-account__nav-link<?php echo $active_tab === $tab_key ? ' is-active' : ''; ?>"
 					data-tab="<?php echo esc_attr( $tab_key ); ?>"
 					aria-current="<?php echo $active_tab === $tab_key ? 'page' : 'false'; ?>"
+					title="<?php echo esc_attr( $tab_data['label'] ); ?>"
 				>
 					<span class="wbcom-edd-account__nav-icon"><?php echo $tab_data['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG is hardcoded, not user input ?></span>
 					<span class="wbcom-edd-account__nav-label"><?php echo esc_html( $tab_data['label'] ); ?></span>
@@ -248,6 +249,7 @@ $initial_content = ob_get_clean();
 					class="wbcom-edd-account__nav-link"
 					target="_blank"
 					rel="noopener noreferrer"
+					title="<?php echo esc_attr( $support_label ); ?>"
 				>
 					<span class="wbcom-edd-account__nav-icon">
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -264,6 +266,7 @@ $initial_content = ob_get_clean();
 				<a
 					href="<?php echo esc_url( wp_logout_url( get_permalink() ) ); ?>"
 					class="wbcom-edd-account__nav-link wbcom-edd-account__nav-link--logout"
+					title="<?php esc_attr_e( 'Sign Out', 'wbcom-essential' ); ?>"
 				>
 					<span class="wbcom-edd-account__nav-icon">
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>

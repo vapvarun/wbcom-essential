@@ -204,6 +204,11 @@
 	border: 1px solid var( --wbcom-card-border, #e2e8f0 );
 	border-radius: var( --edd-radius );
 	overflow: hidden;
+	// Container queries drive the responsive layout: the dashboard adapts to
+	// the width it actually gets (Reign left panel, narrow columns, mobile)
+	// instead of the viewport.
+	container-type: inline-size;
+	container-name: wbe-account;
 
 	// Wide / Full alignment overrides
 	&.alignwide,
@@ -1411,84 +1416,147 @@
 }
 
 // -------------------------------------------------------------------------
-// Responsive — mobile: vertical layout with horizontal scrollable tabs
+// Responsive — narrow container: the sidebar collapses to a minimal left
+// icon rail (labels hidden, icons centered) instead of horizontal tabs.
+// Container-based so it also adapts inside theme left-panel layouts.
 // -------------------------------------------------------------------------
 
+// Mobile: flatten the card chrome so the dashboard can sit edge-to-edge.
+// Themes remove their own content gutters around the block (Reign child
+// theme does); the block contributes zero of its own.
 @media ( max-width: 768px ) {
 	.wbcom-edd-account {
-		flex-direction: column;
-	}
-
-	.wbcom-edd-account__sidebar {
-		flex: none;
-		width: 100%;
+		width: auto;
+		max-width: none;
+		border-left: none;
 		border-right: none;
-		border-bottom: 1px solid var( --edd-sidebar-border );
-		position: static;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-		// Hide browser scrollbar on the horizontal tab strip — the fade
-		// gradient below is the scroll affordance.
-		scrollbar-width: none;
-		&::-webkit-scrollbar { display: none; }
+		border-radius: 0;
+		// !important: outranks the per-instance spacing CSS (.wbe-block-{id});
+		// the content area carries its own padding on mobile.
+		padding: 0 !important;
+	}
+}
 
-		// Fade the right edge so visitors can tell the tab strip scrolls
-		// when later tabs (Order History, Edit Profile) are offscreen.
-		position: relative;
-		background-image:
-			linear-gradient( to left, var( --edd-sidebar-bg ) 0, transparent 24px ),
-			linear-gradient( to left, rgba( 0, 0, 0, 0.08 ) 0, transparent 24px );
-		background-repeat: no-repeat;
-		background-size: 24px 100%, 24px 100%;
-		background-position: right center, right center;
-		background-attachment: local, scroll;
+@container wbe-account ( max-width: 768px ) {
+	.wbcom-edd-account__sidebar {
+		flex: 0 0 var( --edd-sidebar-rail-width, 3.25rem );
+		width: var( --edd-sidebar-rail-width, 3.25rem );
 	}
 
 	.wbcom-edd-account__nav {
-		display: flex;
-		flex-direction: row;
-		padding: 0;
-		white-space: nowrap;
-	}
-
-	.wbcom-edd-account__nav-item {
-		flex-shrink: 0;
-
-		&--logout {
-			margin-top: 0;
-			border-top: none;
-			padding-top: 0;
-			border-left: 1px solid var( --edd-sidebar-border );
-			margin-left: auto;
-		}
+		padding: 0.5rem 0;
 	}
 
 	.wbcom-edd-account__nav-link {
-		flex-direction: column;
-		align-items: center;
-		gap: 2px;
-		padding: 0.75rem 0.625rem;
+		justify-content: center;
+		gap: 0;
+		padding: 0.25rem 0;
 		min-height: 44px;
 		border-left: none;
-		border-bottom: 3px solid transparent;
-		font-size: var( --edd-font-sm );
+		background: transparent;
+
+		// Pill marker carries hover/active state — clearer than an edge border.
+		.wbcom-edd-account__nav-icon {
+			width: 2.25rem;
+			height: 2.25rem;
+			border-radius: 0.625rem;
+			transition: background var( --edd-transition ), color var( --edd-transition ), opacity var( --edd-transition );
+		}
+
+		&:hover {
+			background: transparent;
+
+			.wbcom-edd-account__nav-icon {
+				background: var( --edd-nav-hover-bg );
+				opacity: 1;
+			}
+		}
 
 		&.is-active {
-			border-left-color: transparent;
-			border-bottom-color: var( --edd-nav-active-color );
+			background: transparent;
+			border-left: none;
+
+			.wbcom-edd-account__nav-icon {
+				background: var( --edd-nav-active-bg );
+				color: var( --edd-nav-active-color );
+				opacity: 1;
+			}
 		}
 	}
 
+	// Recent orders: table flows as stacked cards — no horizontal scroll.
+	.wbcom-edd-dashboard__table {
+		border: 0;
+
+		thead {
+			display: none;
+		}
+
+		tbody {
+			display: block;
+		}
+
+		tr {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			grid-template-areas:
+				'order amount'
+				'date status';
+			gap: 0.125rem 0.75rem;
+			padding: 0.75rem 0.25rem;
+			border-bottom: 1px solid var( --edd-sidebar-border );
+		}
+
+		td {
+			display: block;
+			padding: 0;
+			border: 0;
+			font-size: var( --edd-font-sm );
+
+			&:nth-child( 1 ) {
+				grid-area: order;
+				font-weight: 600;
+			}
+
+			&:nth-child( 2 ) {
+				grid-area: date;
+				white-space: nowrap;
+				opacity: 0.7;
+			}
+
+			&:nth-child( 3 ) {
+				grid-area: amount;
+				text-align: right;
+				font-weight: 600;
+			}
+
+			&:nth-child( 4 ) {
+				grid-area: status;
+				text-align: right;
+			}
+		}
+	}
+
+	// Minimal state: icons only. Labels stay in the DOM for screen readers.
 	.wbcom-edd-account__nav-label {
-		font-size: 0.625rem;
-		line-height: 1;
-		letter-spacing: 0.02em;
-		opacity: 0.8;
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect( 0, 0, 0, 0 );
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.wbcom-edd-account__nav-external {
+		display: none;
 	}
 
 	.wbcom-edd-account__nav-icon {
-		width: 1.125rem;
-		height: 1.125rem;
+		width: 1.25rem;
+		height: 1.25rem;
 	}
 
 	.wbcom-edd-account__content {
@@ -1573,7 +1641,7 @@
 	}
 }
 
-@media ( max-width: 480px ) {
+@container wbe-account ( max-width: 480px ) {
 	.wbcom-edd-dashboard__stats {
 		grid-template-columns: 1fr;
 	}
@@ -1715,16 +1783,16 @@
 		color: var( --wbcom-color-contrast-2, #495057 );
 	}
 
+	// In-flow pill (first child of the card) — never overlaps the title,
+	// with or without a product thumbnail.
 	&__flag {
-		position: absolute;
-		top: 8px;
-		right: 8px;
-		z-index: 1;
-		font-size: 11px;
+		justify-self: start;
+		font-size: 10px;
 		font-weight: 700;
 		text-transform: uppercase;
-		letter-spacing: 0.02em;
-		padding: 3px 8px;
+		letter-spacing: 0.03em;
+		line-height: 1;
+		padding: 4px 8px;
 		border-radius: 99px;
 		background: var( --wbcom-color-primary, #0073aa );
 		color: #fff;
@@ -1830,13 +1898,17 @@
 // Responsive (marketing sections)
 // -------------------------------------------------------------------------
 
-@media ( max-width: 1024px ) {
+@container wbe-account ( max-width: 1024px ) {
 	.wbcom-edd-card-row {
 		grid-template-columns: repeat( 2, 1fr );
 	}
+
+	.wbcom-edd-free {
+		grid-template-columns: 1fr;
+	}
 }
 
-@media ( max-width: 640px ) {
+@container wbe-account ( max-width: 640px ) {
 	.wbcom-edd-card-row,
 	.wbcom-edd-free {
 		grid-template-columns: 1fr;
