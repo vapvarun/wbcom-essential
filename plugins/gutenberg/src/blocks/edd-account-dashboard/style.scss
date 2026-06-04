@@ -226,18 +226,22 @@
 .wbcom-edd-account__sidebar {
 	flex: 0 0 var( --edd-sidebar-width );
 	width: var( --edd-sidebar-width );
-	min-height: 100%;
 	background: var( --edd-sidebar-bg );
 	border-right: 1px solid var( --edd-sidebar-border );
-	position: sticky;
-	top: 0;
-	align-self: flex-start;
+	// Fill the card's full height so the panel never ends mid-card;
+	// the nav list itself stays sticky while the content scrolls.
+	align-self: stretch;
 }
 
 .wbcom-edd-account__nav {
 	list-style: none;
 	margin: 0;
-	padding: 1rem 0;
+	padding: 0.75rem 0.5rem;
+	position: sticky;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }
 
 .wbcom-edd-account__nav-item {
@@ -256,13 +260,15 @@
 	display: flex;
 	align-items: center;
 	gap: 0.625rem;
-	padding: 0.625rem 1rem;
+	padding: 0.625rem 0.75rem;
 	font-size: var( --edd-font-base );
 	font-weight: 500;
 	color: var( --edd-nav-text );
 	text-decoration: none;
-	border-left: var( --edd-nav-indicator-width ) solid transparent;
-	transition: background var( --edd-transition ), color var( --edd-transition ), border-color var( --edd-transition );
+	// Pill marker — one visual language for active state on every viewport
+	// (the mobile icon rail uses the same rounded treatment).
+	border-radius: 8px;
+	transition: background var( --edd-transition ), color var( --edd-transition );
 	position: relative;
 	line-height: 1.4;
 
@@ -281,7 +287,6 @@
 	&.is-active {
 		background: var( --edd-nav-active-bg );
 		color: var( --edd-nav-active-text );
-		border-left-color: var( --edd-nav-active-color );
 		font-weight: 600;
 	}
 
@@ -1751,6 +1756,7 @@
 .wbcom-edd-mini-card {
 	position: relative;
 	display: grid;
+	align-content: start; // pack rows to the top so all cards read uniformly
 	gap: 6px;
 	padding: 12px;
 	border: 1px solid var( --wbcom-card-border, #ddd );
@@ -1795,6 +1801,7 @@
 	// with or without a product thumbnail.
 	&__flag {
 		justify-self: start;
+		align-self: start; // grid items stretch by default — keep every pill the same height
 		font-size: 10px;
 		font-weight: 700;
 		text-transform: uppercase;

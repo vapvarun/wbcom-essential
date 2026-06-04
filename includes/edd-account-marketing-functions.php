@@ -82,6 +82,60 @@ function wbcom_essential_edd_get_pro_counterpart( $download_id ) {
 }
 
 /**
+ * Get the best upgrade URL from an owned download to its pro counterpart.
+ *
+ * When the customer holds a license for the owned product and Software
+ * Licensing defines an upgrade path to the target, this returns the native
+ * SL upgrade URL (prorated checkout). Otherwise it falls back to the target
+ * product page.
+ *
+ * @since 4.6.0
+ *
+ * @param int $owned_download_id  Download the current user already owns.
+ * @param int $target_download_id Pro counterpart download.
+ * @return string
+ */
+function wbcom_essential_edd_get_upgrade_url( $owned_download_id, $target_download_id ) {
+	$fallback = (string) get_permalink( $target_download_id );
+
+	if (
+		! function_exists( 'edd_software_licensing' )
+		|| ! function_exists( 'edd_sl_get_upgrade_paths' )
+		|| ! function_exists( 'edd_sl_get_license_upgrade_url' )
+		|| ! is_user_logged_in()
+	) {
+		return $fallback;
+	}
+
+	$customer = edd_get_customer_by( 'user_id', get_current_user_id() );
+	if ( ! $customer ) {
+		return $fallback;
+	}
+
+	$licenses = edd_software_licensing()->licenses_db->get_licenses(
+		array(
+			'customer_id' => $customer->id,
+			'download_id' => absint( $owned_download_id ),
+			'number'      => 1,
+		)
+	);
+	if ( empty( $licenses[0]->ID ) || in_array( $licenses[0]->status, array( 'disabled', 'revoked' ), true ) ) {
+		return $fallback;
+	}
+
+	foreach ( (array) edd_sl_get_upgrade_paths( absint( $owned_download_id ) ) as $upgrade_id => $path ) {
+		if ( isset( $path['download_id'] ) && absint( $path['download_id'] ) === absint( $target_download_id ) ) {
+			$upgrade_url = edd_sl_get_license_upgrade_url( $licenses[0]->ID, $upgrade_id );
+			if ( $upgrade_url ) {
+				return $upgrade_url;
+			}
+		}
+	}
+
+	return $fallback;
+}
+
+/**
  * Render "Show in account dashboard" checkbox on the discount add/edit screens.
  *
  * @param int               $discount_id Discount ID (0 on the add screen).
@@ -354,13 +408,15 @@ function wbcom_essential_edd_render_recommendations_section( $customer = false )
 		return;
 	}
 
-	$recos = array();
+	$recos        = array();
+	$upgrade_from = array();
 
 	// Priority 1: pro counterparts of owned products that aren't owned.
 	foreach ( array_keys( $owned ) as $owned_id ) {
 		$pro_id = wbcom_essential_edd_get_pro_counterpart( $owned_id );
 		if ( $pro_id && empty( $owned[ $pro_id ] ) && ! isset( $recos[ $pro_id ] ) ) {
-			$recos[ $pro_id ] = 'upgrade';
+			$recos[ $pro_id ]        = 'upgrade';
+			$upgrade_from[ $pro_id ] = $owned_id;
 		}
 	}
 
@@ -400,7 +456,14 @@ function wbcom_essential_edd_render_recommendations_section( $customer = false )
 		<h3 class="wbcom-edd-dashboard__section-title"><?php esc_html_e( 'Recommended for You', 'wbcom-essential' ); ?></h3>
 		<div class="wbcom-edd-card-row">
 			<?php foreach ( $recos as $reco_id => $reason ) : ?>
-				<a class="wbcom-edd-mini-card<?php echo 'upgrade' === $reason ? ' wbcom-edd-mini-card--upgrade' : ''; ?>" href="<?php echo esc_url( get_permalink( $reco_id ) ); ?>">
+				<?php
+				// Upgrades enter EDD SL's native prorated upgrade flow when a
+				// license + upgrade path exist; otherwise the product page.
+				$reco_url = 'upgrade' === $reason && isset( $upgrade_from[ $reco_id ] )
+					? wbcom_essential_edd_get_upgrade_url( $upgrade_from[ $reco_id ], $reco_id )
+					: get_permalink( $reco_id );
+				?>
+				<a class="wbcom-edd-mini-card<?php echo 'upgrade' === $reason ? ' wbcom-edd-mini-card--upgrade' : ''; ?>" href="<?php echo esc_url( $reco_url ); ?>">
 					<?php if ( 'upgrade' === $reason ) : ?>
 						<span class="wbcom-edd-mini-card__flag"><?php esc_html_e( 'Pro Upgrade', 'wbcom-essential' ); ?></span>
 					<?php endif; ?>
@@ -467,7 +530,8 @@ function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) { // p
 						</button>
 					<?php endif; ?>
 					<?php if ( $pro_id && ! wbcom_essential_edd_user_owns_download( $pro_id ) ) : ?>
-						<a class="wbcom-edd-free__upgrade" href="<?php echo esc_url( get_permalink( $pro_id ) ); ?>">
+						<?php // Owned + upgrade path = SL's prorated upgrade flow; else product page. ?>
+						<a class="wbcom-edd-free__upgrade" href="<?php echo esc_url( $owned ? wbcom_essential_edd_get_upgrade_url( $download_id, $pro_id ) : get_permalink( $pro_id ) ); ?>">
 							<?php esc_html_e( 'Upgrade to Pro', 'wbcom-essential' ); ?>
 						</a>
 					<?php endif; ?>
