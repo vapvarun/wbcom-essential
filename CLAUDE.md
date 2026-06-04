@@ -18,6 +18,7 @@ Full architecture documentation available in `docs/architecture/`:
 
 | Date | Description |
 |------|-------------|
+| 2026-06-04 | v4.6.0: EDD account marketing — Free Plugins tab with one-click $0-order claims (`POST wbcom/v1/edd-account/claim-free`, idempotent + rate-limited), special-offers banner from flagged discounts, What's New + Recommended for You (pro-counterpart upsell via `_wbcom_pro_counterpart` meta), section toggles as block attributes, mobile minimal icon-rail sidebar (container queries) + edge-to-edge layout + stacked order cards |
 | 2026-04-18 | Drop `product-filter` block (redundant with `product-catalog`'s built-in filters); a11y wrap-up; EDD Invoices button fix on purchases tab; REST permission hardening; uninstall.php + lifecycle hooks; npm transitive CVE overrides |
 | 2026-04-08 | UX audit: 14 fixes — XSS, flip-box touch/keyboard, visibility CSS consolidation, focus-visible, EDD empty states + mobile nav + i18n, BP notices, a11y |
 | 2026-04-07 | Bug fix: 12 Basecamp cards resolved — block styles, Swiper handle, EDD profile, product filter, BoxShadowControl |
