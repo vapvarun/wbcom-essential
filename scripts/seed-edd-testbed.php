@@ -171,13 +171,18 @@ if ( ! $user ) {
 	wp_update_user( array( 'ID' => $uid, 'first_name' => 'Test', 'last_name' => 'Customer', 'display_name' => 'Test Customer' ) );
 	$user = get_user_by( 'id', $uid );
 }
-$customer      = edd_get_customer_by( 'user_id', $user->ID );
-$counts        = edd_count_payments( array( 'user' => $user->user_email ) );
-$actual_orders = $customer ? (int) $counts->complete : 0;
-if ( ! $customer || ! $actual_orders ) {
-	wbe_seed_order( $user, $ids['buddypress-polls'], 0 );          // Owns a free plugin (→ pro reco).
-	wbe_seed_order( $user, $ids['plain'], 29 );                     // Paid order.
-	wbe_seed_order( $user, $ids['buddyx-pro-theme'], 59 );          // Licensed product.
+// Per-order idempotency: only create an order if the user doesn't own the product yet,
+// so partial/interrupted runs heal on re-run without duplicating orders.
+$history = array(
+	array( $ids['buddypress-polls'], 0 ),  // Owns a free plugin (→ pro reco).
+	array( $ids['plain'], 29 ),            // Paid order.
+	array( $ids['buddyx-pro-theme'], 59 ), // Licensed product.
+);
+foreach ( $history as $entry ) {
+	list( $download_id, $price ) = $entry;
+	if ( ! edd_has_user_purchased( $user->ID, array( $download_id ) ) ) {
+		wbe_seed_order( $user, $download_id, $price );
+	}
 }
 // Sync customer stats (EDD caches purchase_count; recalculate to reflect actual orders).
 $customer = edd_get_customer_by( 'user_id', $user->ID );
