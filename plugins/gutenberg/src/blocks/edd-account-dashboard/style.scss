@@ -1760,6 +1760,14 @@
 	color: inherit;
 	transition: box-shadow 0.15s ease;
 
+	// Theme-bleed guard: global a:hover/a:visited rules (Reign et al.) must
+	// not repaint the card text.
+	&:hover,
+	&:visited {
+		color: inherit;
+		text-decoration: none;
+	}
+
 	&:hover,
 	&:focus-visible {
 		box-shadow: 0 4px 14px rgba( 0, 0, 0, 0.08 );
@@ -1852,7 +1860,9 @@
 	padding: 14px 16px;
 }
 
-.wbcom-edd-free__claim {
+// Element-qualified for specificity: theme global `button {}` rules
+// (Reign et al.) must not repaint the claim button.
+button.wbcom-edd-free__claim {
 	min-height: 40px;
 	padding: 8px 16px;
 	border: 0;
@@ -1865,6 +1875,8 @@
 
 	&:hover,
 	&:focus-visible {
+		background: var( --wbcom-color-primary, #0073aa );
+		color: #fff;
 		filter: brightness( 1.08 );
 	}
 
