@@ -133,43 +133,43 @@ $rest_url = rest_url( 'wbcom/v1/edd-account/' );
 $nonce    = wp_create_nonce( 'wp_rest' );
 
 // Build tabs list, conditionally including add-on tabs.
-$tabs = array();
+$wbe_tabs = array();
 
-$tabs['dashboard'] = array(
+$wbe_tabs['dashboard'] = array(
 	'label' => __( 'Dashboard', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>',
 );
 
 if ( class_exists( 'EDD_Recurring' ) ) {
-	$tabs['subscriptions'] = array(
+	$wbe_tabs['subscriptions'] = array(
 		'label' => __( 'Subscriptions', 'wbcom-essential' ),
 		'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
 	);
 }
 
-$tabs['downloads'] = array(
+$wbe_tabs['downloads'] = array(
 	'label' => __( 'Downloads', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
 );
 
-$tabs['free-plugins'] = array(
+$wbe_tabs['free-plugins'] = array(
 	'label' => __( 'Free Plugins', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
 );
 
 if ( function_exists( 'edd_software_licensing' ) ) {
-	$tabs['licenses'] = array(
+	$wbe_tabs['licenses'] = array(
 		'label' => __( 'Licenses', 'wbcom-essential' ),
 		'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
 	);
 }
 
-$tabs['purchases'] = array(
+$wbe_tabs['purchases'] = array(
 	'label' => __( 'Order History', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
 );
 
-$tabs['profile'] = array(
+$wbe_tabs['profile'] = array(
 	'label' => __( 'Edit Profile', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
 );
@@ -177,12 +177,12 @@ $tabs['profile'] = array(
 // Wrapper attributes with data- attributes for JS.
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'            => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-account ' . $vis_classes ),
-		'id'               => esc_attr( $block_id ),
-		'data-rest-url'    => esc_attr( $rest_url ),
-		'data-nonce'       => esc_attr( $nonce ),
-		'data-active-tab'  => esc_attr( $active_tab ),
-		'data-sections'    => esc_attr( implode( ',', $sections ) ),
+		'class'           => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-account ' . $vis_classes ),
+		'id'              => esc_attr( $block_id ),
+		'data-rest-url'   => esc_attr( $rest_url ),
+		'data-nonce'      => esc_attr( $nonce ),
+		'data-active-tab' => esc_attr( $active_tab ),
+		'data-sections'   => esc_attr( implode( ',', $sections ) ),
 	)
 );
 
@@ -190,8 +190,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 // the initial server-side render shows the empty state because the tab
 // functions default $customer to false. The REST AJAX callback already
 // does this; the first page load must match.
-$current_user = wp_get_current_user();
-$customer     = ( $current_user && $current_user->ID ) ? edd_get_customer_by( 'user_id', $current_user->ID ) : false;
+$wbe_current_user = wp_get_current_user();
+$customer         = ( $wbe_current_user && $wbe_current_user->ID ) ? edd_get_customer_by( 'user_id', $wbe_current_user->ID ) : false;
 
 // Render active tab content server-side.
 ob_start();
@@ -227,7 +227,7 @@ $initial_content = ob_get_clean();
 
 	<nav class="wbcom-edd-account__sidebar" aria-label="<?php esc_attr_e( 'Account navigation', 'wbcom-essential' ); ?>">
 		<ul class="wbcom-edd-account__nav" role="list">
-			<?php foreach ( $tabs as $tab_key => $tab_data ) : ?>
+			<?php foreach ( $wbe_tabs as $tab_key => $tab_data ) : ?>
 			<li class="wbcom-edd-account__nav-item">
 				<a
 					href="<?php echo esc_url( add_query_arg( 'tab', $tab_key ) ); ?>"
