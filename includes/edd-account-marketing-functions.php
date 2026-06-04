@@ -413,3 +413,65 @@ function wbcom_essential_edd_render_recommendations_section( $customer = false )
 	</div>
 	<?php
 }
+
+/**
+ * Render the Free Plugins tab: claimable $0 downloads with pro upsell CTAs.
+ *
+ * @param EDD_Customer|false $customer EDD customer or false (unused; claims key off user).
+ */
+function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Signature parity with sibling tab renderers.
+	wbcom_essential_edd_tab_header(
+		__( 'Free Plugins', 'wbcom-essential' ),
+		__( 'Add free plugins to your library with one click - updates included.', 'wbcom-essential' )
+	);
+
+	$free_ids = wbcom_essential_edd_get_free_download_ids();
+	if ( empty( $free_ids ) ) {
+		wbcom_essential_edd_empty_state(
+			'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+			__( 'No free plugins are available right now.', 'wbcom-essential' )
+		);
+		return;
+	}
+	?>
+	<div class="wbcom-edd-free">
+		<?php foreach ( $free_ids as $download_id ) : ?>
+			<?php
+			$owned  = wbcom_essential_edd_user_owns_download( $download_id );
+			$pro_id = wbcom_essential_edd_get_pro_counterpart( $download_id );
+			?>
+			<div class="wbcom-edd-free__card" data-download-id="<?php echo esc_attr( $download_id ); ?>">
+				<?php if ( has_post_thumbnail( $download_id ) ) : ?>
+					<a class="wbcom-edd-free__thumb" href="<?php echo esc_url( get_permalink( $download_id ) ); ?>">
+						<?php echo get_the_post_thumbnail( $download_id, 'medium' ); ?>
+					</a>
+				<?php endif; ?>
+				<div class="wbcom-edd-free__body">
+					<h3 class="wbcom-edd-free__title">
+						<a href="<?php echo esc_url( get_permalink( $download_id ) ); ?>"><?php echo esc_html( get_the_title( $download_id ) ); ?></a>
+					</h3>
+					<p class="wbcom-edd-free__excerpt"><?php echo esc_html( get_the_excerpt( $download_id ) ); ?></p>
+				</div>
+				<div class="wbcom-edd-free__actions">
+					<?php if ( $owned ) : ?>
+						<span class="wbcom-edd-free__owned">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+							<?php esc_html_e( 'In your library', 'wbcom-essential' ); ?>
+						</span>
+						<a class="wbcom-edd-free__goto" href="<?php echo esc_url( add_query_arg( 'tab', 'downloads' ) ); ?>" data-tab-link="downloads"><?php esc_html_e( 'View in Downloads', 'wbcom-essential' ); ?></a>
+					<?php else : ?>
+						<button type="button" class="wbcom-edd-free__claim" data-download-id="<?php echo esc_attr( $download_id ); ?>" data-busy-label="<?php esc_attr_e( 'Adding…', 'wbcom-essential' ); ?>">
+							<?php esc_html_e( 'Download Free', 'wbcom-essential' ); ?>
+						</button>
+					<?php endif; ?>
+					<?php if ( $pro_id && ! wbcom_essential_edd_user_owns_download( $pro_id ) ) : ?>
+						<a class="wbcom-edd-free__upgrade" href="<?php echo esc_url( get_permalink( $pro_id ) ); ?>">
+							<?php esc_html_e( 'Upgrade to Pro', 'wbcom-essential' ); ?>
+						</a>
+					<?php endif; ?>
+				</div>
+			</div>
+		<?php endforeach; ?>
+	</div>
+	<?php
+}

@@ -34,7 +34,7 @@ $support_url   = isset( $attributes['supportUrl'] ) ? esc_url( $attributes['supp
 $support_label = isset( $attributes['supportLabel'] ) ? $attributes['supportLabel'] : __( 'My Tickets', 'wbcom-essential' );
 $default_tab   = isset( $attributes['defaultTab'] ) ? $attributes['defaultTab'] : 'dashboard';
 
-$valid_tabs = array( 'dashboard', 'subscriptions', 'downloads', 'licenses', 'purchases', 'profile' );
+$valid_tabs = array( 'dashboard', 'subscriptions', 'downloads', 'free-plugins', 'licenses', 'purchases', 'profile' );
 if ( ! in_array( $default_tab, $valid_tabs, true ) ) {
 	$default_tab = 'dashboard';
 }
@@ -141,6 +141,11 @@ $tabs['downloads'] = array(
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
 );
 
+$tabs['free-plugins'] = array(
+	'label' => __( 'Free Plugins', 'wbcom-essential' ),
+	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
+);
+
 if ( function_exists( 'edd_software_licensing' ) ) {
 	$tabs['licenses'] = array(
 		'label' => __( 'Licenses', 'wbcom-essential' ),
@@ -187,6 +192,9 @@ switch ( $active_tab ) {
 		break;
 	case 'downloads':
 		wbcom_essential_edd_render_downloads_tab( $customer );
+		break;
+	case 'free-plugins':
+		wbcom_essential_edd_render_free_plugins_tab( $customer );
 		break;
 	case 'licenses':
 		wbcom_essential_edd_render_licenses_tab( $customer );

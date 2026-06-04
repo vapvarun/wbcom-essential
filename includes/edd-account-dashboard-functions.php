@@ -109,7 +109,7 @@ function wbcom_essential_edd_account_rest_routes() {
 					'validate_callback' => function ( $param ) {
 						return in_array(
 							$param,
-							array( 'dashboard', 'subscriptions', 'downloads', 'licenses', 'purchases', 'profile' ),
+							array( 'dashboard', 'subscriptions', 'downloads', 'free-plugins', 'licenses', 'purchases', 'profile' ),
 							true
 						);
 					},
@@ -485,6 +485,9 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 				break;
 			case 'downloads':
 				wbcom_essential_edd_render_downloads_tab( $customer );
+				break;
+			case 'free-plugins':
+				wbcom_essential_edd_render_free_plugins_tab( $customer );
 				break;
 			case 'licenses':
 				wbcom_essential_edd_render_licenses_tab( $customer );
