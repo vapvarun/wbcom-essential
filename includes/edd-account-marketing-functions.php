@@ -114,7 +114,7 @@ add_action( 'edd_add_discount_form_bottom', 'wbcom_essential_edd_discount_accoun
  * @param int   $discount_id Discount ID.
  */
 function wbcom_essential_edd_save_discount_account_flag( $args, $discount_id ) {
-	if ( ! current_user_can( 'manage_shop_discounts' ) ) {
+	if ( ! current_user_can( 'manage_shop_discounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- EDD shop capability.
 		return;
 	}
 	if (
@@ -123,7 +123,8 @@ function wbcom_essential_edd_save_discount_account_flag( $args, $discount_id ) {
 	) {
 		return;
 	}
-	if ( ! empty( $_POST['wbcom_show_in_account'] ) ) {
+	$flag_value = isset( $_POST['wbcom_show_in_account'] ) ? sanitize_text_field( wp_unslash( $_POST['wbcom_show_in_account'] ) ) : '';
+	if ( ! empty( $flag_value ) ) {
 		edd_update_adjustment_meta( $discount_id, '_wbcom_show_in_account', 1 );
 	} else {
 		edd_delete_adjustment_meta( $discount_id, '_wbcom_show_in_account' );
@@ -180,7 +181,7 @@ function wbcom_essential_edd_render_pro_counterpart_row( $post_id ) {
 		array(
 			'post_type'      => 'download',
 			'post_status'    => 'publish',
-			'posts_per_page' => 200,
+			'posts_per_page' => 200, // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page -- Bounded admin select, loaded once per metabox.
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 			'exclude'        => array( $post_id ),
