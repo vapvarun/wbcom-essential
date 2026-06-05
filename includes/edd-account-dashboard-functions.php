@@ -73,7 +73,7 @@ function wbcom_essential_kses_form( $html ) {
 	if ( isset( $allowed['span'] ) && is_array( $allowed['span'] ) ) {
 		$allowed['span'] = array_merge( $allowed['span'], $js_attrs );
 	}
-	$allowed['input']    = array_merge(
+	$allowed['input']  = array_merge(
 		array(
 			'type'         => true,
 			'id'           => true,
@@ -94,7 +94,7 @@ function wbcom_essential_kses_form( $html ) {
 		),
 		$js_attrs
 	);
-	$allowed['select']   = array_merge(
+	$allowed['select'] = array_merge(
 		array(
 			'id'         => true,
 			'name'       => true,
@@ -106,7 +106,7 @@ function wbcom_essential_kses_form( $html ) {
 		),
 		$js_attrs
 	);
-	$allowed['option']   = array(
+	$allowed['option'] = array(
 		'value'    => true,
 		'selected' => true,
 		'disabled' => true,
@@ -120,7 +120,7 @@ function wbcom_essential_kses_form( $html ) {
 		'class' => true,
 	);
 	// Tab pagination wrapper.
-	$allowed['nav'] = array(
+	$allowed['nav']      = array(
 		'class'      => true,
 		'aria-label' => true,
 	);
@@ -751,13 +751,13 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections 
 					</thead>
 					<tbody>
 						<?php foreach ( $recent_orders as $order ) : ?>
-						<?php
-						// PDF invoice - EDD Pro bundles the Invoices feature; paid
-						// orders only when the store disables free-order invoices.
-						$recent_invoice_url = function_exists( 'edd_invoices_order_has_invoice' ) && edd_invoices_order_has_invoice( $order->id )
+							<?php
+							// PDF invoice - EDD Pro bundles the Invoices feature; paid
+							// orders only when the store disables free-order invoices.
+							$recent_invoice_url = function_exists( 'edd_invoices_order_has_invoice' ) && edd_invoices_order_has_invoice( $order->id )
 							? edd_invoices_get_invoice_url( $order->id, true )
 							: '';
-						?>
+							?>
 						<tr>
 							<td>#<?php echo esc_html( $order->get_number() ); ?></td>
 							<td><?php echo esc_html( edd_date_i18n( $order->date_created ) ); ?></td>
@@ -1171,6 +1171,12 @@ function wbcom_essential_edd_render_pager( $tab, $page, $total_pages ) {
 	<?php
 }
 
+/**
+ * Render Downloads tab - unique product cards built from the full order set,
+ * with bundle purchases expanded into their bundled products' files.
+ *
+ * @param EDD_Customer|false $customer EDD customer object or false.
+ */
 function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'Downloads', 'wbcom-essential' ),
@@ -1215,6 +1221,57 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 				continue;
 			}
 
+			// Bundles carry no files of their own - expand each bundled
+			// product into its own card so the customer sees the actual
+			// downloadables (same expansion EDD core does on the receipt).
+			if ( edd_is_bundled_product( $item->product_id ) ) {
+				$bundled_products = edd_get_bundled_products( $item->product_id, $item->price_id );
+				foreach ( (array) $bundled_products as $bundle_item ) {
+					$bundle_item_id       = edd_get_bundle_item_id( $bundle_item );
+					$bundle_item_price_id = edd_get_bundle_item_price_id( $bundle_item );
+					$bundle_download      = edd_get_download( $bundle_item_id );
+					if ( ! $bundle_download ) {
+						continue;
+					}
+
+					$product_key = $bundle_item_id . '_' . $bundle_item_price_id;
+					if ( isset( $products[ $product_key ] ) ) {
+						continue;
+					}
+
+					$files = edd_get_download_files( $bundle_item_id, $bundle_item_price_id );
+					if ( empty( $files ) ) {
+						continue;
+					}
+
+					$price_name = '';
+					if ( edd_has_variable_prices( $bundle_item_id ) && null !== $bundle_item_price_id ) {
+						$price_name = edd_get_price_option_name( $bundle_item_id, $bundle_item_price_id );
+					}
+
+					$download_links = array();
+					foreach ( $files as $filekey => $file ) {
+						// The raw bundle item (which may encode a price ID) and the
+						// parent order item are what EDD's token validation expects
+						// for bundled file URLs.
+						$url              = edd_get_download_file_url( $order, $order->email, $filekey, $bundle_item, $bundle_item_price_id, $item );
+						$download_links[] = array(
+							'name' => esc_html( edd_get_file_name( $file ) ),
+							'url'  => $url,
+						);
+					}
+
+					$products[ $product_key ] = array(
+						'name'       => $bundle_download->get_name(),
+						'price_name' => $price_name,
+						'image'      => get_the_post_thumbnail_url( $bundle_item_id, 'thumbnail' ),
+						'files'      => $download_links,
+						'order_date' => $order->date_created,
+					);
+				}
+				continue;
+			}
+
 			$price_id    = $item->price_id;
 			$product_key = $item->product_id . '_' . $price_id;
 
@@ -1237,7 +1294,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 			foreach ( $files as $filekey => $file ) {
 				$url              = edd_get_download_file_url( $order->payment_key, $order->email, $filekey, $item->product_id, $price_id );
 				$download_links[] = array(
-					'name' => esc_html( $file['name'] ),
+					'name' => esc_html( edd_get_file_name( $file ) ),
 					'url'  => $url,
 				);
 			}
@@ -1501,8 +1558,8 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 										add_query_arg(
 											array(
 												'edd_action' => 'deactivate_site',
-												'site_id'    => $wbe_site->site_id,
-												'license'    => $license->ID,
+												'site_id' => $wbe_site->site_id,
+												'license' => $license->ID,
 											)
 										),
 										'edd_deactivate_site_nonce',
