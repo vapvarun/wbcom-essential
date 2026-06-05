@@ -1779,13 +1779,6 @@
 		box-shadow: 0 4px 14px rgba( 0, 0, 0, 0.08 );
 	}
 
-	&__thumb img {
-		width: 100%;
-		height: auto;
-		border-radius: 6px;
-		display: block;
-	}
-
 	&__title {
 		font-size: 14px;
 		font-weight: 600;
@@ -1797,8 +1790,7 @@
 		color: var( --wbcom-color-contrast-2, #495057 );
 	}
 
-	// In-flow pill (first child of the card) — never overlaps the title,
-	// with or without a product thumbnail.
+	// In-flow pill (first child of the card) — never overlaps the title.
 	&__flag {
 		justify-self: start;
 		align-self: start; // grid items stretch by default — keep every pill the same height
@@ -1831,12 +1823,6 @@
 	border-radius: 10px;
 	background: var( --wbcom-card-bg, #fff );
 	overflow: hidden;
-}
-
-.wbcom-edd-free__thumb img {
-	width: 100%;
-	height: auto;
-	display: block;
 }
 
 .wbcom-edd-free__body {

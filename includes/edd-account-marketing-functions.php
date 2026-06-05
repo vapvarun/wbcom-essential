@@ -369,9 +369,6 @@ function wbcom_essential_edd_render_whats_new_section() {
 		<div class="wbcom-edd-card-row">
 			<?php foreach ( $cards as $download ) : ?>
 				<a class="wbcom-edd-mini-card" href="<?php echo esc_url( get_permalink( $download ) ); ?>">
-					<?php if ( has_post_thumbnail( $download ) ) : ?>
-						<span class="wbcom-edd-mini-card__thumb"><?php echo get_the_post_thumbnail( $download, 'medium' ); ?></span>
-					<?php endif; ?>
 					<span class="wbcom-edd-mini-card__title"><?php echo esc_html( get_the_title( $download ) ); ?></span>
 					<span class="wbcom-edd-mini-card__price"><?php echo wp_kses_post( edd_price( $download->ID, false ) ); ?></span>
 				</a>
@@ -467,9 +464,6 @@ function wbcom_essential_edd_render_recommendations_section( $customer = false )
 					<?php if ( 'upgrade' === $reason ) : ?>
 						<span class="wbcom-edd-mini-card__flag"><?php esc_html_e( 'Pro Upgrade', 'wbcom-essential' ); ?></span>
 					<?php endif; ?>
-					<?php if ( has_post_thumbnail( $reco_id ) ) : ?>
-						<span class="wbcom-edd-mini-card__thumb"><?php echo get_the_post_thumbnail( $reco_id, 'medium' ); ?></span>
-					<?php endif; ?>
 					<span class="wbcom-edd-mini-card__title"><?php echo esc_html( get_the_title( $reco_id ) ); ?></span>
 					<span class="wbcom-edd-mini-card__price"><?php echo wp_kses_post( edd_price( $reco_id, false ) ); ?></span>
 				</a>
@@ -506,11 +500,6 @@ function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) { // p
 			$pro_id = wbcom_essential_edd_get_pro_counterpart( $download_id );
 			?>
 			<div class="wbcom-edd-free__card" data-download-id="<?php echo esc_attr( $download_id ); ?>">
-				<?php if ( has_post_thumbnail( $download_id ) ) : ?>
-					<a class="wbcom-edd-free__thumb" href="<?php echo esc_url( get_permalink( $download_id ) ); ?>">
-						<?php echo get_the_post_thumbnail( $download_id, 'medium' ); ?>
-					</a>
-				<?php endif; ?>
 				<div class="wbcom-edd-free__body">
 					<h3 class="wbcom-edd-free__title">
 						<a href="<?php echo esc_url( get_permalink( $download_id ) ); ?>"><?php echo esc_html( get_the_title( $download_id ) ); ?></a>
