@@ -119,6 +119,11 @@ function wbcom_essential_kses_form( $html ) {
 	$allowed['summary'] = array(
 		'class' => true,
 	);
+	// Tab pagination wrapper.
+	$allowed['nav'] = array(
+		'class'      => true,
+		'aria-label' => true,
+	);
 	$allowed['optgroup'] = array(
 		'label'    => true,
 		'disabled' => true,

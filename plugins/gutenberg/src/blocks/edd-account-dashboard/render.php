@@ -111,6 +111,10 @@ if ( ! is_user_logged_in() ) {
 					<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary" value="<?php esc_attr_e( 'Log In', 'wbcom-essential' ); ?>" />
 					<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_url ); ?>" />
 				</p>
+				<p class="wbcom-edd-login-form__lost">
+					<?php // wp_lostpassword_url() is filtered by WPS Hide Login et al. to the renamed endpoint. ?>
+					<a href="<?php echo esc_url( wp_lostpassword_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Lost your password?', 'wbcom-essential' ); ?></a>
+				</p>
 			</form>
 		</div>
 	</div>
