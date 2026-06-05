@@ -809,10 +809,18 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections 
 							<th><?php esc_html_e( 'Date', 'wbcom-essential' ); ?></th>
 							<th><?php esc_html_e( 'Amount', 'wbcom-essential' ); ?></th>
 							<th><?php esc_html_e( 'Status', 'wbcom-essential' ); ?></th>
+							<th><span class="screen-reader-text"><?php esc_html_e( 'Actions', 'wbcom-essential' ); ?></span></th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ( $recent_orders as $order ) : ?>
+						<?php
+						// PDF invoice - EDD Pro bundles the Invoices feature; paid
+						// orders only when the store disables free-order invoices.
+						$recent_invoice_url = function_exists( 'edd_invoices_order_has_invoice' ) && edd_invoices_order_has_invoice( $order->id )
+							? edd_invoices_get_invoice_url( $order->id, true )
+							: '';
+						?>
 						<tr>
 							<td>#<?php echo esc_html( $order->get_number() ); ?></td>
 							<td><?php echo esc_html( edd_date_i18n( $order->date_created ) ); ?></td>
@@ -821,6 +829,12 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections 
 								<span class="wbcom-edd-status wbcom-edd-status--<?php echo esc_attr( $order->status ); ?>">
 									<?php echo esc_html( edd_get_status_label( $order->status ) ); ?>
 								</span>
+							</td>
+							<td class="wbcom-edd-dashboard__order-actions">
+								<a href="<?php echo esc_url( edd_get_receipt_page_uri( $order->id ) ); ?>"><?php esc_html_e( 'Receipt', 'wbcom-essential' ); ?></a>
+								<?php if ( $recent_invoice_url ) : ?>
+									<a href="<?php echo esc_url( $recent_invoice_url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Invoice', 'wbcom-essential' ); ?></a>
+								<?php endif; ?>
 							</td>
 						</tr>
 						<?php endforeach; ?>

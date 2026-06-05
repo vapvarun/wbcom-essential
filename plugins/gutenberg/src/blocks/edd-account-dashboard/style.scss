@@ -625,6 +625,24 @@
 	}
 }
 
+.wbcom-edd-dashboard__order-actions {
+	display: flex;
+	gap: 0.75rem;
+	white-space: nowrap;
+
+	a {
+		font-size: var( --edd-font-sm );
+		font-weight: 600;
+		color: var( --wbcom-color-primary, #0073aa );
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
+}
+
 // -------------------------------------------------------------------------
 // Status Badges (pills)
 // -------------------------------------------------------------------------
@@ -1506,7 +1524,8 @@
 			grid-template-columns: 1fr auto;
 			grid-template-areas:
 				'order amount'
-				'date status';
+				'date status'
+				'actions actions';
 			gap: 0.125rem 0.75rem;
 			padding: 0.75rem 0.25rem;
 			border-bottom: 1px solid var( --edd-sidebar-border );
@@ -1538,6 +1557,11 @@
 			&:nth-child( 4 ) {
 				grid-area: status;
 				text-align: right;
+			}
+
+			&:nth-child( 5 ) {
+				grid-area: actions;
+				margin-top: 0.375rem;
 			}
 		}
 	}
