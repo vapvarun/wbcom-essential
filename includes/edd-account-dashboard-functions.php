@@ -1324,10 +1324,19 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 		return;
 	}
 
+	// Paginated: power customers hold 100+ license keys.
+	$lic_per_page    = 10;
+	$lic_total       = method_exists( $sl->licenses_db, 'count' )
+		? (int) $sl->licenses_db->count( array( 'customer_id' => $customer->id ) )
+		: 0;
+	$lic_total_pages = (int) ceil( max( 1, $lic_total ) / $lic_per_page );
+	$lic_page        = min( wbcom_essential_edd_current_pg(), max( 1, $lic_total_pages ) );
+
 	$licenses = $sl->licenses_db->get_licenses(
 		array(
 			'customer_id' => $customer->id,
-			'number'      => 100,
+			'number'      => $lic_per_page,
+			'offset'      => ( $lic_page - 1 ) * $lic_per_page,
 		)
 	);
 
@@ -1537,6 +1546,7 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	}
 
 	echo '</div>';
+	wbcom_essential_edd_render_pager( 'licenses', $lic_page, $lic_total_pages );
 }
 
 /**
