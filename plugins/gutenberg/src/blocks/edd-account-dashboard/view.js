@@ -197,14 +197,14 @@
 		 * @param {HTMLElement} el Container element.
 		 */
 		function bindCountryStateHandler( el ) {
-			var countrySelect = el.querySelector( '#card_country' );
+			var countrySelect = el.querySelector( '#edd_address_country' );
 			if ( ! countrySelect ) {
 				return;
 			}
 
 			countrySelect.addEventListener( 'change', function () {
 				var country = this.value;
-				var stateField = el.querySelector( '#card_state' );
+				var stateField = el.querySelector( '#edd_address_state' );
 				var stateParent = stateField ? stateField.parentElement : null;
 
 				if ( ! stateParent || ! country ) {
@@ -234,8 +234,8 @@
 
 						if ( states && Object.keys( states ).length > 0 ) {
 							var select = document.createElement( 'select' );
-							select.id = 'card_state';
-							select.name = 'card_state';
+							select.id = 'edd_address_state';
+							select.name = 'edd_address_state';
 							select.className = 'wbcom-edd-profile__select';
 
 							var defaultOpt = document.createElement( 'option' );
@@ -255,8 +255,8 @@
 						} else {
 							var input = document.createElement( 'input' );
 							input.type = 'text';
-							input.id = 'card_state';
-							input.name = 'card_state';
+							input.id = 'edd_address_state';
+							input.name = 'edd_address_state';
 							input.className = 'wbcom-edd-profile__input';
 							input.value = '';
 							stateParent.appendChild( input );
@@ -270,8 +270,8 @@
 						}
 						var input = document.createElement( 'input' );
 						input.type = 'text';
-						input.id = 'card_state';
-						input.name = 'card_state';
+						input.id = 'edd_address_state';
+						input.name = 'edd_address_state';
 						input.className = 'wbcom-edd-profile__input';
 						input.value = '';
 						stateParent.appendChild( input );

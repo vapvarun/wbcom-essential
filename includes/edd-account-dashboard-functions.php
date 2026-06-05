@@ -111,6 +111,14 @@ function wbcom_essential_kses_form( $html ) {
 		'selected' => true,
 		'disabled' => true,
 	);
+	// License "Manage Sites" disclosure widget.
+	$allowed['details'] = array(
+		'class' => true,
+		'open'  => true,
+	);
+	$allowed['summary'] = array(
+		'class' => true,
+	);
 	$allowed['optgroup'] = array(
 		'label'    => true,
 		'disabled' => true,
@@ -473,82 +481,6 @@ function wbcom_essential_edd_account_current_page_url() {
 		. ( isset( $parts['port'] ) ? ':' . $parts['port'] : '' )
 		. $path;
 }
-
-/**
- * Persist billing address when the EDD profile editor is saved.
- *
- * EDD's core `edd_process_profile_editor_updates()` ignores our custom
- * `card_*` billing fields and calls `edd_redirect()` on success, which
- * terminates the request. We therefore hook into `edd_user_profile_updated`
- * (fired just before that redirect) instead of `init`.
- *
- * Nonce + capability checks are already performed by EDD before this action
- * fires, so we only validate our own input shape.
- *
- * @since 4.5.1
- *
- * @param int   $user_id  User ID whose profile was updated.
- * @param array $userdata User data passed by EDD (unused).
- */
-function wbcom_essential_edd_save_profile_address( $user_id, $userdata = array() ) {
-	unset( $userdata );
-
-	if ( ! $user_id || ! function_exists( 'edd_get_customer_by' ) ) {
-		return;
-	}
-
-	$customer = edd_get_customer_by( 'user_id', (int) $user_id );
-	if ( ! $customer ) {
-		return;
-	}
-
-	// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified by edd_process_profile_editor_updates() before this action fires.
-	$address_data = array(
-		'address'     => isset( $_POST['card_address'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address'] ) ) : '',
-		'address2'    => isset( $_POST['card_address_2'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address_2'] ) ) : '',
-		'city'        => isset( $_POST['card_city'] ) ? sanitize_text_field( wp_unslash( $_POST['card_city'] ) ) : '',
-		'postal_code' => isset( $_POST['card_zip'] ) ? sanitize_text_field( wp_unslash( $_POST['card_zip'] ) ) : '',
-		'country'     => isset( $_POST['card_country'] ) ? sanitize_text_field( wp_unslash( $_POST['card_country'] ) ) : '',
-		'region'      => isset( $_POST['card_state'] ) ? sanitize_text_field( wp_unslash( $_POST['card_state'] ) ) : '',
-	);
-	// phpcs:enable WordPress.Security.NonceVerification.Missing
-
-	// Bail early if the form did not include any address fields at all.
-	if ( ! array_filter( $address_data ) ) {
-		return;
-	}
-
-	// EDD 3.x: use the customer address API.
-	if ( function_exists( 'edd_update_customer_address' ) && function_exists( 'edd_add_customer_address' ) && method_exists( $customer, 'get_address' ) ) {
-		$existing = $customer->get_address();
-		if ( $existing && ! empty( $existing->id ) ) {
-			edd_update_customer_address( $existing->id, $address_data );
-		} else {
-			$address_data['customer_id'] = $customer->id;
-			$address_data['is_primary']  = true;
-			$address_data['type']        = 'billing';
-			edd_add_customer_address( $address_data );
-		}
-
-		return;
-	}
-
-	// EDD 2.x fallback: store in customer meta.
-	if ( method_exists( $customer, 'update_meta' ) ) {
-		$customer->update_meta(
-			'address',
-			array(
-				'line1'   => $address_data['address'],
-				'line2'   => $address_data['address2'],
-				'city'    => $address_data['city'],
-				'zip'     => $address_data['postal_code'],
-				'country' => $address_data['country'],
-				'state'   => $address_data['region'],
-			)
-		);
-	}
-}
-add_action( 'edd_user_profile_updated', 'wbcom_essential_edd_save_profile_address', 10, 2 );
 
 /**
  * REST callback: render the requested tab as HTML.
@@ -1038,10 +970,11 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 			$cancel_url = wp_nonce_url( $base_url, 'edd-recurring-cancel-' . $sub->id );
 		}
 
-		// Upgrade options.
+		// Upgrade options - edd_sl_get_upgrade_paths() is keyed by DOWNLOAD id
+		// (edd_sl_get_license_upgrades() takes a LICENSE id, not a download).
 		$has_upgrades = false;
-		if ( function_exists( 'edd_sl_get_license_upgrades' ) && $download ) {
-			$upgrades     = edd_sl_get_license_upgrades( $download->ID );
+		if ( function_exists( 'edd_sl_get_upgrade_paths' ) && $download ) {
+			$upgrades     = edd_sl_get_upgrade_paths( $download->ID );
 			$has_upgrades = ! empty( $upgrades );
 		}
 
@@ -1187,6 +1120,52 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
  *
  * @param EDD_Customer|false $customer EDD customer object or false.
  */
+/**
+ * Current 1-based page for paginated dashboard tabs (?pg=N).
+ *
+ * @return int
+ */
+function wbcom_essential_edd_current_pg() {
+	return isset( $_GET['pg'] ) ? max( 1, absint( $_GET['pg'] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only pagination.
+}
+
+/**
+ * Render prev/next pagination for a dashboard tab.
+ *
+ * Links are plain hrefs (full page load) so they work identically in the
+ * server-rendered and AJAX-injected tab contexts.
+ *
+ * @param string $tab         Tab key.
+ * @param int    $page        Current 1-based page.
+ * @param int    $total_pages Total page count.
+ */
+function wbcom_essential_edd_render_pager( $tab, $page, $total_pages ) {
+	if ( $total_pages <= 1 ) {
+		return;
+	}
+	$base = add_query_arg( 'tab', $tab, wbcom_essential_edd_account_current_page_url() );
+	?>
+	<nav class="wbcom-edd-pager" aria-label="<?php esc_attr_e( 'Pagination', 'wbcom-essential' ); ?>">
+		<?php if ( $page > 1 ) : ?>
+			<a class="wbcom-edd-pager__link" href="<?php echo esc_url( add_query_arg( 'pg', $page - 1, $base ) ); ?>">&larr; <?php esc_html_e( 'Newer', 'wbcom-essential' ); ?></a>
+		<?php endif; ?>
+		<span class="wbcom-edd-pager__status">
+			<?php
+			printf(
+				/* translators: 1: current page, 2: total pages. */
+				esc_html__( 'Page %1$d of %2$d', 'wbcom-essential' ),
+				(int) $page,
+				(int) $total_pages
+			);
+			?>
+		</span>
+		<?php if ( $page < $total_pages ) : ?>
+			<a class="wbcom-edd-pager__link" href="<?php echo esc_url( add_query_arg( 'pg', $page + 1, $base ) ); ?>"><?php esc_html_e( 'Older', 'wbcom-essential' ); ?> &rarr;</a>
+		<?php endif; ?>
+	</nav>
+	<?php
+}
+
 function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'Downloads', 'wbcom-essential' ),
@@ -1198,10 +1177,12 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 		return;
 	}
 
+	// All purchase history: power customers own 100+ products, so the unique
+	// product list is built from the full order set and paginated below.
 	$orders = edd_get_orders(
 		array(
 			'customer_id' => $customer->id,
-			'number'      => 50,
+			'number'      => 999,
 			'status'      => array( 'complete', 'partially_refunded' ),
 			'orderby'     => 'date_created',
 			'order'       => 'DESC',
@@ -1273,6 +1254,12 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 
 	echo '<div class="wbcom-edd-downloads">';
 
+	// Paginate the unique product list (12 cards per page).
+	$dl_per_page    = 12;
+	$dl_total_pages = (int) ceil( count( $products ) / $dl_per_page );
+	$dl_page        = min( wbcom_essential_edd_current_pg(), max( 1, $dl_total_pages ) );
+	$products       = array_slice( $products, ( $dl_page - 1 ) * $dl_per_page, $dl_per_page, true );
+
 	foreach ( $products as $product ) {
 		?>
 		<div class="wbcom-edd-dl-card">
@@ -1307,6 +1294,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	}
 
 	echo '</div>';
+	wbcom_essential_edd_render_pager( 'downloads', $dl_page, $dl_total_pages );
 }
 
 /**
@@ -1390,11 +1378,11 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 			$activation_pct = min( 100, round( ( $count / $limit ) * 100 ) );
 		}
 
-		// Upgrade check.
+		// Upgrade check - per LICENSE (validity-aware), not per download.
 		$has_upgrades = false;
 		$upgrade_url  = '';
 		if ( function_exists( 'edd_sl_get_license_upgrades' ) && $download ) {
-			$upgrades     = edd_sl_get_license_upgrades( $download->ID );
+			$upgrades     = edd_sl_get_license_upgrades( $license->ID );
 			$has_upgrades = ! empty( $upgrades );
 			if ( $has_upgrades ) {
 				$upgrade_url = add_query_arg(
@@ -1471,6 +1459,62 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 				<?php endif; ?>
 			</div>
 
+			<?php
+			// Site management - EDD SL's own nonced actions (deactivate_site /
+			// insert_site) redirect back to this page after processing.
+			$activations = method_exists( $license, 'get_activations' ) ? (array) $license->get_activations() : array();
+			$can_add     = method_exists( $license, 'is_at_limit' ) && ! $license->is_at_limit() && in_array( $license->status, array( 'active', 'inactive' ), true );
+			?>
+			<?php if ( $activations || $can_add ) : ?>
+			<details class="wbcom-edd-license__sites">
+				<summary class="wbcom-edd-license__sites-toggle">
+					<?php
+					printf(
+						/* translators: %d: number of activated sites. */
+						esc_html( _n( 'Manage Sites (%d active)', 'Manage Sites (%d active)', count( $activations ), 'wbcom-essential' ) ),
+						(int) count( $activations )
+					);
+					?>
+				</summary>
+				<div class="wbcom-edd-license__sites-body">
+					<?php if ( $activations ) : ?>
+						<ul class="wbcom-edd-license__site-list">
+							<?php foreach ( $activations as $wbe_site ) : ?>
+								<li class="wbcom-edd-license__site">
+									<span class="wbcom-edd-license__site-url"><?php echo esc_html( untrailingslashit( $wbe_site->site_name ) ); ?></span>
+									<?php
+									$wbe_deactivate_url = wp_nonce_url(
+										add_query_arg(
+											array(
+												'edd_action' => 'deactivate_site',
+												'site_id'    => $wbe_site->site_id,
+												'license'    => $license->ID,
+											)
+										),
+										'edd_deactivate_site_nonce',
+										'_wpnonce'
+									);
+									?>
+									<a class="wbcom-edd-license__site-remove" href="<?php echo esc_url( $wbe_deactivate_url ); ?>"><?php esc_html_e( 'Deactivate', 'wbcom-essential' ); ?></a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					<?php else : ?>
+						<p class="wbcom-edd-license__sites-empty"><?php esc_html_e( 'This license is not active on any site yet.', 'wbcom-essential' ); ?></p>
+					<?php endif; ?>
+					<?php if ( $can_add ) : ?>
+						<form method="post" class="wbcom-edd-license__site-add">
+							<input type="url" name="site_url" class="wbcom-edd-license__site-input" placeholder="https://example.com" required />
+							<input type="hidden" name="license_id" value="<?php echo esc_attr( $license->ID ); ?>" />
+							<input type="hidden" name="edd_action" value="insert_site" />
+							<?php wp_nonce_field( 'edd_add_site_nonce', 'edd_add_site_nonce', true ); ?>
+							<button type="submit" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm"><?php esc_html_e( 'Add Site', 'wbcom-essential' ); ?></button>
+						</form>
+					<?php endif; ?>
+				</div>
+			</details>
+			<?php endif; ?>
+
 			<div class="wbcom-edd-license__actions">
 				<?php if ( $has_upgrades && $upgrade_url ) : ?>
 					<a href="<?php echo esc_url( $upgrade_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
@@ -1506,10 +1550,16 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 		return;
 	}
 
+	$po_per_page    = 20;
+	$po_total       = (int) edd_count_orders( array( 'customer_id' => $customer->id ) );
+	$po_total_pages = (int) ceil( $po_total / $po_per_page );
+	$po_page        = min( wbcom_essential_edd_current_pg(), max( 1, $po_total_pages ) );
+
 	$orders = edd_get_orders(
 		array(
 			'customer_id' => $customer->id,
-			'number'      => 20,
+			'number'      => $po_per_page,
+			'offset'      => ( $po_page - 1 ) * $po_per_page,
 			'orderby'     => 'date_created',
 			'order'       => 'DESC',
 		)
@@ -1560,17 +1610,39 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 		// license records. Previously the button appeared for every order
 		// when the Software Licensing add-on was active, leading users to a
 		// license-management page that showed nothing for their click.
-		$has_licenses = false;
+		$has_licenses      = false;
+		$order_upgrade_url = '';
 		if ( function_exists( 'edd_software_licensing' ) ) {
 			$sl = edd_software_licensing();
 			if ( isset( $sl->licenses_db ) && is_object( $sl->licenses_db ) && method_exists( $sl->licenses_db, 'get_licenses' ) ) {
 				$order_licenses = $sl->licenses_db->get_licenses(
 					array(
 						'payment_id' => $order->id,
-						'number'     => 1,
+						'number'     => 5,
 					)
 				);
 				$has_licenses   = ! empty( $order_licenses );
+
+				// Upgrade entry point per order: first license on the order
+				// whose product has SL upgrade paths links to the native
+				// prorated upgrades view (same flow as the Licenses tab).
+				if ( $has_licenses && function_exists( 'edd_sl_get_license_upgrades' ) ) {
+					foreach ( (array) $order_licenses as $order_license ) {
+						if ( empty( $order_license->ID ) || ! edd_sl_get_license_upgrades( $order_license->ID ) ) {
+							continue;
+						}
+						$order_upgrade_url = add_query_arg(
+							array(
+								'view'       => 'upgrades',
+								'license_id' => $order_license->ID,
+								'action'     => 'manage_licenses',
+								'payment_id' => $order->id,
+							),
+							edd_get_option( 'purchase_history_page' ) ? get_permalink( edd_get_option( 'purchase_history_page' ) ) : home_url()
+						);
+						break;
+					}
+				}
 			}
 		}
 
@@ -1641,12 +1713,19 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 						<?php esc_html_e( 'Licenses', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
+				<?php if ( $order_upgrade_url ) : ?>
+					<a href="<?php echo esc_url( $order_upgrade_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+						<?php esc_html_e( 'Upgrade License', 'wbcom-essential' ); ?>
+					</a>
+				<?php endif; ?>
 			</div>
 		</div>
 		<?php
 	}
 
 	echo '</div>';
+	wbcom_essential_edd_render_pager( 'purchases', $po_page, $po_total_pages );
 }
 
 /**
@@ -1657,6 +1736,13 @@ function wbcom_essential_edd_render_profile_tab() {
 		__( 'Edit Profile', 'wbcom-essential' ),
 		__( 'Update your account information and preferences.', 'wbcom-essential' )
 	);
+
+	// Session-stored notices from the last save (EDD sets "profile updated"
+	// successes and validation errors before redirecting back here). Without
+	// this, a failed save looks identical to a successful one.
+	if ( function_exists( 'edd_print_errors' ) ) {
+		edd_print_errors();
+	}
 
 	$user = wp_get_current_user();
 
@@ -1770,27 +1856,27 @@ function wbcom_essential_edd_render_profile_tab() {
 				<?php esc_html_e( 'Billing Address', 'wbcom-essential' ); ?>
 			</h3>
 			<div class="wbcom-edd-profile__field">
-				<label for="card_address" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 1', 'wbcom-essential' ); ?></label>
-				<input type="text" id="card_address" name="card_address" class="wbcom-edd-profile__input" autocomplete="address-line1" value="<?php echo esc_attr( $address['line1'] ); ?>">
+				<label for="edd_address_line1" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 1', 'wbcom-essential' ); ?></label>
+				<input type="text" id="edd_address_line1" name="edd_address_line1" class="wbcom-edd-profile__input" autocomplete="address-line1" value="<?php echo esc_attr( $address['line1'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__field">
-				<label for="card_address_2" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 2', 'wbcom-essential' ); ?></label>
-				<input type="text" id="card_address_2" name="card_address_2" class="wbcom-edd-profile__input" autocomplete="address-line2" value="<?php echo esc_attr( $address['line2'] ); ?>">
+				<label for="edd_address_line2" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 2', 'wbcom-essential' ); ?></label>
+				<input type="text" id="edd_address_line2" name="edd_address_line2" class="wbcom-edd-profile__input" autocomplete="address-line2" value="<?php echo esc_attr( $address['line2'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
-					<label for="card_city" class="wbcom-edd-profile__label"><?php esc_html_e( 'City', 'wbcom-essential' ); ?></label>
-					<input type="text" id="card_city" name="card_city" class="wbcom-edd-profile__input" autocomplete="address-level2" value="<?php echo esc_attr( $address['city'] ); ?>">
+					<label for="edd_address_city" class="wbcom-edd-profile__label"><?php esc_html_e( 'City', 'wbcom-essential' ); ?></label>
+					<input type="text" id="edd_address_city" name="edd_address_city" class="wbcom-edd-profile__input" autocomplete="address-level2" value="<?php echo esc_attr( $address['city'] ); ?>">
 				</div>
 				<div class="wbcom-edd-profile__field">
-					<label for="card_zip" class="wbcom-edd-profile__label"><?php esc_html_e( 'Postal / ZIP Code', 'wbcom-essential' ); ?></label>
-					<input type="text" id="card_zip" name="card_zip" class="wbcom-edd-profile__input" autocomplete="postal-code" value="<?php echo esc_attr( $address['zip'] ); ?>">
+					<label for="edd_address_zip" class="wbcom-edd-profile__label"><?php esc_html_e( 'Postal / ZIP Code', 'wbcom-essential' ); ?></label>
+					<input type="text" id="edd_address_zip" name="edd_address_zip" class="wbcom-edd-profile__input" autocomplete="postal-code" value="<?php echo esc_attr( $address['zip'] ); ?>">
 				</div>
 			</div>
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
-					<label for="card_country" class="wbcom-edd-profile__label"><?php esc_html_e( 'Country', 'wbcom-essential' ); ?></label>
-					<select id="card_country" name="card_country" class="wbcom-edd-profile__select">
+					<label for="edd_address_country" class="wbcom-edd-profile__label"><?php esc_html_e( 'Country', 'wbcom-essential' ); ?></label>
+					<select id="edd_address_country" name="edd_address_country" class="wbcom-edd-profile__select">
 						<option value=""><?php esc_html_e( 'Select country', 'wbcom-essential' ); ?></option>
 						<?php foreach ( $countries as $code => $label ) : ?>
 							<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $sel_country, $code ); ?>><?php echo esc_html( $label ); ?></option>
@@ -1798,16 +1884,16 @@ function wbcom_essential_edd_render_profile_tab() {
 					</select>
 				</div>
 				<div class="wbcom-edd-profile__field">
-					<label for="card_state" class="wbcom-edd-profile__label"><?php esc_html_e( 'State / Province', 'wbcom-essential' ); ?></label>
+					<label for="edd_address_state" class="wbcom-edd-profile__label"><?php esc_html_e( 'State / Province', 'wbcom-essential' ); ?></label>
 					<?php if ( ! empty( $states ) ) : ?>
-						<select id="card_state" name="card_state" class="wbcom-edd-profile__select">
+						<select id="edd_address_state" name="edd_address_state" class="wbcom-edd-profile__select">
 							<option value=""><?php esc_html_e( 'Select state', 'wbcom-essential' ); ?></option>
 							<?php foreach ( $states as $code => $label ) : ?>
 								<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $address['state'], $code ); ?>><?php echo esc_html( $label ); ?></option>
 							<?php endforeach; ?>
 						</select>
 					<?php else : ?>
-						<input type="text" id="card_state" name="card_state" class="wbcom-edd-profile__input" autocomplete="address-level1" value="<?php echo esc_attr( $address['state'] ); ?>">
+						<input type="text" id="edd_address_state" name="edd_address_state" class="wbcom-edd-profile__input" autocomplete="address-level1" value="<?php echo esc_attr( $address['state'] ); ?>">
 					<?php endif; ?>
 				</div>
 			</div>
