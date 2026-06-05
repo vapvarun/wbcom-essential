@@ -193,10 +193,18 @@ add_action( 'edd_post_update_discount', 'wbcom_essential_edd_save_discount_accou
  * @return EDD_Discount[] Max 2.
  */
 function wbcom_essential_edd_get_account_offers() {
+	// Query the flag directly: stores can hold hundreds of active discounts,
+	// so fetching a page of them and filtering in PHP misses flagged ones.
 	$discounts = edd_get_discounts(
 		array(
-			'status' => 'active',
-			'number' => 20,
+			'status'     => 'active',
+			'number'     => 20,
+			'meta_query' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Bounded query for explicitly flagged offers.
+				array(
+					'key'   => '_wbcom_show_in_account',
+					'value' => '1',
+				),
+			),
 		)
 	);
 	if ( ! is_array( $discounts ) ) {
@@ -205,9 +213,6 @@ function wbcom_essential_edd_get_account_offers() {
 
 	$offers = array();
 	foreach ( $discounts as $discount ) {
-		if ( ! edd_get_adjustment_meta( $discount->id, '_wbcom_show_in_account', true ) ) {
-			continue;
-		}
 		// Respect date window + max uses (EDD_Discount helpers).
 		if ( method_exists( $discount, 'is_expired' ) && $discount->is_expired( false ) ) {
 			continue;
