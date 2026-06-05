@@ -2315,7 +2315,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 							<?php } ?>
 							<?php } ?>
 							<?php if ($settings['display_date']) { ?>
-							<a class="wbcom-posts-card-date-link" href="<?php esc_url(the_permalink()); ?>">
+							<a class="wbcom-posts-card-date-link" href="<?php the_permalink(); ?>">
 								<?php \Elementor\Icons_Manager::render_icon( $settings['card_date_icon'], [ 'aria-hidden' => 'true' ] ); ?><?php the_time(get_option('date_format')); ?>
 							</a>
 							<?php } ?>
