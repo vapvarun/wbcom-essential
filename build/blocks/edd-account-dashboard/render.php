@@ -61,12 +61,19 @@ if ( ! is_user_logged_in() ) {
 	?>
 	<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 		<div class="wbcom-edd-account__login-card">
-			<div class="wbcom-edd-account__login-icon">
-				<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-					<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-					<circle cx="12" cy="7" r="4"/>
-				</svg>
-			</div>
+			<?php
+			/**
+			 * Filter the login card brand mark. Sites can return an <img> of
+			 * their logo; the default is a user glyph on a brand-gradient badge.
+			 *
+			 * @param string $icon_html Badge markup including the wrapper div.
+			 */
+			$wbe_login_icon = apply_filters(
+				'wbcom_essential_edd_login_icon_html',
+				'<div class="wbcom-edd-account__login-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>'
+			);
+			echo $wbe_login_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static default markup; site filters are trusted theme code.
+			?>
 			<h2 class="wbcom-edd-account__login-title"><?php esc_html_e( 'Sign In to Your Account', 'wbcom-essential' ); ?></h2>
 			<p class="wbcom-edd-account__login-description"><?php esc_html_e( 'Please log in to access your purchases, downloads, and account settings.', 'wbcom-essential' ); ?></p>
 			<?php

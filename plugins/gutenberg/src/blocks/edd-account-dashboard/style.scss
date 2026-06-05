@@ -398,14 +398,50 @@
 	padding: 3rem 1.5rem;
 }
 
+// Guest state: dot-grid texture + soft brand glows behind an elevated card,
+// so the sign-in screen reads designed rather than default. Decoration only -
+// pure CSS, zero requests, sits behind content and ignores pointer events.
+.wbcom-edd-account--guest {
+	position: relative;
+	isolation: isolate;
+	padding: 1.5rem 1rem 2rem;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		background-image: radial-gradient( circle, var(--wbe-color-border, #cbd5e1) 1px, transparent 1.5px );
+		background-size: 22px 22px;
+		-webkit-mask-image: radial-gradient( ellipse 70% 65% at 50% 40%, #000 25%, transparent 72% );
+		mask-image: radial-gradient( ellipse 70% 65% at 50% 40%, #000 25%, transparent 72% );
+		opacity: 0.6;
+		pointer-events: none;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background:
+			radial-gradient( 480px 320px at 30% 24%, rgba( 28, 85, 233, 0.10 ), transparent 70% ),
+			radial-gradient( 400px 280px at 72% 70%, rgba( 255, 173, 13, 0.09 ), transparent 70% );
+		pointer-events: none;
+	}
+}
+
 .wbcom-edd-account__login-card {
 	max-width: 480px;
 	margin: 0 auto;
 	padding: 2.5rem;
 	background: var( --wbcom-card-bg, #fff );
 	border: 1px solid var(--wbe-color-border);
-	border-radius: 12px;
-	box-shadow: 0 4px 24px rgba( 0, 0, 0, 0.07 );
+	border-radius: 16px;
+	box-shadow:
+		0 1px 2px rgba( 0, 18, 65, 0.05 ),
+		0 12px 24px -8px rgba( 0, 18, 65, 0.10 ),
+		0 32px 64px -24px rgba( 0, 18, 65, 0.16 );
 	text-align: center;
 }
 
@@ -413,15 +449,21 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 4.5rem;
-	height: 4.5rem;
+	width: 4.25rem;
+	height: 4.25rem;
 	margin: 0 auto 1.25rem;
-	background: var(--wbe-color-info-bg);
+	background: linear-gradient( 135deg, var( --wbcom-color-primary, #1c55e9 ), #123a9e );
 	border-radius: 50%;
-	color: var( --edd-nav-active-color );
+	color: #fff;
+	// Brand glow + faint halo ring lift the badge off the card.
+	box-shadow:
+		0 10px 22px -8px rgba( 28, 85, 233, 0.55 ),
+		0 0 0 7px rgba( 28, 85, 233, 0.07 );
 
 	svg {
 		display: block;
+		width: 34px;
+		height: 34px;
 	}
 }
 
