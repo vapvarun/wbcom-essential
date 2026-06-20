@@ -181,7 +181,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 			return 'members';
 		};
 
-		add_filter( 'wbcom_essential/has_template/pre', '__return_true' );
+		add_filter( 'buddy_builder/has_template/pre', '__return_true' );
 
 		add_filter( 'bp_current_component', $current_component );
 
@@ -302,7 +302,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 
 				remove_filter( 'bp_members_pagination_count', '__return_zero' );
 				remove_filter( 'bp_get_members_pagination_links', '__return_zero' );
-				remove_filter( 'wbcom_essential/has_template/pre', '__return_true' );
+				remove_filter( 'buddy_builder/has_template/pre', '__return_true' );
 	}
 
 }
