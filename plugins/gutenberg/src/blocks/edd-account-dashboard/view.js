@@ -35,6 +35,7 @@
 		var restUrl   = container.dataset.restUrl;
 		var nonce     = container.dataset.nonce;
 		var activeTab = container.dataset.activeTab;
+		var sections  = container.dataset.sections || '';
 
 		if ( ! restUrl || ! nonce ) {
 			return;
@@ -51,8 +52,14 @@
 
 		// Tabs whose content changes with external state (orders, subscriptions,
 		// licenses) should never be cached — users expect fresh stats after
-		// a purchase or subscription change.
-		var NO_CACHE_TABS = [ 'dashboard', 'subscriptions', 'purchases', 'licenses' ];
+		// a purchase or subscription change. Downloads is also uncached because
+		// its search/filter/sort toolbar mutates the live DOM; re-entering the
+		// tab should start from a clean, unfiltered state.
+		var NO_CACHE_TABS = [ 'dashboard', 'subscriptions', 'purchases', 'licenses', 'downloads' ];
+
+		// Query params owned by the Downloads / License Keys toolbar. Cleared on
+		// a plain tab switch so a stale filter never carries between tabs.
+		var TOOLBAR_PARAMS = [ 'q', 'filter', 'sort', 'pg' ];
 
 		// Pre-warm cache with the server-rendered initial content (except for
 		// live-data tabs, which always re-fetch on click).
@@ -196,14 +203,14 @@
 		 * @param {HTMLElement} el Container element.
 		 */
 		function bindCountryStateHandler( el ) {
-			var countrySelect = el.querySelector( '#card_country' );
+			var countrySelect = el.querySelector( '#edd_address_country' );
 			if ( ! countrySelect ) {
 				return;
 			}
 
 			countrySelect.addEventListener( 'change', function () {
 				var country = this.value;
-				var stateField = el.querySelector( '#card_state' );
+				var stateField = el.querySelector( '#edd_address_state' );
 				var stateParent = stateField ? stateField.parentElement : null;
 
 				if ( ! stateParent || ! country ) {
@@ -233,8 +240,8 @@
 
 						if ( states && Object.keys( states ).length > 0 ) {
 							var select = document.createElement( 'select' );
-							select.id = 'card_state';
-							select.name = 'card_state';
+							select.id = 'edd_address_state';
+							select.name = 'edd_address_state';
 							select.className = 'wbcom-edd-profile__select';
 
 							var defaultOpt = document.createElement( 'option' );
@@ -254,8 +261,8 @@
 						} else {
 							var input = document.createElement( 'input' );
 							input.type = 'text';
-							input.id = 'card_state';
-							input.name = 'card_state';
+							input.id = 'edd_address_state';
+							input.name = 'edd_address_state';
 							input.className = 'wbcom-edd-profile__input';
 							input.value = '';
 							stateParent.appendChild( input );
@@ -269,8 +276,8 @@
 						}
 						var input = document.createElement( 'input' );
 						input.type = 'text';
-						input.id = 'card_state';
-						input.name = 'card_state';
+						input.id = 'edd_address_state';
+						input.name = 'edd_address_state';
 						input.className = 'wbcom-edd-profile__input';
 						input.value = '';
 						stateParent.appendChild( input );
@@ -429,7 +436,12 @@
 
 			showLoading();
 
-			fetch( restUrl + encodeURIComponent( tab ), {
+			var tabUrl = restUrl + encodeURIComponent( tab );
+			if ( 'dashboard' === tab && sections ) {
+				tabUrl += ( -1 === tabUrl.indexOf( '?' ) ? '?' : '&' ) + 'sections=' + encodeURIComponent( sections );
+			}
+
+			fetch( tabUrl, {
 				method:      'GET',
 				credentials: 'same-origin',
 				headers: {
@@ -468,6 +480,380 @@
 				} );
 		}
 
+		/**
+		 * Prepend a dismissible error notice to the content area.
+		 * Uses textContent, not innerHTML, to prevent XSS.
+		 *
+		 * @param {string} message Error message text.
+		 */
+		function showInlineError( message ) {
+			var p = document.createElement( 'p' );
+			p.className   = 'wbcom-edd-account__error';
+			p.textContent = message;
+			if ( inner.firstChild ) {
+				inner.insertBefore( p, inner.firstChild );
+			} else {
+				inner.appendChild( p );
+			}
+		}
+
+		/**
+		 * Claim a free plugin download.
+		 *
+		 * @param {HTMLButtonElement} button The claim button.
+		 */
+		function claimFree( button ) {
+			if ( button.disabled ) {
+				return;
+			}
+
+			var originalLabel = button.textContent;
+			button.disabled   = true;
+			button.textContent = button.dataset.busyLabel || '…';
+
+			fetch( restUrl + 'claim-free', {
+				method:  'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-WP-Nonce':   nonce,
+				},
+				body: JSON.stringify( { download_id: parseInt( button.dataset.downloadId, 10 ) } ),
+			} )
+				.then( function ( response ) {
+					return response.json().then( function ( data ) {
+						return { ok: response.ok, data: data };
+					} );
+				} )
+				.then( function ( result ) {
+					var data = result.data;
+					if ( result.ok && data && data.claimed ) {
+						var owned = document.createElement( 'span' );
+						owned.className   = 'wbcom-edd-free__owned';
+						owned.textContent = data.message || '';
+						button.parentNode.replaceChild( owned, button );
+						// Analytics-agnostic signal: integrations (GA4 etc.)
+						// subscribe to wbcom:* events; the plugin never tracks.
+						document.dispatchEvent( new CustomEvent( 'wbcom:free-claim', {
+							detail: { downloadId: parseInt( button.dataset.downloadId, 10 ) },
+						} ) );
+						if ( data.download_url ) {
+							window.location.href = data.download_url;
+						}
+					} else {
+						button.disabled    = false;
+						button.textContent = originalLabel;
+						var msg = ( data && data.message ) ? data.message : 'Could not claim download. Please try again.';
+						showInlineError( msg );
+					}
+				} )
+				.catch( function () {
+					button.disabled    = false;
+					button.textContent = originalLabel;
+					showInlineError( 'Could not claim download. Please refresh the page and try again.' );
+				} );
+		}
+
+		/**
+		 * Copy an offer coupon code to clipboard.
+		 *
+		 * @param {HTMLButtonElement} button The copy button.
+		 */
+		function copyOfferCode( button ) {
+			var code         = button.dataset.code || '';
+			var originalLabel = button.textContent;
+			var copiedLabel  = button.dataset.copiedLabel || 'Copied!';
+
+			function onCopied() {
+				button.textContent = copiedLabel;
+				button.classList.add( 'is-copied' );
+				document.dispatchEvent( new CustomEvent( 'wbcom:offer-copy', {
+					detail: { code: code },
+				} ) );
+				setTimeout( function () {
+					button.textContent = originalLabel;
+					button.classList.remove( 'is-copied' );
+				}, 2000 );
+			}
+
+			function fallbackCopy() {
+				var ta = document.createElement( 'textarea' );
+				ta.value = code;
+				ta.style.position = 'fixed';
+				ta.style.opacity  = '0';
+				document.body.appendChild( ta );
+				ta.select();
+				document.execCommand( 'copy' );
+				document.body.removeChild( ta );
+				onCopied();
+			}
+
+			if ( navigator.clipboard && navigator.clipboard.writeText ) {
+				navigator.clipboard.writeText( code ).then( onCopied ).catch( fallbackCopy );
+			} else {
+				fallbackCopy();
+			}
+		}
+
+		// Delegated click handler for claim and copy-code buttons.
+		container.addEventListener( 'click', function ( event ) {
+			var button = event.target.closest( '.wbcom-edd-free__claim' );
+			if ( button ) {
+				event.preventDefault();
+				claimFree( button );
+				return;
+			}
+
+			// .wbcom-edd-copy-btn: generic copy-to-clipboard hook for content
+			// injected via the wbcom_essential_edd_dashboard_* action hooks.
+			var copyBtn = event.target.closest( '.wbcom-edd-offer__copy, .wbcom-edd-copy-btn' );
+			if ( copyBtn ) {
+				event.preventDefault();
+				copyOfferCode( copyBtn );
+				return;
+			}
+
+			// Upgrade CTAs (pro-counterpart links): emit a neutral signal
+			// before navigation so integrations can record the intent.
+			var upgrade = event.target.closest( '.wbcom-edd-free__upgrade, .wbcom-edd-mini-card--upgrade' );
+			if ( upgrade ) {
+				document.dispatchEvent( new CustomEvent( 'wbcom:upgrade-click', {
+					detail: { url: upgrade.href || '' },
+				} ) );
+			}
+		} );
+
+		// -----------------------------------------------------------------
+		// Find / filter / sort toolbar (Downloads + License Keys tabs).
+		//
+		// The toolbar lives OUTSIDE the [data-edd-results] region, so swapping
+		// only the results keeps the search input focused while the customer
+		// types. All four controls (search, filter chips, sort, pager) re-fetch
+		// the tab over the existing REST callback with the params appended and
+		// swap only the results region.
+		// -----------------------------------------------------------------
+
+		/**
+		 * The tab currently rendered in the content area.
+		 *
+		 * @return {string} Tab key.
+		 */
+		function currentTab() {
+			return ( tabContent && tabContent.dataset.tabContent ) || activeTab;
+		}
+
+		/**
+		 * The live [data-edd-results] region within the current tab, if any.
+		 *
+		 * @return {HTMLElement|null} Results region element.
+		 */
+		function getResultsEl() {
+			return inner.querySelector( '[data-edd-results]' );
+		}
+
+		/**
+		 * Read the current toolbar control values from the DOM.
+		 *
+		 * @return {{q: string, filter: string, sort: string}} Toolbar state.
+		 */
+		function getToolbarState() {
+			var searchEl   = inner.querySelector( '[data-edd-search]' );
+			var sortEl     = inner.querySelector( '[data-edd-sort]' );
+			var activeChip = inner.querySelector( '[data-edd-filter].is-active' );
+			return {
+				q:      searchEl ? searchEl.value.trim() : '',
+				filter: activeChip ? activeChip.dataset.eddFilter : 'all',
+				sort:   sortEl ? sortEl.value : 'recent',
+			};
+		}
+
+		/**
+		 * Build the REST tab URL carrying the toolbar params.
+		 *
+		 * @param {string} tab    Tab key.
+		 * @param {Object} params Map of q/filter/sort/pg.
+		 * @return {string} Fully-qualified REST URL.
+		 */
+		function buildResultsUrl( tab, params ) {
+			var url = restUrl + encodeURIComponent( tab );
+			var qs  = [];
+			TOOLBAR_PARAMS.forEach( function ( key ) {
+				var val = params[ key ];
+				if ( val !== '' && val !== null && val !== undefined ) {
+					qs.push( encodeURIComponent( key ) + '=' + encodeURIComponent( val ) );
+				}
+			} );
+			if ( qs.length ) {
+				url += ( -1 === url.indexOf( '?' ) ? '?' : '&' ) + qs.join( '&' );
+			}
+			return url;
+		}
+
+		/**
+		 * Mirror the toolbar params into the page URL (no new history entry)
+		 * so a refresh or shared link reproduces the filtered view.
+		 *
+		 * @param {string} tab    Tab key.
+		 * @param {Object} params Map of q/filter/sort/pg.
+		 */
+		function syncToolbarUrl( tab, params ) {
+			try {
+				var url = new URL( window.location.href );
+				url.searchParams.set( 'tab', tab );
+				TOOLBAR_PARAMS.forEach( function ( key ) {
+					var val = params[ key ];
+					// Omit defaults to keep the URL tidy.
+					if (
+						val === '' || val === null || val === undefined ||
+						( 'filter' === key && 'all' === val ) ||
+						( 'sort' === key && 'recent' === val ) ||
+						( 'pg' === key && ( 1 === val || '1' === val ) )
+					) {
+						url.searchParams.delete( key );
+					} else {
+						url.searchParams.set( key, val );
+					}
+				} );
+				window.history.replaceState( { tab: tab }, '', url.toString() );
+			} catch ( _ ) { /* older browsers: leave URL as-is */ }
+		}
+
+		// Guards against out-of-order responses from rapid typing.
+		var resultsSeq = 0;
+
+		/**
+		 * Re-fetch the current tab with toolbar params and swap ONLY the
+		 * results region, leaving the toolbar (and its focused input) intact.
+		 *
+		 * @param {Object} params Map of q/filter/sort/pg.
+		 */
+		function refreshResults( params ) {
+			var tab       = currentTab();
+			var resultsEl = getResultsEl();
+			if ( ! resultsEl ) {
+				return;
+			}
+
+			var seq = ++resultsSeq;
+			resultsEl.setAttribute( 'aria-busy', 'true' );
+			resultsEl.style.opacity       = '0.5';
+			resultsEl.style.pointerEvents = 'none';
+			syncToolbarUrl( tab, params );
+
+			fetch( buildResultsUrl( tab, params ), {
+				method:      'GET',
+				credentials: 'same-origin',
+				headers: {
+					'X-WP-Nonce': nonce,
+					Accept:        'application/json',
+				},
+			} )
+				.then( function ( response ) {
+					if ( ! response.ok ) {
+						throw new Error( 'HTTP ' + response.status );
+					}
+					return response.json();
+				} )
+				.then( function ( data ) {
+					// Discard if a newer request has since been issued.
+					if ( seq !== resultsSeq ) {
+						return;
+					}
+					var html = ( data && data.html ) ? data.html : '';
+					var holder = document.createElement( 'div' );
+					// Server-sanitised via WP kses/esc in the REST callback.
+					/* eslint-disable no-unsanitized/property */
+					holder.innerHTML = html;
+					/* eslint-enable no-unsanitized/property */
+					var fresh = holder.querySelector( '[data-edd-results]' );
+					var live  = getResultsEl();
+					if ( fresh && live ) {
+						/* eslint-disable no-unsanitized/property */
+						live.innerHTML = fresh.innerHTML;
+						/* eslint-enable no-unsanitized/property */
+						bindInteractions( live );
+					}
+				} )
+				.catch( function () {
+					/* Leave the existing results in place on error. */
+				} )
+				.finally( function () {
+					if ( seq !== resultsSeq ) {
+						return;
+					}
+					var live = getResultsEl();
+					if ( live ) {
+						live.setAttribute( 'aria-busy', 'false' );
+						live.style.opacity       = '';
+						live.style.pointerEvents = '';
+					}
+				} );
+		}
+
+		// Debounced live search.
+		var searchTimer = null;
+		container.addEventListener( 'input', function ( event ) {
+			if ( ! event.target.closest( '[data-edd-search]' ) ) {
+				return;
+			}
+			clearTimeout( searchTimer );
+			searchTimer = setTimeout( function () {
+				var state = getToolbarState();
+				refreshResults( { q: state.q, filter: state.filter, sort: state.sort, pg: 1 } );
+			}, 250 );
+		} );
+
+		// Sort dropdown.
+		container.addEventListener( 'change', function ( event ) {
+			var sortEl = event.target.closest( '[data-edd-sort]' );
+			if ( ! sortEl || ! inner.contains( sortEl ) ) {
+				return;
+			}
+			var state = getToolbarState();
+			refreshResults( { q: state.q, filter: state.filter, sort: sortEl.value, pg: 1 } );
+		} );
+
+		// Filter chips + pager (delegated, anchors that degrade to full reload).
+		container.addEventListener( 'click', function ( event ) {
+			var chip = event.target.closest( '[data-edd-filter]' );
+			if ( chip && inner.contains( chip ) ) {
+				event.preventDefault();
+				inner.querySelectorAll( '[data-edd-filter]' ).forEach( function ( c ) {
+					var on = c === chip;
+					c.classList.toggle( 'is-active', on );
+					c.setAttribute( 'aria-pressed', on ? 'true' : 'false' );
+				} );
+				var state = getToolbarState();
+				refreshResults( { q: state.q, filter: chip.dataset.eddFilter, sort: state.sort, pg: 1 } );
+				return;
+			}
+
+			var pageLink = event.target.closest( '[data-edd-page]' );
+			if ( pageLink && inner.contains( pageLink ) ) {
+				event.preventDefault();
+				var st = getToolbarState();
+				refreshResults( {
+					q:      st.q,
+					filter: st.filter,
+					sort:   st.sort,
+					pg:     parseInt( pageLink.dataset.eddPage, 10 ) || 1,
+				} );
+				var resultsEl = getResultsEl();
+				if ( resultsEl && resultsEl.scrollIntoView ) {
+					resultsEl.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+				}
+			}
+		} );
+
+		// Enter key in the search field (and the no-JS submit button).
+		container.addEventListener( 'submit', function ( event ) {
+			if ( ! event.target.closest( '[data-edd-toolbar]' ) ) {
+				return;
+			}
+			event.preventDefault();
+			var state = getToolbarState();
+			refreshResults( { q: state.q, filter: state.filter, sort: state.sort, pg: 1 } );
+		} );
+
 		// Wire up interactive elements in the server-rendered initial tab.
 		// renderHtml() does this after every AJAX load; the first paint
 		// never calls that path, so Copy buttons, country/state handlers
@@ -489,6 +875,10 @@
 
 				var url = new URL( window.location.href );
 				url.searchParams.set( 'tab', tab );
+				// Drop toolbar params so a stale filter never carries between tabs.
+				TOOLBAR_PARAMS.forEach( function ( p ) {
+					url.searchParams.delete( p );
+				} );
 				window.history.pushState( { tab: tab }, '', url.toString() );
 
 				loadTab( tab );

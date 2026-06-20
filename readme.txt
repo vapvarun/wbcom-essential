@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.5.0
+Stable tag: 4.6.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,29 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.6.2 - June 2026 =
+
+Find downloads and licenses fast on the account dashboard, plus expired-license and multi-order download fixes.
+
+* New      - Search, filter, and sort toolbar on the account Downloads tab so customers with large libraries can find a product by name, narrow to available or expired items, and order by purchase date or name.
+* New      - Search, filter, and sort toolbar on the account License Keys tab with name search, active or expired filtering, and sorting by date added, expiry, or status.
+* New      - Result count and pagination on both tabs, with instant in-page filtering that falls back to a normal page load when JavaScript is unavailable.
+* Improve  - Downloads tab resolves file links only for the items shown on the current page instead of every owned product, keeping the dashboard fast for customers who own 100 or more products.
+* Fix      - Account Downloads tab served an HTML error page instead of the file when a product or bundle license was expired; expired items now show a Renew prompt with no broken link.
+* Fix      - Customers who own a product through more than one order now get the download link built from an order whose license is still valid, instead of a disabled or expired order that returned "Error 102".
+* Fix      - Account Downloads tab builds each file link from the order that actually delivered the product, using EDD's get_items_with_bundles() and is_deliverable() handling, so a renewal or refunded order no longer generates a dead link.
+* Fix      - Bundled products are expanded through EDD's native bundle method and honor license expiration per item, matching the EDD download history.
+* Dev      - Added wbcom_essential_edd_can_download() to gate download links by per-order license status, independent of subscription cancellation.
+* Dev      - Hardened the Downloads tab against fatals when Easy Digital Downloads is deactivated.
+
+= 4.6.0 - June 2026 =
+
+* New      - Free Plugins tab on the EDD account dashboard with one-click claims for logged-in users.
+* New      - Special offers banner on the account dashboard driven by flagged EDD discounts.
+* New      - What's New and Recommended for You sections with pro-upgrade prioritization.
+* New      - Pro Counterpart field on Download Settings powering upsell recommendations.
+* Dev      - wbcom_essential_free_claim action and wbcom/v1/edd-account/claim-free REST route.
 
 = 4.5.0 =
 * Major: Gutenberg V2 rebuild — 32 production-grade blocks rebuilt from a shared infrastructure (7 shared components, 2 hooks, 3 utils, design tokens)

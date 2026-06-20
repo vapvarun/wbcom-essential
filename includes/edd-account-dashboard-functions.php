@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Sanitize HTML allowing form elements (input, select, textarea, button, form).
  *
- * wp_kses_post() strips form tags. This extends the post allowlist with
+ * Extends the post allowlist because wp_kses_post() strips form tags. This adds
  * form elements required by the EDD profile editor.
  *
  * @param string $html Raw HTML.
@@ -29,23 +29,53 @@ function wbcom_essential_kses_form( $html ) {
 	// which is why the Copy-license-key button used to render with no
 	// data-copy attribute and silently did nothing.
 	$js_attrs = array(
-		'title'        => true,
-		'data-copy'    => true,
-		'data-confirm' => true,
-		'data-tab'     => true,
-		'data-nonce'   => true,
-		'data-rest-url'=> true,
-		'data-active-tab' => true,
+		'title'                      => true,
+		'data-copy'                  => true,
+		'data-confirm'               => true,
+		'data-tab'                   => true,
+		'data-nonce'                 => true,
+		'data-rest-url'              => true,
+		'data-active-tab'            => true,
 		// Cancellation survey modal.
-		'data-cancel-sub-id'       => true,
-		'data-cancel-sub-name'     => true,
-		'data-cancel-modal-form'   => true,
-		'data-cancel-modal-close'  => true,
+		'data-cancel-sub-id'         => true,
+		'data-cancel-sub-name'       => true,
+		'data-cancel-modal-form'     => true,
+		'data-cancel-modal-close'    => true,
 		'data-cancel-modal-sub-name' => true,
+		// Free-plugins tab: claim button + copy-offer code.
+		'data-download-id'           => true,
+		'data-busy-label'            => true,
+		'data-code'                  => true,
+		'data-copied-label'          => true,
+		'data-tab-link'              => true,
+		// Find/filter/sort toolbar (Downloads + License Keys tabs). wp_kses
+		// auto-allows data-* on default elements (a, div), but NOT on the
+		// form/input/select we register explicitly below - so these must be
+		// whitelisted or the toolbar JS hooks render with no data attributes.
+		'data-edd-toolbar'           => true,
+		'data-edd-tab'               => true,
+		'data-edd-search'            => true,
+		'data-edd-sort'              => true,
+		'data-edd-filter'            => true,
+		'data-edd-page'              => true,
+		'data-edd-results'           => true,
+		// Landmark/live-region roles used by dashboard sections injected via
+		// the wbcom_essential_edd_dashboard_* action hooks.
+		'role'                       => true,
 	);
 
-	$allowed           = wp_kses_allowed_html( 'post' );
-	$allowed['form']   = array_merge( array( 'id' => true, 'class' => true, 'action' => true, 'method' => true, 'enctype' => true, 'novalidate' => true ), $js_attrs );
+	$allowed         = wp_kses_allowed_html( 'post' );
+	$allowed['form'] = array_merge(
+		array(
+			'id'         => true,
+			'class'      => true,
+			'action'     => true,
+			'method'     => true,
+			'enctype'    => true,
+			'novalidate' => true,
+		),
+		$js_attrs
+	);
 	// Ensure div/span carry through the modal's data attributes (close on
 	// backdrop click, sub-name placeholder, etc).
 	if ( isset( $allowed['div'] ) && is_array( $allowed['div'] ) ) {
@@ -54,15 +84,98 @@ function wbcom_essential_kses_form( $html ) {
 	if ( isset( $allowed['span'] ) && is_array( $allowed['span'] ) ) {
 		$allowed['span'] = array_merge( $allowed['span'], $js_attrs );
 	}
-	$allowed['input']  = array_merge( array( 'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'placeholder' => true, 'required' => true, 'checked' => true, 'disabled' => true, 'readonly' => true, 'min' => true, 'max' => true, 'step' => true, 'maxlength' => true, 'autocomplete' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['select'] = array_merge( array( 'id' => true, 'name' => true, 'class' => true, 'required' => true, 'disabled' => true, 'multiple' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['option'] = array( 'value' => true, 'selected' => true, 'disabled' => true );
-	$allowed['optgroup'] = array( 'label' => true, 'disabled' => true );
-	$allowed['textarea'] = array_merge( array( 'id' => true, 'name' => true, 'class' => true, 'rows' => true, 'cols' => true, 'placeholder' => true, 'required' => true, 'disabled' => true, 'readonly' => true, 'maxlength' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['button'] = array_merge( array( 'type' => true, 'id' => true, 'name' => true, 'class' => true, 'value' => true, 'disabled' => true, 'aria-label' => true ), $js_attrs );
-	$allowed['label']  = array( 'for' => true, 'class' => true );
-	$allowed['fieldset'] = array( 'class' => true, 'disabled' => true );
-	$allowed['legend'] = array( 'class' => true );
+	$allowed['input']  = array_merge(
+		array(
+			'type'         => true,
+			'id'           => true,
+			'name'         => true,
+			'value'        => true,
+			'class'        => true,
+			'placeholder'  => true,
+			'required'     => true,
+			'checked'      => true,
+			'disabled'     => true,
+			'readonly'     => true,
+			'min'          => true,
+			'max'          => true,
+			'step'         => true,
+			'maxlength'    => true,
+			'autocomplete' => true,
+			'aria-label'   => true,
+		),
+		$js_attrs
+	);
+	$allowed['select'] = array_merge(
+		array(
+			'id'         => true,
+			'name'       => true,
+			'class'      => true,
+			'required'   => true,
+			'disabled'   => true,
+			'multiple'   => true,
+			'aria-label' => true,
+		),
+		$js_attrs
+	);
+	$allowed['option'] = array(
+		'value'    => true,
+		'selected' => true,
+		'disabled' => true,
+	);
+	// License "Manage Sites" disclosure widget.
+	$allowed['details'] = array(
+		'class' => true,
+		'open'  => true,
+	);
+	$allowed['summary'] = array(
+		'class' => true,
+	);
+	// Tab pagination wrapper.
+	$allowed['nav']      = array(
+		'class'      => true,
+		'aria-label' => true,
+	);
+	$allowed['optgroup'] = array(
+		'label'    => true,
+		'disabled' => true,
+	);
+	$allowed['textarea'] = array_merge(
+		array(
+			'id'          => true,
+			'name'        => true,
+			'class'       => true,
+			'rows'        => true,
+			'cols'        => true,
+			'placeholder' => true,
+			'required'    => true,
+			'disabled'    => true,
+			'readonly'    => true,
+			'maxlength'   => true,
+			'aria-label'  => true,
+		),
+		$js_attrs
+	);
+	$allowed['button']   = array_merge(
+		array(
+			'type'       => true,
+			'id'         => true,
+			'name'       => true,
+			'class'      => true,
+			'value'      => true,
+			'disabled'   => true,
+			'aria-label' => true,
+		),
+		$js_attrs
+	);
+	$allowed['label']    = array(
+		'for'   => true,
+		'class' => true,
+	);
+	$allowed['fieldset'] = array(
+		'class'    => true,
+		'disabled' => true,
+	);
+	$allowed['legend']   = array( 'class' => true );
 	// Also carry title + data-confirm through on anchors so the cancel-
 	// subscription link can show its confirm dialog.
 	if ( isset( $allowed['a'] ) && is_array( $allowed['a'] ) ) {
@@ -70,12 +183,53 @@ function wbcom_essential_kses_form( $html ) {
 	}
 
 	// SVG icons used in empty states and nav.
-	$allowed['svg']      = array( 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'aria-hidden' => true, 'class' => true, 'xmlns' => true );
-	$allowed['path']     = array( 'd' => true, 'fill' => true, 'stroke' => true );
-	$allowed['circle']   = array( 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true, 'stroke' => true );
-	$allowed['line']     = array( 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'stroke' => true );
-	$allowed['polyline'] = array( 'points' => true, 'fill' => true, 'stroke' => true );
-	$allowed['rect']     = array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true, 'fill' => true, 'stroke' => true );
+	$allowed['svg']      = array(
+		'width'           => true,
+		'height'          => true,
+		'viewbox'         => true,
+		'fill'            => true,
+		'stroke'          => true,
+		'stroke-width'    => true,
+		'stroke-linecap'  => true,
+		'stroke-linejoin' => true,
+		'aria-hidden'     => true,
+		'class'           => true,
+		'xmlns'           => true,
+	);
+	$allowed['path']     = array(
+		'd'      => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
+	$allowed['circle']   = array(
+		'cx'     => true,
+		'cy'     => true,
+		'r'      => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
+	$allowed['line']     = array(
+		'x1'     => true,
+		'y1'     => true,
+		'x2'     => true,
+		'y2'     => true,
+		'stroke' => true,
+	);
+	$allowed['polyline'] = array(
+		'points' => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
+	$allowed['rect']     = array(
+		'x'      => true,
+		'y'      => true,
+		'width'  => true,
+		'height' => true,
+		'rx'     => true,
+		'ry'     => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
 
 	return wp_kses( $html, $allowed );
 }
@@ -103,7 +257,7 @@ function wbcom_essential_edd_account_rest_routes() {
 					'validate_callback' => function ( $param ) {
 						return in_array(
 							$param,
-							array( 'dashboard', 'subscriptions', 'downloads', 'licenses', 'purchases', 'profile' ),
+							array( 'dashboard', 'subscriptions', 'downloads', 'free-plugins', 'licenses', 'purchases', 'profile' ),
 							true
 						);
 					},
@@ -173,7 +327,7 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 		'technical_issues'  => __( 'Had technical issues', 'wbcom-essential' ),
 		'other'             => __( 'Other', 'wbcom-essential' ),
 	);
-	$reason_label = isset( $reason_labels[ $reason_key ] ) ? $reason_labels[ $reason_key ] : __( 'Not specified', 'wbcom-essential' );
+	$reason_label  = isset( $reason_labels[ $reason_key ] ) ? $reason_labels[ $reason_key ] : __( 'Not specified', 'wbcom-essential' );
 
 	// Resolve subscription + customer + product for context.
 	if ( ! class_exists( 'EDD_Subscription' ) ) {
@@ -188,7 +342,8 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 	$product_title = get_the_title( $subscription->product_id );
 
 	// Save as a note on the subscription (admin-visible, audit trail).
-	$note_lines   = array();
+	$note_lines = array();
+	/* translators: %s: Human-readable cancellation reason label. */
 	$note_lines[] = sprintf( __( 'Cancellation reason: %s', 'wbcom-essential' ), $reason_label );
 	if ( $detail ) {
 		$note_lines[] = __( 'Detail:', 'wbcom-essential' ) . ' ' . $detail;
@@ -198,8 +353,8 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 	}
 
 	// Email the site admin.
-	$to      = get_option( 'admin_email' );
-	$site    = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+	$to   = get_option( 'admin_email' );
+	$site = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 	/* translators: %s: Site name. */
 	$subject = sprintf( __( '[%s] Subscription cancellation feedback', 'wbcom-essential' ), $site );
 
@@ -212,15 +367,21 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 		$body .= $detail . "\n";
 	}
 	$body .= "\n== " . __( 'Customer', 'wbcom-essential' ) . " ==\n";
-	$body .= sprintf( "%s <%s>\n", $customer->name ?: '—', $customer->email ?: '—' );
+	$body .= sprintf( "%s <%s>\n", $customer->name ? $customer->name : '-', $customer->email ? $customer->email : '-' );
 	if ( $customer->user_id ) {
+		/* translators: %d: WordPress user ID. */
 		$body .= sprintf( __( 'User ID: %d', 'wbcom-essential' ), $customer->user_id ) . "\n";
 	}
 	$body .= "\n== " . __( 'Subscription', 'wbcom-essential' ) . " ==\n";
+	/* translators: %d: EDD subscription ID. */
 	$body .= sprintf( __( 'ID: #%d', 'wbcom-essential' ), $subscription->id ) . "\n";
-	$body .= sprintf( __( 'Product: %s', 'wbcom-essential' ), $product_title ?: '—' ) . "\n";
-	$body .= sprintf( __( 'Amount: %s / %s', 'wbcom-essential' ), $subscription->recurring_amount, $subscription->period ) . "\n";
+	/* translators: %s: Product/download title. */
+	$body .= sprintf( __( 'Product: %s', 'wbcom-essential' ), $product_title ? $product_title : '-' ) . "\n";
+	/* translators: %1$s: Recurring amount. %2$s: Billing period (e.g. month). */
+	$body .= sprintf( __( 'Amount: %1$s / %2$s', 'wbcom-essential' ), $subscription->recurring_amount, $subscription->period ) . "\n";
+	/* translators: %s: Payment gateway slug. */
 	$body .= sprintf( __( 'Gateway: %s', 'wbcom-essential' ), $subscription->gateway ) . "\n";
+	/* translators: %s: Subscription start date. */
 	$body .= sprintf( __( 'Started: %s', 'wbcom-essential' ), $subscription->created ) . "\n";
 
 	/**
@@ -233,7 +394,11 @@ function wbcom_essential_edd_capture_cancel_reason( $sub_id ) {
 	 */
 	$email = apply_filters(
 		'wbcom_essential_cancel_feedback_email',
-		array( 'to' => $to, 'subject' => $subject, 'body' => $body ),
+		array(
+			'to'      => $to,
+			'subject' => $subject,
+			'body'    => $body,
+		),
 		$subscription,
 		$reason_key,
 		$detail
@@ -279,8 +444,8 @@ function wbcom_essential_edd_redirect_legacy_license_urls() {
 	}
 
 	// Pass-through legitimate EDD SL flows that need the full override:
-	//   - License upgrade: ?view=upgrades&license_id=X
-	//   - Single-license view from upgrade checkout: ?license_id=X
+	// - License upgrade: ?view=upgrades&license_id=X
+	// - Single-license view from upgrade checkout: ?license_id=X
 	// Without this bail, users clicking "Upgrade" on a license would be
 	// bounced back to the Licenses tab instead of reaching EDD SL's
 	// upgrade UI.
@@ -334,82 +499,6 @@ function wbcom_essential_edd_account_current_page_url() {
 }
 
 /**
- * Persist billing address when the EDD profile editor is saved.
- *
- * EDD's core `edd_process_profile_editor_updates()` ignores our custom
- * `card_*` billing fields and calls `edd_redirect()` on success, which
- * terminates the request. We therefore hook into `edd_user_profile_updated`
- * (fired just before that redirect) instead of `init`.
- *
- * Nonce + capability checks are already performed by EDD before this action
- * fires, so we only validate our own input shape.
- *
- * @since 4.5.1
- *
- * @param int   $user_id  User ID whose profile was updated.
- * @param array $userdata User data passed by EDD (unused).
- */
-function wbcom_essential_edd_save_profile_address( $user_id, $userdata = array() ) {
-	unset( $userdata );
-
-	if ( ! $user_id || ! function_exists( 'edd_get_customer_by' ) ) {
-		return;
-	}
-
-	$customer = edd_get_customer_by( 'user_id', (int) $user_id );
-	if ( ! $customer ) {
-		return;
-	}
-
-	// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified by edd_process_profile_editor_updates() before this action fires.
-	$address_data = array(
-		'address'     => isset( $_POST['card_address'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address'] ) ) : '',
-		'address2'    => isset( $_POST['card_address_2'] ) ? sanitize_text_field( wp_unslash( $_POST['card_address_2'] ) ) : '',
-		'city'        => isset( $_POST['card_city'] ) ? sanitize_text_field( wp_unslash( $_POST['card_city'] ) ) : '',
-		'postal_code' => isset( $_POST['card_zip'] ) ? sanitize_text_field( wp_unslash( $_POST['card_zip'] ) ) : '',
-		'country'     => isset( $_POST['card_country'] ) ? sanitize_text_field( wp_unslash( $_POST['card_country'] ) ) : '',
-		'region'      => isset( $_POST['card_state'] ) ? sanitize_text_field( wp_unslash( $_POST['card_state'] ) ) : '',
-	);
-	// phpcs:enable WordPress.Security.NonceVerification.Missing
-
-	// Bail early if the form did not include any address fields at all.
-	if ( ! array_filter( $address_data ) ) {
-		return;
-	}
-
-	// EDD 3.x: use the customer address API.
-	if ( function_exists( 'edd_update_customer_address' ) && function_exists( 'edd_add_customer_address' ) && method_exists( $customer, 'get_address' ) ) {
-		$existing = $customer->get_address();
-		if ( $existing && ! empty( $existing->id ) ) {
-			edd_update_customer_address( $existing->id, $address_data );
-		} else {
-			$address_data['customer_id'] = $customer->id;
-			$address_data['is_primary']  = true;
-			$address_data['type']        = 'billing';
-			edd_add_customer_address( $address_data );
-		}
-
-		return;
-	}
-
-	// EDD 2.x fallback: store in customer meta.
-	if ( method_exists( $customer, 'update_meta' ) ) {
-		$customer->update_meta(
-			'address',
-			array(
-				'line1'   => $address_data['address'],
-				'line2'   => $address_data['address2'],
-				'city'    => $address_data['city'],
-				'zip'     => $address_data['postal_code'],
-				'country' => $address_data['country'],
-				'state'   => $address_data['region'],
-			)
-		);
-	}
-}
-add_action( 'edd_user_profile_updated', 'wbcom_essential_edd_save_profile_address', 10, 2 );
-
-/**
  * REST callback: render the requested tab as HTML.
  *
  * @param WP_REST_Request $request Full request object.
@@ -457,6 +546,14 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 	$user     = wp_get_current_user();
 	$customer = edd_get_customer_by( 'user_id', $user->ID );
 
+	// Section toggles travel as a comma list from the block's data attribute.
+	$sections_param = $request->get_param( 'sections' );
+	$sections       = null;
+	if ( null !== $sections_param ) {
+		$allowed  = array( 'offers', 'whatsnew', 'recommendations' );
+		$sections = array_values( array_intersect( $allowed, array_map( 'sanitize_key', explode( ',', (string) $sections_param ) ) ) );
+	}
+
 	// Use try/catch/finally for error recovery and guaranteed global restore.
 	$html = '';
 	try {
@@ -464,13 +561,16 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
 
 		switch ( $tab ) {
 			case 'dashboard':
-				wbcom_essential_edd_render_dashboard_tab( $customer );
+				wbcom_essential_edd_render_dashboard_tab( $customer, $sections );
 				break;
 			case 'subscriptions':
 				wbcom_essential_edd_render_subscriptions_tab( $customer );
 				break;
 			case 'downloads':
 				wbcom_essential_edd_render_downloads_tab( $customer );
+				break;
+			case 'free-plugins':
+				wbcom_essential_edd_render_free_plugins_tab( $customer );
 				break;
 			case 'licenses':
 				wbcom_essential_edd_render_licenses_tab( $customer );
@@ -503,8 +603,10 @@ function wbcom_essential_edd_account_tab_callback( $request ) {
  * Render Dashboard overview tab.
  *
  * @param EDD_Customer|false $customer EDD customer object or false.
+ * @param string[]|null      $sections Which marketing sections to show: 'offers', 'whatsnew',
+ *                                     'recommendations'. Null renders all three.
  */
-function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
+function wbcom_essential_edd_render_dashboard_tab( $customer = false, $sections = null ) {
 	// Surface feedback if the user landed here from an action elsewhere.
 	wbcom_essential_edd_render_tab_notice();
 
@@ -540,7 +642,7 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 	// License count via Software Licensing add-on.
 	$license_count = 0;
 	if ( function_exists( 'edd_software_licensing' ) && $customer ) {
-		$licenses = edd_software_licensing()->licenses_db->get_licenses(
+		$licenses      = edd_software_licensing()->licenses_db->get_licenses(
 			array(
 				'customer_id' => $customer->id,
 				'number'      => -1,
@@ -563,6 +665,17 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 	}
 	?>
 	<div class="wbcom-edd-dashboard">
+		<?php
+		/**
+		 * Fires at the very top of the dashboard tab, before the greeting.
+		 * Themes/integrations can inject site-specific content (renewal
+		 * notices, announcements) without forking the plugin.
+		 *
+		 * @since 4.6.0
+		 * @param EDD_Customer|false $customer EDD customer or false.
+		 */
+		do_action( 'wbcom_essential_edd_dashboard_top', $customer );
+		?>
 		<h2 class="wbcom-edd-dashboard__greeting">
 			<?php
 			printf(
@@ -573,6 +686,28 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 			?>
 		</h2>
 
+		<?php
+		/**
+		 * Fires after the dashboard greeting, before the marketing sections.
+		 * Themes/integrations can inject quick actions or shortcuts here.
+		 *
+		 * @since 4.6.0
+		 * @param EDD_Customer|false $customer EDD customer or false.
+		 */
+		do_action( 'wbcom_essential_edd_dashboard_after_greeting', $customer );
+
+		$sections = is_array( $sections ) ? $sections : array( 'offers', 'whatsnew', 'recommendations' );
+		if ( in_array( 'offers', $sections, true ) ) {
+			wbcom_essential_edd_render_offers_section();
+		}
+		if ( in_array( 'whatsnew', $sections, true ) ) {
+			wbcom_essential_edd_render_whats_new_section();
+		}
+		if ( in_array( 'recommendations', $sections, true ) ) {
+			wbcom_essential_edd_render_recommendations_section( $customer );
+		}
+		?>
+
 		<div class="wbcom-edd-dashboard__stats">
 			<div class="wbcom-edd-dashboard__stat-card">
 				<span class="wbcom-edd-dashboard__stat-number"><?php echo esc_html( $order_count ); ?></span>
@@ -582,13 +717,14 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 				<span class="wbcom-edd-dashboard__stat-number"><?php echo wp_kses_post( $total_spent ); ?></span>
 				<span class="wbcom-edd-dashboard__stat-label"><?php esc_html_e( 'Total Spent', 'wbcom-essential' ); ?></span>
 			</div>
-			<?php if ( function_exists( 'edd_software_licensing' ) ) : ?>
+			<?php // Zero stats report nothing a customer can act on: skip them. ?>
+			<?php if ( function_exists( 'edd_software_licensing' ) && $license_count > 0 ) : ?>
 			<div class="wbcom-edd-dashboard__stat-card">
 				<span class="wbcom-edd-dashboard__stat-number"><?php echo esc_html( $license_count ); ?></span>
 				<span class="wbcom-edd-dashboard__stat-label"><?php esc_html_e( 'Active Licenses', 'wbcom-essential' ); ?></span>
 			</div>
 			<?php endif; ?>
-			<?php if ( class_exists( 'EDD_Recurring' ) ) : ?>
+			<?php if ( class_exists( 'EDD_Recurring' ) && $sub_count > 0 ) : ?>
 			<div class="wbcom-edd-dashboard__stat-card">
 				<span class="wbcom-edd-dashboard__stat-number"><?php echo esc_html( $sub_count ); ?></span>
 				<span class="wbcom-edd-dashboard__stat-label"><?php esc_html_e( 'Active Subscriptions', 'wbcom-essential' ); ?></span>
@@ -621,10 +757,18 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 							<th><?php esc_html_e( 'Date', 'wbcom-essential' ); ?></th>
 							<th><?php esc_html_e( 'Amount', 'wbcom-essential' ); ?></th>
 							<th><?php esc_html_e( 'Status', 'wbcom-essential' ); ?></th>
+							<th><span class="screen-reader-text"><?php esc_html_e( 'Actions', 'wbcom-essential' ); ?></span></th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ( $recent_orders as $order ) : ?>
+							<?php
+							// PDF invoice - EDD Pro bundles the Invoices feature; paid
+							// orders only when the store disables free-order invoices.
+							$recent_invoice_url = function_exists( 'edd_invoices_order_has_invoice' ) && edd_invoices_order_has_invoice( $order->id )
+							? edd_invoices_get_invoice_url( $order->id, true )
+							: '';
+							?>
 						<tr>
 							<td>#<?php echo esc_html( $order->get_number() ); ?></td>
 							<td><?php echo esc_html( edd_date_i18n( $order->date_created ) ); ?></td>
@@ -633,6 +777,12 @@ function wbcom_essential_edd_render_dashboard_tab( $customer = false ) {
 								<span class="wbcom-edd-status wbcom-edd-status--<?php echo esc_attr( $order->status ); ?>">
 									<?php echo esc_html( edd_get_status_label( $order->status ) ); ?>
 								</span>
+							</td>
+							<td class="wbcom-edd-dashboard__order-actions">
+								<a href="<?php echo esc_url( edd_get_receipt_page_uri( $order->id ) ); ?>"><?php esc_html_e( 'Receipt', 'wbcom-essential' ); ?></a>
+								<?php if ( $recent_invoice_url ) : ?>
+									<a href="<?php echo esc_url( $recent_invoice_url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Invoice', 'wbcom-essential' ); ?></a>
+								<?php endif; ?>
 							</td>
 						</tr>
 						<?php endforeach; ?>
@@ -716,7 +866,7 @@ function wbcom_essential_edd_render_tab_notice() {
 	// when we wire up more actions from the dashboard UI.
 	$messages = array(
 		'cancelled'     => array( 'success', __( 'Subscription cancelled. Access continues until the end of your current billing period.', 'wbcom-essential' ) ),
-		'cancel-failed' => array( 'error',   __( 'We could not cancel that subscription. Please try again or contact support.', 'wbcom-essential' ) ),
+		'cancel-failed' => array( 'error', __( 'We could not cancel that subscription. Please try again or contact support.', 'wbcom-essential' ) ),
 		'reactivated'   => array( 'success', __( 'Subscription reactivated.', 'wbcom-essential' ) ),
 		'renewed'       => array( 'success', __( 'Subscription renewed.', 'wbcom-essential' ) ),
 	);
@@ -760,7 +910,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	wbcom_essential_edd_render_tab_notice();
 
 	if ( ! class_exists( 'EDD_Recurring' ) || ! $customer ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -776,7 +926,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	}
 
 	if ( empty( $subs ) ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -787,14 +937,14 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	echo '<div class="wbcom-edd-subs">';
 
 	foreach ( $subs as $sub ) {
-		$download  = edd_get_download( $sub->product_id );
-		$name      = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
-		$price_id  = $sub->price_id;
-		$status    = $sub->status;
-		$amount    = edd_currency_filter( edd_format_amount( $sub->recurring_amount ) );
-		$period    = ucfirst( $sub->period );
-		$created   = $sub->created;
-		$expiry    = $sub->expiration;
+		$download = edd_get_download( $sub->product_id );
+		$name     = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
+		$price_id = $sub->price_id;
+		$status   = $sub->status;
+		$amount   = edd_currency_filter( edd_format_amount( $sub->recurring_amount ) );
+		$period   = ucfirst( $sub->period );
+		$created  = $sub->created;
+		$expiry   = $sub->expiration;
 
 		// Price name (e.g. "Personal License").
 		$price_name = '';
@@ -803,8 +953,8 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		}
 
 		// Days until renewal.
-		$days_left  = '';
-		$urgency    = '';
+		$days_left = '';
+		$urgency   = '';
 		if ( 'active' === $status && $expiry ) {
 			$diff = ( strtotime( $expiry ) - time() ) / DAY_IN_SECONDS;
 			if ( $diff > 0 ) {
@@ -836,10 +986,11 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 			$cancel_url = wp_nonce_url( $base_url, 'edd-recurring-cancel-' . $sub->id );
 		}
 
-		// Upgrade options.
+		// Upgrade options - edd_sl_get_upgrade_paths() is keyed by DOWNLOAD id
+		// (edd_sl_get_license_upgrades() takes a LICENSE id, not a download).
 		$has_upgrades = false;
-		if ( function_exists( 'edd_sl_get_license_upgrades' ) && $download ) {
-			$upgrades = edd_sl_get_license_upgrades( $download->ID );
+		if ( function_exists( 'edd_sl_get_upgrade_paths' ) && $download ) {
+			$upgrades     = edd_sl_get_upgrade_paths( $download->ID );
 			$has_upgrades = ! empty( $upgrades );
 		}
 
@@ -985,21 +1136,290 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
  *
  * @param EDD_Customer|false $customer EDD customer object or false.
  */
+/**
+ * Current 1-based page for paginated dashboard tabs (?pg=N).
+ *
+ * @return int
+ */
+function wbcom_essential_edd_current_pg() {
+	return isset( $_GET['pg'] ) ? max( 1, absint( $_GET['pg'] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only pagination.
+}
+
+/**
+ * Read the dashboard search term (?q=) for the current tab.
+ *
+ * Read-only query param shared by the Downloads and License Keys tabs. Works in
+ * both the full-page-load and AJAX-injected contexts (the block's view.js appends
+ * it to the REST tab URL, so PHP populates $_GET either way).
+ *
+ * @return string Sanitised, trimmed search term (max 100 chars).
+ */
+function wbcom_essential_edd_tab_search() {
+	if ( ! isset( $_GET['q'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter param.
+		return '';
+	}
+	$q = trim( sanitize_text_field( wp_unslash( $_GET['q'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter param.
+	return function_exists( 'mb_substr' ) ? mb_substr( $q, 0, 100 ) : substr( $q, 0, 100 );
+}
+
+/**
+ * Read a validated status filter (?filter=) from the request.
+ *
+ * @param string[] $allowed  Whitelisted filter keys for this tab.
+ * @param string   $fallback Value used when absent or invalid.
+ * @return string
+ */
+function wbcom_essential_edd_tab_filter( $allowed, $fallback ) {
+	$val = isset( $_GET['filter'] ) ? sanitize_key( wp_unslash( $_GET['filter'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter param.
+	return in_array( $val, $allowed, true ) ? $val : $fallback;
+}
+
+/**
+ * Read a validated sort key (?sort=) from the request.
+ *
+ * @param string[] $allowed  Whitelisted sort keys for this tab.
+ * @param string   $fallback Value used when absent or invalid.
+ * @return string
+ */
+function wbcom_essential_edd_tab_sort( $allowed, $fallback ) {
+	$val = isset( $_GET['sort'] ) ? sanitize_key( wp_unslash( $_GET['sort'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter param.
+	return in_array( $val, $allowed, true ) ? $val : $fallback;
+}
+
+/**
+ * Build the base page URL carrying the active search/filter/sort, for pager links.
+ *
+ * Default values (filter "all", sort "recent") are omitted to keep URLs clean.
+ *
+ * @param string $tab    Tab key.
+ * @param string $search Active search term.
+ * @param string $filter Active filter key.
+ * @param string $sort   Active sort key.
+ * @return string
+ */
+function wbcom_essential_edd_tab_base_url( $tab, $search, $filter, $sort ) {
+	$args = array( 'tab' => $tab );
+	if ( '' !== $search ) {
+		$args['q'] = $search;
+	}
+	if ( '' !== $filter && 'all' !== $filter ) {
+		$args['filter'] = $filter;
+	}
+	if ( '' !== $sort && 'recent' !== $sort ) {
+		$args['sort'] = $sort;
+	}
+	return add_query_arg( $args, wbcom_essential_edd_account_current_page_url() );
+}
+
+/**
+ * Render the find/filter/sort toolbar shared by Downloads and License Keys.
+ *
+ * Power customers own 100+ products/licenses; the toolbar lets them search by
+ * name, filter by status and sort, instead of paging through prev/next. It is a
+ * real GET <form> (degrades to a full-page reload without JS); the block's
+ * view.js intercepts input/chip/sort changes to refresh results over AJAX.
+ *
+ * The toolbar is rendered OUTSIDE the [data-edd-results] region so a results
+ * refresh never steals focus from the search field.
+ *
+ * @param string $tab           Tab key.
+ * @param string $search        Current search term.
+ * @param array  $filters       value => label map of filter chips.
+ * @param string $active_filter Active filter key.
+ * @param array  $sorts         value => label map of sort options.
+ * @param string $active_sort   Active sort key.
+ */
+function wbcom_essential_edd_render_toolbar( $tab, $search, $filters, $active_filter, $sorts, $active_sort ) {
+	$page_url = wbcom_essential_edd_account_current_page_url();
+	$field_id = 'wbcom-edd-search-' . sanitize_html_class( $tab );
+	?>
+	<form class="wbcom-edd-toolbar" role="search" method="get" action="<?php echo esc_url( $page_url ); ?>" data-edd-toolbar data-edd-tab="<?php echo esc_attr( $tab ); ?>">
+		<input type="hidden" name="tab" value="<?php echo esc_attr( $tab ); ?>" />
+		<?php if ( '' !== $active_filter && 'all' !== $active_filter ) : ?>
+			<input type="hidden" name="filter" value="<?php echo esc_attr( $active_filter ); ?>" />
+		<?php endif; ?>
+
+		<div class="wbcom-edd-toolbar__search">
+			<svg class="wbcom-edd-toolbar__search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+			<label class="screen-reader-text" for="<?php echo esc_attr( $field_id ); ?>"><?php esc_html_e( 'Search by product name', 'wbcom-essential' ); ?></label>
+			<input type="search" id="<?php echo esc_attr( $field_id ); ?>" name="q" class="wbcom-edd-toolbar__input" value="<?php echo esc_attr( $search ); ?>" placeholder="<?php esc_attr_e( 'Search by name…', 'wbcom-essential' ); ?>" autocomplete="off" data-edd-search />
+			<button type="submit" class="wbcom-edd-toolbar__submit"><?php esc_html_e( 'Search', 'wbcom-essential' ); ?></button>
+		</div>
+
+		<?php if ( ! empty( $filters ) ) : ?>
+			<div class="wbcom-edd-toolbar__group" role="group" aria-label="<?php esc_attr_e( 'Filter', 'wbcom-essential' ); ?>">
+				<?php
+				foreach ( $filters as $value => $label ) :
+					$is_active = ( (string) $value === (string) $active_filter );
+					$href      = ( 'all' === $value )
+						? add_query_arg( array( 'tab' => $tab ), $page_url )
+						: add_query_arg(
+							array(
+								'tab'    => $tab,
+								'filter' => $value,
+							),
+							$page_url
+						);
+					if ( '' !== $search ) {
+						$href = add_query_arg( 'q', $search, $href );
+					}
+					if ( '' !== $active_sort && 'recent' !== $active_sort ) {
+						$href = add_query_arg( 'sort', $active_sort, $href );
+					}
+					?>
+					<a class="wbcom-edd-chip<?php echo $is_active ? ' is-active' : ''; ?>" href="<?php echo esc_url( $href ); ?>" data-edd-filter="<?php echo esc_attr( $value ); ?>" aria-pressed="<?php echo $is_active ? 'true' : 'false'; ?>"><?php echo esc_html( $label ); ?></a>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $sorts ) ) : ?>
+			<label class="wbcom-edd-toolbar__sort">
+				<span class="wbcom-edd-toolbar__sort-label"><?php esc_html_e( 'Sort', 'wbcom-essential' ); ?></span>
+				<select name="sort" class="wbcom-edd-toolbar__select" data-edd-sort>
+					<?php foreach ( $sorts as $value => $label ) : ?>
+						<option value="<?php echo esc_attr( $value ); ?>" <?php selected( (string) $value, (string) $active_sort ); ?>><?php echo esc_html( $label ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</label>
+		<?php endif; ?>
+	</form>
+	<?php
+}
+
+/**
+ * Render the "N results" count line shown at the top of a results region.
+ *
+ * @param int $total Total matching items (after search + filter).
+ */
+function wbcom_essential_edd_render_result_count( $total ) {
+	printf(
+		'<p class="wbcom-edd-results__count">%s</p>',
+		esc_html(
+			sprintf(
+				/* translators: %s: number of results. */
+				_n( '%s result', '%s results', $total, 'wbcom-essential' ),
+				number_format_i18n( $total )
+			)
+		)
+	);
+}
+
+/**
+ * Render the inline "no items match" notice shown when search/filter yields zero
+ * (the customer DOES own items - this is distinct from the full empty state).
+ */
+function wbcom_essential_edd_render_no_match() {
+	?>
+	<div class="wbcom-edd-empty wbcom-edd-empty--inline">
+		<div class="wbcom-edd-empty__icon" aria-hidden="true">
+			<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+		</div>
+		<p class="wbcom-edd-empty__text"><?php esc_html_e( 'No items match your search or filter. Try clearing them.', 'wbcom-essential' ); ?></p>
+	</div>
+	<?php
+}
+
+/**
+ * Render prev/next pagination for a dashboard tab.
+ *
+ * Links are plain hrefs (full page load) so they work identically in the
+ * server-rendered and AJAX-injected tab contexts; view.js upgrades them to an
+ * in-place results refresh via the data-edd-page attribute.
+ *
+ * @param string $base        Base URL already carrying tab + search/filter/sort.
+ * @param int    $page        Current 1-based page.
+ * @param int    $total_pages Total page count.
+ */
+function wbcom_essential_edd_render_pager( $base, $page, $total_pages ) {
+	if ( $total_pages <= 1 ) {
+		return;
+	}
+	?>
+	<nav class="wbcom-edd-pager" aria-label="<?php esc_attr_e( 'Pagination', 'wbcom-essential' ); ?>">
+		<?php if ( $page > 1 ) : ?>
+			<a class="wbcom-edd-pager__link" data-edd-page="<?php echo esc_attr( $page - 1 ); ?>" href="<?php echo esc_url( add_query_arg( 'pg', $page - 1, $base ) ); ?>">&larr; <?php esc_html_e( 'Previous', 'wbcom-essential' ); ?></a>
+		<?php endif; ?>
+		<span class="wbcom-edd-pager__status">
+			<?php
+			printf(
+				/* translators: 1: current page, 2: total pages. */
+				esc_html__( 'Page %1$d of %2$d', 'wbcom-essential' ),
+				(int) $page,
+				(int) $total_pages
+			);
+			?>
+		</span>
+		<?php if ( $page < $total_pages ) : ?>
+			<a class="wbcom-edd-pager__link" data-edd-page="<?php echo esc_attr( $page + 1 ); ?>" href="<?php echo esc_url( add_query_arg( 'pg', $page + 1, $base ) ); ?>"><?php esc_html_e( 'Next', 'wbcom-essential' ); ?> &rarr;</a>
+		<?php endif; ?>
+	</nav>
+	<?php
+}
+
+/**
+ * Whether a product's files may be downloaded, honoring EDD Software Licensing.
+ *
+ * Access is tied to LICENSE status (expired/disabled), never to subscription
+ * status: a cancelled EDD Recurring subscription whose license is still valid
+ * must keep downloading until the license actually expires. This mirrors EDD
+ * core's receipt behaviour (`edd_sl_hide_downloads_on_expired`) and the same
+ * check EDD enforces at download time (`prevent_expired_downloads`), so the tab
+ * never offers a link that would just serve an "Expired License" error page.
+ *
+ * Returns true when Software Licensing is inactive or the product is unlicensed.
+ *
+ * @param int    $download_id Download ID. For bundles, pass the bundled child ID.
+ * @param string $email       Order email - lets SL honor a valid license held
+ *                            through another purchase.
+ * @param int    $order_id    Order (payment) ID.
+ * @return bool True if the file links should be shown.
+ */
+function wbcom_essential_edd_can_download( $download_id, $email, $order_id ) {
+	if ( ! function_exists( 'edd_software_licensing' ) ) {
+		return true;
+	}
+
+	$sl = edd_software_licensing();
+	if ( ! is_object( $sl ) || ! method_exists( $sl, 'license_can_download' ) ) {
+		return true;
+	}
+
+	$response = $sl->license_can_download( $download_id, $email, $order_id, array() );
+
+	return ! empty( $response['success'] );
+}
+
+
+/**
+ * Render Downloads tab - unique product cards built from the full order set,
+ * with bundle purchases expanded into their bundled products' files.
+ *
+ * @param EDD_Customer|false $customer EDD customer object or false.
+ */
 function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
+	// Defensive: never fatal if EDD is deactivated and this is somehow reached
+	// (the block render and REST routes already guard on class_exists).
+	if ( ! function_exists( 'edd_get_orders' ) || ! function_exists( 'edd_get_download_files' ) ) {
+		return;
+	}
+
 	wbcom_essential_edd_tab_header(
 		__( 'Downloads', 'wbcom-essential' ),
 		__( 'Access and download the files from your purchases.', 'wbcom-essential' )
 	);
 
 	if ( ! $customer ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
+	// All purchase history: power customers own 100+ products, so the unique
+	// product list is built from the full order set, then searched / filtered /
+	// sorted / paginated below.
 	$orders = edd_get_orders(
 		array(
 			'customer_id' => $customer->id,
-			'number'      => 50,
+			'number'      => 999,
 			'status'      => array( 'complete', 'partially_refunded' ),
 			'orderby'     => 'date_created',
 			'order'       => 'DESC',
@@ -1010,28 +1430,41 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 	}
 
 	if ( empty( $orders ) ) {
-		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloads found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
-	// Collect all downloadable items grouped by product.
-	$products = array();
+	// Pass 1 - collect one deliverable item per product (cheap). Mirrors EDD's
+	// own download history: get_items_with_bundles() flattens a bundle purchase
+	// into its real child products and excludes orders that never delivered them.
+	// Orders are date-DESC, so the first row kept for a product is its most recent
+	// delivering order; the lock state is resolved per product (cross-purchase
+	// aware), so keeping the first row is correct. Signed file URLs - the
+	// expensive part - are deferred to the visible page slice only, so a customer
+	// with 100+ products no longer triggers 100+ URL signings per render.
+	$raw = array();
 	foreach ( $orders as $order ) {
-		$order_items = $order->get_items();
+		$order_items = method_exists( $order, 'get_items_with_bundles' ) ? $order->get_items_with_bundles() : $order->get_items();
 		if ( empty( $order_items ) ) {
 			continue;
 		}
 		foreach ( $order_items as $item ) {
-			$download = edd_get_download( $item->product_id );
-			if ( ! $download ) {
+			// The bundle container carries no files - its children are surfaced
+			// by get_items_with_bundles(), so skip the container itself.
+			if ( edd_is_bundled_product( $item->product_id ) ) {
 				continue;
 			}
 
-			$price_id   = $item->price_id;
+			$price_id    = $item->price_id;
 			$product_key = $item->product_id . '_' . $price_id;
+			if ( isset( $raw[ $product_key ] ) ) {
+				continue;
+			}
 
-			// Skip if already processed this product+price combo.
-			if ( isset( $products[ $product_key ] ) ) {
+			// Skip items not in a deliverable state (refunded/pending). EDD's own
+			// per-item status check; a different order may still deliver this
+			// product, so just move on rather than locking here.
+			if ( method_exists( $item, 'is_deliverable' ) && ! $item->is_deliverable() ) {
 				continue;
 			}
 
@@ -1040,38 +1473,158 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 				continue;
 			}
 
-			$price_name = '';
-			if ( edd_has_variable_prices( $item->product_id ) && false !== $price_id ) {
-				$price_name = edd_get_price_option_name( $item->product_id, $price_id );
-			}
-
-			$download_links = array();
-			foreach ( $files as $filekey => $file ) {
-				$url = edd_get_download_file_url( $order->payment_key, $order->email, $filekey, $item->product_id, $price_id );
-				$download_links[] = array(
-					'name' => esc_html( $file['name'] ),
-					'url'  => $url,
-				);
-			}
-
-			$products[ $product_key ] = array(
-				'name'       => $download->get_name(),
-				'price_name' => $price_name,
-				'image'      => get_the_post_thumbnail_url( $item->product_id, 'thumbnail' ),
-				'files'      => $download_links,
+			$raw[ $product_key ] = array(
+				'product_id' => $item->product_id,
+				'price_id'   => $price_id,
+				'email'      => $order->email,
+				'order_id'   => $order->id,
+				'order_item' => $item,
 				'order_date' => $order->date_created,
+				'files'      => $files,
 			);
 		}
 	}
 
-	if ( empty( $products ) ) {
+	if ( empty( $raw ) ) {
 		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloadable files found.', 'wbcom-essential' ) );
+		return;
+	}
+
+	// Prime post caches once to avoid N+1 on get_download() / thumbnails.
+	_prime_post_caches( array_unique( wp_list_pluck( $raw, 'product_id' ) ), true, true );
+
+	// Pass 2 - build the lightweight display index (name / plan / image / lock
+	// state). Lock state needs a license check per product; it is required for
+	// the Available/Expired filter and the lock badge, so it is computed here.
+	$index = array();
+	foreach ( $raw as $product_key => $r ) {
+		$download = edd_get_download( $r['product_id'] );
+		if ( ! $download ) {
+			continue;
+		}
+		$price_name = '';
+		if ( edd_has_variable_prices( $r['product_id'] ) && false !== $r['price_id'] && null !== $r['price_id'] ) {
+			$price_name = edd_get_price_option_name( $r['product_id'], $r['price_id'] );
+		}
+		$index[ $product_key ]               = $r;
+		$index[ $product_key ]['name']       = $download->get_name();
+		$index[ $product_key ]['price_name'] = $price_name;
+		$index[ $product_key ]['image']      = get_the_post_thumbnail_url( $r['product_id'], 'thumbnail' );
+		$index[ $product_key ]['locked']     = ! wbcom_essential_edd_can_download( $r['product_id'], $r['email'], $r['order_id'] );
+	}
+
+	if ( empty( $index ) ) {
+		wbcom_essential_edd_empty_state( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', __( 'No downloadable files found.', 'wbcom-essential' ) );
+		return;
+	}
+
+	// Toolbar state.
+	$search = wbcom_essential_edd_tab_search();
+	$filter = wbcom_essential_edd_tab_filter( array( 'all', 'available', 'locked' ), 'all' );
+	$sort   = wbcom_essential_edd_tab_sort( array( 'recent', 'name' ), 'recent' );
+
+	// Search (product name).
+	$rows = $index;
+	if ( '' !== $search ) {
+		$needle = function_exists( 'mb_strtolower' ) ? mb_strtolower( $search ) : strtolower( $search );
+		$rows   = array_filter(
+			$rows,
+			function ( $r ) use ( $needle ) {
+				$hay = function_exists( 'mb_strtolower' ) ? mb_strtolower( $r['name'] ) : strtolower( $r['name'] );
+				return false !== strpos( $hay, $needle );
+			}
+		);
+	}
+
+	// Filter (download availability).
+	if ( 'available' === $filter ) {
+		$rows = array_filter(
+			$rows,
+			function ( $r ) {
+				return empty( $r['locked'] );
+			}
+		);
+	} elseif ( 'locked' === $filter ) {
+		$rows = array_filter(
+			$rows,
+			function ( $r ) {
+				return ! empty( $r['locked'] );
+			}
+		);
+	}
+
+	// Sort.
+	if ( 'name' === $sort ) {
+		uasort(
+			$rows,
+			function ( $a, $b ) {
+				return strcasecmp( $a['name'], $b['name'] );
+			}
+		);
+	} else {
+		uasort(
+			$rows,
+			function ( $a, $b ) {
+				return strcmp( (string) $b['order_date'], (string) $a['order_date'] );
+			}
+		);
+	}
+
+	$total          = count( $rows );
+	$dl_per_page    = 12;
+	$dl_total_pages = (int) ceil( max( 1, $total ) / $dl_per_page );
+	$dl_page        = min( wbcom_essential_edd_current_pg(), max( 1, $dl_total_pages ) );
+	$page_rows      = array_slice( $rows, ( $dl_page - 1 ) * $dl_per_page, $dl_per_page, true );
+
+	wbcom_essential_edd_render_toolbar(
+		'downloads',
+		$search,
+		array(
+			'all'       => __( 'All', 'wbcom-essential' ),
+			'available' => __( 'Available', 'wbcom-essential' ),
+			'locked'    => __( 'Expired', 'wbcom-essential' ),
+		),
+		$filter,
+		array(
+			'recent' => __( 'Recently purchased', 'wbcom-essential' ),
+			'name'   => __( 'Name (A–Z)', 'wbcom-essential' ),
+		),
+		$sort
+	);
+
+	$base = wbcom_essential_edd_tab_base_url( 'downloads', $search, $filter, $sort );
+
+	echo '<div class="wbcom-edd-results" data-edd-results>';
+	wbcom_essential_edd_render_result_count( $total );
+
+	if ( 0 === $total ) {
+		wbcom_essential_edd_render_no_match();
+		echo '</div>';
 		return;
 	}
 
 	echo '<div class="wbcom-edd-downloads">';
 
-	foreach ( $products as $product ) {
+	// Renewal lands on the Licenses tab where the customer can renew expired keys.
+	$renew_url = add_query_arg( 'tab', 'licenses', wbcom_essential_edd_account_current_page_url() );
+
+	foreach ( $page_rows as $product ) {
+		// Resolve signed file URLs now - for the visible 12 only.
+		$download_links = array();
+		if ( empty( $product['locked'] ) ) {
+			foreach ( $product['files'] as $filekey => $file ) {
+				// Pass the Order_Item object, exactly as EDD core does, so the
+				// signed URL and its token are built for this specific order.
+				$url = edd_get_download_file_url( $product['order_item'], $product['email'], $filekey, $product['product_id'], $product['price_id'] );
+				if ( empty( $url ) ) {
+					continue;
+				}
+				$download_links[] = array(
+					'name' => esc_html( edd_get_file_name( $file ) ),
+					'url'  => $url,
+				);
+			}
+		}
 		?>
 		<div class="wbcom-edd-dl-card">
 			<div class="wbcom-edd-dl-card__header">
@@ -1093,17 +1646,32 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 				</span>
 			</div>
 			<div class="wbcom-edd-dl-card__files">
-				<?php foreach ( $product['files'] as $file ) : ?>
+				<?php if ( ! empty( $product['locked'] ) ) : ?>
+					<div class="wbcom-edd-dl-card__locked">
+						<svg class="wbcom-edd-dl-card__locked-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+						<span class="wbcom-edd-dl-card__locked-text"><?php esc_html_e( 'License expired. Renew to download your files again.', 'wbcom-essential' ); ?></span>
+						<a href="<?php echo esc_url( $renew_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm"><?php esc_html_e( 'Renew License', 'wbcom-essential' ); ?></a>
+					</div>
+				<?php else : ?>
+					<?php
+					foreach ( $download_links as $file ) :
+						if ( empty( $file['url'] ) ) {
+							continue;
+						}
+						?>
 					<a href="<?php echo esc_url( $file['url'] ); ?>" class="wbcom-edd-dl-card__file" download>
 						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
 						<span class="wbcom-edd-dl-card__filename"><?php echo esc_html( $file['name'] ); ?></span>
 					</a>
 				<?php endforeach; ?>
+				<?php endif; ?>
 			</div>
 		</div>
 		<?php
 	}
 
+	echo '</div>';
+	wbcom_essential_edd_render_pager( $base, $dl_page, $dl_total_pages );
 	echo '</div>';
 }
 
@@ -1119,25 +1687,122 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	);
 
 	if ( ! function_exists( 'edd_software_licensing' ) || ! $customer ) {
-		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
 	$sl = edd_software_licensing();
 	if ( ! $sl || ! isset( $sl->licenses_db ) || ! is_object( $sl->licenses_db ) ) {
-		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
-	$licenses = $sl->licenses_db->get_licenses(
+	// Owned total (no filter) decides empty-state vs toolbar. Power customers
+	// hold 100+ license keys, so search / filter / sort run at the DB level.
+	$lic_owned_total = method_exists( $sl->licenses_db, 'count' )
+		? (int) $sl->licenses_db->count( array( 'customer_id' => $customer->id ) )
+		: 0;
+	if ( 0 === $lic_owned_total ) {
+		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		return;
+	}
+
+	// Toolbar state.
+	$search = wbcom_essential_edd_tab_search();
+	$filter = wbcom_essential_edd_tab_filter( array( 'all', 'active', 'expired' ), 'all' );
+	$sort   = wbcom_essential_edd_tab_sort( array( 'recent', 'expiry', 'status' ), 'recent' );
+
+	// Build DB query args (shared by count + fetch so pagination stays correct).
+	$args = array( 'customer_id' => $customer->id );
+
+	// Filter -> license status. "Active" covers valid-but-not-yet-activated too.
+	if ( 'active' === $filter ) {
+		$args['status'] = array( 'active', 'inactive' );
+	} elseif ( 'expired' === $filter ) {
+		$args['status'] = 'expired';
+	}
+
+	// Search by product name -> resolve to download IDs (license rows store
+	// download_id, not the product name). No DB match = zero results.
+	$search_zero = false;
+	if ( '' !== $search ) {
+		$matched_ids = get_posts(
+			array(
+				'post_type'              => 'download',
+				'post_status'            => 'publish',
+				's'                      => $search,
+				'fields'                 => 'ids',
+				// Bounded name->ID resolution for the license search; 200 distinct
+				// products comfortably covers any single customer's catalogue.
+				'posts_per_page'         => 200, // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page -- Intentional, bounded lookup.
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'suppress_filters'       => false,
+			)
+		);
+		if ( empty( $matched_ids ) ) {
+			$search_zero = true;
+		} else {
+			$args['download_id'] = array_map( 'absint', $matched_ids );
+		}
+	}
+
+	// Sort -> orderby / order. Name sort is intentionally absent: license rows
+	// can't be ordered by product name at the DB level without loading the full
+	// set (breaks pagination) - the search box covers "find product X".
+	if ( 'expiry' === $sort ) {
+		$args['orderby'] = 'expiration';
+		$args['order']   = 'ASC';
+	} elseif ( 'status' === $sort ) {
+		$args['orderby'] = 'status';
+		$args['order']   = 'ASC';
+	} else {
+		$args['orderby'] = 'date_created';
+		$args['order']   = 'DESC';
+	}
+
+	$lic_per_page    = 10;
+	$total           = ( ! $search_zero && method_exists( $sl->licenses_db, 'count' ) ) ? (int) $sl->licenses_db->count( $args ) : 0;
+	$lic_total_pages = (int) ceil( max( 1, $total ) / $lic_per_page );
+	$lic_page        = min( wbcom_essential_edd_current_pg(), max( 1, $lic_total_pages ) );
+
+	$licenses = array();
+	if ( $total > 0 ) {
+		$query_args           = $args;
+		$query_args['number'] = $lic_per_page;
+		$query_args['offset'] = ( $lic_page - 1 ) * $lic_per_page;
+		$licenses             = $sl->licenses_db->get_licenses( $query_args );
+		if ( ! is_array( $licenses ) ) {
+			$licenses = array();
+		}
+	}
+
+	wbcom_essential_edd_render_toolbar(
+		'licenses',
+		$search,
 		array(
-			'customer_id' => $customer->id,
-			'number'      => 100,
-		)
+			'all'     => __( 'All', 'wbcom-essential' ),
+			'active'  => __( 'Active', 'wbcom-essential' ),
+			'expired' => __( 'Expired', 'wbcom-essential' ),
+		),
+		$filter,
+		array(
+			'recent' => __( 'Recently added', 'wbcom-essential' ),
+			'expiry' => __( 'Expiry date', 'wbcom-essential' ),
+			'status' => __( 'Status', 'wbcom-essential' ),
+		),
+		$sort
 	);
 
+	$base = wbcom_essential_edd_tab_base_url( 'licenses', $search, $filter, $sort );
+
+	echo '<div class="wbcom-edd-results" data-edd-results>';
+	wbcom_essential_edd_render_result_count( $total );
+
 	if ( empty( $licenses ) ) {
-		wbcom_essential_edd_empty_state( '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', __( 'No licenses found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_render_no_match();
+		echo '</div>';
 		return;
 	}
 
@@ -1148,14 +1813,14 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	echo '<div class="wbcom-edd-licenses">';
 
 	foreach ( $licenses as $license ) {
-		$download   = edd_get_download( $license->download_id );
-		$name       = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
-		$key        = $license->key;
-		$status     = $license->status;
-		$expiry     = $license->expiration;
+		$download    = edd_get_download( $license->download_id );
+		$name        = $download ? $download->get_name() : __( 'Unknown Product', 'wbcom-essential' );
+		$key         = $license->key;
+		$status      = $license->status;
+		$expiry      = $license->expiration;
 		$is_lifetime = $license->is_lifetime;
-		$limit      = $license->activation_limit;
-		$count      = $license->activation_count;
+		$limit       = $license->activation_limit;
+		$count       = $license->activation_count;
 
 		// Price name.
 		$price_name = '';
@@ -1188,11 +1853,11 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 			$activation_pct = min( 100, round( ( $count / $limit ) * 100 ) );
 		}
 
-		// Upgrade check.
+		// Upgrade check - per LICENSE (validity-aware), not per download.
 		$has_upgrades = false;
 		$upgrade_url  = '';
 		if ( function_exists( 'edd_sl_get_license_upgrades' ) && $download ) {
-			$upgrades     = edd_sl_get_license_upgrades( $download->ID );
+			$upgrades     = edd_sl_get_license_upgrades( $license->ID );
 			$has_upgrades = ! empty( $upgrades );
 			if ( $has_upgrades ) {
 				$upgrade_url = add_query_arg(
@@ -1269,6 +1934,62 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 				<?php endif; ?>
 			</div>
 
+			<?php
+			// Site management - EDD SL's own nonced actions (deactivate_site /
+			// insert_site) redirect back to this page after processing.
+			$activations = method_exists( $license, 'get_activations' ) ? (array) $license->get_activations() : array();
+			$can_add     = method_exists( $license, 'is_at_limit' ) && ! $license->is_at_limit() && in_array( $license->status, array( 'active', 'inactive' ), true );
+			?>
+			<?php if ( $activations || $can_add ) : ?>
+			<details class="wbcom-edd-license__sites">
+				<summary class="wbcom-edd-license__sites-toggle">
+					<?php
+					printf(
+						/* translators: %d: number of activated sites. */
+						esc_html( _n( 'Manage Sites (%d active)', 'Manage Sites (%d active)', count( $activations ), 'wbcom-essential' ) ),
+						(int) count( $activations )
+					);
+					?>
+				</summary>
+				<div class="wbcom-edd-license__sites-body">
+					<?php if ( $activations ) : ?>
+						<ul class="wbcom-edd-license__site-list">
+							<?php foreach ( $activations as $wbe_site ) : ?>
+								<li class="wbcom-edd-license__site">
+									<span class="wbcom-edd-license__site-url"><?php echo esc_html( untrailingslashit( $wbe_site->site_name ) ); ?></span>
+									<?php
+									$wbe_deactivate_url = wp_nonce_url(
+										add_query_arg(
+											array(
+												'edd_action' => 'deactivate_site',
+												'site_id' => $wbe_site->site_id,
+												'license' => $license->ID,
+											)
+										),
+										'edd_deactivate_site_nonce',
+										'_wpnonce'
+									);
+									?>
+									<a class="wbcom-edd-license__site-remove" href="<?php echo esc_url( $wbe_deactivate_url ); ?>"><?php esc_html_e( 'Deactivate', 'wbcom-essential' ); ?></a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					<?php else : ?>
+						<p class="wbcom-edd-license__sites-empty"><?php esc_html_e( 'This license is not active on any site yet.', 'wbcom-essential' ); ?></p>
+					<?php endif; ?>
+					<?php if ( $can_add ) : ?>
+						<form method="post" class="wbcom-edd-license__site-add">
+							<input type="url" name="site_url" class="wbcom-edd-license__site-input" placeholder="https://example.com" required />
+							<input type="hidden" name="license_id" value="<?php echo esc_attr( $license->ID ); ?>" />
+							<input type="hidden" name="edd_action" value="insert_site" />
+							<?php wp_nonce_field( 'edd_add_site_nonce', 'edd_add_site_nonce', true ); ?>
+							<button type="submit" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm"><?php esc_html_e( 'Add Site', 'wbcom-essential' ); ?></button>
+						</form>
+					<?php endif; ?>
+				</div>
+			</details>
+			<?php endif; ?>
+
 			<div class="wbcom-edd-license__actions">
 				<?php if ( $has_upgrades && $upgrade_url ) : ?>
 					<a href="<?php echo esc_url( $upgrade_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
@@ -1286,6 +2007,8 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 	}
 
 	echo '</div>';
+	wbcom_essential_edd_render_pager( $base, $lic_page, $lic_total_pages );
+	echo '</div>';
 }
 
 /**
@@ -1300,14 +2023,20 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	);
 
 	if ( ! $customer ) {
-		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
+
+	$po_per_page    = 20;
+	$po_total       = (int) edd_count_orders( array( 'customer_id' => $customer->id ) );
+	$po_total_pages = (int) ceil( $po_total / $po_per_page );
+	$po_page        = min( wbcom_essential_edd_current_pg(), max( 1, $po_total_pages ) );
 
 	$orders = edd_get_orders(
 		array(
 			'customer_id' => $customer->id,
-			'number'      => 20,
+			'number'      => $po_per_page,
+			'offset'      => ( $po_page - 1 ) * $po_per_page,
 			'orderby'     => 'date_created',
 			'order'       => 'DESC',
 		)
@@ -1317,7 +2046,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	}
 
 	if ( empty( $orders ) ) {
-		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ?: home_url(), __( 'Browse Products', 'wbcom-essential' ) );
+		wbcom_essential_edd_empty_state( '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>', __( 'No orders found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
 	}
 
@@ -1328,7 +2057,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 		if ( ! is_array( $items ) ) {
 			$items = array();
 		}
-		$item_count = count( $items );
+		$item_count  = count( $items );
 		$receipt_url = edd_get_receipt_page_uri( $order->id );
 		$status      = $order->status;
 		$total       = edd_display_amount( $order->total, $order->currency );
@@ -1358,17 +2087,39 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 		// license records. Previously the button appeared for every order
 		// when the Software Licensing add-on was active, leading users to a
 		// license-management page that showed nothing for their click.
-		$has_licenses = false;
+		$has_licenses      = false;
+		$order_upgrade_url = '';
 		if ( function_exists( 'edd_software_licensing' ) ) {
 			$sl = edd_software_licensing();
 			if ( isset( $sl->licenses_db ) && is_object( $sl->licenses_db ) && method_exists( $sl->licenses_db, 'get_licenses' ) ) {
 				$order_licenses = $sl->licenses_db->get_licenses(
 					array(
 						'payment_id' => $order->id,
-						'number'     => 1,
+						'number'     => 5,
 					)
 				);
-				$has_licenses = ! empty( $order_licenses );
+				$has_licenses   = ! empty( $order_licenses );
+
+				// Upgrade entry point per order: first license on the order
+				// whose product has SL upgrade paths links to the native
+				// prorated upgrades view (same flow as the Licenses tab).
+				if ( $has_licenses && function_exists( 'edd_sl_get_license_upgrades' ) ) {
+					foreach ( (array) $order_licenses as $order_license ) {
+						if ( empty( $order_license->ID ) || ! edd_sl_get_license_upgrades( $order_license->ID ) ) {
+							continue;
+						}
+						$order_upgrade_url = add_query_arg(
+							array(
+								'view'       => 'upgrades',
+								'license_id' => $order_license->ID,
+								'action'     => 'manage_licenses',
+								'payment_id' => $order->id,
+							),
+							edd_get_option( 'purchase_history_page' ) ? get_permalink( edd_get_option( 'purchase_history_page' ) ) : home_url()
+						);
+						break;
+					}
+				}
 			}
 		}
 
@@ -1421,18 +2172,28 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 				<?php endif; ?>
 				<?php if ( $has_licenses ) : ?>
 					<a
-						href="<?php echo esc_url(
+						href="
+						<?php
+						echo esc_url(
 							add_query_arg(
 								array(
 									'tab' => 'licenses',
 								),
 								wbcom_essential_edd_account_current_page_url()
 							)
-						); ?>"
+						);
+						?>
+						"
 						class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm"
 					>
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
 						<?php esc_html_e( 'Licenses', 'wbcom-essential' ); ?>
+					</a>
+				<?php endif; ?>
+				<?php if ( $order_upgrade_url ) : ?>
+					<a href="<?php echo esc_url( $order_upgrade_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+						<?php esc_html_e( 'Upgrade License', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
 			</div>
@@ -1441,6 +2202,7 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 	}
 
 	echo '</div>';
+	wbcom_essential_edd_render_pager( 'purchases', $po_page, $po_total_pages );
 }
 
 /**
@@ -1451,6 +2213,13 @@ function wbcom_essential_edd_render_profile_tab() {
 		__( 'Edit Profile', 'wbcom-essential' ),
 		__( 'Update your account information and preferences.', 'wbcom-essential' )
 	);
+
+	// Session-stored notices from the last save (EDD sets "profile updated"
+	// successes and validation errors before redirecting back here). Without
+	// this, a failed save looks identical to a successful one.
+	if ( function_exists( 'edd_print_errors' ) ) {
+		edd_print_errors();
+	}
 
 	$user = wp_get_current_user();
 
@@ -1482,12 +2251,12 @@ function wbcom_essential_edd_render_profile_tab() {
 	}
 
 	// Country / state lists via EDD helpers.
-	$countries     = edd_get_country_list();
-	$sel_country   = $address['country'] ? $address['country'] : edd_get_shop_country();
-	$states        = edd_get_shop_states( $sel_country );
+	$countries   = edd_get_country_list();
+	$sel_country = $address['country'] ? $address['country'] : edd_get_shop_country();
+	$states      = edd_get_shop_states( $sel_country );
 
 	// Display name options.
-	$display_options = array();
+	$display_options   = array();
 	$display_options[] = $user->user_login;
 	if ( $user->first_name ) {
 		$display_options[] = $user->first_name;
@@ -1537,11 +2306,11 @@ function wbcom_essential_edd_render_profile_tab() {
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
 					<label for="edd_first_name" class="wbcom-edd-profile__label"><?php esc_html_e( 'First Name', 'wbcom-essential' ); ?></label>
-					<input type="text" id="edd_first_name" name="edd_first_name" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $user->first_name ); ?>">
+					<input type="text" id="edd_first_name" name="edd_first_name" class="wbcom-edd-profile__input" autocomplete="given-name" value="<?php echo esc_attr( $user->first_name ); ?>">
 				</div>
 				<div class="wbcom-edd-profile__field">
 					<label for="edd_last_name" class="wbcom-edd-profile__label"><?php esc_html_e( 'Last Name', 'wbcom-essential' ); ?></label>
-					<input type="text" id="edd_last_name" name="edd_last_name" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $user->last_name ); ?>">
+					<input type="text" id="edd_last_name" name="edd_last_name" class="wbcom-edd-profile__input" autocomplete="family-name" value="<?php echo esc_attr( $user->last_name ); ?>">
 				</div>
 			</div>
 			<div class="wbcom-edd-profile__field">
@@ -1554,7 +2323,7 @@ function wbcom_essential_edd_render_profile_tab() {
 			</div>
 			<div class="wbcom-edd-profile__field">
 				<label for="edd_email" class="wbcom-edd-profile__label"><?php esc_html_e( 'Email Address', 'wbcom-essential' ); ?></label>
-				<input type="email" id="edd_email" name="edd_email" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $user->user_email ); ?>" required>
+				<input type="email" id="edd_email" name="edd_email" class="wbcom-edd-profile__input" autocomplete="email" value="<?php echo esc_attr( $user->user_email ); ?>" required>
 			</div>
 		</div>
 
@@ -1564,27 +2333,27 @@ function wbcom_essential_edd_render_profile_tab() {
 				<?php esc_html_e( 'Billing Address', 'wbcom-essential' ); ?>
 			</h3>
 			<div class="wbcom-edd-profile__field">
-				<label for="card_address" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 1', 'wbcom-essential' ); ?></label>
-				<input type="text" id="card_address" name="card_address" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line1'] ); ?>">
+				<label for="edd_address_line1" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 1', 'wbcom-essential' ); ?></label>
+				<input type="text" id="edd_address_line1" name="edd_address_line1" class="wbcom-edd-profile__input" autocomplete="address-line1" value="<?php echo esc_attr( $address['line1'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__field">
-				<label for="card_address_2" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 2', 'wbcom-essential' ); ?></label>
-				<input type="text" id="card_address_2" name="card_address_2" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['line2'] ); ?>">
+				<label for="edd_address_line2" class="wbcom-edd-profile__label"><?php esc_html_e( 'Address Line 2', 'wbcom-essential' ); ?></label>
+				<input type="text" id="edd_address_line2" name="edd_address_line2" class="wbcom-edd-profile__input" autocomplete="address-line2" value="<?php echo esc_attr( $address['line2'] ); ?>">
 			</div>
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
-					<label for="card_city" class="wbcom-edd-profile__label"><?php esc_html_e( 'City', 'wbcom-essential' ); ?></label>
-					<input type="text" id="card_city" name="card_city" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['city'] ); ?>">
+					<label for="edd_address_city" class="wbcom-edd-profile__label"><?php esc_html_e( 'City', 'wbcom-essential' ); ?></label>
+					<input type="text" id="edd_address_city" name="edd_address_city" class="wbcom-edd-profile__input" autocomplete="address-level2" value="<?php echo esc_attr( $address['city'] ); ?>">
 				</div>
 				<div class="wbcom-edd-profile__field">
-					<label for="card_zip" class="wbcom-edd-profile__label"><?php esc_html_e( 'Postal / ZIP Code', 'wbcom-essential' ); ?></label>
-					<input type="text" id="card_zip" name="card_zip" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['zip'] ); ?>">
+					<label for="edd_address_zip" class="wbcom-edd-profile__label"><?php esc_html_e( 'Postal / ZIP Code', 'wbcom-essential' ); ?></label>
+					<input type="text" id="edd_address_zip" name="edd_address_zip" class="wbcom-edd-profile__input" autocomplete="postal-code" value="<?php echo esc_attr( $address['zip'] ); ?>">
 				</div>
 			</div>
 			<div class="wbcom-edd-profile__grid">
 				<div class="wbcom-edd-profile__field">
-					<label for="card_country" class="wbcom-edd-profile__label"><?php esc_html_e( 'Country', 'wbcom-essential' ); ?></label>
-					<select id="card_country" name="card_country" class="wbcom-edd-profile__select">
+					<label for="edd_address_country" class="wbcom-edd-profile__label"><?php esc_html_e( 'Country', 'wbcom-essential' ); ?></label>
+					<select id="edd_address_country" name="edd_address_country" class="wbcom-edd-profile__select">
 						<option value=""><?php esc_html_e( 'Select country', 'wbcom-essential' ); ?></option>
 						<?php foreach ( $countries as $code => $label ) : ?>
 							<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $sel_country, $code ); ?>><?php echo esc_html( $label ); ?></option>
@@ -1592,16 +2361,16 @@ function wbcom_essential_edd_render_profile_tab() {
 					</select>
 				</div>
 				<div class="wbcom-edd-profile__field">
-					<label for="card_state" class="wbcom-edd-profile__label"><?php esc_html_e( 'State / Province', 'wbcom-essential' ); ?></label>
+					<label for="edd_address_state" class="wbcom-edd-profile__label"><?php esc_html_e( 'State / Province', 'wbcom-essential' ); ?></label>
 					<?php if ( ! empty( $states ) ) : ?>
-						<select id="card_state" name="card_state" class="wbcom-edd-profile__select">
+						<select id="edd_address_state" name="edd_address_state" class="wbcom-edd-profile__select">
 							<option value=""><?php esc_html_e( 'Select state', 'wbcom-essential' ); ?></option>
 							<?php foreach ( $states as $code => $label ) : ?>
 								<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $address['state'], $code ); ?>><?php echo esc_html( $label ); ?></option>
 							<?php endforeach; ?>
 						</select>
 					<?php else : ?>
-						<input type="text" id="card_state" name="card_state" class="wbcom-edd-profile__input" value="<?php echo esc_attr( $address['state'] ); ?>">
+						<input type="text" id="edd_address_state" name="edd_address_state" class="wbcom-edd-profile__input" autocomplete="address-level1" value="<?php echo esc_attr( $address['state'] ); ?>">
 					<?php endif; ?>
 				</div>
 			</div>

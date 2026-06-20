@@ -45,3 +45,9 @@
 - wbcom_ele_notification_registration_url | Elementor notification registration URL
 - wba_number_of_users_per_query | Number of users per query
 - reign_notification_area_output | Notification area output
+
+## 4.6.0 Delta (2026-06-04) — EDD account marketing
+- wbcom_essential_free_claim (action) | includes/edd-account-marketing-functions.php | fires after a free claim: $download_id, $user_id, $payment_id (CRM/automation hook)
+- wbcom_essential_edd_free_download_ids (filter) | includes/edd-account-marketing-functions.php | free download IDs on the Free Plugins tab
+- wbcom_essential_edd_free_claim_limit (filter) | includes/edd-account-marketing-functions.php | max free claims per user per hour (default 10)
+- wbcom_essential_edd_offers_shop_url (filter) | includes/edd-account-marketing-functions.php | Shop Now URL on the offers banner

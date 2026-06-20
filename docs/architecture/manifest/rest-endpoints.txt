@@ -8,3 +8,8 @@
 - GET wbcom-essential/v1/nav-menus | plugins/gutenberg/blocks/header-bar/header-bar.php:46 | documented
 - GET wbcom-essential/v1/group-types | plugins/gutenberg/blocks/groups-lists/groups-lists.php:32 | documented
 - GET wbcom-essential/v1/blocks | plugins/gutenberg/wbcom-gutenberg.php:192 | documented
+
+## EDD Account Dashboard Routes (4.5.0-4.6.0 delta, 2026-06-04)
+- GET wbcom/v1/edd-account/(?P<tab>[a-z-]+) | includes/edd-account-dashboard-functions.php | tab loader; tabs: dashboard, subscriptions, downloads, free-plugins, licenses, purchases, profile; dashboard accepts ?sections=offers,whatsnew,recommendations
+- GET wbcom/v1/edd-account/states/(?P<country>[A-Z]{2}) | includes/edd-account-dashboard-functions.php | states for country dropdown
+- POST wbcom/v1/edd-account/claim-free | includes/edd-account-marketing-functions.php | one-click free product claim ($0 order); logged-in + nonce; idempotent; rate-limited

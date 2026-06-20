@@ -123,7 +123,15 @@ $wrapper_attributes = get_block_wrapper_attributes(
 						</svg>
 					</div>
 					<div class="wbcom-edd-checkout__trust-badge-content">
-						<span class="wbcom-edd-checkout__trust-badge-title"><?php esc_html_e( '14-Day Money Back', 'wbcom-essential' ); ?></span>
+						<span class="wbcom-edd-checkout__trust-badge-title">
+							<?php
+							printf(
+								/* translators: %d: number of days in the money-back guarantee. */
+								esc_html__( '%d-Day Money Back', 'wbcom-essential' ),
+								absint( $attributes['guaranteeDays'] ?? 14 )
+							);
+							?>
+						</span>
 						<span class="wbcom-edd-checkout__trust-badge-desc"><?php esc_html_e( 'Full refund if you are not satisfied.', 'wbcom-essential' ); ?></span>
 					</div>
 				</div>

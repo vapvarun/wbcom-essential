@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 	// Project configuration.
 	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
 	var pluginSlug    = 'wbcom-essential';
-	var pluginVersion = '4.5.0';
+	var pluginVersion = '4.6.2';
 
 	grunt.initConfig(
 		{

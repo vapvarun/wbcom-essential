@@ -39,6 +39,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		uniqueId,
 		defaultTab,
 		showSupport,
+		showOffers,
+		showWhatsNew,
+		showRecommendations,
 		supportUrl,
 		supportLabel,
 		padding,
@@ -75,6 +78,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		{ label: __( 'Dashboard', 'wbcom-essential' ), value: 'dashboard' },
 		{ label: __( 'Downloads', 'wbcom-essential' ), value: 'downloads' },
 		{ label: __( 'Order History', 'wbcom-essential' ), value: 'purchases' },
+		{ label: __( 'Free Plugins', 'wbcom-essential' ), value: 'free-plugins' },
 		{ label: __( 'Edit Profile', 'wbcom-essential' ), value: 'profile' },
 	];
 
@@ -85,6 +89,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		__( 'Order History', 'wbcom-essential' ),
 		__( 'Licenses', 'wbcom-essential' ),
 		__( 'Subscriptions', 'wbcom-essential' ),
+		__( 'Free Plugins', 'wbcom-essential' ),
 		__( 'Edit Profile', 'wbcom-essential' ),
 	];
 
@@ -167,6 +172,35 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							/>
 						</>
 					) }
+
+					<hr />
+
+					<ToggleControl
+						label={ __( 'Show special offers banner', 'wbcom-essential' ) }
+						checked={ showOffers }
+						onChange={ ( value ) =>
+							setAttributes( { showOffers: value } )
+						}
+						__nextHasNoMarginBottom
+					/>
+
+					<ToggleControl
+						label={ __( "Show What's New", 'wbcom-essential' ) }
+						checked={ showWhatsNew }
+						onChange={ ( value ) =>
+							setAttributes( { showWhatsNew: value } )
+						}
+						__nextHasNoMarginBottom
+					/>
+
+					<ToggleControl
+						label={ __( 'Show recommendations', 'wbcom-essential' ) }
+						checked={ showRecommendations }
+						onChange={ ( value ) =>
+							setAttributes( { showRecommendations: value } )
+						}
+						__nextHasNoMarginBottom
+					/>
 				</PanelBody>
 
 				<PanelBody

@@ -34,9 +34,20 @@ $support_url   = isset( $attributes['supportUrl'] ) ? esc_url( $attributes['supp
 $support_label = isset( $attributes['supportLabel'] ) ? $attributes['supportLabel'] : __( 'My Tickets', 'wbcom-essential' );
 $default_tab   = isset( $attributes['defaultTab'] ) ? $attributes['defaultTab'] : 'dashboard';
 
-$valid_tabs = array( 'dashboard', 'subscriptions', 'downloads', 'licenses', 'purchases', 'profile' );
+$valid_tabs = array( 'dashboard', 'subscriptions', 'downloads', 'free-plugins', 'licenses', 'purchases', 'profile' );
 if ( ! in_array( $default_tab, $valid_tabs, true ) ) {
 	$default_tab = 'dashboard';
+}
+
+$sections = array();
+if ( ! isset( $attributes['showOffers'] ) || $attributes['showOffers'] ) {
+	$sections[] = 'offers';
+}
+if ( ! isset( $attributes['showWhatsNew'] ) || $attributes['showWhatsNew'] ) {
+	$sections[] = 'whatsnew';
+}
+if ( ! isset( $attributes['showRecommendations'] ) || $attributes['showRecommendations'] ) {
+	$sections[] = 'recommendations';
 }
 
 // Guest: show login form with redirect back to this page.
@@ -50,12 +61,19 @@ if ( ! is_user_logged_in() ) {
 	?>
 	<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 		<div class="wbcom-edd-account__login-card">
-			<div class="wbcom-edd-account__login-icon">
-				<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-					<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-					<circle cx="12" cy="7" r="4"/>
-				</svg>
-			</div>
+			<?php
+			/**
+			 * Filter the login card brand mark. Sites can return an <img> of
+			 * their logo; the default is a user glyph on a brand-gradient badge.
+			 *
+			 * @param string $icon_html Badge markup including the wrapper div.
+			 */
+			$wbe_login_icon = apply_filters(
+				'wbcom_essential_edd_login_icon_html',
+				'<div class="wbcom-edd-account__login-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>'
+			);
+			echo $wbe_login_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static default markup; site filters are trusted theme code.
+			?>
 			<h2 class="wbcom-edd-account__login-title"><?php esc_html_e( 'Sign In to Your Account', 'wbcom-essential' ); ?></h2>
 			<p class="wbcom-edd-account__login-description"><?php esc_html_e( 'Please log in to access your purchases, downloads, and account settings.', 'wbcom-essential' ); ?></p>
 			<?php
@@ -100,6 +118,10 @@ if ( ! is_user_logged_in() ) {
 					<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary" value="<?php esc_attr_e( 'Log In', 'wbcom-essential' ); ?>" />
 					<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_url ); ?>" />
 				</p>
+				<p class="wbcom-edd-login-form__lost">
+					<?php // wp_lostpassword_url() is filtered by WPS Hide Login et al. to the renamed endpoint. ?>
+					<a href="<?php echo esc_url( wp_lostpassword_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Lost your password?', 'wbcom-essential' ); ?></a>
+				</p>
 			</form>
 		</div>
 	</div>
@@ -122,38 +144,43 @@ $rest_url = rest_url( 'wbcom/v1/edd-account/' );
 $nonce    = wp_create_nonce( 'wp_rest' );
 
 // Build tabs list, conditionally including add-on tabs.
-$tabs = array();
+$wbe_tabs = array();
 
-$tabs['dashboard'] = array(
+$wbe_tabs['dashboard'] = array(
 	'label' => __( 'Dashboard', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>',
 );
 
 if ( class_exists( 'EDD_Recurring' ) ) {
-	$tabs['subscriptions'] = array(
+	$wbe_tabs['subscriptions'] = array(
 		'label' => __( 'Subscriptions', 'wbcom-essential' ),
 		'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
 	);
 }
 
-$tabs['downloads'] = array(
+$wbe_tabs['downloads'] = array(
 	'label' => __( 'Downloads', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
 );
 
+$wbe_tabs['free-plugins'] = array(
+	'label' => __( 'Free Plugins', 'wbcom-essential' ),
+	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
+);
+
 if ( function_exists( 'edd_software_licensing' ) ) {
-	$tabs['licenses'] = array(
+	$wbe_tabs['licenses'] = array(
 		'label' => __( 'Licenses', 'wbcom-essential' ),
 		'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
 	);
 }
 
-$tabs['purchases'] = array(
+$wbe_tabs['purchases'] = array(
 	'label' => __( 'Order History', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
 );
 
-$tabs['profile'] = array(
+$wbe_tabs['profile'] = array(
 	'label' => __( 'Edit Profile', 'wbcom-essential' ),
 	'icon'  => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
 );
@@ -166,6 +193,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		'data-rest-url'   => esc_attr( $rest_url ),
 		'data-nonce'      => esc_attr( $nonce ),
 		'data-active-tab' => esc_attr( $active_tab ),
+		'data-sections'   => esc_attr( implode( ',', $sections ) ),
 	)
 );
 
@@ -173,20 +201,23 @@ $wrapper_attributes = get_block_wrapper_attributes(
 // the initial server-side render shows the empty state because the tab
 // functions default $customer to false. The REST AJAX callback already
 // does this; the first page load must match.
-$current_user = wp_get_current_user();
-$customer     = ( $current_user && $current_user->ID ) ? edd_get_customer_by( 'user_id', $current_user->ID ) : false;
+$wbe_current_user = wp_get_current_user();
+$customer         = ( $wbe_current_user && $wbe_current_user->ID ) ? edd_get_customer_by( 'user_id', $wbe_current_user->ID ) : false;
 
 // Render active tab content server-side.
 ob_start();
 switch ( $active_tab ) {
 	case 'dashboard':
-		wbcom_essential_edd_render_dashboard_tab( $customer );
+		wbcom_essential_edd_render_dashboard_tab( $customer, $sections );
 		break;
 	case 'subscriptions':
 		wbcom_essential_edd_render_subscriptions_tab( $customer );
 		break;
 	case 'downloads':
 		wbcom_essential_edd_render_downloads_tab( $customer );
+		break;
+	case 'free-plugins':
+		wbcom_essential_edd_render_free_plugins_tab( $customer );
 		break;
 	case 'licenses':
 		wbcom_essential_edd_render_licenses_tab( $customer );
@@ -198,7 +229,7 @@ switch ( $active_tab ) {
 		wbcom_essential_edd_render_profile_tab();
 		break;
 	default:
-		wbcom_essential_edd_render_dashboard_tab( $customer );
+		wbcom_essential_edd_render_dashboard_tab( $customer, $sections );
 		break;
 }
 $initial_content = ob_get_clean();
@@ -207,13 +238,14 @@ $initial_content = ob_get_clean();
 
 	<nav class="wbcom-edd-account__sidebar" aria-label="<?php esc_attr_e( 'Account navigation', 'wbcom-essential' ); ?>">
 		<ul class="wbcom-edd-account__nav" role="list">
-			<?php foreach ( $tabs as $tab_key => $tab_data ) : ?>
+			<?php foreach ( $wbe_tabs as $tab_key => $tab_data ) : ?>
 			<li class="wbcom-edd-account__nav-item">
 				<a
 					href="<?php echo esc_url( add_query_arg( 'tab', $tab_key ) ); ?>"
 					class="wbcom-edd-account__nav-link<?php echo $active_tab === $tab_key ? ' is-active' : ''; ?>"
 					data-tab="<?php echo esc_attr( $tab_key ); ?>"
 					aria-current="<?php echo $active_tab === $tab_key ? 'page' : 'false'; ?>"
+					title="<?php echo esc_attr( $tab_data['label'] ); ?>"
 				>
 					<span class="wbcom-edd-account__nav-icon"><?php echo $tab_data['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG is hardcoded, not user input ?></span>
 					<span class="wbcom-edd-account__nav-label"><?php echo esc_html( $tab_data['label'] ); ?></span>
@@ -228,6 +260,7 @@ $initial_content = ob_get_clean();
 					class="wbcom-edd-account__nav-link"
 					target="_blank"
 					rel="noopener noreferrer"
+					title="<?php echo esc_attr( $support_label ); ?>"
 				>
 					<span class="wbcom-edd-account__nav-icon">
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -244,6 +277,7 @@ $initial_content = ob_get_clean();
 				<a
 					href="<?php echo esc_url( wp_logout_url( get_permalink() ) ); ?>"
 					class="wbcom-edd-account__nav-link wbcom-edd-account__nav-link--logout"
+					title="<?php esc_attr_e( 'Sign Out', 'wbcom-essential' ); ?>"
 				>
 					<span class="wbcom-edd-account__nav-icon">
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
