@@ -677,10 +677,17 @@ function wbcom_essential_edd_claim_free_callback( $request ) {
 	foreach ( (array) $orders as $order ) {
 		foreach ( $order->get_items() as $item ) {
 			if ( (int) $item->product_id === $download_id ) {
-				$files = edd_get_download_files( $download_id );
-				if ( $files ) {
-					$filekey      = array_key_first( $files );
-					$download_url = edd_get_download_file_url( $order->payment_key, $user->user_email, $filekey, $download_id );
+				// A licensed product (lifetime or timed) whose license cannot download
+				// must not hand back a URL that would only serve EDD's error page.
+				// Unlicensed free plugins pass this check (no license = allowed).
+				$can_download = ! function_exists( 'wbcom_essential_edd_can_download' )
+					|| wbcom_essential_edd_can_download( $download_id, $user->user_email, $order->id );
+				if ( $can_download ) {
+					$files = edd_get_download_files( $download_id );
+					if ( $files ) {
+						$filekey      = array_key_first( $files );
+						$download_url = edd_get_download_file_url( $order->payment_key, $user->user_email, $filekey, $download_id );
+					}
 				}
 				break 2;
 			}

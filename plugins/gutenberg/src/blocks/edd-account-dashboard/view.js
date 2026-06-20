@@ -52,8 +52,14 @@
 
 		// Tabs whose content changes with external state (orders, subscriptions,
 		// licenses) should never be cached — users expect fresh stats after
-		// a purchase or subscription change.
-		var NO_CACHE_TABS = [ 'dashboard', 'subscriptions', 'purchases', 'licenses' ];
+		// a purchase or subscription change. Downloads is also uncached because
+		// its search/filter/sort toolbar mutates the live DOM; re-entering the
+		// tab should start from a clean, unfiltered state.
+		var NO_CACHE_TABS = [ 'dashboard', 'subscriptions', 'purchases', 'licenses', 'downloads' ];
+
+		// Query params owned by the Downloads / License Keys toolbar. Cleared on
+		// a plain tab switch so a stale filter never carries between tabs.
+		var TOOLBAR_PARAMS = [ 'q', 'filter', 'sort', 'pg' ];
 
 		// Pre-warm cache with the server-rendered initial content (except for
 		// live-data tabs, which always re-fetch on click).
@@ -616,6 +622,238 @@
 			}
 		} );
 
+		// -----------------------------------------------------------------
+		// Find / filter / sort toolbar (Downloads + License Keys tabs).
+		//
+		// The toolbar lives OUTSIDE the [data-edd-results] region, so swapping
+		// only the results keeps the search input focused while the customer
+		// types. All four controls (search, filter chips, sort, pager) re-fetch
+		// the tab over the existing REST callback with the params appended and
+		// swap only the results region.
+		// -----------------------------------------------------------------
+
+		/**
+		 * The tab currently rendered in the content area.
+		 *
+		 * @return {string} Tab key.
+		 */
+		function currentTab() {
+			return ( tabContent && tabContent.dataset.tabContent ) || activeTab;
+		}
+
+		/**
+		 * The live [data-edd-results] region within the current tab, if any.
+		 *
+		 * @return {HTMLElement|null} Results region element.
+		 */
+		function getResultsEl() {
+			return inner.querySelector( '[data-edd-results]' );
+		}
+
+		/**
+		 * Read the current toolbar control values from the DOM.
+		 *
+		 * @return {{q: string, filter: string, sort: string}} Toolbar state.
+		 */
+		function getToolbarState() {
+			var searchEl   = inner.querySelector( '[data-edd-search]' );
+			var sortEl     = inner.querySelector( '[data-edd-sort]' );
+			var activeChip = inner.querySelector( '[data-edd-filter].is-active' );
+			return {
+				q:      searchEl ? searchEl.value.trim() : '',
+				filter: activeChip ? activeChip.dataset.eddFilter : 'all',
+				sort:   sortEl ? sortEl.value : 'recent',
+			};
+		}
+
+		/**
+		 * Build the REST tab URL carrying the toolbar params.
+		 *
+		 * @param {string} tab    Tab key.
+		 * @param {Object} params Map of q/filter/sort/pg.
+		 * @return {string} Fully-qualified REST URL.
+		 */
+		function buildResultsUrl( tab, params ) {
+			var url = restUrl + encodeURIComponent( tab );
+			var qs  = [];
+			TOOLBAR_PARAMS.forEach( function ( key ) {
+				var val = params[ key ];
+				if ( val !== '' && val !== null && val !== undefined ) {
+					qs.push( encodeURIComponent( key ) + '=' + encodeURIComponent( val ) );
+				}
+			} );
+			if ( qs.length ) {
+				url += ( -1 === url.indexOf( '?' ) ? '?' : '&' ) + qs.join( '&' );
+			}
+			return url;
+		}
+
+		/**
+		 * Mirror the toolbar params into the page URL (no new history entry)
+		 * so a refresh or shared link reproduces the filtered view.
+		 *
+		 * @param {string} tab    Tab key.
+		 * @param {Object} params Map of q/filter/sort/pg.
+		 */
+		function syncToolbarUrl( tab, params ) {
+			try {
+				var url = new URL( window.location.href );
+				url.searchParams.set( 'tab', tab );
+				TOOLBAR_PARAMS.forEach( function ( key ) {
+					var val = params[ key ];
+					// Omit defaults to keep the URL tidy.
+					if (
+						val === '' || val === null || val === undefined ||
+						( 'filter' === key && 'all' === val ) ||
+						( 'sort' === key && 'recent' === val ) ||
+						( 'pg' === key && ( 1 === val || '1' === val ) )
+					) {
+						url.searchParams.delete( key );
+					} else {
+						url.searchParams.set( key, val );
+					}
+				} );
+				window.history.replaceState( { tab: tab }, '', url.toString() );
+			} catch ( _ ) { /* older browsers: leave URL as-is */ }
+		}
+
+		// Guards against out-of-order responses from rapid typing.
+		var resultsSeq = 0;
+
+		/**
+		 * Re-fetch the current tab with toolbar params and swap ONLY the
+		 * results region, leaving the toolbar (and its focused input) intact.
+		 *
+		 * @param {Object} params Map of q/filter/sort/pg.
+		 */
+		function refreshResults( params ) {
+			var tab       = currentTab();
+			var resultsEl = getResultsEl();
+			if ( ! resultsEl ) {
+				return;
+			}
+
+			var seq = ++resultsSeq;
+			resultsEl.setAttribute( 'aria-busy', 'true' );
+			resultsEl.style.opacity       = '0.5';
+			resultsEl.style.pointerEvents = 'none';
+			syncToolbarUrl( tab, params );
+
+			fetch( buildResultsUrl( tab, params ), {
+				method:      'GET',
+				credentials: 'same-origin',
+				headers: {
+					'X-WP-Nonce': nonce,
+					Accept:        'application/json',
+				},
+			} )
+				.then( function ( response ) {
+					if ( ! response.ok ) {
+						throw new Error( 'HTTP ' + response.status );
+					}
+					return response.json();
+				} )
+				.then( function ( data ) {
+					// Discard if a newer request has since been issued.
+					if ( seq !== resultsSeq ) {
+						return;
+					}
+					var html = ( data && data.html ) ? data.html : '';
+					var holder = document.createElement( 'div' );
+					// Server-sanitised via WP kses/esc in the REST callback.
+					/* eslint-disable no-unsanitized/property */
+					holder.innerHTML = html;
+					/* eslint-enable no-unsanitized/property */
+					var fresh = holder.querySelector( '[data-edd-results]' );
+					var live  = getResultsEl();
+					if ( fresh && live ) {
+						/* eslint-disable no-unsanitized/property */
+						live.innerHTML = fresh.innerHTML;
+						/* eslint-enable no-unsanitized/property */
+						bindInteractions( live );
+					}
+				} )
+				.catch( function () {
+					/* Leave the existing results in place on error. */
+				} )
+				.finally( function () {
+					if ( seq !== resultsSeq ) {
+						return;
+					}
+					var live = getResultsEl();
+					if ( live ) {
+						live.setAttribute( 'aria-busy', 'false' );
+						live.style.opacity       = '';
+						live.style.pointerEvents = '';
+					}
+				} );
+		}
+
+		// Debounced live search.
+		var searchTimer = null;
+		container.addEventListener( 'input', function ( event ) {
+			if ( ! event.target.closest( '[data-edd-search]' ) ) {
+				return;
+			}
+			clearTimeout( searchTimer );
+			searchTimer = setTimeout( function () {
+				var state = getToolbarState();
+				refreshResults( { q: state.q, filter: state.filter, sort: state.sort, pg: 1 } );
+			}, 250 );
+		} );
+
+		// Sort dropdown.
+		container.addEventListener( 'change', function ( event ) {
+			var sortEl = event.target.closest( '[data-edd-sort]' );
+			if ( ! sortEl || ! inner.contains( sortEl ) ) {
+				return;
+			}
+			var state = getToolbarState();
+			refreshResults( { q: state.q, filter: state.filter, sort: sortEl.value, pg: 1 } );
+		} );
+
+		// Filter chips + pager (delegated, anchors that degrade to full reload).
+		container.addEventListener( 'click', function ( event ) {
+			var chip = event.target.closest( '[data-edd-filter]' );
+			if ( chip && inner.contains( chip ) ) {
+				event.preventDefault();
+				inner.querySelectorAll( '[data-edd-filter]' ).forEach( function ( c ) {
+					var on = c === chip;
+					c.classList.toggle( 'is-active', on );
+					c.setAttribute( 'aria-pressed', on ? 'true' : 'false' );
+				} );
+				var state = getToolbarState();
+				refreshResults( { q: state.q, filter: chip.dataset.eddFilter, sort: state.sort, pg: 1 } );
+				return;
+			}
+
+			var pageLink = event.target.closest( '[data-edd-page]' );
+			if ( pageLink && inner.contains( pageLink ) ) {
+				event.preventDefault();
+				var st = getToolbarState();
+				refreshResults( {
+					q:      st.q,
+					filter: st.filter,
+					sort:   st.sort,
+					pg:     parseInt( pageLink.dataset.eddPage, 10 ) || 1,
+				} );
+				var resultsEl = getResultsEl();
+				if ( resultsEl && resultsEl.scrollIntoView ) {
+					resultsEl.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+				}
+			}
+		} );
+
+		// Enter key in the search field (and the no-JS submit button).
+		container.addEventListener( 'submit', function ( event ) {
+			if ( ! event.target.closest( '[data-edd-toolbar]' ) ) {
+				return;
+			}
+			event.preventDefault();
+			var state = getToolbarState();
+			refreshResults( { q: state.q, filter: state.filter, sort: state.sort, pg: 1 } );
+		} );
+
 		// Wire up interactive elements in the server-rendered initial tab.
 		// renderHtml() does this after every AJAX load; the first paint
 		// never calls that path, so Copy buttons, country/state handlers
@@ -637,6 +875,10 @@
 
 				var url = new URL( window.location.href );
 				url.searchParams.set( 'tab', tab );
+				// Drop toolbar params so a stale filter never carries between tabs.
+				TOOLBAR_PARAMS.forEach( function ( p ) {
+					url.searchParams.delete( p );
+				} );
 				window.history.pushState( { tab: tab }, '', url.toString() );
 
 				loadTab( tab );
