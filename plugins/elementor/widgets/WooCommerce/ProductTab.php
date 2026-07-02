@@ -1397,7 +1397,7 @@ class ProductTab extends \Elementor\Widget_Base {
 		$tabmenu = 'yes';
 
 		if ( ( $proslider == 'yes' ) && ( $producttab != 'yes' ) ) {
-			$collumval = 'slide-item wb-col-xs-12';
+			$collumval = 'slide-item';
 		} else {
 			$collumval = 'wb-col-lg-3 wb-col-md-6 wb-col-sm-6 wb-col-xs-12 mb-50';
 			if ( $columns != '' ) {
@@ -1637,7 +1637,8 @@ class ProductTab extends \Elementor\Widget_Base {
 						$slider_main_div_style = '';
 					if ( $proslider == 'yes' ) {
 						$slider_main_div_style = "style='display:none'";
-						echo '<div id="product-slider-' . esc_attr( uniqid() ) . '" dir="' . esc_attr( $direction ) . '" class="product-slider swiper-container" ' . esc_attr( $slider_main_div_style ) . ' data-settings=\'' . esc_attr( wp_json_encode( $slider_settings ) ) . '\'>';
+						echo '<div id="product-slider-' . esc_attr( uniqid() ) . '" class="product-slider" ' . esc_attr( $slider_main_div_style ) . '>';
+						echo '<div class="swiper-container" dir="' . esc_attr( $direction ) . '" data-settings=\'' . esc_attr( wp_json_encode( $slider_settings ) ) . '\'>';
 						echo '<div class="swiper-wrapper">';
 					}
 					?>
@@ -1763,6 +1764,7 @@ class ProductTab extends \Elementor\Widget_Base {
 					if ( $proslider == 'yes' ) {
 						echo '</div>'; // close swiper-wrapper
 						echo '<div class="swiper-pagination"></div>';
+						echo '</div>'; // close swiper-container
 						echo '<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>';
 						echo '<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>';
 						echo '</div>'; // close product-slider

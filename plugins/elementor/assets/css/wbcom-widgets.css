@@ -2113,12 +2113,13 @@ span.wbcom-tip,
 
 @media (max-width: 1200px) {
 
-    .product-slider .elementor-swiper-button-next {
-        right: 0;
+    .product-slider .elementor-swiper-button-prev {
+        left: 0;
     }
 
-    .product-slider .elementor-swiper-button {
-        left: 0;
+    .product-slider .elementor-swiper-button-next {
+        right: 0;
+        left: auto;
     }
 }
 
