@@ -72,7 +72,13 @@
 }
 
 .wbcom-team-carousel .swiper-slide {
-    opacity: 0;
+    /* Visible by default — do NOT gate this on swiper-slide-active/-visible.
+       Those classes depend on Swiper's watchSlidesVisibility tracking every
+       slide correctly on every init/resize/breakpoint switch; any gap there
+       (which is exactly what happened here) previously left whole columns
+       permanently invisible in a multi-column layout. The active-slide
+       "pop" below is a cosmetic emphasis only, never a visibility gate. */
+    opacity: 1;
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
     -webkit-transition-duration: .2s;

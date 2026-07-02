@@ -26,6 +26,13 @@
 					disableOnInteraction: false
 				} : false,
 				spaceBetween: 20,
+				// team-carousel.css reveals each card via .swiper-slide-active/
+				// -visible (opacity 0 -> 1). Swiper only assigns the -visible
+				// class when watchSlidesVisibility is on (watchSlidesProgress
+				// alone unlocks the layout/progress math but NOT the class
+				// itself) — without it, every slide but the single "active"
+				// one stays stuck at opacity: 0 in a multi-column layout.
+				watchSlidesVisibility: true,
 				breakpoints: {
 					0: {
 						slidesPerView: 1,
