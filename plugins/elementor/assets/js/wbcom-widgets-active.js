@@ -12,7 +12,10 @@
 
             slider_elem[0].style.display='block';
 
-            var settings = slider_elem.data('settings');
+            var swiper_elem = slider_elem.find('.swiper-container').eq(0);
+            if (!swiper_elem.length) return;
+
+            var settings = swiper_elem.data('settings');
             var arrows = settings['arrows'];
             var dots = settings['dots'];
             var autoplay = settings['autoplay'];
@@ -31,6 +34,7 @@
             var swiperOptions = {
                 slidesPerView: display_columns,
                 slidesPerGroup: scroll_columns,
+                spaceBetween: 20,
                 loop: true,
                 speed: animation_speed,
                 autoplay: autoplay ? { delay: autoplay_speed, disableOnInteraction: false, pauseOnMouseEnter: pause_on_hover } : false,
@@ -50,13 +54,13 @@
 
             if (dots) {
                 swiperOptions.pagination = {
-                    el: slider_elem.find('.swiper-pagination').get(0),
+                    el: swiper_elem.find('.swiper-pagination').get(0),
                     type: 'bullets',
                     clickable: true
                 };
             }
 
-            new Swiper(slider_elem.get(0), swiperOptions);
+            new Swiper(swiper_elem.get(0), swiperOptions);
         };
     };
 

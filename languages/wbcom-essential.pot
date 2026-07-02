@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-07 05:51:24+00:00\n"
+"POT-Creation-Date: 2026-07-02 07:26:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -352,106 +352,121 @@ msgstr ""
 msgid "My Tickets"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:59
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:59
+#: build/blocks/edd-account-dashboard/render.php:77
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:77
 msgid "Sign In to Your Account"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:60
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:60
+#: build/blocks/edd-account-dashboard/render.php:78
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:78
 msgid "Please log in to access your purchases, downloads, and account settings."
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:77
+#: build/blocks/edd-account-dashboard/render.php:95
 #: build/blocks/login-form/render.php:79
 #: plugins/elementor/widgets/General/LoginForm.php:202
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:77
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:95
 #: plugins/gutenberg/src/blocks/login-form/render.php:79
 msgid "Username or Email Address"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:81
+#: build/blocks/edd-account-dashboard/render.php:99
 #: build/blocks/login-form/render.php:80
 #: plugins/elementor/widgets/General/LoginForm.php:209
 #: plugins/elementor/widgets/General/LoginForm.php:211
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:81
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:99
 #: plugins/gutenberg/src/blocks/login-form/render.php:80
 msgid "Password"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:90
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:90
+#: build/blocks/edd-account-dashboard/render.php:108
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:108
 msgid "Website"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:96
+#: build/blocks/edd-account-dashboard/render.php:114
 #: build/blocks/login-form/render.php:81
 #: plugins/elementor/widgets/General/LoginForm.php:218
 #: plugins/elementor/widgets/General/LoginForm.php:220
 #: plugins/elementor/widgets/General/LoginForm.php:323
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:96
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:114
 #: plugins/gutenberg/src/blocks/login-form/render.php:81
 msgid "Remember Me"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:100
+#: build/blocks/edd-account-dashboard/render.php:118
 #: build/blocks/login-form/render.php:32
 #: plugins/elementor/widgets/General/LoginForm.php:255
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:100
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:118
 #: plugins/gutenberg/src/blocks/login-form/render.php:32
 msgid "Log In"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:128
+#: build/blocks/edd-account-dashboard/render.php:123
+#: build/blocks/login-form/render.php:93
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:123
+#: plugins/gutenberg/src/blocks/login-form/render.php:93
+msgid "Lost your password?"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:150
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:56
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:57
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:128
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:150
 msgid "Dashboard"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:134
-#: includes/edd-account-dashboard-functions.php:755
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:134
+#: build/blocks/edd-account-dashboard/render.php:156
+#: includes/edd-account-dashboard-functions.php:905
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:156
 msgid "Subscriptions"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:140
-#: includes/edd-account-dashboard-functions.php:990
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:140
+#: build/blocks/edd-account-dashboard/render.php:162
+#: includes/edd-account-dashboard-functions.php:1407
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:162
 msgid "Downloads"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:146
-#: includes/edd-account-dashboard-functions.php:1435
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:146
+#: build/blocks/edd-account-dashboard/render.php:167
+#: includes/edd-account-marketing-functions.php:488
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:167
+msgid "Free Plugins"
+msgstr ""
+
+#: build/blocks/edd-account-dashboard/render.php:173
+#: includes/edd-account-dashboard-functions.php:2190
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:173
 msgid "Licenses"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:152
-#: includes/edd-account-dashboard-functions.php:1298
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:152
+#: build/blocks/edd-account-dashboard/render.php:179
+#: includes/edd-account-dashboard-functions.php:2021
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:179
 msgid "Order History"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:157
-#: includes/edd-account-dashboard-functions.php:1451
+#: build/blocks/edd-account-dashboard/render.php:184
+#: includes/edd-account-dashboard-functions.php:2213
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:283
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:157
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:184
 msgid "Edit Profile"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:208
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:208
+#: build/blocks/edd-account-dashboard/render.php:239
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:239
 msgid "Account navigation"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:251
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:251
+#: build/blocks/edd-account-dashboard/render.php:280
+#: build/blocks/edd-account-dashboard/render.php:285
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:280
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:285
 msgid "Sign Out"
 msgstr ""
 
-#: build/blocks/edd-account-dashboard/render.php:257
-#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:257
+#: build/blocks/edd-account-dashboard/render.php:291
+#: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:291
 msgid "Account content"
 msgstr ""
 
@@ -525,57 +540,58 @@ msgstr ""
 msgid "Your payment information is encrypted and secure."
 msgstr ""
 
-#: build/blocks/edd-checkout-enhanced/render.php:126
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:126
-msgid "14-Day Money Back"
+#: build/blocks/edd-checkout-enhanced/render.php:130
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:130
+#. translators: %d: number of days in the money-back guarantee.
+msgid "%d-Day Money Back"
 msgstr ""
 
-#: build/blocks/edd-checkout-enhanced/render.php:127
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:127
+#: build/blocks/edd-checkout-enhanced/render.php:135
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:135
 msgid "Full refund if you are not satisfied."
-msgstr ""
-
-#: build/blocks/edd-checkout-enhanced/render.php:138
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:138
-msgid "Priority Support"
-msgstr ""
-
-#: build/blocks/edd-checkout-enhanced/render.php:139
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:139
-msgid "Dedicated support for all customers."
 msgstr ""
 
 #: build/blocks/edd-checkout-enhanced/render.php:146
 #: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:146
+msgid "Priority Support"
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:147
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:147
+msgid "Dedicated support for all customers."
+msgstr ""
+
+#: build/blocks/edd-checkout-enhanced/render.php:154
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:154
 msgid "Accepted payments"
 msgstr ""
 
-#: build/blocks/edd-checkout-enhanced/render.php:222
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:222
+#: build/blocks/edd-checkout-enhanced/render.php:230
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:230
 #. translators: %d: number of reviews
 msgid "Based on %d reviews"
 msgstr ""
 
-#: build/blocks/edd-checkout-enhanced/render.php:337
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:337
+#: build/blocks/edd-checkout-enhanced/render.php:345
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:345
 msgid "What Our Customers Say"
 msgstr ""
 
-#: build/blocks/edd-checkout-enhanced/render.php:356
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:356
+#: build/blocks/edd-checkout-enhanced/render.php:364
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:364
 #. translators: %d: Number of reviews.
 msgid "from %d review"
 msgid_plural "from %d reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: build/blocks/edd-checkout-enhanced/render.php:409
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:409
+#: build/blocks/edd-checkout-enhanced/render.php:417
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:417
 msgid "Customers Also Purchased"
 msgstr ""
 
-#: build/blocks/edd-checkout-enhanced/render.php:485
-#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:485
+#: build/blocks/edd-checkout-enhanced/render.php:495
+#: plugins/gutenberg/src/blocks/edd-checkout-enhanced/render.php:495
 msgid "Add to Cart"
 msgstr ""
 
@@ -655,6 +671,7 @@ msgstr ""
 #: build/blocks/members-carousel/render.php:165
 #: build/blocks/members-carousel/render.php:202
 #: build/blocks/members-carousel/render.php:219
+#: includes/edd-account-dashboard-functions.php:1340
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:475
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:484
 #: plugins/elementor/widgets/General/PostCarousel.php:2337
@@ -675,6 +692,7 @@ msgstr ""
 #: build/blocks/members-carousel/render.php:166
 #: build/blocks/members-carousel/render.php:203
 #: build/blocks/members-carousel/render.php:220
+#: includes/edd-account-dashboard-functions.php:1353
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:479
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:488
 #: plugins/elementor/widgets/General/PostCarousel.php:2341
@@ -778,11 +796,6 @@ msgstr ""
 msgid "View your profile"
 msgstr ""
 
-#: build/blocks/login-form/render.php:93
-#: plugins/gutenberg/src/blocks/login-form/render.php:93
-msgid "Lost your password?"
-msgstr ""
-
 #: build/blocks/login-form/render.php:99
 #: plugins/elementor/widgets/General/LoginForm.php:227
 #: plugins/elementor/widgets/General/LoginForm.php:229
@@ -846,6 +859,8 @@ msgid "No portfolio items found."
 msgstr ""
 
 #: build/blocks/portfolio-grid/render.php:83
+#: includes/edd-account-dashboard-functions.php:1583
+#: includes/edd-account-dashboard-functions.php:1785
 #: plugins/elementor/templates/classes/manager.php:218
 #: plugins/elementor/widgets/General/PortfolioGrid.php:388
 #: plugins/gutenberg/src/blocks/portfolio-grid/render.php:83
@@ -1008,6 +1023,7 @@ msgid "Load More Products"
 msgstr ""
 
 #: build/blocks/product-catalog/render.php:61
+#: includes/edd-account-marketing-functions.php:523
 #: plugins/gutenberg/src/blocks/product-catalog/render.php:61
 msgid "Download Free"
 msgstr ""
@@ -1184,128 +1200,135 @@ msgstr ""
 msgid "Latest"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:169
-#: includes/edd-account-dashboard-functions.php:946
+#: includes/edd-account-dashboard-functions.php:323
+#: includes/edd-account-dashboard-functions.php:1097
 msgid "Too expensive"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:170
-#: includes/edd-account-dashboard-functions.php:947
+#: includes/edd-account-dashboard-functions.php:324
+#: includes/edd-account-dashboard-functions.php:1098
 msgid "I'm not using it enough"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:171
-#: includes/edd-account-dashboard-functions.php:948
+#: includes/edd-account-dashboard-functions.php:325
+#: includes/edd-account-dashboard-functions.php:1099
 msgid "Found a better alternative"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:172
-#: includes/edd-account-dashboard-functions.php:949
+#: includes/edd-account-dashboard-functions.php:326
+#: includes/edd-account-dashboard-functions.php:1100
 msgid "Missing features I need"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:173
-#: includes/edd-account-dashboard-functions.php:950
+#: includes/edd-account-dashboard-functions.php:327
+#: includes/edd-account-dashboard-functions.php:1101
 msgid "Had technical issues"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:174
-#: includes/edd-account-dashboard-functions.php:951
+#: includes/edd-account-dashboard-functions.php:328
+#: includes/edd-account-dashboard-functions.php:1102
 msgid "Other"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:176
+#: includes/edd-account-dashboard-functions.php:330
 msgid "Not specified"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:192
+#: includes/edd-account-dashboard-functions.php:347
+#. translators: %s: Human-readable cancellation reason label.
 msgid "Cancellation reason: %s"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:194
+#: includes/edd-account-dashboard-functions.php:349
 msgid "Detail:"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:204
+#: includes/edd-account-dashboard-functions.php:359
 #. translators: %s: Site name.
 msgid "[%s] Subscription cancellation feedback"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:207
+#: includes/edd-account-dashboard-functions.php:362
 msgid "A customer just cancelled a subscription."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:208
+#: includes/edd-account-dashboard-functions.php:363
 msgid "Reason"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:211
+#: includes/edd-account-dashboard-functions.php:366
 msgid "Additional comments"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:214
+#: includes/edd-account-dashboard-functions.php:369
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:232
 msgid "Customer"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:217
+#: includes/edd-account-dashboard-functions.php:373
+#. translators: %d: WordPress user ID.
 msgid "User ID: %d"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:219
+#: includes/edd-account-dashboard-functions.php:375
 msgid "Subscription"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:220
+#: includes/edd-account-dashboard-functions.php:377
+#. translators: %d: EDD subscription ID.
 msgid "ID: #%d"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:221
+#: includes/edd-account-dashboard-functions.php:379
+#. translators: %s: Product/download title.
 msgid "Product: %s"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:222
-msgid "Amount: %s / %s"
+#: includes/edd-account-dashboard-functions.php:381
+#. translators: %1$s: Recurring amount. %2$s: Billing period (e.g. month).
+msgid "Amount: %1$s / %2$s"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:223
+#: includes/edd-account-dashboard-functions.php:383
+#. translators: %s: Payment gateway slug.
 msgid "Gateway: %s"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:224
+#: includes/edd-account-dashboard-functions.php:385
+#. translators: %s: Subscription start date.
 msgid "Started: %s"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:489
+#: includes/edd-account-dashboard-functions.php:589
 msgid "An error occurred loading this tab. Please try again."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:570
+#: includes/edd-account-dashboard-functions.php:683
 #. translators: %s: User's first name or display name.
 msgid "Welcome back, %s!"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:579
+#: includes/edd-account-dashboard-functions.php:714
 msgid "Total Orders"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:583
+#: includes/edd-account-dashboard-functions.php:718
 msgid "Total Spent"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:588
+#: includes/edd-account-dashboard-functions.php:724
 msgid "Active Licenses"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:594
+#: includes/edd-account-dashboard-functions.php:730
 msgid "Active Subscriptions"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:616
+#: includes/edd-account-dashboard-functions.php:752
 msgid "Recent Orders"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:620
+#: includes/edd-account-dashboard-functions.php:756
 #: plugins/elementor/widgets/General/PostCarousel.php:123
 #: plugins/elementor/widgets/General/PostSlider.php:121
 #: plugins/elementor/widgets/General/PostTimeline.php:154
@@ -1317,7 +1340,7 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:621
+#: includes/edd-account-dashboard-functions.php:757
 #: plugins/elementor/helper/skins/skin-base.php:331
 #: plugins/elementor/widgets/General/PostCarousel.php:140
 #: plugins/elementor/widgets/General/PostCarousel.php:1756
@@ -1331,305 +1354,432 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:622
-#: includes/edd-account-dashboard-functions.php:862
+#: includes/edd-account-dashboard-functions.php:758
+#: includes/edd-account-dashboard-functions.php:1013
 msgid "Amount"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:623
+#: includes/edd-account-dashboard-functions.php:759
+#: includes/edd-account-dashboard-functions.php:1793
 msgid "Status"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:718
+#: includes/edd-account-dashboard-functions.php:760
+msgid "Actions"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:782
+msgid "Receipt"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:784
+#: includes/edd-account-dashboard-functions.php:2170
+msgid "Invoice"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:868
 msgid ""
 "Subscription cancelled. Access continues until the end of your current "
 "billing period."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:719
+#: includes/edd-account-dashboard-functions.php:869
 msgid "We could not cancel that subscription. Please try again or contact support."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:720
+#: includes/edd-account-dashboard-functions.php:870
 msgid "Subscription reactivated."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:721
+#: includes/edd-account-dashboard-functions.php:871
 msgid "Subscription renewed."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:726
+#: includes/edd-account-dashboard-functions.php:876
 msgid "Your profile has been updated successfully."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:756
+#: includes/edd-account-dashboard-functions.php:906
 msgid "Manage your active and past subscriptions."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:763
-#: includes/edd-account-dashboard-functions.php:779
+#: includes/edd-account-dashboard-functions.php:913
+#: includes/edd-account-dashboard-functions.php:929
 msgid "No subscriptions found."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:763
-#: includes/edd-account-dashboard-functions.php:779
-#: includes/edd-account-dashboard-functions.php:995
-#: includes/edd-account-dashboard-functions.php:1013
-#: includes/edd-account-dashboard-functions.php:1122
-#: includes/edd-account-dashboard-functions.php:1128
-#: includes/edd-account-dashboard-functions.php:1140
-#: includes/edd-account-dashboard-functions.php:1303
-#: includes/edd-account-dashboard-functions.php:1320
+#: includes/edd-account-dashboard-functions.php:913
+#: includes/edd-account-dashboard-functions.php:929
+#: includes/edd-account-dashboard-functions.php:1412
+#: includes/edd-account-dashboard-functions.php:1433
+#: includes/edd-account-dashboard-functions.php:1690
+#: includes/edd-account-dashboard-functions.php:1696
+#: includes/edd-account-dashboard-functions.php:1706
+#: includes/edd-account-dashboard-functions.php:2026
+#: includes/edd-account-dashboard-functions.php:2049
 msgid "Browse Products"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:791
-#: includes/edd-account-dashboard-functions.php:1152
+#: includes/edd-account-dashboard-functions.php:941
+#: includes/edd-account-dashboard-functions.php:1817
 msgid "Unknown Product"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:866
+#: includes/edd-account-dashboard-functions.php:1017
 msgid "Started"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:871
+#: includes/edd-account-dashboard-functions.php:1022
 msgid "Next Renewal"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:879
-#: includes/edd-account-dashboard-functions.php:1245
+#: includes/edd-account-dashboard-functions.php:1030
+#: includes/edd-account-dashboard-functions.php:1910
 #. translators: %d: Number of days.
 msgid "%d day left"
 msgid_plural "%d days left"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/edd-account-dashboard-functions.php:889
+#: includes/edd-account-dashboard-functions.php:1040
 msgid "Times Billed"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:895
+#: includes/edd-account-dashboard-functions.php:1046
 msgid "Until cancelled"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:904
+#: includes/edd-account-dashboard-functions.php:1055
 msgid "Upgrade Plan"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:912
+#: includes/edd-account-dashboard-functions.php:1063
 msgid "Cancel"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:927
+#: includes/edd-account-dashboard-functions.php:1078
 #: plugins/elementor/scripts/template-modal-header.php:24
 #: plugins/elementor/templates/scripts/template-modal-header.php:24
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php:44
 msgid "Close"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:931
+#: includes/edd-account-dashboard-functions.php:1082
 msgid "Cancel your subscription?"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:935
+#: includes/edd-account-dashboard-functions.php:1086
 msgid "You will keep access until the end of your current billing period."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:941
+#: includes/edd-account-dashboard-functions.php:1092
 msgid "Mind telling us why?"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:942
-#: includes/edd-account-dashboard-functions.php:965
+#: includes/edd-account-dashboard-functions.php:1093
+#: includes/edd-account-dashboard-functions.php:1116
 msgid "(optional)"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:964
+#: includes/edd-account-dashboard-functions.php:1115
 msgid "Anything else you want to share?"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:967
+#: includes/edd-account-dashboard-functions.php:1118
 msgid "Your feedback helps us improve."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:971
+#: includes/edd-account-dashboard-functions.php:1122
 msgid "Keep Subscription"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:974
+#: includes/edd-account-dashboard-functions.php:1125
 msgid "Confirm Cancellation"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:991
+#: includes/edd-account-dashboard-functions.php:1244
+msgid "Search by product name"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1245
+msgid "Search by name…"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1246
+#: plugins/elementor/scripts/template-modal-search-item.php:18
+#: plugins/elementor/templates/scripts/template-modal-search-item.php:18
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:184
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:96
+#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:138
+msgid "Search"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1250
+msgid "Filter"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1277
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:135
+#: plugins/elementor/widgets/Buddypress/GroupGrid.php:107
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:135
+#: plugins/elementor/widgets/Buddypress/MembersGrid.php:107
+msgid "Sort"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1300
+#. translators: %s: number of results.
+msgid "%s result"
+msgid_plural "%s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/edd-account-dashboard-functions.php:1317
+msgid "No items match your search or filter. Try clearing them."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1338
+#: plugins/elementor/helper/skins/skin-base.php:993
+#: plugins/elementor/widgets/General/PostsCarousel.php:296
+#: plugins/elementor/widgets/General/PostsRevolution.php:373
+msgid "Pagination"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1346
+#. translators: 1: current page, 2: total pages.
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1408
 msgid "Access and download the files from your purchases."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:995
-#: includes/edd-account-dashboard-functions.php:1013
+#: includes/edd-account-dashboard-functions.php:1412
+#: includes/edd-account-dashboard-functions.php:1433
 msgid "No downloads found."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1068
+#: includes/edd-account-dashboard-functions.php:1489
+#: includes/edd-account-dashboard-functions.php:1517
 msgid "No downloadable files found."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1117
-msgid "License Keys"
+#: includes/edd-account-dashboard-functions.php:1584
+msgid "Available"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1118
-msgid "View and manage your license keys and activations."
+#: includes/edd-account-dashboard-functions.php:1585
+#: includes/edd-account-dashboard-functions.php:1787
+msgid "Expired"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1122
-#: includes/edd-account-dashboard-functions.php:1128
-#: includes/edd-account-dashboard-functions.php:1140
-msgid "No licenses found."
+#: includes/edd-account-dashboard-functions.php:1589
+msgid "Recently purchased"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1171
-msgid "Lifetime"
+#: includes/edd-account-dashboard-functions.php:1590
+msgid "Name (A–Z)"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1225
-msgid "License Key"
+#: includes/edd-account-dashboard-functions.php:1652
+msgid "License expired. Renew to download your files again."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1228
-msgid "Copy to clipboard"
-msgstr ""
-
-#: includes/edd-account-dashboard-functions.php:1230
-msgid "Copy"
-msgstr ""
-
-#: includes/edd-account-dashboard-functions.php:1237
-msgid "Expires"
-msgstr ""
-
-#: includes/edd-account-dashboard-functions.php:1254
-msgid "Activations"
-msgstr ""
-
-#: includes/edd-account-dashboard-functions.php:1259
-msgid "Unlimited"
-msgstr ""
-
-#: includes/edd-account-dashboard-functions.php:1275
-msgid "Upgrade License"
-msgstr ""
-
-#: includes/edd-account-dashboard-functions.php:1280
+#: includes/edd-account-dashboard-functions.php:1653
+#: includes/edd-account-dashboard-functions.php:2001
 msgid "Renew License"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1299
+#: includes/edd-account-dashboard-functions.php:1685
+msgid "License Keys"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1686
+msgid "View and manage your license keys and activations."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1690
+#: includes/edd-account-dashboard-functions.php:1696
+#: includes/edd-account-dashboard-functions.php:1706
+msgid "No licenses found."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1786
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:116
+#: plugins/elementor/widgets/Buddypress/GroupsLists.php:510
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:116
+#: plugins/elementor/widgets/General/PostSlider.php:1705
+#: plugins/elementor/widgets/General/Slider.php:1803
+#: plugins/elementor/widgets/General/SmartMenu.php:560
+#: plugins/elementor/widgets/General/SmartMenu.php:916
+#: plugins/elementor/widgets/General/Tabs.php:257
+msgid "Active"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1791
+msgid "Recently added"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1792
+msgid "Expiry date"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1836
+msgid "Lifetime"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1890
+msgid "License Key"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1893
+msgid "Copy to clipboard"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1895
+msgid "Copy"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1902
+msgid "Expires"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1919
+msgid "Activations"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1924
+msgid "Unlimited"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1949
+#. translators: %d: number of activated sites.
+msgid "Manage Sites (%d active)"
+msgid_plural "Manage Sites (%d active)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/edd-account-dashboard-functions.php:1973
+msgid "Deactivate"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1978
+msgid "This license is not active on any site yet."
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1986
+msgid "Add Site"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:1996
+#: includes/edd-account-dashboard-functions.php:2196
+msgid "Upgrade License"
+msgstr ""
+
+#: includes/edd-account-dashboard-functions.php:2022
 msgid "View your complete purchase history and order details."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1303
-#: includes/edd-account-dashboard-functions.php:1320
+#: includes/edd-account-dashboard-functions.php:2026
+#: includes/edd-account-dashboard-functions.php:2049
 msgid "No orders found."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1383
+#: includes/edd-account-dashboard-functions.php:2134
 #. translators: %s: Order number.
 msgid "Order #%s"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1395
+#: includes/edd-account-dashboard-functions.php:2146
 #. translators: %d: Number of additional items.
 msgid "+%d more item"
 msgid_plural "+%d more items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/edd-account-dashboard-functions.php:1414
+#: includes/edd-account-dashboard-functions.php:2165
 msgid "View Receipt"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1419
-msgid "Invoice"
-msgstr ""
-
-#: includes/edd-account-dashboard-functions.php:1452
+#: includes/edd-account-dashboard-functions.php:2214
 msgid "Update your account information and preferences."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1535
+#: includes/edd-account-dashboard-functions.php:2304
 msgid "Personal Information"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1539
+#: includes/edd-account-dashboard-functions.php:2308
 msgid "First Name"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1543
+#: includes/edd-account-dashboard-functions.php:2312
 msgid "Last Name"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1548
+#: includes/edd-account-dashboard-functions.php:2317
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:666
 msgid "Display Name"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1556
+#: includes/edd-account-dashboard-functions.php:2325
 msgid "Email Address"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1564
+#: includes/edd-account-dashboard-functions.php:2333
 msgid "Billing Address"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1567
+#: includes/edd-account-dashboard-functions.php:2336
 msgid "Address Line 1"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1571
+#: includes/edd-account-dashboard-functions.php:2340
 msgid "Address Line 2"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1576
+#: includes/edd-account-dashboard-functions.php:2345
 msgid "City"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1580
+#: includes/edd-account-dashboard-functions.php:2349
 msgid "Postal / ZIP Code"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1586
+#: includes/edd-account-dashboard-functions.php:2355
 msgid "Country"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1588
+#: includes/edd-account-dashboard-functions.php:2357
 msgid "Select country"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1595
+#: includes/edd-account-dashboard-functions.php:2364
 msgid "State / Province"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1598
+#: includes/edd-account-dashboard-functions.php:2367
 msgid "Select state"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1613
+#: includes/edd-account-dashboard-functions.php:2382
 msgid "Change Password"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1617
+#: includes/edd-account-dashboard-functions.php:2386
 msgid "New Password"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1621
+#: includes/edd-account-dashboard-functions.php:2390
 msgid "Confirm Password"
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1625
+#: includes/edd-account-dashboard-functions.php:2394
 msgid "Leave blank to keep your current password."
 msgstr ""
 
-#: includes/edd-account-dashboard-functions.php:1630
+#: includes/edd-account-dashboard-functions.php:2399
 msgid "Save Changes"
 msgstr ""
 
@@ -1643,6 +1793,115 @@ msgid "Too many login attempts. Try again in %d minute."
 msgid_plural "Too many login attempts. Try again in %d minutes."
 msgstr[0] ""
 msgstr[1] ""
+
+#: includes/edd-account-marketing-functions.php:150
+msgid "Account Dashboard"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:155
+msgid "Show this discount as a special offer on the customer account dashboard."
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:253
+msgid "Pro Counterpart"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:256
+#: includes/single-post/class-wbcom-single-post-settings.php:188
+#: plugins/elementor/helper/skins/skin-base.php:102
+#: plugins/elementor/helper/skins/skin-cards.php:562
+#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:216
+#: plugins/elementor/widgets/Buddypress/HeaderBar.php:773
+#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:224
+#: plugins/elementor/widgets/Buddypress/MembersLists.php:365
+#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:351
+#: plugins/elementor/widgets/General/DropdownButton.php:98
+#: plugins/elementor/widgets/General/FlipBox.php:87
+#: plugins/elementor/widgets/General/PostSlider.php:280
+#: plugins/elementor/widgets/General/PostTimeline.php:108
+#: plugins/elementor/widgets/General/PricingTable.php:87
+#: plugins/elementor/widgets/General/Slider.php:297
+#: plugins/elementor/widgets/General/Testimonial.php:755
+#: plugins/elementor/widgets/General/TestimonialCarousel.php:920
+#: plugins/elementor/widgets/WooCommerce/ProductTab.php:220
+#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:284
+msgid "None"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:264
+msgid ""
+"Used by the account dashboard to recommend the pro upgrade to owners of "
+"this product."
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:326
+#. translators: 1: formatted discount amount, 2: discount code.
+msgid "Save %1$s with code %2$s"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:334
+msgid "Copied!"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:335
+msgid "Copy Code"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:337
+msgid "Shop Now"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:373
+msgid "What's New"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:458
+msgid "Recommended for You"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:470
+msgid "Pro Upgrade"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:489
+msgid "Add free plugins to your library with one click - updates included."
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:496
+msgid "No free plugins are available right now."
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:518
+msgid "In your library"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:520
+msgid "View in Downloads"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:522
+msgid "Adding…"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:529
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:586
+msgid "This product cannot be claimed."
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:603
+msgid "Claim limit reached. Please try again later."
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:651
+msgid "Could not record your claim. Please try again."
+msgstr ""
+
+#: includes/edd-account-marketing-functions.php:701
+msgid "Added to your library!"
+msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:129
 msgid "Installed Plugins"
@@ -1717,19 +1976,6 @@ msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:250
 msgid "BuddyPress"
-msgstr ""
-
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:116
-#: plugins/elementor/widgets/Buddypress/GroupsLists.php:510
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:116
-#: plugins/elementor/widgets/General/PostSlider.php:1705
-#: plugins/elementor/widgets/General/Slider.php:1803
-#: plugins/elementor/widgets/General/SmartMenu.php:560
-#: plugins/elementor/widgets/General/SmartMenu.php:916
-#: plugins/elementor/widgets/General/Tabs.php:257
-msgid "Active"
 msgstr ""
 
 #: includes/shared-admin/class-wbcom-shared-dashboard.php:251
@@ -1907,27 +2153,6 @@ msgstr ""
 
 #: includes/single-post/class-wbcom-single-post-settings.php:185
 msgid "Progress bar, ToC sidebar, share bar"
-msgstr ""
-
-#: includes/single-post/class-wbcom-single-post-settings.php:188
-#: plugins/elementor/helper/skins/skin-base.php:102
-#: plugins/elementor/helper/skins/skin-cards.php:562
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:216
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:773
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:224
-#: plugins/elementor/widgets/Buddypress/MembersLists.php:365
-#: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:351
-#: plugins/elementor/widgets/General/DropdownButton.php:98
-#: plugins/elementor/widgets/General/FlipBox.php:87
-#: plugins/elementor/widgets/General/PostSlider.php:280
-#: plugins/elementor/widgets/General/PostTimeline.php:108
-#: plugins/elementor/widgets/General/PricingTable.php:87
-#: plugins/elementor/widgets/General/Slider.php:297
-#: plugins/elementor/widgets/General/Testimonial.php:755
-#: plugins/elementor/widgets/General/TestimonialCarousel.php:920
-#: plugins/elementor/widgets/WooCommerce/ProductTab.php:220
-#: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:284
-msgid "None"
 msgstr ""
 
 #: includes/single-post/class-wbcom-single-post-settings.php:189
@@ -2905,12 +3130,6 @@ msgstr ""
 msgid "Separator Color"
 msgstr ""
 
-#: plugins/elementor/helper/skins/skin-base.php:993
-#: plugins/elementor/widgets/General/PostsCarousel.php:296
-#: plugins/elementor/widgets/General/PostsRevolution.php:373
-msgid "Pagination"
-msgstr ""
-
 #: plugins/elementor/helper/skins/skin-cards.php:63
 msgid "Cards"
 msgstr ""
@@ -3519,14 +3738,6 @@ msgstr ""
 #: plugins/elementor/scripts/template-modal-search-item.php:17
 #: plugins/elementor/templates/scripts/template-modal-search-item.php:17
 msgid "Search Templates:"
-msgstr ""
-
-#: plugins/elementor/scripts/template-modal-search-item.php:18
-#: plugins/elementor/templates/scripts/template-modal-search-item.php:18
-#: plugins/elementor/widgets/Buddypress/HeaderBar.php:184
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:96
-#: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:138
-msgid "Search"
 msgstr ""
 
 #: plugins/elementor/templates/scripts/template-modal-item.php:48
@@ -4400,13 +4611,6 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:67
 msgid "Group Carousel"
-msgstr ""
-
-#: plugins/elementor/widgets/Buddypress/GroupCarousel.php:135
-#: plugins/elementor/widgets/Buddypress/GroupGrid.php:107
-#: plugins/elementor/widgets/Buddypress/MemberCarousel.php:135
-#: plugins/elementor/widgets/Buddypress/MembersGrid.php:107
-msgid "Sort"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:139
@@ -9765,7 +9969,7 @@ msgstr ""
 msgid "Share this article"
 msgstr ""
 
-#: wbcom-essential.php:181
+#: wbcom-essential.php:182
 msgid "Essential Widgets"
 msgstr ""
 

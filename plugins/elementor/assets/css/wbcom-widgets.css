@@ -10,6 +10,7 @@
 
 .product-slider {
     width: 100%;
+    position: relative;
 }
 
 .product-item {
