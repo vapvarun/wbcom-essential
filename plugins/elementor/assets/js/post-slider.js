@@ -23,19 +23,24 @@
 			useThumbnails = elementSettings.nav_thumbnails === 'yes',
 			isRtl = elementSettings.rtl;
 
-		// Text entrance animation handlers
-		function onSlideChangeStart(swiper) {
+		// Text entrance animation handlers.
+		// Swiper invokes `on.*` callbacks as `handler.apply(swiperInstance)` — the
+		// swiper instance is `this`, not an argument, so read it that way here.
+		function onSlideChangeStart() {
+			var swiper = this;
 			$(swiper.el).find('.swiper-slide .wbcom-slider-text-box').addClass('noanim');
 			$(swiper.el).find('.swiper-slide .wbcom-slider-inner').addClass('none');
 		}
 
-		function onSlideChangeEnd(swiper) {
+		function onSlideChangeEnd() {
+			var swiper = this;
 			var $active = $(swiper.slides[swiper.activeIndex]);
 			$active.find('.wbcom-slider-text-box').removeClass('noanim');
 			$active.find('.wbcom-slider-inner').removeClass('none');
 		}
 
-		function onInit(swiper) {
+		function onInit() {
+			var swiper = this;
 			var $active = $(swiper.slides[swiper.activeIndex]);
 			$active.find('.wbcom-slider-text-box').removeClass('noanim');
 			$active.find('.wbcom-slider-inner').removeClass('none');
