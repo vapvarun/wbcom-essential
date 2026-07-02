@@ -84,7 +84,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {
-		return array( 'wb-testimonial', 'elementor-icons-fa-solid', 'elementor-icons-fa-regular' );
+		return array( 'wbe-swiper', 'wb-testimonial', 'elementor-icons-fa-solid', 'elementor-icons-fa-regular' );
 	}
 
 	/**
@@ -1501,7 +1501,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 				'min'       => -100,
 				'max'       => 100,
 				'step'      => 1,
-				'default'   => -40,
+				'default'   => 20,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-carousel .swiper-pagination' => 'bottom: {{VALUE}}px;',
 				),
@@ -1549,7 +1549,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			'pause_on_hover' => 'yes',
 		);
 		?>
-		<div id="wbcom-testimonials-carousel-<?php echo esc_attr( $widget_id ); ?>" class="wbcom-testimonials-carousel swiper-container <?php echo esc_attr( $settings['carousel_overflow_hidden'] ); ?>" <?php if ( is_rtl() ) { echo 'dir="rtl"'; } ?> data-settings="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>">
+		<div id="wbcom-testimonials-carousel-<?php echo esc_attr( $widget_id ); ?>" class="wbcom-testimonials-carousel swiper-container <?php echo esc_attr( $settings['carousel_overflow_hidden'] ); ?> <?php echo $show_dots ? 'wbcom-has-dots' : ''; ?>" <?php if ( is_rtl() ) { echo 'dir="rtl"'; } ?> data-settings="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>">
 			<div class="swiper-wrapper">
 			<?php foreach ( $settings['testimonials'] as $item ) { ?>
 				<?php $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] ); ?>

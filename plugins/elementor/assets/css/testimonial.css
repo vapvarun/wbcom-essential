@@ -7,6 +7,27 @@
     overflow: hidden
 }
 
+/* Reserve room for the pagination dots below the card content so they don't
+   overlap the name/title row; only applied when dots are enabled. */
+.wbcom-testimonials-carousel.wbcom-has-dots {
+    padding-bottom: 40px !important;
+}
+
+/* Guard the slide layout so it can't collapse to a stacked block list if the
+   shared swiper-base.css fails to load/apply (e.g. theme/cache CSS conflicts). */
+.wbcom-testimonials-carousel .swiper-wrapper {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.wbcom-testimonials-carousel .swiper-slide {
+    -webkit-box-flex: 0 !important;
+    -ms-flex-negative: 0 !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+}
+
 .wbcom-testimonials-carousel .elementor-swiper-button-next,
 .wbcom-testimonials-carousel .elementor-swiper-button-prev {
     position: absolute;
