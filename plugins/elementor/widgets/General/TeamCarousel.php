@@ -1588,7 +1588,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000000',
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -1603,8 +1603,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 20,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
+					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1619,7 +1619,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'step'      => 1,
 				'default'   => 2,
 				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination-bullet' => 'margin-left: {{VALUE}}px !important;margin-right: {{VALUE}}px !important;',
+					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'margin-left: {{VALUE}}px !important;margin-right: {{VALUE}}px !important;',
 				),
 			)
 		);
@@ -1627,14 +1627,15 @@ class TeamCarousel extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'dots_bottom_margin',
 			array(
-				'label'     => esc_html__( 'Dots Bottom Margin (px)', 'wbcom-essential' ),
-				'type'      => \Elementor\Controls_Manager::NUMBER,
-				'min'       => -100,
-				'max'       => 100,
-				'step'      => 1,
-				'default'   => 20,
-				'selectors' => array(
-					'{{WRAPPER}} .wbcom-team-carousel .swiper-pagination' => 'bottom: {{VALUE}}px;',
+				'label'       => esc_html__( 'Dots Bottom Margin (px)', 'wbcom-essential' ),
+				'type'        => \Elementor\Controls_Manager::NUMBER,
+				'description' => esc_html__( 'Negative values move the dots below the carousel.', 'wbcom-essential' ),
+				'min'         => -100,
+				'max'         => 100,
+				'step'        => 1,
+				'default'     => 20,
+				'selectors'   => array(
+					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination' => 'bottom: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1681,6 +1682,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'pause_on_hover' => 'yes',
 			);
         ?>
+        <div class="wbcom-team-carousel-outer">
         <div id="wbcom-team-carousel-<?php echo esc_attr( $widget_id ); ?>" class="wbcom-team-carousel swiper-container <?php echo esc_attr( $settings['carousel_overflow_hidden'] ); ?>" <?php if ( is_rtl() ) { echo 'dir="rtl"'; } ?> data-settings="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>">
 			<div class="swiper-wrapper">
         <?php foreach ( $settings['gallery'] as $item ) { ?>
@@ -1733,9 +1735,6 @@ class TeamCarousel extends \Elementor\Widget_Base {
             </div>
         <?php } ?>
 			</div>
-			<?php if ( $show_dots ) : ?>
-			<div class="swiper-pagination"></div>
-			<?php endif; ?>
 			<?php if ( $show_nav ) : ?>
 			<div class="elementor-swiper-button elementor-swiper-button-prev">
 				<svg aria-hidden="true" class="e-font-icon-svg e-eicon-chevron-left" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M646 125C629 125 613 133 604 142L308 442C296 454 292 471 292 487 292 504 296 521 308 533L604 854C617 867 629 875 646 875 663 875 679 871 692 858 704 846 713 829 713 812 713 796 708 779 692 767L438 487 692 225C700 217 708 204 708 187 708 171 704 154 692 142 675 129 663 125 646 125Z"></path></svg>
@@ -1746,6 +1745,10 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				<span class="elementor-screen-only"><?php esc_html_e( 'Next', 'wbcom-essential' ); ?></span>
 			</div>
 			<?php endif; ?>
+        </div>
+        <?php if ( $show_dots ) : ?>
+        <div class="swiper-pagination"></div>
+        <?php endif; ?>
         </div>
         <?php foreach ( $settings['gallery'] as $item ) { ?>
         <?php 
