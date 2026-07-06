@@ -1,0 +1,16 @@
+{
+  "generated": "2026-07-06T00:00:00+00:00",
+  "note": "Verified exceptions only. Each was confirmed at code level before baselining (never bulk-baselined to force green).",
+  "suppressions": [
+    {
+      "id": "ajax-handler-unreferenced:wbcom_essential_dismiss_elementor_notice",
+      "reason": "The dismiss request is posted by inline JS embedded in the PHP notice output (plugins/elementor/wbcom-essential-elementor.php:112-121), which posts action=wbcom_essential_dismiss_elementor_notice with a nonce. The static audit only scans .js/template files, so it cannot see PHP-embedded inline JS. Handler is nonce (wbcom_essential_dismiss_notice) + manage_options gated. Verified at code level.",
+      "severity": "warning"
+    },
+    {
+      "id": "option-read-never-written:wbcom_essential_license_key",
+      "reason": "Written by the bundled EDD Software Licensing SDK via its configured option_name (loader.php:70 sets option_name => wbcom_essential_license_key; vendor/easy-digital-downloads/edd-sl-sdk/src/Licensing/License.php:152 calls update_option($this->get_key_option_name(), $license_key)). The write uses a method-computed key in vendor code, out of the plugin's own static scope. Verified at code level.",
+      "severity": "warning"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.6.2
+Stable tag: 4.6.3
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,16 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.6.3 - July 2026 =
+
+Carousel and slider reliability fixes across the Elementor widgets and blocks.
+
+* Fix      - Elementor testimonial and slider carousels now initialize correctly, with proper slide layout, arrow positioning, and pagination dots.
+* Fix      - The Team carousel no longer shows blank slides, and its pagination dots stay clickable and unclipped.
+* Fix      - The WooCommerce Testimonial Slider and Universal Product Slider now work again.
+* Fix      - Corrected the BuddyBuilder template hook name used by the BuddyPress grid widgets.
+* Fix      - Refreshed the EDD account dashboard block styles so a stale cached stylesheet no longer affects the layout.
 
 = 4.6.2 - June 2026 =
 
