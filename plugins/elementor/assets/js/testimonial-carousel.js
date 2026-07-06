@@ -1,8 +1,8 @@
 (function($) {
 	"use strict";
 
-	var wbcom_testimonialCarousel = function() {
-		$('.wbcom-testimonials-carousel').each(function() {
+	var wbcom_testimonialCarousel = function($scope) {
+		$scope.find('.wbcom-testimonials-carousel').each(function() {
 			var $container = $(this);
 			var elementSettings = $container.data('settings');
 
@@ -77,8 +77,10 @@
 				});
 			}
 
-			// Show container after init
-			$container.css('opacity', '1');
+			// Show container after init (always reveal, even if Swiper init above failed silently).
+			setTimeout(function() {
+				$container.css('opacity', '1');
+			}, 500);
 		});
 	};
 

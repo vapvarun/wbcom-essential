@@ -2020,8 +2020,8 @@ class UniversalProduct extends \Elementor\Widget_Base {
 		$products = new \WP_Query( $args );
 
 		// Calculate Column.
-		$collumval = ( $settings['product_layout_style'] == 'slider' ) ? 'swiper-slide wb-product mb-30 product wb-col-xs-12' : 'wb-product wb-col-lg-4 wb-col-md-6 wb-col-sm-6 wb-col-xs-12 mb-30 product';
-		if ( $columns != '' ) {
+		$collumval = ( $settings['product_layout_style'] == 'slider' ) ? 'swiper-slide wb-product mb-30 product' : 'wb-product wb-col-lg-4 wb-col-md-6 wb-col-sm-6 wb-col-xs-12 mb-30 product';
+		if ( $columns != '' && $settings['product_layout_style'] !== 'slider' ) {
 			if ( $columns == 5 ) {
 				$collumval = 'wb-product cus-col-5 wb-col-md-6 wb-col-sm-6 wb-col-xs-12 mb-30 product';
 			} else {
@@ -2388,18 +2388,14 @@ endforeach;
 					<div class="<?php echo esc_attr( $same_height_box == 'yes' ? 'wbcom-product-same-height' : '' ); ?> wb-products woocommerce
 					<?php
 					if ( $settings['product_layout_style'] == 'slider' ) {
-						echo esc_attr( 'product-slider swiper-container' );
+						echo esc_attr( 'product-slider' );
 					} else {
 						echo esc_attr( 'wb-row' ); }
 					?>
-					" dir="<?php echo esc_attr( $direction ); ?>" data-settings='
-					<?php
-					if ( $settings['product_layout_style'] == 'slider' ) {
-										echo esc_attr( wp_json_encode( $slider_settings ) ); }
-					?>
-' <?php echo esc_attr( $slider_main_div_style ); ?> >
+					" <?php echo esc_attr( $slider_main_div_style ); ?> >
 					<?php if ( $settings['product_layout_style'] == 'slider' ) : ?>
-						<div class="swiper-wrapper">
+						<div class="swiper-container" dir="<?php echo esc_attr( $direction ); ?>" data-settings='<?php echo esc_attr( wp_json_encode( $slider_settings ) ); ?>'>
+							<div class="swiper-wrapper">
 					<?php endif; ?>
 
 						<?php
@@ -2564,8 +2560,9 @@ endforeach;
 endif;
 						?>
 					<?php if ( $settings['product_layout_style'] == 'slider' ) : ?>
-						</div><!-- /.swiper-wrapper -->
-						<div class="swiper-pagination"></div>
+							</div><!-- /.swiper-wrapper -->
+							<div class="swiper-pagination"></div>
+						</div><!-- /.swiper-container -->
 						<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>
 						<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>
 					<?php endif; ?>

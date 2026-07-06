@@ -6,6 +6,9 @@
 
 		$container.each(function() {
 			var $this = $(this);
+			// Pagination lives outside the swiper root (.wbcom-team-carousel-outer)
+			// so its clipping never hides the dots; look it up as a sibling.
+			var $outer = $this.closest('.wbcom-team-carousel-outer');
 			var elementSettings = $this.data('settings');
 
 			if (!elementSettings) {
@@ -16,16 +19,42 @@
 				isSingleSlide = (slidesToShow === 1),
 				elementorBreakpoints = elementorFrontend.config.responsive.activeBreakpoints;
 
+			// Swiper (v5) loop mode clones slides to fake infinite scrolling.
+			// With fewer than 2x slidesPerView real slides those clones
+			// desync the pagination bullets from the real slide count, so
+			// fall back to non-loop rather than ship broken pagination.
+			var totalSlides = $this.find('.swiper-slide').length;
+			var canLoop = totalSlides >= slidesToShow * 2;
+			var useLoop = elementSettings.infinite === 'yes' && canLoop;
+
 			var swiperOptions = {
 				slidesPerView: slidesToShow,
 				slidesPerGroup: 1,
-				loop: elementSettings.infinite === 'yes',
+				loop: useLoop,
 				speed: elementSettings.speed || 300,
+				// Centering the active slide (the scale-up "pop" effect in
+				// team-carousel.css) only works cleanly in loop mode. Without
+				// wraparound neighbors, Swiper can't scroll far enough to
+				// center the first/last ~half of slidesPerView slides, so it
+				// clamps those positions — collapsing 2 pagination bullets at
+				// each end onto their neighbor and making them unclickable.
+				// Only centered when looped; non-loop keeps the classic
+				// left-aligned active slide, where every bullet still maps
+				// 1:1 to a real slide.
+				centeredSlides: useLoop,
+				centeredSlidesBounds: useLoop,
 				autoplay: elementSettings.autoplay === 'yes' ? {
 					delay: elementSettings.autoplay_speed || 5000,
 					disableOnInteraction: false
 				} : false,
 				spaceBetween: 20,
+				// team-carousel.css reveals each card via .swiper-slide-active/
+				// -visible (opacity 0 -> 1). Swiper only assigns the -visible
+				// class when watchSlidesVisibility is on (watchSlidesProgress
+				// alone unlocks the layout/progress math but NOT the class
+				// itself) — without it, every slide but the single "active"
+				// one stays stuck at opacity: 0 in a multi-column layout.
+				watchSlidesVisibility: true,
 				breakpoints: {
 					0: {
 						slidesPerView: 1,
@@ -60,7 +89,7 @@
 			// Dots Pagination
 			if (elementSettings.navigation === 'dots' || elementSettings.navigation === 'both') {
 				swiperOptions.pagination = {
-					el: $this.find('.swiper-pagination').get(0),
+					el: $outer.find('.swiper-pagination').get(0),
 					type: 'bullets',
 					clickable: true
 				};

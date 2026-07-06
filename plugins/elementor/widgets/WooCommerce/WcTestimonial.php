@@ -1196,19 +1196,19 @@ class WcTestimonial extends \Elementor\Widget_Base {
 			$this->add_render_attribute( 'area_attr', 'class', 'wb-gutters' );
 		}
 		if ( $settings['slider_on'] === 'yes' ) {
-			$this->add_render_attribute( 'area_attr', 'class', 'product-slider swiper-container' );
-			$this->add_render_attribute( 'area_attr', 'data-settings', wp_json_encode( $slider_settings ) );
+			$this->add_render_attribute( 'area_attr', 'class', 'product-slider' );
 		}
 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's get_render_attribute_string() handles escaping.
 		echo '<div ' . $this->get_render_attribute_string( 'area_attr' ) . ' ' . $slider_main_div_style . '>';
 
 		if ( $settings['slider_on'] === 'yes' ) {
+			echo '<div class="swiper-container" data-settings=\'' . esc_attr( wp_json_encode( $slider_settings ) ) . '\'>';
 			echo '<div class="swiper-wrapper">';
 		}
 
 		foreach ( $testimonial_list as $testimonial ) :
-			$slide_class = ( $settings['slider_on'] === 'yes' ) ? $collumval . ' swiper-slide' : $collumval;
+			$slide_class = ( $settings['slider_on'] === 'yes' ) ? 'swiper-slide' : $collumval;
 			?>
 				<div class="<?php echo esc_attr( $slide_class ); ?>">
 					<div class="wb-single-testimonial-wrap">
@@ -1331,6 +1331,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 		if ( $settings['slider_on'] === 'yes' ) {
 			echo '</div>'; // close swiper-wrapper
 			echo '<div class="swiper-pagination"></div>';
+			echo '</div>'; // close swiper-container
 			echo '<div class="elementor-swiper-button elementor-swiper-button-prev"><i class="wbe-icons wbe-icon-angle-left"></i></div>';
 			echo '<div class="elementor-swiper-button elementor-swiper-button-next"><i class="wbe-icons wbe-icon-angle-right"></i></div>';
 		}
