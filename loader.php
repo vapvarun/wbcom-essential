@@ -14,7 +14,7 @@
  * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com/downloads/wbcom-essential/
  * Description:       Premium Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design.
- * Version:           4.6.3
+ * Version:           4.6.4
  * Requires at least: 6.0
  * Tested up to:      6.9
  * Requires PHP:      8.0
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '4.6.3' );
+define( 'WBCOM_ESSENTIAL_VERSION', '4.6.4' );
 define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.3.0' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
@@ -51,10 +51,28 @@ define( 'WBCOM_ESSENTIAL_PLUGIN_DIR', WBCOM_ESSENTIAL_PATH );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', WBCOM_ESSENTIAL_PLUGIN_BASE );
 
 
-// Load EDD SL SDK for license and update handling.
-$wbcom_essential_sdk = WBCOM_ESSENTIAL_PATH . 'vendor/easy-digital-downloads/edd-sl-sdk/edd-sl-sdk.php';
-if ( file_exists( $wbcom_essential_sdk ) ) {
+// Load the vendored EDD SL SDK only when the package is COMPLETE.
+//
+// The SDK is vendored complete at vendor/easy-digital-downloads/edd-sl-sdk and
+// must ship with its src/ classes. A stripped build or extract that keeps the
+// entry file but drops the src/ tree would fatal inside the SDK the moment it
+// instantiates a src class (the failure mode that has bitten stripped
+// bundled-SDK releases). Guard on the source being present and degrade to
+// "updates disabled" with a soft admin notice instead of a white screen -
+// licensing only gates update downloads, never features.
+$wbcom_essential_sdk     = WBCOM_ESSENTIAL_PATH . 'vendor/easy-digital-downloads/edd-sl-sdk/edd-sl-sdk.php';
+$wbcom_essential_sdk_src = WBCOM_ESSENTIAL_PATH . 'vendor/easy-digital-downloads/edd-sl-sdk/src/Versions.php';
+if ( file_exists( $wbcom_essential_sdk ) && file_exists( $wbcom_essential_sdk_src ) ) {
 	require_once $wbcom_essential_sdk;
+} elseif ( is_admin() ) {
+	add_action(
+		'admin_notices',
+		static function () {
+			echo '<div class="notice notice-warning"><p>'
+				. esc_html__( 'Wbcom Essential: the bundled licensing and update SDK is incomplete, so automatic updates are turned off. Reinstall the plugin from a complete package to restore them. Every other feature works normally.', 'wbcom-essential' )
+				. '</p></div>';
+		}
+	);
 }
 
 add_action(

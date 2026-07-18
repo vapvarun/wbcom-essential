@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.6.3
+Stable tag: 4.6.4
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,12 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.6.4 - July 2026 =
+
+Reliability fix for the bundled licensing and update SDK.
+
+* Fix      - Guard the bundled EDD Software Licensing SDK so an incomplete package (missing its src classes) turns automatic updates off with an admin notice instead of fataling the whole plugin. Every other feature keeps working.
 
 = 4.6.3 - July 2026 =
 
