@@ -107,8 +107,12 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 = 4.6.4 - July 2026 =
 
-Reliability fix for the bundled licensing and update SDK.
+Correct renew and upgrade links on the EDD account dashboard, plus a reliability fix for the bundled licensing and update SDK.
 
+* New      - Extend License button on active, non-lifetime license cards, so customers can renew early from the account dashboard.
+* Improve  - Upgrade License is hidden on expired licenses, which EDD Software Licensing declines to upgrade until they are renewed.
+* Fix      - Renew License now loads checkout with the renewal already in the cart, so the customer's existing key is extended at the renewal price. It previously linked to the product page and sold a second license at full price.
+* Fix      - Upgrade License now opens the prorated upgrade view inside the account dashboard instead of an unrelated order history page, and no longer falls back to the site home page when the store's purchase history page setting is empty.
 * Fix      - Guard the bundled EDD Software Licensing SDK so an incomplete package (missing its src classes) turns automatic updates off with an admin notice instead of fataling the whole plugin. Every other feature keeps working.
 
 = 4.6.3 - July 2026 =
