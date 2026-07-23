@@ -499,6 +499,79 @@ function wbcom_essential_edd_account_current_page_url() {
 }
 
 /**
+ * Build the URL of EDD Software Licensing's prorated upgrade view for a license.
+ *
+ * SL renders that view by replacing `the_content` of whichever page carries
+ * `?action=manage_licenses&payment_id=X&view=upgrades&license_id=Y`
+ * (see edd_sl_override_history_content()). It is NOT tied to the store's
+ * "purchase history" page.
+ *
+ * We therefore point at the dashboard page itself so the customer stays on
+ * My Account: SL's view renders in place, and its "Go back" link returns to
+ * `?action=manage_licenses` — which
+ * `wbcom_essential_edd_redirect_legacy_license_urls()` sends to the Licenses
+ * tab. Building against `purchase_history_page` instead dumped the customer
+ * onto an unrelated page, and fell back to the site home when that setting
+ * was empty.
+ *
+ * @since 4.6.4
+ *
+ * @param int $license_id License ID.
+ * @param int $payment_id Order ID the license belongs to.
+ * @return string Absolute URL, or empty string when either ID is missing.
+ */
+function wbcom_essential_edd_get_license_upgrade_view_url( $license_id, $payment_id ) {
+	$license_id = absint( $license_id );
+	$payment_id = absint( $payment_id );
+
+	if ( ! $license_id || ! $payment_id ) {
+		return '';
+	}
+
+	return add_query_arg(
+		array(
+			'view'       => 'upgrades',
+			'license_id' => $license_id,
+			'action'     => 'manage_licenses',
+			'payment_id' => $payment_id,
+		),
+		wbcom_essential_edd_account_current_page_url()
+	);
+}
+
+/**
+ * Resolve the renew / extend URL for a license.
+ *
+ * `EDD_SL_License::get_renewal_url()` returns a checkout URL that carries
+ * `edd_license_key` + `download_id`, so EDD SL puts the RENEWAL in the cart
+ * (renewal discount applied, license extended on purchase rather than a new
+ * key issued). Linking to the product permalink instead — as this dashboard
+ * previously did — sold the customer a brand new license at full price.
+ *
+ * SL returns an empty string when the license cannot be renewed or extended
+ * (store renewals disabled, lifetime license, incomplete original payment).
+ * In that case we fall back to the product page, which is still the only way
+ * to buy, rather than rendering a dead link.
+ *
+ * @since 4.6.4
+ *
+ * @param EDD_SL_License $license  License object.
+ * @param WP_Post|object $download Download object for the fallback link.
+ * @return string Absolute URL, or empty string when neither is resolvable.
+ */
+function wbcom_essential_edd_get_license_renewal_url( $license, $download ) {
+	$url = ( $license && method_exists( $license, 'get_renewal_url' ) )
+		? $license->get_renewal_url()
+		: '';
+
+	if ( ! $url && $download ) {
+		$url = get_permalink( $download->ID );
+	}
+
+	return $url ? $url : '';
+}
+
+/**
  * REST callback: render the requested tab as HTML.
  *
  * @param WP_REST_Request $request Full request object.
@@ -1854,23 +1927,30 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 		}
 
 		// Upgrade check - per LICENSE (validity-aware), not per download.
+		// EDD SL refuses to upgrade an expired license ("Renew to upgrade" in
+		// its own template), so we hide the button in that state instead of
+		// sending the customer to a view that will turn them away.
 		$has_upgrades = false;
 		$upgrade_url  = '';
-		if ( function_exists( 'edd_sl_get_license_upgrades' ) && $download ) {
+		if ( function_exists( 'edd_sl_get_license_upgrades' ) && $download && 'expired' !== $status ) {
 			$upgrades     = edd_sl_get_license_upgrades( $license->ID );
 			$has_upgrades = ! empty( $upgrades );
 			if ( $has_upgrades ) {
-				$upgrade_url = add_query_arg(
-					array(
-						'view'       => 'upgrades',
-						'license_id' => $license->ID,
-						'action'     => 'manage_licenses',
-						'payment_id' => $license->payment_id,
-					),
-					edd_get_option( 'purchase_history_page' ) ? get_permalink( edd_get_option( 'purchase_history_page' ) ) : home_url()
-				);
+				$upgrade_url = wbcom_essential_edd_get_license_upgrade_view_url( $license->ID, $license->payment_id );
 			}
 		}
+
+		// Renew (expired) / extend (active, non-lifetime) both run through
+		// EDD SL's renewal checkout URL so the existing key is topped up
+		// instead of a second key being sold at full price. An expired
+		// license always offers a way forward: when the store has renewals
+		// switched off the helper falls back to the product page.
+		$show_extend = 'expired' !== $status
+			&& method_exists( $license, 'can_extend' )
+			&& $license->can_extend();
+		$renewal_url = ( 'expired' === $status || $show_extend )
+			? wbcom_essential_edd_get_license_renewal_url( $license, $download )
+			: '';
 
 		?>
 		<div class="wbcom-edd-license">
@@ -1996,9 +2076,13 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 						<?php esc_html_e( 'Upgrade License', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
-				<?php if ( 'expired' === $status && $download ) : ?>
-					<a href="<?php echo esc_url( get_permalink( $download->ID ) ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
+				<?php if ( $renewal_url && 'expired' === $status ) : ?>
+					<a href="<?php echo esc_url( $renewal_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
 						<?php esc_html_e( 'Renew License', 'wbcom-essential' ); ?>
+					</a>
+				<?php elseif ( $renewal_url ) : ?>
+					<a href="<?php echo esc_url( $renewal_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm">
+						<?php esc_html_e( 'Extend License', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
 			</div>
@@ -2105,18 +2189,15 @@ function wbcom_essential_edd_render_purchases_tab( $customer = false ) {
 				// prorated upgrades view (same flow as the Licenses tab).
 				if ( $has_licenses && function_exists( 'edd_sl_get_license_upgrades' ) ) {
 					foreach ( (array) $order_licenses as $order_license ) {
-						if ( empty( $order_license->ID ) || ! edd_sl_get_license_upgrades( $order_license->ID ) ) {
+						// Expired licenses cannot be upgraded in EDD SL — skip
+						// them so the button never leads to a refusal.
+						if ( empty( $order_license->ID ) || 'expired' === $order_license->status ) {
 							continue;
 						}
-						$order_upgrade_url = add_query_arg(
-							array(
-								'view'       => 'upgrades',
-								'license_id' => $order_license->ID,
-								'action'     => 'manage_licenses',
-								'payment_id' => $order->id,
-							),
-							edd_get_option( 'purchase_history_page' ) ? get_permalink( edd_get_option( 'purchase_history_page' ) ) : home_url()
-						);
+						if ( ! edd_sl_get_license_upgrades( $order_license->ID ) ) {
+							continue;
+						}
+						$order_upgrade_url = wbcom_essential_edd_get_license_upgrade_view_url( $order_license->ID, $order->id );
 						break;
 					}
 				}
