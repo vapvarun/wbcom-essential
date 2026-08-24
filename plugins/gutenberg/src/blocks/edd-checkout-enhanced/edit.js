@@ -5,7 +5,11 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	useInnerBlocksProps,
+	InspectorControls,
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
 	ToggleControl,
@@ -28,6 +32,19 @@ import { useUniqueId } from '../../shared/hooks';
 import { generateBlockCSS } from '../../shared/utils/css';
 
 /**
+ * The checkout itself is EDD's own `edd/checkout` block, nested inside this one.
+ *
+ * It has to live in the page's saved markup rather than being rendered by our
+ * render.php, because EDD decides whether a page is a "block checkout" by
+ * running has_block( 'edd/checkout' ) against post_content
+ * (\EDD\Checkout\Validator::has_block). When that returns false EDD falls back
+ * to its legacy shortcode checkout, which stacks the login prompt on top of the
+ * registration fields instead of offering them as separate choices.
+ */
+const ALLOWED_BLOCKS = [ 'edd/checkout' ];
+const TEMPLATE = [ [ 'edd/checkout', {} ] ];
+
+/**
  * Editor component for the EDD Enhanced Checkout block.
  *
  * Renders a static placeholder in the editor so the block editor doesn't try
@@ -46,6 +63,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		showTrustBadges,
 		trustBadgeText,
 		guaranteeDays,
+		guaranteeText,
 		showReviews,
 		reviewCount,
 		showRecommendations,
@@ -84,6 +102,17 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	const blockProps = useBlockProps( {
 		className: `wbe-block-${ uniqueId } wbcom-essential-edd-checkout-enhanced-editor`,
 	} );
+
+	// Locked to a single edd/checkout child — this wrapper exists to decorate
+	// EDD's checkout, not to host arbitrary content.
+	const innerBlocksProps = useInnerBlocksProps(
+		{ className: 'wbcom-edd-checkout__form-wrap' },
+		{
+			allowedBlocks: ALLOWED_BLOCKS,
+			template: TEMPLATE,
+			templateLock: 'all',
+		}
+	);
 
 	return (
 		<>
@@ -143,6 +172,20 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							max={ 90 }
 							help={ __(
 								'Match your refund policy. Shown in the guarantee badge.',
+								'wbcom-essential'
+							) }
+						/>
+					) }
+
+					{ showTrustBadges && (
+						<TextControl
+							label={ __( 'Guarantee Description', 'wbcom-essential' ) }
+							value={ guaranteeText }
+							onChange={ ( value ) =>
+								setAttributes( { guaranteeText: value } )
+							}
+							help={ __(
+								'Word this to match your actual refund policy.',
 								'wbcom-essential'
 							) }
 						/>
@@ -439,27 +482,15 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					</div>
 				) }
 
-				{ /* Checkout Form Placeholder */ }
-				<div style={ { background: '#f8fafc', border: '2px dashed #e2e8f0', borderRadius: 8, padding: '40px 24px', textAlign: 'center', margin: '16px 0' } }>
-					<svg viewBox="0 0 24 24" fill="none" width="28" height="28" style={ { margin: '0 auto 8px', display: 'block', color: '#94a3b8' } }>
-						<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
-						<line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
-						<path d="M16 10a4 4 0 01-8 0" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
-					</svg>
-					<p style={ { margin: 0, fontSize: 14, fontWeight: 600, color: '#475569' } }>
-						{ __( 'EDD Checkout Form', 'wbcom-essential' ) }
-					</p>
-					<p style={ { margin: '4px 0 0', fontSize: 12, color: '#94a3b8' } }>
-						{ __( 'The native EDD checkout form renders here on the frontend.', 'wbcom-essential' ) }
-					</p>
-				</div>
+				{ /* EDD's own checkout block, nested so EDD can detect it. */ }
+				<div { ...innerBlocksProps } />
 
 				{ /* Trust Badges Preview */ }
 				{ showTrustBadges && (
 					<div style={ { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, margin: '16px 0' } }>
 						{ [
 							{ icon: '🛡️', title: trustBadgeText, desc: __( 'Your payment information is encrypted and secure.', 'wbcom-essential' ) },
-							{ icon: '✅', title: sprintf( /* translators: %d: guarantee days. */ __( '%d-Day Money Back', 'wbcom-essential' ), guaranteeDays || 14 ), desc: __( 'Full refund if you are not satisfied.', 'wbcom-essential' ) },
+							{ icon: '✅', title: sprintf( /* translators: %d: guarantee days. */ __( '%d-Day Money Back', 'wbcom-essential' ), guaranteeDays || 14 ), desc: guaranteeText || __( 'Covered by our money-back guarantee.', 'wbcom-essential' ) },
 							{ icon: '💬', title: __( 'Priority Support', 'wbcom-essential' ), desc: __( 'Dedicated support for all customers.', 'wbcom-essential' ) },
 						].map( ( badge, i ) => (
 							<div key={ i } style={ { display: 'flex', gap: 10, padding: 16, border: '1px solid #e2e8f0', borderRadius: 8, background: '#fff' } }>

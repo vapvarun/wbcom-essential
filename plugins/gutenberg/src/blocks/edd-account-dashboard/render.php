@@ -136,6 +136,16 @@ if ( ! in_array( $active_tab, $valid_tabs, true ) ) {
 	$active_tab = $default_tab;
 }
 
+// EDD SL's license views (Upgrade / Manage) arrive without a `tab` param —
+// their links carry ?action=manage_licenses&payment_id=X instead. Land on the
+// Licenses tab so the view renders inside the dashboard rather than replacing
+// it. See wbcom_essential_edd_keep_dashboard_shell_for_sl_views().
+if ( function_exists( 'wbcom_essential_edd_requested_sl_license_view' )
+	&& wbcom_essential_edd_requested_sl_license_view()
+	&& in_array( 'licenses', $valid_tabs, true ) ) {
+	$active_tab = 'licenses';
+}
+
 // Unique identifier for CSS scoping (use block's uniqueId, fallback to wp_unique_id).
 $block_id = ! empty( $unique_id ) ? 'wbcom-edd-account-' . $unique_id : wp_unique_id( 'wbcom-edd-account-' );
 

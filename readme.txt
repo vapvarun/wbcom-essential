@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 4.6.4
+Stable tag: 4.7.0
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,16 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.7.0 - August 2026 =
+
+Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the account dashboard around the license upgrade screen.
+
+* Fix      - Checkout no longer shows the "Already have an account?" login prompt stacked on top of the "Create an account" fields. The Enhanced Checkout block now nests EDD's own checkout block instead of its legacy shortcode, so EDD recognises the page as a block checkout and renders login, registration and guest checkout as separate choices. Existing checkout pages are converted automatically on update.
+* Fix      - Personal Info fields on checkout no longer render at three different widths, with the Email field narrow enough to truncate the address. A theme rule written for the old shortcode markup was overriding EDD's field grid.
+* Fix      - License Upgrade and Manage License now open inside the account dashboard, keeping the sidebar, tabs and styling. They previously replaced the whole page with an unstyled table.
+* Improve  - The money-back trust badge description is now editable and worded generically, instead of promising a full refund on every store.
+* Dev      - New version-gated upgrade runner (includes/upgrades.php) so future migrations run on plugin update, not only on activation.
 
 = 4.6.4 - July 2026 =
 

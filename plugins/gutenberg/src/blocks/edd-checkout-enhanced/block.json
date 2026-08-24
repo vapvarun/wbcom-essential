@@ -2,11 +2,11 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "wbcom-essential/edd-checkout-enhanced",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"title": "EDD Enhanced Checkout",
 	"category": "essential-edd",
 	"icon": "cart",
-	"description": "Enhanced checkout page with progress bar, trust badges, reviews, and recommendations wrapping EDD's native checkout.",
+	"description": "Enhanced checkout page with progress bar, trust badges, reviews, and recommendations wrapping EDD's native checkout block.",
 	"keywords": [
 		"edd",
 		"checkout",
@@ -44,6 +44,10 @@
 		"guaranteeDays": {
 			"type": "number",
 			"default": 14
+		},
+		"guaranteeText": {
+			"type": "string",
+			"default": "Covered by our money-back guarantee."
 		},
 		"showReviews": {
 			"type": "boolean",

@@ -499,6 +499,112 @@ function wbcom_essential_edd_account_current_page_url() {
 }
 
 /**
+ * Which EDD SL license view, if any, the current request is asking for.
+ *
+ * SL signals these views with `?action=manage_licenses&payment_id=X` plus an
+ * optional `view` / `license_id`. Mirrors the conditions in
+ * edd_sl_override_history_content() so both agree on what is being requested.
+ *
+ * @since 4.7.0
+ *
+ * @return string Template name for edd_get_template_part( 'licenses', $name ),
+ *                or empty string when this is not an SL license view.
+ */
+function wbcom_essential_edd_requested_sl_license_view() {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only view routing, no state change.
+	if ( empty( $_GET['action'] ) || 'manage_licenses' !== $_GET['action'] ) {
+		return '';
+	}
+	if ( empty( $_GET['payment_id'] ) ) {
+		return '';
+	}
+
+	if ( ! empty( $_GET['license_id'] ) && isset( $_GET['view'] ) && 'upgrades' === $_GET['view'] ) {
+		return 'upgrades';
+	}
+
+	return ! empty( $_GET['license_id'] ) ? 'manage-single' : 'manage-overview';
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
+}
+
+/**
+ * Render one of EDD SL's native license views inside the dashboard shell.
+ *
+ * SL's templates handle their own capability checks and are reused verbatim so
+ * upgrade pricing, proration and nonces stay in EDD's hands — we only supply
+ * the surrounding chrome and a class hook for styling.
+ *
+ * @since 4.7.0
+ *
+ * @param string $view Template name, from wbcom_essential_edd_requested_sl_license_view().
+ * @return void
+ */
+function wbcom_essential_edd_render_sl_license_view( $view ) {
+	$titles = array(
+		'upgrades'        => __( 'Upgrade License', 'wbcom-essential' ),
+		'manage-single'   => __( 'Manage License', 'wbcom-essential' ),
+		'manage-overview' => __( 'Manage Licenses', 'wbcom-essential' ),
+	);
+
+	$subtitles = array(
+		'upgrades'        => __( 'Choose an upgrade for this license. You only pay the difference.', 'wbcom-essential' ),
+		'manage-single'   => __( 'Manage the sites this license is activated on.', 'wbcom-essential' ),
+		'manage-overview' => __( 'Manage the licenses on this order.', 'wbcom-essential' ),
+	);
+
+	wbcom_essential_edd_tab_header(
+		isset( $titles[ $view ] ) ? $titles[ $view ] : __( 'License', 'wbcom-essential' ),
+		isset( $subtitles[ $view ] ) ? $subtitles[ $view ] : ''
+	);
+
+	if ( ! function_exists( 'edd_get_template_part' ) ) {
+		return;
+	}
+
+	// A license can carry many upgrade paths / activation rows, so the table
+	// scrolls inside its own box instead of widening the page.
+	echo '<div class="wbcom-edd-sl-view wbcom-edd-sl-view--' . esc_attr( $view ) . '">';
+	echo '<div class="wbcom-edd-sl-view__scroll">';
+	edd_get_template_part( 'licenses', $view );
+	echo '</div>';
+	echo '</div>';
+}
+
+/**
+ * Stop EDD SL from replacing the whole page content on the dashboard page.
+ *
+ * EDD SL's edd_sl_override_history_content() swaps `the_content` wholesale for
+ * its own license template whenever `?action=manage_licenses&payment_id=X` is present.
+ * On a page built from the EDD Account Dashboard block that wipes out the
+ * block itself — sidebar, tabs and all — leaving SL's bare table under the
+ * page title, styled by nothing.
+ *
+ * The views are still reachable: wbcom_essential_edd_render_licenses_tab()
+ * renders the same SL template inside the Licenses tab instead. This only
+ * removes the takeover, so nothing about SL's own markup or logic changes.
+ *
+ * @since 4.7.0
+ *
+ * @return void
+ */
+function wbcom_essential_edd_keep_dashboard_shell_for_sl_views() {
+	if ( ! wbcom_essential_edd_requested_sl_license_view() ) {
+		return;
+	}
+
+	global $post;
+	if ( ! $post || empty( $post->post_content ) ) {
+		return;
+	}
+	if ( false === strpos( $post->post_content, 'wbcom-essential/edd-account-dashboard' ) ) {
+		return;
+	}
+
+	remove_filter( 'the_content', 'edd_sl_override_history_content', 10 );
+}
+add_action( 'template_redirect', 'wbcom_essential_edd_keep_dashboard_shell_for_sl_views', 20 );
+
+/**
  * Build the URL of EDD Software Licensing's prorated upgrade view for a license.
  *
  * SL renders that view by replacing `the_content` of whichever page carries
@@ -1754,6 +1860,14 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
  * @param EDD_Customer|false $customer EDD customer object or false.
  */
 function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
+	// EDD SL's own license views (upgrade / manage) render inside this tab so
+	// the customer keeps the dashboard shell around them.
+	$sl_view = wbcom_essential_edd_requested_sl_license_view();
+	if ( $sl_view ) {
+		wbcom_essential_edd_render_sl_license_view( $sl_view );
+		return;
+	}
+
 	wbcom_essential_edd_tab_header(
 		__( 'License Keys', 'wbcom-essential' ),
 		__( 'View and manage your license keys and activations.', 'wbcom-essential' )

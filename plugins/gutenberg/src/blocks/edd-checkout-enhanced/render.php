@@ -95,7 +95,28 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	<?php endif; ?>
 
 	<div class="wbcom-edd-checkout__form-wrap">
-		<?php echo do_shortcode( '[download_checkout]' ); ?>
+		<?php
+		/*
+		 * $content is the nested `edd/checkout` block. It has to come from the
+		 * page's saved markup rather than being rendered here, because EDD
+		 * decides whether a page is a block checkout by running
+		 * has_block( 'edd/checkout' ) against post_content
+		 * (\EDD\Checkout\Validator::has_block). Rendering the block from PHP
+		 * does not satisfy that check, so EDD would keep its legacy checkout
+		 * fields on the page alongside the block's and print Personal Info
+		 * twice.
+		 *
+		 * The shortcode fallback only fires for pages saved before 4.7.0 that
+		 * the upgrade routine has not rewritten yet (see
+		 * includes/upgrades.php). It renders the legacy checkout, which is
+		 * degraded but functional — never a blank checkout.
+		 */
+		if ( '' !== trim( (string) $content ) ) {
+			echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Inner block output, already rendered and escaped by the block API.
+		} else {
+			echo do_shortcode( '[download_checkout]' );
+		}
+		?>
 	</div>
 
 	<?php if ( $show_trust_badges ) : ?>
@@ -132,7 +153,14 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							);
 							?>
 						</span>
-						<span class="wbcom-edd-checkout__trust-badge-desc"><?php esc_html_e( 'Full refund if you are not satisfied.', 'wbcom-essential' ); ?></span>
+						<span class="wbcom-edd-checkout__trust-badge-desc">
+							<?php
+							// Editable: refund terms differ per store, and a blanket
+							// "full refund if you are not satisfied" is a stronger
+							// promise than most policies actually make.
+							echo esc_html( $attributes['guaranteeText'] ?? __( 'Covered by our money-back guarantee.', 'wbcom-essential' ) );
+							?>
+						</span>
 					</div>
 				</div>
 

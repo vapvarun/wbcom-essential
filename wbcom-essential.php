@@ -121,6 +121,9 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 * Include plugin files
 		 */
 		public function includes() {
+			// Version-gated migrations (activation hooks do not fire on update).
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/upgrades.php';
+
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
 
