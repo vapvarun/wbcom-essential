@@ -9,7 +9,15 @@
 
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, RangeControl, TextControl } from '@wordpress/components';
+import {
+	PanelBody,
+	ToggleControl,
+	RangeControl,
+	TextControl,
+	TextareaControl,
+	Button,
+	__experimentalDivider as Divider,
+} from '@wordpress/components';
 
 import { SpacingControl, DeviceVisibility } from '../../shared/components';
 import { useUniqueId } from '../../shared/hooks';
@@ -25,7 +33,7 @@ import { generateBlockCSS } from '../../shared/utils/css';
  * @return {JSX.Element} Editor markup.
  */
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { uniqueId, showReviews, reviewCount, showTrustpilot, trustpilotRating, trustpilotCount, trustpilotUrl } = attributes;
+	const { uniqueId, showReviews, reviewCount, showTrustpilot, trustpilotRating, trustpilotCount, trustpilotUrl, trustpilotReviews } = attributes;
 
 	useUniqueId( clientId, uniqueId, setAttributes );
 
@@ -76,7 +84,90 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 								label={ __( 'Trustpilot URL', 'wbcom-essential' ) }
 								value={ trustpilotUrl }
 								onChange={ ( value ) => setAttributes( { trustpilotUrl: value } ) }
+								placeholder="https://www.trustpilot.com/review/yoursite.com"
 							/>
+
+							<Divider />
+							<p style={ { fontWeight: 600, marginBottom: 8 } }>
+								{ __( 'Review Cards', 'wbcom-essential' ) }
+							</p>
+
+							{ trustpilotReviews.map( ( review, index ) => (
+								<div key={ index } style={ { marginBottom: 16, padding: 12, background: '#f8f9fa', borderRadius: 6 } }>
+									<p style={ { fontSize: 12, fontWeight: 600, margin: '0 0 8px', color: '#64748b' } }>
+										{ `${ __( 'Review', 'wbcom-essential' ) } ${ index + 1 }` }
+									</p>
+									<TextControl
+										label={ __( 'Reviewer Name', 'wbcom-essential' ) }
+										value={ review.name }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], name: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+									/>
+									<RangeControl
+										label={ __( 'Stars', 'wbcom-essential' ) }
+										value={ review.stars }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], stars: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+										min={ 1 }
+										max={ 5 }
+									/>
+									<TextControl
+										label={ __( 'Title', 'wbcom-essential' ) }
+										value={ review.title }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], title: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+									/>
+									<TextareaControl
+										label={ __( 'Review Text', 'wbcom-essential' ) }
+										value={ review.text }
+										onChange={ ( value ) => {
+											const updated = [ ...trustpilotReviews ];
+											updated[ index ] = { ...updated[ index ], text: value };
+											setAttributes( { trustpilotReviews: updated } );
+										} }
+										rows={ 2 }
+									/>
+									{ trustpilotReviews.length > 1 && (
+										<Button
+											isDestructive
+											isSmall
+											variant="secondary"
+											onClick={ () => {
+												const updated = trustpilotReviews.filter( ( _, i ) => i !== index );
+												setAttributes( { trustpilotReviews: updated } );
+											} }
+										>
+											{ __( 'Remove', 'wbcom-essential' ) }
+										</Button>
+									) }
+								</div>
+							) ) }
+
+							{ trustpilotReviews.length < 5 && (
+								<Button
+									variant="secondary"
+									isSmall
+									onClick={ () => {
+										setAttributes( {
+											trustpilotReviews: [
+												...trustpilotReviews,
+												{ name: '', stars: 5, title: '', text: '' },
+											],
+										} );
+									} }
+								>
+									{ __( '+ Add Review', 'wbcom-essential' ) }
+								</Button>
+							) }
 						</>
 					) }
 				</PanelBody>
