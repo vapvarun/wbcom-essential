@@ -6,7 +6,7 @@
 	"title": "EDD Checkout Trust Badges",
 	"category": "essential-edd",
 	"icon": "cart",
-	"description": "Security, guarantee and support badges plus accepted-payment icons. Place inside the EDD Checkout block.",
+	"description": "Security, guarantee and support badges plus accepted-payment icons. Designed for the EDD Checkout block, but placeable anywhere.",
 	"keywords": [
 		"edd",
 		"checkout",
@@ -16,9 +16,6 @@
 		"payment"
 	],
 	"textdomain": "wbcom-essential",
-	"ancestor": [
-		"edd/checkout"
-	],
 	"supports": {
 		"html": false,
 		"spacing": {

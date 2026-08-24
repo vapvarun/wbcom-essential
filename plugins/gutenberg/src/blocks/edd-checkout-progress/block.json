@@ -6,7 +6,7 @@
 	"title": "EDD Checkout Progress",
 	"category": "essential-edd",
 	"icon": "cart",
-	"description": "Four-step checkout progress indicator. Place inside the EDD Checkout block, above the cart.",
+	"description": "Four-step checkout progress indicator. Designed for the EDD Checkout block, but placeable anywhere.",
 	"keywords": [
 		"edd",
 		"checkout",
@@ -14,9 +14,6 @@
 		"steps"
 	],
 	"textdomain": "wbcom-essential",
-	"ancestor": [
-		"edd/checkout"
-	],
 	"supports": {
 		"html": false,
 		"spacing": {

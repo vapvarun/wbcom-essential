@@ -6,7 +6,7 @@
   "title": "EDD Checkout Social Proof",
   "category": "essential-edd",
   "icon": "cart",
-  "description": "Trustpilot rating and customer reviews shown as social proof. Place inside the EDD Checkout block.",
+  "description": "Trustpilot rating and customer reviews shown as social proof. Designed for the EDD Checkout block, but works on product and landing pages too.",
   "keywords": [
     "edd",
     "checkout",
@@ -15,9 +15,6 @@
     "social proof"
   ],
   "textdomain": "wbcom-essential",
-  "ancestor": [
-    "edd/checkout"
-  ],
   "supports": {
     "html": false,
     "spacing": {

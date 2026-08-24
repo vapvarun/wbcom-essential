@@ -6,7 +6,7 @@
 	"title": "EDD Checkout Recommendations",
 	"category": "essential-edd",
 	"icon": "cart",
-	"description": "Customers Also Purchased suggestions based on the cart. Place inside the EDD Checkout block.",
+	"description": "Customers Also Purchased suggestions based on the cart. Designed for the EDD Checkout block; renders nothing when the cart is empty.",
 	"keywords": [
 		"edd",
 		"checkout",
@@ -15,9 +15,6 @@
 		"cross-sell"
 	],
 	"textdomain": "wbcom-essential",
-	"ancestor": [
-		"edd/checkout"
-	],
 	"supports": {
 		"html": false,
 		"spacing": {
