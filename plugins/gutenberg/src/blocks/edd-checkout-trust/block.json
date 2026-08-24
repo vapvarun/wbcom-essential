@@ -1,43 +1,32 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "wbcom-essential/edd-checkout-enhanced",
-	"version": "3.0.0",
-	"title": "EDD Enhanced Checkout (legacy)",
+	"name": "wbcom-essential/edd-checkout-trust",
+	"version": "1.0.0",
+	"title": "EDD Checkout Trust Badges",
 	"category": "essential-edd",
 	"icon": "cart",
-	"description": "Legacy wrapper kept only so pages saved before 4.7.0 keep rendering. Use the EDD Checkout block with the Wbcom checkout sections inside it instead.",
+	"description": "Security, guarantee and support badges plus accepted-payment icons. Place inside the EDD Checkout block.",
 	"keywords": [
 		"edd",
 		"checkout",
-		"payment",
-		"cart",
-		"easy digital downloads",
-		"essential",
-		"wbcom"
+		"trust",
+		"badges",
+		"security",
+		"payment"
 	],
 	"textdomain": "wbcom-essential",
+	"ancestor": [
+		"edd/checkout"
+	],
 	"supports": {
 		"html": false,
-		"align": [
-			"wide",
-			"full"
-		],
 		"spacing": {
 			"margin": true,
 			"padding": true
-		},
-		"inserter": false
+		}
 	},
 	"attributes": {
-		"showProgressBar": {
-			"type": "boolean",
-			"default": false
-		},
-		"showTrustBadges": {
-			"type": "boolean",
-			"default": true
-		},
 		"trustBadgeText": {
 			"type": "string",
 			"default": "Secure checkout powered by Stripe"
@@ -49,61 +38,6 @@
 		"guaranteeText": {
 			"type": "string",
 			"default": "Covered by our money-back guarantee."
-		},
-		"showReviews": {
-			"type": "boolean",
-			"default": true
-		},
-		"reviewCount": {
-			"type": "number",
-			"default": 3
-		},
-		"showRecommendations": {
-			"type": "boolean",
-			"default": true
-		},
-		"recommendationCount": {
-			"type": "number",
-			"default": 3
-		},
-		"showTrustpilot": {
-			"type": "boolean",
-			"default": true
-		},
-		"trustpilotRating": {
-			"type": "number",
-			"default": 4.7
-		},
-		"trustpilotCount": {
-			"type": "number",
-			"default": 87
-		},
-		"trustpilotUrl": {
-			"type": "string",
-			"default": ""
-		},
-		"trustpilotReviews": {
-			"type": "array",
-			"default": [
-				{
-					"name": "S W Malcolm",
-					"stars": 5,
-					"title": "Excellent Theme, Powerful Plugins and Outstanding Support",
-					"text": "Outstanding customer support: quick, helpful, and always willing to go the extra mile."
-				},
-				{
-					"name": "Steve",
-					"stars": 5,
-					"title": "Great speedy support and great plugins",
-					"text": "Great speedy support and great plugins. Highly recommended for BuddyPress communities."
-				},
-				{
-					"name": "Real America's Voice News",
-					"stars": 5,
-					"title": "THE BEST DEVELOPMENT TEAM EVER!",
-					"text": "Very professional and productive, completing tasks in a quick and decisive manner."
-				}
-			]
 		},
 		"paymentIcons": {
 			"type": "object",

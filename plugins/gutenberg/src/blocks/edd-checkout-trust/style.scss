@@ -1,0 +1,181 @@
+/**
+ * EDD Checkout Trust Badges Block - Frontend Styles
+ *
+ * BEM: .wbcom-edd-checkout__* - kept from the original combined block so the
+ * class contract (and any site CSS written against it) is unchanged.
+ *
+ * @package wbcom-essential
+ */
+
+.wbcom-edd-checkout {
+	// Font scale - relative to base, theme-overridable. Duplicated per
+	// section block so each renders correctly on its own; the sections are
+	// independent blocks and any subset may be on a page.
+	--edd-font-xs: 0.75rem;   // ~12px
+	--edd-font-sm: 0.8125rem; // ~13px
+	--edd-font-base: 0.875rem; // ~14px
+	--edd-font-md: 0.9375rem; // ~15px
+	--edd-font-lg: 1.0625rem; // ~17px
+	--edd-font-xl: 1.375rem;  // ~22px
+	--edd-font-2xl: 1.75rem;  // ~28px
+
+	// Trust Badges Section (expanded)
+	// -------------------------------------------------------------------------
+
+	&__trust-section {
+		margin-top: 1.5rem;
+	}
+
+	&__trust-badges {
+		display: grid;
+		grid-template-columns: repeat( 3, 1fr );
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	&__trust-badge {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		padding: 1rem;
+		background: var(--wbe-color-surface);
+		border: 1px solid var(--wbe-color-border);
+		border-radius: 8px;
+		transition: box-shadow 0.2s ease;
+
+		&:hover {
+			box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.06 );
+		}
+	}
+
+	&__trust-badge-icon {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 50%;
+
+		&--shield {
+			background: var(--wbe-color-info-bg);
+			color: var( --wbcom-link-color, #2563eb );
+		}
+
+		&--guarantee {
+			background: #f0fdf4;
+			color: var(--wbe-color-success);
+		}
+
+		&--support {
+			background: #faf5ff;
+			color: #9333ea;
+		}
+	}
+
+	&__trust-badge-content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+	}
+
+	&__trust-badge-title {
+		font-size: var( --edd-font-base );
+		font-weight: 600;
+		color: var( --wbcom-heading-color, #122b46 );
+		line-height: 1.3;
+	}
+
+	&__trust-badge-desc {
+		font-size: var( --edd-font-xs );
+		color: var( --wbcom-text-color, #64748b );
+		line-height: 1.4;
+	}
+
+	// Payment method icons row.
+	&__payment-methods {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 0.75rem 1rem;
+		background: var(--wbe-color-surface);
+		border: 1px solid var(--wbe-color-border);
+		border-radius: 8px;
+	}
+
+	&__payment-label {
+		font-size: var( --edd-font-xs );
+		color: var( --wbcom-text-color, #64748b );
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	&__payment-icons {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	&__payment-icon {
+		display: flex;
+		align-items: center;
+		opacity: 0.85;
+		transition: opacity 0.15s ease;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		svg {
+			display: block;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Reviews / Social Proof
+	// -------------------------------------------------------------------------
+
+
+	&__notice {
+		padding: 1rem 1.25rem;
+		background: #fff3cd;
+		border: 1px solid #ffc107;
+		border-radius: 6px;
+		font-size: var( --edd-font-base );
+		color: #856404;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	@media ( max-width: 768px ) {
+		// Trust badges stack on mobile.
+		&__trust-badges {
+			grid-template-columns: 1fr;
+		}
+
+		&__payment-methods {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+	}
+
+	@media ( max-width: 480px ) {
+		&__trust-badge {
+			padding: 0.75rem;
+		}
+
+		&__trust-badge-icon {
+			width: 2rem;
+			height: 2rem;
+
+			svg {
+				width: 18px;
+				height: 18px;
+			}
+		}
+	}
+
+}

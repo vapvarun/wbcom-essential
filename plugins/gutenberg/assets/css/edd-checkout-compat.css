@@ -1,0 +1,54 @@
+/**
+ * EDD block checkout - theme compatibility.
+ *
+ * Loaded on any page carrying EDD's checkout block, independently of whether
+ * any Wbcom checkout section is on the page.
+ *
+ * EDD lays its checkout fieldsets out with `display: grid`, via
+ * `.wp-block-edd-checkout #edd_purchase_form .edd-blocks-form` - specificity
+ * (1,2,0). Reign / BuddyX ship a rule written for the OLD shortcode checkout:
+ *
+ *   #edd_purchase_form #edd_checkout_user_info { display: flex; flex-wrap: wrap; }
+ *
+ * which is (2,0,0) and therefore wins. On the block checkout that same fieldset
+ * carries BOTH `#edd_checkout_user_info` and `.edd-blocks-form`, so the legacy
+ * rule lands on markup it was never written for. Its flex children have no
+ * flex-basis, so every field sizes to its own content: Email, First Name and
+ * Last Name each come out a different width, with Email narrow enough to
+ * truncate the address.
+ *
+ * Restoring EDD's own grid is deliberate - the goal is for a Reign store to
+ * render the checkout exactly like every non-Reign store, not to introduce a
+ * third layout. (2,1,0) beats the theme rule without !important.
+ *
+ * The lasting fix belongs in the Reign theme: scope that rule to
+ * `#edd_checkout_user_info:not(.edd-blocks-form)` so it stops applying to the
+ * block checkout. This file can be dropped once that ships.
+ *
+ * @package wbcom-essential
+ */
+
+.wp-block-edd-checkout #edd_purchase_form #edd_checkout_user_info {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1.25rem;
+}
+
+/*
+ * The margin matters as much as the display mode: Reign spaces its flex
+ * columns with a right margin on the group, which inside a grid cell just eats
+ * ~38px off that one field. `gap` above already handles the spacing.
+ */
+.wp-block-edd-checkout #edd_purchase_form #edd_checkout_user_info > .edd-blocks-form__group {
+	width: auto;
+	min-width: 0;
+	margin: 0;
+}
+
+.wp-block-edd-checkout #edd_purchase_form #edd_checkout_user_info input[type="text"],
+.wp-block-edd-checkout #edd_purchase_form #edd_checkout_user_info input[type="email"],
+.wp-block-edd-checkout #edd_purchase_form #edd_checkout_user_info input[type="tel"] {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+}

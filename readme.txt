@@ -109,10 +109,12 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the account dashboard around the license upgrade screen.
 
-* Fix      - Checkout no longer shows the "Already have an account?" login prompt stacked on top of the "Create an account" fields. The Enhanced Checkout block now nests EDD's own checkout block instead of its legacy shortcode, so EDD recognises the page as a block checkout and renders login, registration and guest checkout as separate choices. Existing checkout pages are converted automatically on update.
+* New      - Four checkout section blocks - Progress, Trust Badges, Social Proof and Recommendations - that sit inside EDD's own Checkout block alongside its cart, personal info and payment blocks. Each is editable on its own and can be reordered or removed in the editor.
+* Fix      - Checkout no longer shows the "Already have an account?" login prompt stacked on top of the "Create an account" fields. The checkout page now uses EDD's own Checkout block, so EDD recognises it as a block checkout and offers login, registration and guest checkout as separate choices. Existing checkout pages are converted automatically on update, keeping your guarantee wording, Trustpilot details and section toggles.
 * Fix      - Personal Info fields on checkout no longer render at three different widths, with the Email field narrow enough to truncate the address. A theme rule written for the old shortcode markup was overriding EDD's field grid.
 * Fix      - License Upgrade and Manage License now open inside the account dashboard, keeping the sidebar, tabs and styling. They previously replaced the whole page with an unstyled table.
 * Improve  - The money-back trust badge description is now editable and worded generically, instead of promising a full refund on every store.
+* Dev      - The EDD Enhanced Checkout block no longer wraps the checkout. EDD 3.7 made its Checkout block a parent of inner blocks, so wrapping it is what stopped EDD detecting the page as a block checkout. The block is retained, hidden from the inserter, only so pages the migration has not reached still render.
 * Dev      - New version-gated upgrade runner (includes/upgrades.php) so future migrations run on plugin update, not only on activation.
 
 = 4.6.4 - July 2026 =

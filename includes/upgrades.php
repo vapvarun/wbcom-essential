@@ -178,10 +178,18 @@ function wbcom_essential_upgrade_470_checkout_block() {
 }
 
 /**
- * Rewrite self-closing Enhanced Checkout blocks to wrap `wp:edd/checkout`.
+ * Replace the Enhanced Checkout wrapper with EDD's composed checkout block.
  *
  * Split out from the upgrade routine so it is directly testable and so the
  * rewrite rule lives in exactly one place.
+ *
+ * Handles both shapes that can be on disk:
+ *   - the original self-closing wrapper (4.6.x and earlier)
+ *   - a wrapper already containing a bare `wp:edd/checkout`
+ *
+ * Both become EDD's checkout block with its own inner blocks, followed by our
+ * sections as siblings. Attributes are carried across to the section that owns
+ * them, so a store's guarantee wording, Trustpilot numbers and toggles survive.
  *
  * @since 4.7.0
  *
@@ -189,25 +197,135 @@ function wbcom_essential_upgrade_470_checkout_block() {
  * @return string|null Rewritten content, or null when nothing needed changing.
  */
 function wbcom_essential_nest_checkout_block( $content ) {
-	// Already migrated (or hand-authored with the nested block): leave it be.
-	if ( false !== strpos( $content, 'wp:edd/checkout' ) ) {
+	// Nothing of ours on the page, or someone has already hand-built the new
+	// structure (our wrapper is gone): leave it be. Re-running is a no-op.
+	if ( false === strpos( $content, 'wp:wbcom-essential/edd-checkout-enhanced' ) ) {
 		return null;
 	}
 
-	// Matches the self-closing delimiter with or without a JSON attribute
-	// blob. Group 1 keeps the attributes exactly as saved.
-	$pattern = '#<!--\s+wp:wbcom-essential/edd-checkout-enhanced(\s+\{.*?\})?\s+/-->#s';
+	// Matches the wrapper in either shape. Group 1 is the JSON attribute blob.
+	$pattern = '#<!--\s+wp:wbcom-essential/edd-checkout-enhanced(\s+\{.*?\})?\s*(?:/-->|-->.*?<!--\s+/wp:wbcom-essential/edd-checkout-enhanced\s+-->)#s';
 
-	$replacement = "<!-- wp:wbcom-essential/edd-checkout-enhanced$1 -->\n"
-		. "<!-- wp:edd/checkout /-->\n"
-		. '<!-- /wp:wbcom-essential/edd-checkout-enhanced -->';
+	$new_content = preg_replace_callback(
+		$pattern,
+		function ( $matches ) {
+			$attributes = array();
+			if ( ! empty( $matches[1] ) ) {
+				$decoded = json_decode( trim( $matches[1] ), true );
+				if ( is_array( $decoded ) ) {
+					$attributes = $decoded;
+				}
+			}
 
-	$new_content = preg_replace( $pattern, $replacement, $content );
+			return wbcom_essential_build_checkout_markup( $attributes );
+		},
+		$content
+	);
 
-	// preg_replace() returns null on error — never write that back.
+	// preg_replace_callback() returns null on error — never write that back.
 	if ( null === $new_content || $new_content === $content ) {
 		return null;
 	}
 
 	return $new_content;
+}
+
+/**
+ * Build the 4.7.0 checkout page markup for a set of legacy wrapper attributes.
+ *
+ * Our sections are emitted INSIDE `wp:edd/checkout`. EDD's own checkout
+ * children declare `ancestor` rather than `parent`, and its InnerBlocks has no
+ * allowedBlocks, so the checkout block accepts any sibling — which is what
+ * makes it possible to drop our wrapper without losing the sections.
+ *
+ * @since 4.7.0
+ *
+ * @param array $attributes Attributes from the legacy wrapper block.
+ * @return string Block markup.
+ */
+function wbcom_essential_build_checkout_markup( array $attributes ) {
+	$section = static function ( $name, array $attrs ) {
+		// Drop nulls so we never write `"x":null` into post content.
+		$attrs = array_filter(
+			$attrs,
+			static function ( $value ) {
+				return null !== $value;
+			}
+		);
+
+		$json = empty( $attrs ) ? '' : ' ' . wp_json_encode( $attrs );
+
+		return "<!-- wp:wbcom-essential/{$name}{$json} /-->";
+	};
+
+	/*
+	 * EDD's checkout children are NOT self-closing. Their save() is
+	 * `useBlockProps.save()` around an empty div, so each one serializes with a
+	 * wrapper element; emitting `<!-- wp:edd/checkout-cart /-->` instead makes
+	 * the editor flag all three as invalid ("this block contains unexpected or
+	 * invalid content"). Our own sections use `save: () => null` and so are
+	 * correctly self-closing.
+	 */
+	$edd_child = static function ( $name ) {
+		return "<!-- wp:edd/{$name} -->\n"
+			. '<div class="wp-block-edd-' . $name . '"></div>' . "\n"
+			. "<!-- /wp:edd/{$name} -->";
+	};
+
+	$parts = array(
+		'<!-- wp:edd/checkout -->',
+	);
+
+	// The progress indicator belongs above the cart; everything else below it.
+	if ( ! empty( $attributes['showProgressBar'] ) ) {
+		$parts[] = $section( 'edd-checkout-progress', array() );
+	}
+
+	$parts[] = $edd_child( 'checkout-cart' );
+	$parts[] = $edd_child( 'checkout-personal-info' );
+	$parts[] = $edd_child( 'checkout-payment-info' );
+
+	// showTrustBadges defaulted to true, so treat "unset" as enabled.
+	if ( ! isset( $attributes['showTrustBadges'] ) || $attributes['showTrustBadges'] ) {
+		$parts[] = $section(
+			'edd-checkout-trust',
+			array(
+				'trustBadgeText' => $attributes['trustBadgeText'] ?? null,
+				'guaranteeDays'  => $attributes['guaranteeDays'] ?? null,
+				'guaranteeText'  => $attributes['guaranteeText'] ?? null,
+				'paymentIcons'   => $attributes['paymentIcons'] ?? null,
+			)
+		);
+	}
+
+	$wants_reviews    = ! isset( $attributes['showReviews'] ) || $attributes['showReviews'];
+	$wants_trustpilot = ! isset( $attributes['showTrustpilot'] ) || $attributes['showTrustpilot'];
+
+	if ( $wants_reviews || $wants_trustpilot ) {
+		$parts[] = $section(
+			'edd-checkout-social',
+			array(
+				'showReviews'       => $attributes['showReviews'] ?? null,
+				'reviewCount'       => $attributes['reviewCount'] ?? null,
+				'showTrustpilot'    => $attributes['showTrustpilot'] ?? null,
+				'trustpilotRating'  => $attributes['trustpilotRating'] ?? null,
+				'trustpilotCount'   => $attributes['trustpilotCount'] ?? null,
+				'trustpilotUrl'     => $attributes['trustpilotUrl'] ?? null,
+				'trustpilotReviews' => $attributes['trustpilotReviews'] ?? null,
+			)
+		);
+	}
+
+	if ( ! isset( $attributes['showRecommendations'] ) || $attributes['showRecommendations'] ) {
+		$parts[] = $section(
+			'edd-checkout-recommendations',
+			array(
+				'recommendationCount' => $attributes['recommendationCount'] ?? null,
+			)
+		);
+	}
+
+	$parts[] = '<!-- /wp:edd/checkout -->';
+
+	return implode( "\n", $parts );
 }
