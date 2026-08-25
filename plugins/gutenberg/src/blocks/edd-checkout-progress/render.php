@@ -42,10 +42,22 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
-		<div class="wbcom-edd-checkout__progress" role="navigation" aria-label="<?php esc_attr_e( 'Checkout steps', 'wbcom-essential' ); ?>">
+		<?php
+		/*
+		 * Deliberately carries no ARIA state. EDD's block checkout puts cart,
+		 * details and payment on ONE page, so "Payment - upcoming" and
+		 * aria-current="step" on Details announced a position that contradicts
+		 * the page a screen reader user is already on. Nothing here is a link
+		 * either, so role="navigation" added a landmark that navigates nowhere.
+		 *
+		 * The visible step labels remain readable in DOM order, which is true:
+		 * they describe the flow. The visual states are CSS-only and unchanged.
+		 */
+		?>
+		<div class="wbcom-edd-checkout__progress">
 			<ol class="wbcom-edd-checkout__steps">
 
-				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--completed" aria-label="<?php esc_attr_e( 'Cart - completed', 'wbcom-essential' ); ?>">
+				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--completed">
 					<div class="wbcom-edd-checkout__step-connector wbcom-edd-checkout__step-connector--start"></div>
 					<div class="wbcom-edd-checkout__step-circle" aria-hidden="true">
 						<svg class="wbcom-edd-checkout__step-check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -56,7 +68,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					<span class="wbcom-edd-checkout__step-label"><?php esc_html_e( 'Cart', 'wbcom-essential' ); ?></span>
 				</li>
 
-				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--active" aria-current="step" aria-label="<?php esc_attr_e( 'Details - current step', 'wbcom-essential' ); ?>">
+				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--active">
 					<div class="wbcom-edd-checkout__step-connector wbcom-edd-checkout__step-connector--start wbcom-edd-checkout__step-connector--filled"></div>
 					<div class="wbcom-edd-checkout__step-circle" aria-hidden="true">
 						<span class="wbcom-edd-checkout__step-number">2</span>
@@ -65,7 +77,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					<span class="wbcom-edd-checkout__step-label"><?php esc_html_e( 'Details', 'wbcom-essential' ); ?></span>
 				</li>
 
-				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--upcoming" aria-label="<?php esc_attr_e( 'Payment - upcoming', 'wbcom-essential' ); ?>">
+				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--upcoming">
 					<div class="wbcom-edd-checkout__step-connector wbcom-edd-checkout__step-connector--start"></div>
 					<div class="wbcom-edd-checkout__step-circle" aria-hidden="true">
 						<span class="wbcom-edd-checkout__step-number">3</span>
@@ -74,7 +86,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					<span class="wbcom-edd-checkout__step-label"><?php esc_html_e( 'Payment', 'wbcom-essential' ); ?></span>
 				</li>
 
-				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--upcoming" aria-label="<?php esc_attr_e( 'Complete - upcoming', 'wbcom-essential' ); ?>">
+				<li class="wbcom-edd-checkout__step wbcom-edd-checkout__step--upcoming">
 					<div class="wbcom-edd-checkout__step-connector wbcom-edd-checkout__step-connector--start"></div>
 					<div class="wbcom-edd-checkout__step-circle" aria-hidden="true">
 						<span class="wbcom-edd-checkout__step-number">4</span>
