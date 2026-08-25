@@ -44,7 +44,7 @@
 		},
 		"guaranteeDays": {
 			"type": "number",
-			"default": 14
+			"default": 30
 		},
 		"guaranteeText": {
 			"type": "string",

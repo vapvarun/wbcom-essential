@@ -75,7 +75,7 @@ $trust_badge_text = $attributes['trustBadgeText'] ?? __( 'Secure checkout', 'wbc
 							printf(
 								/* translators: %d: number of days in the money-back guarantee. */
 								esc_html__( '%d-Day Money Back', 'wbcom-essential' ),
-								absint( $attributes['guaranteeDays'] ?? 14 )
+								absint( $attributes['guaranteeDays'] ?? 30 )
 							);
 							?>
 						</span>

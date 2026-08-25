@@ -490,7 +490,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					<div style={ { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, margin: '16px 0' } }>
 						{ [
 							{ icon: '🛡️', title: trustBadgeText, desc: __( 'Your payment information is encrypted and secure.', 'wbcom-essential' ) },
-							{ icon: '✅', title: sprintf( /* translators: %d: guarantee days. */ __( '%d-Day Money Back', 'wbcom-essential' ), guaranteeDays || 14 ), desc: guaranteeText || __( 'Covered by our money-back guarantee.', 'wbcom-essential' ) },
+							{ icon: '✅', title: sprintf( /* translators: %d: guarantee days. */ __( '%d-Day Money Back', 'wbcom-essential' ), guaranteeDays || 30 ), desc: guaranteeText || __( 'Covered by our money-back guarantee.', 'wbcom-essential' ) },
 							{ icon: '💬', title: __( 'Priority Support', 'wbcom-essential' ), desc: __( 'Dedicated support for all customers.', 'wbcom-essential' ) },
 						].map( ( badge, i ) => (
 							<div key={ i } style={ { display: 'flex', gap: 10, padding: 16, border: '1px solid #e2e8f0', borderRadius: 8, background: '#fff' } }>
