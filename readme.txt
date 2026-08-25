@@ -114,6 +114,8 @@ Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the a
 * Fix      - Personal Info fields on checkout no longer render at three different widths, with the Email field narrow enough to truncate the address. A theme rule written for the old shortcode markup was overriding EDD's field grid.
 * Fix      - License Upgrade and Manage License now open inside the account dashboard, keeping the sidebar, tabs and styling. They previously replaced the whole page with an unstyled table.
 * Improve  - The money-back trust badge description is now editable and worded generically, instead of promising a full refund on every store.
+* New      - Product Catalog now renders its first page of products in the page HTML. Search engines previously saw only "Loading products..." because every product was drawn in the browser, and visitors without JavaScript saw nothing at all. Filtering, sorting and Load More are unchanged.
+* Improve  - Product Catalog no longer requests its first page of products after loading, because the page already contains them. That removes one request from every visit.
 * Fix      - The checkout progress indicator no longer announces a position that contradicts the page. Its steps were fixed labels, so screen readers were told "Payment - upcoming" while the payment fields were on screen. The indicator looks exactly the same; only the incorrect screen reader wording was removed.
 * Fix      - Product Catalog told shoppers "No products found matching your filters" when the product request actually failed, sending them to narrow filters over a problem that was not theirs. A failed load now says so and offers Retry.
 * Fix      - Product Catalog used a variable name that shadows a WordPress global.

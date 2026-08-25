@@ -78,9 +78,67 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		'data-i18n'             => esc_attr( wp_json_encode( $i18n_strings ) ),
 	)
 );
+
+/*
+ * Server-render the first page.
+ *
+ * The block is otherwise built entirely in the browser, which meant the HTML
+ * contained no products at all: crawlers indexed a page whose only text was
+ * "Loading products...", and a visitor without JavaScript never saw past it.
+ *
+ * The same query backs this and the REST route, so the markup a crawler reads
+ * and the JSON the script fetches cannot describe different products. The
+ * payload is also embedded below, so the script adopts these results instead
+ * of re-requesting page one on every load.
+ */
+list( $default_sort_orderby, $default_sort_order ) = function_exists( 'wbcom_essential_product_catalog_parse_sort' )
+	? wbcom_essential_product_catalog_parse_sort( $default_sort )
+	: array( 'title', 'ASC' );
+
+$initial = function_exists( 'wbcom_essential_product_catalog_query' )
+	? wbcom_essential_product_catalog_query(
+		array(
+			'per_page' => $products_per_page,
+			'page'     => 1,
+			'orderby'  => $default_sort_orderby,
+			'order'    => $default_sort_order,
+			'category' => $default_category,
+		)
+	)
+	: array(
+		'products'    => array(),
+		'total'       => 0,
+		'total_pages' => 1,
+		'page'        => 1,
+	);
+
+$card_i18n = array(
+	'download_free' => $i18n_strings['downloadFree'],
+	'view_product'  => $i18n_strings['viewProduct'],
+);
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
-	<div class="wbcom-catalog__loading">
-		<?php esc_html_e( 'Loading products...', 'wbcom-essential' ); ?>
-	</div>
+	<?php if ( ! empty( $initial['products'] ) ) : ?>
+		<div class="wbcom-catalog__grid wbcom-catalog__grid--<?php echo esc_attr( $columns ); ?>">
+			<?php
+			foreach ( $initial['products'] as $catalog_product ) {
+				echo wbcom_essential_product_catalog_render_card( $catalog_product, $card_i18n ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside the renderer.
+			}
+			?>
+		</div>
+	<?php else : ?>
+		<div class="wbcom-catalog__grid wbcom-catalog__grid--<?php echo esc_attr( $columns ); ?>">
+			<div class="wbcom-catalog__empty"><?php echo esc_html( $i18n_strings['noProducts'] ); ?></div>
+		</div>
+	<?php endif; ?>
+
+	<?php
+	// Handed to view.js so it can take over without re-fetching page one.
+	$initial_payload = wp_json_encode( $initial );
+	if ( $initial_payload ) :
+		?>
+		<script type="application/json" class="wbcom-catalog__initial-data">
+			<?php echo $initial_payload; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON encoded above, rendered inside a non-executing JSON script block. ?>
+		</script>
+	<?php endif; ?>
 </div>

@@ -56,6 +56,31 @@
 		// Parse default sort into orderby + order.
 		parseSortValue( state.defaultSort );
 
+		/*
+		 * Adopt the server-rendered first page instead of re-requesting it.
+		 * render.php embeds the same results it drew, so the grid the visitor
+		 * already sees is reused and page one costs no extra request. Only a
+		 * missing or unreadable payload falls back to fetching.
+		 */
+		var seeded = false;
+		var seedEl = container.querySelector( '.wbcom-catalog__initial-data' );
+		if ( seedEl ) {
+			try {
+				var seed = JSON.parse( seedEl.textContent );
+				if ( seed && Array.isArray( seed.products ) ) {
+					state.products = seed.products;
+					state.total = seed.total || seed.products.length;
+					state.totalPages = seed.total_pages || 1;
+					state.page = seed.page || 1;
+					state.loading = false;
+					seeded = true;
+				}
+			} catch ( e ) {
+				seeded = false;
+			}
+			seedEl.parentNode.removeChild( seedEl );
+		}
+
 		// Build the UI shell.
 		render();
 
@@ -63,7 +88,9 @@
 		if ( state.showCategory ) {
 			fetchCategories();
 		}
-		fetchProducts();
+		if ( ! seeded ) {
+			fetchProducts();
+		}
 
 		function parseSortValue( val ) {
 			switch ( val ) {

@@ -109,11 +109,68 @@ function wbcom_essential_product_catalog_public_permission() {
  * @return WP_REST_Response
  */
 function wbcom_essential_product_catalog_get_products( $request ) {
+	$result = wbcom_essential_product_catalog_query(
+		array(
+			'per_page'    => $request['per_page'],
+			'page'        => $request['page'],
+			'order'       => $request['order'],
+			'orderby'     => $request['orderby'],
+			'category'    => $request['category'],
+			'search'      => $request['search'],
+			'price_range' => $request['price_range'],
+		)
+	);
+
+	return new WP_REST_Response( $result, 200 );
+}
+
+/**
+ * Query EDD products for the catalog.
+ *
+ * Shared by the REST route and by the block's server-side render, so the
+ * markup a crawler sees and the JSON the browser fetches can never describe
+ * different product sets. Anything that changes filtering or ordering belongs
+ * here, not in either caller.
+ *
+ * @since 4.7.0
+ *
+ * @param array $params {
+ *     Query parameters. All optional.
+ *
+ *     @type int    $per_page    Products per page. Clamped to 1-48.
+ *     @type int    $page        Page number, 1-based.
+ *     @type string $order       ASC or DESC.
+ *     @type string $orderby     title, date, price or popular.
+ *     @type int    $category    download_category term ID, 0 for all.
+ *     @type string $search      Search term.
+ *     @type string $price_range all, free, under25, 25to99 or 100plus.
+ * }
+ * @return array {
+ *     @type array $products    Formatted product arrays.
+ *     @type int   $total       Total matching products.
+ *     @type int   $total_pages Total pages.
+ *     @type int   $page        Current page.
+ * }
+ */
+function wbcom_essential_product_catalog_query( $params = array() ) {
+	$request = wp_parse_args(
+		$params,
+		array(
+			'per_page'    => 12,
+			'page'        => 1,
+			'order'       => 'ASC',
+			'orderby'     => 'title',
+			'category'    => 0,
+			'search'      => '',
+			'price_range' => 'all',
+		)
+	);
+
 	$args = array(
 		'post_type'      => 'download',
 		'post_status'    => 'publish',
-		'posts_per_page' => max( 1, min( $request['per_page'], 48 ) ),
-		'paged'          => $request['page'],
+		'posts_per_page' => max( 1, min( (int) $request['per_page'], 48 ) ),
+		'paged'          => max( 1, (int) $request['page'] ),
 		'order'          => $request['order'],
 	);
 
@@ -142,7 +199,7 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 					'type' => 'NUMERIC',
 				),
 			);
-			$args['orderby'] = array( 'price_clause' => $request['order'] );
+			$args['orderby']    = array( 'price_clause' => $request['order'] );
 			break;
 		case 'popular':
 			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
@@ -151,8 +208,8 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 					'type' => 'NUMERIC',
 				),
 			);
-			$args['orderby'] = array( 'sales_clause' => 'DESC' );
-			$args['order']   = 'DESC';
+			$args['orderby']    = array( 'sales_clause' => 'DESC' );
+			$args['order']      = 'DESC';
 			break;
 		default:
 			$args['orderby'] = ( 'date' === $request['orderby'] ) ? 'date' : 'title';
@@ -238,14 +295,11 @@ function wbcom_essential_product_catalog_get_products( $request ) {
 		$products[] = wbcom_essential_product_catalog_format_product( $post );
 	}
 
-	return new WP_REST_Response(
-		array(
-			'products'    => $products,
-			'total'       => (int) $query->found_posts,
-			'total_pages' => (int) $query->max_num_pages,
-			'page'        => (int) $request['page'],
-		),
-		200
+	return array(
+		'products'    => $products,
+		'total'       => (int) $query->found_posts,
+		'total_pages' => (int) $query->max_num_pages,
+		'page'        => (int) $request['page'],
 	);
 }
 
@@ -294,12 +348,14 @@ function wbcom_essential_product_catalog_format_product( $post ) {
 		$excerpt = wp_trim_words( $excerpt, 20, '...' );
 	}
 
+	$thumbnail_url = get_the_post_thumbnail_url( $post->ID, 'large' );
+
 	return array(
 		'id'      => $post->ID,
 		'title'   => $post->post_title,
 		'excerpt' => $excerpt,
 		'url'     => get_permalink( $post->ID ),
-		'image'   => get_the_post_thumbnail_url( $post->ID, 'large' ) ?: '',
+		'image'   => $thumbnail_url ? $thumbnail_url : '',
 		'price'   => $price,
 		'is_free' => $is_free,
 	);
@@ -338,4 +394,80 @@ function wbcom_essential_product_catalog_get_categories() {
 	}
 
 	return $categories;
+}
+
+/**
+ * Render one catalog card as HTML.
+ *
+ * Mirrors buildCard() in the block's view.js element for element and class for
+ * class. The server-rendered first page and anything the script draws later
+ * must be indistinguishable, otherwise the layout shifts the moment the script
+ * takes over. Change this and view.js together.
+ *
+ * @since 4.7.0
+ *
+ * @param array $product Formatted product from wbcom_essential_product_catalog_format_product().
+ * @param array $i18n    Translated button labels: download_free, view_product.
+ * @return string Card HTML.
+ */
+function wbcom_essential_product_catalog_render_card( $product, $i18n = array() ) {
+	$is_free   = ! empty( $product['is_free'] );
+	$price_cls = $is_free
+		? 'wbcom-catalog__card-price wbcom-catalog__card-price--free'
+		: 'wbcom-catalog__card-price';
+	$btn_cls   = $is_free
+		? 'wbcom-catalog__card-btn wbcom-catalog__card-btn--free'
+		: 'wbcom-catalog__card-btn';
+	$btn_label = $is_free
+		? ( $i18n['download_free'] ?? __( 'Download Free', 'wbcom-essential' ) )
+		: ( $i18n['view_product'] ?? __( 'View Product', 'wbcom-essential' ) );
+
+	ob_start();
+	?>
+	<div class="wbcom-catalog__card">
+		<a href="<?php echo esc_url( $product['url'] ); ?>" class="wbcom-catalog__card-image">
+			<?php if ( ! empty( $product['image'] ) ) : ?>
+				<img src="<?php echo esc_url( $product['image'] ); ?>" alt="<?php echo esc_attr( $product['title'] ); ?>" loading="lazy" />
+			<?php else : ?>
+				<div class="wbcom-catalog__card-noimage"></div>
+			<?php endif; ?>
+		</a>
+		<div class="wbcom-catalog__card-body">
+			<h3 class="wbcom-catalog__card-title">
+				<a href="<?php echo esc_url( $product['url'] ); ?>"><?php echo esc_html( $product['title'] ); ?></a>
+			</h3>
+			<p class="wbcom-catalog__card-excerpt"><?php echo esc_html( $product['excerpt'] ); ?></p>
+			<div class="<?php echo esc_attr( $price_cls ); ?>"><?php echo esc_html( $product['price'] ); ?></div>
+			<a href="<?php echo esc_url( $product['url'] ); ?>" class="<?php echo esc_attr( $btn_cls ); ?>"><?php echo esc_html( $btn_label ); ?></a>
+		</div>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+
+/**
+ * Split a catalog sort value into orderby and order.
+ *
+ * The block stores one combined value ("price_asc"); the query wants the two
+ * halves. Mirrors parseSortValue() in view.js so a server-rendered first page
+ * is ordered exactly as the script would order it.
+ *
+ * @since 4.7.0
+ *
+ * @param string $value Sort value: title, date, price_asc, price_desc or popular.
+ * @return array Two-element array of orderby and order.
+ */
+function wbcom_essential_product_catalog_parse_sort( $value ) {
+	switch ( $value ) {
+		case 'date':
+			return array( 'date', 'DESC' );
+		case 'price_asc':
+			return array( 'price', 'ASC' );
+		case 'price_desc':
+			return array( 'price', 'DESC' );
+		case 'popular':
+			return array( 'popular', 'DESC' );
+		default:
+			return array( 'title', 'ASC' );
+	}
 }
