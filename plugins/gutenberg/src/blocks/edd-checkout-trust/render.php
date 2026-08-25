@@ -112,6 +112,14 @@ $trust_badge_text = $attributes['trustBadgeText'] ?? __( 'Secure checkout', 'wbc
 				'razorpay'   => true,
 			);
 			?>
+			<?php
+			/*
+			 * The icons claim which methods the store accepts, so they are opt-in.
+			 * With none enabled the whole row is skipped rather than rendering a
+			 * bare "Accepted payments" label with nothing after it.
+			 */
+			if ( array_filter( (array) $payment_icons ) ) :
+				?>
 			<div class="wbcom-edd-checkout__payment-methods">
 				<span class="wbcom-edd-checkout__payment-label"><?php esc_html_e( 'Accepted payments', 'wbcom-essential' ); ?></span>
 				<div class="wbcom-edd-checkout__payment-icons">
@@ -142,5 +150,6 @@ $trust_badge_text = $attributes['trustBadgeText'] ?? __( 'Secure checkout', 'wbc
 					<?php endif; ?>
 				</div>
 			</div>
+			<?php endif; ?>
 		</div>
 </div>

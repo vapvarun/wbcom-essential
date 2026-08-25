@@ -40,7 +40,7 @@
 		},
 		"trustBadgeText": {
 			"type": "string",
-			"default": "Secure checkout powered by Stripe"
+			"default": "Secure checkout"
 		},
 		"guaranteeDays": {
 			"type": "number",
@@ -89,11 +89,11 @@
 		"paymentIcons": {
 			"type": "object",
 			"default": {
-				"visa": true,
-				"mastercard": true,
-				"paypal": true,
-				"stripe": true,
-				"razorpay": true
+				"visa": false,
+				"mastercard": false,
+				"paypal": false,
+				"stripe": false,
+				"razorpay": false
 			}
 		},
 		"uniqueId": {

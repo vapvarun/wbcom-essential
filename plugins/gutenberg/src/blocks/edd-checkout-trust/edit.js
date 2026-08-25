@@ -9,7 +9,12 @@
 
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, RangeControl } from '@wordpress/components';
+import {
+	PanelBody,
+	TextControl,
+	RangeControl,
+	CheckboxControl,
+} from '@wordpress/components';
 
 import { SpacingControl, DeviceVisibility } from '../../shared/components';
 import { useUniqueId } from '../../shared/hooks';
@@ -25,7 +30,7 @@ import { generateBlockCSS } from '../../shared/utils/css';
  * @return {JSX.Element} Editor markup.
  */
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { uniqueId, trustBadgeText, guaranteeDays, guaranteeText } = attributes;
+	const { uniqueId, trustBadgeText, guaranteeDays, guaranteeText, paymentIcons } = attributes;
 
 	useUniqueId( clientId, uniqueId, setAttributes );
 
@@ -43,6 +48,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						label={ __( 'Trust Badge Text', 'wbcom-essential' ) }
 						value={ trustBadgeText }
 						onChange={ ( value ) => setAttributes( { trustBadgeText: value } ) }
+						help={ __( 'Name your own payment processor if you mention one.', 'wbcom-essential' ) }
 					/>
 					<RangeControl
 						label={ __( 'Money-Back Guarantee (days)', 'wbcom-essential' ) }
@@ -57,6 +63,24 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						onChange={ ( value ) => setAttributes( { guaranteeText: value } ) }
 						help={ __( 'Word this to match your actual refund policy.', 'wbcom-essential' ) }
 					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Payment Icons', 'wbcom-essential' ) } initialOpen={ false }>
+					<p className="components-base-control__help" style={ { marginTop: 0 } }>
+						{ __( 'Show only the payment methods your store actually accepts.', 'wbcom-essential' ) }
+					</p>
+					{ [ 'visa', 'mastercard', 'paypal', 'stripe', 'razorpay' ].map( ( key ) => (
+						<CheckboxControl
+							key={ key }
+							label={ key.charAt( 0 ).toUpperCase() + key.slice( 1 ) }
+							checked={ paymentIcons?.[ key ] ?? false }
+							onChange={ ( value ) =>
+								setAttributes( {
+									paymentIcons: { ...paymentIcons, [ key ]: value },
+								} )
+							}
+						/>
+					) ) }
 				</PanelBody>
 
 				<PanelBody title={ __( 'Spacing', 'wbcom-essential' ) } initialOpen={ false }>
