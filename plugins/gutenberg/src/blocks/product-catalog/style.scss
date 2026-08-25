@@ -446,3 +446,41 @@
 		animation: none;
 	}
 }
+
+// A failed request is a different situation from an empty result set, so it
+// gets its own treatment: an alert tone plus a way to try again, instead of
+// the neutral "nothing matched your filters" copy.
+.wbcom-catalog__error {
+	grid-column: 1 / -1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 2rem 1rem;
+	text-align: center;
+	color: var( --wbe-color-text, #1e293b );
+	background: var( --wbe-color-surface-alt, #f8fafc );
+	border: 1px solid var( --wbe-color-border, #e2e8f0 );
+	border-radius: var( --wbe-radius-lg, 8px );
+}
+
+.wbcom-catalog__retry-btn {
+	padding: 0.5rem 1.25rem;
+	min-height: 40px;
+	font-weight: 600;
+	color: #fff;
+	background: var( --wbcom-link-color, #2563eb );
+	border: 1px solid transparent;
+	border-radius: 6px;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		background: #1d4ed8;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var( --wbcom-link-color, #2563eb );
+		outline-offset: 2px;
+	}
+}

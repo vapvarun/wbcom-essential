@@ -50,6 +50,7 @@
 			categories: [],
 			products: [],
 			loading: true,
+			fetchFailed: false,
 		};
 
 		// Parse default sort into orderby + order.
@@ -219,6 +220,27 @@
 					);
 					grid.appendChild( skel );
 				}
+			} else if ( state.fetchFailed ) {
+				/*
+				 * A failed request is not an empty catalogue. Showing "no
+				 * products found" here tells the shopper the store has nothing
+				 * matching them, and they narrow their filters chasing a
+				 * problem that is not theirs.
+				 */
+				var errBox = el( 'div', 'wbcom-catalog__error' );
+				errBox.setAttribute( 'role', 'alert' );
+				errBox.textContent =
+					i18n.loadError || 'Products could not be loaded. Please try again.';
+				var retry = document.createElement( 'button' );
+				retry.type = 'button';
+				retry.className = 'wbcom-catalog__retry-btn';
+				retry.textContent = i18n.retry || 'Retry';
+				retry.addEventListener( 'click', function () {
+					state.page = 1;
+					fetchProducts( false );
+				} );
+				errBox.appendChild( retry );
+				grid.appendChild( errBox );
 			} else if ( state.products.length === 0 ) {
 				var empty = el( 'div', 'wbcom-catalog__empty' );
 				empty.textContent = i18n.noProducts || 'No products found matching your filters.';
@@ -443,10 +465,12 @@
 					state.total = ( data && data.total ) || 0;
 					state.totalPages = ( data && data.total_pages ) || 1;
 					state.loading = false;
+					state.fetchFailed = false;
 					render();
 				} )
 				.catch( function () {
 					state.loading = false;
+					state.fetchFailed = true;
 					if ( ! append ) {
 						state.products = [];
 					}

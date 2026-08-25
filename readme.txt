@@ -114,6 +114,8 @@ Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the a
 * Fix      - Personal Info fields on checkout no longer render at three different widths, with the Email field narrow enough to truncate the address. A theme rule written for the old shortcode markup was overriding EDD's field grid.
 * Fix      - License Upgrade and Manage License now open inside the account dashboard, keeping the sidebar, tabs and styling. They previously replaced the whole page with an unstyled table.
 * Improve  - The money-back trust badge description is now editable and worded generically, instead of promising a full refund on every store.
+* Fix      - Product Catalog told shoppers "No products found matching your filters" when the product request actually failed, sending them to narrow filters over a problem that was not theirs. A failed load now says so and offers Retry.
+* Fix      - Product Catalog used a variable name that shadows a WordPress global.
 * Improve  - The money-back guarantee badge now defaults to 30 days. Adjust it in the block sidebar to match your refund policy.
 * Improve  - The trust badge no longer says "powered by Stripe" by default, and payment method icons now start switched off. Both stated things about your store that may not be true - the processor you use and the cards you accept. Turn on the icons you actually take in the block sidebar; the row stays hidden while none are selected.
 * Fix      - Restored the payment icon checkboxes, which were missing from the new Trust Badges block so the icons could not be changed.

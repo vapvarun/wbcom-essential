@@ -27,14 +27,14 @@ $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attr
 \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
 
 // Extract block-specific attributes.
-$columns             = isset( $attributes['columns'] ) ? absint( $attributes['columns'] ) : 3;
-$per_page            = isset( $attributes['perPage'] ) ? absint( $attributes['perPage'] ) : 12;
-$show_search         = isset( $attributes['showSearch'] ) ? (bool) $attributes['showSearch'] : true;
-$show_category       = isset( $attributes['showCategoryFilter'] ) ? (bool) $attributes['showCategoryFilter'] : true;
-$show_price          = isset( $attributes['showPriceFilter'] ) ? (bool) $attributes['showPriceFilter'] : true;
-$show_sort           = isset( $attributes['showSort'] ) ? (bool) $attributes['showSort'] : true;
-$default_sort        = isset( $attributes['defaultSort'] ) ? sanitize_text_field( $attributes['defaultSort'] ) : 'title';
-$default_category    = isset( $attributes['defaultCategory'] ) ? absint( $attributes['defaultCategory'] ) : 0;
+$columns           = isset( $attributes['columns'] ) ? absint( $attributes['columns'] ) : 3;
+$products_per_page = isset( $attributes['perPage'] ) ? absint( $attributes['perPage'] ) : 12;
+$show_search       = isset( $attributes['showSearch'] ) ? (bool) $attributes['showSearch'] : true;
+$show_category     = isset( $attributes['showCategoryFilter'] ) ? (bool) $attributes['showCategoryFilter'] : true;
+$show_price        = isset( $attributes['showPriceFilter'] ) ? (bool) $attributes['showPriceFilter'] : true;
+$show_sort         = isset( $attributes['showSort'] ) ? (bool) $attributes['showSort'] : true;
+$default_sort      = isset( $attributes['defaultSort'] ) ? sanitize_text_field( $attributes['defaultSort'] ) : 'title';
+$default_category  = isset( $attributes['defaultCategory'] ) ? absint( $attributes['defaultCategory'] ) : 0;
 
 // Build translatable strings + currency for view.js.
 $currency_sym = function_exists( 'edd_currency_symbol' ) ? edd_currency_symbol() : '$';
@@ -57,6 +57,8 @@ $i18n_strings = array(
 	/* translators: %1$d: visible count, %2$d: total count */
 	'showingOf'         => __( 'Showing %1$d of %2$d products', 'wbcom-essential' ),
 	'noProducts'        => __( 'No products found matching your filters.', 'wbcom-essential' ),
+	'loadError'         => __( 'Products could not be loaded. Please try again.', 'wbcom-essential' ),
+	'retry'             => __( 'Retry', 'wbcom-essential' ),
 	'loadMore'          => __( 'Load More Products', 'wbcom-essential' ),
 	'downloadFree'      => __( 'Download Free', 'wbcom-essential' ),
 	'viewProduct'       => __( 'View Product', 'wbcom-essential' ),
@@ -66,7 +68,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class'                 => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wp-block-wbcom-essential-product-catalog ' . $vis_classes ),
 		'data-columns'          => esc_attr( $columns ),
-		'data-per-page'         => esc_attr( $per_page ),
+		'data-per-page'         => esc_attr( $products_per_page ),
 		'data-show-search'      => $show_search ? 'true' : 'false',
 		'data-show-category'    => $show_category ? 'true' : 'false',
 		'data-show-price'       => $show_price ? 'true' : 'false',
