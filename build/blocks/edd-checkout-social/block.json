@@ -37,11 +37,11 @@
     },
     "trustpilotRating": {
       "type": "number",
-      "default": 4.7
+      "default": 0
     },
     "trustpilotCount": {
       "type": "number",
-      "default": 87
+      "default": 0
     },
     "trustpilotUrl": {
       "type": "string",
@@ -49,26 +49,7 @@
     },
     "trustpilotReviews": {
       "type": "array",
-      "default": [
-        {
-          "name": "S W Malcolm",
-          "stars": 5,
-          "title": "Excellent Theme, Powerful Plugins and Outstanding Support",
-          "text": "Outstanding customer support: quick, helpful, and always willing to go the extra mile."
-        },
-        {
-          "name": "Steve",
-          "stars": 5,
-          "title": "Great speedy support and great plugins",
-          "text": "Great speedy support and great plugins. Highly recommended for BuddyPress communities."
-        },
-        {
-          "name": "Real America's Voice News",
-          "stars": 5,
-          "title": "THE BEST DEVELOPMENT TEAM EVER!",
-          "text": "Very professional and productive, completing tasks in a quick and decisive manner."
-        }
-      ]
+      "default": []
     },
     "uniqueId": {
       "type": "string",

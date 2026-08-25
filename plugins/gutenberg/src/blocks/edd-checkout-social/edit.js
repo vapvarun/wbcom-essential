@@ -73,6 +73,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 								type="number"
 								value={ trustpilotRating }
 								onChange={ ( value ) => setAttributes( { trustpilotRating: parseFloat( value ) || 0 } ) }
+								help={ __( 'Your real Trustpilot score. Left at 0 the score is not shown.', 'wbcom-essential' ) }
+								step="0.1"
+								min="0"
+								max="5"
 							/>
 							<TextControl
 								label={ __( 'Total Reviews', 'wbcom-essential' ) }
@@ -91,6 +95,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							<p style={ { fontWeight: 600, marginBottom: 8 } }>
 								{ __( 'Review Cards', 'wbcom-essential' ) }
 							</p>
+
+							{ trustpilotReviews.length === 0 && (
+								<p className="components-base-control__help" style={ { marginTop: 0 } }>
+									{ __( 'Add your own reviews. The Trustpilot section stays hidden until you add at least one.', 'wbcom-essential' ) }
+								</p>
+							) }
 
 							{ trustpilotReviews.map( ( review, index ) => (
 								<div key={ index } style={ { marginBottom: 16, padding: 12, background: '#f8f9fa', borderRadius: 6 } }>

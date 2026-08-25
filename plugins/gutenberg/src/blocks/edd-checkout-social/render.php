@@ -56,7 +56,7 @@ $review_count = $attributes['reviewCount'] ?? 3;
 		'wbcom_edd_checkout_trustpilot',
 		array(
 			'enabled' => $show_trustpilot,
-			'rating'  => (float) ( $attributes['trustpilotRating'] ?? 4.7 ),
+			'rating'  => (float) ( $attributes['trustpilotRating'] ?? 0 ),
 			'total'   => (int) ( $attributes['trustpilotCount'] ?? 0 ),
 			'url'     => $attributes['trustpilotUrl'] ?? '',
 			'reviews' => $tp_reviews_attr,
@@ -75,6 +75,13 @@ $review_count = $attributes['reviewCount'] ?? 3;
 					<span class="wbcom-edd-checkout__trustpilot-label">Trustpilot</span>
 				</div>
 				<div class="wbcom-edd-checkout__trustpilot-rating">
+					<?php
+					/*
+					 * Only shown once the owner supplies a rating. Defaulting to a
+					 * score would put a number on the page that nobody verified.
+					 */
+					if ( $tp_rating > 0 ) :
+						?>
 					<div class="wbcom-edd-checkout__trustpilot-stars" aria-label="<?php echo esc_attr( sprintf( '%s out of 5', $tp_rating ) ); ?>">
 						<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 							<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
@@ -86,7 +93,8 @@ $review_count = $attributes['reviewCount'] ?? 3;
 					<span class="wbcom-edd-checkout__trustpilot-score">
 						<strong><?php echo esc_html( $tp_rating ); ?></strong>/5
 					</span>
-					<?php if ( $tp_url ) : ?>
+					<?php endif; ?>
+					<?php if ( $tp_url && $tp_total > 0 ) : ?>
 						<a href="<?php echo esc_url( $tp_url ); ?>" class="wbcom-edd-checkout__trustpilot-count" target="_blank" rel="noopener noreferrer">
 							<?php
 							printf(
