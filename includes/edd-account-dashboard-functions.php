@@ -646,6 +646,50 @@ function wbcom_essential_edd_get_license_upgrade_view_url( $license_id, $payment
 }
 
 /**
+ * Build the in-dashboard "update payment method" URL for a subscription.
+ *
+ * EDD Recurring offers two routes and neither drops cleanly into a custom
+ * dashboard as-is:
+ *
+ * - `EDD_Subscription::get_update_url()` builds `?action=update&subscription_id=X`
+ *   with NO base URL, so it appends to whatever page is being rendered.
+ * - The 2.13 magic-link page (`/subscription/update/<hash>/`) hijacks
+ *   `template_include` and renders EDD's own standalone template, so the
+ *   customer leaves the account experience entirely.
+ *
+ * We build the same query against the canonical dashboard URL instead, and
+ * render EDD's form inside the Subscriptions tab. The customer stays on My
+ * Account and the form still posts back here, because EDD's template derives
+ * its action URL from `edd_get_current_page_url()`.
+ *
+ * @since 4.7.1
+ *
+ * @param EDD_Subscription $sub Subscription.
+ * @return string URL, or empty string when the gateway cannot update.
+ */
+function wbcom_essential_edd_get_subscription_update_url( $sub ) {
+	if ( ! $sub || empty( $sub->id ) || ! method_exists( $sub, 'can_update' ) ) {
+		return '';
+	}
+
+	// can_update() defaults to false and each gateway opts in through the
+	// `edd_subscription_can_update` filter, so a gateway with no stored card
+	// (manual, offline) correctly offers nothing.
+	if ( ! $sub->can_update() ) {
+		return '';
+	}
+
+	return add_query_arg(
+		array(
+			'tab'             => 'subscriptions',
+			'action'          => 'update',
+			'subscription_id' => absint( $sub->id ),
+		),
+		wbcom_essential_edd_account_current_page_url()
+	);
+}
+
+/**
  * Find the license backing a subscription.
  *
  * Prefers the license created by the subscription's own parent order, so a
@@ -1180,6 +1224,25 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		return;
 	}
 
+	// EDD Recurring's payment-method form, rendered inside the dashboard shell
+	// rather than on EDD's standalone page. The template checks ownership
+	// itself (subscription->customer_id must match the logged-in subscriber)
+	// and carries its own `update-payment` nonce on submit.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only view switch, no state change; the form below carries its own nonce.
+	$wbcom_sub_action = isset( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only view switch, no state change.
+	$wbcom_sub_update = isset( $_GET['subscription_id'] ) ? absint( wp_unslash( $_GET['subscription_id'] ) ) : 0;
+
+	if ( 'update' === $wbcom_sub_action && $wbcom_sub_update && function_exists( 'EDD_Recurring' ) ) {
+		$wbcom_update_form = EDD_Recurring()->subscriptions_view( 'update' );
+		if ( '' !== trim( wp_strip_all_tags( (string) $wbcom_update_form ) ) ) {
+			echo '<div class="wbcom-edd-subs wbcom-edd-subs--update">';
+			echo $wbcom_update_form; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- EDD Recurring template output, escaped by EDD.
+			echo '</div>';
+			return;
+		}
+	}
+
 	$subs_db = new EDD_Subscriptions_DB();
 	$subs    = $subs_db->get_subscriptions(
 		array(
@@ -1261,6 +1324,10 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		$upgrade_url  = wbcom_essential_edd_get_subscription_upgrade_url( $sub, $download );
 		$has_upgrades = '' !== $upgrade_url;
 
+		// Payment method. Gated on can_update(), which each gateway opts into,
+		// so a manual/offline subscription with no stored card offers nothing.
+		$update_url = wbcom_essential_edd_get_subscription_update_url( $sub );
+
 		?>
 		<div class="wbcom-edd-subs__card">
 			<div class="wbcom-edd-subs__header">
@@ -1320,6 +1387,11 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 				<?php if ( $has_upgrades ) : ?>
 					<a href="<?php echo esc_url( $upgrade_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
 						<?php esc_html_e( 'Upgrade Plan', 'wbcom-essential' ); ?>
+					</a>
+				<?php endif; ?>
+				<?php if ( $update_url ) : ?>
+					<a href="<?php echo esc_url( $update_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm">
+						<?php esc_html_e( 'Update Payment Method', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
 				<?php if ( $cancel_url ) : ?>
