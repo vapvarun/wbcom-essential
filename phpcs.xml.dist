@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<ruleset name="wbcom-essential">
+	<description>WordPress Coding Standards for wbcom-essential.</description>
+
+	<!--
+		Single source of truth for phpcs. CI and local runs use this file, so a
+		green run on a developer machine means the same thing as a green run in
+		Actions. Before this existed, CI passed its flags inline and nothing
+		local matched it.
+	-->
+
+	<file>.</file>
+
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="parallel" value="8"/>
+	<arg name="colors"/>
+	<arg value="ps"/>
+
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/.phpstan-stubs/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/build/*</exclude-pattern>
+	<exclude-pattern>*/dist/*</exclude-pattern>
+	<exclude-pattern>*/assets/js/min/*</exclude-pattern>
+	<exclude-pattern>*/assets/vendor/*</exclude-pattern>
+	<exclude-pattern>*/languages/*</exclude-pattern>
+
+	<rule ref="WordPress-Extra">
+		<!--
+			Formatting-only sniffs, excluded deliberately.
+
+			The codebase carries ~4,500 violations, ~90% of them whitespace and
+			alignment (1,903 space-indent alone). Auto-fixing them would produce
+			a reformat diff across 105 files that destroys git blame and buys
+			nothing a reader can see. They are excluded here rather than
+			suppressed at the job level, so that what remains actually fails the
+			build.
+
+			Audited 2026-08-26: none of the excluded sniffs below can hide a
+			security or correctness defect.
+		-->
+		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment"/>
+		<exclude name="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+		<exclude name="Universal.WhiteSpace.PrecisionAlignment"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature"/>
+		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+		<exclude name="WordPress.WhiteSpace.OperatorSpacing"/>
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment"/>
+		<exclude name="WordPress.Arrays.ArrayDeclarationSpacing"/>
+		<exclude name="NormalizedArrays.Arrays.ArrayBraceSpacing"/>
+		<exclude name="NormalizedArrays.Arrays.CommaAfterLast"/>
+		<exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing"/>
+		<exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+		<exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+		<exclude name="PSR2.Methods.FunctionClosingBrace"/>
+		<exclude name="PSR2.Classes.ClassDeclaration"/>
+		<exclude name="Squiz.ControlStructures.ControlSignature"/>
+
+		<!--
+			Style preferences that are not defects. Yoda conditions and short
+			array syntax are house-style arguments; enforcing them now would
+			bury the sniffs that matter under 300 more failures.
+		-->
+		<exclude name="WordPress.PHP.YodaConditions"/>
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+		<exclude name="Universal.Operators.DisallowShortTernary"/>
+		<exclude name="Universal.Operators.DisallowStandalonePostIncrementDecrement"/>
+
+		<!--
+			Loose comparison is EXCLUDED ON PURPOSE, not deferred out of
+			laziness. phpcbf marks `==` -> `===` auto-fixable, but the change is
+			semantic: '0' == 0 is true and '0' === 0 is false. Bulk-applying it
+			to 243 sites would be a behaviour change disguised as a lint fix.
+			Tighten these by hand, per site, with a test.
+		-->
+		<exclude name="Universal.Operators.StrictComparisons"/>
+
+		<!--
+			File-naming sniffs. The Elementor widget tree uses StudlyCaps
+			filenames (DashboardIntro.php) because it is PSR-4 autoloaded, not
+			WordPress-loaded. Renaming 116 files would break the autoloader.
+		-->
+		<exclude name="WordPress.Files.FileName"/>
+		<exclude name="PEAR.NamingConventions.ValidClassName"/>
+	</rule>
+
+	<!--
+		Everything below stays ENABLED and blocking. These are the sniffs that
+		catch real defects: unescaped output, missing nonces, unsanitized input,
+		SQL injection, and deprecated core calls.
+	-->
+
+	<!-- Templates legitimately echo rendered block HTML; escaping it would
+	     break the output. Annotated at each site rather than globally off. -->
+	<rule ref="WordPress.Security.EscapeOutput">
+		<properties>
+			<property name="customAutoEscapedFunctions" type="array">
+				<element value="render_block"/>
+				<element value="wbcom_essential_render_block"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- WP-CLI seed scripts write to stdout by design. -->
+	<rule ref="WordPress.Security.EscapeOutput">
+		<exclude-pattern>*/scripts/seed-*.php</exclude-pattern>
+	</rule>
+
+	<config name="minimum_supported_wp_version" value="6.5"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wbcom-essential"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

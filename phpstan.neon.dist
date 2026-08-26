@@ -1,0 +1,54 @@
+includes:
+	- vendor/szepeviktor/phpstan-wordpress/extension.neon
+	- phpstan-baseline.neon
+
+parameters:
+	level: 5
+
+	paths:
+		- admin
+		- includes
+		- plugins
+		- templates
+		- scripts
+		- loader.php
+		- wbcom-essential.php
+		- uninstall.php
+
+	excludePaths:
+		analyseAndScan:
+			- vendor
+			- node_modules
+			- build
+			- dist
+			- assets/vendor
+
+	# Analysis-only sources. Elementor has no stubs package on Packagist, so the
+	# real plugin is downloaded (never committed - see .gitignore) and scanned
+	# for symbols only. Without this, all 43 Elementor widgets report every
+	# inherited method as undefined, and the analysis is worthless noise.
+	#
+	# Fetch with: bash bin/phpstan-fetch-deps.sh
+	scanDirectories:
+		- .phpstan-stubs/elementor
+
+	bootstrapFiles:
+		- phpstan-constants.php
+		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+
+	treatPhpDocTypesAsCertain: false
+	reportUnmatchedIgnoredErrors: false
+
+	ignoreErrors:
+		# BuddyPress, bbPress and EDD are optional integrations, gated at runtime
+		# by class_exists() / function_exists(). They are not installed for
+		# analysis, so their symbols are legitimately unknown. Anything NOT
+		# matched here is a real unknown symbol and must fail the build.
+		- '#^Function (bp_|bbp_|edd_|groups_|friends_|messages_|xprofile_|buddypress|bbpress)[A-Za-z0-9_]* not found\.$#'
+		- '#^Used function (bp_|bbp_|edd_|buddypress)[A-Za-z0-9_]* not found\.$#'
+		- '#unknown class (BuddyPress|bbPress|BP_[A-Za-z_]+|EDD_[A-Za-z_]+)\.$#'
+		- '#^(Class|Instantiated class|Parameter .* has invalid type) (BuddyPress|bbPress|BP_[A-Za-z_]+|EDD_[A-Za-z_]+)( not found)?\.$#'
+		- '#^Constant (BP_|BBP_|EDD_)[A-Z0-9_]+ not found\.$#'
+
+	parallel:
+		maximumNumberOfProcesses: 2

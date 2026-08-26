@@ -1,0 +1,1411 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Cannot access property \$ID on class\-string\|object\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Cannot access property \$status on class\-string\|object\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Parameter \#1 \$array of function uasort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 2
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, float\|int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int\<1, max\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, int\<0, max\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, int\<1, max\> given\.$#'
+			identifier: argument.type
+			count: 2
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function uasort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 2
+			path: includes/edd-account-dashboard-functions.php
+
+		-
+			message: '#^Function wbcom_essential_edd_get_account_offers\(\) has invalid return type EDD_Discount\.$#'
+			identifier: class.notFound
+			count: 1
+			path: includes/edd-account-marketing-functions.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 3
+			path: includes/edd-account-marketing-functions.php
+
+		-
+			message: '#^Method Wbcom_Shared_Dashboard\:\:get_dashboard_stats\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: includes/shared-admin/class-wbcom-shared-dashboard.php
+
+		-
+			message: '#^Static property Wbcom_Shared_Loader\:\:\$instance is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: includes/shared-admin/class-wbcom-shared-loader.php
+
+		-
+			message: '#^Property Wbcom_Single_Post_Templates\:\:\$active_template is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: includes/single-post/class-wbcom-single-post-templates.php
+
+		-
+			message: '#^Access to an undefined property WP_Term\:\:\$cat_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Cannot access offset 0 on false\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Function wbcom_essential_theme_elementor_reply_link_attribute_change\(\) with return type void returns mixed but should not return anything\.$#'
+			identifier: return.void
+			count: 2
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Function wbcom_essential_theme_elementor_reply_link_attribute_change\(\) with return type void returns string but should not return anything\.$#'
+			identifier: return.void
+			count: 1
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Function wbcom_essential_theme_elementor_topic_link_attribute_change\(\) with return type void returns mixed but should not return anything\.$#'
+			identifier: return.void
+			count: 2
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
+			count: 2
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Variable \$return might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: includes/wbcom-essential-function.php
+
+		-
+			message: '#^Function wbcom_essential\(\) has invalid return type WBCOM_ESSENTIAL\\Plugin\.$#'
+			identifier: class.notFound
+			count: 1
+			path: loader.php
+
+		-
+			message: '#^Call to method WBCOM_ESSENTIAL\\ELEMENTOR\\Plugin\:\:includes\(\) on a separate line has no effect\.$#'
+			identifier: method.resultUnused
+			count: 1
+			path: plugins/elementor/Plugins.php
+
+		-
+			message: '#^PHPDoc tag @SuppressWarnings has invalid value \(\(PHPMD\.ExcessiveClassComplexity\)\)\: Unexpected token "\.ExcessiveClassComplexity\)", expected ''\)'' at offset 66 on line 5$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/Plugins.php
+
+		-
+			message: '#^Property WBCOM_ESSENTIAL\\ELEMENTOR\\Plugin\:\:\$classes_aliases \(string\) does not accept default value of type array\<string, string\>\.$#'
+			identifier: property.defaultValue
+			count: 1
+			path: plugins/elementor/Plugins.php
+
+		-
+			message: '#^Property WBCOM_ESSENTIAL\\ELEMENTOR\\Plugin\:\:\$classes_aliases is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: plugins/elementor/Plugins.php
+
+		-
+			message: '#^Property WBCOM_ESSENTIAL\\ELEMENTOR\\Plugin\:\:\$modules \(object\) does not accept default value of type array\.$#'
+			identifier: property.defaultValue
+			count: 1
+			path: plugins/elementor/Plugins.php
+
+		-
+			message: '#^Call to an undefined method Elementor\\Widget_Base\:\:get_current_page\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: plugins/elementor/helper/skins/skin-base.php
+
+		-
+			message: '#^Call to an undefined method Elementor\\Widget_Base\:\:get_posts_nav_link\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: plugins/elementor/helper/skins/skin-base.php
+
+		-
+			message: '#^Call to an undefined method Elementor\\Widget_Base\:\:get_query\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: plugins/elementor/helper/skins/skin-base.php
+
+		-
+			message: '#^Call to an undefined method Elementor\\Widget_Base\:\:query_posts\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: plugins/elementor/helper/skins/skin-base.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string Widget_Base \$widget Elementor Widget\.\)\: Unexpected token "Widget_Base", expected variable at offset 49 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/helper/skins/skin-base.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string Widget_Base \$widget Elementor Widget\.\)\: Unexpected token "Widget_Base", expected variable at offset 54 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/helper/skins/skin-base.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string Widget_Base \$widget Elementor widget\.\)\: Unexpected token "Widget_Base", expected variable at offset 49 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/helper/skins/skin-cards.php
+
+		-
+			message: '#^Parameter \#1 \$control_base_id of method Elementor\\Skin_Base\:\:get_control_id\(\) expects string, int given\.$#'
+			identifier: argument.type
+			count: 2
+			path: plugins/elementor/helper/skins/skin-cards.php
+
+		-
+			message: '#^Parameter \#1 \$id \(int\) of method WBCOM_ESSENTIAL\\ELEMENTOR\\Helper\\Skins\\Skin_Cards\:\:start_controls_tab\(\) should be compatible with parameter \$id \(string\) of method Elementor\\Skin_Base\:\:start_controls_tab\(\)$#'
+			identifier: method.childParameterType
+			count: 1
+			path: plugins/elementor/helper/skins/skin-cards.php
+
+		-
+			message: '#^Parameter \#1 \$id \(int\) of method WBCOM_ESSENTIAL\\ELEMENTOR\\Helper\\Skins\\Skin_Cards\:\:start_controls_tabs\(\) should be compatible with parameter \$id \(string\) of method Elementor\\Skin_Base\:\:start_controls_tabs\(\)$#'
+			identifier: method.childParameterType
+			count: 1
+			path: plugins/elementor/helper/skins/skin-cards.php
+
+		-
+			message: '#^Class Elementor\\Controls_Manager referenced with incorrect case\: ELEMENTOR\\Controls_Manager\.$#'
+			identifier: class.nameCase
+			count: 2
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Function bpb_get_appearance not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Function bpb_get_listing_columns not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Function bpb_update_appearance not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Function bpb_update_listing_columns not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
+			count: 1
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Method Elementor\\Elements_Manager\:\:add_category\(\) invoked with 3 parameters, 2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Parameter \#3 \$deps of function wp_enqueue_style expects array\<string\>, null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Property Elementor\\Plugin\:\:\$widgets_manager \(Elementor\\Widgets_Manager\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: plugins/elementor/hooks/ElementorHooks.php
+
+		-
+			message: '#^Method WBcomEssentialelementor\\Templates\\Classes\\WBcom_Essential_elementor_Templates_API\:\:is_enabled\(\) should return bool but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: plugins/elementor/templates/classes/api.php
+
+		-
+			message: '#^Property WBcomEssentialelementor\\Templates\\Classes\\WBcom_Essential_elementor_Templates_API\:\:\$enabled \(string\) does not accept false\.$#'
+			identifier: assign.propertyType
+			count: 2
+			path: plugins/elementor/templates/classes/api.php
+
+		-
+			message: '#^Property WBcomEssentialelementor\\Templates\\Classes\\WBcom_Essential_elementor_Templates_API\:\:\$enabled \(string\) does not accept true\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: plugins/elementor/templates/classes/api.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$instance\)\: Unexpected token "\$instance", expected type at offset 87 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/classes/assets.php
+
+		-
+			message: '#^Parameter \#4 \$ver of function wp_enqueue_script expects bool\|string\|null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/templates/classes/assets.php
+
+		-
+			message: '#^Parameter \#4 \$ver of function wp_enqueue_style expects bool\|string\|null, float given\.$#'
+			identifier: argument.type
+			count: 3
+			path: plugins/elementor/templates/classes/assets.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$config\)\: Unexpected token "\$config", expected type at offset 83 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/classes/config.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$instance\)\: Unexpected token "\$instance", expected type at offset 86 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/classes/config.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: plugins/elementor/templates/classes/manager.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$instance\)\: Unexpected token "\$instance", expected type at offset 87 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/classes/manager.php
+
+		-
+			message: '#^Parameter \#1 \$data_container of method Elementor\\DB\:\:iterate_data\(\) expects array, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/templates/sources/base.php
+
+		-
+			message: '#^Method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Page_Api\:\:prepare_items_tab\(\) should return object but returns array\<string, array\|bool\>\.$#'
+			identifier: return.type
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-pages-api.php
+
+		-
+			message: '#^Method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Page_Api\:\:transient_lifetime\(\) should return string but returns int\.$#'
+			identifier: return.type
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-pages-api.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$_object_cache\)\: Unexpected token "\$_object_cache", expected type at offset 91 on line 7$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-pages-api.php
+
+		-
+			message: '#^Parameter \#1 \$template_id \(int\) of method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Page_Api\:\:get_item\(\) should be compatible with parameter \$template_id \(string\) of method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Source_Base\:\:get_item\(\)$#'
+			identifier: method.childParameterType
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-pages-api.php
+
+		-
+			message: '#^Method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Source_Api\:\:prepare_items_tab\(\) should return object but returns array\<string, array\|bool\>\.$#'
+			identifier: return.type
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-sections-api.php
+
+		-
+			message: '#^Method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Source_Api\:\:transient_lifetime\(\) should return string but returns int\.$#'
+			identifier: return.type
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-sections-api.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$_object_cache\)\: Unexpected token "\$_object_cache", expected type at offset 91 on line 7$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-sections-api.php
+
+		-
+			message: '#^Parameter \#1 \$template_id \(int\) of method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Source_Api\:\:get_item\(\) should be compatible with parameter \$template_id \(string\) of method WBcomEssentialelementor\\Templates\\Sources\\WBcom_Essential_elementor_Templates_Source_Base\:\:get_item\(\)$#'
+			identifier: method.childParameterType
+			count: 1
+			path: plugins/elementor/templates/sources/wbcom-essential-elementor-sections-api.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$api\)\: Unexpected token "\$api", expected type at offset 78 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/templates.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$assets\)\: Unexpected token "\$assets", expected type at offset 86 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/templates.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$config\)\: Unexpected token "\$config", expected type at offset 98 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/templates.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$instance\)\: Unexpected token "\$instance", expected type at offset 86 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/templates.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$temp_manager\)\: Unexpected token "\$temp_manager", expected type at offset 81 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/templates.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$types\)\: Unexpected token "\$types", expected type at offset 85 on line 6$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/templates.php
+
+		-
+			message: '#^Method WBcomEssentialelementor\\Templates\\Types\\WBcom_Essential_elementor_Structure_Base\:\:location_name\(\) should return bool but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: plugins/elementor/templates/types/base.php
+
+		-
+			message: '#^Function register_structure not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: plugins/elementor/templates/types/manager.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$types\)\: Unexpected token "\$types", expected type at offset 41 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/templates/types/manager.php
+
+		-
+			message: '#^Function wbcom_sale_flash\(\) should return string\|null but empty return statement found\.$#'
+			identifier: return.empty
+			count: 1
+			path: plugins/elementor/wbcom-essential-woocommerce.php
+
+		-
+			message: '#^Function wbcom_sale_flash\(\) should return string\|null but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: plugins/elementor/wbcom-essential-woocommerce.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$widget_name$#'
+			identifier: parameter.notFound
+			count: 1
+			path: plugins/elementor/wbcom-essential-woocommerce.php
+
+		-
+			message: '#^PHPDoc tag @return has invalid value \(\[boolean\]\)\: Unexpected token "\[", expected type at offset 44 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: plugins/elementor/wbcom-essential-woocommerce.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/wbcom-essential-woocommerce.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/DashboardIntro.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''\{\{WRAPPER\}\} \.wbcom\-essential\-forums__avatar img\.avatar'' \(''\{\{WRAPPER\}\} \.wbcom\-essential\-forums__avatar img\.avatar'', ''\{\{WRAPPER\}\} \.wbcom\-essential\-forums__avatar img\.avatar''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/Forums.php
+
+		-
+			message: '#^Filter callback return statement is missing\.$#'
+			identifier: return.missing
+			count: 2
+			path: plugins/elementor/widgets/Buddypress/Forums.php
+
+		-
+			message: '#^Function remove_filter invoked with 4 parameters, 2\-3 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: plugins/elementor/widgets/Buddypress/Forums.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/Forums.php
+
+		-
+			message: '#^Filter callback return statement is missing\.$#'
+			identifier: return.missing
+			count: 2
+			path: plugins/elementor/widgets/Buddypress/ForumsActivity.php
+
+		-
+			message: '#^Function remove_filter invoked with 4 parameters, 2\-3 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: plugins/elementor/widgets/Buddypress/ForumsActivity.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/ForumsActivity.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/GroupCarousel.php
+
+		-
+			message: '#^Variable \$swiper_options might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/GroupCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/GroupGrid.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/GroupsLists.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/HeaderBar.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/MemberCarousel.php
+
+		-
+			message: '#^Variable \$swiper_options might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/MemberCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/MembersGrid.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/MembersLists.php
+
+		-
+			message: '#^Parameter \#2 \$gmt of function current_time expects bool, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/MembersLists.php
+
+		-
+			message: '#^Function remove_filter invoked with 4 parameters, 2\-3 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: plugins/elementor/widgets/Buddypress/ProfileCompletion.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/ProfileCompletion.php
+
+		-
+			message: '#^Variable \$user_prgress_formatted might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/ProfileCompletion.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, int\<min, \-1\>\|int\<1, max\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/cart-dropdown.php
+
+		-
+			message: '#^Parameter \#1 \$args of function wp_nav_menu expects array\{menu\?\: int\|string\|WP_Term, menu_class\?\: string, menu_id\?\: string, container\?\: string, container_class\?\: string, container_id\?\: string, container_aria_label\?\: string, fallback_cb\?\: \(callable\(\)\: mixed\)\|false, \.\.\.\}, array\{menu\: mixed, menu_id\: ''header\-my\-account…'', container\: false, menu_class\: ''wbcom\-essential\-my…''\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php
+
+		-
+			message: '#^Parameter \#1 \$args of function wp_nav_menu expects array\{menu\?\: int\|string\|WP_Term, menu_class\?\: string, menu_id\?\: string, container\?\: string, container_class\?\: string, container_id\?\: string, container_aria_label\?\: string, fallback_cb\?\: \(callable\(\)\: mixed\)\|false, \.\.\.\}, array\{menu\: mixed, theme_location\: ''header\-menu'', menu_id\: ''primary\-menu'', container\: false, fallback_cb\: '''', menu_class\: ''primary\-menu wbcom…''\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/header-bar-nav.php
+
+		-
+			message: '#^Variable \$settings might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/header-bar-nav.php
+
+		-
+			message: '#^Variable \$settings might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/header-bar-template.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/header-bar-template.php
+
+		-
+			message: '#^Variable \$group_avatar in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php
+
+		-
+			message: '#^Variable \$is_last_sender_blocked might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php
+
+		-
+			message: '#^Variable \$is_last_sender_suspended might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php
+
+		-
+			message: '#^Variable \$wpdb might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Accordion.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Branding.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Countdown.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/DropdownButton.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/FlipBox.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Heading.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/LoginForm.php
+
+		-
+			message: '#^Variable \$login_form_args might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: plugins/elementor/widgets/General/LoginForm.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PortfolioGrid.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''\{\{WRAPPER\}\} \.wbcom\-post\-carousel \.swiper\-pagination\-bullet'' \(''\{\{WRAPPER\}\} \.wbcom\-post\-carousel \.swiper\-pagination\-bullet'', ''\{\{WRAPPER\}\} \.wbcom\-post\-carousel \.swiper\-pagination\-bullet''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: plugins/elementor/widgets/General/PostCarousel.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: plugins/elementor/widgets/General/PostCarousel.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 3
+			path: plugins/elementor/widgets/General/PostCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$size of function get_avatar expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostCarousel.php
+
+		-
+			message: '#^Variable \$viewport_lg in empty\(\) always exists and is always falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: plugins/elementor/widgets/General/PostCarousel.php
+
+		-
+			message: '#^Variable \$viewport_md in empty\(\) always exists and is always falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: plugins/elementor/widgets/General/PostCarousel.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 3
+			path: plugins/elementor/widgets/General/PostSlider.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostSlider.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostTimeline.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostTimeline.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 2
+			path: plugins/elementor/widgets/General/PostsCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostsCarousel.php
+
+		-
+			message: '#^Property WP_Term\:\:\$name \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: plugins/elementor/widgets/General/PostsCarousel.php
+
+		-
+			message: '#^Property WP_Term\:\:\$slug \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: plugins/elementor/widgets/General/PostsCarousel.php
+
+		-
+			message: '#^Binary operation "%%" between int\<0, max\> and string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: plugins/elementor/widgets/General/PostsRevolution.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 1
+			path: plugins/elementor/widgets/General/PostsRevolution.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, \(float\|int\) given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostsRevolution.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostsRevolution.php
+
+		-
+			message: '#^Property WP_Term\:\:\$name \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: plugins/elementor/widgets/General/PostsRevolution.php
+
+		-
+			message: '#^Property WP_Term\:\:\$slug \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: plugins/elementor/widgets/General/PostsRevolution.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 2
+			path: plugins/elementor/widgets/General/PostsTicker.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, \(float\|int\) given\.$#'
+			identifier: argument.type
+			count: 5
+			path: plugins/elementor/widgets/General/PostsTicker.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_js expects string, \(float\|int\) given\.$#'
+			identifier: argument.type
+			count: 3
+			path: plugins/elementor/widgets/General/PostsTicker.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PostsTicker.php
+
+		-
+			message: '#^Property WP_Term\:\:\$name \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: plugins/elementor/widgets/General/PostsTicker.php
+
+		-
+			message: '#^Property WP_Term\:\:\$slug \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: plugins/elementor/widgets/General/PostsTicker.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/PricingTable.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/ProgressBar.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Shape.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''default'' \(''default'', ''default''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: plugins/elementor/widgets/General/SiteLogo.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, \(float\|int\) given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/SiteLogo.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 3
+			path: plugins/elementor/widgets/General/Slider.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Slider.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/SmartMenu.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Tabs.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''\{\{WRAPPER\}\} \.wbcom\-team\-carousel\-outer \.swiper\-pagination\-bullet'' \(''\{\{WRAPPER\}\} \.wbcom\-team\-carousel\-outer \.swiper\-pagination\-bullet'', ''\{\{WRAPPER\}\} \.wbcom\-team\-carousel\-outer \.swiper\-pagination\-bullet''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: plugins/elementor/widgets/General/TeamCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/TeamCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Testimonial.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/TestimonialCarousel.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/TextRotator.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/General/Timeline.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/WooCommerce/AddBanner.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/WooCommerce/CustomerReview.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''selector'' \(''selector'', ''selector''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: plugins/elementor/widgets/WooCommerce/ProductTab.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/WooCommerce/ProductTab.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''selector'' \(''selector'', ''selector''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: plugins/elementor/widgets/WooCommerce/UniversalProduct.php
+
+		-
+			message: '#^Function wbcom_exist_compare_plugin not found\.$#'
+			identifier: function.notFound
+			count: 4
+			path: plugins/elementor/widgets/WooCommerce/UniversalProduct.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/WooCommerce/UniversalProduct.php
+
+		-
+			message: '#^Parameter \#2 \$args of method Elementor\\Widget_Base\:\:__construct\(\) expects array\|null, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/WooCommerce/WcTestimonial.php
+
+		-
+			message: '#^Parameter \#1 \$args of function get_terms expects array\{taxonomy\?\: array\<string\>\|string, object_ids\?\: array\<int\>\|int, orderby\?\: string, order\?\: string, hide_empty\?\: bool\|int, include\?\: array\<int\>\|string, exclude\?\: array\<int\>\|string, exclude_tree\?\: array\<int\>\|string, \.\.\.\}, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/querycontrol/group-control-posts.php
+
+		-
+			message: '#^Parameter \#1 \$args of function wp_count_terms expects array\{taxonomy\?\: array\<string\>\|string, object_ids\?\: array\<int\>\|int, orderby\?\: string, order\?\: string, hide_empty\?\: bool\|int, include\?\: array\<int\>\|string, exclude\?\: array\<int\>\|string, exclude_tree\?\: array\<int\>\|string, \.\.\.\}, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/elementor/widgets/querycontrol/group-control-posts.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int\<\-359, 359\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/gutenberg/src/blocks/category-grid/render.php
+
+		-
+			message: '#^Parameter \#1 \$comment_id of function get_comment_meta expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/gutenberg/src/blocks/customer-reviews/render.php
+
+		-
+			message: '#^Parameter \#1 \$post of function get_permalink expects int\|WP_Post, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/gutenberg/src/blocks/customer-reviews/render.php
+
+		-
+			message: '#^Call to function in_array\(\) with arguments ''licenses'', array\{''dashboard'', ''subscriptions'', ''downloads'', ''free\-plugins'', ''licenses'', ''purchases'', ''profile''\} and true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: plugins/gutenberg/src/blocks/edd-account-dashboard/render.php
+
+		-
+			message: '#^Parameter \#1 \$comment_id of function get_comment_meta expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/gutenberg/src/blocks/edd-checkout-recommendations/render.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, int\<1, max\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/gutenberg/src/blocks/edd-checkout-recommendations/render.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, float given\.$#'
+			identifier: argument.type
+			count: 2
+			path: plugins/gutenberg/src/blocks/edd-checkout-social/render.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 2
+			path: plugins/gutenberg/src/blocks/post-carousel/render.php
+
+		-
+			message: '#^Parameter \#1 \$attachment_id of function wp_get_attachment_image_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/gutenberg/src/blocks/product-carousel/render.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 5
+			path: plugins/gutenberg/src/blocks/product-catalog/render.php
+
+		-
+			message: '#^Parameter \#1 \$attachment_id of function wp_get_attachment_image_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: plugins/gutenberg/src/blocks/product-grid/render.php
+
+		-
+			message: '#^Call to static method error\(\) on an unknown class WP_CLI\.$#'
+			identifier: class.notFound
+			count: 1
+			path: scripts/seed-edd-license-actions.php
+
+		-
+			message: '#^Call to static method log\(\) on an unknown class WP_CLI\.$#'
+			identifier: class.notFound
+			count: 4
+			path: scripts/seed-edd-license-actions.php
+
+		-
+			message: '#^Call to static method success\(\) on an unknown class WP_CLI\.$#'
+			identifier: class.notFound
+			count: 1
+			path: scripts/seed-edd-license-actions.php
+
+		-
+			message: '#^Function wbe_la_license_for_order\(\) has invalid return type EDD_SL_License\.$#'
+			identifier: class.notFound
+			count: 1
+			path: scripts/seed-edd-license-actions.php
+
+		-
+			message: '#^Call to static method error\(\) on an unknown class WP_CLI\.$#'
+			identifier: class.notFound
+			count: 2
+			path: scripts/seed-edd-scale.php
+
+		-
+			message: '#^Call to static method success\(\) on an unknown class WP_CLI\.$#'
+			identifier: class.notFound
+			count: 1
+			path: scripts/seed-edd-scale.php
+
+		-
+			message: '#^Call to static method success\(\) on an unknown class WP_CLI\.$#'
+			identifier: class.notFound
+			count: 1
+			path: scripts/seed-edd-testbed.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/buddypress/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/buddypress/members/members-loop.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/buddyx/buddypress/groups/groups-loop.php
+
+		-
+			message: '#^Function buddyx_user_status not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: templates/buddyx/buddypress/members/members-loop.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/buddyx/buddypress/members/members-loop.php
+
+		-
+			message: '#^Constant REIGN_INC_DIR_URI not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: templates/reign/buddypress/legacy/groups/groups-loop.php
+
+		-
+			message: '#^Function reign_bp_group_list_admins not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: templates/reign/buddypress/legacy/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$addition_class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/legacy/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$column might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/legacy/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$group_directory_type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: templates/reign/buddypress/legacy/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$img_class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: templates/reign/buddypress/legacy/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/legacy/groups/groups-loop.php
+
+		-
+			message: '#^Constant REIGN_INC_DIR_URI not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: templates/reign/buddypress/legacy/members/members-loop.php
+
+		-
+			message: '#^Function reign_get_online_status not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: templates/reign/buddypress/legacy/members/members-loop.php
+
+		-
+			message: '#^Variable \$img_class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/legacy/members/members-loop.php
+
+		-
+			message: '#^Variable \$member_directory_type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: templates/reign/buddypress/legacy/members/members-loop.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/legacy/members/members-loop.php
+
+		-
+			message: '#^Variable \$settings might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/legacy/members/members-loop.php
+
+		-
+			message: '#^Constant REIGN_INC_DIR_URI not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: templates/reign/buddypress/nouveau/groups/groups-loop.php
+
+		-
+			message: '#^Function reign_bp_group_list_admins not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: templates/reign/buddypress/nouveau/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$column_class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/nouveau/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$group_directory_type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: templates/reign/buddypress/nouveau/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$img_class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: templates/reign/buddypress/nouveau/groups/groups-loop.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/nouveau/groups/groups-loop.php
+
+		-
+			message: '#^Constant REIGN_INC_DIR_URI not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Function reign_additional_member_actions not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Function reign_buddypress_member_primary_actions not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Function reign_get_online_status not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Left side of && is always false\.$#'
+			identifier: booleanAnd.leftAlwaysFalse
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Variable \$column_class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Variable \$img_class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Variable \$member_directory_type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Variable \$query_string might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: templates/reign/buddypress/nouveau/members/members-loop.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: templates/single-post/partials/author-bio.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: templates/single-post/partials/toc.php
+
+		-
+			message: '#^Variable \$wbcom_toc_items in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: templates/single-post/partials/toc.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: templates/single-post/template-classic.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: templates/single-post/template-magazine.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: templates/single-post/template-minimal.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: templates/single-post/template-modern.php
+
+		-
+			message: '#^Method WBCOM_ESSENTIAL\\WBCOMESSENTIAL\:\:get_instance\(\) has invalid return type WBCOM_ESSENTIAL\\Plugin\.$#'
+			identifier: class.notFound
+			count: 1
+			path: wbcom-essential.php
+
+		-
+			message: '#^Method WBCOM_ESSENTIAL\\WBCOMESSENTIAL\:\:get_license_key\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: wbcom-essential.php
+
+		-
+			message: '#^Property WBCOM_ESSENTIAL\\WBCOMESSENTIAL\:\:\$instance has unknown class WBCOM_ESSENTIAL\\Plugin as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: wbcom-essential.php
+
+		-
+			message: '#^Static property WBCOM_ESSENTIAL\\WBCOMESSENTIAL\:\:\$instance \(WBCOM_ESSENTIAL\\Plugin\) does not accept WBCOM_ESSENTIAL\\WBCOMESSENTIAL\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: wbcom-essential.php

@@ -1,85 +1,141 @@
 name: CI
 
+# Version branches (4.7.0, 4.8.0, ...) are where the work happens, and they were
+# previously untested: the old triggers listed only main/master, so no release
+# branch ever ran CI. Run on every branch and every PR instead.
 on:
   push:
-    branches: [main, master]
+    branches: ['**']
   pull_request:
-    branches: [main, master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   php-lint:
-    name: PHP Lint (PHP ${{ matrix.php }})
+    name: PHP Lint (${{ matrix.php }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         php: ['8.1', '8.2', '8.3', '8.4']
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           tools: none
+          coverage: none
 
       - name: Check PHP syntax
-        run: find . -name "*.php" -not -path "./vendor/*" -not -path "./node_modules/*" | xargs php -l
+        run: |
+          find . -name "*.php" \
+            -not -path "./vendor/*" \
+            -not -path "./node_modules/*" \
+            -not -path "./.phpstan-stubs/*" \
+            -print0 | xargs -0 -n1 -P4 php -l
 
-  phpstan:
-    name: PHPStan
+  wpcs:
+    name: WordPress Coding Standards
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           tools: composer
+          coverage: none
 
-      - name: Install PHPStan and WordPress stubs
-        run: composer require --dev szepeviktor/phpstan-wordpress phpstan/phpstan --no-interaction 2>/dev/null || true
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
 
-      - name: Create phpstan.neon if not exists
+      # The codebase carries 216 pre-existing violations under phpcs.xml.dist.
+      # Rather than bulk-reformat 105 files (which would destroy git blame and
+      # change semantics on 243 loose comparisons), the gate is scoped to files
+      # this branch actually touched. New and modified code must be clean.
+      - name: Determine changed PHP files
+        id: changed
         run: |
-          if [ ! -f phpstan.neon ] && [ ! -f phpstan.neon.dist ]; then
-            cat > phpstan.neon << 'NEON'
-          includes:
-            - vendor/szepeviktor/phpstan-wordpress/extension.neon
-          parameters:
-            level: 5
-            paths:
-              - .
-            excludePaths:
-              - vendor
-              - node_modules
-              - tests
-          NEON
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+          else
+            git fetch --no-tags --depth=50 origin master 2>/dev/null \
+              || git fetch --no-tags --depth=50 origin main 2>/dev/null || true
+            BASE="$(git merge-base HEAD FETCH_HEAD 2>/dev/null || echo '')"
           fi
 
-      - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --no-progress --memory-limit=512M 2>/dev/null || echo "PHPStan completed with warnings"
+          if [ -z "$BASE" ]; then
+            echo "No merge base found - falling back to the last commit."
+            BASE="$(git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)"
+          fi
 
-  wpcs:
-    name: WordPress Coding Standards
+          git diff --name-only --diff-filter=ACMR "$BASE" HEAD -- '*.php' \
+            | grep -Ev '^(vendor|node_modules|build|dist)/' > changed.txt || true
+
+          echo "count=$(wc -l < changed.txt | tr -d ' ')" >> "$GITHUB_OUTPUT"
+          echo "Changed PHP files:"; cat changed.txt
+
+      - name: Run PHPCS on changed files (blocking)
+        if: steps.changed.outputs.count != '0'
+        run: tr "\\n" "\\0" < changed.txt | xargs -0 vendor/bin/phpcs --report=full
+
+      - name: Full-tree PHPCS report (advisory)
+        if: always()
+        continue-on-error: true
+        run: vendor/bin/phpcs --report=summary || true
+
+  phpstan:
+    name: PHPStan (level 5)
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          tools: composer, cs2pr
+          tools: composer
+          coverage: none
 
-      - name: Install WPCS
-        run: composer require --dev wp-coding-standards/wpcs:"^3.0" --no-interaction 2>/dev/null || true
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
 
-      - name: Run PHPCS with WordPress-Extra standard
-        run: vendor/bin/phpcs --standard=WordPress-Extra --extensions=php --ignore=vendor,node_modules,build,assets/js/min -n . 2>/dev/null || echo "WPCS completed with warnings"
+      # Elementor has no stubs package; 43 widgets extend its classes.
+      - name: Fetch analysis-only sources
+        run: bash bin/phpstan-fetch-deps.sh
+
+      # Blocking. phpstan-baseline.neon grandfathers the 323 errors that existed
+      # when the gate was introduced; anything new fails the build.
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=2G --error-format=github
+
+  security-audit:
+    name: Composer security audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      # Two high-severity advisories (CVE-2026-67434, CVE-2026-45293) shipped in
+      # the dev toolchain undetected before this job existed.
+      - name: Audit
+        run: composer audit --no-interaction

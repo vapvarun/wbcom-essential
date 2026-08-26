@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'wbcom-essential/wbcom-essential',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => '86893ff0e95470a6b7cf9c539e2993e2881fef8a',
+        'pretty_version' => '4.7.0.x-dev',
+        'version' => '4.7.0.9999999-dev',
+        'reference' => '216d7b2c7ff528e569bcc5ec1218b80b1c357c5b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'wbcom-essential/wbcom-essential' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '86893ff0e95470a6b7cf9c539e2993e2881fef8a',
+            'pretty_version' => '4.7.0.x-dev',
+            'version' => '4.7.0.9999999-dev',
+            'reference' => '216d7b2c7ff528e569bcc5ec1218b80b1c357c5b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
