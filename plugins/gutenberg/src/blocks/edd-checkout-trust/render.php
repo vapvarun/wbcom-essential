@@ -45,10 +45,30 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 <?php
 $trust_badge_text = $attributes['trustBadgeText'] ?? __( 'Secure checkout', 'wbcom-essential' );
+
+/*
+ * Every badge is a claim about the store, so each one is switchable and its
+ * wording is the owner's to set. 4.7.0 fixed this for trustBadgeText and
+ * paymentIcons but the audit only looked at block.json defaults, so three
+ * claims hardcoded in this template were missed: the encryption line, and the
+ * whole "Priority Support / Dedicated support for all customers" badge, which
+ * a solo store owner had no way to remove.
+ *
+ * The support badge defaults OFF because it is the one claim a store cannot
+ * make simply by having a checkout.
+ */
+$show_secure    = $attributes['showSecureBadge'] ?? true;
+$show_guarantee = $attributes['showGuaranteeBadge'] ?? true;
+$show_support   = $attributes['showSupportBadge'] ?? false;
+$secure_text    = $attributes['secureBadgeText'] ?? __( 'Your payment information is encrypted and secure.', 'wbcom-essential' );
+$support_title  = $attributes['supportBadgeTitle'] ?? __( 'Priority Support', 'wbcom-essential' );
+$support_text   = $attributes['supportBadgeText'] ?? __( 'Dedicated support for all customers.', 'wbcom-essential' );
 ?>
 		<div class="wbcom-edd-checkout__trust-section" aria-label="<?php esc_attr_e( 'Security and trust information', 'wbcom-essential' ); ?>">
 
+			<?php if ( $show_secure || $show_guarantee || $show_support ) : ?>
 			<div class="wbcom-edd-checkout__trust-badges">
+				<?php if ( $show_secure ) : ?>
 				<div class="wbcom-edd-checkout__trust-badge">
 					<div class="wbcom-edd-checkout__trust-badge-icon wbcom-edd-checkout__trust-badge-icon--shield">
 						<svg viewBox="0 0 24 24" fill="none" width="22" height="22" aria-hidden="true">
@@ -58,10 +78,12 @@ $trust_badge_text = $attributes['trustBadgeText'] ?? __( 'Secure checkout', 'wbc
 					</div>
 					<div class="wbcom-edd-checkout__trust-badge-content">
 						<span class="wbcom-edd-checkout__trust-badge-title"><?php echo esc_html( $trust_badge_text ); ?></span>
-						<span class="wbcom-edd-checkout__trust-badge-desc"><?php esc_html_e( 'Your payment information is encrypted and secure.', 'wbcom-essential' ); ?></span>
+						<span class="wbcom-edd-checkout__trust-badge-desc"><?php echo esc_html( $secure_text ); ?></span>
 					</div>
 				</div>
+				<?php endif; ?>
 
+				<?php if ( $show_guarantee ) : ?>
 				<div class="wbcom-edd-checkout__trust-badge">
 					<div class="wbcom-edd-checkout__trust-badge-icon wbcom-edd-checkout__trust-badge-icon--guarantee">
 						<svg viewBox="0 0 24 24" fill="none" width="22" height="22" aria-hidden="true">
@@ -89,7 +111,9 @@ $trust_badge_text = $attributes['trustBadgeText'] ?? __( 'Secure checkout', 'wbc
 						</span>
 					</div>
 				</div>
+				<?php endif; ?>
 
+				<?php if ( $show_support ) : ?>
 				<div class="wbcom-edd-checkout__trust-badge">
 					<div class="wbcom-edd-checkout__trust-badge-icon wbcom-edd-checkout__trust-badge-icon--support">
 						<svg viewBox="0 0 24 24" fill="none" width="22" height="22" aria-hidden="true">
@@ -97,11 +121,13 @@ $trust_badge_text = $attributes['trustBadgeText'] ?? __( 'Secure checkout', 'wbc
 						</svg>
 					</div>
 					<div class="wbcom-edd-checkout__trust-badge-content">
-						<span class="wbcom-edd-checkout__trust-badge-title"><?php esc_html_e( 'Priority Support', 'wbcom-essential' ); ?></span>
-						<span class="wbcom-edd-checkout__trust-badge-desc"><?php esc_html_e( 'Dedicated support for all customers.', 'wbcom-essential' ); ?></span>
+						<span class="wbcom-edd-checkout__trust-badge-title"><?php echo esc_html( $support_title ); ?></span>
+						<span class="wbcom-edd-checkout__trust-badge-desc"><?php echo esc_html( $support_text ); ?></span>
 					</div>
 				</div>
+				<?php endif; ?>
 			</div>
+			<?php endif; ?>
 
 			<?php
 			$payment_icons = $attributes['paymentIcons'] ?? array(

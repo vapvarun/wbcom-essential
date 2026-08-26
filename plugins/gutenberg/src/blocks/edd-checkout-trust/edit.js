@@ -14,6 +14,7 @@ import {
 	TextControl,
 	RangeControl,
 	CheckboxControl,
+	ToggleControl,
 } from '@wordpress/components';
 
 import { SpacingControl, DeviceVisibility } from '../../shared/components';
@@ -30,7 +31,19 @@ import { generateBlockCSS } from '../../shared/utils/css';
  * @return {JSX.Element} Editor markup.
  */
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { uniqueId, trustBadgeText, guaranteeDays, guaranteeText, paymentIcons } = attributes;
+	const {
+		uniqueId,
+		trustBadgeText,
+		showSecureBadge,
+		secureBadgeText,
+		guaranteeDays,
+		guaranteeText,
+		showGuaranteeBadge,
+		showSupportBadge,
+		supportBadgeTitle,
+		supportBadgeText,
+		paymentIcons,
+	} = attributes;
 
 	useUniqueId( clientId, uniqueId, setAttributes );
 
@@ -43,26 +56,77 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Trust Badge Options', 'wbcom-essential' ) } initialOpen={ true }>
-					<TextControl
-						label={ __( 'Trust Badge Text', 'wbcom-essential' ) }
-						value={ trustBadgeText }
-						onChange={ ( value ) => setAttributes( { trustBadgeText: value } ) }
-						help={ __( 'Name your own payment processor if you mention one.', 'wbcom-essential' ) }
+				<PanelBody title={ __( 'Security Badge', 'wbcom-essential' ) } initialOpen={ true }>
+					<ToggleControl
+						label={ __( 'Show security badge', 'wbcom-essential' ) }
+						checked={ showSecureBadge }
+						onChange={ ( value ) => setAttributes( { showSecureBadge: value } ) }
 					/>
-					<RangeControl
-						label={ __( 'Money-Back Guarantee (days)', 'wbcom-essential' ) }
-						value={ guaranteeDays }
-						onChange={ ( value ) => setAttributes( { guaranteeDays: value } ) }
-						min={ 7 }
-						max={ 90 }
+					{ showSecureBadge && (
+						<>
+							<TextControl
+								label={ __( 'Trust Badge Text', 'wbcom-essential' ) }
+								value={ trustBadgeText }
+								onChange={ ( value ) => setAttributes( { trustBadgeText: value } ) }
+								help={ __( 'Name your own payment processor if you mention one.', 'wbcom-essential' ) }
+							/>
+							<TextControl
+								label={ __( 'Security Description', 'wbcom-essential' ) }
+								value={ secureBadgeText }
+								onChange={ ( value ) => setAttributes( { secureBadgeText: value } ) }
+								help={ __( 'This is a claim about your checkout - word it so it stays true.', 'wbcom-essential' ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody title={ __( 'Guarantee Badge', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Show guarantee badge', 'wbcom-essential' ) }
+						checked={ showGuaranteeBadge }
+						onChange={ ( value ) => setAttributes( { showGuaranteeBadge: value } ) }
 					/>
-					<TextControl
-						label={ __( 'Guarantee Description', 'wbcom-essential' ) }
-						value={ guaranteeText }
-						onChange={ ( value ) => setAttributes( { guaranteeText: value } ) }
-						help={ __( 'Word this to match your actual refund policy.', 'wbcom-essential' ) }
+					{ showGuaranteeBadge && (
+						<>
+							<RangeControl
+								label={ __( 'Money-Back Guarantee (days)', 'wbcom-essential' ) }
+								value={ guaranteeDays }
+								onChange={ ( value ) => setAttributes( { guaranteeDays: value } ) }
+								min={ 7 }
+								max={ 90 }
+							/>
+							<TextControl
+								label={ __( 'Guarantee Description', 'wbcom-essential' ) }
+								value={ guaranteeText }
+								onChange={ ( value ) => setAttributes( { guaranteeText: value } ) }
+								help={ __( 'Word this to match your actual refund policy.', 'wbcom-essential' ) }
+							/>
+						</>
+					) }
+				</PanelBody>
+
+				<PanelBody title={ __( 'Support Badge', 'wbcom-essential' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Show support badge', 'wbcom-essential' ) }
+						checked={ showSupportBadge }
+						onChange={ ( value ) => setAttributes( { showSupportBadge: value } ) }
+						help={ __( 'Off by default: not every store offers dedicated or priority support, and the badge should not promise it on their behalf.', 'wbcom-essential' ) }
 					/>
+					{ showSupportBadge && (
+						<>
+							<TextControl
+								label={ __( 'Support Title', 'wbcom-essential' ) }
+								value={ supportBadgeTitle }
+								onChange={ ( value ) => setAttributes( { supportBadgeTitle: value } ) }
+							/>
+							<TextControl
+								label={ __( 'Support Description', 'wbcom-essential' ) }
+								value={ supportBadgeText }
+								onChange={ ( value ) => setAttributes( { supportBadgeText: value } ) }
+								help={ __( 'Describe the support you actually provide.', 'wbcom-essential' ) }
+							/>
+						</>
+					) }
 				</PanelBody>
 
 				<PanelBody title={ __( 'Payment Icons', 'wbcom-essential' ) } initialOpen={ false }>

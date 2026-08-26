@@ -28,6 +28,14 @@
       "type": "string",
       "default": "Secure checkout"
     },
+    "showSecureBadge": {
+      "type": "boolean",
+      "default": true
+    },
+    "secureBadgeText": {
+      "type": "string",
+      "default": "Your payment information is encrypted and secure."
+    },
     "guaranteeDays": {
       "type": "number",
       "default": 30
@@ -35,6 +43,22 @@
     "guaranteeText": {
       "type": "string",
       "default": "Covered by our money-back guarantee."
+    },
+    "showGuaranteeBadge": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSupportBadge": {
+      "type": "boolean",
+      "default": false
+    },
+    "supportBadgeTitle": {
+      "type": "string",
+      "default": "Priority Support"
+    },
+    "supportBadgeText": {
+      "type": "string",
+      "default": "Dedicated support for all customers."
     },
     "paymentIcons": {
       "type": "object",
