@@ -30,8 +30,15 @@ $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attr
 
 // Extract existing block attributes.
 $show_support  = isset( $attributes['showSupport'] ) ? (bool) $attributes['showSupport'] : true;
-$support_url   = isset( $attributes['supportUrl'] ) ? esc_url( $attributes['supportUrl'] ) : '';
-$support_label = isset( $attributes['supportLabel'] ) ? $attributes['supportLabel'] : __( 'My Tickets', 'wbcom-essential' );
+// Defaults land customers on the ticket form itself, not the support index -
+// the sidebar entry is an action ("Submit Ticket"), not a list of their tickets,
+// and pointing it at /support/ made it read as the latter.
+$support_url   = ! empty( $attributes['supportUrl'] )
+	? esc_url( $attributes['supportUrl'] )
+	: 'https://wbcomdesigns.com/support/#submit-ticket-section';
+$support_label = ! empty( $attributes['supportLabel'] )
+	? $attributes['supportLabel']
+	: __( 'Submit Ticket', 'wbcom-essential' );
 $default_tab   = isset( $attributes['defaultTab'] ) ? $attributes['defaultTab'] : 'dashboard';
 
 $valid_tabs = array( 'dashboard', 'subscriptions', 'downloads', 'free-plugins', 'licenses', 'purchases', 'profile' );
@@ -144,6 +151,24 @@ if ( function_exists( 'wbcom_essential_edd_requested_sl_license_view' )
 	&& wbcom_essential_edd_requested_sl_license_view()
 	&& in_array( 'licenses', $valid_tabs, true ) ) {
 	$active_tab = 'licenses';
+}
+
+// EDD Recurring's payment-method views arrive the same way. Its success
+// redirect rewrites the URL to ?action=details&subscription_id=X and drops our
+// `tab` entirely, so a customer who had just changed their card landed on the
+// Dashboard with no confirmation that anything had happened. Keep them on
+// Subscriptions for both the form and the result.
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only view switch.
+$wbe_sub_action = isset( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only view switch.
+$wbe_sub_id = isset( $_GET['subscription_id'] ) ? absint( wp_unslash( $_GET['subscription_id'] ) ) : 0;
+// Gate on EDD Recurring, not on $valid_tabs. $valid_tabs is a static whitelist
+// that always contains 'subscriptions', so checking it proves nothing; the tab
+// is only actually built when EDD_Recurring exists (see $wbe_tabs below).
+if ( $wbe_sub_id
+	&& in_array( $wbe_sub_action, array( 'update', 'details' ), true )
+	&& class_exists( 'EDD_Recurring' ) ) {
+	$active_tab = 'subscriptions';
 }
 
 // Unique identifier for CSS scoping (use block's uniqueId, fallback to wp_unique_id).

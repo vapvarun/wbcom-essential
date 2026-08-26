@@ -1168,6 +1168,22 @@ function wbcom_essential_edd_render_tab_notice() {
 	$edd_message = isset( $_GET['edd-message'] ) ? sanitize_key( wp_unslash( $_GET['edd-message'] ) ) : '';
 	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
+	// EDD Recurring reports a successful card change through its own message
+	// store rather than a query param, and its redirect drops our `tab`. Read
+	// the real message rather than inferring success from the URL, so a
+	// bookmarked ?action=details never shows a confirmation that did not happen.
+	if ( class_exists( '\\EDD\\Utils\\Messages' )
+		&& null !== \EDD\Utils\Messages::get_by_code( 'subscription-updated' ) ) {
+		printf(
+			'<div class="wbcom-edd-profile__notice wbcom-edd-profile__notice--success">%s</div>',
+			esc_html__( 'Payment method updated. Future renewals will use your new card.', 'wbcom-essential' )
+		);
+		// The type argument is required: remove() defaults to the 'error' bucket,
+		// so omitting it leaves the success message in place forever - which then
+		// suppresses the update form on every later visit.
+		\EDD\Utils\Messages::remove( 'subscription-updated', 'success' );
+	}
+
 	if ( ! $updated && ! $edd_message ) {
 		return;
 	}
@@ -1216,6 +1232,13 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		__( 'Manage your active and past subscriptions.', 'wbcom-essential' )
 	);
 
+	// Captured before the notice renderer runs, because rendering consumes the
+	// message. A successful card change must fall through to the list: leaving
+	// the form on screen under a "Payment method updated" notice reads as if it
+	// had not saved and invites the customer to enter the card a second time.
+	$wbcom_just_updated = class_exists( '\\EDD\\Utils\\Messages' )
+		&& null !== \EDD\Utils\Messages::get_by_code( 'subscription-updated' );
+
 	// Surface EDD messages from cancel/reactivate/renew redirects.
 	wbcom_essential_edd_render_tab_notice();
 
@@ -1233,7 +1256,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only view switch, no state change.
 	$wbcom_sub_update = isset( $_GET['subscription_id'] ) ? absint( wp_unslash( $_GET['subscription_id'] ) ) : 0;
 
-	if ( 'update' === $wbcom_sub_action && $wbcom_sub_update && function_exists( 'EDD_Recurring' ) ) {
+	if ( 'update' === $wbcom_sub_action && $wbcom_sub_update && ! $wbcom_just_updated && function_exists( 'EDD_Recurring' ) ) {
 		$wbcom_update_form = EDD_Recurring()->subscriptions_view( 'update' );
 		if ( '' !== trim( wp_strip_all_tags( (string) $wbcom_update_form ) ) ) {
 			echo '<div class="wbcom-edd-subs wbcom-edd-subs--update">';

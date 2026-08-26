@@ -144,22 +144,38 @@ function wbcom_essential_edd_get_upgrade_url( $owned_download_id, $target_downlo
 function wbcom_essential_edd_discount_account_field( $discount_id = 0, $discount = null ) {
 	$flagged = $discount_id ? (bool) edd_get_adjustment_meta( $discount_id, '_wbcom_show_in_account', true ) : false;
 	wp_nonce_field( 'wbcom_essential_discount_account', 'wbcom_essential_discount_account_nonce' );
+	/*
+	 * Must match EDD's own field markup. This previously emitted a
+	 * <tr><th></th><td></td></tr>, which was correct for the old table-based
+	 * discount editor but not for the div-based form groups EDD has used since
+	 * 3.3.9. A <tr> outside a <table> is invalid, so the browser silently
+	 * discarded the row, header and cell and left the bare input sitting
+	 * outside the two-column grid every other field on the screen sits in.
+	 * Structure copied from EDD's own "Use Once Per Customer" toggle.
+	 */
 	?>
-	<tr>
-		<th scope="row" valign="top">
-			<label for="wbcom-show-in-account"><?php esc_html_e( 'Account Dashboard', 'wbcom-essential' ); ?></label>
-		</th>
-		<td>
-			<input type="checkbox" id="wbcom-show-in-account" name="wbcom_show_in_account" value="1" <?php checked( $flagged ); ?> />
-			<label for="wbcom-show-in-account" class="description">
-				<?php esc_html_e( 'Show this discount as a special offer on the customer account dashboard.', 'wbcom-essential' ); ?>
-			</label>
-		</td>
-	</tr>
+	<div class="edd-form-group">
+		<label for="wbcom-show-in-account"><?php esc_html_e( 'Account Dashboard', 'wbcom-essential' ); ?></label>
+		<div class="edd-form-group__control">
+			<div class="edd-toggle wbcom_show_in_account">
+				<input type="checkbox" id="wbcom-show-in-account" name="wbcom_show_in_account" value="1" <?php checked( $flagged ); ?> />
+				<label for="wbcom-show-in-account">
+					<?php esc_html_e( 'Show this discount as a special offer on the customer account dashboard.', 'wbcom-essential' ); ?>
+				</label>
+			</div>
+		</div>
+	</div>
 	<?php
 }
+/*
+ * One hook, both screens. EDD 3.x renders the add and edit discount screens
+ * from the same Form.php, so edd_edit_discount_form_bottom fires for both
+ * despite its name - verified on ?view=add_discount, where the field renders
+ * and the button reads "Create Discount". The old second registration on
+ * edd_add_discount_form_bottom was dead: that hook does not exist anywhere in
+ * EDD. It was harmless, but it implied a second code path that is not there.
+ */
 add_action( 'edd_edit_discount_form_bottom', 'wbcom_essential_edd_discount_account_field', 10, 2 );
-add_action( 'edd_add_discount_form_bottom', 'wbcom_essential_edd_discount_account_field', 10, 2 );
 
 /**
  * Persist the flag when a discount is added/updated.
