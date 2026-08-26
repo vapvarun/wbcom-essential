@@ -104,6 +104,16 @@
 		</properties>
 	</rule>
 
+	<!--
+		WPCS ships nonce verification as a WARNING. The CI gate blocks on errors
+		only (warnings stay advisory so that touching a legacy file does not
+		fail the build over alignment), so a security sniff left at warning
+		severity would never block anything. Promote it.
+	-->
+	<rule ref="WordPress.Security.NonceVerification">
+		<type>error</type>
+	</rule>
+
 	<!-- WP-CLI seed scripts write to stdout by design. -->
 	<rule ref="WordPress.Security.EscapeOutput">
 		<exclude-pattern>*/scripts/seed-*.php</exclude-pattern>

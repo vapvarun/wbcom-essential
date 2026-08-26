@@ -94,8 +94,15 @@ class TeamCarousel extends \Elementor\Widget_Base {
 
 	/**
 	 * Get animation.
+	 *
+	 * Declared public to match the implicit visibility it already had - an
+	 * undeclared method is public in PHP, so narrowing it here could break an
+	 * external caller for no gain.
+	 *
+	 * @param string $animation Entrance animation name.
+	 * @return string Matching exit animation.
 	 */
-	function get_anim_exits( $animation ) {
+	public function get_anim_exits( $animation ) {
 		if ( $animation ) {
 			$animation_array = array(
 				'bounce'            => 'fadeOut',
@@ -1770,10 +1777,11 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php $oembed = wp_oembed_get( $item['oembed'], $args ); ?>
             <?php
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_oembed_get returns safe HTML from WordPress oEmbed
-            echo ( $oembed ) ? $oembed : esc_url( $settings['oembed'] ); ?>
+            echo ( $oembed ) ? $oembed : esc_url( $settings['oembed'] );
+            ?>
             </div>
             <?php } elseif (($item['lightbox_image']['url']) && ($item['lightbox_style'] == 'img')) { ?>
-            <?php $lightbox_image_url = wp_get_attachment_image_url( $item['lightbox_image']['id'], 'full' );  ?>
+            <?php $lightbox_image_url = wp_get_attachment_image_url( $item['lightbox_image']['id'], 'full' ); ?>
             <div class="wbcom-lightbox-image" style="max-width:<?php echo esc_attr($settings['box_width']); ?>px;">
                 <img src="<?php echo esc_url($lightbox_image_url); ?>" alt="" />
             </div>
@@ -1781,12 +1789,14 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php if ($box_content) { ?>
             <div class="wbcom-lightbox-content" style="max-width:<?php echo esc_attr($settings['box_width']); ?>px;background-color:<?php echo esc_attr($settings['lightbox_bg_color']); ?>;padding:<?php echo esc_attr($settings['lightbox_spacing']['top'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['right'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['bottom'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['left'] . $settings['lightbox_spacing']['unit']); ?>">
                 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- do_shortcode() output is trusted shortcode content.
-                echo do_shortcode($box_content); ?>
+                echo do_shortcode($box_content);
+                ?>
             </div>
             <?php } ?>
         </div>
     <?php } ?>
     <?php } ?>
-    <?php }
+    <?php
+    }
 	}
 }

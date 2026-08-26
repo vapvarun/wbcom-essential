@@ -2235,7 +2235,12 @@ class PostCarousel extends \Elementor\Widget_Base {
 			<div class="swiper-wrapper">
 			<?php while($custom_query->have_posts()) : $custom_query->the_post(); ?>
 			<div class="swiper-slide">
-			<div <?php if ($settings['add_classes']) { post_class('wbcom-carousel-item'); } else { echo 'class="wbcom-carousel-item"'; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML attribute string. */ } ?>>
+			<div 
+            <?php
+            if ($settings['add_classes']) { post_class('wbcom-carousel-item');
+} else { echo 'class="wbcom-carousel-item"'; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded HTML attribute string. */ }
+?>
+>
 				<div class="wbcom-posts-card wbcom-posts-<?php echo esc_attr($settings['card_layout']); ?>">
 				<?php if ((has_post_thumbnail()) && ($settings['display_thumbnail'])) { ?>
 				<?php
@@ -2301,7 +2306,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 							<?php } ?>
 						</div>
 						<?php } ?>
-						<div class="wbcom-posts-card-date <?php echo esc_attr($settings['card_footer_layout']) ?>">
+						<div class="wbcom-posts-card-date <?php echo esc_attr($settings['card_footer_layout']); ?>">
 							<?php if ($settings['display_author_name']) { ?>
 							<?php if ($settings['display_author_url']) { ?>
 							<a class="wbcom-posts-card-author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">

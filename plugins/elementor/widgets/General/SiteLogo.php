@@ -410,8 +410,7 @@ class SiteLogo extends \Elementor\Widget_Base {
 			} else {
 				echo '<strong>' . esc_html__( 'Please add a logo from customizer.', 'wbcom-essential' ) . '</strong>';
 			}
-		} else {
-			if ( $settings['link']['url'] ) {
+		} elseif ( $settings['link']['url'] ) {
 				if ( $settings['before_image']['url'] ) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<a href="' . esc_url( $settings['link']['url'] ) . '" class="wba-logo-desktop"' . $target . ' ' . $nofollow . '><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></a>';
@@ -429,7 +428,6 @@ class SiteLogo extends \Elementor\Widget_Base {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<div class="wba-logo-mobile"><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></div>';
 				}
-			}
 		}
 		?>
 		</div>

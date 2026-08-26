@@ -3,7 +3,7 @@
         'name' => 'wbcom-essential/wbcom-essential',
         'pretty_version' => '4.7.0.x-dev',
         'version' => '4.7.0.9999999-dev',
-        'reference' => '11d6561e5e8e167b7916934935f1958e3f46c260',
+        'reference' => '95a5eaea31ef390feb5fe84cc6c5eec81d5ffd67',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'wbcom-essential/wbcom-essential' => array(
             'pretty_version' => '4.7.0.x-dev',
             'version' => '4.7.0.9999999-dev',
-            'reference' => '11d6561e5e8e167b7916934935f1958e3f46c260',
+            'reference' => '95a5eaea31ef390feb5fe84cc6c5eec81d5ffd67',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

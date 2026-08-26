@@ -85,9 +85,13 @@ jobs:
           echo "count=$(wc -l < changed.txt | tr -d ' ')" >> "$GITHUB_OUTPUT"
           echo "Changed PHP files:"; cat changed.txt
 
-      - name: Run PHPCS on changed files (blocking)
+      # Errors block; warnings stay advisory. Touching a legacy file should not
+      # fail the build over equals-sign alignment - that is how teams learn to
+      # ignore gates. Security sniffs are errors (EscapeOutput natively,
+      # NonceVerification promoted in phpcs.xml.dist), so they still block.
+      - name: Run PHPCS on changed files (blocking, errors only)
         if: steps.changed.outputs.count != '0'
-        run: tr "\\n" "\\0" < changed.txt | xargs -0 vendor/bin/phpcs --report=full
+        run: tr "\\n" "\\0" < changed.txt | xargs -0 vendor/bin/phpcs -n --report=full
 
       - name: Full-tree PHPCS report (advisory)
         if: always()
