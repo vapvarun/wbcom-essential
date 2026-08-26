@@ -326,8 +326,7 @@ class Forums extends \Elementor\Widget_Base {
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-essential-forums__avatar' => 'flex: 0 0 {{SIZE}}px;',
-					'{{WRAPPER}} .wbcom-essential-forums__avatar img.avatar' => 'width: {{SIZE}}px;',
-					'{{WRAPPER}} .wbcom-essential-forums__avatar img.avatar' => 'max-width: {{SIZE}}px;',
+					'{{WRAPPER}} .wbcom-essential-forums__avatar img.avatar' => 'width: {{SIZE}}px;max-width: {{SIZE}}px;',
 				),
 			)
 		);

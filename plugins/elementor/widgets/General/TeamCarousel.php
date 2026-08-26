@@ -1604,7 +1604,6 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'default'   => 20,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);

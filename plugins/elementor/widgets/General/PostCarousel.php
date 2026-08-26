@@ -2077,7 +2077,6 @@ class PostCarousel extends \Elementor\Widget_Base {
 				'default'   => 20,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-carousel .swiper-pagination-bullet' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-post-carousel .swiper-pagination-bullet' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);

@@ -179,11 +179,6 @@ class SiteLogo extends \Elementor\Widget_Base {
 				'type'          => \Elementor\Controls_Manager::URL,
 				'placeholder'   => esc_html__( 'https://your-link.com', 'wbcom-essential' ),
 				'show_external' => true,
-				'default'       => array(
-					'url'         => '',
-					'is_external' => true,
-					'nofollow'    => true,
-				),
 				'dynamic'       => array(
 					'active' => true,
 				),
