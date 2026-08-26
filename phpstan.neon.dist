@@ -18,9 +18,9 @@ parameters:
 	excludePaths:
 		analyseAndScan:
 			- vendor
-			- node_modules
+			- node_modules (?)
 			- build
-			- dist
+			- dist (?)
 			- assets/vendor
 
 	# Analysis-only sources. Elementor has no stubs package on Packagist, so the
