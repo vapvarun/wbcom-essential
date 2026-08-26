@@ -133,8 +133,15 @@ jobs:
         with:
           node-version: '20'
 
+      # npm install, not npm ci, and deliberately. playwright (transitive via
+      # @wordpress/scripts) carries a nested fsevents that npm resolves
+      # differently per platform: a lockfile written on macOS drops the entry
+      # and `npm ci` on Linux then refuses it as out of sync. This job audits,
+      # it does not build a release, so lockfile strictness buys nothing here
+      # and would only make the gate fail for whoever last ran npm install on a
+      # Mac.
       - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+        run: npm install --no-audit --no-fund
 
       # Blocking at CRITICAL only, on purpose. The tree still carries high and
       # moderate advisories that need semver-major upgrades
