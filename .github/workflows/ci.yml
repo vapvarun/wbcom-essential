@@ -123,6 +123,37 @@ jobs:
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse --no-progress --memory-limit=2G --error-format=github
 
+  npm-audit:
+    name: npm security audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # Blocking at CRITICAL only, on purpose. The tree still carries high and
+      # moderate advisories that need semver-major upgrades
+      # (@wordpress/scripts 30 -> 34, grunt-contrib-compress), and those change
+      # the block build, so they get their own PR with a build check rather
+      # than being rushed to make a gate green. Criticals were cleared, so this
+      # blocks a regression back to critical starting from a clean line.
+      #
+      # Everything here is a devDependency: .distignore keeps node_modules out
+      # of the release zip, so the exposure is developer machines and CI, not
+      # customer sites.
+      - name: Audit (blocking at critical)
+        run: npm audit --audit-level=critical
+
+      - name: Full advisory report
+        if: always()
+        continue-on-error: true
+        run: npm audit || true
+
   security-audit:
     name: Composer security audit
     runs-on: ubuntu-latest
