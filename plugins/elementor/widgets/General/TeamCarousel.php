@@ -103,57 +103,64 @@ class TeamCarousel extends \Elementor\Widget_Base {
 	 * @return string Matching exit animation.
 	 */
 	public function get_anim_exits( $animation ) {
-		if ( $animation ) {
-			$animation_array = array(
-				'bounce'            => 'fadeOut',
-				'flash'             => 'fadeOut',
-				'pulse'             => 'fadeOut',
-				'rubberBand'        => 'fadeOut',
-				'shake'             => 'fadeOut',
-				'swing'             => 'fadeOut',
-				'tada'              => 'fadeOut',
-				'wobble'            => 'fadeOut',
-				'jello'             => 'fadeOut',
-				'heartBeat'         => 'fadeOut',
-				'bounceIn'          => 'bounceOut',
-				'bounceInDown'      => 'bounceOutUp',
-				'bounceInLeft'      => 'bounceOutLeft',
-				'bounceInRight'     => 'bounceOutRight',
-				'bounceInUp'        => 'bounceOutDown',
-				'fadeIn'            => 'fadeOut',
-				'fadeInDown'        => 'fadeOutUp',
-				'fadeInDownBig'     => 'fadeOutUpBig',
-				'fadeInLeft'        => 'fadeOutLeft',
-				'fadeInLeftBig'     => 'fadeOutLeftBig',
-				'fadeInRight'       => 'fadeOutRight',
-				'fadeInRightBig'    => 'fadeOutRightBig',
-				'fadeInUp'          => 'fadeOutDown',
-				'fadeInUpBig'       => 'fadeOutDownBig',
-				'flip'              => 'fadeOut',
-				'flipInX'           => 'flipOutX',
-				'flipInY'           => 'flipOutY',
-				'lightSpeedIn'      => 'lightSpeedOut',
-				'rotateIn'          => 'rotateOut',
-				'rotateInDownLeft'  => 'rotateOutUpLeft',
-				'rotateInDownRight' => 'rotateOutUpRight',
-				'rotateInUpLeft'    => 'rotateOutDownLeft',
-				'rotateInUpRight'   => 'rotateOutDownRight',
-				'slideInUp'         => 'slideOutDown',
-				'slideInDown'       => 'slideOutUp',
-				'slideInLeft'       => 'slideOutLeft',
-				'slideInRight'      => 'slideOutRight',
-				'zoomIn'            => 'zoomOut',
-				'zoomInDown'        => 'zoomOutUp',
-				'zoomInLeft'        => 'zoomOutLeft',
-				'zoomInRight'       => 'zoomOutRight',
-				'zoomInUp'          => 'zoomOutDown',
-				'hinge'             => 'fadeOut',
-				'jackInTheBox'      => 'fadeOut',
-				'rollIn'            => 'fadeOut',
-			);
-			$animation       = $animation_array[ $animation ];
-			return $animation;
+		if ( ! $animation ) {
+			return '';
 		}
+
+		$animation_array = array(
+			'bounce'            => 'fadeOut',
+			'flash'             => 'fadeOut',
+			'pulse'             => 'fadeOut',
+			'rubberBand'        => 'fadeOut',
+			'shake'             => 'fadeOut',
+			'swing'             => 'fadeOut',
+			'tada'              => 'fadeOut',
+			'wobble'            => 'fadeOut',
+			'jello'             => 'fadeOut',
+			'heartBeat'         => 'fadeOut',
+			'bounceIn'          => 'bounceOut',
+			'bounceInDown'      => 'bounceOutUp',
+			'bounceInLeft'      => 'bounceOutLeft',
+			'bounceInRight'     => 'bounceOutRight',
+			'bounceInUp'        => 'bounceOutDown',
+			'fadeIn'            => 'fadeOut',
+			'fadeInDown'        => 'fadeOutUp',
+			'fadeInDownBig'     => 'fadeOutUpBig',
+			'fadeInLeft'        => 'fadeOutLeft',
+			'fadeInLeftBig'     => 'fadeOutLeftBig',
+			'fadeInRight'       => 'fadeOutRight',
+			'fadeInRightBig'    => 'fadeOutRightBig',
+			'fadeInUp'          => 'fadeOutDown',
+			'fadeInUpBig'       => 'fadeOutDownBig',
+			'flip'              => 'fadeOut',
+			'flipInX'           => 'flipOutX',
+			'flipInY'           => 'flipOutY',
+			'lightSpeedIn'      => 'lightSpeedOut',
+			'rotateIn'          => 'rotateOut',
+			'rotateInDownLeft'  => 'rotateOutUpLeft',
+			'rotateInDownRight' => 'rotateOutUpRight',
+			'rotateInUpLeft'    => 'rotateOutDownLeft',
+			'rotateInUpRight'   => 'rotateOutDownRight',
+			'slideInUp'         => 'slideOutDown',
+			'slideInDown'       => 'slideOutUp',
+			'slideInLeft'       => 'slideOutLeft',
+			'slideInRight'      => 'slideOutRight',
+			'zoomIn'            => 'zoomOut',
+			'zoomInDown'        => 'zoomOutUp',
+			'zoomInLeft'        => 'zoomOutLeft',
+			'zoomInRight'       => 'zoomOutRight',
+			'zoomInUp'          => 'zoomOutDown',
+			'hinge'             => 'fadeOut',
+			'jackInTheBox'      => 'fadeOut',
+			'rollIn'            => 'fadeOut',
+		);
+
+		// Unmatched names must fall through to an empty string. Callers pass
+		// $settings['*_entrance_animation'] straight in, and that includes
+		// 'none' plus any Elementor animation not listed above - an unchecked
+		// lookup raised an undefined-key notice and returned null, which then
+		// reached esc_attr() and is deprecated from PHP 8.1.
+		return isset( $animation_array[ $animation ] ) ? $animation_array[ $animation ] : '';
 	}
 
 	/**
