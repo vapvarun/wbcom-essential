@@ -356,6 +356,15 @@ class Plugin {
 			'class' => 'General\Branding',
 		);
 
+		/*
+		 * Reign-only, deliberately. This is the single theme gate in the whole
+		 * registration path: on any other theme the widget does not exist at
+		 * all, so the plugin exposes 42 widgets universally plus this one.
+		 *
+		 * Anyone counting widgets from the codebase or the docs should use that
+		 * split rather than 43, and anyone debugging "the Notification Area is
+		 * missing" should check the active theme before the widget code.
+		 */
 		if ( _is_theme_active( 'REIGN' ) ) {
 			$elements['General/NotificationArea'] = array(
 				'name'  => 'wbcom-notification-area',

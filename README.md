@@ -2,7 +2,7 @@
 
 **The Essential Companion for Your WordPress Theme**
 
-32 production-grade Gutenberg V2 blocks. 43 Elementor widgets. 5 BuddyPress blocks. A free plugin that makes Theme Reign, BuddyX, and BuddyX Pro even more powerful.
+32 production-grade Gutenberg V2 blocks. 43 Elementor widgets (42 on any theme, plus a Reign-only Notification Area). 5 BuddyPress blocks. A free plugin that makes Theme Reign, BuddyX, and BuddyX Pro even more powerful.
 
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-purple.svg)](https://php.net/)
@@ -139,7 +139,7 @@ wbcom-essential/
 ├── build/                      # Compiled block assets
 ├── includes/                   # Core plugin functionality
 ├── plugins/
-│   ├── elementor/              # Elementor integration (43 widgets)
+│   ├── elementor/              # Elementor integration (42 widgets + 1 Reign-only)
 │   └── gutenberg/              # Gutenberg V2 blocks (32 blocks)
 │       ├── src/
 │       │   ├── shared/         # Shared infrastructure (components, hooks, utils, tokens)
