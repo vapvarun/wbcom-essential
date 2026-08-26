@@ -646,6 +646,93 @@ function wbcom_essential_edd_get_license_upgrade_view_url( $license_id, $payment
 }
 
 /**
+ * Find the license backing a subscription.
+ *
+ * Prefers the license created by the subscription's own parent order, so a
+ * customer holding several licenses for the same product gets the one this
+ * subscription actually pays for. Falls back to any license they hold for the
+ * product, which is the best available answer for legacy rows whose parent
+ * order no longer resolves.
+ *
+ * @since 4.7.1
+ *
+ * @param EDD_Subscription $sub      Subscription.
+ * @param EDD_Download     $download Subscribed product.
+ * @return object|false License object, or false when none is found.
+ */
+function wbcom_essential_edd_get_subscription_license( $sub, $download ) {
+	if ( ! $sub || ! $download || ! function_exists( 'edd_software_licensing' ) ) {
+		return false;
+	}
+
+	$sl = edd_software_licensing();
+
+	if ( ! empty( $sub->parent_payment_id ) && method_exists( $sl, 'get_license_by_purchase' ) ) {
+		$license = $sl->get_license_by_purchase( absint( $sub->parent_payment_id ), absint( $download->ID ) );
+		if ( $license && ! empty( $license->ID ) ) {
+			return $license;
+		}
+	}
+
+	if ( isset( $sl->licenses_db ) ) {
+		$licenses = $sl->licenses_db->get_licenses(
+			array(
+				'customer_id' => absint( $sub->customer_id ),
+				'download_id' => absint( $download->ID ),
+				'number'      => 1,
+			)
+		);
+		if ( ! empty( $licenses[0]->ID ) ) {
+			return $licenses[0];
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Resolve the upgrade URL shown on a subscription card.
+ *
+ * The Subscriptions tab used to link to `get_permalink( $download->ID )` - the
+ * product the customer ALREADY owns. That is a dead end: it does not reach the
+ * upgrade target, and it throws away the prorated credit for what they have
+ * already paid. It also meant "Upgrade" behaved differently in three places in
+ * one dashboard.
+ *
+ * This routes the subscription through the same EDD SL prorated upgrade view
+ * the Licenses tab uses, so the word means one thing everywhere. Validity is
+ * checked per LICENSE rather than per download, because SL refuses to upgrade
+ * an expired license and we should not send a customer to a view that will
+ * turn them away.
+ *
+ * @since 4.7.1
+ *
+ * @param EDD_Subscription $sub      Subscription.
+ * @param EDD_Download     $download Subscribed product.
+ * @return string Upgrade URL, or empty string when no upgrade is available.
+ */
+function wbcom_essential_edd_get_subscription_upgrade_url( $sub, $download ) {
+	if ( ! $download || ! function_exists( 'edd_sl_get_license_upgrades' ) ) {
+		return '';
+	}
+
+	$license = wbcom_essential_edd_get_subscription_license( $sub, $download );
+	if ( ! $license || empty( $license->ID ) ) {
+		return '';
+	}
+
+	if ( isset( $license->status ) && 'expired' === $license->status ) {
+		return '';
+	}
+
+	if ( empty( edd_sl_get_license_upgrades( $license->ID ) ) ) {
+		return '';
+	}
+
+	return wbcom_essential_edd_get_license_upgrade_view_url( $license->ID, $license->payment_id );
+}
+
+/**
  * Resolve the renew / extend URL for a license.
  *
  * `EDD_SL_License::get_renewal_url()` returns a checkout URL that carries
@@ -1165,13 +1252,14 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 			$cancel_url = wp_nonce_url( $base_url, 'edd-recurring-cancel-' . $sub->id );
 		}
 
-		// Upgrade options - edd_sl_get_upgrade_paths() is keyed by DOWNLOAD id
-		// (edd_sl_get_license_upgrades() takes a LICENSE id, not a download).
-		$has_upgrades = false;
-		if ( function_exists( 'edd_sl_get_upgrade_paths' ) && $download ) {
-			$upgrades     = edd_sl_get_upgrade_paths( $download->ID );
-			$has_upgrades = ! empty( $upgrades );
-		}
+		// Upgrade target. Resolved per LICENSE (validity-aware) and pointed at
+		// EDD SL's prorated upgrade view, matching the Licenses tab. Checking
+		// edd_sl_get_upgrade_paths() on the DOWNLOAD only told us a path exists
+		// for the product in the abstract - it said nothing about whether THIS
+		// customer's license can use it, and the button then linked to the
+		// product they already own.
+		$upgrade_url  = wbcom_essential_edd_get_subscription_upgrade_url( $sub, $download );
+		$has_upgrades = '' !== $upgrade_url;
 
 		?>
 		<div class="wbcom-edd-subs__card">
@@ -1230,7 +1318,7 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 
 			<div class="wbcom-edd-subs__actions">
 				<?php if ( $has_upgrades ) : ?>
-					<a href="<?php echo esc_url( get_permalink( $download->ID ) ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
+					<a href="<?php echo esc_url( $upgrade_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
 						<?php esc_html_e( 'Upgrade Plan', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
