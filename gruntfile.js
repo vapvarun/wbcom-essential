@@ -60,6 +60,21 @@ module.exports = function (grunt) {
 								'!.vscode/**',
 								'!.idea/**',
 								'!dist/**',
+								'!bin/**',
+
+								// --- Blacklist: static-analysis config ---
+								// These are dev-only. NOTE: grunt does NOT read .distignore -
+								// this list is the real packaging gate, so anything added
+								// there must be added here too or it still ships.
+								'!phpcs.xml.dist',
+								'!phpcs.xml',
+								'!phpstan.neon.dist',
+								'!phpstan.neon',
+								'!phpstan-baseline.neon',
+								'!phpstan-constants.php',
+								'!.phpstan-stubs/**',
+								'!composer.json',
+								'!composer.lock',
 
 								// --- Blacklist: block sources (only /build ships) ---
 								// Block JS/PHP sources under plugins/gutenberg/src/blocks/.
