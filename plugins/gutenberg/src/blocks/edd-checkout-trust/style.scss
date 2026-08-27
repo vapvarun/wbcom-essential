@@ -28,7 +28,11 @@
 
 	&__trust-badges {
 		display: grid;
-		grid-template-columns: repeat( 3, 1fr );
+		// auto-fit, not repeat(3): each badge is switchable, so the row has to
+		// fill whatever is actually shown. A fixed 3-column track left a badge
+		// sized hole on the right whenever an owner turned one off, which is
+		// the common case now that the support badge is opt-in.
+		grid-template-columns: repeat( auto-fit, minmax( 220px, 1fr ) );
 		gap: 1rem;
 		margin-bottom: 1rem;
 	}

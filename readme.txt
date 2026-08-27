@@ -134,6 +134,7 @@ Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the a
 * Fix      - The avatar size control on the Forums widget applied only a maximum width, so avatars did not take the size that was set.
 * Fix      - The Site Logo widget discarded its own default link value.
 * Fix      - Text and subtitle entrance animations on the Team Carousel passed an empty value to WordPress when set to "none", which raises a deprecation notice on PHP 8.1 and later.
+* Fix      - The checkout trust badges left an empty gap where a badge had been switched off, because the row always reserved three columns. It now fills the width with however many badges are shown.
 * Fix      - The "Account Dashboard" option on the discount screen rendered outside the field grid, unlabelled and out of line with every other setting. It used the markup of the older table based discount editor, which browsers discard in the layout Easy Digital Downloads has used since 3.3.9.
 * Dev      - The EDD Enhanced Checkout block no longer wraps the checkout. EDD 3.7 made its Checkout block a parent of inner blocks, so wrapping it is what stopped EDD detecting the page as a block checkout. The block is retained, hidden from the inserter, only so pages the migration has not reached still render.
 * Dev      - New version-gated upgrade runner (includes/upgrades.php) so future migrations run on plugin update, not only on activation.
