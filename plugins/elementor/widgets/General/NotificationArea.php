@@ -659,6 +659,14 @@ class NotificationArea extends \Elementor\Widget_Base {
 		</div>
 
 		<?php
-		echo apply_filters( 'reign_notification_area_output', ob_get_clean(), $settings['notification_bell_enabled'], $settings['notification_bell_enabled'], $settings ); //phpcs:ignore
+		/*
+		 * Use the resolved value, not the raw key. A widget dropped in with its
+		 * defaults has no 'notification_bell_enabled' entry in $settings at all,
+		 * so reading it directly raised "Undefined array key" twice per render -
+		 * and on any site with display_errors on, that warning printed into the
+		 * page above the widget. $notification_visibility_desktop is the same
+		 * value, already guarded with a 'yes' default at the top of render().
+		 */
+		echo apply_filters( 'reign_notification_area_output', ob_get_clean(), $notification_visibility_desktop, $notification_visibility_desktop, $settings ); //phpcs:ignore
 	}
 }
