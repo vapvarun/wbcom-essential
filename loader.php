@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'WBCOM_ESSENTIAL_VERSION', '4.7.0' );
-define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.3.0' );
+define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.6.3' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASE', plugin_basename( WBCOM_ESSENTIAL_FILE ) );

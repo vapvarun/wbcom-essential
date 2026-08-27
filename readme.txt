@@ -110,21 +110,38 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the account dashboard around the license upgrade screen.
 
 * New      - Four checkout section blocks - Progress, Trust Badges, Social Proof and Recommendations - that sit inside EDD's own Checkout block alongside its cart, personal info and payment blocks. Each is editable on its own and can be reordered or removed in the editor.
+* New      - Product Catalog now renders its first page of products in the page HTML. Search engines previously saw only "Loading products..." because every product was drawn in the browser, and visitors without JavaScript saw nothing at all. Filtering, sorting and Load More are unchanged.
+* New      - Update Payment Method on every subscription, so a customer whose card is expiring can fix it from My Account instead of losing the renewal. Shown only for gateways that support it, and the form opens inside the account dashboard rather than on a separate page.
+* Improve  - The money-back trust badge description is now editable and worded generically, instead of promising a full refund on every store.
+* Improve  - Product Catalog no longer requests its first page of products after loading, because the page already contains them. That removes one request from every visit.
+* Improve  - The money-back guarantee badge now defaults to 30 days. Adjust it in the block sidebar to match your refund policy.
+* Improve  - The trust badge no longer says "powered by Stripe" by default, and payment method icons now start switched off. Both stated things about your store that may not be true - the processor you use and the cards you accept. Turn on the icons you actually take in the block sidebar; the row stays hidden while none are selected.
+* Improve  - Trustpilot reviews, rating and review count now start empty so each store adds its own. They previously shipped with sample reviews naming real people, which appeared on the checkout of every install until they were replaced. The Trustpilot section stays hidden until you add at least one review, and the score is hidden until you set a rating.
+* Improve  - Every trust badge can now be switched off and reworded. The support badge is off by default, because a store cannot promise dedicated support simply by having a checkout.
+* Improve  - The account sidebar now reads "Submit Ticket" and opens the ticket form directly. It previously read "My Tickets" and opened the support index, which implied it listed your existing tickets.
 * Fix      - Checkout no longer shows the "Already have an account?" login prompt stacked on top of the "Create an account" fields. The checkout page now uses EDD's own Checkout block, so EDD recognises it as a block checkout and offers login, registration and guest checkout as separate choices. Existing checkout pages are converted automatically on update, keeping your guarantee wording, Trustpilot details and section toggles.
 * Fix      - Personal Info fields on checkout no longer render at three different widths, with the Email field narrow enough to truncate the address. A theme rule written for the old shortcode markup was overriding EDD's field grid.
 * Fix      - License Upgrade and Manage License now open inside the account dashboard, keeping the sidebar, tabs and styling. They previously replaced the whole page with an unstyled table.
-* Improve  - The money-back trust badge description is now editable and worded generically, instead of promising a full refund on every store.
-* New      - Product Catalog now renders its first page of products in the page HTML. Search engines previously saw only "Loading products..." because every product was drawn in the browser, and visitors without JavaScript saw nothing at all. Filtering, sorting and Load More are unchanged.
-* Improve  - Product Catalog no longer requests its first page of products after loading, because the page already contains them. That removes one request from every visit.
 * Fix      - The checkout progress indicator no longer announces a position that contradicts the page. Its steps were fixed labels, so screen readers were told "Payment - upcoming" while the payment fields were on screen. The indicator looks exactly the same; only the incorrect screen reader wording was removed.
 * Fix      - Product Catalog told shoppers "No products found matching your filters" when the product request actually failed, sending them to narrow filters over a problem that was not theirs. A failed load now says so and offers Retry.
 * Fix      - Product Catalog used a variable name that shadows a WordPress global.
-* Improve  - The money-back guarantee badge now defaults to 30 days. Adjust it in the block sidebar to match your refund policy.
-* Improve  - The trust badge no longer says "powered by Stripe" by default, and payment method icons now start switched off. Both stated things about your store that may not be true - the processor you use and the cards you accept. Turn on the icons you actually take in the block sidebar; the row stays hidden while none are selected.
 * Fix      - Restored the payment icon checkboxes, which were missing from the new Trust Badges block so the icons could not be changed.
-* Improve  - Trustpilot reviews, rating and review count now start empty so each store adds its own. They previously shipped with sample reviews naming real people, which appeared on the checkout of every install until they were replaced. The Trustpilot section stays hidden until you add at least one review, and the score is hidden until you set a rating.
+* Fix      - Upgrade Plan on a subscription linked to the product the customer already owned, so it never reached the upgrade and dropped the prorated credit for what they had already paid. It now opens the same prorated upgrade view the Licenses tab uses.
+* Fix      - Changing a payment card left the customer on the account dashboard with no confirmation, even though the card had changed. The Subscriptions tab is now kept, and the change is confirmed on screen.
+* Fix      - A payment card could only be changed once per browser session. The success message was never cleared, and it then hid the form on every later visit.
+* Fix      - The hover Border control on the WooCommerce Product Tab and Universal Product widgets styled the active tab instead of the hovered one.
+* Fix      - Pagination bullets on the Post Carousel and Team Carousel widgets ignored the size setting, because a second rule overwrote the font size and line height with only width and height.
+* Fix      - The avatar size control on the Forums widget applied only a maximum width, so avatars did not take the size that was set.
+* Fix      - The Site Logo widget discarded its own default link value.
+* Fix      - Text and subtitle entrance animations on the Team Carousel passed an empty value to WordPress when set to "none", which raises a deprecation notice on PHP 8.1 and later.
+* Fix      - The "Account Dashboard" option on the discount screen rendered outside the field grid, unlabelled and out of line with every other setting. It used the markup of the older table based discount editor, which browsers discard in the layout Easy Digital Downloads has used since 3.3.9.
 * Dev      - The EDD Enhanced Checkout block no longer wraps the checkout. EDD 3.7 made its Checkout block a parent of inner blocks, so wrapping it is what stopped EDD detecting the page as a block checkout. The block is retained, hidden from the inserter, only so pages the migration has not reached still render.
 * Dev      - New version-gated upgrade runner (includes/upgrades.php) so future migrations run on plugin update, not only on activation.
+* Dev      - Removed 17 files from the package that could never run: two duplicated Elementor directories kept only by path, never loaded by anything.
+* Dev      - The build no longer ships static analysis configuration to customers.
+* Dev      - The Header Notification Area widget is documented as requiring the Reign theme, which it has always done. It does not appear on any other theme.
+* Dev      - Coding standards and static analysis now block the build instead of reporting and passing regardless, and dependency audits run on every push.
+* Compat   - Verified against Easy Digital Downloads 3.7.0, Recurring 2.13.13, Software Licensing 3.9.7, Stripe 3.0.2 and Elementor 4.2.3.
 
 = 4.6.4 - July 2026 =
 
