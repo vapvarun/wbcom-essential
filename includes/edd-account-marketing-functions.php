@@ -499,18 +499,34 @@ function wbcom_essential_edd_render_recommendations_section( $customer = false )
  *
  * @param EDD_Customer|false $customer EDD customer or false (unused; claims key off user).
  */
-function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Signature parity with sibling tab renderers.
+function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'Free Plugins', 'wbcom-essential' ),
 		__( 'Add free plugins to your library with one click - updates included.', 'wbcom-essential' )
 	);
 
+	ob_start();
+	/**
+	 * Fires at the top of the Free Plugins tab, below the tab header and above
+	 * the claimable grid. Sites can feature a curated set of plugins here (and
+	 * drop them from the grid via `wbcom_essential_edd_free_download_ids`).
+	 *
+	 * @since 4.7.0
+	 * @param EDD_Customer|false $customer EDD customer or false.
+	 */
+	do_action( 'wbcom_essential_edd_free_plugins_top', $customer );
+	$top_html = ob_get_clean();
+	echo $top_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hook output; the tab HTML is sanitized by wbcom_essential_kses_form() before it is sent.
+
 	$free_ids = wbcom_essential_edd_get_free_download_ids();
 	if ( empty( $free_ids ) ) {
-		wbcom_essential_edd_empty_state(
-			'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
-			__( 'No free plugins are available right now.', 'wbcom-essential' )
-		);
+		// A site that featured plugins above has not run out of free plugins.
+		if ( '' === trim( $top_html ) ) {
+			wbcom_essential_edd_empty_state(
+				'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+				__( 'No free plugins are available right now.', 'wbcom-essential' )
+			);
+		}
 		return;
 	}
 	?>
