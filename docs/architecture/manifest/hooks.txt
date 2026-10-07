@@ -1,53 +1,77 @@
-# Hooks Manifest (Actions & Filters)
-# Generated: 2025-01-19
+# Hooks Manifest (do_action / apply_filters fired by this plugin)
+# Generated from code for 4.7.0 (scratch generator, regenerate rather than hand-edit)
+# Total: 73
 
-## Custom Action Hooks (Plugin-specific)
-- wbcom_essential/init | Core initialization
-- wbcom_essential/widget/branding/settings | Branding widget settings
-- wbcom_essential/widget/groups-grid/settings | Groups grid settings
-- wbcom_essential/widget/groups-listing/settings | Groups listing settings
-- wbcom_essential/widget/members-listing/settings | Members listing settings
-- wbcom_essential_header_user_menu_items | Header user menu items
-- wbcom_essential_branding_elementor_controls | Branding Elementor controls
-- wbcom-essential-elementor-templates/types/register | Template types registration
-- wbcom_recaptcha_login_form | reCAPTCHA login form
-- wbcom_addon_after_price | WooCommerce price addon
-- wbcom_universal_before_title | Universal product before title
-- wbcom_universal_after_title | Universal product after title
-- wbcom_universal_before_price | Universal product before price
-- wbcom_universal_after_price | Universal product after price
-- wbtm_bp_directory_groups_data | BuddyPress groups directory data
-- wbtm_before_group_avatar_group_directory | Before group avatar
-
-## Custom Filter Hooks (Plugin-specific)
-- wbcom_essential/get_elements | Get registered elements
-- wbcom_essential/members-loop/before/template | Members loop before template
-- wbcom_essential/members-loop/after/template | Members loop after template
-- wbcom_essential/groups-loop/before/template | Groups loop before template
-- wbcom_essential/groups-loop/after/template | Groups loop after template
-- wbcom_essential_login_lost_password_url | Login lost password URL
-- wbcom_essential_login_register_url | Login register URL
-- wbcom_essential_user_progress_formatted | Profile progress formatted
-- wbcom_essential_locate_template | Template location
-- wbcom_essential_posts_revolution_elementor_thumbs | Posts revolution thumbs
-- wbcom_essential_posts_revolution_elementor_format_icon | Posts revolution format icon
-- wbcom_taxonomy_list_options | Taxonomy list options
-- wbcom_post_name_query_args | Post name query args
-- wbcom_post_name_options | Post name options
-- wbcom_product_query_args | Product query args
-- wbcom_default_html_tag | Default HTML tag
-- wbcom_show_custom_product_badge | Show custom product badge
-- wbcom_custom_saleflash_text | Custom sale flash text
-- wbcom_sale_badge_text | Sale badge text
-- wbcom_shop_out_of_stock_text | Out of stock text
-- wbcom_submenu_label | Submenu label
-- wbcom_ele_notification_login_url | Elementor notification login URL
-- wbcom_ele_notification_registration_url | Elementor notification registration URL
-- wba_number_of_users_per_query | Number of users per query
-- reign_notification_area_output | Notification area output
-
-## 4.6.0 Delta (2026-06-04) — EDD account marketing
-- wbcom_essential_free_claim (action) | includes/edd-account-marketing-functions.php | fires after a free claim: $download_id, $user_id, $payment_id (CRM/automation hook)
-- wbcom_essential_edd_free_download_ids (filter) | includes/edd-account-marketing-functions.php | free download IDs on the Free Plugins tab
-- wbcom_essential_edd_free_claim_limit (filter) | includes/edd-account-marketing-functions.php | max free claims per user per hour (default 10)
-- wbcom_essential_edd_offers_shop_url (filter) | includes/edd-account-marketing-functions.php | Shop Now URL on the offers banner
+- action bb_notification_avatar_ | includes/wbcom-essential-function.php:143
+- action bbp_template_after_topics_loop | plugins/elementor/widgets/Buddypress/Forums.php:655
+- action bbp_template_before_topics_loop | plugins/elementor/widgets/Buddypress/Forums.php:537
+- action bp_after_directory_groups_list | templates/reign/buddypress/legacy/groups/groups-loop.php:137
+- action bp_after_directory_members_list | templates/reign/buddypress/legacy/members/members-loop.php:122
+- action bp_before_directory_groups_list | templates/reign/buddypress/legacy/groups/groups-loop.php:28
+- action bp_before_directory_members_list | templates/reign/buddypress/legacy/members/members-loop.php:27
+- action bp_directory_groups_actions | templates/reign/buddypress/legacy/groups/groups-loop.php:115
+- action bp_directory_groups_item | templates/reign/buddypress/legacy/groups/groups-loop.php:92
+- action bp_directory_members_actions | templates/reign/buddypress/legacy/members/members-loop.php:103
+- action bp_directory_members_item | templates/reign/buddypress/legacy/members/members-loop.php:97
+- action login_form | plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:99
+- action reign_wp_menu_elementor_controls | plugins/elementor/widgets/General/NotificationArea.php:310
+- action wbcom-essential-elementor-templates/types/register | plugins/elementor/templates/types/manager.php:79
+- action wbcom_addon_after_price | plugins/elementor/widgets/WooCommerce/ProductTab.php:1582
+- action wbcom_essential/init | plugins/elementor/Plugins.php:213
+- action wbcom_essential/widget/branding/settings | plugins/elementor/widgets/General/Branding.php:94
+- action wbcom_essential/widget/groups-grid/settings | plugins/elementor/widgets/Buddypress/GroupGrid.php:94
+- action wbcom_essential/widget/groups-listing/settings | plugins/elementor/widgets/Buddypress/GroupCarousel.php:122
+- action wbcom_essential/widget/members-listing/settings | plugins/elementor/widgets/Buddypress/MemberCarousel.php:122
+- action wbcom_essential_activated | loader.php:151
+- action wbcom_essential_branding_elementor_controls | plugins/elementor/widgets/General/Branding.php:325
+- action wbcom_essential_deactivated | loader.php:170
+- action wbcom_essential_edd_dashboard_after_greeting | includes/edd-account-dashboard-functions.php:1007
+- action wbcom_essential_edd_dashboard_top | includes/edd-account-dashboard-functions.php:987
+- action wbcom_essential_edd_free_plugins_top | includes/edd-account-marketing-functions.php:517
+- action wbcom_essential_free_claim | includes/edd-account-marketing-functions.php:696
+- action wbcom_essential_header_user_menu_items | plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:79
+- action wbcom_essential_upgraded | includes/upgrades.php:93
+- action wbcom_recaptcha_login_form | plugins/elementor/widgets/General/LoginForm.php:1695
+- action wbcom_universal_after_price | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2328
+- action wbcom_universal_after_title | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2325
+- action wbcom_universal_before_price | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2326
+- action wbcom_universal_before_title | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2323
+- action wbtm_before_group_avatar_group_directory | templates/reign/buddypress/nouveau/groups/groups-loop.php:39
+- action wbtm_bp_directory_groups_data | templates/reign/buddypress/legacy/groups/groups-loop.php:97
+- filter bb_theme_topic_link_attribute_change | includes/wbcom-essential-function.php:467
+- filter bp_core_get_table_prefix | plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:128
+- filter bp_group_widget_user_id | plugins/elementor/widgets/Buddypress/GroupsLists.php:594
+- filter excerpt_length | plugins/elementor/helper/skins/skin-base.php:278
+- filter reign_notification_area_output | plugins/elementor/widgets/General/NotificationArea.php:670
+- filter the_content | templates/single-post/template-modern.php:42
+- filter the_date | plugins/elementor/helper/skins/skin-base.php:1052
+- filter wba_number_of_users_per_query | plugins/elementor/wbcom-essential-elementor.php:382
+- filter wbcom_custom_saleflash_text | plugins/elementor/wbcom-essential-woocommerce.php:192
+- filter wbcom_default_html_tag | plugins/elementor/wbcom-essential-woocommerce.php:168
+- filter wbcom_ele_notification_login_url | plugins/elementor/widgets/General/NotificationArea.php:636
+- filter wbcom_ele_notification_registration_url | plugins/elementor/widgets/General/NotificationArea.php:637
+- filter wbcom_essential/get_elements | plugins/elementor/Plugins.php:532
+- filter wbcom_essential/groups-loop/after/template | plugins/elementor/widgets/Buddypress/GroupGrid.php:296
+- filter wbcom_essential/groups-loop/before/template | plugins/elementor/widgets/Buddypress/GroupGrid.php:199
+- filter wbcom_essential/members-loop/after/template | plugins/elementor/widgets/Buddypress/MembersGrid.php:301
+- filter wbcom_essential/members-loop/before/template | plugins/elementor/widgets/Buddypress/MembersGrid.php:188
+- filter wbcom_essential_edd_free_claim_limit | includes/edd-account-marketing-functions.php:633
+- filter wbcom_essential_edd_free_download_ids | includes/edd-account-marketing-functions.php:53
+- filter wbcom_essential_edd_offers_shop_url | includes/edd-account-marketing-functions.php:326
+- filter wbcom_essential_friend_requests_data | includes/wbcom-essential-function.php:402
+- filter wbcom_essential_locate_template | includes/wbcom-essential-function.php:65
+- filter wbcom_essential_login_security_client_ip | includes/edd-account-login-security.php:84
+- filter wbcom_essential_login_security_enabled | includes/edd-account-login-security.php:51
+- filter wbcom_essential_posts_revolution_elementor_format_icon | includes/wbcom-essential-function.php:628
+- filter wbcom_essential_posts_revolution_elementor_thumbs | includes/wbcom-essential-function.php:590
+- filter wbcom_essential_product_catalog_public_permission | includes/edd-product-catalog-rest.php:100
+- filter wbcom_essential_user_progress_formatted | plugins/elementor/widgets/Buddypress/ProfileCompletion.php:1225
+- filter wbcom_essential_wp_cron_disabled | includes/class-wbcom-essential-preset-activation.php:156
+- filter wbcom_post_name_options | plugins/elementor/wbcom-essential-woocommerce.php:97
+- filter wbcom_post_name_query_args | plugins/elementor/wbcom-essential-woocommerce.php:81
+- filter wbcom_product_query_args | plugins/elementor/wbcom-essential-woocommerce.php:324
+- filter wbcom_sale_badge_text | plugins/elementor/wbcom-essential-woocommerce.php:378
+- filter wbcom_shop_out_of_stock_text | plugins/elementor/wbcom-essential-woocommerce.php:383
+- filter wbcom_show_custom_product_badge | plugins/elementor/wbcom-essential-woocommerce.php:188
+- filter wbcom_submenu_label | includes/shared-admin/class-wbcom-shared-loader.php:472
+- filter wbcom_taxonomy_list_options | plugins/elementor/wbcom-essential-woocommerce.php:54

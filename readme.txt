@@ -3,7 +3,7 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.1
 Stable tag: 4.7.0
 Requires PHP: 8.0
 License: GPLv2 or later
@@ -105,49 +105,47 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 == Changelog ==
 
-= 4.7.0 - August 2026 =
+= 4.7.0 - October 2026 =
 
-Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the account dashboard around the license upgrade screen.
+Fixes the EDD checkout after Easy Digital Downloads 3.7, keeps license screens inside the account dashboard, and turns on updates for every install.
 
-* New      - Four checkout section blocks - Progress, Trust Badges, Social Proof and Recommendations - that sit inside EDD's own Checkout block alongside its cart, personal info and payment blocks. Each is editable on its own and can be reordered or removed in the editor.
-* New      - Product Catalog now renders its first page of products in the page HTML. Search engines previously saw only "Loading products..." because every product was drawn in the browser, and visitors without JavaScript saw nothing at all. Filtering, sorting and Load More are unchanged.
-* New      - Update Payment Method on every subscription, so a customer whose card is expiring can fix it from My Account instead of losing the renewal. Shown only for gateways that support it, and the form opens inside the account dashboard rather than on a separate page.
-* Improve  - The money-back trust badge description is now editable and worded generically, instead of promising a full refund on every store.
-* Improve  - Product Catalog no longer requests its first page of products after loading, because the page already contains them. That removes one request from every visit.
-* Improve  - The money-back guarantee badge now defaults to 30 days. Adjust it in the block sidebar to match your refund policy.
-* Improve  - The trust badge no longer says "powered by Stripe" by default, and payment method icons now start switched off. Both stated things about your store that may not be true - the processor you use and the cards you accept. Turn on the icons you actually take in the block sidebar; the row stays hidden while none are selected.
-* Improve  - Trustpilot reviews, rating and review count now start empty so each store adds its own. They previously shipped with sample reviews naming real people, which appeared on the checkout of every install until they were replaced. The Trustpilot section stays hidden until you add at least one review, and the score is hidden until you set a rating.
-* Improve  - Every trust badge can now be switched off and reworded. The support badge is off by default, because a store cannot promise dedicated support simply by having a checkout.
-* Improve  - The account sidebar now reads "Submit Ticket" and opens the ticket form directly. It previously read "My Tickets" and opened the support index, which implied it listed your existing tickets.
-* Fix      - Checkout no longer shows the "Already have an account?" login prompt stacked on top of the "Create an account" fields. The checkout page now uses EDD's own Checkout block, so EDD recognises it as a block checkout and offers login, registration and guest checkout as separate choices. Existing checkout pages are converted automatically on update, keeping your guarantee wording, Trustpilot details and section toggles.
-* Fix      - Personal Info fields on checkout no longer render at three different widths, with the Email field narrow enough to truncate the address. A theme rule written for the old shortcode markup was overriding EDD's field grid.
-* Fix      - License Upgrade and Manage License now open inside the account dashboard, keeping the sidebar, tabs and styling. They previously replaced the whole page with an unstyled table.
-* Fix      - The checkout progress indicator no longer announces a position that contradicts the page. Its steps were fixed labels, so screen readers were told "Payment - upcoming" while the payment fields were on screen. The indicator looks exactly the same; only the incorrect screen reader wording was removed.
-* Fix      - Product Catalog told shoppers "No products found matching your filters" when the product request actually failed, sending them to narrow filters over a problem that was not theirs. A failed load now says so and offers Retry.
-* Fix      - Product Catalog used a variable name that shadows a WordPress global.
-* Fix      - Restored the payment icon checkboxes, which were missing from the new Trust Badges block so the icons could not be changed.
-* Fix      - Upgrade Plan on a subscription linked to the product the customer already owned, so it never reached the upgrade and dropped the prorated credit for what they had already paid. It now opens the same prorated upgrade view the Licenses tab uses.
-* Fix      - Changing a payment card left the customer on the account dashboard with no confirmation, even though the card had changed. The Subscriptions tab is now kept, and the change is confirmed on screen.
-* Fix      - A payment card could only be changed once per browser session. The success message was never cleared, and it then hid the form on every later visit.
-* Fix      - The hover Border control on the WooCommerce Product Tab and Universal Product widgets styled the active tab instead of the hovered one.
-* Fix      - Pagination bullets on the Post Carousel and Team Carousel widgets ignored the size setting, because a second rule overwrote the font size and line height with only width and height.
-* Fix      - The avatar size control on the Forums widget applied only a maximum width, so avatars did not take the size that was set.
-* Fix      - The Site Logo widget discarded its own default link value.
-* Fix      - Text and subtitle entrance animations on the Team Carousel passed an empty value to WordPress when set to "none", which raises a deprecation notice on PHP 8.1 and later.
-* Fix      - The checkout trust badges left an empty gap where a badge had been switched off, because the row always reserved three columns. It now fills the width with however many badges are shown.
-* Fix      - The "Account Dashboard" option on the discount screen rendered outside the field grid, unlabelled and out of line with every other setting. It used the markup of the older table based discount editor, which browsers discard in the layout Easy Digital Downloads has used since 3.3.9.
-* Fix      - Updates now download on sites that installed Wbcom Essential from the store zip or a manual upload, with no licence key to enter. The free key activates once in the background, and if the host blocks wbcomdesigns.com an admin notice explains why and offers a Retry button. Usage tracking stays off unless you turn it on.
-* Fix      - The licence screen's script and styles failed to load on hosts where the plugin folder is a symlink or sits outside the document root, which broke the licence form. The bundled licensing library now builds its asset URL with plugins_url().
-* Fix      - Deleting the plugin with its data now also removes the stored licence status and usage-tracking choice, not only the licence key.
-* Dev      - New wbcom_essential_edd_free_plugins_top action fires above the grid on the account dashboard's Free Plugins tab, so a site can add its own section there.
-* Dev      - Updated the bundled licensing library to 1.0.3 with the same fixes BuddyNext ships, including a PHP 8 fatal on the plugin details screen when the update server cannot be reached.
-* Dev      - The EDD Enhanced Checkout block no longer wraps the checkout. EDD 3.7 made its Checkout block a parent of inner blocks, so wrapping it is what stopped EDD detecting the page as a block checkout. The block is retained, hidden from the inserter, only so pages the migration has not reached still render.
-* Dev      - New version-gated upgrade runner (includes/upgrades.php) so future migrations run on plugin update, not only on activation.
-* Dev      - Removed 17 files from the package that could never run: two duplicated Elementor directories kept only by path, never loaded by anything.
-* Dev      - The build no longer ships static analysis configuration to customers.
-* Dev      - The Header Notification Area widget is documented as requiring the Reign theme, which it has always done. It does not appear on any other theme.
-* Dev      - Coding standards and static analysis now block the build instead of reporting and passing regardless, and dependency audits run on every push.
-* Compat   - Verified against Easy Digital Downloads 3.7.0, Recurring 2.13.13, Software Licensing 3.9.7, Stripe 3.0.2 and Elementor 4.2.3.
+* New      - Four checkout section blocks (Progress, Trust Badges, Social Proof and Recommendations) that sit inside EDD's own Checkout block and can be edited, reordered or removed.
+* New      - Product Catalog renders its first page of products in the page HTML, so search engines and visitors without JavaScript see real products.
+* New      - Customers can update the payment card on a subscription from My Account, on gateways that support it.
+* Improve  - Every trust badge can be switched off and reworded, and the support badge is off by default.
+* Improve  - The money-back guarantee badge defaults to 30 days with generic wording you can edit to match your refund policy.
+* Improve  - The trust badge no longer claims "powered by Stripe", and payment method icons start switched off until you choose the cards you accept.
+* Improve  - Trustpilot reviews, rating and count start empty, and the section stays hidden until you add your own reviews.
+* Improve  - Product Catalog no longer requests its first page again after loading, saving one request on every visit.
+* Improve  - The account sidebar now reads "Submit Ticket" and opens the ticket form directly.
+* Fix      - Checkout offers login, registration and guest checkout as separate choices instead of stacking the login prompt on the account fields, and existing checkout pages are converted automatically.
+* Fix      - Personal Info fields on checkout render at one consistent width, so the Email field no longer truncates the address.
+* Fix      - License Upgrade and Manage License open inside the account dashboard instead of replacing the page with an unstyled table.
+* Fix      - Upgrade Plan on a subscription now opens the prorated upgrade view, keeping credit for what the customer already paid.
+* Fix      - Changing a payment card keeps the customer on the Subscriptions tab and confirms the change.
+* Fix      - A payment card can be changed more than once in the same browser session.
+* Fix      - The checkout trust badges fill the row without a gap when a badge is switched off.
+* Fix      - The checkout progress indicator no longer tells screen readers a step is upcoming while it is on screen.
+* Fix      - Product Catalog reports a failed load with a Retry button instead of saying no products matched your filters.
+* Fix      - Restored the payment icon checkboxes in the Trust Badges block.
+* Fix      - The "Account Dashboard" option on the EDD discount screen lines up with the other settings.
+* Fix      - The hover Border control on the WooCommerce Product Tab and Universal Product widgets styles the hovered tab, not the active one.
+* Fix      - Pagination bullet size on the Post Carousel and Team Carousel widgets now follows the size setting.
+* Fix      - The avatar size control on the Forums widget sets the avatar size, not only a maximum width.
+* Fix      - The Site Logo widget keeps its default link value.
+* Fix      - Team Carousel animations set to "none" no longer raise a deprecation notice on PHP 8.1 and later.
+* Fix      - Updates now download on sites that installed Wbcom Essential from the store zip or a manual upload, with no license key to enter.
+* Fix      - The license screen's script and styles load on hosts where the plugin folder is a symlink or sits outside the document root.
+* Fix      - Deleting the plugin with its data also removes the stored license status, usage-tracking choice and activation state.
+* Dev      - New wbcom_essential_edd_free_plugins_top action fires above the grid on the account dashboard's Free Plugins tab.
+* Dev      - New wbcom_essential_upgraded action and a version-gated upgrade runner, so migrations run on plugin update and not only on activation.
+* Dev      - New wbcom_essential_wp_cron_disabled filter for sites that set DISABLE_WP_CRON but run a real system cron.
+* Dev      - Updated the bundled licensing library to 1.0.3, matching BuddyNext, including a fix for a PHP 8 fatal on the plugin details screen.
+* Dev      - The legacy EDD Enhanced Checkout block is hidden from the inserter and kept only so pages the migration has not reached still render.
+* Dev      - Removed 17 unused Elementor files and the static analysis configuration from the package.
+* Dev      - The Header Notification Area widget is documented as requiring the Reign theme.
+* Dev      - Coding standards and static analysis now block the build, and dependency audits run on every push.
+* Compat   - Tested with Easy Digital Downloads 3.7.1.1, Recurring 2.13.13, Software Licensing 3.9.7, Stripe 3.0.2 and Elementor 4.2.3.
 
 = 4.6.4 - July 2026 =
 
@@ -280,6 +278,9 @@ Find downloads and licenses fast on the account dashboard, plus expired-license 
 For full changelog, see the changelog.md file in the docs folder.
 
 == Upgrade Notice ==
+
+= 4.7.0 =
+Converts EDD checkout pages to EDD 3.7's Checkout block. After updating, open any wp-admin page once so the conversion runs, then check your checkout page.
 
 = 4.5.0 =
 Major V2 rebuild: 32 production-grade blocks replacing 45 legacy blocks. Clear your cache, re-save any pages using removed blocks (heading, slider, icon-box, header-bar, counter, cta-box, posts-revolution, etc.). See the changelog for the full list. PHP 8.0+ required.

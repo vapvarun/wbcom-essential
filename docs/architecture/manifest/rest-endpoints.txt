@@ -1,15 +1,10 @@
 # REST API Endpoints Manifest
-# Generated: 2025-01-19
-# Total: 5
+# Generated from code for 4.7.0 (scratch generator, regenerate rather than hand-edit)
+# Total: 6
 
-## Gutenberg Block REST Routes
-- GET wbcom-essential/v1/member-types | plugins/gutenberg/blocks/members-lists/members-lists.php:32 | documented
-- GET wbcom-essential/v1/post-categories | plugins/gutenberg/blocks/posts-carousel/posts-carousel.php:98 | documented
-- GET wbcom-essential/v1/nav-menus | plugins/gutenberg/blocks/header-bar/header-bar.php:46 | documented
-- GET wbcom-essential/v1/group-types | plugins/gutenberg/blocks/groups-lists/groups-lists.php:32 | documented
-- GET wbcom-essential/v1/blocks | plugins/gutenberg/wbcom-gutenberg.php:192 | documented
-
-## EDD Account Dashboard Routes (4.5.0-4.6.0 delta, 2026-06-04)
-- GET wbcom/v1/edd-account/(?P<tab>[a-z-]+) | includes/edd-account-dashboard-functions.php | tab loader; tabs: dashboard, subscriptions, downloads, free-plugins, licenses, purchases, profile; dashboard accepts ?sections=offers,whatsnew,recommendations
-- GET wbcom/v1/edd-account/states/(?P<country>[A-Z]{2}) | includes/edd-account-dashboard-functions.php | states for country dropdown
-- POST wbcom/v1/edd-account/claim-free | includes/edd-account-marketing-functions.php | one-click free product claim ($0 order); logged-in + nonce; idempotent; rate-limited
+- 'GET' 'wbcom-essential/v1' '/xprofile-groups' | plugins/gutenberg/gutenberg.php:212
+- 'GET' 'wbcom/v1' '/product-categories' | includes/edd-product-catalog-rest.php:78
+- 'GET' 'wbcom/v1' '/products' | includes/edd-product-catalog-rest.php:31
+- WP_REST_Server::CREATABLE 'wbcom/v1' '/edd-account/claim-free' | includes/edd-account-marketing-functions.php:578
+- WP_REST_Server::READABLE 'wbcom/v1' '/edd-account/(?P<tab>[a-z-]+)' | includes/edd-account-dashboard-functions.php:245
+- WP_REST_Server::READABLE 'wbcom/v1' '/edd-account/states/(?P<country>[A-Z]{2})' | includes/edd-account-dashboard-functions.php:270
