@@ -10,7 +10,7 @@
 
 ## Overview
 
-WBcom Essential provides production-ready blocks and widgets that inherit your theme's colors automatically. Built by the team behind BuddyX and Theme Reign, it's designed to work seamlessly with our themes—but works beautifully on any WordPress site.
+WBcom Essential provides production-ready blocks and widgets that inherit your theme's colors automatically. Built by the team behind BuddyX and Theme Reign, it's designed to work seamlessly with our themes, but works beautifully on any WordPress site.
 
 ### Key Features
 
@@ -103,7 +103,7 @@ Works with any properly coded WordPress theme. The Theme Colors feature adapts t
 
 > **Do NOT run `npm run build` or `wp-scripts build` directly.** This plugin
 > uses custom Node scripts driven by `scripts/build-blocks.js`. The default
-> `wp-scripts` entry is `./src`, which doesn't exist in this repo — block
+> `wp-scripts` entry is `./src`, which doesn't exist in this repo, so block
 > sources live in `plugins/gutenberg/src/blocks/`.
 
 ```bash
