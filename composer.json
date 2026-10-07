@@ -17,7 +17,7 @@
     },
     "require": {
         "php": ">=7.4",
-        "easy-digital-downloads/edd-sl-sdk": "^1.0.0"
+        "easy-digital-downloads/edd-sl-sdk": "1.0.3"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",

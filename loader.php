@@ -92,6 +92,12 @@ add_action(
 	}
 );
 
+// Wbcom Essential is free: activate the bundled licence key once in the
+// background so updates download on every install path, not only Reign's
+// one-click installer. See Preset_Activation for the rationale.
+require_once WBCOM_ESSENTIAL_PATH . 'includes/class-wbcom-essential-preset-activation.php';
+\WBCOM_ESSENTIAL\Preset_Activation::register();
+
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/wbcom-essential-function.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/edd-account-login-security.php';
