@@ -136,6 +136,9 @@ Fixes a broken EDD checkout after Easy Digital Downloads 3.7, and restores the a
 * Fix      - Text and subtitle entrance animations on the Team Carousel passed an empty value to WordPress when set to "none", which raises a deprecation notice on PHP 8.1 and later.
 * Fix      - The checkout trust badges left an empty gap where a badge had been switched off, because the row always reserved three columns. It now fills the width with however many badges are shown.
 * Fix      - The "Account Dashboard" option on the discount screen rendered outside the field grid, unlabelled and out of line with every other setting. It used the markup of the older table based discount editor, which browsers discard in the layout Easy Digital Downloads has used since 3.3.9.
+* Fix      - The licence screen's script and styles failed to load on hosts where the plugin folder is a symlink or sits outside the document root, which broke the licence form. The bundled licensing library now builds its asset URL with plugins_url().
+* Fix      - Deleting the plugin with its data now also removes the stored licence status and usage-tracking choice, not only the licence key.
+* Dev      - New wbcom_essential_edd_free_plugins_top action fires above the grid on the account dashboard's Free Plugins tab, so a site can add its own section there.
 * Dev      - The EDD Enhanced Checkout block no longer wraps the checkout. EDD 3.7 made its Checkout block a parent of inner blocks, so wrapping it is what stopped EDD detecting the page as a block checkout. The block is retained, hidden from the inserter, only so pages the migration has not reached still render.
 * Dev      - New version-gated upgrade runner (includes/upgrades.php) so future migrations run on plugin update, not only on activation.
 * Dev      - Removed 17 files from the package that could never run: two duplicated Elementor directories kept only by path, never loaded by anything.

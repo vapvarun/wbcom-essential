@@ -27,6 +27,9 @@ $wbcom_essential_options = array(
 	'wbcom_essential_single_post_template',
 	'wbcom_essential_elementor_notice_dismissed',
 	'wbcom_essential_license_key',
+	// EDD SL SDK: licence status and the usage-tracking choice, stored next to the key.
+	'wbcom_essential_license_key_license',
+	'wbcom_essential_license_key_allow_tracking',
 	'wbcom_essential_version',
 	'wbcom_essential_activated_at',
 	// Elementor widget defaults written through wbcom_get_option().

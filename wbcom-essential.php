@@ -221,17 +221,9 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 					'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
 					'status'       => 'active',
 					'version'      => WBCOM_ESSENTIAL_VERSION,
-					'license_key'  => '', // Temporarily remove license key to test.
 					'callback'     => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),
 				)
 			);
-		}
-
-		/**
-		 * Get license key for display purposes.
-		 */
-		private function get_license_key() {
-			return get_option( 'wbcom_essential_license_key' );
 		}
 	}
 }
