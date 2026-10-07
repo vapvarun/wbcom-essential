@@ -16,7 +16,7 @@
  * Description:       Premium Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design.
  * Version:           4.7.0
  * Requires at least: 6.0
- * Tested up to:      6.9
+ * Tested up to:      7.1
  * Requires PHP:      8.0
  * Author:            Wbcom Designs
  * Author URI:        https://wbcomdesigns.com/

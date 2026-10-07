@@ -6,6 +6,9 @@
  * @package wbcom-essential
  */
 
+import { __ } from '@wordpress/i18n';
+import swiperA11y from '../../shared/utils/swiper-a11y';
+
 ( function () {
 	'use strict';
 
@@ -56,10 +59,10 @@
 					768: { slidesPerView: Math.min( slides, 2 ), spaceBetween: 24 },
 					1024: { slidesPerView: slides, spaceBetween: 32 },
 				},
-				a11y: {
-					prevSlideMessage: 'Previous testimonial',
-					nextSlideMessage: 'Next testimonial',
-				},
+				a11y: swiperA11y(
+					__( 'Previous testimonial', 'wbcom-essential' ),
+					__( 'Next testimonial', 'wbcom-essential' )
+				),
 				grabCursor: true,
 			};
 

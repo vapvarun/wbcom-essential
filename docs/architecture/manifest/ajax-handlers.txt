@@ -3,7 +3,7 @@
 # Total: 5
 
 - wp_ajax_elementor_get_template_data | plugins/elementor/templates/classes/manager.php:68
-- wp_ajax_nopriv_wbcom_ajax_login | plugins/elementor/wbcom-essential-elementor.php:503
+- wp_ajax_nopriv_wbcom_ajax_login | plugins/elementor/wbcom-essential-elementor.php:505
 - wp_ajax_wbcom_essential_dismiss_elementor_notice | plugins/elementor/wbcom-essential-elementor.php:137
 - wp_ajax_wbcom_essential_elementor_sections_get_templates | plugins/elementor/templates/classes/manager.php:62
 - wp_ajax_wbcom_essential_elementor_sections_inner_template | plugins/elementor/templates/classes/manager.php:63

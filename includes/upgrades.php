@@ -41,9 +41,11 @@ function wbcom_essential_get_upgrade_routines() {
 /**
  * Run any upgrade routines the site has not seen yet.
  *
- * Runs on admin_init rather than a front-end hook so a migration never adds
- * latency to a customer request, and so it runs as a logged-in admin with
- * post-editing capability.
+ * Runs on wp_loaded, so the first request after an update (front end, cron,
+ * REST or admin) migrates the site: owners never have to visit wp-admin or run
+ * anything. After that it is one option comparison per request. Routines must
+ * not depend on the current user, because the triggering request may be
+ * logged out.
  *
  * @since 4.7.0
  *
@@ -92,7 +94,7 @@ function wbcom_essential_maybe_upgrade() {
 	 */
 	do_action( 'wbcom_essential_upgraded', $stored );
 }
-add_action( 'admin_init', 'wbcom_essential_maybe_upgrade' );
+add_action( 'wp_loaded', 'wbcom_essential_maybe_upgrade' );
 
 /**
  * 4.7.0 — nest EDD's checkout block inside the Enhanced Checkout block.
@@ -147,6 +149,15 @@ function wbcom_essential_upgrade_470_checkout_block() {
 
 	$updated = 0;
 
+	// The rewrite only re-nests block comments; it must not run the content
+	// through kses. The triggering request can be logged out (or a multisite
+	// admin without unfiltered_html), and kses would then strip any script,
+	// iframe or custom HTML the owner keeps on the checkout page.
+	$kses_active = false !== has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+	if ( $kses_active ) {
+		kses_remove_filters();
+	}
+
 	foreach ( $post_ids as $post_id ) {
 		$post = get_post( $post_id );
 		if ( ! $post ) {
@@ -172,6 +183,10 @@ function wbcom_essential_upgrade_470_checkout_block() {
 		if ( ! is_wp_error( $result ) ) {
 			++$updated;
 		}
+	}
+
+	if ( $kses_active ) {
+		kses_init_filters();
 	}
 
 	return $updated;

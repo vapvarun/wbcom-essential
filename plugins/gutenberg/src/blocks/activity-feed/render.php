@@ -94,10 +94,20 @@ $config = array(
 		'loadMore'    => __( 'Load More', 'wbcom-essential' ),
 		'loading'            => __( 'Loading...', 'wbcom-essential' ),
 		'empty'              => __( 'No activity to show yet.', 'wbcom-essential' ),
-		'timeAgo'            => __( 'ago', 'wbcom-essential' ),
+		/* translators: %s: number of minutes. Short relative time, e.g. "5 min ago". */
+		'minutesAgo'         => __( '%s min ago', 'wbcom-essential' ),
+		/* translators: %s: number of hours. Short relative time, e.g. "3h ago". */
+		'hoursAgo'           => __( '%sh ago', 'wbcom-essential' ),
+		/* translators: %s: number of days. Short relative time, e.g. "2d ago". */
+		'daysAgo'            => __( '%sd ago', 'wbcom-essential' ),
+		/* translators: %s: number of months. Short relative time, e.g. "4mo ago". */
+		'monthsAgo'          => __( '%smo ago', 'wbcom-essential' ),
+		/* translators: %s: number of years. Short relative time, e.g. "1y ago". */
+		'yearsAgo'           => __( '%sy ago', 'wbcom-essential' ),
 		'justNow'            => __( 'Just now', 'wbcom-essential' ),
 		'commentPlaceholder' => __( 'Write a comment...', 'wbcom-essential' ),
 		'postComment'        => __( 'Post', 'wbcom-essential' ),
+		'posting'            => __( 'Posting...', 'wbcom-essential' ),
 		'commentError'       => __( 'Could not post comment. Please try again.', 'wbcom-essential' ),
 	),
 );
@@ -158,7 +168,11 @@ $config = array(
 								<?php if ( $show_comment_count ) : ?>
 									<span class="wbe-af__action-btn">
 										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-										<?php printf( esc_html__( 'Comment %d', 'wbcom-essential' ), absint( bp_activity_get_comment_count() ) ); ?>
+										<?php
+										$wbe_comment_count = absint( bp_activity_get_comment_count() );
+										/* translators: %d: number of comments on the activity. */
+										printf( esc_html( _n( '%d Comment', '%d Comments', $wbe_comment_count, 'wbcom-essential' ) ), $wbe_comment_count ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the format is escaped and the count is an integer.
+										?>
 									</span>
 								<?php endif; ?>
 								<?php if ( $show_fav_btn && is_user_logged_in() && function_exists( 'bp_get_activity_is_favorite' ) ) : ?>

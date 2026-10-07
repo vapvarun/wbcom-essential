@@ -135,9 +135,10 @@ $swiper_options = array(
 		data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>"
 	>
 		<div class="swiper-wrapper">
-			<?php foreach ( $reviews as $review ) :
+			<?php
+            foreach ( $reviews as $review ) :
 				$review_id    = $review->comment_ID;
-				$post_id      = $review->comment_post_ID;
+				$post_id      = $review->comment_post_ID; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- block render.php runs inside WP_Block::render(), not the global scope.
 				$author_name  = $review->comment_author;
 				$review_text  = $review->comment_content;
 				$rating       = (int) get_comment_meta( $review_id, 'rating', true );
@@ -149,11 +150,11 @@ $swiper_options = array(
 					: '';
 				?>
 				<div class="swiper-slide">
-					<div class="wbe-customer-reviews__card" role="article" aria-label="<?php echo esc_attr( sprintf( __( 'Review by %s', 'wbcom-essential' ), $author_name ) ); ?>">
+					<div class="wbe-customer-reviews__card" role="article" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: name of the reviewer. */ __( 'Review by %s', 'wbcom-essential' ), $author_name ) ); ?>">
 						<div class="wbe-customer-reviews__quote-mark" aria-hidden="true">&ldquo;</div>
 
 						<?php if ( $show_rating && $rating > 0 ) : ?>
-						<div class="wbe-customer-reviews__rating" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %d out of 5', 'wbcom-essential' ), $rating ) ); ?>">
+						<div class="wbe-customer-reviews__rating" aria-label="<?php echo esc_attr( sprintf( /* translators: %d: star rating given by the reviewer, 1 to 5. */ __( 'Rated %d out of 5', 'wbcom-essential' ), $rating ) ); ?>">
 							<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 								<span class="wbe-customer-reviews__star<?php echo ( $i <= $rating ) ? ' wbe-customer-reviews__star--filled' : ' wbe-customer-reviews__star--empty'; ?>" aria-hidden="true"></span>
 							<?php endfor; ?>

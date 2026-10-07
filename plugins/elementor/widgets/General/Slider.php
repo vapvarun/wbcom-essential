@@ -183,7 +183,11 @@ class Slider extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::WYSIWYG,
 				'default'     => '',
 				'label_block' => true,
-				'description' => 'Button Shortcode: [wbcombtn url="https://wbcomdesigns.com/" style="primary" target="_self"]CLICK HERE[/wbcombtn]',
+				'description' => sprintf(
+					/* translators: %s: example shortcode markup. */
+					esc_html__( 'Button Shortcode: %s', 'wbcom-essential' ),
+					'[wbcombtn url="https://wbcomdesigns.com/" style="primary" target="_self"]CLICK HERE[/wbcombtn]'
+				),
 			)
 		);
 
@@ -2137,7 +2141,8 @@ class Slider extends \Elementor\Widget_Base {
 			<?php if ( 'yes' === $dots && 'yes' === $thumbnails ) { ?>
 			<div id="wbcom-slider-thumbnails-<?php echo esc_attr( $wbcomslider_slider_id ); ?>" class="wbcom-slider-thumbnails swiper-container <?php echo esc_attr( $settings['nav_thumbnails_position'] ); ?>">
 				<div class="swiper-wrapper">
-				<?php foreach ( $settings['list'] as $item ) {
+				<?php
+                foreach ( $settings['list'] as $item ) {
 					$slide_thumbnail = wp_get_attachment_image_url( $item['image']['id'], $settings['nav_thumbnail_size'] );
 					?>
 					<div class="swiper-slide">
@@ -2226,6 +2231,7 @@ class Slider extends \Elementor\Widget_Base {
 					<?php } ?>
 				}
 			</style>
-		<?php }
+		<?php
+        }
 	}
 }

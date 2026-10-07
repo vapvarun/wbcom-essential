@@ -83,7 +83,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		setAttributes( {
 			features: [
 				...features,
-				{ icon: '✨', title: 'New Feature', description: 'Describe your feature here.' },
+				{ icon: '✨', title: __( 'New Feature', 'wbcom-essential' ), description: __( 'Describe your feature here.', 'wbcom-essential' ) },
 			],
 		} );
 	};

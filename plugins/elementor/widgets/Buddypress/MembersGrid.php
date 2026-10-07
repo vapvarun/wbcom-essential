@@ -147,10 +147,10 @@ class MembersGrid extends \Elementor\Widget_Base {
 					'type'    => Controls_Manager::SELECT,
 					'default' => 'wbtm-member-directory-type-2',
 					'options' => array(
-						'wbtm-member-directory-type-1' => 'Layout 1',
-						'wbtm-member-directory-type-2' => 'Layout 2',
-						'wbtm-member-directory-type-3' => 'Layout 3',
-						'wbtm-member-directory-type-4' => 'Layout 4',
+						'wbtm-member-directory-type-1' => esc_html__( 'Layout 1', 'wbcom-essential' ),
+						'wbtm-member-directory-type-2' => esc_html__( 'Layout 2', 'wbcom-essential' ),
+						'wbtm-member-directory-type-3' => esc_html__( 'Layout 3', 'wbcom-essential' ),
+						'wbtm-member-directory-type-4' => esc_html__( 'Layout 4', 'wbcom-essential' ),
 					),
 				)
 			);

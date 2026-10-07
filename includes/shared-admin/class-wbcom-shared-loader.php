@@ -7,10 +7,11 @@
  * @version 2.2.0
  */
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) { exit;
+}
 
-class Wbcom_Shared_Loader
-{
+class Wbcom_Shared_Loader {
+
 
     const VERSION = '2.2.0';
     const GLOBAL_KEY = 'wbcom_shared_system';
@@ -97,8 +98,8 @@ class Wbcom_Shared_Loader
 
         // Merge any additional overrides that weren't handled above
         foreach ($overrides as $key => $value) {
-            if (!isset($auto_data[$key])) {
-                $auto_data[$key] = $value;
+            if (!isset($auto_data[ $key ])) {
+                $auto_data[ $key ] = $value;
             }
         }
 
@@ -177,20 +178,34 @@ class Wbcom_Shared_Loader
     {
         $name_lower = strtolower($name . ' ' . $slug);
 
-        if (strpos($name_lower, 'activity') !== false) return 'dashicons-admin-comments';
-        if (strpos($name_lower, 'member') !== false) return 'dashicons-admin-users';
-        if (strpos($name_lower, 'group') !== false) return 'dashicons-groups';
-        if (strpos($name_lower, 'message') !== false) return 'dashicons-email';
-        if (strpos($name_lower, 'notification') !== false) return 'dashicons-bell';
-        if (strpos($name_lower, 'profile') !== false) return 'dashicons-admin-users';
-        if (strpos($name_lower, 'media') !== false) return 'dashicons-admin-media';
-        if (strpos($name_lower, 'event') !== false) return 'dashicons-calendar';
-        if (strpos($name_lower, 'poll') !== false) return 'dashicons-chart-bar';
-        if (strpos($name_lower, 'quote') !== false) return 'dashicons-format-quote';
-        if (strpos($name_lower, 'hashtag') !== false) return 'dashicons-tag';
-        if (strpos($name_lower, 'filter') !== false) return 'dashicons-filter';
-        if (strpos($name_lower, 'social') !== false) return 'dashicons-share';
-        if (strpos($name_lower, 'buddypress') !== false) return 'dashicons-groups';
+        if (strpos($name_lower, 'activity') !== false) { return 'dashicons-admin-comments';
+        }
+        if (strpos($name_lower, 'member') !== false) { return 'dashicons-admin-users';
+        }
+        if (strpos($name_lower, 'group') !== false) { return 'dashicons-groups';
+        }
+        if (strpos($name_lower, 'message') !== false) { return 'dashicons-email';
+        }
+        if (strpos($name_lower, 'notification') !== false) { return 'dashicons-bell';
+        }
+        if (strpos($name_lower, 'profile') !== false) { return 'dashicons-admin-users';
+        }
+        if (strpos($name_lower, 'media') !== false) { return 'dashicons-admin-media';
+        }
+        if (strpos($name_lower, 'event') !== false) { return 'dashicons-calendar';
+        }
+        if (strpos($name_lower, 'poll') !== false) { return 'dashicons-chart-bar';
+        }
+        if (strpos($name_lower, 'quote') !== false) { return 'dashicons-format-quote';
+        }
+        if (strpos($name_lower, 'hashtag') !== false) { return 'dashicons-tag';
+        }
+        if (strpos($name_lower, 'filter') !== false) { return 'dashicons-filter';
+        }
+        if (strpos($name_lower, 'social') !== false) { return 'dashicons-share';
+        }
+        if (strpos($name_lower, 'buddypress') !== false) { return 'dashicons-groups';
+        }
 
         return 'dashicons-admin-generic';
     }
@@ -226,8 +241,8 @@ class Wbcom_Shared_Loader
     private static function get_shared_instance($plugin_data)
     {
         // Check if instance already exists globally
-        if (isset($GLOBALS[self::GLOBAL_KEY])) {
-            return $GLOBALS[self::GLOBAL_KEY];
+        if (isset($GLOBALS[ self::GLOBAL_KEY ])) {
+            return $GLOBALS[ self::GLOBAL_KEY ];
         }
 
         // Create new instance
@@ -238,7 +253,7 @@ class Wbcom_Shared_Loader
         $instance->init_shared_system();
 
         // Store globally for other plugins
-        $GLOBALS[self::GLOBAL_KEY] = $instance;
+        $GLOBALS[ self::GLOBAL_KEY ] = $instance;
 
         return $instance;
     }
@@ -267,8 +282,6 @@ class Wbcom_Shared_Loader
 
         // Validate required fields
         if (empty($plugin_data['slug']) || empty($plugin_data['name'])) {
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-            }
             return false;
         }
 
@@ -331,7 +344,7 @@ class Wbcom_Shared_Loader
      */
     public function add_plugin($plugin_data)
     {
-        $this->registered_plugins[$plugin_data['slug']] = $plugin_data;
+        $this->registered_plugins[ $plugin_data['slug'] ] = $plugin_data;
 
         // Sort by priority
         uasort($this->registered_plugins, function ($a, $b) {
@@ -344,13 +357,10 @@ class Wbcom_Shared_Loader
      */
     private function init_shared_system()
     {
-        if (defined('WP_DEBUG') && WP_DEBUG) {
+
+        if (!$this->is_primary_loader) { return;
         }
 
-        if (!$this->is_primary_loader) return;
-
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-        }
 
         // Load required classes
         $this->load_shared_classes();
@@ -358,16 +368,12 @@ class Wbcom_Shared_Loader
         // Initialize main menu and dashboard
         if (did_action('admin_menu')) {
             // admin_menu hook has already fired, create menu immediately
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-            }
             $this->create_main_menu();
             $this->add_plugin_submenus();
         } else {
             // admin_menu hook hasn't fired yet, add hooks
             add_action('admin_menu', array($this, 'create_main_menu'), 5);
             add_action('admin_menu', array($this, 'add_plugin_submenus'), 10);
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-            }
         }
 
         // Enqueue shared assets for all Wbcom pages - use priority 1 to load early
@@ -385,8 +391,6 @@ class Wbcom_Shared_Loader
         $base_path = $this->shared_path;
 
         if (empty($base_path) || !is_dir($base_path)) {
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-            }
             return;
         }
 
@@ -398,9 +402,6 @@ class Wbcom_Shared_Loader
             $file_path = $base_path . $class_file;
             if (file_exists($file_path)) {
                 require_once $file_path;
-            } else {
-                if (defined('WP_DEBUG') && WP_DEBUG) {
-                }
             }
         }
     }
@@ -410,18 +411,12 @@ class Wbcom_Shared_Loader
      */
     public function create_main_menu()
     {
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-        }
 
         // Check if menu already exists
         if ($this->menu_exists()) {
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-            }
             return;
         }
 
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-        }
 
         add_menu_page(
             'Wbcom Designs',
@@ -433,21 +428,17 @@ class Wbcom_Shared_Loader
             58.5
         );
 
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-        }
 
         // Add dashboard as first submenu
         add_submenu_page(
             'wbcom-designs',
-            'Dashboard',
-            'Dashboard',
+            esc_html__( 'Dashboard', 'wbcom-essential' ),
+            esc_html__( 'Dashboard', 'wbcom-essential' ),
             'manage_options',
             'wbcom-designs',
             array($this, 'show_dashboard')
         );
 
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-        }
     }
 
     /**
@@ -601,24 +592,24 @@ class Wbcom_Shared_Loader
             <h1><?php echo esc_html($plugin['name']); ?></h1>
             <div class="notice notice-info">
                 <p>
-                    <strong>Plugin Loaded Successfully!</strong><br>
-                    The plugin is active but the admin interface is loading. Please check that all plugin files are properly installed.
+                    <strong><?php esc_html_e( 'Plugin Loaded Successfully!', 'wbcom-essential' ); ?></strong><br>
+                    <?php esc_html_e( 'The plugin is active but the admin interface is loading. Please check that all plugin files are properly installed.', 'wbcom-essential' ); ?>
                 </p>
             </div>
 
             <div class="card">
-                <h2>Plugin Information</h2>
+                <h2><?php esc_html_e( 'Plugin Information', 'wbcom-essential' ); ?></h2>
                 <table class="form-table">
                     <tr>
-                        <th>Version:</th>
+                        <th><?php esc_html_e( 'Version:', 'wbcom-essential' ); ?></th>
                         <td><?php echo esc_html($plugin['version']); ?></td>
                     </tr>
                     <tr>
-                        <th>Status:</th>
-                        <td><span style="color: #00a32a;">✓ Active</span></td>
+                        <th><?php esc_html_e( 'Status:', 'wbcom-essential' ); ?></th>
+                        <td><span style="color: #00a32a;">✓ <?php esc_html_e( 'Active', 'wbcom-essential' ); ?></span></td>
                     </tr>
                     <tr>
-                        <th>Description:</th>
+                        <th><?php esc_html_e( 'Description:', 'wbcom-essential' ); ?></th>
                         <td><?php echo esc_html($plugin['description']); ?></td>
                     </tr>
                 </table>
@@ -628,14 +619,14 @@ class Wbcom_Shared_Loader
                         <?php if (!empty($plugin['docs_url'])) : ?>
                             <a href="<?php echo esc_url($plugin['docs_url']); ?>" target="_blank" class="button button-secondary">
                                 <span class="dashicons dashicons-book"></span>
-                                Documentation
+                                <?php esc_html_e( 'Documentation', 'wbcom-essential' ); ?>
                             </a>
                         <?php endif; ?>
 
                         <?php if (!empty($plugin['support_url'])) : ?>
                             <a href="<?php echo esc_url($plugin['support_url']); ?>" target="_blank" class="button button-secondary">
                                 <span class="dashicons dashicons-sos"></span>
-                                Get Support
+                                <?php esc_html_e( 'Get Support', 'wbcom-essential' ); ?>
                             </a>
                         <?php endif; ?>
                     </p>
@@ -652,11 +643,11 @@ class Wbcom_Shared_Loader
     {
     ?>
         <div class="wrap">
-            <h1>Plugin Not Found</h1>
+            <h1><?php esc_html_e( 'Plugin Not Found', 'wbcom-essential' ); ?></h1>
             <div class="notice notice-error">
-                <p>The requested plugin page could not be found or is not properly registered.</p>
+                <p><?php esc_html_e( 'The requested plugin page could not be found or is not properly registered.', 'wbcom-essential' ); ?></p>
             </div>
-            <p><a href="<?php echo esc_url(admin_url('admin.php?page=wbcom-designs')); ?>" class="button button-primary">← Back to Dashboard</a></p>
+            <p><a href="<?php echo esc_url(admin_url('admin.php?page=wbcom-designs')); ?>" class="button button-primary">← <?php esc_html_e( 'Back to Dashboard', 'wbcom-essential' ); ?></a></p>
         </div>
     <?php
     }
@@ -674,8 +665,6 @@ class Wbcom_Shared_Loader
                 $this->show_fallback_dashboard();
             }
         } catch (Exception $e) {
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-            }
             $this->show_fallback_dashboard();
         }
     }
@@ -690,11 +679,11 @@ class Wbcom_Shared_Loader
             <h1>🌟 Wbcom Designs</h1>
 
             <div class="notice notice-info">
-                <p><strong>Welcome to Wbcom Designs!</strong> Your plugins are being loaded...</p>
+                <p><strong><?php esc_html_e( 'Welcome to Wbcom Designs!', 'wbcom-essential' ); ?></strong> <?php esc_html_e( 'Your plugins are being loaded...', 'wbcom-essential' ); ?></p>
             </div>
 
             <div class="card">
-                <h2>Installed Wbcom Plugins</h2>
+                <h2><?php esc_html_e( 'Installed Wbcom Plugins', 'wbcom-essential' ); ?></h2>
                 <?php if (!empty($this->registered_plugins)) : ?>
                     <ul>
                         <?php foreach ($this->registered_plugins as $plugin) : ?>
@@ -702,22 +691,22 @@ class Wbcom_Shared_Loader
                                 <strong><?php echo esc_html($plugin['name']); ?></strong>
                                 (v<?php echo esc_html($plugin['version']); ?>)
                                 <?php if (!empty($plugin['settings_url'])) : ?>
-                                    - <a href="<?php echo esc_url($plugin['settings_url']); ?>">Settings</a>
+                                    - <a href="<?php echo esc_url($plugin['settings_url']); ?>"><?php esc_html_e( 'Settings', 'wbcom-essential' ); ?></a>
                                 <?php endif; ?>
                             </li>
                         <?php endforeach; ?>
                     </ul>
                 <?php else : ?>
-                    <p>No plugins registered yet.</p>
+                    <p><?php esc_html_e( 'No plugins registered yet.', 'wbcom-essential' ); ?></p>
                 <?php endif; ?>
             </div>
 
             <div class="card">
-                <h2>Quick Links</h2>
+                <h2><?php esc_html_e( 'Quick Links', 'wbcom-essential' ); ?></h2>
                 <p>
-                    <a href="https://wbcomdesigns.com/support/" target="_blank" class="button button-secondary">Get Support</a>
-                    <a href="https://wbcomdesigns.com/plugins/" target="_blank" class="button button-secondary">Browse Premium Plugins</a>
-                    <a href="https://docs.wbcomdesigns.com/" target="_blank" class="button button-secondary">Documentation</a>
+                    <a href="https://wbcomdesigns.com/support/" target="_blank" class="button button-secondary"><?php esc_html_e( 'Get Support', 'wbcom-essential' ); ?></a>
+                    <a href="https://wbcomdesigns.com/plugins/" target="_blank" class="button button-secondary"><?php esc_html_e( 'Browse Premium Plugins', 'wbcom-essential' ); ?></a>
+                    <a href="https://docs.wbcomdesigns.com/" target="_blank" class="button button-secondary"><?php esc_html_e( 'Documentation', 'wbcom-essential' ); ?></a>
                 </p>
             </div>
         </div>
@@ -759,8 +748,8 @@ class Wbcom_Shared_Loader
     ?>
         <div class="notice notice-warning">
             <p>
-                <strong>Wbcom Shared System Conflict</strong><br>
-                Multiple versions of the Wbcom shared system detected. Please update all Wbcom plugins to ensure compatibility.
+                <strong><?php esc_html_e( 'Wbcom Shared System Conflict', 'wbcom-essential' ); ?></strong><br>
+                <?php esc_html_e( 'Multiple versions of the Wbcom shared system detected. Please update all Wbcom plugins to ensure compatibility.', 'wbcom-essential' ); ?>
             </p>
         </div>
 <?php
@@ -820,6 +809,23 @@ class Wbcom_Shared_Loader
                     'loading' => __('Loading...', 'wbcom-essential'),
                     'error' => __('Error loading content.', 'wbcom-essential'),
                     'success' => __('Settings saved successfully.', 'wbcom-essential'),
+                    /* translators: %s: post author name. */
+                    'byAuthor' => __('by %s', 'wbcom-essential'),
+                    'noNews' => __('No News Available', 'wbcom-essential'),
+                    'noNewsText' => __('Unable to load recent news at this time.', 'wbcom-essential'),
+                    'newsError' => __('Unable to Load News', 'wbcom-essential'),
+                    'newsErrorText' => __('Please check your internet connection and try again later.', 'wbcom-essential'),
+                    'stayConnected' => __('Stay Connected', 'wbcom-essential'),
+                    /* translators: %s: Wbcom Designs blog URL. */
+                    'visitBlog' => sprintf(__('Visit our <a href="%s" target="_blank">blog</a> for the latest updates', 'wbcom-essential'), esc_url('https://wbcomdesigns.com/blog/')),
+                    /* translators: %s: Wbcom Designs X (Twitter) profile URL. */
+                    'followUs' => sprintf(__('Follow us on <a href="%s" target="_blank">X</a>', 'wbcom-essential'), esc_url('https://twitter.com/wbcomdesigns')),
+                    /* translators: %s: Wbcom Designs Facebook page URL. */
+                    'joinFacebook' => sprintf(__('Join our <a href="%s" target="_blank">Facebook</a> community', 'wbcom-essential'), esc_url('https://www.facebook.com/wbcomdesigns/')),
+                    'refreshing' => __('Refreshing...', 'wbcom-essential'),
+                    'dismiss' => __('Dismiss this notice.', 'wbcom-essential'),
+                    /* translators: %s: name of the dashboard section where the error happened. */
+                    'errorIn' => __('An error occurred in %s. Check console for details.', 'wbcom-essential'),
                 )
             ));
         }
@@ -958,7 +964,7 @@ class Wbcom_Shared_Loader
 
     public static function get_instance()
     {
-        return isset($GLOBALS[self::GLOBAL_KEY]) ? $GLOBALS[self::GLOBAL_KEY] : null;
+        return isset($GLOBALS[ self::GLOBAL_KEY ]) ? $GLOBALS[ self::GLOBAL_KEY ] : null;
     }
 
     public function get_debug_info()

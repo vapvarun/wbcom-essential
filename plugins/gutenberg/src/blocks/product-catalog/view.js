@@ -416,7 +416,7 @@
 			if ( loadMoreBtn ) {
 				loadMoreBtn.addEventListener( 'click', function () {
 					state.page++;
-					this.textContent = 'Loading...';
+					this.textContent = i18n.loading || 'Loading...';
 					this.disabled = true;
 					fetchProducts( true );
 				} );

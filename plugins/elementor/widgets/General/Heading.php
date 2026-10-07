@@ -188,18 +188,18 @@ class Heading extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
 					''            => esc_html__( 'Normal', 'wbcom-essential' ),
-					'multiply'    => 'Multiply',
-					'screen'      => 'Screen',
-					'overlay'     => 'Overlay',
-					'darken'      => 'Darken',
-					'lighten'     => 'Lighten',
-					'color-dodge' => 'Color Dodge',
-					'saturation'  => 'Saturation',
-					'color'       => 'Color',
-					'difference'  => 'Difference',
-					'exclusion'   => 'Exclusion',
-					'hue'         => 'Hue',
-					'luminosity'  => 'Luminosity',
+					'multiply'    => esc_html__( 'Multiply', 'wbcom-essential' ),
+					'screen'      => esc_html__( 'Screen', 'wbcom-essential' ),
+					'overlay'     => esc_html__( 'Overlay', 'wbcom-essential' ),
+					'darken'      => esc_html__( 'Darken', 'wbcom-essential' ),
+					'lighten'     => esc_html__( 'Lighten', 'wbcom-essential' ),
+					'color-dodge' => esc_html__( 'Color Dodge', 'wbcom-essential' ),
+					'saturation'  => esc_html__( 'Saturation', 'wbcom-essential' ),
+					'color'       => esc_html__( 'Color', 'wbcom-essential' ),
+					'difference'  => esc_html__( 'Difference', 'wbcom-essential' ),
+					'exclusion'   => esc_html__( 'Exclusion', 'wbcom-essential' ),
+					'hue'         => esc_html__( 'Hue', 'wbcom-essential' ),
+					'luminosity'  => esc_html__( 'Luminosity', 'wbcom-essential' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-heading' => 'mix-blend-mode: {{VALUE}}',
@@ -675,7 +675,7 @@ class Heading extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 
-		$settings = $this->get_settings_for_display();		
+		$settings = $this->get_settings_for_display();      
 		if ( '' === $settings['heading_text'] ) {
 			return;
 		}

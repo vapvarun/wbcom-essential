@@ -169,6 +169,7 @@ function wbcom_essential_product_catalog_query( $params = array() ) {
 	$args = array(
 		'post_type'      => 'download',
 		'post_status'    => 'publish',
+		'has_password'   => false,
 		'posts_per_page' => max( 1, min( (int) $request['per_page'], 48 ) ),
 		'paged'          => max( 1, (int) $request['page'] ),
 		'order'          => $request['order'],

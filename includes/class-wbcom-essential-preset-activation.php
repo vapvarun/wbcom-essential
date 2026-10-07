@@ -70,6 +70,11 @@ class Preset_Activation {
 	 */
 	public static function register() {
 		add_action( 'admin_init', array( __CLASS__, 'maybe_schedule' ) );
+		// Also from WP-Cron, so a site whose owner rarely opens wp-admin still
+		// gets updates (WordPress background updates run from cron).
+		if ( wp_doing_cron() ) {
+			add_action( 'init', array( __CLASS__, 'maybe_schedule' ) );
+		}
 		add_action(
 			self::HOOK,
 			static function () {

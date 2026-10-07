@@ -82,7 +82,7 @@ $review_count = $attributes['reviewCount'] ?? 3;
 					 */
 					if ( $tp_rating > 0 ) :
 						?>
-					<div class="wbcom-edd-checkout__trustpilot-stars" aria-label="<?php echo esc_attr( sprintf( '%s out of 5', $tp_rating ) ); ?>">
+					<div class="wbcom-edd-checkout__trustpilot-stars" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: Trustpilot rating, e.g. 4.8. */ __( '%s out of 5', 'wbcom-essential' ), $tp_rating ) ); ?>">
 						<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 							<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
 								<rect width="20" height="20" rx="2" fill="<?php echo $i <= floor( $tp_rating ) ? '#00B67A' : ( $i - $tp_rating < 1 ? '#73CF11' : '#dcdce6' ); ?>"/>
@@ -216,7 +216,7 @@ $review_count = $attributes['reviewCount'] ?? 3;
 					<h3 class="wbcom-edd-checkout__reviews-title"><?php esc_html_e( 'What Our Customers Say', 'wbcom-essential' ); ?></h3>
 					<?php if ( $avg_rating > 0 ) : ?>
 						<div class="wbcom-edd-checkout__reviews-aggregate">
-							<div class="wbcom-edd-checkout__reviews-stars" aria-label="<?php echo esc_attr( sprintf( '%s out of 5 stars', $avg_rating ) ); ?>">
+							<div class="wbcom-edd-checkout__reviews-stars" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: average review rating, e.g. 4.5. */ __( '%s out of 5 stars', 'wbcom-essential' ), $avg_rating ) ); ?>">
 								<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 									<?php if ( $i <= floor( $avg_rating ) ) : ?>
 										<svg class="wbcom-edd-checkout__star wbcom-edd-checkout__star--filled" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
@@ -251,7 +251,7 @@ $review_count = $attributes['reviewCount'] ?? 3;
 						$product      = get_the_title( $review->comment_post_ID );
 						?>
 						<div class="wbcom-edd-checkout__review-card">
-							<div class="wbcom-edd-checkout__review-stars" aria-label="<?php echo esc_attr( sprintf( '%d out of 5 stars', $rating ) ); ?>">
+							<div class="wbcom-edd-checkout__review-stars" aria-label="<?php echo esc_attr( sprintf( /* translators: %d: review rating from 1 to 5. */ __( '%d out of 5 stars', 'wbcom-essential' ), $rating ) ); ?>">
 								<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 									<svg class="wbcom-edd-checkout__star <?php echo $i <= $rating ? 'wbcom-edd-checkout__star--filled' : 'wbcom-edd-checkout__star--empty'; ?>" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
 								<?php endfor; ?>

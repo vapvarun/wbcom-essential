@@ -12,6 +12,8 @@
  * @package wbcom-essential
  */
 
+import { __ } from '@wordpress/i18n';
+
 ( function () {
 	'use strict';
 
@@ -246,7 +248,7 @@
 
 							var defaultOpt = document.createElement( 'option' );
 							defaultOpt.value = '';
-							defaultOpt.textContent = 'Select state';
+							defaultOpt.textContent = __( 'Select state', 'wbcom-essential' );
 							select.appendChild( defaultOpt );
 
 							for ( var code in states ) {
@@ -303,12 +305,12 @@
 					function onCopied() {
 						var label = btn.querySelector( 'span' );
 						if ( label ) {
-							label.textContent = 'Copied!';
+							label.textContent = __( 'Copied!', 'wbcom-essential' );
 						}
 						btn.classList.add( 'is-copied' );
 						setTimeout( function () {
 							if ( label ) {
-								label.textContent = 'Copy';
+								label.textContent = __( 'Copy', 'wbcom-essential' );
 							}
 							btn.classList.remove( 'is-copied' );
 						}, 2000 );
@@ -462,12 +464,19 @@
 					if ( html && NO_CACHE_TABS.indexOf( tab ) === -1 ) {
 						contentCache[ tab ] = html;
 					}
-					renderHtml( tab, inner, html || '<p class="wbcom-edd-account__error">No content available for this tab.</p>' );
+					renderHtml(
+						tab,
+						inner,
+						html ||
+							'<p class="wbcom-edd-account__error">' +
+								__( 'No content available for this tab.', 'wbcom-essential' ) +
+								'</p>'
+					);
 				} )
 				.catch( function ( err ) {
-					var msg = 'Could not load content. Please refresh the page.';
+					var msg = __( 'Could not load content. Please refresh the page.', 'wbcom-essential' );
 					if ( err && err.message && err.message.indexOf( '403' ) !== -1 ) {
-						msg = 'Your session has expired. Please refresh the page to continue.';
+						msg = __( 'Your session has expired. Please refresh the page to continue.', 'wbcom-essential' );
 					}
 					renderHtml(
 						tab,
@@ -542,14 +551,14 @@
 					} else {
 						button.disabled    = false;
 						button.textContent = originalLabel;
-						var msg = ( data && data.message ) ? data.message : 'Could not claim download. Please try again.';
+						var msg = ( data && data.message ) ? data.message : __( 'Could not claim download. Please try again.', 'wbcom-essential' );
 						showInlineError( msg );
 					}
 				} )
 				.catch( function () {
 					button.disabled    = false;
 					button.textContent = originalLabel;
-					showInlineError( 'Could not claim download. Please refresh the page and try again.' );
+					showInlineError( __( 'Could not claim download. Please refresh the page and try again.', 'wbcom-essential' ) );
 				} );
 		}
 
@@ -561,7 +570,7 @@
 		function copyOfferCode( button ) {
 			var code         = button.dataset.code || '';
 			var originalLabel = button.textContent;
-			var copiedLabel  = button.dataset.copiedLabel || 'Copied!';
+			var copiedLabel  = button.dataset.copiedLabel || __( 'Copied!', 'wbcom-essential' );
 
 			function onCopied() {
 				button.textContent = copiedLabel;

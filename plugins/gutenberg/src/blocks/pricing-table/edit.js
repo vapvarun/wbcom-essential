@@ -4,7 +4,7 @@
  * @package wbcom-essential
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -93,7 +93,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	const addFeature = ( planIndex ) => {
 		const updatedPlans = plans.map( ( plan, i ) => {
 			if ( i !== planIndex ) return plan;
-			return { ...plan, features: [ ...plan.features, 'New feature' ] };
+			return { ...plan, features: [ ...plan.features, __( 'New feature', 'wbcom-essential' ) ] };
 		} );
 		setAttributes( { plans: updatedPlans } );
 	};
@@ -112,11 +112,15 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			plans: [
 				...plans,
 				{
-					name: `Plan ${ plans.length + 1 }`,
+					name: sprintf(
+						/* translators: %d: plan number. */
+						__( 'Plan %d', 'wbcom-essential' ),
+						plans.length + 1
+					),
 					price: '0',
-					period: '/mo',
-					features: [ 'Feature 1' ],
-					buttonText: 'Get Started',
+					period: __( '/mo', 'wbcom-essential' ),
+					features: [ __( 'Feature 1', 'wbcom-essential' ) ],
+					buttonText: __( 'Get Started', 'wbcom-essential' ),
 					buttonUrl: '#',
 					featured: false,
 				},

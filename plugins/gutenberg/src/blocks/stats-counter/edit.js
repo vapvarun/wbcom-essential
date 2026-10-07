@@ -76,7 +76,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		setAttributes( {
 			stats: [
 				...stats,
-				{ number: 100, prefix: '', suffix: '', label: 'New Stat' },
+				{ number: 100, prefix: '', suffix: '', label: __( 'New Stat', 'wbcom-essential' ) },
 			],
 		} );
 	};

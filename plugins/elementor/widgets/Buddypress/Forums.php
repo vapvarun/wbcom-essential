@@ -657,7 +657,7 @@ class Forums extends \Elementor\Widget_Base {
 			<?php else : ?>
 
 				<div class="wbcom-essential-no-data wbcom-essential-no-data--forums">
-					<img class="wbcom-essential-no-data__image" src="<?php echo esc_url( WBCOM_ESSENTIAL_ASSETS_URL ); ?>images/no-data-found.svg" alt="Forums" />
+					<img class="wbcom-essential-no-data__image" src="<?php echo esc_url( WBCOM_ESSENTIAL_ASSETS_URL ); ?>images/no-data-found.svg" alt="<?php esc_attr_e( 'Forums', 'wbcom-essential' ); ?>" />
 					<br />
 					<?php bbp_get_template_part( 'feedback', 'no-topics' ); ?>
 					<a href="<?php echo esc_url( home_url( bbp_get_root_slug() ) ); ?>" class="wbcom-essential-no-data__link"><?php esc_html_e( 'Start a Discussion', 'wbcom-essential' ); ?></a>

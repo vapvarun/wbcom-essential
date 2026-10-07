@@ -696,7 +696,7 @@ class GroupsLists extends \Elementor\Widget_Base {
 						<div class="wbcom-essential-groups-list wbcom-essential-groups-list--<?php echo esc_attr( $k ); ?> wbcom-essential-no-data wbcom-essential-no-data--groups <?php echo $k === $type ? esc_attr( 'active' ) : ''; ?>">
 							<img class="wbcom-essential-no-data__image"
 								src="<?php echo esc_url( WBCOM_ESSENTIAL_ASSETS_URL ); ?>images/no-data-found.svg"
-								alt="Groups"/>
+								alt="<?php esc_attr_e( 'Groups', 'wbcom-essential' ); ?>"/>
 							<br />
 							<div><?php echo esc_html__( 'No groups matched the current filter.', 'wbcom-essential' ); ?></div>
 							<?php if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) : ?>

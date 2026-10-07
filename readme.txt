@@ -112,6 +112,7 @@ Fixes the EDD checkout after Easy Digital Downloads 3.7, keeps license screens i
 * New      - Four checkout section blocks (Progress, Trust Badges, Social Proof and Recommendations) that sit inside EDD's own Checkout block and can be edited, reordered or removed.
 * New      - Product Catalog renders its first page of products in the page HTML, so search engines and visitors without JavaScript see real products.
 * New      - Customers can update the payment card on a subscription from My Account, on gateways that support it.
+* Improve  - Every visible string is now translatable, including Elementor widget options, block editor labels, carousel and catalog messages, block patterns and the admin dashboard.
 * Improve  - Every trust badge can be switched off and reworded, and the support badge is off by default.
 * Improve  - The money-back guarantee badge defaults to 30 days with generic wording you can edit to match your refund policy.
 * Improve  - The trust badge no longer claims "powered by Stripe", and payment method icons start switched off until you choose the cards you accept.
@@ -134,9 +135,14 @@ Fixes the EDD checkout after Easy Digital Downloads 3.7, keeps license screens i
 * Fix      - The avatar size control on the Forums widget sets the avatar size, not only a maximum width.
 * Fix      - The Site Logo widget keeps its default link value.
 * Fix      - Team Carousel animations set to "none" no longer raise a deprecation notice on PHP 8.1 and later.
+* Fix      - Translations in the plugin's own languages folder now load; they were bundled but never loaded.
+* Fix      - Animation options on the Posts Carousel, Posts Ticker and Posts Revolution widgets showed fade-out, bounce-out and zoom-out as "In" effects.
 * Fix      - Updates now download on sites that installed Wbcom Essential from the store zip or a manual upload, with no license key to enter.
 * Fix      - The license screen's script and styles load on hosts where the plugin folder is a symlink or sits outside the document root.
 * Fix      - Deleting the plugin with its data also removes the stored license status, usage-tracking choice and activation state.
+* Security - Password-protected downloads are no longer listed, with an excerpt of their content, by the Product Catalog block or its public products endpoint.
+* Security - The Login Form widget only redirects within your site after login, so a crafted link can no longer send members to another website.
+* Security - The Product Catalog's embedded product data escapes HTML characters, so a product title cannot break the rest of the page.
 * Dev      - New wbcom_essential_edd_free_plugins_top action fires above the grid on the account dashboard's Free Plugins tab.
 * Dev      - New wbcom_essential_upgraded action and a version-gated upgrade runner, so migrations run on plugin update and not only on activation.
 * Dev      - New wbcom_essential_wp_cron_disabled filter for sites that set DISABLE_WP_CRON but run a real system cron.
@@ -144,6 +150,7 @@ Fixes the EDD checkout after Easy Digital Downloads 3.7, keeps license screens i
 * Dev      - The legacy EDD Enhanced Checkout block is hidden from the inserter and kept only so pages the migration has not reached still render.
 * Dev      - Removed 17 unused Elementor files and the static analysis configuration from the package.
 * Dev      - The Header Notification Area widget is documented as requiring the Reign theme.
+* Dev      - The plugin passes Plugin Check with no errors, and the translation template includes the block editor and front-end script strings.
 * Dev      - Coding standards and static analysis now block the build, and dependency audits run on every push.
 * Compat   - Tested with Easy Digital Downloads 3.7.1.1, Recurring 2.13.13, Software Licensing 3.9.7, Stripe 3.0.2 and Elementor 4.2.3.
 
@@ -280,7 +287,7 @@ For full changelog, see the changelog.md file in the docs folder.
 == Upgrade Notice ==
 
 = 4.7.0 =
-Converts EDD checkout pages to EDD 3.7's Checkout block. After updating, open any wp-admin page once so the conversion runs, then check your checkout page.
+Converts EDD checkout pages to EDD 3.7's Checkout block automatically on the first visit after updating, keeping your guarantee wording, Trustpilot details and section toggles.
 
 = 4.5.0 =
 Major V2 rebuild: 32 production-grade blocks replacing 45 legacy blocks. Clear your cache, re-save any pages using removed blocks (heading, slider, icon-box, header-bar, counter, cta-box, posts-revolution, etc.). See the changelog for the full list. PHP 8.0+ required.

@@ -20,7 +20,7 @@ register_block_pattern(
 		'description' => __( 'A chronological two-column timeline layout for blog posts.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'blog', 'timeline', 'chronological', 'history' ),
-		'content'     => '<!-- wp:heading {"textAlign":"center"} --><h2 class="wp-block-heading has-text-align-center">Our Story</h2><!-- /wp:heading -->
+		'content'     => '<!-- wp:heading {"textAlign":"center"} --><h2 class="wp-block-heading has-text-align-center">' . esc_html__( 'Our Story', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"24px"} -->
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>

@@ -149,10 +149,10 @@ class GroupGrid extends \Elementor\Widget_Base {
 					'type'    => Controls_Manager::SELECT,
 					'default' => 'wbtm-group-directory-type-2',
 					'options' => array(
-						'wbtm-group-directory-type-1' => 'Layout 1',
-						'wbtm-group-directory-type-2' => 'Layout 2',
-						'wbtm-group-directory-type-3' => 'Layout 3',
-						'wbtm-group-directory-type-4' => 'Layout 4',
+						'wbtm-group-directory-type-1' => esc_html__( 'Layout 1', 'wbcom-essential' ),
+						'wbtm-group-directory-type-2' => esc_html__( 'Layout 2', 'wbcom-essential' ),
+						'wbtm-group-directory-type-3' => esc_html__( 'Layout 3', 'wbcom-essential' ),
+						'wbtm-group-directory-type-4' => esc_html__( 'Layout 4', 'wbcom-essential' ),
 					),
 				)
 			);
@@ -177,7 +177,8 @@ class GroupGrid extends \Elementor\Widget_Base {
 		$settings             = $this->get_settings_for_display();
 		$active_template      = get_option( '_bp_theme_package_id' );
 		$group_directory_type = isset( $settings['rg-grp-grid-layout'] ) ? $settings['rg-grp-grid-layout'] : '';
-		$addition_class       = $img_class = '';
+		$addition_class       = '';
+		$img_class            = '';
 
 		if ( 'wbtm-group-directory-type-1' !== $group_directory_type ) {
 			$addition_class = 'lg-wb-grid-1-' . $settings['columns'];

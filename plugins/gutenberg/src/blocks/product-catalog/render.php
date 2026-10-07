@@ -60,6 +60,7 @@ $i18n_strings = array(
 	'loadError'         => __( 'Products could not be loaded. Please try again.', 'wbcom-essential' ),
 	'retry'             => __( 'Retry', 'wbcom-essential' ),
 	'loadMore'          => __( 'Load More Products', 'wbcom-essential' ),
+	'loading'           => __( 'Loading...', 'wbcom-essential' ),
 	'downloadFree'      => __( 'Download Free', 'wbcom-essential' ),
 	'viewProduct'       => __( 'View Product', 'wbcom-essential' ),
 );
@@ -134,7 +135,7 @@ $card_i18n = array(
 
 	<?php
 	// Handed to view.js so it can take over without re-fetching page one.
-	$initial_payload = wp_json_encode( $initial );
+	$initial_payload = wp_json_encode( $initial, JSON_HEX_TAG | JSON_HEX_AMP );
 	if ( $initial_payload ) :
 		?>
 		<script type="application/json" class="wbcom-catalog__initial-data">

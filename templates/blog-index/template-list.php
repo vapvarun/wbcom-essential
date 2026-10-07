@@ -24,6 +24,7 @@ if ( $wbcom_per_page < 1 ) {
 <div class="wbcom-blog wbcom-blog--list">
 	<div class="wbcom-blog__container">
 		<?php
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup.
 		echo Wbcom_Blog_Index_Templates::render_block(
 			'wbcom-essential/posts-revolution',
 			array(
@@ -36,6 +37,7 @@ if ( $wbcom_per_page < 1 ) {
 				'useThemeColors'   => true,
 			)
 		);
+		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 		?>
 	</div>
 </div>

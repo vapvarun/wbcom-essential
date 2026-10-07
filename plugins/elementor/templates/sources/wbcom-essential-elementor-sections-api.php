@@ -286,7 +286,7 @@ class WBcom_Essential_elementor_Templates_Source_Api extends WBcom_Essential_ele
 		if ( ! isset( $body['success'] ) ) {
 			wp_send_json_error(
 				array(
-					'message' => 'Internal Error',
+					'message' => __( 'Internal Error', 'wbcom-essential' ),
 				)
 			);
 		}

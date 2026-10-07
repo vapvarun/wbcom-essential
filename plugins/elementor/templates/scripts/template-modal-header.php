@@ -22,6 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div id="wbcomessentialelementor-template-modal-header-actions">
 	<div id="wbcomessentialelementor-template-modal-header-close-modal" class="elementor-template-library-header-item"
 		title="<?php echo esc_html__( 'Close', 'wbcom-essential' ); ?>">
-		<i class="eicon-close" title="Close"></i>
+		<i class="eicon-close" title="<?php esc_attr_e( 'Close', 'wbcom-essential' ); ?>"></i>
 	</div>
 </div>

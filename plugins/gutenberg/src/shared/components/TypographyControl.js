@@ -59,7 +59,7 @@ export default function TypographyControl( {
 					value={ fontFamily || '' }
 					options={ [
 						{ label: __( 'Default', 'wbcom-essential' ), value: '' },
-						{ label: 'System UI', value: 'system-ui, -apple-system, sans-serif' },
+						{ label: __( 'System UI', 'wbcom-essential' ), value: 'system-ui, -apple-system, sans-serif' },
 						{ label: 'Inter', value: "'Inter', sans-serif" },
 						{ label: 'Roboto', value: "'Roboto', sans-serif" },
 						{ label: 'Open Sans', value: "'Open Sans', sans-serif" },
