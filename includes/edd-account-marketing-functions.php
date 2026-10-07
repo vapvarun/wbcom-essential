@@ -144,22 +144,38 @@ function wbcom_essential_edd_get_upgrade_url( $owned_download_id, $target_downlo
 function wbcom_essential_edd_discount_account_field( $discount_id = 0, $discount = null ) {
 	$flagged = $discount_id ? (bool) edd_get_adjustment_meta( $discount_id, '_wbcom_show_in_account', true ) : false;
 	wp_nonce_field( 'wbcom_essential_discount_account', 'wbcom_essential_discount_account_nonce' );
+	/*
+	 * Must match EDD's own field markup. This previously emitted a
+	 * <tr><th></th><td></td></tr>, which was correct for the old table-based
+	 * discount editor but not for the div-based form groups EDD has used since
+	 * 3.3.9. A <tr> outside a <table> is invalid, so the browser silently
+	 * discarded the row, header and cell and left the bare input sitting
+	 * outside the two-column grid every other field on the screen sits in.
+	 * Structure copied from EDD's own "Use Once Per Customer" toggle.
+	 */
 	?>
-	<tr>
-		<th scope="row" valign="top">
-			<label for="wbcom-show-in-account"><?php esc_html_e( 'Account Dashboard', 'wbcom-essential' ); ?></label>
-		</th>
-		<td>
-			<input type="checkbox" id="wbcom-show-in-account" name="wbcom_show_in_account" value="1" <?php checked( $flagged ); ?> />
-			<label for="wbcom-show-in-account" class="description">
-				<?php esc_html_e( 'Show this discount as a special offer on the customer account dashboard.', 'wbcom-essential' ); ?>
-			</label>
-		</td>
-	</tr>
+	<div class="edd-form-group">
+		<label for="wbcom-show-in-account"><?php esc_html_e( 'Account Dashboard', 'wbcom-essential' ); ?></label>
+		<div class="edd-form-group__control">
+			<div class="edd-toggle wbcom_show_in_account">
+				<input type="checkbox" id="wbcom-show-in-account" name="wbcom_show_in_account" value="1" <?php checked( $flagged ); ?> />
+				<label for="wbcom-show-in-account">
+					<?php esc_html_e( 'Show this discount as a special offer on the customer account dashboard.', 'wbcom-essential' ); ?>
+				</label>
+			</div>
+		</div>
+	</div>
 	<?php
 }
+/*
+ * One hook, both screens. EDD 3.x renders the add and edit discount screens
+ * from the same Form.php, so edd_edit_discount_form_bottom fires for both
+ * despite its name - verified on ?view=add_discount, where the field renders
+ * and the button reads "Create Discount". The old second registration on
+ * edd_add_discount_form_bottom was dead: that hook does not exist anywhere in
+ * EDD. It was harmless, but it implied a second code path that is not there.
+ */
 add_action( 'edd_edit_discount_form_bottom', 'wbcom_essential_edd_discount_account_field', 10, 2 );
-add_action( 'edd_add_discount_form_bottom', 'wbcom_essential_edd_discount_account_field', 10, 2 );
 
 /**
  * Persist the flag when a discount is added/updated.
@@ -483,18 +499,34 @@ function wbcom_essential_edd_render_recommendations_section( $customer = false )
  *
  * @param EDD_Customer|false $customer EDD customer or false (unused; claims key off user).
  */
-function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Signature parity with sibling tab renderers.
+function wbcom_essential_edd_render_free_plugins_tab( $customer = false ) {
 	wbcom_essential_edd_tab_header(
 		__( 'Free Plugins', 'wbcom-essential' ),
 		__( 'Add free plugins to your library with one click - updates included.', 'wbcom-essential' )
 	);
 
+	ob_start();
+	/**
+	 * Fires at the top of the Free Plugins tab, below the tab header and above
+	 * the claimable grid. Sites can feature a curated set of plugins here (and
+	 * drop them from the grid via `wbcom_essential_edd_free_download_ids`).
+	 *
+	 * @since 4.7.0
+	 * @param EDD_Customer|false $customer EDD customer or false.
+	 */
+	do_action( 'wbcom_essential_edd_free_plugins_top', $customer );
+	$top_html = ob_get_clean();
+	echo $top_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hook output; the tab HTML is sanitized by wbcom_essential_kses_form() before it is sent.
+
 	$free_ids = wbcom_essential_edd_get_free_download_ids();
 	if ( empty( $free_ids ) ) {
-		wbcom_essential_edd_empty_state(
-			'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
-			__( 'No free plugins are available right now.', 'wbcom-essential' )
-		);
+		// A site that featured plugins above has not run out of free plugins.
+		if ( '' === trim( $top_html ) ) {
+			wbcom_essential_edd_empty_state(
+				'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+				__( 'No free plugins are available right now.', 'wbcom-essential' )
+			);
+		}
 		return;
 	}
 	?>

@@ -2,11 +2,11 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "wbcom-essential/edd-checkout-enhanced",
-	"version": "2.0.0",
-	"title": "EDD Enhanced Checkout",
+	"version": "3.0.0",
+	"title": "EDD Enhanced Checkout (legacy)",
 	"category": "essential-edd",
 	"icon": "cart",
-	"description": "Enhanced checkout page with progress bar, trust badges, reviews, and recommendations wrapping EDD's native checkout.",
+	"description": "Legacy wrapper kept only so pages saved before 4.7.0 keep rendering. Use the EDD Checkout block with the Wbcom checkout sections inside it instead.",
 	"keywords": [
 		"edd",
 		"checkout",
@@ -26,7 +26,8 @@
 		"spacing": {
 			"margin": true,
 			"padding": true
-		}
+		},
+		"inserter": false
 	},
 	"attributes": {
 		"showProgressBar": {
@@ -39,11 +40,15 @@
 		},
 		"trustBadgeText": {
 			"type": "string",
-			"default": "Secure checkout powered by Stripe"
+			"default": "Secure checkout"
 		},
 		"guaranteeDays": {
 			"type": "number",
-			"default": 14
+			"default": 30
+		},
+		"guaranteeText": {
+			"type": "string",
+			"default": "Covered by our money-back guarantee."
 		},
 		"showReviews": {
 			"type": "boolean",
@@ -67,11 +72,11 @@
 		},
 		"trustpilotRating": {
 			"type": "number",
-			"default": 4.7
+			"default": 0
 		},
 		"trustpilotCount": {
 			"type": "number",
-			"default": 87
+			"default": 0
 		},
 		"trustpilotUrl": {
 			"type": "string",
@@ -79,35 +84,16 @@
 		},
 		"trustpilotReviews": {
 			"type": "array",
-			"default": [
-				{
-					"name": "S W Malcolm",
-					"stars": 5,
-					"title": "Excellent Theme, Powerful Plugins and Outstanding Support",
-					"text": "Outstanding customer support: quick, helpful, and always willing to go the extra mile."
-				},
-				{
-					"name": "Steve",
-					"stars": 5,
-					"title": "Great speedy support and great plugins",
-					"text": "Great speedy support and great plugins. Highly recommended for BuddyPress communities."
-				},
-				{
-					"name": "Real America's Voice News",
-					"stars": 5,
-					"title": "THE BEST DEVELOPMENT TEAM EVER!",
-					"text": "Very professional and productive, completing tasks in a quick and decisive manner."
-				}
-			]
+			"default": []
 		},
 		"paymentIcons": {
 			"type": "object",
 			"default": {
-				"visa": true,
-				"mastercard": true,
-				"paypal": true,
-				"stripe": true,
-				"razorpay": true
+				"visa": false,
+				"mastercard": false,
+				"paypal": false,
+				"stripe": false,
+				"razorpay": false
 			}
 		},
 		"uniqueId": {

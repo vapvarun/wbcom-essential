@@ -34,6 +34,8 @@ Best For: Main navigation, mega menus
 
 Notification Area
 
+**Requires the Reign theme.** This widget only appears in the Elementor panel when Reign is the active theme. On BuddyX, BuddyX Pro, or any third-party theme it is not registered at all, so it will not show in the widget list. Every other Wbcom Essential widget works on any theme.
+
 Display site-wide notifications or alerts.
 
 Key Settings:

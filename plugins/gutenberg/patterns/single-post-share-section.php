@@ -29,7 +29,7 @@ register_block_pattern(
 <!-- wp:columns {"verticalAlignment":"center"} -->
 <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"50%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%"><!-- wp:paragraph {"style":{"typography":{"fontWeight":"600"}}} -->
-<p style="font-weight:600">Share this article</p>
+<p style="font-weight:600">' . esc_html__( 'Share this article', 'wbcom-essential' ) . '</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

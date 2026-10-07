@@ -23,23 +23,27 @@
 		if ( diff < 60 ) {
 			return i18n.justNow;
 		}
+		// Each format string comes translated from render.php; %s is the number.
+		const fmt = function ( key, n ) {
+			return i18n[ key ].replace( '%s', n );
+		};
 		const mins = Math.floor( diff / 60 );
 		if ( mins < 60 ) {
-			return mins + ' min ' + i18n.timeAgo;
+			return fmt( 'minutesAgo', mins );
 		}
 		const hours = Math.floor( mins / 60 );
 		if ( hours < 24 ) {
-			return hours + 'h ' + i18n.timeAgo;
+			return fmt( 'hoursAgo', hours );
 		}
 		const days = Math.floor( hours / 24 );
 		if ( days < 30 ) {
-			return days + 'd ' + i18n.timeAgo;
+			return fmt( 'daysAgo', days );
 		}
 		const months = Math.floor( days / 30 );
 		if ( months < 12 ) {
-			return months + 'mo ' + i18n.timeAgo;
+			return fmt( 'monthsAgo', months );
 		}
-		return Math.floor( months / 12 ) + 'y ' + i18n.timeAgo;
+		return fmt( 'yearsAgo', Math.floor( months / 12 ) );
 	}
 
 	/**
@@ -482,7 +486,7 @@
 				const input = section ? section.querySelector( '.wbe-af__comment-input' ) : null;
 				if ( input && input.value.trim() ) {
 					submitBtn.disabled = true;
-					submitBtn.textContent = cfg.i18n.loading || 'Posting...';
+					submitBtn.textContent = cfg.i18n.posting || 'Posting...';
 					postComment( actId, input.value.trim(), section )
 						.finally( function () {
 							submitBtn.disabled = false;

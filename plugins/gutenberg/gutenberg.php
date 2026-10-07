@@ -269,3 +269,31 @@ function wbe_get_xprofile_groups() {
 		)
 	);
 }
+
+/**
+ * Enqueue EDD block-checkout theme compatibility CSS.
+ *
+ * Loaded on any page carrying EDD's checkout block, regardless of whether a
+ * Wbcom checkout section is present — the field-alignment problem it fixes is
+ * caused by a Reign/BuddyX rule colliding with EDD's own markup, so it applies
+ * to stores that use none of our sections. See the stylesheet for the full
+ * explanation and for where the lasting fix belongs.
+ *
+ * @since 4.7.0
+ * @return void
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( ! function_exists( 'has_block' ) || ! has_block( 'edd/checkout' ) ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'wbe-edd-checkout-compat',
+			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/css/edd-checkout-compat.css',
+			array(),
+			WBCOM_ESSENTIAL_VERSION
+		);
+	}
+);

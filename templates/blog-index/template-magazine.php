@@ -31,6 +31,7 @@ $wbcom_total        = count( $wbcom_sections );
 		<?php if ( $wbcom_show_cat_nav ) : ?>
 			<div class="wbcom-blog__category-nav">
 				<?php
+				// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup.
 				echo Wbcom_Blog_Index_Templates::render_block(
 					'wbcom-essential/category-grid',
 					array(
@@ -41,6 +42,7 @@ $wbcom_total        = count( $wbcom_sections );
 						'useThemeColors' => true,
 					)
 				);
+				// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</div>
 		<?php endif; ?>
@@ -75,7 +77,7 @@ $wbcom_total        = count( $wbcom_sections );
 			}
 			?>
 			<div class="wbcom-blog__section">
-				<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs ); ?>
+				<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup. ?>
 			</div>
 		<?php endforeach; ?>
 

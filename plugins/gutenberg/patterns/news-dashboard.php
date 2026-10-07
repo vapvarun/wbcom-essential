@@ -20,7 +20,7 @@ register_block_pattern(
 		'description' => __( 'A multi-section news dashboard with hero, category spotlight columns, and more stories.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'news', 'dashboard', 'sections', 'magazine' ),
-		'content'     => '<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Top Stories</h2><!-- /wp:heading -->
+		'content'     => '<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">' . esc_html__( 'Top Stories', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -38,7 +38,7 @@ register_block_pattern(
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Category Spotlight</h2><!-- /wp:heading -->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">' . esc_html__( 'Category Spotlight', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -68,7 +68,7 @@ register_block_pattern(
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">More Stories</h2><!-- /wp:heading -->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">' . esc_html__( 'More Stories', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -80,7 +80,7 @@ register_block_pattern(
 <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Explore Categories</h2><!-- /wp:heading -->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">' . esc_html__( 'Explore Categories', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>

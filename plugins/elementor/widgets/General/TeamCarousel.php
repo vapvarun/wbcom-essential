@@ -94,59 +94,73 @@ class TeamCarousel extends \Elementor\Widget_Base {
 
 	/**
 	 * Get animation.
+	 *
+	 * Declared public to match the implicit visibility it already had - an
+	 * undeclared method is public in PHP, so narrowing it here could break an
+	 * external caller for no gain.
+	 *
+	 * @param string $animation Entrance animation name.
+	 * @return string Matching exit animation.
 	 */
-	function get_anim_exits( $animation ) {
-		if ( $animation ) {
-			$animation_array = array(
-				'bounce'            => 'fadeOut',
-				'flash'             => 'fadeOut',
-				'pulse'             => 'fadeOut',
-				'rubberBand'        => 'fadeOut',
-				'shake'             => 'fadeOut',
-				'swing'             => 'fadeOut',
-				'tada'              => 'fadeOut',
-				'wobble'            => 'fadeOut',
-				'jello'             => 'fadeOut',
-				'heartBeat'         => 'fadeOut',
-				'bounceIn'          => 'bounceOut',
-				'bounceInDown'      => 'bounceOutUp',
-				'bounceInLeft'      => 'bounceOutLeft',
-				'bounceInRight'     => 'bounceOutRight',
-				'bounceInUp'        => 'bounceOutDown',
-				'fadeIn'            => 'fadeOut',
-				'fadeInDown'        => 'fadeOutUp',
-				'fadeInDownBig'     => 'fadeOutUpBig',
-				'fadeInLeft'        => 'fadeOutLeft',
-				'fadeInLeftBig'     => 'fadeOutLeftBig',
-				'fadeInRight'       => 'fadeOutRight',
-				'fadeInRightBig'    => 'fadeOutRightBig',
-				'fadeInUp'          => 'fadeOutDown',
-				'fadeInUpBig'       => 'fadeOutDownBig',
-				'flip'              => 'fadeOut',
-				'flipInX'           => 'flipOutX',
-				'flipInY'           => 'flipOutY',
-				'lightSpeedIn'      => 'lightSpeedOut',
-				'rotateIn'          => 'rotateOut',
-				'rotateInDownLeft'  => 'rotateOutUpLeft',
-				'rotateInDownRight' => 'rotateOutUpRight',
-				'rotateInUpLeft'    => 'rotateOutDownLeft',
-				'rotateInUpRight'   => 'rotateOutDownRight',
-				'slideInUp'         => 'slideOutDown',
-				'slideInDown'       => 'slideOutUp',
-				'slideInLeft'       => 'slideOutLeft',
-				'slideInRight'      => 'slideOutRight',
-				'zoomIn'            => 'zoomOut',
-				'zoomInDown'        => 'zoomOutUp',
-				'zoomInLeft'        => 'zoomOutLeft',
-				'zoomInRight'       => 'zoomOutRight',
-				'zoomInUp'          => 'zoomOutDown',
-				'hinge'             => 'fadeOut',
-				'jackInTheBox'      => 'fadeOut',
-				'rollIn'            => 'fadeOut',
-			);
-			$animation       = $animation_array[ $animation ];
-			return $animation;
+	public function get_anim_exits( $animation ) {
+		if ( ! $animation ) {
+			return '';
 		}
+
+		$animation_array = array(
+			'bounce'            => 'fadeOut',
+			'flash'             => 'fadeOut',
+			'pulse'             => 'fadeOut',
+			'rubberBand'        => 'fadeOut',
+			'shake'             => 'fadeOut',
+			'swing'             => 'fadeOut',
+			'tada'              => 'fadeOut',
+			'wobble'            => 'fadeOut',
+			'jello'             => 'fadeOut',
+			'heartBeat'         => 'fadeOut',
+			'bounceIn'          => 'bounceOut',
+			'bounceInDown'      => 'bounceOutUp',
+			'bounceInLeft'      => 'bounceOutLeft',
+			'bounceInRight'     => 'bounceOutRight',
+			'bounceInUp'        => 'bounceOutDown',
+			'fadeIn'            => 'fadeOut',
+			'fadeInDown'        => 'fadeOutUp',
+			'fadeInDownBig'     => 'fadeOutUpBig',
+			'fadeInLeft'        => 'fadeOutLeft',
+			'fadeInLeftBig'     => 'fadeOutLeftBig',
+			'fadeInRight'       => 'fadeOutRight',
+			'fadeInRightBig'    => 'fadeOutRightBig',
+			'fadeInUp'          => 'fadeOutDown',
+			'fadeInUpBig'       => 'fadeOutDownBig',
+			'flip'              => 'fadeOut',
+			'flipInX'           => 'flipOutX',
+			'flipInY'           => 'flipOutY',
+			'lightSpeedIn'      => 'lightSpeedOut',
+			'rotateIn'          => 'rotateOut',
+			'rotateInDownLeft'  => 'rotateOutUpLeft',
+			'rotateInDownRight' => 'rotateOutUpRight',
+			'rotateInUpLeft'    => 'rotateOutDownLeft',
+			'rotateInUpRight'   => 'rotateOutDownRight',
+			'slideInUp'         => 'slideOutDown',
+			'slideInDown'       => 'slideOutUp',
+			'slideInLeft'       => 'slideOutLeft',
+			'slideInRight'      => 'slideOutRight',
+			'zoomIn'            => 'zoomOut',
+			'zoomInDown'        => 'zoomOutUp',
+			'zoomInLeft'        => 'zoomOutLeft',
+			'zoomInRight'       => 'zoomOutRight',
+			'zoomInUp'          => 'zoomOutDown',
+			'hinge'             => 'fadeOut',
+			'jackInTheBox'      => 'fadeOut',
+			'rollIn'            => 'fadeOut',
+		);
+
+		// Unmatched names must fall through to an empty string. Callers pass
+		// $settings['*_entrance_animation'] straight in, and that includes
+		// 'none' plus any Elementor animation not listed above - an unchecked
+		// lookup raised an undefined-key notice and returned null, which then
+		// reached esc_attr() and is deprecated from PHP 8.1.
+		return isset( $animation_array[ $animation ] ) ? $animation_array[ $animation ] : '';
 	}
 
 	/**
@@ -1604,7 +1618,6 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'default'   => 20,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'font-size: {{VALUE}}px;line-height: {{VALUE}}px;width: {{VALUE}}px;height: {{VALUE}}px;',
-					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'width: {{VALUE}}px;height: {{VALUE}}px;',
 				),
 			)
 		);
@@ -1771,10 +1784,11 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php $oembed = wp_oembed_get( $item['oembed'], $args ); ?>
             <?php
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_oembed_get returns safe HTML from WordPress oEmbed
-            echo ( $oembed ) ? $oembed : esc_url( $settings['oembed'] ); ?>
+            echo ( $oembed ) ? $oembed : esc_url( $settings['oembed'] );
+            ?>
             </div>
             <?php } elseif (($item['lightbox_image']['url']) && ($item['lightbox_style'] == 'img')) { ?>
-            <?php $lightbox_image_url = wp_get_attachment_image_url( $item['lightbox_image']['id'], 'full' );  ?>
+            <?php $lightbox_image_url = wp_get_attachment_image_url( $item['lightbox_image']['id'], 'full' ); ?>
             <div class="wbcom-lightbox-image" style="max-width:<?php echo esc_attr($settings['box_width']); ?>px;">
                 <img src="<?php echo esc_url($lightbox_image_url); ?>" alt="" />
             </div>
@@ -1782,12 +1796,14 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php if ($box_content) { ?>
             <div class="wbcom-lightbox-content" style="max-width:<?php echo esc_attr($settings['box_width']); ?>px;background-color:<?php echo esc_attr($settings['lightbox_bg_color']); ?>;padding:<?php echo esc_attr($settings['lightbox_spacing']['top'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['right'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['bottom'] . $settings['lightbox_spacing']['unit']); ?> <?php echo esc_attr($settings['lightbox_spacing']['left'] . $settings['lightbox_spacing']['unit']); ?>">
                 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- do_shortcode() output is trusted shortcode content.
-                echo do_shortcode($box_content); ?>
+                echo do_shortcode($box_content);
+                ?>
             </div>
             <?php } ?>
         </div>
     <?php } ?>
     <?php } ?>
-    <?php }
+    <?php
+    }
 	}
 }

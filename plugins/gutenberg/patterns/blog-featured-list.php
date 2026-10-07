@@ -32,7 +32,7 @@ register_block_pattern(
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Latest Articles</h2><!-- /wp:heading -->
+<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">' . esc_html__( 'Latest Articles', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>

@@ -24,6 +24,6 @@ register_block_pattern(
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/cta {"heading":"Enjoyed this article?","description":"Subscribe to our newsletter for the latest updates and insights delivered straight to your inbox.","buttonText":"Subscribe Now","buttonUrl":"#","alignment":"center","useThemeColors":true} /-->',
+<!-- wp:wbcom-essential/cta {"heading":' . wp_json_encode( __( 'Enjoyed this article?', 'wbcom-essential' ) ) . ',"description":' . wp_json_encode( __( 'Subscribe to our newsletter for the latest updates and insights delivered straight to your inbox.', 'wbcom-essential' ) ) . ',"buttonText":' . wp_json_encode( __( 'Subscribe Now', 'wbcom-essential' ) ) . ',"buttonUrl":"#","alignment":"center","useThemeColors":true} /-->',
 	)
 );

@@ -38,11 +38,11 @@
 		},
 		"supportUrl": {
 			"type": "string",
-			"default": ""
+			"default": "https://wbcomdesigns.com/support/#submit-ticket-section"
 		},
 		"supportLabel": {
 			"type": "string",
-			"default": "My Tickets"
+			"default": "Submit Ticket"
 		},
 		"defaultTab": {
 			"type": "string",

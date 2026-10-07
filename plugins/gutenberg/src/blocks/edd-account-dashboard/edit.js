@@ -163,7 +163,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 								) }
 								value={ supportLabel }
 								placeholder={ __(
-									'My Tickets',
+									'Submit Ticket',
 									'wbcom-essential'
 								) }
 								onChange={ ( value ) =>

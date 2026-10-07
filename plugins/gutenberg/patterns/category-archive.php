@@ -20,7 +20,7 @@ register_block_pattern(
 		'description' => __( 'A category archive page with a post grid and sidebar featuring latest posts.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'category', 'archive', 'sidebar', 'blog' ),
-		'content'     => '<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">Category</h2><!-- /wp:heading -->
+		'content'     => '<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">' . esc_html__( 'Category', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"24px"} -->
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -39,7 +39,7 @@ register_block_pattern(
 <div class="wp-block-column" style="flex-basis:33.33%">
 
 <!-- wp:heading {"level":3,"fontSize":"medium"} -->
-<h3 class="wp-block-heading has-medium-font-size">Recent Posts</h3>
+<h3 class="wp-block-heading has-medium-font-size">' . esc_html__( 'Recent Posts', 'wbcom-essential' ) . '</h3>
 <!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"12px"} -->
@@ -53,7 +53,7 @@ register_block_pattern(
 <!-- /wp:spacer -->
 
 <!-- wp:heading {"level":3,"fontSize":"medium"} -->
-<h3 class="wp-block-heading has-medium-font-size">Categories</h3>
+<h3 class="wp-block-heading has-medium-font-size">' . esc_html__( 'Categories', 'wbcom-essential' ) . '</h3>
 <!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"12px"} -->

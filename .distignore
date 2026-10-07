@@ -31,7 +31,15 @@ vendor/dealerdirect
 vendor/phpcompatibility
 vendor/php-parallel-lint
 vendor/wp-coding-standards
-vendor/wptrt
+vendor/phpstan
+vendor/php-stubs
+vendor/szepeviktor
+vendor/phpcsstandards
+phpcs.xml.dist
+phpstan.neon.dist
+phpstan-baseline.neon
+.phpstan-stubs
+bin/
 
 # Documentation & meta
 docs/

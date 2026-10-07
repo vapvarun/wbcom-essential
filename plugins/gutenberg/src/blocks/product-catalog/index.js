@@ -163,11 +163,11 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 							label={ __( 'Default sort', 'wbcom-essential' ) }
 							value={ defaultSort }
 							options={ [
-								{ label: 'Title (A-Z)', value: 'title' },
-								{ label: 'Newest first', value: 'date' },
-								{ label: 'Price: Low to High', value: 'price_asc' },
-								{ label: 'Price: High to Low', value: 'price_desc' },
-								{ label: 'Most Popular', value: 'popular' },
+								{ label: __( 'Title (A-Z)', 'wbcom-essential' ), value: 'title' },
+								{ label: __( 'Newest first', 'wbcom-essential' ), value: 'date' },
+								{ label: __( 'Price: Low to High', 'wbcom-essential' ), value: 'price_asc' },
+								{ label: __( 'Price: High to Low', 'wbcom-essential' ), value: 'price_desc' },
+								{ label: __( 'Most Popular', 'wbcom-essential' ), value: 'popular' },
 							] }
 							onChange={ ( val ) => setAttributes( { defaultSort: val } ) }
 						/>

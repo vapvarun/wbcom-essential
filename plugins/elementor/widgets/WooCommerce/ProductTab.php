@@ -445,8 +445,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'name'     => 'tabmenu_hover_border',
 							'label'    => __( 'Border', 'wbcom-essential' ),
-							'selector' => '{{WRAPPER}} .wb-tab-menus li a:hover',
-							'selector' => '{{WRAPPER}} .wb-tab-menus li a.htactive',
+							'selector' => '{{WRAPPER}} .wb-tab-menus li a:hover, {{WRAPPER}} .wb-tab-menus li a.htactive',
 						)
 					);
 

@@ -211,7 +211,7 @@ class Skin_Cards extends Skin_Base {
 		$this->add_control(
 			'badge_position',
 			array(
-				'label'       => 'Badge Position',
+				'label'       => esc_html__( 'Badge Position', 'wbcom-essential' ),
 				'label_block' => false,
 				'type'        => Controls_Manager::CHOOSE,
 				'options'     => array(

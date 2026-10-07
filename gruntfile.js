@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 	// Project configuration.
 	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
 	var pluginSlug    = 'wbcom-essential';
-	var pluginVersion = '4.6.4';
+	var pluginVersion = '4.7.0';
 
 	grunt.initConfig(
 		{
@@ -48,8 +48,18 @@ module.exports = function (grunt) {
 								// --- Ship everything by default ---
 								'**',
 
+								// --- vendor/: allowlist production packages only ---
+								// `composer install` (with dev) puts PHPCS, PHPStan and stubs in
+								// vendor/. Ship only the autoloader and the EDD SL SDK so a build
+								// never depends on whether dev dependencies happen to be installed.
+								'!vendor/**',
+								'vendor/autoload.php',
+								'vendor/composer/**',
+								'vendor/easy-digital-downloads/**',
+
 								// --- Blacklist: dev-only top-level folders ---
 								'!docs/**',
+								'!audit/**',
 								'!marketing/**',
 								'!plan/**',
 								'!scripts/**',
@@ -60,6 +70,21 @@ module.exports = function (grunt) {
 								'!.vscode/**',
 								'!.idea/**',
 								'!dist/**',
+								'!bin/**',
+
+								// --- Blacklist: static-analysis config ---
+								// These are dev-only. NOTE: grunt does NOT read .distignore -
+								// this list is the real packaging gate, so anything added
+								// there must be added here too or it still ships.
+								'!phpcs.xml.dist',
+								'!phpcs.xml',
+								'!phpstan.neon.dist',
+								'!phpstan.neon',
+								'!phpstan-baseline.neon',
+								'!phpstan-constants.php',
+								'!.phpstan-stubs/**',
+								'!composer.json',
+								'!composer.lock',
 
 								// --- Blacklist: block sources (only /build ships) ---
 								// Block JS/PHP sources under plugins/gutenberg/src/blocks/.

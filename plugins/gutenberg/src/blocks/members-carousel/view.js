@@ -11,6 +11,8 @@
  * the plugin — no import needed.
  */
 
+import swiperA11y from '../../shared/utils/swiper-a11y';
+
 ( function () {
 	'use strict';
 
@@ -290,7 +292,14 @@
 				} );
 
 				// Initialise Swiper now that slides are in the DOM.
-				initSwiper( swiperEl, Object.assign( {}, cfg.swiperOptions || {} ) );
+				// a11y: translated screen-reader labels. Without it Swiper replaces the
+				// translated button labels from render.php with its English defaults.
+				initSwiper(
+					swiperEl,
+					Object.assign( {}, cfg.swiperOptions || {}, {
+						a11y: swiperA11y( cfg.i18n.previous, cfg.i18n.next ),
+					} )
+				);
 			} )
 			.catch( function () {
 				const wrapper = swiperEl.querySelector( '.swiper-wrapper' );

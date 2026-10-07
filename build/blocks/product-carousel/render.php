@@ -25,7 +25,7 @@ $unique_id        = sanitize_html_class( $attributes['uniqueId'] ?? '' );
 $posts_per        = absint( $attributes['postsPerPage'] ?? 8 );
 $cat_ids          = array_map( 'absint', (array) ( $attributes['categories'] ?? array() ) );
 $order_by         = sanitize_key( $attributes['orderBy'] ?? 'date' );
-$order            = in_array( strtoupper( $attributes['order'] ?? 'DESC' ), array( 'ASC', 'DESC' ), true )
+$order            = in_array( strtoupper( $attributes['order'] ?? 'DESC' ), array( 'ASC', 'DESC' ), true ) // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- block render.php runs inside WP_Block::render(), not the global scope.
 	? strtoupper( $attributes['order'] )
 	: 'DESC';
 $slides           = absint( $attributes['slidesPerView'] ?? 4 );
@@ -182,7 +182,7 @@ $swiper_options = array(
 
 				$product_id   = $product->get_id();
 				$permalink    = get_permalink( $product_id );
-				$title        = $product->get_name();
+				$title        = $product->get_name(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- block render.php runs inside WP_Block::render(), not the global scope.
 				$rating       = (float) $product->get_average_rating();
 				$rating_count = $product->get_rating_count();
 				$thumb_id     = $product->get_image_id();
@@ -211,7 +211,7 @@ $swiper_options = array(
 							</h3>
 
 							<?php if ( $show_rating && $rating_count > 0 ) : ?>
-							<div class="wbe-product-carousel__rating" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'wbcom-essential' ), number_format( $rating, 1 ) ) ); ?>">
+							<div class="wbe-product-carousel__rating" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: average product rating, e.g. 4.5. */ __( 'Rated %s out of 5', 'wbcom-essential' ), number_format_i18n( $rating, 1 ) ) ); ?>">
 								<?php
 								for ( $i = 1; $i <= 5; $i++ ) :
 									if ( $rating >= $i ) {

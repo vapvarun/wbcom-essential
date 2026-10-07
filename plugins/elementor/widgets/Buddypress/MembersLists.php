@@ -573,8 +573,8 @@ class MembersLists extends \Elementor\Widget_Base {
 				'name'     => 'name_typography',
 				'selector' => '{{WRAPPER}} .wbcom-essential-members-list__name a',
 				'global' => [
-			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
-		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 			)
 		);
 
@@ -614,7 +614,7 @@ class MembersLists extends \Elementor\Widget_Base {
 		$type     = $settings['members_order'];
 
 		$avatar = array(
-			'type'  => 'full',			
+			'type'  => 'full',          
 			'width' => ( ! empty( $settings['avatar_width']['size'] ) ) ? esc_attr( $settings['avatar_width']['size'] ) : '',
 			'class' => 'avatar',
 		);
@@ -714,7 +714,7 @@ class MembersLists extends \Elementor\Widget_Base {
 						<div class="wbcom-essential-members-list wbcom-essential-members-list--<?php echo esc_attr( $mtype ); ?> wbcom-essential-no-data wbcom-essential-no-data--members <?php echo $mtype === $type ? 'active' : ''; ?>">
 							<img class="wbcom-essential-no-data__image"
 								src="<?php echo esc_url( WBCOM_ESSENTIAL_ASSETS_URL ); ?>images/no-data-found.svg"
-								alt="Members"/>
+								alt="<?php esc_attr_e( 'Members', 'wbcom-essential' ); ?>"/>
 							<br />
 							<div><?php echo esc_html__( 'Sorry, no members were found.', 'wbcom-essential' ); ?></div>
 						</div>

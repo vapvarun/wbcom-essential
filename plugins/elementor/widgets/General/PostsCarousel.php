@@ -2,13 +2,13 @@
 namespace WBCOM_ESSENTIAL\ELEMENTOR\Widgets\General;
 
 use WBCOM_ESSENTIAL\ELEMENTOR\Plugin;
-use \Elementor\Controls_Manager as Controls_Manager;
-use \Elementor\Frontend;
-use \Elementor\Group_Control_Border as Group_Control_Border;
-use \Elementor\Group_Control_Box_Shadow as Group_Control_Box_Shadow;
-use \Elementor\Group_Control_Typography as Group_Control_Typography;
-use \Elementor\Utils as Utils;
-use \Elementor\Widget_Base as Widget_Base;
+use Elementor\Controls_Manager;
+use Elementor\Frontend;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Typography;
+use Elementor\Utils;
+use Elementor\Widget_Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -201,8 +201,8 @@ class PostsCarousel extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'type1',
 				'options' => array(
-					'type1' => 'Type 1',
-					'type2' => 'Type 2',
+					'type1' => esc_html__( 'Type 1', 'wbcom-essential' ),
+					'type2' => esc_html__( 'Type 2', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -383,8 +383,8 @@ class PostsCarousel extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'DESC',
 				'options' => array(
-					'DESC' => 'DESC',
-					'ASC'  => 'ASC',
+					'DESC' => esc_html__( 'DESC', 'wbcom-essential' ),
+					'ASC'  => esc_html__( 'ASC', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -396,16 +396,16 @@ class PostsCarousel extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'date',
 				'options' => array(
-					'date'          => 'Date',
-					'ID'            => 'ID',
-					'author'        => 'Author',
-					'title'         => 'Title',
-					'name'          => 'Name',
-					'modified'      => 'Modified',
-					'parent'        => 'Parent',
-					'rand'          => 'Rand',
-					'comment_count' => 'Comments Count',
-					'none'          => 'None',
+					'date'          => esc_html__( 'Date', 'wbcom-essential' ),
+					'ID'            => esc_html__( 'ID', 'wbcom-essential' ),
+					'author'        => esc_html__( 'Author', 'wbcom-essential' ),
+					'title'         => esc_html__( 'Title', 'wbcom-essential' ),
+					'name'          => esc_html__( 'Name', 'wbcom-essential' ),
+					'modified'      => esc_html__( 'Modified', 'wbcom-essential' ),
+					'parent'        => esc_html__( 'Parent', 'wbcom-essential' ),
+					'rand'          => esc_html__( 'Random', 'wbcom-essential' ),
+					'comment_count' => esc_html__( 'Comments Count', 'wbcom-essential' ),
+					'none'          => esc_html__( 'None', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -435,8 +435,8 @@ class PostsCarousel extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'off',
 				'options' => array(
-					'off' => 'Off',
-					'on'  => 'On',
+					'off' => esc_html__( 'Off', 'wbcom-essential' ),
+					'on'  => esc_html__( 'On', 'wbcom-essential' ),
 				),
 			)
 		);
@@ -448,53 +448,53 @@ class PostsCarousel extends Widget_Base {
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'fade-in',
 				'options'   => array(
-					'fade-in'           => 'Fade In',
-					'fade-in-up'        => 'fade in up',
-					'fade-in-down'      => 'fade in down',
-					'fade-in-left'      => 'fade in Left',
-					'fade-in-right'     => 'fade in Right',
-					'fade-out'          => 'Fade In',
-					'fade-out-up'       => 'Fade Out up',
-					'fade-out-down'     => 'Fade Out down',
-					'fade-out-left'     => 'Fade Out Left',
-					'fade-out-right'    => 'Fade Out Right',
-					'bounce-in'         => 'Bounce In',
-					'bounce-in-up'      => 'Bounce in up',
-					'bounce-in-down'    => 'Bounce in down',
-					'bounce-in-left'    => 'Bounce in Left',
-					'bounce-in-right'   => 'Bounce in Right',
-					'bounce-out'        => 'Bounce In',
-					'bounce-out-up'     => 'Bounce Out up',
-					'bounce-out-down'   => 'Bounce Out down',
-					'bounce-out-left'   => 'Bounce Out Left',
-					'bounce-out-right'  => 'Bounce Out Right',
-					'zoom-in'           => 'Zoom In',
-					'zoom-in-up'        => 'Zoom in up',
-					'zoom-in-down'      => 'Zoom in down',
-					'zoom-in-left'      => 'Zoom in Left',
-					'zoom-in-right'     => 'Zoom in Right',
-					'zoom-out'          => 'Zoom In',
-					'zoom-out-up'       => 'Zoom Out up',
-					'zoom-out-down'     => 'Zoom Out down',
-					'zoom-out-left'     => 'Zoom Out Left',
-					'zoom-out-right'    => 'Zoom Out Right',
-					'flash'             => 'Flash',
-					'strobe'            => 'Strobe',
-					'shake-x'           => 'Shake X',
-					'shake-y'           => 'Shake Y',
-					'bounce'            => 'Bounce',
-					'tada'              => 'Tada',
-					'rubber-band'       => 'Rubber Band',
-					'swing'             => 'Swing',
-					'spin'              => 'Spin',
-					'spin-reverse'      => 'Spin Reverse',
-					'slingshot'         => 'Slingshot',
-					'slingshot-reverse' => 'Slingshot Reverse',
-					'wobble'            => 'Wobble',
-					'pulse'             => 'Pulse',
-					'pulsate'           => 'Pulsate',
-					'heartbeat'         => 'Heartbeat',
-					'panic'             => 'Panic',
+					'fade-in'           => esc_html__( 'Fade In', 'wbcom-essential' ),
+					'fade-in-up'        => esc_html__( 'Fade In Up', 'wbcom-essential' ),
+					'fade-in-down'      => esc_html__( 'Fade In Down', 'wbcom-essential' ),
+					'fade-in-left'      => esc_html__( 'Fade In Left', 'wbcom-essential' ),
+					'fade-in-right'     => esc_html__( 'Fade In Right', 'wbcom-essential' ),
+					'fade-out'          => esc_html__( 'Fade Out', 'wbcom-essential' ),
+					'fade-out-up'       => esc_html__( 'Fade Out Up', 'wbcom-essential' ),
+					'fade-out-down'     => esc_html__( 'Fade Out Down', 'wbcom-essential' ),
+					'fade-out-left'     => esc_html__( 'Fade Out Left', 'wbcom-essential' ),
+					'fade-out-right'    => esc_html__( 'Fade Out Right', 'wbcom-essential' ),
+					'bounce-in'         => esc_html__( 'Bounce In', 'wbcom-essential' ),
+					'bounce-in-up'      => esc_html__( 'Bounce In Up', 'wbcom-essential' ),
+					'bounce-in-down'    => esc_html__( 'Bounce In Down', 'wbcom-essential' ),
+					'bounce-in-left'    => esc_html__( 'Bounce In Left', 'wbcom-essential' ),
+					'bounce-in-right'   => esc_html__( 'Bounce In Right', 'wbcom-essential' ),
+					'bounce-out'        => esc_html__( 'Bounce Out', 'wbcom-essential' ),
+					'bounce-out-up'     => esc_html__( 'Bounce Out Up', 'wbcom-essential' ),
+					'bounce-out-down'   => esc_html__( 'Bounce Out Down', 'wbcom-essential' ),
+					'bounce-out-left'   => esc_html__( 'Bounce Out Left', 'wbcom-essential' ),
+					'bounce-out-right'  => esc_html__( 'Bounce Out Right', 'wbcom-essential' ),
+					'zoom-in'           => esc_html__( 'Zoom In', 'wbcom-essential' ),
+					'zoom-in-up'        => esc_html__( 'Zoom In Up', 'wbcom-essential' ),
+					'zoom-in-down'      => esc_html__( 'Zoom In Down', 'wbcom-essential' ),
+					'zoom-in-left'      => esc_html__( 'Zoom In Left', 'wbcom-essential' ),
+					'zoom-in-right'     => esc_html__( 'Zoom In Right', 'wbcom-essential' ),
+					'zoom-out'          => esc_html__( 'Zoom Out', 'wbcom-essential' ),
+					'zoom-out-up'       => esc_html__( 'Zoom Out Up', 'wbcom-essential' ),
+					'zoom-out-down'     => esc_html__( 'Zoom Out Down', 'wbcom-essential' ),
+					'zoom-out-left'     => esc_html__( 'Zoom Out Left', 'wbcom-essential' ),
+					'zoom-out-right'    => esc_html__( 'Zoom Out Right', 'wbcom-essential' ),
+					'flash'             => esc_html__( 'Flash', 'wbcom-essential' ),
+					'strobe'            => esc_html__( 'Strobe', 'wbcom-essential' ),
+					'shake-x'           => esc_html__( 'Shake X', 'wbcom-essential' ),
+					'shake-y'           => esc_html__( 'Shake Y', 'wbcom-essential' ),
+					'bounce'            => esc_html__( 'Bounce', 'wbcom-essential' ),
+					'tada'              => esc_html__( 'Tada', 'wbcom-essential' ),
+					'rubber-band'       => esc_html__( 'Rubber Band', 'wbcom-essential' ),
+					'swing'             => esc_html__( 'Swing', 'wbcom-essential' ),
+					'spin'              => esc_html__( 'Spin', 'wbcom-essential' ),
+					'spin-reverse'      => esc_html__( 'Spin Reverse', 'wbcom-essential' ),
+					'slingshot'         => esc_html__( 'Slingshot', 'wbcom-essential' ),
+					'slingshot-reverse' => esc_html__( 'Slingshot Reverse', 'wbcom-essential' ),
+					'wobble'            => esc_html__( 'Wobble', 'wbcom-essential' ),
+					'pulse'             => esc_html__( 'Pulse', 'wbcom-essential' ),
+					'pulsate'           => esc_html__( 'Pulsate', 'wbcom-essential' ),
+					'heartbeat'         => esc_html__( 'Heartbeat', 'wbcom-essential' ),
+					'panic'             => esc_html__( 'Panic', 'wbcom-essential' ),
 				),
 				'condition' => array(
 					'wbcom_animate' => 'on',
@@ -531,8 +531,8 @@ class PostsCarousel extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'off',
 				'options' => array(
-					'off' => 'Off',
-					'on'  => 'On',
+					'off' => esc_html__( 'Off', 'wbcom-essential' ),
+					'on'  => esc_html__( 'On', 'wbcom-essential' ),
 				),
 			)
 		);

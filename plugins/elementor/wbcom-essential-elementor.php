@@ -485,7 +485,9 @@ function wbcom_ajax_login() {
 			)
 		);
 	} else {
-		$redirect_url = ( ! empty( $_POST['redirect_to'] ) && is_string( $_POST['redirect_to'] ) ) ? esc_url_raw( sanitize_url( wp_unslash( $_POST['redirect_to'] ) ) ) : home_url();
+		// Only redirect within this site: an external redirect_to would turn the
+		// login form into an open redirect.
+		$redirect_url = ( ! empty( $_POST['redirect_to'] ) && is_string( $_POST['redirect_to'] ) ) ? wp_validate_redirect( esc_url_raw( wp_unslash( $_POST['redirect_to'] ) ), home_url() ) : home_url();
 
 		echo wp_json_encode(
 			array(

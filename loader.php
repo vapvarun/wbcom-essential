@@ -14,9 +14,9 @@
  * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com/downloads/wbcom-essential/
  * Description:       Premium Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design.
- * Version:           4.6.4
+ * Version:           4.7.0
  * Requires at least: 6.0
- * Tested up to:      6.9
+ * Tested up to:      7.1
  * Requires PHP:      8.0
  * Author:            Wbcom Designs
  * Author URI:        https://wbcomdesigns.com/
@@ -30,8 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '4.6.4' );
-define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.3.0' );
+define( 'WBCOM_ESSENTIAL_VERSION', '4.7.0' );
+define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.6.3' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASE', plugin_basename( WBCOM_ESSENTIAL_FILE ) );
@@ -91,6 +91,12 @@ add_action(
 		);
 	}
 );
+
+// Wbcom Essential is free: activate the bundled licence key once in the
+// background so updates download on every install path, not only Reign's
+// one-click installer. See Preset_Activation for the rationale.
+require_once WBCOM_ESSENTIAL_PATH . 'includes/class-wbcom-essential-preset-activation.php';
+\WBCOM_ESSENTIAL\Preset_Activation::register();
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/wbcom-essential-function.php';

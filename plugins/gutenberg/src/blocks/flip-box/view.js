@@ -7,6 +7,8 @@
  * @package wbcom-essential
  */
 
+import { __, sprintf } from '@wordpress/i18n';
+
 ( function () {
 	'use strict';
 
@@ -24,8 +26,12 @@
 			box.setAttribute( 'role', 'button' );
 			box.setAttribute(
 				'aria-label',
-				( box.querySelector( '.wbe-flip-box__front .wbe-flip-box__title' )?.textContent || 'Flip card' ) +
-					' — click to flip'
+				sprintf(
+					/* translators: %s: flip box front title. */
+					__( '%s — click to flip', 'wbcom-essential' ),
+					box.querySelector( '.wbe-flip-box__front .wbe-flip-box__title' )?.textContent ||
+						__( 'Flip card', 'wbcom-essential' )
+				)
 			);
 
 			// Toggle class on click / tap.

@@ -6,6 +6,9 @@
  * @package wbcom-essential
  */
 
+import { __ } from '@wordpress/i18n';
+import swiperA11y from '../../shared/utils/swiper-a11y';
+
 ( function () {
 	'use strict';
 
@@ -51,10 +54,10 @@
 					nextEl: el.querySelector( '.swiper-button-next' ),
 				},
 				grabCursor: true,
-				a11y: {
-					prevSlideMessage: 'Previous post',
-					nextSlideMessage: 'Next post',
-				},
+				a11y: swiperA11y(
+					__( 'Previous post', 'wbcom-essential' ),
+					__( 'Next post', 'wbcom-essential' )
+				),
 			};
 
 			if ( isSlider ) {

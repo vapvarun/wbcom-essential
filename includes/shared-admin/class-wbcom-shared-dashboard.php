@@ -7,10 +7,11 @@
  * @version 2.0.0
  */
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) { exit;
+}
 
-class Wbcom_Shared_Dashboard
-{
+class Wbcom_Shared_Dashboard {
+
 
     private $registered_plugins = array();
     private $menu_created = false;
@@ -38,7 +39,8 @@ class Wbcom_Shared_Dashboard
      */
     public function create_main_menu()
     {
-        if ($this->menu_created) return;
+        if ($this->menu_created) { return;
+        }
 
         add_menu_page(
             esc_html__('Wbcom Designs', 'wbcom-essential'),
@@ -69,11 +71,13 @@ class Wbcom_Shared_Dashboard
     public function add_plugin_submenus()
     {
         foreach ($this->registered_plugins as $plugin) {
-            if ($plugin['status'] !== 'active') continue;
+            if ($plugin['status'] !== 'active') { continue;
+            }
 
             $menu_slug = $this->extract_menu_slug($plugin['settings_url']);
 
-            if (empty($menu_slug)) continue;
+            if (empty($menu_slug)) { continue;
+            }
 
             add_submenu_page(
                 'wbcom-designs',
@@ -91,8 +95,7 @@ class Wbcom_Shared_Dashboard
      */
     public function render_dashboard()
     {
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Admin dashboard tab parameter, no state change.
-        $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+        $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Admin dashboard tab parameter, no state change.
 ?>
         <div class="wrap wbcom-shared-dashboard">
             <h1>
@@ -218,7 +221,7 @@ class Wbcom_Shared_Dashboard
                             </a>
 
                             <div style="background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.2);">
-                                ✓ No Commitment Required
+                                ✓ <?php esc_html_e( 'No Commitment Required', 'wbcom-essential' ); ?>
                             </div>
                         </div>
                     </div>
@@ -386,7 +389,10 @@ class Wbcom_Shared_Dashboard
                                     style="display: block; width: 100%; background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%); color: #ffffff; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);"
                                     onmouseover="this.style.background='linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)';"
                                     onmouseout="this.style.background='linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(44, 82, 130, 0.3)';">
-                                    Get <?php echo esc_html($plugin['name']); ?>
+                                    <?php
+                                    /* translators: %s: premium plugin name. */
+                                    echo esc_html( sprintf( __( 'Get %s', 'wbcom-essential' ), $plugin['name'] ) );
+                                    ?>
                                 </a>
                             </div>
                         </div>
@@ -470,7 +476,7 @@ class Wbcom_Shared_Dashboard
                                     style="width: 100%; background: linear-gradient(135deg, #2c5282 0%, #4a6fa1 100%); color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; transition: all 0.3s ease; box-sizing: border-box;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(44, 82, 130, 0.4)';"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
-                                    View Theme
+                                    <?php esc_html_e( 'View Theme', 'wbcom-essential' ); ?>
                                 </a>
                             </div>
                         </div>
@@ -536,36 +542,36 @@ class Wbcom_Shared_Dashboard
         <!-- Care Plan Block -->
         <div class="wbcom-sidebar-widget wbcom-care-plan-widget">
             <div class="service-header">
-                <h3>🛡️ WordPress Care Plan</h3>
-                <div class="service-badge">ESSENTIAL</div>
+                <h3>🛡️ <?php esc_html_e( 'WordPress Care Plan', 'wbcom-essential' ); ?></h3>
+                <div class="service-badge"><?php esc_html_e( 'Essential', 'wbcom-essential' ); ?></div>
             </div>
 
             <div class="service-pricing">
                 <span class="price">$149</span>
-                <span class="period">/month per site</span>
+                <span class="period"><?php esc_html_e( '/month per site', 'wbcom-essential' ); ?></span>
             </div>
 
             <div class="service-description">
-                <p><strong>WordPress updates breaking your site?</strong> We test everything before deployment. <strong>Worried about security breaches?</strong> We monitor and protect 24/7. <strong>Site running slow?</strong> We optimize performance continuously.</p>
+                <p><strong><?php esc_html_e( 'WordPress updates breaking your site?', 'wbcom-essential' ); ?></strong> <?php esc_html_e( 'We test everything before deployment.', 'wbcom-essential' ); ?> <strong><?php esc_html_e( 'Worried about security breaches?', 'wbcom-essential' ); ?></strong> <?php esc_html_e( 'We monitor and protect 24/7.', 'wbcom-essential' ); ?> <strong><?php esc_html_e( 'Site running slow?', 'wbcom-essential' ); ?></strong> <?php esc_html_e( 'We optimize performance continuously.', 'wbcom-essential' ); ?></p>
             </div>
 
             <div class="service-features">
                 <ul>
-                    <li><span class="dashicons dashicons-yes"></span> No More Broken Sites from Updates</li>
-                    <li><span class="dashicons dashicons-yes"></span> Protected from Security Threats</li>
-                    <li><span class="dashicons dashicons-yes"></span> Always Fast & Optimized Performance</li>
-                    <li><span class="dashicons dashicons-yes"></span> Automatic Daily Backups</li>
-                    <li><span class="dashicons dashicons-yes"></span> Expert Support When You Need It</li>
-                    <li><span class="dashicons dashicons-yes"></span> Peace of Mind - Focus on Business</li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'No More Broken Sites from Updates', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Protected from Security Threats', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Always Fast & Optimized Performance', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Automatic Daily Backups', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Expert Support When You Need It', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Peace of Mind - Focus on Business', 'wbcom-essential' ); ?></li>
                 </ul>
             </div>
 
             <div class="service-actions">
                 <a href="https://wbcomdesigns.com/downloads/wordpress-care-plans/" target="_blank" class="service-btn primary" style="margin-bottom: 8px;">
-                    Get Care Plan
+                    <?php esc_html_e( 'Get Care Plan', 'wbcom-essential' ); ?>
                 </a>
                 <a href="https://wbcomdesigns.com/start-a-project/" target="_blank" class="service-btn outline">
-                    Schedule Free Call
+                    <?php esc_html_e( 'Schedule Free Call', 'wbcom-essential' ); ?>
                 </a>
             </div>
         </div>
@@ -573,36 +579,36 @@ class Wbcom_Shared_Dashboard
         <!-- Custom Development Block -->
         <div class="wbcom-sidebar-widget wbcom-development-widget">
             <div class="service-header">
-                <h3>⚙️ Custom Development</h3>
-                <div class="service-badge">PAY-AS-YOU-GO</div>
+                <h3>⚙️ <?php esc_html_e( 'Custom Development', 'wbcom-essential' ); ?></h3>
+                <div class="service-badge"><?php esc_html_e( 'Pay-as-you-go', 'wbcom-essential' ); ?></div>
             </div>
 
             <div class="service-pricing">
-                <span class="price">Flexible</span>
-                <span class="period">Hours</span>
+                <span class="price"><?php esc_html_e( 'Flexible', 'wbcom-essential' ); ?></span>
+                <span class="period"><?php esc_html_e( 'Hours', 'wbcom-essential' ); ?></span>
             </div>
 
             <div class="service-description">
-                <p>Professional WordPress development services with flexible engagement model. Expert developers available for custom projects with transparent pricing and no hidden costs.</p>
+                <p><?php esc_html_e( 'Professional WordPress development services with flexible engagement model. Expert developers available for custom projects with transparent pricing and no hidden costs.', 'wbcom-essential' ); ?></p>
             </div>
 
             <div class="service-features">
                 <ul>
-                    <li><span class="dashicons dashicons-yes"></span> Fully Customizable Project Scope</li>
-                    <li><span class="dashicons dashicons-yes"></span> Flexible Development Hours</li>
-                    <li><span class="dashicons dashicons-yes"></span> Transparent Pay-Per-Need Pricing</li>
-                    <li><span class="dashicons dashicons-yes"></span> No Hidden Costs or Surprises</li>
-                    <li><span class="dashicons dashicons-yes"></span> Direct Developer Consultation</li>
-                    <li><span class="dashicons dashicons-yes"></span> Specialized Custom Solutions</li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Fully Customizable Project Scope', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Flexible Development Hours', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Transparent Pay-Per-Need Pricing', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'No Hidden Costs or Surprises', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Direct Developer Consultation', 'wbcom-essential' ); ?></li>
+                    <li><span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Specialized Custom Solutions', 'wbcom-essential' ); ?></li>
                 </ul>
             </div>
 
             <div class="service-actions">
                 <a href="https://wbcomdesigns.com/start-a-project/" target="_blank" class="service-btn primary" style="margin-bottom: 8px;">
-                    Start Project
+                    <?php esc_html_e( 'Start Project', 'wbcom-essential' ); ?>
                 </a>
                 <a href="https://wbcomdesigns.com/support/" target="_blank" class="service-btn outline">
-                    Book Consultation
+                    <?php esc_html_e( 'Book Consultation', 'wbcom-essential' ); ?>
                 </a>
             </div>
         </div>
@@ -854,49 +860,49 @@ class Wbcom_Shared_Dashboard
         return array(
             array(
                 'name'        => 'Community Bundle',
-                'tagline'     => 'Complete BuddyPress Community Solution - 25+ Plugins',
-                'description' => 'Complete BuddyPress community solution with over 25 essential plugins for building a thriving online community.',
+                'tagline'     => __( 'Complete BuddyPress Community Solution - 25+ Plugins', 'wbcom-essential' ),
+                'description' => __( 'Complete BuddyPress community solution with over 25 essential plugins for building a thriving online community.', 'wbcom-essential' ),
                 'price'       => '$249',
                 'url'         => 'https://wbcomdesigns.com/downloads/buddypress-community-bundle/',
                 'features'    => array(
-                    'All BuddyPress premium plugins included',
-                    'Activity feeds enhancement',
-                    'Advanced member management',
-                    'Community engagement tools',
-                    'Professional support included',
-                    'Regular updates and new features'
+                    __( 'All BuddyPress premium plugins included', 'wbcom-essential' ),
+                    __( 'Activity feeds enhancement', 'wbcom-essential' ),
+                    __( 'Advanced member management', 'wbcom-essential' ),
+                    __( 'Community engagement tools', 'wbcom-essential' ),
+                    __( 'Professional support included', 'wbcom-essential' ),
+                    __( 'Regular updates and new features', 'wbcom-essential' )
                 ),
             ),
             array(
                 'name'        => 'Woo Sell Services',
-                'tagline'     => 'Service Booking & Management Platform',
-                'description' => 'Transform your WooCommerce store to sell services with booking, appointments, and service management features.',
+                'tagline'     => __( 'Service Booking & Management Platform', 'wbcom-essential' ),
+                'description' => __( 'Transform your WooCommerce store to sell services with booking, appointments, and service management features.', 'wbcom-essential' ),
                 'price'       => '$59',
                 'url'         => 'https://wbcomdesigns.com/downloads/woo-sell-services/',
                 'demo_url'    => 'https://app.instawp.io/launch?t=woo-sell-services&d=v1',
                 'features'    => array(
-                    'Service booking and appointments',
-                    'Staff and resource management',
-                    'Service packages and pricing',
-                    'Calendar integration',
-                    'Customer booking management',
-                    'Payment and invoice handling'
+                    __( 'Service booking and appointments', 'wbcom-essential' ),
+                    __( 'Staff and resource management', 'wbcom-essential' ),
+                    __( 'Service packages and pricing', 'wbcom-essential' ),
+                    __( 'Calendar integration', 'wbcom-essential' ),
+                    __( 'Customer booking management', 'wbcom-essential' ),
+                    __( 'Payment and invoice handling', 'wbcom-essential' )
                 ),
             ),
             array(
                 'name'        => 'LearnDash Dashboard',
-                'tagline'     => 'Advanced Learning Analytics & Management',
-                'description' => 'Advanced dashboard for LearnDash with comprehensive analytics, reporting, and student management tools.',
+                'tagline'     => __( 'Advanced Learning Analytics & Management', 'wbcom-essential' ),
+                'description' => __( 'Advanced dashboard for LearnDash with comprehensive analytics, reporting, and student management tools.', 'wbcom-essential' ),
                 'price'       => '$79',
                 'url'         => 'https://wbcomdesigns.com/downloads/learndash-dashboard/',
                 'demo_url'    => 'https://app.instawp.io/launch?t=learndash-dashboard&d=v1',
                 'features'    => array(
-                    'Advanced course analytics',
-                    'Student progress tracking',
-                    'Custom reporting system',
-                    'Instructor dashboard',
-                    'Revenue and enrollment insights',
-                    'Export and data visualization'
+                    __( 'Advanced course analytics', 'wbcom-essential' ),
+                    __( 'Student progress tracking', 'wbcom-essential' ),
+                    __( 'Custom reporting system', 'wbcom-essential' ),
+                    __( 'Instructor dashboard', 'wbcom-essential' ),
+                    __( 'Revenue and enrollment insights', 'wbcom-essential' ),
+                    __( 'Export and data visualization', 'wbcom-essential' )
                 ),
             ),
         );
@@ -907,62 +913,62 @@ class Wbcom_Shared_Dashboard
         return array(
             array(
                 'name'        => 'Reign Bundle',
-                'tagline'     => 'Reign Theme + All Reign Addons',
-                'description' => 'The ultimate all-in-one package. Get Reign theme plus all premium addons for building any type of community - social networks, learning platforms, marketplaces, or directories.',
+                'tagline'     => __( 'Reign Theme + All Reign Addons', 'wbcom-essential' ),
+                'description' => __( 'The ultimate all-in-one package. Get Reign theme plus all premium addons for building any type of community - social networks, learning platforms, marketplaces, or directories.', 'wbcom-essential' ),
                 'price'       => '$179',
                 'url'         => 'https://wbcomdesigns.com/downloads/reign-addons-bundle/',
                 'features'    => array(
-                    'Complete multi-purpose solution for any community type',
-                    'Works seamlessly with BuddyPress & BuddyBoss',
-                    'Built-in monetization & membership capabilities',
-                    'Professional templates for every industry',
-                    'Advanced branding & white-label options',
-                    'Priority support with lifetime updates'
+                    __( 'Complete multi-purpose solution for any community type', 'wbcom-essential' ),
+                    __( 'Works seamlessly with BuddyPress & BuddyBoss', 'wbcom-essential' ),
+                    __( 'Built-in monetization & membership capabilities', 'wbcom-essential' ),
+                    __( 'Professional templates for every industry', 'wbcom-essential' ),
+                    __( 'Advanced branding & white-label options', 'wbcom-essential' ),
+                    __( 'Priority support with lifetime updates', 'wbcom-essential' )
                 ),
             ),
             array(
                 'name'        => 'Reign Theme',
-                'tagline'     => 'Multi-Purpose Community Powerhouse',
-                'description' => 'One theme, unlimited possibilities. Transform your site into any type of community - social networks, learning platforms, marketplaces, or professional directories with BuddyPress & BuddyBoss compatibility.',
+                'tagline'     => __( 'Multi-Purpose Community Powerhouse', 'wbcom-essential' ),
+                'description' => __( 'One theme, unlimited possibilities. Transform your site into any type of community - social networks, learning platforms, marketplaces, or professional directories with BuddyPress & BuddyBoss compatibility.', 'wbcom-essential' ),
                 'price'       => '$99',
                 'url'         => 'https://wbcomdesigns.com/downloads/reign-buddypress-theme/',
                 'features'    => array(
-                    'Multi-platform support (BuddyPress, BuddyBoss, PeepSo)',
-                    'Transform into social network, LMS, or marketplace',
-                    'Advanced customization without coding',
-                    'Mobile-first responsive design',
-                    'Built-in SEO optimization & performance',
-                    'Integrates with all major plugins'
+                    __( 'Multi-platform support (BuddyPress, BuddyBoss, PeepSo)', 'wbcom-essential' ),
+                    __( 'Transform into social network, LMS, or marketplace', 'wbcom-essential' ),
+                    __( 'Advanced customization without coding', 'wbcom-essential' ),
+                    __( 'Mobile-first responsive design', 'wbcom-essential' ),
+                    __( 'Built-in SEO optimization & performance', 'wbcom-essential' ),
+                    __( 'Integrates with all major plugins', 'wbcom-essential' )
                 ),
             ),
             array(
                 'name'        => 'BuddyX Pro',
-                'tagline'     => 'Trusted by 6000+ Successful Communities',
-                'description' => 'Join thousands of thriving communities worldwide. Create Facebook-like social experiences, integrate learning platforms, build marketplaces, or launch membership sites with complete customization.',
+                'tagline'     => __( 'Trusted by 6000+ Successful Communities', 'wbcom-essential' ),
+                'description' => __( 'Join thousands of thriving communities worldwide. Create Facebook-like social experiences, integrate learning platforms, build marketplaces, or launch membership sites with complete customization.', 'wbcom-essential' ),
                 'price'       => '$79',
                 'url'         => 'https://wbcomdesigns.com/downloads/buddyx-pro-theme/',
                 'features'    => array(
-                    'Facebook-style social networking experience',
-                    'Multi-LMS support (LearnDash, LearnPress, LifterLMS)',
-                    'WooCommerce multi-vendor marketplace ready',
-                    'Membership & subscription monetization',
-                    'Elementor page builder integration',
-                    'Dark/light modes with custom branding'
+                    __( 'Facebook-style social networking experience', 'wbcom-essential' ),
+                    __( 'Multi-LMS support (LearnDash, LearnPress, LifterLMS)', 'wbcom-essential' ),
+                    __( 'WooCommerce multi-vendor marketplace ready', 'wbcom-essential' ),
+                    __( 'Membership & subscription monetization', 'wbcom-essential' ),
+                    __( 'Elementor page builder integration', 'wbcom-essential' ),
+                    __( 'Dark/light modes with custom branding', 'wbcom-essential' )
                 ),
             ),
             array(
                 'name'        => 'BuddyX Free',
-                'tagline'     => 'Professional Community Foundation',
-                'description' => 'Start building your community with our powerful free foundation. Perfect for testing and small communities, with a clear upgrade path to Pro features when ready to scale.',
-                'price'       => 'Free',
+                'tagline'     => __( 'Professional Community Foundation', 'wbcom-essential' ),
+                'description' => __( 'Start building your community with our powerful free foundation. Perfect for testing and small communities, with a clear upgrade path to Pro features when ready to scale.', 'wbcom-essential' ),
+                'price'       => __( 'Free', 'wbcom-essential' ),
                 'url'         => 'https://wbcomdesigns.com/downloads/buddyx-theme/',
                 'features'    => array(
-                    'Complete community foundation at zero cost',
-                    'Modern, mobile-responsive design',
-                    'Essential social networking features',
-                    'Compatible with popular plugins',
-                    'Upgrade path to Pro when ready',
-                    'Active community support'
+                    __( 'Complete community foundation at zero cost', 'wbcom-essential' ),
+                    __( 'Modern, mobile-responsive design', 'wbcom-essential' ),
+                    __( 'Essential social networking features', 'wbcom-essential' ),
+                    __( 'Compatible with popular plugins', 'wbcom-essential' ),
+                    __( 'Upgrade path to Pro when ready', 'wbcom-essential' ),
+                    __( 'Active community support', 'wbcom-essential' )
                 ),
             ),
         );

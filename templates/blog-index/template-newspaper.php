@@ -33,6 +33,7 @@ $wbcom_total       = count( $wbcom_sections );
 		<?php if ( $wbcom_show_ticker ) : ?>
 			<div class="wbcom-blog__ticker">
 				<?php
+				// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup.
 				echo Wbcom_Blog_Index_Templates::render_block(
 					'wbcom-essential/posts-ticker',
 					array(
@@ -42,6 +43,7 @@ $wbcom_total       = count( $wbcom_sections );
 						'useThemeColors' => true,
 					)
 				);
+				// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</div>
 		<?php endif; ?>
@@ -49,6 +51,7 @@ $wbcom_total       = count( $wbcom_sections );
 		<?php if ( $wbcom_show_slider ) : ?>
 			<div class="wbcom-blog__hero">
 				<?php
+				// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup.
 				echo Wbcom_Blog_Index_Templates::render_block(
 					'wbcom-essential/post-slider',
 					array(
@@ -58,6 +61,7 @@ $wbcom_total       = count( $wbcom_sections );
 						'useThemeColors' => true,
 					)
 				);
+				// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</div>
 		<?php endif; ?>
@@ -98,10 +102,10 @@ $wbcom_total       = count( $wbcom_sections );
 			?>
 			<div class="wbcom-blog__dual-section">
 				<div class="wbcom-blog__dual-main">
-					<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs1 ); ?>
+					<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs1 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup. ?>
 				</div>
 				<div class="wbcom-blog__dual-sidebar">
-					<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs2 ); ?>
+					<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs2 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup. ?>
 				</div>
 			</div>
 		<?php endif; ?>
@@ -133,7 +137,7 @@ $wbcom_total       = count( $wbcom_sections );
 			}
 			?>
 			<div class="wbcom-blog__section">
-				<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs ); ?>
+				<?php echo Wbcom_Blog_Index_Templates::render_block( 'wbcom-essential/posts-revolution', $wbcom_attrs ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup. ?>
 			</div>
 		<?php endfor; ?>
 

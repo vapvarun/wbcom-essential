@@ -161,6 +161,7 @@
                     const author = post._embedded && post._embedded.author && post._embedded.author[0] 
                         ? post._embedded.author[0].name 
                         : 'Wbcom Designs';
+                    const strings = WbcomSharedDashboard.settings.strings;
                     
                     newsHtml += '<div class="news-item">';
                     newsHtml += '<h4><a href="' + WbcomSharedDashboard.escapeHtml(post.link) + '" target="_blank">' + 
@@ -168,7 +169,7 @@
                     newsHtml += '<p>' + WbcomSharedDashboard.escapeHtml(excerpt.substring(0, 150)) + '...</p>';
                     newsHtml += '<div class="news-meta">';
                     newsHtml += '<time>' + date + '</time>';
-                    newsHtml += '<span class="author">by ' + WbcomSharedDashboard.escapeHtml(author) + '</span>';
+                    newsHtml += '<span class="author">' + strings.byAuthor.replace('%s', WbcomSharedDashboard.escapeHtml(author)) + '</span>';
                     newsHtml += '</div>';
                     newsHtml += '</div>';
                 });
@@ -176,9 +177,10 @@
                 // Show footer
                 $('.news-footer').show();
             } else {
+                const strings = WbcomSharedDashboard.settings.strings;
                 newsHtml = '<div class="news-empty">' +
-                          '<h3>No News Available</h3>' +
-                          '<p>Unable to load recent news at this time.</p>' +
+                          '<h3>' + strings.noNews + '</h3>' +
+                          '<p>' + strings.noNewsText + '</p>' +
                           '</div>';
             }
             
@@ -190,16 +192,17 @@
          */
         renderNewsFeedError: function() {
             const $newsFeed = $('#wbcom-news-feed');
+            const strings = WbcomSharedDashboard.settings.strings;
             const errorHtml = '<div class="news-error">' +
                              '<span class="dashicons dashicons-warning"></span>' +
-                             '<h3>Unable to Load News</h3>' +
-                             '<p>Please check your internet connection and try again later.</p>' +
+                             '<h3>' + strings.newsError + '</h3>' +
+                             '<p>' + strings.newsErrorText + '</p>' +
                              '<div class="news-fallback-content">' +
-                             '<h4>Stay Connected</h4>' +
+                             '<h4>' + strings.stayConnected + '</h4>' +
                              '<ul>' +
-                             '<li>Visit our <a href="https://wbcomdesigns.com/blog/" target="_blank">blog</a> for the latest updates</li>' +
-                             '<li>Follow us on <a href="https://twitter.com/wbcomdesigns" target="_blank">X</a></li>' +
-                             '<li>Join our <a href="https://www.facebook.com/wbcomdesigns/" target="_blank">Facebook</a> community</li>' +
+                             '<li>' + strings.visitBlog + '</li>' +
+                             '<li>' + strings.followUs + '</li>' +
+                             '<li>' + strings.joinFacebook + '</li>' +
                              '</ul>' +
                              '</div>' +
                              '</div>';
@@ -215,7 +218,7 @@
             const $btn = $(this);
             const originalText = $btn.text();
             
-            $btn.prop('disabled', true).text('Refreshing...');
+            $btn.prop('disabled', true).text(WbcomSharedDashboard.settings.strings.refreshing);
             
             setTimeout(function() {
                 WbcomSharedDashboard.loadNewsFeed();
@@ -366,7 +369,7 @@
                 '<div class="notice ' + noticeClass + ' wbcom-notice is-dismissible">' +
                 '<p>' + this.escapeHtml(message) + '</p>' +
                 '<button type="button" class="notice-dismiss">' +
-                '<span class="screen-reader-text">Dismiss this notice.</span>' +
+                '<span class="screen-reader-text">' + this.settings.strings.dismiss + '</span>' +
                 '</button>' +
                 '</div>'
             );
@@ -396,7 +399,7 @@
             
             if (this.settings.debug) {
                 this.showNotification(
-                    'An error occurred in ' + context + '. Check console for details.',
+                    this.settings.strings.errorIn.replace('%s', context),
                     'error'
                 );
             }

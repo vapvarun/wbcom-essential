@@ -93,7 +93,10 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		private function __construct() {
 			add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 5 );
 			add_action( 'init', array( $this, 'wbcom_essential_elementor_add_image_sizes' ) );
-			// Textdomain auto-loaded by WP 6.7+ via plugin headers (Text Domain + Domain Path).
+			// Core only auto-loads from wp-content/languages/plugins; the bundled
+			// languages/ folder needs load_plugin_textdomain(). Priority 0 so it runs
+			// before anything else on init that translates strings.
+			add_action( 'init', array( $this, 'load_textdomain' ), 0 );
 		}
 
 		/**
@@ -121,6 +124,9 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 * Include plugin files
 		 */
 		public function includes() {
+			// Version-gated migrations (activation hooks do not fire on update).
+			require_once WBCOM_ESSENTIAL_PATH . '/includes/upgrades.php';
+
 			require_once WBCOM_ESSENTIAL_PATH . '/admin/class-wbcom-essential-widget-showcase.php';
 			new \WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase();
 
@@ -164,7 +170,9 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 		 */
 		public function init_wbcom_wrapper() {
 			// Register with the shared system EARLY - before admin_menu hook fires.
-			add_action( 'plugins_loaded', array( $this, 'register_with_shared_system' ), 15 );
+			// Registered on init (not plugins_loaded) so the menu title and description
+			// below can be translated without triggering a too-early textdomain notice.
+			add_action( 'init', array( $this, 'register_with_shared_system' ), 5 );
 
 			// Fallback to old integration system if advanced doesn't work.
 			add_action( 'init', array( $this, 'init_fallback_integration' ) );
@@ -210,25 +218,17 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			\Wbcom_Shared_Loader::quick_register(
 				WBCOM_ESSENTIAL_FILE,
 				array(
-					'menu_title'   => 'Essential Widgets',
+					'menu_title'   => __( 'Essential Widgets', 'wbcom-essential' ),
 					'slug'         => 'wbcom-essential',
 					'priority'     => 5,
 					'icon'         => 'dashicons-screenoptions',
-					'description'  => '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.',
+					'description'  => __( '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.', 'wbcom-essential' ),
 					'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
 					'status'       => 'active',
 					'version'      => WBCOM_ESSENTIAL_VERSION,
-					'license_key'  => '', // Temporarily remove license key to test.
 					'callback'     => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),
 				)
 			);
-		}
-
-		/**
-		 * Get license key for display purposes.
-		 */
-		private function get_license_key() {
-			return get_option( 'wbcom_essential_license_key' );
 		}
 	}
 }

@@ -50,10 +50,36 @@
 			categories: [],
 			products: [],
 			loading: true,
+			fetchFailed: false,
 		};
 
 		// Parse default sort into orderby + order.
 		parseSortValue( state.defaultSort );
+
+		/*
+		 * Adopt the server-rendered first page instead of re-requesting it.
+		 * render.php embeds the same results it drew, so the grid the visitor
+		 * already sees is reused and page one costs no extra request. Only a
+		 * missing or unreadable payload falls back to fetching.
+		 */
+		var seeded = false;
+		var seedEl = container.querySelector( '.wbcom-catalog__initial-data' );
+		if ( seedEl ) {
+			try {
+				var seed = JSON.parse( seedEl.textContent );
+				if ( seed && Array.isArray( seed.products ) ) {
+					state.products = seed.products;
+					state.total = seed.total || seed.products.length;
+					state.totalPages = seed.total_pages || 1;
+					state.page = seed.page || 1;
+					state.loading = false;
+					seeded = true;
+				}
+			} catch ( e ) {
+				seeded = false;
+			}
+			seedEl.parentNode.removeChild( seedEl );
+		}
 
 		// Build the UI shell.
 		render();
@@ -62,7 +88,9 @@
 		if ( state.showCategory ) {
 			fetchCategories();
 		}
-		fetchProducts();
+		if ( ! seeded ) {
+			fetchProducts();
+		}
 
 		function parseSortValue( val ) {
 			switch ( val ) {
@@ -219,6 +247,27 @@
 					);
 					grid.appendChild( skel );
 				}
+			} else if ( state.fetchFailed ) {
+				/*
+				 * A failed request is not an empty catalogue. Showing "no
+				 * products found" here tells the shopper the store has nothing
+				 * matching them, and they narrow their filters chasing a
+				 * problem that is not theirs.
+				 */
+				var errBox = el( 'div', 'wbcom-catalog__error' );
+				errBox.setAttribute( 'role', 'alert' );
+				errBox.textContent =
+					i18n.loadError || 'Products could not be loaded. Please try again.';
+				var retry = document.createElement( 'button' );
+				retry.type = 'button';
+				retry.className = 'wbcom-catalog__retry-btn';
+				retry.textContent = i18n.retry || 'Retry';
+				retry.addEventListener( 'click', function () {
+					state.page = 1;
+					fetchProducts( false );
+				} );
+				errBox.appendChild( retry );
+				grid.appendChild( errBox );
 			} else if ( state.products.length === 0 ) {
 				var empty = el( 'div', 'wbcom-catalog__empty' );
 				empty.textContent = i18n.noProducts || 'No products found matching your filters.';
@@ -367,7 +416,7 @@
 			if ( loadMoreBtn ) {
 				loadMoreBtn.addEventListener( 'click', function () {
 					state.page++;
-					this.textContent = 'Loading...';
+					this.textContent = i18n.loading || 'Loading...';
 					this.disabled = true;
 					fetchProducts( true );
 				} );
@@ -443,10 +492,12 @@
 					state.total = ( data && data.total ) || 0;
 					state.totalPages = ( data && data.total_pages ) || 1;
 					state.loading = false;
+					state.fetchFailed = false;
 					render();
 				} )
 				.catch( function () {
 					state.loading = false;
+					state.fetchFailed = true;
 					if ( ! append ) {
 						state.products = [];
 					}

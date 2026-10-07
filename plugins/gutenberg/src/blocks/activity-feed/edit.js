@@ -42,16 +42,16 @@ const ACTIVITY_TYPES = [
 ];
 
 const COLORS = [
-	{ name: 'Primary', color: '#667eea' },
-	{ name: 'Purple', color: '#764ba2' },
-	{ name: 'Dark', color: '#1e1e2e' },
-	{ name: 'Gray', color: '#4a5568' },
-	{ name: 'Light Gray', color: '#a0aec0' },
-	{ name: 'White', color: '#ffffff' },
-	{ name: 'Red', color: '#e53e3e' },
-	{ name: 'Green', color: '#38a169' },
-	{ name: 'Blue BG', color: '#eef2ff' },
-	{ name: 'Light BG', color: '#f7fafc' },
+	{ name: __( 'Primary', 'wbcom-essential' ), color: '#667eea' },
+	{ name: __( 'Purple', 'wbcom-essential' ), color: '#764ba2' },
+	{ name: __( 'Dark', 'wbcom-essential' ), color: '#1e1e2e' },
+	{ name: __( 'Gray', 'wbcom-essential' ), color: '#4a5568' },
+	{ name: __( 'Light Gray', 'wbcom-essential' ), color: '#a0aec0' },
+	{ name: __( 'White', 'wbcom-essential' ), color: '#ffffff' },
+	{ name: __( 'Red', 'wbcom-essential' ), color: '#e53e3e' },
+	{ name: __( 'Green', 'wbcom-essential' ), color: '#38a169' },
+	{ name: __( 'Blue BG', 'wbcom-essential' ), color: '#eef2ff' },
+	{ name: __( 'Light BG', 'wbcom-essential' ), color: '#f7fafc' },
 ];
 
 export default function Edit( { attributes, setAttributes, clientId } ) {

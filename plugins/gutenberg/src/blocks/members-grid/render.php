@@ -151,6 +151,7 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 				'friends'      => __( 'Friends', 'wbcom-essential' ),
 				'pending'      => __( 'Pending', 'wbcom-essential' ),
 				'viewProfile'  => __( 'View Profile', 'wbcom-essential' ),
+				/* translators: %s: time since the member was last active, e.g. "2 hours ago". */
 				'activeAgo'  => __( 'Active %s', 'wbcom-essential' ),
 			),
 		);

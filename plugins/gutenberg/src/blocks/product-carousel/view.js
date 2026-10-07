@@ -7,6 +7,9 @@
  * @package wbcom-essential
  */
 
+import { __ } from '@wordpress/i18n';
+import swiperA11y from '../../shared/utils/swiper-a11y';
+
 ( function () {
 	'use strict';
 
@@ -70,10 +73,10 @@
 						spaceBetween,
 					},
 				},
-				a11y: {
-					prevSlideMessage: 'Previous product',
-					nextSlideMessage: 'Next product',
-				},
+				a11y: swiperA11y(
+					__( 'Previous product', 'wbcom-essential' ),
+					__( 'Next product', 'wbcom-essential' )
+				),
 			};
 
 			if ( showDots ) {

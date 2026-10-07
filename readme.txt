@@ -3,8 +3,8 @@ Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
-Tested up to: 6.9
-Stable tag: 4.6.4
+Tested up to: 7.1
+Stable tag: 4.7.0
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,55 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.7.0 - October 2026 =
+
+Fixes the EDD checkout after Easy Digital Downloads 3.7, keeps license screens inside the account dashboard, and turns on updates for every install.
+
+* New      - Four checkout section blocks (Progress, Trust Badges, Social Proof and Recommendations) that sit inside EDD's own Checkout block and can be edited, reordered or removed.
+* New      - Product Catalog renders its first page of products in the page HTML, so search engines and visitors without JavaScript see real products.
+* New      - Customers can update the payment card on a subscription from My Account, on gateways that support it.
+* Improve  - Every visible string is now translatable, including Elementor widget options, block editor labels, carousel and catalog messages, block patterns and the admin dashboard.
+* Improve  - Every trust badge can be switched off and reworded, and the support badge is off by default.
+* Improve  - The money-back guarantee badge defaults to 30 days with generic wording you can edit to match your refund policy.
+* Improve  - The trust badge no longer claims "powered by Stripe", and payment method icons start switched off until you choose the cards you accept.
+* Improve  - Trustpilot reviews, rating and count start empty, and the section stays hidden until you add your own reviews.
+* Improve  - Product Catalog no longer requests its first page again after loading, saving one request on every visit.
+* Improve  - The account sidebar now reads "Submit Ticket" and opens the ticket form directly.
+* Fix      - Checkout offers login, registration and guest checkout as separate choices instead of stacking the login prompt on the account fields, and existing checkout pages are converted automatically.
+* Fix      - Personal Info fields on checkout render at one consistent width, so the Email field no longer truncates the address.
+* Fix      - License Upgrade and Manage License open inside the account dashboard instead of replacing the page with an unstyled table.
+* Fix      - Upgrade Plan on a subscription now opens the prorated upgrade view, keeping credit for what the customer already paid.
+* Fix      - Changing a payment card keeps the customer on the Subscriptions tab and confirms the change.
+* Fix      - A payment card can be changed more than once in the same browser session.
+* Fix      - The checkout trust badges fill the row without a gap when a badge is switched off.
+* Fix      - The checkout progress indicator no longer tells screen readers a step is upcoming while it is on screen.
+* Fix      - Product Catalog reports a failed load with a Retry button instead of saying no products matched your filters.
+* Fix      - Restored the payment icon checkboxes in the Trust Badges block.
+* Fix      - The "Account Dashboard" option on the EDD discount screen lines up with the other settings.
+* Fix      - The hover Border control on the WooCommerce Product Tab and Universal Product widgets styles the hovered tab, not the active one.
+* Fix      - Pagination bullet size on the Post Carousel and Team Carousel widgets now follows the size setting.
+* Fix      - The avatar size control on the Forums widget sets the avatar size, not only a maximum width.
+* Fix      - The Site Logo widget keeps its default link value.
+* Fix      - Team Carousel animations set to "none" no longer raise a deprecation notice on PHP 8.1 and later.
+* Fix      - Translations in the plugin's own languages folder now load; they were bundled but never loaded.
+* Fix      - Animation options on the Posts Carousel, Posts Ticker and Posts Revolution widgets showed fade-out, bounce-out and zoom-out as "In" effects.
+* Fix      - Updates now download on sites that installed Wbcom Essential from the store zip or a manual upload, with no license key to enter.
+* Fix      - The license screen's script and styles load on hosts where the plugin folder is a symlink or sits outside the document root.
+* Fix      - Deleting the plugin with its data also removes the stored license status, usage-tracking choice and activation state.
+* Security - Password-protected downloads are no longer listed, with an excerpt of their content, by the Product Catalog block or its public products endpoint.
+* Security - The Login Form widget only redirects within your site after login, so a crafted link can no longer send members to another website.
+* Security - The Product Catalog's embedded product data escapes HTML characters, so a product title cannot break the rest of the page.
+* Dev      - New wbcom_essential_edd_free_plugins_top action fires above the grid on the account dashboard's Free Plugins tab.
+* Dev      - New wbcom_essential_upgraded action and a version-gated upgrade runner, so migrations run on plugin update and not only on activation.
+* Dev      - New wbcom_essential_wp_cron_disabled filter for sites that set DISABLE_WP_CRON but run a real system cron.
+* Dev      - Updated the bundled licensing library to 1.0.3, matching BuddyNext, including a fix for a PHP 8 fatal on the plugin details screen.
+* Dev      - The legacy EDD Enhanced Checkout block is hidden from the inserter and kept only so pages the migration has not reached still render.
+* Dev      - Removed 17 unused Elementor files and the static analysis configuration from the package.
+* Dev      - The Header Notification Area widget is documented as requiring the Reign theme.
+* Dev      - The plugin passes Plugin Check with no errors, and the translation template includes the block editor and front-end script strings.
+* Dev      - Coding standards and static analysis now block the build, and dependency audits run on every push.
+* Compat   - Tested with Easy Digital Downloads 3.7.1.1, Recurring 2.13.13, Software Licensing 3.9.7, Stripe 3.0.2 and Elementor 4.2.3.
 
 = 4.6.4 - July 2026 =
 
@@ -236,6 +285,9 @@ Find downloads and licenses fast on the account dashboard, plus expired-license 
 For full changelog, see the changelog.md file in the docs folder.
 
 == Upgrade Notice ==
+
+= 4.7.0 =
+Converts EDD checkout pages to EDD 3.7's Checkout block automatically on the first visit after updating, keeping your guarantee wording, Trustpilot details and section toggles.
 
 = 4.5.0 =
 Major V2 rebuild: 32 production-grade blocks replacing 45 legacy blocks. Clear your cache, re-save any pages using removed blocks (heading, slider, icon-box, header-bar, counter, cta-box, posts-revolution, etc.). See the changelog for the full list. PHP 8.0+ required.

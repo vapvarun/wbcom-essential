@@ -499,6 +499,112 @@ function wbcom_essential_edd_account_current_page_url() {
 }
 
 /**
+ * Which EDD SL license view, if any, the current request is asking for.
+ *
+ * SL signals these views with `?action=manage_licenses&payment_id=X` plus an
+ * optional `view` / `license_id`. Mirrors the conditions in
+ * edd_sl_override_history_content() so both agree on what is being requested.
+ *
+ * @since 4.7.0
+ *
+ * @return string Template name for edd_get_template_part( 'licenses', $name ),
+ *                or empty string when this is not an SL license view.
+ */
+function wbcom_essential_edd_requested_sl_license_view() {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only view routing, no state change.
+	if ( empty( $_GET['action'] ) || 'manage_licenses' !== $_GET['action'] ) {
+		return '';
+	}
+	if ( empty( $_GET['payment_id'] ) ) {
+		return '';
+	}
+
+	if ( ! empty( $_GET['license_id'] ) && isset( $_GET['view'] ) && 'upgrades' === $_GET['view'] ) {
+		return 'upgrades';
+	}
+
+	return ! empty( $_GET['license_id'] ) ? 'manage-single' : 'manage-overview';
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
+}
+
+/**
+ * Render one of EDD SL's native license views inside the dashboard shell.
+ *
+ * SL's templates handle their own capability checks and are reused verbatim so
+ * upgrade pricing, proration and nonces stay in EDD's hands — we only supply
+ * the surrounding chrome and a class hook for styling.
+ *
+ * @since 4.7.0
+ *
+ * @param string $view Template name, from wbcom_essential_edd_requested_sl_license_view().
+ * @return void
+ */
+function wbcom_essential_edd_render_sl_license_view( $view ) {
+	$titles = array(
+		'upgrades'        => __( 'Upgrade License', 'wbcom-essential' ),
+		'manage-single'   => __( 'Manage License', 'wbcom-essential' ),
+		'manage-overview' => __( 'Manage Licenses', 'wbcom-essential' ),
+	);
+
+	$subtitles = array(
+		'upgrades'        => __( 'Choose an upgrade for this license. You only pay the difference.', 'wbcom-essential' ),
+		'manage-single'   => __( 'Manage the sites this license is activated on.', 'wbcom-essential' ),
+		'manage-overview' => __( 'Manage the licenses on this order.', 'wbcom-essential' ),
+	);
+
+	wbcom_essential_edd_tab_header(
+		isset( $titles[ $view ] ) ? $titles[ $view ] : __( 'License', 'wbcom-essential' ),
+		isset( $subtitles[ $view ] ) ? $subtitles[ $view ] : ''
+	);
+
+	if ( ! function_exists( 'edd_get_template_part' ) ) {
+		return;
+	}
+
+	// A license can carry many upgrade paths / activation rows, so the table
+	// scrolls inside its own box instead of widening the page.
+	echo '<div class="wbcom-edd-sl-view wbcom-edd-sl-view--' . esc_attr( $view ) . '">';
+	echo '<div class="wbcom-edd-sl-view__scroll">';
+	edd_get_template_part( 'licenses', $view );
+	echo '</div>';
+	echo '</div>';
+}
+
+/**
+ * Stop EDD SL from replacing the whole page content on the dashboard page.
+ *
+ * EDD SL's edd_sl_override_history_content() swaps `the_content` wholesale for
+ * its own license template whenever `?action=manage_licenses&payment_id=X` is present.
+ * On a page built from the EDD Account Dashboard block that wipes out the
+ * block itself — sidebar, tabs and all — leaving SL's bare table under the
+ * page title, styled by nothing.
+ *
+ * The views are still reachable: wbcom_essential_edd_render_licenses_tab()
+ * renders the same SL template inside the Licenses tab instead. This only
+ * removes the takeover, so nothing about SL's own markup or logic changes.
+ *
+ * @since 4.7.0
+ *
+ * @return void
+ */
+function wbcom_essential_edd_keep_dashboard_shell_for_sl_views() {
+	if ( ! wbcom_essential_edd_requested_sl_license_view() ) {
+		return;
+	}
+
+	global $post;
+	if ( ! $post || empty( $post->post_content ) ) {
+		return;
+	}
+	if ( false === strpos( $post->post_content, 'wbcom-essential/edd-account-dashboard' ) ) {
+		return;
+	}
+
+	remove_filter( 'the_content', 'edd_sl_override_history_content', 10 );
+}
+add_action( 'template_redirect', 'wbcom_essential_edd_keep_dashboard_shell_for_sl_views', 20 );
+
+/**
  * Build the URL of EDD Software Licensing's prorated upgrade view for a license.
  *
  * SL renders that view by replacing `the_content` of whichever page carries
@@ -537,6 +643,137 @@ function wbcom_essential_edd_get_license_upgrade_view_url( $license_id, $payment
 		),
 		wbcom_essential_edd_account_current_page_url()
 	);
+}
+
+/**
+ * Build the in-dashboard "update payment method" URL for a subscription.
+ *
+ * EDD Recurring offers two routes and neither drops cleanly into a custom
+ * dashboard as-is:
+ *
+ * - `EDD_Subscription::get_update_url()` builds `?action=update&subscription_id=X`
+ *   with NO base URL, so it appends to whatever page is being rendered.
+ * - The 2.13 magic-link page (`/subscription/update/<hash>/`) hijacks
+ *   `template_include` and renders EDD's own standalone template, so the
+ *   customer leaves the account experience entirely.
+ *
+ * We build the same query against the canonical dashboard URL instead, and
+ * render EDD's form inside the Subscriptions tab. The customer stays on My
+ * Account and the form still posts back here, because EDD's template derives
+ * its action URL from `edd_get_current_page_url()`.
+ *
+ * @since 4.7.1
+ *
+ * @param EDD_Subscription $sub Subscription.
+ * @return string URL, or empty string when the gateway cannot update.
+ */
+function wbcom_essential_edd_get_subscription_update_url( $sub ) {
+	if ( ! $sub || empty( $sub->id ) || ! method_exists( $sub, 'can_update' ) ) {
+		return '';
+	}
+
+	// can_update() defaults to false and each gateway opts in through the
+	// `edd_subscription_can_update` filter, so a gateway with no stored card
+	// (manual, offline) correctly offers nothing.
+	if ( ! $sub->can_update() ) {
+		return '';
+	}
+
+	return add_query_arg(
+		array(
+			'tab'             => 'subscriptions',
+			'action'          => 'update',
+			'subscription_id' => absint( $sub->id ),
+		),
+		wbcom_essential_edd_account_current_page_url()
+	);
+}
+
+/**
+ * Find the license backing a subscription.
+ *
+ * Prefers the license created by the subscription's own parent order, so a
+ * customer holding several licenses for the same product gets the one this
+ * subscription actually pays for. Falls back to any license they hold for the
+ * product, which is the best available answer for legacy rows whose parent
+ * order no longer resolves.
+ *
+ * @since 4.7.1
+ *
+ * @param EDD_Subscription $sub      Subscription.
+ * @param EDD_Download     $download Subscribed product.
+ * @return object|false License object, or false when none is found.
+ */
+function wbcom_essential_edd_get_subscription_license( $sub, $download ) {
+	if ( ! $sub || ! $download || ! function_exists( 'edd_software_licensing' ) ) {
+		return false;
+	}
+
+	$sl = edd_software_licensing();
+
+	if ( ! empty( $sub->parent_payment_id ) && method_exists( $sl, 'get_license_by_purchase' ) ) {
+		$license = $sl->get_license_by_purchase( absint( $sub->parent_payment_id ), absint( $download->ID ) );
+		if ( $license && ! empty( $license->ID ) ) {
+			return $license;
+		}
+	}
+
+	if ( isset( $sl->licenses_db ) ) {
+		$licenses = $sl->licenses_db->get_licenses(
+			array(
+				'customer_id' => absint( $sub->customer_id ),
+				'download_id' => absint( $download->ID ),
+				'number'      => 1,
+			)
+		);
+		if ( ! empty( $licenses[0]->ID ) ) {
+			return $licenses[0];
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Resolve the upgrade URL shown on a subscription card.
+ *
+ * The Subscriptions tab used to link to `get_permalink( $download->ID )` - the
+ * product the customer ALREADY owns. That is a dead end: it does not reach the
+ * upgrade target, and it throws away the prorated credit for what they have
+ * already paid. It also meant "Upgrade" behaved differently in three places in
+ * one dashboard.
+ *
+ * This routes the subscription through the same EDD SL prorated upgrade view
+ * the Licenses tab uses, so the word means one thing everywhere. Validity is
+ * checked per LICENSE rather than per download, because SL refuses to upgrade
+ * an expired license and we should not send a customer to a view that will
+ * turn them away.
+ *
+ * @since 4.7.1
+ *
+ * @param EDD_Subscription $sub      Subscription.
+ * @param EDD_Download     $download Subscribed product.
+ * @return string Upgrade URL, or empty string when no upgrade is available.
+ */
+function wbcom_essential_edd_get_subscription_upgrade_url( $sub, $download ) {
+	if ( ! $download || ! function_exists( 'edd_sl_get_license_upgrades' ) ) {
+		return '';
+	}
+
+	$license = wbcom_essential_edd_get_subscription_license( $sub, $download );
+	if ( ! $license || empty( $license->ID ) ) {
+		return '';
+	}
+
+	if ( isset( $license->status ) && 'expired' === $license->status ) {
+		return '';
+	}
+
+	if ( empty( edd_sl_get_license_upgrades( $license->ID ) ) ) {
+		return '';
+	}
+
+	return wbcom_essential_edd_get_license_upgrade_view_url( $license->ID, $license->payment_id );
 }
 
 /**
@@ -931,6 +1168,22 @@ function wbcom_essential_edd_render_tab_notice() {
 	$edd_message = isset( $_GET['edd-message'] ) ? sanitize_key( wp_unslash( $_GET['edd-message'] ) ) : '';
 	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
+	// EDD Recurring reports a successful card change through its own message
+	// store rather than a query param, and its redirect drops our `tab`. Read
+	// the real message rather than inferring success from the URL, so a
+	// bookmarked ?action=details never shows a confirmation that did not happen.
+	if ( class_exists( '\\EDD\\Utils\\Messages' )
+		&& null !== \EDD\Utils\Messages::get_by_code( 'subscription-updated' ) ) {
+		printf(
+			'<div class="wbcom-edd-profile__notice wbcom-edd-profile__notice--success">%s</div>',
+			esc_html__( 'Payment method updated. Future renewals will use your new card.', 'wbcom-essential' )
+		);
+		// The type argument is required: remove() defaults to the 'error' bucket,
+		// so omitting it leaves the success message in place forever - which then
+		// suppresses the update form on every later visit.
+		\EDD\Utils\Messages::remove( 'subscription-updated', 'success' );
+	}
+
 	if ( ! $updated && ! $edd_message ) {
 		return;
 	}
@@ -979,12 +1232,38 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 		__( 'Manage your active and past subscriptions.', 'wbcom-essential' )
 	);
 
+	// Captured before the notice renderer runs, because rendering consumes the
+	// message. A successful card change must fall through to the list: leaving
+	// the form on screen under a "Payment method updated" notice reads as if it
+	// had not saved and invites the customer to enter the card a second time.
+	$wbcom_just_updated = class_exists( '\\EDD\\Utils\\Messages' )
+		&& null !== \EDD\Utils\Messages::get_by_code( 'subscription-updated' );
+
 	// Surface EDD messages from cancel/reactivate/renew redirects.
 	wbcom_essential_edd_render_tab_notice();
 
 	if ( ! class_exists( 'EDD_Recurring' ) || ! $customer ) {
 		wbcom_essential_edd_empty_state( '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>', __( 'No subscriptions found.', 'wbcom-essential' ), get_post_type_archive_link( 'download' ) ? get_post_type_archive_link( 'download' ) : home_url(), __( 'Browse Products', 'wbcom-essential' ) );
 		return;
+	}
+
+	// EDD Recurring's payment-method form, rendered inside the dashboard shell
+	// rather than on EDD's standalone page. The template checks ownership
+	// itself (subscription->customer_id must match the logged-in subscriber)
+	// and carries its own `update-payment` nonce on submit.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only view switch, no state change; the form below carries its own nonce.
+	$wbcom_sub_action = isset( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only view switch, no state change.
+	$wbcom_sub_update = isset( $_GET['subscription_id'] ) ? absint( wp_unslash( $_GET['subscription_id'] ) ) : 0;
+
+	if ( 'update' === $wbcom_sub_action && $wbcom_sub_update && ! $wbcom_just_updated && function_exists( 'EDD_Recurring' ) ) {
+		$wbcom_update_form = EDD_Recurring()->subscriptions_view( 'update' );
+		if ( '' !== trim( wp_strip_all_tags( (string) $wbcom_update_form ) ) ) {
+			echo '<div class="wbcom-edd-subs wbcom-edd-subs--update">';
+			echo $wbcom_update_form; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- EDD Recurring template output, escaped by EDD.
+			echo '</div>';
+			return;
+		}
 	}
 
 	$subs_db = new EDD_Subscriptions_DB();
@@ -1059,13 +1338,18 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 			$cancel_url = wp_nonce_url( $base_url, 'edd-recurring-cancel-' . $sub->id );
 		}
 
-		// Upgrade options - edd_sl_get_upgrade_paths() is keyed by DOWNLOAD id
-		// (edd_sl_get_license_upgrades() takes a LICENSE id, not a download).
-		$has_upgrades = false;
-		if ( function_exists( 'edd_sl_get_upgrade_paths' ) && $download ) {
-			$upgrades     = edd_sl_get_upgrade_paths( $download->ID );
-			$has_upgrades = ! empty( $upgrades );
-		}
+		// Upgrade target. Resolved per LICENSE (validity-aware) and pointed at
+		// EDD SL's prorated upgrade view, matching the Licenses tab. Checking
+		// edd_sl_get_upgrade_paths() on the DOWNLOAD only told us a path exists
+		// for the product in the abstract - it said nothing about whether THIS
+		// customer's license can use it, and the button then linked to the
+		// product they already own.
+		$upgrade_url  = wbcom_essential_edd_get_subscription_upgrade_url( $sub, $download );
+		$has_upgrades = '' !== $upgrade_url;
+
+		// Payment method. Gated on can_update(), which each gateway opts into,
+		// so a manual/offline subscription with no stored card offers nothing.
+		$update_url = wbcom_essential_edd_get_subscription_update_url( $sub );
 
 		?>
 		<div class="wbcom-edd-subs__card">
@@ -1124,8 +1408,13 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 
 			<div class="wbcom-edd-subs__actions">
 				<?php if ( $has_upgrades ) : ?>
-					<a href="<?php echo esc_url( get_permalink( $download->ID ) ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
+					<a href="<?php echo esc_url( $upgrade_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--primary wbcom-edd-btn--sm">
 						<?php esc_html_e( 'Upgrade Plan', 'wbcom-essential' ); ?>
+					</a>
+				<?php endif; ?>
+				<?php if ( $update_url ) : ?>
+					<a href="<?php echo esc_url( $update_url ); ?>" class="wbcom-edd-btn wbcom-edd-btn--outline wbcom-edd-btn--sm">
+						<?php esc_html_e( 'Update Payment Method', 'wbcom-essential' ); ?>
 					</a>
 				<?php endif; ?>
 				<?php if ( $cancel_url ) : ?>
@@ -1754,6 +2043,14 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
  * @param EDD_Customer|false $customer EDD customer object or false.
  */
 function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
+	// EDD SL's own license views (upgrade / manage) render inside this tab so
+	// the customer keeps the dashboard shell around them.
+	$sl_view = wbcom_essential_edd_requested_sl_license_view();
+	if ( $sl_view ) {
+		wbcom_essential_edd_render_sl_license_view( $sl_view );
+		return;
+	}
+
 	wbcom_essential_edd_tab_header(
 		__( 'License Keys', 'wbcom-essential' ),
 		__( 'View and manage your license keys and activations.', 'wbcom-essential' )
