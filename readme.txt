@@ -9,7 +9,7 @@ Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Companion plugin for BuddyX theme providing 43 Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress.
+Part of Reign, BuddyX and BuddyX Pro: 43 Elementor widgets and 32 Gutenberg blocks for pages, BuddyPress, WooCommerce and EDD.
 
 == Description ==
 
@@ -57,7 +57,7 @@ All 32 V2 blocks are organized into 7 categories:
 
 = Best Used With =
 
-* BuddyX Theme or Starter Templates Theme
+* Reign, BuddyX or BuddyX Pro theme (Wbcom Essential is part of each)
 * BuddyPress for community features
 * WooCommerce for e-commerce features
 * bbPress for forum features
