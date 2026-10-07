@@ -1,6 +1,6 @@
 # WBcom Essential
 
-**The Essential Companion for Your WordPress Theme**
+**Part of Reign, BuddyX and BuddyX Pro**
 
 32 production-grade Gutenberg V2 blocks. 43 Elementor widgets (42 on any theme, plus a Reign-only Notification Area). 5 BuddyPress blocks. A free plugin that makes Theme Reign, BuddyX, and BuddyX Pro even more powerful.
 
@@ -10,7 +10,7 @@
 
 ## Overview
 
-WBcom Essential provides production-ready blocks and widgets that inherit your theme's colors automatically. Built by the team behind BuddyX and Theme Reign, it's designed to work seamlessly with our themes—but works beautifully on any WordPress site.
+WBcom Essential provides production-ready blocks and widgets that inherit your theme's colors automatically. Built by the team behind BuddyX and Theme Reign, it's designed to work seamlessly with our themes, but works beautifully on any WordPress site.
 
 ### Key Features
 
@@ -79,9 +79,13 @@ All 32 V2 blocks are organized into 7 categories:
 
 ### Optimized For
 
-- **Theme Reign** - Full color integration and matched component designs
+Wbcom Essential is part of these themes, so everything it offers comes with them:
+
+- **Reign** - Full color integration and matched component designs. Install it from **Reign Settings > Extend**.
 - **BuddyX** - Free theme from WordPress.org
 - **BuddyX Pro** - Premium version with additional features
+
+You can also download it from the [Wbcom store](https://wbcomdesigns.com/downloads/wbcom-essential/).
 
 ### Universal Compatibility
 
@@ -99,7 +103,7 @@ Works with any properly coded WordPress theme. The Theme Colors feature adapts t
 
 > **Do NOT run `npm run build` or `wp-scripts build` directly.** This plugin
 > uses custom Node scripts driven by `scripts/build-blocks.js`. The default
-> `wp-scripts` entry is `./src`, which doesn't exist in this repo — block
+> `wp-scripts` entry is `./src`, which doesn't exist in this repo, so block
 > sources live in `plugins/gutenberg/src/blocks/`.
 
 ```bash
