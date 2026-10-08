@@ -3,7 +3,7 @@
 # Total: 73
 
 - action bb_notification_avatar_ | includes/wbcom-essential-function.php:143
-- action bbp_template_after_topics_loop | plugins/elementor/widgets/Buddypress/Forums.php:655
+- action bbp_template_after_topics_loop | plugins/elementor/widgets/Buddypress/Forums.php:660
 - action bbp_template_before_topics_loop | plugins/elementor/widgets/Buddypress/Forums.php:537
 - action bp_after_directory_groups_list | templates/reign/buddypress/legacy/groups/groups-loop.php:137
 - action bp_after_directory_members_list | templates/reign/buddypress/legacy/members/members-loop.php:122
@@ -27,8 +27,8 @@
 - action wbcom_essential_deactivated | loader.php:170
 - action wbcom_essential_edd_dashboard_after_greeting | includes/edd-account-dashboard-functions.php:1007
 - action wbcom_essential_edd_dashboard_top | includes/edd-account-dashboard-functions.php:987
-- action wbcom_essential_edd_free_plugins_top | includes/edd-account-marketing-functions.php:517
-- action wbcom_essential_free_claim | includes/edd-account-marketing-functions.php:696
+- action wbcom_essential_edd_free_plugins_top | includes/edd-account-marketing-functions.php:520
+- action wbcom_essential_free_claim | includes/edd-account-marketing-functions.php:702
 - action wbcom_essential_header_user_menu_items | plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:79
 - action wbcom_essential_upgraded | includes/upgrades.php:95
 - action wbcom_recaptcha_login_form | plugins/elementor/widgets/General/LoginForm.php:1695
@@ -55,9 +55,9 @@
 - filter wbcom_essential/groups-loop/before/template | plugins/elementor/widgets/Buddypress/GroupGrid.php:200
 - filter wbcom_essential/members-loop/after/template | plugins/elementor/widgets/Buddypress/MembersGrid.php:301
 - filter wbcom_essential/members-loop/before/template | plugins/elementor/widgets/Buddypress/MembersGrid.php:188
-- filter wbcom_essential_edd_free_claim_limit | includes/edd-account-marketing-functions.php:633
-- filter wbcom_essential_edd_free_download_ids | includes/edd-account-marketing-functions.php:53
-- filter wbcom_essential_edd_offers_shop_url | includes/edd-account-marketing-functions.php:326
+- filter wbcom_essential_edd_free_claim_limit | includes/edd-account-marketing-functions.php:639
+- filter wbcom_essential_edd_free_download_ids | includes/edd-account-marketing-functions.php:54
+- filter wbcom_essential_edd_offers_shop_url | includes/edd-account-marketing-functions.php:327
 - filter wbcom_essential_friend_requests_data | includes/wbcom-essential-function.php:402
 - filter wbcom_essential_locate_template | includes/wbcom-essential-function.php:65
 - filter wbcom_essential_login_security_client_ip | includes/edd-account-login-security.php:84

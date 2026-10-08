@@ -130,6 +130,7 @@ Fixes the EDD checkout after Easy Digital Downloads 3.7, keeps license screens i
 * Fix      - Product Catalog reports a failed load with a Retry button instead of saying no products matched your filters.
 * Fix      - Restored the payment icon checkboxes in the Trust Badges block.
 * Fix      - The "Account Dashboard" option on the EDD discount screen lines up with the other settings.
+* Fix      - The Forums and Forums Activity widgets no longer print a PHP warning for topics with no replies.
 * Fix      - The hover Border control on the WooCommerce Product Tab and Universal Product widgets styles the hovered tab, not the active one.
 * Fix      - Pagination bullet size on the Post Carousel and Team Carousel widgets now follows the size setting.
 * Fix      - The avatar size control on the Forums widget sets the avatar size, not only a maximum width.
@@ -140,7 +141,8 @@ Fixes the EDD checkout after Easy Digital Downloads 3.7, keeps license screens i
 * Fix      - Updates now download on sites that installed Wbcom Essential from the store zip or a manual upload, with no license key to enter.
 * Fix      - The license screen's script and styles load on hosts where the plugin folder is a symlink or sits outside the document root.
 * Fix      - Deleting the plugin with its data also removes the stored license status, usage-tracking choice and activation state.
-* Security - Password-protected downloads are no longer listed, with an excerpt of their content, by the Product Catalog block or its public products endpoint.
+* Security - Password-protected downloads are no longer listed by the Product Catalog block, its public products endpoint, or the account dashboard's What's New, Free Plugins and Recommended sections.
+* Security - A password-protected free download can no longer be claimed into a customer's library without its password.
 * Security - The Login Form widget only redirects within your site after login, so a crafted link can no longer send members to another website.
 * Security - The Product Catalog's embedded product data escapes HTML characters, so a product title cannot break the rest of the page.
 * Dev      - New wbcom_essential_edd_free_plugins_top action fires above the grid on the account dashboard's Free Plugins tab.

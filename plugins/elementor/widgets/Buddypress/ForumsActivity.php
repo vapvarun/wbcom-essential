@@ -915,6 +915,11 @@ class ForumsActivity extends \Elementor\Widget_Base {
 						$topic_title                = bbp_get_topic_title( bbp_get_topic_id() );
 						$topic_reply_count          = bbp_get_topic_reply_count( bbp_get_topic_id() );
 						$get_last_reply_id          = bbp_get_topic_last_reply_id();
+						// bbPress stores 0 as the last reply of a topic with no replies; treat the
+						// topic itself as the last post so no reply function is handed a non-reply.
+						if ( ! $get_last_reply_id ) {
+							$get_last_reply_id = bbp_get_topic_id();
+						}
 						$get_last_reply_author_name = bbp_get_reply_author_display_name( $get_last_reply_id );
 						$get_last_reply_since       = bbp_get_topic_last_active_time( bbp_get_topic_id() );
 						$get_discussion_link        = bbp_get_topic_permalink( bbp_get_topic_id() );
@@ -945,6 +950,11 @@ class ForumsActivity extends \Elementor\Widget_Base {
 									<?php
 									if ( $settings['switch_excerpt_icon'] ) :
 										$get_last_reply_id = bbp_get_topic_last_reply_id( bbp_get_topic_id() );
+										// bbPress stores 0 as the last reply of a topic with no replies; treat the
+										// topic itself as the last post so no reply function is handed a non-reply.
+										if ( ! $get_last_reply_id ) {
+											$get_last_reply_id = bbp_get_topic_id();
+										}
 										if ( bbp_is_topic( $get_last_reply_id ) ) {
 											add_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
 											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bbp_get_topic_reply_link() is a safe bbPress function that returns escaped HTML
@@ -957,7 +967,7 @@ class ForumsActivity extends \Elementor\Widget_Base {
 
 											remove_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
 											// If post is a reply, print the reply admin links instead.
-										} else {
+										} elseif ( bbp_is_reply( $get_last_reply_id ) ) {
 											add_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
 											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bbp_get_reply_to_link() is a safe bbPress function that returns escaped HTML
 											echo bbp_get_reply_to_link(

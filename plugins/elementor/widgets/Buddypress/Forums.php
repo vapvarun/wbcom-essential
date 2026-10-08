@@ -610,6 +610,11 @@ class Forums extends \Elementor\Widget_Base {
 												<div class="wbcom-essential-forums__last-reply">
 													<?php
 													$get_last_reply_id = bbp_get_topic_last_reply_id( bbp_get_topic_id() );
+													// bbPress stores 0 as the last reply of a topic with no replies; treat the
+													// topic itself as the last post so no reply function is handed a non-reply.
+													if ( ! $get_last_reply_id ) {
+														$get_last_reply_id = bbp_get_topic_id();
+													}
 													?>
 													<span class="bs-last-reply <?php echo ( ! empty( bbp_get_reply_excerpt( $get_last_reply_id ) ) ) ? '' : 'is-empty'; ?>">
 														<?php
@@ -624,7 +629,7 @@ class Forums extends \Elementor\Widget_Base {
 															);
 															remove_filter( 'bbp_get_topic_reply_link', 'wbcom_essential_theme_elementor_topic_link_attribute_change', 9999, 3 );
 															// If post is a reply, print the reply admin links instead.
-														} else {
+														} elseif ( bbp_is_reply( $get_last_reply_id ) ) {
 															add_filter( 'bbp_get_reply_to_link', 'wbcom_essential_theme_elementor_reply_link_attribute_change', 9999, 3 );
 															// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bbPress function returns safe HTML
 															echo bbp_get_reply_to_link(

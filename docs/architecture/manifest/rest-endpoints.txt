@@ -5,6 +5,6 @@
 - 'GET' 'wbcom-essential/v1' '/xprofile-groups' | plugins/gutenberg/gutenberg.php:212
 - 'GET' 'wbcom/v1' '/product-categories' | includes/edd-product-catalog-rest.php:78
 - 'GET' 'wbcom/v1' '/products' | includes/edd-product-catalog-rest.php:31
-- WP_REST_Server::CREATABLE 'wbcom/v1' '/edd-account/claim-free' | includes/edd-account-marketing-functions.php:578
+- WP_REST_Server::CREATABLE 'wbcom/v1' '/edd-account/claim-free' | includes/edd-account-marketing-functions.php:581
 - WP_REST_Server::READABLE 'wbcom/v1' '/edd-account/(?P<tab>[a-z-]+)' | includes/edd-account-dashboard-functions.php:245
 - WP_REST_Server::READABLE 'wbcom/v1' '/edd-account/states/(?P<country>[A-Z]{2})' | includes/edd-account-dashboard-functions.php:270
