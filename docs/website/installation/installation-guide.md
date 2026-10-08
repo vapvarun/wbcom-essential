@@ -31,7 +31,7 @@ Find "Wbcom Essential" and click Activate
 
 Method 3: WP-CLI
 
-# Upload and activate
+## Upload and activate
 wp plugin install wbcom-essential-4.2.0.zip --activate
 
 Post-Installation Setup

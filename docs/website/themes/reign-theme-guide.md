@@ -1,6 +1,6 @@
 # Reign Theme Guide
 
-# WBcom Essential + Reign Theme
+## WBcom Essential + Reign Theme
 
 Build powerful social networks and marketplaces with the multi-purpose Reign theme.
 
