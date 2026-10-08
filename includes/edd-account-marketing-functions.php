@@ -24,6 +24,7 @@ function wbcom_essential_edd_get_free_download_ids() {
 		array(
 			'post_type'      => 'download',
 			'post_status'    => 'publish',
+			'has_password'   => false, // Password-protected products are private to whoever has the password.
 			'posts_per_page' => 100,
 			'fields'         => 'ids',
 			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
@@ -75,7 +76,7 @@ function wbcom_essential_edd_user_owns_download( $download_id ) {
  */
 function wbcom_essential_edd_get_pro_counterpart( $download_id ) {
 	$pro_id = absint( get_post_meta( $download_id, '_wbcom_pro_counterpart', true ) );
-	if ( ! $pro_id || 'publish' !== get_post_status( $pro_id ) ) {
+	if ( ! $pro_id || 'publish' !== get_post_status( $pro_id ) || '' !== (string) get_post_field( 'post_password', $pro_id ) ) {
 		return 0;
 	}
 	return $pro_id;
@@ -366,6 +367,7 @@ function wbcom_essential_edd_render_whats_new_section() {
 		array(
 			'post_type'      => 'download',
 			'post_status'    => 'publish',
+			'has_password'   => false,
 			'posts_per_page' => 8,
 			'orderby'        => 'date',
 			'order'          => 'DESC',
@@ -446,6 +448,7 @@ function wbcom_essential_edd_render_recommendations_section( $customer = false )
 				array(
 					'post_type'      => 'download',
 					'post_status'    => 'publish',
+					'has_password'   => false,
 					'posts_per_page' => 12,
 					'post__not_in'   => array_merge( array_keys( $owned ), array_keys( $recos ) ), // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 					'fields'         => 'ids',
@@ -614,6 +617,9 @@ function wbcom_essential_edd_claim_free_callback( $request ) {
 		|| 'publish' !== get_post_status( $download_id )
 		|| ! edd_is_free_download( $download_id )
 		|| edd_has_variable_prices( $download_id )
+		// A password-protected product is only claimable by someone who entered
+		// its password (WordPress's own wp-postpass cookie), never by id alone.
+		|| post_password_required( $download_id )
 	) {
 		return new WP_Error( 'wbcom_invalid_download', __( 'This product cannot be claimed.', 'wbcom-essential' ), array( 'status' => 400 ) );
 	}
