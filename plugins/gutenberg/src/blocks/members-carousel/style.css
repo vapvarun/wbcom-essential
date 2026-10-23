@@ -6,6 +6,7 @@
 
 /* Block defaults */
 .wbe-members-carousel {
+	container-type: inline-size; /* arrows below follow this block's width */
 	--wbe-mc-card-bg: #ffffff;
 	--wbe-mc-card-radius: 12px;
 	--wbe-mc-name-color: #1e1e2e;
@@ -153,10 +154,11 @@
 }
 
 /* Swiper navigation arrows */
-.wbe-members-carousel__swiper .swiper-button-prev,
-.wbe-members-carousel__swiper .swiper-button-next {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-prev,
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next {
 	width: 40px;
 	height: 40px;
+	padding: 0;
 	background: #ffffff;
 	border: none;
 	border-radius: 50%;
@@ -172,27 +174,27 @@
 	top: calc( 50% - 20px );
 }
 
-.wbe-members-carousel__swiper .swiper-button-prev::after,
-.wbe-members-carousel__swiper .swiper-button-next::after {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-prev::after,
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next::after {
 	display: none;
 }
 
-.wbe-members-carousel__swiper .swiper-button-prev:hover,
-.wbe-members-carousel__swiper .swiper-button-next:hover {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-prev:hover,
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next:hover {
 	background: var( --wbe-mc-accent );
 	color: #ffffff;
 }
 
-.wbe-members-carousel__swiper .swiper-button-prev {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-prev {
 	left: 8px;
 }
 
-.wbe-members-carousel__swiper .swiper-button-next {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next {
 	right: 8px;
 }
 
 /* Swiper pagination */
-.wbe-members-carousel__swiper .swiper-pagination {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-pagination {
 	position: absolute;
 	bottom: 8px;
 	left: 0;
@@ -202,7 +204,7 @@
 	gap: 6px;
 }
 
-.wbe-members-carousel__swiper .swiper-pagination-bullet {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-pagination-bullet {
 	width: 8px;
 	height: 8px;
 	background: #d0d0d0;
@@ -211,9 +213,54 @@
 	transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.wbe-members-carousel__swiper .swiper-pagination-bullet-active {
+.wbe-members-carousel .wbe-members-carousel__swiper .swiper-pagination-bullet-active {
 	background: var( --wbe-mc-accent );
 	transform: scale( 1.3 );
+}
+
+/*
+ * Narrow containers (sidebars, phones): one card fills the width, so arrows
+ * centred on the slide would sit on the name. Move them to a row under the
+ * card, either side of the dots.
+ */
+@container ( max-width: 520px ) {
+	.wbe-members-carousel .wbe-members-carousel__swiper {
+		padding-bottom: 8px; /* room for the arrow shadow */
+	}
+
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-pagination {
+		position: static;
+		box-sizing: border-box;
+		width: 100%;
+		min-height: 32px;
+		margin-top: 12px;
+		padding-inline: 44px;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 6px;
+	}
+
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-pagination-bullet {
+		margin: 0;
+	}
+
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-prev,
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next {
+		top: auto;
+		bottom: 8px;
+		width: 32px;
+		height: 32px;
+		margin-top: 0;
+		font-size: 18px;
+	}
+
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-prev {
+		left: 0;
+	}
+
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next {
+		right: 0;
+	}
 }
 
 /* Empty state */
@@ -230,8 +277,8 @@
 		padding: 18px 12px;
 	}
 
-	.wbe-members-carousel__swiper .swiper-button-prev,
-	.wbe-members-carousel__swiper .swiper-button-next {
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-prev,
+	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next {
 		width: 32px;
 		height: 32px;
 		font-size: 18px;

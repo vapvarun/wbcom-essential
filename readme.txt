@@ -109,7 +109,7 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 * Improve  - Elementor no longer offers the Wbcom prebuilt template library, and the plugin makes no calls to the Wbcom template server.
 * Fix      - Members, groups and activity blocks show their content on BuddyBoss sites (they showed 'No members found').
-* Fix      - Member and group grids and carousels fit narrow spaces such as sidebars instead of squeezing or clipping cards.
+* Fix      - Member and group grids and carousels fit narrow spaces such as sidebars instead of squeezing or clipping cards, and carousel arrows no longer cover the card.
 * Fix      - Carousel blocks placed in widget areas or templates load their slider styles, so slides no longer stack into a tall column.
 * Dev      - Removed the template library code, its editor button, modal and AJAX actions, and the cached template lists it stored.
 
