@@ -999,3 +999,24 @@ function wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages =
 
 	return $return;
 }
+
+/**
+ * REST URL for a BuddyPress or BuddyBoss Platform route.
+ *
+ * BuddyPress serves its REST API under buddypress/v1 and BuddyBoss Platform
+ * under buddyboss/v1; both expose the namespace through bp_rest_namespace()
+ * and bp_rest_version(). Blocks must build their endpoints here instead of
+ * hard-coding either namespace.
+ *
+ * @since 4.7.1
+ *
+ * @param string $route Route below the namespace, e.g. 'members'.
+ * @return string Full REST URL.
+ */
+function wbcom_essential_bp_rest_url( $route ) {
+	$namespace = function_exists( 'bp_rest_namespace' ) && function_exists( 'bp_rest_version' )
+		? bp_rest_namespace() . '/' . bp_rest_version()
+		: 'buddypress/v1';
+
+	return rest_url( $namespace . '/' . ltrim( $route, '/' ) );
+}

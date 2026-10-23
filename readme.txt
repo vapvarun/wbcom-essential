@@ -108,6 +108,7 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 = 4.7.1 - October 2026 =
 
 * Improve  - Elementor no longer offers the Wbcom prebuilt template library, and the plugin makes no calls to the Wbcom template server.
+* Fix      - Members, groups and activity blocks show their content on BuddyBoss sites (they showed 'No members found').
 * Dev      - Removed the template library code, its editor button, modal and AJAX actions, and the cached template lists it stored.
 
 = 4.7.0 - October 2026 =

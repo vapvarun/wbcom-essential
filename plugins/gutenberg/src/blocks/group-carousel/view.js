@@ -12,6 +12,7 @@
  */
 
 import swiperA11y from '../../shared/utils/swiper-a11y';
+import { groupMemberCount } from '../../shared/utils/bp-rest';
 
 ( function () {
 	'use strict';
@@ -175,9 +176,10 @@ import swiperA11y from '../../shared/utils/swiper-a11y';
 		info.appendChild( nameHeading );
 
 		// Member count.
-		if ( cfg.showMemberCount && group.total_member_count ) {
+		const memberCount = groupMemberCount( group );
+		if ( cfg.showMemberCount && memberCount ) {
 			info.appendChild(
-				el( 'span', 'wbe-group-carousel__count', group.total_member_count + ' ' + cfg.i18n.members )
+				el( 'span', 'wbe-group-carousel__count', memberCount + ' ' + cfg.i18n.members )
 			);
 		}
 
