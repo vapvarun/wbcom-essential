@@ -15,7 +15,6 @@
 - action bp_directory_members_item | templates/reign/buddypress/legacy/members/members-loop.php:97
 - action login_form | plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:99
 - action reign_wp_menu_elementor_controls | plugins/elementor/widgets/General/NotificationArea.php:310
-- action wbcom-essential-elementor-templates/types/register | plugins/elementor/templates/types/manager.php:79
 - action wbcom_addon_after_price | plugins/elementor/widgets/WooCommerce/ProductTab.php:1582
 - action wbcom_essential/init | plugins/elementor/Plugins.php:213
 - action wbcom_essential/widget/branding/settings | plugins/elementor/widgets/General/Branding.php:94

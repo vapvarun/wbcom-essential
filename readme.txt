@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 7.1
-Stable tag: 4.7.0
+Stable tag: 4.7.1
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,11 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 5. BuddyPress carousel blocks on frontend
 
 == Changelog ==
+
+= 4.7.1 - October 2026 =
+
+* Improve  - Elementor no longer offers the Wbcom prebuilt template library, and the plugin makes no calls to the Wbcom template server.
+* Dev      - Removed the template library code, its editor button, modal and AJAX actions, and the cached template lists it stored.
 
 = 4.7.0 - October 2026 =
 
@@ -287,6 +292,9 @@ Find downloads and licenses fast on the account dashboard, plus expired-license 
 For full changelog, see the changelog.md file in the docs folder.
 
 == Upgrade Notice ==
+
+= 4.7.1 =
+Removes the Wbcom prebuilt template library from the Elementor editor. Templates you already imported stay in your Elementor library.
 
 = 4.7.0 =
 Converts EDD checkout pages to EDD 3.7's Checkout block automatically on the first visit after updating, keeping your guarantee wording, Trustpilot details and section toggles.

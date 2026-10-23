@@ -35,6 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wbcom_essential_get_upgrade_routines() {
 	return array(
 		'4.7.0' => 'wbcom_essential_upgrade_470_checkout_block',
+		'4.7.1' => 'wbcom_essential_upgrade_471_template_library_cache',
 	);
 }
 
@@ -95,6 +96,43 @@ function wbcom_essential_maybe_upgrade() {
 	do_action( 'wbcom_essential_upgraded', $stored );
 }
 add_action( 'wp_loaded', 'wbcom_essential_maybe_upgrade' );
+
+/**
+ * Transients the retired Elementor template library cached its remote lists in.
+ *
+ * The library (removed in 4.7.1) fetched section and page templates from the
+ * Wbcom demo server. Shared by the 4.7.1 upgrade routine and uninstall.php.
+ *
+ * @since 4.7.1
+ *
+ * @return string[]
+ */
+function wbcom_essential_template_library_transients() {
+	$transients = array();
+
+	foreach ( array( 'wbcom-essential-elementor-sections-api', 'wbcom-essential-elementor-pages-api' ) as $source ) {
+		$transients[] = 'wbcom_essential_elementor_templates_' . $source;
+		$transients[] = 'wbcom_essential_elementor_categories_' . $source;
+	}
+
+	return $transients;
+}
+
+/**
+ * 4.7.1 - drop the template-list cache left by the removed template library.
+ *
+ * Cache data only; templates a site already imported live in Elementor's own
+ * library and are not touched. Safe to run twice.
+ *
+ * @since 4.7.1
+ *
+ * @return void
+ */
+function wbcom_essential_upgrade_471_template_library_cache() {
+	foreach ( wbcom_essential_template_library_transients() as $transient ) {
+		delete_transient( $transient );
+	}
+}
 
 /**
  * 4.7.0 — nest EDD's checkout block inside the Enhanced Checkout block.

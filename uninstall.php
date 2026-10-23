@@ -41,6 +41,12 @@ $wbcom_essential_options = array(
 );
 
 /**
+ * Template-list cache left by the Elementor template library removed in 4.7.1.
+ */
+require_once __DIR__ . '/includes/upgrades.php';
+$wbcom_essential_transients = wbcom_essential_template_library_transients();
+
+/**
  * Post meta written by the per-post single-post template control.
  */
 $wbcom_essential_post_meta_keys = array(
@@ -61,6 +67,10 @@ if ( is_multisite() ) {
 			delete_post_meta_by_key( $wbcom_essential_meta_key );
 		}
 
+		foreach ( $wbcom_essential_transients as $wbcom_essential_transient ) {
+			delete_transient( $wbcom_essential_transient );
+		}
+
 		wp_clear_scheduled_hook( 'wbcom_essential_activate_preset_key' );
 
 		restore_current_blog();
@@ -72,6 +82,10 @@ if ( is_multisite() ) {
 
 	foreach ( $wbcom_essential_post_meta_keys as $wbcom_essential_meta_key ) {
 		delete_post_meta_by_key( $wbcom_essential_meta_key );
+	}
+
+	foreach ( $wbcom_essential_transients as $wbcom_essential_transient ) {
+		delete_transient( $wbcom_essential_transient );
 	}
 
 	wp_clear_scheduled_hook( 'wbcom_essential_activate_preset_key' );
