@@ -20,7 +20,23 @@
 /* Grid list */
 .wbe-groups-grid__list {
 	display: grid;
-	grid-template-columns: repeat( var( --wbe-gg-cols ), 1fr );
+	/*
+	 * Columns follow the container: the owner's column setting for this
+	 * screen size is the maximum, and a column never drops below
+	 * --wbe-gg-min-col, so the grid fits sidebars without clipping.
+	 */
+	--wbe-gg-cols-now: var( --wbe-gg-cols );
+	--wbe-gg-min-col: 200px;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( var( --wbe-gg-min-col ), 100% ),
+				calc( ( 100% - ( var( --wbe-gg-cols-now ) - 1 ) * var( --wbe-gg-gap ) ) / var( --wbe-gg-cols-now ) )
+			),
+			1fr
+		)
+	);
 	gap: var( --wbe-gg-gap );
 	margin: 0;
 	padding: 0;
@@ -205,14 +221,14 @@
 /* Responsive — tablet */
 @media screen and (max-width: 1024px) {
 	.wbe-groups-grid__list {
-		grid-template-columns: repeat( var( --wbe-gg-cols-tab ), 1fr );
+		--wbe-gg-cols-now: var( --wbe-gg-cols-tab );
 	}
 }
 
 /* Responsive — mobile */
 @media screen and (max-width: 640px) {
 	.wbe-groups-grid__list {
-		grid-template-columns: repeat( var( --wbe-gg-cols-mob ), 1fr );
+		--wbe-gg-cols-now: var( --wbe-gg-cols-mob );
 	}
 
 	/* Stack avatar above info on small screens */
