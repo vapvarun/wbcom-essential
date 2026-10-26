@@ -174,7 +174,7 @@ Built with care by [Wbcom Designs](https://wbcomdesigns.com/) - the team behind 
 
 ---
 
-**Version**: 4.5.0
+**Version**: 4.7.1
 **Requires WordPress**: 6.0+
 **Requires PHP**: 8.0+
 **Tested up to**: WordPress 6.9

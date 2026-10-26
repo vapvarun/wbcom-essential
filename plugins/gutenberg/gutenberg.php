@@ -27,7 +27,9 @@ require_once __DIR__ . '/includes/class-wbe-fonts.php';
 
 /**
  * Register shared Swiper library for carousel blocks.
- * block.json viewScript arrays reference the "swiper" handle.
+ * Carousel block.json files reference these handles: "swiper" in viewScript and
+ * "wbe-swiper" in style, so the base CSS loads wherever a carousel renders
+ * (post content, widget areas, templates).
  */
 add_action(
 	'init',
@@ -46,29 +48,6 @@ add_action(
 			true
 		);
 	}
-);
-
-/**
- * Enqueue Swiper base CSS when any carousel block is on the page.
- */
-add_action(
-	'wp_enqueue_scripts',
-	function () {
-		global $post;
-		if ( ! $post ) {
-			return;
-		}
-		if ( false !== strpos( $post->post_content, 'members-carousel' )
-			|| false !== strpos( $post->post_content, 'group-carousel' )
-			|| false !== strpos( $post->post_content, 'post-carousel' )
-			|| false !== strpos( $post->post_content, 'product-carousel' )
-			|| false !== strpos( $post->post_content, 'testimonial-carousel' )
-			|| false !== strpos( $post->post_content, 'customer-reviews' )
-		) {
-			wp_enqueue_style( 'wbe-swiper' );
-		}
-	},
-	5
 );
 
 /**

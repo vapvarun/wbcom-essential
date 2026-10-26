@@ -14,7 +14,7 @@
  * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com/downloads/wbcom-essential/
  * Description:       Premium Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design.
- * Version:           4.7.0
+ * Version:           4.7.1
  * Requires at least: 6.0
  * Tested up to:      7.1
  * Requires PHP:      8.0
@@ -30,8 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '4.7.0' );
-define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.6.3' );
+define( 'WBCOM_ESSENTIAL_VERSION', '4.7.1' );
+define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.7.0' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASE', plugin_basename( WBCOM_ESSENTIAL_FILE ) );
