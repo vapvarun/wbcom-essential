@@ -271,7 +271,7 @@
  * centred on the slide would sit on the name. Move them to a row under the
  * card, either side of the dots.
  */
-@container ( max-width: 520px ) {
+@container ( max-width: 720px ) {
 	.wbe-group-carousel .wbe-group-carousel__swiper {
 		padding-bottom: 8px; /* room for the arrow shadow */
 	}
