@@ -107,6 +107,8 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 * Fix      - Carousel blocks placed in widget areas or templates load their slider styles, so slides no longer stack into a tall column.
 * Fix      - The Elementor editor no longer requests two stylesheets that do not exist.
 * Fix      - Corrected misspelled setting labels in the Posts Carousel, Posts Revolution and Groups Lists widgets.
+* Fix      - Message links in the Header Bar widget's messages menu no longer raise PHP 8.1 deprecation notices.
+* Dev      - Elementor custom controls now register on the current elementor/controls/register hook instead of the deprecated one.
 * Dev      - Removed the template library code, its editor button, modal and AJAX actions, and the cached template lists it stored.
 
 = 4.7.0 - October 2026 =
