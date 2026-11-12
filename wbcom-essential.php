@@ -222,7 +222,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 					'slug'         => 'wbcom-essential',
 					'priority'     => 5,
 					'icon'         => 'dashicons-screenoptions',
-					'description'  => __( '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.', 'wbcom-essential' ),
+					'description'  => __( '35 Gutenberg blocks and 43 Elementor widgets for BuddyPress, WooCommerce, EDD and general websites.', 'wbcom-essential' ),
 					'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
 					'status'       => 'active',
 					'version'      => WBCOM_ESSENTIAL_VERSION,

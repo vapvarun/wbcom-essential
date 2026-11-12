@@ -1,84 +1,51 @@
 # Blocks Overview
 
-Gutenberg Blocks
+Wbcom Essential adds 35 blocks to the WordPress block editor. You add them like any other block and style them from the block sidebar. No code is needed.
 
-WBcom Essential includes 45 ready-to-use blocks for the WordPress block editor. No coding required - just drag, drop, and customize!
+## Find the blocks
 
-Block Categories
+1. Edit a page or post.
+2. Open the block inserter.
+3. Search for the block name, or scroll to one of the **Essential** categories.
 
-CategoryBlocksBest ForHeader Blocks4Site navigation and brandingDesign Blocks12Visual elements and layoutsContent Blocks8Text, tabs, and interactive contentBlog Blocks6Displaying your postsMarketing Blocks4Conversions and salesBuddyPress Blocks11Community featuresWooCommerce Blocks2Online store features
+The blocks are grouped in seven inserter categories:
 
-How to Find Blocks
+| Inserter category | Blocks | Needs | Page |
+|-------------------|--------|-------|------|
+| Essential - Design | 4 | Nothing extra | [Design Blocks](design-blocks.md) |
+| Essential - Content | 5 | Nothing extra | [Content Blocks](content-blocks.md) |
+| Essential - Blog | 3 | Nothing extra | [Blog Blocks](blog-blocks.md) |
+| Essential - Marketing | 7 | Nothing extra | [Marketing Blocks](marketing-blocks.md) |
+| Essential - BuddyPress | 5 | BuddyPress or BuddyBoss Platform | [BuddyPress Blocks](buddypress-blocks.md) |
+| Essential - WooCommerce | 3 | WooCommerce | [WooCommerce Blocks](woocommerce-blocks.md) |
+| Essential - EDD | 8 | Easy Digital Downloads | [EDD Blocks](edd-blocks.md) |
 
-Edit any page in WordPress
-Click the + button to add a block
-Search for "Essential" or the block name
-Drag the block onto your page
+BuddyPress, WooCommerce and EDD blocks load only when their plugin is active. Until then they stay out of the inserter and any copy already on a page shows a notice that the plugin is required.
 
-Settings Every Block Has
+## Settings shared by all blocks
 
-Theme Colors Toggle
+Most blocks have the same Spacing, Style and Advanced controls in the block sidebar.
 
-Location: Block Settings > Color Settings > Use Theme Colors
+| Setting | What it does |
+|---------|--------------|
+| Padding | Space inside the block. Set each side, or link the sides. Choose the unit. |
+| Margin | Space around the block. Set each side, or link the sides. Choose the unit. |
+| Border Radius | Rounds the corners. Set each corner, or link them. Choose px, % or em. |
+| Box Shadow | Turns a shadow on, then sets X, Y, Blur, Spread and Shadow Color. |
+| Device Visibility | Hide on Desktop, Hide on Tablet and Hide on Mobile. |
 
-When enabled, your blocks automatically match your theme's colors. Change your theme colors once, and all blocks update automatically!
+Some blocks show these under Style or Spacing, others under one Advanced panel. The four EDD checkout section blocks have only Padding and Device Visibility.
 
-Example: CTA Box block with settings panel visible
+## Settings for each screen size
 
-Spacing Controls
+Many blocks let you set columns or slides separately for desktop, tablet and phone. Text Rotator does the same for its font size. Look for the Desktop, Tablet and Mobile labels in the Layout or Carousel panel of each block.
 
-Margin: Space outside the block
-Padding: Space inside the block
+## Related
 
-Responsive Preview
-
-Click the device icons in the editor toolbar to preview how your blocks look on desktop, tablet, and mobile.
-
-Quick Tips
-
-Enable Theme Colors - Keeps your site looking consistent
-Preview on mobile - Always check mobile view before publishing
-Use categories - Find blocks faster by browsing categories
-Copy blocks - Right-click any block to duplicate it
-
-Browse by Category
-
-Header Blocks - Branding, navigation, user menus
-Design Blocks - Counters, sliders, icons, shapes
-Content Blocks - Accordions, tabs, timelines
-Blog Blocks - Post carousels, sliders, tickers
-Marketing Blocks - Pricing, CTAs, testimonials
-BuddyPress Blocks - Members, groups, forums
-WooCommerce Blocks - Products, cart
-
-Block Screenshots
-
-All block screenshots are available in docs/images/blocks/. Each screenshot shows the block in the WordPress editor with its settings panel visible.
-
-Header Blocks
-
-BlockScreenshotBrandingbranding-block-editor.pngDropdown Buttondropdown-button-block-editor.pngLogin Formlogin-form-block-editor.pngSite Logosite-logo-block-editor.pngSmart Menusmart-menu-block-editor.png
-
-Design Blocks
-
-BlockScreenshotCountercounter-block-editor.pngDividerdivider-block-editor.pngFlip Boxflip-box-block-editor.pngHeadingheading-block-editor.pngIcon Boxicon-box-block-editor.pngShapeshape-block-editor.pngSliderslider-block-editor.pngSocial Iconssocial-icons-block-editor.pngStar Ratingstar-rating-block-editor.pngText Rotatortext-rotator-block-editor.png
-
-Content Blocks
-
-BlockScreenshotAccordionaccordion-block-editor.pngAdvanced Tabsadvanced-tabs-block-editor.pngTimelinetimeline-block-editor.png
-
-Blog Blocks
-
-BlockScreenshotPortfolio Gridportfolio-grid-block-editor.pngPost Carouselpost-carousel-block-editor.pngPost Sliderpost-slider-block-editor.pngPost Timelinepost-timeline-block-editor.pngPosts Carouselposts-carousel-block-editor.pngPosts Revolutionposts-revolution-block.pngPosts Tickerposts-ticker-block.png
-
-Marketing Blocks
-
-BlockScreenshotCountdowncountdown-block-editor.pngCTA Boxcta-box-block-editor.pngPricing Tablepricing-table-block.pngProgress Barprogress-bar-block.pngTeam Carouselteam-carousel-block.pngTestimonialtestimonial-block.pngTestimonial Carouseltestimonial-carousel-block.png
-
-BuddyPress Blocks
-
-BlockScreenshotDashboard Introdashboard-intro-block.pngForumsforums-block.pngForums Activityforums-activity-block.pngGroup Carouselgroup-carousel-block.pngGroups Gridgroups-grid-block.pngGroups Listsgroups-lists-block.pngHeader Barheader-bar-block.pngMembers Carouselmembers-carousel-block.pngMembers Gridmembers-grid-block.pngMembers Listsmembers-lists-block.pngProfile Completionprofile-completion-block.png
-
-WooCommerce Blocks
-
-BlockScreenshotProduct Gridproduct-grid-block.pngMini Cartmini-cart-block.png
+- [Design Blocks](design-blocks.md)
+- [Content Blocks](content-blocks.md)
+- [Blog Blocks](blog-blocks.md)
+- [Marketing Blocks](marketing-blocks.md)
+- [BuddyPress Blocks](buddypress-blocks.md)
+- [WooCommerce Blocks](woocommerce-blocks.md)
+- [EDD Blocks](edd-blocks.md)

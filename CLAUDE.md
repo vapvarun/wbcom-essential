@@ -57,7 +57,7 @@ Full architecture documentation available in `docs/architecture/`:
 wbcom-essential/
 ├── admin/                      # Admin panel functionality
 ├── build/                      # Compiled block assets (generated)
-│   └── blocks/                 # Built block JS/CSS (32 V2 blocks)
+│   └── blocks/                 # Built block JS/CSS (35 blocks)
 ├── includes/                   # Core plugin functionality
 │   ├── shared-admin/           # Shared admin components
 │   └── wbcom-essential-function.php  # Shared helper functions
@@ -70,7 +70,7 @@ wbcom-essential/
 │   └── gutenberg/              # Gutenberg V2 blocks
 │       ├── src/
 │       │   ├── shared/         # Shared infrastructure (components, hooks, utils, tokens)
-│       │   └── blocks/         # 32 V2 block source files
+│       │   └── blocks/         # 35 block source folders
 │       ├── includes/           # PHP infrastructure (WBE_CSS, WBE_Schema, WBE_Fonts)
 │       ├── patterns/           # 13 block patterns
 │       ├── BlockRegistrar.php  # Auto-register from build/blocks/
@@ -101,47 +101,51 @@ wbcom-essential/
 | Essential - Marketing | 7 |
 | Essential - Content | 5 |
 | Essential - Blog | 3 |
-| Essential - Design | 6 |
-| Essential - BuddyPress | 5 |
-| Essential - WooCommerce | 4 |
-| Essential - EDD (conditional) | 1 |
-| **Total** | **32** |
+| Essential - Design | 4 |
+| Essential - BuddyPress (conditional) | 5 |
+| Essential - WooCommerce (conditional) | 3 |
+| Essential - EDD (conditional) | 8 |
+| **Total** | **35** |
 
-### V2 Blocks (32 total)
+### Blocks (35 total)
 
 | # | Block Slug | Category | Type |
 |---|-----------|----------|------|
-| 1 | `hero` | Marketing | Static |
+| 1 | `countdown-timer` | Marketing | Static + viewScript |
 | 2 | `cta` | Marketing | Static |
-| 3 | `pricing-table` | Marketing | Static |
-| 4 | `testimonial-carousel` | Marketing | Static + viewScript |
-| 5 | `feature-grid` | Marketing | Static |
+| 3 | `feature-grid` | Marketing | Static |
+| 4 | `hero` | Marketing | Static |
+| 5 | `pricing-table` | Marketing | Static |
 | 6 | `promo-banner` | Marketing | Static |
-| 7 | `countdown-timer` | Marketing | Static + viewScript |
-| 8 | `faq-accordion` | Content | Static + viewScript + JSON-LD |
-| 9 | `tabs` | Content | Static + viewScript |
-| 10 | `login-form` | Content | Dynamic (render.php) |
-| 11 | `portfolio-grid` | Content | Dynamic |
-| 12 | `timeline` | Content | Dynamic |
-| 13 | `post-carousel` | Blog | Dynamic + viewScript |
-| 14 | `posts-ticker` | Blog | Dynamic + viewScript |
-| 15 | `category-grid` | Blog | Dynamic |
-| 16 | `flip-box` | Design | Static |
+| 7 | `testimonial-carousel` | Marketing | Static + viewScript |
+| 8 | `faq-accordion` | Content | Static + viewScript |
+| 9 | `login-form` | Content | Dynamic |
+| 10 | `portfolio-grid` | Content | Dynamic + viewScript |
+| 11 | `tabs` | Content | Static + viewScript |
+| 12 | `timeline` | Content | Static |
+| 13 | `category-grid` | Blog | Dynamic |
+| 14 | `post-carousel` | Blog | Dynamic + viewScript |
+| 15 | `posts-ticker` | Blog | Dynamic + viewScript |
+| 16 | `flip-box` | Design | Static + viewScript |
 | 17 | `progress-bar` | Design | Static + viewScript |
-| 18 | `text-rotator` | Design | Static + viewScript |
-| 19 | `stats-counter` | Design | Static + viewScript |
-| 20 | `edd-account-dashboard` | Design | Dynamic (REST API) |
-| 21 | `edd-checkout-enhanced` | Design | Dynamic |
-| 22 | `activity-feed` | BuddyPress | Dynamic (BP REST API) |
-| 23 | `members-grid` | BuddyPress | Dynamic |
-| 24 | `members-carousel` | BuddyPress | Dynamic + viewScript |
-| 25 | `groups-grid` | BuddyPress | Dynamic |
-| 26 | `group-carousel` | BuddyPress | Dynamic + viewScript |
+| 18 | `stats-counter` | Design | Static + viewScript |
+| 19 | `text-rotator` | Design | Static + viewScript |
+| 20 | `activity-feed` | BuddyPress | Dynamic + viewScript |
+| 21 | `group-carousel` | BuddyPress | Dynamic + viewScript |
+| 22 | `groups-grid` | BuddyPress | Dynamic + viewScript |
+| 23 | `members-carousel` | BuddyPress | Dynamic + viewScript |
+| 24 | `members-grid` | BuddyPress | Dynamic + viewScript |
+| 25 | `customer-reviews` | WooCommerce | Dynamic + viewScript |
+| 26 | `product-carousel` | WooCommerce | Dynamic + viewScript |
 | 27 | `product-grid` | WooCommerce | Dynamic |
-| 28 | `product-carousel` | WooCommerce | Dynamic + viewScript |
-| 29 | `customer-reviews` | WooCommerce | Dynamic |
-| 30 | `edd-order-success` | WooCommerce | Dynamic |
-| 31 | `product-catalog` | EDD (conditional) | Dynamic + viewScript |
+| 28 | `edd-account-dashboard` | EDD | Dynamic + viewScript |
+| 29 | `edd-checkout-enhanced` | EDD | Dynamic |
+| 30 | `edd-checkout-progress` | EDD | Dynamic |
+| 31 | `edd-checkout-recommendations` | EDD | Dynamic |
+| 32 | `edd-checkout-social` | EDD | Dynamic |
+| 33 | `edd-checkout-trust` | EDD | Dynamic |
+| 34 | `edd-order-success` | EDD | Dynamic |
+| 35 | `product-catalog` | EDD | Dynamic + viewScript |
 
 ### Blocks Removed in V2 (21 merged/replaced)
 
@@ -314,7 +318,7 @@ If needed in the future, create:
 
 ## Notes
 
-- All 45 blocks have the "Use Theme Colors" toggle implemented
+- Only Category Grid has a "Use Theme Colors" toggle; other blocks read `--wbcom-*` CSS custom properties with fallbacks
 - Use `ServerSideRender` for dynamic content (BuddyPress, WooCommerce, posts)
 - Test with BuddyX theme for full compatibility
 - All strings must be translatable using `__()` or `_e()`

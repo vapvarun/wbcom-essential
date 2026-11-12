@@ -1,144 +1,117 @@
 # WooCommerce Blocks
 
-WooCommerce Blocks
+WooCommerce blocks show your store's products and customer reviews on any page. They appear in the block inserter under **Essential - WooCommerce** and load only when WooCommerce is active.
 
-2 specialized blocks for e-commerce features. Requires WooCommerce plugin to be active.
+If WooCommerce is not active, these blocks show the notice "WooCommerce plugin is required for this block."
 
-These blocks only appear in the block inserter when WooCommerce is installed and activated.
+Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
-Product Grid
+## Customer Reviews
 
-Display WooCommerce products in customizable grid.
+WooCommerce product reviews in a Swiper carousel, with the reviewer's avatar, star rating, name and a link to the product. Block name: `wbcom-essential/customer-reviews`.
 
-What You Can Do
+### Add it
 
-Show products in attractive grid
-Filter by category, tag, or featured
-Display sale badges
-Add to cart buttons
-Show ratings and prices
+1. Open the block inserter.
+2. Search for **Customer Reviews**.
+3. Select it to insert it into the page.
 
-Settings
+### Settings
 
-SettingOptionsRecommendedColumns2-64Products Per PageNumber8-12Filter ByCategory, Tag, Featured, On SaleYour choiceShow ImageYes/NoYesShow TitleYes/NoYesShow PriceYes/NoYesShow RatingYes/NoYesShow Add to CartYes/NoYesShow Sale BadgeYes/NoYesOrder ByDate, Price, Popularity, RatingPopularity
+| Panel | Setting | What it does | Default |
+|-------|---------|--------------|---------|
+| Query Settings | Number of Reviews | How many reviews to load. | 6 |
+| Carousel Settings | Slides Per View (Desktop) | Reviews visible on desktop. | 2 |
+| Carousel Settings | Autoplay | Moves slides automatically. | On |
+| Carousel Settings | Autoplay Delay (ms) | Time between slides. | 4000 |
+| Carousel Settings | Loop | Returns to the first slide after the last. | On |
+| Carousel Settings | Show Navigation Dots | Shows the dots. | On |
+| Carousel Settings | Show Navigation Arrows | Shows the arrows. | On |
+| Review Card Settings | Show Avatar | Shows the reviewer avatar. | On |
+| Review Card Settings | Show Star Rating | Shows the star rating. | On |
+| Review Card Settings | Show Product Name | Shows the reviewed product with a link. | On |
+| Style | Card Background | Card background. | #ffffff |
+| Style | Quote Text Color | Color of the review text. | #1e1e2e |
+| Style | Reviewer Name Color | Color of the reviewer name. | #1e1e2e |
+| Style | Star Rating Color | Color of the filled stars. | #f5a623 |
+| Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
-Best For
+### Tips
 
-Homepage featured products
-Category landing pages
-Sale product showcases
-New arrivals sections
+- If your store has no reviews yet, the block shows "No reviews found."
 
-Use Cases
+## Product Carousel
 
-Featured Products Section
+WooCommerce products in a Swiper carousel with autoplay, arrows, dots and a number of slides that adapts to the screen. Block name: `wbcom-essential/product-carousel`.
 
-Filter: Featured Products
-Columns: 4
-Products: 8
-Show: Image, Title, Price, Add to Cart
+### Add it
 
-Sale Products Banner
+1. Open the block inserter.
+2. Search for **Product Carousel**.
+3. Select it to insert it into the page.
 
-Filter: On Sale
-Columns: 4
-Products: 8
-Show Sale Badge: Yes
+### Settings
 
-New Arrivals
+| Panel | Setting | What it does | Default |
+|-------|---------|--------------|---------|
+| Query Settings | Products Per Page | How many products to load. | 8 |
+| Query Settings | Order By | Date, Title, Price, Popularity, Rating or Random. | Date |
+| Query Settings | Order | Descending or Ascending. | Descending |
+| Carousel Settings | Slides Per View (Desktop) | Products visible on desktop. | 4 |
+| Carousel Settings | Slides Per View (Tablet) | Products visible on tablets. | 2 |
+| Carousel Settings | Slides Per View (Mobile) | Products visible on phones. | 1 |
+| Carousel Settings | Space Between Slides (px) | Space between cards. | 24 |
+| Carousel Settings | Autoplay | Moves slides automatically. | On |
+| Carousel Settings | Autoplay Delay (ms) | Time between slides. | 3000 |
+| Carousel Settings | Loop | Returns to the first slide after the last. | On |
+| Carousel Settings | Show Navigation Dots | Shows the dots. | On |
+| Carousel Settings | Show Navigation Arrows | Shows the arrows. | On |
+| Card Settings | Show Product Image | Shows the product image. | On |
+| Card Settings | Show Price | Shows the price. | On |
+| Card Settings | Show Star Rating | Shows the average rating. | On |
+| Card Settings | Show Add to Cart | Shows the add-to-cart button. | On |
+| Style | Card Background | Card background. | #ffffff |
+| Style | Title Color | Color of the product title. | #1e1e2e |
+| Style | Price Color | Color of the price. | #667eea |
+| Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
-Filter: All Products
-Order By: Date (newest)
-Products: 4
+### Tips
 
-Mini Cart
+- If no product matches, the block shows "No products found."
 
-Shopping cart icon with dropdown preview.
+## Product Grid
 
-What You Can Do
+WooCommerce products in a responsive grid with a sale badge, star rating and add-to-cart button. Block name: `wbcom-essential/product-grid`.
 
-Show cart icon in header
-Display item count badge
-Dropdown cart preview
-Quick checkout link
-Show cart total
+### Add it
 
-Settings
+1. Open the block inserter.
+2. Search for **Product Grid**.
+3. Select it to insert it into the page.
 
-SettingOptionsRecommendedShow CountYes/NoYesShow TotalYes/NoYesIcon StyleCart, Bag, BasketCartDropdownYes/NoYesDropdown ShowsItems, Total, Checkout ButtonAll
+### Settings
 
-Best For
+| Panel | Setting | What it does | Default |
+|-------|---------|--------------|---------|
+| Query Settings | Products Per Page | How many products to show. | 8 |
+| Query Settings | Order By | Date, Title, Price, Popularity, Rating, Random or Menu Order. | Date |
+| Query Settings | Order | Descending or Ascending. | Descending |
+| Layout | Columns (Desktop) | Columns on desktop. | 4 |
+| Layout | Columns (Tablet) | Columns on tablets. | 2 |
+| Layout | Columns (Mobile) | Columns on phones. | 1 |
+| Layout | Gap (px) | Space between cards. | 24 |
+| Layout | Image Ratio | 1:1 (Square), 4:3, 3:4 (Portrait) or 16:9. | 1:1 |
+| Card Settings | Show Product Image | Shows the product image. | On |
+| Card Settings | Show Price | Shows the price. | On |
+| Card Settings | Show Star Rating | Shows the average rating. | On |
+| Card Settings | Show Add to Cart | Shows the add-to-cart button. | On |
+| Card Settings | Show Sale Badge | Shows a badge on products on sale. | On |
+| Style | Card Background | Card background. | #ffffff |
+| Style | Title Color | Color of the product title. | #1e1e2e |
+| Style | Price Color | Color of the price. | #667eea |
+| Style | Sale Badge Color | Color of the sale badge. | #e74c3c |
+| Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
-Site header (use with Header Bar)
-Navigation bar
-Sticky header
+### Tips
 
-Pro Tips
-
-Always show count - Users want to know what's in their cart
-Enable dropdown - Let users preview without leaving the page
-Include checkout link - Easy path to purchase
-
-Building E-commerce Pages
-
-Homepage Product Section
-
-[Heading: &quot;Featured Products&quot;]
-
-[Product Grid]
-- Filter: Featured
-- Columns: 4
-- Products: 8
-
-[CTA Box: &quot;View All Products →&quot;]
-
-Category Landing Page
-
-[Category Hero Image]
-
-[Product Grid]
-- Filter: Specific Category
-- Columns: 4
-- Products: 12
-- Show Pagination: Yes
-
-Sale Page
-
-[Countdown: &quot;Sale Ends In...&quot;]
-
-[Product Grid]
-- Filter: On Sale
-- Show Sale Badge: Yes
-- Order By: Discount Amount
-
-Combining with Header Bar
-
-For the best e-commerce header experience, combine Mini Cart with Header Bar:
-
-Header Bar Settings:
-
-Show Search: Yes
-Show Cart: Yes (uses Mini Cart)
-Show User Menu: Yes
-
-This gives customers:
-
-Easy product search
-Cart preview
-Account access
-
-Why Only 2 WooCommerce Blocks?
-
-WooCommerce itself provides excellent native blocks for:
-
-Product details
-Product reviews
-Cart and checkout
-Account pages
-
-We focused on blocks that enhance WooCommerce where native blocks don't exist:
-
-Product Grid - More styling control than native WC blocks
-Mini Cart - Header integration with dropdown preview
-
-Back to All Blocks | View All Widgets
+- If no product matches, the block shows "No products found."

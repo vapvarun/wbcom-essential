@@ -9,7 +9,7 @@ Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Part of Reign, BuddyX and BuddyX Pro: 43 Elementor widgets and 32 Gutenberg blocks for pages, BuddyPress, WooCommerce and EDD.
+Part of Reign, BuddyX and BuddyX Pro: 43 Elementor widgets and 35 Gutenberg blocks for pages, BuddyPress, WooCommerce and EDD.
 
 == Description ==
 
@@ -23,21 +23,21 @@ WBcom Essential extends both Elementor and Gutenberg with widgets and blocks des
 * 11 BuddyPress widgets (member grids, group carousels, activity feeds)
 * 5 WooCommerce widgets (product displays, reviews, banners)
 
-**32 Gutenberg V2 Blocks**
+**35 Gutenberg Blocks**
 
-* 7 Marketing blocks (hero, cta, pricing-table, testimonial-carousel, feature-grid, promo-banner, countdown-timer)
-* 5 Content blocks (faq-accordion, tabs, login-form, portfolio-grid, timeline)
-* 3 Blog blocks (post-carousel, posts-ticker, category-grid)
-* 6 Design blocks (flip-box, progress-bar, text-rotator, stats-counter, edd-account-dashboard, edd-checkout-enhanced)
-* 5 BuddyPress blocks (activity-feed, members-grid, members-carousel, groups-grid, group-carousel)
-* 4 WooCommerce blocks (product-grid, product-carousel, customer-reviews, edd-order-success)
-* 2 EDD blocks (product-catalog, product-filter - conditional on EDD)
+* 7 Marketing blocks (Hero Section, CTA Section, Pricing Table, Testimonial Carousel, Feature Grid, Promo Banner, Countdown Timer)
+* 5 Content blocks (FAQ Accordion, Tabs, Login Form, Portfolio Grid, Timeline)
+* 3 Blog blocks (Post Carousel, Posts Ticker, Category Grid)
+* 4 Design blocks (Flip Box, Progress Bar, Text Rotator, Stats Counter)
+* 5 BuddyPress blocks (Activity Feed, Members Grid, Members Carousel, Groups Grid, Group Carousel)
+* 3 WooCommerce blocks (Product Grid, Product Carousel, Customer Reviews)
+* 8 EDD blocks (Account Dashboard, Order Success, Product Catalog, Checkout Progress, Checkout Trust Badges, Checkout Social Proof, Checkout Recommendations, and the legacy Enhanced Checkout)
 
 = Key Features =
 
-* **Shared Infrastructure** - All 32 blocks inherit from the same components for consistent UX
+* **Shared Infrastructure** - All 35 blocks inherit from the same components for consistent UX
 * **Responsive 3-Breakpoint** - Desktop/Tablet/Mobile controls on every block
-* **Use Theme Colors** - Automatic theme color inheritance via CSS custom properties
+* **Theme Colors** - Blocks read your theme's `--wbcom-*` CSS custom properties, with built-in fallbacks
 * **Accessibility** - ARIA attributes, keyboard navigation, prefers-reduced-motion
 * **Server-Side Rendering** - Dynamic blocks for BuddyPress, WooCommerce, EDD, and post queries
 * **Performance Optimized** - Conditional loading based on active plugins
@@ -45,15 +45,15 @@ WBcom Essential extends both Elementor and Gutenberg with widgets and blocks des
 
 = Block Categories =
 
-All 32 V2 blocks are organized into 7 categories:
+All 35 blocks are organized into 7 categories:
 
 * Essential - Marketing (7 blocks)
 * Essential - Content (5 blocks)
 * Essential - Blog (3 blocks)
-* Essential - Design (6 blocks)
-* Essential - BuddyPress (5 blocks)
-* Essential - WooCommerce (4 blocks)
-* Essential - EDD (2 blocks, conditional)
+* Essential - Design (4 blocks)
+* Essential - BuddyPress (5 blocks, need BuddyPress or BuddyBoss Platform)
+* Essential - WooCommerce (3 blocks, need WooCommerce)
+* Essential - EDD (8 blocks, need Easy Digital Downloads)
 
 = Best Used With =
 
@@ -66,14 +66,14 @@ All 32 V2 blocks are organized into 7 categories:
 
 1. Upload `wbcom-essential` to `/wp-content/plugins/`
 2. Activate through the Plugins menu
-3. Elementor widgets appear in the "Starter Templates" category
+3. Elementor widgets appear in the "Wbcom Essential" category
 4. Gutenberg blocks appear in "Essential - *" categories
 
 = Requirements =
 
 * WordPress 6.0 or higher
 * PHP 8.0 or higher
-* Elementor 3.0+ (for Elementor widgets)
+* Elementor 3.5+ (for Elementor widgets)
 * BuddyPress 10.0+ (for BuddyPress features)
 * WooCommerce 7.0+ (for WooCommerce features)
 
@@ -85,32 +85,27 @@ For Elementor widgets, yes. Gutenberg blocks work without Elementor - they're na
 
 = What happens if BuddyPress isn't active? =
 
-BuddyPress blocks only appear when BuddyPress is active. The plugin loads them conditionally.
+The BuddyPress Elementor widgets only appear when BuddyPress is active. The BuddyPress blocks stay in the block inserter and show a short notice asking for BuddyPress until it is active. The same applies to the WooCommerce and EDD blocks.
 
 = Can I use theme colors in blocks? =
 
-Yes. All 32 V2 blocks inherit your theme's colors via CSS custom properties (`--wbcom-color-primary`, `--wbcom-color-base`, etc.) with sensible fallbacks.
+Yes. Several blocks read your theme's colours through CSS custom properties such as `--wbcom-color-primary` and `--wbcom-link-color`, and fall back to built-in colours when the theme does not set them. Reign, BuddyX and BuddyX Pro set them for you. The Category Grid block also has a **Use Theme Colors** toggle.
 
 = Are blocks compatible with Full Site Editing? =
 
 Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
-== Screenshots ==
-
-1. Gutenberg block inserter showing block categories
-2. Members Grid block with theme colors enabled
-3. Product Grid block settings panel
-4. Elementor widgets in the editor
-5. BuddyPress carousel blocks on frontend
-
 == Changelog ==
 
-= 4.7.1 - October 2026 =
+= 4.7.1 - November 2026 =
 
 * Improve  - Elementor no longer offers the Wbcom prebuilt template library, and the plugin makes no calls to the Wbcom template server.
+* Improve  - Documentation rewritten to match the current 35 blocks and 43 widgets, with FAQ and Troubleshooting sections.
 * Fix      - Members, groups and activity blocks show their content on BuddyBoss sites (they showed 'No members found').
 * Fix      - Member and group grids and carousels fit narrow spaces such as sidebars instead of squeezing or clipping cards, and carousel arrows no longer cover the card.
 * Fix      - Carousel blocks placed in widget areas or templates load their slider styles, so slides no longer stack into a tall column.
+* Fix      - The Elementor editor no longer requests two stylesheets that do not exist.
+* Fix      - Corrected misspelled setting labels in the Posts Carousel, Posts Revolution and Groups Lists widgets.
 * Dev      - Removed the template library code, its editor button, modal and AJAX actions, and the cached template lists it stored.
 
 = 4.7.0 - October 2026 =
