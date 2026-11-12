@@ -651,7 +651,7 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 		if ( $term_list ) {
 			foreach ( $term_list as $tax_term ) {
 				// translators: %s is the taxonomy term name
-				$output .= '<a href="' . esc_attr( get_term_link( $tax_term, $wbcom_query_posts_type ) ) . '" title="' . sprintf( __( 'View all posts in %s', 'wbcom-essential' ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '</a>' . $separator;
+				$output .= '<a href="' . esc_attr( get_term_link( $tax_term, $wbcom_query_posts_type ) ) . '" title="' . sprintf( __( 'View all posts in %s', 'wbcom-essential' ), $tax_term->name ) . '">' . $tax_term->name . '</a>' . $separator;
 			}
 		}
 	}
@@ -659,14 +659,16 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 	return $return;
 }
 
-function wbcom_essential_posts_revolution_elementor_post_info( $ad_postpreview_display_date,
+function wbcom_essential_posts_revolution_elementor_post_info(
+	$ad_postpreview_display_date,
 	$ad_postpreview_display_comments,
 	$ad_postpreview_display_author,
 	$ad_postpreview_display_category,
 	$ad_postpreview_display_views,
 	$wbcom_query_source,
 	$wbcom_query_posts_type,
-	$date_format ) {
+	$date_format
+) {
 
 	global $post;
 	$return = '';
@@ -728,12 +730,12 @@ function wbcom_essential_posts_revolution_elementor_hex2rgb( $hex ) {
  * @since 3.6.0
  */
 
-function wbcom_essential_posts_revolution_elementor_get_post_views( $postID ) {
+function wbcom_essential_posts_revolution_elementor_get_post_views( $post_id ) {
 	$count_key = 'wpb_post_views_count';
-	$count     = get_post_meta( $postID, $count_key, true );
+	$count     = get_post_meta( $post_id, $count_key, true );
 	if ( $count == '' ) {
-		delete_post_meta( $postID, $count_key );
-		add_post_meta( $postID, $count_key, '0' );
+		delete_post_meta( $post_id, $count_key );
+		add_post_meta( $post_id, $count_key, '0' );
 		$view = esc_html__( 'Views', 'wbcom-essential' );
 		return '0';
 	}
@@ -750,11 +752,11 @@ function wbcom_essential_posts_revolution_elementor_set_post_views() {
 	if ( ! $post ) {
         return;
     }
-	$postID    = $post->ID;
+	$post_id    = $post->ID;
 	$count_key = 'wpb_post_views_count';
-	$count     = (int) get_post_meta( $postID, $count_key, true );	
+	$count     = (int) get_post_meta( $post_id, $count_key, true );
 	
-	update_post_meta( $postID, $count_key, $count+1 );
+	update_post_meta( $post_id, $count_key, $count+1 );
 	
 }
 add_filter( 'wp_footer', 'wbcom_essential_posts_revolution_elementor_set_post_views', 9999 );
@@ -851,16 +853,18 @@ function wbcom_essential_all_post_types() {
  * @since 3.6.0
  */
 
-function wbcom_essential_posts_revolution_elementor_query( $wbcom_query_source,
-					$wbcom_query_sticky_posts,
-					$wbcom_query_posts_type,
-					$wbcom_query_categories,
-					$wbcom_query_order,
-					$wbcom_query_orderby,
-					$wbcom_query_pagination,
-					$wbcom_query_pagination_type,
-					$wbcom_query_number,
-					$wbcom_query_posts_for_page ) {
+function wbcom_essential_posts_revolution_elementor_query(
+	$wbcom_query_source,
+	$wbcom_query_sticky_posts,
+	$wbcom_query_posts_type,
+	$wbcom_query_categories,
+	$wbcom_query_order,
+	$wbcom_query_orderby,
+	$wbcom_query_pagination,
+	$wbcom_query_pagination_type,
+	$wbcom_query_number,
+	$wbcom_query_posts_for_page
+) {
 
 	if ( $wbcom_query_source == 'wp_custom_posts_type' ) {
 		$wbcom_query_sticky_posts = 'allposts';
@@ -961,7 +965,7 @@ function wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages =
 
 	global $paged;
 	if ( empty( $paged ) ) {
-		$paged = 1;
+		$paged = 1; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- default the core page number when the query has none.
 	}
 
 	if ( $pages == '' ) {
@@ -998,4 +1002,25 @@ function wbcom_essential_posts_revolution_elementor_numeric_pagination( $pages =
 	}
 
 	return $return;
+}
+
+/**
+ * REST URL for a BuddyPress or BuddyBoss Platform route.
+ *
+ * BuddyPress serves its REST API under buddypress/v1 and BuddyBoss Platform
+ * under buddyboss/v1; both expose the namespace through bp_rest_namespace()
+ * and bp_rest_version(). Blocks must build their endpoints here instead of
+ * hard-coding either namespace.
+ *
+ * @since 4.7.1
+ *
+ * @param string $route Route below the namespace, e.g. 'members'.
+ * @return string Full REST URL.
+ */
+function wbcom_essential_bp_rest_url( $route ) {
+	$namespace = function_exists( 'bp_rest_namespace' ) && function_exists( 'bp_rest_version' )
+		? bp_rest_namespace() . '/' . bp_rest_version()
+		: 'buddypress/v1';
+
+	return rest_url( $namespace . '/' . ltrim( $route, '/' ) );
 }

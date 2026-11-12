@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 	// Project configuration.
 	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
 	var pluginSlug    = 'wbcom-essential';
-	var pluginVersion = '4.7.0';
+	var pluginVersion = '4.7.1';
 
 	grunt.initConfig(
 		{
@@ -213,34 +213,15 @@ module.exports = function (grunt) {
 				}
 			},
 
-			// make po files
-			makepot: {
-				target: {
-					options: {
-						cwd: '.', // Directory of files to internationalize.
-						domainPath: 'languages/', // Where to save the POT file.
-						exclude: ['node_modules/*', 'vendor/*', 'options/framework/*', 'dist/*'], // List of files or directories to ignore.
-						mainFile: 'wbcom-essential.php', // Main project file.
-						potFilename: 'wbcom-essential.pot', // Name of the POT file.
-						potHeaders: { // Headers to add to the generated POT file.
-							poedit: true, // Includes common Poedit headers.
-							'Last-Translator': 'Varun Dubey',
-							'Language-Team': 'Wbcom Designs',
-							'report-msgid-bugs-to': '',
-							'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
-						},
-						type: 'wp-plugin', // Type of project (wp-plugin or wp-theme).
-						updateTimestamp: true // Whether the POT-Creation-Date should be updated without other changes.
-					}
-				}
-			},
 
 		}
 	);
 
 	// register tasks
-	grunt.registerTask( 'default', ['checktextdomain', 'makepot'] );
-	grunt.registerTask( 'i18n', ['checktextdomain', 'makepot'] );
+	grunt.registerTask( 'default', ['checktextdomain'] );
+	// The POT file is built by WP-CLI (`npm run makepot`); grunt-wp-i18n's makepot
+	// misses the JS and block.json strings.
+	grunt.registerTask( 'i18n', ['checktextdomain'] );
 	grunt.registerTask( 'dist', ['clean:dist', 'copy:dist', 'compress:dist', 'clean:post'] );
-	grunt.registerTask( 'release', ['i18n', 'dist'] );
+	grunt.registerTask( 'release', ['dist'] );
 };

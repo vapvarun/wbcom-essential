@@ -168,7 +168,7 @@ Here's how to do it in 5 minutes with the Members Grid block:
 
 1/ Add the Members Grid block to your page
 
-Search "Members Grid" in the block inserter or find it under Starter Pack - BuddyPress category.
+Search "Members Grid" in the block inserter or find it under Essential - BuddyPress category.
 
 ---
 

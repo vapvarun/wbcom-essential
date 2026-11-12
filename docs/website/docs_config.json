@@ -2,386 +2,150 @@
   "product_name": "Wbcom Essential",
   "product_slug": "wbcom-essential",
   "short_id": "we",
-  "categories": [
-    {
-      "name": "Elementor Widgets",
-      "folder": "widgets",
-      "slug": "widgets-we",
-      "order": 1,
-      "docs": [
-        {
-          "file": "buddypress-widgets.md",
-          "title": "BuddyPress Widgets",
-          "slug": "buddypress-widgets-we",
-          "order": 1
-        },
-        {
-          "file": "general-widgets.md",
-          "title": "General Widgets",
-          "slug": "general-widgets-we",
-          "order": 2
-        },
-        {
-          "file": "widgets-overview.md",
-          "title": "Widgets Overview",
-          "slug": "widgets-overview-we",
-          "order": 3
-        },
-        {
-          "file": "woocommerce-widgets.md",
-          "title": "WooCommerce Widgets",
-          "slug": "woocommerce-widgets-we",
-          "order": 4
-        }
-      ],
-      "description": "Elementor widgets for BuddyPress, WooCommerce and general page layouts, with the settings for each."
-    },
-    {
-      "name": "Features",
-      "folder": "features",
-      "slug": "features-we",
-      "order": 2,
-      "docs": [
-        {
-          "file": "performance.md",
-          "title": "Performance",
-          "slug": "performance-we",
-          "order": 1
-        },
-        {
-          "file": "responsive-design.md",
-          "title": "Responsive Design",
-          "slug": "responsive-design-we",
-          "order": 2
-        },
-        {
-          "file": "solution-finder.md",
-          "title": "Solution Finder",
-          "slug": "solution-finder-we",
-          "order": 3
-        },
-        {
-          "file": "theme-colors.md",
-          "title": "Theme Colors",
-          "slug": "theme-colors-we",
-          "order": 4
-        }
-      ],
-      "description": "Performance, responsive design, the Solution Finder and theme colors."
-    },
-    {
-      "name": "Gutenberg Blocks",
-      "folder": "blocks",
-      "slug": "blocks-we",
-      "order": 3,
-      "docs": [
-        {
-          "file": "blocks-overview.md",
-          "title": "Blocks Overview",
-          "slug": "blocks-overview-we",
-          "order": 1
-        },
-        {
-          "file": "blog-blocks.md",
-          "title": "Blog Blocks",
-          "slug": "blog-blocks-we",
-          "order": 2
-        },
-        {
-          "file": "buddypress-blocks.md",
-          "title": "BuddyPress Blocks",
-          "slug": "buddypress-blocks-we",
-          "order": 3
-        },
-        {
-          "file": "content-blocks.md",
-          "title": "Content Blocks",
-          "slug": "content-blocks-we",
-          "order": 4
-        },
-        {
-          "file": "design-blocks.md",
-          "title": "Design Blocks",
-          "slug": "design-blocks-we",
-          "order": 5
-        },
-        {
-          "file": "header-blocks.md",
-          "title": "Header Blocks",
-          "slug": "header-blocks-we",
-          "order": 6
-        },
-        {
-          "file": "marketing-blocks.md",
-          "title": "Marketing Blocks",
-          "slug": "marketing-blocks-we",
-          "order": 7
-        },
-        {
-          "file": "woocommerce-blocks.md",
-          "title": "WooCommerce Blocks",
-          "slug": "woocommerce-blocks-we",
-          "order": 8
-        }
-      ],
-      "description": "Native WordPress blocks for content, design, headers, marketing, blogs, BuddyPress and WooCommerce."
-    },
-    {
-      "name": "Installation & Setup",
-      "folder": "installation",
-      "slug": "installation-we",
-      "order": 4,
-      "docs": [
-        {
-          "file": "common-mistakes.md",
-          "title": "Common Mistakes",
-          "slug": "common-mistakes-we",
-          "order": 1
-        },
-        {
-          "file": "installation-guide.md",
-          "title": "Installation Guide",
-          "slug": "installation-guide-we",
-          "order": 2
-        }
-      ],
-      "description": "Install the plugin and avoid the mistakes that trip up new sites."
-    },
-    {
-      "name": "Introduction",
-      "folder": "intro",
-      "slug": "intro-we",
-      "order": 5,
-      "docs": [
-        {
-          "file": "after-installation.md",
-          "title": "After Installation",
-          "slug": "after-installation-we",
-          "order": 1
-        },
-        {
-          "file": "getting-started.md",
-          "title": "Getting Started",
-          "slug": "getting-started-we",
-          "order": 2
-        },
-        {
-          "file": "overview.md",
-          "title": "Overview",
-          "slug": "overview-we",
-          "order": 3
-        }
-      ],
-      "description": "What Wbcom Essential does, how to get started and what to do right after installing."
-    },
-    {
-      "name": "Theme Integration",
-      "folder": "themes",
-      "slug": "themes-we",
-      "order": 6,
-      "docs": [
-        {
-          "file": "buddypress-integration.md",
-          "title": "BuddyPress Integration",
-          "slug": "buddypress-integration-we",
-          "order": 1
-        },
-        {
-          "file": "buddyx-pro-theme-guide.md",
-          "title": "BuddyX Pro Theme Guide",
-          "slug": "buddyx-pro-theme-guide-we",
-          "order": 2
-        },
-        {
-          "file": "buddyx-theme-guide.md",
-          "title": "BuddyX Theme Guide",
-          "slug": "buddyx-theme-guide-we",
-          "order": 3
-        },
-        {
-          "file": "community-site-tutorial.md",
-          "title": "Community Site Tutorial",
-          "slug": "community-site-tutorial-we",
-          "order": 4
-        },
-        {
-          "file": "landing-page-tutorial.md",
-          "title": "Landing Page Tutorial",
-          "slug": "landing-page-tutorial-we",
-          "order": 5
-        },
-        {
-          "file": "online-store-tutorial.md",
-          "title": "Online Store Tutorial",
-          "slug": "online-store-tutorial-we",
-          "order": 6
-        },
-        {
-          "file": "reign-theme-guide.md",
-          "title": "Reign Theme Guide",
-          "slug": "reign-theme-guide-we",
-          "order": 7
-        },
-        {
-          "file": "woocommerce-integration.md",
-          "title": "WooCommerce Integration",
-          "slug": "woocommerce-integration-we",
-          "order": 8
-        }
-      ],
-      "description": "Use the plugin with Reign, BuddyX and BuddyX Pro, plus BuddyPress and WooCommerce setups and site tutorials."
-    },
-    {
-      "name": "Troubleshooting",
-      "folder": "troubleshooting",
-      "slug": "troubleshooting-we",
-      "order": 7,
-      "docs": [
-        {
-          "file": "faq.md",
-          "title": "FAQ",
-          "slug": "faq-we",
-          "order": 1
-        }
-      ],
-      "description": "Answers to common questions and fixes for common problems."
-    }
-  ],
   "sections": [
     {
-      "name": "Elementor Widgets",
-      "folder": "widgets",
-      "pages": [
-        {
-          "slug": "buddypress-widgets",
-          "title": "BuddyPress Widgets"
-        },
-        {
-          "slug": "general-widgets",
-          "title": "General Widgets"
-        },
-        {
-          "slug": "widgets-overview",
-          "title": "Widgets Overview"
-        },
-        {
-          "slug": "woocommerce-widgets",
-          "title": "WooCommerce Widgets"
-        }
-      ],
-      "description": "Elementor widgets for BuddyPress, WooCommerce and general page layouts, with the settings for each."
-    },
-    {
-      "name": "Features",
-      "folder": "features",
-      "pages": [
-        {
-          "slug": "performance",
-          "title": "Performance"
-        },
-        {
-          "slug": "responsive-design",
-          "title": "Responsive Design"
-        },
-        {
-          "slug": "solution-finder",
-          "title": "Solution Finder"
-        },
-        {
-          "slug": "theme-colors",
-          "title": "Theme Colors"
-        }
-      ],
-      "description": "Performance, responsive design, the Solution Finder and theme colors."
-    },
-    {
-      "name": "Gutenberg Blocks",
-      "folder": "blocks",
-      "pages": [
-        {
-          "slug": "blocks-overview",
-          "title": "Blocks Overview"
-        },
-        {
-          "slug": "blog-blocks",
-          "title": "Blog Blocks"
-        },
-        {
-          "slug": "buddypress-blocks",
-          "title": "BuddyPress Blocks"
-        },
-        {
-          "slug": "content-blocks",
-          "title": "Content Blocks"
-        },
-        {
-          "slug": "design-blocks",
-          "title": "Design Blocks"
-        },
-        {
-          "slug": "header-blocks",
-          "title": "Header Blocks"
-        },
-        {
-          "slug": "marketing-blocks",
-          "title": "Marketing Blocks"
-        },
-        {
-          "slug": "woocommerce-blocks",
-          "title": "WooCommerce Blocks"
-        }
-      ],
-      "description": "Native WordPress blocks for content, design, headers, marketing, blogs, BuddyPress and WooCommerce."
-    },
-    {
-      "name": "Installation & Setup",
-      "folder": "installation",
-      "pages": [
-        {
-          "slug": "common-mistakes",
-          "title": "Common Mistakes"
-        },
-        {
-          "slug": "installation-guide",
-          "title": "Installation Guide"
-        }
-      ],
-      "description": "Install the plugin and avoid the mistakes that trip up new sites."
-    },
-    {
       "name": "Introduction",
       "folder": "intro",
+      "description": "What Wbcom Essential does, how to get started and what to do right after installing.",
       "pages": [
         {
-          "slug": "after-installation",
-          "title": "After Installation"
+          "slug": "overview",
+          "title": "Overview"
         },
         {
           "slug": "getting-started",
           "title": "Getting Started"
         },
         {
-          "slug": "overview",
-          "title": "Overview"
+          "slug": "after-installation",
+          "title": "After Installation"
         }
-      ],
-      "description": "What Wbcom Essential does, how to get started and what to do right after installing."
+      ]
+    },
+    {
+      "name": "Installation & Setup",
+      "folder": "installation",
+      "description": "Install the plugin and avoid the mistakes that trip up new sites.",
+      "pages": [
+        {
+          "slug": "installation-guide",
+          "title": "Installation Guide"
+        },
+        {
+          "slug": "common-mistakes",
+          "title": "Common Mistakes"
+        }
+      ]
+    },
+    {
+      "name": "Gutenberg Blocks",
+      "folder": "blocks",
+      "description": "The 35 blocks for design, content, blogs, marketing, BuddyPress, WooCommerce and Easy Digital Downloads.",
+      "pages": [
+        {
+          "slug": "blocks-overview",
+          "title": "Blocks Overview"
+        },
+        {
+          "slug": "design-blocks",
+          "title": "Design Blocks"
+        },
+        {
+          "slug": "content-blocks",
+          "title": "Content Blocks"
+        },
+        {
+          "slug": "blog-blocks",
+          "title": "Blog Blocks"
+        },
+        {
+          "slug": "marketing-blocks",
+          "title": "Marketing Blocks"
+        },
+        {
+          "slug": "buddypress-blocks",
+          "title": "BuddyPress Blocks"
+        },
+        {
+          "slug": "woocommerce-blocks",
+          "title": "WooCommerce Blocks"
+        },
+        {
+          "slug": "edd-blocks",
+          "title": "EDD Blocks"
+        }
+      ]
+    },
+    {
+      "name": "Elementor Widgets",
+      "folder": "widgets",
+      "description": "The 43 Elementor widgets for general layouts, BuddyPress and WooCommerce, with the settings for each.",
+      "pages": [
+        {
+          "slug": "widgets-overview",
+          "title": "Widgets Overview"
+        },
+        {
+          "slug": "general-widgets",
+          "title": "General Widgets"
+        },
+        {
+          "slug": "buddypress-widgets",
+          "title": "BuddyPress Widgets"
+        },
+        {
+          "slug": "woocommerce-widgets",
+          "title": "WooCommerce Widgets"
+        }
+      ]
+    },
+    {
+      "name": "Features",
+      "folder": "features",
+      "description": "Choosing the right block or widget, theme colours, responsive controls and performance.",
+      "pages": [
+        {
+          "slug": "solution-finder",
+          "title": "Which Block or Widget to Use"
+        },
+        {
+          "slug": "theme-colors",
+          "title": "Theme Colors"
+        },
+        {
+          "slug": "responsive-design",
+          "title": "Responsive Design"
+        },
+        {
+          "slug": "performance",
+          "title": "Performance"
+        }
+      ]
     },
     {
       "name": "Theme Integration",
       "folder": "themes",
+      "description": "Use the plugin with Reign, BuddyX and BuddyX Pro, plus BuddyPress and WooCommerce setups and site tutorials.",
       "pages": [
         {
-          "slug": "buddypress-integration",
-          "title": "BuddyPress Integration"
+          "slug": "reign-theme-guide",
+          "title": "Reign Theme Guide"
+        },
+        {
+          "slug": "buddyx-theme-guide",
+          "title": "BuddyX Theme Guide"
         },
         {
           "slug": "buddyx-pro-theme-guide",
           "title": "BuddyX Pro Theme Guide"
         },
         {
-          "slug": "buddyx-theme-guide",
-          "title": "BuddyX Theme Guide"
+          "slug": "buddypress-integration",
+          "title": "BuddyPress Integration"
+        },
+        {
+          "slug": "woocommerce-integration",
+          "title": "WooCommerce Integration"
         },
         {
           "slug": "community-site-tutorial",
@@ -394,28 +158,30 @@
         {
           "slug": "online-store-tutorial",
           "title": "Online Store Tutorial"
-        },
-        {
-          "slug": "reign-theme-guide",
-          "title": "Reign Theme Guide"
-        },
-        {
-          "slug": "woocommerce-integration",
-          "title": "WooCommerce Integration"
         }
-      ],
-      "description": "Use the plugin with Reign, BuddyX and BuddyX Pro, plus BuddyPress and WooCommerce setups and site tutorials."
+      ]
+    },
+    {
+      "name": "FAQ",
+      "folder": "faq",
+      "description": "Answers to the questions site owners ask most.",
+      "pages": [
+        {
+          "slug": "faq",
+          "title": "Frequently Asked Questions"
+        }
+      ]
     },
     {
       "name": "Troubleshooting",
       "folder": "troubleshooting",
+      "description": "Fixes for blocks or widgets that do not show or look right.",
       "pages": [
         {
-          "slug": "faq",
-          "title": "FAQ"
+          "slug": "troubleshooting",
+          "title": "Troubleshooting"
         }
-      ],
-      "description": "Answers to common questions and fixes for common problems."
+      ]
     }
   ]
 }

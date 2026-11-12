@@ -24,7 +24,7 @@ Thanks for downloading WBcom Essential. Here's how to get started in the next 5 
 Upload the ZIP file through Plugins → Add New → Upload Plugin, or extract and upload via FTP.
 
 **Step 2: Add your first block**
-In the WordPress editor, click the + button and search "Starter Pack" to see all 45 blocks.
+In the WordPress editor, click the + button and search "Essential" to see all 45 blocks.
 
 **Step 3: Enable Theme Colors**
 Select any block, find "Use Theme Colors" in settings, and toggle it on. The block matches your theme automatically.
@@ -163,9 +163,6 @@ Pricing Table blocks with CTA Box below. Highlight your recommended plan with th
 
 **5. Community homepage**
 Members Grid + Group Carousel + recent Posts Carousel. Shows an active site to new visitors.
-
-**Templates coming soon:**
-We're working on pre-built page templates. Want to suggest a layout? Reply and let us know.
 
 In the meantime, here's the documentation: https://docs.wbcomdesigns.com
 

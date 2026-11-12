@@ -8,7 +8,6 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes;
 use Elementor\Repeater;
 
 if ( ! defined( 'ABSPATH' ) ) {

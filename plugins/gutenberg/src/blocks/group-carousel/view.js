@@ -12,9 +12,14 @@
  */
 
 import swiperA11y from '../../shared/utils/swiper-a11y';
+import initFitCarousel from '../../shared/utils/fit-carousel';
+import { groupMemberCount } from '../../shared/utils/bp-rest';
 
 ( function () {
 	'use strict';
+
+	// Narrowest card that still fits avatar, name and button on one line each.
+	const MIN_SLIDE_WIDTH = 220;
 
 	// ── Helpers ───────────────────────────────────────────────────────────────
 
@@ -175,9 +180,10 @@ import swiperA11y from '../../shared/utils/swiper-a11y';
 		info.appendChild( nameHeading );
 
 		// Member count.
-		if ( cfg.showMemberCount && group.total_member_count ) {
+		const memberCount = groupMemberCount( group );
+		if ( cfg.showMemberCount && memberCount ) {
 			info.appendChild(
-				el( 'span', 'wbe-group-carousel__count', group.total_member_count + ' ' + cfg.i18n.members )
+				el( 'span', 'wbe-group-carousel__count', memberCount + ' ' + cfg.i18n.members )
 			);
 		}
 
@@ -203,44 +209,6 @@ import swiperA11y from '../../shared/utils/swiper-a11y';
 	}
 
 	// ── Carousel init ─────────────────────────────────────────────────────────
-
-	/**
-	 * Initialise Swiper on an element, resolving nav/pagination selectors
-	 * to DOM nodes so multiple carousels on the same page don't conflict.
-	 *
-	 * @param {HTMLElement} swiperEl The .swiper element.
-	 * @param {object}      options  Raw Swiper options from config.
-	 */
-	function initSwiper( swiperEl, options ) {
-		if ( typeof Swiper === 'undefined' ) {
-			return;
-		}
-		if ( swiperEl._swiperInstance ) {
-			return;
-		}
-
-		// Resolve navigation/pagination elements relative to this instance.
-		if ( options.navigation ) {
-			options.navigation = {
-				nextEl: swiperEl.querySelector( '.swiper-button-next' ),
-				prevEl: swiperEl.querySelector( '.swiper-button-prev' ),
-			};
-		}
-		if ( options.pagination ) {
-			options.pagination = {
-				el:        swiperEl.querySelector( '.swiper-pagination' ),
-				clickable: true,
-			};
-		}
-
-		// Respect prefers-reduced-motion.
-		if ( window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
-			options.autoplay = false;
-			options.speed    = 0;
-		}
-
-		swiperEl._swiperInstance = new Swiper( swiperEl, options );
-	}
 
 	/**
 	 * Initialise a single group carousel.
@@ -315,11 +283,12 @@ import swiperA11y from '../../shared/utils/swiper-a11y';
 				// Initialise Swiper now that slides are in the DOM.
 				// a11y: translated screen-reader labels. Without it Swiper replaces the
 				// translated button labels from render.php with its English defaults.
-				initSwiper(
+				initFitCarousel(
 					swiperEl,
 					Object.assign( {}, cfg.swiperOptions || {}, {
 						a11y: swiperA11y( cfg.i18n.previous, cfg.i18n.next ),
-					} )
+					} ),
+					MIN_SLIDE_WIDTH
 				);
 			} )
 			.catch( function () {

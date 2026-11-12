@@ -2,7 +2,7 @@
 
 **Part of Reign, BuddyX and BuddyX Pro**
 
-32 production-grade Gutenberg V2 blocks. 43 Elementor widgets (42 on any theme, plus a Reign-only Notification Area). 5 BuddyPress blocks. A free plugin that makes Theme Reign, BuddyX, and BuddyX Pro even more powerful.
+35 production-grade Gutenberg blocks. 43 Elementor widgets (42 on any theme, plus a Reign-only Notification Area). 5 BuddyPress blocks. A free plugin that makes Theme Reign, BuddyX, and BuddyX Pro even more powerful.
 
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-purple.svg)](https://php.net/)
@@ -14,12 +14,12 @@ WBcom Essential provides production-ready blocks and widgets that inherit your t
 
 ### Key Features
 
-- **32 Gutenberg V2 Blocks** - Rebuilt from a shared infrastructure to a competitive-audit quality standard
+- **35 Gutenberg Blocks** - Built on one shared set of components, controls and design tokens
 - **43 Elementor Widgets** - Same features in Elementor widget format
 - **5 BuddyPress Blocks** - Built specifically for community sites (activity, members, groups)
-- **4 WooCommerce Blocks** + **2 EDD Blocks** - Conditional, loaded only when plugins are active
+- **3 WooCommerce Blocks** + **8 EDD Blocks** - Show their content when WooCommerce or Easy Digital Downloads is active
 - **Responsive 3-Breakpoint** - Desktop/Tablet/Mobile controls on every block
-- **Theme Colors Toggle** - Blocks inherit your theme's color scheme automatically
+- **Theme Colors** - Blocks read your theme's `--wbcom-*` CSS custom properties, with built-in fallbacks
 - **Accessibility Built-in** - ARIA, keyboard navigation, `prefers-reduced-motion`
 - **Conditional Loading** - Only loads assets when needed
 - **RTL Support** - Full right-to-left language support
@@ -35,18 +35,16 @@ WBcom Essential provides production-ready blocks and widgets that inherit your t
 
 ### Optional
 
-- Elementor 3.0+ (for Elementor widgets)
+- Elementor 3.5+ (for Elementor widgets)
 - BuddyPress 10.0+ (for BuddyPress blocks)
 - WooCommerce 7.0+ (for WooCommerce blocks)
-- bbPress 2.6+ (for Forums blocks)
+- bbPress 2.6+ (for the Forums Elementor widgets)
 
 ## Installation
 
-### From WordPress Admin
+### With Reign
 
-1. Go to **Plugins → Add New**
-2. Search for "WBcom Essential"
-3. Click **Install Now** then **Activate**
+Go to **Reign Settings > Extend** and install Wbcom Essential from the list.
 
 ### Manual Installation
 
@@ -58,22 +56,24 @@ WBcom Essential provides production-ready blocks and widgets that inherit your t
 ### Via WP-CLI
 
 ```bash
-wp plugin install wbcom-essential --activate
+wp plugin install /path/to/wbcom-essential.zip --activate
 ```
 
 ## Block Categories
 
-All 32 V2 blocks are organized into 7 categories:
+All 35 blocks are organized into 7 categories:
 
 | Category | Block Count |
 |----------|-------------|
 | Essential - Marketing | 7 |
 | Essential - Content | 5 |
 | Essential - Blog | 3 |
-| Essential - Design | 6 |
-| Essential - BuddyPress | 5 |
-| Essential - WooCommerce | 4 |
-| Essential - EDD *(conditional)* | 2 |
+| Essential - Design | 4 |
+| Essential - BuddyPress *(needs BuddyPress or BuddyBoss Platform)* | 5 |
+| Essential - WooCommerce *(needs WooCommerce)* | 3 |
+| Essential - EDD *(needs Easy Digital Downloads)* | 8 |
+
+All 43 Elementor widgets appear in the Elementor panel under **Wbcom Essential**.
 
 ## Theme Compatibility
 
@@ -89,11 +89,11 @@ You can also download it from the [Wbcom store](https://wbcomdesigns.com/downloa
 
 ### Universal Compatibility
 
-Works with any properly coded WordPress theme. The Theme Colors feature adapts to themes that use CSS custom properties.
+Works with any properly coded WordPress theme. Blocks pick up theme colours from the `--wbcom-*` CSS custom properties that Reign, BuddyX and BuddyX Pro set; other themes can define the same properties.
 
 ## Documentation
 
-- **User Documentation**: [docs.wbcomdesigns.com](https://docs.wbcomdesigns.com)
+- **User Documentation**: [Wbcom Essential docs](https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/)
 - **Developer Documentation**: See `docs/` folder
 - **Architecture Reference**: See `docs/architecture/PLUGIN_ARCHITECTURE.md`
 
@@ -111,7 +111,7 @@ Works with any properly coded WordPress theme. The Theme Colors feature adapts t
 npm install
 
 # --- Block build ---
-npm run build:blocks     # Production build of all 32 V2 blocks
+npm run build:blocks     # Production build of all 35 blocks
 npm run dev:blocks       # Watch mode for development
 npm run clean:blocks     # Remove build/blocks/
 
@@ -144,10 +144,10 @@ wbcom-essential/
 ├── includes/                   # Core plugin functionality
 ├── plugins/
 │   ├── elementor/              # Elementor integration (42 widgets + 1 Reign-only)
-│   └── gutenberg/              # Gutenberg V2 blocks (32 blocks)
+│   └── gutenberg/              # Gutenberg blocks (35 blocks)
 │       ├── src/
 │       │   ├── shared/         # Shared infrastructure (components, hooks, utils, tokens)
-│       │   └── blocks/         # 32 V2 block source files
+│       │   └── blocks/         # 35 block source folders
 │       ├── BlockRegistrar.php  # Auto-register from build/blocks/
 │       └── gutenberg.php       # Loader, categories, REST routes
 ├── languages/                  # Translations
@@ -157,7 +157,7 @@ wbcom-essential/
 ## Support
 
 - **Support Forums**: [wbcomdesigns.com/support](https://wbcomdesigns.com/support)
-- **Documentation**: [docs.wbcomdesigns.com](https://docs.wbcomdesigns.com)
+- **Documentation**: [Wbcom Essential docs](https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/)
 - **GitHub Issues**: [Report bugs](https://github.com/vapvarun/wbcom-essential/issues)
 
 ## Contributing
@@ -174,7 +174,7 @@ Built with care by [Wbcom Designs](https://wbcomdesigns.com/) - the team behind 
 
 ---
 
-**Version**: 4.5.0
+**Version**: 4.7.1
 **Requires WordPress**: 6.0+
 **Requires PHP**: 8.0+
-**Tested up to**: WordPress 6.9
+**Tested up to**: WordPress 7.1

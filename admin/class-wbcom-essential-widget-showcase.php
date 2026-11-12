@@ -148,7 +148,7 @@ class Wbcom_Essential_Widget_Showcase {
 					<h1><?php esc_html_e( 'Wbcom Essential', 'wbcom-essential' ); ?></h1>
 					<span class="wbcom-version">v<?php echo esc_html( WBCOM_ESSENTIAL_VERSION ); ?></span>
 				</div>
-				<p class="wbcom-tagline"><?php esc_html_e( 'Free companion plugin for BuddyX, BuddyX Pro, and Reign themes', 'wbcom-essential' ); ?></p>
+				<p class="wbcom-tagline"><?php esc_html_e( 'Free companion plugin for BuddyX, BuddyX Pro, and Reign themes', 'wbcom-essential' ); ?> <a href="<?php echo esc_url( 'https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Read the documentation', 'wbcom-essential' ); ?></a></p>
 			</header>
 
 			<!-- Tabs -->
@@ -215,10 +215,10 @@ class Wbcom_Essential_Widget_Showcase {
 				<h3><?php esc_html_e( 'Gutenberg Blocks', 'wbcom-essential' ); ?></h3>
 				<p><?php esc_html_e( 'Works natively with the WordPress Block Editor. No page builder required.', 'wbcom-essential' ); ?></p>
 				<ul>
-					<li><?php esc_html_e( '17 Marketing, Content & Design blocks', 'wbcom-essential' ); ?></li>
+					<li><?php esc_html_e( '16 Marketing, Content & Design blocks', 'wbcom-essential' ); ?></li>
 					<li><?php esc_html_e( '5 BuddyPress blocks (Members, Groups, Activity)', 'wbcom-essential' ); ?></li>
-					<li><?php esc_html_e( '7 Blog & WooCommerce blocks', 'wbcom-essential' ); ?></li>
-					<li><?php esc_html_e( '3 EDD blocks (Account, Checkout, Catalog)', 'wbcom-essential' ); ?></li>
+					<li><?php esc_html_e( '6 Blog & WooCommerce blocks', 'wbcom-essential' ); ?></li>
+					<li><?php esc_html_e( '8 EDD blocks (Account, Checkout, Order Success, Catalog)', 'wbcom-essential' ); ?></li>
 				</ul>
 			</div>
 			<div class="wbcom-feature">
@@ -271,12 +271,22 @@ class Wbcom_Essential_Widget_Showcase {
 	}
 
 	/**
-	 * Get plugin stats
+	 * Get plugin stats.
+	 *
+	 * Counted from the shipped files so the numbers never drift from the
+	 * blocks and widgets the release actually contains.
+	 *
+	 * @return array{blocks:int, widgets:int}
 	 */
 	private function get_stats() {
+		$widgets = 0;
+		foreach ( array( 'General', 'Buddypress', 'WooCommerce' ) as $group ) {
+			$widgets += count( (array) glob( WBCOM_ESSENTIAL_PATH . 'plugins/elementor/widgets/' . $group . '/*.php' ) );
+		}
+
 		return array(
-			'blocks'  => 32,
-			'widgets' => 43,
+			'blocks'  => count( (array) glob( WBCOM_ESSENTIAL_PATH . 'build/blocks/*/block.json' ) ),
+			'widgets' => $widgets,
 		);
 	}
 }

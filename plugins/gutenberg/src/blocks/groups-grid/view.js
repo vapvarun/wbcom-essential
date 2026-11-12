@@ -10,6 +10,8 @@
  * client-side so no HTML is ever inserted into the DOM from user data.
  */
 
+import { groupMemberCount, groupLastActive } from '../../shared/utils/bp-rest';
+
 ( function () {
 	'use strict';
 
@@ -188,15 +190,17 @@
 		// Meta row.
 		const meta = el( 'div', 'wbe-groups-grid__meta' );
 
-		if ( cfg.showMemberCount && group.total_member_count ) {
+		const memberCount = groupMemberCount( group );
+		if ( cfg.showMemberCount && memberCount ) {
 			meta.appendChild(
-				el( 'span', 'wbe-groups-grid__count', group.total_member_count + ' ' + cfg.i18n.members )
+				el( 'span', 'wbe-groups-grid__count', memberCount + ' ' + cfg.i18n.members )
 			);
 		}
 
-		if ( cfg.showLastActive && group.last_activity_diff ) {
+		const lastActive = cfg.showLastActive ? groupLastActive( group ) : '';
+		if ( lastActive ) {
 			meta.appendChild(
-				el( 'span', 'wbe-groups-grid__active', cfg.i18n.activeAgo.replace( '%s', group.last_activity_diff ) )
+				el( 'span', 'wbe-groups-grid__active', cfg.i18n.activeAgo.replace( '%s', lastActive ) )
 			);
 		}
 

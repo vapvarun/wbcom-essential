@@ -1,6 +1,6 @@
 {
   "name": "wbcom-essential",
-  "version": "4.7.0",
+  "version": "4.7.1",
   "url": "https://github.com/vapvarun/wbcom-essential",
   "license": "GPL-2.0+",
   "description": "Theme Addon plugin for Wbcom Designs",
@@ -8,9 +8,10 @@
     "build:blocks": "node scripts/build-blocks.js",
     "dev:blocks": "node scripts/dev-blocks.js",
     "clean:blocks": "rm -rf build/blocks",
-    "i18n": "grunt checktextdomain makepot",
+    "i18n": "grunt checktextdomain && npm run makepot",
+    "makepot": "wp i18n make-pot . languages/wbcom-essential.pot --slug=wbcom-essential --domain=wbcom-essential --exclude=vendor,node_modules,.phpstan-stubs,plugins/gutenberg/src,docs,plan,marketing,tests,audit,bin,scripts,dist",
     "dist": "npm run build:blocks && grunt dist",
-    "release": "npm run build:blocks && grunt release"
+    "release": "npm run build:blocks && npm run i18n && grunt dist"
   },
   "devDependencies": {
     "@babel/core": "^7.22.0",

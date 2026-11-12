@@ -255,7 +255,6 @@ Examples:
 - "Built by the team behind Theme Reign and BuddyX themes"
 - "Maintained and updated regularly"
 - "Documentation for every block and widget"
-- "Same blocks used on Starter Templates theme"
 
 ---
 

@@ -1,13 +1,13 @@
 # WBcom Essential Documentation
 
-**Version:** 4.2.0
+**Version:** 4.7.1
 **Requires WordPress:** 6.0+
 **Requires PHP:** 8.0+
 **License:** GPL v2 or later
 
 ## Overview
 
-WBcom Essential is a companion plugin for WordPress themes, providing **43 Elementor widgets** and **45 Gutenberg blocks** for BuddyPress, WooCommerce, and general WordPress functionality.
+WBcom Essential is a companion plugin for WordPress themes, providing **43 Elementor widgets** and **35 Gutenberg blocks** for BuddyPress, WooCommerce, Easy Digital Downloads and general WordPress pages.
 
 ## What's Included
 
@@ -19,21 +19,16 @@ WBcom Essential is a companion plugin for WordPress themes, providing **43 Eleme
 | BuddyPress | 11 | Member grids, group carousels, activity feeds |
 | WooCommerce | 5 | Product displays, reviews, banners |
 
-### Gutenberg Blocks (45 total)
+### Gutenberg Blocks (35 total)
 
-| Category | Count | Examples |
-|----------|-------|----------|
-| General | 26 | All Elementor general widgets ported |
-| BuddyPress | 11 | Full parity with Elementor BP widgets |
-| WooCommerce | 2 | Product grid, mini cart |
-| Bonus | 7 | Counter, CTA box, divider, icon box, mini-cart, social icons, star rating |
+See [Block Categories](#block-categories) below for the per-category counts.
 
 ## Documentation Index
 
 | Document | Description |
 |----------|-------------|
 | [Gutenberg Blocks](../plugins/gutenberg/README.md) | Block development guide |
-| [Changelog](./changelog.md) | Version history |
+| [Changelog](../readme.txt) | Version history (readme.txt) |
 | [CLAUDE.md](../CLAUDE.md) | Developer reference with full widget-to-block mapping |
 
 ## Quick Start
@@ -42,25 +37,19 @@ WBcom Essential is a companion plugin for WordPress themes, providing **43 Eleme
 
 1. Upload `wbcom-essential` to `/wp-content/plugins/`
 2. Activate via **Plugins** menu
-3. Elementor widgets appear in "Starter Templates" category
-4. Gutenberg blocks appear in "Starter Pack" categories
+3. Elementor widgets appear in "Wbcom Essential" category
+4. Gutenberg blocks appear in "Essential" categories
 
 ### Using Gutenberg Blocks
 
 1. Add a new post or page
 2. Click the **+** button to open block inserter
-3. Search for "Starter Pack" or browse categories
+3. Search for "Essential" or browse categories
 4. Add block and configure in sidebar panel
 
-### Theme Colors Feature
+### Theme Colors
 
-All 45 blocks support automatic theme color inheritance:
-
-1. Add any block to your content
-2. Open block settings (sidebar)
-3. Find **Color Settings** panel
-4. Enable **Use Theme Colors** toggle
-5. Block colors now follow your theme's color scheme
+Several blocks read your theme's `--wbcom-*` CSS custom properties and fall back to built-in colours. The Category Grid block also has a **Use Theme Colors** toggle. See [Theme Colors](website/features/theme-colors.md).
 
 ## Requirements
 
@@ -68,7 +57,7 @@ All 45 blocks support automatic theme color inheritance:
 |-------------|---------|-------------|
 | WordPress | 6.0 | 6.9+ |
 | PHP | 8.0 | 8.2+ |
-| Elementor | 3.0 | Latest |
+| Elementor | 3.5 | Latest |
 | BuddyPress | 10.0 | Latest |
 | WooCommerce | 7.0 | Latest |
 
@@ -78,13 +67,13 @@ Blocks are organized into 7 categories for easy discovery:
 
 | Category | Display Name | Block Count |
 |----------|--------------|-------------|
-| starter-header | Starter Pack - Header | 4 |
-| starter-design | Starter Pack - Design | 14 |
-| starter-content | Starter Pack - Content | 8 |
-| starter-blog | Starter Pack - Blog | 8 |
-| starter-marketing | Starter Pack - Marketing | 4 |
-| starter-buddypress | Starter Pack - BuddyPress | 11 |
-| starter-woocommerce | Starter Pack - WooCommerce | 2 |
+| essential-design | Essential - Design | 4 |
+| essential-content | Essential - Content | 5 |
+| essential-blog | Essential - Blog | 3 |
+| essential-marketing | Essential - Marketing | 7 |
+| essential-buddypress | Essential - BuddyPress | 5 |
+| essential-woocommerce | Essential - WooCommerce | 3 |
+| essential-edd | Essential - EDD | 8 |
 
 ## Conditional Loading
 
@@ -98,7 +87,7 @@ This keeps your site lean - no unused code is loaded.
 
 ## Support
 
-- **Documentation:** https://docs.wbcomdesigns.com/wbcom-essential/
+- **Documentation:** https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/
 - **Support:** https://wbcomdesigns.com/support/
 - **GitHub:** https://github.com/vapvarun/wbcom-essential
 

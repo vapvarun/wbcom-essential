@@ -97,6 +97,21 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 			// languages/ folder needs load_plugin_textdomain(). Priority 0 so it runs
 			// before anything else on init that translates strings.
 			add_action( 'init', array( $this, 'load_textdomain' ), 0 );
+			add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
+		}
+
+		/**
+		 * Add a Docs link to the plugin row on the Plugins screen.
+		 *
+		 * @param array  $links Plugin row meta links.
+		 * @param string $file  Plugin basename.
+		 * @return array
+		 */
+		public function plugin_row_meta( $links, $file ) {
+			if ( WBCOM_ESSENTIAL_PLUGIN_BASE === $file ) {
+				$links[] = '<a href="' . esc_url( 'https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Docs', 'wbcom-essential' ) . '</a>';
+			}
+			return $links;
 		}
 
 		/**
@@ -193,6 +208,7 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 						'icon'         => 'dashicons-screenoptions',
 						'callback'     => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),
 						'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
+						'docs_url'     => 'https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/',
 					)
 				);
 			}
@@ -222,8 +238,9 @@ if ( ! class_exists( 'WBCOM_ESSENTIAL\WBCOMESSENTIAL' ) ) {
 					'slug'         => 'wbcom-essential',
 					'priority'     => 5,
 					'icon'         => 'dashicons-screenoptions',
-					'description'  => __( '30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites.', 'wbcom-essential' ),
+					'description'  => __( '35 Gutenberg blocks and 43 Elementor widgets for BuddyPress, WooCommerce, EDD and general websites.', 'wbcom-essential' ),
 					'settings_url' => admin_url( 'admin.php?page=wbcom-essential' ),
+					'docs_url'     => 'https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/',
 					'status'       => 'active',
 					'version'      => WBCOM_ESSENTIAL_VERSION,
 					'callback'     => array( 'WBCOM_ESSENTIAL\Wbcom_Essential_Widget_Showcase', 'render_admin_page' ),

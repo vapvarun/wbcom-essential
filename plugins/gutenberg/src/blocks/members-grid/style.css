@@ -20,7 +20,23 @@
 /* Grid list */
 .wbe-members-grid__list {
 	display: grid;
-	grid-template-columns: repeat( var( --wbe-mg-cols ), 1fr );
+	/*
+	 * Columns follow the container: the owner's column setting for this
+	 * screen size is the maximum, and a column never drops below
+	 * --wbe-mg-min-col, so the grid fits sidebars without clipping.
+	 */
+	--wbe-mg-cols-now: var( --wbe-mg-cols );
+	--wbe-mg-min-col: 140px;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( var( --wbe-mg-min-col ), 100% ),
+				calc( ( 100% - ( var( --wbe-mg-cols-now ) - 1 ) * var( --wbe-mg-gap ) ) / var( --wbe-mg-cols-now ) )
+			),
+			1fr
+		)
+	);
 	gap: var( --wbe-mg-gap );
 	margin: 0;
 	padding: 0;
@@ -170,14 +186,14 @@
 /* Responsive — tablet */
 @media screen and (max-width: 1024px) {
 	.wbe-members-grid__list {
-		grid-template-columns: repeat( var( --wbe-mg-cols-tab ), 1fr );
+		--wbe-mg-cols-now: var( --wbe-mg-cols-tab );
 	}
 }
 
 /* Responsive — mobile */
 @media screen and (max-width: 640px) {
 	.wbe-members-grid__list {
-		grid-template-columns: repeat( var( --wbe-mg-cols-mob ), 1fr );
+		--wbe-mg-cols-now: var( --wbe-mg-cols-mob );
 	}
 
 	.wbe-members-grid__card {

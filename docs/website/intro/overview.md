@@ -1,83 +1,61 @@
 # Overview
 
-Wbcom Essential Documentation
+Wbcom Essential adds 35 Gutenberg blocks and 43 Elementor widgets to your site. It is free and ships as part of the Reign, BuddyX and BuddyX Pro themes. It also works with other themes.
 
-Build stunning WordPress sites with 45 Gutenberg blocks and 43 Elementor widgets for BuddyPress communities, WooCommerce stores, and content-rich websites.
+## What You Get
 
-Version 4.2.0 | Perfect companion for BuddyX, BuddyX Pro & Reign themes
+| Editor | Count | Where to find them |
+|--------|-------|--------------------|
+| Gutenberg (block editor) | 35 blocks | Block inserter, in seven categories named "Essential - ..." |
+| Elementor | 43 widgets | Elementor panel, in the "Wbcom Essential" category |
 
-Quick Links
+### Gutenberg Blocks
 
-I want to...Go toInstall the pluginInstallationVerify everything worksAfter InstallationFind the right block for my needsSolution FinderBuild my first pageGetting StartedAvoid common mistakesCommon MistakesLearn about Gutenberg blocksAll BlocksLearn about Elementor widgetsAll WidgetsUse with BuddyX themeBuddyX GuideUse with BuddyX Pro themeBuddyX Pro GuideUse with Reign themeReign Guide
+| Inserter category | Blocks | Page |
+|-------------------|--------|------|
+| Essential - Design | 4 | [Design Blocks](../blocks/design-blocks.md) |
+| Essential - Content | 5 | [Content Blocks](../blocks/content-blocks.md) |
+| Essential - Blog | 3 | [Blog Blocks](../blocks/blog-blocks.md) |
+| Essential - Marketing | 7 | [Marketing Blocks](../blocks/marketing-blocks.md) |
+| Essential - BuddyPress | 5 | [BuddyPress Blocks](../blocks/buddypress-blocks.md) |
+| Essential - WooCommerce | 3 | [WooCommerce Blocks](../blocks/woocommerce-blocks.md) |
+| Essential - EDD | 8 | [EDD Blocks](../blocks/edd-blocks.md) |
 
-What's Included
+See [Blocks Overview](../blocks/blocks-overview.md) for the full list.
 
-Gutenberg Blocks (45)
+### Elementor Widgets
 
-Native WordPress blocks for the block editor. No Elementor required!
+| Group | Widgets | Page |
+|-------|---------|------|
+| General | 27 | [General Widgets](../widgets/general-widgets.md) |
+| BuddyPress | 11 | [BuddyPress Widgets](../widgets/buddypress-widgets.md) |
+| WooCommerce | 5 | [WooCommerce Widgets](../widgets/woocommerce-widgets.md) |
 
-CategoryBlocksWhat You Can BuildHeader4Site branding, navigation, user menusDesign12Sliders, counters, icons, animationsContent8Accordions, tabs, timelines, formsBlog6Post carousels, sliders, tickersMarketing4Pricing tables, CTAs, testimonialsBuddyPress11Members, groups, forumsWooCommerce2Products, mini cart
+See [Widgets Overview](../widgets/widgets-overview.md) for details.
 
-Elementor Widgets (43)
+## Requirements
 
-Drag-and-drop widgets with advanced styling controls.
+| Requirement | Minimum |
+|-------------|---------|
+| WordPress | 6.0 |
+| PHP | 8.0 |
+| Elementor | 3.5 (only for the widgets) |
+| BuddyPress | 10.0 (only for BuddyPress blocks and widgets) |
+| WooCommerce | 7.0 (only for WooCommerce blocks and widgets) |
 
-CategoryWidgetsWhat You Can BuildGeneral27Sliders, carousels, forms, layoutsBuddyPress11Community pages, member directoriesWooCommerce5Product showcases, reviews
+Blocks work without Elementor. Install Elementor only if you want the widgets.
 
-Getting Started
+## Works With Your Plugins
 
-New to Wbcom Essential? Start here:
+- **BuddyPress or BuddyBoss Platform** - the BuddyPress blocks read members, groups and activity from either platform.
+- **WooCommerce** - product, carousel and review blocks and widgets.
+- **Easy Digital Downloads** - account, checkout and catalog blocks.
+- **bbPress** - the Forums and Forums Activity widgets appear when bbPress is active.
 
-Installation - System requirements and setup
-After Installation - Verify everything works
-Getting Started - Build your first page
-Solution Finder - Find the right block
-Common Mistakes - Avoid pitfalls
+If the plugin a block needs is not active, the block shows a short notice instead of content. See [Troubleshooting](../troubleshooting/troubleshooting.md).
 
-Theme Integration
+## Next Steps
 
-Wbcom Essential works best with these themes:
-
-BuddyX (Free)
-
-Community-focused theme with BuddyPress integration.
-
-Member profiles and directories
-Group pages and activity streams
-Forum integration with bbPress
-
-BuddyX Pro (Premium)
-
-Premium version with advanced community features.
-
-Multiple layout options
-Advanced header builder
-LearnDash integration
-
-Reign (Premium)
-
-Multi-purpose theme for communities and marketplaces.
-
-BuddyPress + WooCommerce integration
-Social marketplace features
-Multiple demo imports
-
-Features
-
-Theme Colors - Automatic color inheritance
-Responsive Design - Mobile-first approach
-Performance - Optimized for speed
-
-Plugin Integrations
-
-BuddyPress - Community features (Members, Groups, Forums)
-WooCommerce - E-commerce features
-
-Version Information
-
-Current Version4.2.0WordPress Required6.0+PHP Required8.0+Elementor Required3.0+ (for widgets)
-
-Support
-
-Documentation: You're here!
-Support Tickets: wbcomdesigns.com/support/
+1. [Install the plugin](../installation/installation-guide.md).
+2. Run through [After Installation](after-installation.md).
+3. Build your first page with [Getting Started](getting-started.md).

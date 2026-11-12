@@ -9,6 +9,8 @@
  * with a textarea element (the standard entity-decode pattern) and set on img.src.
  */
 
+import { memberFriendshipStatus, memberLastActive } from '../../shared/utils/bp-rest';
+
 ( function () {
 	'use strict';
 
@@ -85,7 +87,7 @@
 			return link;
 		}
 
-		const status  = member.friendship_status_slug || 'not_friends';
+		const status  = memberFriendshipStatus( member );
 		const state   = friendBtnState( status, cfg.i18n );
 		const btn     = document.createElement( 'button' );
 
@@ -148,8 +150,9 @@
 		nameHeading.appendChild( nameLink );
 		info.appendChild( nameHeading );
 
-		if ( cfg.showLastActive && member.last_activity?.timediff ) {
-			info.appendChild( el( 'span', 'wbe-members-grid__meta', member.last_activity.timediff ) );
+		const lastActive = cfg.showLastActive ? memberLastActive( member ) : '';
+		if ( lastActive ) {
+			info.appendChild( el( 'span', 'wbe-members-grid__meta', lastActive ) );
 		}
 
 		if ( cfg.showFriendButton && cfg.loggedIn ) {

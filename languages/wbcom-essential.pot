@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Wbcom Essential 4.7.0\n"
+"Project-Id-Version: Wbcom Essential 4.7.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wbcom-essential\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T14:27:06+00:00\n"
+"POT-Creation-Date: 2026-11-12T07:54:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wbcom-essential\n"
@@ -17,8 +17,8 @@ msgstr ""
 #. Plugin Name of the plugin
 #: loader.php
 #: admin/class-wbcom-essential-widget-showcase.php:148
-#: plugins/elementor/hooks/ElementorHooks.php:120
-#: plugins/elementor/wbcom-essential-elementor.php:100
+#: plugins/elementor/hooks/ElementorHooks.php:119
+#: plugins/elementor/wbcom-essential-elementor.php:95
 msgid "Wbcom Essential"
 msgstr ""
 
@@ -29,16 +29,16 @@ msgstr ""
 
 #. Description of the plugin
 #: loader.php
-msgid "Premium Elementor widgets and 32 production-grade Gutenberg V2 blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design."
+msgid "43 Elementor widgets and 35 Gutenberg blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design."
 msgstr ""
 
 #. Author of the plugin
 #: loader.php
 #: admin/class-wbcom-essential-widget-showcase.php:65
 #: admin/class-wbcom-essential-widget-showcase.php:66
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:44
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:45
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:100
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:46
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:47
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:103
 msgid "Wbcom Designs"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:76
 #: admin/class-wbcom-essential-widget-showcase.php:77
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:543
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:546
 msgid "Essential"
 msgstr ""
 
@@ -61,14 +61,18 @@ msgstr ""
 msgid "Free companion plugin for BuddyX, BuddyX Pro, and Reign themes"
 msgstr ""
 
+#: admin/class-wbcom-essential-widget-showcase.php:151
+msgid "Read the documentation"
+msgstr ""
+
 #: admin/class-wbcom-essential-widget-showcase.php:159
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:125
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:128
 msgid "Overview"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:163
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:308
-#: includes/shared-admin/class-wbcom-shared-loader.php:705
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:311
+#: includes/shared-admin/class-wbcom-shared-loader.php:694
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:127
 #: plugins/elementor/widgets/Buddypress/GroupGrid.php:99
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:127
@@ -98,7 +102,7 @@ msgid "Works natively with the WordPress Block Editor. No page builder required.
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:218
-msgid "17 Marketing, Content & Design blocks"
+msgid "16 Marketing, Content & Design blocks"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:219
@@ -106,11 +110,11 @@ msgid "5 BuddyPress blocks (Members, Groups, Activity)"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:220
-msgid "7 Blog & WooCommerce blocks"
+msgid "6 Blog & WooCommerce blocks"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:221
-msgid "3 EDD blocks (Account, Checkout, Catalog)"
+msgid "8 EDD blocks (Account, Checkout, Order Success, Catalog)"
 msgstr ""
 
 #: admin/class-wbcom-essential-widget-showcase.php:227
@@ -202,7 +206,7 @@ msgstr ""
 
 #: build/blocks/activity-feed/render.php:95
 #: build/blocks/product-catalog/render.php:63
-#: includes/shared-admin/class-wbcom-shared-loader.php:820
+#: includes/shared-admin/class-wbcom-shared-loader.php:809
 msgid "Loading..."
 msgstr ""
 
@@ -304,27 +308,27 @@ msgid "No reviews found."
 msgstr ""
 
 #. translators: %s: name of the reviewer.
-#: build/blocks/customer-reviews/render.php:152
+#: build/blocks/customer-reviews/render.php:153
 #, php-format
 msgid "Review by %s"
 msgstr ""
 
 #. translators: %d: star rating given by the reviewer, 1 to 5.
-#: build/blocks/customer-reviews/render.php:156
+#: build/blocks/customer-reviews/render.php:157
 #, php-format
 msgid "Rated %d out of 5"
 msgstr ""
 
-#: build/blocks/customer-reviews/render.php:193
+#: build/blocks/customer-reviews/render.php:194
 msgid "Reviews carousel navigation"
 msgstr ""
 
-#: build/blocks/customer-reviews/render.php:197
+#: build/blocks/customer-reviews/render.php:198
 #: build/blocks/customer-reviews/view.js:1
 msgid "Previous review"
 msgstr ""
 
-#: build/blocks/customer-reviews/render.php:198
+#: build/blocks/customer-reviews/render.php:199
 #: build/blocks/customer-reviews/view.js:1
 msgid "Next review"
 msgstr ""
@@ -385,10 +389,10 @@ msgid "Lost your password?"
 msgstr ""
 
 #: build/blocks/edd-account-dashboard/render.php:185
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:56
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:57
-#: includes/shared-admin/class-wbcom-shared-loader.php:442
-#: includes/shared-admin/class-wbcom-shared-loader.php:443
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:58
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:59
+#: includes/shared-admin/class-wbcom-shared-loader.php:435
+#: includes/shared-admin/class-wbcom-shared-loader.php:436
 #: build/blocks/edd-account-dashboard/index.js:1
 msgid "Dashboard"
 msgstr ""
@@ -406,7 +410,7 @@ msgid "Downloads"
 msgstr ""
 
 #: build/blocks/edd-account-dashboard/render.php:202
-#: includes/edd-account-marketing-functions.php:504
+#: includes/edd-account-marketing-functions.php:507
 #: build/blocks/edd-account-dashboard/index.js:1
 msgid "Free Plugins"
 msgstr ""
@@ -770,7 +774,6 @@ msgstr ""
 #: build/blocks/portfolio-grid/render.php:83
 #: includes/edd-account-dashboard-functions.php:1945
 #: includes/edd-account-dashboard-functions.php:2155
-#: plugins/elementor/templates/classes/manager.php:218
 #: plugins/elementor/widgets/General/PortfolioGrid.php:388
 #: build/blocks/activity-feed/index.js:1
 #: build/blocks/category-grid/index.js:1
@@ -891,7 +894,7 @@ msgid "Any Price"
 msgstr ""
 
 #: build/blocks/product-catalog/render.php:45
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:960
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:963
 msgid "Free"
 msgstr ""
 
@@ -967,7 +970,7 @@ msgid "Load More Products"
 msgstr ""
 
 #: build/blocks/product-catalog/render.php:64
-#: includes/edd-account-marketing-functions.php:555
+#: includes/edd-account-marketing-functions.php:558
 #: includes/edd-product-catalog-rest.php:423
 msgid "Download Free"
 msgstr ""
@@ -1136,7 +1139,7 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: includes/blog-index/class-wbcom-blog-index-settings.php:619
+#: includes/blog-index/class-wbcom-blog-index-settings.php:620
 msgid "Latest"
 msgstr ""
 
@@ -1626,9 +1629,9 @@ msgid "No licenses found."
 msgstr ""
 
 #: includes/edd-account-dashboard-functions.php:2156
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
-#: includes/shared-admin/class-wbcom-shared-loader.php:618
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:254
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:259
+#: includes/shared-admin/class-wbcom-shared-loader.php:609
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:116
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:510
 #: plugins/elementor/widgets/Buddypress/MembersLists.php:116
@@ -1822,19 +1825,19 @@ msgid_plural "Too many login attempts. Try again in %d minutes."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/edd-account-marketing-functions.php:158
+#: includes/edd-account-marketing-functions.php:159
 msgid "Account Dashboard"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:163
+#: includes/edd-account-marketing-functions.php:164
 msgid "Show this discount as a special offer on the customer account dashboard."
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:269
+#: includes/edd-account-marketing-functions.php:270
 msgid "Pro Counterpart"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:272
+#: includes/edd-account-marketing-functions.php:273
 #: includes/single-post/class-wbcom-single-post-settings.php:188
 #: plugins/elementor/helper/skins/skin-base.php:102
 #: plugins/elementor/helper/skins/skin-cards.php:562
@@ -1894,308 +1897,308 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:280
+#: includes/edd-account-marketing-functions.php:281
 msgid "Used by the account dashboard to recommend the pro upgrade to owners of this product."
 msgstr ""
 
 #. translators: 1: formatted discount amount, 2: discount code.
-#: includes/edd-account-marketing-functions.php:342
+#: includes/edd-account-marketing-functions.php:343
 #, php-format
 msgid "Save %1$s with code %2$s"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:350
+#: includes/edd-account-marketing-functions.php:351
 #: build/blocks/edd-account-dashboard/view.js:1
 msgid "Copied!"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:351
+#: includes/edd-account-marketing-functions.php:352
 msgid "Copy Code"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:353
+#: includes/edd-account-marketing-functions.php:354
 msgid "Shop Now"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:389
+#: includes/edd-account-marketing-functions.php:391
 msgid "What's New"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:474
+#: includes/edd-account-marketing-functions.php:477
 msgid "Recommended for You"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:486
+#: includes/edd-account-marketing-functions.php:489
 msgid "Pro Upgrade"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:505
+#: includes/edd-account-marketing-functions.php:508
 msgid "Add free plugins to your library with one click - updates included."
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:527
+#: includes/edd-account-marketing-functions.php:530
 msgid "No free plugins are available right now."
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:550
+#: includes/edd-account-marketing-functions.php:553
 msgid "In your library"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:552
+#: includes/edd-account-marketing-functions.php:555
 msgid "View in Downloads"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:554
+#: includes/edd-account-marketing-functions.php:557
 msgid "Adding…"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:561
+#: includes/edd-account-marketing-functions.php:564
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:618
+#: includes/edd-account-marketing-functions.php:624
 msgid "This product cannot be claimed."
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:635
+#: includes/edd-account-marketing-functions.php:641
 msgid "Claim limit reached. Please try again later."
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:683
+#: includes/edd-account-marketing-functions.php:689
 msgid "Could not record your claim. Please try again."
 msgstr ""
 
-#: includes/edd-account-marketing-functions.php:733
+#: includes/edd-account-marketing-functions.php:739
 msgid "Added to your library!"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:129
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:132
 msgid "Installed Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:133
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:234
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:136
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:237
 msgid "Premium Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:137
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:140
 msgid "Premium Themes"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:141
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:144
 msgid "News & Updates"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:190
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:193
 msgid "Welcome to Wbcom Designs Dashboard"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:192
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:195
 msgid "Your central hub for managing premium WordPress and BuddyPress solutions. At Wbcom Designs, we specialize in creating powerful community plugins, custom development services, and comprehensive support solutions. Our Care Plan ensures your site stays optimized and secure with priority support, regular updates, and expert maintenance."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:205
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:208
 msgid "Don't Risk Your Website's Success"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:208
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:211
 msgid "WordPress updates can break your site, security vulnerabilities expose your data, and performance issues drive visitors away. Our Care Plan ensures all updates are tested before deployment, security is monitored 24/7, and your site stays optimized. Stop worrying about crashes and focus on growing your business."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:217
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:220
 msgid "Schedule Free Consultation"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:221
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:224
 msgid "No Commitment Required"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:231
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:234
 msgid "Our Services"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:233
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:568
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:236
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:571
 msgid "Get Care Plan"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:235
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:579
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:238
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:582
 msgid "Custom Development"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:236
-#: includes/shared-admin/class-wbcom-shared-loader.php:638
-#: includes/shared-admin/class-wbcom-shared-loader.php:718
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:239
+#: includes/shared-admin/class-wbcom-shared-loader.php:629
+#: includes/shared-admin/class-wbcom-shared-loader.php:707
 msgid "Get Support"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:241
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:244
 msgid "System Status"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:245
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:248
 msgid "WordPress Version"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:250
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:253
 msgid "BuddyPress"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:251
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:254
 msgid "Inactive"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:255
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:258
 msgid "Production Mode"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:256
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:259
 msgid "Debug On"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:272
-#: includes/shared-admin/class-wbcom-shared-loader.php:697
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:275
+#: includes/shared-admin/class-wbcom-shared-loader.php:686
 msgid "Installed Wbcom Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:281
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:284
 msgid "No Wbcom Plugins Found"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:282
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:285
 msgid "Looks like you haven't installed any Wbcom Designs plugins yet."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:284
-#: includes/shared-admin/class-wbcom-shared-loader.php:719
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:287
+#: includes/shared-admin/class-wbcom-shared-loader.php:708
 msgid "Browse Premium Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:299
-#: includes/shared-admin/class-wbcom-shared-loader.php:613
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:302
+#: includes/shared-admin/class-wbcom-shared-loader.php:604
 msgid "Version:"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:330
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:333
 msgid "Premium BuddyPress Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:331
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:334
 msgid "Enhance your community with these powerful premium plugins designed specifically for BuddyPress."
 msgstr ""
 
 #. translators: %s: premium plugin name.
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:391
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:394
 #, php-format
 msgid "Get %s"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:406
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:409
 msgid "Browse All Premium Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:425
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:428
 msgid "Premium Community Themes"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:426
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:429
 msgid "Transform your vision with these powerful multi-purpose themes designed to create any type of community platform."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:476
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:479
 msgid "View Theme"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:490
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:493
 msgid "Browse All Premium Themes"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:507
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:510
 msgid "Latest News from Wbcom Designs"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:508
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:511
 msgid "Stay updated with the latest plugin releases, updates, and WordPress community news."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:514
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:517
 msgid "Loading latest news..."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:524
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:527
 msgid "Visit Our Blog"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:542
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:545
 msgid "WordPress Care Plan"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:548
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:551
 msgid "/month per site"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:552
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:555
 msgid "WordPress updates breaking your site?"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:552
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:555
 msgid "We test everything before deployment."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:552
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:555
 msgid "Worried about security breaches?"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:552
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:555
 msgid "We monitor and protect 24/7."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:552
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:555
 msgid "Site running slow?"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:552
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:555
 msgid "We optimize performance continuously."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:557
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:560
 msgid "No More Broken Sites from Updates"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:558
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:561
 msgid "Protected from Security Threats"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:559
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:562
 msgid "Always Fast & Optimized Performance"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:560
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:563
 msgid "Automatic Daily Backups"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:561
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:564
 msgid "Expert Support When You Need It"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:562
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:565
 msgid "Peace of Mind - Focus on Business"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:571
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:574
 msgid "Schedule Free Call"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:580
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:583
 msgid "Pay-as-you-go"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:584
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:587
 msgid "Flexible"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:585
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:588
 #: plugins/elementor/widgets/General/Countdown.php:147
 #: plugins/elementor/widgets/General/Countdown.php:159
 #: plugins/elementor/widgets/General/Countdown.php:161
@@ -2205,398 +2208,398 @@ msgstr ""
 msgid "Hours"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:589
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:592
 msgid "Professional WordPress development services with flexible engagement model. Expert developers available for custom projects with transparent pricing and no hidden costs."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:594
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:597
 msgid "Fully Customizable Project Scope"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:595
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:598
 msgid "Flexible Development Hours"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:596
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:599
 msgid "Transparent Pay-Per-Need Pricing"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:597
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:600
 msgid "No Hidden Costs or Surprises"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:598
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:601
 msgid "Direct Developer Consultation"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:599
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:602
 msgid "Specialized Custom Solutions"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:605
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:608
 msgid "Start Project"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:608
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:611
 msgid "Book Consultation"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:809
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:812
 msgid "Not Active"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:847
-#: includes/shared-admin/class-wbcom-shared-loader.php:693
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:850
+#: includes/shared-admin/class-wbcom-shared-loader.php:682
 msgid "Welcome to Wbcom Designs!"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:848
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:851
 msgid "No Wbcom plugins are currently active. Activate plugins to see them here."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:860
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:863
 msgid "Complete BuddyPress Community Solution - 25+ Plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:861
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:864
 msgid "Complete BuddyPress community solution with over 25 essential plugins for building a thriving online community."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:865
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:868
 msgid "All BuddyPress premium plugins included"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:866
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:869
 msgid "Activity feeds enhancement"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:867
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:870
 msgid "Advanced member management"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:868
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:871
 msgid "Community engagement tools"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:869
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:872
 msgid "Professional support included"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:870
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:873
 msgid "Regular updates and new features"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:875
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:878
 msgid "Service Booking & Management Platform"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:876
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:879
 msgid "Transform your WooCommerce store to sell services with booking, appointments, and service management features."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:881
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:884
 msgid "Service booking and appointments"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:882
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:885
 msgid "Staff and resource management"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:883
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:886
 msgid "Service packages and pricing"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:884
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:887
 msgid "Calendar integration"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:885
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:888
 msgid "Customer booking management"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:886
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:889
 msgid "Payment and invoice handling"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:891
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:894
 msgid "Advanced Learning Analytics & Management"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:892
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:895
 msgid "Advanced dashboard for LearnDash with comprehensive analytics, reporting, and student management tools."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:897
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:900
 msgid "Advanced course analytics"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:898
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:901
 msgid "Student progress tracking"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:899
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:902
 msgid "Custom reporting system"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:900
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:903
 msgid "Instructor dashboard"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:901
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:904
 msgid "Revenue and enrollment insights"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:902
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:905
 msgid "Export and data visualization"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:913
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:916
 msgid "Reign Theme + All Reign Addons"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:914
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:917
 msgid "The ultimate all-in-one package. Get Reign theme plus all premium addons for building any type of community - social networks, learning platforms, marketplaces, or directories."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:918
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:921
 msgid "Complete multi-purpose solution for any community type"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:919
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:922
 msgid "Works seamlessly with BuddyPress & BuddyBoss"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:920
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:923
 msgid "Built-in monetization & membership capabilities"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:921
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:924
 msgid "Professional templates for every industry"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:922
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:925
 msgid "Advanced branding & white-label options"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:923
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:926
 msgid "Priority support with lifetime updates"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:928
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:931
 msgid "Multi-Purpose Community Powerhouse"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:929
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:932
 msgid "One theme, unlimited possibilities. Transform your site into any type of community - social networks, learning platforms, marketplaces, or professional directories with BuddyPress & BuddyBoss compatibility."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:933
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:936
 msgid "Multi-platform support (BuddyPress, BuddyBoss, PeepSo)"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:934
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:937
 msgid "Transform into social network, LMS, or marketplace"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:935
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:938
 msgid "Advanced customization without coding"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:936
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:939
 msgid "Mobile-first responsive design"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:937
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:940
 msgid "Built-in SEO optimization & performance"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:938
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:941
 msgid "Integrates with all major plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:943
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:946
 msgid "Trusted by 6000+ Successful Communities"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:944
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:947
 msgid "Join thousands of thriving communities worldwide. Create Facebook-like social experiences, integrate learning platforms, build marketplaces, or launch membership sites with complete customization."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:948
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:951
 msgid "Facebook-style social networking experience"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:949
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:952
 msgid "Multi-LMS support (LearnDash, LearnPress, LifterLMS)"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:950
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:953
 msgid "WooCommerce multi-vendor marketplace ready"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:951
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:954
 msgid "Membership & subscription monetization"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:952
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:955
 msgid "Elementor page builder integration"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:953
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:956
 msgid "Dark/light modes with custom branding"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:958
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:961
 msgid "Professional Community Foundation"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:959
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:962
 msgid "Start building your community with our powerful free foundation. Perfect for testing and small communities, with a clear upgrade path to Pro features when ready to scale."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:963
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:966
 msgid "Complete community foundation at zero cost"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:964
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:967
 msgid "Modern, mobile-responsive design"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:965
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:968
 msgid "Essential social networking features"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:966
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:969
 msgid "Compatible with popular plugins"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:967
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:970
 msgid "Upgrade path to Pro when ready"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-dashboard.php:968
+#: includes/shared-admin/class-wbcom-shared-dashboard.php:971
 msgid "Active community support"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:604
+#: includes/shared-admin/class-wbcom-shared-loader.php:595
 msgid "Plugin Loaded Successfully!"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:605
+#: includes/shared-admin/class-wbcom-shared-loader.php:596
 msgid "The plugin is active but the admin interface is loading. Please check that all plugin files are properly installed."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:610
+#: includes/shared-admin/class-wbcom-shared-loader.php:601
 msgid "Plugin Information"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:617
+#: includes/shared-admin/class-wbcom-shared-loader.php:608
 msgid "Status:"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:621
+#: includes/shared-admin/class-wbcom-shared-loader.php:612
 msgid "Description:"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:631
-#: includes/shared-admin/class-wbcom-shared-loader.php:720
+#: includes/shared-admin/class-wbcom-shared-loader.php:622
+#: includes/shared-admin/class-wbcom-shared-loader.php:709
 msgid "Documentation"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:655
+#: includes/shared-admin/class-wbcom-shared-loader.php:646
 msgid "Plugin Not Found"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:657
+#: includes/shared-admin/class-wbcom-shared-loader.php:648
 msgid "The requested plugin page could not be found or is not properly registered."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:659
+#: includes/shared-admin/class-wbcom-shared-loader.php:650
 msgid "Back to Dashboard"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:693
+#: includes/shared-admin/class-wbcom-shared-loader.php:682
 msgid "Your plugins are being loaded..."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:711
+#: includes/shared-admin/class-wbcom-shared-loader.php:700
 msgid "No plugins registered yet."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:716
+#: includes/shared-admin/class-wbcom-shared-loader.php:705
 msgid "Quick Links"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:762
+#: includes/shared-admin/class-wbcom-shared-loader.php:751
 msgid "Wbcom Shared System Conflict"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:763
+#: includes/shared-admin/class-wbcom-shared-loader.php:752
 msgid "Multiple versions of the Wbcom shared system detected. Please update all Wbcom plugins to ensure compatibility."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:821
+#: includes/shared-admin/class-wbcom-shared-loader.php:810
 msgid "Error loading content."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:822
+#: includes/shared-admin/class-wbcom-shared-loader.php:811
 msgid "Settings saved successfully."
 msgstr ""
 
 #. translators: %s: post author name.
-#: includes/shared-admin/class-wbcom-shared-loader.php:824
+#: includes/shared-admin/class-wbcom-shared-loader.php:813
 #, php-format
 msgid "by %s"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:825
+#: includes/shared-admin/class-wbcom-shared-loader.php:814
 msgid "No News Available"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:826
+#: includes/shared-admin/class-wbcom-shared-loader.php:815
 msgid "Unable to load recent news at this time."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:827
+#: includes/shared-admin/class-wbcom-shared-loader.php:816
 msgid "Unable to Load News"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:828
+#: includes/shared-admin/class-wbcom-shared-loader.php:817
 msgid "Please check your internet connection and try again later."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:829
+#: includes/shared-admin/class-wbcom-shared-loader.php:818
 msgid "Stay Connected"
 msgstr ""
 
 #. translators: %s: Wbcom Designs blog URL.
-#: includes/shared-admin/class-wbcom-shared-loader.php:831
+#: includes/shared-admin/class-wbcom-shared-loader.php:820
 #, php-format
 msgid "Visit our <a href=\"%s\" target=\"_blank\">blog</a> for the latest updates"
 msgstr ""
 
 #. translators: %s: Wbcom Designs X (Twitter) profile URL.
-#: includes/shared-admin/class-wbcom-shared-loader.php:833
+#: includes/shared-admin/class-wbcom-shared-loader.php:822
 #, php-format
 msgid "Follow us on <a href=\"%s\" target=\"_blank\">X</a>"
 msgstr ""
 
 #. translators: %s: Wbcom Designs Facebook page URL.
-#: includes/shared-admin/class-wbcom-shared-loader.php:835
+#: includes/shared-admin/class-wbcom-shared-loader.php:824
 #, php-format
 msgid "Join our <a href=\"%s\" target=\"_blank\">Facebook</a> community"
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:836
+#: includes/shared-admin/class-wbcom-shared-loader.php:825
 msgid "Refreshing..."
 msgstr ""
 
-#: includes/shared-admin/class-wbcom-shared-loader.php:837
+#: includes/shared-admin/class-wbcom-shared-loader.php:826
 msgid "Dismiss this notice."
 msgstr ""
 
 #. translators: %s: name of the dashboard section where the error happened.
-#: includes/shared-admin/class-wbcom-shared-loader.php:839
+#: includes/shared-admin/class-wbcom-shared-loader.php:828
 #, php-format
 msgid "An error occurred in %s. Check console for details."
 msgstr ""
@@ -3208,6 +3211,8 @@ msgid "Excerpt"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:276
+#: plugins/elementor/widgets/General/PostsCarousel.php:226
+#: plugins/elementor/widgets/General/PostsRevolution.php:225
 msgid "Excerpt Length"
 msgstr ""
 
@@ -3867,8 +3872,6 @@ msgid "Separator Color"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:982
-#: plugins/elementor/templates/documents/page.php:45
-#: plugins/elementor/templates/types/page.php:44
 msgid "Page"
 msgstr ""
 
@@ -4489,19 +4492,19 @@ msgstr ""
 msgid "Meta Border Color"
 msgstr ""
 
-#: plugins/elementor/hooks/ElementorHooks.php:314
+#: plugins/elementor/hooks/ElementorHooks.php:289
 msgid "Exclude"
 msgstr ""
 
-#: plugins/elementor/hooks/ElementorHooks.php:318
+#: plugins/elementor/hooks/ElementorHooks.php:293
 msgid "Current Post"
 msgstr ""
 
-#: plugins/elementor/hooks/ElementorHooks.php:319
+#: plugins/elementor/hooks/ElementorHooks.php:294
 msgid "Manual Selection"
 msgstr ""
 
-#: plugins/elementor/hooks/ElementorHooks.php:328
+#: plugins/elementor/hooks/ElementorHooks.php:303
 #: plugins/elementor/widgets/querycontrol/group-control-posts.php:58
 msgctxt "Posts Query Control"
 msgid "Search & Select"
@@ -4517,79 +4520,57 @@ msgstr ""
 msgid "Security error: Unserializing of this class is not allowed."
 msgstr ""
 
-#: plugins/elementor/templates/classes/config.php:60
-msgid "WBCom Essential Elementor Sections"
-msgstr ""
-
-#: plugins/elementor/templates/documents/section.php:45
-#: plugins/elementor/templates/types/section.php:44
-msgid "Section"
-msgstr ""
-
-#: plugins/elementor/templates/sources/wbcom-essential-elementor-pages-api.php:289
-#: plugins/elementor/templates/sources/wbcom-essential-elementor-sections-api.php:289
-msgid "Internal Error"
-msgstr ""
-
-#: plugins/elementor/templates/types/page.php:55
-msgid "Pages"
-msgstr ""
-
-#: plugins/elementor/templates/types/section.php:55
-msgid "Sections"
-msgstr ""
-
-#: plugins/elementor/wbcom-essential-elementor.php:78
+#: plugins/elementor/wbcom-essential-elementor.php:73
 msgid "Activate Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:92
+#: plugins/elementor/wbcom-essential-elementor.php:87
 msgid "Install Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:101
+#: plugins/elementor/wbcom-essential-elementor.php:96
 msgid "Gutenberg blocks are ready to use! Want even more options? Install Elementor to unlock 43+ additional widgets."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:108
+#: plugins/elementor/wbcom-essential-elementor.php:103
 msgid "View All Widgets & Blocks"
 msgstr ""
 
 #. translators: %1$s: Plugin name, %2$s: Required plugin name, %3$s: Required version
-#: plugins/elementor/wbcom-essential-elementor.php:161
+#: plugins/elementor/wbcom-essential-elementor.php:156
 #, php-format
 msgid "%1$s requires %2$s version %3$s or higher. Please update to continue using all features."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:172
+#: plugins/elementor/wbcom-essential-elementor.php:167
 msgid "Update Elementor"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:438
+#: plugins/elementor/wbcom-essential-elementor.php:433
 msgid "Full"
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:470
+#: plugins/elementor/wbcom-essential-elementor.php:465
 msgid "Invalid username. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:472
+#: plugins/elementor/wbcom-essential-elementor.php:467
 msgid "Incorrect password. Please try again."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:474
+#: plugins/elementor/wbcom-essential-elementor.php:469
 msgid "Username field is empty. Please enter your username."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:476
+#: plugins/elementor/wbcom-essential-elementor.php:471
 msgid "Password field is empty. Please enter your password."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:478
+#: plugins/elementor/wbcom-essential-elementor.php:473
 msgid "Login failed. Please check your credentials."
 msgstr ""
 
-#: plugins/elementor/wbcom-essential-elementor.php:495
+#: plugins/elementor/wbcom-essential-elementor.php:490
 msgid "Login successful, redirecting..."
 msgstr ""
 
@@ -5009,7 +4990,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/Forums.php:59
 #: plugins/elementor/widgets/Buddypress/Forums.php:206
-#: plugins/elementor/widgets/Buddypress/Forums.php:660
+#: plugins/elementor/widgets/Buddypress/Forums.php:665
 msgid "Forums"
 msgstr ""
 
@@ -5285,7 +5266,7 @@ msgid "bbPress is required for this widget."
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/Forums.php:577
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:939
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:944
 msgid "replied"
 msgstr ""
 
@@ -5303,13 +5284,13 @@ msgstr ""
 msgid " Reply"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/Forums.php:663
+#: plugins/elementor/widgets/Buddypress/Forums.php:668
 msgid "Start a Discussion"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:58
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:989
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:1002
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:999
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:1012
 msgid "Forums Activity"
 msgstr ""
 
@@ -5433,15 +5414,15 @@ msgstr ""
 msgid "BuddyPress and bbPress are required for this widget."
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:935
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:940
 msgid "replies"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:935
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:940
 msgid "reply"
 msgstr ""
 
-#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:1004
+#: plugins/elementor/widgets/Buddypress/ForumsActivity.php:1014
 msgid "You are not logged in."
 msgstr ""
 
@@ -5751,7 +5732,7 @@ msgid "All Groups Link"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:288
-msgid "All Groupss Link Color"
+msgid "All Groups Link Color"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/GroupsLists.php:425
@@ -6356,13 +6337,13 @@ msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:167
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:1018
-#: plugins/gutenberg/gutenberg.php:254
+#: plugins/gutenberg/gutenberg.php:233
 msgid "Profile Photo"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:170
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:1039
-#: plugins/gutenberg/gutenberg.php:261
+#: plugins/gutenberg/gutenberg.php:240
 msgid "Cover Photo"
 msgstr ""
 
@@ -8592,11 +8573,6 @@ msgstr ""
 #: plugins/elementor/widgets/General/ProgressBar.php:216
 #: plugins/elementor/widgets/General/TeamCarousel.php:834
 msgid "Hidden"
-msgstr ""
-
-#: plugins/elementor/widgets/General/PostsCarousel.php:226
-#: plugins/elementor/widgets/General/PostsRevolution.php:225
-msgid "Number Experpt"
 msgstr ""
 
 #: plugins/elementor/widgets/General/PostsCarousel.php:238
@@ -11410,39 +11386,39 @@ msgstr ""
 msgid "Next testimonial"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:138
+#: plugins/gutenberg/gutenberg.php:117
 msgid "Essential - Header"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:143
+#: plugins/gutenberg/gutenberg.php:122
 msgid "Essential - Design"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:148
+#: plugins/gutenberg/gutenberg.php:127
 msgid "Essential - Content"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:153
+#: plugins/gutenberg/gutenberg.php:132
 msgid "Essential - Blog"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:158
+#: plugins/gutenberg/gutenberg.php:137
 msgid "Essential - Marketing"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:163
+#: plugins/gutenberg/gutenberg.php:142
 msgid "Essential - BuddyPress"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:168
+#: plugins/gutenberg/gutenberg.php:147
 msgid "Essential - WooCommerce"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:173
+#: plugins/gutenberg/gutenberg.php:152
 msgid "Essential - EDD"
 msgstr ""
 
-#: plugins/gutenberg/gutenberg.php:178
+#: plugins/gutenberg/gutenberg.php:157
 msgid "WBcom Essential"
 msgstr ""
 
@@ -11679,13 +11655,17 @@ msgstr[1] ""
 msgid "Tags:"
 msgstr ""
 
-#: wbcom-essential.php:190
-#: wbcom-essential.php:221
+#: wbcom-essential.php:112
+msgid "Docs"
+msgstr ""
+
+#: wbcom-essential.php:205
+#: wbcom-essential.php:237
 msgid "Essential Widgets"
 msgstr ""
 
-#: wbcom-essential.php:225
-msgid "30+ Gutenberg blocks and 43+ Elementor widgets for BuddyPress, WooCommerce, and general websites."
+#: wbcom-essential.php:241
+msgid "35 Gutenberg blocks and 43 Elementor widgets for BuddyPress, WooCommerce, EDD and general websites."
 msgstr ""
 
 #: build/blocks/activity-feed/index.js:1

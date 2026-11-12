@@ -92,13 +92,13 @@ Toggle "Use Theme Colors" and blocks match your theme automatically. Works with 
 * Header Bar - Community navigation
 
 = Block Categories =
-* Starter Pack - Header (4 blocks)
-* Starter Pack - Design (14 blocks)
-* Starter Pack - Content (8 blocks)
-* Starter Pack - Blog (8 blocks)
-* Starter Pack - Marketing (4 blocks)
-* Starter Pack - BuddyPress (11 blocks)
-* Starter Pack - WooCommerce (2 blocks)
+* Essential - Header (4 blocks)
+* Essential - Design (14 blocks)
+* Essential - Content (8 blocks)
+* Essential - Blog (8 blocks)
+* Essential - Marketing (4 blocks)
+* Essential - BuddyPress (11 blocks)
+* Essential - WooCommerce (2 blocks)
 
 = Bonus Blocks =
 7 blocks exclusive to Gutenberg:

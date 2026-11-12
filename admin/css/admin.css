@@ -48,6 +48,19 @@
 	opacity: 0.9;
 }
 
+.wbcom-tagline a,
+.wbcom-tagline a:visited {
+	color: #fff;
+	font-weight: 600;
+	margin-inline-start: 8px;
+}
+
+.wbcom-tagline a:hover,
+.wbcom-tagline a:focus {
+	color: #fff;
+	text-decoration: none;
+}
+
 /* Tabs */
 .wbcom-tabs {
 	display: flex;

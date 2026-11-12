@@ -223,7 +223,7 @@ class PostsCarousel extends Widget_Base {
 		$this->add_control(
 			'wbcom_carousel_excerpt_number',
 			array(
-				'label'     => esc_html__( 'Number Experpt', 'wbcom-essential' ),
+				'label'     => esc_html__( 'Excerpt Length', 'wbcom-essential' ),
 				'type'      => Controls_Manager::TEXT,
 				'default'   => '150',
 				'condition' => array(

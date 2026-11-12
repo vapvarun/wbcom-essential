@@ -285,7 +285,7 @@ class GroupsLists extends \Elementor\Widget_Base {
 		$this->add_control(
 			'extra_color',
 			array(
-				'label'     => esc_html__( 'All Groupss Link Color', 'wbcom-essential' ),
+				'label'     => esc_html__( 'All Groups Link Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-essential-block-header__extra a' => 'color: {{VALUE}};',

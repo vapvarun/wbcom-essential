@@ -155,7 +155,7 @@ Turn visitors into customers.
 Upload and activate WBcom Essential like any WordPress plugin. No complex setup, no API keys, no license activation.
 
 **2. Add Blocks or Widgets**
-In Gutenberg, search "Starter Pack" to find blocks. In Elementor, look for the Starter Templates category.
+In Gutenberg, search "Essential" to find blocks. In Elementor, look for the Wbcom Essential category.
 
 **3. Enable Theme Colors**
 Toggle "Use Theme Colors" and the block inherits your theme's color scheme automatically.

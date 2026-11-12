@@ -110,7 +110,7 @@ npm run build
 1. **Source Files**: All development happens in `blocks/[name]/src/`
 2. **Build Process**: `npm run build:blocks` compiles all blocks individually
 3. **File Copying**: Built files are copied to centralized `build/blocks/[name]/` location
-4. **Cleanup**: Individual block build directories are automatically removed
+3. **Cleanup**: Individual block build directories are automatically removed
 5. **PHP Registration**: Blocks register from the centralized build location
 
 ### Build Process Details
@@ -680,135 +680,118 @@ transforms: {
 
 ## Available Blocks
 
-WBcom Essential provides **45 Gutenberg blocks** organized into 7 categories. All blocks support the "Use Theme Colors" toggle for automatic theme color inheritance.
+WBcom Essential ships **35 Gutenberg blocks** in 7 inserter categories. Each block's `block.json` in `src/blocks/<slug>/` is the source of truth; this list is generated from those files.
 
-### Block Summary
-
-| Category | Count | Description |
-|----------|-------|-------------|
-| Header | 4 | Site branding, navigation, header elements |
-| Design | 14 | Visual elements, shapes, carousels |
-| Content | 8 | Text, accordions, tabs, testimonials |
-| Blog | 8 | Post grids, sliders, timelines |
-| Marketing | 4 | CTAs, pricing tables, progress bars |
-| BuddyPress | 11 | Member grids, group carousels, forums |
-| WooCommerce | 2 | Product grids, mini cart |
-
----
-
-### Header Blocks (4)
+### Design Blocks (0)
 
 | Block | Slug | Description |
 |-------|------|-------------|
-| **Branding** | `branding` | Site logo with title/description display modes |
-| **Site Logo** | `site-logo` | Customizable site logo with link options |
-| **Header Bar** | `header-bar` | Navigation bar with search, cart, notifications |
-| **Smart Menu** | `smart-menu` | Mega menu navigation with dropdowns |
 
----
-
-### Design Blocks (14)
+### Content Blocks (0)
 
 | Block | Slug | Description |
 |-------|------|-------------|
-| **Countdown** | `countdown` | Countdown timer for events and launches |
-| **Counter** | `counter` | Animated number counter with prefix/suffix |
-| **Divider** | `divider` | Decorative divider with multiple styles |
-| **Flip Box** | `flip-box` | 3D flip card with front/back content |
-| **Heading** | `heading` | Styled heading with typography controls |
-| **Icon Box** | `icon-box` | Icon with title and description |
-| **Shape** | `shape` | Decorative SVG shapes and separators |
-| **Slider** | `slider` | Image/content slider with autoplay |
-| **Social Icons** | `social-icons` | Social media icon links |
-| **Star Rating** | `star-rating` | Star rating display |
-| **Team Carousel** | `team-carousel` | Team members in carousel layout |
-| **Testimonial** | `testimonial` | Single testimonial with avatar |
-| **Testimonial Carousel** | `testimonial-carousel` | Multiple testimonials in carousel |
-| **Text Rotator** | `text-rotator` | Animated rotating text effects |
 
----
-
-### Content Blocks (8)
+### Blog Blocks (0)
 
 | Block | Slug | Description |
 |-------|------|-------------|
-| **Accordion** | `accordion` | Collapsible content sections with FAQ schema |
-| **Advanced Tabs** | `advanced-tabs` | Tabbed content panels |
-| **Dropdown Button** | `dropdown-button` | Button with dropdown menu |
-| **Login Form** | `login-form` | User login/registration form |
-| **Progress Bar** | `progress-bar` | Animated progress bar with percentage |
-| **Timeline** | `timeline` | Vertical timeline layout |
-| **CTA Box** | `cta-box` | Call-to-action box with button |
-| **Portfolio Grid** | `portfolio-grid` | Portfolio items in grid layout |
 
----
-
-### Blog Blocks (8)
+### Marketing Blocks (0)
 
 | Block | Slug | Description |
 |-------|------|-------------|
-| **Post Carousel** | `post-carousel` | Single post carousel |
-| **Posts Carousel** | `posts-carousel` | Multiple posts carousel |
-| **Post Slider** | `post-slider` | Full-width post slider |
-| **Posts Revolution** | `posts-revolution` | Revolution slider for posts |
-| **Posts Ticker** | `posts-ticker` | Scrolling news ticker |
-| **Post Timeline** | `post-timeline` | Posts in timeline layout |
-| **Pricing Table** | `pricing-table` | Pricing comparison table |
-| **Dashboard Intro** | `dashboard-intro` | BuddyPress dashboard intro panel |
 
----
-
-### BuddyPress Blocks (11)
-
-These blocks only appear when BuddyPress is active.
+### BuddyPress Blocks (0)
 
 | Block | Slug | Description |
 |-------|------|-------------|
-| **Members Grid** | `members-grid` | BuddyPress members in grid layout |
-| **Members Lists** | `members-lists` | BuddyPress members in list layout |
-| **Members Carousel** | `members-carousel` | BuddyPress members in carousel |
-| **Groups Grid** | `groups-grid` | BuddyPress groups in grid layout |
-| **Groups Lists** | `groups-lists` | BuddyPress groups in list layout |
-| **Group Carousel** | `group-carousel` | BuddyPress groups in carousel |
-| **Profile Completion** | `profile-completion` | User profile completion progress |
-| **Forums** | `forums` | bbPress forums list |
-| **Forums Activity** | `forums-activity` | bbPress recent activity feed |
-| **Header Bar** | `header-bar` | Header with BP notifications/messages |
-| **Dashboard Intro** | `dashboard-intro` | Welcome panel for logged-in users |
 
----
-
-### WooCommerce Blocks (2)
-
-These blocks only appear when WooCommerce is active.
+### WooCommerce Blocks (0)
 
 | Block | Slug | Description |
 |-------|------|-------------|
-| **Product Grid** | `product-grid` | WooCommerce products in grid layout |
-| **Mini Cart** | `mini-cart` | Shopping cart icon with dropdown |
+
+### Easy Digital Downloads Blocks (0)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+
+### essential-buddypress Blocks (5)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Activity Feed** | `activity-feed` | Premium BuddyPress activity stream with card layout, type icons, human-readable timestamps, and interaction counts. |
+| **Group Carousel** | `group-carousel` | Display BuddyPress groups in an interactive Swiper carousel with configurable slides, autoplay, and card styles. |
+| **Groups Grid** | `groups-grid` | Display BuddyPress groups in a responsive grid layout. |
+| **Members Carousel** | `members-carousel` | Display BuddyPress members in an interactive Swiper carousel. |
+| **Members Grid** | `members-grid` | Display BuddyPress members in a responsive grid layout. |
+
+### essential-blog Blocks (3)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Category Grid** | `category-grid` | Display WordPress categories in a customizable grid layout with images, post counts, and hover effects. |
+| **Post Carousel** | `post-carousel` | Display WordPress posts in a carousel, slider, or grid with category filter and flexible card design. |
+| **Posts Ticker** | `posts-ticker` | Horizontally scrolling news ticker with configurable speed, direction, label, and separator styles. |
+
+### essential-marketing Blocks (7)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Countdown Timer** | `countdown-timer` | Animated live countdown to a target date and time with expiry message. |
+| **CTA Section** | `cta` | Call-to-action section with heading, description, and a single CTA button. Supports stacked and inline layouts. |
+| **Feature Grid** | `feature-grid` | Display feature cards in a responsive grid with icon/emoji, title, and description. Supports elevated, bordered, and flat card styles. |
+| **Hero Section** | `hero` | Full-width hero section with gradient or image background, heading, subheading, and two CTA buttons. |
+| **Pricing Table** | `pricing-table` | Pricing comparison table with 1–4 plan columns, featured plan highlighting, and per-plan CTA buttons. |
+| **Promo Banner** | `promo-banner` | Promotional image banner with text overlay and CTA button. Supports overlay and split layout styles. |
+| **Testimonial Carousel** | `testimonial-carousel` | Testimonial quotes in a Swiper.js carousel with dots, arrows, and autoplay. |
+
+### essential-woocommerce Blocks (3)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Customer Reviews** | `customer-reviews` | Display WooCommerce product reviews in a Swiper carousel with avatar, star rating, reviewer name, and product link. |
+| **Product Carousel** | `product-carousel` | Display WooCommerce products in a Swiper carousel with autoplay, navigation arrows, dots, and responsive slides-per-view. |
+| **Product Grid** | `product-grid` | Display WooCommerce products in a responsive CSS Grid with category filter, sale badge, star rating, and add-to-cart button. |
+
+### essential-edd Blocks (8)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **EDD Account Dashboard** | `edd-account-dashboard` | A unified My Account dashboard for Easy Digital Downloads with sidebar navigation, orders, downloads, licenses, and subscriptions. |
+| **EDD Enhanced Checkout (legacy)** | `edd-checkout-enhanced` | Legacy wrapper kept only so pages saved before 4.7.0 keep rendering. Use the EDD Checkout block with the Wbcom checkout sections inside it instead. |
+| **EDD Checkout Progress** | `edd-checkout-progress` | Four-step checkout progress indicator. Designed for the EDD Checkout block, but placeable anywhere. |
+| **EDD Checkout Recommendations** | `edd-checkout-recommendations` | Customers Also Purchased suggestions based on the cart. Designed for the EDD Checkout block; renders nothing when the cart is empty. |
+| **EDD Checkout Social Proof** | `edd-checkout-social` | Trustpilot rating and customer reviews shown as social proof. Designed for the EDD Checkout block, but works on product and landing pages too. |
+| **EDD Checkout Trust Badges** | `edd-checkout-trust` | Security, guarantee and support badges plus accepted-payment icons. Designed for the EDD Checkout block, but placeable anywhere. |
+| **EDD Order Success** | `edd-order-success` | Display a purchase confirmation page with a success header, order receipt, and next steps for customers. |
+| **Product Catalog** | `product-catalog` | An AJAX-powered product grid with category, price, and search filters for EDD products. |
+
+### essential-content Blocks (5)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **FAQ Accordion** | `faq-accordion` | Collapsible Q&A accordion with JSON-LD FAQPage schema output for SEO. |
+| **Login Form** | `login-form` | WordPress login form with customisable colours, redirect URL, and optional register/lost-password links. |
+| **Portfolio Grid** | `portfolio-grid` | Filterable portfolio or project grid with category tabs, hover effects, and responsive columns. |
+| **Tabs** | `tabs` | Click-to-switch tabbed content panels with underline or boxed styles. Fully ARIA-compliant. |
+| **Timeline** | `timeline` | Vertical timeline with alternating sides, icon dots, and date labels. |
+
+### essential-design Blocks (4)
+
+| Block | Slug | Description |
+|-------|------|-------------|
+| **Flip Box** | `flip-box` | 3D card that flips on hover to reveal a back face with title, description, and button. |
+| **Progress Bar** | `progress-bar` | Animated horizontal progress bars that trigger on scroll. Display skills, goals, or any percentage-based data. |
+| **Stats Counter** | `stats-counter` | Animated count-up numbers that trigger on scroll. Display up to 6 stats in a responsive grid. |
+| **Text Rotator** | `text-rotator` | Animated rotating text with fade, slide, or typewriter effects. Ideal for hero sections and taglines. |
 
 ---
 
-### Theme Colors Support
+### Theme Colors
 
-All 45 blocks implement the "Use Theme Colors" toggle:
-
-1. Add any block to your content
-2. Open block settings in the sidebar
-3. Find the **Color Settings** panel
-4. Enable **Use Theme Colors** toggle
-5. Block colors now follow your theme's color scheme
-
-When enabled, blocks use these CSS custom properties:
-
-| Variable | Purpose |
-|----------|---------|
-| `--wbcom-color-primary` | Primary accent color |
-| `--wbcom-color-secondary` | Secondary accent color |
-| `--wbcom-color-base` | Background color |
-| `--wbcom-color-contrast` | Text color |
-| `--wbcom-heading-color` | Heading color |
-| `--wbcom-card-bg` | Card backgrounds |
+Only the **Category Grid** block has a **Use Theme Colors** toggle. Several blocks read `--wbcom-*` CSS custom properties (`--wbcom-color-primary`, `--wbcom-card-bg`, `--wbcom-link-color`, `--wbcom-heading-color`, `--wbcom-text-color`) with built-in fallbacks, so a theme that defines them recolours those blocks.
 
 ---
 
@@ -817,8 +800,7 @@ When enabled, blocks use these CSS custom properties:
 When creating a new block:
 
 1. Follow the step-by-step guide in the [Adding New Blocks](#-adding-new-blocks) section
-2. Add the `useThemeColors` attribute to support theme color toggle
-3. Update this README with the block's purpose and key features
+2. Update this README with the block's purpose and key features
 
 ## 🔧 PHP Integration
 

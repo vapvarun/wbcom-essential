@@ -1,156 +1,72 @@
-# Solution Finder
-
-Solution Finder
-
-Find the perfect block or widget for your needs. Just look for what you want to accomplish!
-
-I Want to Build a Website Header
-
-GoalBest Block/WidgetAdd my site logoBranding or Site LogoCreate navigation menuSmart MenuAdd user login/profile areaHeader BarShow cart icon for WooCommerceHeader Bar (with cart enabled)Add search to headerHeader Bar (with search enabled)Display notificationsHeader Bar (with notifications)
-
-Recommended Combination:
-
-[Branding] + [Smart Menu] + [Header Bar]
-
-I Want to Showcase Team Members
-
-GoalBest Block/WidgetShow team in a carouselTeam CarouselDisplay team in grid layoutMembers Grid (for community)Show author/instructor profilesTeam Carousel
-
-Best Settings:
-
-Show 3-4 members at a time
-Include photo, name, job title
-Add social media links
-
-I Want to Display Customer Testimonials
-
-GoalBest Block/WidgetSliding testimonial carouselTestimonial CarouselSingle featured testimonialTestimonialCustomer reviews for productsTestimonial Carousel or WooCommerce reviews
-
-Best Settings:
-
-Show star ratings (builds trust)
-Include customer photo (increases credibility)
-5-6 testimonials is optimal
-Enable autoplay for engagement
-
-I Want to Show Statistics/Numbers
-
-GoalBest Block/WidgetAnimated counting numbersCounter"1000+ Happy Customers" styleCounter with suffix "+"Progress towards a goalProgress BarStar rating displayStar Rating
-
-Examples:
-
-"500+ Members" → Counter with suffix "+"
-"95% Satisfaction" → Progress Bar at 95%
-"4.9 out of 5" → Star Rating
-
-I Want to Display Blog Posts
-
-GoalBest Block/WidgetFeatured posts sliderPost Slider (full-width hero)Posts in carousel formatPost Carousel or Posts CarouselGrid of postsPosts Revolution (with filters)Breaking news tickerPosts TickerTimeline of postsPost Timeline
-
-Which One to Use:
-
-Hero section → Post Slider
-Blog section on homepage → Post Carousel
-Archive page → Posts Revolution
-News site → Posts Ticker
-
-I Want to Build a Community Site
-
-GoalBest Block/WidgetShow members carouselMembers CarouselDisplay member directoryMembers Grid or Members ListsShow groups carouselGroup CarouselDisplay group directoryGroups Grid or Groups ListsForum activity feedForums ActivityForums listForumsProfile completion promptProfile CompletionPersonalized dashboardDashboard Intro
-
-Homepage Combination:
-
-[Dashboard Intro] - Welcome message for logged-in users
-[Members Carousel] - Active community members
-[Groups Grid] - Popular groups
-[Forums Activity] - Recent discussions
-
-I Want to Sell Products
-
-GoalBest Block/WidgetDisplay products gridProduct GridMini cart in headerMini Cart or Header BarShow pricing plansPricing TableCustomer reviewsTestimonial Carousel
-
-E-commerce Homepage:
-
-[Header Bar with Cart]
-[Product Grid] - Featured products
-[Testimonial Carousel] - Customer reviews
-[Pricing Table] - Subscription plans
-
-I Want to Create Urgency
-
-GoalBest Block/WidgetCountdown to sale endCountdownLimited time offerCountdown + CTA BoxAnimated headlineText Rotator
-
-Sale Page Setup:
-
-&quot;Sale Ends In: [Countdown]&quot;
-[CTA Box - &quot;Shop Now Before It&#039;s Gone!&quot;]
-
-I Want to Display Service/Feature Info
-
-GoalBest Block/WidgetIcon with descriptionIcon BoxFlip card (hover to reveal)Flip BoxFeature listAccordion (collapsible)Tabbed contentAdvanced TabsTimeline of featuresTimeline
-
-Services Page:
-
-[Icon Box] [Icon Box] [Icon Box] [Icon Box]
-Design    Marketing  Support    Training
-
-I Want to Show Pricing
-
-GoalBest Block/WidgetPricing comparison tablePricing Table"Most Popular" highlightPricing Table with ribbonMembership plansPricing Table
-
-Best Settings:
-
-Show 3 plans (Basic, Pro, Enterprise)
-Highlight middle option as "Most Popular"
-List 5-7 key features per plan
-Clear CTA button on each
-
-I Want to Capture Leads
-
-GoalBest Block/WidgetUser login formLogin FormCall-to-action boxCTA BoxNewsletter signup promptCTA Box with form
-
-Lead Capture Setup:
-
-[CTA Box]
-&quot;Join 10,000+ Members - Get Exclusive Content&quot;
-[Button: Sign Up Free]
-
-I Want to Display Portfolio/Work
-
-GoalBest Block/WidgetPortfolio grid with filtersPortfolio GridImage gallery carouselSliderCase study timelineTimeline
-
-I Want to Organize Long Content
-
-GoalBest Block/WidgetFAQ sectionAccordionProduct specsAdvanced TabsStep-by-step guideTimelineFeature comparisonAdvanced Tabs
-
-FAQ Page:
-
-[Heading: Frequently Asked Questions]
-[Accordion]
-  Q: How do I get started?
-  Q: What payment methods do you accept?
-  Q: Can I cancel anytime?
-
-I Want to Add Visual Interest
-
-GoalBest Block/WidgetDecorative dividerDivider or ShapeSection separator wavesShapeSocial media iconsSocial IconsAnimated textText Rotator
-
-Quick Decision Guide
-
-Carousel vs. Grid vs. List?
-
-FormatBest ForCarouselHomepage highlights, limited space, engaging movementGridFull directories, filtering, even distributionListDetailed info, compact display, easy scanning
-
-How Many Items to Show?
-
-Block TypeRecommendedCarousels6-12 itemsGrids8-16 itemsTestimonials5-6 itemsPricing Tables3-4 plansCounters3-4 stats
-
-Elementor or Gutenberg?
-
-Choose Elementor When...Choose Gutenberg When...Need pixel-perfect controlWant simpler editingUsing Elementor Pro featuresWorking with block themesComplex custom layoutsContent-focused pagesAlready using ElementorPrefer native WordPress
-
-Still Not Sure?
-
-Contact Support: wbcomdesigns.com/support/
-
-Describe what you want to build and we'll recommend the best blocks!
+# Which Block or Widget to Use
+
+This page matches common goals to the blocks and Elementor widgets that ship with Wbcom Essential.
+
+Blocks work in the block editor. Widgets work in Elementor and appear under the **Wbcom Essential** category. Choose the editor your site already uses.
+
+## Pick by goal
+
+| Goal | Block | Elementor widget |
+|------|-------|------------------|
+| Show customer testimonials | Testimonial Carousel | Testimonial, Testimonial Carousel |
+| Show pricing plans | Pricing Table | Pricing Table |
+| Animated numbers | Stats Counter | - |
+| Show progress or skill levels | Progress Bar | Progress Bar |
+| Count down to a date | Countdown Timer | Countdown |
+| Rotating headline text | Text Rotator | Text Rotator |
+| Flip card that reveals more | Flip Box | Flip Box |
+| Questions and answers | FAQ Accordion | Accordion |
+| Tabbed content | Tabs | Tabs |
+| Step by step or history | Timeline | Timeline |
+| Portfolio with filters | Portfolio Grid | Portfolio Grid |
+| Hero banner or call to action | Hero Section, CTA Section, Promo Banner | Slider, Add Banner |
+| Login form | Login Form | Login Form |
+| Blog posts in a carousel | Post Carousel | Post Carousel, Posts Carousel |
+| Scrolling news line | Posts Ticker | Posts Ticker |
+| Posts on a timeline | - | Post Timeline |
+| Categories in a grid | Category Grid | - |
+
+## Community sites
+
+These need BuddyPress or BuddyBoss Platform.
+
+| Goal | Block | Elementor widget |
+|------|-------|------------------|
+| Members in a grid or carousel | Members Grid, Members Carousel | Members Grid, Members Carousel, Members Lists |
+| Groups in a grid or carousel | Groups Grid, Group Carousel | Groups Grid, Group Carousel, Groups Lists |
+| Activity stream | Activity Feed | - |
+| Member dashboard greeting | - | Dashboard Intro |
+| Profile completion progress | - | Profile Completion |
+| Header with profile and notifications | - | Header Bar |
+| Forum lists | - | Forums, Forums Activity (need bbPress) |
+
+## Shops
+
+| Goal | Block | Elementor widget |
+|------|-------|------------------|
+| Products in a grid or carousel (WooCommerce) | Product Grid, Product Carousel | Universal Product, Product Tab |
+| Customer reviews (WooCommerce) | Customer Reviews | Customer Review, WooCommerce Testimonial |
+| Easy Digital Downloads store pages | Product Catalog, EDD Account Dashboard, EDD Order Success and the EDD checkout blocks | - |
+
+## Site headers
+
+| Goal | Elementor widget |
+|------|------------------|
+| Site title or logo | Branding, Site Logo |
+| Navigation menu | Smart Menu |
+| Profile, search, messages and cart icons | Header Bar |
+| Header icons on the Reign theme | Header Notification Area (Reign only) |
+
+For headers, use the Elementor widgets above; there are no header blocks.
+
+## Related
+
+- [Blocks Overview](../blocks/blocks-overview.md)
+- [Widgets Overview](../widgets/widgets-overview.md)
+- [Design Blocks](../blocks/design-blocks.md)
+- [Marketing Blocks](../blocks/marketing-blocks.md)
+- [Content Blocks](../blocks/content-blocks.md)
+- [Blog Blocks](../blocks/blog-blocks.md)
+- [BuddyPress Blocks](../blocks/buddypress-blocks.md)
+- [WooCommerce Blocks](../blocks/woocommerce-blocks.md)
+- [EDD Blocks](../blocks/edd-blocks.md)

@@ -1,179 +1,62 @@
 # After Installation
 
-After Installation Checklist
+Use this checklist to confirm Wbcom Essential works on your site.
 
-Congratulations on installing WBcom Essential! Follow this checklist to verify everything is working correctly.
+## Confirm the Plugin Is Active
 
-Step 1: Verify Plugin is Active
+1. Go to **Plugins > Installed Plugins**.
+2. Find **Wbcom Essential**.
+3. Click **Activate** if it is not active.
 
-Go to Plugins in your WordPress admin
-Find "WBcom Essential" in the list
-Confirm it shows "Active"
+The plugin adds a **Wbcom Designs > Essential** page to the admin menu. It shows how many blocks and widgets are available.
 
-Troubleshooting: If the plugin is not active, click "Activate"
+## Find the Blocks
 
-Step 2: Find the Blocks in Gutenberg
+1. Edit any page or post in the block editor.
+2. Click the **+** button.
+3. Look for categories that start with "Essential -".
 
-How to Access Blocks
+| Category | Blocks |
+|----------|--------|
+| Essential - Design | Flip Box, Progress Bar, Stats Counter, Text Rotator |
+| Essential - Content | FAQ Accordion, Login Form, Portfolio Grid, Tabs, Timeline |
+| Essential - Blog | Category Grid, Post Carousel, Posts Ticker |
+| Essential - Marketing | Countdown Timer, CTA Section, Feature Grid, Hero Section, Pricing Table, Promo Banner, Testimonial Carousel |
+| Essential - BuddyPress | Activity Feed, Group Carousel, Groups Grid, Members Carousel, Members Grid |
+| Essential - WooCommerce | Customer Reviews, Product Carousel, Product Grid |
+| Essential - EDD | Account Dashboard, Checkout blocks, Order Success, Product Catalog |
 
-Edit any page (or create a new one)
-Click the "+" button to add a block
-Look for "Starter Pack" categories
+Quick test: search for "Stats Counter", insert it, and publish the page. The numbers count up when the block scrolls into view.
 
-You should see these categories:
+## Find the Widgets
 
-Starter Pack - Header
-Starter Pack - Design
-Starter Pack - Content
-Starter Pack - Blog
-Starter Pack - Marketing
-Starter Pack - BuddyPress (if BuddyPress is active)
-Starter Pack - WooCommerce (if WooCommerce is active)
+Widgets need Elementor.
 
-Quick Test
+1. Edit a page with Elementor.
+2. Look for the **Wbcom Essential** category in the widget panel.
+3. Search for "Progress Bar" and drag it onto the page.
 
-Click "+" to add a block
-Type "Counter" in the search
-You should see "Counter" from Starter Pack - Design
-Add it and see animated numbers counting up
+BuddyPress widgets appear only when BuddyPress is active. WooCommerce widgets appear only when WooCommerce is active. Forums widgets also need bbPress. The Header Notification Area widget appears only with the Reign theme.
 
-Troubleshooting: If you don't see Starter Pack blocks:
+## Check BuddyPress, WooCommerce and EDD Blocks
 
-Clear your browser cache
-Deactivate and reactivate the plugin
-Check for JavaScript errors in browser console (F12)
+1. Activate the plugin the block needs: BuddyPress (or BuddyBoss Platform), WooCommerce, or Easy Digital Downloads.
+2. Insert a block such as **Members Grid** or **Product Grid**.
+3. Confirm it shows content, not a notice.
 
-Step 3: Find the Widgets in Elementor
+A block that shows "BuddyPress is required for this block" or "WooCommerce plugin is required for this block" is telling you the plugin is inactive.
 
-How to Access Widgets
+## Preview on the Front End
 
-Edit any page with Elementor
-Look in the left panel for widget categories
-Find "Starter Templates" section
+1. Click **Preview** in the editor.
+2. Check the page on desktop, tablet and phone sizes.
 
-You should see widgets organized by:
+## If Something Is Missing
 
-General (27 widgets)
-BuddyPress (11 widgets - if BuddyPress active)
-WooCommerce (5 widgets - if WooCommerce active)
+See [Troubleshooting](../troubleshooting/troubleshooting.md) or the [FAQ](../faq/faq.md).
 
-Quick Test
+## Next Steps
 
-Open Elementor editor
-Search for "Counter" in widgets
-Drag "Counter" widget onto your page
-See animated counting numbers
-
-Troubleshooting: If you don't see Starter Templates widgets:
-
-Go to Elementor > Settings > Advanced
-Click "Regenerate Files & Data"
-Refresh the editor
-
-Step 4: Check BuddyPress Blocks (If Using BuddyPress)
-
-BuddyPress blocks only appear when BuddyPress is active.
-
-Verify BuddyPress Integration
-
-Confirm BuddyPress is installed and active
-Go to Settings > BuddyPress and enable desired components
-In the block editor, search for "Members"
-You should see "Members Carousel", "Members Grid", "Members Lists"
-
-BuddyPress Blocks Available
-
-Dashboard Intro
-Forums / Forums Activity
-Group Carousel / Groups Grid / Groups Lists
-Members Carousel / Members Grid / Members Lists
-Profile Completion
-Header Bar (with notifications/messages)
-
-Not seeing BuddyPress blocks? Make sure BuddyPress is activated first.
-
-Step 5: Check WooCommerce Blocks (If Using WooCommerce)
-
-WooCommerce blocks only appear when WooCommerce is active.
-
-Verify WooCommerce Integration
-
-Confirm WooCommerce is installed and active
-In the block editor, search for "Product"
-You should see "Product Grid" from WBcom Essential
-
-WooCommerce Blocks Available
-
-Product Grid
-Mini Cart
-Header Bar (with cart icon)
-
-Not seeing WooCommerce blocks? Make sure WooCommerce is activated first.
-
-Step 6: Test Theme Colors Feature
-
-The "Use Theme Colors" feature makes your blocks match your theme automatically.
-
-How to Test
-
-Add any WBcom Essential block (try "CTA Box")
-In block settings, find "Use Theme Colors" toggle
-Turn it ON
-The block should now use your theme's colors
-
-Best Practice
-
-Enable "Use Theme Colors" for consistent design across your site.
-
-Step 7: Verify on Frontend
-
-Always check how blocks look on the live site:
-
-Add a block to any page
-Click "Preview" or "View Page"
-Check it looks correct
-Test on mobile using browser tools (F12 > Toggle Device)
-
-What You Should Now Have
-
-After completing this checklist:
-
-ItemStatusPlugin shows as "Active"✓45 Gutenberg blocks in "Starter Pack" categories✓43 Elementor widgets in "Starter Templates"✓BuddyPress blocks visible (if BP active)✓WooCommerce blocks visible (if WC active)✓Theme Colors toggle working✓Blocks display correctly on frontend✓
-
-Common Issues
-
-Blocks Not Appearing
-
-Clear cache - Browser and any caching plugins
-Regenerate CSS - Elementor > Tools > Regenerate Files
-Check conflicts - Disable other plugins temporarily
-
-Blocks Look Broken
-
-Enable Theme Colors - For consistent styling
-Check theme compatibility - Best with BuddyX, BuddyX Pro, Reign
-Clear browser cache - Hard refresh with Ctrl+Shift+R
-
-BuddyPress/WooCommerce Blocks Missing
-
-These blocks are conditionally loaded:
-
-BuddyPress blocks only appear when BuddyPress is active
-WooCommerce blocks only appear when WooCommerce is active
-
-Next Steps
-
-Now that everything is working:
-
-Build Your First Page - Step-by-step guide
-Solution Finder - Find the right block for your needs
-Theme Integration - Optimize for your theme
-Browse All Blocks - Complete block reference
-Browse All Widgets - Complete widget reference
-
-Need Help?
-
-If you're still having issues:
-
-Documentation: docs.wbcomdesigns.com/docs/wbcom-essential/
-Support: wbcomdesigns.com/support/
+- [Getting Started](getting-started.md)
+- [Blocks Overview](../blocks/blocks-overview.md)
+- [Widgets Overview](../widgets/widgets-overview.md)

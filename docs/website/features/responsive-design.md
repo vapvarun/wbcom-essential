@@ -1,209 +1,58 @@
 # Responsive Design
 
-Responsive Design
+Wbcom Essential blocks and widgets let you adjust layout and visibility for desktop, tablet and mobile. Blocks and Elementor widgets do this in different ways.
 
-WBcom Essential blocks and widgets are built with a mobile-first approach, ensuring your content looks great on all devices.
+## Breakpoints in blocks
 
-Overview
+The blocks use these breakpoints:
 
-All 45 Gutenberg blocks and 43 Elementor widgets include responsive controls for:
+| Device | Screen width |
+|--------|--------------|
+| Desktop | Wider than 1024px |
+| Tablet | 768px to 1024px |
+| Mobile | 767px and narrower |
 
-Visibility - Show/hide elements per device
-Spacing - Adjust margins and padding
-Typography - Scale font sizes
-Layout - Change columns and alignment
-Carousels - Configure slides per view
+In the block editor, you switch device with the preview buttons in the editor toolbar. Responsive settings then apply to the device you are previewing.
 
-Breakpoints
+## Responsive settings in blocks
 
-WBcom Essential uses standard WordPress/Elementor breakpoints:
+| Setting | Where it appears |
+|---------|------------------|
+| Device Visibility | 34 of the 35 blocks. The only block without it is Product Catalog. |
+| Padding and margin per device | Blocks with a spacing control, such as Hero, Promo Banner, Timeline, Category Grid, Groups Grid and Activity Feed. |
+| Columns per device | The grid blocks: Category Grid, Groups Grid, Members Grid, Portfolio Grid and Product Grid. |
 
-DeviceBreakpointDefault WidthDesktop> 1024px1140px containerTablet768px - 1024px100% with paddingMobile< 768px100% with padding
+### Hide a block on some devices
 
-Custom Breakpoints (Elementor)
+1. Select the block.
+2. Open the block settings and find **Device Visibility**.
+3. Turn on **Hide on Desktop**, **Hide on Tablet** or **Hide on Mobile**.
 
-When using Elementor Pro, custom breakpoints are fully supported:
+The block stays in the editor. It is hidden on the front end for that device range only.
 
-Settings > Responsive in Elementor
-Add custom breakpoints
-WBcom widgets respect these automatically
+## Responsive settings in Elementor widgets
 
-Responsive Controls
+Elementor widgets use Elementor's own device icons. Click the device icon next to a setting, then set a value for that device. Elementor controls the breakpoint widths.
 
-Gutenberg Blocks
+Some widgets add their own device options:
 
-Responsive controls appear in the block settings panel:
+- Post Carousel can hide its arrows, dots, categories, excerpt and card footer on desktop, tablet or mobile.
+- Post Slider and Slider can hide their dots and arrows on desktop, tablet or mobile.
+- Site Logo and Smart Menu have a Mobile Breakpoint setting.
+- Product Tab, Universal Product and WooCommerce Testimonial set how many slider items show on tablet and on mobile phones.
 
-Typography Scaling
+## Reduced motion
 
-Desktop: 32px
-Tablet:  28px
-Mobile:  24px
+If a visitor's device asks for reduced motion, the blocks cut animations and transitions to almost nothing. This applies to every Wbcom Essential block.
 
-Column Layout
+## Check your layout
 
-Desktop: 4 columns
-Tablet:  2 columns
-Mobile:  1 column
+1. Preview the page on desktop, tablet and mobile in the editor.
+2. Open the live page and resize the browser window.
+3. Test on a real phone.
 
-Carousel Slides Per View
+## Related
 
-Desktop: 4 slides
-Tablet:  2 slides
-Mobile:  1 slide
-
-Elementor Widgets
-
-Elementor provides device-specific controls (desktop, tablet, mobile icons):
-
-Click the device icon next to any responsive setting
-Adjust value for that device
-Preview using the responsive preview mode
-
-Block-Specific Responsive Behavior
-
-Carousels (Members, Groups, Posts, Testimonials)
-
-SettingDesktopTabletMobileSlides Per View421Slides Per GroupMatch slides21Navigation ArrowsShowShowHidePagination DotsShowShowShowTouch SwipeEnabledEnabledEnabled
-
-Grids (Members Grid, Groups Grid, Product Grid)
-
-SettingDesktopTabletMobileColumns421Gap30px20px15pxCard Padding20px15px12px
-
-Header Bar
-
-ElementDesktopTabletMobileSearchFull widthIcon onlyIcon onlyNotificationsShowShowIcon onlyMessagesShowShowIcon onlyCartShow countShow countIcon onlyUser MenuFullCompactHamburger
-
-Pricing Table
-
-SettingDesktopTabletMobileDisplaySide by sideSide by sideStackedWidth33% each50% each100%FeaturesFull listFull listCollapsible
-
-CSS Media Queries
-
-WBcom Essential uses consistent media queries:
-
-/* Mobile First Approach */
-
-/* Base styles (Mobile) */
-.wbcom-essential-block {
-    padding: 15px;
-}
-
-/* Tablet and up */
-@media (min-width: 768px) {
-    .wbcom-essential-block {
-        padding: 20px;
-    }
-}
-
-/* Desktop and up */
-@media (min-width: 1024px) {
-    .wbcom-essential-block {
-        padding: 30px;
-    }
-}
-
-Touch Optimization
-
-All interactive elements are optimized for touch devices:
-
-Minimum Touch Target Size
-
-Buttons: 44px minimum height
-Links: 44px minimum touch area
-Carousel arrows: 48px
-Close buttons: 44px
-
-Touch Gestures
-
-Carousels: Swipe left/right
-Accordions: Tap to expand
-Tabs: Tap to switch
-Dropdown menus: Tap to open
-
-Hover States on Touch
-
-Hover effects converted to tap states
-No hover-dependent functionality
-All content accessible without hover
-
-Performance on Mobile
-
-Lazy Loading
-
-Images load when entering viewport
-Carousels preload adjacent slides only
-Off-screen content deferred
-
-Reduced Motion
-
-Respects prefers-reduced-motion setting
-Animations simplified on mobile
-Option to disable animations globally
-
-Image Sizing
-
-Responsive image srcset supported
-WebP format when browser supports
-Appropriate sizes for device width
-
-Testing Recommendations
-
-Browser DevTools
-
-Open browser developer tools (F12)
-Toggle device toolbar
-Test at 320px, 768px, 1024px, 1440px
-
-Real Device Testing
-
-Test on actual iOS and Android devices
-Check touch interactions
-Verify scroll performance
-
-Common Issues to Check
-
-[ ] Text readable without zooming
-[ ] Buttons tappable without zooming
-[ ] No horizontal scroll
-[ ] Images scale properly
-[ ] Forms usable on mobile
-[ ] Carousels swipeable
-
-Troubleshooting
-
-Content Overflows on Mobile
-
-Problem: Content extends beyond viewport width
-
-Solutions:
-
-Check for fixed-width elements
-Add overflow-x: hidden to container
-Use percentage widths instead of pixels
-
-Touch Events Not Working
-
-Problem: Carousel doesn't swipe on mobile
-
-Solutions:
-
-Ensure touch is enabled in carousel settings
-Check for conflicting CSS (touch-action: none)
-Clear browser cache
-
-Layout Breaks at Certain Width
-
-Problem: Layout breaks between breakpoints
-
-Solutions:
-
-Use flexible units (%, vw, rem)
-Add intermediate breakpoint if needed
-Check container max-width settings
-
-Resources
-
-WordPress Responsive Images
-Elementor Responsive Design
-Mobile-First CSS
+- [Blocks Overview](../blocks/blocks-overview.md)
+- [Widgets Overview](../widgets/widgets-overview.md)
+- [Performance](performance.md)

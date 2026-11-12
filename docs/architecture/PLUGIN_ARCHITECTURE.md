@@ -68,7 +68,6 @@ wbcom-essential/
 │   │   ├── documents/              # Document types
 │   │   ├── helper/skins/           # Widget skins
 │   │   ├── hooks/                  # Elementor hooks
-│   │   ├── templates/              # Template library
 │   │   ├── widgets/                # Widget classes (43)
 │   │   │   ├── Buddypress/         # BuddyPress widgets (11)
 │   │   │   ├── General/            # General widgets (27)
@@ -346,12 +345,10 @@ The `Plugin` class registers:
 | `wbcom_essential_ajax_login` | `wbcom_essential_ajax_login` | blocks/login-form/login-form.php |
 | `buddypress_mark_notification_read` | `wbcom_essential_mark_notification_read` | blocks/header-bar/header-bar.php |
 
-### Elementor Templates
+### Elementor
 
 | Action | Handler | File |
 |--------|---------|------|
-| `wbcom_essential_elementor_sections_get_templates` | `get_templates` | templates/classes/manager.php |
-| `wbcom_essential_elementor_sections_inner_template` | `insert_inner_template` | templates/classes/manager.php |
 | `wbcom_essential_dismiss_elementor_notice` | `wbcom_essential_dismiss_elementor_notice` | wbcom-essential-elementor.php |
 
 ---

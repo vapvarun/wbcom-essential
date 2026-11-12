@@ -1,35 +1,28 @@
 # Widgets Overview
 
-Elementor Widgets
+Wbcom Essential adds 43 widgets to Elementor. You need Elementor 3.0 or higher.
 
-WBcom Essential includes 43 drag-and-drop widgets for Elementor. Build stunning pages without writing any code!
+All widgets appear in the Elementor panel under the **Wbcom Essential** category. To find one, open the Elementor panel and either scroll to that category or type the widget name in the search box.
 
-Widget Categories
+## Widget groups
 
-CategoryWidgetsBest ForGeneral Widgets27Sliders, carousels, forms, layoutsBuddyPress Widgets11Community featuresWooCommerce Widgets5E-commerce features
+| Group | Widgets | Needs | Details |
+|-------|---------|-------|---------|
+| General | 27 | Elementor only | [General Widgets](general-widgets.md) |
+| BuddyPress | 11 | BuddyPress or BuddyBoss Platform. bbPress for the two forum widgets. | [BuddyPress Widgets](buddypress-widgets.md) |
+| WooCommerce | 5 | WooCommerce | [WooCommerce Widgets](woocommerce-widgets.md) |
 
-How to Find Widgets
+A widget appears only when the plugin it needs is active. For example, the WooCommerce widgets stay hidden until you activate WooCommerce.
 
-Edit any page with Elementor
-Look in the left panel for widgets
-Search "Starter Templates" or scroll to find our widgets
-Drag any widget onto your page
+One general widget, Header Notification Area, appears only when the Reign theme is active. Every other widget works on any theme.
 
-Widget Settings
+## Settings tabs
 
-Every widget has 3 tabs:
+Each widget has a Content tab for what it shows and a Style tab for how it looks. Many widgets use Elementor's device icons, so you can set values for desktop, tablet and mobile.
 
-TabWhat It ControlsContentText, items, what to showStyleColors, fonts, spacingAdvancedPosition, animations, responsive
+## Related
 
-Quick Tips
-
-Use Style tab - Most visual changes are here
-Check Advanced tab - For responsive hiding/showing
-Right-click to duplicate - Faster than recreating
-Save as Global Widget - Reuse across pages
-
-Browse by Category
-
-General Widgets - Sliders, accordions, testimonials, and more
-BuddyPress Widgets - Members, groups, forums (requires BuddyPress)
-WooCommerce Widgets - Products, reviews, banners (requires WooCommerce)
+- [Blocks Overview](../blocks/blocks-overview.md) for the same plugin in the block editor
+- [Responsive Design](../features/responsive-design.md)
+- [Performance](../features/performance.md)
+- [Solution Finder](../features/solution-finder.md)

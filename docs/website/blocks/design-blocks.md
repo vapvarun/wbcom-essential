@@ -1,264 +1,115 @@
 # Design Blocks
 
-Design Blocks
-
-12 blocks for creating visually stunning pages. Add animations, sliders, icons, and decorative elements.
-
-Counter
-
-Animated numbers that count up when visitors scroll to them.
-
-What You Can Do
-
-Display statistics with animated counting
-Add prefix ($) and suffix (%, +, etc.)
-Control animation speed
-Show decimal numbers
-
-Settings
-
-SettingOptionsExampleStart NumberAny number0End NumberAny number500PrefixText$SuffixText+DurationMilliseconds2000Decimal Places0-30
-
-Best For
-
-"500+ Happy Customers" statistics
-Years of experience
-Projects completed
-Revenue figures
-
-Countdown
-
-Timer counting down to a specific date.
-
-What You Can Do
-
-Count down to any future date
-Show days, hours, minutes, seconds
-Display message when timer ends
-Style inline or stacked layout
-
-Settings
-
-SettingOptionsRecommendedTarget DateDate pickerYour event dateShow DaysYes/NoYes for events > 1 dayShow SecondsYes/NoYes for urgencyExpiry MessageText"Sale has ended!"LayoutInline, StackedStacked for impact
-
-Best For
-
-Product launches
-Sale endings
-Event countdowns
-Webinar registration urgency
-
-Divider
-
-Decorative separator between sections.
-
-What You Can Do
-
-Choose line styles (solid, dashed, dotted)
-Add icon or text in the center
-Control width and alignment
-Match your brand colors
-
-Settings
-
-SettingOptionsStyleSolid, Dashed, Dotted, DoubleWidthPercentageAlignmentLeft, Center, RightIconOptional icon in centerTextOptional text label
-
-Best For
-
-Section breaks
-Content separation
-Visual hierarchy
-
-Flip Box
-
-Two-sided card that flips on hover to reveal more content.
-
-What You Can Do
-
-Design front and back sides differently
-Add icons, titles, descriptions
-Include button on back side
-Choose horizontal or vertical flip
-
-Settings
-
-SettingOptionsFront SideIcon, Title, DescriptionBack SideIcon, Title, Description, ButtonFlip DirectionHorizontal, Vertical3D DepthSliderAnimation SpeedMilliseconds
-
-Best For
-
-Feature showcases
-Service descriptions
-Team member cards
-Interactive portfolios
-
-Heading
-
-Styled headings with decorative options.
-
-What You Can Do
-
-Add main heading with subheading
-Include decorative separators
-Choose heading level for SEO
-Style typography completely
-
-Settings
-
-SettingOptionsHeading TextYour titleHeading TagH1-H6SubheadingOptional text belowSeparatorNone, Line, IconAlignmentLeft, Center, Right
-
-Best For
-
-Section titles
-Page headers
-Feature introductions
-
-Icon Box
-
-Icon paired with title and description.
-
-What You Can Do
-
-Choose from hundreds of icons
-Position icon top, left, or right
-Link the entire box
-Style icon size and colors
-
-Settings
-
-SettingOptionsIconIcon pickerIcon PositionTop, Left, RightTitleTextDescriptionTextLink URLOptional
-
-Best For
-
-Feature lists
-Service highlights
-Process steps
-Contact information
-
-Shape
-
-Decorative SVG dividers between sections.
-
-What You Can Do
-
-Add wave, curve, triangle, or arrow shapes
-Place at top or bottom of sections
-Flip horizontally or vertically
-Match your section colors
-
-Settings
-
-SettingOptionsShape TypeWave, Curve, Triangle, Tilt, ArrowPositionTop, BottomFlip HorizontalYes/NoFlip VerticalYes/NoHeightPixelsColorColor picker
-
-Best For
-
-Section transitions
-Visual interest
-Professional page breaks
-
-Slider
-
-Image and content slider for hero sections.
-
-What You Can Do
-
-Add unlimited slides
-Include images, text, and buttons
-Choose transition effects
-Enable autoplay
-
-Settings
-
-SettingOptionsSlidesAdd multipleTransitionSlide, FadeAutoplayYes/NoDurationMillisecondsNavigationArrows, Dots, BothLoopYes/No
-
-Best For
-
-Hero sections
-Image galleries
-Feature showcases
-Announcements
-
-Social Icons
-
-Social media profile links.
-
-What You Can Do
-
-Add icons for any social platform
-Choose filled, outline, or rounded styles
-Use brand colors or custom colors
-Open links in new tab
-
-Settings
-
-SettingOptionsPlatformsAdd multipleIcon StyleFilled, Outline, RoundedSizeSmall, Medium, LargeColorsBrand colors, CustomNew TabYes/No
-
-Best For
-
-Footer social links
-Author profiles
-Contact sections
-
-Star Rating
-
-Display star ratings for reviews and ratings.
-
-What You Can Do
-
-Show 0-5 stars (with decimals)
-Choose star, heart, or custom icons
-Display rating number beside stars
-Style filled and empty colors
-
-Settings
-
-SettingOptionsRating0-5 (decimals allowed)Icon StyleStars, Hearts, CustomSizePixelsShow NumberYes/No
-
-Best For
-
-Product ratings
-Testimonial ratings
-Review displays
-
-Team Carousel
-
-Team members in scrolling carousel format.
-
-What You Can Do
-
-Add unlimited team members
-Include photo, name, role, bio
-Add social links per member
-Control slides visible and autoplay
-
-Settings
-
-SettingOptionsMembersAdd multipleMember FieldsPhoto, Name, Role, Bio, SocialSlides Per View1-6AutoplayYes/NoNavigationArrows, Dots
-
-Best For
-
-About us pages
-Team sections
-Staff directories
-
-Text Rotator
-
-Animated rotating text effect for dynamic headlines.
-
-What You Can Do
-
-Rotate through multiple words/phrases
-Add static text before and after
-Choose animation type
-Control timing
-
-Settings
-
-SettingOptionsBefore TextStatic textRotating WordsAdd multipleAfter TextStatic textAnimationType, Fade, SlideDurationMilliseconds
-
-Best For
-
-Hero headlines ("We create [websites/apps/brands]")
-Dynamic taglines
-Attention-grabbing titles
-
-Back to All Blocks | Next: Content Blocks
+Design blocks add motion and visual interest to a page: a flip card, animated progress bars, counting numbers and rotating text. They appear in the block inserter under **Essential - Design** and need no other plugin.
+
+Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
+
+## Flip Box
+
+A card that flips on hover to show a back face with a title, description and button. Block name: `wbcom-essential/flip-box`.
+
+### Add it
+
+1. Open the block inserter.
+2. Search for **Flip Box**.
+3. Select it to insert it into the page.
+
+### Settings
+
+| Panel | Setting | What it does | Default |
+|-------|---------|--------------|---------|
+| Front Face | Icon / Emoji | Paste an emoji or icon character shown on the front. | ⚡ |
+| Front Face | Title | Heading on the front. | Front Title |
+| Front Face | Description | Text under the title on the front. | Hover to see the back |
+| Front Face | Background Color | Front background. | #667eea |
+| Front Face | Text Color | Front text. | #ffffff |
+| Back Face | Title | Heading on the back. | Back Title |
+| Back Face | Description | Text on the back. | This is the back of the card |
+| Back Face | Button Text | Label of the back button. | Learn More |
+| Back Face | Button URL | Where the back button links. | # |
+| Back Face | Background Color | Back background. | #764ba2 |
+| Back Face | Text Color | Back text. | #ffffff |
+| Layout | Flip Direction | Horizontal (left to right) or Vertical (top to bottom). | Horizontal |
+| Layout | Card Height (px) | Height of the card. | 300 |
+| Style | Border Radius, Box Shadow | Rounds the corners and adds a shadow. | Shadow off |
+
+## Progress Bar
+
+Horizontal progress bars that fill when they scroll into view. Use them for skills, goals or any percentage. Block name: `wbcom-essential/progress-bar`.
+
+### Add it
+
+1. Open the block inserter.
+2. Search for **Progress Bar**.
+3. Select it to insert it into the page.
+
+### Settings
+
+| Panel | Setting | What it does | Default |
+|-------|---------|--------------|---------|
+| Progress Bars | Label | Name shown for each bar. | Sample bars |
+| Progress Bars | Percentage | How full the bar is. | Per bar |
+| Progress Bars | Bar Color | Fill color of each bar. | Per bar |
+| Progress Bars | Remove bar | Deletes a bar from the list. | - |
+| Layout | Bar Height (px) | Thickness of each bar. | 12 |
+| Layout | Bar Border Radius (px) | Roundness of each bar. | 6 |
+| Layout | Show Label | Shows the bar name. | On |
+| Layout | Show Percentage | Shows the percentage number. | On |
+| Layout | Animate on Scroll | Fills the bar when it scrolls into view. | On |
+| Style | Track Color | Color of the empty track. | #e9ecef |
+| Style | Label Color | Color of the bar name. | #1e1e2e |
+| Style | Percentage Color | Color of the percentage number. | #6c757d |
+| Style | Border Radius, Box Shadow | Rounds the block corners and adds a shadow. | Shadow off |
+
+## Stats Counter
+
+Numbers that count up when they scroll into view, shown in a responsive grid. Block name: `wbcom-essential/stats-counter`.
+
+### Add it
+
+1. Open the block inserter.
+2. Search for **Stats Counter**.
+3. Select it to insert it into the page.
+
+### Settings
+
+| Panel | Setting | What it does | Default |
+|-------|---------|--------------|---------|
+| Stats | Number | The value the counter counts up to. | Per stat |
+| Stats | Prefix | Text before the number, such as a currency sign. | Empty |
+| Stats | Suffix | Text after the number, such as + or %. | Empty |
+| Stats | Label | Caption under the number. | Per stat |
+| Stats | Remove stat | Deletes a stat from the list. | - |
+| Layout | Columns | Number of columns in the grid. | 4 |
+| Layout | Animation Duration (ms) | How long the count-up takes. | 2000 |
+| Style | Number Color | Color of the numbers. | #1e1e2e |
+| Style | Label Color | Color of the captions. | #6c757d |
+| Style | Separator Color | Color of the divider between stats. | #e9ecef |
+| Style | Border Radius, Box Shadow | Rounds the block corners and adds a shadow. | Shadow off |
+
+## Text Rotator
+
+A headline where one phrase changes in turn. Pick a fade, slide or typing effect. Block name: `wbcom-essential/text-rotator`.
+
+### Add it
+
+1. Open the block inserter.
+2. Search for **Text Rotator**.
+3. Select it to insert it into the page.
+
+### Settings
+
+| Panel | Setting | What it does | Default |
+|-------|---------|--------------|---------|
+| Content | Before Text | Fixed text before the rotating phrase. | We are |
+| Content | Rotating Texts | The phrases that rotate, one entry each. Each entry rotates in sequence. | Sample phrases |
+| Content | After Text | Fixed text after the rotating phrase. | designers. |
+| Animation | Animation Type | Fade, Slide or Typing. | Fade |
+| Animation | Speed (ms per word) | Time each phrase stays before changing. | 2000 |
+| Style | Font Size (Desktop, px) | Text size on desktop. | 36 |
+| Style | Font Size (Tablet, px) | Text size on tablets. | 28 |
+| Style | Font Size (Mobile, px) | Text size on phones. | 22 |
+| Style | Text Align | Left, Center or Right. | Center |
+| Style | Text Color | Color of the fixed text. | #1e1e2e |
+| Style | Rotating Text Color | Color of the rotating phrase. | #667eea |
+| Style | Border Radius, Box Shadow | Rounds the block corners and adds a shadow. | Shadow off |

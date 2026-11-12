@@ -174,7 +174,7 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 		<?php
 		// ── Frontend: JS-hydrated Swiper container ────────────────────────────────
 		$config = array(
-			'restUrl'          => rest_url( 'buddypress/v1/members' ),
+			'restUrl'          => wbcom_essential_bp_rest_url( 'members' ),
 			'restNonce'        => wp_create_nonce( 'wp_rest' ),
 			'perPage'          => $total,
 			'sortType'         => $sort,

@@ -59,8 +59,7 @@ class ElementorHooks {
 	public function __construct() {
 		add_action( 'elementor/elements/categories_registered', array( $this, 'categories_registered' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'widgets_registered' ) );
-		add_action( 'elementor/controls/controls_registered', array( $this, 'register_controls' ) );
-		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_css' ) );
+		add_action( 'elementor/controls/register', array( $this, 'register_controls' ) );
 		add_action( 'elementor/editor/after_save', array( $this, 'save_buddypress_options' ), 10, 2 );
 
 		add_action(
@@ -144,7 +143,8 @@ class ElementorHooks {
 						continue;
 					}
 				}
-				if ( $template_file = $this->get_element_path( $element['template_base_path'] . $k ) ) {
+				$template_file = $this->get_element_path( $element['template_base_path'] . $k );
+				if ( $template_file ) {
 					require_once $template_file;
 					$class_name = $element['class_base_namespace'] . $element['class'];
 					$elementor->widgets_manager->register( new $class_name() );
@@ -159,11 +159,11 @@ class ElementorHooks {
 	 * @since 1.0.0
 	 * @access public
 	 *
+	 * @param \Elementor\Controls_Manager $controls_manager Elementor controls manager.
+	 *
 	 * @return void
 	 */
-	public function register_controls() {
-		$controls_manager = \Elementor\Plugin::instance()->controls_manager;
-
+	public function register_controls( $controls_manager ) {
 		$controls_manager->add_group_control( Group_Control_Posts::get_type(), new Group_Control_Posts() );
 
 		$controls_manager->register( new Query() );
@@ -251,30 +251,6 @@ class ElementorHooks {
 				);
 			}
 		}
-	}
-
-	/**
-	 * Enqueue Elementor Editor CSS.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return void
-	 */
-	public function editor_css() {
-		wp_enqueue_style(
-			'stax-elementor-panel-style',
-			WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/icons.css',
-			null,
-			WBCOM_ESSENTIAL_VERSION
-		);
-
-		wp_enqueue_style(
-			'stax-elementor-panel-label-style',
-			WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/label.css',
-			null,
-			WBCOM_ESSENTIAL_VERSION
-		);
 	}
 
 	/**
