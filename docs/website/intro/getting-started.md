@@ -38,8 +38,8 @@ Verify Installation
 
 After activation:
 
-For Elementor: Edit any page → Open widget panel → Look for "Starter Templates" category
-For Gutenberg: Add a new block → Search "Starter Pack" → You should see 7 block categories
+For Elementor: Edit any page → Open widget panel → Look for "Wbcom Essential" category
+For Gutenberg: Add a new block → Search "Essential" → You should see 7 block categories
 
 Your First Page with Elementor
 
@@ -55,14 +55,14 @@ Step 2: Add a Hero Section
 
 Drag a Section onto the canvas
 Set the layout to full width
-From the widget panel, find Starter Templates → Heading
+From the widget panel, find Wbcom Essential → Heading
 Drag the Heading widget into your section
 Type your headline and adjust the typography
 
 Step 3: Add a Team Section
 
 Add another section below
-Find Starter Templates → Team Carousel
+Find Wbcom Essential → Team Carousel
 Drag it into the section
 Add team members: name, role, photo, and social links
 Adjust the carousel settings (slides per view, autoplay)
@@ -70,7 +70,7 @@ Adjust the carousel settings (slides per view, autoplay)
 Step 4: Add Testimonials
 
 Add a new section
-Find Starter Templates → Testimonial Carousel
+Find Wbcom Essential → Testimonial Carousel
 Add customer testimonials with ratings
 Style the cards to match your brand
 
@@ -90,10 +90,10 @@ Enter a title
 Step 2: Add Blocks
 
 Click the + button to add a block
-Search for "Starter Pack" or browse categories:
-Starter Pack - Header for branding and navigation
-Starter Pack - Design for visual elements
-Starter Pack - Content for text and interactive content
+Search for "Essential" or browse categories:
+Essential - Header for branding and navigation
+Essential - Design for visual elements
+Essential - Content for text and interactive content
 
 Step 3: Configure Block Settings
 

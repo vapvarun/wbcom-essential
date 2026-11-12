@@ -11,7 +11,7 @@ BuddyX is a free, community-focused WordPress theme designed specifically for Bu
 45 Gutenberg blocks optimized for community layouts
 43 Elementor widgets with seamless theme integration
 Automatic theme color inheritance
-Pre-built community page templates
+Ready-to-use community layout ideas
 BuddyPress-specific blocks and widgets
 
 Quick Setup
@@ -78,7 +78,7 @@ Appearance > Customize > Typography
 Heading Font
 Body Font
 
-Page Templates
+Page Layout Ideas
 
 Community Homepage
 

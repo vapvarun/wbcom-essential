@@ -14,7 +14,6 @@ Build powerful social networks and marketplaces with the multi-purpose Reign the
 - Complete Gutenberg support with 45 blocks
 - BuddyPress + WooCommerce combined layouts
 - Social marketplace capabilities
-- Multiple demo imports for quick setup
 - Advanced theme customization
 
 ---
@@ -25,7 +24,6 @@ Build powerful social networks and marketplaces with the multi-purpose Reign the
 |---------|-------------|
 | **Multi-Purpose** | Community, marketplace, LMS, or all combined |
 | **Elementor Pro Ready** | Full compatibility with Elementor Pro |
-| **Demo Library** | 10+ pre-built demos to import |
 | **Social Commerce** | BuddyPress + WooCommerce integration |
 | **LearnDash Ready** | E-learning site support |
 | **bbPress Ready** | Forum integration |
@@ -54,27 +52,13 @@ Reign may prompt you to install:
 2. Upload `wbcom-essential.zip`
 3. Activate the plugin
 
-### Step 4: Import a Demo
-
-1. Go to **Appearance > Starter Templates**
-2. Browse available demos
-3. Choose one that matches your needs
-4. Click **Import**
-
 ---
 
-## Demo Options
+## Recommended Blocks by Site Type
 
-### Social Network Demo
+### Social Network
 
 Best for community-focused sites.
-
-**Pre-configured Pages:**
-- Homepage with activity feed
-- Member directory
-- Group directory
-- Forums
-- User dashboard
 
 **Recommended WBcom Essential Blocks:**
 ```
@@ -85,15 +69,9 @@ Header Bar, Dashboard Intro
 Profile Completion
 ```
 
-### Social Marketplace Demo
+### Social Marketplace
 
 Best for community + commerce sites.
-
-**Pre-configured Pages:**
-- Homepage with products + members
-- Shop page
-- Member stores
-- Community pages
 
 **Recommended WBcom Essential Blocks:**
 ```
@@ -103,15 +81,9 @@ Testimonial Carousel
 Pricing Table, CTA Box
 ```
 
-### E-Learning Demo
+### E-Learning
 
 Best for course websites.
-
-**Pre-configured Pages:**
-- Course catalog
-- Instructor profiles
-- Student dashboard
-- Community forums
 
 **Recommended WBcom Essential Blocks:**
 ```
@@ -121,15 +93,9 @@ Progress Bar, Counter
 Members Grid (students)
 ```
 
-### Business Demo
+### Business
 
 Best for corporate/business sites.
-
-**Pre-configured Pages:**
-- Homepage
-- Services
-- Team
-- Contact
 
 **Recommended WBcom Essential Blocks:**
 ```
@@ -227,7 +193,7 @@ Reign supports FSE. Create templates with WBcom Essential blocks:
   - User area
 ```
 
-**Homepage Template**
+**Homepage layout**
 ```
 [Slider]
 [Members Carousel]
@@ -354,7 +320,7 @@ Reign includes pre-built schemes:
 
 ---
 
-## Page Templates
+## Page Layout Ideas
 
 ### Community Homepage
 

@@ -42,14 +42,14 @@ WBcom Essential is a companion plugin for WordPress themes, providing **43 Eleme
 
 1. Upload `wbcom-essential` to `/wp-content/plugins/`
 2. Activate via **Plugins** menu
-3. Elementor widgets appear in "Starter Templates" category
-4. Gutenberg blocks appear in "Starter Pack" categories
+3. Elementor widgets appear in "Wbcom Essential" category
+4. Gutenberg blocks appear in "Essential" categories
 
 ### Using Gutenberg Blocks
 
 1. Add a new post or page
 2. Click the **+** button to open block inserter
-3. Search for "Starter Pack" or browse categories
+3. Search for "Essential" or browse categories
 4. Add block and configure in sidebar panel
 
 ### Theme Colors Feature
@@ -78,13 +78,13 @@ Blocks are organized into 7 categories for easy discovery:
 
 | Category | Display Name | Block Count |
 |----------|--------------|-------------|
-| starter-header | Starter Pack - Header | 4 |
-| starter-design | Starter Pack - Design | 14 |
-| starter-content | Starter Pack - Content | 8 |
-| starter-blog | Starter Pack - Blog | 8 |
-| starter-marketing | Starter Pack - Marketing | 4 |
-| starter-buddypress | Starter Pack - BuddyPress | 11 |
-| starter-woocommerce | Starter Pack - WooCommerce | 2 |
+| essential-design | Essential - Design | 4 |
+| essential-content | Essential - Content | 5 |
+| essential-blog | Essential - Blog | 3 |
+| essential-marketing | Essential - Marketing | 7 |
+| essential-buddypress | Essential - BuddyPress | 5 |
+| essential-woocommerce | Essential - WooCommerce | 3 |
+| essential-edd | Essential - EDD | 8 |
 
 ## Conditional Loading
 

@@ -12,7 +12,7 @@ How to Find Widgets
 
 Edit any page with Elementor
 Look in the left panel for widgets
-Search "Starter Templates" or scroll to find our widgets
+Search "Wbcom Essential" or scroll to find our widgets
 Drag any widget onto your page
 
 Widget Settings

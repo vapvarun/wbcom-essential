@@ -60,7 +60,6 @@ Multi-purpose theme for communities and marketplaces.
 
 BuddyPress + WooCommerce integration
 Social marketplace features
-Multiple demo imports
 
 Features
 

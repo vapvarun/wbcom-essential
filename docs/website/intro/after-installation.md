@@ -18,26 +18,26 @@ How to Access Blocks
 
 Edit any page (or create a new one)
 Click the "+" button to add a block
-Look for "Starter Pack" categories
+Look for "Essential" categories
 
 You should see these categories:
 
-Starter Pack - Header
-Starter Pack - Design
-Starter Pack - Content
-Starter Pack - Blog
-Starter Pack - Marketing
-Starter Pack - BuddyPress (if BuddyPress is active)
-Starter Pack - WooCommerce (if WooCommerce is active)
+Essential - Header
+Essential - Design
+Essential - Content
+Essential - Blog
+Essential - Marketing
+Essential - BuddyPress (if BuddyPress is active)
+Essential - WooCommerce (if WooCommerce is active)
 
 Quick Test
 
 Click "+" to add a block
 Type "Counter" in the search
-You should see "Counter" from Starter Pack - Design
+You should see "Counter" from Essential - Design
 Add it and see animated numbers counting up
 
-Troubleshooting: If you don't see Starter Pack blocks:
+Troubleshooting: If you don't see Essential blocks:
 
 Clear your browser cache
 Deactivate and reactivate the plugin
@@ -49,7 +49,7 @@ How to Access Widgets
 
 Edit any page with Elementor
 Look in the left panel for widget categories
-Find "Starter Templates" section
+Find "Wbcom Essential" section
 
 You should see widgets organized by:
 
@@ -64,7 +64,7 @@ Search for "Counter" in widgets
 Drag "Counter" widget onto your page
 See animated counting numbers
 
-Troubleshooting: If you don't see Starter Templates widgets:
+Troubleshooting: If you don't see Wbcom Essential widgets:
 
 Go to Elementor > Settings > Advanced
 Click "Regenerate Files & Data"
@@ -138,7 +138,7 @@ What You Should Now Have
 
 After completing this checklist:
 
-ItemStatusPlugin shows as "Active"✓45 Gutenberg blocks in "Starter Pack" categories✓43 Elementor widgets in "Starter Templates"✓BuddyPress blocks visible (if BP active)✓WooCommerce blocks visible (if WC active)✓Theme Colors toggle working✓Blocks display correctly on frontend✓
+ItemStatusPlugin shows as "Active"✓45 Gutenberg blocks in "Essential" categories✓43 Elementor widgets in "Wbcom Essential"✓BuddyPress blocks visible (if BP active)✓WooCommerce blocks visible (if WC active)✓Theme Colors toggle working✓Blocks display correctly on frontend✓
 
 Common Issues
 

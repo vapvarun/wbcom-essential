@@ -83,14 +83,14 @@
 **VISUAL:** Click + button
 
 **NARRATOR:**
-"Click the plus button to open the block inserter. You can search for 'Starter Pack' to see all WBcom Essential blocks."
+"Click the plus button to open the block inserter. You can search for 'Essential' to see all WBcom Essential blocks."
 
 **VISUAL:** Show block categories
 
 **NARRATOR:**
-"Or scroll down to find the categories: Starter Pack Header, Design, Content, Blog, Marketing. If BuddyPress is active, you'll also see Starter Pack BuddyPress."
+"Or scroll down to find the categories: Essential - Design, Content, Blog, Marketing. If BuddyPress is active, you'll also see Essential - BuddyPress."
 
-**ON-SCREEN TEXT:** "Search 'Starter Pack' or browse categories"
+**ON-SCREEN TEXT:** "Search 'Essential' or browse categories"
 
 ---
 
@@ -140,7 +140,7 @@
 **VISUAL:** Elementor editor widget panel
 
 **NARRATOR:**
-"Edit any page with Elementor, and in the widget panel, search for 'Starter Templates'. You'll find all 43 widgets ready to drag and drop."
+"Edit any page with Elementor, and in the widget panel, search for 'Wbcom Essential'. You'll find all 43 widgets ready to drag and drop."
 
 **ON-SCREEN TEXT:** "Works with Gutenberg AND Elementor"
 

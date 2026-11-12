@@ -41,12 +41,11 @@ Post-Installation Setup
 After activation, verify the plugin is working:
 
 Elementor: Edit a page with Elementor → Look for "Wbcom Essential" widget category
-Gutenberg: Add a new block → Look for "Wbcom Essential" block category
+Gutenberg: Add a new block → Look for the "Essential" block categories
 
 2. Configure Settings
 
-Go to Appearance → Starter Sites (if using BuddyX theme)
-Or configure individual widgets/blocks as you use them
+There is nothing to set up globally. Configure each widget or block when you add it to a page.
 
 Troubleshooting
 

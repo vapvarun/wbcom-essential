@@ -33,7 +33,7 @@ Video scripts for individual feature walkthroughs and tutorials.
 
 **[Closing]**
 
-"Theme Colors. One toggle. Automatic styling. Find it in any Starter Pack block."
+"Theme Colors. One toggle. Automatic styling. Find it in any Essential block."
 
 ---
 

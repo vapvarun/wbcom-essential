@@ -50,13 +50,13 @@ Presentation deck for product overview and sales meetings.
 
 **7 categories for easy discovery:**
 
-1. Starter Pack - Header (4 blocks)
-2. Starter Pack - Design (14 blocks)
-3. Starter Pack - Content (8 blocks)
-4. Starter Pack - Blog (8 blocks)
-5. Starter Pack - Marketing (4 blocks)
-6. Starter Pack - BuddyPress (11 blocks)
-7. Starter Pack - WooCommerce (2 blocks)
+1. Essential - Header (4 blocks)
+2. Essential - Design (14 blocks)
+3. Essential - Content (8 blocks)
+4. Essential - Blog (8 blocks)
+5. Essential - Marketing (4 blocks)
+6. Essential - BuddyPress (11 blocks)
+7. Essential - WooCommerce (2 blocks)
 
 ---
 

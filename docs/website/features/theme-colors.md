@@ -21,7 +21,7 @@ Step 1: Add a Block
 
 Edit a page or post
 Click + to add a block
-Search for any "Starter Pack" block
+Search for any "Essential" block
 Add it to your content
 
 Step 2: Find the Toggle
@@ -167,7 +167,7 @@ Inspect in browser - Use DevTools to see which CSS is being applied
 Toggle Not Appearing
 
 Update the plugin - Theme colors requires v4.2.0 or later
-Check block type - Only "Starter Pack" blocks have this feature
+Check block type - Only "Essential" blocks have this feature
 Try another block - If one block has issues, try a different one
 
 Best Practices
@@ -190,7 +190,6 @@ Compatibility
 Theme Colors works best with themes that define CSS custom properties. Compatible themes include:
 
 BuddyX and BuddyX Pro
-Starter Templates Theme
 Most modern block themes
 Any theme with CSS custom property support
 

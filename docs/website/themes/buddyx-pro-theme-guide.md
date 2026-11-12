@@ -36,13 +36,7 @@ Go to Plugins > Add New
 Upload wbcom-essential.zip
 Activate the plugin
 
-Step 3: Import Demo Content (Recommended)
-
-Go to Appearance > BuddyX Pro > Demo Import
-Choose a demo layout
-Import to get pre-configured pages
-
-Step 4: Configure Theme Colors
+Step 3: Configure Theme Colors
 
 Appearance > Customize > Colors
 Choose a pre-built scheme or customize

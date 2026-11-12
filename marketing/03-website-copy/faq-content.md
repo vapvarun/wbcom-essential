@@ -165,19 +165,19 @@ These were added because they're commonly needed features that didn't exist in t
 
 **In Gutenberg:**
 1. Click the + button to open the block inserter
-2. Search for "Starter Pack" or the block name
+2. Search for "Essential" or the block name
 3. Or scroll to find these categories:
-   - Starter Pack - Header
-   - Starter Pack - Design
-   - Starter Pack - Content
-   - Starter Pack - Blog
-   - Starter Pack - Marketing
-   - Starter Pack - BuddyPress
-   - Starter Pack - WooCommerce
+   - Essential - Header
+   - Essential - Design
+   - Essential - Content
+   - Essential - Blog
+   - Essential - Marketing
+   - Essential - BuddyPress
+   - Essential - WooCommerce
 
 **In Elementor:**
 1. Open the widget panel
-2. Search for "Starter Templates" or the widget name
+2. Search for "Wbcom Essential" or the widget name
 3. Drag widgets onto your page
 
 ---
@@ -222,7 +222,7 @@ Try these steps:
 
 1. Clear your browser cache
 2. Refresh the editor page
-3. Search for "Starter Pack" in the block inserter
+3. Search for "Essential" in the block inserter
 4. Verify the plugin is activated in Plugins menu
 5. Check for JavaScript errors in browser console (F12)
 

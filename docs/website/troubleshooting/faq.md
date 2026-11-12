@@ -23,7 +23,6 @@ Which themes work with WBcom Essential?
 WBcom Essential works with any properly coded WordPress theme. It pairs best with:
 
 BuddyX Theme (community features)
-Starter Templates Theme (clean starter)
 Any theme that follows WordPress coding standards
 
 Is WBcom Essential compatible with Full Site Editing?
@@ -49,22 +48,22 @@ Try these steps:
 
 Clear your browser cache
 Refresh the editor page
-Search for "Starter Pack" in the block inserter
+Search for "Essential" in the block inserter
 Check that the plugin is activated
 
 Blocks
 
 Where are the blocks located?
 
-In the block inserter (+ button), search for "Starter Pack" or scroll to find these categories:
+In the block inserter (+ button), search for "Essential" or scroll to find these categories:
 
-Starter Pack - Header
-Starter Pack - Design
-Starter Pack - Content
-Starter Pack - Blog
-Starter Pack - Marketing
-Starter Pack - BuddyPress (if BuddyPress active)
-Starter Pack - WooCommerce (if WooCommerce active)
+Essential - Header
+Essential - Design
+Essential - Content
+Essential - Blog
+Essential - Marketing
+Essential - BuddyPress (if BuddyPress active)
+Essential - WooCommerce (if WooCommerce active)
 
 Why don't I see BuddyPress blocks?
 
@@ -117,7 +116,7 @@ Where are the widgets?
 In Elementor's widget panel:
 
 Open any page with Elementor
-Search for "Starter Templates" in the widget panel
+Search for "Wbcom Essential" in the widget panel
 Or scroll to find the widget categories
 
 Widgets not appearing in Elementor

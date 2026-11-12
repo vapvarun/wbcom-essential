@@ -12,7 +12,7 @@ How to Find Blocks
 
 Edit any page in WordPress
 Click the + button to add a block
-Search for "Starter Pack" or the block name
+Search for "Essential" or the block name
 Drag the block onto your page
 
 Settings Every Block Has

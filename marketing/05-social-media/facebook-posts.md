@@ -110,7 +110,7 @@ If your members aren't completing their profiles, add the Profile Completion blo
 
 It shows a progress bar and links to missing fields. Visual reminder = more complete profiles = better community.
 
-Find it under Starter Pack - BuddyPress in the block inserter.
+Find it under Essential - BuddyPress in the block inserter.
 
 ---
 

@@ -347,6 +347,6 @@ Best For: Portfolios, galleries, showcases
 
 How to Find These Widgets
 
-In Elementor, look for the Starter Templates section in the widget panel, or search by widget name.
+In Elementor, look for the Wbcom Essential section in the widget panel, or search by widget name.
 
 Back to All Widgets | BuddyPress Widgets

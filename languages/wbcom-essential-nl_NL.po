@@ -14,9 +14,8 @@ msgstr ""
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: loader.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -1459,18 +1458,9 @@ msgstr "Beveiligingsfout: Unserializing van deze klasse is niet toegestaan."
 
 #: plugins/elementor/documents/page.php:45
 #: plugins/elementor/helper/skins/skin-base.php:981
-#: plugins/elementor/templates/documents/page.php:45
-#: plugins/elementor/templates/types/page.php:44
 #, fuzzy
 msgid "Page"
 msgstr "Pagina"
-
-#: plugins/elementor/documents/section.php:45
-#: plugins/elementor/templates/documents/section.php:45
-#: plugins/elementor/templates/types/section.php:44
-#, fuzzy
-msgid "Section"
-msgstr "Sectie"
 
 #: plugins/elementor/helper/skins/skin-base.php:95
 #, fuzzy
@@ -3047,87 +3037,50 @@ msgctxt "Posts Query Control"
 msgid "Search & Select"
 msgstr "Zoeken en selecteren"
 
-#: plugins/elementor/scripts/template-modal-empty.php:16
-#: plugins/elementor/templates/scripts/template-modal-empty.php:16
 #, fuzzy
 msgid "No Templates Found"
 msgstr "Geen templates gevonden"
 
-#: plugins/elementor/scripts/template-modal-header-logo.php:16
-#: plugins/elementor/templates/classes/config.php:60
-#: plugins/elementor/templates/scripts/template-modal-header-logo.php:16
-#, fuzzy
-msgid "WBCom Essential Elementor Sections"
-msgstr "WBCom Essentiële Elementor Secties"
-
-#: plugins/elementor/scripts/template-modal-header.php:15
-#: plugins/elementor/templates/scripts/template-modal-header.php:15
 #, fuzzy
 msgid "WBCom Essential Templates"
 msgstr "WBCom essentiële sjablonen"
 
-#: plugins/elementor/scripts/template-modal-header.php:20
-#: plugins/elementor/templates/scripts/template-modal-header.php:20
 #, fuzzy
 msgid "Close"
 msgstr "Sluiten"
 
-#: plugins/elementor/scripts/template-modal-insert-button.php:16
-#: plugins/elementor/scripts/template-modal-item.php:54
-#: plugins/elementor/templates/scripts/template-modal-insert-button.php:16
-#: plugins/elementor/templates/scripts/template-modal-item.php:60
 #, fuzzy
 msgid "Insert"
 msgstr "Invoegen"
 
-#: plugins/elementor/scripts/template-modal-item.php:22
-#: plugins/elementor/templates/scripts/template-modal-item.php:22
 #, fuzzy
 msgid "Elementor Pro"
 msgstr "Elementor Pro"
 
-#: plugins/elementor/scripts/template-modal-item.php:26
-#: plugins/elementor/scripts/template-modal-item.php:34
-#: plugins/elementor/templates/scripts/template-modal-item.php:26
-#: plugins/elementor/templates/scripts/template-modal-item.php:34
 #, fuzzy
 msgid "LearnDash"
 msgstr "LearnDash"
 
-#: plugins/elementor/scripts/template-modal-item.php:30
-#: plugins/elementor/scripts/template-modal-item.php:37
-#: plugins/elementor/templates/scripts/template-modal-item.php:30
-#: plugins/elementor/templates/scripts/template-modal-item.php:37
 #, fuzzy
 msgid "LifterLMS"
 msgstr "LifterLMS"
 
-#: plugins/elementor/scripts/template-modal-item.php:41
-#: plugins/elementor/templates/scripts/template-modal-item.php:41
 #, fuzzy
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: plugins/elementor/scripts/template-modal-item.php:44
-#: plugins/elementor/templates/scripts/template-modal-item.php:47
 #, fuzzy
 msgid "The Events Calendar"
 msgstr "Evenementen Agenda"
 
-#: plugins/elementor/scripts/template-modal-loading.php:20
-#: plugins/elementor/templates/scripts/template-modal-loading.php:20
 #, fuzzy
 msgid "Loading"
 msgstr "Laden"
 
-#: plugins/elementor/scripts/template-modal-search-item.php:13
-#: plugins/elementor/templates/scripts/template-modal-search-item.php:13
 #, fuzzy
 msgid "Search Templates:"
 msgstr "Zoek Sjablonen:"
 
-#: plugins/elementor/scripts/template-modal-search-item.php:14
-#: plugins/elementor/templates/scripts/template-modal-search-item.php:14
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:176
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:92
 #: plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:125
@@ -3135,26 +3088,14 @@ msgstr "Zoek Sjablonen:"
 msgid "Search"
 msgstr "Zoeken"
 
-#: plugins/elementor/templates/classes/manager.php:221
 #: plugins/elementor/widgets/General/PortfolioGrid.php:381
 #, fuzzy
 msgid "All"
 msgstr "Alle"
 
-#: plugins/elementor/templates/scripts/template-modal-item.php:44
 #, fuzzy
 msgid "Reign"
 msgstr "REIGN"
-
-#: plugins/elementor/templates/types/page.php:55
-#, fuzzy
-msgid "Pages"
-msgstr "Pagina's"
-
-#: plugins/elementor/templates/types/section.php:55
-#, fuzzy
-msgid "Sections"
-msgstr "Secties"
 
 #. translators: %1$s: Plugin name, %2$s: Required plugin name
 #: plugins/elementor/wbcom-essential-elementor.php:75

@@ -320,7 +320,7 @@ BuddyPress blocks only show when BuddyPress is active:
 
 Go to Plugins → Confirm BuddyPress is activated
 Refresh the block editor
-Search for "Starter Pack - BuddyPress" category
+Search for "Essential - BuddyPress" category
 
 Forums Blocks Not Working
 
