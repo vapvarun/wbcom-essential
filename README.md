@@ -93,7 +93,7 @@ Works with any properly coded WordPress theme. Blocks pick up theme colours from
 
 ## Documentation
 
-- **User Documentation**: [docs.wbcomdesigns.com](https://docs.wbcomdesigns.com)
+- **User Documentation**: [Wbcom Essential docs](https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/)
 - **Developer Documentation**: See `docs/` folder
 - **Architecture Reference**: See `docs/architecture/PLUGIN_ARCHITECTURE.md`
 
@@ -157,7 +157,7 @@ wbcom-essential/
 ## Support
 
 - **Support Forums**: [wbcomdesigns.com/support](https://wbcomdesigns.com/support)
-- **Documentation**: [docs.wbcomdesigns.com](https://docs.wbcomdesigns.com)
+- **Documentation**: [Wbcom Essential docs](https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/)
 - **GitHub Issues**: [Report bugs](https://github.com/vapvarun/wbcom-essential/issues)
 
 ## Contributing

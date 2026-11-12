@@ -87,7 +87,7 @@ This keeps your site lean - no unused code is loaded.
 
 ## Support
 
-- **Documentation:** https://docs.wbcomdesigns.com/wbcom-essential/
+- **Documentation:** https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/
 - **Support:** https://wbcomdesigns.com/support/
 - **GitHub:** https://github.com/vapvarun/wbcom-essential
 

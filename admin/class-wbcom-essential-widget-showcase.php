@@ -148,7 +148,7 @@ class Wbcom_Essential_Widget_Showcase {
 					<h1><?php esc_html_e( 'Wbcom Essential', 'wbcom-essential' ); ?></h1>
 					<span class="wbcom-version">v<?php echo esc_html( WBCOM_ESSENTIAL_VERSION ); ?></span>
 				</div>
-				<p class="wbcom-tagline"><?php esc_html_e( 'Free companion plugin for BuddyX, BuddyX Pro, and Reign themes', 'wbcom-essential' ); ?></p>
+				<p class="wbcom-tagline"><?php esc_html_e( 'Free companion plugin for BuddyX, BuddyX Pro, and Reign themes', 'wbcom-essential' ); ?> <a href="<?php echo esc_url( 'https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Read the documentation', 'wbcom-essential' ); ?></a></p>
 			</header>
 
 			<!-- Tabs -->
