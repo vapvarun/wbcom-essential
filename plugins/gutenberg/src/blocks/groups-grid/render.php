@@ -179,6 +179,7 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 			'i18n'             => array(
 				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
 				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
+				'member'      => __( 'Member', 'wbcom-essential' ),
 				'members'     => __( 'Members', 'wbcom-essential' ),
 				/* translators: %s: time since the group was last active, e.g. "2 hours ago". */
 				'activeAgo'   => __( 'Active %s', 'wbcom-essential' ),

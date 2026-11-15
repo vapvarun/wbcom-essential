@@ -193,7 +193,7 @@ import { groupMemberCount, groupLastActive } from '../../shared/utils/bp-rest';
 		const memberCount = groupMemberCount( group );
 		if ( cfg.showMemberCount && memberCount ) {
 			meta.appendChild(
-				el( 'span', 'wbe-groups-grid__count', memberCount + ' ' + cfg.i18n.members )
+				el( 'span', 'wbe-groups-grid__count', memberCount + ' ' + ( 1 === Number( memberCount ) ? cfg.i18n.member : cfg.i18n.members ) )
 			);
 		}
 
