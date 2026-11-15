@@ -23,16 +23,27 @@ $wbcom_partials = WBCOM_ESSENTIAL_PATH . 'templates/single-post/partials/';
 add_filter(
 	'the_content',
 	function ( $content ) {
-		$content = preg_replace_callback(
+		// Ids already on a heading are kept and reserved, so a generated slug never repeats one.
+		preg_match_all( '/<h[23][^>]*\sid=["\']?([^"\'\s>]+)/i', $content, $existing );
+		$used = array_fill_keys( $existing[1], true );
+
+		return preg_replace_callback(
 			'/<h([23])([^>]*)>(.*?)<\/h([23])>/i',
-			function ( $matches ) {
-				$text = wp_strip_all_tags( $matches[3] );
-				$id   = sanitize_title( $text );
+			function ( $matches ) use ( &$used ) {
+				if ( preg_match( '/\sid=["\']?[^"\'\s>]+/i', $matches[2] ) ) {
+					return $matches[0];
+				}
+				$base = sanitize_title( wp_strip_all_tags( $matches[3] ) );
+				$base = '' === $base ? 'section' : $base;
+				$id   = $base;
+				for ( $i = 2; isset( $used[ $id ] ); $i++ ) {
+					$id = $base . '-' . $i;
+				}
+				$used[ $id ] = true;
 				return '<h' . $matches[1] . $matches[2] . ' id="' . esc_attr( $id ) . '">' . $matches[3] . '</h' . $matches[4] . '>';
 			},
 			$content
 		);
-		return $content;
 	},
 	5
 );
