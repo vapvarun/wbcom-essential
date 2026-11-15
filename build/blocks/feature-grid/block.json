@@ -74,15 +74,15 @@
     },
     "cardBg": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "titleColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "descriptionColor": {
       "type": "string",
-      "default": "#6c757d"
+      "default": ""
     },
     "iconSize": {
       "type": "number",

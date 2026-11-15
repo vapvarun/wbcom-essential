@@ -79,13 +79,15 @@ export default function save( { attributes } ) {
 
 	const tokenPropsCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-faq-question-color: ${ questionColor };`,
-		`  --wbe-faq-answer-color: ${ answerColor };`,
-		`  --wbe-faq-question-bg: ${ questionBg };`,
-		`  --wbe-faq-border-color: ${ borderColor };`,
+		questionColor && `  --wbe-faq-question-color: ${ questionColor };`,
+		answerColor && `  --wbe-faq-answer-color: ${ answerColor };`,
+		questionBg && `  --wbe-faq-question-bg: ${ questionBg };`,
+		borderColor && `  --wbe-faq-border-color: ${ borderColor };`,
 		`  --wbe-faq-icon-color: ${ iconColor };`,
 		`}`,
-	].join( '\n' );
+	]
+		.filter( Boolean )
+		.join( '\n' );
 
 	return (
 		<div { ...blockProps }>
