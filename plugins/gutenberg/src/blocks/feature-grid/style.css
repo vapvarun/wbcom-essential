@@ -96,12 +96,21 @@
 	.wbe-feature-grid__grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
+
+	/* An odd last card spans the row so tablet never shows a lone orphan. */
+	.wbe-feature-grid__grid > :last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+	}
 }
 
 /* Desktop — honour --wbe-feature-cols */
 @media (min-width: 1025px) {
 	.wbe-feature-grid__grid {
 		grid-template-columns: repeat(var(--wbe-feature-cols, 3), 1fr);
+	}
+
+	.wbe-feature-grid__grid > :last-child:nth-child(odd) {
+		grid-column: auto;
 	}
 }
 
