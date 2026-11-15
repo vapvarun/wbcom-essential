@@ -6,7 +6,6 @@
 
 .wbe-feature-grid {
 	box-sizing: border-box;
-	width: 100%;
 }
 
 /* Grid container — 1 column base, scales up via --wbe-feature-cols */
