@@ -1714,7 +1714,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
                         $target = $item['external_link']['is_external'] ? ' target="_blank"' : '';
                         $nofollow = $item['external_link']['nofollow'] ? ' rel="nofollow"' : '';
                         ?>
-                        <a href="<?php echo esc_url($item['external_link']['url']); ?>" <?php echo esc_attr( $target ); ?> <?php echo esc_attr( $nofollow ); ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
+                        <a href="<?php echo esc_url($item['external_link']['url']); ?>" <?php echo $target; ?> <?php echo $nofollow; ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } elseif ($item['lightbox_style'] != 'none') { ?>
                         <a href="#wbcom-lightbox-<?php echo esc_attr($item['_id']); ?>" data-elementor-open-lightbox="no" class="has-lightbox <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } ?>

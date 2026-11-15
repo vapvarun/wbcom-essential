@@ -905,7 +905,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 						$nofollow = $item['website_link']['nofollow'] ? ' rel="' . esc_attr( 'nofollow' ) . '"' : '';
 						?>
 					<li>
-						<a href="<?php echo esc_url( $item['website_link']['url'] ); ?>" <?php echo esc_attr( $target ); ?> <?php echo esc_attr( $nofollow ); ?>>
+						<a href="<?php echo esc_url( $item['website_link']['url'] ); ?>" <?php echo $target; ?> <?php echo $nofollow; ?>>
 							<?php
 							if ( $item['title_icon_position'] == 'before' ) {
 								\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );

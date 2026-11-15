@@ -1793,7 +1793,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
             $target = $item['website_link']['is_external'] ? ' target="_blank"' : '';
             $nofollow = $item['website_link']['nofollow'] ? ' rel="nofollow"' : '';
             if ($item['website_link']['url']) {
-                echo '<a href="' . esc_url($item['website_link']['url']) . '"' . esc_attr( $target ) . esc_attr( $nofollow ) . '>';
+                echo '<a href="' . esc_url($item['website_link']['url']) . '"' . $target . $nofollow . '>';
             }
             ?>
               <figure>

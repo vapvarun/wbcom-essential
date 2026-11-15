@@ -1688,7 +1688,7 @@ class FlipBox extends \Elementor\Widget_Base {
 						if ( $settings['btn_website_link']['url'] ) {
 							?>
 						<div class="wbcom-btn-wrapper">
-							<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>" class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>" href="<?php echo esc_url( $settings['btn_website_link']['url'] ); ?>" <?php echo esc_attr( $target ); ?> <?php echo esc_attr( $nofollow ); ?>>
+							<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>" class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>" href="<?php echo esc_url( $settings['btn_website_link']['url'] ); ?>" <?php echo $target; ?> <?php echo $nofollow; ?>>
 								<?php
 								if ( $icon_position == 'before' ) {
 									\Elementor\Icons_Manager::render_icon( $settings['btn_icon'], array( 'aria-hidden' => 'true' ) );
