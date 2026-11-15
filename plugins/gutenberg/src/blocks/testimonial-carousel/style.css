@@ -6,10 +6,10 @@
 
 /* ---- Design tokens ---- */
 .wbe-testimonial-carousel {
-	--wbe-tc-quote-bg: #ffffff;
-	--wbe-tc-quote-color: #1e1e2e;
-	--wbe-tc-name-color: #1e1e2e;
-	--wbe-tc-role-color: #6c757d;
+	--wbe-tc-quote-bg: var( --wbe-surface, #ffffff );
+	--wbe-tc-quote-color: var( --wbe-text, #1e1e2e );
+	--wbe-tc-name-color: var( --wbe-text, #1e1e2e );
+	--wbe-tc-role-color: var( --wbe-text-muted, #6c757d );
 	--wbe-tc-accent: #667eea;
 	--wbe-tc-card-radius: 12px;
 	--wbe-tc-card-shadow: none;

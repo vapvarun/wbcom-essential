@@ -6,10 +6,10 @@
 
 /* Design tokens with fallbacks */
 .wbe-faq-accordion {
-	--wbe-faq-question-color: #1e1e2e;
-	--wbe-faq-answer-color: #6c757d;
-	--wbe-faq-question-bg: #f8f9fa;
-	--wbe-faq-border-color: #e9ecef;
+	--wbe-faq-question-color: var( --wbe-text, #1e1e2e );
+	--wbe-faq-answer-color: var( --wbe-text-muted, #6c757d );
+	--wbe-faq-question-bg: var( --wbe-surface-alt, #f8f9fa );
+	--wbe-faq-border-color: var( --wbe-border, #e9ecef );
 	--wbe-faq-icon-color: #667eea;
 	--wbe-faq-radius: 6px;
 	--wbe-faq-transition: 300ms ease;

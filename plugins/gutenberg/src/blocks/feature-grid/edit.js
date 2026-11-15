@@ -173,21 +173,21 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					<BaseControl label={ __( 'Card Background', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ cardBg }
-							onChange={ ( value ) => setAttributes( { cardBg: value || '#ffffff' } ) }
+							onChange={ ( value ) => setAttributes( { cardBg: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Title Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ titleColor }
-							onChange={ ( value ) => setAttributes( { titleColor: value || '#1e1e2e' } ) }
+							onChange={ ( value ) => setAttributes( { titleColor: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Description Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ descriptionColor }
-							onChange={ ( value ) => setAttributes( { descriptionColor: value || '#6c757d' } ) }
+							onChange={ ( value ) => setAttributes( { descriptionColor: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>

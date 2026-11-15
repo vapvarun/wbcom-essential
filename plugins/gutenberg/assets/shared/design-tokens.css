@@ -85,4 +85,20 @@
 	--wbe-z-dropdown: 10;
 	--wbe-z-overlay: 100;
 	--wbe-z-modal: 1000;
+
+	/* Surface and text colours the blocks use until an owner picks their own.
+	   The dark set follows the Wbcom themes' dark-mode marker. */
+	--wbe-surface: #ffffff;
+	--wbe-surface-alt: #f8f9fa;
+	--wbe-text: #1e1e2e;
+	--wbe-text-muted: #5a6169;
+	--wbe-border: #e9ecef;
+}
+
+html[data-bx-mode="dark"] {
+	--wbe-surface: #2d313c;
+	--wbe-surface-alt: #292d38;
+	--wbe-text: #e4e6eb;
+	--wbe-text-muted: #b8bcc6;
+	--wbe-border: #3d4350;
 }
