@@ -99,10 +99,10 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 Wbcom Essential connects to the Wbcom Designs store (https://wbcomdesigns.com) so your site can receive plugin updates.
 
-* When: shortly after the plugin is activated, once, until it succeeds. It is also made when a licence key is entered or checked on the licence screen.
+* When: shortly after the plugin is activated, once, until it succeeds.
 * What is sent: the licence key, the product id and your site address (home URL). Nothing else, and no visitor or user data.
 * Why: the licence is used only to deliver updates. No feature is locked or limited by it, and the plugin works the same if the request fails.
-* Terms and privacy: https://wbcomdesigns.com/terms-of-service/ and https://wbcomdesigns.com/privacy-policy/
+* Privacy policy: https://wbcomdesigns.com/privacy-policy/
 
 == Changelog ==
 
