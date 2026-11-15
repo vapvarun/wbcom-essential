@@ -10,7 +10,6 @@
 	align-items: center;
 	gap: var(--wbe-space-xl, 32px);
 	box-sizing: border-box;
-	width: 100%;
 }
 
 /* Stacked layout (default) */
