@@ -901,11 +901,12 @@ class DropdownButton extends \Elementor\Widget_Base {
 				<ul class="wbcom-dd-menu <?php echo esc_attr( $settings['dropdown_position'] ); ?>">
 					<?php
 					foreach ( $settings['list'] as $item ) {
-						$target   = $item['website_link']['is_external'] ? ' target="' . esc_attr( '_blank' ) . '"' : '';
-						$nofollow = $item['website_link']['nofollow'] ? ' rel="' . esc_attr( 'nofollow' ) . '"' : '';
+						// Elementor's link API: URL, new tab, nofollow and the owner's custom attributes, escaped.
+						$link_key = 'wbcom_dd_link_' . $item['_id'];
+						$this->add_link_attributes( $link_key, $item['website_link'] );
 						?>
 					<li>
-						<a href="<?php echo esc_url( $item['website_link']['url'] ); ?>" <?php echo $target; ?> <?php echo $nofollow; ?>>
+						<a <?php $this->print_render_attribute_string( $link_key ); ?>>
 							<?php
 							if ( $item['title_icon_position'] == 'before' ) {
 								\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );

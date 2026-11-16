@@ -1178,7 +1178,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 				'completed'          => $group_details['group_completed_fields'],
 			);
 
-			$listing_number ++;
+			$listing_number++;
 		}
 
 		/* Profile Photo */
@@ -1197,7 +1197,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 				'completed'          => ( $is_profile_uploaded ) ? 1 : 0,
 			);
 
-			$listing_number ++;
+			$listing_number++;
 		}
 
 		/* Cover Photo */
@@ -1216,7 +1216,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 				'completed'          => ( $is_cover_uploaded ) ? 1 : 0,
 			);
 
-			$listing_number ++;
+			$listing_number++;
 		}
 
 		/**

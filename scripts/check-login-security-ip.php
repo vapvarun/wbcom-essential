@@ -5,10 +5,14 @@
  */
 define( 'ABSPATH', '/' );
 $GLOBALS['proxies'] = array();
-function apply_filters( $tag, $v ) { return 'wbcom_essential_login_security_trusted_proxies' === $tag ? $GLOBALS['proxies'] : $v; }
-function sanitize_text_field( $s ) { return trim( strip_tags( $s ) ); }
-function wp_unslash( $s ) { return $s; }
-function add_action() {} function add_filter() {} function __( $s ) { return $s; }
+function apply_filters( $tag, $v ) {
+ return 'wbcom_essential_login_security_trusted_proxies' === $tag ? $GLOBALS['proxies'] : $v; }
+function sanitize_text_field( $s ) {
+ return trim( strip_tags( $s ) ); }
+function wp_unslash( $s ) {
+ return $s; }
+function add_action() {} function add_filter() {} function __( $s ) {
+ return $s; }
 require $argv[1];
 $cases = array(
 	array( 'no proxy, spoofed XFF ignored', array( 'REMOTE_ADDR' => '203.0.113.9', 'HTTP_X_FORWARDED_FOR' => '1.2.3.4' ), array(), '203.0.113.9' ),
@@ -21,9 +25,10 @@ $cases = array(
 );
 $fail = 0;
 foreach ( $cases as list( $name, $server, $proxies, $want ) ) {
-	$_SERVER = $server; $GLOBALS['proxies'] = $proxies;
+	$_SERVER = $server;
+	$GLOBALS['proxies'] = $proxies;
 	$got = wbcom_essential_login_security_get_ip();
-	printf( "%s %-40s got %s\n", $got === $want ? 'PASS' : 'FAIL', $name, $got );
+	printf( "%s %-40s got %s\n", $got === $want ? 'PASS' : 'FAIL', $name, $got ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output.
 	$fail += $got !== $want;
 }
 exit( $fail ? 1 : 0 );

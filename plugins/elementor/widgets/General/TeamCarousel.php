@@ -1711,10 +1711,11 @@ class TeamCarousel extends \Elementor\Widget_Base {
                     <div class="wbcom-team-member <?php echo esc_attr($settings['caption_placement']); ?>">
                         <?php if ($item['lightbox_style'] == 'external') { ?>
                         <?php
-                        $target = $item['external_link']['is_external'] ? ' target="_blank"' : '';
-                        $nofollow = $item['external_link']['nofollow'] ? ' rel="nofollow"' : '';
+                        // Elementor's link API: URL, new tab, nofollow and the owner's custom attributes, escaped.
+                        $link_key = 'wbcom_team_link_' . $item['_id'];
+                        $this->add_link_attributes( $link_key, $item['external_link'] );
                         ?>
-                        <a href="<?php echo esc_url($item['external_link']['url']); ?>" <?php echo $target; ?> <?php echo $nofollow; ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
+                        <a <?php $this->print_render_attribute_string( $link_key ); ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } elseif ($item['lightbox_style'] != 'none') { ?>
                         <a href="#wbcom-lightbox-<?php echo esc_attr($item['_id']); ?>" data-elementor-open-lightbox="no" class="has-lightbox <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } ?>

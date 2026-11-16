@@ -22,6 +22,8 @@ parameters:
 			- build
 			- dist (?)
 			- assets/vendor
+			# Standalone CLI check that stands in for a few WordPress functions; analysing it would shadow the real ones.
+			- scripts/check-login-security-ip.php
 
 	# Analysis-only sources. Elementor has no stubs package on Packagist, so the
 	# real plugin is downloaded (never committed - see .gitignore) and scanned

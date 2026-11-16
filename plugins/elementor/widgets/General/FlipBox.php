@@ -1654,18 +1654,23 @@ class FlipBox extends \Elementor\Widget_Base {
 		$settings      = $this->get_settings_for_display();
 		$target        = $settings['btn_website_link']['is_external'] ? ' target="' . esc_attr( '_blank' ) . '"' : '';
 		$nofollow      = $settings['btn_website_link']['nofollow'] ? ' rel="' . esc_attr( 'nofollow' ) . '"' : '';
-		$icon_position = $settings['btn_icon_position'];		
+		$icon_position = $settings['btn_icon_position'];        
 		?>
 		<div class="wba-flip-card-outer" style="display:flex;">
 			<div class="wba-flip-card-wrapper <?php echo esc_attr( $settings['direction'] ); ?>">
-				<div class="wba-flip-card-inner" style="transition-timing-function: <?php if ( $settings['custom_timing'] ) { echo esc_attr( $settings['custom_timing'] ); } else { echo esc_attr( $settings['timing'] ); } ?>;">
+				<div class="wba-flip-card-inner" style="transition-timing-function: 
+                <?php
+                if ( $settings['custom_timing'] ) { echo esc_attr( $settings['custom_timing'] );
+} else { echo esc_attr( $settings['timing'] ); }
+?>
+;">
 					<div class="front">
 						<div class="wba-flip-card-overlay"></div>
 						<div class="wba-flip-card-front-icon">
 							<?php \Elementor\Icons_Manager::render_icon( $settings['front_icon'], array( 'aria-hidden' => 'true' ) ); ?>
 						</div>
 						<?php
-						if ( $settings['front_title'] ) {							
+						if ( $settings['front_title'] ) {                           
 							echo '<' . esc_html( $settings['front_title_html_tag'] ) . ' class="wba-flip-card-front-title">' . esc_html( $settings['front_title'] ) . '</' . esc_html( $settings['front_title_html_tag'] ) . '>';
 						}
 						if ( $settings['front_content'] ) {
@@ -1680,7 +1685,7 @@ class FlipBox extends \Elementor\Widget_Base {
 						</div>
 						<?php
 						if ( $settings['back_title'] ) {
-							echo '<' . esc_html( $settings['back_title_html_tag'] ) . ' class="wba-flip-card-back-title">' . esc_html( $settings['back_title'] ) . '</' .  esc_html( $settings['back_title_html_tag'] ) . '>';
+							echo '<' . esc_html( $settings['back_title_html_tag'] ) . ' class="wba-flip-card-back-title">' . esc_html( $settings['back_title'] ) . '</' . esc_html( $settings['back_title_html_tag'] ) . '>';
 						}
 						if ( $settings['back_content'] ) {
 							echo '<div class="wba-flip-card-back-content">' . wp_kses_post( $settings['back_content'] ) . '</div>';
@@ -1688,7 +1693,12 @@ class FlipBox extends \Elementor\Widget_Base {
 						if ( $settings['btn_website_link']['url'] ) {
 							?>
 						<div class="wbcom-btn-wrapper">
-							<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>" class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>" href="<?php echo esc_url( $settings['btn_website_link']['url'] ); ?>" <?php echo $target; ?> <?php echo $nofollow; ?>>
+							<a id="<?php echo esc_attr( $settings['btn_id'] ); ?>" class="<?php echo esc_attr( $settings['btn_size'] ); ?> <?php echo esc_attr( $settings['btn_skin'] ); ?>" 
+                            <?php
+                            $this->add_link_attributes( 'wbcom_flip_btn', $settings['btn_website_link'] );
+$this->print_render_attribute_string( 'wbcom_flip_btn' );
+?>
+>
 								<?php
 								if ( $icon_position == 'before' ) {
 									\Elementor\Icons_Manager::render_icon( $settings['btn_icon'], array( 'aria-hidden' => 'true' ) );

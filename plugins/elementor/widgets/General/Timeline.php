@@ -722,7 +722,8 @@ class Timeline extends \Elementor\Widget_Base {
 					}
 					?>
 					<?php
-					echo wp_kses_post( wpautop( $item['text'] ) ); ?>
+					echo wp_kses_post( wpautop( $item['text'] ) );
+                    ?>
 					</div>
 				</div>
 			<?php } ?>

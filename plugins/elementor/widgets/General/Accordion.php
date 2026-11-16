@@ -909,7 +909,7 @@ class Accordion extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__body, {{WRAPPER}} .wbaccordion__body p' => 'color: {{VALUE}};',
 				],
 			]
-		);		
+		);      
 
 		$this->add_control(
 			'content_bg_color',
