@@ -170,6 +170,8 @@ final class BlockRegistrar {
 			return;
 		}
 
+		wp_register_style( 'wbe-design-tokens', WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/design-tokens.css', array(), WBCOM_ESSENTIAL_VERSION );
+
 		$block_dirs = glob( $this->build_dir . '*/block.json' );
 
 		if ( empty( $block_dirs ) ) {
@@ -188,8 +190,19 @@ final class BlockRegistrar {
 				continue;
 			}
 
-			register_block_type( $block_dir );
+			$block_type = register_block_type( $block_dir );
 			self::$registered_blocks[] = $block_name;
+
+			// Every block stylesheet needs the shared tokens (and the theme bridge in them). As a dependency
+			// they load wherever the block renders: post content, widget areas and templates alike.
+			if ( $block_type ) {
+				foreach ( (array) $block_type->style_handles as $handle ) {
+					$style = wp_styles()->query( $handle, 'registered' );
+					if ( $style && ! in_array( 'wbe-design-tokens', $style->deps, true ) ) {
+						$style->deps[] = 'wbe-design-tokens';
+					}
+				}
+			}
 		}
 	}
 }

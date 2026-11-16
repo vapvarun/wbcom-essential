@@ -54,10 +54,7 @@
 	--wbe-color-border: #e2e8f0;
 	--wbe-color-surface: #f8fafc;
 	--wbe-color-surface-alt: #f1f5f9;
-	--wbe-color-accent: var(--wbcom-link-color, #0073aa);
-	--wbe-color-accent-hover: var(--wbcom-link-hover-color, #005a87);
-	--wbe-color-accent-light: rgba(0, 115, 170, 0.08);
-	--wbe-color-accent-ring: rgba(0, 115, 170, 0.2);
+
 
 	/* Colors — semantic */
 	--wbe-color-success: #16a34a;
@@ -86,19 +83,50 @@
 	--wbe-z-overlay: 100;
 	--wbe-z-modal: 1000;
 
-	/* Surface and text colours the blocks use until an owner picks their own.
-	   The dark set follows the Wbcom themes' dark-mode marker. */
-	--wbe-surface: #ffffff;
-	--wbe-surface-alt: #f8f9fa;
-	--wbe-text: #1e1e2e;
-	--wbe-text-muted: #5a6169;
-	--wbe-border: #e9ecef;
 }
 
-html[data-bx-mode="dark"] {
-	--wbe-surface: #2d313c;
-	--wbe-surface-alt: #292d38;
-	--wbe-text: #e4e6eb;
-	--wbe-text-muted: #b8bcc6;
-	--wbe-border: #3d4350;
+/*
+ * Theme bridge: the --wbcom-* tokens the blocks read, taken from the active theme's own tokens (Reign
+ * --reign-*, BuddyX and BuddyX Pro --bx-color-*). With another theme none of them resolve, so each block
+ * keeps its own fallback. :where() keeps this at zero specificity, so a theme that defines --wbcom-*
+ * itself wins. Declared on body as well as :root because BuddyX Pro switches to dark on body
+ * (body.buddyx-dark-theme); Reign and BuddyX switch on :root[data-bx-mode="dark"].
+ */
+:where(:root, body) {
+	--wbcom-color-primary: var(--reign-accent-color, var(--bx-color-accent));
+	--wbcom-color-primary-hover: var(--reign-accent-hover-color, var(--bx-color-button-bg-hover));
+	--wbcom-button-bg: var(--reign-site-button-bg-color, var(--bx-color-button-bg));
+	--wbcom-button-color: var(--reign-site-button-text-color, var(--bx-color-button-fg));
+	--wbcom-link-color: var(--reign-site-link-color, var(--bx-color-link));
+	--wbcom-link-hover-color: var(--reign-site-link-hover-color, var(--bx-color-link-hover));
+	--wbcom-heading-color: var(--reign-site-headings-color, var(--bx-color-heading, var(--bx-color-fg)));
+	--wbcom-text-color: var(--reign-site-body-text-color, var(--bx-color-fg));
+	--wbcom-card-bg: var(--reign-site-sections-bg-color, var(--bx-color-bg-elevated));
+	--wbcom-card-border: var(--reign-site-border-color, var(--bx-color-border));
+	--wbcom-color-border: var(--reign-site-border-color, var(--bx-color-border));
+	--wbcom-color-base: var(--reign-site-body-bg-color, var(--bx-color-bg));
+	--wbcom-color-base-2: var(--reign-site-secondary-bg-color, var(--bx-color-bg-muted));
+	--wbcom-color-contrast: var(--reign-site-headings-color, var(--bx-color-heading, var(--bx-color-fg)));
+	--wbcom-color-contrast-2: var(--reign-site-alternate-text-color);
+
+	/* Accent, surface and text colours the blocks use until an owner picks their own. */
+	--wbe-color-accent: var(--wbcom-color-primary, var(--wbcom-link-color, #0073aa));
+	--wbe-color-accent-hover: var(--wbcom-color-primary-hover, var(--wbcom-link-hover-color, #005a87));
+	--wbe-color-accent-light: color-mix(in srgb, var(--wbe-color-accent) 8%, transparent);
+	--wbe-color-accent-ring: color-mix(in srgb, var(--wbe-color-accent) 20%, transparent);
+	--wbe-surface: var(--wbcom-card-bg, #ffffff);
+	--wbe-surface-alt: var(--wbcom-color-base-2, #f8f9fa);
+	--wbe-text: var(--wbcom-text-color, #1e1e2e);
+	--wbe-text-muted: var(--wbcom-color-contrast-2, #5a6169);
+	--wbe-border: var(--wbcom-color-border, #e9ecef);
+}
+
+/* Dark fallbacks for a theme that marks dark mode but has no tokens of its own. */
+html[data-bx-mode="dark"],
+html[data-bx-mode="dark"] body {
+	--wbe-surface: var(--wbcom-card-bg, #2d313c);
+	--wbe-surface-alt: var(--wbcom-color-base-2, #292d38);
+	--wbe-text: var(--wbcom-text-color, #e4e6eb);
+	--wbe-text-muted: var(--wbcom-color-contrast-2, #b8bcc6);
+	--wbe-border: var(--wbcom-color-border, #3d4350);
 }
