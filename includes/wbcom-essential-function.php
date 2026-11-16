@@ -676,45 +676,6 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 	return $return;
 }
 
-function wbcom_essential_posts_revolution_elementor_post_info(
-	$ad_postpreview_display_date,
-	$ad_postpreview_display_comments,
-	$ad_postpreview_display_author,
-	$ad_postpreview_display_category,
-	$ad_postpreview_display_views,
-	$wbcom_query_source,
-	$wbcom_query_posts_type,
-	$date_format
-) {
-
-	global $post;
-	$return = '';
-	if ( $ad_postpreview_display_date == 'true' ) {
-
-		$return .= '<span class="wb-date"><i class="fa fa-calendar"></i>' . get_the_date( $date_format ) . '</span>';
-
-	}
-
-	if ( $ad_postpreview_display_author == 'true' ) {
-		$return .= '<span class="wb-author"><i class="fa fa-user"></i><a href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '">' . get_the_author_meta( 'display_name' ) . '</a></span>';
-	}
-
-	if ( $ad_postpreview_display_comments == 'true' ) {
-
-		$return .= '<span class="wb-comments"><i class="fa fa-comments"></i><a href="' . get_comments_link() . '">' . get_comments_number() . '</a></span>';
-
-	}
-
-	if ( $ad_postpreview_display_category == 'true' ) {
-		$return .= '<span class="wb-category"><i class="fa fa-tags"></i>' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-	}
-
-	if ( $ad_postpreview_display_views == 'true' ) {
-		$return .= '<span class="wb-views"><i class="fa fa-eye"></i>' . wbcom_essential_posts_revolution_elementor_get_post_views( get_the_ID() ) . '</span>';
-	}
-
-	return $return;
-}
 
 
 
@@ -741,42 +702,6 @@ function wbcom_essential_posts_revolution_elementor_hex2rgb( $hex ) {
 	return $rgb;
 }
 
-/*
- * FUNCTION VIEW
- *
- * @since 3.6.0
- */
-
-function wbcom_essential_posts_revolution_elementor_get_post_views( $post_id ) {
-	$count_key = 'wpb_post_views_count';
-	$count     = get_post_meta( $post_id, $count_key, true );
-	if ( $count == '' ) {
-		delete_post_meta( $post_id, $count_key );
-		add_post_meta( $post_id, $count_key, '0' );
-		$view = esc_html__( 'Views', 'wbcom-essential' );
-		return '0';
-	}
-	$count_final = $count;
-	return $count_final;
-}
-
-function wbcom_essential_posts_revolution_elementor_set_post_views() {
-	if ( ! is_single() ) {
-        return;
-    }
-	
-	global $post;
-	if ( ! $post ) {
-        return;
-    }
-	$post_id    = $post->ID;
-	$count_key = 'wpb_post_views_count';
-	$count     = (int) get_post_meta( $post_id, $count_key, true );
-	
-	update_post_meta( $post_id, $count_key, $count+1 );
-	
-}
-add_filter( 'wp_footer', 'wbcom_essential_posts_revolution_elementor_set_post_views', 9999 );
 
 
 /*
