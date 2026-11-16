@@ -97,23 +97,23 @@
     },
     "cardBg": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "titleColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "excerptColor": {
       "type": "string",
-      "default": "#6c757d"
+      "default": ""
     },
     "metaColor": {
       "type": "string",
-      "default": "#999999"
+      "default": ""
     },
     "accentColor": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "padding": {
       "type": "object",

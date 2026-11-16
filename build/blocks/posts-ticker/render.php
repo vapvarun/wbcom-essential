@@ -35,11 +35,11 @@ $pause_on_hover  = ! empty( $attributes['pauseOnHover'] );
 $show_date       = ! empty( $attributes['showDate'] );
 $show_category   = ! empty( $attributes['showCategory'] );
 $label           = sanitize_text_field( $attributes['label'] ?? __( 'Latest News', 'wbcom-essential' ) );
-$label_bg        = sanitize_text_field( $attributes['labelBg'] ?? '#667eea' );
-$label_color     = sanitize_hex_color( $attributes['labelColor'] ?? '#ffffff' ) ?: '#ffffff';
-$ticker_bg       = sanitize_text_field( $attributes['tickerBg'] ?? '#f8f9fa' );
-$text_color      = sanitize_hex_color( $attributes['textColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
-$link_color      = sanitize_hex_color( $attributes['linkColor'] ?? '#667eea' ) ?: '#667eea';
+$label_bg        = sanitize_text_field( $attributes['labelBg'] ?? '' ) ?: 'var(--wbcom-button-bg, var(--wbe-color-accent, #667eea))';
+$label_color     = sanitize_hex_color( $attributes['labelColor'] ?? '' ) ?: 'var(--wbcom-button-color, #ffffff)';
+$ticker_bg       = sanitize_text_field( $attributes['tickerBg'] ?? '' ) ?: 'var(--wbe-color-surface-alt, #f8f9fa)';
+$text_color      = sanitize_hex_color( $attributes['textColor'] ?? '' ) ?: 'var(--wbcom-text-color, #1e1e2e)';
+$link_color      = sanitize_hex_color( $attributes['linkColor'] ?? '' ) ?: 'var(--wbe-color-accent, #667eea)';
 $separator       = sanitize_key( $attributes['separatorStyle'] ?? 'dot' );
 $height          = max( 32, absint( $attributes['height'] ?? 44 ) );
 

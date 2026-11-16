@@ -14,11 +14,11 @@
 /* Section dividers */
 .wbcom-blog--magazine .wbcom-blog__section {
 	padding-bottom: 40px;
-	border-bottom: 1px solid #e5e7eb;
+	border-block-end: 1px solid var(--wbcom-color-border, #e5e7eb);
 }
 
 .wbcom-blog--magazine .wbcom-blog__section:last-child {
-	border-bottom: none;
+	border-block-end: none;
 	padding-bottom: 0;
 }
 

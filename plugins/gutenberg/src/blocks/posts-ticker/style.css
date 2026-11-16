@@ -9,11 +9,11 @@
 
 /* ── Design tokens (defaults) ─────────────────────────────────────────────── */
 .wbe-posts-ticker {
-	--wbe-tk-label-bg:    #667eea;
-	--wbe-tk-label-color: #ffffff;
-	--wbe-tk-bg:          #f8f9fa;
-	--wbe-tk-text:        #1e1e2e;
-	--wbe-tk-link:        #667eea;
+	--wbe-tk-label-bg:    var(--wbcom-button-bg, var(--wbe-color-accent, #667eea));
+	--wbe-tk-label-color: var(--wbcom-button-color, #ffffff);
+	--wbe-tk-bg:          var(--wbe-color-surface-alt, #f8f9fa);
+	--wbe-tk-text:        var(--wbcom-text-color, #1e1e2e);
+	--wbe-tk-link:        var(--wbe-color-accent, #667eea);
 	--wbe-tk-height:      44px;
 	--wbe-tk-duration:    30s;
 	--wbe-tk-shadow:      none;

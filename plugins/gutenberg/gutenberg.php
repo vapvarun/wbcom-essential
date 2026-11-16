@@ -19,6 +19,7 @@ require_once __DIR__ . '/BlockRegistrar.php';
 require_once __DIR__ . '/includes/class-wbe-css.php';
 require_once __DIR__ . '/includes/class-wbe-schema.php';
 require_once __DIR__ . '/includes/class-wbe-fonts.php';
+require_once __DIR__ . '/patterns/wbcom-patterns.php';
 
 // Initialize shared infrastructure.
 \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::init();

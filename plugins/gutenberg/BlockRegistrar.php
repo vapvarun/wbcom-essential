@@ -46,6 +46,7 @@ final class BlockRegistrar {
 	public function init() {
 		add_action( 'init', array( $this, 'register_blocks' ) );
 		add_filter( 'block_type_metadata', array( $this, 'translate_text_defaults' ) );
+		add_filter( 'block_type_metadata', array( $this, 'version_assets_by_release' ) );
 		add_filter( 'render_block_wbcom-essential/countdown-timer', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/pricing-table', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/testimonial-carousel', array( $this, 'translate_saved_markup' ), 10, 2 );
@@ -124,6 +125,23 @@ final class BlockRegistrar {
 		}
 
 		return strtr( $block_content, $map );
+	}
+
+	/**
+	 * Version block styles by plugin release.
+	 *
+	 * WordPress versions a block's style files with the block.json "version", which our blocks never
+	 * change between releases, so browsers and page caches kept serving the old CSS after an update.
+	 * Using the plugin version makes every release load its own block styles.
+	 *
+	 * @param array $metadata Block metadata read from block.json.
+	 * @return array
+	 */
+	public function version_assets_by_release( $metadata ) {
+		if ( 0 === strpos( $metadata['name'] ?? '', 'wbcom-essential/' ) ) {
+			$metadata['version'] = WBCOM_ESSENTIAL_VERSION;
+		}
+		return $metadata;
 	}
 
 	/**

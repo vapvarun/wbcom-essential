@@ -6,11 +6,11 @@
 
 /* ---- Design tokens ---- */
 .wbe-post-carousel {
-	--wbe-pc-card-bg: #ffffff;
-	--wbe-pc-title-color: #1e1e2e;
-	--wbe-pc-excerpt-color: #6c757d;
-	--wbe-pc-meta-color: #999999;
-	--wbe-pc-accent: #667eea;
+	--wbe-pc-card-bg: var(--wbcom-card-bg, #ffffff);
+	--wbe-pc-title-color: var(--wbcom-heading-color, #1e1e2e);
+	--wbe-pc-excerpt-color: var(--wbcom-text-color, #6c757d);
+	--wbe-pc-meta-color: var(--wbe-color-text-muted, #6b7280);
+	--wbe-pc-accent: var(--wbe-color-accent, #667eea);
 	--wbe-pc-card-radius: 8px;
 	--wbe-pc-card-shadow: none;
 	--wbe-pc-image-ratio: 16 / 9;
@@ -176,7 +176,7 @@
 .wbe-post-carousel .swiper-button-next {
 	width: 40px;
 	height: 40px;
-	background-color: #ffffff;
+	background-color: var( --wbe-pc-card-bg );
 	border: none;
 	border-radius: 50%;
 	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.15 );
@@ -199,7 +199,7 @@
 
 .wbe-post-carousel .swiper-button-prev:hover,
 .wbe-post-carousel .swiper-button-next:hover {
-	background-color: rgba(102, 126, 234, 0.5);
+	background-color: var( --wbe-pc-accent );
 	color: #ffffff;
 }
 

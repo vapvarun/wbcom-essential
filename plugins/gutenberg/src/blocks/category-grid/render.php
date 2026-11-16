@@ -116,10 +116,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			$first_letter    = mb_strtoupper( mb_substr( $category->name, 0, 1, 'UTF-8' ), 'UTF-8' );
 			?>
 			<a href="<?php echo $cat_link; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped. ?>"
-				class="wbcom-essential-category-grid__card<?php echo $has_image ? ' has-image' : ' has-placeholder'; ?>"
+				class="wbcom-essential-category-grid__card<?php echo esc_attr( $has_image ? ' has-image' : ( $show_image ? ' has-placeholder' : ' is-text' ) ); ?>"
 				role="listitem"
 				aria-label="<?php echo esc_attr( $cat_name ); ?>">
 
+				<?php if ( $show_image ) : ?>
 				<div class="wbcom-essential-category-grid__media">
 					<?php if ( $has_image ) : ?>
 						<?php echo wp_get_attachment_image( $thumbnail_id, 'medium_large', false, array( 'class' => 'wbcom-essential-category-grid__image' ) ); ?>
@@ -132,6 +133,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					<?php endif; ?>
 					<div class="wbcom-essential-category-grid__overlay" aria-hidden="true"></div>
 				</div>
+				<?php endif; ?>
 
 				<div class="wbcom-essential-category-grid__content">
 					<h3 class="wbcom-essential-category-grid__name"><?php echo $cat_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped. ?></h3>
