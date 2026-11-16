@@ -100,15 +100,15 @@
     },
     "cardBg": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "titleColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "priceColor": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "padding": {
       "type": "object",
@@ -212,6 +212,14 @@
     "hideOnMobile": {
       "type": "boolean",
       "default": false
+    },
+    "atcBg": {
+      "type": "string",
+      "default": ""
+    },
+    "atcColor": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {
