@@ -52,7 +52,7 @@
 		align-self: center;
 
 		&--filled {
-			background-color: var( --wbcom-link-color, #2563eb );
+			background-color: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
 		}
 
 		&--start {
@@ -111,9 +111,9 @@
 	// Step states.
 	&__step--completed {
 		.wbcom-edd-checkout__step-circle {
-			background-color: var( --wbcom-link-color, #2563eb );
-			color: var(--wbe-color-white);
-			border: 2px solid var( --wbcom-link-color, #2563eb );
+			background-color: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
+			color: var( --wbcom-button-color, #ffffff );
+			border: 2px solid var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
 		}
 
 		.wbcom-edd-checkout__step-label {

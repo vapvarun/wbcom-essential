@@ -140,8 +140,8 @@
 			box-sizing: border-box;
 
 			&:hover {
-				background: var( --wbcom-link-color, #2563eb );
-				color: var(--wbe-color-white);
+				background: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
+				color: var( --wbcom-button-color, #ffffff );
 				text-decoration: none;
 			}
 		}

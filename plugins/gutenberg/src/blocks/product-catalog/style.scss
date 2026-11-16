@@ -202,7 +202,7 @@
 
 	&--free {
 		align-self: flex-start; // A pill the size of its word, not a bar across the card.
-		color: var(--wbe-color-success);
+		color: var(--wbe-color-success-text);
 		font-size: 14px;
 		font-weight: 600;
 		padding: 3px 10px;
@@ -232,8 +232,8 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background-color: var(--wbe-color-accent);
-		color: var(--wbe-color-white);
+		background-color: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
+		color: var( --wbcom-button-color, #ffffff );
 		border: none;
 		border-radius: var(--wbe-radius-md);
 		padding: 12px 24px;
@@ -251,8 +251,8 @@
 		&:hover,
 		&:focus,
 		&:visited {
-			background-color: var(--wbe-color-accent-hover);
-			color: var(--wbe-color-white);
+			background-color: color-mix( in srgb, var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) ) 85%, #000 );
+			color: var( --wbcom-button-color, #ffffff );
 			transform: translateY(-1px);
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 			text-decoration: none;
@@ -262,12 +262,14 @@
 			transform: translateY(0);
 		}
 
+		// A deeper green so the white label reads 4.5:1 or more (the plain success green gave 3.3:1).
 		&--free {
-			background-color: var(--wbe-color-success);
+			background-color: color-mix(in srgb, var(--wbe-color-success) 75%, #000);
+			color: var(--wbe-color-white);
 
 			&:hover,
 			&:focus {
-				background-color: #059669;
+				background-color: color-mix(in srgb, var(--wbe-color-success) 62%, #000);
 				color: var(--wbe-color-white);
 			}
 		}
@@ -365,8 +367,8 @@
 	transition: all var(--wbe-transition-fast);
 
 	&:hover {
-		background: var(--wbe-color-accent);
-		color: var(--wbe-color-white);
+		background: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
+		color: var( --wbcom-button-color, #ffffff );
 		transform: translateY(-1px);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 	}
@@ -473,15 +475,15 @@
 	padding: 0.5rem 1.25rem;
 	min-height: 40px;
 	font-weight: 600;
-	color: #fff;
-	background: var( --wbcom-link-color, #2563eb );
+	color: var( --wbcom-button-color, #ffffff );
+	background: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
 	border: 1px solid transparent;
 	border-radius: 6px;
 	cursor: pointer;
 
 	&:hover,
 	&:focus {
-		background: var(--wbe-color-accent-hover, #1d4ed8);
+		background: color-mix( in srgb, var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) ) 85%, #000 );
 	}
 
 	&:focus-visible {

@@ -245,8 +245,8 @@
 
 	&__card-link {
 		display: inline-block;
-		background-color: var( --wbcom-link-color, #2563eb );
-		color: var(--wbe-color-white);
+		background-color: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
+		color: var( --wbcom-button-color, #ffffff );
 		text-decoration: none;
 		padding: 0.5rem 1.25rem;
 		border-radius: 6px;
@@ -258,8 +258,8 @@
 		&:hover,
 		&:focus,
 		&:visited {
-			background-color: var(--wbe-color-accent-hover, #1d4ed8);
-			color: var(--wbe-color-white);
+			background-color: color-mix( in srgb, var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) ) 85%, #000 );
+			color: var( --wbcom-button-color, #ffffff );
 			text-decoration: none;
 		}
 
