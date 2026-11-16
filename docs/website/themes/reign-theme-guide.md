@@ -1,6 +1,6 @@
 # Reign Theme Guide
 
-Wbcom Essential is part of Reign. This page shows which blocks and widgets suit common Reign sites.
+Wbcom Essential is a separate plugin that Reign installs in one click. This page shows which blocks and widgets suit common Reign sites.
 
 ## Install Wbcom Essential in Reign
 
