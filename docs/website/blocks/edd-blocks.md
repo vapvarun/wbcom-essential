@@ -1,6 +1,6 @@
 # EDD Blocks
 
-EDD blocks cover the customer side of an Easy Digital Downloads store: the account area, checkout sections, the order confirmation page and a filterable product catalog. They appear in the block inserter under **Essential - EDD** and load only when Easy Digital Downloads is active.
+EDD blocks cover the customer side of an Easy Digital Downloads store: the account area, checkout sections, the order confirmation page and a filterable product catalog. They appear in the block inserter under **Essential - EDD** and work only when Easy Digital Downloads is active. Without it they still appear in the inserter and show a notice.
 
 If Easy Digital Downloads is not active, these blocks show the notice "Easy Digital Downloads is required for this block."
 
@@ -30,10 +30,24 @@ One My Account page for customers, with a sidebar menu, downloads, order history
 | Advanced | Padding, Margin, Box Shadow, Border Radius | Spacing, shadow and corners of the block. | Shadow off |
 | Advanced | Device Visibility | Hide on Desktop, Tablet or Mobile. | All shown |
 
+### What customers see in each tab
+
+| Tab | What it shows |
+|-----|---------------|
+| Dashboard | A greeting, recent orders with invoice links, and the optional special offers banner, What's New and recommendations. |
+| Subscriptions | Needs EDD Recurring Payments. Each subscription shows its next renewal. Customers can upgrade, cancel (with an optional reason), reactivate and renew. After cancelling, access continues to the end of the billing period. The reason and comment are saved as a note on the subscription and emailed to the site admin address. |
+| Downloads | Every product the customer owns, 12 per page, with a search by product name, an All / Available / Expired filter and a sort by Recently purchased or Name (A-Z). A product whose licence has expired shows "License expired. Renew to download your files again." with a **Renew License** button, instead of a download link. |
+| Free Plugins | Your free downloads, each with a one-click claim. A claim creates a free order and the customer can download straight away. Each customer can make 10 new claims per hour. |
+| Licenses | Needs EDD Software Licensing. License keys, 10 per page, with a search by product name, an All / Active / Expired filter and a sort by Recently added, Expiry date or Status. Each licence shows its key, expiry (or Lifetime), the sites it is active on with a **Deactivate** link, and **Upgrade License** and **Renew License** buttons. |
+| Order History | Past orders with their status and an invoice link. |
+| Edit Profile | Name, display name, email address, billing address and a password change. Leaving the password fields blank keeps the current password. |
+
+Search, filter and sort update the list without reloading the page. If a search finds nothing, customers see "No items match your search or filter. Try clearing them."
+
 ### Tips
 
 - Change the Support URL to your own helpdesk. The default points to the Wbcom Designs support page.
-- Logged-out visitors see a login form that returns them to the same page.
+- Logged-out visitors see a login form that returns them to the same page. It has [login protection](../features/login-security.md) built in.
 - A Subscriptions tab appears when EDD Recurring Payments is active. A Licenses tab appears when EDD Software Licensing is active.
 
 ## EDD Enhanced Checkout (legacy)

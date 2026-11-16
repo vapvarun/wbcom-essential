@@ -37,7 +37,7 @@ Use Hero Section, Feature Grid, Pricing Table, Testimonial Carousel and CTA Sect
 
 ## Colours in Blocks
 
-Blocks take their accent colour from the `--wbcom-link-color` CSS variable and fall back to a default blue. See [Theme Colors](../features/theme-colors.md).
+Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Theme Colors](../features/theme-colors.md).
 
 ## Related
 

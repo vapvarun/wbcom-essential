@@ -43,6 +43,7 @@ Every block has Desktop, Tablet and Mobile controls, so you can adjust layout pe
 
 ## Next Steps
 
+- [Set up the plugins Wbcom Essential works with](set-up-companion-plugins.md)
 - [Blocks Overview](../blocks/blocks-overview.md)
 - [Widgets Overview](../widgets/widgets-overview.md)
 - [Solution Finder](../features/solution-finder.md)

@@ -19,6 +19,10 @@
         {
           "slug": "after-installation",
           "title": "After Installation"
+        },
+        {
+          "slug": "set-up-companion-plugins",
+          "title": "Set up the plugins Wbcom Essential works with"
         }
       ]
     },
@@ -102,7 +106,7 @@
     {
       "name": "Features",
       "folder": "features",
-      "description": "Choosing the right block or widget, theme colours, responsive controls and performance.",
+      "description": "Choosing the right block or widget, theme colours, blog layouts, patterns, login security, updates, responsive controls and performance.",
       "pages": [
         {
           "slug": "solution-finder",
@@ -111,6 +115,22 @@
         {
           "slug": "theme-colors",
           "title": "Theme Colors"
+        },
+        {
+          "slug": "blog-and-post-templates",
+          "title": "Blog Layouts and Post Templates"
+        },
+        {
+          "slug": "block-patterns",
+          "title": "Block Patterns"
+        },
+        {
+          "slug": "login-security",
+          "title": "Login Security"
+        },
+        {
+          "slug": "updates-and-licence",
+          "title": "Updates and Licence"
         },
         {
           "slug": "responsive-design",
@@ -162,6 +182,25 @@
       ]
     },
     {
+      "name": "Developer Guide",
+      "folder": "developer-guide",
+      "description": "Hooks and filters, the REST routes, AJAX action and shortcode, and which templates a theme can override.",
+      "pages": [
+        {
+          "slug": "hooks-and-filters",
+          "title": "Hooks and Filters"
+        },
+        {
+          "slug": "rest-api-and-ajax",
+          "title": "REST API, AJAX and Shortcode"
+        },
+        {
+          "slug": "template-overrides",
+          "title": "Template Overrides"
+        }
+      ]
+    },
+    {
       "name": "FAQ",
       "folder": "faq",
       "description": "Answers to the questions site owners ask most.",
@@ -175,11 +214,15 @@
     {
       "name": "Troubleshooting",
       "folder": "troubleshooting",
-      "description": "Fixes for blocks or widgets that do not show or look right.",
+      "description": "Fixes for blocks or widgets that do not show or look right, and what each message and notice means.",
       "pages": [
         {
           "slug": "troubleshooting",
           "title": "Troubleshooting"
+        },
+        {
+          "slug": "error-messages",
+          "title": "Messages and Notices"
         }
       ]
     }

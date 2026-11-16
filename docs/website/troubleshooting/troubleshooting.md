@@ -95,6 +95,16 @@ Find your problem below. Each item lists the cause and the fix.
 2. Check the category filter in the block settings.
 3. For Customer Reviews, confirm approved product reviews exist.
 
+## A product is missing from Product Grid or Product Carousel
+
+**Cause:** These blocks show only what your shop pages show. A product whose catalog visibility is Hidden or Search results only is left out. Out-of-stock products are left out when WooCommerce is set to hide them.
+
+**Fix:**
+
+1. Edit the product and check **Catalog visibility** in the Publish box.
+2. Go to **WooCommerce > Settings > Products > Inventory** and check **Out of stock visibility**.
+3. Reload the page. If the product is also missing from your shop, the same setting is the reason.
+
 ## Checkout blocks show nothing on the EDD checkout
 
 **Cause:** The Checkout Recommendations block shows nothing when the cart is empty. Other checkout blocks need Easy Digital Downloads active.
@@ -104,6 +114,21 @@ Find your problem below. Each item lists the cause and the fix.
 1. Confirm Easy Digital Downloads is active.
 2. Add a download to the cart, then open the checkout page.
 3. Place the blocks inside the EDD Checkout block. Use the Checkout Progress, Trust Badges, Social Proof and Recommendations blocks instead of the legacy Enhanced Checkout block.
+
+## Someone cannot sign in and sees "Too many login attempts"
+
+**Cause:** Five failed sign-ins came from the same IP address, so it is locked out for 15 minutes. Behind a proxy or CDN, all visitors can look like one address.
+
+**Fix:**
+
+1. Wait for the time shown in the message.
+2. If many visitors are affected, list your proxy as trusted. See [Login Security](../features/login-security.md).
+
+## An admin notice says Wbcom Essential could not authorise updates
+
+**Cause:** The site could not reach the update server, or the server did not authorise the site. Every feature still works.
+
+**Fix:** Allow outgoing requests to `wbcomdesigns.com`, then click **Retry activation now** in the notice. See [Updates and Licence](../features/updates-and-licence.md).
 
 ## Changes are not showing on the site
 
@@ -144,3 +169,4 @@ Contact [Wbcom support](https://wbcomdesigns.com/support/) with your WordPress, 
 - [FAQ](../faq/faq.md)
 - [Installation Guide](../installation/installation-guide.md)
 - [Common Mistakes](../installation/common-mistakes.md)
+- [Messages and Notices](error-messages.md)

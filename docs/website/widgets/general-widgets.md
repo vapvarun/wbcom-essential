@@ -1,6 +1,6 @@
 # General Widgets
 
-The 27 general widgets work on any WordPress site that runs Elementor 3.0 or higher. They appear in the Elementor panel under the **Wbcom Essential** category. You do not need BuddyPress, bbPress or WooCommerce for them.
+The 27 general widgets work on any WordPress site that runs Elementor 3.5 or higher. They appear in the Elementor panel under the **Wbcom Essential** category. You do not need BuddyPress, bbPress or WooCommerce for them.
 
 The one exception is Header Notification Area, which only appears when the Reign theme is active.
 
@@ -152,6 +152,8 @@ A login form with optional logo, titles, lost password and register links.
 ### Tips
 
 - Use Test Mode to see the form while you are logged in.
+- The form includes a hidden spam trap field. Visitors never see it, and a login that fills it in is rejected. See [Login Security](../features/login-security.md).
+- A wrong password and an unknown username give the same message, "The username or password is incorrect. Please try again.", so the form does not reveal which usernames exist.
 
 ## Header Notification Area
 

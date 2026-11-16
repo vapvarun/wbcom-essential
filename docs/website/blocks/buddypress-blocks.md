@@ -1,6 +1,6 @@
 # BuddyPress Blocks
 
-BuddyPress blocks show your community on any page: the activity stream, groups and members, as grids or carousels. They appear in the block inserter under **Essential - BuddyPress** and load only when BuddyPress or BuddyBoss Platform is active.
+BuddyPress blocks show your community on any page: the activity stream, groups and members, as grids or carousels. They appear in the block inserter under **Essential - BuddyPress** and work only when BuddyPress or BuddyBoss Platform is active. Without it they still appear in the inserter and show a notice.
 
 If BuddyPress is not active, these blocks show the notice "BuddyPress is required for this block."
 

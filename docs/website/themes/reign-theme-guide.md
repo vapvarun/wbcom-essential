@@ -51,7 +51,7 @@ See [WooCommerce Integration](woocommerce-integration.md).
 
 ## Colours in Blocks
 
-Blocks take their accent colour from the `--wbcom-link-color` CSS variable and fall back to a default blue when the variable is not set. Category Grid also has a **Use Theme Colors** toggle in its sidebar. See [Theme Colors](../features/theme-colors.md).
+Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Theme Colors](../features/theme-colors.md). Category Grid also has a **Use Theme Colors** toggle in its sidebar.
 
 To check how a block looks with your Reign settings, preview the page on the front end.
 

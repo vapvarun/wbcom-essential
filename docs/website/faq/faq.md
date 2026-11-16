@@ -44,7 +44,7 @@ Every block has Desktop, Tablet and Mobile controls. See [Responsive Design](../
 
 ## How do blocks pick up my theme colours?
 
-Blocks use the `--wbcom-link-color` CSS variable for accents and fall back to a default blue. See [Theme Colors](../features/theme-colors.md).
+On Reign, BuddyX and BuddyX Pro, block and widget colours you have not changed follow the theme in light and dark mode. A colour you pick yourself is used as you set it. A few blocks, such as Hero Section and Pricing Table, keep their own colours until you change them. See [Theme Colors](../features/theme-colors.md).
 
 ## Which block should I use?
 
