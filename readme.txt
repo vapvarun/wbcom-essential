@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 7.1
-Stable tag: 4.7.1
+Stable tag: 4.7.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -106,6 +106,36 @@ Wbcom Essential connects to the Wbcom Designs update server (https://updates.wbc
 * Privacy policy: https://wbcomdesigns.com/privacy-policy/
 
 == Changelog ==
+
+= 4.7.2 - November 2026 =
+
+Blocks follow your theme's colours and spacing in light and dark mode, and updates move to the signed update flow.
+
+* New      - Login Form block: a "When logged in" setting chooses what members who are already signed in see.
+* New      - Product Grid and Product Carousel: Add to Cart background and text colour settings; left empty, they follow the theme.
+* Improve  - Blocks and Elementor widgets take their colours from Reign, BuddyX and BuddyX Pro in light and dark mode, unless you pick a colour.
+* Improve  - Blocks use the theme's spacing between blocks instead of a fixed margin of their own.
+* Improve  - Phone layouts: members grid in two columns, groups as rows, countdown boxes on one row and larger carousel dots.
+* Improve  - Customer Reviews: arrows sit beside the cards instead of over the text, and cards in a row share one height.
+* Improve  - Category Grid: a category without an image shows a faint initial behind the name, in the theme accent when theme colours are on.
+* Improve  - Elementor widget styles load only on pages that use those widgets.
+* Improve  - Updates come from updates.wbcomdesigns.com, with wbcomdesigns.com as a fallback.
+* Fix      - Hero, CTA and Feature Grid set to Full width fill the screen edge to edge.
+* Fix      - Product Grid and Product Carousel no longer list products hidden from the shop, or out-of-stock products when the store hides them.
+* Fix      - Theme-specific features find the Reign theme again.
+* Fix      - Feature Grid no longer leaves a single card alone on the last row at tablet width.
+* Fix      - Groups Grid reads "1 Member", not "1 Members".
+* Fix      - The modern single post table of contents links to the right heading when headings repeat.
+* Fix      - Open in new tab and nofollow now apply in the Shape, Portfolio Grid, Team Carousel, Dropdown Button and Flip Box widgets.
+* Fix      - EDD blocks show their "EDD required" notice when Easy Digital Downloads is not active.
+* Fix      - BuddyPress's own activity script is no longer replaced with an older copy.
+* Security - The login lockout counts the visitor's own IP address unless the request comes through a trusted proxy, and the Elementor login form has a spam trap.
+* Security - The AJAX login gives the same message for an unknown username and a wrong password.
+* Security - Each update package is checked against its release signature before it installs.
+* Dev      - New filter wbcom_essential_login_security_trusted_proxies lists proxies whose forwarded IP address is trusted.
+* Dev      - New helper wbcom_essential_product_visibility_tax_query() for product lists that match the shop.
+* Dev      - Removed the post view counter, which wrote to the database on every post view and was never shown.
+* Dev      - The readme's External Services section lists what the update licence request sends and when.
 
 = 4.7.1 - November 2026 =
 
@@ -303,6 +333,9 @@ Find downloads and licenses fast on the account dashboard, plus expired-license 
 For full changelog, see the changelog.md file in the docs folder.
 
 == Upgrade Notice ==
+
+= 4.7.2 =
+Blocks follow your theme's colours and spacing, and updates now come from updates.wbcomdesigns.com with signature checks. Blocks you set a colour on keep it.
 
 = 4.7.1 =
 Removes the Wbcom prebuilt template library from the Elementor editor. Templates you already imported stay in your Elementor library.

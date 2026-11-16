@@ -11,7 +11,7 @@
  * @package Wbcom_Essential
  */
 
-define( 'WBCOM_ESSENTIAL_VERSION', '4.7.1' );
+define( 'WBCOM_ESSENTIAL_VERSION', '4.7.2' );
 define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.7.0' );
 define( 'WBCOM_ESSENTIAL_FILE', __DIR__ . '/loader.php' );
 define( 'WBCOM_ESSENTIAL_PATH', __DIR__ . '/' );
