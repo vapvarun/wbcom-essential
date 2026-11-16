@@ -565,22 +565,6 @@ if ( class_exists( 'WooCommerce' ) ) {
 	add_filter( 'woocommerce_add_to_cart_fragments', 'wbcom_essential_header_cart_fragment' );
 }
 
-/**
- * Filters the scripts to enqueue for BuddyPress Nouveau.
- *
- * @param  Array $scripts_args Array of scripts to register.
- */
-function wbcom_essential_bp_nouveau_register_scripts( $scripts_args ) {
-	if ( function_exists( 'buddypress' ) && isset( buddypress()->buddyboss ) ) {
-		return $scripts_args;
-	}
-
-	if ( isset( $scripts_args['bp-nouveau'] ) ) {
-		$scripts_args['bp-nouveau']['file'] = WBCOM_ESSENTIAL_URL . 'assets/js/buddypress-nouveau%s.js';
-	}
-	return $scripts_args;
-}
-add_filter( 'bp_nouveau_register_scripts', 'wbcom_essential_bp_nouveau_register_scripts', 20 );
 
 
 
