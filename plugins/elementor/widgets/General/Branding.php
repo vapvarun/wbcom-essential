@@ -159,7 +159,7 @@ class Branding extends \Elementor\Widget_Base {
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				],
-				'default'   => '#333333',
+				'default'   => 'var(--wbcom-heading-color, #333333)',
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-branding .site-title a' => 'color: {{VALUE}};',
 				),

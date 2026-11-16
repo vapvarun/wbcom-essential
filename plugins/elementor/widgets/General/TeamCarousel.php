@@ -526,7 +526,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-card-bg, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-member a' => 'background-color: {{VALUE}};',
 				),
@@ -994,7 +994,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-heading-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-overlay .wbcom-team-texts .wbcom-team-title' => 'color: {{VALUE}};',
 				),
@@ -1112,7 +1112,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-overlay .wbcom-team-texts .wbcom-team-subtitle' => 'color: {{VALUE}};',
 				),
@@ -1600,7 +1600,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'color: {{VALUE}};',
 				),

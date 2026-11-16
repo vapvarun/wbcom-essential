@@ -329,7 +329,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#fff',
+				'default'   => 'var(--wbcom-card-bg, #fff)',
 				'selectors' => array(
 					'{{WRAPPER}} .profile_bit.skin-linear .progress_container'   => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .profile_bit.skin-linear .profile_bit__details' => 'background-color: {{VALUE}};',
@@ -541,7 +541,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Details Completion Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#fff',
+				'default'   => 'var(--wbcom-card-bg, #fff)',
 				'selectors' => array(
 					'{{WRAPPER}} .profile_bit__details' => 'background-color: {{VALUE}};',
 				),

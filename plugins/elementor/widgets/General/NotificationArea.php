@@ -234,7 +234,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Icon Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} #masthead.wbcom-notification-area .header-notifications-dropdown-toggle a.rg-icon-wrap' => 'color: {{VALUE}};',
 					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-search-icon:before' => 'color: {{VALUE}};',
@@ -248,7 +248,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Icon Hover Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} #masthead.wbcom-notification-area .header-notifications-dropdown-toggle a.rg-icon-wrap:hover' => 'color: {{VALUE}};',
 					'{{WRAPPER}} #masthead.wbcom-notification-area .rg-search-icon:hover:before' => 'color: {{VALUE}};',
@@ -262,7 +262,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'User Name Font Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000',
+				'default'   => 'var(--wbcom-heading-color, #000)',
 				'selectors' => array(
 					'{{WRAPPER}} #masthead.wbcom-notification-area a.user-link' => 'color: {{VALUE}};',
 				),
@@ -274,7 +274,7 @@ class NotificationArea extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'User Name Font Color (Hover)', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000',
+				'default'   => 'var(--wbcom-heading-color, #000)',
 				'selectors' => array(
 					'{{WRAPPER}} #masthead.wbcom-notification-area a.user-link:hover' => 'color: {{VALUE}};',
 				),

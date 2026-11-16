@@ -708,7 +708,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Text Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-dd-menu li a' => 'color: {{VALUE}};',
 				),
@@ -720,7 +720,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-card-bg, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-dd-menu li a' => 'background-color: {{VALUE}};',
 				),

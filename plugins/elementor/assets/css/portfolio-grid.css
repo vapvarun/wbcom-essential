@@ -34,7 +34,7 @@
     margin: 0;
     background-color: rgba(0, 0, 0, .1);
     cursor: pointer;
-    color: #111;
+    color: var(--wbcom-text-color, #111);
     line-height: 20px;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -78,7 +78,7 @@
     margin: 0;
     background-color: rgba(0, 0, 0, .1);
     cursor: pointer;
-    color: #111;
+    color: var(--wbcom-text-color, #111);
     line-height: 1;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out

@@ -604,7 +604,7 @@ class Accordion extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-heading-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button' => 'color: {{VALUE}};',
 				),
@@ -657,7 +657,7 @@ class Accordion extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-heading-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head:hover,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button:hover,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head button' => 'color: {{VALUE}};',
 				),
@@ -793,7 +793,7 @@ class Accordion extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button .wbaccordion-prefix' => 'color: {{VALUE}};',
 				),
@@ -824,7 +824,7 @@ class Accordion extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Icon Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head:hover i,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button:hover i,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head i,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head button i' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-accordions .wbaccordion__head:hover .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion__head button:hover .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head .wbaccordion-prefix,{{WRAPPER}} .wbcom-accordions .wbaccordion.is-open .wbaccordion__head button .wbaccordion-prefix' => 'color: {{VALUE}};',
@@ -901,7 +901,7 @@ class Accordion extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Content Color', 'wbcom-essential' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'default' => '#000000',
+				'default' => 'var(--wbcom-text-color, #000000)',
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				],

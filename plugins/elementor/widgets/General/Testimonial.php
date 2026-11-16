@@ -879,7 +879,7 @@ class Testimonial extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-heading-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-title' => 'color: {{VALUE}};',
 				),
@@ -951,7 +951,7 @@ class Testimonial extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-subtitle' => 'color: {{VALUE}};',
 				),

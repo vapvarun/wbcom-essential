@@ -544,7 +544,7 @@ class PostsRevolution extends Widget_Base {
 			array(
 				'label'     => esc_html__( 'Main Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#1d76da',
+				'default'   => 'var(--wbcom-color-primary, #1d76da)',
 				'condition' => array(
 					'wbcom_custom_style' => 'on',
 				),
@@ -556,7 +556,7 @@ class PostsRevolution extends Widget_Base {
 			array(
 				'label'     => esc_html__( 'Hover Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#1d76da',
+				'default'   => 'var(--wbcom-color-primary, #1d76da)',
 				'condition' => array(
 					'wbcom_custom_style' => 'on',
 				),

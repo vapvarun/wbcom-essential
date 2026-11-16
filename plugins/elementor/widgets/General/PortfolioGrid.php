@@ -763,7 +763,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-heading-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-grid-view li .wba-fpg-title' => 'color: {{VALUE}};',
 				),
@@ -797,7 +797,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Info Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-grid-view li .wba-fpg-info' => 'color: {{VALUE}};',
 				),
@@ -972,7 +972,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-heading-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-list-view li .wba-fpg-title' => 'color: {{VALUE}};',
 				),
@@ -1006,7 +1006,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Info Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-list-view li .wba-fpg-info' => 'color: {{VALUE}};',
 				),
@@ -1173,7 +1173,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-toolbar .wba-fpg-search-wrapper li:not(.wba-fpg-mobile-icon) label' => 'color: {{VALUE}};',
 				),
@@ -1591,7 +1591,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-toolbar .wba-fpg-view-options li label' => 'color: {{VALUE}};',
 				),

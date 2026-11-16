@@ -529,7 +529,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 				array(
 					'label'     => __( 'Arrows Color', 'wbcom-essential' ),
 					'type'      => Controls_Manager::COLOR,
-					'default'   => '#444444',
+					'default'   => 'var(--wbcom-text-color, #444444)',
 					'selectors' => array(
 						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .elementor-swiper-button' => 'color: {{VALUE}} !important;',
 					),
@@ -544,7 +544,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 				array(
 					'label'     => __( 'Dots Background Color', 'wbcom-essential' ),
 					'type'      => Controls_Manager::COLOR,
-					'default'   => '#cccccc',
+					'default'   => 'var(--wbcom-color-border, #cccccc)',
 					'selectors' => array(
 						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}} !important;',
 					),
@@ -589,7 +589,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 				array(
 					'label'     => __( 'Active Border Color', 'wbcom-essential' ),
 					'type'      => Controls_Manager::COLOR,
-					'default'   => '#1d76da',
+					'default'   => 'var(--wbcom-color-primary, #1d76da)',
 					'selectors' => array(
 						'{{WRAPPER}} .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-cus-tab-links li a.htactive' => 'border-color: {{VALUE}} !important;',
 					),
@@ -1539,7 +1539,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Background Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'background-color: {{VALUE}} !important;',
 							),
@@ -1618,7 +1618,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							array(
 								'label'     => __( 'Background Color', 'wbcom-essential' ),
 								'type'      => Controls_Manager::COLOR,
-								'default'   => '#ffffff',
+								'default'   => 'var(--wbcom-card-bg, #ffffff)',
 								'selectors' => array(
 									'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}} !important;',
 								),
@@ -1668,7 +1668,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#23252a',
+							'default'   => 'var(--wbcom-text-color, #23252a)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'color: {{VALUE}};',
 							),
@@ -1680,7 +1680,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'background-color: {{VALUE}} !important;',
 							),
@@ -1720,7 +1720,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 							array(
 								'label'     => __( 'Background Color', 'wbcom-essential' ),
 								'type'      => Controls_Manager::COLOR,
-								'default'   => '#282828',
+								'default'   => 'var(--wbcom-text-color, #282828)',
 								'selectors' => array(
 									'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover' => 'background-color: {{VALUE}} !important;',
 									'{{WRAPPER}} .product-slider .swiper-pagination-bullet-active' => 'background-color: {{VALUE}} !important;',
@@ -1832,7 +1832,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#23252a',
+							'default'   => 'var(--wbcom-text-color, #23252a)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a' => 'color: {{VALUE}};',
 							),
@@ -1844,7 +1844,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Product tab menu background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a' => 'background-color: {{VALUE}} !important;',
 							),
@@ -1910,7 +1910,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#23252a',
+							'default'   => 'var(--wbcom-text-color, #23252a)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a:hover' => 'color: {{VALUE}};',
 								'{{WRAPPER}} .wb-tab-menus li a.htactive' => 'color: {{VALUE}};',
@@ -1923,7 +1923,7 @@ class UniversalProduct extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Product tab menu background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a:hover' => 'background-color: {{VALUE}} !important;',
 								'{{WRAPPER}} .wb-tab-menus li a.htactive' => 'background-color: {{VALUE}} !important;',

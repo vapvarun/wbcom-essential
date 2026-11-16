@@ -310,7 +310,7 @@ class DashboardIntro extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Greeting Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#122B46',
+				'default'   => 'var(--wbcom-text-color, #122B46)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-essential-dash__prior' => 'color: {{VALUE}};',
 				),

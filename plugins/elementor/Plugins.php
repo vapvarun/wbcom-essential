@@ -185,6 +185,10 @@ class Plugin {
 
 		add_action( 'plugins_loaded', array( $this, 'wbcom_essential_load_plugin' ), 0 );
 		add_action( 'init', array( $this, 'front_css' ) );
+		// The theme colour tokens (Reign, BuddyX, BuddyX Pro, light and dark) that the widgets' colour defaults read.
+		add_action( 'elementor/frontend/after_enqueue_styles', array( $this, 'theme_tokens' ) );
+		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'theme_tokens' ) );
+		add_action( 'elementor/preview/enqueue_styles', array( $this, 'theme_tokens' ) );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_URL', WBCOM_ESSENTIAL_URL . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_PATH', WBCOM_ESSENTIAL_PATH . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH', WBCOM_ESSENTIAL_ELEMENTOR_PATH . 'widgets/' );
@@ -530,6 +534,14 @@ class Plugin {
 		}
 
 		return apply_filters( 'wbcom_essential/get_elements', $elements );
+	}
+
+	/**
+	 * The theme colour tokens (design-tokens.css: Reign, BuddyX and BuddyX Pro, light and dark) on pages Elementor
+	 * builds, in its editor and preview. Widget colour defaults read them, falling back to their old colours.
+	 */
+	public function theme_tokens() {
+		wp_enqueue_style( 'wbe-design-tokens', WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/design-tokens.css', array(), WBCOM_ESSENTIAL_VERSION );
 	}
 
 	/**

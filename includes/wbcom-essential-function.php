@@ -577,17 +577,12 @@ if ( class_exists( 'WooCommerce' ) ) {
 function wbcom_essential_posts_revolution_elementor_thumbs() {
 	global $post;
 
-	if ( has_post_thumbnail() ) {
-		$id_post      = get_the_id();
-		$single_image = wp_get_attachment_image_src( get_post_thumbnail_id( $id_post ), 'wbcom-essential-elementor-type1' );
-		if ( empty( $single_image ) ) {
-			$single_image[0] = WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/images/no-img.png';
-		}
-	} else {
-		$single_image[0] = WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/images/no-img.png';
-	}
+	$single_image = has_post_thumbnail() ? wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'wbcom-essential-elementor-type1' ) : false;
 
-	$return = '<img class="wb-megaposts-thumbs" src="' . $single_image[0] . '" alt="' . get_the_title() . '">';
+	// A post without a photo gets a quiet theme-coloured panel, not an "Image not found!" picture.
+	$return = $single_image
+		? '<img class="wb-megaposts-thumbs" src="' . esc_url( $single_image[0] ) . '" alt="' . esc_attr( get_the_title() ) . '">'
+		: '<span class="wb-megaposts-thumbs wb-megaposts-thumbs--empty" aria-hidden="true"></span>';
 	return apply_filters( 'wbcom_essential_posts_revolution_elementor_thumbs', $return, $post );
 }
 

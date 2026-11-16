@@ -1044,7 +1044,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-heading-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-title' => 'color: {{VALUE}};',
 				),
@@ -1116,7 +1116,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-subtitle' => 'color: {{VALUE}};',
 				),
@@ -1313,7 +1313,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Icon Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-carousel .elementor-swiper-button-prev' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-testimonials-carousel .elementor-swiper-button-next' => 'color: {{VALUE}};',
@@ -1348,7 +1348,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Icon Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-carousel .elementor-swiper-button-prev:hover' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-testimonials-carousel .elementor-swiper-button-next:hover' => 'color: {{VALUE}};',
@@ -1456,7 +1456,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-testimonials-carousel .swiper-pagination-bullet' => 'background-color: {{VALUE}};',
 				),

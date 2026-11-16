@@ -341,7 +341,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#23252a',
+							'default'   => 'var(--wbcom-text-color, #23252a)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a' => 'color: {{VALUE}};',
 							),
@@ -353,7 +353,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Product tab menu background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a' => 'background-color: {{VALUE}} !important;',
 							),
@@ -419,7 +419,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#23252a',
+							'default'   => 'var(--wbcom-text-color, #23252a)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a:hover' => 'color: {{VALUE}};',
 								'{{WRAPPER}} .wb-tab-menus li a.htactive' => 'color: {{VALUE}};',
@@ -432,7 +432,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Product tab menu background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .wb-tab-menus li a:hover' => 'background-color: {{VALUE}} !important;',
 								'{{WRAPPER}} .wb-tab-menus li a.htactive' => 'background-color: {{VALUE}} !important;',
@@ -717,7 +717,7 @@ class ProductTab extends \Elementor\Widget_Base {
 							array(
 								'label'     => __( 'Background Color', 'wbcom-essential' ),
 								'type'      => Controls_Manager::COLOR,
-								'default'   => '#ffffff',
+								'default'   => 'var(--wbcom-card-bg, #ffffff)',
 								'selectors' => array(
 									'{{WRAPPER}} .product-slider .elementor-swiper-button' => 'background-color: {{VALUE}} !important;',
 								),
@@ -769,7 +769,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								array(
 									'label'     => __( 'Background Color', 'wbcom-essential' ),
 									'type'      => Controls_Manager::COLOR,
-									'default'   => '#ffffff',
+									'default'   => 'var(--wbcom-card-bg, #ffffff)',
 									'selectors' => array(
 										'{{WRAPPER}} .product-slider .swiper-pagination-bullet' => 'background-color: {{VALUE}} !important;',
 									),
@@ -819,7 +819,7 @@ class ProductTab extends \Elementor\Widget_Base {
 							array(
 								'label'     => __( 'Color', 'wbcom-essential' ),
 								'type'      => Controls_Manager::COLOR,
-								'default'   => '#23252a',
+								'default'   => 'var(--wbcom-text-color, #23252a)',
 								'selectors' => array(
 									'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'color: {{VALUE}};',
 								),
@@ -831,7 +831,7 @@ class ProductTab extends \Elementor\Widget_Base {
 							array(
 								'label'     => __( 'Background', 'wbcom-essential' ),
 								'type'      => Controls_Manager::COLOR,
-								'default'   => '#ffffff',
+								'default'   => 'var(--wbcom-card-bg, #ffffff)',
 								'selectors' => array(
 									'{{WRAPPER}} .product-slider .elementor-swiper-button:hover' => 'background-color: {{VALUE}} !important;',
 								),
@@ -871,7 +871,7 @@ class ProductTab extends \Elementor\Widget_Base {
 								array(
 									'label'     => __( 'Background Color', 'wbcom-essential' ),
 									'type'      => Controls_Manager::COLOR,
-									'default'   => '#282828',
+									'default'   => 'var(--wbcom-text-color, #282828)',
 									'selectors' => array(
 										'{{WRAPPER}} .product-slider .swiper-pagination-bullet:hover, {{WRAPPER}} .product-slider .swiper-pagination-bullet-active' => 'background-color: {{VALUE}} !important;',
 									),
@@ -965,7 +965,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Product Image Background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-item .product-inner .image-wrap' => 'background-color: {{VALUE}} !important;',
 							),
@@ -1047,7 +1047,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Title color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#444444',
+							'default'   => 'var(--wbcom-heading-color, #444444)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-item .product-inner .content .title a' => 'color: {{VALUE}};',
 							),
@@ -1067,7 +1067,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Price color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#444444',
+							'default'   => 'var(--wbcom-text-color, #444444)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-item .product-inner .content .price ' => 'color: {{VALUE}};',
 								'{{WRAPPER}} .product-item .product-inner .content .price .amount' => 'color: {{VALUE}};',
@@ -1140,7 +1140,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Product content background', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-item .product-inner .product_information_area .content' => 'background-color: {{VALUE}} !important;',
 							),
@@ -1189,7 +1189,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#444444',
+							'default'   => 'var(--wbcom-text-color, #444444)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-item .actions a, {{WRAPPER}} .product-item .woocommerce.compare-button a.button, {{WRAPPER}} .product-item .actions a::before' => 'color: {{VALUE}};',
 							),
@@ -1201,7 +1201,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Background Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-item .actions' => 'background-color: {{VALUE}};',
 							),
@@ -1261,7 +1261,7 @@ class ProductTab extends \Elementor\Widget_Base {
 						array(
 							'label'     => __( 'Background Color', 'wbcom-essential' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => '#ffffff',
+							'default'   => 'var(--wbcom-card-bg, #ffffff)',
 							'selectors' => array(
 								'{{WRAPPER}} .product-item .actions:hover' => 'background-color: {{VALUE}};',
 							),

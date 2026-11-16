@@ -429,7 +429,7 @@ class Forums extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Title/Links Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#122B46',
+				'default'   => 'var(--wbcom-heading-color, #122B46)',
 				'selectors' => array(
 					'{{WRAPPER}} .item-title a' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .wbcom-essential-forums__ww .bs-replied a' => 'color: {{VALUE}}',

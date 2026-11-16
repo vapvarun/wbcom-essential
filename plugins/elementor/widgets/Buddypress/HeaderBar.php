@@ -469,7 +469,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Counter Background Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#1D76dA',
+				'default'   => 'var(--wbcom-color-primary, #1D76dA)',
 				'selectors' => array(
 					'{{WRAPPER}} .notification-wrap span.count' => 'background-color: {{VALUE}}',
 				),
@@ -545,7 +545,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'All Icons', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#303030',
+				'default'   => 'var(--wbcom-text-color, #303030)',
 				'selectors' => array(
 					'{{WRAPPER}} #header-aside.header-aside .header-search-link i'                => 'color: {{VALUE}}',
 					'{{WRAPPER}} #header-aside.header-aside .messages-wrap > a i'                 => 'color: {{VALUE}}',
@@ -895,7 +895,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Dropdown Background Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => 'var(--wbcom-card-bg, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .site-header .sub-menu' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .user-wrap-container > .sub-menu:before' => 'border-color: {{VALUE}} {{VALUE}} transparent transparent',
@@ -957,7 +957,7 @@ class HeaderBar extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Menu Item Background Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => 'var(--wbcom-card-bg, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .site-header .header-aside .sub-menu a:hover, .site-header.site-header--elementor .wbcom-essential-my-account-menu .menu-item-has-children .sub-menu:hover:before' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .site-header .sub-menu .ab-submenu a:hover'   => 'background-color: transparent',

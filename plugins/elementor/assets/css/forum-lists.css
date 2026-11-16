@@ -64,7 +64,7 @@
 	box-shadow: none;
 	margin: 0;
 	padding: 0 10%;
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	border: 0;
 }
 
@@ -88,7 +88,7 @@
 .wbcom-essential-forums {
 	border: 1px solid #e3e3e3;
 	padding: 20px;
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 	position: relative;
 }
 
@@ -247,7 +247,7 @@
 }
 
 .wbcom-essential-forums__ww .bs-replied a {
-	color: #122B46;
+	color: var(--wbcom-text-color, #122b46);
 }
 
 .wbcom-essential-forums__ww .bs-replied a:hover {
