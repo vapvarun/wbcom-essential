@@ -41,7 +41,7 @@ class ProductTab extends \Elementor\Widget_Base {
 
 		wp_register_style( 'wbflexboxgrid', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbflexboxgrid.css', array(), WBCOM_ESSENTIAL_VERSION );
 		wp_register_style( 'wbe-swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/swiper-base.css', array(), WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array( 'wbe-swiper' ), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array( 'wbe-swiper', 'wbcom-essential-icons' ), WBCOM_ESSENTIAL_VERSION );
 
 		wp_register_script( 'swiper', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/swiper.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', array( 'jquery', 'swiper' ), WBCOM_ESSENTIAL_VERSION, true );

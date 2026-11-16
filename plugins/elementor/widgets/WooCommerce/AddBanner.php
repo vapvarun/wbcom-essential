@@ -39,7 +39,7 @@ class AddBanner extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array( 'wbcom-essential-icons' ), WBCOM_ESSENTIAL_VERSION );
 	}
 
 	/**

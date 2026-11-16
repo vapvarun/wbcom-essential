@@ -43,7 +43,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'wb-wc-testimonial', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wc-testimonial.css', [], WBCOM_ESSENTIAL_VERSION );
-		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', [], WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-widgets', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/wbcom-widgets.css', array( 'wbcom-essential-icons' ), WBCOM_ESSENTIAL_VERSION );
 
 		wp_register_script( 'wbcom-widgets-scripts', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/wbcom-widgets-active.js', [ 'jquery' ], WBCOM_ESSENTIAL_VERSION, true );
 	}
