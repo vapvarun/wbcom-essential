@@ -1,8 +1,14 @@
-# BuddyX Pro Theme Guide
+# Using Wbcom Essential with BuddyX Pro
 
-Wbcom Essential is a separate plugin that works with BuddyX Pro. This page shows which blocks and widgets suit common BuddyX Pro sites.
+**Also called:** BuddyX Pro, community theme, member directory, store, business site, which block to use, theme colours.
 
-## Install Wbcom Essential
+## What this does
+
+Wbcom Essential is a separate plugin that works with BuddyX Pro. This page shows which blocks and widgets suit common BuddyX Pro sites: community, store, downloads and business.
+
+## Steps
+
+### Install Wbcom Essential
 
 1. Download the plugin from [wbcomdesigns.com](https://wbcomdesigns.com/downloads/wbcom-essential/).
 2. Go to **Plugins > Add New > Upload Plugin**.
@@ -10,7 +16,7 @@ Wbcom Essential is a separate plugin that works with BuddyX Pro. This page shows
 
 Wbcom Essential is not on WordPress.org, so do not search for it in **Plugins > Add New**.
 
-## Blocks and Widgets by Site Type
+## Blocks and widgets by site type
 
 ### Community
 
@@ -30,18 +36,24 @@ Wbcom Essential is not on WordPress.org, so do not search for it in **Plugins > 
 
 ### Digital Downloads
 
-If you sell with Easy Digital Downloads, use the EDD blocks: Product Catalog, Account Dashboard, Order Success and the checkout section blocks. See [EDD Blocks](../blocks/edd-blocks.md).
+If you sell with Easy Digital Downloads, use the EDD blocks: Product Catalog, Account Dashboard, Order Success and the checkout section blocks. See [EDD blocks](../blocks/edd-blocks.md).
 
 ### Business
 
-Use Hero Section, Feature Grid, Pricing Table, FAQ Accordion and CTA Section. See [Marketing Blocks](../blocks/marketing-blocks.md) and [Content Blocks](../blocks/content-blocks.md).
+Use Hero Section, Feature Grid, Pricing Table, FAQ Accordion and CTA Section. See [Marketing blocks](../blocks/marketing-blocks.md) and [Content blocks](../blocks/content-blocks.md).
 
-## Colours in Blocks
+## You'll know it worked when
 
-Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Theme Colors](../features/theme-colors.md).
+The plugin shows as active, and the blocks you add use your BuddyX Pro colours.
+
+## Good to know
+
+### Do blocks use my theme's colours?
+
+Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Match your theme's colours](../features/theme-colors.md).
 
 ## Related
 
-- [BuddyX Theme Guide](buddyx-theme-guide.md)
-- [WooCommerce Integration](woocommerce-integration.md)
-- [Blocks Overview](../blocks/blocks-overview.md)
+- [Using Wbcom Essential with BuddyX](buddyx-theme-guide.md)
+- [Shop blocks and widgets](woocommerce-integration.md)
+- [Blocks overview](../blocks/blocks-overview.md)

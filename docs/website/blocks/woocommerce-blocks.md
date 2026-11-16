@@ -1,14 +1,18 @@
-# WooCommerce Blocks
+# WooCommerce Blocks (Product slider, product grid, reviews)
 
-WooCommerce blocks show your store's products and customer reviews on any page. They appear in the block inserter under **Essential - WooCommerce** and work only when WooCommerce is active. Without it they still appear in the inserter and show a notice.
+**Also called:** product slider, product carousel, product grid, shop grid, featured products, best sellers, store reviews, customer reviews slider.
 
-If WooCommerce is not active, these blocks show the notice "WooCommerce plugin is required for this block."
+This page covers three blocks that show your shop: **Customer Reviews** (a review slider), **Product Carousel** (a product slider) and **Product Grid**. They appear in the block inserter under **Essential - WooCommerce**. They need WooCommerce.
+
+If WooCommerce is not active, these blocks show a notice that says "WooCommerce plugin is required for this block".
 
 Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
 ## Customer Reviews
 
-WooCommerce product reviews in a Swiper carousel, with the reviewer's avatar, star rating, name and a link to the product. Block name: `wbcom-essential/customer-reviews`.
+WooCommerce product reviews in a Swiper carousel, with the reviewer's avatar, star rating, name and a link to the product.
+
+**What it is for:** Use it to show store reviews in a slider as proof that people buy from you.
 
 ### Add it
 
@@ -40,14 +44,17 @@ WooCommerce product reviews in a Swiper carousel, with the reviewer's avatar, st
 
 ### Tips
 
-- If your store has no reviews yet, the block shows "No reviews found."
-- The arrows sit beside the cards, not over the review text. On right-to-left sites the previous arrow is on the right and the next arrow on the left.
-- Cards in the same row share one height, so a short review does not leave a shorter card next to a long one.
+- The block says "No reviews found" if your store has no reviews yet.
+- The arrows sit beside the cards, not over the review text.
+- On right-to-left sites the previous arrow is on the right and the next arrow on the left.
+- Cards in the same row share one height. A short review never sits next to a taller card.
 - Colors left empty follow your theme in light and dark mode. Pick a color to override it.
 
 ## Product Carousel
 
-WooCommerce products in a Swiper carousel with autoplay, arrows, dots and a number of slides that adapts to the screen. Block name: `wbcom-essential/product-carousel`.
+WooCommerce products in a Swiper carousel with autoplay, arrows, dots and a number of slides that adapts to the screen.
+
+**What it is for:** Use it to show products in a slider, such as new arrivals or best sellers.
 
 ### Add it
 
@@ -84,13 +91,17 @@ WooCommerce products in a Swiper carousel with autoplay, arrows, dots and a numb
 
 ### Tips
 
-- If no product matches, the block shows "No products found."
-- Products you hide from the shop (catalog visibility set to Hidden or Search results only) are left out, and so are out-of-stock products when WooCommerce is set to hide them (WooCommerce > Settings > Products > Inventory > Out of stock visibility). The block shows what your shop pages show.
+- The block says "No products found" if no product matches.
+- Hidden products are left out. That means products with catalog visibility set to Hidden or Search results only.
+- Sold-out products are left out when WooCommerce is set to hide them. Check **WooCommerce > Settings > Products > Inventory > Out of stock visibility**.
+- The block shows what your shop pages show.
 - Colors left empty follow your theme in light and dark mode. Pick a color to override it.
 
 ## Product Grid
 
-WooCommerce products in a responsive grid with a sale badge, star rating and add-to-cart button. Block name: `wbcom-essential/product-grid`.
+WooCommerce products in a responsive grid with a sale badge, star rating and add-to-cart button.
+
+**What it is for:** Use it to list products in a grid on any page, outside your main shop page.
 
 ### Add it
 
@@ -129,6 +140,32 @@ WooCommerce products in a responsive grid with a sale badge, star rating and add
 
 ### Tips
 
-- If no product matches, the block shows "No products found."
-- Products you hide from the shop (catalog visibility set to Hidden or Search results only) are left out, and so are out-of-stock products when WooCommerce is set to hide them (WooCommerce > Settings > Products > Inventory > Out of stock visibility). The block shows what your shop pages show.
+- The block says "No products found" if no product matches.
+- Hidden products are left out. That means products with catalog visibility set to Hidden or Search results only.
+- Sold-out products are left out when WooCommerce is set to hide them. Check **WooCommerce > Settings > Products > Inventory > Out of stock visibility**.
+- The block shows what your shop pages show.
 - Colors left empty follow your theme in light and dark mode. Pick a color to override it.
+
+## You'll know it worked when
+
+View the page while WooCommerce is active. You see your real products or reviews with prices and buttons.
+
+## Good to know
+
+### Why is a product missing from the block?
+
+Hidden products are left out. So are sold-out products if WooCommerce hides them. The block follows your shop page.
+
+### Can I match my theme colours?
+
+Yes. Leave a colour empty and it follows your theme, in light and dark mode.
+
+## For developers
+
+Each block has an internal name, used in block markup and code.
+
+| Block | Internal name |
+|-------|---------------|
+| Customer Reviews | `wbcom-essential/customer-reviews` |
+| Product Carousel | `wbcom-essential/product-carousel` |
+| Product Grid | `wbcom-essential/product-grid` |

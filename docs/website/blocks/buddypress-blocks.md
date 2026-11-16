@@ -1,14 +1,18 @@
-# BuddyPress Blocks
+# BuddyPress Blocks (Activity feed, member grid, group slider)
 
-BuddyPress blocks show your community on any page: the activity stream, groups and members, as grids or carousels. They appear in the block inserter under **Essential - BuddyPress** and work only when BuddyPress or BuddyBoss Platform is active. Without it they still appear in the inserter and show a notice.
+**Also called:** activity feed, community stream, member grid, member directory, members slider, group list, group slider, groups directory.
 
-If BuddyPress is not active, these blocks show the notice "BuddyPress is required for this block."
+This page covers five blocks that show your community. They are **Activity Feed**, **Group Carousel** (a group slider), **Groups Grid**, **Members Carousel** (a member slider) and **Members Grid**. They appear in the block inserter under **Essential - BuddyPress**. They need BuddyPress or BuddyBoss Platform.
+
+If BuddyPress is not active, these blocks show a notice that says "BuddyPress is required for this block".
 
 Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
 ## Activity Feed
 
-A BuddyPress activity stream with cards, type icons, relative timestamps and interaction counts. Block name: `wbcom-essential/activity-feed`.
+A BuddyPress activity stream with cards, type icons, relative timestamps and interaction counts.
+
+**What it is for:** Use it to show what members are doing in your community.
 
 ### Add it
 
@@ -42,12 +46,14 @@ A BuddyPress activity stream with cards, type icons, relative timestamps and int
 
 ### Tips
 
-- If there is no activity to show, the block shows "No activity to show yet."
+- The block says "No activity to show yet" if there is no activity to show.
 - The feed includes a Load More button for older items.
 
 ## Group Carousel
 
-BuddyPress groups in a Swiper carousel with autoplay, arrows, dots and a join button. Block name: `wbcom-essential/group-carousel`.
+BuddyPress groups in a Swiper carousel with autoplay, arrows, dots and a join button.
+
+**What it is for:** Use it to show your groups in a slider, with a button to join.
 
 ### Add it
 
@@ -80,12 +86,14 @@ BuddyPress groups in a Swiper carousel with autoplay, arrows, dots and a join bu
 
 ### Tips
 
-- If no group is found, the block shows "No groups found."
+- The block says "No groups found" if no group is found.
 - The join button needs the Groups component to be active.
 
 ## Groups Grid
 
-BuddyPress groups in a responsive grid. Block name: `wbcom-essential/groups-grid`.
+BuddyPress groups in a responsive grid.
+
+**What it is for:** Use it to list your groups in a grid on any page.
 
 ### Add it
 
@@ -115,7 +123,9 @@ BuddyPress groups in a responsive grid. Block name: `wbcom-essential/groups-grid
 
 ## Members Carousel
 
-BuddyPress members in a Swiper carousel. Block name: `wbcom-essential/members-carousel`.
+BuddyPress members in a Swiper carousel.
+
+**What it is for:** Use it to show your members in a slider.
 
 ### Add it
 
@@ -149,11 +159,12 @@ BuddyPress members in a Swiper carousel. Block name: `wbcom-essential/members-ca
 ### Tips
 
 - The friend button needs the Friends component to be active.
-- If no member is found, the block shows "No members found."
-
+- The block says "No members found" if no member is found.
 ## Members Grid
 
-BuddyPress members in a responsive grid. Block name: `wbcom-essential/members-grid`.
+BuddyPress members in a responsive grid.
+
+**What it is for:** Use it to list your members in a grid on any page, such as a directory.
 
 ### Add it
 
@@ -182,4 +193,29 @@ BuddyPress members in a responsive grid. Block name: `wbcom-essential/members-gr
 ### Tips
 
 - The friend button needs the Friends component to be active.
-- If no member is found, the block shows "No members found."
+- The block says "No members found" if no member is found.
+## You'll know it worked when
+
+View the page while BuddyPress is active. You see real members, groups or activity from your site.
+
+## Good to know
+
+### Why does the block show a notice instead of members?
+
+BuddyPress or BuddyBoss Platform is not active. Turn it on and reload.
+
+### Why is there no friend or join button?
+
+The Friends or Groups component must be active in BuddyPress, and the visitor must be logged in.
+
+## For developers
+
+Each block has an internal name, used in block markup and code.
+
+| Block | Internal name |
+|-------|---------------|
+| Activity Feed | `wbcom-essential/activity-feed` |
+| Group Carousel | `wbcom-essential/group-carousel` |
+| Groups Grid | `wbcom-essential/groups-grid` |
+| Members Carousel | `wbcom-essential/members-carousel` |
+| Members Grid | `wbcom-essential/members-grid` |

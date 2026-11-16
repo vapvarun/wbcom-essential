@@ -1,12 +1,16 @@
-# Design Blocks
+# Design Blocks (Flip card, progress bars, counters, rotating text)
 
-Design blocks add motion and visual interest to a page: a flip card, animated progress bars, counting numbers and rotating text. They appear in the block inserter under **Essential - Design** and need no other plugin.
+**Also called:** flip card, hover card, skill bars, percentage bars, number counter, animated numbers, rotating headline, typing text.
+
+This page covers four blocks that add motion to a page. They are **Flip Box** (a flip card), **Progress Bar** (skill bars), **Stats Counter** (counting numbers) and **Text Rotator** (a headline with changing words). They appear in the block inserter under **Essential - Design** and need no other plugin.
 
 Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
 ## Flip Box
 
-A card that flips on hover to show a back face with a title, description and button. Block name: `wbcom-essential/flip-box`.
+A card that flips on hover to show a back face with a title, description and button.
+
+**What it is for:** Use it for a feature, team member or offer card that shows more on hover.
 
 ### Add it
 
@@ -35,7 +39,9 @@ A card that flips on hover to show a back face with a title, description and but
 
 ## Progress Bar
 
-Horizontal progress bars that fill when they scroll into view. Use them for skills, goals or any percentage. Block name: `wbcom-essential/progress-bar`.
+Horizontal progress bars that fill when they scroll into view. Use them for skills, goals or any percentage.
+
+**What it is for:** Use it to show skills, goals or any percentage as filling bars.
 
 ### Add it
 
@@ -63,7 +69,9 @@ Horizontal progress bars that fill when they scroll into view. Use them for skil
 
 ## Stats Counter
 
-Numbers that count up when they scroll into view, shown in a responsive grid. Block name: `wbcom-essential/stats-counter`.
+Numbers that count up when they scroll into view, shown in a responsive grid.
+
+**What it is for:** Use it to show big numbers, such as customers served or years in business.
 
 ### Add it
 
@@ -89,7 +97,9 @@ Numbers that count up when they scroll into view, shown in a responsive grid. Bl
 
 ## Text Rotator
 
-A headline where one phrase changes in turn. Pick a fade, slide or typing effect. Block name: `wbcom-essential/text-rotator`.
+A headline where one phrase changes in turn. Pick a fade, slide or typing effect.
+
+**What it is for:** Use it for a headline where one phrase swaps for another, such as designers then makers.
 
 ### Add it
 
@@ -113,3 +123,28 @@ A headline where one phrase changes in turn. Pick a fade, slide or typing effect
 | Style | Text Color | Color of the fixed text. | #1e1e2e |
 | Style | Rotating Text Color | Color of the rotating phrase. | #667eea |
 | Style | Border Radius, Box Shadow | Rounds the block corners and adds a shadow. | Shadow off |
+
+## You'll know it worked when
+
+Add the block, then view the page. The card flips on hover. Bars and numbers animate as they scroll into view. The headline words change in turn.
+
+## Good to know
+
+### How do I stop the animation?
+
+Turn off **Animate on Scroll** in Progress Bar. The bars then show full from the start.
+
+### Can I use my own icon on the Flip Box?
+
+Yes. Paste an emoji or an icon character into **Icon / Emoji**.
+
+## For developers
+
+Each block has an internal name, used in block markup and code.
+
+| Block | Internal name |
+|-------|---------------|
+| Flip Box | `wbcom-essential/flip-box` |
+| Progress Bar | `wbcom-essential/progress-bar` |
+| Stats Counter | `wbcom-essential/stats-counter` |
+| Text Rotator | `wbcom-essential/text-rotator` |

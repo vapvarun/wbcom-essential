@@ -1,6 +1,10 @@
 # Set up the plugins Wbcom Essential works with
 
-The blocks and widgets in Wbcom Essential show real content only when the plugin behind them is set up. This page covers what to install and which setting or page matters for Wbcom Essential, plugin by plugin. Each section ends with a quick check that it works.
+**Also called:** BuddyPress setup, WooCommerce setup, store setup, community setup, forum setup, Easy Digital Downloads setup, Elementor setup, required plugins, block shows a notice.
+
+## What this does
+
+Some blocks and widgets show real content only when the plugin behind them is set up. This page covers five plugins: BuddyPress (community), bbPress (forums), WooCommerce (shop), Easy Digital Downloads (downloads) and Elementor (widgets). For each one it says what to install and which setting matters. Each section ends with a quick check, marked **You'll know it worked when**.
 
 You only need the plugins for the blocks and widgets you plan to use.
 
@@ -30,7 +34,7 @@ You only need the plugins for the blocks and widgets you plan to use.
 
 ![Settings > BuddyPress > Components with Members, Groups, Activity, Friends, Notifications and Messages ticked](../images/buddypress-components-tab.webp)
 
-**Check it works:**
+**You'll know it worked when:**
 
 1. Add a **Members Grid** block to a page and preview it.
 2. You should see member cards. If you see "BuddyPress is required for this block", BuddyPress is not active.
@@ -40,9 +44,9 @@ Learn more in the [BuddyPress documentation](https://codex.buddypress.org/).
 
 ## BuddyNext sites
 
-The 5 community blocks (Activity Feed, Members Grid, Members Carousel, Groups Grid and Group Carousel) and the BuddyPress widgets need BuddyPress or BuddyBoss Platform. Each one checks that BuddyPress is loaded before it draws anything. BuddyNext is a separate community platform and does not load BuddyPress, so Wbcom Essential has no BuddyNext support: on a BuddyNext site without BuddyPress or BuddyBoss, those blocks show "BuddyPress is required for this block." and the BuddyPress widgets do not appear.
+The 5 community blocks (Activity Feed, Members Grid, Members Carousel, Groups Grid and Group Carousel) and the BuddyPress widgets need BuddyPress or BuddyBoss Platform. Each one checks that BuddyPress is loaded before it draws anything. BuddyNext is a separate community platform and does not load BuddyPress. So Wbcom Essential has no BuddyNext support. On a BuddyNext site without BuddyPress or BuddyBoss, those blocks show "BuddyPress is required for this block." The BuddyPress widgets do not appear.
 
-Everything else works on a BuddyNext site, because it does not depend on the community plugin: the design, content, blog and marketing blocks, and the WooCommerce and Easy Digital Downloads blocks when those plugins are active. Use BuddyNext's own blocks for members, groups and activity.
+Everything else works on a BuddyNext site, because it does not depend on the community plugin. That covers the design, content, blog and marketing blocks. It also covers the WooCommerce and Easy Digital Downloads blocks when those plugins are active. Use BuddyNext's own blocks for members, groups and activity.
 
 Do not run BuddyPress next to BuddyNext only to make the community blocks show. See [BuddyPress Integration](../themes/buddypress-integration.md) for what the blocks need.
 
@@ -52,7 +56,7 @@ Do not run BuddyPress next to BuddyNext only to make the community blocks show. 
 
 **What matters for Wbcom Essential:** only that bbPress is active. The **Forums** and **Forums Activity** Elementor widgets are registered only when bbPress is active, and they also need BuddyPress. Create at least one forum under **Forums > New Forum** so the widgets have something to list.
 
-**Check it works:**
+**You'll know it worked when:**
 
 1. Edit a page with Elementor.
 2. Search the panel for **Forums**. The widget appears under **Wbcom Essential**.
@@ -66,7 +70,7 @@ Learn more in the [bbPress documentation](https://codex.bbpress.org/).
 
 **Install:** go to **Plugins > Add New**, search for WooCommerce, then install and activate it. Run its setup wizard so the shop pages are created.
 
-**What matters for Wbcom Essential:**
+**What matters for Wbcom Essential:** these four settings.
 
 - **Shop pages.** Go to **WooCommerce > Settings > Advanced** and open **Page setup** to confirm the Shop, Cart and Checkout pages are set.
 - **Hidden products.** On a product's edit screen, **Catalog visibility** in the Publish box controls where the product shows. Product Grid and Product Carousel leave out products whose visibility hides them from the shop.
@@ -79,7 +83,7 @@ Learn more in the [bbPress documentation](https://codex.bbpress.org/).
 
 ![WooCommerce Settings > Advanced > Page setup with the Cart, Checkout and My account pages set](../images/woocommerce-page-setup.webp)
 
-**Check it works:**
+**You'll know it worked when:**
 
 1. Add a **Product Grid** block to a page.
 2. Mark one product as hidden (Catalog visibility: Hidden) and update it.
@@ -105,7 +109,7 @@ To set a page, choose it in the dropdown next to the setting and click **Save Ch
 
 ![Downloads > Settings > General > Pages with the store pages chosen](../images/edd-pages-settings.webp)
 
-**Check it works:**
+**You'll know it worked when:**
 
 1. Open your checkout page with a download in the cart. The checkout blocks show. With an empty cart, Checkout Recommendations shows nothing.
 2. Buy a free download. Open the Receipt Page from the purchase confirmation. The Order Success block shows the receipt.
@@ -119,7 +123,7 @@ Learn more in the [Easy Digital Downloads documentation](https://easydigitaldown
 
 **What matters for Wbcom Essential:** Elementor is needed only for the widgets. The 35 blocks work in the block editor without it. If Elementor is missing, you see a dismissible notice you can ignore.
 
-**Check it works:**
+**You'll know it worked when:**
 
 1. Edit any page with **Edit with Elementor**.
 2. Find the **Wbcom Essential** category in the widget panel.

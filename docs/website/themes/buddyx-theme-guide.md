@@ -1,8 +1,14 @@
-# BuddyX Theme Guide
+# Using Wbcom Essential with BuddyX
 
-Wbcom Essential is a separate plugin that works with BuddyX. This page shows which blocks and widgets suit common BuddyX sites.
+**Also called:** BuddyX, community theme, community home page, blog page, magazine page, landing page, which block to use.
 
-## Install Wbcom Essential
+## What this does
+
+Wbcom Essential is a separate plugin that works with BuddyX. This page shows which blocks and widgets suit a community home page, a blog or magazine page and a landing page.
+
+## Steps
+
+### Install Wbcom Essential
 
 1. Download the plugin from [wbcomdesigns.com](https://wbcomdesigns.com/downloads/wbcom-essential/).
 2. Go to **Plugins > Add New > Upload Plugin**.
@@ -10,7 +16,7 @@ Wbcom Essential is a separate plugin that works with BuddyX. This page shows whi
 
 Wbcom Essential is not on WordPress.org, so do not search for it in **Plugins > Add New**.
 
-## Blocks and Widgets by Page
+## Blocks and widgets by page
 
 ### Community Homepage
 
@@ -33,14 +39,20 @@ Wbcom Essential is not on WordPress.org, so do not search for it in **Plugins > 
 
 ### Landing Page
 
-Use Hero Section, Feature Grid, Pricing Table, Testimonial Carousel and CTA Section. See [Landing Page Tutorial](landing-page-tutorial.md).
+Use Hero Section, Feature Grid, Pricing Table, Testimonial Carousel and CTA Section. See [Build a landing page](landing-page-tutorial.md).
 
-## Colours in Blocks
+## You'll know it worked when
 
-Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Theme Colors](../features/theme-colors.md).
+The plugin shows as active, and the blocks you add use your BuddyX colours.
+
+## Good to know
+
+### Do blocks use my theme's colours?
+
+Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Match your theme's colours](../features/theme-colors.md).
 
 ## Related
 
-- [BuddyX Pro Theme Guide](buddyx-pro-theme-guide.md)
-- [BuddyPress Integration](buddypress-integration.md)
-- [Blocks Overview](../blocks/blocks-overview.md)
+- [Using Wbcom Essential with BuddyX Pro](buddyx-pro-theme-guide.md)
+- [Community blocks and widgets](buddypress-integration.md)
+- [Blocks overview](../blocks/blocks-overview.md)

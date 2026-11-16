@@ -1,8 +1,14 @@
-# Installation Guide
+# Install the plugin (Installation guide)
+
+**Also called:** install, download, upload plugin, plugin not found, zip file, FTP, requirements, update.
+
+## What this does
 
 Wbcom Essential is free, but it is not listed on WordPress.org. Do not search **Plugins > Add New** for it. Use one of the methods below.
 
-## Requirements
+## Before you start
+
+Check that your site meets these minimums.
 
 | Requirement | Minimum |
 |-------------|---------|
@@ -12,13 +18,15 @@ Wbcom Essential is free, but it is not listed on WordPress.org. Do not search **
 | BuddyPress | 10.0, only for BuddyPress blocks and widgets |
 | WooCommerce | 7.0, only for WooCommerce blocks and widgets |
 
-## Install with Reign
+## Steps
+
+### Install with Reign
 
 1. Go to **Reign Settings > Extend**.
 2. Find **Wbcom Essential**.
 3. Click the install button, then activate the plugin.
 
-## Install from a ZIP File
+### Install from a ZIP file
 
 Use this method for BuddyX, BuddyX Pro, or any other theme.
 
@@ -27,13 +35,15 @@ Use this method for BuddyX, BuddyX Pro, or any other theme.
 3. Choose the downloaded ZIP file and click **Install Now**.
 4. Click **Activate Plugin**.
 
-## Install by FTP
+### Install by FTP
 
 1. Download the plugin and unzip it.
 2. Upload the `wbcom-essential` folder to `/wp-content/plugins/`.
 3. Go to **Plugins > Installed Plugins** and click **Activate**.
 
-## Optional Plugins
+## Good to know
+
+### Which other plugins do I need?
 
 Install these only for the features you need.
 
@@ -45,18 +55,27 @@ Install these only for the features you need.
 | Easy Digital Downloads | EDD blocks |
 | bbPress | Forums widgets |
 
-Gutenberg blocks work without Elementor. If Elementor is missing, the plugin shows a dismissible notice. You can ignore it.
+Blocks work without Elementor. If Elementor is missing, the plugin shows a notice you can dismiss and ignore.
 
-## Verify the Installation
+### How do I update it?
 
-Follow [After Installation](../intro/after-installation.md).
+Updates appear under **Dashboard > Updates** like any other plugin. You can also reinstall the latest ZIP from the download page.
 
-## Updates
+### Does the plugin contact another server?
 
-Updates appear under **Dashboard > Updates** like any other plugin. Update from your admin or reinstall the latest ZIP from the download page.
+Yes, once. Shortly after activation, Wbcom Essential asks the Wbcom Designs update server to authorise updates. It asks again until it succeeds. It sends the plugin's licence key, the product id and your site address (home URL). It sends nothing else, and no visitor or user data.
 
-To authorise those updates, Wbcom Essential contacts the Wbcom Designs update server (updates.wbcomdesigns.com, or the store at wbcomdesigns.com when that server cannot be reached) once, shortly after activation, and again until it succeeds. It sends the plugin's licence key, the product id and your site address (home URL), and nothing else: no visitor or user data. The licence is used only for updates. No feature depends on it, and the plugin works the same if the request fails. If it keeps failing, an admin notice offers a **Retry** button. See the [privacy policy](https://wbcomdesigns.com/privacy-policy/) and [Updates and Licence](../features/updates-and-licence.md).
+The licence is used only for updates. No feature depends on it, and the plugin works the same if the request fails. If it keeps failing, an admin notice offers a **Retry** button. See the [privacy policy](https://wbcomdesigns.com/privacy-policy/) and [Plugin updates and licence key](../features/updates-and-licence.md).
 
-## Troubleshooting
+## You'll know it worked when
 
-See [Common Mistakes](common-mistakes.md) and [Troubleshooting](../troubleshooting/troubleshooting.md).
+The plugin shows as active under **Plugins > Installed Plugins**, and a **Wbcom Designs** item appears in the admin menu. Then follow [Check that it works](../intro/after-installation.md).
+
+## For developers
+
+Update checks go to `updates.wbcomdesigns.com`. If that server cannot be reached, the plugin falls back to `wbcomdesigns.com`.
+
+## Related
+
+- [Common mistakes](common-mistakes.md)
+- [Troubleshooting](../troubleshooting/troubleshooting.md)

@@ -1,4 +1,6 @@
-# Frequently Asked Questions
+# Frequently asked questions (FAQ)
+
+**Also called:** questions and answers, is it free, do I need Elementor, does it work with my theme, where to download, BuddyBoss, block editor.
 
 ## Is Wbcom Essential free?
 
@@ -6,7 +8,7 @@ Yes. It is free and part of the Reign, BuddyX and BuddyX Pro themes.
 
 ## Where do I download it?
 
-Download it from [wbcomdesigns.com/downloads/wbcom-essential](https://wbcomdesigns.com/downloads/wbcom-essential/). It is not on WordPress.org, so it does not appear in **Plugins > Add New** searches. In Reign, install it from **Reign Settings > Extend**. See the [Installation Guide](../installation/installation-guide.md).
+Download it from [wbcomdesigns.com/downloads/wbcom-essential](https://wbcomdesigns.com/downloads/wbcom-essential/). It is not on WordPress.org, so it does not appear in **Plugins > Add New** searches. In Reign, install it from **Reign Settings > Extend**. See the [installation guide](../installation/installation-guide.md).
 
 ## Do I need Elementor?
 
@@ -14,15 +16,15 @@ No. The 35 Gutenberg blocks work without Elementor. Install Elementor only if yo
 
 ## Does it work with any theme?
 
-Yes. Blocks and widgets work with any properly coded theme. The plugin is not bundled with any theme. Reign installs it in one click from **Reign Settings > Extend**; on BuddyX and BuddyX Pro you upload the ZIP. One widget, Header Notification Area, appears only with Reign.
+Yes. Blocks and widgets work with any properly coded theme. The plugin is not bundled with any theme. Reign installs it in one click from **Reign Settings > Extend**. On BuddyX and BuddyX Pro you upload the ZIP. One widget, Header Notification Area, appears only with Reign.
 
 ## Does it work with BuddyBoss Platform?
 
-Yes. The BuddyPress blocks build their data requests from the platform's own REST namespace, so they work with BuddyPress and BuddyBoss Platform. See [BuddyPress Integration](../themes/buddypress-integration.md).
+Yes. The BuddyPress blocks build their data requests from the platform's own REST namespace, so they work with BuddyPress and BuddyBoss Platform. See [Community blocks and widgets](../themes/buddypress-integration.md).
 
 ## What if BuddyPress, WooCommerce or EDD is not active?
 
-The block still exists, but it shows a short notice such as "BuddyPress is required for this block" instead of content. Activate the plugin it needs. Elementor widgets for BuddyPress and WooCommerce do not load at all until those plugins are active. Forums widgets also need bbPress.
+The block still exists, but it shows a short notice such as "BuddyPress is required for this block" instead of content. Activate the plugin it needs. The Elementor widgets for BuddyPress and WooCommerce do not load at all until those plugins are active. The forum widgets also need bbPress.
 
 | Plugin | Blocks | Widgets |
 |--------|--------|---------|
@@ -40,15 +42,15 @@ Yes. Use blocks on pages built in the block editor and widgets on pages built in
 
 ## Will blocks look right on phones?
 
-Every block has Desktop, Tablet and Mobile controls. See [Responsive Design](../features/responsive-design.md).
+Every block has Desktop, Tablet and Mobile controls. See [Phone and tablet layouts](../features/responsive-design.md).
 
 ## How do blocks pick up my theme colours?
 
-On Reign, BuddyX and BuddyX Pro, block and widget colours you have not changed follow the theme in light and dark mode. A colour you pick yourself is used as you set it. A few blocks, such as Hero Section and Pricing Table, keep their own colours until you change them. See [Theme Colors](../features/theme-colors.md).
+On Reign, BuddyX and BuddyX Pro, block and widget colours you have not changed follow the theme in light and dark mode. A colour you pick yourself is used as you set it. A few blocks, such as Hero Section and Pricing Table, keep their own colours until you change them. See [Match your theme's colours](../features/theme-colors.md).
 
 ## Which block should I use?
 
-See the [Solution Finder](../features/solution-finder.md) or [Blocks Overview](../blocks/blocks-overview.md).
+See the [Which block or widget to use](../features/solution-finder.md) or [Blocks overview](../blocks/blocks-overview.md).
 
 ## Something is not working
 

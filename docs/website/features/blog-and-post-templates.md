@@ -1,14 +1,25 @@
-# Blog Layouts and Post Templates
+# Blog page and post layouts (Blog layouts and post templates)
 
-Wbcom Essential can change how your blog page, archives and single posts look, without a page builder. You choose a layout in the plugin settings, and you can override the single post template on any post.
+**Also called:** blog layout, news page, post template, single post layout, magazine layout, newspaper layout, archive layout, table of contents.
 
-Both settings are on one screen: go to **Wbcom Designs > Essential** in the admin menu and open the **Settings** tab. Click **Save Changes** at the bottom. The **Overview** tab next to it shows how many blocks and widgets are available.
+## What this does
+
+Wbcom Essential can change how your blog page, archives and single posts look, without a page builder. You choose a layout in the plugin settings. You can also override the post layout on any one post.
+
+## Steps
+
+1. In the admin menu, go to **Wbcom Designs > Essential**.
+2. Open the **Settings** tab.
+3. Choose your layouts, as described below.
+4. Click **Save Changes** at the bottom.
+
+The **Overview** tab next to it shows how many blocks and widgets are available.
 
 ![The Settings tab with the Post Templates and Blog Index sections](../images/blog-settings-post-templates-blog-index.webp)
 
-## Default single post template
+## Post layout for every post
 
-Under **Post Templates**, **Default Single Post Template** sets the layout every single blog post uses.
+Under **Post Templates**, **Default Single Post Template** sets the layout every blog post uses.
 
 | Choice | What visitors see |
 |--------|-------------------|
@@ -30,28 +41,28 @@ Under **Post Templates**, **Default Single Post Template** sets the layout every
 
 The templates apply to the standard **Post** type only. Pages and other post types keep your theme's layout.
 
-### Change one post
+### Change the layout of one post
 
 1. Edit the post.
 2. Find the **Post Template** box on the post edit screen.
-3. Choose one of: **Global Default** (follow the site setting), **Classic**, **Magazine**, **Minimal**, **Modern** or **None** (use the theme default for this post, even if a site default is set).
+3. Choose one of **Global Default**, **Classic**, **Magazine**, **Minimal**, **Modern** or **None**. **Global Default** follows the site setting. **None** uses the theme default for this post, even if a site default is set.
 4. Update the post.
 
 The box shows the current site default so you can see what **Global Default** means.
 
 ![The Post Template box on the post edit screen with its six options](../images/post-template-metabox.webp)
 
-### The Modern template's table of contents
+### How does the table of contents work in the Modern layout?
 
 The table of contents lists the post's headings. When two headings have the same text, each link goes to its own heading.
 
-## Blog index layout
+## Blog page layout
 
 Under **Blog Index**, set how your posts page and archives look.
 
 | Setting | What it does |
 |---------|--------------|
-| Blog Layout | None (Use Theme Default), Grid (Card Layout), List (Horizontal Cards), Magazine (Multi-Section) or Newspaper (Breaking News). Applies to the main blog page and category, tag, author and date archives. Magazine and Newspaper are built for the main blog page; on archives they show that archive's posts in the Grid layout. |
+| Blog Layout | None (Use Theme Default), Grid (Card Layout), List (Horizontal Cards), Magazine (Multi-Section) or Newspaper (Breaking News). Applies to the main blog page and to category, tag, author and date archives. Magazine and Newspaper are built for the main blog page. On archives they show that archive's posts as a grid. |
 | Posts Per Page | How many posts per page, 0 to 50. 0 uses the WordPress default. Applies to the Grid and List layouts, and to archives. In Magazine and Newspaper each section sets its own count, and the last section carries the page numbers. |
 | Layout Options | Extra switches for the chosen layout, described below. |
 | Content Sections | The sections of a Magazine or Newspaper layout, described below. |
@@ -75,7 +86,7 @@ Under **Blog Index**, set how your posts page and archives look.
 
 ![Blog page in the Newspaper layout: breaking news ticker above a hero slider, then the first two sections side by side](../images/blog-layout-newspaper.webp)
 
-Every layout follows the theme's colours, including dark mode, and stacks to one column on phones.
+Every layout follows the theme's colours, including dark mode. On phones, every layout stacks to one column.
 
 ![Settings tab with the Magazine layout selected, showing Layout Options and the Content Sections rows](../images/blog-settings-magazine-layout.webp)
 
@@ -90,10 +101,14 @@ Magazine and Newspaper build the page from sections. Each section is a row with:
 - **Display Style**: Hero + Sidebar, Featured + List, Grid (Columns), Side by Side, Hero + Text Sidebar, Magazine (1+3+Rest) or Two Featured + List.
 - **Posts**: how many posts the section shows, 1 to 20.
 
-Click **Add Section** to add a row, drag a row by its handle to reorder it, and use the bin icon to remove it. With **Auto**, the plugin picks categories that have posts, so the sections are never empty. Each layout starts with a ready set of sections you can edit.
+Click **Add Section** to add a row. Drag a row by its handle to reorder it. Use the bin icon to remove it. With **Auto**, the plugin picks categories that have posts, so the sections are never empty. Each layout starts with a ready set of sections you can edit.
+
+## You'll know it worked when
+
+Your blog page shows the layout you picked, and a single post shows its template. Reload the page after you save.
 
 ## Related
 
-- [Block Patterns](block-patterns.md) for ready-made blog and post sections
-- [Blog Blocks](../blocks/blog-blocks.md)
-- [Theme Colors](theme-colors.md)
+- [Ready-made page sections (Block patterns)](block-patterns.md) for ready-made blog and post sections
+- [Blog blocks](../blocks/blog-blocks.md)
+- [Theme colours](theme-colors.md)

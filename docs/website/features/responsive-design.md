@@ -1,6 +1,10 @@
-# Responsive Design
+# Phone and tablet layouts (Responsive design)
 
-Wbcom Essential blocks and widgets let you adjust layout and visibility for desktop, tablet and mobile. Blocks and Elementor widgets do this in different ways.
+**Also called:** mobile layout, mobile view, hide on mobile, tablet view, columns on phone, breakpoints, device visibility.
+
+## What this does
+
+Wbcom Essential blocks and widgets let you set layout and visibility for desktop, tablet and mobile. Blocks and Elementor widgets do this in different ways.
 
 ## Breakpoints in blocks
 
@@ -12,7 +16,7 @@ The blocks use these breakpoints:
 | Tablet | 768px to 1024px |
 | Mobile | 767px and narrower |
 
-In the block editor, you switch device with the preview buttons in the editor toolbar. Responsive settings then apply to the device you are previewing.
+In the block editor, switch device with the preview buttons in the toolbar. Responsive settings then apply to the device you are previewing.
 
 ## Responsive settings in blocks
 
@@ -37,7 +41,7 @@ On phones the blocks are laid out to read well without any setting:
 
 You can still change the columns per device in the block settings.
 
-### Hide a block on some devices
+### How do I hide a block on some devices?
 
 1. Select the block.
 2. Open the block settings and find **Device Visibility**.
@@ -66,8 +70,12 @@ If a visitor's device asks for reduced motion, the blocks cut animations and tra
 2. Open the live page and resize the browser window.
 3. Test on a real phone.
 
+## You'll know it worked when
+
+The layout changes at each width. A block you hid on mobile is gone on the phone but still in the editor.
+
 ## Related
 
-- [Blocks Overview](../blocks/blocks-overview.md)
-- [Widgets Overview](../widgets/widgets-overview.md)
-- [Performance](performance.md)
+- [Blocks overview](../blocks/blocks-overview.md)
+- [Elementor widgets overview](../widgets/widgets-overview.md)
+- [Page speed](performance.md)

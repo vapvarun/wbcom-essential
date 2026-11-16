@@ -1,14 +1,26 @@
-# EDD Blocks
+# EDD Blocks (Account page, checkout extras, product catalog)
 
-EDD blocks cover the customer side of an Easy Digital Downloads store: the account area, checkout sections, the order confirmation page and a filterable product catalog. They appear in the block inserter under **Essential - EDD** and work only when Easy Digital Downloads is active. Without it they still appear in the inserter and show a notice.
+**Also called:** customer account page, my account, downloads page, licence page, checkout extras, trust badges, thank you page, order confirmation, download store, product catalog.
 
-If Easy Digital Downloads is not active, these blocks show the notice "Easy Digital Downloads is required for this block."
+This page covers eight blocks for an Easy Digital Downloads store.
 
-The four checkout section blocks (Checkout Progress, Checkout Recommendations, Checkout Social Proof and Checkout Trust Badges) are designed to sit inside the EDD Checkout block. Only the settings below appear for them: padding and device visibility, not margin or shadow. The other blocks have the shared Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
+- **EDD Account Dashboard**: the customer account page.
+- **EDD Checkout Progress**, **Recommendations**, **Social Proof** and **Trust Badges**: extras for the checkout page.
+- **EDD Order Success**: the thank you page.
+- **Product Catalog**: a download store page.
+- **EDD Enhanced Checkout**: an old block kept for saved pages.
+
+They appear in the block inserter under **Essential - EDD**. They need Easy Digital Downloads.
+
+If Easy Digital Downloads is not active, these blocks show a notice that says "Easy Digital Downloads is required for this block".
+
+Four blocks are checkout extras: Checkout Progress, Recommendations, Social Proof and Trust Badges. They sit inside the EDD Checkout block. They have only padding and device visibility, with no margin or shadow. The other blocks have the shared Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
 ## EDD Account Dashboard
 
-One My Account page for customers, with a sidebar menu, downloads, order history and optional license and subscription tabs. Block name: `wbcom-essential/edd-account-dashboard`.
+One My Account page for customers, with a sidebar menu, downloads, order history and optional license and subscription tabs.
+
+**What it is for:** Use it to give customers one page for their downloads, orders, licences and profile.
 
 ### Add it
 
@@ -58,13 +70,17 @@ Search, filter and sort update the list without reloading the page. If a search 
 
 ## EDD Enhanced Checkout (legacy)
 
-A legacy wrapper kept only so pages saved before version 4.7.0 keep working. It no longer appears in the block inserter. Block name: `wbcom-essential/edd-checkout-enhanced`.
+A legacy wrapper kept only so pages saved before version 4.7.0 keep working. It no longer appears in the block inserter.
 
-For new pages, use the EDD Checkout block and add the Wbcom checkout section blocks inside it: [EDD Checkout Progress](#edd-checkout-progress), [EDD Checkout Recommendations](#edd-checkout-recommendations), [EDD Checkout Social Proof](#edd-checkout-social-proof) and [EDD Checkout Trust Badges](#edd-checkout-trust-badges).
+**What it is for:** Use it only to keep old pages working. Do not add it to new pages.
+
+For new pages, use the EDD Checkout block. Add the checkout extras inside it: [EDD Checkout Progress](#edd-checkout-progress), [Recommendations](#edd-checkout-recommendations), [Social Proof](#edd-checkout-social-proof) and [Trust Badges](#edd-checkout-trust-badges).
 
 ## EDD Checkout Progress
 
-A four-step progress indicator: Cart, Details, Payment and Complete. Block name: `wbcom-essential/edd-checkout-progress`.
+A four-step progress indicator: Cart, Details, Payment and Complete.
+
+**What it is for:** Use it to show customers where they are in the buying steps.
 
 ### Add it
 
@@ -86,7 +102,9 @@ A four-step progress indicator: Cart, Details, Payment and Complete. Block name:
 
 ## EDD Checkout Recommendations
 
-A "Customers Also Purchased" list of products based on what is in the cart. Block name: `wbcom-essential/edd-checkout-recommendations`.
+A "Customers Also Purchased" list of products based on what is in the cart.
+
+**What it is for:** Use it to suggest more products while a customer checks out.
 
 ### Add it
 
@@ -108,7 +126,9 @@ A "Customers Also Purchased" list of products based on what is in the cart. Bloc
 
 ## EDD Checkout Social Proof
 
-Customer reviews and a Trustpilot rating with your own review cards. It works on checkout, product and landing pages. Block name: `wbcom-essential/edd-checkout-social`.
+Customer reviews and a Trustpilot rating with your own review cards. It works on checkout, product and landing pages.
+
+**What it is for:** Use it to build trust with reviews and your Trustpilot score.
 
 ### Add it
 
@@ -137,7 +157,9 @@ Customer reviews and a Trustpilot rating with your own review cards. It works on
 
 ## EDD Checkout Trust Badges
 
-Security, money-back guarantee and support badges, plus icons for the payment methods you accept. Block name: `wbcom-essential/edd-checkout-trust`.
+Security, money-back guarantee and support badges, plus icons for the payment methods you accept.
+
+**What it is for:** Use it to reassure customers about security, refunds and support.
 
 ### Add it
 
@@ -168,7 +190,9 @@ Security, money-back guarantee and support badges, plus icons for the payment me
 
 ## EDD Order Success
 
-A purchase confirmation page with a success header, the order receipt and next-step cards. Block name: `wbcom-essential/edd-order-success`.
+A purchase confirmation page with a success header, the order receipt and next-step cards.
+
+**What it is for:** Use it for the thank you page a customer sees after paying.
 
 ### Add it
 
@@ -194,7 +218,9 @@ A purchase confirmation page with a success header, the order receipt and next-s
 
 ## Product Catalog
 
-A product grid for your EDD downloads with search, category, price and sort filters. Filtering updates the grid without reloading the page. Block name: `wbcom-essential/product-catalog`.
+A product grid for your EDD downloads with search, category, price and sort filters. Filtering updates the grid without reloading the page.
+
+**What it is for:** Use it for a download store page that visitors can search and filter.
 
 ### Add it
 
@@ -225,4 +251,34 @@ A product grid for your EDD downloads with search, category, price and sort filt
 ### Tips
 
 - A Load More button loads the next products.
-- If no product matches the filters, the block shows "No products found matching your filters." If loading fails it shows a Retry button.
+- The block says "No products found matching your filters" if no product matches the filters.
+- If loading fails, the block shows a Retry button.
+
+## You'll know it worked when
+
+View the page while Easy Digital Downloads is active. You see your account tabs, checkout extras, thank you page or product grid.
+
+## Good to know
+
+### Why is EDD Enhanced Checkout missing from the inserter?
+
+It is kept only for pages saved before version 4.7.0. Use the EDD Checkout block with the checkout extras instead.
+
+### Where do the checkout extras go?
+
+Inside the EDD Checkout block, on your checkout page.
+
+## For developers
+
+Each block has an internal name, used in block markup and code.
+
+| Block | Internal name |
+|-------|---------------|
+| EDD Account Dashboard | `wbcom-essential/edd-account-dashboard` |
+| EDD Enhanced Checkout (legacy) | `wbcom-essential/edd-checkout-enhanced` |
+| EDD Checkout Progress | `wbcom-essential/edd-checkout-progress` |
+| EDD Checkout Recommendations | `wbcom-essential/edd-checkout-recommendations` |
+| EDD Checkout Social Proof | `wbcom-essential/edd-checkout-social` |
+| EDD Checkout Trust Badges | `wbcom-essential/edd-checkout-trust` |
+| EDD Order Success | `wbcom-essential/edd-order-success` |
+| Product Catalog | `wbcom-essential/product-catalog` |

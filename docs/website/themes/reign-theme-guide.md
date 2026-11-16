@@ -1,8 +1,14 @@
-# Reign Theme Guide
+# Using Wbcom Essential with Reign
 
-Wbcom Essential is a separate plugin that Reign installs in one click. This page shows which blocks and widgets suit common Reign sites.
+**Also called:** Reign, social network theme, community site, online store, business site, course site, which block to use.
 
-## Install Wbcom Essential in Reign
+## What this does
+
+Wbcom Essential is a separate plugin that Reign installs in one click. This page shows which blocks and widgets suit a social network, an online store and a business or course site.
+
+## Steps
+
+### Install Wbcom Essential in Reign
 
 1. Go to **Reign Settings > Extend**.
 2. Find **Wbcom Essential**.
@@ -10,11 +16,7 @@ Wbcom Essential is a separate plugin that Reign installs in one click. This page
 
 If you prefer, download the ZIP from [wbcomdesigns.com](https://wbcomdesigns.com/downloads/wbcom-essential/) and upload it at **Plugins > Add New > Upload Plugin**.
 
-## Reign-Only Widget
-
-The **Header Notification Area** Elementor widget appears only while Reign is the active theme. On any other theme, 42 of the 43 widgets are available.
-
-## Blocks and Widgets by Site Type
+## Blocks and widgets by site type
 
 ### Social Network
 
@@ -26,7 +28,7 @@ The **Header Notification Area** Elementor widget appears only while Reign is th
 | Forums | - | Forums, Forums Activity (need bbPress) |
 | Profile prompts | - | Profile Completion |
 
-See [BuddyPress Integration](buddypress-integration.md).
+See [Community blocks and widgets](buddypress-integration.md).
 
 ### Online Store
 
@@ -36,7 +38,7 @@ See [BuddyPress Integration](buddypress-integration.md).
 | Reviews | Customer Reviews | Customer Review, WooCommerce Testimonial |
 | Promotions | Promo Banner, Countdown Timer | Add Banner, Countdown |
 
-See [WooCommerce Integration](woocommerce-integration.md).
+See [Shop blocks and widgets](woocommerce-integration.md).
 
 ### Business or Course Site
 
@@ -49,20 +51,30 @@ See [WooCommerce Integration](woocommerce-integration.md).
 | Team | - | Team Carousel |
 | Quotes | Testimonial Carousel | Testimonial, Testimonial Carousel |
 
-## Colours in Blocks
+## You'll know it worked when
 
-Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Theme Colors](../features/theme-colors.md). Category Grid also has a **Use Theme Colors** toggle in its sidebar.
+The plugin shows as active, and the blocks you add use your Reign colours.
+
+## Good to know
+
+### Which widget works only on Reign?
+
+The **Header Notification Area** Elementor widget appears only while Reign is the active theme. On any other theme, 42 of the 43 widgets are available.
+
+### Do blocks use my theme's colours?
+
+Block and widget colours you have not changed follow your theme's colours in light and dark mode, and blocks use the theme's spacing between blocks. A colour you pick yourself is used as you set it. See [Match your theme's colours](../features/theme-colors.md). Category Grid also has a **Use Theme Colors** toggle in its sidebar.
 
 To check how a block looks with your Reign settings, preview the page on the front end.
 
-## Elementor or Gutenberg
+### Blocks or Elementor?
 
 - Use blocks in the block editor. They need no extra plugin.
 - Use widgets in Elementor. Install Elementor 3.5 or later.
 
 ## Related
 
-- [Blocks Overview](../blocks/blocks-overview.md)
-- [Widgets Overview](../widgets/widgets-overview.md)
-- [Community Site Tutorial](community-site-tutorial.md)
-- [Online Store Tutorial](online-store-tutorial.md)
+- [Blocks overview](../blocks/blocks-overview.md)
+- [Elementor widgets overview](../widgets/widgets-overview.md)
+- [Build a community home page](community-site-tutorial.md)
+- [Build a shop home page](online-store-tutorial.md)
