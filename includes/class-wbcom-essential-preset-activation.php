@@ -8,11 +8,14 @@
  * does that; this class covers every other install path (the store zip, a manual
  * upload, WP-CLI) so updates flow on all of them.
  *
- * Ported from BuddyNext's PresetActivation: the remote call runs in a background
- * single event (never on the owner's page load), retries are bounded so a
- * firewalled host stops after about a day, and giving up shows an admin notice
- * with a Retry button instead of failing silently. It writes NO usage-tracking
- * option: tracking stays the owner's opt-in on the SDK licence screen.
+ * The same class ships in every Wbcom free plugin (the preset licence activation
+ * standard, reference: BuddyNext's PresetActivation); only the names, the key and
+ * the item id differ, plus two Essential additions: a key the owner entered is
+ * never overwritten, and the check also runs from WP-Cron so a site whose owner
+ * rarely opens wp-admin still gets updates. The remote call runs in a background
+ * single event (never on a page load), a refusal from the store is final, no
+ * answer is retried hourly at most 24 times, and giving up shows the owner a
+ * notice with a Retry button. It writes NO usage-tracking option.
  *
  * @package Wbcom_Essential
  * @since   4.7.0
@@ -42,16 +45,22 @@ class Preset_Activation {
 	/** UTC timestamp of the last failed attempt, set once we give up. */
 	const OPT_GAVE_UP = 'wbcom_essential_preset_activation_gave_up';
 
+	/**
+	 * The store's own reason when it ANSWERED and refused (expired, disabled,
+	 * no_activations_left, invalid...). Empty when the store was never reached.
+	 */
+	const OPT_REFUSED = 'wbcom_essential_preset_activation_refused';
+
 	/** The admin-post action for the owner's manual retry. */
 	const RETRY_ACTION = 'wbcom_essential_retry_preset_activation';
 
-	/** One-shot transient carrying a manual retry's outcome across the redirect. */
+	/** One-shot transient carrying a manual retry's outcome ('ok'|'fail') across the redirect. */
 	const RETRY_RESULT_TRANSIENT = 'wbcom_essential_preset_retry_result';
 
 	/** Option the EDD SL SDK reads the key from (registered in loader.php). */
 	const KEY_OPTION = 'wbcom_essential_license_key';
 
-	/** Give up after this many failures (about a day at hourly backoff). */
+	/** Give up after this many unanswered attempts (about a day at hourly backoff). Do not shorten. */
 	const MAX_ATTEMPTS = 24;
 
 	/** Remote timeout, seconds. Short: this is a fire-and-forget authorisation. */
@@ -75,6 +84,7 @@ class Preset_Activation {
 		if ( wp_doing_cron() ) {
 			add_action( 'init', array( __CLASS__, 'maybe_schedule' ) );
 		}
+		// Wrap run() so the cron callback returns nothing.
 		add_action(
 			self::HOOK,
 			static function () {
@@ -104,9 +114,10 @@ class Preset_Activation {
 	}
 
 	/**
-	 * Schedule the background attempt from an admin page, never doing the work
-	 * here. Returns early once activated and once we have given up, so a
-	 * firewalled host does not re-arm on every admin page load.
+	 * Schedule the background attempt, never doing the work on a page load.
+	 * Returns early once activated and once we have given up, so a firewalled host
+	 * does not re-arm on every admin page load. After giving up, only the owner's
+	 * Retry re-arms.
 	 *
 	 * @return void
 	 */
@@ -143,6 +154,7 @@ class Preset_Activation {
 
 		if ( ! $disabled ) {
 			$next = wp_next_scheduled( self::HOOK );
+			// A single event is unscheduled just before it fires, so inside a real cron run this is already false.
 			if ( false !== $next && $next < ( time() - self::OVERDUE_GRACE ) ) {
 				$disabled = true;
 			}
@@ -163,8 +175,9 @@ class Preset_Activation {
 
 	/**
 	 * Perform the remote activation. On success, store the key and its status and
-	 * clear the retry state. On failure, count it and reschedule hourly until the
-	 * ceiling, then record that we gave up so the notice can surface it.
+	 * clear the retry state. A refusal from the store is final. When the store did
+	 * not answer, count it and reschedule hourly until the ceiling, then record that
+	 * we gave up so the notice can surface it.
 	 *
 	 * @return bool True when the licence is (or is now) activated.
 	 */
@@ -178,33 +191,53 @@ class Preset_Activation {
 			return true;
 		}
 
-		$response = wp_remote_post(
-			WBCOM_ESSENTIAL_STORE_URL,
-			array(
-				'timeout' => self::TIMEOUT,
-				'body'    => array(
+		update_option( self::KEY_OPTION, self::PRESET_KEY );
+
+		// Same host and fallback as update checks (wbcom_essential_licence_request() in loader.php). The SDK's own
+		// timeout is 15s per host; cap it to TIMEOUT for this call only.
+		$cap_timeout = static function ( $args ) {
+			$args['timeout'] = min( (float) ( $args['timeout'] ?? self::TIMEOUT ), (float) self::TIMEOUT );
+			return $args;
+		};
+		add_filter( 'http_request_args', $cap_timeout );
+		$reply = function_exists( 'wbcom_essential_licence_request' )
+			? wbcom_essential_licence_request(
+				array(
 					'edd_action' => 'activate_license',
 					'license'    => self::PRESET_KEY,
 					'item_id'    => WBCOM_ESSENTIAL_ITEM_ID,
-					'url'        => home_url(),
-				),
+				)
 			)
-		);
+			: false;
+		remove_filter( 'http_request_args', $cap_timeout );
 
-		$body = is_wp_error( $response ) ? null : json_decode( wp_remote_retrieve_body( $response ) );
+		$status = is_object( $reply ) ? (string) ( $reply->license ?? '' ) : '';
 
-		if ( is_object( $body ) && 'valid' === ( $body->license ?? '' ) ) {
-			update_option( self::KEY_OPTION, self::PRESET_KEY );
-			update_option( self::KEY_OPTION . '_license', $body );
+		if ( 'valid' === $status ) {
+			update_option( self::KEY_OPTION . '_license', $reply );
 			update_option( self::OPT_ACTIVATED, 1, false );
 			delete_option( self::OPT_ATTEMPTS );
 			delete_option( self::OPT_GAVE_UP );
+			delete_option( self::OPT_REFUSED );
 			return true;
 		}
+
+		// The store answered and said no. Asking again cannot change that answer, so this is final: stop now,
+		// keep the store's reason for the notice, and leave the next attempt to the owner's Retry.
+		if ( '' !== $status ) {
+			$reason = sanitize_key( (string) ( $reply->error ?? '' ) );
+			update_option( self::OPT_REFUSED, '' !== $reason ? $reason : sanitize_key( $status ), false );
+			update_option( self::OPT_GAVE_UP, time(), false );
+			return false;
+		}
+
+		// No answer at all (network error, firewall page, 5xx): worth trying again.
+		delete_option( self::OPT_REFUSED );
 
 		$attempts = (int) get_option( self::OPT_ATTEMPTS, 0 ) + 1;
 		update_option( self::OPT_ATTEMPTS, $attempts, false );
 
+		// Without a working cron a rescheduled event would never fire, so a single failure gives up now.
 		if ( ! self::cron_is_disabled() && $attempts < self::MAX_ATTEMPTS ) {
 			if ( ! wp_next_scheduled( self::HOOK ) ) {
 				wp_schedule_single_event( time() + HOUR_IN_SECONDS, self::HOOK );
@@ -235,7 +268,7 @@ class Preset_Activation {
 		if ( 'ok' === $retry_result ) {
 			printf(
 				'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
-				esc_html__( 'Wbcom Essential can now download plugin updates.', 'wbcom-essential' )
+				esc_html__( 'Wbcom Essential is now authorised to download plugin updates.', 'wbcom-essential' )
 			);
 			return;
 		}
@@ -264,17 +297,25 @@ class Preset_Activation {
 			self::RETRY_ACTION
 		);
 
+		$refused = (string) get_option( self::OPT_REFUSED, '' );
+		$message = '' !== $refused
+			? sprintf(
+				/* translators: 1: the store's reason, e.g. "expired". 2: "last tried X ago". */
+				__( 'wbcomdesigns.com did not authorise plugin updates for Wbcom Essential on this site (reason: %1$s, %2$s). Every feature works, but updates will not download until this is resolved. Updating Wbcom Essential to the latest version usually fixes it; if it does not, contact Wbcom Designs support.', 'wbcom-essential' ),
+				$refused,
+				$when
+			)
+			: sprintf(
+				/* translators: %s: "last tried X ago". */
+				__( 'Wbcom Essential could not reach wbcomdesigns.com to authorise plugin updates (%s). Every feature works, but updates will not download until this succeeds. If this host blocks outgoing connections, allow requests to wbcomdesigns.com, then retry.', 'wbcom-essential' ),
+				$when
+			);
+
 		printf(
 			'<div class="notice notice-warning"><p>%1$s</p><p><a class="button button-primary" href="%2$s">%3$s</a></p></div>',
-			esc_html(
-				sprintf(
-					/* translators: %s: "last tried X ago". */
-					__( 'Wbcom Essential could not reach wbcomdesigns.com to turn on plugin updates (%s). Every feature works, but updates will not download until this succeeds. If this host blocks outgoing connections, allow requests to wbcomdesigns.com, then retry.', 'wbcom-essential' ),
-					$when
-				)
-			),
+			esc_html( $message ),
 			esc_url( $retry_url ),
-			esc_html__( 'Retry now', 'wbcom-essential' )
+			esc_html__( 'Retry activation now', 'wbcom-essential' )
 		);
 	}
 

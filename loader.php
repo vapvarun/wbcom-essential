@@ -39,8 +39,10 @@ define( 'WBCOM_ESSENTIAL_PATH', plugin_dir_path( WBCOM_ESSENTIAL_FILE ) );
 define( 'WBCOM_ESSENTIAL_URL', plugins_url( '/', WBCOM_ESSENTIAL_FILE ) );
 define( 'WBCOM_ESSENTIAL_ASSETS_URL', WBCOM_ESSENTIAL_URL . 'assets/' );
 
-// License constants.
+// License constants. Licence and update requests go to the updates host; the SDK falls back to the store
+// (WBCOM_ESSENTIAL_STORE_URL) when that host cannot be reached.
 define( 'WBCOM_ESSENTIAL_STORE_URL', 'https://wbcomdesigns.com' );
+define( 'WBCOM_ESSENTIAL_LICENCE_HOST', 'https://updates.wbcomdesigns.com' );
 define( 'WBCOM_ESSENTIAL_ITEM_ID', 1545975 );
 /**
  * Backward compatibility constants
@@ -51,19 +53,14 @@ define( 'WBCOM_ESSENTIAL_PLUGIN_DIR', WBCOM_ESSENTIAL_PATH );
 define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', WBCOM_ESSENTIAL_PLUGIN_BASE );
 
 
-// Load the vendored EDD SL SDK only when the package is COMPLETE.
+// Load the bundled EDD SL SDK (libs/edd-sl-sdk, our 1.0.4-wbcom.3 build) only when the package is COMPLETE.
 //
-// The SDK is vendored complete at vendor/easy-digital-downloads/edd-sl-sdk and
-// must ship with its src/ classes. A stripped build or extract that keeps the
-// entry file but drops the src/ tree would fatal inside the SDK the moment it
-// instantiates a src class (the failure mode that has bitten stripped
-// bundled-SDK releases). Guard on the source being present and degrade to
-// "updates disabled" with a soft admin notice instead of a white screen -
-// licensing only gates update downloads, never features.
-$wbcom_essential_sdk     = WBCOM_ESSENTIAL_PATH . 'vendor/easy-digital-downloads/edd-sl-sdk/edd-sl-sdk.php';
-$wbcom_essential_sdk_src = WBCOM_ESSENTIAL_PATH . 'vendor/easy-digital-downloads/edd-sl-sdk/src/Versions.php';
-if ( file_exists( $wbcom_essential_sdk ) && file_exists( $wbcom_essential_sdk_src ) ) {
-	require_once $wbcom_essential_sdk;
+// A stripped build or extract that keeps the entry file but drops the src/ tree would fatal inside the SDK the
+// moment it instantiates a src class. Guard on the source being present and degrade to "updates disabled" with a
+// soft admin notice instead of a white screen - licensing only gates update downloads, never features.
+if ( file_exists( WBCOM_ESSENTIAL_PATH . 'libs/edd-sl-sdk/edd-sl-sdk.php' )
+	&& file_exists( WBCOM_ESSENTIAL_PATH . 'libs/edd-sl-sdk/src/Versions.php' ) ) {
+	require_once WBCOM_ESSENTIAL_PATH . 'libs/edd-sl-sdk/edd-sl-sdk.php';
 } elseif ( is_admin() ) {
 	add_action(
 		'admin_notices',
@@ -75,22 +72,59 @@ if ( file_exists( $wbcom_essential_sdk ) && file_exists( $wbcom_essential_sdk_sr
 	);
 }
 
+/**
+ * One licence-server request (activate, deactivate or check) for Wbcom Essential. Goes through the bundled SDK,
+ * so it uses the same host as update checks and falls back to the store when the updates host cannot be reached.
+ * Returns the decoded reply, or false when no host answered.
+ *
+ * @param array $params EDD Software Licensing parameters (edd_action, license, item_id).
+ * @return object|false
+ */
+function wbcom_essential_licence_request( array $params ) {
+	if ( ! class_exists( '\\EasyDigitalDownloads\\Updater\\Requests\\API' ) ) {
+		return false;
+	}
+	// Name the fallback here as well: on an early request (plugin activation) the SDK registry has not run yet.
+	if ( method_exists( '\\EasyDigitalDownloads\\Updater\\Requests\\API', 'set_fallback' ) ) {
+		\EasyDigitalDownloads\Updater\Requests\API::set_fallback( WBCOM_ESSENTIAL_LICENCE_HOST, WBCOM_ESSENTIAL_STORE_URL );
+	}
+	return ( new \EasyDigitalDownloads\Updater\Requests\API( WBCOM_ESSENTIAL_LICENCE_HOST ) )->make_request( $params );
+}
+
 add_action(
 	'edd_sl_sdk_registry',
 	function ( $registry ) {
 		$registry->register(
 			array(
-				'id'          => 'wbcom-essential',
-				'url'         => WBCOM_ESSENTIAL_STORE_URL,
-				'item_id'     => WBCOM_ESSENTIAL_ITEM_ID,
-				'version'     => WBCOM_ESSENTIAL_VERSION,
-				'file'        => WBCOM_ESSENTIAL_FILE,
-				'option_name' => 'wbcom_essential_license_key',
-				'type'        => 'plugin',
+				'id'           => 'wbcom-essential',
+				'url'          => WBCOM_ESSENTIAL_LICENCE_HOST,
+				'fallback_url' => WBCOM_ESSENTIAL_STORE_URL,
+				'item_id'      => WBCOM_ESSENTIAL_ITEM_ID,
+				'version'      => WBCOM_ESSENTIAL_VERSION,
+				'file'         => WBCOM_ESSENTIAL_FILE,
+				'option_name'  => 'wbcom_essential_license_key',
+				'type'         => 'plugin',
 			)
 		);
 	}
 );
+
+// Package Signatures (libs/package-signatures, vapvarun/package-signatures): checks that each Wbcom Essential update
+// package carries the release signature before WordPress installs it. Warn mode: the result is logged (option
+// package_signatures_log) and the update installs either way. The product name is the store slug.
+if ( file_exists( WBCOM_ESSENTIAL_PATH . 'libs/package-signatures/package-signatures.php' ) ) {
+	require_once WBCOM_ESSENTIAL_PATH . 'libs/package-signatures/package-signatures.php';
+	package_signatures_register(
+		array(
+			'product'  => 'wbcom-essential',
+			'plugin'   => WBCOM_ESSENTIAL_PLUGIN_BASE,
+			'hosts'    => array( 'wbcomdesigns.com', 'updates.wbcomdesigns.com' ),
+			'keys'     => array( 'wbcom-2026-1' => 'kr+2P1WqRbENpZw0BXZmwFnA2tMLi6MlHbBa6jB13U4=' ),
+			'mode'     => 'warn',
+			'fallback' => 'https://wbcomdesigns.com/package-signatures/{product}/{version}/',
+		)
+	);
+}
 
 // Wbcom Essential is free: activate the bundled licence key once in the
 // background so updates download on every install path, not only Reign's
@@ -162,6 +196,9 @@ register_activation_hook( WBCOM_ESSENTIAL_FILE, 'wbcom_essential_activate' );
  * @return void
  */
 function wbcom_essential_deactivate() {
+	// A switched-off plugin asks the store nothing: drop a queued preset activation.
+	wp_clear_scheduled_hook( \WBCOM_ESSENTIAL\Preset_Activation::HOOK );
+
 	/**
 	 * Fires after Wbcom Essential is deactivated.
 	 *

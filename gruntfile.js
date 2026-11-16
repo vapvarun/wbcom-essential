@@ -48,14 +48,9 @@ module.exports = function (grunt) {
 								// --- Ship everything by default ---
 								'**',
 
-								// --- vendor/: allowlist production packages only ---
-								// `composer install` (with dev) puts PHPCS, PHPStan and stubs in
-								// vendor/. Ship only the autoloader and the EDD SL SDK so a build
-								// never depends on whether dev dependencies happen to be installed.
+								// --- vendor/: dev tools only (PHPCS, PHPStan, stubs); never shipped. ---
+								// The licensing SDK and package signatures ship from libs/.
 								'!vendor/**',
-								'vendor/autoload.php',
-								'vendor/composer/**',
-								'vendor/easy-digital-downloads/**',
 
 								// --- Blacklist: dev-only top-level folders ---
 								'!docs/**',

@@ -7,18 +7,8 @@ bower_components
 nbproject
 public/assets/.DS_Store
 src/.DS_Store
-# Ignore dev tools installed by composer, but keep production vendor.
-# Run "composer install --no-dev" before committing.
-/vendor/bin
-/vendor/squizlabs
-/vendor/dealerdirect
-/vendor/phpcompatibility
-/vendor/php-parallel-lint
-/vendor/wp-coding-standards
-/vendor/phpstan
-/vendor/php-stubs
-/vendor/szepeviktor
-/vendor/phpcsstandards
+# Composer is dev-only (PHPCS, PHPStan, stubs). Runtime libraries ship from libs/.
+/vendor/
 tests/
 test-results/
 # Release artefacts produced by `npm run dist` / `npm run release`.

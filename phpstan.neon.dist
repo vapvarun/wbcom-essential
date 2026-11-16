@@ -33,6 +33,8 @@ parameters:
 	# Fetch with: bash bin/phpstan-fetch-deps.sh
 	scanDirectories:
 		- .phpstan-stubs/elementor
+		# Bundled licensing SDK and package signatures: read for their symbols only, never analysed as our code.
+		- libs
 
 	bootstrapFiles:
 		- phpstan-constants.php
@@ -42,6 +44,12 @@ parameters:
 	reportUnmatchedIgnoredErrors: false
 
 	ignoreErrors:
+		# The EDD SDK that runs is whichever bundled copy has the highest version on the site, so it may be another
+		# plugin's copy without set_fallback(). PHPStan only sees ours (libs/), where the method always exists.
+		-
+			message: '#^Call to function method_exists\(\) with .+ and .set_fallback. will always evaluate to true\.$#'
+			path: loader.php
+			count: 1
 		# BuddyPress, bbPress and EDD are optional integrations, gated at runtime
 		# by class_exists() / function_exists(). They are not installed for
 		# analysis, so their symbols are legitimately unknown. Anything NOT

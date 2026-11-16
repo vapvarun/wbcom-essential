@@ -97,10 +97,11 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 == External Services ==
 
-Wbcom Essential connects to the Wbcom Designs store (https://wbcomdesigns.com) so your site can receive plugin updates.
+Wbcom Essential connects to the Wbcom Designs update server (https://updates.wbcomdesigns.com, falling back to the store at https://wbcomdesigns.com) so your site can receive plugin updates.
 
-* When: shortly after the plugin is activated, once, until it succeeds.
+* When: in the background shortly after the plugin is activated. If the server cannot be reached it tries again hourly, at most 24 times; if it answers no, it stops and an admin notice explains why.
 * What is sent: the licence key, the product id and your site address (home URL). Nothing else, and no visitor or user data.
+* Update checks: WordPress asks the same server for new versions, as for any plugin update, and each downloaded update is checked against its release signature.
 * Why: the licence is used only to deliver updates. No feature is locked or limited by it, and the plugin works the same if the request fails.
 * Privacy policy: https://wbcomdesigns.com/privacy-policy/
 
