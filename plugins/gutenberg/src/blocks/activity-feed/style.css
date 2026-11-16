@@ -4,12 +4,6 @@
  */
 
 /* ── Tokens ───────────────────────────────────────────────────────────────── */
-/* Stacked blocks need air between them; :where() keeps the Spacing control in charge. */
-:where(.wbe-activity-feed) {
-	margin-block: var( --wbe-space-xl, 32px );
-}
-
-
 .wbe-activity-feed {
 	--wbe-af-card-bg: var( --wbe-surface, #ffffff );
 	--wbe-af-name: var( --wbe-text, #1e1e2e );

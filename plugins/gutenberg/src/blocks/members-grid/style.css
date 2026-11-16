@@ -5,12 +5,6 @@
  */
 
 /* Block defaults */
-/* Stacked blocks need air between them; :where() keeps the Spacing control in charge. */
-:where(.wbe-members-grid) {
-	margin-block: var( --wbe-space-xl, 32px );
-}
-
-
 .wbe-members-grid {
 	--wbe-mg-cols: 4;
 	--wbe-mg-cols-tab: 2;
