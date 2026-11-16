@@ -28,6 +28,8 @@ You only need the plugins for the blocks and widgets you plan to use.
 | Private Messaging | The messages icon in the Header Bar and Header Notification Area widgets. |
 | Extended Profiles | Profile fields. The Profile Completion widget measures how many of them a member has filled in. |
 
+![Settings > BuddyPress > Components with Members, Groups, Activity, Friends, Notifications and Messages ticked](../images/buddypress-components-tab.webp)
+
 **Check it works:**
 
 1. Add a **Members Grid** block to a page and preview it.
@@ -48,6 +50,8 @@ Learn more in the [BuddyPress documentation](https://codex.buddypress.org/).
 2. Search the panel for **Forums**. The widget appears under **Wbcom Essential**.
 3. Drop it on the page. It lists your forums.
 
+![The Forums widget in the Elementor panel and on the page](../images/elementor-forums-widget.webp)
+
 Learn more in the [bbPress documentation](https://codex.bbpress.org/).
 
 ## WooCommerce
@@ -60,6 +64,12 @@ Learn more in the [bbPress documentation](https://codex.bbpress.org/).
 - **Hidden products.** On a product's edit screen, **Catalog visibility** in the Publish box controls where the product shows. Product Grid and Product Carousel leave out products whose visibility hides them from the shop.
 - **Out-of-stock products.** Go to **WooCommerce > Settings > Products** and open **Inventory**. Under **Out of stock visibility**, tick **Hide out of stock items from the catalog** if you want sold-out products gone. Product Grid and Product Carousel follow this setting, the same way your shop pages do.
 - **Reviews.** Customer Reviews shows approved product reviews. Under **WooCommerce > Settings > Products > General**, **Enable product reviews** must be on.
+
+![The Catalog visibility control in a product Publish box](../images/woocommerce-catalog-visibility.webp)
+
+![WooCommerce Settings > Products > Inventory with the Out of stock visibility option](../images/woocommerce-out-of-stock-visibility.webp)
+
+![WooCommerce Settings > Advanced > Page setup with the Cart, Checkout and My account pages set](../images/woocommerce-page-setup.webp)
 
 **Check it works:**
 
@@ -78,17 +88,19 @@ Learn more in the [WooCommerce documentation](https://woocommerce.com/documentat
 | EDD setting | What to set | Wbcom Essential block |
 |-------------|-------------|-----------------------|
 | Primary Checkout Page | A page with the EDD Checkout block. | Add the Checkout Progress, Trust Badges, Social Proof and Recommendations blocks inside the EDD Checkout block. |
-| Success Page | The page buyers see after paying. | Put the **EDD Order Success** block here. It shows the receipt. |
-| Purchase History Page | Your customer account page. | The Order Success "account" card links to the page that holds the **EDD Account Dashboard** block. If no page has that block, it uses this setting, then the home page. |
+| Receipt Page (called Success Page on older EDD versions) | The page that shows the buyer's receipt after paying. | Put the **EDD Order Success** block here. It shows the receipt. |
+| Order History Page (called Purchase History Page on older EDD versions) | Your customer account page. | The Order Success "account" card links to the page that holds the **EDD Account Dashboard** block. If no page has that block, it uses this setting, then the home page. |
 | Shop Page | The page that lists your products. | A good home for the **Product Catalog** block. |
 | Failed Transaction Page | Where buyers go when payment fails. | None needed. |
 
 To set a page, choose it in the dropdown next to the setting and click **Save Changes**. Create the pages first under **Pages > Add New**.
 
+![Downloads > Settings > General > Pages with the store pages chosen](../images/edd-pages-settings.webp)
+
 **Check it works:**
 
 1. Open your checkout page with a download in the cart. The checkout blocks show. With an empty cart, Checkout Recommendations shows nothing.
-2. Buy a free download. You land on the Success Page and the Order Success block shows the receipt.
+2. Buy a free download. Open the Receipt Page from the purchase confirmation. The Order Success block shows the receipt.
 3. Log in and open the page with the Account Dashboard block. You see Dashboard, Downloads and Order History.
 
 Learn more in the [Easy Digital Downloads documentation](https://easydigitaldownloads.com/docs/).
@@ -104,6 +116,8 @@ Learn more in the [Easy Digital Downloads documentation](https://easydigitaldown
 1. Edit any page with **Edit with Elementor**.
 2. Find the **Wbcom Essential** category in the widget panel.
 3. Drag the **Progress Bar** widget onto the page.
+
+![The Wbcom Essential category in the Elementor widget panel](../images/elementor-wbcom-essential-category.webp)
 
 If the category is missing, go to **Elementor > Tools** and click **Regenerate CSS & Data**, then reload the editor.
 

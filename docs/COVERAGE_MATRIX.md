@@ -421,48 +421,48 @@ Block pages: [Design](website/blocks/design-blocks.md), [Content](website/blocks
 
 ## Screenshots needed
 
-No screenshots were added in this pass. Capture these, then reference them from the page named. Use webp, desktop 1440 wide unless noted, and capture the 390px view where marked.
+Captured in the 4.7.2 screenshot pass on a model site (Reign 8.1.0, BuddyPress, WooCommerce, EDD, Elementor, bbPress). Images are in `docs/website/images/` and referenced from the page named. Result: 29 captured (one of them partial), 4 simulated, 5 skipped.
 
-| # | Target | Page |
-|--:|--------|------|
-| 1 | **Wbcom Designs > Essential**, Overview tab | intro/after-installation.md |
-| 2 | **Wbcom Designs > Dashboard** (shared admin page) | intro/after-installation.md |
-| 3 | Settings tab: Post Templates and Blog Index sections, full width | features/blog-and-post-templates.md |
-| 4 | Settings tab with Magazine layout selected: Layout Options and Content Sections rows (one row open) | features/blog-and-post-templates.md |
-| 5 | Settings tab with Newspaper layout selected: ticker and hero slider switches | features/blog-and-post-templates.md |
-| 6 | **Post Template** box on a post edit screen, with all six options | features/blog-and-post-templates.md |
-| 7 | A single post in each template: Classic, Magazine, Minimal, Modern (4 shots, plus 390px for Modern) | features/blog-and-post-templates.md |
-| 8 | Blog page in each layout: Grid, List, Magazine, Newspaper (4 shots) | features/blog-and-post-templates.md |
-| 9 | Pattern inserter showing both pattern categories | features/block-patterns.md |
-| 10 | Magazine Homepage pattern inserted on a page | features/block-patterns.md |
-| 11 | **Settings > BuddyPress > Components** tab with Members, Groups, Activity, Friends, Notifications and Messages ticked | intro/set-up-companion-plugins.md |
-| 12 | WooCommerce **Settings > Products > Inventory**, Out of stock visibility | intro/set-up-companion-plugins.md |
-| 13 | A product's **Catalog visibility** control in the Publish box | intro/set-up-companion-plugins.md |
-| 14 | WooCommerce **Settings > Advanced > Page setup** | intro/set-up-companion-plugins.md |
-| 15 | EDD **Downloads > Settings > General > Pages** | intro/set-up-companion-plugins.md |
-| 16 | Elementor panel showing the **Wbcom Essential** category | intro/set-up-companion-plugins.md |
-| 17 | Forums widget in the Elementor panel and on the page (bbPress active) | intro/set-up-companion-plugins.md |
-| 18 | Admin notice with **Retry activation now**, both wordings, plus the success notice | features/updates-and-licence.md |
-| 19 | Login Form block showing "Too many login attempts. Try again in N minutes." | features/login-security.md |
-| 20 | Same block (Feature Grid or Product Grid) on Reign light, Reign dark and a non-Wbcom theme | features/theme-colors.md |
-| 21 | Block sidebar colour control with a colour set and the Clear button | features/theme-colors.md |
-| 22 | Hero Section on a theme (own colours) next to Feature Grid (theme colours), same page | features/theme-colors.md |
-| 23 | Category Grid sidebar with **Use Theme Colors** on and off, and a card with no image (faint initial) | blocks/blog-blocks.md |
-| 24 | Product Grid sidebar Style panel with Add to Cart Background and Add to Cart Text | blocks/woocommerce-blocks.md |
-| 25 | Product Grid with a hidden product and a sold-out product left out, beside the shop page | blocks/woocommerce-blocks.md |
-| 26 | Customer Reviews with arrows beside the cards, in left-to-right and right-to-left | blocks/woocommerce-blocks.md |
-| 27 | Login Form block **When logged in** setting and the member card state | blocks/content-blocks.md |
-| 28 | Block toolbar alignment menu with **Full width** on Hero Section, and the result edge to edge | blocks/marketing-blocks.md |
-| 29 | 390px: Members Grid two columns, Groups Grid rows, Countdown boxes on one row, carousel dots | features/responsive-design.md |
-| 30 | Account Dashboard: Downloads tab toolbar (search, filter, sort) and an expired-licence card with **Renew License** | blocks/edd-blocks.md |
-| 31 | Account Dashboard: Licenses tab with a licence card (sites, Deactivate, Upgrade, Renew) | blocks/edd-blocks.md |
-| 32 | Account Dashboard: Subscriptions tab and the cancel dialog | blocks/edd-blocks.md |
-| 33 | Account Dashboard: Free Plugins tab with Claim buttons | blocks/edd-blocks.md |
-| 34 | Account Dashboard: Edit Profile tab | blocks/edd-blocks.md |
-| 35 | Product Catalog with filters, and the "Products could not be loaded" state with Retry | blocks/edd-blocks.md |
-| 36 | Plugin-required notice on the page ("BuddyPress is required for this block.") | troubleshooting/error-messages.md |
-| 37 | Elementor out-of-date notice with **Update Elementor** | troubleshooting/error-messages.md |
-| 38 | Elementor Shape widget Link control showing Open in new tab and Add nofollow | widgets/widgets-overview.md |
+| # | Target | Page | Status |
+|--:|--------|------|--------|
+| 1 | **Wbcom Designs > Essential**, Overview tab | intro/after-installation.md | Captured: `essential-overview-tab.webp` |
+| 2 | **Wbcom Designs > Dashboard** (shared admin page) | intro/after-installation.md | Captured: `wbcom-designs-dashboard.webp` |
+| 3 | Settings tab: Post Templates and Blog Index sections, full width | features/blog-and-post-templates.md | Captured: `blog-settings-post-templates-blog-index.webp` |
+| 4 | Settings tab with Magazine layout selected: Layout Options and Content Sections rows (one row open) | features/blog-and-post-templates.md | Captured: `blog-settings-magazine-layout.webp` |
+| 5 | Settings tab with Newspaper layout selected: ticker and hero slider switches | features/blog-and-post-templates.md | Captured: `blog-settings-newspaper-layout.webp` |
+| 6 | **Post Template** box on a post edit screen, with all six options | features/blog-and-post-templates.md | Captured: `post-template-metabox.webp` |
+| 7 | A single post in each template: Classic, Magazine, Minimal, Modern (4 shots, plus 390px for Modern) | features/blog-and-post-templates.md | Captured: four `single-post-template-*.webp` plus `-modern-mobile`. The Classic shot has no sidebar on Reign (BUG 10) |
+| 8 | Blog page in each layout: Grid, List, Magazine, Newspaper (4 shots) | features/blog-and-post-templates.md | Captured after the 4.7.2 re-cut: `blog-layout-grid/list/magazine/newspaper.webp` |
+| 9 | Pattern inserter showing both pattern categories | features/block-patterns.md | Not captured: the patterns load in the re-cut 4.7.2 (verified rendering on Reign); editor inserter shot left for the next docs pass |
+| 10 | Magazine Homepage pattern inserted on a page | features/block-patterns.md | Not captured: Magazine Homepage verified on a page in the lab; shot left for the next docs pass |
+| 11 | **Settings > BuddyPress > Components** tab with Members, Groups, Activity, Friends, Notifications and Messages ticked | intro/set-up-companion-plugins.md | Captured: `buddypress-components-tab.webp` |
+| 12 | WooCommerce **Settings > Products > Inventory**, Out of stock visibility | intro/set-up-companion-plugins.md | Captured: `woocommerce-out-of-stock-visibility.webp` |
+| 13 | A product's **Catalog visibility** control in the Publish box | intro/set-up-companion-plugins.md | Captured: `woocommerce-catalog-visibility.webp` |
+| 14 | WooCommerce **Settings > Advanced > Page setup** | intro/set-up-companion-plugins.md | Captured: `woocommerce-page-setup.webp` |
+| 15 | EDD **Downloads > Settings > General > Pages** | intro/set-up-companion-plugins.md | Captured: `edd-pages-settings.webp` (EDD 3.7.3 labels differ from the table on the page) |
+| 16 | Elementor panel showing the **Wbcom Essential** category | intro/set-up-companion-plugins.md | Captured: `elementor-wbcom-essential-category.webp` |
+| 17 | Forums widget in the Elementor panel and on the page (bbPress active) | intro/set-up-companion-plugins.md | Captured: `elementor-forums-widget.webp` |
+| 18 | Admin notice with **Retry activation now**, both wordings, plus the success notice | features/updates-and-licence.md | Simulated: notice states forced through the plugin options and a transient; no request left the lab (`licence-activation-notices.webp`) |
+| 19 | Login Form block showing "Too many login attempts. Try again in N minutes." | features/login-security.md | Captured: `login-lockout-message.webp` (real lockout after 5 failed sign-ins; the message shows on the sign-in screen the block form posts to) |
+| 20 | Same block (Feature Grid or Product Grid) on Reign light, Reign dark and a non-Wbcom theme | features/theme-colors.md | Captured: `theme-colors-feature-grid-reign-light`, `-reign-dark`, `-twentytwentyfive` |
+| 21 | Block sidebar colour control with a colour set and the Clear button | features/theme-colors.md | Captured: `category-grid-color-clear-button.webp` (Category Grid is the only block with a Clear button) |
+| 22 | Hero Section on a theme (own colours) next to Feature Grid (theme colours), same page | features/theme-colors.md | Captured: `theme-colors-hero-and-feature-grid.webp` |
+| 23 | Category Grid sidebar with **Use Theme Colors** on and off, and a card with no image (faint initial) | blocks/blog-blocks.md | Captured: `category-grid-use-theme-colors-on.webp`, `-off.webp` |
+| 24 | Product Grid sidebar Style panel with Add to Cart Background and Add to Cart Text | blocks/woocommerce-blocks.md | Captured: `product-grid-add-to-cart-colors.webp` |
+| 25 | Product Grid with a hidden product and a sold-out product left out, beside the shop page | blocks/woocommerce-blocks.md | Captured: `product-grid-hidden-and-sold-out-products.webp` |
+| 26 | Customer Reviews with arrows beside the cards, in left-to-right and right-to-left | blocks/woocommerce-blocks.md | Captured; the right-to-left half is simulated by forcing the page direction (`customer-reviews-arrows-ltr-rtl.webp`) |
+| 27 | Login Form block **When logged in** setting and the member card state | blocks/content-blocks.md | Captured: `login-form-when-logged-in-setting.webp`, `login-form-member-card.webp` |
+| 28 | Block toolbar alignment menu with **Full width** on Hero Section, and the result edge to edge | blocks/marketing-blocks.md | Captured: `hero-full-width-alignment-menu.webp`; the edge-to-edge result is on Twenty Twenty-Five because Reign does not break out (BUG 12) |
+| 29 | 390px: Members Grid two columns, Groups Grid rows, Countdown boxes on one row, carousel dots | features/responsive-design.md | Captured: `mobile-members-and-groups-grid.webp`, `mobile-countdown-and-testimonial-carousel.webp` |
+| 30 | Account Dashboard: Downloads tab toolbar (search, filter, sort) and an expired-licence card with **Renew License** | blocks/edd-blocks.md | Partial: Downloads tab toolbar captured (`edd-account-downloads-tab.webp`); the expired-licence card is skipped, it needs EDD Software Licensing (paid) |
+| 31 | Account Dashboard: Licenses tab with a licence card (sites, Deactivate, Upgrade, Renew) | blocks/edd-blocks.md | Skipped: needs EDD Software Licensing (paid), not available |
+| 32 | Account Dashboard: Subscriptions tab and the cancel dialog | blocks/edd-blocks.md | Skipped: needs EDD Recurring Payments (paid), not available |
+| 33 | Account Dashboard: Free Plugins tab with Claim buttons | blocks/edd-blocks.md | Captured: `edd-account-free-plugins-tab.webp` (the button reads "Download Free") |
+| 34 | Account Dashboard: Edit Profile tab | blocks/edd-blocks.md | Captured: `edd-account-edit-profile-tab.webp` |
+| 35 | Product Catalog with filters, and the "Products could not be loaded" state with Retry | blocks/edd-blocks.md | Captured: `edd-product-catalog-filters.webp`; the error state is simulated by blocking the catalog requests (`edd-product-catalog-load-error.webp`) |
+| 36 | Plugin-required notice on the page ("BuddyPress is required for this block.") | troubleshooting/error-messages.md | Captured: `buddypress-required-notice.webp` |
+| 37 | Elementor out-of-date notice with **Update Elementor** | troubleshooting/error-messages.md | Simulated: the notice function was hooked by hand, Elementor is current (`elementor-out-of-date-notice.webp`). It says 3.0.0 (BUG 1) |
+| 38 | Elementor Shape widget Link control showing Open in new tab and Add nofollow | widgets/widgets-overview.md | Captured: `elementor-shape-link-options.webp` |
 
 ## BUGS
 
@@ -478,3 +478,8 @@ Code issues found while auditing. No code was changed.
 | 6 | `plugins/elementor/wbcom-essential-elementor.php:500-501` | `wbcom_ajax_login` is not registered when Paid Memberships Pro is active (`PMPRO_VERSION`). The Elementor Login Form widget then posts to an action nobody handles. Documented as a note. |
 | 7 | `readme.txt` FAQ "Can I use theme colors in blocks?" | Still describes the older `--wbcom-*` fallback behaviour and does not mention that empty colours follow Reign, BuddyX and BuddyX Pro. Outside `docs/website`, so not changed here. |
 | 8 | `plugins/elementor/widgets/Buddypress/Forums.php` and `ForumsActivity.php:864` | The Forums widgets register only when bbPress is active, and Forums Activity also needs BuddyPress. They sit under the BuddyPress registration branch in `Plugins.php`, so bbPress without BuddyPress shows no forum widgets. Documented as "also need BuddyPress". |
+| 9 | `templates/blog-index/template-*.php` | Grid, List, Magazine and Newspaper call `render_block( 'wbcom-essential/posts-revolution' )`. No such block exists in `plugins/gutenberg/src/blocks/`, only the Elementor widget `PostsRevolution.php`. With any blog layout chosen the blog page body is empty (Newspaper shows only the ticker). Evidence: `~/work-artifacts/screenshots/2026-11/essential/blog-grid.png`, `blog-newspaper.png`. Fixed in the 4.7.2 re-cut. |
+| 10 | `templates/single-post/template-classic.php:21` | The sidebar is `is_active_sidebar( 'sidebar-1' )`. Reign registers `sidebar-right`, not `sidebar-1`, so Classic on Reign never shows a sidebar even with widgets set. Evidence: `~/work-artifacts/screenshots/2026-11/essential/single-classic.png`. Fixed in the 4.7.2 re-cut. |
+| 11 | `plugins/gutenberg/patterns/wbcom-patterns.php` | Nothing requires this file, so `wbcom_essential_register_block_patterns()` never runs. The pattern registry holds no `wbcom-essential/*` pattern and no pattern category on 4.7.2. `block-patterns.md` describes patterns that cannot be inserted. Fixed in the 4.7.2 re-cut (Blog Timeline and Author Bio removed). |
+| 12 | Hero, CTA and Feature Grid set to Full width | The 4.7.2 changelog says they fill the screen edge to edge. On Reign 8.1.0 the Hero is 1140px wide in a 1280px window (left edge at 110px); no `alignfull` rule ships for these blocks (only `edd-account-dashboard`). Edge to edge works on Twenty Twenty-Five. Evidence: `~/work-artifacts/screenshots/2026-11/essential/tmp-hero-full.png`. Not a bug: Reign needs the Full Width or Stretched page layout; documented. |
+| 13 | Customer Reviews, Settings tab, Overview tab | Minor: carousel dots overlap the card footer when two slides show; the Display Style select in a Content Sections row is clipped by the Posts box (`tmp-set-magazine.png`); the Overview requirements row calls Elementor and BuddyPress optional even when both are active. |

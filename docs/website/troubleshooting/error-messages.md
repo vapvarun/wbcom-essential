@@ -14,6 +14,8 @@ These appear where a block would be, on the page and in the editor.
 | Easy Digital Downloads plugin is required for this block. | The same, shown by the Product Catalog block. | Activate Easy Digital Downloads. |
 | Easy Digital Downloads is required to display this block. | The same, shown by the Account Dashboard block. | Activate Easy Digital Downloads. |
 
+![The "BuddyPress is required for this block." notice where a block would be](../images/buddypress-required-notice.webp)
+
 ## Nothing to show
 
 These are not errors. The block works and has nothing to list.
@@ -74,6 +76,8 @@ See [Updates and Licence](../features/updates-and-licence.md) for the full flow.
 |---------|-------|-----|
 | Wbcom Essential requires Elementor version ... or higher. | Elementor is older than 3.5. The notice may name an older version. 3.5 is the real minimum. | Click **Update Elementor**. |
 | The notice that Elementor is not installed | The widgets need Elementor. The blocks do not. | Install Elementor, or dismiss the notice if you only use blocks. |
+
+![The Elementor out-of-date notice with the Update Elementor button](../images/elementor-out-of-date-notice.webp)
 
 ## Related
 

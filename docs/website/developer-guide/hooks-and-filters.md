@@ -20,6 +20,7 @@ See [Login Security](../features/login-security.md) for what these do.
 |------|------|---------|
 | `wbcom_essential_login_security_enabled` | Filter | Return `false` to turn off the lockout and the spam trap. Default `true`. |
 | `wbcom_essential_login_security_trusted_proxies` | Filter | Array of proxy IP addresses or CIDR ranges (IPv4 or IPv6) whose forwarded IP headers are trusted. Default empty. |
+| `wbcom_essential_single_post_sidebars` | Filter | Sidebar IDs the Classic post template checks, in order; the first with widgets is shown. Default `array( 'sidebar-1', 'sidebar-right' )`. |
 | `wbcom_essential_login_security_client_ip` | Filter | The IP address used for the lockout. Receives `$ip`. |
 
 ## EDD account and checkout

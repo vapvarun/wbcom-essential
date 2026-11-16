@@ -31,6 +31,10 @@ On phones the blocks are laid out to read well without any setting:
 - Countdown Timer keeps its boxes on one row.
 - Carousel dots are larger, so they are easy to tap.
 
+![At 390 pixels wide: Members Grid in two columns and Groups Grid as rows](../images/mobile-members-and-groups-grid.webp)
+
+![At 390 pixels wide: Countdown Timer boxes on one row and the carousel dots](../images/mobile-countdown-and-testimonial-carousel.webp)
+
 You can still change the columns per device in the block settings.
 
 ### Hide a block on some devices
