@@ -1,6 +1,6 @@
 # BuddyX Pro Theme Guide
 
-Wbcom Essential is part of BuddyX Pro. This page shows which blocks and widgets suit common BuddyX Pro sites.
+Wbcom Essential is a separate plugin that works with BuddyX Pro. This page shows which blocks and widgets suit common BuddyX Pro sites.
 
 ## Install Wbcom Essential
 

@@ -160,9 +160,12 @@ Turn on logging to find PHP errors:
 3. Reproduce the problem.
 4. Read `wp-content/debug.log`.
 
-## Still Need Help?
+## Still stuck?
 
-Contact [Wbcom support](https://wbcomdesigns.com/support/) with your WordPress, PHP and plugin versions, the error message and the steps to reproduce.
+1. Check the plugin the block needs is active. A block that needs BuddyPress, BuddyBoss Platform, WooCommerce or Easy Digital Downloads shows a notice naming it when it is missing, and the widgets need Elementor.
+2. Note the Wbcom Essential version, your theme and its version, and the version of the plugin the block needs.
+3. If you use Reign, open **Reign Settings > Tools** and copy the **System status**.
+4. [Open a support ticket](https://wbcomdesigns.com/support/#submit-ticket-section) with the page address, the message you see and the details above.
 
 ## Related
 

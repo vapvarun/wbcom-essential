@@ -14,7 +14,7 @@ No. The 35 Gutenberg blocks work without Elementor. Install Elementor only if yo
 
 ## Does it work with any theme?
 
-Yes. Blocks and widgets work with any properly coded theme. Reign, BuddyX and BuddyX Pro include the plugin. One widget, Header Notification Area, appears only with Reign.
+Yes. Blocks and widgets work with any properly coded theme. The plugin is not bundled with any theme. Reign installs it in one click from **Reign Settings > Extend**; on BuddyX and BuddyX Pro you upload the ZIP. One widget, Header Notification Area, appears only with Reign.
 
 ## Does it work with BuddyBoss Platform?
 

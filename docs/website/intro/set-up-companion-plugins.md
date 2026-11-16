@@ -38,6 +38,14 @@ You only need the plugins for the blocks and widgets you plan to use.
 
 Learn more in the [BuddyPress documentation](https://codex.buddypress.org/).
 
+## BuddyNext sites
+
+The 5 community blocks (Activity Feed, Members Grid, Members Carousel, Groups Grid and Group Carousel) and the BuddyPress widgets need BuddyPress or BuddyBoss Platform. Each one checks that BuddyPress is loaded before it draws anything. BuddyNext is a separate community platform and does not load BuddyPress, so Wbcom Essential has no BuddyNext support: on a BuddyNext site without BuddyPress or BuddyBoss, those blocks show "BuddyPress is required for this block." and the BuddyPress widgets do not appear.
+
+Everything else works on a BuddyNext site, because it does not depend on the community plugin: the design, content, blog and marketing blocks, and the WooCommerce and Easy Digital Downloads blocks when those plugins are active. Use BuddyNext's own blocks for members, groups and activity.
+
+Do not run BuddyPress next to BuddyNext only to make the community blocks show. See [BuddyPress Integration](../themes/buddypress-integration.md) for what the blocks need.
+
 ## bbPress
 
 **Install:** go to **Plugins > Add New**, search for bbPress, then install and activate it.
