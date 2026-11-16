@@ -4,16 +4,18 @@
  * @package wbcom-essential
  */
 
-/* Design tokens with fallbacks */
+/* Design tokens. Empty colour settings follow the theme through the shared tokens (design-tokens.css maps
+   Reign, BuddyX and BuddyX Pro); the block's colour settings override these per block. */
 .wbe-login-form {
-	--wbe-lf-form-bg: #ffffff;
-	--wbe-lf-btn-bg: #667eea;
-	--wbe-lf-btn-color: #ffffff;
-	--wbe-lf-label-color: #1e1e2e;
-	--wbe-lf-link-color: #667eea;
-	--wbe-lf-input-border: #d1d5db;
-	--wbe-lf-input-focus: #667eea;
-	--wbe-lf-input-bg: #f9fafb;
+	--wbe-lf-form-bg: transparent;
+	--wbe-lf-btn-bg: var( --wbcom-button-bg, var( --wbe-color-accent, #0073aa ) );
+	--wbe-lf-btn-color: var( --wbcom-button-color, #ffffff );
+	--wbe-lf-label-color: currentColor;
+	--wbe-lf-link-color: var( --wbcom-link-color, var( --wbe-color-accent, #0073aa ) );
+	--wbe-lf-input-text: var( --wbe-text, #1e1e2e );
+	--wbe-lf-input-border: var( --wbe-border, #d1d5db );
+	--wbe-lf-input-focus: var( --wbe-color-accent, #0073aa );
+	--wbe-lf-input-bg: var( --wbe-surface, #ffffff );
 	--wbe-lf-input-radius: 8px;
 	--wbe-lf-gap: 20px;
 
@@ -24,8 +26,7 @@
 .wbe-login-form__inner,
 .wbe-login-form__logged-in {
 	background: var( --wbe-lf-form-bg );
-	padding: inherit; /* inherited from wrapper block padding */
-	max-width: 480px;
+	max-width: 480px; /* the block's Padding setting sits on the wrapper */
 	margin-inline: auto;
 }
 
@@ -58,7 +59,7 @@
 	width: 100%;
 	padding: 10px 14px;
 	font-size: 1rem;
-	color: var( --wbe-lf-label-color );
+	color: var( --wbe-lf-input-text );
 	background: var( --wbe-lf-input-bg );
 	border: 1px solid var( --wbe-lf-input-border );
 	border-radius: var( --wbe-lf-input-radius );
@@ -169,7 +170,6 @@
 /* ---- Logged-in state ---- */
 .wbe-login-form__logged-in {
 	text-align: center;
-	padding-block: 32px;
 }
 
 .wbe-login-form__logged-in-message {
@@ -193,6 +193,60 @@
 .wbe-login-form__profile-link:hover {
 	opacity: 0.88;
 	color: var( --wbe-lf-btn-color );
+}
+
+/* ---- Member card (When logged in: Show member card) ---- */
+.wbe-login-form__member {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	background: var( --wbe-lf-form-bg );
+}
+
+.wbe-login-form__member-avatar {
+	flex-shrink: 0;
+	line-height: 0;
+}
+
+.wbe-login-form__member-avatar img {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+}
+
+.wbe-login-form__member-body {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+
+.wbe-login-form__member-name {
+	font-weight: 600;
+	color: inherit;
+	text-decoration: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.wbe-login-form__member-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 12px;
+	font-size: 0.875rem;
+}
+
+.wbe-login-form__member-links a {
+	color: var( --wbe-lf-link-color );
+	text-decoration: none;
+}
+
+.wbe-login-form__member-name:hover,
+.wbe-login-form__member-name:focus-visible,
+.wbe-login-form__member-links a:hover,
+.wbe-login-form__member-links a:focus-visible {
+	text-decoration: underline;
 }
 
 /* ---- Visibility utilities ---- */
