@@ -399,8 +399,10 @@ class SiteLogo extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$target   = isset( $settings['link']['is_external'] ) ? ' target="_blank"' : '';
-		$nofollow = isset( $settings['link']['nofollow'] ) ? ' rel="nofollow"' : '';
+		// Elementor's own link handling: href, new tab, nofollow and custom attributes, each only when switched on.
+		if ( ! empty( $settings['link']['url'] ) ) {
+			$this->add_link_attributes( 'wba_logo_link', $settings['link'] );
+		}
 		?>
 		<div class="wba-site-logo-container" style="display:flex;flex-direction:column;">
 		<?php
@@ -413,11 +415,11 @@ class SiteLogo extends \Elementor\Widget_Base {
 		} elseif ( $settings['link']['url'] ) {
 				if ( $settings['before_image']['url'] ) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
-					echo '<a href="' . esc_url( $settings['link']['url'] ) . '" class="wba-logo-desktop"' . $target . ' ' . $nofollow . '><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></a>';
+					echo '<a class="wba-logo-desktop" ' . $this->get_render_attribute_string( 'wba_logo_link' ) . '><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></a>';
 				}
 				if ( $settings['after_image']['url'] && $settings['breakpoint'] ) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
-					echo '<a href="' . esc_url( $settings['link']['url'] ) . '" class="wba-logo-mobile"' . $target . ' ' . $nofollow . '><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></a>';
+					echo '<a class="wba-logo-mobile" ' . $this->get_render_attribute_string( 'wba_logo_link' ) . '><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></a>';
 				}
 			} else {
 				if ( $settings['before_image']['url'] ) {
