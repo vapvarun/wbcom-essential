@@ -88,8 +88,8 @@ Learn more in the [WooCommerce documentation](https://woocommerce.com/documentat
 | EDD setting | What to set | Wbcom Essential block |
 |-------------|-------------|-----------------------|
 | Primary Checkout Page | A page with the EDD Checkout block. | Add the Checkout Progress, Trust Badges, Social Proof and Recommendations blocks inside the EDD Checkout block. |
-| Success Page | The page buyers see after paying. | Put the **EDD Order Success** block here. It shows the receipt. |
-| Purchase History Page | Your customer account page. | The Order Success "account" card links to the page that holds the **EDD Account Dashboard** block. If no page has that block, it uses this setting, then the home page. |
+| Receipt Page (called Success Page on older EDD versions) | The page that shows the buyer's receipt after paying. | Put the **EDD Order Success** block here. It shows the receipt. |
+| Order History Page (called Purchase History Page on older EDD versions) | Your customer account page. | The Order Success "account" card links to the page that holds the **EDD Account Dashboard** block. If no page has that block, it uses this setting, then the home page. |
 | Shop Page | The page that lists your products. | A good home for the **Product Catalog** block. |
 | Failed Transaction Page | Where buyers go when payment fails. | None needed. |
 
@@ -100,7 +100,7 @@ To set a page, choose it in the dropdown next to the setting and click **Save Ch
 **Check it works:**
 
 1. Open your checkout page with a download in the cart. The checkout blocks show. With an empty cart, Checkout Recommendations shows nothing.
-2. Buy a free download. You land on the Success Page and the Order Success block shows the receipt.
+2. Buy a free download. Open the Receipt Page from the purchase confirmation. The Order Success block shows the receipt.
 3. Log in and open the page with the Account Dashboard block. You see Dashboard, Downloads and Order History.
 
 Learn more in the [Easy Digital Downloads documentation](https://easydigitaldownloads.com/docs/).

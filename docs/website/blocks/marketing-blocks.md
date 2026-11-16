@@ -59,7 +59,7 @@ A call-to-action section with a heading, a description and one button. Block nam
 
 ### Tips
 
-- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available.
+- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available. Edge to edge needs a page layout whose theme lets full-width blocks break out: on Reign, choose the Full Width or Stretched page layout (a boxed layout keeps the section inside the content width).
 
 ## Feature Grid
 
@@ -87,7 +87,7 @@ Feature cards in a responsive grid, each with an icon or emoji, a title and a de
 
 ### Tips
 
-- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available.
+- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available. Edge to edge needs a page layout whose theme lets full-width blocks break out: on Reign, choose the Full Width or Stretched page layout (a boxed layout keeps the section inside the content width).
 - At tablet width the last row never leaves one card on its own.
 
 ## Hero Section
@@ -126,7 +126,7 @@ A full-width hero with a gradient, solid color or image background, a heading, a
 
 ### Tips
 
-- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available.
+- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available. Edge to edge needs a page layout whose theme lets full-width blocks break out: on Reign, choose the Full Width or Stretched page layout (a boxed layout keeps the section inside the content width).
 
 ![The block toolbar alignment menu on Hero Section with Full width available](../images/hero-full-width-alignment-menu.webp)
 
