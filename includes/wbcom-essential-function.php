@@ -74,7 +74,27 @@ function wbcom_essential_locate_template( $template_name, $template_path, $defau
  * @return bool
  */
 function wbcom_essential_is_theme_active( $slug ) {
-	return get_template() === $slug || get_stylesheet() === $slug;
+	static $known = null;
+	if ( null === $known ) {
+		// Folder slugs and the untranslated Theme Name headers of the active theme and its parent. A folder can
+		// be renamed (Reign installs as reign-theme), and the display name is translated, so check both raw forms.
+		$theme = wp_get_theme();
+		$known = array( get_template(), get_stylesheet(), (string) $theme->get( 'Name' ) );
+		if ( $theme->parent() ) {
+			$known[] = (string) $theme->parent()->get( 'Name' );
+		}
+		$known = array_map( 'strtolower', array_filter( $known ) );
+	}
+	$slug = strtolower( (string) $slug );
+	if ( in_array( $slug, $known, true ) ) {
+		return true;
+	}
+	// Folder slugs as shipped: reign-theme, buddyx-pro.
+	$aliases = array(
+		'reign'      => array( 'reign-theme' ),
+		'buddyx-pro' => array( 'buddyxpro' ),
+	);
+	return isset( $aliases[ $slug ] ) && (bool) array_intersect( $aliases[ $slug ], $known );
 }
 
 /**
@@ -1020,4 +1040,31 @@ function wbcom_essential_bp_rest_url( $route ) {
 		: 'buddypress/v1';
 
 	return rest_url( $namespace . '/' . ltrim( $route, '/' ) );
+}
+
+if ( ! function_exists( '_is_theme_active' ) ) {
+	/**
+	 * Old name of wbcom_essential_is_theme_active(), kept for themes and child themes that call it.
+	 *
+	 * @deprecated 4.7.2 Use wbcom_essential_is_theme_active().
+	 * @param string $theme Theme name or folder slug.
+	 * @return bool
+	 */
+	function _is_theme_active( $theme ) {
+		return wbcom_essential_is_theme_active( $theme );
+	}
+}
+
+if ( ! function_exists( '_get_column_class' ) ) {
+	/**
+	 * Old name of wbcom_essential_get_column_class(), kept for themes and child themes that call it.
+	 *
+	 * @deprecated 4.7.2 Use wbcom_essential_get_column_class().
+	 * @param string $type     Column count word.
+	 * @param string $viewport Viewport.
+	 * @return mixed|string
+	 */
+	function _get_column_class( $type, $viewport = '' ) {
+		return wbcom_essential_get_column_class( $type, $viewport );
+	}
 }
