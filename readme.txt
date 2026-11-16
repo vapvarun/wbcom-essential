@@ -114,6 +114,7 @@ Blocks follow your theme's colours and spacing in light and dark mode, and updat
 * New      - Login Form block: a "When logged in" setting chooses what members who are already signed in see.
 * New      - Product Grid and Product Carousel: Add to Cart background and text colour settings; left empty, they follow the theme.
 * Improve  - Blocks and Elementor widgets take their colours from Reign, BuddyX and BuddyX Pro in light and dark mode, unless you pick a colour.
+* Improve  - Post Carousel and Posts Ticker follow the theme's card, text and accent colours unless you pick a colour.
 * Improve  - Blocks use the theme's spacing between blocks instead of a fixed margin of their own.
 * Improve  - Phone layouts: members grid in two columns, groups as rows, countdown boxes on one row and larger carousel dots.
 * Improve  - Customer Reviews: arrows sit beside the cards instead of over the text (on the correct sides in right-to-left languages), and cards in a row share one height.
@@ -132,11 +133,18 @@ Blocks follow your theme's colours and spacing in light and dark mode, and updat
 * Fix      - Easy Digital Downloads blocks: filled buttons use the theme's button colours, so their labels stay readable in dark mode; account menu labels and Free prices are easier to read.
 * Fix      - Site Logo widget: a plain link no longer opens in a new tab with nofollow.
 * Fix      - Forums widget: the reply icon shows again.
+* Fix      - Blog layouts (Grid, List, Magazine and Newspaper) show your posts again instead of an empty page; on category, tag and author archives Magazine and Newspaper use the Grid layout.
+* Fix      - The 10 Wbcom Essential block patterns appear in the pattern inserter again, under "Wbcom Essential - Magazine" and "Wbcom Essential - Single Post".
+* Fix      - Classic post template shows the theme's right sidebar on Reign, BuddyX and BuddyX Pro.
+* Fix      - Category Grid with images turned off shows readable text tiles instead of white text on a white card.
+* Fix      - Block styles update with each release instead of staying cached from an earlier version.
 * Security - The login lockout counts the visitor's own IP address unless the request comes through a trusted proxy, and the Elementor login form has a spam trap.
 * Security - The AJAX login gives the same message for an unknown username and a wrong password.
 * Security - Each update package is checked against its release signature before it installs; for now a failed check is logged, not blocked.
 * Dev      - New filter wbcom_essential_login_security_trusted_proxies lists proxies whose forwarded IP address is trusted.
 * Dev      - New helper wbcom_essential_product_visibility_tax_query() for product lists that match the shop.
+* Dev      - New filter wbcom_essential_single_post_sidebars sets which sidebar the Classic post template shows.
+* Dev      - Removed the Blog Timeline and Author Bio patterns, which inserted sample company and testimonial content instead of posts.
 * Dev      - Removed the post view counter, which wrote to the database on every post view and was never shown.
 * Dev      - The readme's External Services section lists what the update licence request sends and when.
 * Dev      - Block tests now check that every block's styles and scripts resolve, that Elementor widget names are unique, and that every string uses the plugin's text domain.

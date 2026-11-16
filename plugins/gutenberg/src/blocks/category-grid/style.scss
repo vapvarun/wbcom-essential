@@ -76,6 +76,25 @@
 		}
 	}
 
+	// Images turned off: a plain text tile in the theme's card colours.
+	&__card.is-text {
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--wbcom-card-border, var(--wbcom-color-border, #e5e7eb));
+
+		.wbcom-essential-category-grid__name {
+			color: var(--wbcom-heading-color, #1e1e2e);
+		}
+
+		.wbcom-essential-category-grid__count {
+			color: var(--wbcom-text-color, #6b7280);
+		}
+
+		&:hover .wbcom-essential-category-grid__name,
+		&:focus-visible .wbcom-essential-category-grid__name {
+			color: var(--wbe-color-accent, #1d76da);
+		}
+	}
+
 	&__media {
 		position: relative;
 		overflow: hidden;

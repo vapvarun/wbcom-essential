@@ -64,23 +64,23 @@
 		},
 		"labelBg": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"labelColor": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"tickerBg": {
 			"type": "string",
-			"default": "#f8f9fa"
+			"default": ""
 		},
 		"textColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"linkColor": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"separatorStyle": {
 			"type": "string",

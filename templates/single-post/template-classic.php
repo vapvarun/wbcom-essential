@@ -18,7 +18,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 $wbcom_partials    = WBCOM_ESSENTIAL_PATH . 'templates/single-post/partials/';
-$wbcom_has_sidebar = is_active_sidebar( 'sidebar-1' );
+/**
+ * Sidebars the Classic template looks for, in order; the first one with widgets is shown.
+ * Core themes use sidebar-1; Reign, BuddyX and BuddyX Pro use sidebar-right.
+ *
+ * @param string[] $wbcom_sidebars Sidebar IDs.
+ */
+$wbcom_sidebar     = '';
+$wbcom_sidebar_ids = (array) apply_filters( 'wbcom_essential_single_post_sidebars', array( 'sidebar-1', 'sidebar-right' ) );
+foreach ( $wbcom_sidebar_ids as $wbcom_sidebar_id ) {
+	if ( is_active_sidebar( $wbcom_sidebar_id ) ) {
+		$wbcom_sidebar = $wbcom_sidebar_id;
+		break;
+	}
+}
+$wbcom_has_sidebar = '' !== $wbcom_sidebar;
 ?>
 
 <div class="wbcom-sp wbcom-sp--classic<?php echo ! $wbcom_has_sidebar ? ' wbcom-sp--no-sidebar' : ''; ?>">
@@ -106,7 +120,7 @@ $wbcom_has_sidebar = is_active_sidebar( 'sidebar-1' );
 
 				<?php if ( $wbcom_has_sidebar ) : ?>
 					<aside class="wbcom-sp__sidebar" role="complementary">
-						<?php dynamic_sidebar( 'sidebar-1' ); ?>
+						<?php dynamic_sidebar( $wbcom_sidebar ); ?>
 					</aside>
 				<?php endif; ?>
 			</div>

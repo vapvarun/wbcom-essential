@@ -17,10 +17,10 @@ register_block_pattern(
 	'wbcom-essential/blog-featured-list',
 	array(
 		'title'       => __( 'Blog Featured List', 'wbcom-essential' ),
-		'description' => __( 'A featured hero post with sidebar grid, followed by a side-by-side post list.', 'wbcom-essential' ),
+		'description' => __( 'A featured post grid followed by a grid of more posts.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'blog', 'featured', 'list', 'hero' ),
-		'content'     => '<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type1","postsPerPage":5,"columns":2,"showExcerpt":true,"excerptLength":120,"useThemeColors":true,"sectionLabel":"Featured Posts"} /-->
+		'content'     => '<!-- wp:wbcom-essential/post-carousel {"displayMode":"grid","postsPerPage":5,"showExcerpt":true,"excerptLength":20} /-->
 
 <!-- wp:spacer {"height":"32px"} -->
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -38,6 +38,6 @@ register_block_pattern(
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wbcom-essential/post-carousel {"displayType":"posts_type4","postsPerPage":6,"columns":2,"showExcerpt":true,"excerptLength":100,"enablePagination":true,"paginationType":"numeric","useThemeColors":true,"sectionLabel":"Latest Articles \u2014 Select Categories to Filter"} /-->',
+<!-- wp:wbcom-essential/post-carousel {"displayMode":"grid","postsPerPage":6,"showExcerpt":true,"excerptLength":17} /-->',
 	)
 );

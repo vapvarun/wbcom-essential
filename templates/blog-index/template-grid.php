@@ -2,7 +2,7 @@
 /**
  * Template: Grid
  *
- * Simple card grid using posts-revolution type3 (columns) with pagination.
+ * Card grid of the current posts (blog or archive) with pagination.
  *
  * @package    Wbcom_Essential
  * @subpackage Wbcom_Essential/templates/blog-index
@@ -15,27 +15,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
-$wbcom_per_page = (int) get_option( 'wbcom_essential_blog_posts_per_page', 0 );
-if ( $wbcom_per_page < 1 ) {
-	$wbcom_per_page = (int) get_option( 'posts_per_page', 10 );
-}
+global $wp_query;
 ?>
 
 <div class="wbcom-blog wbcom-blog--grid">
 	<div class="wbcom-blog__container">
 		<?php
-		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output; each block escapes its own markup.
-		echo Wbcom_Blog_Index_Templates::render_block(
-			'wbcom-essential/posts-revolution',
+		Wbcom_Blog_Index_Templates::render_page_header();
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- render_posts() escapes every value it prints.
+		echo Wbcom_Blog_Index_Templates::render_posts(
+			$wp_query,
 			array(
-				'displayType'      => 'posts_type3',
-				'columns'          => 3,
-				'postsPerPage'     => $wbcom_per_page,
-				'showExcerpt'      => true,
-				'excerptLength'    => 120,
-				'enablePagination' => true,
-				'paginationType'   => 'numeric',
-				'useThemeColors'   => true,
+				'type'          => 'posts_type3',
+				'columns'       => 3,
+				'excerpt_words' => 20,
+				'paginate'      => true,
+				'main'          => true,
 			)
 		);
 		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped

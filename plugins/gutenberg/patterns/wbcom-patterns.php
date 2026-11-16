@@ -22,14 +22,14 @@ function wbcom_essential_register_block_patterns() {
 	register_block_pattern_category(
 		'wbcom-essential-magazine',
 		array(
-			'label' => __( 'WBcom Essential - Magazine', 'wbcom-essential' ),
+			'label' => __( 'Wbcom Essential - Magazine', 'wbcom-essential' ),
 		)
 	);
 
 	register_block_pattern_category(
 		'wbcom-essential-single-post',
 		array(
-			'label' => __( 'WBcom Essential - Single Post', 'wbcom-essential' ),
+			'label' => __( 'Wbcom Essential - Single Post', 'wbcom-essential' ),
 		)
 	);
 
@@ -43,10 +43,8 @@ function wbcom_essential_register_block_patterns() {
 		// Blog listing variations.
 		'blog-masonry',
 		'blog-editorial',
-		'blog-timeline',
 		'blog-featured-list',
 		// Single post patterns.
-		'single-post-author-bio',
 		'single-post-related-posts',
 		'single-post-newsletter-cta',
 		'single-post-share-section',

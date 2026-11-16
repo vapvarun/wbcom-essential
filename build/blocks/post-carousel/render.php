@@ -17,11 +17,11 @@ use WBCOM_ESSENTIAL\Gutenberg\WBE_CSS;
 
 // ── Extract attributes ────────────────────────────────────────────────────────
 $unique_id     = sanitize_html_class( $attributes['uniqueId'] ?? '' );
-$post_type     = sanitize_key( $attributes['postType'] ?? 'post' );
+$pc_post_type     = sanitize_key( $attributes['postType'] ?? 'post' );
 $posts_per     = absint( $attributes['postsPerPage'] ?? 6 );
 $cat_ids       = array_map( 'absint', (array) ( $attributes['categories'] ?? array() ) );
 $order_by      = sanitize_key( $attributes['orderBy'] ?? 'date' );
-$order         = in_array( strtoupper( $attributes['order'] ?? 'DESC' ), array( 'ASC', 'DESC' ), true )
+$pc_order         = in_array( strtoupper( $attributes['order'] ?? 'DESC' ), array( 'ASC', 'DESC' ), true )
 	? strtoupper( $attributes['order'] )
 	: 'DESC';
 $display_mode  = sanitize_key( $attributes['displayMode'] ?? 'carousel' );
@@ -35,11 +35,11 @@ $show_category = ! empty( $attributes['showCategory'] );
 $show_author   = ! empty( $attributes['showAuthor'] );
 $excerpt_len   = absint( $attributes['excerptLength'] ?? 20 );
 $image_ratio   = sanitize_text_field( $attributes['imageRatio'] ?? '16/9' );
-$card_bg       = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' ) ?: '#ffffff';
-$title_color   = sanitize_hex_color( $attributes['titleColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
-$excerpt_color = sanitize_hex_color( $attributes['excerptColor'] ?? '#6c757d' ) ?: '#6c757d';
-$meta_color    = sanitize_hex_color( $attributes['metaColor'] ?? '#999999' ) ?: '#999999';
-$accent_color  = sanitize_hex_color( $attributes['accentColor'] ?? '#667eea' ) ?: '#667eea';
+$card_bg       = sanitize_hex_color( $attributes['cardBg'] ?? '' ) ?: 'var(--wbcom-card-bg, #ffffff)';
+$title_color   = sanitize_hex_color( $attributes['titleColor'] ?? '' ) ?: 'var(--wbcom-heading-color, #1e1e2e)';
+$excerpt_color = sanitize_hex_color( $attributes['excerptColor'] ?? '' ) ?: 'var(--wbcom-text-color, #6c757d)';
+$meta_color    = sanitize_hex_color( $attributes['metaColor'] ?? '' ) ?: 'var(--wbe-color-text-muted, #6b7280)';
+$accent_color  = sanitize_hex_color( $attributes['accentColor'] ?? '' ) ?: 'var(--wbe-color-accent, #667eea)';
 
 // Visibility classes.
 $visibility_classes = '';
@@ -81,15 +81,15 @@ $ratio_css = esc_attr( str_replace( '/', ' / ', $image_ratio ) );
 
 // ── WP_Query ─────────────────────────────────────────────────────────────────
 $query_args = array(
-	'post_type'      => $post_type,
+	'post_type'      => $pc_post_type,
 	'posts_per_page' => $posts_per,
 	'orderby'        => $order_by,
-	'order'          => $order,
+	'order'          => $pc_order,
 	'post_status'    => 'publish',
 	'no_found_rows'  => true,
 );
 
-if ( ! empty( $cat_ids ) && 'post' === $post_type ) {
+if ( ! empty( $cat_ids ) && 'post' === $pc_post_type ) {
 	$query_args['category__in'] = $cat_ids;
 }
 
