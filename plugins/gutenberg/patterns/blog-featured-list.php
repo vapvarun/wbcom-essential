@@ -17,7 +17,7 @@ register_block_pattern(
 	'wbcom-essential/blog-featured-list',
 	array(
 		'title'       => __( 'Blog Featured List', 'wbcom-essential' ),
-		'description' => __( 'A featured hero post with sidebar grid, followed by a side-by-side post list.', 'wbcom-essential' ),
+		'description' => __( 'A featured post grid followed by a grid of more posts.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'blog', 'featured', 'list', 'hero' ),
 		'content'     => '<!-- wp:wbcom-essential/post-carousel {"displayMode":"grid","postsPerPage":5,"showExcerpt":true,"excerptLength":20} /-->

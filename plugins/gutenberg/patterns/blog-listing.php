@@ -17,7 +17,7 @@ register_block_pattern(
 	'wbcom-essential/blog-listing',
 	array(
 		'title'       => __( 'Blog Listing', 'wbcom-essential' ),
-		'description' => __( 'A clean blog listing with side-by-side post cards and pagination.', 'wbcom-essential' ),
+		'description' => __( 'A clean blog listing with a grid of post cards.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'blog', 'listing', 'posts', 'pagination' ),
 		'content'     => '<!-- wp:heading {"textAlign":"left"} --><h2 class="wp-block-heading has-text-align-left">' . esc_html__( 'Blog', 'wbcom-essential' ) . '</h2><!-- /wp:heading -->

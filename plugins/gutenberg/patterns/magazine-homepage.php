@@ -17,7 +17,7 @@ register_block_pattern(
 	'wbcom-essential/magazine-homepage',
 	array(
 		'title'       => __( 'Magazine Homepage', 'wbcom-essential' ),
-		'description' => __( 'A full news site homepage with breaking news ticker, hero post slider, featured posts grid, and category grid.', 'wbcom-essential' ),
+		'description' => __( 'A news homepage with a breaking news ticker, a post carousel, a grid of latest stories and a category grid.', 'wbcom-essential' ),
 		'categories'  => array( 'wbcom-essential-magazine' ),
 		'keywords'    => array( 'magazine', 'homepage', 'news', 'blog' ),
 		'content'     => '<!-- wp:wbcom-essential/posts-ticker {} /-->
