@@ -192,12 +192,21 @@
 	color: var(--wbcom-button-color, #ffffff);
 }
 
-.wbe-customer-reviews .swiper-button-prev {
-	left: 0;
+/* Logical sides, so right-to-left sites get the previous arrow on the right and the next arrow on the left.
+   The physical reset and the logical side are separate rules: a minifier reorders declarations inside one rule,
+   and a later physical left/right would override the logical side. */
+.wbe-customer-reviews .swiper-button-prev,
+.wbe-customer-reviews .swiper-button-next {
+	left: auto;
+	right: auto;
 }
 
-.wbe-customer-reviews .swiper-button-next {
-	right: 0;
+.wbe-customer-reviews > .swiper-button-prev {
+	inset-inline-start: 0;
+}
+
+.wbe-customer-reviews > .swiper-button-next {
+	inset-inline-end: 0;
 }
 
 /* Arrows sit in their own gutters beside the cards, never over the review text. */
