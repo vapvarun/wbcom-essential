@@ -26,10 +26,10 @@ A live countdown to a date and time, with a message shown when time runs out. Bl
 | Layout | Show Hours | Shows the hours unit. | On |
 | Layout | Show Minutes | Shows the minutes unit. | On |
 | Layout | Show Seconds | Shows the seconds unit. | On |
-| Style | Number Color | Color of the numbers. | #1e1e2e |
-| Style | Label Color | Color of the unit labels. | #6c757d |
-| Style | Box Background | Background of each box. | #f8f9fa |
-| Style | Box Border Color | Border of each box. | #e9ecef |
+| Style | Number Color | Color of the numbers. | Theme text |
+| Style | Label Color | Color of the unit labels. | Theme muted text |
+| Style | Box Background | Background of each box. | Theme surface |
+| Style | Box Border Color | Border of each box. | Theme border |
 | Style | Border Radius, Box Shadow | Rounds the corners and adds a shadow. | Shadow off |
 
 ## CTA Section
@@ -197,9 +197,9 @@ Customer quotes in a carousel with dots, arrows and autoplay. Block name: `wbcom
 | Layout | Show Navigation Dots | Shows the dots. | On |
 | Layout | Show Prev/Next Arrows | Shows the arrows. | On |
 | Layout | Loop Infinitely | Returns to the first slide after the last. | On |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Quote Text Color | Color of the quote. | #1e1e2e |
-| Style | Name Color | Color of the name. | #1e1e2e |
-| Style | Role Color | Color of the role. | #6c757d |
-| Style | Accent Color (dots, decorations) | Color of the dots and decorations. | #667eea |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Quote Text Color | Color of the quote. | Theme text |
+| Style | Name Color | Color of the name. | Theme text |
+| Style | Role Color | Color of the role. | Theme muted text |
+| Style | Accent Color (dots, decorations) | Color of the dots and decorations. | Theme accent |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |

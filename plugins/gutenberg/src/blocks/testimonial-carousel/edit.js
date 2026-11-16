@@ -13,6 +13,7 @@ import {
 	TextControl,
 	TextareaControl,
 	ColorPicker,
+	ColorPalette,
 	RangeControl,
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
@@ -88,7 +89,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		quoteColor && `  --wbe-tc-quote-color: ${ quoteColor };`,
 		nameColor && `  --wbe-tc-name-color: ${ nameColor };`,
 		roleColor && `  --wbe-tc-role-color: ${ roleColor };`,
-		`  --wbe-tc-accent: ${ accentColor };`,
+		accentColor && `  --wbe-tc-accent: ${ accentColor };`,
 		`  --wbe-tc-card-radius: ${ cardRadius };`,
 		`  --wbe-tc-card-shadow: ${ cardShadow };`,
 		`}`,
@@ -284,9 +285,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						enableAlpha
 					/>
 					<p><strong>{ __( 'Accent Color (dots, decorations)', 'wbcom-essential' ) }</strong></p>
-					<ColorPicker
-						color={ accentColor }
-						onChange={ ( val ) => setAttributes( { accentColor: val } ) }
+					<ColorPalette
+						value={ accentColor }
+						onChange={ ( val ) => setAttributes( { accentColor: val || '' } ) }
+						clearable
 						enableAlpha
 					/>
 					<Spacer marginTop={ 3 } />

@@ -65,7 +65,7 @@ export default function save( { attributes } ) {
 		quoteColor && `  --wbe-tc-quote-color: ${ quoteColor };`,
 		nameColor && `  --wbe-tc-name-color: ${ nameColor };`,
 		roleColor && `  --wbe-tc-role-color: ${ roleColor };`,
-		`  --wbe-tc-accent: ${ accentColor };`,
+		accentColor && `  --wbe-tc-accent: ${ accentColor };`,
 		`  --wbe-tc-card-radius: ${ cardRadius };`,
 		`  --wbe-tc-card-shadow: ${ cardShadow };`,
 		`}`,

@@ -116,11 +116,6 @@
 	margin-bottom: 0;
 }
 
-/* ── Entry-content direct child margin reset ─────────────── */
-.entry-content > [class^="wp-block-wbcom-essential"] {
-	margin-bottom: 0;
-}
-
 /* ── Blockquote ──────────────────────────────────────────── */
 [class^="wp-block-wbcom-essential"] blockquote {
 	border-left: none;

@@ -102,7 +102,7 @@
     },
     "accentColor": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "padding": {
       "type": "object",

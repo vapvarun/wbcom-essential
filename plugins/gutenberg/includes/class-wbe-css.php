@@ -73,16 +73,17 @@ class WBE_CSS {
 		}
 
 		// Margin.
+		// Desktop: only the sides the owner set. The default is 0 on every side, and writing that out overrode
+		// the theme's spacing between blocks (stacked blocks touched) and its full-width rules. Tablet and
+		// mobile values are explicit overrides, so they are written in full below.
 		if ( ! empty( $attrs['margin'] ) && is_array( $attrs['margin'] ) ) {
-			$unit      = ! empty( $attrs['marginUnit'] ) ? $attrs['marginUnit'] : 'px';
-			$m         = $attrs['margin'];
-			$desktop[] = sprintf(
-				'margin: %s%s %s%s %s%s %s%s;',
-				intval( $m['top'] ?? 0 ), $unit,
-				intval( $m['right'] ?? 0 ), $unit,
-				intval( $m['bottom'] ?? 0 ), $unit,
-				intval( $m['left'] ?? 0 ), $unit
-			);
+			$unit = ! empty( $attrs['marginUnit'] ) ? $attrs['marginUnit'] : 'px';
+			foreach ( array( 'top', 'right', 'bottom', 'left' ) as $side ) {
+				$value = intval( $attrs['margin'][ $side ] ?? 0 );
+				if ( 0 !== $value ) {
+					$desktop[] = sprintf( 'margin-%s: %d%s;', $side, $value, $unit );
+				}
+			}
 		}
 
 		if ( ! empty( $attrs['marginTablet'] ) && is_array( $attrs['marginTablet'] ) ) {

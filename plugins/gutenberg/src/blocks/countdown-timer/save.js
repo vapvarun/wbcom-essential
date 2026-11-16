@@ -49,14 +49,18 @@ export default function save( { attributes } ) {
 
 	const css = generateBlockCSS( uniqueId, attributes );
 
+	// Only colours the owner picked; empty ones follow the theme (style.css). With all four set the output is
+	// the same as before, so content saved with the old fixed defaults still validates (see index.js).
 	const tokenPropsCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-cd-number-color: ${ numberColor };`,
-		`  --wbe-cd-label-color: ${ labelColor };`,
-		`  --wbe-cd-box-bg: ${ boxBg };`,
-		`  --wbe-cd-box-border: ${ boxBorderColor };`,
+		numberColor && `  --wbe-cd-number-color: ${ numberColor };`,
+		labelColor && `  --wbe-cd-label-color: ${ labelColor };`,
+		boxBg && `  --wbe-cd-box-bg: ${ boxBg };`,
+		boxBorderColor && `  --wbe-cd-box-border: ${ boxBorderColor };`,
 		`}`,
-	].join( '\n' );
+	]
+		.filter( Boolean )
+		.join( '\n' );
 
 	const getSepChar = () => {
 		switch ( separatorStyle ) {

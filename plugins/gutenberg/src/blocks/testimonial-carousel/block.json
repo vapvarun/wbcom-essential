@@ -102,7 +102,7 @@
 		},
 		"accentColor": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"padding": {
 			"type": "object",
@@ -213,7 +213,10 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": [ "file:./style-index.css", "wbe-swiper" ],
+	"style": [
+		"file:./style-index.css",
+		"wbe-swiper"
+	],
 	"viewScript": [
 		"file:./view.js",
 		"swiper"
