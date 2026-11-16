@@ -16,7 +16,6 @@
  * Description:       43 Elementor widgets and 35 Gutenberg blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design.
  * Version:           4.7.2
  * Requires at least: 6.0
- * Tested up to:      7.1
  * Requires PHP:      8.0
  * Author:            Wbcom Designs
  * Author URI:        https://wbcomdesigns.com/
