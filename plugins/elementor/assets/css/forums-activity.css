@@ -36,7 +36,7 @@
 .wbcom-essential-forums-activity {
 	border: 1px solid #e3e3e3;
 	padding: 20px;
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 	position: relative;
 	min-height: 250px;
 }
@@ -103,7 +103,7 @@
 	box-shadow: none;
 	margin: 0;
 	padding: 0 10%;
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	border: 0;
 }
 
@@ -129,7 +129,7 @@
 .wbcom-essential-forums-activity {
 	border: 1px solid #e3e3e3;
 	padding: 20px;
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 	position: relative;
 	min-height: 250px;
 }

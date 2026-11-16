@@ -11,7 +11,7 @@
  * @package Wbcom_Essential
  */
 
-define( 'WBCOM_ESSENTIAL_VERSION', '4.7.1' );
+define( 'WBCOM_ESSENTIAL_VERSION', '4.7.2' );
 define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.7.0' );
 define( 'WBCOM_ESSENTIAL_FILE', __DIR__ . '/loader.php' );
 define( 'WBCOM_ESSENTIAL_PATH', __DIR__ . '/' );
@@ -21,6 +21,7 @@ define( 'WBCOM_ESSENTIAL_PLUGIN_BASENAME', 'wbcom-essential/loader.php' );
 define( 'WBCOM_ESSENTIAL_URL', 'https://example.test/wp-content/plugins/wbcom-essential/' );
 define( 'WBCOM_ESSENTIAL_ASSETS_URL', 'https://example.test/wp-content/plugins/wbcom-essential/assets/' );
 define( 'WBCOM_ESSENTIAL_STORE_URL', 'https://wbcomdesigns.com' );
+define( 'WBCOM_ESSENTIAL_LICENCE_HOST', 'https://updates.wbcomdesigns.com' );
 define( 'WBCOM_ESSENTIAL_ITEM_ID', 0 );
 
 define( 'WBCOM_ESSENTIAL_ELEMENTOR_PATH', __DIR__ . '/plugins/elementor/' );

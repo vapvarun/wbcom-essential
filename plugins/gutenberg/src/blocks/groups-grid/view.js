@@ -174,7 +174,7 @@ import { groupMemberCount, groupLastActive } from '../../shared/utils/bp-rest';
 		const nameHeading    = el( 'h3', 'wbe-groups-grid__name' );
 		const nameLink       = document.createElement( 'a' );
 		nameLink.href        = group.link || '#';
-		nameLink.textContent = group.name || '';
+		nameLink.textContent = decodeEntities( group.name || '' );
 		nameHeading.appendChild( nameLink );
 		info.appendChild( nameHeading );
 
@@ -193,7 +193,7 @@ import { groupMemberCount, groupLastActive } from '../../shared/utils/bp-rest';
 		const memberCount = groupMemberCount( group );
 		if ( cfg.showMemberCount && memberCount ) {
 			meta.appendChild(
-				el( 'span', 'wbe-groups-grid__count', memberCount + ' ' + cfg.i18n.members )
+				el( 'span', 'wbe-groups-grid__count', memberCount + ' ' + ( 1 === Number( memberCount ) ? cfg.i18n.member : cfg.i18n.members ) )
 			);
 		}
 

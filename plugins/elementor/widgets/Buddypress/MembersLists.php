@@ -560,7 +560,7 @@ class MembersLists extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#122B46',
+				'default'   => 'var(--wbcom-heading-color, #122B46)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-essential-members-list__name a' => 'color: {{VALUE}};',
 				),

@@ -84,6 +84,12 @@ add_action(
 add_action(
 	'enqueue_block_editor_assets',
 	function () {
+		// Lets an EDD block's editor skip REST routes that only exist while EDD is active.
+		wp_add_inline_script(
+			'wp-blocks',
+			'window.wbeEditor = ' . wp_json_encode( array( 'eddActive' => class_exists( 'Easy_Digital_Downloads' ) ) ) . ';',
+			'before'
+		);
 		wp_enqueue_style(
 			'wbe-design-tokens',
 			WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/design-tokens.css',

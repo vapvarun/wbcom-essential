@@ -2,7 +2,7 @@
 
 **Scope:** 35 Gutenberg blocks + 43 Elementor widgets = **78 testable surfaces**
 **Written against:** branch `4.7.0` @ `216d7b2`, plugin version 4.7.0
-**Status:** plan only — none of this is implemented yet
+**Status (4.7.2, November 2026):** Waves 0, 1 and 2 are implemented and run in CI on every branch and pull request. Waves 3 to 6 are not started.
 
 ---
 
@@ -341,7 +341,10 @@ The edge-content fixture is the cheap one that finds the most bugs. Build it fir
 
 ## 8. Sequencing
 
-### Wave 0 — Unblock the release (est. 1–2 days)
+### Wave 0 — Unblock the release (est. 1–2 days) — done in 4.7.2, one item partial
+
+Done: PHPStan blocks the build; WPCS blocks on changed PHP files (the full-repo report stays informational until the old debt is paid down); CI runs on every branch (`branches: ['**']`); each release zip gets a pristine Docker install. Partial: the P0 EDD blocks were checked at 1440 and 390 in light and dark during the 4.7.2 QA rounds, but those screenshots are not yet committed as baseline records under `docs/qa/surfaces/`.
+
 - Fix R2: make PHPStan + WPCS blocking (drop `continue-on-error`, drop `|| echo`, add a baseline so existing debt doesn't block)
 - Fix R3: add version branches to CI triggers (`4.*`, or just `**`)
 - Tier 3 baseline on the 6 **P0** EDD blocks only — @1440 + @390, light + dark, normal + empty + error data
@@ -349,14 +352,20 @@ The edge-content fixture is the cheap one that finds the most bugs. Build it fir
 
 That is the honest minimum before tagging 4.7.0: it verifies what 4.7.0 actually changed, and stops CI from lying.
 
-### Wave 1 — The R1 guard (est. 2–3 days)
+### Wave 1 — The R1 guard (est. 2–3 days) — done in 4.7.2
+
+Done: `npm run test:unit` (wp-scripts jest) runs `plugins/gutenberg/tests/save-snapshots.test.js`, saved-markup snapshots for all 14 static blocks (28 snapshots), blocking in the CI job "Block saved-markup snapshots". A planted markup change fails 2 snapshots. Run `npm ci` first: an older `@wordpress/element` in a stale `node_modules` gives false failures.
+
 - Add jest + `@wordpress/scripts test-unit-js`
 - Tier 2 save() snapshots for all 14 static blocks
 - Wire into CI as blocking
 
 Highest value-per-hour in the plan. After this, the 14 frozen blocks are safe to change.
 
-### Wave 2 — Static gates (est. 1–2 days)
+### Wave 2 — Static gates (est. 1–2 days) — done in 4.7.2
+
+Done: T0.4 `block-json.test.js` (all 35 block.json files); T0.5 and T0.7 `static-gates.test.js` (every block asset reference resolves to a built file or a registered handle; every Elementor widget name is unique, 43 or more widgets); T0.6 `grunt checktextdomain` runs in the same CI job (bundled `libs/` and dev `scripts/` excluded). Both new gates were proved to fail on a planted missing stylesheet and a duplicate widget name.
+
 - T0.4 block.json schema validation ×35
 - T0.5 asset-handle resolution ×35
 - T0.7 widget-name uniqueness ×43

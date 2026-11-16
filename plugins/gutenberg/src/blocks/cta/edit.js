@@ -116,7 +116,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					<BaseControl label={ __( 'Background Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ backgroundColor }
-							onChange={ ( value ) => setAttributes( { backgroundColor: value || '#f8f9fa' } ) }
+							onChange={ ( value ) => setAttributes( { backgroundColor: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>
@@ -124,14 +124,14 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					<BaseControl label={ __( 'Heading Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ headingColor }
-							onChange={ ( value ) => setAttributes( { headingColor: value || '#1e1e2e' } ) }
+							onChange={ ( value ) => setAttributes( { headingColor: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Description Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ descriptionColor }
-							onChange={ ( value ) => setAttributes( { descriptionColor: value || '#6c757d' } ) }
+							onChange={ ( value ) => setAttributes( { descriptionColor: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>

@@ -73,14 +73,20 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 		const [ categories, setCategories ] = useState( [] );
 		const [ loadingCats, setLoadingCats ] = useState( true );
 
+		const eddActive = !! window.wbeEditor?.eddActive;
+
 		useEffect( () => {
+			if ( ! eddActive ) {
+				setLoadingCats( false );
+				return;
+			}
 			apiFetch( { path: '/wbcom/v1/product-categories' } )
 				.then( ( data ) => {
 					setCategories( data || [] );
 					setLoadingCats( false );
 				} )
 				.catch( () => setLoadingCats( false ) );
-		}, [] );
+		}, [ eddActive ] );
 
 		const categoryOptions = [
 			{ label: __( 'All Categories', 'wbcom-essential' ), value: 0 },
@@ -225,6 +231,11 @@ registerBlockType( 'wbcom-essential/product-catalog', {
 
 				<div { ...blockProps }>
 					{ blockCSS && <style>{ blockCSS }</style> }
+					{ ! eddActive && (
+						<p className="wbe-block-notice">
+							{ __( 'Easy Digital Downloads plugin is required for this block.', 'wbcom-essential' ) }
+						</p>
+					) }
 					<div className="wbcom-catalog-preview">
 						<div className="wbcom-catalog-preview__toolbar">
 							{ showSearch && (

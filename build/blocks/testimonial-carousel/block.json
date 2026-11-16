@@ -86,23 +86,23 @@
     },
     "quoteBg": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "quoteColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "nameColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "roleColor": {
       "type": "string",
-      "default": "#6c757d"
+      "default": ""
     },
     "accentColor": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "padding": {
       "type": "object",
@@ -114,11 +114,17 @@
       }
     },
     "paddingTablet": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "paddingMobile": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "paddingUnit": {
@@ -135,11 +141,17 @@
       }
     },
     "marginTablet": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "marginMobile": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "marginUnit": {

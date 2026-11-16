@@ -212,7 +212,7 @@
 }
 
 .product_information_area {
-    background: #fff none repeat scroll 0 0;
+    background: var(--wbcom-card-bg, #fff) none repeat scroll 0 0;
     bottom: -90px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.18);
     left: 0;
@@ -365,7 +365,7 @@
 }
 
 .wb-tab-menus li a.htactive {
-    border-color: #e5e5e5;
+    border-color: var(--wbcom-color-border, #e5e5e5);
 }
 
 .wb-tab-pane {
@@ -406,7 +406,7 @@
 
 .product-slider .elementor-swiper-button {
     background: transparent none repeat scroll 0 0;
-    border: 2px solid #ddd;
+    border: 2px solid var(--wbcom-color-border, #ddd);
     color: #ddd;
     font-size: 20px;
     height: 40px;
@@ -432,7 +432,7 @@
 
 .product-slider .elementor-swiper-button:hover {
     border-color: #333;
-    color: #333;
+    color: var(--wbcom-text-color, #333);
 }
 
 .col2-set .col-1,
@@ -505,7 +505,7 @@ li.wbcom-cart .button:before {
 }
 
 .wb-products .wb-product .wb-product-inner {
-    color: #444444;
+    color: var(--wbcom-text-color, #444444);
     border: 1px solid #f1f1f1;
     -webkit-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -591,7 +591,7 @@ li.wbcom-cart .button:before {
     padding: 0;
     cursor: pointer;
     z-index: 99;
-    color: #444444;
+    color: var(--wbcom-text-color, #444444);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -629,7 +629,7 @@ li.wbcom-cart .button:before {
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .elementor-swiper-button:hover {
-    color: #000000;
+    color: var(--wbcom-text-color, #000000);
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-image-slider .swiper-pagination {
@@ -716,7 +716,7 @@ li.wbcom-cart .button:before {
 .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-cus-tab-links li a {
     display: block;
     border: 3px solid rgba(0, 0, 0, 0.55);
-    background: #fff none repeat scroll 0 0;
+    background: var(--wbcom-card-bg, #fff) none repeat scroll 0 0;
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-image-wrap .wb-product-image .wb-product-cus-tab-links li a.htactive {
@@ -767,7 +767,7 @@ li.wbcom-cart .button:before {
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-action ul:not(.wbcom-btn-text-cart) li a {
-    color: #000000;
+    color: var(--wbcom-text-color, #000000);
     text-decoration: none;
     display: block;
     text-align: center;
@@ -959,12 +959,12 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-action ul li a:hover {
-    color: #1d76da;
+    color: var(--wbcom-color-primary, #1d76da);
 }
 
 .wb-product-action .yith-wcwl-wishlistaddedbrowse a,
 .wb-product-action .yith-wcwl-wishlistexistsbrowse a {
-    color: #1d76da !important;
+    color: var(--wbcom-color-primary, #1d76da) !important;
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-action ul li a:hover .wb-product-action-tooltip,
@@ -1026,7 +1026,7 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-categories a:hover {
-    color: #1d76da;
+    color: var(--wbcom-color-primary, #1d76da);
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-title {
@@ -1053,7 +1053,7 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-title a:hover {
-    color: #1d76da;
+    color: var(--wbcom-color-primary, #1d76da);
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-price {
@@ -1072,7 +1072,7 @@ span.wbcom-tip,
     line-height: 1;
     font-weight: 700;
     font-size: 20px;
-    color: #444444;
+    color: var(--wbcom-text-color, #444444);
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-price mark,
@@ -1116,7 +1116,7 @@ span.wbcom-tip,
     line-height: 14px;
     padding-left: 3px;
     padding-right: 3px;
-    color: #aaaaaa;
+    color: var(--wbcom-color-contrast-2, #aaaaaa);
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-ratting-wrap .wb-product-ratting i:last-child {
@@ -1138,7 +1138,7 @@ span.wbcom-tip,
 }
 
 .wb-products .wb-product .wb-product-inner .wb-product-content .wb-product-content-inner .wb-product-ratting-wrap .wb-product-ratting .wb-product-user-ratting i {
-    color: #1d76da;
+    color: var(--wbcom-color-primary, #1d76da);
 }
 
 .wb-products .wb-product .wb-product-inner:hover {
@@ -1377,7 +1377,7 @@ span.wbcom-tip,
 
 .wb-products .wb-product.wb-product-action-style-2 .wb-product-inner .wb-product-action ul {
     margin: 0;
-    background-color: #ffffff;
+    background-color: var(--wbcom-card-bg, #ffffff);
     -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -1887,7 +1887,7 @@ span.wbcom-tip,
 
 /* Customer Review Style 02 */
 .wb-review-style-2 .wb-customer-testimonal {
-    background: #fff none repeat scroll 0 0;
+    background: var(--wbcom-card-bg, #fff) none repeat scroll 0 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
     padding: 40px 30px;
@@ -1942,7 +1942,7 @@ span.wbcom-tip,
 
 /* Customer Review Style 03 */
 .wb-review-style-3 .wb-customer-testimonal {
-    background: #fff none repeat scroll 0 0;
+    background: var(--wbcom-card-bg, #fff) none repeat scroll 0 0;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 53px;
@@ -2008,7 +2008,7 @@ span.wbcom-tip,
 
 /* Customer Review Style 04 */
 .wb-review-style-4 .wb-customer-testimonal .content {
-    background: #fff none repeat scroll 0 0;
+    background: var(--wbcom-card-bg, #fff) none repeat scroll 0 0;
     box-shadow: 0 0 10px rgba(82, 182, 188, 0.25);
     padding: 50px 9%;
     position: relative;

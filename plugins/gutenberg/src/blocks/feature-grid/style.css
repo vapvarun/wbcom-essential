@@ -6,7 +6,6 @@
 
 .wbe-feature-grid {
 	box-sizing: border-box;
-	width: 100%;
 }
 
 /* Grid container — 1 column base, scales up via --wbe-feature-cols */
@@ -33,7 +32,7 @@
 
 /* ---- Style: Elevated ---- */
 .wbe-feature-grid__card--elevated {
-	background-color: #ffffff;
+	background-color: var(--wbe-surface, #ffffff);
 	box-shadow: var(--wbe-shadow-md, 0 4px 6px -1px rgba(0,0,0,0.1));
 }
 
@@ -44,8 +43,8 @@
 
 /* ---- Style: Bordered ---- */
 .wbe-feature-grid__card--bordered {
-	background-color: #ffffff;
-	border: 2px solid #e9ecef;
+	background-color: var(--wbe-surface, #ffffff);
+	border: 2px solid var(--wbe-border, #e9ecef);
 	box-shadow: none;
 }
 
@@ -80,7 +79,7 @@
 	font-size: var(--wbe-font-xl, 20px);
 	font-weight: var(--wbe-weight-semibold, 600);
 	line-height: var(--wbe-leading-tight, 1.25);
-	color: inherit;
+	color: var(--wbe-text, inherit);
 }
 
 /* ---- Description ---- */
@@ -88,7 +87,7 @@
 	margin: 0;
 	font-size: var(--wbe-font-sm, 14px);
 	line-height: var(--wbe-leading-relaxed, 1.75);
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 }
 
 /* Visibility utility classes */
@@ -97,12 +96,21 @@
 	.wbe-feature-grid__grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
+
+	/* An odd last card spans the row so tablet never shows a lone orphan. */
+	.wbe-feature-grid__grid > :last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+	}
 }
 
 /* Desktop — honour --wbe-feature-cols */
 @media (min-width: 1025px) {
 	.wbe-feature-grid__grid {
 		grid-template-columns: repeat(var(--wbe-feature-cols, 3), 1fr);
+	}
+
+	.wbe-feature-grid__grid > :last-child:nth-child(odd) {
+		grid-column: auto;
 	}
 }
 

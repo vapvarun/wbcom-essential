@@ -10,10 +10,10 @@
 	--wbe-gg-cols-tab: 2;
 	--wbe-gg-cols-mob: 1;
 	--wbe-gg-gap: 24px;
-	--wbe-gg-card-bg: #ffffff;
+	--wbe-gg-card-bg: var( --wbe-surface, #ffffff );
 	--wbe-gg-card-radius: 12px;
-	--wbe-gg-name-color: #1e1e2e;
-	--wbe-gg-desc-color: #6c757d;
+	--wbe-gg-name-color: var( --wbe-text, #1e1e2e );
+	--wbe-gg-desc-color: var( --wbe-text-muted, #6c757d );
 	--wbe-gg-join-accent: var( --wbcom-color-primary, #3182ce );
 }
 
@@ -173,12 +173,12 @@
 .wbe-groups-grid__action .generic-button a:hover,
 .wbe-groups-grid__action .generic-button button:hover,
 .wbe-groups-grid__join-btn:hover {
-	color: #ffffff;
+	color: var( --wbcom-button-color, #ffffff );
 	background: var( --wbe-gg-join-accent );
 }
 
 .wbe-gg-join--member {
-	color: #ffffff;
+	color: var( --wbcom-button-color, #ffffff );
 	background: var( --wbe-gg-join-accent );
 	border-color: var( --wbe-gg-join-accent );
 	cursor: default;
@@ -186,15 +186,15 @@
 }
 
 .wbe-gg-join--pending {
-	color: #6c757d;
-	border-color: #6c757d;
+	color: var( --wbe-text-muted, #6c757d );
+	border-color: var( --wbe-text-muted, #6c757d );
 	cursor: default;
 	opacity: 0.7;
 }
 
 .wbe-gg-join--pending:hover {
 	background: transparent;
-	color: #6c757d;
+	color: var( --wbe-text-muted, #6c757d );
 }
 
 .wbe-groups-grid__join-btn:disabled {
@@ -205,9 +205,9 @@
 .wbe-groups-grid__action .generic-button.leave-group a,
 .wbe-groups-grid__action .group-button.membership-requested,
 .wbe-groups-grid__action .generic-button.membership-requested a {
-	background: #e5e7eb;
-	color: #374151;
-	border-color: #e5e7eb;
+	background: var( --wbe-surface-alt, #e5e7eb );
+	color: var( --wbe-text, #374151 );
+	border-color: var( --wbe-border, #e5e7eb );
 }
 
 /* Empty state */
@@ -231,15 +231,35 @@
 		--wbe-gg-cols-now: var( --wbe-gg-cols-mob );
 	}
 
-	/* Stack avatar above info on small screens */
+	/* Keep the row (photo left, details right) on phones: stacked, every group took a full screen of
+	   mostly empty card. A smaller photo leaves the room to the name and description. */
+	.wbe-groups-grid__list {
+		gap: min( var( --wbe-gg-gap ), 12px );
+	}
+
 	.wbe-groups-grid__card {
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		padding: 16px 12px;
+		padding: 14px;
+		gap: 12px;
+	}
+
+	.wbe-groups-grid__card:hover {
+		transform: none;
+	}
+
+	.wbe-groups-grid__avatar-img,
+	.wbe-groups-grid__avatar img {
+		width: 56px;
+		height: 56px;
 	}
 
 	.wbe-groups-grid__name a {
 		white-space: normal;
+	}
+
+	.wbe-groups-grid__meta {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 2px 10px;
+		margin-bottom: 6px;
 	}
 }

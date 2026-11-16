@@ -30,12 +30,12 @@ $total       = absint( $attributes['totalMembers'] ?? 12 );
 $sort        = sanitize_text_field( $attributes['sortType'] ?? 'newest' );
 $cols        = absint( $attributes['columns'] ?? 4 );
 $cols_tab    = absint( $attributes['columnsTablet'] ?? 2 );
-$cols_mob    = absint( $attributes['columnsMobile'] ?? 1 );
+$cols_mob    = absint( $attributes['columnsMobile'] ?? 2 );
 $gap         = absint( $attributes['gap'] ?? 24 );
 $avatar_size = absint( $attributes['avatarSize'] ?? 80 );
-$card_bg     = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' );
-$name_color  = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' );
-$meta_color  = sanitize_hex_color( $attributes['metaColor'] ?? '#6c757d' );
+$card_bg     = sanitize_hex_color( $attributes['cardBg'] ?? '' );
+$name_color  = sanitize_hex_color( $attributes['nameColor'] ?? '' );
+$meta_color  = sanitize_hex_color( $attributes['metaColor'] ?? '' );
 $card_radius = absint( $attributes['cardBorderRadius'] ?? 12 );
 
 $wrapper = get_block_wrapper_attributes(

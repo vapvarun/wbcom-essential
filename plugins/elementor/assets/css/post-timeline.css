@@ -235,7 +235,7 @@ body.elementor-editor-active .wbcom-post-timeline-ajax-btn {
 
 .wbcom-post-timeline {
     padding: 40px 0;
-    color: #000;
+    color: var(--wbcom-text-color, #000);
 }
 
 .wbcom-post-timeline__container {
@@ -250,7 +250,7 @@ body.elementor-editor-active .wbcom-post-timeline-ajax-btn {
     left: 0;
     height: 100%;
     width: 4px;
-    background: #eee;
+    background: var(--wbcom-color-base-2, #eee);
 }
 
 .wbcom-post-timeline__block {
@@ -314,7 +314,7 @@ body.elementor-editor-active .wbcom-post-timeline-ajax-btn {
     flex-grow: 1;
     position: relative;
     margin-left: 40px;
-    background: #eee;
+    background: var(--wbcom-color-base-2, #eee);
     border-radius: 10px;
     padding: 40px;
 }
@@ -334,7 +334,7 @@ body.elementor-editor-active .wbcom-post-timeline-ajax-btn {
     width: 0;
     height: 0;
     border: 8px solid transparent;
-    border-right-color: #eee;
+    border-right-color: var(--wbcom-color-border, #eee);
     display: none;
 }
 
@@ -343,7 +343,7 @@ body.elementor-editor-active .wbcom-post-timeline-ajax-btn {
 }
 
 .wbcom-post-timeline__content .wbcom-post-timeline-title {
-    color: #000;
+    color: var(--wbcom-text-color, #000);
     padding: 0;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
@@ -377,7 +377,7 @@ body.elementor-editor-active .wbcom-post-timeline-ajax-btn {
 }
 
 .wbcom-post-timeline__date {
-    color: #000;
+    color: var(--wbcom-text-color, #000);
     width: 100%;
     display: block;
     line-height: 60px;
@@ -531,7 +531,7 @@ body.elementor-editor-active .wbcom-post-timeline-ajax-btn {
         width: 0;
         height: 0;
         border: 8px solid transparent;
-        border-left-color: #eee;
+        border-left-color: var(--wbcom-color-border, #eee);
     }
 
     .wbcom-post-timeline.wbcom-post-timeline-2-col .wbcom-post-timeline__block .wbcom-post-timeline__date {

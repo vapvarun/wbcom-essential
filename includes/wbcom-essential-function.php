@@ -66,18 +66,35 @@ function wbcom_essential_locate_template( $template_name, $template_path, $defau
 }
 
 /**
- * Function checks the theme is active or not.
+ * Whether the active theme, or its parent, is the theme with this folder slug.
  *
- * @param string $theme Required Theme Name.
+ * Slugs do not change with the site language or a renamed display name.
+ *
+ * @param string $slug Theme folder slug, for example 'reign', 'buddyx' or 'buddyx-pro'.
+ * @return bool
  */
-function _is_theme_active( $theme ) {
-    static $current_theme = null;
-    
-    if ( null === $current_theme ) {
-        $current_theme = wp_get_theme();
-    }
-    
-    return ( $theme == $current_theme->name || $theme == $current_theme->parent_theme );
+function wbcom_essential_is_theme_active( $slug ) {
+	static $known = null;
+	if ( null === $known ) {
+		// Folder slugs and the untranslated Theme Name headers of the active theme and its parent. A folder can
+		// be renamed (Reign installs as reign-theme), and the display name is translated, so check both raw forms.
+		$theme = wp_get_theme();
+		$known = array( get_template(), get_stylesheet(), (string) $theme->get( 'Name' ) );
+		if ( $theme->parent() ) {
+			$known[] = (string) $theme->parent()->get( 'Name' );
+		}
+		$known = array_map( 'strtolower', array_filter( $known ) );
+	}
+	$slug = strtolower( (string) $slug );
+	if ( in_array( $slug, $known, true ) ) {
+		return true;
+	}
+	// Folder slugs as shipped: reign-theme, buddyx-pro.
+	$aliases = array(
+		'reign'      => array( 'reign-theme' ),
+		'buddyx-pro' => array( 'buddyxpro' ),
+	);
+	return isset( $aliases[ $slug ] ) && (bool) array_intersect( $aliases[ $slug ], $known );
 }
 
 /**
@@ -88,7 +105,7 @@ function _is_theme_active( $theme ) {
  *
  * @return mixed|string
  */
-function _get_column_class( $type, $viewport = '' ) {
+function wbcom_essential_get_column_class( $type, $viewport = '' ) {
 
 	$classes = array(
 		'one'   => 'one',
@@ -548,22 +565,6 @@ if ( class_exists( 'WooCommerce' ) ) {
 	add_filter( 'woocommerce_add_to_cart_fragments', 'wbcom_essential_header_cart_fragment' );
 }
 
-/**
- * Filters the scripts to enqueue for BuddyPress Nouveau.
- *
- * @param  Array $scripts_args Array of scripts to register.
- */
-function wbcom_essential_bp_nouveau_register_scripts( $scripts_args ) {
-	if ( function_exists( 'buddypress' ) && isset( buddypress()->buddyboss ) ) {
-		return $scripts_args;
-	}
-
-	if ( isset( $scripts_args['bp-nouveau'] ) ) {
-		$scripts_args['bp-nouveau']['file'] = WBCOM_ESSENTIAL_URL . 'assets/js/buddypress-nouveau%s.js';
-	}
-	return $scripts_args;
-}
-add_filter( 'bp_nouveau_register_scripts', 'wbcom_essential_bp_nouveau_register_scripts', 20 );
 
 
 
@@ -576,17 +577,12 @@ add_filter( 'bp_nouveau_register_scripts', 'wbcom_essential_bp_nouveau_register_
 function wbcom_essential_posts_revolution_elementor_thumbs() {
 	global $post;
 
-	if ( has_post_thumbnail() ) {
-		$id_post      = get_the_id();
-		$single_image = wp_get_attachment_image_src( get_post_thumbnail_id( $id_post ), 'wbcom-essential-elementor-type1' );
-		if ( empty( $single_image ) ) {
-			$single_image[0] = WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/images/no-img.png';
-		}
-	} else {
-		$single_image[0] = WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/images/no-img.png';
-	}
+	$single_image = has_post_thumbnail() ? wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'wbcom-essential-elementor-type1' ) : false;
 
-	$return = '<img class="wb-megaposts-thumbs" src="' . $single_image[0] . '" alt="' . get_the_title() . '">';
+	// A post without a photo gets a quiet theme-coloured panel, not an "Image not found!" picture.
+	$return = $single_image
+		? '<img class="wb-megaposts-thumbs" src="' . esc_url( $single_image[0] ) . '" alt="' . esc_attr( get_the_title() ) . '">'
+		: '<span class="wb-megaposts-thumbs wb-megaposts-thumbs--empty" aria-hidden="true"></span>';
 	return apply_filters( 'wbcom_essential_posts_revolution_elementor_thumbs', $return, $post );
 }
 
@@ -659,45 +655,6 @@ function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_sourc
 	return $return;
 }
 
-function wbcom_essential_posts_revolution_elementor_post_info(
-	$ad_postpreview_display_date,
-	$ad_postpreview_display_comments,
-	$ad_postpreview_display_author,
-	$ad_postpreview_display_category,
-	$ad_postpreview_display_views,
-	$wbcom_query_source,
-	$wbcom_query_posts_type,
-	$date_format
-) {
-
-	global $post;
-	$return = '';
-	if ( $ad_postpreview_display_date == 'true' ) {
-
-		$return .= '<span class="wb-date"><i class="fa fa-calendar"></i>' . get_the_date( $date_format ) . '</span>';
-
-	}
-
-	if ( $ad_postpreview_display_author == 'true' ) {
-		$return .= '<span class="wb-author"><i class="fa fa-user"></i><a href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '">' . get_the_author_meta( 'display_name' ) . '</a></span>';
-	}
-
-	if ( $ad_postpreview_display_comments == 'true' ) {
-
-		$return .= '<span class="wb-comments"><i class="fa fa-comments"></i><a href="' . get_comments_link() . '">' . get_comments_number() . '</a></span>';
-
-	}
-
-	if ( $ad_postpreview_display_category == 'true' ) {
-		$return .= '<span class="wb-category"><i class="fa fa-tags"></i>' . wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) . '</span>';
-	}
-
-	if ( $ad_postpreview_display_views == 'true' ) {
-		$return .= '<span class="wb-views"><i class="fa fa-eye"></i>' . wbcom_essential_posts_revolution_elementor_get_post_views( get_the_ID() ) . '</span>';
-	}
-
-	return $return;
-}
 
 
 
@@ -724,42 +681,6 @@ function wbcom_essential_posts_revolution_elementor_hex2rgb( $hex ) {
 	return $rgb;
 }
 
-/*
- * FUNCTION VIEW
- *
- * @since 3.6.0
- */
-
-function wbcom_essential_posts_revolution_elementor_get_post_views( $post_id ) {
-	$count_key = 'wpb_post_views_count';
-	$count     = get_post_meta( $post_id, $count_key, true );
-	if ( $count == '' ) {
-		delete_post_meta( $post_id, $count_key );
-		add_post_meta( $post_id, $count_key, '0' );
-		$view = esc_html__( 'Views', 'wbcom-essential' );
-		return '0';
-	}
-	$count_final = $count;
-	return $count_final;
-}
-
-function wbcom_essential_posts_revolution_elementor_set_post_views() {
-	if ( ! is_single() ) {
-        return;
-    }
-	
-	global $post;
-	if ( ! $post ) {
-        return;
-    }
-	$post_id    = $post->ID;
-	$count_key = 'wpb_post_views_count';
-	$count     = (int) get_post_meta( $post_id, $count_key, true );
-	
-	update_post_meta( $post_id, $count_key, $count+1 );
-	
-}
-add_filter( 'wp_footer', 'wbcom_essential_posts_revolution_elementor_set_post_views', 9999 );
 
 
 /*
@@ -1023,4 +944,60 @@ function wbcom_essential_bp_rest_url( $route ) {
 		: 'buddypress/v1';
 
 	return rest_url( $namespace . '/' . ltrim( $route, '/' ) );
+}
+
+if ( ! function_exists( '_is_theme_active' ) ) {
+	/**
+	 * Old name of wbcom_essential_is_theme_active(), kept for themes and child themes that call it.
+	 *
+	 * @deprecated 4.7.2 Use wbcom_essential_is_theme_active().
+	 * @param string $theme Theme name or folder slug.
+	 * @return bool
+	 */
+	function _is_theme_active( $theme ) {
+		return wbcom_essential_is_theme_active( $theme );
+	}
+}
+
+if ( ! function_exists( '_get_column_class' ) ) {
+	/**
+	 * Old name of wbcom_essential_get_column_class(), kept for themes and child themes that call it.
+	 *
+	 * @deprecated 4.7.2 Use wbcom_essential_get_column_class().
+	 * @param string $type     Column count word.
+	 * @param string $viewport Viewport.
+	 * @return mixed|string
+	 */
+	function _get_column_class( $type, $viewport = '' ) {
+		return wbcom_essential_get_column_class( $type, $viewport );
+	}
+}
+
+/**
+ * Tax query clause that keeps product lists to what a shopper can see in the shop: products hidden from the
+ * catalog are left out, and out-of-stock ones too when WooCommerce > Settings > Products > Inventory hides them.
+ * Uses WooCommerce's own visibility terms, the same check its shop loops make.
+ *
+ * @return array A tax_query clause, or an empty array when there is nothing to exclude.
+ */
+function wbcom_essential_product_visibility_tax_query() {
+	if ( ! function_exists( 'wc_get_product_visibility_term_ids' ) ) {
+		return array();
+	}
+	$ids     = wc_get_product_visibility_term_ids();
+	$exclude = array();
+	if ( ! empty( $ids['exclude-from-catalog'] ) ) {
+		$exclude[] = (int) $ids['exclude-from-catalog'];
+	}
+	if ( 'yes' === get_option( 'woocommerce_hide_out_of_stock_items' ) && ! empty( $ids['outofstock'] ) ) {
+		$exclude[] = (int) $ids['outofstock'];
+	}
+	return $exclude
+		? array(
+			'taxonomy' => 'product_visibility',
+			'field'    => 'term_taxonomy_id',
+			'terms'    => $exclude,
+			'operator' => 'NOT IN',
+		)
+		: array();
 }

@@ -131,7 +131,7 @@
 	top: calc(50% - 20px);
 	right: 0;
 	position: absolute;
-	background: #1d76da;
+	background: var(--wbcom-color-primary, #1d76da);
 	border-radius: 100px;
 	margin-left: auto;
 	padding: 2px 7px;
@@ -191,7 +191,7 @@
 }
 
 .site-header--elementor .notification-dropdown {
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	border: 1px solid #e7e9ec;
 	box-shadow: 0 2px 7px 1px rgba(230, 230, 230, 0.5), 0 6px 32px 0 rgba(18, 43, 70, 0.1);
 	border-radius: 12px;
@@ -224,7 +224,7 @@
 
 .site-header.site-header--elementor .wbcom-essential-my-account-menu .menu-item-has-children .sub-menu {
 	position: absolute;
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	box-shadow: 0 2px 7px 1px rgba(230, 230, 230, 0.5), 0 6px 32px 0 rgba(18, 43, 70, 0.1);
 	list-style: none;
 	top: 0;
@@ -250,7 +250,7 @@
 	-ms-transform: rotate(45deg);
 	transform: rotate(
 		45deg);
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 }
 
 @media (min-width: 768px) {
@@ -296,7 +296,7 @@
 }
 
 .site-header--elementor .product_list_widget li {
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 	border-radius: 4px;
 	overflow: hidden;
 	display: -webkit-box;
@@ -325,7 +325,7 @@
 	-ms-flex-order: 1;
 	order: 1;
 	margin-right: auto;
-	color: #122b46;
+	color: var(--wbcom-text-color, #122b46);
 	font-weight: 400;
 	margin-bottom: 0;
 }
@@ -456,7 +456,7 @@
 }
 
 .site-header--elementor .notification-list li:hover {
-	background: #F5F5F5;
+	background: var(--wbcom-color-base-2, #f5f5f5);
 }
 
 .site-header--elementor .wbcom-essential--full-link {
@@ -482,7 +482,7 @@
 	display: block;
 	margin-top: 5px;
 	font-size: 15px;
-	color: #888;
+	color: var(--wbcom-color-contrast-2, #888);
 }
 
 .site-header--elementor .wbcom-essential-friends-list .notification-content {
@@ -511,7 +511,7 @@
 
 .site-header--elementor .wbcom-essential-friend-action:hover {
 	background: #e7eefb;
-	color: #1d76da;
+	color: var(--wbcom-color-primary, #1d76da);
 }
 
 .site-header--elementor .wbcom-essential-friend-action.is-reject:hover {
@@ -521,7 +521,7 @@
 .site-header--elementor .notification-footer {
 	position: relative;
 	bottom: 0;
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	width: 100%;
 	border-top: 1px solid #e3e3e3;
 }
@@ -592,7 +592,7 @@
 	align-items: center;
 	font-size: .875rem;
 	font-weight: 500;
-	color: #303030;
+	color: var(--wbcom-text-color, #303030);
 	letter-spacing: -.24px;
 	height: 76px;
 }
@@ -606,7 +606,7 @@
 }
 
 .site-header.site-header--elementor .sub-menu {
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	box-shadow: 0 2px 7px 1px rgba(230, 230, 230, 0.5), 0 6px 32px 0 rgba(18, 43, 70, 0.1);
 	border-radius: 12px;
 	list-style: none;
@@ -688,7 +688,7 @@
 	display: block;
 	font-size: 13px;
 	font-weight: inherit;
-	color: #303030;
+	color: var(--wbcom-text-color, #303030);
 	line-height: 1;
 	margin-bottom: 1px;
 	padding: 0.5625rem 0.9375rem;
@@ -722,7 +722,7 @@
 	left: 0;
 	top: 0;
 	height: 76px;
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	margin: 0;
 	padding: 0 30px;
 	box-shadow: 0 1px 0 0 rgba(139, 141, 157, 0.05), 0 5px 18px 0 rgba(65, 71, 108, 0.22);
@@ -884,7 +884,7 @@
 	bottom: 0;
 	width: 100%;
 	max-width: 480px;
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
 	display: flex;
 	flex-direction: column;
@@ -910,7 +910,7 @@
 	margin: 0;
 	font-size: 1.125rem;
 	font-weight: 500;
-	color: #1d76da;
+	color: var(--wbcom-color-primary, #1d76da);
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 }
@@ -924,12 +924,12 @@
 	align-items: center;
 	gap: 8px;
 	font-size: 14px;
-	color: #303030;
+	color: var(--wbcom-text-color, #303030);
 	font-weight: 500;
 }
 
 .header-cart-drawer__close:hover {
-	color: #1d76da;
+	color: var(--wbcom-color-primary, #1d76da);
 }
 
 .header-cart-drawer__close .widget-close-icon {
@@ -971,7 +971,7 @@
 	display: flex;
 	align-items: center;
 	gap: 15px;
-	color: #122b46;
+	color: var(--wbcom-text-color, #122b46);
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 0.3px;
@@ -982,12 +982,12 @@
 	width: 80px;
 	height: auto;
 	border-radius: 4px;
-	background: #f5f5f5;
+	background: var(--wbcom-color-base-2, #f5f5f5);
 }
 
 .header-cart-drawer ul.cart_list li.mini_cart_item .quantity {
 	display: block;
-	color: #666;
+	color: var(--wbcom-color-contrast-2, #666);
 	font-size: 14px;
 	margin-top: 5px;
 }
@@ -1069,7 +1069,7 @@
 .header-cart-drawer .woocommerce-mini-cart__empty-message {
 	padding: 40px 20px;
 	text-align: center;
-	color: #666;
+	color: var(--wbcom-color-contrast-2, #666);
 }
 
 /* Body class when drawer is open */

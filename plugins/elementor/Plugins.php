@@ -184,7 +184,11 @@ class Plugin {
 	private function __construct() {
 
 		add_action( 'plugins_loaded', array( $this, 'wbcom_essential_load_plugin' ), 0 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'front_css' ), 12 );
+		add_action( 'init', array( $this, 'front_css' ) );
+		// The theme colour tokens (Reign, BuddyX, BuddyX Pro, light and dark) that the widgets' colour defaults read.
+		add_action( 'elementor/frontend/after_enqueue_styles', array( $this, 'theme_tokens' ) );
+		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'theme_tokens' ) );
+		add_action( 'elementor/preview/enqueue_styles', array( $this, 'theme_tokens' ) );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_URL', WBCOM_ESSENTIAL_URL . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_PATH', WBCOM_ESSENTIAL_PATH . 'plugins/elementor/' );
 		define( 'WBCOM_ESSENTIAL_ELEMENTOR_WIDGET_PATH', WBCOM_ESSENTIAL_ELEMENTOR_PATH . 'widgets/' );
@@ -365,7 +369,7 @@ class Plugin {
 		 * split rather than 43, and anyone debugging "the Notification Area is
 		 * missing" should check the active theme before the widget code.
 		 */
-		if ( _is_theme_active( 'REIGN' ) ) {
+		if ( wbcom_essential_is_theme_active( 'reign' ) ) {
 			$elements['General/NotificationArea'] = array(
 				'name'  => 'wbcom-notification-area',
 				'class' => 'General\NotificationArea',
@@ -533,42 +537,23 @@ class Plugin {
 	}
 
 	/**
-	 * Enqueue Front CSS
+	 * The theme colour tokens (design-tokens.css: Reign, BuddyX and BuddyX Pro, light and dark) on pages Elementor
+	 * builds, in its editor and preview. Widget colour defaults read them, falling back to their old colours.
+	 */
+	public function theme_tokens() {
+		wp_enqueue_style( 'wbe-design-tokens', WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/design-tokens.css', array(), WBCOM_ESSENTIAL_VERSION );
+	}
+
+	/**
+	 * Register the shared widget styles. Nothing is enqueued here: the widgets that use them list them as
+	 * dependencies of their own stylesheet (Header Bar: header styles and icon font; WooCommerce widgets and
+	 * Forums Activity: icon font), so a page without those widgets loads none of it. animation.css has no
+	 * user left and stays registered only for sites that enqueue the handle themselves.
 	 */
 	public function front_css() {
-		wp_register_style(
-			'wbcom-essential-elementor-css',
-			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wbcom-essential-elementor.css',
-			array(),
-			WBCOM_ESSENTIAL_VERSION
-		);
-
-		wp_enqueue_style( 'wbcom-essential-elementor-css' );
-
-		wp_register_style(
-			'wbcom-animation-icons',
-			WBCOM_ESSENTIAL_ASSETS_URL . 'css/animation.css',
-			array(),
-			WBCOM_ESSENTIAL_VERSION
-		);
-
-		wp_enqueue_style( 'wbcom-animation-icons' );
-
-		wp_register_style(
-			'wbcom-essential-icons',
-			WBCOM_ESSENTIAL_ASSETS_URL . 'css/wbe-icons.css',
-			array(),
-			WBCOM_ESSENTIAL_VERSION
-		);
-
-		wp_enqueue_style( 'wbcom-essential-icons' );
-
-		// Localize Scripts.
-		$localizeargs = array(
-			'woolentorajaxurl' => admin_url( 'admin-ajax.php' ),
-			'ajax_nonce'       => wp_create_nonce( 'woolentor_psa_nonce' ),
-		);
-		wp_localize_script( 'wbcom-widgets-scripts', 'woolentor_addons', $localizeargs );
+		wp_register_style( 'wbcom-essential-elementor-css', WBCOM_ESSENTIAL_ASSETS_URL . 'css/wbcom-essential-elementor.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-animation-icons', WBCOM_ESSENTIAL_ASSETS_URL . 'css/animation.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'wbcom-essential-icons', WBCOM_ESSENTIAL_ASSETS_URL . 'css/wbe-icons.css', array(), WBCOM_ESSENTIAL_VERSION );
 	}
 }
 

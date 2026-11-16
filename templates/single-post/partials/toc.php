@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $wbcom_toc_content = get_the_content();
 $wbcom_toc_content = apply_filters( 'the_content', $wbcom_toc_content );
 
-preg_match_all( '/<h([23])[^>]*>(.*?)<\/h[23]>/i', $wbcom_toc_content, $wbcom_toc_matches, PREG_SET_ORDER );
+preg_match_all( '/<h([23])([^>]*)>(.*?)<\/h[23]>/i', $wbcom_toc_content, $wbcom_toc_matches, PREG_SET_ORDER );
 
 if ( empty( $wbcom_toc_matches ) ) {
 	return;
@@ -25,8 +25,9 @@ if ( empty( $wbcom_toc_matches ) ) {
 
 $wbcom_toc_items = array();
 foreach ( $wbcom_toc_matches as $wbcom_match ) {
-	$wbcom_text                    = wp_strip_all_tags( $wbcom_match[2] );
-	$wbcom_id                      = sanitize_title( $wbcom_text );
+	$wbcom_text = wp_strip_all_tags( $wbcom_match[3] );
+	// The heading already carries its id (template-modern.php adds one when it has none), so the link always matches.
+	$wbcom_id          = preg_match( '/\sid=["\']?([^"\'\s>]+)/i', $wbcom_match[2], $wbcom_id_match ) ? $wbcom_id_match[1] : sanitize_title( $wbcom_text );
 	$wbcom_toc_items[] = array(
 		'level' => (int) $wbcom_match[1],
 		'text'  => $wbcom_text,

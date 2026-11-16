@@ -526,7 +526,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-card-bg, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-member a' => 'background-color: {{VALUE}};',
 				),
@@ -994,7 +994,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-heading-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-overlay .wbcom-team-texts .wbcom-team-title' => 'color: {{VALUE}};',
 				),
@@ -1112,7 +1112,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-overlay .wbcom-team-texts .wbcom-team-subtitle' => 'color: {{VALUE}};',
 				),
@@ -1600,7 +1600,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-team-carousel-outer .swiper-pagination-bullet' => 'color: {{VALUE}};',
 				),
@@ -1711,10 +1711,11 @@ class TeamCarousel extends \Elementor\Widget_Base {
                     <div class="wbcom-team-member <?php echo esc_attr($settings['caption_placement']); ?>">
                         <?php if ($item['lightbox_style'] == 'external') { ?>
                         <?php
-                        $target = $item['external_link']['is_external'] ? ' target="_blank"' : '';
-                        $nofollow = $item['external_link']['nofollow'] ? ' rel="nofollow"' : '';
+                        // Elementor's link API: URL, new tab, nofollow and the owner's custom attributes, escaped.
+                        $link_key = 'wbcom_team_link_' . $item['_id'];
+                        $this->add_link_attributes( $link_key, $item['external_link'] );
                         ?>
-                        <a href="<?php echo esc_url($item['external_link']['url']); ?>" <?php echo esc_attr( $target ); ?> <?php echo esc_attr( $nofollow ); ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
+                        <a <?php $this->print_render_attribute_string( $link_key ); ?> data-elementor-open-lightbox="no" class="<?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } elseif ($item['lightbox_style'] != 'none') { ?>
                         <a href="#wbcom-lightbox-<?php echo esc_attr($item['_id']); ?>" data-elementor-open-lightbox="no" class="has-lightbox <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } ?>

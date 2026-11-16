@@ -50,15 +50,15 @@
 		},
 		"backgroundColor": {
 			"type": "string",
-			"default": "#f8f9fa"
+			"default": ""
 		},
 		"headingColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"descriptionColor": {
 			"type": "string",
-			"default": "#6c757d"
+			"default": ""
 		},
 		"buttonBg": {
 			"type": "string",
@@ -86,11 +86,11 @@
 			}
 		},
 		"paddingTablet": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"paddingMobile": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"paddingUnit": {
@@ -107,11 +107,11 @@
 			}
 		},
 		"marginTablet": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"marginMobile": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"marginUnit": {

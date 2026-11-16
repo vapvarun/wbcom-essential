@@ -708,7 +708,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Text Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-dd-menu li a' => 'color: {{VALUE}};',
 				),
@@ -720,7 +720,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-card-bg, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-dd-menu li a' => 'background-color: {{VALUE}};',
 				),
@@ -901,11 +901,12 @@ class DropdownButton extends \Elementor\Widget_Base {
 				<ul class="wbcom-dd-menu <?php echo esc_attr( $settings['dropdown_position'] ); ?>">
 					<?php
 					foreach ( $settings['list'] as $item ) {
-						$target   = $item['website_link']['is_external'] ? ' target="' . esc_attr( '_blank' ) . '"' : '';
-						$nofollow = $item['website_link']['nofollow'] ? ' rel="' . esc_attr( 'nofollow' ) . '"' : '';
+						// Elementor's link API: URL, new tab, nofollow and the owner's custom attributes, escaped.
+						$link_key = 'wbcom_dd_link_' . $item['_id'];
+						$this->add_link_attributes( $link_key, $item['website_link'] );
 						?>
 					<li>
-						<a href="<?php echo esc_url( $item['website_link']['url'] ); ?>" <?php echo esc_attr( $target ); ?> <?php echo esc_attr( $nofollow ); ?>>
+						<a <?php $this->print_render_attribute_string( $link_key ); ?>>
 							<?php
 							if ( $item['title_icon_position'] == 'before' ) {
 								\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );

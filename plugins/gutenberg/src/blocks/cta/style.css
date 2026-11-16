@@ -6,11 +6,11 @@
 
 /* Base wrapper */
 .wbe-cta {
+	background-color: var(--wbe-surface-alt, #f8f9fa);
 	display: flex;
 	align-items: center;
 	gap: var(--wbe-space-xl, 32px);
 	box-sizing: border-box;
-	width: 100%;
 }
 
 /* Stacked layout (default) */
@@ -63,7 +63,7 @@
 	font-size: clamp(var(--wbe-font-2xl, 24px), 3.5vw, var(--wbe-font-4xl, 36px));
 	font-weight: var(--wbe-weight-bold, 700);
 	line-height: var(--wbe-leading-tight, 1.25);
-	color: #1e1e2e;
+	color: var(--wbe-text, #1e1e2e);
 }
 
 /* Description */
@@ -71,7 +71,7 @@
 	margin: 0;
 	font-size: var(--wbe-font-md, 16px);
 	line-height: var(--wbe-leading-relaxed, 1.75);
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 }
 
 /* Action area */

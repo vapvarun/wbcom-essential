@@ -51,17 +51,20 @@ A WordPress login form with your own button text, colors and redirect. Block nam
 | Form Settings | Show "Remember Me" | Shows the remember-me checkbox. | On |
 | Form Settings | Show Register Link | Shows a link to the registration page. | On |
 | Form Settings | Show Lost Password Link | Shows a link to the password reset page. | On |
-| Form Settings | Logged-In Message | Text shown instead of the form to logged-in visitors. | You are already logged in. |
-| Style | Form Background | Background of the form. | #ffffff |
-| Style | Label Color | Color of the field labels. | #1e1e2e |
-| Style | Button Background | Background of the login button. | #667eea |
-| Style | Button Text Color | Text color of the login button. | #ffffff |
-| Style | Link Color | Color of the register and lost-password links. | #667eea |
+| Form Settings | When logged in | What a logged-in member sees: nothing, a message, or a member card (photo, name, profile and log out links). The editor preview always shows the form. | Show nothing |
+| Form Settings | Logged-In Message | Text shown when "When logged in" is set to Show a message. | You are already logged in. |
+| Style | Form Background | Background of the form. | Transparent |
+| Style | Label Color | Color of the field labels. | Theme text color |
+| Style | Button Background | Background of the login button. | Theme button color |
+| Style | Button Text Color | Text color of the login button. | Theme button text color |
+| Style | Link Color | Color of the register and lost-password links. | Theme link color |
 | Style | Border Radius, Box Shadow | Rounds the form corners and adds a shadow. | Shadow off |
 
 ### Tips
 
-- Logged-in visitors see the Logged-In Message instead of the form.
+- Colors left empty follow your theme, in light and dark mode (Reign, BuddyX and BuddyX Pro). Clear a color to go back to the theme color.
+- For a sidebar login box, keep "When logged in" on Show nothing: members see the next widget instead.
+- Padding defaults to 0. Add padding when you give the form a background.
 - The register link appears only when your site allows new users to register (Settings > General > Membership).
 
 ## Portfolio Grid

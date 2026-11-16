@@ -225,7 +225,7 @@
 .wbcom-price-table {
     position: relative;
     display: block;
-    background-color: #eee;
+    background-color: var(--wbcom-color-base-2, #eee);
     margin: 0 auto
 }
 

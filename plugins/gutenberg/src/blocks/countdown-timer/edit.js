@@ -5,13 +5,14 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
 	ToggleControl,
 	SelectControl,
 	TextControl,
-	ColorPicker,
+	ColorPalette,
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 import { DateTimePicker } from '@wordpress/components';
@@ -99,14 +100,18 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		{ key: 'seconds', show: showSeconds, value: preview.seconds, label: __( 'Secs', 'wbcom-essential' ) },
 	].filter( ( u ) => u.show );
 
+	// Only colours the owner picked; empty ones follow the theme (style.css). With all four set the output is
+	// the same as before, so content saved with the old fixed defaults still validates (see index.js).
 	const tokenPropsCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-cd-number-color: ${ numberColor };`,
-		`  --wbe-cd-label-color: ${ labelColor };`,
-		`  --wbe-cd-box-bg: ${ boxBg };`,
-		`  --wbe-cd-box-border: ${ boxBorderColor };`,
+		numberColor && `  --wbe-cd-number-color: ${ numberColor };`,
+		labelColor && `  --wbe-cd-label-color: ${ labelColor };`,
+		boxBg && `  --wbe-cd-box-bg: ${ boxBg };`,
+		boxBorderColor && `  --wbe-cd-box-border: ${ boxBorderColor };`,
 		`}`,
-	].join( '\n' );
+	]
+		.filter( Boolean )
+		.join( '\n' );
 
 	return (
 		<>
@@ -189,29 +194,36 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					title={ __( 'Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
+					<p className="components-base-control__help">
+						{ __( 'Colours left empty follow your theme, in light and dark mode.', 'wbcom-essential' ) }
+					</p>
 					<p><strong>{ __( 'Number Color', 'wbcom-essential' ) }</strong></p>
-					<ColorPicker
-						color={ numberColor }
-						onChange={ ( val ) => setAttributes( { numberColor: val } ) }
+					<ColorPalette
+						value={ numberColor }
+						onChange={ ( val ) => setAttributes( { numberColor: val || '' } ) }
 						enableAlpha
+						clearable
 					/>
 					<p><strong>{ __( 'Label Color', 'wbcom-essential' ) }</strong></p>
-					<ColorPicker
-						color={ labelColor }
-						onChange={ ( val ) => setAttributes( { labelColor: val } ) }
+					<ColorPalette
+						value={ labelColor }
+						onChange={ ( val ) => setAttributes( { labelColor: val || '' } ) }
 						enableAlpha
+						clearable
 					/>
 					<p><strong>{ __( 'Box Background', 'wbcom-essential' ) }</strong></p>
-					<ColorPicker
-						color={ boxBg }
-						onChange={ ( val ) => setAttributes( { boxBg: val } ) }
+					<ColorPalette
+						value={ boxBg }
+						onChange={ ( val ) => setAttributes( { boxBg: val || '' } ) }
 						enableAlpha
+						clearable
 					/>
 					<p><strong>{ __( 'Box Border Color', 'wbcom-essential' ) }</strong></p>
-					<ColorPicker
-						color={ boxBorderColor }
-						onChange={ ( val ) => setAttributes( { boxBorderColor: val } ) }
+					<ColorPalette
+						value={ boxBorderColor }
+						onChange={ ( val ) => setAttributes( { boxBorderColor: val || '' } ) }
 						enableAlpha
+						clearable
 					/>
 					<Spacer marginTop={ 3 } />
 					<BorderRadiusControl
@@ -280,9 +292,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				{ targetDate && (
 					<div className="wbe-countdown-timer__units">
 						{ units.map( ( unit, idx ) => (
-							<>
+							<Fragment key={ unit.key }>
 								<div
-									key={ unit.key }
 									className={ `wbe-countdown-timer__unit wbe-countdown-timer__unit--${ unit.key }` }
 								>
 									<span className="wbe-countdown-timer__number">
@@ -293,7 +304,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 									</span>
 								</div>
 								{ idx < units.length - 1 && getSeparator() }
-							</>
+							</Fragment>
 						) ) }
 					</div>
 				) }

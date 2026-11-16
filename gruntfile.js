@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 	// Project configuration.
 	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
 	var pluginSlug    = 'wbcom-essential';
-	var pluginVersion = '4.7.1';
+	var pluginVersion = '4.7.2';
 
 	grunt.initConfig(
 		{
@@ -48,14 +48,9 @@ module.exports = function (grunt) {
 								// --- Ship everything by default ---
 								'**',
 
-								// --- vendor/: allowlist production packages only ---
-								// `composer install` (with dev) puts PHPCS, PHPStan and stubs in
-								// vendor/. Ship only the autoloader and the EDD SL SDK so a build
-								// never depends on whether dev dependencies happen to be installed.
+								// --- vendor/: dev tools only (PHPCS, PHPStan, stubs); never shipped. ---
+								// The licensing SDK and package signatures ship from libs/.
 								'!vendor/**',
-								'vendor/autoload.php',
-								'vendor/composer/**',
-								'vendor/easy-digital-downloads/**',
 
 								// --- Blacklist: dev-only top-level folders ---
 								'!docs/**',
@@ -64,6 +59,7 @@ module.exports = function (grunt) {
 								'!plan/**',
 								'!scripts/**',
 								'!tests/**',
+								'!plugins/gutenberg/tests/**',
 								'!node_modules/**',
 								'!.git/**',
 								'!.github/**',
@@ -204,8 +200,11 @@ module.exports = function (grunt) {
 							'**/*.php',
 							'!node_modules/**',
 							'!vendor/**',
+							'!libs/**', // Bundled SDK and package signatures keep their own text domains.
+							'!scripts/**', // Dev-only checks (not shipped; stubs WordPress functions).
 							'!options/framework/**',
 							'!tests/**',
+							'!plugins/gutenberg/tests/**',
 							'!dist/**'
 						], // all php
 						expand: true

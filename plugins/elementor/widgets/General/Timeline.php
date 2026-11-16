@@ -297,7 +297,7 @@ class Timeline extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Bar Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-color-border, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-timeline__container:before' => 'background-color: {{VALUE}};',
 				),
@@ -435,7 +435,7 @@ class Timeline extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-card-bg, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-timeline__content' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-timeline__content:before' => 'border-right-color: {{VALUE}};',
@@ -722,7 +722,8 @@ class Timeline extends \Elementor\Widget_Base {
 					}
 					?>
 					<?php
-					echo wp_kses_post( wpautop( $item['text'] ) ); ?>
+					echo wp_kses_post( wpautop( $item['text'] ) );
+                    ?>
 					</div>
 				</div>
 			<?php } ?>

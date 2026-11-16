@@ -650,7 +650,7 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Slide Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#0073aa',
+				'default'   => 'var(--wbcom-color-primary, #0073aa)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-slider-inner'   => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-slider-wrapper' => 'background-color: {{VALUE}};',
@@ -1300,7 +1300,7 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#0073aa',
+				'default'   => 'var(--wbcom-color-primary, #0073aa)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-slider-divider' => 'background-color: {{VALUE}};',
 				),
@@ -1941,7 +1941,7 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Container Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#0073aa',
+				'default'   => 'var(--wbcom-color-primary, #0073aa)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-slider-loader' => 'background-color: {{VALUE}};',
 				),

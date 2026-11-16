@@ -11,7 +11,7 @@ import {
 	SelectControl,
 	RangeControl,
 	ToggleControl,
-	ColorPicker,
+	ColorPalette,
 	BaseControl,
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
@@ -190,23 +190,26 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						max={ 50 }
 					/>
 					<BaseControl label={ __( 'Card Background', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ cardBg }
-							onChange={ ( value ) => setAttributes( { cardBg: value } ) }
+						<ColorPalette
+							value={ cardBg }
+							onChange={ ( value ) => setAttributes( { cardBg: value || '' } ) }
+							clearable
 							enableAlpha
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Name Color', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ nameColor }
-							onChange={ ( value ) => setAttributes( { nameColor: value } ) }
+						<ColorPalette
+							value={ nameColor }
+							onChange={ ( value ) => setAttributes( { nameColor: value || '' } ) }
+							clearable
 							enableAlpha
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Meta Color', 'wbcom-essential' ) }>
-						<ColorPicker
-							color={ metaColor }
-							onChange={ ( value ) => setAttributes( { metaColor: value } ) }
+						<ColorPalette
+							value={ metaColor }
+							onChange={ ( value ) => setAttributes( { metaColor: value || '' } ) }
+							clearable
 							enableAlpha
 						/>
 					</BaseControl>

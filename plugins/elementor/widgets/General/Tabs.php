@@ -218,7 +218,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-heading-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_head li,{{WRAPPER}} .wbaccordion-mobile-title' => 'color: {{VALUE}};',
 				),
@@ -263,7 +263,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-heading-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_head li.is-open,{{WRAPPER}} .wbaccordion-mobile-title.is-open' => 'color: {{VALUE}};',
 				),
@@ -275,7 +275,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Border Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-color-border, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_head li.is-open,{{WRAPPER}} .wbaccordion-mobile-title.is-open' => 'border-color: {{VALUE}};',
 				),
@@ -287,7 +287,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => 'var(--wbcom-card-bg, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_head li.is-open,{{WRAPPER}} .wbaccordion-mobile-title.is-open' => 'background: {{VALUE}};',
 				),
@@ -458,7 +458,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_head li i'   => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom_tab_head li svg' => 'fill: {{VALUE}}',
@@ -473,7 +473,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Active Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_head li.is-open i' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbaccordion-mobile-title.is-open i' => 'color: {{VALUE}};',
@@ -581,7 +581,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbaccordion__body,{{WRAPPER}} .wbaccordion__body p' => 'color: {{VALUE}};',
 				),
@@ -593,7 +593,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Border Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-color-border, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_item.wbaccordion' => 'border-color: {{VALUE}};',
 				),
@@ -605,7 +605,7 @@ class Tabs extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => 'var(--wbcom-card-bg, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom_tab_item.wbaccordion' => 'background-color: {{VALUE}};',
 				),

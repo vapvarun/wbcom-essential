@@ -50,7 +50,7 @@
 		align-self: center;
 
 		&--filled {
-			background-color: var( --wbcom-link-color, #2563eb );
+			background-color: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
 		}
 
 		&--start {
@@ -109,9 +109,9 @@
 	// Step states.
 	&__step--completed {
 		.wbcom-edd-checkout__step-circle {
-			background-color: var( --wbcom-link-color, #2563eb );
-			color: var(--wbe-color-white);
-			border: 2px solid var( --wbcom-link-color, #2563eb );
+			background-color: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
+			color: var( --wbcom-button-color, #ffffff );
+			border: 2px solid var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
 		}
 
 		.wbcom-edd-checkout__step-label {
@@ -121,7 +121,7 @@
 
 	&__step--active {
 		.wbcom-edd-checkout__step-circle {
-			background-color: var(--wbe-color-white);
+			background-color: var(--wbe-surface, #fff);
 			color: var( --wbcom-link-color, #2563eb );
 			border: 2px solid var( --wbcom-link-color, #2563eb );
 			box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
@@ -136,12 +136,12 @@
 	&__step--upcoming {
 		.wbcom-edd-checkout__step-circle {
 			background-color: var(--wbe-color-border);
-			color: #94a3b8;
+			color: var(--wbe-color-text-light, #94a3b8);
 			border: 2px solid var(--wbe-color-border);
 		}
 
 		.wbcom-edd-checkout__step-label {
-			color: #94a3b8;
+			color: var(--wbe-color-text-light, #94a3b8);
 		}
 	}
 
@@ -168,7 +168,7 @@
 			font-size: var( --edd-font-md );
 			color: var( --wbcom-color-contrast, #1e293b );
 			background-color: var(--wbe-color-surface);
-			border: 1px solid #cbd5e1;
+			border: 1px solid var(--wbe-color-border, #cbd5e1);
 			border-radius: 6px;
 			box-sizing: border-box;
 			transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -196,15 +196,15 @@
 			padding: 0.75rem 1.75rem;
 			font-size: 1rem;
 			font-weight: 600;
-			color: var(--wbe-color-white);
-			background-color: var( --wbcom-link-color, #2563eb );
+			color: var( --wbcom-button-color, #ffffff );
+			background-color: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
 			border: none;
 			border-radius: 6px;
 			cursor: pointer;
 			transition: background-color 0.2s ease, transform 0.1s ease;
 
 			&:hover {
-				background-color: #1d4ed8;
+				background-color: color-mix( in srgb, var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) ) 85%, #000 );
 				transform: translateY(-1px);
 			}
 
@@ -273,12 +273,12 @@
 		}
 
 		&--guarantee {
-			background: #f0fdf4;
+			background: var(--wbe-color-success-bg);
 			color: var(--wbe-color-success);
 		}
 
 		&--support {
-			background: #faf5ff;
+			background: color-mix(in srgb, #9333ea 10%, transparent);
 			color: #9333ea;
 		}
 	}
@@ -595,8 +595,8 @@
 			box-sizing: border-box;
 
 			&:hover {
-				background: var( --wbcom-link-color, #2563eb );
-				color: var(--wbe-color-white);
+				background: var( --wbcom-button-bg, var( --wbe-color-accent, #2563eb ) );
+				color: var( --wbcom-button-color, #ffffff );
 				text-decoration: none;
 			}
 		}
@@ -608,11 +608,11 @@
 
 	&__notice {
 		padding: 1rem 1.25rem;
-		background: #fff3cd;
+		background: var(--wbe-color-warning-bg);
 		border: 1px solid #ffc107;
 		border-radius: 6px;
 		font-size: var( --edd-font-base );
-		color: #856404;
+		color: var(--wbe-color-warning-text);
 
 		p {
 			margin: 0;
@@ -721,7 +721,7 @@
 		padding: 1.5rem;
 		border: 1px solid var(--wbe-color-border);
 		border-radius: var(--wbe-radius-lg);
-		background: var(--wbe-color-white);
+		background: var(--wbe-surface, #fff);
 	}
 
 	&__trustpilot-header {

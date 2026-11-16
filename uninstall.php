@@ -33,6 +33,7 @@ $wbcom_essential_options = array(
 	'wbcom_essential_preset_activated',
 	'wbcom_essential_preset_activation_attempts',
 	'wbcom_essential_preset_activation_gave_up',
+	'wbcom_essential_preset_activation_refused',
 	'wbcom_essential_version',
 	'wbcom_essential_activated_at',
 	// Elementor widget defaults written through wbcom_get_option().

@@ -63,7 +63,7 @@
 .wbcom-essential-members {
 	border: 1px solid #e3e3e3;
 	padding: 20px;
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 }
 
 .wbcom-essential-members div.item-options {
@@ -87,12 +87,12 @@
 }
 
 .wbcom-essential-members div.item-options a:hover {
-	color: #1d76da;
+	color: var(--wbcom-color-primary, #1d76da);
 }
 
 .wbcom-essential-members div.item-options .selected {
-	color: #303030;
-	border-bottom: 1px solid #1d76da;
+	color: var(--wbcom-text-color, #303030);
+	border-bottom: 1px solid var(--wbcom-color-primary, #1d76da);
 	font-weight: 600;
 	margin-bottom: -1px;
 }
@@ -139,7 +139,7 @@
 .wbcom-essential-members-list__name a {
 	font-size: 14px;
 	font-weight: 500;
-	color: #303030;
+	color: var(--wbcom-text-color, #303030);
 }
 
 .wbcom-essential-members-list__item .member-status.online {

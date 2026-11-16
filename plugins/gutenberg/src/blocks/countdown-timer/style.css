@@ -4,16 +4,18 @@
  * @package wbcom-essential
  */
 
-/* Design tokens */
+/* Design tokens. Colours follow the theme (design-tokens.css) unless the owner picks their own. Sizes follow
+   the block's own width, so the timer fits a full-width row, a column or a sidebar alike. */
 .wbe-countdown-timer {
-	--wbe-cd-number-color: #1e1e2e;
-	--wbe-cd-label-color: #6c757d;
-	--wbe-cd-box-bg: #f8f9fa;
-	--wbe-cd-box-border: #e9ecef;
-	--wbe-cd-number-size: clamp( 2.5rem, 6vw, 4rem );
+	--wbe-cd-number-color: var( --wbe-text, #1e1e2e );
+	--wbe-cd-label-color: var( --wbe-text-muted, #5a6169 );
+	--wbe-cd-box-bg: var( --wbe-surface-alt, #f8f9fa );
+	--wbe-cd-box-border: var( --wbe-border, #e9ecef );
+	--wbe-cd-number-size: clamp( 1.5rem, 8cqi, 4rem );
 	--wbe-cd-label-size: 0.75rem;
-	--wbe-cd-gap: 16px;
+	--wbe-cd-gap: clamp( 6px, 2cqi, 16px );
 
+	container-type: inline-size;
 	width: 100%;
 }
 
@@ -73,9 +75,17 @@
 }
 
 /* ---- Layout: boxes ---- */
+/* Equal boxes on one row that shrink to fit: a timer that wraps its last unit onto a second row looks broken. */
+.wbe-countdown-timer--boxes .wbe-countdown-timer__units,
+.wbe-countdown-timer--minimal .wbe-countdown-timer__units {
+	flex-wrap: nowrap;
+}
+
 .wbe-countdown-timer--boxes .wbe-countdown-timer__unit {
-	min-width: 80px;
-	padding: 20px 16px;
+	flex: 1 1 0;
+	min-width: 0;
+	max-width: 140px;
+	padding: clamp( 10px, 3cqi, 20px ) clamp( 4px, 2cqi, 16px );
 	background: var( --wbe-cd-box-bg );
 	border: 1px solid var( --wbe-cd-box-border );
 	border-radius: 8px;
@@ -112,32 +122,11 @@
 	border-radius: 6px;
 }
 
-/* ---- Responsive ---- */
-@media ( max-width: 1024px ) {
-	.wbe-countdown-timer {
-		--wbe-cd-number-size: clamp( 2rem, 5vw, 3rem );
-	}
-
-	.wbe-countdown-timer--boxes .wbe-countdown-timer__unit {
-		min-width: 64px;
-		padding: 14px 12px;
+/* ---- Narrow blocks ---- */
+/* The boxes already divide the units, so the separators go when space is short. */
+@container ( max-width: 520px ) {
+	.wbe-countdown-timer--boxes .wbe-countdown-timer__sep,
+	.wbe-countdown-timer--minimal .wbe-countdown-timer__sep {
+		display: none;
 	}
 }
-
-@media ( max-width: 640px ) {
-	.wbe-countdown-timer {
-		--wbe-cd-number-size: 2.25rem;
-		--wbe-cd-gap: 10px;
-	}
-
-	.wbe-countdown-timer--boxes .wbe-countdown-timer__unit {
-		min-width: 56px;
-		padding: 12px 8px;
-	}
-
-	.wbe-countdown-timer__units {
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-}
-

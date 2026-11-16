@@ -1691,6 +1691,15 @@ class LoginForm extends \Elementor\Widget_Base {
 								</p>
 							<?php } ?>
 
+							<?php
+							// Honeypot shared with the EDD account login (includes/edd-account-login-security.php rejects any
+							// value): off-screen and skipped by keyboard and autofill, so only bots fill it.
+							?>
+							<p class="wbcom-login-hp" aria-hidden="true" style="position:absolute;inset-inline-start:-9999px;width:1px;height:1px;overflow:hidden;">
+								<label for="wbcom_edd_hp_url_<?php echo esc_attr( $widget_id ); ?>"><?php esc_html_e( 'Website', 'wbcom-essential' ); ?></label>
+								<input type="text" name="wbcom_edd_hp_url" id="wbcom_edd_hp_url_<?php echo esc_attr( $widget_id ); ?>" tabindex="-1" autocomplete="off" value="">
+							</p>
+
 							<p>
 							<?php do_action( 'wbcom_recaptcha_login_form' ); ?>
 							</p>

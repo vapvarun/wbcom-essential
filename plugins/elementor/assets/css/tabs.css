@@ -99,17 +99,17 @@
 }
 
 .wbcom_tab_head li.is-open {
-	border: 1px solid #eee;
-	background: #fff;
+	border: 1px solid var(--wbcom-color-border, #eee);
+	background: var(--wbcom-card-bg, #fff);
 }
 
 .wbcom_tab_item.wbaccordion {
 	display: none;
 	margin: 0;
 	border-radius: 0;
-	border: 1px solid #eee;
+	border: 1px solid var(--wbcom-color-border, #eee);
 	padding: 20px;
-	background: #fff;
+	background: var(--wbcom-card-bg, #fff);
 	width: 100%;
 }
 

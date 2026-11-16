@@ -329,7 +329,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#fff',
+				'default'   => 'var(--wbcom-card-bg, #fff)',
 				'selectors' => array(
 					'{{WRAPPER}} .profile_bit.skin-linear .progress_container'   => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .profile_bit.skin-linear .profile_bit__details' => 'background-color: {{VALUE}};',
@@ -541,7 +541,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Details Completion Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#fff',
+				'default'   => 'var(--wbcom-card-bg, #fff)',
 				'selectors' => array(
 					'{{WRAPPER}} .profile_bit__details' => 'background-color: {{VALUE}};',
 				),
@@ -1178,7 +1178,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 				'completed'          => $group_details['group_completed_fields'],
 			);
 
-			$listing_number ++;
+			$listing_number++;
 		}
 
 		/* Profile Photo */
@@ -1197,7 +1197,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 				'completed'          => ( $is_profile_uploaded ) ? 1 : 0,
 			);
 
-			$listing_number ++;
+			$listing_number++;
 		}
 
 		/* Cover Photo */
@@ -1216,7 +1216,7 @@ class ProfileCompletion extends \Elementor\Widget_Base {
 				'completed'          => ( $is_cover_uploaded ) ? 1 : 0,
 			);
 
-			$listing_number ++;
+			$listing_number++;
 		}
 
 		/**

@@ -37,9 +37,9 @@ $cols_tab    = absint( $attributes['columnsTablet'] ?? 2 );
 $cols_mob    = absint( $attributes['columnsMobile'] ?? 1 );
 $gap         = absint( $attributes['gap'] ?? 24 );
 $avatar_size = absint( $attributes['avatarSize'] ?? 80 );
-$card_bg     = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' );
-$name_color  = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' );
-$desc_color  = sanitize_hex_color( $attributes['descColor'] ?? '#6c757d' );
+$card_bg     = sanitize_hex_color( $attributes['cardBg'] ?? '' );
+$name_color  = sanitize_hex_color( $attributes['nameColor'] ?? '' );
+$desc_color  = sanitize_hex_color( $attributes['descColor'] ?? '' );
 $card_radius = absint( $attributes['cardBorderRadius'] ?? 12 );
 
 $wrapper = get_block_wrapper_attributes(
@@ -179,6 +179,7 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 			'i18n'             => array(
 				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
 				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
+				'member'      => __( 'Member', 'wbcom-essential' ),
 				'members'     => __( 'Members', 'wbcom-essential' ),
 				/* translators: %s: time since the group was last active, e.g. "2 hours ago". */
 				'activeAgo'   => __( 'Active %s', 'wbcom-essential' ),

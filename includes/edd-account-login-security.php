@@ -52,36 +52,81 @@ function wbcom_essential_login_security_enabled() {
 }
 
 /**
- * Best-effort client IP — respects common proxy headers when the site sits
- * behind Cloudflare / a load balancer. Never trust without that trusted
- * proxy context, so the filter below lets admins override the resolution.
+ * Client IP for the login lockout.
+ *
+ * REMOTE_ADDR by default: proxy headers (X-Forwarded-For and friends) are set by the client, so trusting them
+ * on a site without a proxy let every attempt claim a new IP and never trip the lockout. A site behind
+ * Cloudflare or a load balancer lists that proxy's addresses through the
+ * `wbcom_essential_login_security_trusted_proxies` filter; only requests that arrive from one of them are
+ * resolved from the headers. `wbcom_essential_login_security_client_ip` still overrides the result.
  *
  * @return string
  */
 function wbcom_essential_login_security_get_ip() {
-	$candidates = array( 'HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'REMOTE_ADDR' );
-	$ip         = '';
+	$remote = isset( $_SERVER['REMOTE_ADDR'] ) && is_string( $_SERVER['REMOTE_ADDR'] ) ? (string) filter_var( wp_unslash( $_SERVER['REMOTE_ADDR'] ), FILTER_VALIDATE_IP ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Validated as an IP.
+	$ip     = $remote;
 
-	foreach ( $candidates as $key ) {
-		if ( empty( $_SERVER[ $key ] ) ) {
-			continue;
-		}
-		$raw   = is_string( $_SERVER[ $key ] ) ? sanitize_text_field( wp_unslash( $_SERVER[ $key ] ) ) : '';
-		$first = trim( strtok( $raw, ',' ) );
-		$valid = filter_var( $first, FILTER_VALIDATE_IP );
-		if ( $valid ) {
-			$ip = $valid;
-			break;
+	/**
+	 * Proxies whose forwarding headers are trusted: IP addresses or CIDR ranges (IPv4 or IPv6), for example
+	 * Cloudflare's published ranges. Empty by default, so only REMOTE_ADDR is used.
+	 *
+	 * @param string[] $proxies Trusted proxy addresses or ranges.
+	 */
+	$proxies = (array) apply_filters( 'wbcom_essential_login_security_trusted_proxies', array() );
+
+	if ( $remote && $proxies && wbcom_essential_ip_in_ranges( $remote, $proxies ) ) {
+		foreach ( array( 'HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP' ) as $key ) {
+			if ( empty( $_SERVER[ $key ] ) || ! is_string( $_SERVER[ $key ] ) ) {
+				continue;
+			}
+			$first = trim( (string) strtok( sanitize_text_field( wp_unslash( $_SERVER[ $key ] ) ), ',' ) );
+			$valid = filter_var( $first, FILTER_VALIDATE_IP );
+			if ( $valid ) {
+				$ip = $valid;
+				break;
+			}
 		}
 	}
 
 	/**
-	 * Allow sites to plug in their own IP-resolution logic (CDN quirks,
-	 * VPN scenarios, etc.).
+	 * Allow sites to plug in their own IP-resolution logic (CDN quirks, VPN scenarios, etc.).
 	 *
-	 * @param string $ip Best-effort IP we derived.
+	 * @param string $ip IP we derived.
 	 */
 	return (string) apply_filters( 'wbcom_essential_login_security_client_ip', $ip );
+}
+
+/**
+ * Whether an IP is one of a list of addresses or CIDR ranges (IPv4 or IPv6).
+ *
+ * @param string   $ip     IP address.
+ * @param string[] $ranges Addresses or CIDR ranges.
+ * @return bool
+ */
+function wbcom_essential_ip_in_ranges( $ip, $ranges ) {
+	$packed = @inet_pton( $ip ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Returns false on an invalid address.
+	if ( false === $packed ) {
+		return false;
+	}
+	foreach ( $ranges as $range ) {
+		$range = trim( (string) $range );
+		$parts = explode( '/', $range, 2 );
+		$net   = @inet_pton( $parts[0] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- As above.
+		if ( false === $net || strlen( $net ) !== strlen( $packed ) ) {
+			continue;
+		}
+		$bits = isset( $parts[1] ) ? (int) $parts[1] : strlen( $net ) * 8;
+		$full = intdiv( $bits, 8 );
+		$rest = $bits % 8;
+		if ( substr( $packed, 0, $full ) !== substr( $net, 0, $full ) ) {
+			continue;
+		}
+		if ( $rest && ( ord( $packed[ $full ] ) >> ( 8 - $rest ) ) !== ( ord( $net[ $full ] ) >> ( 8 - $rest ) ) ) {
+			continue;
+		}
+		return true;
+	}
+	return false;
 }
 
 /**

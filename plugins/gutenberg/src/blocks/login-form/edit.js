@@ -10,7 +10,8 @@ import {
 	PanelBody,
 	TextControl,
 	ToggleControl,
-	ColorPicker,
+	SelectControl,
+	ColorPalette,
 	BaseControl,
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
@@ -33,6 +34,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		showRegisterLink,
 		showLostPassword,
 		buttonText,
+		loggedInView,
 		loggedInMessage,
 		formBg,
 		buttonBg,
@@ -102,48 +104,69 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						checked={ showLostPassword }
 						onChange={ ( value ) => setAttributes( { showLostPassword: value } ) }
 					/>
-					<TextControl
-						label={ __( 'Logged-In Message', 'wbcom-essential' ) }
-						value={ loggedInMessage }
-						onChange={ ( value ) => setAttributes( { loggedInMessage: value } ) }
+					<SelectControl
+						label={ __( 'When logged in', 'wbcom-essential' ) }
+						value={ loggedInView || 'none' }
+						options={ [
+							{ label: __( 'Show nothing', 'wbcom-essential' ), value: 'none' },
+							{ label: __( 'Show a message', 'wbcom-essential' ), value: 'message' },
+							{ label: __( 'Show member card', 'wbcom-essential' ), value: 'card' },
+						] }
+						onChange={ ( value ) => setAttributes( { loggedInView: value } ) }
+						help={ __( 'The preview here always shows the form.', 'wbcom-essential' ) }
 					/>
+					{ 'message' === loggedInView && (
+						<TextControl
+							label={ __( 'Logged-In Message', 'wbcom-essential' ) }
+							value={ loggedInMessage }
+							onChange={ ( value ) => setAttributes( { loggedInMessage: value } ) }
+						/>
+					) }
 				</PanelBody>
 
 				{ /* Style Panel */ }
 				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
+					<p className="components-base-control__help">
+						{ __( 'Colours left empty follow your theme, in light and dark mode.', 'wbcom-essential' ) }
+					</p>
 					<BaseControl label={ __( 'Form Background', 'wbcom-essential' ) } id="wbe-lf-form-bg">
-						<ColorPicker
-							color={ formBg }
-							onChange={ ( value ) => setAttributes( { formBg: value } ) }
+						<ColorPalette
+							value={ formBg }
+							onChange={ ( value ) => setAttributes( { formBg: value || '' } ) }
 							enableAlpha
+							clearable
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Label Color', 'wbcom-essential' ) } id="wbe-lf-label-color">
-						<ColorPicker
-							color={ labelColor }
-							onChange={ ( value ) => setAttributes( { labelColor: value } ) }
+						<ColorPalette
+							value={ labelColor }
+							onChange={ ( value ) => setAttributes( { labelColor: value || '' } ) }
 							enableAlpha
+							clearable
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Button Background', 'wbcom-essential' ) } id="wbe-lf-btn-bg">
-						<ColorPicker
-							color={ buttonBg }
-							onChange={ ( value ) => setAttributes( { buttonBg: value } ) }
+						<ColorPalette
+							value={ buttonBg }
+							onChange={ ( value ) => setAttributes( { buttonBg: value || '' } ) }
 							enableAlpha
+							clearable
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Button Text Color', 'wbcom-essential' ) } id="wbe-lf-btn-color">
-						<ColorPicker
-							color={ buttonColor }
-							onChange={ ( value ) => setAttributes( { buttonColor: value } ) }
+						<ColorPalette
+							value={ buttonColor }
+							onChange={ ( value ) => setAttributes( { buttonColor: value || '' } ) }
 							enableAlpha
+							clearable
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Link Color', 'wbcom-essential' ) } id="wbe-lf-link-color">
-						<ColorPicker
-							color={ linkColor }
-							onChange={ ( value ) => setAttributes( { linkColor: value } ) }
+						<ColorPalette
+							value={ linkColor }
+							onChange={ ( value ) => setAttributes( { linkColor: value || '' } ) }
 							enableAlpha
+							clearable
 						/>
 					</BaseControl>
 					<Spacer marginTop={ 3 } />

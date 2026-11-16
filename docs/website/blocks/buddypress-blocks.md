@@ -32,13 +32,13 @@ A BuddyPress activity stream with cards, type icons, relative timestamps and int
 | Display | Show Timestamp | Shows how long ago it happened. | On |
 | Display | Show Favorite Button | Shows the favorite button to logged-in members. | On |
 | Display | Show Comment Count | Shows the number of comments. | On |
-| Colors | Accent Color | Accent for icons and links. | #667eea |
-| Colors | Card Background | Card background. | #ffffff |
-| Colors | Name Color | Color of member names. | #1e1e2e |
-| Colors | Content Color | Color of the activity text. | #4a5568 |
-| Colors | Timestamp Color | Color of the timestamp. | #a0aec0 |
-| Colors | Border Color | Color of the card border. | #edf2f7 |
-| Colors | Icon Background | Background of the type icon. | #eef2ff |
+| Colors | Accent Color | Accent for icons and links. | Theme accent |
+| Colors | Card Background | Card background. | Theme surface |
+| Colors | Name Color | Color of member names. | Theme text |
+| Colors | Content Color | Color of the activity text. | Theme text |
+| Colors | Timestamp Color | Color of the timestamp. | Theme muted text |
+| Colors | Border Color | Color of the card border. | Theme border |
+| Colors | Icon Background | Background of the type icon. | Theme accent, tinted |
 
 ### Tips
 
@@ -74,8 +74,8 @@ BuddyPress groups in a Swiper carousel with autoplay, arrows, dots and a join bu
 | Carousel | Show Navigation Arrows | Shows the arrows. | On |
 | Carousel | Show Pagination Dots | Shows the dots. | On |
 | Style | Avatar Size (px) | Size of the group avatar. | 80 |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Group Name Color | Color of the group name. | #1e1e2e |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Group Name Color | Color of the group name. | Theme text |
 | Style | Border Radius, Box Shadow | Rounds the corners and adds a shadow. | Shadow off |
 
 ### Tips
@@ -109,9 +109,9 @@ BuddyPress groups in a responsive grid. Block name: `wbcom-essential/groups-grid
 | Layout | Gap (px) | Space between cards. | 24 |
 | Layout | Avatar Size (px) | Size of the group avatar. | 80 |
 | Style | Card Border Radius (px) | Roundness of each card. | 12 |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Name Color | Color of the group name. | #1e1e2e |
-| Style | Description / Meta Color | Color of the description and details. | #6c757d |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Name Color | Color of the group name. | Theme text |
+| Style | Description / Meta Color | Color of the description and details. | Theme muted text |
 
 ## Members Carousel
 
@@ -142,9 +142,9 @@ BuddyPress members in a Swiper carousel. Block name: `wbcom-essential/members-ca
 | Carousel | Show Pagination Dots | Shows the dots. | On |
 | Style | Avatar Size (px) | Size of the member avatar. | 80 |
 | Style | Card Border Radius (px) | Roundness of each card. | 12 |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Name Color | Color of the member name. | #1e1e2e |
-| Style | Meta Color | Color of the details. | #6c757d |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Name Color | Color of the member name. | Theme text |
+| Style | Meta Color | Color of the details. | Theme muted text |
 
 ### Tips
 
@@ -171,13 +171,13 @@ BuddyPress members in a responsive grid. Block name: `wbcom-essential/members-gr
 | Content | Show Friend Button | Shows a friend button to logged-in members. | On |
 | Layout | Columns (Desktop) | Columns on desktop. | 4 |
 | Layout | Columns (Tablet) | Columns on tablets. | 2 |
-| Layout | Columns (Mobile) | Columns on phones. | 1 |
+| Layout | Columns (Mobile) | Columns on phones. | 2 |
 | Layout | Gap (px) | Space between cards. | 24 |
 | Layout | Avatar Size (px) | Size of the member avatar. | 80 |
 | Style | Card Border Radius (px) | Roundness of each card. | 12 |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Name Color | Color of the member name. | #1e1e2e |
-| Style | Meta Color | Color of the details. | #6c757d |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Name Color | Color of the member name. | Theme text |
+| Style | Meta Color | Color of the details. | Theme muted text |
 
 ### Tips
 

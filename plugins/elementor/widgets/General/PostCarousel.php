@@ -2059,7 +2059,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => 'var(--wbcom-text-color, #000000)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-carousel .swiper-pagination-bullet' => 'color: {{VALUE}};',
 				),

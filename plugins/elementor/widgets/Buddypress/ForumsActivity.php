@@ -40,7 +40,7 @@ class ForumsActivity extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'forums-activity', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forums-activity.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'forums-activity', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forums-activity.css', array( 'wbcom-essential-icons' ), WBCOM_ESSENTIAL_VERSION );
 	}
 
 	/**

@@ -74,31 +74,31 @@
 		},
 		"cardBg": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"nameColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"contentColor": {
 			"type": "string",
-			"default": "#4a5568"
+			"default": ""
 		},
 		"timeColor": {
 			"type": "string",
-			"default": "#a0aec0"
+			"default": ""
 		},
 		"borderColor": {
 			"type": "string",
-			"default": "#edf2f7"
+			"default": ""
 		},
 		"accentColor": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"iconBg": {
 			"type": "string",
-			"default": "#eef2ff"
+			"default": ""
 		},
 		"padding": {
 			"type": "object",
@@ -110,11 +110,11 @@
 			}
 		},
 		"paddingTablet": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"paddingMobile": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"paddingUnit": {
@@ -131,11 +131,11 @@
 			}
 		},
 		"marginTablet": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"marginMobile": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"marginUnit": {

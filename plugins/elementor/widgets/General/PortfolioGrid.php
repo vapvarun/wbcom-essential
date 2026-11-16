@@ -763,7 +763,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-heading-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-grid-view li .wba-fpg-title' => 'color: {{VALUE}};',
 				),
@@ -797,7 +797,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Info Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-grid-view li .wba-fpg-info' => 'color: {{VALUE}};',
 				),
@@ -972,7 +972,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-heading-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-list-view li .wba-fpg-title' => 'color: {{VALUE}};',
 				),
@@ -1006,7 +1006,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Info Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-container.wba-fpg-list-view li .wba-fpg-info' => 'color: {{VALUE}};',
 				),
@@ -1173,7 +1173,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-toolbar .wba-fpg-search-wrapper li:not(.wba-fpg-mobile-icon) label' => 'color: {{VALUE}};',
 				),
@@ -1591,7 +1591,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-text-color, #111111)',
 				'selectors' => array(
 					'{{WRAPPER}} .wba-fpg-toolbar .wba-fpg-view-options li label' => 'color: {{VALUE}};',
 				),
@@ -1790,10 +1790,13 @@ class PortfolioGrid extends \Elementor\Widget_Base {
             <li data-filter="<?php echo esc_attr($item['item_filter_ids']); ?>" class="elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
             <div class="wba-fpg-inner elementor-animation-<?php echo esc_attr($settings['grid_item_animation']); ?>">
             <?php
-            $target = $item['website_link']['is_external'] ? ' target="_blank"' : '';
-            $nofollow = $item['website_link']['nofollow'] ? ' rel="nofollow"' : '';
-            if ($item['website_link']['url']) {
-                echo '<a href="' . esc_url($item['website_link']['url']) . '"' . esc_attr( $target ) . esc_attr( $nofollow ) . '>';
+            // Elementor's link API: URL, new tab, nofollow and the owner's custom attributes, escaped.
+            $link_key = 'wbcom_pg_link_' . $item['_id'];
+            if ( $item['website_link']['url'] ) {
+                $this->add_link_attributes( $link_key, $item['website_link'] );
+                echo '<a ';
+                $this->print_render_attribute_string( $link_key );
+                echo '>';
             }
             ?>
               <figure>
@@ -1804,7 +1807,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
                     $img_array = wp_get_attachment_image_src($item['image']['id'], $settings['img_size'], true);
                     $img_url = $img_array[0];
                     $img_alt = get_post_meta( $item['image']['id'], '_wp_attachment_image_alt', true );
-                } else if ($item['image']['url'] == \Elementor\Utils::get_placeholder_image_src()) {
+                } elseif ($item['image']['url'] == \Elementor\Utils::get_placeholder_image_src()) {
                     $img_url = \Elementor\Utils::get_placeholder_image_src();
                 }
                 if (!empty($img_url)) {
@@ -1827,6 +1830,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
             </li>
           <?php } ?>
           </ol>
-    <?php } 
+    <?php
+    } 
 	}
 }

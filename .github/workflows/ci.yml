@@ -80,7 +80,7 @@ jobs:
           fi
 
           git diff --name-only --diff-filter=ACMR "$BASE" HEAD -- '*.php' \
-            | grep -Ev '^(vendor|node_modules|build|dist)/' > changed.txt || true
+            | grep -Ev '^(vendor|libs|node_modules|build|dist)/' > changed.txt || true
 
           echo "count=$(wc -l < changed.txt | tr -d ' ')" >> "$GITHUB_OUTPUT"
           echo "Changed PHP files:"; cat changed.txt
@@ -181,3 +181,27 @@ jobs:
       # the dev toolchain undetected before this job existed.
       - name: Audit
         run: composer audit --no-interaction
+
+  block-save-snapshots:
+    name: Block saved-markup snapshots
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # A static block whose saved markup changes without a deprecation breaks every existing instance in the
+      # editor ("unexpected or invalid content"). The snapshots fail the build instead.
+      - name: Run unit tests
+        run: npm run test:unit
+
+      # Test plan T0.6: every translatable string uses the wbcom-essential text domain (bundled libs/ excluded).
+      - name: Check text domains
+        run: npx grunt checktextdomain

@@ -78,11 +78,11 @@
 		},
 		"cardBg": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"nameColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"avatarSize": {
 			"type": "number",
@@ -98,11 +98,11 @@
 			}
 		},
 		"paddingTablet": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"paddingMobile": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"paddingUnit": {
@@ -119,11 +119,11 @@
 			}
 		},
 		"marginTablet": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"marginMobile": {
-			"type": "object",
+			"type": ["object", "null"],
 			"default": null
 		},
 		"marginUnit": {
@@ -196,7 +196,10 @@
 	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": [ "file:./style-index.css", "wbe-swiper" ],
+	"style": [
+		"file:./style-index.css",
+		"wbe-swiper"
+	],
 	"viewScript": [
 		"file:./view.js",
 		"swiper"

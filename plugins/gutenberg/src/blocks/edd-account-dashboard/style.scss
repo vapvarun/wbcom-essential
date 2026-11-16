@@ -49,7 +49,7 @@
 		background: transparent;
 		border: 0;
 		padding: 0.375rem;
-		color: #64748b;
+		color: var(--wbe-color-text-light, #64748b);
 		cursor: pointer;
 		border-radius: 6px;
 
@@ -67,7 +67,7 @@
 
 	&__subtitle {
 		font-size: 0.875rem;
-		color: #64748b;
+		color: var(--wbe-color-text-light, #64748b);
 		margin: 0 0 1.25rem;
 		line-height: 1.5;
 	}
@@ -97,7 +97,7 @@
 
 	&__optional {
 		font-weight: 400;
-		color: #94a3b8;
+		color: var(--wbe-color-text-light, #94a3b8);
 		font-size: 0.8125rem;
 	}
 
@@ -106,23 +106,23 @@
 		align-items: center;
 		gap: 0.625rem;
 		padding: 0.625rem 0.75rem;
-		border: 1px solid #e2e8f0;
+		border: 1px solid var(--wbe-color-border, #e2e8f0);
 		border-radius: 8px;
 		cursor: pointer;
 		font-size: 0.9375rem;
-		color: #334155;
+		color: var(--wbe-color-text, #334155);
 		transition: border-color 0.12s ease, background 0.12s ease;
 
 		&:hover { border-color: #cbd5e1; background: #f8fafc; }
 
 		input[type="radio"] {
 			margin: 0;
-			accent-color: #2563eb;
+			accent-color: var(--wbe-color-accent, #2563eb);
 		}
 
 		&:has( input:checked ) {
-			border-color: #2563eb;
-			background: #eff6ff;
+			border-color: var(--wbe-color-accent, #2563eb);
+			background: var(--wbe-color-info-bg);
 		}
 	}
 
@@ -136,7 +136,7 @@
 	&__textarea {
 		width: 100%;
 		padding: 0.625rem 0.75rem;
-		border: 1px solid #e2e8f0;
+		border: 1px solid var(--wbe-color-border, #e2e8f0);
 		border-radius: 8px;
 		font: inherit;
 		font-size: 0.9375rem;
@@ -145,7 +145,7 @@
 
 		&:focus {
 			outline: none;
-			border-color: #2563eb;
+			border-color: var(--wbe-color-accent, #2563eb);
 			box-shadow: 0 0 0 3px rgba( 37, 99, 235, 0.18 );
 		}
 	}
@@ -179,10 +179,10 @@
 	--edd-sidebar-border: var(--wbe-color-border);
 	--edd-content-padding: 2rem;
 	--edd-nav-active-color: var( --wbcom-link-color, #2563eb );
-	--edd-nav-active-bg: var(--wbe-color-info-bg);
+	--edd-nav-active-bg: var(--wbe-color-accent-light, #eff6ff); // 8% accent on the surface: reads in light and dark.
 	--edd-nav-indicator-width: 3px;
 	--edd-nav-hover-bg: var(--wbe-color-surface-alt);
-	--edd-nav-text: var( --wbcom-color-contrast-2, #475569 );
+	--edd-nav-text: var( --wbe-color-text, #334155 );
 	--edd-nav-active-text: var( --wbcom-link-color, #2563eb );
 	--edd-radius: 8px;
 	--edd-transition: 0.18s ease;
@@ -296,7 +296,7 @@
 
 		&:hover {
 			background: var(--wbe-color-danger-bg);
-			color: #dc2626;
+			color: var(--wbe-color-danger-text);
 		}
 	}
 }
@@ -452,7 +452,7 @@
 	width: 4.25rem;
 	height: 4.25rem;
 	margin: 0 auto 1.25rem;
-	background: linear-gradient( 135deg, var( --wbcom-color-primary, #1c55e9 ), #123a9e );
+	background: linear-gradient( 135deg, var( --wbcom-color-primary, #1c55e9 ), var(--wbe-color-accent-hover, #123a9e) );
 	border-radius: 50%;
 	color: #fff;
 	// Brand glow + faint halo ring lift the badge off the card.
@@ -724,14 +724,14 @@
 	&--complete,
 	&--active {
 		background: var(--wbe-color-success-bg);
-		color: #15803d;
+		color: var(--wbe-color-success-text);
 	}
 
 	// Yellow: pending, trialling
 	&--pending,
 	&--trialling {
-		background: #fef9c3;
-		color: #854d0e;
+		background: var(--wbe-color-warning-bg);
+		color: var(--wbe-color-warning-text);
 	}
 
 	// Red: refunded, cancelled, expired
@@ -739,14 +739,14 @@
 	&--partially_refunded,
 	&--cancelled,
 	&--expired {
-		background: #fee2e2;
-		color: #b91c1c;
+		background: var(--wbe-color-danger-bg);
+		color: var(--wbe-color-danger-text);
 	}
 
 	// Blue: processing
 	&--processing {
-		background: #dbeafe;
-		color: #1d4ed8;
+		background: var(--wbe-color-info-bg);
+		color: var(--wbe-color-accent-hover, #1d4ed8);
 	}
 }
 
@@ -786,11 +786,11 @@
 	&--danger-outline {
 		background: transparent;
 		color: var(--wbe-color-danger);
-		border-color: #fecaca;
+		border-color: color-mix(in srgb, var(--wbe-color-danger) 35%, transparent);
 
 		&:hover {
 			background: var(--wbe-color-danger-bg);
-			color: #dc2626;
+			color: var(--wbe-color-danger-text);
 			text-decoration: none;
 		}
 	}
@@ -888,16 +888,16 @@
 
 	// Default (plenty of time).
 	background: var(--wbe-color-success-bg);
-	color: #15803d;
+	color: var(--wbe-color-success-text);
 
 	&--warning {
-		background: #fef9c3;
-		color: #854d0e;
+		background: var(--wbe-color-warning-bg);
+		color: var(--wbe-color-warning-text);
 	}
 
 	&--critical {
-		background: #fee2e2;
-		color: #b91c1c;
+		background: var(--wbe-color-danger-bg);
+		color: var(--wbe-color-danger-text);
 	}
 }
 
@@ -1006,7 +1006,7 @@
 	padding: 0.5rem 0.75rem;
 	background: var(--wbe-color-border);
 	border: none;
-	border-left: 1px solid #d1d5db;
+	border-left: 1px solid var(--wbe-color-border, #d1d5db);
 	color: var(--wbe-color-text-muted);
 	font-size: var( --edd-font-xs );
 	font-weight: 600;
@@ -1015,13 +1015,13 @@
 	white-space: nowrap;
 
 	&:hover {
-		background: #cbd5e1;
+		background: var(--wbe-color-border, #cbd5e1);
 		color: var(--wbe-color-text);
 	}
 
 	&.is-copied {
 		background: var(--wbe-color-success-bg);
-		color: #15803d;
+		color: var(--wbe-color-success-text);
 	}
 
 	svg {
@@ -1619,7 +1619,7 @@
 .wbcom-edd-btn--outline {
 	background: transparent;
 	color: var( --wbcom-color-contrast-2, #475569 );
-	border-color: #d1d5db;
+	border-color: var(--wbe-color-border, #d1d5db);
 
 	&:hover {
 		background: var(--wbe-color-surface-alt);
@@ -1647,15 +1647,15 @@
 	}
 
 	&--success {
-		background: #ecfdf5;
+		background: var(--wbe-color-success-bg);
 		border: 1px solid #34d399;
-		color: #065f46;
+		color: var(--wbe-color-success-text);
 	}
 
 	&--error {
-		background: #fef2f2;
+		background: var(--wbe-color-danger-bg);
 		border: 1px solid #f87171;
-		color: #991b1b;
+		color: var(--wbe-color-danger-text);
 	}
 }
 
@@ -1748,8 +1748,8 @@
 		padding: 0.5rem 0.75rem;
 		font-size: var( --edd-font-base );
 		color: var( --wbcom-color-contrast, #1e293b );
-		background: var(--wbe-color-white);
-		border: 1px solid #d1d5db;
+		background: var(--wbe-surface, #fff);
+		border: 1px solid var(--wbe-color-border, #d1d5db);
 		border-radius: 6px;
 		transition: border-color var( --edd-transition ), box-shadow var( --edd-transition );
 		line-height: 1.5;
@@ -1834,8 +1834,8 @@
 .wbcom-edd-account__error {
 	padding: 1rem;
 	background: var(--wbe-color-danger-bg);
-	color: #b91c1c;
-	border: 1px solid #fecaca;
+	color: var(--wbe-color-danger-text);
+	border: 1px solid color-mix(in srgb, var(--wbe-color-danger) 35%, transparent);
 	border-radius: 6px;
 	font-size: var( --edd-font-base );
 }
@@ -2094,7 +2094,7 @@
 	gap: 16px;
 	padding: 16px 20px;
 	border-radius: 10px;
-	background: linear-gradient( 135deg, var( --wbcom-color-primary, #0073aa ), #1a2a3a );
+	background: linear-gradient( 135deg, var( --wbcom-color-primary, #0073aa ), color-mix( in srgb, var( --wbcom-color-primary, #0073aa ), #000 55% ) );
 	color: #fff;
 
 	&__badge {
@@ -2160,7 +2160,7 @@
 	}
 
 	&__copy.is-copied {
-		background: #fff;
+		background: #fff; // A white chip on the coloured offer banner, in either mode.
 		color: var( --wbcom-color-primary, #0073aa );
 	}
 }
@@ -2311,7 +2311,7 @@ button.wbcom-edd-free__claim {
 	gap: 6px;
 	font-size: 13px;
 	font-weight: 600;
-	color: #1a7f37;
+	color: var(--wbe-color-success-text);
 }
 
 .wbcom-edd-free__upgrade,

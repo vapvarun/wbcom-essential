@@ -25,7 +25,7 @@ a:hover {
 	News Ticker
 ------------------------------*/
 .acme-news-ticker {
-    background: #fff;
+    background: var(--wbcom-card-bg, #fff);
     position: relative;
     height: 45px;
     border: 1px solid #1974d2;
@@ -102,10 +102,10 @@ a:hover {
 
 .acme-news-ticker-controls button {
     height: 100%;
-    background: #f6f6f6;
+    background: var(--wbcom-color-base-2, #f6f6f6);
     padding: 0;
     width: 40px;
-    border-color: #eeeeee;
+    border-color: var(--wbcom-color-border, #eeeeee);
     border-style: solid;
     border-width: 0 0 0 1px;
     cursor: pointer;
@@ -113,7 +113,7 @@ a:hover {
 }
 
 .acme-news-ticker-controls button:hover {
-    background: #eeeeee;
+    background: var(--wbcom-color-base-2, #eeeeee);
 }
 
 .acme-news-ticker-controls button.acme-news-ticker-arrow {

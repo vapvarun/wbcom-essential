@@ -49,6 +49,27 @@ final class BlockRegistrar {
 		add_filter( 'render_block_wbcom-essential/countdown-timer', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/pricing-table', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/testimonial-carousel', array( $this, 'translate_saved_markup' ), 10, 2 );
+		add_filter( 'render_block', array( $this, 'drop_zero_margin' ), 10, 2 );
+	}
+
+	/**
+	 * Remove the all-zero margin that static blocks wrote into their saved CSS.
+	 *
+	 * Every block's margin defaults to 0 on all sides, and the editor saves that as `margin: 0px 0px 0px 0px;`
+	 * in the block's own style tag. That overrides the theme's spacing between blocks (stacked blocks
+	 * touched) and its full-width rules. The saved markup stays as it is, so blocks still validate in the
+	 * editor; only the rendered page loses the rule. Only the first (desktop) rule of a style tag is touched: a
+	 * zero in a tablet or mobile rule is an override the owner set on purpose.
+	 *
+	 * @param string $block_content Rendered block HTML.
+	 * @param array  $block         Parsed block.
+	 * @return string
+	 */
+	public function drop_zero_margin( $block_content, $block ) {
+		if ( empty( $block['blockName'] ) || 0 !== strpos( $block['blockName'], 'wbcom-essential/' ) || false === strpos( $block_content, 'margin: 0' ) ) {
+			return $block_content;
+		}
+		return (string) preg_replace( '/(<style>\s*[^{}<@]*\{[^{}<]*?)margin: 0(px|em|rem|%|vw|vh) 0\2 0\2 0\2;\s*/', '$1', $block_content );
 	}
 
 	/**
@@ -78,6 +99,11 @@ final class BlockRegistrar {
 					$map[ 'aria-label="' . $english . '"' ]                    = 'aria-label="' . esc_attr( $translated ) . '"';
 					$map[ 'wbe-countdown-timer__label">' . $english . '<' ] = 'wbe-countdown-timer__label">' . esc_html( $translated ) . '<';
 				}
+				// Colour lines saved with the old fixed defaults: dropped so the theme colours apply (light and
+				// dark). The editor migrates the block on its next save; a colour the owner picked never matches.
+				foreach ( array( 'number-color: #1e1e2e', 'label-color: #6c757d', 'box-bg: #f8f9fa', 'box-border: #e9ecef' ) as $line ) {
+					$map[ '  --wbe-cd-' . $line . ';' ] = '';
+				}
 				break;
 			case 'wbcom-essential/pricing-table':
 				$map = array(
@@ -89,6 +115,8 @@ final class BlockRegistrar {
 					'aria-label="Testimonial navigation"' => 'aria-label="' . esc_attr__( 'Testimonial navigation', 'wbcom-essential' ) . '"',
 					'aria-label="Previous testimonial"'   => 'aria-label="' . esc_attr__( 'Previous testimonial', 'wbcom-essential' ) . '"',
 					'aria-label="Next testimonial"'       => 'aria-label="' . esc_attr__( 'Next testimonial', 'wbcom-essential' ) . '"',
+					// The old fixed accent, dropped so the theme accent applies (the editor migrates on save).
+					'  --wbe-tc-accent: #667eea;'         => '',
 				);
 				break;
 			default:
@@ -170,6 +198,8 @@ final class BlockRegistrar {
 			return;
 		}
 
+		wp_register_style( 'wbe-design-tokens', WBCOM_ESSENTIAL_URL . 'plugins/gutenberg/assets/shared/design-tokens.css', array(), WBCOM_ESSENTIAL_VERSION );
+
 		$block_dirs = glob( $this->build_dir . '*/block.json' );
 
 		if ( empty( $block_dirs ) ) {
@@ -188,8 +218,19 @@ final class BlockRegistrar {
 				continue;
 			}
 
-			register_block_type( $block_dir );
+			$block_type = register_block_type( $block_dir );
 			self::$registered_blocks[] = $block_name;
+
+			// Every block stylesheet needs the shared tokens (and the theme bridge in them). As a dependency
+			// they load wherever the block renders: post content, widget areas and templates alike.
+			if ( $block_type ) {
+				foreach ( (array) $block_type->style_handles as $handle ) {
+					$style = wp_styles()->query( $handle, 'registered' );
+					if ( $style && ! in_array( 'wbe-design-tokens', $style->deps, true ) ) {
+						$style->deps[] = 'wbe-design-tokens';
+					}
+				}
+			}
 		}
 	}
 }

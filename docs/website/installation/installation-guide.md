@@ -55,6 +55,8 @@ Follow [After Installation](../intro/after-installation.md).
 
 Updates appear under **Dashboard > Updates** like any other plugin. Update from your admin or reinstall the latest ZIP from the download page.
 
+To authorise those updates, Wbcom Essential contacts the Wbcom Designs update server (updates.wbcomdesigns.com, or the store at wbcomdesigns.com when that server cannot be reached) once, shortly after activation, and again until it succeeds. It sends the plugin's licence key, the product id and your site address (home URL), and nothing else: no visitor or user data. The licence is used only for updates. No feature depends on it, and the plugin works the same if the request fails. If it keeps failing, an admin notice offers a **Retry** button. See the [privacy policy](https://wbcomdesigns.com/privacy-policy/).
+
 ## Troubleshooting
 
 See [Common Mistakes](common-mistakes.md) and [Troubleshooting](../troubleshooting/troubleshooting.md).

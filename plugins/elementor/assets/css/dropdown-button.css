@@ -316,5 +316,5 @@
 }
 
 .wbcom-dd-menu li a:hover {
-	background-color: #eee
+	background-color: var(--wbcom-color-base-2, #eee)
 }

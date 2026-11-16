@@ -38,9 +38,11 @@ $show_atc       = ! empty( $attributes['showAddToCart'] );
 $show_sale      = ! empty( $attributes['showSaleBadge'] );
 $image_ratio    = sanitize_text_field( $attributes['imageRatio'] ?? '1/1' );
 $gap            = absint( $attributes['gap'] ?? 24 );
-$card_bg        = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' ) ?: '#ffffff';
-$title_color    = sanitize_hex_color( $attributes['titleColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
-$price_color    = sanitize_hex_color( $attributes['priceColor'] ?? '#667eea' ) ?: '#667eea';
+$card_bg        = sanitize_hex_color( $attributes['cardBg'] ?? '' ) ?: 'var(--wbcom-card-bg, #ffffff)';
+$title_color    = sanitize_hex_color( $attributes['titleColor'] ?? '' ) ?: 'var(--wbcom-heading-color, #1e1e2e)';
+$price_color    = sanitize_hex_color( $attributes['priceColor'] ?? '' ) ?: 'var(--wbe-color-accent, #667eea)';
+$atc_bg         = sanitize_hex_color( $attributes['atcBg'] ?? '' ) ?: 'var(--wbcom-button-bg, var(--wbe-color-accent, #667eea))';
+$atc_color      = sanitize_hex_color( $attributes['atcColor'] ?? '' ) ?: 'var(--wbcom-button-color, #ffffff)';
 $sale_color     = sanitize_hex_color( $attributes['saleBadgeColor'] ?? '#e74c3c' ) ?: '#e74c3c';
 
 // Visibility classes.
@@ -106,14 +108,21 @@ $query_args = array(
 if ( $meta_key ) {
 	$query_args['meta_key'] = $meta_key; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 }
+$tax_query  = array();
 if ( ! empty( $cat_ids ) ) {
-	$query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-		array(
-			'taxonomy' => 'product_cat',
-			'field'    => 'term_id',
-			'terms'    => $cat_ids,
-		),
+	$tax_query[] = array(
+		'taxonomy' => 'product_cat',
+		'field'    => 'term_id',
+		'terms'    => $cat_ids,
 	);
+}
+// Only what a shopper can see in the shop: no catalog-hidden products, no out-of-stock ones when the store hides them.
+$visibility = wbcom_essential_product_visibility_tax_query();
+if ( $visibility ) {
+	$tax_query[] = $visibility;
+}
+if ( $tax_query ) {
+	$query_args['tax_query'] = $tax_query; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 }
 
 $query = new WP_Query( $query_args );
@@ -138,7 +147,7 @@ $wrapper_attrs = get_block_wrapper_attributes( array(
 $token_css = '';
 if ( $unique_id ) {
 	$token_css = sprintf(
-		'.wbe-block-%1$s { --wbe-pg-cols: %2$d; --wbe-pg-cols-tablet: %3$d; --wbe-pg-cols-mobile: %4$d; --wbe-pg-gap: %5$dpx; --wbe-pg-card-bg: %6$s; --wbe-pg-title-color: %7$s; --wbe-pg-price-color: %8$s; --wbe-pg-sale-color: %9$s; --wbe-pg-card-radius: %10$s; --wbe-pg-card-shadow: %11$s; --wbe-pg-image-ratio: %12$s; }',
+		'.wbe-block-%1$s { --wbe-pg-cols: %2$d; --wbe-pg-cols-tablet: %3$d; --wbe-pg-cols-mobile: %4$d; --wbe-pg-gap: %5$dpx; --wbe-pg-card-bg: %6$s; --wbe-pg-title-color: %7$s; --wbe-pg-price-color: %8$s; --wbe-pg-sale-color: %9$s; --wbe-pg-card-radius: %10$s; --wbe-pg-card-shadow: %11$s; --wbe-pg-image-ratio: %12$s; --wbe-pg-atc-bg: %13$s; --wbe-pg-atc-color: %14$s; }',
 		esc_attr( $unique_id ),
 		$columns,
 		$cols_tablet,
@@ -150,7 +159,9 @@ if ( $unique_id ) {
 		esc_attr( $sale_color ),
 		esc_attr( $radius_val ),
 		esc_attr( $box_shadow_val ),
-		esc_attr( $ratio_css )
+		esc_attr( $ratio_css ),
+		esc_attr( $atc_bg ),
+		esc_attr( $atc_color )
 	);
 
 	// Responsive column overrides scoped to this block instance.

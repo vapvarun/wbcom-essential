@@ -113,7 +113,7 @@
 }
 
 .profile_bit.skin-linear .progress_container {
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 	border-radius: 10px;
 	border-color: #E7E9EC;
 	padding-bottom: 20px;
@@ -205,7 +205,7 @@
 	margin-left: auto;
 	-webkit-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	color: #122B46;
+	color: var(--wbcom-text-color, #122b46);
 }
 
 .skin-linear .progress_bit_linear .progress_bit__heading h3 {
@@ -405,7 +405,7 @@
 .progress_bit__data-num {
 	font-size: 22px;
 	font-weight: 500;
-	color: #122B46;
+	color: var(--wbcom-text-color, #122b46);
 }
 
 .progress_bit__data-num>span {
@@ -435,7 +435,7 @@
 	display: inline-block;
 	min-width: 280px;
 	display: none;
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 	border-radius: 10px;
 	box-shadow: 0 3px 24px 0 rgba(18, 43, 70, 0.08);
 	padding: 20px;
@@ -555,7 +555,7 @@ ul.profile_bit__list li.incomplete .section_name a {
 }
 
 .profile_bit__heading {
-	background-color: #F5F5F5;
+	background-color: var(--wbcom-color-base-2, #f5f5f5);
 	border-radius: 30px;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -569,12 +569,12 @@ ul.profile_bit__list li.incomplete .section_name a {
 }
 
 .profile_bit__heading .progress-num {
-	color: #122B46;
+	color: var(--wbcom-text-color, #122b46);
 }
 
 .profile_bit__heading .progress-label {
 	text-align: right;
-	color: #122B46;
+	color: var(--wbcom-text-color, #122b46);
 }
 
 .profile_bit__heading>span {
@@ -597,7 +597,7 @@ ul.profile_bit__list li.incomplete .section_name a {
 
 .profile_bit__heading .progress_bit_graph--sm .progress-bit__ring {
 	border: 3px solid #fff;
-	background-color: #fff;
+	background-color: var(--wbcom-card-bg, #fff);
 	border-radius: 50%;
 }
 

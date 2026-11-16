@@ -146,7 +146,7 @@ import { memberFriendshipStatus, memberLastActive } from '../../shared/utils/bp-
 		const nameHeading    = el( 'h3', 'wbe-members-grid__name' );
 		const nameLink       = document.createElement( 'a' );
 		nameLink.href        = member.link || '#';
-		nameLink.textContent = member.name || '';
+		nameLink.textContent = decodeEntities( member.name || '' );
 		nameHeading.appendChild( nameLink );
 		info.appendChild( nameHeading );
 

@@ -41,7 +41,7 @@ class Forums extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'forum-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forum-lists.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'forum-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forum-lists.css', array( 'wbcom-essential-icons' ), WBCOM_ESSENTIAL_VERSION ); // The reply link prints i.wbe-icon-reply.
 	}
 
 	/**
@@ -429,7 +429,7 @@ class Forums extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Title/Links Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#122B46',
+				'default'   => 'var(--wbcom-heading-color, #122B46)',
 				'selectors' => array(
 					'{{WRAPPER}} .item-title a' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .wbcom-essential-forums__ww .bs-replied a' => 'color: {{VALUE}}',

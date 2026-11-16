@@ -51,45 +51,61 @@
       "type": "string",
       "default": "Log In"
     },
+    "loggedInView": {
+      "type": "string",
+      "enum": [
+        "",
+        "none",
+        "message",
+        "card"
+      ],
+      "default": ""
+    },
     "loggedInMessage": {
       "type": "string",
       "default": "You are already logged in."
     },
     "formBg": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "buttonBg": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "buttonColor": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "labelColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "linkColor": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "padding": {
       "type": "object",
       "default": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
       }
     },
     "paddingTablet": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "paddingMobile": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "paddingUnit": {
@@ -106,11 +122,17 @@
       }
     },
     "marginTablet": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "marginMobile": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null
     },
     "marginUnit": {

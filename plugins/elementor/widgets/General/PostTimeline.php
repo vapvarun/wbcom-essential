@@ -418,7 +418,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Bar Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-color-border, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline__container:before' => 'background-color: {{VALUE}};',
 				),
@@ -626,7 +626,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Background Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#eeeeee',
+				'default'   => 'var(--wbcom-card-bg, #eeeeee)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-post-timeline__content' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-post-timeline__content:before' => 'border-right-color: {{VALUE}};',

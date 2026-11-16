@@ -32,9 +32,9 @@ $show_arrows    = ! empty( $attributes['showArrows'] );
 $show_rating    = ! empty( $attributes['showRating'] );
 $show_product   = ! empty( $attributes['showProduct'] );
 $show_avatar    = ! empty( $attributes['showAvatar'] );
-$quote_bg       = sanitize_hex_color( $attributes['quoteBg'] ?? '#ffffff' ) ?: '#ffffff';
-$quote_color    = sanitize_hex_color( $attributes['quoteColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
-$name_color     = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
+$quote_bg       = sanitize_hex_color( $attributes['quoteBg'] ?? '' ) ?: 'var(--wbcom-card-bg, #ffffff)';
+$quote_color    = sanitize_hex_color( $attributes['quoteColor'] ?? '' ) ?: 'var(--wbcom-text-color, #1e1e2e)';
+$name_color     = sanitize_hex_color( $attributes['nameColor'] ?? '' ) ?: 'var(--wbcom-heading-color, #1e1e2e)';
 $rating_color   = sanitize_hex_color( $attributes['ratingColor'] ?? '#f5a623' ) ?: '#f5a623';
 
 // Visibility classes.
@@ -91,6 +91,7 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	'wbe-customer-reviews',
 	$unique_id ? 'wbe-block-' . $unique_id : '',
 	$visibility_classes,
+	$show_arrows ? 'has-arrows' : '',
 ) ) ) );
 
 $wrapper_attrs = get_block_wrapper_attributes( array(
@@ -194,9 +195,9 @@ $swiper_options = array(
 		<div class="swiper-pagination" aria-label="<?php esc_attr_e( 'Reviews carousel navigation', 'wbcom-essential' ); ?>"></div>
 		<?php endif; ?>
 
-		<?php if ( $show_arrows ) : ?>
-		<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous review', 'wbcom-essential' ); ?>"></button>
-		<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next review', 'wbcom-essential' ); ?>"></button>
-		<?php endif; ?>
 	</div>
+	<?php if ( $show_arrows ) : ?>
+	<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous review', 'wbcom-essential' ); ?>"></button>
+	<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next review', 'wbcom-essential' ); ?>"></button>
+	<?php endif; ?>
 </div>
