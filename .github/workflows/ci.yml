@@ -201,3 +201,7 @@ jobs:
       # editor ("unexpected or invalid content"). The snapshots fail the build instead.
       - name: Run unit tests
         run: npm run test:unit
+
+      # Test plan T0.6: every translatable string uses the wbcom-essential text domain (bundled libs/ excluded).
+      - name: Check text domains
+        run: npx grunt checktextdomain

@@ -200,6 +200,8 @@ module.exports = function (grunt) {
 							'**/*.php',
 							'!node_modules/**',
 							'!vendor/**',
+							'!libs/**', // Bundled SDK and package signatures keep their own text domains.
+							'!scripts/**', // Dev-only checks (not shipped; stubs WordPress functions).
 							'!options/framework/**',
 							'!tests/**',
 							'!plugins/gutenberg/tests/**',
