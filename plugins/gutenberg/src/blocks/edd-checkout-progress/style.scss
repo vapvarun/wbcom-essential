@@ -123,7 +123,7 @@
 
 	&__step--active {
 		.wbcom-edd-checkout__step-circle {
-			background-color: var(--wbe-color-white);
+			background-color: var(--wbe-surface, #fff);
 			color: var( --wbcom-link-color, #2563eb );
 			border: 2px solid var( --wbcom-link-color, #2563eb );
 			box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
@@ -138,12 +138,12 @@
 	&__step--upcoming {
 		.wbcom-edd-checkout__step-circle {
 			background-color: var(--wbe-color-border);
-			color: #94a3b8;
+			color: var(--wbe-color-text-light, #94a3b8);
 			border: 2px solid var(--wbe-color-border);
 		}
 
 		.wbcom-edd-checkout__step-label {
-			color: #94a3b8;
+			color: var(--wbe-color-text-light, #94a3b8);
 		}
 	}
 
@@ -153,11 +153,11 @@
 
 	&__notice {
 		padding: 1rem 1.25rem;
-		background: #fff3cd;
+		background: var(--wbe-color-warning-bg);
 		border: 1px solid #ffc107;
 		border-radius: 6px;
 		font-size: var( --edd-font-base );
-		color: #856404;
+		color: var(--wbe-color-warning-text);
 
 		p {
 			margin: 0;

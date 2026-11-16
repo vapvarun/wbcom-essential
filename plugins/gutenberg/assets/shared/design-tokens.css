@@ -48,23 +48,13 @@
 
 	/* Colors — neutral palette */
 	--wbe-color-white: #ffffff;
-	--wbe-color-text: #1e293b;
-	--wbe-color-text-muted: #475569;
-	--wbe-color-text-light: #64748b;
-	--wbe-color-border: #e2e8f0;
-	--wbe-color-surface: #f8fafc;
-	--wbe-color-surface-alt: #f1f5f9;
 
 
 	/* Colors — semantic */
 	--wbe-color-success: #16a34a;
-	--wbe-color-success-bg: #dcfce7;
 	--wbe-color-warning: #d97706;
-	--wbe-color-warning-bg: #fef3c7;
 	--wbe-color-danger: #ef4444;
-	--wbe-color-danger-bg: #fef2f2;
 	--wbe-color-info: #2563eb;
-	--wbe-color-info-bg: #eff6ff;
 
 	/* Responsive breakpoints (used by CSS generation utility) */
 	--wbe-bp-tablet: 1024px;
@@ -114,11 +104,29 @@
 	--wbe-color-accent-hover: var(--wbcom-color-primary-hover, var(--wbcom-link-hover-color, #005a87));
 	--wbe-color-accent-light: color-mix(in srgb, var(--wbe-color-accent) 8%, transparent);
 	--wbe-color-accent-ring: color-mix(in srgb, var(--wbe-color-accent) 20%, transparent);
+	/* Status fills are a tint of their status colour, so they sit on light and dark surfaces alike. */
+	--wbe-color-success-bg: color-mix(in srgb, var(--wbe-color-success) 14%, transparent);
+	--wbe-color-warning-bg: color-mix(in srgb, var(--wbe-color-warning) 16%, transparent);
+	--wbe-color-danger-bg: color-mix(in srgb, var(--wbe-color-danger) 12%, transparent);
+	--wbe-color-info-bg: color-mix(in srgb, var(--wbe-color-info) 12%, transparent);
+	/* Text on a status fill: dark enough on light surfaces, light enough on dark ones (below). */
+	--wbe-color-success-text: #166534;
+	--wbe-color-warning-text: #854d0e;
+	--wbe-color-danger-text: #991b1b;
+	--wbe-color-info-text: #1e40af;
 	--wbe-surface: var(--wbcom-card-bg, #ffffff);
 	--wbe-surface-alt: var(--wbcom-color-base-2, #f8f9fa);
 	--wbe-text: var(--wbcom-text-color, #1e1e2e);
 	--wbe-text-muted: var(--wbcom-color-contrast-2, #5a6169);
 	--wbe-border: var(--wbcom-color-border, #e9ecef);
+
+	/* The older neutral names a few blocks use (EDD account, catalog, checkout): the same theme colours. */
+	--wbe-color-text: var(--wbcom-text-color, #1e293b);
+	--wbe-color-text-muted: var(--wbcom-color-contrast-2, #475569);
+	--wbe-color-text-light: var(--wbcom-color-contrast-2, #64748b);
+	--wbe-color-border: var(--wbcom-color-border, #e2e8f0);
+	--wbe-color-surface: var(--wbcom-color-base-2, #f8fafc);
+	--wbe-color-surface-alt: var(--wbcom-color-base-2, #f1f5f9);
 }
 
 /* Dark fallbacks for a theme that marks dark mode but has no tokens of its own. */
@@ -129,4 +137,14 @@ html[data-bx-mode="dark"] body {
 	--wbe-text: var(--wbcom-text-color, #e4e6eb);
 	--wbe-text-muted: var(--wbcom-color-contrast-2, #b8bcc6);
 	--wbe-border: var(--wbcom-color-border, #3d4350);
+	--wbe-color-text: var(--wbcom-text-color, #e4e6eb);
+	--wbe-color-text-muted: var(--wbcom-color-contrast-2, #b8bcc6);
+	--wbe-color-text-light: var(--wbcom-color-contrast-2, #a3a8b4);
+	--wbe-color-border: var(--wbcom-color-border, #3d4350);
+	--wbe-color-surface: var(--wbcom-color-base-2, #292d38);
+	--wbe-color-surface-alt: var(--wbcom-color-base-2, #2a2f3a);
+	--wbe-color-success-text: #86efac;
+	--wbe-color-warning-text: #fde68a;
+	--wbe-color-danger-text: #fca5a5;
+	--wbe-color-info-text: #93c5fd;
 }

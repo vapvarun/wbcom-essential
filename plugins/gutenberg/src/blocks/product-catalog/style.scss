@@ -8,7 +8,7 @@
 	align-items: center;
 	margin-bottom: var(--wbe-space-lg);
 	padding: 14px 20px;
-	background: var(--wbe-color-white);
+	background: var(--wbe-surface, #fff);
 	border: 1px solid var(--wbe-color-border);
 	border-radius: var(--wbe-radius-lg);
 	box-shadow: var(--wbe-shadow-sm);
@@ -27,7 +27,7 @@
 	border-radius: var(--wbe-radius-md);
 	font-size: 14px;
 	font-family: inherit;
-	background: var(--wbe-color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 14px center;
+	background: var(--wbe-surface, #fff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 14px center;
 	transition: border-color var(--wbe-transition-fast), box-shadow var(--wbe-transition-fast);
 
 	&:focus {
@@ -46,9 +46,12 @@
 	flex-wrap: wrap;
 	gap: 8px;
 	align-items: center;
+	flex: 0 1 auto;
 }
 
 .wbcom-catalog__select {
+	width: auto; // Themes size every select to 100%, which stacked the three filters under each other.
+	max-width: 100%;
 	padding: 10px 36px 10px 14px;
 	border: 1.5px solid var(--wbe-color-border);
 	border-radius: var(--wbe-radius-md);
@@ -56,7 +59,7 @@
 	font-weight: 500;
 	font-family: inherit;
 	color: var(--wbe-color-text);
-	background: var(--wbe-color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 12px center;
+	background: var(--wbe-surface, #fff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 12px center;
 	appearance: none;
 	cursor: pointer;
 	transition: border-color var(--wbe-transition-fast);
@@ -93,7 +96,7 @@
 
 // ─── Product Card ───────────────────────────────────────────
 .wbcom-catalog__card {
-	background: var(--wbe-color-white);
+	background: var(--wbe-surface, #fff);
 	border: 1px solid var(--wbe-color-border);
 	border-radius: var(--wbe-radius-lg);
 	overflow: hidden;
@@ -133,7 +136,8 @@
 .wbcom-catalog__card-noimage {
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	// A product without a photo gets the theme's accent, not a fixed purple.
+	background: linear-gradient(135deg, var(--wbe-color-accent, #0073aa) 0%, color-mix(in srgb, var(--wbe-color-accent, #0073aa), #000 35%) 100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -197,6 +201,7 @@
 	letter-spacing: -0.01em;
 
 	&--free {
+		align-self: flex-start; // A pill the size of its word, not a bar across the card.
 		color: var(--wbe-color-success);
 		font-size: 14px;
 		font-weight: 600;
@@ -348,7 +353,7 @@
 }
 
 .wbcom-catalog__loadmore-btn {
-	background: var(--wbe-color-white);
+	background: var(--wbe-surface, #fff);
 	color: var(--wbe-color-accent);
 	border: 2px solid var(--wbe-color-accent);
 	border-radius: var(--wbe-radius-md);
@@ -476,7 +481,7 @@
 
 	&:hover,
 	&:focus {
-		background: #1d4ed8;
+		background: var(--wbe-color-accent-hover, #1d4ed8);
 	}
 
 	&:focus-visible {
