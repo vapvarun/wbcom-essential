@@ -116,7 +116,7 @@ Blocks follow your theme's colours and spacing in light and dark mode, and updat
 * Improve  - Blocks and Elementor widgets take their colours from Reign, BuddyX and BuddyX Pro in light and dark mode, unless you pick a colour.
 * Improve  - Blocks use the theme's spacing between blocks instead of a fixed margin of their own.
 * Improve  - Phone layouts: members grid in two columns, groups as rows, countdown boxes on one row and larger carousel dots.
-* Improve  - Customer Reviews: arrows sit beside the cards instead of over the text, and cards in a row share one height.
+* Improve  - Customer Reviews: arrows sit beside the cards instead of over the text (on the correct sides in right-to-left languages), and cards in a row share one height.
 * Improve  - Category Grid: a category without an image shows a faint initial behind the name, in the theme accent when theme colours are on.
 * Improve  - Elementor widget styles load only on pages that use those widgets.
 * Improve  - Updates come from updates.wbcomdesigns.com, with wbcomdesigns.com as a fallback.
@@ -129,6 +129,9 @@ Blocks follow your theme's colours and spacing in light and dark mode, and updat
 * Fix      - Open in new tab and nofollow now apply in the Shape, Portfolio Grid, Team Carousel, Dropdown Button and Flip Box widgets.
 * Fix      - EDD blocks show their "EDD required" notice when Easy Digital Downloads is not active.
 * Fix      - BuddyPress's own activity script is no longer replaced with an older copy.
+* Fix      - Easy Digital Downloads blocks: filled buttons use the theme's button colours, so their labels stay readable in dark mode; account menu labels and Free prices are easier to read.
+* Fix      - Site Logo widget: a plain link no longer opens in a new tab with nofollow.
+* Fix      - Forums widget: the reply icon shows again.
 * Security - The login lockout counts the visitor's own IP address unless the request comes through a trusted proxy, and the Elementor login form has a spam trap.
 * Security - The AJAX login gives the same message for an unknown username and a wrong password.
 * Security - Each update package is checked against its release signature before it installs.
@@ -136,6 +139,7 @@ Blocks follow your theme's colours and spacing in light and dark mode, and updat
 * Dev      - New helper wbcom_essential_product_visibility_tax_query() for product lists that match the shop.
 * Dev      - Removed the post view counter, which wrote to the database on every post view and was never shown.
 * Dev      - The readme's External Services section lists what the update licence request sends and when.
+* Dev      - Block tests now check that every block's styles and scripts resolve, that Elementor widget names are unique, and that every string uses the plugin's text domain.
 
 = 4.7.1 - November 2026 =
 
