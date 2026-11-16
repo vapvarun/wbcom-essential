@@ -64,6 +64,7 @@ module.exports = function (grunt) {
 								'!plan/**',
 								'!scripts/**',
 								'!tests/**',
+								'!plugins/gutenberg/tests/**',
 								'!node_modules/**',
 								'!.git/**',
 								'!.github/**',
@@ -206,6 +207,7 @@ module.exports = function (grunt) {
 							'!vendor/**',
 							'!options/framework/**',
 							'!tests/**',
+							'!plugins/gutenberg/tests/**',
 							'!dist/**'
 						], // all php
 						expand: true
