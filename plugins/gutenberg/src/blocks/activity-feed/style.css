@@ -11,13 +11,13 @@
 
 
 .wbe-activity-feed {
-	--wbe-af-card-bg: #ffffff;
-	--wbe-af-name: #1e1e2e;
-	--wbe-af-content: #4a5568;
-	--wbe-af-time: #a0aec0;
-	--wbe-af-border: #edf2f7;
-	--wbe-af-accent: #667eea;
-	--wbe-af-icon-bg: #eef2ff;
+	--wbe-af-card-bg: var( --wbe-surface, #ffffff );
+	--wbe-af-name: var( --wbe-text, #1e1e2e );
+	--wbe-af-content: var( --wbe-text, #4a5568 );
+	--wbe-af-time: var( --wbe-text-muted, #718096 );
+	--wbe-af-border: var( --wbe-border, #edf2f7 );
+	--wbe-af-accent: var( --wbe-color-accent, #0073aa );
+	--wbe-af-icon-bg: color-mix( in srgb, var( --wbe-af-accent ) 12%, transparent );
 	--wbe-af-avatar: 44px;
 	width: 100%;
 }
@@ -222,13 +222,13 @@
 
 .wbe-af__action-btn--fav {
 	color: #e53e3e;
-	border-color: #fed7d7;
-	background: #fff5f5;
+	border-color: color-mix( in srgb, #e53e3e 30%, transparent );
+	background: color-mix( in srgb, #e53e3e 8%, transparent );
 }
 
 .wbe-af__action-btn--fav:hover {
 	color: #c53030;
-	border-color: #feb2b2;
+	border-color: color-mix( in srgb, #e53e3e 45%, transparent );
 }
 
 /* ============================================================================
@@ -415,7 +415,7 @@
 .wbe-af__comment-input:focus {
 	outline: 2px solid transparent;
 	border-color: var(--wbe-af-accent);
-	box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.15);
+	box-shadow: 0 0 0 2px color-mix( in srgb, var( --wbe-af-accent ) 15%, transparent );
 }
 
 .wbe-af__comment-input:focus-visible {

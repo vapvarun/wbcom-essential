@@ -38,9 +38,9 @@ $show_dots          = ! empty( $attributes['showDots'] );
 $show_arrows        = ! empty( $attributes['showArrows'] );
 $space_between      = absint( $attributes['spaceBetween'] ?? 24 );
 $avatar_size        = absint( $attributes['avatarSize'] ?? 80 );
-$card_bg            = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' );
-$name_color         = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' );
-$meta_color         = sanitize_hex_color( $attributes['metaColor'] ?? '#6c757d' );
+$card_bg            = sanitize_hex_color( $attributes['cardBg'] ?? '' );
+$name_color         = sanitize_hex_color( $attributes['nameColor'] ?? '' );
+$meta_color         = sanitize_hex_color( $attributes['metaColor'] ?? '' );
 $card_radius        = absint( $attributes['cardBorderRadius'] ?? 12 );
 
 // ── Swiper options ────────────────────────────────────────────────────────────

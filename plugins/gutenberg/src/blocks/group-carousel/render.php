@@ -39,8 +39,8 @@ $show_count      = ! empty( $attributes['showMemberCount'] );
 $show_join       = ! empty( $attributes['showJoinButton'] ) && bp_is_active( 'groups' );
 $space_between   = absint( $attributes['spaceBetween'] ?? 24 );
 $avatar_size     = absint( $attributes['avatarSize'] ?? 80 );
-$card_bg         = sanitize_hex_color( $attributes['cardBg'] ?? '#ffffff' ) ?: '#ffffff';
-$name_color      = sanitize_hex_color( $attributes['nameColor'] ?? '#1e1e2e' ) ?: '#1e1e2e';
+$card_bg         = sanitize_hex_color( $attributes['cardBg'] ?? '' );
+$name_color      = sanitize_hex_color( $attributes['nameColor'] ?? '' );
 
 // ── Visibility + CSS ──────────────────────────────────────────────────────────
 $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
@@ -89,7 +89,8 @@ $wrapper = get_block_wrapper_attributes(
 );
 
 // ── Inline token CSS ──────────────────────────────────────────────────────────
-$card_style = '--wbe-gc-card-bg: ' . esc_attr( $card_bg ) . '; --wbe-gc-name-color: ' . esc_attr( $name_color ) . ';';
+// Only colours the owner picked: an empty value would cancel the theme default in style.css.
+$card_style = ( $card_bg ? '--wbe-gc-card-bg: ' . esc_attr( $card_bg ) . '; ' : '' ) . ( $name_color ? '--wbe-gc-name-color: ' . esc_attr( $name_color ) . ';' : '' );
 
 // ── Detect context ────────────────────────────────────────────────────────────
 $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;

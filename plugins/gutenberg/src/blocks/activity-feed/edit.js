@@ -196,49 +196,49 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						<ColorPalette
 							colors={ COLORS }
 							value={ accentColor }
-							onChange={ ( v ) => setAttributes( { accentColor: v || '#667eea' } ) }
+							onChange={ ( v ) => setAttributes( { accentColor: v || '' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Card Background', 'wbcom-essential' ) }>
 						<ColorPalette
 							colors={ COLORS }
 							value={ cardBg }
-							onChange={ ( v ) => setAttributes( { cardBg: v || '#ffffff' } ) }
+							onChange={ ( v ) => setAttributes( { cardBg: v || '' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Name Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							colors={ COLORS }
 							value={ nameColor }
-							onChange={ ( v ) => setAttributes( { nameColor: v || '#1e1e2e' } ) }
+							onChange={ ( v ) => setAttributes( { nameColor: v || '' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Content Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							colors={ COLORS }
 							value={ contentColor }
-							onChange={ ( v ) => setAttributes( { contentColor: v || '#4a5568' } ) }
+							onChange={ ( v ) => setAttributes( { contentColor: v || '' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Timestamp Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							colors={ COLORS }
 							value={ timeColor }
-							onChange={ ( v ) => setAttributes( { timeColor: v || '#a0aec0' } ) }
+							onChange={ ( v ) => setAttributes( { timeColor: v || '' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Border Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							colors={ COLORS }
 							value={ borderColor }
-							onChange={ ( v ) => setAttributes( { borderColor: v || '#edf2f7' } ) }
+							onChange={ ( v ) => setAttributes( { borderColor: v || '' } ) }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Icon Background', 'wbcom-essential' ) }>
 						<ColorPalette
 							colors={ COLORS }
 							value={ iconBg }
-							onChange={ ( v ) => setAttributes( { iconBg: v || '#eef2ff' } ) }
+							onChange={ ( v ) => setAttributes( { iconBg: v || '' } ) }
 						/>
 					</BaseControl>
 				</PanelBody>

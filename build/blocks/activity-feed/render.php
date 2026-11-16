@@ -35,13 +35,13 @@ $show_type_icon     = ! empty( $attributes['showTypeIcon'] );
 $show_fav_btn       = ! empty( $attributes['showFavoriteBtn'] );
 $show_comment_count = ! empty( $attributes['showCommentCount'] );
 $avatar_size        = absint( $attributes['avatarSize'] ?? 44 );
-$accent_color       = sanitize_text_field( $attributes['accentColor'] ?? '#667eea' );
-$icon_bg            = sanitize_text_field( $attributes['iconBg'] ?? '#eef2ff' );
-$card_bg            = sanitize_text_field( $attributes['cardBg'] ?? '#ffffff' );
-$name_color         = sanitize_text_field( $attributes['nameColor'] ?? '#1e1e2e' );
-$content_color      = sanitize_text_field( $attributes['contentColor'] ?? '#4a5568' );
-$time_color         = sanitize_text_field( $attributes['timeColor'] ?? '#a0aec0' );
-$border_color       = sanitize_text_field( $attributes['borderColor'] ?? '#edf2f7' );
+$accent_color       = sanitize_text_field( $attributes['accentColor'] ?? '' );
+$icon_bg            = sanitize_text_field( $attributes['iconBg'] ?? '' );
+$card_bg            = sanitize_text_field( $attributes['cardBg'] ?? '' );
+$name_color         = sanitize_text_field( $attributes['nameColor'] ?? '' );
+$content_color      = sanitize_text_field( $attributes['contentColor'] ?? '' );
+$time_color         = sanitize_text_field( $attributes['timeColor'] ?? '' );
+$border_color       = sanitize_text_field( $attributes['borderColor'] ?? '' );
 
 // ── Scoped CSS + Visibility ──────────────────────────────────────────────────
 $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
@@ -116,13 +116,25 @@ $config = array(
 <div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<style>
 		.wbe-block-<?php echo esc_attr( $unique_id ); ?> {
-			--wbe-af-card-bg: <?php echo esc_attr( $card_bg ); ?>;
-			--wbe-af-name: <?php echo esc_attr( $name_color ); ?>;
-			--wbe-af-content: <?php echo esc_attr( $content_color ); ?>;
-			--wbe-af-time: <?php echo esc_attr( $time_color ); ?>;
-			--wbe-af-border: <?php echo esc_attr( $border_color ); ?>;
-			--wbe-af-accent: <?php echo esc_attr( $accent_color ); ?>;
-			--wbe-af-icon-bg: <?php echo esc_attr( $icon_bg ); ?>;
+			<?php
+			// Only colours the owner picked (a colour value, nothing that can close the rule); empty ones
+			// follow the theme in light and dark mode (style.css).
+			foreach (
+				array(
+					'--wbe-af-card-bg' => $card_bg,
+					'--wbe-af-name'    => $name_color,
+					'--wbe-af-content' => $content_color,
+					'--wbe-af-time'    => $time_color,
+					'--wbe-af-border'  => $border_color,
+					'--wbe-af-accent'  => $accent_color,
+					'--wbe-af-icon-bg' => $icon_bg,
+				) as $wbe_af_property => $wbe_af_value
+			) {
+				if ( '' !== $wbe_af_value && preg_match( '/^[#a-zA-Z0-9(),.%\s-]+$/', $wbe_af_value ) ) {
+					echo esc_html( $wbe_af_property . ': ' . $wbe_af_value . ';' ) . "\n";
+				}
+			}
+			?>
 			--wbe-af-avatar: <?php echo absint( $avatar_size ); ?>px;
 		}
 	</style>

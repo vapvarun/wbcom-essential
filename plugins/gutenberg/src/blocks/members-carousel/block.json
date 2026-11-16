@@ -78,15 +78,15 @@
 		},
 		"cardBg": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"nameColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"metaColor": {
 			"type": "string",
-			"default": "#6c757d"
+			"default": ""
 		},
 		"avatarSize": {
 			"type": "number",
@@ -200,7 +200,10 @@
 	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": [ "file:./style-index.css", "wbe-swiper" ],
+	"style": [
+		"file:./style-index.css",
+		"wbe-swiper"
+	],
 	"viewScript": [
 		"file:./view.js",
 		"swiper"

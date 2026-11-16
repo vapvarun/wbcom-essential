@@ -155,7 +155,7 @@ import { groupMemberCount } from '../../shared/utils/bp-rest';
 		const avatarWrap = el( 'div', 'wbe-group-carousel__avatar' );
 		const avatarLink = document.createElement( 'a' );
 		avatarLink.href  = group.link || '#';
-		avatarLink.setAttribute( 'aria-label', group.name || '' );
+		avatarLink.setAttribute( 'aria-label', decodeEntities( group.name || '' ) );
 
 		const avatarSrc = decodeEntities( group.avatar_urls?.thumb || group.avatar_urls?.full || '' );
 		const img       = document.createElement( 'img' );
@@ -175,7 +175,7 @@ import { groupMemberCount } from '../../shared/utils/bp-rest';
 		const nameHeading    = el( 'h3', 'wbe-group-carousel__name' );
 		const nameLink       = document.createElement( 'a' );
 		nameLink.href        = group.link || '#';
-		nameLink.textContent = group.name || '';
+		nameLink.textContent = decodeEntities( group.name || '' );
 		nameHeading.appendChild( nameLink );
 		info.appendChild( nameHeading );
 

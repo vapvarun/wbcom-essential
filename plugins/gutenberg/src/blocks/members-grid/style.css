@@ -16,10 +16,10 @@
 	--wbe-mg-cols-tab: 2;
 	--wbe-mg-cols-mob: 2;
 	--wbe-mg-gap: 24px;
-	--wbe-mg-card-bg: #ffffff;
+	--wbe-mg-card-bg: var( --wbe-surface, #ffffff );
 	--wbe-mg-card-radius: 12px;
-	--wbe-mg-name-color: #1e1e2e;
-	--wbe-mg-meta-color: #6c757d;
+	--wbe-mg-name-color: var( --wbe-text, #1e1e2e );
+	--wbe-mg-meta-color: var( --wbe-text-muted, #6c757d );
 	--wbe-mg-avatar-size: 80px;
 }
 
@@ -154,27 +154,27 @@
 .wbe-members-grid__action .generic-button a:hover,
 .wbe-members-grid__action .generic-button button:hover,
 .wbe-members-grid__friend-btn:hover {
-	color: #ffffff;
+	color: var( --wbcom-button-color, #ffffff );
 	background: var( --wbcom-color-primary, #3182ce );
 }
 
 .wbe-mg-friend--is-friend {
-	color: #ffffff;
+	color: var( --wbcom-button-color, #ffffff );
 	background: var( --wbcom-color-primary, #3182ce );
 	cursor: default;
 	opacity: 0.8;
 }
 
 .wbe-mg-friend--pending {
-	color: #6c757d;
-	border-color: #6c757d;
+	color: var( --wbe-text-muted, #6c757d );
+	border-color: var( --wbe-text-muted, #6c757d );
 	cursor: default;
 	opacity: 0.7;
 }
 
 .wbe-mg-friend--pending:hover {
 	background: transparent;
-	color: #6c757d;
+	color: var( --wbe-text-muted, #6c757d );
 }
 
 .wbe-members-grid__friend-btn:disabled {
@@ -200,6 +200,7 @@
 @media screen and (max-width: 640px) {
 	.wbe-members-grid__list {
 		--wbe-mg-cols-now: var( --wbe-mg-cols-mob );
+		gap: min( var( --wbe-mg-gap ), 12px );
 	}
 
 	.wbe-members-grid__card {
