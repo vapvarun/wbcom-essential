@@ -25,10 +25,10 @@ Collapsible questions and answers. It can also output FAQPage structured data so
 | Layout | Allow Multiple Open | Lets more than one item stay open at once. | Off |
 | Layout | Open First Item | Opens the first FAQ when the page loads. | On |
 | Layout | Enable FAQ Schema (JSON-LD) | Outputs FAQPage structured data for SEO. | On |
-| Style | Question Color | Color of the question text. | #1e1e2e |
-| Style | Question Background | Background of each question row. | #f8f9fa |
-| Style | Answer Color | Color of the answer text. | #6c757d |
-| Style | Border Color | Color of the item borders. | #e9ecef |
+| Style | Question Color | Color of the question text. | Theme text |
+| Style | Question Background | Background of each question row. | Theme surface |
+| Style | Answer Color | Color of the answer text. | Theme muted text |
+| Style | Border Color | Color of the item borders. | Theme border |
 | Style | Icon Color | Color of the icon. | #667eea |
 | Style | Border Radius, Box Shadow | Rounds the block corners and adds a shadow. | Shadow off |
 

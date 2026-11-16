@@ -42,6 +42,7 @@ Your WordPress categories in a grid, with an image, name, post count and hover e
 
 - The card image is read from a thumbnail saved on the category. Standard post categories have no image field, so those cards show without a picture unless another plugin or your own code sets one.
 - If no category matches, the block shows "No categories found."
+- A category without an image shows a faint capital letter of its name behind the name. With Use Theme Colors on, that letter and the card use your theme accent color.
 
 ## Post Carousel
 

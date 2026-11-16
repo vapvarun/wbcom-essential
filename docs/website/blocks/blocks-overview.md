@@ -20,7 +20,7 @@ The blocks are grouped in seven inserter categories:
 | Essential - WooCommerce | 3 | WooCommerce | [WooCommerce Blocks](woocommerce-blocks.md) |
 | Essential - EDD | 8 | Easy Digital Downloads | [EDD Blocks](edd-blocks.md) |
 
-BuddyPress, WooCommerce and EDD blocks load only when their plugin is active. Until then they stay out of the inserter and any copy already on a page shows a notice that the plugin is required.
+BuddyPress, WooCommerce and EDD blocks work only when their plugin is active. Until then they still appear in the inserter, and a copy on a page shows a notice that the plugin is required. See [Set up the plugins Wbcom Essential works with](../intro/set-up-companion-plugins.md).
 
 ## Settings shared by all blocks
 

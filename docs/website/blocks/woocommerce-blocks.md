@@ -1,6 +1,6 @@
 # WooCommerce Blocks
 
-WooCommerce blocks show your store's products and customer reviews on any page. They appear in the block inserter under **Essential - WooCommerce** and load only when WooCommerce is active.
+WooCommerce blocks show your store's products and customer reviews on any page. They appear in the block inserter under **Essential - WooCommerce** and work only when WooCommerce is active. Without it they still appear in the inserter and show a notice.
 
 If WooCommerce is not active, these blocks show the notice "WooCommerce plugin is required for this block."
 
@@ -30,15 +30,18 @@ WooCommerce product reviews in a Swiper carousel, with the reviewer's avatar, st
 | Review Card Settings | Show Avatar | Shows the reviewer avatar. | On |
 | Review Card Settings | Show Star Rating | Shows the star rating. | On |
 | Review Card Settings | Show Product Name | Shows the reviewed product with a link. | On |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Quote Text Color | Color of the review text. | #1e1e2e |
-| Style | Reviewer Name Color | Color of the reviewer name. | #1e1e2e |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Quote Text Color | Color of the review text. | Theme text |
+| Style | Reviewer Name Color | Color of the reviewer name. | Theme text |
 | Style | Star Rating Color | Color of the filled stars. | #f5a623 |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
 ### Tips
 
 - If your store has no reviews yet, the block shows "No reviews found."
+- The arrows sit beside the cards, not over the review text. On right-to-left sites the previous arrow is on the right and the next arrow on the left.
+- Cards in the same row share one height, so a short review does not leave a shorter card next to a long one.
+- Colors left empty follow your theme in light and dark mode. Pick a color to override it.
 
 ## Product Carousel
 
@@ -70,14 +73,18 @@ WooCommerce products in a Swiper carousel with autoplay, arrows, dots and a numb
 | Card Settings | Show Price | Shows the price. | On |
 | Card Settings | Show Star Rating | Shows the average rating. | On |
 | Card Settings | Show Add to Cart | Shows the add-to-cart button. | On |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Title Color | Color of the product title. | #1e1e2e |
-| Style | Price Color | Color of the price. | #667eea |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Title Color | Color of the product title. | Theme text |
+| Style | Price Color | Color of the price. | Theme accent |
+| Style | Add to Cart Background | Background of the add-to-cart button. | Theme button color |
+| Style | Add to Cart Text | Text of the add-to-cart button. | Theme button text color |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
 ### Tips
 
 - If no product matches, the block shows "No products found."
+- Products you hide from the shop (catalog visibility set to Hidden or Search results only) are left out, and so are out-of-stock products when WooCommerce is set to hide them (WooCommerce > Settings > Products > Inventory > Out of stock visibility). The block shows what your shop pages show.
+- Colors left empty follow your theme in light and dark mode. Pick a color to override it.
 
 ## Product Grid
 
@@ -106,12 +113,16 @@ WooCommerce products in a responsive grid with a sale badge, star rating and add
 | Card Settings | Show Star Rating | Shows the average rating. | On |
 | Card Settings | Show Add to Cart | Shows the add-to-cart button. | On |
 | Card Settings | Show Sale Badge | Shows a badge on products on sale. | On |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Title Color | Color of the product title. | #1e1e2e |
-| Style | Price Color | Color of the price. | #667eea |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Title Color | Color of the product title. | Theme text |
+| Style | Price Color | Color of the price. | Theme accent |
+| Style | Add to Cart Background | Background of the add-to-cart button. | Theme button color |
+| Style | Add to Cart Text | Text of the add-to-cart button. | Theme button text color |
 | Style | Sale Badge Color | Color of the sale badge. | #e74c3c |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
 ### Tips
 
 - If no product matches, the block shows "No products found."
+- Products you hide from the shop (catalog visibility set to Hidden or Search results only) are left out, and so are out-of-stock products when WooCommerce is set to hide them (WooCommerce > Settings > Products > Inventory > Out of stock visibility). The block shows what your shop pages show.
+- Colors left empty follow your theme in light and dark mode. Pick a color to override it.

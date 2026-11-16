@@ -89,7 +89,7 @@ The BuddyPress Elementor widgets only appear when BuddyPress is active. The Budd
 
 = Can I use theme colors in blocks? =
 
-Yes. Several blocks read your theme's colours through CSS custom properties such as `--wbcom-color-primary` and `--wbcom-link-color`, and fall back to built-in colours when the theme does not set them. Reign, BuddyX and BuddyX Pro set them for you. The Category Grid block also has a **Use Theme Colors** toggle.
+Yes. Any colour setting you leave empty follows your theme, in light and dark mode: blocks read Reign, BuddyX and BuddyX Pro colours (accent, buttons, headings, text and card background) through the `--wbcom-*` CSS custom properties. Pick a colour in a block's settings to override it for that block. The Category Grid block also has a **Use Theme Colors** toggle.
 
 = Are blocks compatible with Full Site Editing? =
 
@@ -101,7 +101,7 @@ Wbcom Essential connects to the Wbcom Designs update server (https://updates.wbc
 
 * When: in the background shortly after the plugin is activated. If the server cannot be reached it tries again hourly, at most 24 times; if it answers no, it stops and an admin notice explains why.
 * What is sent: the licence key, the product id and your site address (home URL). Nothing else, and no visitor or user data.
-* Update checks: WordPress asks the same server for new versions, as for any plugin update, and each downloaded update is checked against its release signature.
+* Update checks: WordPress asks the same server for new versions, as for any plugin update, and each downloaded update is checked against its release signature (for now a failed check is logged and the update still installs).
 * Why: the licence is used only to deliver updates. No feature is locked or limited by it, and the plugin works the same if the request fails.
 * Privacy policy: https://wbcomdesigns.com/privacy-policy/
 
@@ -134,7 +134,7 @@ Blocks follow your theme's colours and spacing in light and dark mode, and updat
 * Fix      - Forums widget: the reply icon shows again.
 * Security - The login lockout counts the visitor's own IP address unless the request comes through a trusted proxy, and the Elementor login form has a spam trap.
 * Security - The AJAX login gives the same message for an unknown username and a wrong password.
-* Security - Each update package is checked against its release signature before it installs.
+* Security - Each update package is checked against its release signature before it installs; for now a failed check is logged, not blocked.
 * Dev      - New filter wbcom_essential_login_security_trusted_proxies lists proxies whose forwarded IP address is trusted.
 * Dev      - New helper wbcom_essential_product_visibility_tax_query() for product lists that match the shop.
 * Dev      - Removed the post view counter, which wrote to the database on every post view and was never shown.

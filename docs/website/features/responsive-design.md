@@ -18,9 +18,20 @@ In the block editor, you switch device with the preview buttons in the editor to
 
 | Setting | Where it appears |
 |---------|------------------|
-| Device Visibility | 34 of the 35 blocks. The only block without it is Product Catalog. |
+| Device Visibility | All 35 blocks. |
 | Padding and margin per device | Blocks with a spacing control, such as Hero, Promo Banner, Timeline, Category Grid, Groups Grid and Activity Feed. |
 | Columns per device | The grid blocks: Category Grid, Groups Grid, Members Grid, Portfolio Grid and Product Grid. |
+
+### Phone layouts
+
+On phones the blocks are laid out to read well without any setting:
+
+- Members Grid starts at two columns (Columns (Mobile) is 2).
+- Groups Grid keeps each group as a row, with the photo on the left and the details on the right.
+- Countdown Timer keeps its boxes on one row.
+- Carousel dots are larger, so they are easy to tap.
+
+You can still change the columns per device in the block settings.
 
 ### Hide a block on some devices
 

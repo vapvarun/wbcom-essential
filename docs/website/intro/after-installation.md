@@ -8,7 +8,7 @@ Use this checklist to confirm Wbcom Essential works on your site.
 2. Find **Wbcom Essential**.
 3. Click **Activate** if it is not active.
 
-The plugin adds a **Wbcom Designs > Essential** page to the admin menu. It shows how many blocks and widgets are available.
+The plugin adds a **Wbcom Designs > Essential** page to the admin menu. The **Overview** tab shows how many blocks and widgets are available. The **Settings** tab holds the blog layout and single post template choices: see [Blog Layouts and Post Templates](../features/blog-and-post-templates.md). The **Wbcom Designs** menu also has a **Dashboard** page that lists the Wbcom plugins installed on your site, each with a link to its settings.
 
 ## Find the Blocks
 
@@ -40,6 +40,8 @@ BuddyPress widgets appear only when BuddyPress is active. WooCommerce widgets ap
 
 ## Check BuddyPress, WooCommerce and EDD Blocks
 
+Set up each plugin first: [Set up the plugins Wbcom Essential works with](set-up-companion-plugins.md).
+
 1. Activate the plugin the block needs: BuddyPress (or BuddyBoss Platform), WooCommerce, or Easy Digital Downloads.
 2. Insert a block such as **Members Grid** or **Product Grid**.
 3. Confirm it shows content, not a notice.
@@ -57,6 +59,7 @@ See [Troubleshooting](../troubleshooting/troubleshooting.md) or the [FAQ](../faq
 
 ## Next Steps
 
+- [Set up the plugins Wbcom Essential works with](set-up-companion-plugins.md)
 - [Getting Started](getting-started.md)
 - [Blocks Overview](../blocks/blocks-overview.md)
 - [Widgets Overview](../widgets/widgets-overview.md)

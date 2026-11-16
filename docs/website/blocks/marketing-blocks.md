@@ -50,12 +50,16 @@ A call-to-action section with a heading, a description and one button. Block nam
 | Content | Button URL | Where the button links. | # |
 | Layout | Layout Style | Stacked (Vertical) or Inline (Side by Side). | Stacked |
 | Layout | Content Alignment | Left, Center or Right. | Center |
-| Style | Background Color | Section background. | #f8f9fa |
-| Style | Heading Color | Color of the heading. | #1e1e2e |
-| Style | Description Color | Color of the description. | #6c757d |
+| Style | Background Color | Section background. | Theme surface |
+| Style | Heading Color | Color of the heading. | Theme text |
+| Style | Description Color | Color of the description. | Theme muted text |
 | Style | Button Background | Button background. | #667eea |
 | Style | Button Text Color | Button text. | #ffffff |
 | Style | Button Hover Background | Button background on hover. | #5a6fd6 |
+
+### Tips
+
+- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available.
 
 ## Feature Grid
 
@@ -77,9 +81,14 @@ Feature cards in a responsive grid, each with an icon or emoji, a title and a de
 | Layout | Columns | Number of columns, 1 to 4. | 3 |
 | Layout | Card Style | Elevated (Shadow), Bordered or Flat. | Elevated |
 | Style | Icon Size (px) | Size of the icon, 24 to 96. | 48 |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Title Color | Color of the titles. | #1e1e2e |
-| Style | Description Color | Color of the descriptions. | #6c757d |
+| Style | Card Background | Card background. | Theme surface |
+| Style | Title Color | Color of the titles. | Theme text |
+| Style | Description Color | Color of the descriptions. | Theme muted text |
+
+### Tips
+
+- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available.
+- At tablet width the last row never leaves one card on its own.
 
 ## Hero Section
 
@@ -114,6 +123,10 @@ A full-width hero with a gradient, solid color or image background, a heading, a
 | Style | Button 1 Text Color | First button text. | #1e1e2e |
 | Style | Button 2 Background | Second button background. | transparent |
 | Style | Button 2 Text Color | Second button text. | #ffffff |
+
+### Tips
+
+- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available.
 
 ## Pricing Table
 
