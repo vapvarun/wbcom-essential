@@ -86,8 +86,8 @@ import swiperA11y from '../../shared/utils/swiper-a11y';
 
 			if ( showArrows ) {
 				swiperConfig.navigation = {
-					prevEl: el.querySelector( '.swiper-button-prev' ),
-					nextEl: el.querySelector( '.swiper-button-next' ),
+					prevEl: el.parentElement.querySelector( '.swiper-button-prev' ),
+					nextEl: el.parentElement.querySelector( '.swiper-button-next' ),
 				};
 			}
 

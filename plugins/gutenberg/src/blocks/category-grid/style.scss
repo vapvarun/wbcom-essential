@@ -93,13 +93,22 @@
 		}
 	}
 
+	// No image: the initial is a faint letter in the top corner, behind nothing, so it never runs into
+	// the name laid over the bottom of the tile.
 	&__placeholder {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		align-items: center;
-		justify-content: center;
+		align-items: flex-start;
+		justify-content: flex-end;
+		padding: 0.5rem 1rem;
+		box-sizing: border-box;
+		overflow: hidden;
 		background: hsl(var(--cat-placeholder-hue, 200), 55%, 50%);
+
+		.use-theme-colors & {
+			background: var(--wbe-color-accent, var(--wbcom-color-primary, #1d76da));
+		}
 		transition: filter 0.3s ease;
 
 		.wbcom-essential-category-grid__card:hover & {
@@ -108,9 +117,9 @@
 	}
 
 	&__letter {
-		font-size: 3rem;
-		font-weight: 700;
-		color: rgba(255, 255, 255, 0.9);
+		font-size: 5rem;
+		font-weight: 800;
+		color: rgba(255, 255, 255, 0.22);
 		line-height: 1;
 		user-select: none;
 	}
@@ -165,7 +174,7 @@
 		}
 
 		.wbcom-essential-category-grid__letter {
-			font-size: 2.5rem;
+			font-size: 4rem;
 		}
 
 		.wbcom-essential-category-grid__name {

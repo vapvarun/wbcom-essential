@@ -71,15 +71,15 @@
 		},
 		"quoteBg": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"quoteColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"nameColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"ratingColor": {
 			"type": "string",
