@@ -139,5 +139,21 @@
 		flex-wrap: wrap;
 		justify-content: center;
 	}
+
+	/* Four boxes share one row; the separators are dropped so none is left orphaned. */
+	.wbe-countdown-timer--boxes .wbe-countdown-timer__units {
+		flex-wrap: nowrap;
+		gap: 8px;
+	}
+
+	.wbe-countdown-timer--boxes .wbe-countdown-timer__unit {
+		flex: 1 1 0;
+		min-width: 0;
+		padding: 12px 4px;
+	}
+
+	.wbe-countdown-timer--boxes .wbe-countdown-timer__sep {
+		display: none;
+	}
 }
 
