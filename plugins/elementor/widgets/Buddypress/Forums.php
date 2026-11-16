@@ -41,7 +41,7 @@ class Forums extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'forum-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forum-lists.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_style( 'forum-lists', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/forum-lists.css', array( 'wbcom-essential-icons' ), WBCOM_ESSENTIAL_VERSION ); // The reply link prints i.wbe-icon-reply.
 	}
 
 	/**
