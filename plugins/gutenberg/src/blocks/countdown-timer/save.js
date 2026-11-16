@@ -6,6 +6,7 @@
 
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 import { generateBlockCSS } from '../../shared/utils/css';
 
 export default function save( { attributes } ) {
@@ -98,9 +99,8 @@ export default function save( { attributes } ) {
 			{ /* Unit boxes - view.js populates the number spans */ }
 			<div className="wbe-countdown-timer__units">
 				{ visibleUnits.map( ( unit, idx ) => (
-					<>
+					<Fragment key={ unit.key }>
 						<div
-							key={ unit.key }
 							className={ `wbe-countdown-timer__unit wbe-countdown-timer__unit--${ unit.key }` }
 						>
 							<span
@@ -121,7 +121,7 @@ export default function save( { attributes } ) {
 								{ getSepChar() }
 							</span>
 						) }
-					</>
+					</Fragment>
 				) ) }
 			</div>
 		</div>

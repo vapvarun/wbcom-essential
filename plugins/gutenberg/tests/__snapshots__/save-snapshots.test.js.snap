@@ -1,0 +1,382 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`static block countdown-timer saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-countdown-timer wbe-countdown-timer--boxes" data-target-date="" data-expire-message="This offer has expired!" data-show-days="true" data-show-hours="true" data-show-minutes="true" data-show-seconds="true" data-separator="colon"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 8px 8px 8px 8px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-cd-number-color: #123456;
+  --wbe-cd-label-color: #123456;
+  --wbe-cd-box-bg: #123456;
+  --wbe-cd-box-border: #123456;
+}</style><div class="wbe-countdown-timer__expire" aria-live="polite" hidden>This offer has expired!</div><div class="wbe-countdown-timer__units"><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--days"><span class="wbe-countdown-timer__number" aria-label="Days">00</span><span class="wbe-countdown-timer__label">Days</span></div><span class="wbe-countdown-timer__sep" aria-hidden="true">:</span><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--hours"><span class="wbe-countdown-timer__number" aria-label="Hours">00</span><span class="wbe-countdown-timer__label">Hours</span></div><span class="wbe-countdown-timer__sep" aria-hidden="true">:</span><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--minutes"><span class="wbe-countdown-timer__number" aria-label="Mins">00</span><span class="wbe-countdown-timer__label">Mins</span></div><span class="wbe-countdown-timer__sep" aria-hidden="true">:</span><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--seconds"><span class="wbe-countdown-timer__number" aria-label="Secs">00</span><span class="wbe-countdown-timer__label">Secs</span></div></div></div>"
+`;
+
+exports[`static block countdown-timer saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-countdown-timer wbe-countdown-timer--boxes" data-target-date="" data-expire-message="This offer has expired!" data-show-days="true" data-show-hours="true" data-show-minutes="true" data-show-seconds="true" data-separator="colon"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 8px 8px 8px 8px;
+}
+</style><style>.wbe-block-snap1234 {
+}</style><div class="wbe-countdown-timer__expire" aria-live="polite" hidden>This offer has expired!</div><div class="wbe-countdown-timer__units"><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--days"><span class="wbe-countdown-timer__number" aria-label="Days">00</span><span class="wbe-countdown-timer__label">Days</span></div><span class="wbe-countdown-timer__sep" aria-hidden="true">:</span><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--hours"><span class="wbe-countdown-timer__number" aria-label="Hours">00</span><span class="wbe-countdown-timer__label">Hours</span></div><span class="wbe-countdown-timer__sep" aria-hidden="true">:</span><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--minutes"><span class="wbe-countdown-timer__number" aria-label="Mins">00</span><span class="wbe-countdown-timer__label">Mins</span></div><span class="wbe-countdown-timer__sep" aria-hidden="true">:</span><div class="wbe-countdown-timer__unit wbe-countdown-timer__unit--seconds"><span class="wbe-countdown-timer__number" aria-label="Secs">00</span><span class="wbe-countdown-timer__label">Secs</span></div></div></div>"
+`;
+
+exports[`static block cta saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-cta wbe-cta--stacked wbe-cta--align-center" style="background-color:#123456;--wbe-cta-btn-hover-bg:#5a6fd6"><style>.wbe-block-snap1234 {
+  padding: 60px 32px 60px 32px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-cta__body"><h2 class="wbe-cta__heading" style="color:#123456">Ready to Get Started?</h2><p class="wbe-cta__description" style="color:#123456">Join thousands of satisfied customers today.</p></div><div class="wbe-cta__action"><a class="wbe-cta__btn" href="#" style="background-color:#667eea;color:#ffffff"><div>Get Started Now</div></a></div></div>"
+`;
+
+exports[`static block cta saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-cta wbe-cta--stacked wbe-cta--align-center" style="background-color:;--wbe-cta-btn-hover-bg:#5a6fd6"><style>.wbe-block-snap1234 {
+  padding: 60px 32px 60px 32px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-cta__body"><h2 class="wbe-cta__heading" style="color:">Ready to Get Started?</h2><p class="wbe-cta__description" style="color:">Join thousands of satisfied customers today.</p></div><div class="wbe-cta__action"><a class="wbe-cta__btn" href="#" style="background-color:#667eea;color:#ffffff"><div>Get Started Now</div></a></div></div>"
+`;
+
+exports[`static block faq-accordion saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-faq-accordion" data-allow-multi="false" data-first-open="true" data-icon-style="chevron"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-faq-question-color: #123456;
+  --wbe-faq-answer-color: #123456;
+  --wbe-faq-question-bg: #123456;
+  --wbe-faq-border-color: #123456;
+  --wbe-faq-icon-color: #667eea;
+}</style><div class="wbe-faq-accordion__list"><div class="wbe-faq-accordion__item is-open"><button id="wbe-faq-snap1234-0" type="button" class="wbe-faq-accordion__question components-button" aria-expanded="true" aria-controls="wbe-faq-panel-snap1234-0"><span class="wbe-faq-accordion__question-text">What is this product?</span><span class="wbe-faq-accordion__icon" aria-hidden="true">▶</span></button><div id="wbe-faq-panel-snap1234-0" role="region" aria-labelledby="wbe-faq-snap1234-0" class="wbe-faq-accordion__answer"><p>A comprehensive solution for your needs.</p></div></div><div class="wbe-faq-accordion__item"><button id="wbe-faq-snap1234-1" type="button" class="wbe-faq-accordion__question components-button" aria-expanded="false" aria-controls="wbe-faq-panel-snap1234-1"><span class="wbe-faq-accordion__question-text">How does pricing work?</span><span class="wbe-faq-accordion__icon" aria-hidden="true">▶</span></button><div id="wbe-faq-panel-snap1234-1" role="region" aria-labelledby="wbe-faq-snap1234-1" class="wbe-faq-accordion__answer" hidden><p>We offer flexible monthly and annual plans.</p></div></div><div class="wbe-faq-accordion__item"><button id="wbe-faq-snap1234-2" type="button" class="wbe-faq-accordion__question components-button" aria-expanded="false" aria-controls="wbe-faq-panel-snap1234-2"><span class="wbe-faq-accordion__question-text">Is there a free trial?</span><span class="wbe-faq-accordion__icon" aria-hidden="true">▶</span></button><div id="wbe-faq-panel-snap1234-2" role="region" aria-labelledby="wbe-faq-snap1234-2" class="wbe-faq-accordion__answer" hidden><p>Yes, we offer a 14-day free trial with full access.</p></div></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is this product?","acceptedAnswer":{"@type":"Answer","text":"A comprehensive solution for your needs."}},{"@type":"Question","name":"How does pricing work?","acceptedAnswer":{"@type":"Answer","text":"We offer flexible monthly and annual plans."}},{"@type":"Question","name":"Is there a free trial?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer a 14-day free trial with full access."}}]}</script></div>"
+`;
+
+exports[`static block faq-accordion saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-faq-accordion" data-allow-multi="false" data-first-open="true" data-icon-style="chevron"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-faq-icon-color: #667eea;
+}</style><div class="wbe-faq-accordion__list"><div class="wbe-faq-accordion__item is-open"><button id="wbe-faq-snap1234-0" type="button" class="wbe-faq-accordion__question components-button" aria-expanded="true" aria-controls="wbe-faq-panel-snap1234-0"><span class="wbe-faq-accordion__question-text">What is this product?</span><span class="wbe-faq-accordion__icon" aria-hidden="true">▶</span></button><div id="wbe-faq-panel-snap1234-0" role="region" aria-labelledby="wbe-faq-snap1234-0" class="wbe-faq-accordion__answer"><p>A comprehensive solution for your needs.</p></div></div><div class="wbe-faq-accordion__item"><button id="wbe-faq-snap1234-1" type="button" class="wbe-faq-accordion__question components-button" aria-expanded="false" aria-controls="wbe-faq-panel-snap1234-1"><span class="wbe-faq-accordion__question-text">How does pricing work?</span><span class="wbe-faq-accordion__icon" aria-hidden="true">▶</span></button><div id="wbe-faq-panel-snap1234-1" role="region" aria-labelledby="wbe-faq-snap1234-1" class="wbe-faq-accordion__answer" hidden><p>We offer flexible monthly and annual plans.</p></div></div><div class="wbe-faq-accordion__item"><button id="wbe-faq-snap1234-2" type="button" class="wbe-faq-accordion__question components-button" aria-expanded="false" aria-controls="wbe-faq-panel-snap1234-2"><span class="wbe-faq-accordion__question-text">Is there a free trial?</span><span class="wbe-faq-accordion__icon" aria-hidden="true">▶</span></button><div id="wbe-faq-panel-snap1234-2" role="region" aria-labelledby="wbe-faq-snap1234-2" class="wbe-faq-accordion__answer" hidden><p>Yes, we offer a 14-day free trial with full access.</p></div></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is this product?","acceptedAnswer":{"@type":"Answer","text":"A comprehensive solution for your needs."}},{"@type":"Question","name":"How does pricing work?","acceptedAnswer":{"@type":"Answer","text":"We offer flexible monthly and annual plans."}},{"@type":"Question","name":"Is there a free trial?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer a 14-day free trial with full access."}}]}</script></div>"
+`;
+
+exports[`static block feature-grid saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-feature-grid"><style>.wbe-block-snap1234 {
+  padding: 48px 24px 48px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-feature-grid__grid wbe-feature-grid__grid--style-elevated" style="--wbe-feature-cols:3"><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:#123456"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">⚡</div><h3 class="wbe-feature-grid__title" style="color:#123456">Lightning Fast</h3><p class="wbe-feature-grid__description" style="color:#123456">Optimized for speed and performance.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:#123456"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">🔒</div><h3 class="wbe-feature-grid__title" style="color:#123456">Secure</h3><p class="wbe-feature-grid__description" style="color:#123456">Built with security best practices.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:#123456"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">🎨</div><h3 class="wbe-feature-grid__title" style="color:#123456">Customizable</h3><p class="wbe-feature-grid__description" style="color:#123456">Fully customizable to match your brand.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:#123456"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">📱</div><h3 class="wbe-feature-grid__title" style="color:#123456">Responsive</h3><p class="wbe-feature-grid__description" style="color:#123456">Looks great on all devices.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:#123456"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">🔧</div><h3 class="wbe-feature-grid__title" style="color:#123456">Easy Setup</h3><p class="wbe-feature-grid__description" style="color:#123456">Get started in minutes, not hours.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:#123456"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">💬</div><h3 class="wbe-feature-grid__title" style="color:#123456">Support</h3><p class="wbe-feature-grid__description" style="color:#123456">World-class support when you need it.</p></div></div></div>"
+`;
+
+exports[`static block feature-grid saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-feature-grid"><style>.wbe-block-snap1234 {
+  padding: 48px 24px 48px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-feature-grid__grid wbe-feature-grid__grid--style-elevated" style="--wbe-feature-cols:3"><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">⚡</div><h3 class="wbe-feature-grid__title" style="color:">Lightning Fast</h3><p class="wbe-feature-grid__description" style="color:">Optimized for speed and performance.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">🔒</div><h3 class="wbe-feature-grid__title" style="color:">Secure</h3><p class="wbe-feature-grid__description" style="color:">Built with security best practices.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">🎨</div><h3 class="wbe-feature-grid__title" style="color:">Customizable</h3><p class="wbe-feature-grid__description" style="color:">Fully customizable to match your brand.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">📱</div><h3 class="wbe-feature-grid__title" style="color:">Responsive</h3><p class="wbe-feature-grid__description" style="color:">Looks great on all devices.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">🔧</div><h3 class="wbe-feature-grid__title" style="color:">Easy Setup</h3><p class="wbe-feature-grid__description" style="color:">Get started in minutes, not hours.</p></div><div class="wbe-feature-grid__card wbe-feature-grid__card--elevated" style="background-color:"><div class="wbe-feature-grid__icon" style="font-size:48px" aria-hidden="true">💬</div><h3 class="wbe-feature-grid__title" style="color:">Support</h3><p class="wbe-feature-grid__description" style="color:">World-class support when you need it.</p></div></div></div>"
+`;
+
+exports[`static block flip-box saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-flip-box wbe-flip-box--horizontal"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 12px 12px 12px 12px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-flip-front-bg: #667eea;
+  --wbe-flip-front-color: #ffffff;
+  --wbe-flip-back-bg: #764ba2;
+  --wbe-flip-back-color: #ffffff;
+  --wbe-flip-height: 300px;
+  --wbe-flip-radius: 12px 12px 12px 12px;
+  --wbe-flip-shadow: none;
+}</style><div class="wbe-flip-box__inner" aria-hidden="false"><div class="wbe-flip-box__front" aria-label="Front Title"><span class="wbe-flip-box__icon" aria-hidden="true">⚡</span><h3 class="wbe-flip-box__title">Front Title</h3><p class="wbe-flip-box__description">Hover to see the back</p></div><div class="wbe-flip-box__back" aria-label="Back Title"><h3 class="wbe-flip-box__title">Back Title</h3><p class="wbe-flip-box__description">This is the back of the card</p><a href="#" class="wbe-flip-box__btn">Learn More</a></div></div></div>"
+`;
+
+exports[`static block flip-box saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-flip-box wbe-flip-box--horizontal"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 12px 12px 12px 12px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-flip-front-bg: #667eea;
+  --wbe-flip-front-color: #ffffff;
+  --wbe-flip-back-bg: #764ba2;
+  --wbe-flip-back-color: #ffffff;
+  --wbe-flip-height: 300px;
+  --wbe-flip-radius: 12px 12px 12px 12px;
+  --wbe-flip-shadow: none;
+}</style><div class="wbe-flip-box__inner" aria-hidden="false"><div class="wbe-flip-box__front" aria-label="Front Title"><span class="wbe-flip-box__icon" aria-hidden="true">⚡</span><h3 class="wbe-flip-box__title">Front Title</h3><p class="wbe-flip-box__description">Hover to see the back</p></div><div class="wbe-flip-box__back" aria-label="Back Title"><h3 class="wbe-flip-box__title">Back Title</h3><p class="wbe-flip-box__description">This is the back of the card</p><a href="#" class="wbe-flip-box__btn">Learn More</a></div></div></div>"
+`;
+
+exports[`static block hero saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-hero" style="min-height:500px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><style>.wbe-block-snap1234 {
+  padding: 80px 24px 80px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-hero__content wbe-hero__content--center"><h1 class="wbe-hero__heading" style="color:#ffffff">Build Something Amazing</h1><p class="wbe-hero__subheading" style="color:rgba(255,255,255,0.8)">Create beautiful websites with powerful tools</p><div class="wbe-hero__buttons"><a class="wbe-hero__btn wbe-hero__btn--primary" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Get Started</div></a><a class="wbe-hero__btn wbe-hero__btn--secondary" href="#" style="background-color:transparent;color:#ffffff;border:2px solid #ffffff"><div>Learn More</div></a></div></div></div>"
+`;
+
+exports[`static block hero saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-hero" style="min-height:500px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><style>.wbe-block-snap1234 {
+  padding: 80px 24px 80px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-hero__content wbe-hero__content--center"><h1 class="wbe-hero__heading" style="color:#ffffff">Build Something Amazing</h1><p class="wbe-hero__subheading" style="color:rgba(255,255,255,0.8)">Create beautiful websites with powerful tools</p><div class="wbe-hero__buttons"><a class="wbe-hero__btn wbe-hero__btn--primary" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Get Started</div></a><a class="wbe-hero__btn wbe-hero__btn--secondary" href="#" style="background-color:transparent;color:#ffffff;border:2px solid #ffffff"><div>Learn More</div></a></div></div></div>"
+`;
+
+exports[`static block pricing-table saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-pricing-cards"><style>.wbe-block-snap1234 {
+  padding: 48px 24px 48px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-pricing-cards__grid" style="--wbe-pricing-cols:3"><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Basic</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">9</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>5 Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>10GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Email Support</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Basic</a></div></div><div class="wbe-pricing-cards__card wbe-pricing-cards__card--featured" style="background-color:#667eea;color:#ffffff"><div class="wbe-pricing-cards__badge">Most Popular</div><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Pro</div><div class="wbe-pricing-cards__price" style="color:#ffffff"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">29</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>25 Projects</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>100GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Priority Support</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#ffffff;color:#667eea">Choose Pro</a></div></div><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Enterprise</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">99</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Unlimited Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>1TB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>24/7 Support</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Custom Domain</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Enterprise</a></div></div></div></div>"
+`;
+
+exports[`static block pricing-table saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-pricing-cards"><style>.wbe-block-snap1234 {
+  padding: 48px 24px 48px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><div class="wbe-pricing-cards__grid" style="--wbe-pricing-cols:3"><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Basic</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">9</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>5 Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>10GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Email Support</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Basic</a></div></div><div class="wbe-pricing-cards__card wbe-pricing-cards__card--featured" style="background-color:#667eea;color:#ffffff"><div class="wbe-pricing-cards__badge">Most Popular</div><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Pro</div><div class="wbe-pricing-cards__price" style="color:#ffffff"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">29</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>25 Projects</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>100GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Priority Support</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#ffffff;color:#667eea">Choose Pro</a></div></div><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Enterprise</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">99</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Unlimited Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>1TB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>24/7 Support</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Custom Domain</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Enterprise</a></div></div></div></div>"
+`;
+
+exports[`static block progress-bar saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-progress-bar" data-animate="true"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-pb-track-color: #e9ecef;
+  --wbe-pb-label-color: #1e1e2e;
+  --wbe-pb-percent-color: #6c757d;
+  --wbe-pb-height: 12px;
+  --wbe-pb-radius: 6px;
+}</style><div class="wbe-progress-bar__list"><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">HTML/CSS</span><span class="wbe-progress-bar__percent">95%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="HTML/CSS"><div class="wbe-progress-bar__fill" data-percentage="95" style="width:0;background:#667eea"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">JavaScript</span><span class="wbe-progress-bar__percent">85%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript"><div class="wbe-progress-bar__fill" data-percentage="85" style="width:0;background:#764ba2"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">React</span><span class="wbe-progress-bar__percent">75%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="React"><div class="wbe-progress-bar__fill" data-percentage="75" style="width:0;background:#f5576c"></div></div></div></div></div>"
+`;
+
+exports[`static block progress-bar saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-progress-bar" data-animate="true"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-pb-track-color: #e9ecef;
+  --wbe-pb-label-color: #1e1e2e;
+  --wbe-pb-percent-color: #6c757d;
+  --wbe-pb-height: 12px;
+  --wbe-pb-radius: 6px;
+}</style><div class="wbe-progress-bar__list"><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">HTML/CSS</span><span class="wbe-progress-bar__percent">95%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="HTML/CSS"><div class="wbe-progress-bar__fill" data-percentage="95" style="width:0;background:#667eea"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">JavaScript</span><span class="wbe-progress-bar__percent">85%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript"><div class="wbe-progress-bar__fill" data-percentage="85" style="width:0;background:#764ba2"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">React</span><span class="wbe-progress-bar__percent">75%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="React"><div class="wbe-progress-bar__fill" data-percentage="75" style="width:0;background:#f5576c"></div></div></div></div></div>"
+`;
+
+exports[`static block promo-banner saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-promo-banner wbe-promo-banner--overlay" style="min-height:300px"><style>.wbe-block-snap1234 {
+  padding: 48px 24px 48px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 8px 8px 8px 8px;
+}
+</style><div class="wbe-promo-banner__content wbe-promo-banner__content--center"><h2 class="wbe-promo-banner__heading" style="color:#ffffff">Special Offer</h2><p class="wbe-promo-banner__description" style="color:rgba(255,255,255,0.9)">Save up to 50% on selected items</p><div class="wbe-promo-banner__cta"><a class="wbe-promo-banner__btn" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Shop Now</div></a></div></div></div>"
+`;
+
+exports[`static block promo-banner saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-promo-banner wbe-promo-banner--overlay" style="min-height:300px"><style>.wbe-block-snap1234 {
+  padding: 48px 24px 48px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 8px 8px 8px 8px;
+}
+</style><div class="wbe-promo-banner__content wbe-promo-banner__content--center"><h2 class="wbe-promo-banner__heading" style="color:#ffffff">Special Offer</h2><p class="wbe-promo-banner__description" style="color:rgba(255,255,255,0.9)">Save up to 50% on selected items</p><div class="wbe-promo-banner__cta"><a class="wbe-promo-banner__btn" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Shop Now</div></a></div></div></div>"
+`;
+
+exports[`static block stats-counter saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-stats-counter"><style>.wbe-block-snap1234 {
+  padding: 40px 24px 40px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-sc-number-color: #1e1e2e;
+  --wbe-sc-label-color: #6c757d;
+  --wbe-sc-sep-color: #e9ecef;
+  --wbe-sc-columns: 4;
+}</style><div class="wbe-stats-counter__grid"><div class="wbe-stats-counter__item" data-target="1500" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="1500">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Happy Clients</div></div><div class="wbe-stats-counter__item" data-target="200" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="200">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Projects Done</div></div><div class="wbe-stats-counter__item" data-target="99" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="99">0</span><span class="wbe-stats-counter__suffix">%</span></div><div class="wbe-stats-counter__label">Satisfaction</div></div><div class="wbe-stats-counter__item" data-target="24" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="24">0</span><span class="wbe-stats-counter__suffix">/7</span></div><div class="wbe-stats-counter__label">Support</div></div></div></div>"
+`;
+
+exports[`static block stats-counter saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-stats-counter"><style>.wbe-block-snap1234 {
+  padding: 40px 24px 40px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-sc-number-color: #1e1e2e;
+  --wbe-sc-label-color: #6c757d;
+  --wbe-sc-sep-color: #e9ecef;
+  --wbe-sc-columns: 4;
+}</style><div class="wbe-stats-counter__grid"><div class="wbe-stats-counter__item" data-target="1500" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="1500">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Happy Clients</div></div><div class="wbe-stats-counter__item" data-target="200" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="200">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Projects Done</div></div><div class="wbe-stats-counter__item" data-target="99" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="99">0</span><span class="wbe-stats-counter__suffix">%</span></div><div class="wbe-stats-counter__label">Satisfaction</div></div><div class="wbe-stats-counter__item" data-target="24" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="24">0</span><span class="wbe-stats-counter__suffix">/7</span></div><div class="wbe-stats-counter__label">Support</div></div></div></div>"
+`;
+
+exports[`static block tabs saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-tabs wbe-tabs--underline wbe-tabs--align-left"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tabs-active-color: #667eea;
+  --wbe-tabs-inactive-color: #6c757d;
+  --wbe-tabs-content-bg: #ffffff;
+  --wbe-tabs-border-color: #e9ecef;
+}</style><div class="wbe-tabs__nav" role="tablist"><button id="wbe-tab-snap1234-0" role="tab" type="button" class="wbe-tabs__tab components-button is-active" aria-selected="true" aria-controls="wbe-panel-snap1234-0" tabindex="0">Features</button><button id="wbe-tab-snap1234-1" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-1" tabindex="-1">Benefits</button><button id="wbe-tab-snap1234-2" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-2" tabindex="-1">Pricing</button></div><div class="wbe-tabs__panels"><div id="wbe-panel-snap1234-0" role="tabpanel" aria-labelledby="wbe-tab-snap1234-0" class="wbe-tabs__panel is-active" tabindex="0"><p>Discover our powerful features designed to help you succeed.</p></div><div id="wbe-panel-snap1234-1" role="tabpanel" aria-labelledby="wbe-tab-snap1234-1" class="wbe-tabs__panel" hidden tabindex="0"><p>Experience the benefits of choosing our solution.</p></div><div id="wbe-panel-snap1234-2" role="tabpanel" aria-labelledby="wbe-tab-snap1234-2" class="wbe-tabs__panel" hidden tabindex="0"><p>Flexible pricing plans for businesses of all sizes.</p></div></div></div>"
+`;
+
+exports[`static block tabs saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-tabs wbe-tabs--underline wbe-tabs--align-left"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tabs-active-color: #667eea;
+  --wbe-tabs-inactive-color: #6c757d;
+  --wbe-tabs-content-bg: #ffffff;
+  --wbe-tabs-border-color: #e9ecef;
+}</style><div class="wbe-tabs__nav" role="tablist"><button id="wbe-tab-snap1234-0" role="tab" type="button" class="wbe-tabs__tab components-button is-active" aria-selected="true" aria-controls="wbe-panel-snap1234-0" tabindex="0">Features</button><button id="wbe-tab-snap1234-1" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-1" tabindex="-1">Benefits</button><button id="wbe-tab-snap1234-2" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-2" tabindex="-1">Pricing</button></div><div class="wbe-tabs__panels"><div id="wbe-panel-snap1234-0" role="tabpanel" aria-labelledby="wbe-tab-snap1234-0" class="wbe-tabs__panel is-active" tabindex="0"><p>Discover our powerful features designed to help you succeed.</p></div><div id="wbe-panel-snap1234-1" role="tabpanel" aria-labelledby="wbe-tab-snap1234-1" class="wbe-tabs__panel" hidden tabindex="0"><p>Experience the benefits of choosing our solution.</p></div><div id="wbe-panel-snap1234-2" role="tabpanel" aria-labelledby="wbe-tab-snap1234-2" class="wbe-tabs__panel" hidden tabindex="0"><p>Flexible pricing plans for businesses of all sizes.</p></div></div></div>"
+`;
+
+exports[`static block testimonial-carousel saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-testimonial-carousel"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 12px 12px 12px 12px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tc-quote-bg: #123456;
+  --wbe-tc-quote-color: #123456;
+  --wbe-tc-name-color: #123456;
+  --wbe-tc-role-color: #123456;
+  --wbe-tc-accent: #123456;
+  --wbe-tc-card-radius: 12px 12px 12px 12px;
+  --wbe-tc-card-shadow: none;
+}</style><div class="swiper" data-autoplay="true" data-delay="5000" data-loop="true" data-slides="1" data-show-dots="true" data-show-arrows="true"><div class="swiper-wrapper"><div class="swiper-slide"><div class="wbe-testimonial-carousel__card"><blockquote class="wbe-testimonial-carousel__quote"><p>This product changed our business completely. Highly recommended!</p></blockquote><div class="wbe-testimonial-carousel__author"><div class="wbe-testimonial-carousel__avatar-placeholder" aria-hidden="true">S</div><div class="wbe-testimonial-carousel__author-info"><strong class="wbe-testimonial-carousel__name">Sarah Johnson</strong><span class="wbe-testimonial-carousel__role">CEO, TechCorp</span></div></div></div></div><div class="swiper-slide"><div class="wbe-testimonial-carousel__card"><blockquote class="wbe-testimonial-carousel__quote"><p>The best solution we've found. Outstanding support team.</p></blockquote><div class="wbe-testimonial-carousel__author"><div class="wbe-testimonial-carousel__avatar-placeholder" aria-hidden="true">M</div><div class="wbe-testimonial-carousel__author-info"><strong class="wbe-testimonial-carousel__name">Michael Chen</strong><span class="wbe-testimonial-carousel__role">CTO, StartupXYZ</span></div></div></div></div><div class="swiper-slide"><div class="wbe-testimonial-carousel__card"><blockquote class="wbe-testimonial-carousel__quote"><p>Incredible value for money. We saw results from day one.</p></blockquote><div class="wbe-testimonial-carousel__author"><div class="wbe-testimonial-carousel__avatar-placeholder" aria-hidden="true">E</div><div class="wbe-testimonial-carousel__author-info"><strong class="wbe-testimonial-carousel__name">Emily Davis</strong><span class="wbe-testimonial-carousel__role">Marketing Director</span></div></div></div></div></div><div class="swiper-pagination" aria-label="Testimonial navigation"></div><button class="swiper-button-prev" aria-label="Previous testimonial"></button><button class="swiper-button-next" aria-label="Next testimonial"></button></div></div>"
+`;
+
+exports[`static block testimonial-carousel saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-testimonial-carousel"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 12px 12px 12px 12px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tc-card-radius: 12px 12px 12px 12px;
+  --wbe-tc-card-shadow: none;
+}</style><div class="swiper" data-autoplay="true" data-delay="5000" data-loop="true" data-slides="1" data-show-dots="true" data-show-arrows="true"><div class="swiper-wrapper"><div class="swiper-slide"><div class="wbe-testimonial-carousel__card"><blockquote class="wbe-testimonial-carousel__quote"><p>This product changed our business completely. Highly recommended!</p></blockquote><div class="wbe-testimonial-carousel__author"><div class="wbe-testimonial-carousel__avatar-placeholder" aria-hidden="true">S</div><div class="wbe-testimonial-carousel__author-info"><strong class="wbe-testimonial-carousel__name">Sarah Johnson</strong><span class="wbe-testimonial-carousel__role">CEO, TechCorp</span></div></div></div></div><div class="swiper-slide"><div class="wbe-testimonial-carousel__card"><blockquote class="wbe-testimonial-carousel__quote"><p>The best solution we've found. Outstanding support team.</p></blockquote><div class="wbe-testimonial-carousel__author"><div class="wbe-testimonial-carousel__avatar-placeholder" aria-hidden="true">M</div><div class="wbe-testimonial-carousel__author-info"><strong class="wbe-testimonial-carousel__name">Michael Chen</strong><span class="wbe-testimonial-carousel__role">CTO, StartupXYZ</span></div></div></div></div><div class="swiper-slide"><div class="wbe-testimonial-carousel__card"><blockquote class="wbe-testimonial-carousel__quote"><p>Incredible value for money. We saw results from day one.</p></blockquote><div class="wbe-testimonial-carousel__author"><div class="wbe-testimonial-carousel__avatar-placeholder" aria-hidden="true">E</div><div class="wbe-testimonial-carousel__author-info"><strong class="wbe-testimonial-carousel__name">Emily Davis</strong><span class="wbe-testimonial-carousel__role">Marketing Director</span></div></div></div></div></div><div class="swiper-pagination" aria-label="Testimonial navigation"></div><button class="swiper-button-prev" aria-label="Previous testimonial"></button><button class="swiper-button-next" aria-label="Next testimonial"></button></div></div>"
+`;
+
+exports[`static block text-rotator saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-text-rotator"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+  font-size: 36px;
+}
+@media (max-width: 1024px) {
+  .wbe-block-snap1234 {
+    font-size: 28px;
+  }
+}
+@media (max-width: 767px) {
+  .wbe-block-snap1234 {
+    font-size: 22px;
+  }
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tr-text-color: #1e1e2e;
+  --wbe-tr-rotating-color: #667eea;
+  --wbe-tr-font-size: 36px;
+  --wbe-tr-font-size-tablet: 28px;
+  --wbe-tr-font-size-mobile: 22px;
+  --wbe-tr-text-align: center;
+}</style><p class="wbe-text-rotator__sentence"><span class="wbe-text-rotator__before">We are </span><span class="wbe-text-rotator__rotating" data-texts="[&quot;Creative&quot;,&quot;Innovative&quot;,&quot;Passionate&quot;]" data-animation="fade" data-speed="2000">Creative</span><span class="wbe-text-rotator__after"> designers.</span></p></div>"
+`;
+
+exports[`static block text-rotator saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-text-rotator"><style>.wbe-block-snap1234 {
+  padding: 24px 24px 24px 24px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+  font-size: 36px;
+}
+@media (max-width: 1024px) {
+  .wbe-block-snap1234 {
+    font-size: 28px;
+  }
+}
+@media (max-width: 767px) {
+  .wbe-block-snap1234 {
+    font-size: 22px;
+  }
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tr-text-color: #1e1e2e;
+  --wbe-tr-rotating-color: #667eea;
+  --wbe-tr-font-size: 36px;
+  --wbe-tr-font-size-tablet: 28px;
+  --wbe-tr-font-size-mobile: 22px;
+  --wbe-tr-text-align: center;
+}</style><p class="wbe-text-rotator__sentence"><span class="wbe-text-rotator__before">We are </span><span class="wbe-text-rotator__rotating" data-texts="[&quot;Creative&quot;,&quot;Innovative&quot;,&quot;Passionate&quot;]" data-animation="fade" data-speed="2000">Creative</span><span class="wbe-text-rotator__after"> designers.</span></p></div>"
+`;
+
+exports[`static block timeline saves an owner-picked colour 1`] = `
+"<div class="wbe-block-snap1234 wbe-timeline wbe-timeline--alternating"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 8px 8px 8px 8px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tl-line-color: #e9ecef;
+  --wbe-tl-dot-color: #667eea;
+  --wbe-tl-dot-size: 40px;
+  --wbe-tl-card-bg: #ffffff;
+  --wbe-tl-date-color: #667eea;
+  --wbe-tl-title-color: #1e1e2e;
+  --wbe-tl-desc-color: #6c757d;
+  --wbe-tl-card-radius: 8px 8px 8px 8px;
+  --wbe-tl-card-shadow: none;
+}</style><div class="wbe-timeline__track"><div class="wbe-timeline__item wbe-timeline__item--1"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">🚀</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2024">2024</time><h3 class="wbe-timeline__title">Founded</h3><p class="wbe-timeline__description">Our company was founded with a vision.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--2"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">📈</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2025">2025</time><h3 class="wbe-timeline__title">Growth</h3><p class="wbe-timeline__description">Expanded to serve thousands of customers.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--3"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">💡</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2026">2026</time><h3 class="wbe-timeline__title">Innovation</h3><p class="wbe-timeline__description">Launched groundbreaking new features.</p></div></div></div></div>"
+`;
+
+exports[`static block timeline saves the same markup at its defaults 1`] = `
+"<div class="wbe-block-snap1234 wbe-timeline wbe-timeline--alternating"><style>.wbe-block-snap1234 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 8px 8px 8px 8px;
+}
+</style><style>.wbe-block-snap1234 {
+  --wbe-tl-line-color: #e9ecef;
+  --wbe-tl-dot-color: #667eea;
+  --wbe-tl-dot-size: 40px;
+  --wbe-tl-card-bg: #ffffff;
+  --wbe-tl-date-color: #667eea;
+  --wbe-tl-title-color: #1e1e2e;
+  --wbe-tl-desc-color: #6c757d;
+  --wbe-tl-card-radius: 8px 8px 8px 8px;
+  --wbe-tl-card-shadow: none;
+}</style><div class="wbe-timeline__track"><div class="wbe-timeline__item wbe-timeline__item--1"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">🚀</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2024">2024</time><h3 class="wbe-timeline__title">Founded</h3><p class="wbe-timeline__description">Our company was founded with a vision.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--2"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">📈</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2025">2025</time><h3 class="wbe-timeline__title">Growth</h3><p class="wbe-timeline__description">Expanded to serve thousands of customers.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--3"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">💡</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2026">2026</time><h3 class="wbe-timeline__title">Innovation</h3><p class="wbe-timeline__description">Launched groundbreaking new features.</p></div></div></div></div>"
+`;

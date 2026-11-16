@@ -181,3 +181,23 @@ jobs:
       # the dev toolchain undetected before this job existed.
       - name: Audit
         run: composer audit --no-interaction
+
+  block-save-snapshots:
+    name: Block saved-markup snapshots
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # A static block whose saved markup changes without a deprecation breaks every existing instance in the
+      # editor ("unexpected or invalid content"). The snapshots fail the build instead.
+      - name: Run unit tests
+        run: npm run test:unit

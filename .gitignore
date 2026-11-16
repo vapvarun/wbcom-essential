@@ -28,3 +28,6 @@ plugins/gutenberg/build/
 
 # PHPStan analysis-only sources (downloaded, never committed)
 .phpstan-stubs/
+
+# Block save() snapshot tests (kept out of the release zip by .distignore)
+!plugins/gutenberg/tests/

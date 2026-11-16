@@ -5,6 +5,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -291,9 +292,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				{ targetDate && (
 					<div className="wbe-countdown-timer__units">
 						{ units.map( ( unit, idx ) => (
-							<>
+							<Fragment key={ unit.key }>
 								<div
-									key={ unit.key }
 									className={ `wbe-countdown-timer__unit wbe-countdown-timer__unit--${ unit.key }` }
 								>
 									<span className="wbe-countdown-timer__number">
@@ -304,7 +304,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 									</span>
 								</div>
 								{ idx < units.length - 1 && getSeparator() }
-							</>
+							</Fragment>
 						) ) }
 					</div>
 				) }
