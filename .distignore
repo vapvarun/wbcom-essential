@@ -59,3 +59,4 @@ dist/
 # OS files
 .DS_Store
 Thumbs.db
+plugins/gutenberg/tests/
