@@ -18,6 +18,8 @@
 	<arg value="ps"/>
 
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<!-- Bundled licensing SDK and package signatures: upstream code, never restyled here. -->
+	<exclude-pattern>*/libs/*</exclude-pattern>
 	<exclude-pattern>*/.phpstan-stubs/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/build/*</exclude-pattern>

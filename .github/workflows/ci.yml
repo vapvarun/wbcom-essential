@@ -80,7 +80,7 @@ jobs:
           fi
 
           git diff --name-only --diff-filter=ACMR "$BASE" HEAD -- '*.php' \
-            | grep -Ev '^(vendor|node_modules|build|dist)/' > changed.txt || true
+            | grep -Ev '^(vendor|libs|node_modules|build|dist)/' > changed.txt || true
 
           echo "count=$(wc -l < changed.txt | tr -d ' ')" >> "$GITHUB_OUTPUT"
           echo "Changed PHP files:"; cat changed.txt
