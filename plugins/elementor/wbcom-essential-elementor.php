@@ -461,16 +461,17 @@ function wbcom_ajax_login() {
 	if ( is_wp_error( $user_signon ) ) {
 		$error_codes = $user_signon->get_error_codes();
 
-		if ( in_array( 'invalid_username', $error_codes, true ) ) {
-			$message = __( 'Invalid username. Please try again.', 'wbcom-essential' );
-		} elseif ( in_array( 'incorrect_password', $error_codes, true ) ) {
-			$message = __( 'Incorrect password. Please try again.', 'wbcom-essential' );
+		// One message for an unknown account and a wrong password, so the response does not tell which usernames
+		// exist. Empty fields keep their own hint: they reveal nothing.
+		if ( in_array( 'wbcom_essential_rate_limited', $error_codes, true ) ) {
+			// The lockout says how long to wait, which reveals nothing about the account.
+			$message = $user_signon->get_error_message( 'wbcom_essential_rate_limited' );
 		} elseif ( in_array( 'empty_username', $error_codes, true ) ) {
 			$message = __( 'Username field is empty. Please enter your username.', 'wbcom-essential' );
 		} elseif ( in_array( 'empty_password', $error_codes, true ) ) {
 			$message = __( 'Password field is empty. Please enter your password.', 'wbcom-essential' );
 		} else {
-			$message = __( 'Login failed. Please check your credentials.', 'wbcom-essential' );
+			$message = __( 'The username or password is incorrect. Please try again.', 'wbcom-essential' );
 		}
 
 		echo wp_json_encode(
