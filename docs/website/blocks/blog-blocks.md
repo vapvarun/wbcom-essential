@@ -29,7 +29,7 @@ Your WordPress categories in a grid, with an image, name, post count and hover e
 | Query | Order By | Name, Post Count or ID. | Name |
 | Query | Order | Ascending or Descending. | Ascending |
 | Display Options | Show Post Count | Shows the number of posts on each card. | On |
-| Display Options | Show Image | Shows the category image. | On |
+| Display Options | Show Image | Shows the category image. Turn it off for compact text tiles (name and post count) in the theme's card colours. | On |
 | Display Options | Image Ratio | Square (1:1), Portrait (3:4), Landscape (4:3) or Wide (16:9). | Portrait (3:4) |
 | Color Settings | Use Theme Colors | Takes card colors from your theme palette instead of the custom colors below. | Off |
 | Color Settings | Card Background | Card background. Shown when Use Theme Colors is off. | Blank |
@@ -77,11 +77,11 @@ Your posts as a carousel, a one-at-a-time slider or a plain grid, with cards you
 | Card Settings | Excerpt Word Length | Number of words in the excerpt. | 20 |
 | Card Settings | Show Date | Shows the publish date. | On |
 | Card Settings | Show Author | Shows the author name. | Off |
-| Style | Card Background | Card background. | #ffffff |
-| Style | Title Color | Color of the post title. | #1e1e2e |
-| Style | Excerpt Color | Color of the excerpt. | #6c757d |
-| Style | Meta Color (date, author) | Color of the date and author. | #999999 |
-| Style | Accent Color (category, links) | Color of the badge and links. | #667eea |
+| Style | Card Background | Card background. | (empty: follows the theme) |
+| Style | Title Color | Color of the post title. | (empty: follows the theme) |
+| Style | Excerpt Color | Color of the excerpt. | (empty: follows the theme) |
+| Style | Meta Color (date, author) | Color of the date and author. | (empty: follows the theme) |
+| Style | Accent Color (category, links) | Color of the badge and links. | (empty: follows the theme) |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
 ### Tips
@@ -111,11 +111,11 @@ A horizontal news ticker that scrolls your latest post titles, with a label at t
 | Ticker Settings | Pause on Hover | Stops scrolling while the pointer is over the ticker. | On |
 | Ticker Settings | Show Date | Shows the post date. | On |
 | Ticker Settings | Show Category | Shows the post category. | On |
-| Style | Label Background | Background of the label box. | #667eea |
-| Style | Label Text Color | Text color of the label. | #ffffff |
-| Style | Ticker Background | Background of the bar. | #f8f9fa |
-| Style | Text Color | Color of the titles. | #1e1e2e |
-| Style | Link / Accent Color | Color of links and accents. | #667eea |
+| Style | Label Background | Background of the label box. | (empty: follows the theme) |
+| Style | Label Text Color | Text color of the label. | (empty: follows the theme) |
+| Style | Ticker Background | Background of the bar. | (empty: follows the theme) |
+| Style | Text Color | Color of the titles. | (empty: follows the theme) |
+| Style | Link / Accent Color | Color of links and accents. | (empty: follows the theme) |
 | Style | Box Shadow, Border Radius | Adds a shadow and rounds the corners. | Shadow off |
 
 ### Tips

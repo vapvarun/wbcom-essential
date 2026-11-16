@@ -13,7 +13,7 @@ Under **Post Templates**, **Default Single Post Template** sets the layout every
 | Choice | What visitors see |
 |--------|-------------------|
 | None (Use Theme Default) | Your theme's own single post layout. This is the default. |
-| Classic (Content + Sidebar) | The post with a sidebar on the right, followed by author bio, related posts and previous/next links. |
+| Classic (Content + Sidebar) | The post with your theme's right sidebar (the sidebar that holds your widgets on Reign, BuddyX and BuddyX Pro), followed by author bio, related posts and previous/next links. With no widgets in that sidebar, the post uses the full width. |
 | Magazine (Full-Width Hero) | A full-width hero image with the title over it, share buttons, author bio, related posts and previous/next links. |
 | Minimal (Centered, Clean) | A centered, clean reading layout with author bio, related posts and previous/next links. |
 | Modern (Progress Bar + ToC) | A reading progress bar, a table of contents sidebar, a share bar, author bio, related posts and previous/next links. |
@@ -51,8 +51,8 @@ Under **Blog Index**, set how your posts page and archives look.
 
 | Setting | What it does |
 |---------|--------------|
-| Blog Layout | None (Use Theme Default), Grid (Card Layout), List (Horizontal Cards), Magazine (Multi-Section) or Newspaper (Breaking News). Applies to the main blog page and category, tag, author and date archives. |
-| Posts Per Page | How many posts per page, 0 to 50. 0 uses the WordPress default. Applies to the Grid and List layouts only. |
+| Blog Layout | None (Use Theme Default), Grid (Card Layout), List (Horizontal Cards), Magazine (Multi-Section) or Newspaper (Breaking News). Applies to the main blog page and category, tag, author and date archives. Magazine and Newspaper are built for the main blog page; on archives they show that archive's posts in the Grid layout. |
+| Posts Per Page | How many posts per page, 0 to 50. 0 uses the WordPress default. Applies to the Grid and List layouts, and to archives. In Magazine and Newspaper each section sets its own count, and the last section carries the page numbers. |
 | Layout Options | Extra switches for the chosen layout, described below. |
 | Content Sections | The sections of a Magazine or Newspaper layout, described below. |
 
@@ -64,6 +64,18 @@ Under **Blog Index**, set how your posts page and archives look.
 | Newspaper | Show breaking news ticker | Shows a scrolling ticker of the latest headlines. On by default. |
 | Newspaper | Show hero slider | Shows a large slider of top stories. On by default. |
 | Grid, List | None | These layouts have no extra options. |
+
+### What each layout looks like
+
+![Blog page in the Grid layout: post cards in three columns with image, category, title, date and excerpt](../images/blog-layout-grid.webp)
+
+![Blog page in the List layout: each post as an image beside its title, date, author and excerpt](../images/blog-layout-list.webp)
+
+![Blog page in the Magazine layout: category bar, then sections such as a lead post beside headlines and a grid of cards](../images/blog-layout-magazine.webp)
+
+![Blog page in the Newspaper layout: breaking news ticker above a hero slider, then the first two sections side by side](../images/blog-layout-newspaper.webp)
+
+Every layout follows the theme's colours, including dark mode, and stacks to one column on phones.
 
 ![Settings tab with the Magazine layout selected, showing Layout Options and the Content Sections rows](../images/blog-settings-magazine-layout.webp)
 

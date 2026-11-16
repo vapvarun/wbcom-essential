@@ -20,7 +20,7 @@ Many block colour settings start empty. An empty colour follows the theme. If yo
 |-------|--------|
 | Marketing | Countdown Timer, CTA Section (background, heading and description), Feature Grid, Testimonial Carousel |
 | Content | FAQ Accordion (question, answer, background and border), Login Form |
-| Blog | Category Grid |
+| Blog | Category Grid, Post Carousel, Posts Ticker |
 | BuddyPress | Activity Feed, Group Carousel, Groups Grid, Members Carousel, Members Grid |
 | WooCommerce | Customer Reviews, Product Carousel, Product Grid (card, title, price and Add to Cart colours) |
 | EDD | The EDD blocks. Their filled buttons use the theme's button colours, so the labels stay readable in dark mode. |
@@ -31,7 +31,7 @@ Many block colour settings start empty. An empty colour follows the theme. If yo
 
 ![The same Feature Grid on a theme that is not from Wbcom, using the built-in colours](../images/theme-colors-feature-grid-twentytwentyfive.webp)
 
-**Blocks that keep their own colours until you change them:** Hero Section, Promo Banner, Pricing Table, Flip Box, Portfolio Grid, Post Carousel, Posts Ticker, Progress Bar, Stats Counter, Tabs, Text Rotator and Timeline, plus the button colours in CTA Section, the icon colour in FAQ Accordion, the star colour in Customer Reviews and the sale badge in Product Grid. These are designed as feature sections with their own look.
+**Blocks that keep their own colours until you change them:** Hero Section, Promo Banner, Pricing Table, Flip Box, Portfolio Grid, Progress Bar, Stats Counter, Tabs, Text Rotator and Timeline, plus the button colours in CTA Section, the icon colour in FAQ Accordion, the star colour in Customer Reviews and the sale badge in Product Grid. These are designed as feature sections with their own look.
 
 ![Hero Section with its own gradient colours above a Feature Grid that follows the theme colours](../images/theme-colors-hero-and-feature-grid.webp)
 
