@@ -106,8 +106,10 @@
 		overflow: hidden;
 		background: hsl(var(--cat-placeholder-hue, 200), 55%, 50%);
 
+		// The accent, deepened so the white name and count stay readable in light and dark mode (a dark-mode
+		// accent is a light tint, which on its own gave white text 2.5:1).
 		.use-theme-colors & {
-			background: var(--wbe-color-accent, var(--wbcom-color-primary, #1d76da));
+			background: color-mix(in srgb, var(--wbe-color-accent, var(--wbcom-color-primary, #1d76da)) 60%, #0b1220);
 		}
 		transition: filter 0.3s ease;
 
