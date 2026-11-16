@@ -66,18 +66,15 @@ function wbcom_essential_locate_template( $template_name, $template_path, $defau
 }
 
 /**
- * Function checks the theme is active or not.
+ * Whether the active theme, or its parent, is the theme with this folder slug.
  *
- * @param string $theme Required Theme Name.
+ * Slugs do not change with the site language or a renamed display name.
+ *
+ * @param string $slug Theme folder slug, for example 'reign', 'buddyx' or 'buddyx-pro'.
+ * @return bool
  */
-function _is_theme_active( $theme ) {
-    static $current_theme = null;
-    
-    if ( null === $current_theme ) {
-        $current_theme = wp_get_theme();
-    }
-    
-    return ( $theme == $current_theme->name || $theme == $current_theme->parent_theme );
+function wbcom_essential_is_theme_active( $slug ) {
+	return get_template() === $slug || get_stylesheet() === $slug;
 }
 
 /**
@@ -88,7 +85,7 @@ function _is_theme_active( $theme ) {
  *
  * @return mixed|string
  */
-function _get_column_class( $type, $viewport = '' ) {
+function wbcom_essential_get_column_class( $type, $viewport = '' ) {
 
 	$classes = array(
 		'one'   => 'one',

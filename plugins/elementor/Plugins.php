@@ -365,7 +365,7 @@ class Plugin {
 		 * split rather than 43, and anyone debugging "the Notification Area is
 		 * missing" should check the active theme before the widget code.
 		 */
-		if ( _is_theme_active( 'REIGN' ) ) {
+		if ( wbcom_essential_is_theme_active( 'reign' ) ) {
 			$elements['General/NotificationArea'] = array(
 				'name'  => 'wbcom-notification-area',
 				'class' => 'General\NotificationArea',

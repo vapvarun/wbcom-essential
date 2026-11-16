@@ -140,7 +140,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 			)
 		);
 
-		if ( _is_theme_active( 'REIGN' ) ) {
+		if ( wbcom_essential_is_theme_active( 'reign' ) ) {
 
 			$this->add_control(
 				'rg-grp-grid-layout',
@@ -220,7 +220,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 			?>
 	<?php elseif ( 'nouveau' === $active_template ) : ?>
 		<?php
-		if ( _is_theme_active( 'BuddyX' ) || _is_theme_active( 'BuddyxPro' ) ) {
+		if ( wbcom_essential_is_theme_active( 'buddyx' ) || wbcom_essential_is_theme_active( 'buddyx-pro' ) ) {
 
 			$loop_classes = static function () use ( $settings ) {
 				return array(
@@ -228,9 +228,9 @@ class GroupGrid extends \Elementor\Widget_Base {
 					'groups-list',
 					'bp-list',
 					'grid',
-					_get_column_class( $settings['columns'] ),
-					_get_column_class( $settings['columns'], 'tablet' ),
-					_get_column_class( $settings['columns'], 'mobile' ),
+					wbcom_essential_get_column_class( $settings['columns'] ),
+					wbcom_essential_get_column_class( $settings['columns'], 'tablet' ),
+					wbcom_essential_get_column_class( $settings['columns'], 'mobile' ),
 				);
 			};
 
@@ -246,7 +246,7 @@ class GroupGrid extends \Elementor\Widget_Base {
 
 			remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
 
-		} elseif ( _is_theme_active( 'REIGN' ) ) {
+		} elseif ( wbcom_essential_is_theme_active( 'reign' ) ) {
 			$col_class = isset( $settings['columns'] ) ? $settings['columns'] : 'three';
 
 			wbcom_essential_get_template(
@@ -267,9 +267,9 @@ class GroupGrid extends \Elementor\Widget_Base {
 					'groups-list',
 					'bp-list',
 					'grid',
-					_get_column_class( $settings['columns'] ),
-					_get_column_class( $settings['columns'], 'tablet' ),
-					_get_column_class( $settings['columns'], 'mobile' ),
+					wbcom_essential_get_column_class( $settings['columns'] ),
+					wbcom_essential_get_column_class( $settings['columns'], 'tablet' ),
+					wbcom_essential_get_column_class( $settings['columns'], 'mobile' ),
 				);
 			};
 
