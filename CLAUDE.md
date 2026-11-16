@@ -3,7 +3,7 @@
 ## Project Overview
 
 **Plugin**: Wbcom Essential
-**Version**: 4.5.0
+**Version**: 4.7.2
 **Purpose**: Companion plugin for BuddyX theme providing Elementor widgets and Gutenberg blocks for BuddyPress, WooCommerce, and general WordPress functionality.
 **Branch**: `4.5.0` — V2 block rebuild (competitive audit-driven quality standard)
 
@@ -88,7 +88,7 @@ wbcom-essential/
 
 ---
 
-## V2 Block Inventory (31 blocks)
+## V2 Block Inventory (35 blocks)
 
 **Last Updated**: April 2026
 **Quality Standard**: `plan/audit/QUALITY-STANDARD.md` (derived from Kadence, Stackable, Spectra, Otter audit)
