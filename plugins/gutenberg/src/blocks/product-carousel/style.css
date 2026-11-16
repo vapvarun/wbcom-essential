@@ -6,17 +6,17 @@
 
 /* ---- Design tokens ---- */
 .wbe-product-carousel {
-	--wbe-pcar-card-bg: #ffffff;
-	--wbe-pcar-title-color: #1e1e2e;
-	--wbe-pcar-price-color: #667eea;
+	--wbe-pcar-card-bg: var(--wbcom-card-bg, #ffffff);
+	--wbe-pcar-title-color: var(--wbcom-heading-color, #1e1e2e);
+	--wbe-pcar-price-color: var(--wbe-color-accent, #667eea);
 	--wbe-pcar-card-radius: 8px;
 	--wbe-pcar-card-shadow: none;
 	--wbe-pcar-card-hover-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 	--wbe-pcar-star-filled: #f5a623;
 	--wbe-pcar-star-empty: #d1d5db;
-	--wbe-pcar-atc-bg: #667eea;
-	--wbe-pcar-atc-color: #ffffff;
-	--wbe-pcar-accent: #667eea;
+	--wbe-pcar-atc-bg: var(--wbcom-button-bg, var(--wbe-color-accent, #667eea));
+	--wbe-pcar-atc-color: var(--wbcom-button-color, #ffffff);
+	--wbe-pcar-accent: var(--wbe-color-accent, #667eea);
 
 	width: 100%;
 	position: relative;

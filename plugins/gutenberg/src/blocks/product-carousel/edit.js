@@ -49,6 +49,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		cardBg,
 		titleColor,
 		priceColor,
+		atcBg,
+		atcColor,
 		padding,
 		paddingTablet,
 		paddingMobile,
@@ -244,6 +246,17 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						onChange={ ( val ) => setAttributes( { priceColor: val } ) }
 						enableAlpha
 					/>
+					<p><strong>{ __( 'Add to Cart Background', 'wbcom-essential' ) }</strong></p>
+					<ColorPicker
+						color={ atcBg }
+						onChange={ ( val ) => setAttributes( { atcBg: val } ) }
+					/>
+					<p><strong>{ __( 'Add to Cart Text', 'wbcom-essential' ) }</strong></p>
+					<ColorPicker
+						color={ atcColor }
+						onChange={ ( val ) => setAttributes( { atcColor: val } ) }
+					/>
+					<p className="components-base-control__help">{ __( 'Empty colours follow the theme.', 'wbcom-essential' ) }</p>
 					<Spacer marginTop={ 3 } />
 					<BorderRadiusControl
 						values={ borderRadius }

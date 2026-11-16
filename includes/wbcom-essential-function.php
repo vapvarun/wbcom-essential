@@ -972,3 +972,32 @@ if ( ! function_exists( '_get_column_class' ) ) {
 		return wbcom_essential_get_column_class( $type, $viewport );
 	}
 }
+
+/**
+ * Tax query clause that keeps product lists to what a shopper can see in the shop: products hidden from the
+ * catalog are left out, and out-of-stock ones too when WooCommerce > Settings > Products > Inventory hides them.
+ * Uses WooCommerce's own visibility terms, the same check its shop loops make.
+ *
+ * @return array A tax_query clause, or an empty array when there is nothing to exclude.
+ */
+function wbcom_essential_product_visibility_tax_query() {
+	if ( ! function_exists( 'wc_get_product_visibility_term_ids' ) ) {
+		return array();
+	}
+	$ids     = wc_get_product_visibility_term_ids();
+	$exclude = array();
+	if ( ! empty( $ids['exclude-from-catalog'] ) ) {
+		$exclude[] = (int) $ids['exclude-from-catalog'];
+	}
+	if ( 'yes' === get_option( 'woocommerce_hide_out_of_stock_items' ) && ! empty( $ids['outofstock'] ) ) {
+		$exclude[] = (int) $ids['outofstock'];
+	}
+	return $exclude
+		? array(
+			'taxonomy' => 'product_visibility',
+			'field'    => 'term_taxonomy_id',
+			'terms'    => $exclude,
+			'operator' => 'NOT IN',
+		)
+		: array();
+}
