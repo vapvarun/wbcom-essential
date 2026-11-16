@@ -42,6 +42,12 @@ One My Account page for customers, with a sidebar menu, downloads, order history
 | Order History | Past orders with their status and an invoice link. |
 | Edit Profile | Name, display name, email address, billing address and a password change. Leaving the password fields blank keeps the current password. |
 
+![The Account Dashboard Downloads tab with its search, filter and sort toolbar](../images/edd-account-downloads-tab.webp)
+
+![The Account Dashboard Free Plugins tab listing free downloads](../images/edd-account-free-plugins-tab.webp)
+
+![The Account Dashboard Edit Profile tab](../images/edd-account-edit-profile-tab.webp)
+
 Search, filter and sort update the list without reloading the page. If a search finds nothing, customers see "No items match your search or filter. Try clearing them."
 
 ### Tips
@@ -210,6 +216,11 @@ A product grid for your EDD downloads with search, category, price and sort filt
 | Filters | Default sort | Title (A-Z), Newest first, Price: Low to High, Price: High to Low or Most Popular. | Title (A-Z) |
 | Advanced | Padding, Margin, Box Shadow, Border Radius | Spacing, shadow and corners of the block. | Shadow off |
 | Advanced | Device Visibility | Hide on Desktop, Tablet or Mobile. | All shown |
+
+
+![Product Catalog with the search, category, price and sort filters](../images/edd-product-catalog-filters.webp)
+
+![The Product Catalog message "Products could not be loaded" with the Retry button](../images/edd-product-catalog-load-error.webp)
 
 ### Tips
 

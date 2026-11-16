@@ -36,6 +36,8 @@ WooCommerce product reviews in a Swiper carousel, with the reviewer's avatar, st
 | Style | Star Rating Color | Color of the filled stars. | #f5a623 |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
 
+![Customer Reviews with the arrows beside the cards, left to right and right to left](../images/customer-reviews-arrows-ltr-rtl.webp)
+
 ### Tips
 
 - If your store has no reviews yet, the block shows "No reviews found."
@@ -120,6 +122,10 @@ WooCommerce products in a responsive grid with a sale badge, star rating and add
 | Style | Add to Cart Text | Text of the add-to-cart button. | Theme button text color |
 | Style | Sale Badge Color | Color of the sale badge. | #e74c3c |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
+
+![The Product Grid Style panel with Add to Cart Background and Add to Cart Text](../images/product-grid-add-to-cart-colors.webp)
+
+![Product Grid beside the shop page, with a hidden product and a sold-out product left out of both](../images/product-grid-hidden-and-sold-out-products.webp)
 
 ### Tips
 

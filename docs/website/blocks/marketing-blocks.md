@@ -128,6 +128,10 @@ A full-width hero with a gradient, solid color or image background, a heading, a
 
 - Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available.
 
+![The block toolbar alignment menu on Hero Section with Full width available](../images/hero-full-width-alignment-menu.webp)
+
+![Hero Section set to Full width, filling the screen edge to edge](../images/hero-full-width-result.webp)
+
 ## Pricing Table
 
 A pricing comparison with one to four plans, a highlighted featured plan and a button for each plan. Block name: `wbcom-essential/pricing-table`.

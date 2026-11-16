@@ -44,6 +44,10 @@ Your WordPress categories in a grid, with an image, name, post count and hover e
 - If no category matches, the block shows "No categories found."
 - A category without an image shows a faint capital letter of its name behind the name. With Use Theme Colors on, that letter and the card use your theme accent color.
 
+![Category Grid settings with Use Theme Colors on](../images/category-grid-use-theme-colors-on.webp)
+
+![Category Grid settings with Use Theme Colors off, and a category card with no image showing a faint initial](../images/category-grid-use-theme-colors-off.webp)
+
 ## Post Carousel
 
 Your posts as a carousel, a one-at-a-time slider or a plain grid, with cards you can style. Block name: `wbcom-essential/post-carousel`.

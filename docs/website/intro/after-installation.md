@@ -10,6 +10,10 @@ Use this checklist to confirm Wbcom Essential works on your site.
 
 The plugin adds a **Wbcom Designs > Essential** page to the admin menu. The **Overview** tab shows how many blocks and widgets are available. The **Settings** tab holds the blog layout and single post template choices: see [Blog Layouts and Post Templates](../features/blog-and-post-templates.md). The **Wbcom Designs** menu also has a **Dashboard** page that lists the Wbcom plugins installed on your site, each with a link to its settings.
 
+![The Overview tab of Wbcom Designs > Essential, showing the block and widget counts and the requirements](../images/essential-overview-tab.webp)
+
+![The Wbcom Designs Dashboard page, which lists the Wbcom plugins installed on the site](../images/wbcom-designs-dashboard.webp)
+
 ## Find the Blocks
 
 1. Edit any page or post in the block editor.

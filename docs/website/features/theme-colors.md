@@ -12,6 +12,8 @@ On any other theme, blocks use the built-in colours described on this page, or t
 
 Many block colour settings start empty. An empty colour follows the theme. If you pick a colour, your colour is used. To go back to the theme colour, clear the colour.
 
+![A block colour control with a colour set and its Clear button](../images/category-grid-color-clear-button.webp)
+
 **Blocks whose colours follow the theme by default:**
 
 | Group | Blocks |
@@ -23,7 +25,15 @@ Many block colour settings start empty. An empty colour follows the theme. If yo
 | WooCommerce | Customer Reviews, Product Carousel, Product Grid (card, title, price and Add to Cart colours) |
 | EDD | The EDD blocks. Their filled buttons use the theme's button colours, so the labels stay readable in dark mode. |
 
+![Feature Grid on Reign in light mode, following the theme colours](../images/theme-colors-feature-grid-reign-light.webp)
+
+![The same Feature Grid on Reign in dark mode](../images/theme-colors-feature-grid-reign-dark.webp)
+
+![The same Feature Grid on a theme that is not from Wbcom, using the built-in colours](../images/theme-colors-feature-grid-twentytwentyfive.webp)
+
 **Blocks that keep their own colours until you change them:** Hero Section, Promo Banner, Pricing Table, Flip Box, Portfolio Grid, Post Carousel, Posts Ticker, Progress Bar, Stats Counter, Tabs, Text Rotator and Timeline, plus the button colours in CTA Section, the icon colour in FAQ Accordion, the star colour in Customer Reviews and the sale badge in Product Grid. These are designed as feature sections with their own look.
+
+![Hero Section with its own gradient colours above a Feature Grid that follows the theme colours](../images/theme-colors-hero-and-feature-grid.webp)
 
 Each block's page lists every colour and its default: see [Blocks Overview](../blocks/blocks-overview.md).
 

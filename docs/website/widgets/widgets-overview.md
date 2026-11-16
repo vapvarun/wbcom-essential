@@ -24,6 +24,8 @@ On Reign, BuddyX and BuddyX Pro, widget colours you have not changed follow the 
 
 Widgets with a link field use Elementor's link options: the URL, **Open in new tab**, **Add nofollow** and custom attributes. These apply in Shape, Portfolio Grid, Team Carousel, Dropdown Button, Flip Box and Site Logo. A plain link in Site Logo opens in the same tab and has no nofollow.
 
+![The Shape widget Link control with Open in new window and Add nofollow](../images/elementor-shape-link-options.webp)
+
 ## Page speed
 
 A widget's stylesheet loads only on pages that use that widget. A page without the Header Bar, the WooCommerce widgets or Forums Activity loads none of their styles.

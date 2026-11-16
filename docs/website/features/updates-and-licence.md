@@ -29,6 +29,8 @@ If activation does not succeed, an admin notice appears with a **Retry activatio
 
 After a successful retry you see "Wbcom Essential is now authorised to download plugin updates." If the retry fails again the notice says the retry just failed.
 
+![The activation notice in its two wordings, each with the Retry activation now button, and the success notice](../images/licence-activation-notices.webp)
+
 If your site has WP-Cron turned off, the plugin cannot schedule the background request. It tries once during a page load instead and, if that fails, shows the notice straight away so you can use the button.
 
 ## If the update library is incomplete

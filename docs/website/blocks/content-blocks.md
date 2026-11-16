@@ -60,6 +60,10 @@ A WordPress login form with your own button text, colors and redirect. Block nam
 | Style | Link Color | Color of the register and lost-password links. | Theme link color |
 | Style | Border Radius, Box Shadow | Rounds the form corners and adds a shadow. | Shadow off |
 
+![The Login Form When logged in setting set to Show member card](../images/login-form-when-logged-in-setting.webp)
+
+![The member card a logged-in member sees in place of the form](../images/login-form-member-card.webp)
+
 ### Tips
 
 - Colors left empty follow your theme, in light and dark mode (Reign, BuddyX and BuddyX Pro). Clear a color to go back to the theme color.

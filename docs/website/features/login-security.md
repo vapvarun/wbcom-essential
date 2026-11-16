@@ -14,6 +14,8 @@ The lockout applies to any sign-in that goes through WordPress's own login check
 
 While locked out, a visitor sees "Too many login attempts. Try again in N minutes." The lockout is per IP address, so other visitors are not affected.
 
+![The sign-in screen after too many failed attempts, showing the lockout message](../images/login-lockout-message.webp)
+
 ## Sites behind a proxy or CDN
 
 By default the lockout uses the visitor's own IP address as the server sees it. Headers such as `X-Forwarded-For` are ignored, because a visitor can fake them.

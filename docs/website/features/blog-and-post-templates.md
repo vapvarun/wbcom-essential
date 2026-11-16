@@ -4,6 +4,8 @@ Wbcom Essential can change how your blog page, archives and single posts look, w
 
 Both settings are on one screen: go to **Wbcom Designs > Essential** in the admin menu and open the **Settings** tab. Click **Save Changes** at the bottom. The **Overview** tab next to it shows how many blocks and widgets are available.
 
+![The Settings tab with the Post Templates and Blog Index sections](../images/blog-settings-post-templates-blog-index.webp)
+
 ## Default single post template
 
 Under **Post Templates**, **Default Single Post Template** sets the layout every single blog post uses.
@@ -16,6 +18,16 @@ Under **Post Templates**, **Default Single Post Template** sets the layout every
 | Minimal (Centered, Clean) | A centered, clean reading layout with author bio, related posts and previous/next links. |
 | Modern (Progress Bar + ToC) | A reading progress bar, a table of contents sidebar, a share bar, author bio, related posts and previous/next links. |
 
+![A single post in the Classic template](../images/single-post-template-classic.webp)
+
+![A single post in the Magazine template with a full-width hero image](../images/single-post-template-magazine.webp)
+
+![A single post in the Minimal template with a centered reading layout](../images/single-post-template-minimal.webp)
+
+![A single post in the Modern template with a table of contents sidebar](../images/single-post-template-modern.webp)
+
+![The Modern template at phone width, with the table of contents above the text](../images/single-post-template-modern-mobile.webp)
+
 The templates apply to the standard **Post** type only. Pages and other post types keep your theme's layout.
 
 ### Change one post
@@ -26,6 +38,8 @@ The templates apply to the standard **Post** type only. Pages and other post typ
 4. Update the post.
 
 The box shows the current site default so you can see what **Global Default** means.
+
+![The Post Template box on the post edit screen with its six options](../images/post-template-metabox.webp)
 
 ### The Modern template's table of contents
 
@@ -50,6 +64,10 @@ Under **Blog Index**, set how your posts page and archives look.
 | Newspaper | Show breaking news ticker | Shows a scrolling ticker of the latest headlines. On by default. |
 | Newspaper | Show hero slider | Shows a large slider of top stories. On by default. |
 | Grid, List | None | These layouts have no extra options. |
+
+![Settings tab with the Magazine layout selected, showing Layout Options and the Content Sections rows](../images/blog-settings-magazine-layout.webp)
+
+![Settings tab with the Newspaper layout selected, showing the ticker and hero slider switches](../images/blog-settings-newspaper-layout.webp)
 
 ### Content sections (Magazine and Newspaper)
 
