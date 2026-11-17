@@ -81,6 +81,7 @@ if ( $show_dots ) {
 $wrapper = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbe-members-carousel ' . $vis_classes ),
+		'style' => '--wbe-mc-avatar-size: ' . $avatar_size . 'px;',
 	)
 );
 

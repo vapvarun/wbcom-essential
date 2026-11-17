@@ -51,8 +51,8 @@
 
 .wbe-members-carousel__avatar-img,
 .wbe-members-carousel__avatar img {
-	width: 80px;
-	height: 80px;
+	width: var( --wbe-mc-avatar-size, 80px );
+	height: var( --wbe-mc-avatar-size, 80px );
 	border-radius: 50%;
 	object-fit: cover;
 	display: block;

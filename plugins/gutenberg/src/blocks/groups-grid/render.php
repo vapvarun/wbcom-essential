@@ -46,12 +46,13 @@ $wrapper = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbe-groups-grid ' . $vis_classes ),
 		'style' => sprintf(
-			'--wbe-gg-cols: %d; --wbe-gg-cols-tab: %d; --wbe-gg-cols-mob: %d; --wbe-gg-gap: %dpx; --wbe-gg-card-radius: %dpx;',
+			'--wbe-gg-cols: %d; --wbe-gg-cols-tab: %d; --wbe-gg-cols-mob: %d; --wbe-gg-gap: %dpx; --wbe-gg-card-radius: %dpx; --wbe-gg-avatar-size: %dpx;',
 			$cols,
 			$cols_tab,
 			$cols_mob,
 			$gap,
-			$card_radius
+			$card_radius,
+			$avatar_size
 		),
 	)
 );

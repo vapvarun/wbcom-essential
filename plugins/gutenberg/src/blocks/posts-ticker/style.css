@@ -22,6 +22,9 @@
 	display:       flex;
 	align-items:   stretch;
 	width:         100%;
+	/* The bar height is the content height; the owner's padding adds to it. With the border-box sizing most themes
+	   set, the padding was taken out of the height and the headlines collapsed to 0px. */
+	box-sizing:    content-box;
 	height:        var( --wbe-tk-height );
 	background:    var( --wbe-tk-bg );
 	color:         var( --wbe-tk-text );

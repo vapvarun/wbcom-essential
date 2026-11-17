@@ -85,6 +85,7 @@ if ( $show_dots ) {
 $wrapper = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-group-carousel' . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
+		'style' => '--wbe-gc-avatar-size: ' . $avatar_size . 'px;',
 	)
 );
 

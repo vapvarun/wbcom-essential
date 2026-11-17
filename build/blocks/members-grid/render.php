@@ -42,12 +42,13 @@ $wrapper = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbe-members-grid ' . $vis_classes ),
 		'style' => sprintf(
-			'--wbe-mg-cols: %d; --wbe-mg-cols-tab: %d; --wbe-mg-cols-mob: %d; --wbe-mg-gap: %dpx; --wbe-mg-card-radius: %dpx;',
+			'--wbe-mg-cols: %d; --wbe-mg-cols-tab: %d; --wbe-mg-cols-mob: %d; --wbe-mg-gap: %dpx; --wbe-mg-card-radius: %dpx; --wbe-mg-avatar-size: %dpx;',
 			$cols,
 			$cols_tab,
 			$cols_mob,
 			$gap,
-			$card_radius
+			$card_radius,
+			$avatar_size
 		),
 	)
 );

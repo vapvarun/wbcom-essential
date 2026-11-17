@@ -73,8 +73,8 @@
 
 .wbe-groups-grid__avatar-img,
 .wbe-groups-grid__avatar img {
-	width: 80px;
-	height: 80px;
+	width: var( --wbe-gg-avatar-size, 80px );
+	height: var( --wbe-gg-avatar-size, 80px );
 	border-radius: 10px;
 	object-fit: cover;
 	display: block;
@@ -248,8 +248,8 @@
 
 	.wbe-groups-grid__avatar-img,
 	.wbe-groups-grid__avatar img {
-		width: 56px;
-		height: 56px;
+		width: min( var( --wbe-gg-avatar-size, 80px ), 56px );
+		height: min( var( --wbe-gg-avatar-size, 80px ), 56px );
 	}
 
 	.wbe-groups-grid__name a {
