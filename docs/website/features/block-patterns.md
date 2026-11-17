@@ -1,13 +1,22 @@
-# Block Patterns
+# Ready-made page sections (Block patterns)
 
-Block patterns are ready-made layouts you insert in one click and then edit. Wbcom Essential adds 10 of them, built from its own blocks. You do not need to configure anything.
+**Also called:** page templates, ready-made layouts, starter layouts, blog layouts, homepage layouts, news layout, sections.
 
-## Insert a pattern
+## What this does
+
+Block patterns are ready-made layouts you add to a page in one click and then edit. Wbcom Essential adds 10 of them, built from its own blocks. You do not need to set anything up first.
+
+## Steps
 
 1. Edit a page or post in the block editor.
 2. Click the **+** button and open the **Patterns** tab.
 3. Choose the category **Wbcom Essential - Magazine** or **Wbcom Essential - Single Post**.
-4. Click a pattern to insert it, then edit the blocks as usual.
+4. Click a pattern to add it to the page.
+5. Edit the text, pictures and settings of each block as usual.
+
+## You'll know it worked when
+
+The pattern appears on the page, filled with sample content that you can change.
 
 ## Magazine patterns
 
@@ -29,15 +38,23 @@ Block patterns are ready-made layouts you insert in one click and then edit. Wbc
 | Related Posts Carousel | A related posts carousel with a divider and heading. |
 | Share Section | A share section with text and social media icons. |
 
-Insert single post patterns at the end of a post, or wherever the section belongs.
+Add single post patterns at the end of a post, or wherever the section belongs.
 
-## Tips
+## Good to know
 
-- A pattern is a starting point. Each block inside it has its own settings, described in [Blog Blocks](../blocks/blog-blocks.md), [Marketing Blocks](../blocks/marketing-blocks.md) and [Content Blocks](../blocks/content-blocks.md).
-- Post Carousel inside the magazine patterns reads your latest posts, shown as a grid. Switch its Display Mode to Carousel or Slider if you prefer. Choose categories in the block settings to narrow them.
-- If a pattern does not appear, check that Wbcom Essential is active and your WordPress version is 6.0 or later.
+### Where do I change a pattern's settings?
+
+A pattern is a starting point. Each block inside it has its own settings. They are described in [Blog Blocks](../blocks/blog-blocks.md), [Marketing Blocks](../blocks/marketing-blocks.md) and [Content Blocks](../blocks/content-blocks.md).
+
+### Why does the Post Carousel show a grid?
+
+In the magazine patterns, Post Carousel shows your latest posts as a grid. Switch its Display Mode to Carousel or Slider if you prefer. Choose categories in the block settings to narrow the posts.
+
+### Why can't I find the patterns?
+
+Check that Wbcom Essential is active and your WordPress version is 6.0 or later.
 
 ## Related
 
-- [Blog Layouts and Post Templates](blog-and-post-templates.md)
-- [Blocks Overview](../blocks/blocks-overview.md)
+- [Blog page and post layouts](blog-and-post-templates.md)
+- [Blocks overview](../blocks/blocks-overview.md)

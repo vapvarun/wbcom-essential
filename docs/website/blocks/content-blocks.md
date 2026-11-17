@@ -1,12 +1,16 @@
-# Content Blocks
+# Content Blocks (FAQ, login form, portfolio, tabs, timeline)
 
-Content blocks organize and present information: questions and answers, a login form, a filterable project grid, tabs and a timeline. They appear in the block inserter under **Essential - Content** and need no other plugin.
+**Also called:** FAQ accordion, questions and answers, login box, sign in form, project grid, filterable gallery, tabbed content, history timeline.
+
+This page covers five blocks that organise information. They are **FAQ Accordion** (questions and answers), **Login Form** (a log in box), **Portfolio Grid** (a filterable project grid), **Tabs** and **Timeline**. They appear in the block inserter under **Essential - Content** and need no other plugin.
 
 Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
 ## FAQ Accordion
 
-Collapsible questions and answers. It can also output FAQPage structured data so search engines can read your FAQ. Block name: `wbcom-essential/faq-accordion`.
+Collapsible questions and answers. It can also output FAQPage structured data so search engines can read your FAQ.
+
+**What it is for:** Use it to answer common questions in a tidy list that opens and closes.
 
 ### Add it
 
@@ -34,7 +38,9 @@ Collapsible questions and answers. It can also output FAQPage structured data so
 
 ## Login Form
 
-A WordPress login form with your own button text, colors and redirect. Block name: `wbcom-essential/login-form`.
+A WordPress login form with your own button text, colors and redirect.
+
+**What it is for:** Use it to put a log in box on any page or in a sidebar.
 
 ### Add it
 
@@ -73,7 +79,9 @@ A WordPress login form with your own button text, colors and redirect. Block nam
 
 ## Portfolio Grid
 
-A grid of posts or custom post types with a category filter bar, hover effects and responsive columns. Block name: `wbcom-essential/portfolio-grid`.
+A grid of posts or custom post types with a category filter bar, hover effects and responsive columns.
+
+**What it is for:** Use it to show your work or any posts in a grid that visitors filter by category.
 
 ### Add it
 
@@ -105,11 +113,12 @@ A grid of posts or custom post types with a category filter bar, hover effects a
 ### Tips
 
 - The filter bar is built from the categories of the items shown.
-- If no items match, the block shows "No portfolio items found."
-
+- The block says "No portfolio items found" if no items match.
 ## Tabs
 
-Click-to-switch content panels with an underline or boxed style. The tab list works with a keyboard and screen readers. Block name: `wbcom-essential/tabs`.
+Click-to-switch content panels with an underline or boxed style. The tab list works with a keyboard and screen readers.
+
+**What it is for:** Use it to fit several short sections into one space, with one tab open at a time.
 
 ### Add it
 
@@ -134,7 +143,9 @@ Click-to-switch content panels with an underline or boxed style. The tab list wo
 
 ## Timeline
 
-A vertical timeline with icon dots, date labels and cards. Block name: `wbcom-essential/timeline`.
+A vertical timeline with icon dots, date labels and cards.
+
+**What it is for:** Use it to show a history or a list of steps in date order.
 
 ### Add it
 
@@ -160,3 +171,29 @@ A vertical timeline with icon dots, date labels and cards. Block name: `wbcom-es
 | Style | Title Color | Color of the item title. | #1e1e2e |
 | Style | Description Color | Color of the item text. | #6c757d |
 | Style | Border Radius, Box Shadow | Rounds the block corners and adds a shadow. | Shadow off |
+
+## You'll know it worked when
+
+View the page. Questions open and close, tabs switch when clicked, the portfolio filter hides other categories, and the login form shows your button text.
+
+## Good to know
+
+### Does the FAQ help with Google search?
+
+Yes. **Enable FAQ Schema (JSON-LD)** is on by default and tells search engines about your questions.
+
+### What does a logged-in member see in the Login Form?
+
+Whatever you choose in **When logged in**: nothing, a message or a member card.
+
+## For developers
+
+Each block has an internal name, used in block markup and code.
+
+| Block | Internal name |
+|-------|---------------|
+| FAQ Accordion | `wbcom-essential/faq-accordion` |
+| Login Form | `wbcom-essential/login-form` |
+| Portfolio Grid | `wbcom-essential/portfolio-grid` |
+| Tabs | `wbcom-essential/tabs` |
+| Timeline | `wbcom-essential/timeline` |

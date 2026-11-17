@@ -1,6 +1,8 @@
-# Blocks Overview
+# Blocks Overview (All 35 blocks)
 
-Wbcom Essential adds 35 blocks to the WordPress block editor. You add them like any other block and style them from the block sidebar. No code is needed.
+**Also called:** Gutenberg blocks, block editor blocks, page building blocks, hero banner, pricing table, testimonial slider, product slider, member grid, countdown timer.
+
+Wbcom Essential adds 35 blocks to the WordPress block editor. They cover animated cards, FAQs, tabs, hero banners, pricing tables and countdown timers. They also cover post and product sliders, member grids and a download store. You add them like any other block and style them from the block sidebar. No code is needed.
 
 ## Find the blocks
 
@@ -18,7 +20,7 @@ The blocks are grouped in seven inserter categories:
 | Essential - Marketing | 7 | Nothing extra | [Marketing Blocks](marketing-blocks.md) |
 | Essential - BuddyPress | 5 | BuddyPress or BuddyBoss Platform | [BuddyPress Blocks](buddypress-blocks.md) |
 | Essential - WooCommerce | 3 | WooCommerce | [WooCommerce Blocks](woocommerce-blocks.md) |
-| Essential - EDD | 8 | Easy Digital Downloads | [EDD Blocks](edd-blocks.md) |
+| Essential - EDD | 8 (7 show in the inserter) | Easy Digital Downloads | [EDD Blocks](edd-blocks.md) |
 
 BuddyPress, WooCommerce and EDD blocks work only when their plugin is active. Until then they still appear in the inserter, and a copy on a page shows a notice that the plugin is required. See [Set up the plugins Wbcom Essential works with](../intro/set-up-companion-plugins.md).
 
@@ -39,6 +41,20 @@ Some blocks show these under Style or Spacing, others under one Advanced panel. 
 ## Settings for each screen size
 
 Many blocks let you set columns or slides separately for desktop, tablet and phone. Text Rotator does the same for its font size. Look for the Desktop, Tablet and Mobile labels in the Layout or Carousel panel of each block.
+
+## You'll know it worked when
+
+You search for a block name in the inserter and it appears. After you add it, the block sidebar shows its settings and the page shows the block.
+
+## Good to know
+
+### Which blocks need another plugin?
+
+BuddyPress, WooCommerce and EDD blocks need their own plugin. The other 19 blocks work alone.
+
+### Where did the EDD Enhanced Checkout block go?
+
+It is hidden from the inserter. It stays only so pages saved before version 4.7.0 keep working.
 
 ## Related
 

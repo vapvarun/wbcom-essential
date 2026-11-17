@@ -1,8 +1,20 @@
-# Which Block or Widget to Use
+# Which block or widget to use (Solution finder)
 
-This page matches common goals to the blocks and Elementor widgets that ship with Wbcom Essential.
+**Also called:** hero banner, testimonial slider, pricing table, member grid, product slider, FAQ, countdown, which element, what to use.
 
-Blocks work in the block editor. Widgets work in Elementor and appear under the **Wbcom Essential** category. Choose the editor your site already uses.
+## What this does
+
+This page matches common goals to the blocks and Elementor widgets in Wbcom Essential. Blocks work in the block editor. Widgets work in Elementor and appear under the **Wbcom Essential** category. Choose the editor your site already uses.
+
+## Steps
+
+1. Find your goal in the tables below.
+2. Pick the name in the column for your editor.
+3. Add it to your page. Search for the name in the block inserter or in the Elementor panel.
+
+## You'll know it worked when
+
+The block or widget shows up in your editor when you search for its name.
 
 ## Pick by goal
 
@@ -57,12 +69,12 @@ These need BuddyPress or BuddyBoss Platform.
 | Profile, search, messages and cart icons | Header Bar |
 | Header icons on the Reign theme | Header Notification Area (Reign only) |
 
-For headers, use the Elementor widgets above; there are no header blocks.
+For headers, use the Elementor widgets above. There are no header blocks.
 
 ## Related
 
-- [Blocks Overview](../blocks/blocks-overview.md)
-- [Widgets Overview](../widgets/widgets-overview.md)
+- [Blocks overview](../blocks/blocks-overview.md).
+- [Elementor widgets overview](../widgets/widgets-overview.md).
 - [Design Blocks](../blocks/design-blocks.md)
 - [Marketing Blocks](../blocks/marketing-blocks.md)
 - [Content Blocks](../blocks/content-blocks.md)

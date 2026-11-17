@@ -1,12 +1,16 @@
-# Blog Blocks
+# Blog Blocks (Category grid, post slider, news ticker)
 
-Blog blocks show your WordPress categories and posts in grids, carousels and a news ticker. They appear in the block inserter under **Essential - Blog** and need no other plugin.
+**Also called:** category grid, category list, post slider, blog carousel, latest posts slider, news ticker, news bar, breaking news bar.
+
+This page covers three blocks that show your blog. **Category Grid** shows your categories as cards. **Post Carousel** is a post slider or grid. **Posts Ticker** is a scrolling news bar. They appear in the block inserter under **Essential - Blog** and need no other plugin.
 
 Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
 ## Category Grid
 
-Your WordPress categories in a grid, with an image, name, post count and hover effect on each card. Block name: `wbcom-essential/category-grid`.
+Your WordPress categories in a grid, with an image, name, post count and hover effect on each card.
+
+**What it is for:** Use it to let visitors browse your blog by category.
 
 ### Add it
 
@@ -40,8 +44,8 @@ Your WordPress categories in a grid, with an image, name, post count and hover e
 
 ### Tips
 
-- The card image is read from a thumbnail saved on the category. Standard post categories have no image field, so those cards show without a picture unless another plugin or your own code sets one.
-- If no category matches, the block shows "No categories found."
+- The card image is read from a thumbnail saved on the category. Standard post categories have no image field. Their cards show no picture unless another plugin or your own code adds one.
+- The block says "No categories found" if no category matches.
 - A category without an image shows a faint capital letter of its name behind the name. With Use Theme Colors on, that letter and the card use your theme accent color.
 
 ![Category Grid settings with Use Theme Colors on](../images/category-grid-use-theme-colors-on.webp)
@@ -50,7 +54,9 @@ Your WordPress categories in a grid, with an image, name, post count and hover e
 
 ## Post Carousel
 
-Your posts as a carousel, a one-at-a-time slider or a plain grid, with cards you can style. Block name: `wbcom-essential/post-carousel`.
+Your posts as a carousel, a one-at-a-time slider or a plain grid, with cards you can style.
+
+**What it is for:** Use it to show your latest posts as a slider on your home page or any page.
 
 ### Add it
 
@@ -86,11 +92,12 @@ Your posts as a carousel, a one-at-a-time slider or a plain grid, with cards you
 
 ### Tips
 
-- If no post matches, the block shows "No posts found."
-
+- The block says "No posts found" if no post matches.
 ## Posts Ticker
 
-A horizontal news ticker that scrolls your latest post titles, with a label at the start. Block name: `wbcom-essential/posts-ticker`.
+A horizontal news ticker that scrolls your latest post titles, with a label at the start.
+
+**What it is for:** Use it for a moving news bar with your newest post titles.
 
 ### Add it
 
@@ -120,4 +127,27 @@ A horizontal news ticker that scrolls your latest post titles, with a label at t
 
 ### Tips
 
-- If no post matches, the block shows "No posts found."
+- The block says "No posts found" if no post matches.
+## You'll know it worked when
+
+View the page. You see your categories or posts as cards, or a news bar that scrolls your latest titles.
+
+## Good to know
+
+### Why do my category cards have no picture?
+
+Standard post categories have no image field. Another plugin or your own code must add one.
+
+### Can the Post Carousel show a plain grid?
+
+Yes. Set **Display Mode** to Grid.
+
+## For developers
+
+Each block has an internal name, used in block markup and code.
+
+| Block | Internal name |
+|-------|---------------|
+| Category Grid | `wbcom-essential/category-grid` |
+| Post Carousel | `wbcom-essential/post-carousel` |
+| Posts Ticker | `wbcom-essential/posts-ticker` |

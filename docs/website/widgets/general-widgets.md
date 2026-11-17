@@ -1,12 +1,14 @@
-# General Widgets
+# Design and content widgets (General widgets)
 
-The 27 general widgets work on any WordPress site that runs Elementor 3.5 or higher. They appear in the Elementor panel under the **Wbcom Essential** category. You do not need BuddyPress, bbPress or WooCommerce for them.
+**Also called:** hero banner, slider, testimonial slider, pricing table, FAQ, tabs, countdown timer, team slider, login form, timeline, post slider, menu.
 
-The one exception is Header Notification Area, which only appears when the Reign theme is active.
+This page covers the 27 widgets that work on any WordPress site with Elementor 3.5 or higher. They include sliders, pricing tables, testimonials, FAQ lists, tabs, timelines, post carousels, a countdown and a login form. Find them in the Elementor panel under the **Wbcom Essential** category. You do not need BuddyPress, bbPress or WooCommerce for them.
+
+One widget is the exception. Header Notification Area appears only when the Reign theme is active.
 
 ## Accordion
 
-Collapsible panels with an optional icon or text prefix, and optional FAQ schema output for search engines.
+Use it for a list of questions and answers (FAQ) where each answer opens when a visitor clicks the question. It can also output FAQ data for search engines.
 
 ### Content settings
 
@@ -33,7 +35,7 @@ Collapsible panels with an optional icon or text prefix, and optional FAQ schema
 
 ## Branding
 
-Shows your site title and tagline, or your site logo, linked to the home page.
+Use it to show your site name and tagline, or your logo, and link them to your home page.
 
 ### Content settings
 
@@ -52,7 +54,7 @@ Shows your site title and tagline, or your site logo, linked to the home page.
 
 ## Countdown
 
-A countdown to a due date, with separate boxes for days, hours, minutes and seconds.
+Use it for a countdown timer (days, hours, minutes, seconds) to a sale, launch or event.
 
 ### Content settings
 
@@ -72,7 +74,7 @@ A countdown to a due date, with separate boxes for days, hours, minutes and seco
 
 ## Dropdown Button
 
-A button that opens a list of links.
+Use it for a button that opens a short list of links when clicked.
 
 ### Content settings
 
@@ -90,7 +92,7 @@ A button that opens a list of links.
 
 ## Flip Box
 
-A card that flips to show a back face.
+Use it for a card that turns over on hover to show more on its back, like a feature box.
 
 ### Content settings
 
@@ -111,7 +113,7 @@ A card that flips to show a back face.
 
 ## Heading
 
-A heading with optional gradient text, rotation and decorative lines before and after.
+Use it for a styled page heading, with optional gradient text and lines on either side.
 
 ### Content settings
 
@@ -130,7 +132,7 @@ A heading with optional gradient text, rotation and decorative lines before and 
 
 ## Login Form
 
-A login form with optional logo, titles, lost password and register links.
+Use it to put a sign-in form on any page, with optional lost password and register links.
 
 ### Content settings
 
@@ -157,7 +159,7 @@ A login form with optional logo, titles, lost password and register links.
 
 ## Header Notification Area
 
-Reign theme only. This widget does not appear on other themes, because it loads only when Reign is active and uses Reign's own header icon parts. It shows header icons for search, cart, messages, connections, notifications and the user menu.
+Use it for the row of header icons (search, cart, messages, friend requests, notifications, your avatar). Reign theme only.
 
 ### Content settings
 
@@ -178,7 +180,7 @@ Reign theme only. This widget does not appear on other themes, because it loads 
 
 ## Portfolio Grid
 
-A filterable grid or list of portfolio items with an optional layout switcher.
+Use it for a gallery of your work that visitors can filter by category and switch between grid and list.
 
 ### Content settings
 
@@ -199,7 +201,7 @@ A filterable grid or list of portfolio items with an optional layout switcher.
 
 ## Post Carousel
 
-A carousel of post cards with query, card and navigation options.
+Use it for a sliding row of post cards, such as latest news or related articles.
 
 ### Content settings
 
@@ -219,7 +221,7 @@ A carousel of post cards with query, card and navigation options.
 
 ## Post Slider
 
-A slider that shows one post at a time, with optional thumbnails.
+Use it for a large hero slider that shows one post at a time with its picture and title.
 
 ### Content settings
 
@@ -239,7 +241,7 @@ A slider that shows one post at a time, with optional thumbnails.
 
 ## Post Timeline
 
-Posts shown on a vertical timeline, with optional Read More and Load More buttons.
+Use it to show posts one after another down a vertical line, newest first, with a Load More button.
 
 ### Content settings
 
@@ -257,7 +259,7 @@ Posts shown on a vertical timeline, with optional Read More and Load More button
 
 ## Posts Carousel
 
-A carousel of posts with query and animation options.
+Use it for a simple sliding row of your latest posts.
 
 ### Content settings
 
@@ -277,7 +279,7 @@ A carousel of posts with query and animation options.
 
 ## Posts Revolution
 
-A grid of posts in several display types, with optional pagination.
+Use it for a grid of your posts in a choice of display styles, with page numbers.
 
 ### Content settings
 
@@ -296,7 +298,7 @@ A grid of posts in several display types, with optional pagination.
 
 ## Posts Ticker
 
-A scrolling news ticker with a label.
+Use it for a scrolling headline bar (news ticker) that shows your latest posts.
 
 ### Content settings
 
@@ -315,7 +317,7 @@ A scrolling news ticker with a label.
 
 ## Pricing Table
 
-A pricing card with header, ribbon, price, feature list and footer button.
+Use it to show a plan or product price with its feature list and a sign-up button (a pricing box or plan card).
 
 ### Content settings
 
@@ -337,7 +339,7 @@ A pricing card with header, ribbon, price, feature list and footer button.
 
 ## Progress Bar
 
-Animated progress bars with a title and percentage.
+Use it to show a skill or goal as a filled bar with a percentage.
 
 ### Content settings
 
@@ -355,7 +357,7 @@ Animated progress bars with a title and percentage.
 
 ## Shape
 
-A decorative shape defined by eight corner points, with an optional icon and link.
+Use it for a decorative shape on the page, such as a slanted block or badge, with an optional icon and link.
 
 ### Content settings
 
@@ -373,7 +375,7 @@ A decorative shape defined by eight corner points, with an optional icon and lin
 
 ## Site Logo
 
-Shows a logo from your site settings or a custom image, with separate desktop and mobile logos.
+Use it to show your logo, with a different logo for mobile if you want.
 
 ### Content settings
 
@@ -389,7 +391,7 @@ Shows a logo from your site settings or a custom image, with separate desktop an
 
 ## Slider
 
-An image slider with a title, text and buttons on each slide.
+Use it for a full-width banner slider (a hero banner) with a picture, headline, text and buttons on each slide.
 
 ### Content settings
 
@@ -409,7 +411,7 @@ An image slider with a title, text and buttons on each slide.
 
 ## Smart Menu
 
-Displays a WordPress menu in a horizontal or vertical layout with a mobile toggle.
+Use it to show one of your WordPress menus across the page or down the side, with a mobile menu button.
 
 ### Content settings
 
@@ -427,7 +429,7 @@ Displays a WordPress menu in a horizontal or vertical layout with a mobile toggl
 
 ## Tabs
 
-Tabbed content with an icon, title, image or content in each tab.
+Use it to put content under tabs so visitors click a tab title to switch between sections.
 
 ### Content settings
 
@@ -444,7 +446,7 @@ Tabbed content with an icon, title, image or content in each tab.
 
 ## Team Carousel
 
-A carousel of team members with thumbnail, name, info and an optional link or lightbox.
+Use it for a sliding row of your team members with photo, name and role.
 
 ### Content settings
 
@@ -464,7 +466,7 @@ A carousel of team members with thumbnail, name, info and an optional link or li
 
 ## Testimonial
 
-A single testimonial with name, info, thumbnail and content.
+Use it to show one customer quote with the person's name and photo.
 
 ### Content settings
 
@@ -482,7 +484,7 @@ A single testimonial with name, info, thumbnail and content.
 
 ## Testimonial Carousel
 
-A carousel of testimonials.
+Use it for a testimonial slider that cycles through several customer quotes.
 
 ### Content settings
 
@@ -501,7 +503,7 @@ A carousel of testimonials.
 
 ## Text Rotator
 
-A line of text where one part rotates through a list of words.
+Use it for a headline where one word changes in turn, such as "We build fast / beautiful / secure sites".
 
 ### Content settings
 
@@ -521,7 +523,7 @@ A line of text where one part rotates through a list of words.
 
 ## Timeline
 
-A vertical timeline with icons, images, dates, titles and content.
+Use it to show steps or history (your story, milestones) down a vertical line.
 
 ### Content settings
 

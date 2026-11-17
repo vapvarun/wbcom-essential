@@ -1,4 +1,6 @@
-# Messages and Notices
+# What a message means (Messages and notices)
+
+**Also called:** error message, notice, block says required, no members found, too many login attempts, update notice, Elementor out of date.
 
 Paste the message you see into the search box of this help site, or find it in the tables below. Each row says what the message means and what to do.
 
@@ -45,7 +47,7 @@ These are not errors. The block works and has nothing to list.
 
 | Message | Cause | Fix |
 |---------|-------|-----|
-| Too many login attempts. Try again in N minutes. | Five failed sign-ins came from the same IP address. | Wait for the time shown. See [Login Security](../features/login-security.md). |
+| Too many login attempts. Try again in N minutes. | Five failed sign-ins came from the same IP address. | Wait for the time shown. See [Sign-in protection](../features/login-security.md). |
 | Login attempt rejected. | The hidden spam-trap field was filled in, which normally means a bot. If a real person sees this, a browser extension or password manager may have filled a hidden field. | Try again with the extension off. |
 | The username or password is incorrect. Please try again. | A wrong username or password. The same message is used for both on purpose. | Check the details or use the lost password link. |
 
@@ -68,7 +70,7 @@ These are not errors. The block works and has nothing to list.
 | wbcomdesigns.com did not authorise plugin updates for Wbcom Essential on this site... | The update server answered no. | Update the plugin to the latest version, then contact Wbcom Designs support if it persists. |
 | Wbcom Essential: the bundled licensing and update SDK is incomplete... | Part of the plugin folder is missing. | Reinstall from a complete ZIP. |
 
-See [Updates and Licence](../features/updates-and-licence.md) for the full flow.
+See [Plugin updates and licence key](../features/updates-and-licence.md) for the full flow.
 
 ## Elementor
 
@@ -81,12 +83,12 @@ See [Updates and Licence](../features/updates-and-licence.md) for the full flow.
 
 ## Still stuck?
 
-1. Check the plugin the block needs is active. A block that needs BuddyPress, BuddyBoss Platform, WooCommerce or Easy Digital Downloads shows a notice naming it when it is missing, and the widgets need Elementor.
+1. Check the plugin the block needs is active. A block that needs BuddyPress, BuddyBoss Platform, WooCommerce or Easy Digital Downloads shows a notice naming it when it is missing. The widgets need Elementor.
 2. Note the Wbcom Essential version, your theme and its version, and the version of the plugin the block needs.
 3. If you use Reign, open **Reign Settings > Tools** and copy the **System status**.
 4. [Open a support ticket](https://wbcomdesigns.com/support/#submit-ticket-section) with the page address, the message you see and the details above.
 
 ## Related
 
-- [Troubleshooting](troubleshooting.md)
-- [FAQ](../faq/faq.md)
+- [Fix common problems](troubleshooting.md)
+- [Frequently asked questions](../faq/faq.md)

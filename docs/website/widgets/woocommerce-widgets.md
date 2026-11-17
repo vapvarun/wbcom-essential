@@ -1,12 +1,14 @@
-# WooCommerce Widgets
+# Shop widgets (WooCommerce widgets)
 
-The 5 WooCommerce widgets show products, banners and customer reviews. They appear in the Elementor panel under the **Wbcom Essential** category.
+**Also called:** product slider, product grid, product tabs, sale banner, shop banner, customer reviews, store testimonials.
+
+This page covers the 5 widgets that show your store: products, banners and customer reviews. Find them in the Elementor panel under the **Wbcom Essential** category.
 
 Every widget in this group needs WooCommerce. If WooCommerce is not active, the widgets do not appear in the panel.
 
 ## Add Banner
 
-A promotional banner with an image, title, sub title and button.
+Use it for a promotional banner (a sale or category banner) with a picture, headline and button.
 
 ### Content settings
 
@@ -28,7 +30,7 @@ A promotional banner with an image, title, sub title and button.
 
 ## Customer Review
 
-A grid of customer reviews with name, designation, rating and photo.
+Use it for a grid of customer reviews with name, role, star rating and photo.
 
 ### Content settings
 
@@ -50,7 +52,7 @@ A grid of customer reviews with name, designation, rating and photo.
 
 ## Product Tab
 
-Products grouped under tabs, or shown as a slider.
+Use it to show products under tabs, such as new, popular and on sale, or as a slider.
 
 ### Content settings
 
@@ -68,7 +70,7 @@ Products grouped under tabs, or shown as a slider.
 
 ## Universal Product
 
-A flexible product grid or slider with query, badge and action button options.
+Use it for a product grid or product slider that you can filter, with badges and an Add to Cart button.
 
 ### Content settings
 
@@ -93,7 +95,7 @@ A flexible product grid or slider with query, badge and action button options.
 
 ## WooCommerce Testimonial
 
-Customer testimonials as a grid or a slider.
+Use it for customer testimonials from your store as a grid or a slider.
 
 ### Content settings
 

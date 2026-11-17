@@ -1,12 +1,16 @@
-# Marketing Blocks
+# Marketing Blocks (Hero banner, pricing table, testimonials, countdown)
 
-Marketing blocks help you promote and sell: a countdown, calls to action, feature cards, a hero, pricing, a promo banner and testimonials. They appear in the block inserter under **Essential - Marketing** and need no other plugin.
+**Also called:** hero banner, landing page header, pricing table, plan comparison, testimonial slider, reviews slider, countdown timer, call to action, promo banner, feature list.
+
+This page covers seven blocks that help you promote and sell. They are **Countdown Timer**, **CTA Section** (a call to action), **Feature Grid** and **Hero Section** (a hero banner). The rest are **Pricing Table**, **Promo Banner** and **Testimonial Carousel** (a testimonial slider). They appear in the block inserter under **Essential - Marketing** and need no other plugin.
 
 Every block here also has the Spacing and Advanced settings described in [Blocks Overview](blocks-overview.md).
 
 ## Countdown Timer
 
-A live countdown to a date and time, with a message shown when time runs out. Block name: `wbcom-essential/countdown-timer`.
+A live countdown to a date and time, with a message shown when time runs out.
+
+**What it is for:** Use it to count down to a sale, launch or event.
 
 ### Add it
 
@@ -34,7 +38,9 @@ A live countdown to a date and time, with a message shown when time runs out. Bl
 
 ## CTA Section
 
-A call-to-action section with a heading, a description and one button. Block name: `wbcom-essential/cta`.
+A call-to-action section with a heading, a description and one button.
+
+**What it is for:** Use it to push visitors to one action, such as signing up or buying.
 
 ### Add it
 
@@ -59,11 +65,13 @@ A call-to-action section with a heading, a description and one button. Block nam
 
 ### Tips
 
-- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available. Edge to edge needs a page layout whose theme lets full-width blocks break out: on Reign, choose the Full Width or Stretched page layout (a boxed layout keeps the section inside the content width).
+- Set the alignment to Full width in the block toolbar. The section then fills the screen edge to edge, even when your theme limits page width. Wide width is also available. On Reign, choose the Full Width or Stretched page layout, because a boxed layout keeps the section inside the content width.
 
 ## Feature Grid
 
-Feature cards in a responsive grid, each with an icon or emoji, a title and a description. Block name: `wbcom-essential/feature-grid`.
+Feature cards in a responsive grid, each with an icon or emoji, a title and a description.
+
+**What it is for:** Use it to list what your product or service offers, with an icon for each point.
 
 ### Add it
 
@@ -87,12 +95,14 @@ Feature cards in a responsive grid, each with an icon or emoji, a title and a de
 
 ### Tips
 
-- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available. Edge to edge needs a page layout whose theme lets full-width blocks break out: on Reign, choose the Full Width or Stretched page layout (a boxed layout keeps the section inside the content width).
+- Set the alignment to Full width in the block toolbar. The section then fills the screen edge to edge, even when your theme limits page width. Wide width is also available. On Reign, choose the Full Width or Stretched page layout, because a boxed layout keeps the section inside the content width.
 - At tablet width the last row never leaves one card on its own.
 
 ## Hero Section
 
-A full-width hero with a gradient, solid color or image background, a heading, a subheading and two buttons. Block name: `wbcom-essential/hero`.
+A full-width hero with a gradient, solid color or image background, a heading, a subheading and two buttons.
+
+**What it is for:** Use it for the big banner at the top of a landing page.
 
 ### Add it
 
@@ -126,7 +136,7 @@ A full-width hero with a gradient, solid color or image background, a heading, a
 
 ### Tips
 
-- Set the alignment to Full width in the block toolbar and the section fills the screen edge to edge, even when your theme limits the width of page content. Wide width is also available. Edge to edge needs a page layout whose theme lets full-width blocks break out: on Reign, choose the Full Width or Stretched page layout (a boxed layout keeps the section inside the content width).
+- Set the alignment to Full width in the block toolbar. The section then fills the screen edge to edge, even when your theme limits page width. Wide width is also available. On Reign, choose the Full Width or Stretched page layout, because a boxed layout keeps the section inside the content width.
 
 ![The block toolbar alignment menu on Hero Section with Full width available](../images/hero-full-width-alignment-menu.webp)
 
@@ -134,7 +144,9 @@ A full-width hero with a gradient, solid color or image background, a heading, a
 
 ## Pricing Table
 
-A pricing comparison with one to four plans, a highlighted featured plan and a button for each plan. Block name: `wbcom-essential/pricing-table`.
+A pricing comparison with one to four plans, a highlighted featured plan and a button for each plan.
+
+**What it is for:** Use it to compare your plans side by side.
 
 ### Add it
 
@@ -165,7 +177,9 @@ A pricing comparison with one to four plans, a highlighted featured plan and a b
 
 ## Promo Banner
 
-A promotional banner with an image, a heading, a description and a button. Block name: `wbcom-essential/promo-banner`.
+A promotional banner with an image, a heading, a description and a button.
+
+**What it is for:** Use it to advertise a sale or an offer with an image and a button.
 
 ### Add it
 
@@ -191,7 +205,9 @@ A promotional banner with an image, a heading, a description and a button. Block
 
 ## Testimonial Carousel
 
-Customer quotes in a carousel with dots, arrows and autoplay. Block name: `wbcom-essential/testimonial-carousel`.
+Customer quotes in a carousel with dots, arrows and autoplay.
+
+**What it is for:** Use it to show customer quotes in a slider.
 
 ### Add it
 
@@ -220,3 +236,31 @@ Customer quotes in a carousel with dots, arrows and autoplay. Block name: `wbcom
 | Style | Role Color | Color of the role. | Theme muted text |
 | Style | Accent Color (dots, decorations) | Color of the dots and decorations. | Theme accent |
 | Style | Border Radius, Box Shadow | Rounds the card corners and adds a shadow. | Shadow off |
+
+## You'll know it worked when
+
+View the page. Each section shows your own text and colours, the countdown ticks every second, and the testimonial slider moves on its own.
+
+## Good to know
+
+### How do I make a section fill the screen?
+
+Set the alignment to Full width in the block toolbar. See the tip under Hero Section.
+
+### Where do I change the heading text?
+
+Click the text on the page and type. The sidebar holds links, colours and layout.
+
+## For developers
+
+Each block has an internal name, used in block markup and code.
+
+| Block | Internal name |
+|-------|---------------|
+| Countdown Timer | `wbcom-essential/countdown-timer` |
+| CTA Section | `wbcom-essential/cta` |
+| Feature Grid | `wbcom-essential/feature-grid` |
+| Hero Section | `wbcom-essential/hero` |
+| Pricing Table | `wbcom-essential/pricing-table` |
+| Promo Banner | `wbcom-essential/promo-banner` |
+| Testimonial Carousel | `wbcom-essential/testimonial-carousel` |

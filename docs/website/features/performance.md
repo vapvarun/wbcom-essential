@@ -1,6 +1,10 @@
-# Performance
+# Page speed (Performance)
 
-Wbcom Essential loads its files only where they are needed. This page explains what loads, and when, for blocks and Elementor widgets.
+**Also called:** site speed, slow site, page load, caching, lazy loading, reduced motion, scripts and styles.
+
+## What this does
+
+Wbcom Essential loads its files only where they are needed. This page explains what loads, and when, for blocks and Elementor widgets. You do not need to turn anything on.
 
 ## Block assets load per block
 
@@ -10,9 +14,9 @@ Twenty blocks ship a front-end script, such as the carousels, Tabs, FAQ Accordio
 
 ## Shared files for blocks
 
-When a post or page contains any Wbcom Essential block, the plugin also loads three small shared stylesheets: design tokens, a base stylesheet and a theme isolation stylesheet. They load once per page, not once per block.
+When a post or page contains any Wbcom Essential block, the plugin also loads three small shared stylesheets. They are design tokens, a base stylesheet and a theme isolation stylesheet. They load once per page, not once per block.
 
-The check looks at the post content of the current page. If you place a block outside the post content, for example in a site editor part or widget area, the shared files may not load.
+The check looks at the post content of the current page. If you place a block outside the post content, the shared files may not load. An example is a block in a site editor part or a widget area.
 
 The Swiper library used by carousels is registered once and shared by every carousel block. It loads only on pages that render a carousel.
 
@@ -36,7 +40,7 @@ If a plugin is inactive, its widgets are not registered and add no load.
 
 ## Query settings
 
-Several blocks that list posts or products skip the extra pagination count query. These are Post Carousel, Posts Ticker, Portfolio Grid, Product Grid and Product Carousel. Set a sensible item count on each block to keep queries small.
+Some blocks skip the extra page-count query. These are Post Carousel, Posts Ticker, Portfolio Grid, Product Grid and Product Carousel. Set a sensible item count on each block to keep queries small.
 
 ## Images
 
@@ -48,10 +52,14 @@ The shared base stylesheet includes a `prefers-reduced-motion` rule for all Wbco
 
 ## Caching
 
-The BuddyPress, WooCommerce and Easy Digital Downloads blocks render on the server. Blocks that show per-visitor data, such as Activity Feed or the Header Bar widget, show different content to each logged-in user. Exclude pages that use them from full-page caching for logged-in visitors.
+The BuddyPress, WooCommerce and Easy Digital Downloads blocks build their content on the server. Some show different content to each signed-in member. Examples are Activity Feed and the Header Bar widget. Exclude pages that use them from full-page caching for signed-in visitors.
+
+## You'll know it worked when
+
+In your browser's network tool, a page without a Wbcom Essential block loads none of that block's files.
 
 ## Related
 
-- [Blocks Overview](../blocks/blocks-overview.md)
-- [Widgets Overview](../widgets/widgets-overview.md)
-- [Responsive Design](responsive-design.md)
+- [Blocks overview](../blocks/blocks-overview.md)
+- [Elementor widgets overview](../widgets/widgets-overview.md)
+- [Phone and tablet layouts](responsive-design.md)

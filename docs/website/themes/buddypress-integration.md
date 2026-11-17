@@ -1,16 +1,25 @@
-# BuddyPress Integration
+# Community blocks and widgets (BuddyPress integration)
 
-Wbcom Essential includes 5 BuddyPress blocks and 11 BuddyPress Elementor widgets. They work with BuddyPress 10.0 or later and with BuddyBoss Platform.
+**Also called:** member directory, group directory, social network, community site, activity feed, member grid, BuddyBoss, forum.
 
-## What You Need
+## What this does
+
+This page lists the 5 blocks and 11 Elementor widgets that show your community: members, groups, activity and forums. They work with BuddyPress 10.0 or later and with BuddyBoss Platform.
+
+## Before you start
 
 1. Install and activate BuddyPress or BuddyBoss Platform.
 2. Go to **Settings > BuddyPress > Components** and enable the components you want to show.
 3. Make sure your site has members, groups or activity to display.
 
-If BuddyPress is inactive, a BuddyPress block shows "BuddyPress is required for this block."
+If BuddyPress is inactive, a BuddyPress block tells you that BuddyPress is required.
 
-## Blocks
+
+## Steps
+
+Add a block from the **Essential - BuddyPress** category, or an Elementor widget from the **Wbcom Essential** category. Use the tables to see which component each one needs.
+
+### Blocks
 
 | Block | Category | Needs component |
 |-------|----------|-----------------|
@@ -20,9 +29,9 @@ If BuddyPress is inactive, a BuddyPress block shows "BuddyPress is required for 
 | Groups Grid | Essential - BuddyPress | User Groups |
 | Group Carousel | Essential - BuddyPress | User Groups |
 
-Details: [BuddyPress Blocks](../blocks/buddypress-blocks.md).
+Details: [BuddyPress blocks](../blocks/buddypress-blocks.md).
 
-## Elementor Widgets
+### Elementor widgets
 
 All widgets are in the **Wbcom Essential** category.
 
@@ -33,19 +42,29 @@ All widgets are in the **Wbcom Essential** category.
 | Dashboard Intro, Header Bar, Profile Completion | Member dashboard pieces |
 | Forums, Forums Activity | Appear only when bbPress is active |
 
-Details: [BuddyPress Widgets](../widgets/buddypress-widgets.md).
+Details: [Community widgets](../widgets/buddypress-widgets.md).
 
-## BuddyBoss Platform
+## You'll know it worked when
 
-The blocks build their data requests from the platform's own REST namespace. They work on BuddyPress (`buddypress/v1`) and BuddyBoss Platform (`buddyboss/v1`) without extra setup.
+The Members Grid, Groups Grid or Activity Feed block shows real members, groups or posts instead of a notice.
 
-## Page Ideas
+## Good to know
 
-- **Community homepage:** Hero Section, Members Carousel, Groups Grid, Activity Feed, CTA Section.
+### Does it work with BuddyBoss Platform?
+
+Yes, with no extra setup.
+
+### What page ideas can I use?
+
+- **Community home page:** Hero Section, Members Carousel, Groups Grid, Activity Feed, CTA Section.
 - **Member showcase:** Members Grid with a heading above it.
 
-See [Community Site Tutorial](community-site-tutorial.md).
+See [Community site tutorial](community-site-tutorial.md).
 
-## If a Block Is Empty
+### What if a block is empty?
 
 See [Troubleshooting](../troubleshooting/troubleshooting.md).
+
+## For developers
+
+The blocks build their data requests from the platform's own REST namespace. They work on BuddyPress (`buddypress/v1`) and BuddyBoss Platform (`buddyboss/v1`) without extra setup.

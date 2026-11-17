@@ -1,4 +1,6 @@
-# Troubleshooting
+# Fix common problems (Troubleshooting)
+
+**Also called:** not working, widget missing, block empty, no members found, carousel broken, page not updating, can't log in, update notice.
 
 Find your problem below. Each item lists the cause and the fix.
 
@@ -77,7 +79,7 @@ Find your problem below. Each item lists the cause and the fix.
 
 ## A carousel looks stacked or unstyled
 
-**Cause:** A cache or optimisation plugin is deferring, combining or removing the carousel styles or script. Carousels load a shared stylesheet and the Swiper script only on pages that use them.
+**Cause:** A cache or optimisation plugin is deferring, combining or removing the carousel styles or script. Carousels load a shared stylesheet and the Swiper script, and only on pages that use them.
 
 **Fix:**
 
@@ -122,13 +124,13 @@ Find your problem below. Each item lists the cause and the fix.
 **Fix:**
 
 1. Wait for the time shown in the message.
-2. If many visitors are affected, list your proxy as trusted. See [Login Security](../features/login-security.md).
+2. If many visitors are affected, list your proxy as trusted. See [Sign-in protection](../features/login-security.md).
 
 ## An admin notice says Wbcom Essential could not authorise updates
 
 **Cause:** The site could not reach the update server, or the server did not authorise the site. Every feature still works.
 
-**Fix:** Allow outgoing requests to `wbcomdesigns.com`, then click **Retry activation now** in the notice. See [Updates and Licence](../features/updates-and-licence.md).
+**Fix:** Allow outgoing requests to `wbcomdesigns.com`, then click **Retry activation now** in the notice. See [Plugin updates and licence key](../features/updates-and-licence.md).
 
 ## Changes are not showing on the site
 
@@ -162,14 +164,14 @@ Turn on logging to find PHP errors:
 
 ## Still stuck?
 
-1. Check the plugin the block needs is active. A block that needs BuddyPress, BuddyBoss Platform, WooCommerce or Easy Digital Downloads shows a notice naming it when it is missing, and the widgets need Elementor.
+1. Check the plugin the block needs is active. A block that needs BuddyPress, BuddyBoss Platform, WooCommerce or Easy Digital Downloads shows a notice naming it when it is missing. The widgets need Elementor.
 2. Note the Wbcom Essential version, your theme and its version, and the version of the plugin the block needs.
 3. If you use Reign, open **Reign Settings > Tools** and copy the **System status**.
 4. [Open a support ticket](https://wbcomdesigns.com/support/#submit-ticket-section) with the page address, the message you see and the details above.
 
 ## Related
 
-- [FAQ](../faq/faq.md)
-- [Installation Guide](../installation/installation-guide.md)
-- [Common Mistakes](../installation/common-mistakes.md)
-- [Messages and Notices](error-messages.md)
+- [Frequently asked questions](../faq/faq.md)
+- [Install the plugin](../installation/installation-guide.md)
+- [Common mistakes and how to fix them](../installation/common-mistakes.md)
+- [What a message means](error-messages.md)

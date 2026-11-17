@@ -1,12 +1,14 @@
-# BuddyPress Widgets
+# Community widgets (BuddyPress widgets)
 
-The 11 BuddyPress widgets show members, groups, forums and profile information. They appear in the Elementor panel under the **Wbcom Essential** category.
+**Also called:** member grid, member directory, group directory, members slider, community header bar, profile progress, forum list, activity widgets.
+
+This page covers the 11 widgets that show your community: members, groups, forums and profile information. Find them in the Elementor panel under the **Wbcom Essential** category.
 
 Every widget in this group needs BuddyPress or BuddyBoss Platform. The three group widgets (Group Carousel, Groups Grid, Groups Lists) also need the BuddyPress Groups component. The two forum widgets (Forums, Forums Activity) also need bbPress. A widget whose plugin is missing does not appear in the panel.
 
 ## Dashboard Intro
 
-A greeting for the logged-in member with their avatar and a short description.
+Use it for a welcome box at the top of a member's dashboard, with their photo and a short message.
 
 ### Content settings
 
@@ -26,7 +28,7 @@ A greeting for the logged-in member with their avatar and a short description.
 
 ## Forums
 
-A list of your bbPress forums. Needs bbPress.
+Use it to list your forums on a page. Needs bbPress.
 
 ### Content settings
 
@@ -45,7 +47,7 @@ A list of your bbPress forums. Needs bbPress.
 
 ## Forums Activity
 
-The current member's recent forum discussions, with a button to see them all. Needs bbPress.
+Use it to show the signed-in member's recent forum discussions, with a button to see them all. Needs bbPress.
 
 ### Content settings
 
@@ -64,7 +66,7 @@ The current member's recent forum discussions, with a button to see them all. Ne
 
 ## Group Carousel
 
-A carousel of BuddyPress groups. Needs the Groups component.
+Use it for a sliding row of your community groups. Needs the Groups component.
 
 ### Content settings
 
@@ -79,7 +81,7 @@ This widget has no Style tab sections.
 
 ## Groups Grid
 
-A grid of BuddyPress groups. Needs the Groups component.
+Use it for a grid of your community groups (a group directory block). Needs the Groups component.
 
 ### Content settings
 
@@ -96,7 +98,7 @@ This widget has no Style tab sections.
 
 ## Groups Lists
 
-A compact list of groups with optional filter tabs. Needs the Groups component.
+Use it for a compact list of groups, with optional filter tabs. Needs the Groups component.
 
 ### Content settings
 
@@ -116,7 +118,7 @@ A compact list of groups with optional filter tabs. Needs the Groups component.
 
 ## Header Bar
 
-A header bar with a profile dropdown, search, messages, connections, notifications and a WooCommerce cart. Logged-out visitors see sign-in and sign-up buttons.
+Use it for the bar at the top of your site with search, messages, notifications, cart and the member's profile menu. Visitors who are not signed in see sign-in and sign-up buttons.
 
 ### Content settings
 
@@ -142,7 +144,7 @@ A header bar with a profile dropdown, search, messages, connections, notificatio
 
 ## Members Carousel
 
-A carousel of BuddyPress members.
+Use it for a sliding row of your community members.
 
 ### Content settings
 
@@ -157,7 +159,7 @@ This widget has no Style tab sections.
 
 ## Members Grid
 
-A grid of BuddyPress members.
+Use it for a grid of members (a member directory block).
 
 ### Content settings
 
@@ -174,7 +176,7 @@ This widget has no Style tab sections.
 
 ## Members Lists
 
-A compact list of members with optional filter tabs.
+Use it for a compact list of members, with optional filter tabs.
 
 ### Content settings
 
@@ -194,7 +196,7 @@ A compact list of members with optional filter tabs.
 
 ## Profile Completion
 
-Shows how much of the member's profile is complete, with a button to finish or edit it.
+Use it to show a member how much of their profile is filled in, with a button to finish it.
 
 ### Content settings
 

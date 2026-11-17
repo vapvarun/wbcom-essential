@@ -10,15 +10,15 @@
       "pages": [
         {
           "slug": "overview",
-          "title": "Overview"
+          "title": "What Wbcom Essential adds (Overview)"
         },
         {
           "slug": "getting-started",
-          "title": "Getting Started"
+          "title": "Build your first page (Getting started)"
         },
         {
           "slug": "after-installation",
-          "title": "After Installation"
+          "title": "Check that it works (After installation)"
         },
         {
           "slug": "set-up-companion-plugins",
@@ -33,11 +33,11 @@
       "pages": [
         {
           "slug": "installation-guide",
-          "title": "Installation Guide"
+          "title": "Install the plugin (Installation guide)"
         },
         {
           "slug": "common-mistakes",
-          "title": "Common Mistakes"
+          "title": "Common mistakes and how to fix them (Common mistakes)"
         }
       ]
     },
@@ -48,35 +48,35 @@
       "pages": [
         {
           "slug": "blocks-overview",
-          "title": "Blocks Overview"
+          "title": "Blocks Overview (All 35 blocks)"
         },
         {
           "slug": "design-blocks",
-          "title": "Design Blocks"
+          "title": "Design Blocks (Flip card, progress bars, counters, rotating text)"
         },
         {
           "slug": "content-blocks",
-          "title": "Content Blocks"
+          "title": "Content Blocks (FAQ, login form, portfolio, tabs, timeline)"
         },
         {
           "slug": "blog-blocks",
-          "title": "Blog Blocks"
+          "title": "Blog Blocks (Category grid, post slider, news ticker)"
         },
         {
           "slug": "marketing-blocks",
-          "title": "Marketing Blocks"
+          "title": "Marketing Blocks (Hero banner, pricing table, testimonials, countdown)"
         },
         {
           "slug": "buddypress-blocks",
-          "title": "BuddyPress Blocks"
+          "title": "BuddyPress Blocks (Activity feed, member grid, group slider)"
         },
         {
           "slug": "woocommerce-blocks",
-          "title": "WooCommerce Blocks"
+          "title": "WooCommerce Blocks (Product slider, product grid, reviews)"
         },
         {
           "slug": "edd-blocks",
-          "title": "EDD Blocks"
+          "title": "EDD Blocks (Account page, checkout extras, product catalog)"
         }
       ]
     },
@@ -87,19 +87,19 @@
       "pages": [
         {
           "slug": "widgets-overview",
-          "title": "Widgets Overview"
+          "title": "Elementor widgets overview (Widgets overview)"
         },
         {
           "slug": "general-widgets",
-          "title": "General Widgets"
+          "title": "Design and content widgets (General widgets)"
         },
         {
           "slug": "buddypress-widgets",
-          "title": "BuddyPress Widgets"
+          "title": "Community widgets (BuddyPress widgets)"
         },
         {
           "slug": "woocommerce-widgets",
-          "title": "WooCommerce Widgets"
+          "title": "Shop widgets (WooCommerce widgets)"
         }
       ]
     },
@@ -110,35 +110,35 @@
       "pages": [
         {
           "slug": "solution-finder",
-          "title": "Which Block or Widget to Use"
+          "title": "Which block or widget to use (Solution finder)"
         },
         {
           "slug": "theme-colors",
-          "title": "Theme Colors"
+          "title": "Match your theme's colours (Theme colors)"
         },
         {
           "slug": "blog-and-post-templates",
-          "title": "Blog Layouts and Post Templates"
+          "title": "Blog page and post layouts (Blog layouts and post templates)"
         },
         {
           "slug": "block-patterns",
-          "title": "Block Patterns"
+          "title": "Ready-made page sections (Block patterns)"
         },
         {
           "slug": "login-security",
-          "title": "Login Security"
+          "title": "Sign-in protection (Login security)"
         },
         {
           "slug": "updates-and-licence",
-          "title": "Updates and Licence"
+          "title": "Plugin updates and licence key (Updates and licence)"
         },
         {
           "slug": "responsive-design",
-          "title": "Responsive Design"
+          "title": "Phone and tablet layouts (Responsive design)"
         },
         {
           "slug": "performance",
-          "title": "Performance"
+          "title": "Page speed (Performance)"
         }
       ]
     },
@@ -149,35 +149,35 @@
       "pages": [
         {
           "slug": "reign-theme-guide",
-          "title": "Reign Theme Guide"
+          "title": "Using Wbcom Essential with Reign"
         },
         {
           "slug": "buddyx-theme-guide",
-          "title": "BuddyX Theme Guide"
+          "title": "Using Wbcom Essential with BuddyX"
         },
         {
           "slug": "buddyx-pro-theme-guide",
-          "title": "BuddyX Pro Theme Guide"
+          "title": "Using Wbcom Essential with BuddyX Pro"
         },
         {
           "slug": "buddypress-integration",
-          "title": "BuddyPress Integration"
+          "title": "Community blocks and widgets (BuddyPress integration)"
         },
         {
           "slug": "woocommerce-integration",
-          "title": "WooCommerce Integration"
+          "title": "Shop blocks and widgets (WooCommerce integration)"
         },
         {
           "slug": "community-site-tutorial",
-          "title": "Community Site Tutorial"
+          "title": "Build a community home page (Community site tutorial)"
         },
         {
           "slug": "landing-page-tutorial",
-          "title": "Landing Page Tutorial"
+          "title": "Build a landing page (Landing page tutorial)"
         },
         {
           "slug": "online-store-tutorial",
-          "title": "Online Store Tutorial"
+          "title": "Build a shop home page (Online store tutorial)"
         }
       ]
     },
@@ -207,7 +207,7 @@
       "pages": [
         {
           "slug": "faq",
-          "title": "Frequently Asked Questions"
+          "title": "Frequently asked questions (FAQ)"
         }
       ]
     },
@@ -218,11 +218,11 @@
       "pages": [
         {
           "slug": "troubleshooting",
-          "title": "Troubleshooting"
+          "title": "Fix common problems (Troubleshooting)"
         },
         {
           "slug": "error-messages",
-          "title": "Messages and Notices"
+          "title": "What a message means (Messages and notices)"
         }
       ]
     }
