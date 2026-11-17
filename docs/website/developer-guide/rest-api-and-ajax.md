@@ -6,7 +6,7 @@ The plugin registers a few REST routes, one AJAX action and one shortcode. There
 
 | Route | Method | Who can call it | What it does |
 |-------|--------|-----------------|--------------|
-| `/wbcom-essential/v1/xprofile-groups` | GET | Users who can edit posts | Lists BuddyPress profile field groups (`id`, `name`) for the block editor. Returns an empty list when BuddyPress is not active. |
+| `/wbcom-essential/v1/xprofile-groups` | GET | Users who can edit posts | Lists BuddyPress profile field groups and photo choices for the block editor, as `fieldGroups` (`id`, `name`) and `photoOptions` (`id`, `name`). The lists are empty when BuddyPress is not active. |
 | `/wbcom/v1/products` | GET | Public by default | Returns EDD products for the Product Catalog block. Parameters: `category`, `search`, `orderby` (`title`, `date`, `price`, `popular`), `order` (`ASC`, `DESC`), `per_page` (default 12), `page` and `price_range` (`all`, `free`, `under25`, `25to99`, `100plus`). |
 | `/wbcom/v1/product-categories` | GET | Public by default | Lists EDD download categories for the catalog filter. |
 | `/wbcom/v1/edd-account/{tab}` | GET | Logged-in users | Returns the HTML of one Account Dashboard tab. `tab` is one of `dashboard`, `subscriptions`, `downloads`, `free-plugins`, `licenses`, `purchases`, `profile`. |
@@ -16,6 +16,41 @@ The plugin registers a few REST routes, one AJAX action and one shortcode. There
 The two `/wbcom/v1/edd-account` routes and the catalog routes exist only when Easy Digital Downloads is active.
 
 To restrict the catalog routes, filter `wbcom_essential_product_catalog_public_permission`. See [Hooks and Filters](hooks-and-filters.md).
+
+### Examples
+
+List free products, five per page.
+
+```bash
+curl 'https://example.com/wp-json/wbcom/v1/products?price_range=free&per_page=5'
+```
+
+```json
+{
+  "products": [
+    {
+      "id": 128,
+      "title": "Starter guide",
+      "excerpt": "",
+      "url": "https://example.com/downloads/starter-guide/",
+      "image": "",
+      "price": "Free",
+      "is_free": true
+    }
+  ],
+  "total": 1,
+  "total_pages": 1,
+  "page": 1
+}
+```
+
+Read the profile field groups from block editor code. `wp.apiFetch` sends the REST nonce for you.
+
+```js
+wp.apiFetch( { path: '/wbcom-essential/v1/xprofile-groups' } ).then( ( data ) => {
+	console.log( data.fieldGroups ); // [ { id: 1, name: 'Base' } ]
+} );
+```
 
 ### Claiming a free download
 
@@ -27,12 +62,37 @@ To restrict the catalog routes, filter `wbcom_essential_product_catalog_public_p
 | 429 | `wbcom_claim_limit` | Claim limit reached. Please try again later. |
 | 500 | `wbcom_claim_failed` | Could not record your claim. Please try again. |
 
+From a logged-in page that loads `wp-api-fetch`.
+
+```js
+wp.apiFetch( {
+	path: '/wbcom/v1/edd-account/claim-free',
+	method: 'POST',
+	data: { download_id: 128 },
+} ).then( ( result ) => console.log( result.message ) );
+```
+
+A successful claim returns `{ "claimed": true, "download_url": "...", "message": "Added to your library!" }`. `download_url` is empty when the download has no file.
+
 ## AJAX
 
 | Action | Who | What it does |
 |--------|-----|--------------|
 | `wbcom_ajax_login` | Logged-out visitors | Signs a visitor in from the Elementor Login Form widget. It needs the widget's nonce and answers with a success or error message. It applies the [login lockout](../features/login-security.md). The action is not registered when Paid Memberships Pro is active. |
 | `wbcom_essential_dismiss_elementor_notice` | Admins | Dismisses the notice that Elementor is not installed. The dismissal is stored for the whole site. |
+
+`wbcom_ajax_login` expects `log`, `pwd`, optional `rememberme` and `redirect_to`, and the nonce in `security`. The widget prints that nonce in `wbcom_ajax_login_params.security`. The reply is plain JSON, not the `success` and `data` shape:
+
+```bash
+curl -X POST https://example.com/wp-admin/admin-ajax.php \
+  -d 'action=wbcom_ajax_login&security=NONCE&log=admin&pwd=wrong'
+```
+
+```json
+{"loggedin":false,"message":"The username or password is incorrect. Please try again."}
+```
+
+On success it returns `"loggedin": true` and a `redirect` URL on your own site. A missing or old nonce gets `-1` with status `403`.
 
 ## Shortcode
 
