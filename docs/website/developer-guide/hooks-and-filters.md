@@ -12,6 +12,25 @@ Wbcom Essential offers actions and filters so you can change its behaviour from 
 | `wbcom_essential/init` | Action | When the Elementor part of the plugin has loaded. |
 | `wbcom_essential/get_elements` | Filter | The list of Elementor widgets to register. Receives and returns the `$elements` array. |
 
+Put these snippets in your child theme's `functions.php` or in a small plugin. Each one was tested with Wbcom Essential 4.7.2.
+
+Remove one Elementor widget from the editor. The array key is the widget's folder and class name.
+
+```php
+add_filter( 'wbcom_essential/get_elements', function ( $elements ) {
+	unset( $elements['WooCommerce/AddBanner'] );
+	return $elements;
+} );
+```
+
+Log each update. `$previous` is the version the site ran before.
+
+```php
+add_action( 'wbcom_essential_upgraded', function ( $previous ) {
+	error_log( 'Wbcom Essential updated from ' . $previous . ' to ' . WBCOM_ESSENTIAL_VERSION );
+} );
+```
+
 ## Login security
 
 See [Login Security](../features/login-security.md) for what these do.
@@ -22,6 +41,15 @@ See [Login Security](../features/login-security.md) for what these do.
 | `wbcom_essential_login_security_trusted_proxies` | Filter | Array of proxy IP addresses or CIDR ranges (IPv4 or IPv6) whose forwarded IP headers are trusted. Default empty. |
 | `wbcom_essential_single_post_sidebars` | Filter | Sidebar IDs the Classic post template checks, in order; the first with widgets is shown. Default `array( 'sidebar-1', 'sidebar-right' )`. |
 | `wbcom_essential_login_security_client_ip` | Filter | The IP address used for the lockout. Receives `$ip`. |
+
+Trust your load balancer's private range, so the lockout reads the visitor's real IP from `CF-Connecting-IP`, `X-Forwarded-For` or `X-Real-IP`. Requests from any other address still use `REMOTE_ADDR`.
+
+```php
+add_filter( 'wbcom_essential_login_security_trusted_proxies', function ( $proxies ) {
+	$proxies[] = '10.0.0.0/8';
+	return $proxies;
+} );
+```
 
 ## EDD account and checkout
 
@@ -39,6 +67,14 @@ See [Login Security](../features/login-security.md) for what these do.
 | `wbcom_essential_free_claim` | Action | After a free product is claimed. Receives `$download_id`, `$user_id`, `$payment_id`. |
 | `wbcom_essential_product_catalog_public_permission` | Filter | Whether the Product Catalog's product and category routes are public. Default `true`. Return `false` or a `WP_Error` to restrict them. |
 
+Allow the catalog routes for logged-in visitors only. Everyone else gets `401 rest_forbidden`.
+
+```php
+add_filter( 'wbcom_essential_product_catalog_public_permission', function () {
+	return is_user_logged_in();
+} );
+```
+
 ## Templates and theme detection
 
 | Hook | Type | Purpose |
@@ -50,6 +86,20 @@ See [Login Security](../features/login-security.md) for what these do.
 | `wbcom_essential_posts_revolution_elementor_format_icon` | Filter | The post format icon in Posts Revolution. Receives `$return`, `$format`. |
 | `wbcom_essential_wp_cron_disabled` | Filter | Whether the background licence activation should treat WP-Cron as unusable. Return `false` if you run a real system cron with `DISABLE_WP_CRON`. |
 | `wbcom_essential_header_user_menu_items` | Action | Runs inside the Header Bar user menu, so you can add items. |
+
+Load the Members Grid loop from your own folder, `my-templates/` in the child theme, when the file exists.
+
+```php
+add_filter( 'wbcom_essential_locate_template', function ( $template, $template_name ) {
+	if ( 'members/members-loop.php' === $template_name ) {
+		$custom = get_stylesheet_directory() . '/my-templates/members-loop.php';
+		if ( file_exists( $custom ) ) {
+			return $custom;
+		}
+	}
+	return $template;
+}, 10, 2 );
+```
 
 ## Widget extension points
 
@@ -64,6 +114,45 @@ See [Login Security](../features/login-security.md) for what these do.
 | `wbcom_essential/members-loop/after/template` | Filter | Settings passed to the members loop after it renders. |
 | `wbcom_essential/groups-loop/before/template` | Filter | Settings passed to the groups loop before it renders. |
 | `wbcom_essential/groups-loop/after/template` | Filter | Settings passed to the groups loop after it renders. |
+| `reign_wp_menu_elementor_controls` | Action | Add controls to the Notification Area and Group Carousel widgets. Receives the widget. The name comes from the Reign theme, but it fires with any theme. |
+| `reign_notification_area_output` | Filter | The finished HTML of the Notification Area widget. Receives `$html`, two visibility values (`yes` or `no`) and the widget `$settings`. In 4.7.2 both visibility values hold the desktop setting. |
+| `wbtm_bp_directory_groups_data` | Action | Inside each group card of the Groups Grid widget, when the theme is Reign. No arguments. Runs in the group loop, so `bp_get_group_*()` functions work. |
+
+Add a switch to the Members Grid and Members Carousel widgets. Read it in your own code with `$widget->get_settings_for_display( 'my_show_badge' )`.
+
+```php
+add_action( 'wbcom_essential/widget/members-listing/settings', function ( $widget ) {
+	$widget->start_controls_section(
+		'my_extra_section',
+		array( 'label' => 'My options' )
+	);
+	$widget->add_control(
+		'my_show_badge',
+		array(
+			'label'   => 'Show badge',
+			'type'    => \Elementor\Controls_Manager::SWITCHER,
+			'default' => 'yes',
+		)
+	);
+	$widget->end_controls_section();
+} );
+```
+
+Add a Help link after the icons of the Notification Area widget.
+
+```php
+add_filter( 'reign_notification_area_output', function ( $html ) {
+	return $html . '<a class="my-help-link" href="' . esc_url( home_url( '/help/' ) ) . '">Help</a>';
+} );
+```
+
+Show when each group was last active on the Groups Grid cards (Reign).
+
+```php
+add_action( 'wbtm_bp_directory_groups_data', function () {
+	echo '<span class="my-group-active">' . esc_html( bp_get_group_last_active() ) . '</span>';
+} );
+```
 
 ## Older `wbcom_` hooks
 
