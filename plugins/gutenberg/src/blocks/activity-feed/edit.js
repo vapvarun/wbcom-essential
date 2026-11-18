@@ -127,6 +127,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						value={ layout }
 						options={ LAYOUT_OPTIONS }
 						onChange={ ( v ) => setAttributes( { layout: v } ) }
+						help={ 'compact' === layout
+							? __( 'Compact shows each activity as one line: avatar, action and time. Type label, content, media and buttons are not shown.', 'wbcom-essential' )
+							: undefined }
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
@@ -138,48 +141,58 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						onChange={ ( v ) => setAttributes( { showAvatar: v } ) }
 						__nextHasNoMarginBottom
 					/>
-					<ToggleControl
-						label={ __( 'Show Type Icon', 'wbcom-essential' ) }
-						checked={ showTypeIcon }
-						onChange={ ( v ) => setAttributes( { showTypeIcon: v } ) }
-						__nextHasNoMarginBottom
-					/>
+					{ 'compact' !== layout && (
+						<ToggleControl
+							label={ __( 'Show Type Label', 'wbcom-essential' ) }
+							checked={ showTypeIcon }
+							onChange={ ( v ) => setAttributes( { showTypeIcon: v } ) }
+							__nextHasNoMarginBottom
+						/>
+					) }
 					<ToggleControl
 						label={ __( 'Show Action Text', 'wbcom-essential' ) }
 						checked={ showAction }
 						onChange={ ( v ) => setAttributes( { showAction: v } ) }
 						__nextHasNoMarginBottom
 					/>
-					<ToggleControl
-						label={ __( 'Show Content', 'wbcom-essential' ) }
-						checked={ showContent }
-						onChange={ ( v ) => setAttributes( { showContent: v } ) }
-						__nextHasNoMarginBottom
-					/>
-					<ToggleControl
-						label={ __( 'Show Media Preview', 'wbcom-essential' ) }
-						checked={ showMediaPreview }
-						onChange={ ( v ) => setAttributes( { showMediaPreview: v } ) }
-						__nextHasNoMarginBottom
-					/>
+					{ 'compact' !== layout && (
+						<>
+							<ToggleControl
+								label={ __( 'Show Content', 'wbcom-essential' ) }
+								checked={ showContent }
+								onChange={ ( v ) => setAttributes( { showContent: v } ) }
+								__nextHasNoMarginBottom
+							/>
+							<ToggleControl
+								label={ __( 'Show Media Preview', 'wbcom-essential' ) }
+								checked={ showMediaPreview }
+								onChange={ ( v ) => setAttributes( { showMediaPreview: v } ) }
+								__nextHasNoMarginBottom
+							/>
+						</>
+					) }
 					<ToggleControl
 						label={ __( 'Show Timestamp', 'wbcom-essential' ) }
 						checked={ showTime }
 						onChange={ ( v ) => setAttributes( { showTime: v } ) }
 						__nextHasNoMarginBottom
 					/>
-					<ToggleControl
-						label={ __( 'Show Favorite Button', 'wbcom-essential' ) }
-						checked={ showFavoriteBtn }
-						onChange={ ( v ) => setAttributes( { showFavoriteBtn: v } ) }
-						__nextHasNoMarginBottom
-					/>
-					<ToggleControl
-						label={ __( 'Show Comment Count', 'wbcom-essential' ) }
-						checked={ showCommentCount }
-						onChange={ ( v ) => setAttributes( { showCommentCount: v } ) }
-						__nextHasNoMarginBottom
-					/>
+					{ 'compact' !== layout && (
+						<>
+							<ToggleControl
+								label={ __( 'Show Favorite Button', 'wbcom-essential' ) }
+								checked={ showFavoriteBtn }
+								onChange={ ( v ) => setAttributes( { showFavoriteBtn: v } ) }
+								__nextHasNoMarginBottom
+							/>
+							<ToggleControl
+								label={ __( 'Show Comment Count', 'wbcom-essential' ) }
+								checked={ showCommentCount }
+								onChange={ ( v ) => setAttributes( { showCommentCount: v } ) }
+								__nextHasNoMarginBottom
+							/>
+						</>
+					) }
 					{ showAvatar && (
 						<RangeControl
 							label={ __( 'Avatar Size', 'wbcom-essential' ) }
@@ -234,7 +247,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							onChange={ ( v ) => setAttributes( { borderColor: v || '' } ) }
 						/>
 					</BaseControl>
-					<BaseControl label={ __( 'Icon Background', 'wbcom-essential' ) }>
+					<BaseControl label={ __( 'Comment Bubble & Hover Background', 'wbcom-essential' ) }>
 						<ColorPalette
 							colors={ COLORS }
 							value={ iconBg }

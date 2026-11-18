@@ -211,20 +211,24 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						enableAlpha
 						clearable
 					/>
-					<p><strong>{ __( 'Box Background', 'wbcom-essential' ) }</strong></p>
-					<ColorPalette
-						value={ boxBg }
-						onChange={ ( val ) => setAttributes( { boxBg: val || '' } ) }
-						enableAlpha
-						clearable
-					/>
-					<p><strong>{ __( 'Box Border Color', 'wbcom-essential' ) }</strong></p>
-					<ColorPalette
-						value={ boxBorderColor }
-						onChange={ ( val ) => setAttributes( { boxBorderColor: val || '' } ) }
-						enableAlpha
-						clearable
-					/>
+					{ 'boxes' === layout && (
+						<>
+							<p><strong>{ __( 'Box Background', 'wbcom-essential' ) }</strong></p>
+							<ColorPalette
+								value={ boxBg }
+								onChange={ ( val ) => setAttributes( { boxBg: val || '' } ) }
+								enableAlpha
+								clearable
+							/>
+							<p><strong>{ __( 'Box Border Color', 'wbcom-essential' ) }</strong></p>
+							<ColorPalette
+								value={ boxBorderColor }
+								onChange={ ( val ) => setAttributes( { boxBorderColor: val || '' } ) }
+								enableAlpha
+								clearable
+							/>
+						</>
+					) }
 					<Spacer marginTop={ 3 } />
 					<BorderRadiusControl
 						values={ borderRadius }

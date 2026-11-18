@@ -59,6 +59,10 @@
       "type": "number",
       "default": 3
     },
+    "gridColumns": {
+      "type": "number",
+      "default": 3
+    },
     "autoplay": {
       "type": "boolean",
       "default": true

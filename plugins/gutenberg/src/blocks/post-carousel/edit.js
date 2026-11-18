@@ -38,6 +38,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		order,
 		displayMode,
 		slidesPerView,
+		gridColumns,
 		autoplay,
 		autoplayDelay,
 		showImage,
@@ -152,6 +153,17 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						] }
 						onChange={ ( val ) => setAttributes( { displayMode: val } ) }
 					/>
+
+					{ displayMode === 'grid' && (
+						<RangeControl
+							label={ __( 'Columns (desktop)', 'wbcom-essential' ) }
+							value={ gridColumns }
+							onChange={ ( val ) => setAttributes( { gridColumns: val } ) }
+							min={ 1 }
+							max={ 4 }
+							step={ 1 }
+						/>
+					) }
 
 					{ ( displayMode === 'carousel' || displayMode === 'slider' ) && (
 						<>

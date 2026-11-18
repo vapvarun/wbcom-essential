@@ -26,6 +26,7 @@ $pc_order         = in_array( strtoupper( $attributes['order'] ?? 'DESC' ), arra
 	: 'DESC';
 $display_mode  = sanitize_key( $attributes['displayMode'] ?? 'carousel' );
 $slides        = absint( $attributes['slidesPerView'] ?? 3 );
+$grid_cols     = min( 4, max( 1, absint( $attributes['gridColumns'] ?? 3 ) ) );
 $autoplay      = ! empty( $attributes['autoplay'] );
 $autoplay_delay = absint( $attributes['autoplayDelay'] ?? 5000 );
 $show_image    = ! empty( $attributes['showImage'] );
@@ -110,6 +111,7 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 
 $wrapper_attrs = get_block_wrapper_attributes( array(
 	'class' => $wrapper_class,
+	'style' => 'grid' === $display_mode ? '--wbe-pc-cols: ' . $grid_cols . ';' : '',
 ) );
 
 // ── Token CSS ────────────────────────────────────────────────────────────────

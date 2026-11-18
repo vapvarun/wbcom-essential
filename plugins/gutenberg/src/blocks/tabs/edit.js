@@ -31,7 +31,6 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	const {
 		uniqueId,
 		tabs,
-		activeTab,
 		tabStyle,
 		tabAlign,
 		activeColor,
