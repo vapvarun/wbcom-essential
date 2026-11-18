@@ -227,7 +227,7 @@
 .wbe-customer-reviews__error {
 	padding: 32px;
 	text-align: center;
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 	border: 2px dashed #e9ecef;
 	border-radius: 8px;
 }

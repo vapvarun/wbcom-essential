@@ -39,8 +39,8 @@
 	padding:          6px 18px;
 	border:           2px solid transparent;
 	border-radius:    50px;
-	background:       #f1f3f4;
-	color:            #444;
+	background:       var(--wbe-surface-alt, #f1f3f4);
+	color:            var(--wbe-text, #444);
 	font-size:        0.875rem;
 	font-weight:      500;
 	line-height:      1.4;

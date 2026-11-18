@@ -146,7 +146,7 @@
 }
 
 .wbe-product-carousel__price del {
-	color: #999;
+	color: var(--wbe-text-muted, #6c757d);
 	font-weight: 400;
 	font-size: 0.85em;
 	margin-right: 4px;
@@ -241,7 +241,7 @@
 .wbe-product-carousel__error {
 	padding: 32px;
 	text-align: center;
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 	border: 2px dashed #e9ecef;
 	border-radius: 8px;
 }

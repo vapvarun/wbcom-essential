@@ -440,7 +440,7 @@
 }
 
 .wbe-af__comment-error {
-	color: #e53e3e;
+	color: var(--wbe-color-danger-text, #991b1b);
 	font-size: 0.8rem;
 	margin: 4px 0 0;
 }
