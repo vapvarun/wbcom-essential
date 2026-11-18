@@ -1,3 +1,5 @@
+import guardLoop from './swiper-loop';
+
 /**
  * Start a card carousel whose slides per view follow the CONTAINER width.
  *
@@ -64,7 +66,7 @@ export default function initFitCarousel( swiperEl, options, minSlideWidth ) {
 	}
 
 	let current = slidesThatFit();
-	swiperEl._swiperInstance = new Swiper( swiperEl, Object.assign( {}, options, { slidesPerView: current } ) );
+	swiperEl._swiperInstance = new Swiper( swiperEl, guardLoop( swiperEl, Object.assign( {}, options, { slidesPerView: current } ) ) );
 
 	if ( typeof ResizeObserver === 'undefined' ) {
 		return;
@@ -79,6 +81,6 @@ export default function initFitCarousel( swiperEl, options, minSlideWidth ) {
 		}
 		current = next;
 		swiperEl._swiperInstance.destroy( true, true );
-		swiperEl._swiperInstance = new Swiper( swiperEl, Object.assign( {}, options, { slidesPerView: current } ) );
+		swiperEl._swiperInstance = new Swiper( swiperEl, guardLoop( swiperEl, Object.assign( {}, options, { slidesPerView: current } ) ) );
 	} ).observe( swiperEl );
 }
