@@ -87,7 +87,7 @@
 .wbe-timeline__dot-icon {
 	font-size: calc( var( --wbe-tl-dot-size ) * 0.45 );
 	line-height: 1;
-	color: #ffffff;
+	color: var( --wbe-color-white, #ffffff );
 }
 
 /* ---- Card ---- */
@@ -227,3 +227,10 @@
 	}
 }
 
+/* A text or number icon is black on a light dot colour (Reign and BuddyX dark mode, a pale owner colour) and
+   white on a dark one: the dot colour's own lightness picks it. Browsers without relative colours keep white. */
+@supports ( color: oklch( from red clamp( 0, ( 0.6 - l ) * 999, 1 ) 0 0 ) ) {
+	.wbe-timeline__dot-icon {
+		color: oklch( from var( --wbe-tl-dot-color ) clamp( 0, ( 0.6 - l ) * 999, 1 ) 0 0 );
+	}
+}

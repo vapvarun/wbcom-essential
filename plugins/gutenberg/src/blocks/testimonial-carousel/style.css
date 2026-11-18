@@ -102,7 +102,7 @@
 	height: var( --wbe-tc-avatar-size );
 	border-radius: 50%;
 	background: var( --wbe-tc-accent );
-	color: #ffffff;
+	color: var( --wbe-color-white, #ffffff );
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -246,3 +246,10 @@
 	}
 }
 
+/* The initial is black on a light accent (Reign and BuddyX dark mode, a pale owner colour) and white on a dark
+   one: the accent's own lightness picks it. Browsers without relative colours keep white. */
+@supports ( color: oklch( from red clamp( 0, ( 0.6 - l ) * 999, 1 ) 0 0 ) ) {
+	.wbe-testimonial-carousel__avatar-placeholder {
+		color: oklch( from var( --wbe-tc-accent ) clamp( 0, ( 0.6 - l ) * 999, 1 ) 0 0 );
+	}
+}
