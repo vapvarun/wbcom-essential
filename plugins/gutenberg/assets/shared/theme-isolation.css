@@ -10,6 +10,15 @@
  *
  * All resets use `inherit` so block CSS just needs to set properties on
  * the wrapper — children inherit naturally.
+ *
+ * Specificity contract (keep it when adding rules):
+ * - Element resets (p, lists, blockquote, pre/code, tables) are
+ *   `html body :where(<block>) el` = (0,0,3). That beats theme element rules
+ *   such as `p` or `blockquote p` (0,0,1-2) but loses to any block rule with
+ *   one class, so `.wbe-hero__subheading { margin-bottom: 32px }` applies.
+ * - The button reset is (0,1,2) so it still beats theme `button:hover`
+ *   (0,1,1); block button rules need two classes to override it.
+ * - Link resets must beat Reign's `.post .entry-content a:not(.read-more)`.
  */
 
 /* ── Links ───────────────────────────────────────────────── */
@@ -40,7 +49,7 @@
 } */
 
 /* ── Buttons ─────────────────────────────────────────────── */
-[class^="wp-block-wbcom-essential"] button:not(.components-button) {
+html [class^="wp-block-wbcom-essential"] button:where(:not(.components-button)) {
 	background-color: inherit;
 	color: inherit;
 	border: inherit;
@@ -86,24 +95,24 @@
 }
 
 /* ── Lists ───────────────────────────────────────────────── */
-[class^="wp-block-wbcom-essential"] ul,
-[class^="wp-block-wbcom-essential"] ol {
+html body :where([class^="wp-block-wbcom-essential"]) ul,
+html body :where([class^="wp-block-wbcom-essential"]) ol {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-[class^="wp-block-wbcom-essential"] li {
+html body :where([class^="wp-block-wbcom-essential"]) li {
 	margin-bottom: 0;
 }
 
 /* ── Tables ──────────────────────────────────────────────── */
-[class^="wp-block-wbcom-essential"] table {
+html body :where([class^="wp-block-wbcom-essential"]) table {
 	border-collapse: collapse;
 }
 
-[class^="wp-block-wbcom-essential"] th,
-[class^="wp-block-wbcom-essential"] td {
+html body :where([class^="wp-block-wbcom-essential"]) th,
+html body :where([class^="wp-block-wbcom-essential"]) td {
 	border-top: none;
 	border-bottom: none;
 	padding: inherit;
@@ -111,13 +120,13 @@
 }
 
 /* ── Paragraphs / misc ───────────────────────────────────── */
-[class^="wp-block-wbcom-essential"] p {
+html body :where([class^="wp-block-wbcom-essential"]) p {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
 /* ── Blockquote ──────────────────────────────────────────── */
-[class^="wp-block-wbcom-essential"] blockquote {
+html body :where([class^="wp-block-wbcom-essential"]) blockquote {
 	border-left: none;
 	margin: 0;
 	padding: 0;
@@ -127,13 +136,13 @@
 }
 
 /* ── Code / pre ──────────────────────────────────────────── */
-[class^="wp-block-wbcom-essential"] pre {
+html body :where([class^="wp-block-wbcom-essential"]) pre {
 	background: inherit;
 	border: inherit;
 	padding: inherit;
 }
 
-[class^="wp-block-wbcom-essential"] code {
+html body :where([class^="wp-block-wbcom-essential"]) code {
 	background: inherit;
 	border: inherit;
 	padding: inherit;
