@@ -1015,3 +1015,20 @@ function wbcom_essential_product_visibility_tax_query() {
 		)
 		: array();
 }
+
+/**
+ * Editor-only empty state for an Elementor widget that has no content yet.
+ *
+ * Widgets start with empty content instead of sample copy, so nothing placeholder-like
+ * reaches visitors. In the Elementor editor this prints a short prompt telling the
+ * owner what to fill in; on the live page it prints nothing.
+ *
+ * @param string $message What the owner should add, already translated.
+ * @return void
+ */
+function wbcom_essential_elementor_empty_state( $message ) {
+	if ( ! class_exists( '\Elementor\Plugin' ) || ! \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+		return;
+	}
+	echo '<p class="wbcom-essential-empty-state" style="margin:0;padding:16px;border:1px dashed currentColor;border-radius:4px;opacity:.75;text-align:center;">' . esc_html( $message ) . '</p>';
+}
