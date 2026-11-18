@@ -207,7 +207,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						{ __( 'EDD Checkout Social Proof', 'wbcom-essential' ) }
 					</p>
 					<p style={ { margin: '4px 0 0', fontSize: 12, color: '#94a3b8' } }>
-						{ __( 'Trustpilot rating and customer reviews render here on the frontend.', 'wbcom-essential' ) }
+						{ __( 'Shown on the checkout only when Trustpilot reviews are entered in this block\'s settings or the EDD Reviews add-on is active.', 'wbcom-essential' ) }
 					</p>
 				</div>
 			</div>
