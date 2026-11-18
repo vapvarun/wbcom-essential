@@ -1292,7 +1292,8 @@ class ProductTab extends \Elementor\Widget_Base {
 		$orderby         = $this->get_settings_for_display( 'orderby' );
 		$order           = $this->get_settings_for_display( 'order' );
 		$columns         = $this->get_settings_for_display( 'wbcom_product_grid_column' );
-		$rows            = $this->get_settings_for_display( 'wbcom_product_grid_row' );
+		// At least one row: a cleared or zero Rows field made every '% $rows' below a fatal error.
+		$rows            = max( 1, absint( $this->get_settings_for_display( 'wbcom_product_grid_row' ) ) );
 		$tabuniqid       = $this->get_id();
 		$proslider       = $this->get_settings_for_display( 'proslider' );
 		$producttab      = $this->get_settings_for_display( 'producttab' );
