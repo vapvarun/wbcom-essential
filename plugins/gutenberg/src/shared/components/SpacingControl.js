@@ -130,10 +130,39 @@ function SpacingInputs( {
 		}
 	};
 
+	const tools = (
+		<>
+			<FlexItem>
+				<Button
+					icon={ linked ? link : linkOff }
+					label={ linked
+						? __( 'Unlink sides', 'wbcom-essential' )
+						: __( 'Link sides', 'wbcom-essential' )
+					}
+					onClick={ () => setLinked( ! linked ) }
+					isPressed={ linked }
+					size="small"
+				/>
+			</FlexItem>
+			<FlexItem>
+				<SelectControl
+					value={ unit }
+					options={ UNITS }
+					onChange={ onUnitChange }
+					hideLabelFromVision
+					label={ __( 'Unit', 'wbcom-essential' ) }
+					__nextHasNoMarginBottom
+				/>
+			</FlexItem>
+		</>
+	);
+
+	// Linked: one input beside the tools. Unlinked: the four sides two by two with visible labels, because four
+	// boxes plus the tools in one row of the 280px sidebar left each box 15px wide (80 showed as "8").
 	return (
 		<BaseControl label={ label } className="wbe-spacing-control">
-			<Flex align="flex-end" gap={ 2 }>
-				{ linked ? (
+			{ linked ? (
+				<Flex align="flex-end" gap={ 2 }>
 					<FlexItem>
 						<NumberControl
 							label={ withDevice( __( 'All', 'wbcom-essential' ) ) }
@@ -144,44 +173,28 @@ function SpacingInputs( {
 							hideLabelFromVision
 						/>
 					</FlexItem>
-				) : (
-					SIDES.map( ( { key, label: sideLabel } ) => (
-						<FlexItem key={ key }>
+					{ tools }
+				</Flex>
+			) : (
+				<>
+					<div style={ { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '8px' } }>
+						{ SIDES.map( ( { key, label: sideLabel } ) => (
 							<NumberControl
-								label={ withDevice( sideLabel ) }
+								key={ key }
+								label={ sideLabel }
+								aria-label={ withDevice( sideLabel ) }
 								value={ values[ key ] }
 								onChange={ ( val ) => handleChange( key, val ) }
 								min={ -200 }
 								max={ 500 }
-								hideLabelFromVision
-								placeholder={ sideLabel[ 0 ] }
 							/>
-						</FlexItem>
-					) )
-				) }
-				<FlexItem>
-					<Button
-						icon={ linked ? link : linkOff }
-						label={ linked
-							? __( 'Unlink sides', 'wbcom-essential' )
-							: __( 'Link sides', 'wbcom-essential' )
-						}
-						onClick={ () => setLinked( ! linked ) }
-						isPressed={ linked }
-						size="small"
-					/>
-				</FlexItem>
-				<FlexItem>
-					<SelectControl
-						value={ unit }
-						options={ UNITS }
-						onChange={ onUnitChange }
-						hideLabelFromVision
-						label={ __( 'Unit', 'wbcom-essential' ) }
-						__nextHasNoMarginBottom
-					/>
-				</FlexItem>
-			</Flex>
+						) ) }
+					</div>
+					<Flex justify="flex-start" gap={ 2 }>
+						{ tools }
+					</Flex>
+				</>
+			) }
 		</BaseControl>
 	);
 }
