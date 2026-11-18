@@ -201,6 +201,17 @@
 	cursor: default;
 }
 
+/* Why a join did not go through, in BuddyPress's words. */
+.wbe-group-carousel__join-status {
+	margin: 12px 0 0;
+	font-size: 14px;
+	color: var( --wbe-text, inherit );
+}
+
+.wbe-group-carousel__join-status:empty {
+	margin: 0;
+}
+
 /* ── Navigation arrows ────────────────────────────────────────────────────── */
 .wbe-group-carousel .wbe-group-carousel__swiper .swiper-button-prev,
 .wbe-group-carousel .wbe-group-carousel__swiper .swiper-button-next {

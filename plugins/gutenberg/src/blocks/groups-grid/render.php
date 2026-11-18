@@ -178,15 +178,17 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 				'descColor' => $desc_color,
 			),
 			'i18n'             => array(
-				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
-				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
-				'member'      => __( 'Member', 'wbcom-essential' ),
-				'members'     => __( 'Members', 'wbcom-essential' ),
+				'loading'           => __( 'Loading groups...', 'wbcom-essential' ),
+				'empty'             => __( 'No groups found.', 'wbcom-essential' ),
+				'member'            => __( 'Member', 'wbcom-essential' ),
+				'members'           => __( 'Members', 'wbcom-essential' ),
 				/* translators: %s: time since the group was last active, e.g. "2 hours ago". */
-				'activeAgo'   => __( 'Active %s', 'wbcom-essential' ),
-				'joinGroup'   => __( 'Join Group', 'wbcom-essential' ),
-				'joined'      => __( 'Joined', 'wbcom-essential' ),
-				'pending'     => __( 'Pending', 'wbcom-essential' ),
+				'activeAgo'         => __( 'Active %s', 'wbcom-essential' ),
+				'joinGroup'         => __( 'Join Group', 'wbcom-essential' ),
+				'joined'            => __( 'Joined', 'wbcom-essential' ),
+				'requestMembership' => __( 'Request Membership', 'wbcom-essential' ),
+				'requestSent'       => __( 'Request Sent', 'wbcom-essential' ),
+				'joinError'         => __( 'Could not send your request. Please try again.', 'wbcom-essential' ),
 			),
 		);
 		?>
