@@ -52,10 +52,24 @@
 }
 
 /* ── Grid layout ─────────────────────────────────────────────────────────── */
+/*
+ * The owner's column count for the screen size is the maximum. In a narrow container (a Columns block, a
+ * sidebar) columns drop only when a card would fall under 130px. Phones keep one column (the mobile count is 1).
+ */
 .wbe-post-carousel__grid {
+	--wbe-pc-grid-gap: 28px;
 	display: grid;
-	grid-template-columns: repeat( var( --wbe-pc-grid-cols ), 1fr );
-	gap: 28px;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( 130px, 100% ),
+				calc( ( 100% - ( var( --wbe-pc-grid-cols ) - 1 ) * var( --wbe-pc-grid-gap ) ) / var( --wbe-pc-grid-cols ) )
+			),
+			1fr
+		)
+	);
+	gap: var( --wbe-pc-grid-gap );
 }
 
 /* ── Card ─────────────────────────────────────────────────────────────────── */
@@ -254,7 +268,7 @@
 	}
 
 	.wbe-post-carousel__grid {
-		gap: 20px;
+		--wbe-pc-grid-gap: 20px;
 	}
 
 	.wbe-post-carousel .swiper-button-prev,
@@ -270,7 +284,7 @@
 	}
 
 	.wbe-post-carousel__grid {
-		gap: 16px;
+		--wbe-pc-grid-gap: 16px;
 	}
 
 	.wbe-post-carousel__body {

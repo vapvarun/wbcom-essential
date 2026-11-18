@@ -78,9 +78,23 @@
 }
 
 /* ── Grid ────────────────────────────────────────────────────────────────── */
+/*
+ * The owner's column count for the screen size is the maximum. In a narrow container (a Columns block, a
+ * sidebar) columns drop only when a card would fall under 130px. Phones keep the saved mobile count.
+ */
 .wbe-portfolio-grid__grid {
+	--wbe-pg-columns-now:  var( --wbe-pg-columns );
 	display:               grid;
-	grid-template-columns: repeat( var( --wbe-pg-columns ), 1fr );
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( 130px, 100% ),
+				calc( ( 100% - ( var( --wbe-pg-columns-now ) - 1 ) * var( --wbe-pg-gap ) ) / var( --wbe-pg-columns-now ) )
+			),
+			1fr
+		)
+	);
 	gap:                   var( --wbe-pg-gap );
 }
 
@@ -305,7 +319,7 @@
 /* ── Responsive columns ──────────────────────────────────────────────────── */
 @media ( max-width: 1024px ) {
 	.wbe-portfolio-grid__grid {
-		grid-template-columns: repeat( var( --wbe-pg-columns-tablet ), 1fr );
+		--wbe-pg-columns-now: var( --wbe-pg-columns-tablet );
 	}
 }
 

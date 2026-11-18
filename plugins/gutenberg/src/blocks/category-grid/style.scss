@@ -32,9 +32,21 @@
 		font-style: italic;
 	}
 
+	// The owner's column count is the maximum; in a narrow container columns drop only below 130px.
+	// Phones keep the saved mobile count.
 	&__items {
+		--cat-columns-now: var(--cat-columns);
 		display: grid;
-		grid-template-columns: repeat(var(--cat-columns), 1fr);
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(
+				max(
+					min( 130px, 100% ),
+					calc( ( 100% - ( var( --cat-columns-now ) - 1 ) * var( --cat-gap ) ) / var( --cat-columns-now ) )
+				),
+				1fr
+			)
+		);
 		gap: var(--cat-gap);
 		list-style: none;
 		margin: 0;
@@ -185,7 +197,7 @@
 	// Responsive breakpoints.
 	@media (max-width: 1024px) {
 		.wbcom-essential-category-grid__items {
-			grid-template-columns: repeat(var(--cat-columns-tablet), 1fr);
+			--cat-columns-now: var(--cat-columns-tablet);
 		}
 	}
 
