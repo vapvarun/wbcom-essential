@@ -90,6 +90,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	const blockProps = useBlockProps( {
 		className: `wbe-block-${ uniqueId } wbe-post-carousel-editor`,
+		// Slides per view for the editor preview (editor.css); Swiper only runs on the front end.
+		style: { '--wbe-ed-slides': slidesPerView },
 	} );
 
 	return (

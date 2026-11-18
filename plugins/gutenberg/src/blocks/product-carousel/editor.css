@@ -7,3 +7,18 @@
 .wbe-product-carousel-editor .wp-block-wbcom-essential-product-carousel {
 	pointer-events: none;
 }
+
+/*
+ * Swiper only runs on the front end, so the preview lays the slides out in a row with the chosen slides per
+ * view and gap, and the same 130px minimum as the front end. The .swiper clips the rest.
+ */
+.wbe-product-carousel-editor .swiper-wrapper {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: max( min( 130px, 100% ), calc( ( 100% - ( var( --wbe-ed-slides, 4 ) - 1 ) * var( --wbe-ed-gap, 24px ) ) / var( --wbe-ed-slides, 4 ) ) );
+	gap: var( --wbe-ed-gap, 24px );
+}
+
+.wbe-product-carousel-editor .swiper-slide {
+	width: auto;
+}
