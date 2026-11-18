@@ -667,6 +667,8 @@ class NotificationArea extends \Elementor\Widget_Base {
 		 * page above the widget. $notification_visibility_desktop is the same
 		 * value, already guarded with a 'yes' default at the top of render().
 		 */
-		echo apply_filters( 'reign_notification_area_output', ob_get_clean(), $notification_visibility_desktop, $notification_visibility_desktop, $settings ); //phpcs:ignore
+		// Arguments: output, desktop visibility, tablet visibility, widget settings, mobile visibility (the third used to
+		// repeat the desktop value; mobile is added last so callbacks reading $settings as the fourth keep working).
+		echo apply_filters( 'reign_notification_area_output', ob_get_clean(), $notification_visibility_desktop, $notification_visibility_tablet, $settings, $notification_visibility_mobile ); //phpcs:ignore
 	}
 }
