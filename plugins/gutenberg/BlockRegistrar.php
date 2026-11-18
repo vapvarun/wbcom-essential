@@ -146,6 +146,11 @@ final class BlockRegistrar {
 	public function translate_saved_markup( $block_content, $block ) {
 		switch ( $block['blockName'] ) {
 			case 'wbcom-essential/countdown-timer':
+				// No target date: the boxes would read 00 forever and the expiry message never shows, so the
+				// block prints nothing (the editor already shows a "set a date" placeholder).
+				if ( empty( $block['attrs']['targetDate'] ) ) {
+					return '';
+				}
 				$labels = array(
 					'Days'  => __( 'Days', 'wbcom-essential' ),
 					'Hours' => __( 'Hours', 'wbcom-essential' ),
