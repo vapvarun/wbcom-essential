@@ -80,6 +80,8 @@
 	font-weight: var(--wbe-weight-semibold, 600);
 	line-height: var(--wbe-leading-tight, 1.25);
 	color: var(--wbcom-heading-color, var(--wbe-text, inherit));
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* ---- Description ---- */
@@ -88,6 +90,7 @@
 	font-size: var(--wbe-font-sm, 14px);
 	line-height: var(--wbe-leading-relaxed, 1.75);
 	color: var(--wbe-text-muted, #6c757d);
+	overflow-wrap: anywhere;
 }
 
 /* Visibility utility classes */

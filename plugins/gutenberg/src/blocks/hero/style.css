@@ -59,6 +59,8 @@
 	font-weight: var(--wbe-weight-bold, 700);
 	line-height: var(--wbe-leading-tight, 1.25);
 	color: #ffffff;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* Subheading */
@@ -68,6 +70,7 @@
 	line-height: var(--wbe-leading-relaxed, 1.75);
 	color: rgba(255, 255, 255, 0.8);
 	max-width: 640px;
+	overflow-wrap: anywhere;
 }
 
 /* Buttons row */

@@ -64,6 +64,8 @@
 	font-weight: 800;
 	line-height: 1.2;
 	letter-spacing: -0.02em;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* ── Description ──────────────────────────────────────────────────────────── */
@@ -72,6 +74,7 @@
 	font-size: clamp(0.9375rem, 2vw, 1.125rem);
 	line-height: 1.6;
 	max-width: 560px;
+	overflow-wrap: anywhere;
 }
 
 /* ── CTA Button ───────────────────────────────────────────────────────────── */

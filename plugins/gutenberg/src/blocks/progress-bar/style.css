@@ -47,6 +47,8 @@
 	font-weight: 600;
 	color: var( --wbe-pb-label-color );
 	line-height: 1.4;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 .wbe-progress-bar__percent {

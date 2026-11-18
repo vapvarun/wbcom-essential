@@ -77,6 +77,8 @@
 	color: var( --wbe-sc-label-color );
 	text-transform: uppercase;
 	letter-spacing: 0.06em;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* ---- Visibility ---- */

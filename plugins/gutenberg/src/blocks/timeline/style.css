@@ -155,6 +155,8 @@
 	letter-spacing: 0.08em;
 	color: var( --wbe-tl-date-color );
 	margin-bottom: 6px;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* ---- Title ---- */
@@ -164,6 +166,7 @@
 	font-weight: 700;
 	color: var( --wbe-tl-title-color );
 	line-height: 1.4;
+	overflow-wrap: anywhere;
 }
 
 /* ---- Description ---- */
@@ -172,6 +175,7 @@
 	font-size: 0.9rem;
 	line-height: 1.65;
 	color: var( --wbe-tl-desc-color );
+	overflow-wrap: anywhere;
 }
 
 /* ---- Visibility utilities ---- */
