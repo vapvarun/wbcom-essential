@@ -42,7 +42,9 @@ phpstan-baseline.neon
 .phpstan-stubs
 bin/
 
-# Documentation & meta
+# Documentation & meta (audit reports and planning notes are dev-only)
+audit/
+plan/
 docs/
 CLAUDE.md
 README.md

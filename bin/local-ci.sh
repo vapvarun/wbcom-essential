@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+# Local CI for Wbcom Essential. Run before every push; bin/build-release.sh runs it too.
+#
+# Gates: Q1 PHP lint · Q2 version triangulation · F1/F2 no inline <style>/<script>
+#        in PHP · B1 blocks build · J1 block unit tests · Q3 WPCS (errors block) ·
+#        Q4 PHPStan · W1 wppqa_run_checks (fast) against a WordPress install.
+#
+# W1 needs a site with this plugin active: WP_ROOT=/path/to/wordpress bin/local-ci.sh
+# Without WP_ROOT it is reported as SKIPPED, never as passed.
+set -uo pipefail
+
+cd "$(dirname "$0")/.."
+FAIL=0
+SKIPPED=""
+section() { printf '\n\033[1m== %s ==\033[0m\n' "$1"; }
+PHP_DIRS=(loader.php wbcom-essential.php uninstall.php admin includes plugins templates)
+
+section "Q1 - PHP lint"
+if find "${PHP_DIRS[@]}" -name '*.php' -not -path '*/node_modules/*' -print0 \
+	| xargs -0 -n1 -P4 php -n -l >/dev/null; then
+	echo "ok"
+else
+	echo "FAIL: PHP syntax errors"; FAIL=1
+fi
+
+section "Q2 - version triangulation"
+HEADER_V=$(grep -m1 -E '^\s*\*?\s*Version:' loader.php | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+CONST_V=$(grep -m1 -oE "WBCOM_ESSENTIAL_VERSION', '[0-9]+\.[0-9]+\.[0-9]+" loader.php | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+README_V=$(grep -m1 -E '^Stable tag:' readme.txt | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+echo "header=$HEADER_V const=$CONST_V readme=$README_V"
+if [ "$HEADER_V" = "$CONST_V" ] && [ "$HEADER_V" = "$README_V" ]; then echo "ok"; else echo "FAIL: version mismatch"; FAIL=1; fi
+
+section "F1/F2 - no inline <style>/<script> in PHP"
+# Same scope as the release gate (gate-check.sh F1/F2): admin and shared PHP. Block
+# render.php files print scoped token CSS on the front end and are tracked separately.
+HITS=$(grep -rn -E '<style|<script' --include='*.php' includes admin templates 2>/dev/null \
+	| grep -vE ':[[:space:]]*(//|#|\*|/\*)' | grep -viE 'email|mail-template' || true)
+if [ -z "$HITS" ]; then echo "ok"; else echo "FAIL: use wp_enqueue_* / wp_add_inline_*:"; echo "$HITS"; FAIL=1; fi
+
+section "B1 - blocks build"
+if [ -d node_modules ]; then
+	if npm run --silent build:blocks >/dev/null; then echo "ok"; else echo "FAIL: npm run build:blocks"; FAIL=1; fi
+else
+	echo "SKIPPED: run npm ci"; SKIPPED="$SKIPPED B1"
+fi
+
+section "J1 - block unit tests"
+if [ -d node_modules ]; then
+	npm run --silent test:unit || { echo "FAIL: npm run test:unit"; FAIL=1; }
+else
+	echo "SKIPPED: run npm ci"; SKIPPED="$SKIPPED J1"
+fi
+
+section "Q3 - WPCS (errors block)"
+if [ -x vendor/bin/phpcs ]; then
+	php -n vendor/bin/phpcs -q -n --report=summary || { echo "FAIL: WPCS errors"; FAIL=1; }
+else
+	echo "SKIPPED: run composer install"; SKIPPED="$SKIPPED Q3"
+fi
+
+section "Q4 - PHPStan"
+if [ -x vendor/bin/phpstan ]; then
+	php -n -d memory_limit=2G vendor/bin/phpstan analyse --no-progress || { echo "FAIL: PHPStan"; FAIL=1; }
+else
+	echo "SKIPPED: run composer install"; SKIPPED="$SKIPPED Q4"
+fi
+
+section "W1 - wppqa_run_checks (fast)"
+WPPQA_RUN="${WPPQA_RUN:-$HOME/.mcp-servers/wp-plugin-qa-mcp-server/bin/wppqa-run.mjs}"
+if [ -z "${WP_ROOT:-}" ]; then
+	echo "SKIPPED: set WP_ROOT to a WordPress install with this plugin active"; SKIPPED="$SKIPPED W1"
+elif [ ! -f "$WPPQA_RUN" ]; then
+	echo "SKIPPED: wppqa CLI not on this machine ($WPPQA_RUN)"; SKIPPED="$SKIPPED W1"
+else
+	node "$WPPQA_RUN" --plugin "$(pwd)" --wp-root "$WP_ROOT" --mode fast || { echo "FAIL: wppqa checks"; FAIL=1; }
+fi
+
+section "Result"
+[ -n "$SKIPPED" ] && echo "Skipped:$SKIPPED"
+[ "$FAIL" -eq 0 ] && echo "PASS" || { echo "FAIL"; exit 1; }
