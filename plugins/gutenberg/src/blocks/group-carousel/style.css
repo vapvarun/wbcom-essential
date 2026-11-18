@@ -354,6 +354,11 @@
 	.wbe-group-carousel .wbe-group-carousel__swiper .swiper-button-next {
 		right: 0;
 	}
+
+	/* The arrows sit on the edge of the clipped slider here, so the focus ring is drawn inside them. */
+	.wbe-group-carousel .wbe-group-carousel__swiper :is( .swiper-button-prev, .swiper-button-next ):focus-visible {
+		outline-offset: -2px;
+	}
 }
 
 /* ── Empty state ──────────────────────────────────────────────────────────── */

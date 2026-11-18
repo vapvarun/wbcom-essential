@@ -104,6 +104,8 @@
 	--wbe-color-accent-hover: var(--wbcom-color-primary-hover, var(--wbcom-link-hover-color, #005a87));
 	--wbe-color-accent-light: color-mix(in srgb, var(--wbe-color-accent) 8%, transparent);
 	--wbe-color-accent-ring: color-mix(in srgb, var(--wbe-color-accent) 20%, transparent);
+	/* Keyboard focus ring: the theme's link colour (Reign's own ring colour), else the control's own colour. */
+	--wbe-focus-ring: var(--wbcom-link-color, currentColor);
 	/* Status fills are a tint of their status colour, so they sit on light and dark surfaces alike. */
 	--wbe-color-success-bg: color-mix(in srgb, var(--wbe-color-success) 14%, transparent);
 	--wbe-color-warning-bg: color-mix(in srgb, var(--wbe-color-warning) 16%, transparent);
@@ -147,4 +149,14 @@ html[data-bx-mode="dark"] body {
 	--wbe-color-warning-text: #fde68a;
 	--wbe-color-danger-text: #fca5a5;
 	--wbe-color-info-text: #93c5fd;
+}
+
+/*
+ * Keyboard focus on block controls that had none: carousel arrows and the friend / join buttons. Reign
+ * removes the browser outline on buttons, so these showed no focus at all. (0,3,0) beats that reset,
+ * including Firefox's [type="button"]:-moz-focusring rule.
+ */
+[class*="wp-block-wbcom-essential-"] :is(.swiper-button-prev, .swiper-button-next, [class*="__friend-btn"], [class*="__join-btn"], .generic-button a, .generic-button button):focus-visible {
+	outline: 2px solid var(--wbe-focus-ring);
+	outline-offset: 2px;
 }

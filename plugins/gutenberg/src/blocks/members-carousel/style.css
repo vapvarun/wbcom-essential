@@ -295,6 +295,11 @@
 	.wbe-members-carousel .wbe-members-carousel__swiper .swiper-button-next {
 		right: 0;
 	}
+
+	/* The arrows sit on the edge of the clipped slider here, so the focus ring is drawn inside them. */
+	.wbe-members-carousel .wbe-members-carousel__swiper :is( .swiper-button-prev, .swiper-button-next ):focus-visible {
+		outline-offset: -2px;
+	}
 }
 
 /* Empty state */
