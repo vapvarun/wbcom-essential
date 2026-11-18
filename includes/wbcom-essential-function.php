@@ -624,9 +624,23 @@ function wbcom_essential_posts_revolution_elementor_format_icon() {
 	return apply_filters( 'wbcom_essential_posts_revolution_elementor_format_icon', $return, $format );
 }
 
+/**
+ * Cut a post excerpt to the widget's Excerpt Length (bytes, as before).
+ *
+ * The length is a text field: a value like "20 words" or "abc" used to reach substr() as a string and stop the
+ * whole page with a fatal error. Numbers behave as before; leading digits are used ("20 words" is 20); anything
+ * else falls back to 50, the widgets' default. The cut never splits a multibyte character.
+ *
+ * @param mixed $excerpt Excerpt length setting.
+ * @return string
+ */
 function wbcom_essential_posts_revolution_elementor_excerpt( $excerpt ) {
-	$return = substr( get_the_excerpt(), 0, $excerpt );
-	return $return;
+	$length = absint( $excerpt );
+	if ( ! is_numeric( $excerpt ) && 0 === $length ) {
+		$length = 50;
+	}
+	$text = get_the_excerpt();
+	return function_exists( 'mb_strcut' ) ? mb_strcut( $text, 0, $length ) : substr( $text, 0, $length );
 }
 
 function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) {
