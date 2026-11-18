@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'Easy Digital Downloads plugin is required for this block.', 'wbcom-essential' ) . '</p>';
+	wbcom_essential_block_owner_notice( __( 'Easy Digital Downloads plugin is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 

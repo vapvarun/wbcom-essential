@@ -17,8 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'activity' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
+if ( wbcom_essential_bp_block_unavailable( 'activity' ) ) {
 	return;
 }
 

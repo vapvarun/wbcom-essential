@@ -21,9 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Bail early if EDD is not active.
 if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-	echo '<div class="wbcom-edd-checkout__notice">';
-	echo '<p>' . esc_html__( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) . '</p>';
-	echo '</div>';
+	wbcom_essential_block_owner_notice( __( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 
@@ -34,6 +32,102 @@ $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attr
 
 $block_id = ! empty( $unique_id ) ? 'wbcom-edd-checkout-social-' . $unique_id : wp_unique_id( 'wbcom-edd-checkout-social-' );
 
+$show_reviews = $attributes['showReviews'] ?? true;
+$review_count = $attributes['reviewCount'] ?? 3;
+
+// Trustpilot social proof — uses block attributes, with filter fallback.
+$show_trustpilot = $attributes['showTrustpilot'] ?? true;
+$tp_reviews_attr = $attributes['trustpilotReviews'] ?? array();
+
+$trustpilot = apply_filters(
+	'wbcom_edd_checkout_trustpilot',
+	array(
+		'enabled' => $show_trustpilot,
+		'rating'  => (float) ( $attributes['trustpilotRating'] ?? 0 ),
+		'total'   => (int) ( $attributes['trustpilotCount'] ?? 0 ),
+		'url'     => $attributes['trustpilotUrl'] ?? '',
+		'reviews' => $tp_reviews_attr,
+	)
+);
+$has_trustpilot = ! empty( $trustpilot['enabled'] ) && ! empty( $trustpilot['reviews'] );
+
+// Reviews social proof section.
+$all_reviews = array();
+if ( $show_reviews && function_exists( 'edd_reviews' ) && edd_reviews() ) {
+	$cart_contents = edd_get_cart_contents();
+	$product_ids   = array();
+
+	if ( ! empty( $cart_contents ) ) {
+		$product_ids = wp_list_pluck( $cart_contents, 'id' );
+	}
+
+	// EDD Reviews globally adds `edd_review` to `type__not_in` via a
+	// pre_get_comments hook, so a plain get_comments(type=edd_review)
+	// always returns 0 rows. Temporarily detach the filter, query,
+	// then re-attach so other pages keep the default behaviour.
+	$edd_reviews_obj = edd_reviews();
+	$has_hide_filter = $edd_reviews_obj && has_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
+	if ( $has_hide_filter ) {
+		remove_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
+	}
+
+	// Gather reviews from cart products, or fallback to all recent reviews.
+	if ( ! empty( $product_ids ) ) {
+		foreach ( $product_ids as $pid ) {
+			$product_reviews = get_comments(
+				array(
+					'post_id' => $pid,
+					'type'    => 'edd_review',
+					'status'  => 'approve',
+					'number'  => $review_count,
+					'orderby' => 'comment_date_gmt',
+					'order'   => 'DESC',
+				)
+			);
+			if ( ! empty( $product_reviews ) ) {
+				$all_reviews = array_merge( $all_reviews, $product_reviews );
+			}
+		}
+	}
+
+	// Fallback: get recent reviews from any product.
+	if ( empty( $all_reviews ) ) {
+		$all_reviews = get_comments(
+			array(
+				'type'    => 'edd_review',
+				'status'  => 'approve',
+				'number'  => $review_count,
+				'orderby' => 'comment_date_gmt',
+				'order'   => 'DESC',
+			)
+		);
+	}
+
+	if ( $has_hide_filter ) {
+		add_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
+	}
+
+	// Deduplicate and limit.
+	$seen_ids = array();
+	$unique   = array();
+	foreach ( $all_reviews as $r ) {
+		if ( ! isset( $seen_ids[ $r->comment_ID ] ) ) {
+			$seen_ids[ $r->comment_ID ] = true;
+			$unique[]                   = $r;
+		}
+		if ( count( $unique ) >= $review_count ) {
+			break;
+		}
+	}
+	$all_reviews = $unique;
+}
+
+// Nothing to show: no wrapper for visitors, a pointer for the owner.
+if ( ! $has_trustpilot && empty( $all_reviews ) ) {
+	wbcom_essential_block_owner_notice( __( 'Checkout Social Proof shows once it has reviews: add review cards under Trustpilot in the block settings, or activate EDD Reviews and approve some reviews.', 'wbcom-essential' ) );
+	return;
+}
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-checkout ' . $vis_classes ),
@@ -43,27 +137,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
 
-<?php
-$show_reviews = $attributes['showReviews'] ?? true;
-$review_count = $attributes['reviewCount'] ?? 3;
-?>
 	<?php
-	// Trustpilot social proof — uses block attributes, with filter fallback.
-	$show_trustpilot = $attributes['showTrustpilot'] ?? true;
-	$tp_reviews_attr = $attributes['trustpilotReviews'] ?? array();
-
-	$trustpilot = apply_filters(
-		'wbcom_edd_checkout_trustpilot',
-		array(
-			'enabled' => $show_trustpilot,
-			'rating'  => (float) ( $attributes['trustpilotRating'] ?? 0 ),
-			'total'   => (int) ( $attributes['trustpilotCount'] ?? 0 ),
-			'url'     => $attributes['trustpilotUrl'] ?? '',
-			'reviews' => $tp_reviews_attr,
-		)
-	);
-
-	if ( ! empty( $trustpilot['enabled'] ) && ! empty( $trustpilot['reviews'] ) ) :
+	if ( $has_trustpilot ) :
 		$tp_rating = (float) $trustpilot['rating'];
 		$tp_total  = (int) $trustpilot['total'];
 		$tp_url    = $trustpilot['url'];
@@ -127,149 +202,77 @@ $review_count = $attributes['reviewCount'] ?? 3;
 		</div>
 	<?php endif; ?>
 	<?php
-	// Reviews social proof section.
-	if ( $show_reviews && function_exists( 'edd_reviews' ) && edd_reviews() ) :
-		$cart_contents = edd_get_cart_contents();
-		$product_ids   = array();
-
-		if ( ! empty( $cart_contents ) ) {
-			$product_ids = wp_list_pluck( $cart_contents, 'id' );
-		}
-
-		// EDD Reviews globally adds `edd_review` to `type__not_in` via a
-		// pre_get_comments hook, so a plain get_comments(type=edd_review)
-		// always returns 0 rows. Temporarily detach the filter, query,
-		// then re-attach so other pages keep the default behaviour.
-		$edd_reviews_obj = edd_reviews();
-		$has_hide_filter = $edd_reviews_obj && has_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
-		if ( $has_hide_filter ) {
-			remove_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
-		}
-
-		// Gather reviews from cart products, or fallback to all recent reviews.
-		$all_reviews = array();
-
-		if ( ! empty( $product_ids ) ) {
-			foreach ( $product_ids as $pid ) {
-				$product_reviews = get_comments(
-					array(
-						'post_id' => $pid,
-						'type'    => 'edd_review',
-						'status'  => 'approve',
-						'number'  => $review_count,
-						'orderby' => 'comment_date_gmt',
-						'order'   => 'DESC',
-					)
-				);
-				if ( ! empty( $product_reviews ) ) {
-					$all_reviews = array_merge( $all_reviews, $product_reviews );
-				}
+	if ( ! empty( $all_reviews ) ) :
+		// Calculate aggregate stats.
+		$total_rating = 0;
+		$rating_count = 0;
+		foreach ( $all_reviews as $rev ) {
+			$rating = (int) get_comment_meta( $rev->comment_ID, 'edd_rating', true );
+			if ( $rating > 0 ) {
+				$total_rating += $rating;
+				++$rating_count;
 			}
 		}
-
-		// Fallback: get recent reviews from any product.
-		if ( empty( $all_reviews ) ) {
-			$all_reviews = get_comments(
-				array(
-					'type'    => 'edd_review',
-					'status'  => 'approve',
-					'number'  => $review_count,
-					'orderby' => 'comment_date_gmt',
-					'order'   => 'DESC',
-				)
-			);
-		}
-
-		if ( $has_hide_filter ) {
-			add_action( 'pre_get_comments', array( $edd_reviews_obj, 'hide_reviews' ) );
-		}
-
-		// Deduplicate and limit.
-		$seen_ids = array();
-		$unique   = array();
-		foreach ( $all_reviews as $r ) {
-			if ( ! isset( $seen_ids[ $r->comment_ID ] ) ) {
-				$seen_ids[ $r->comment_ID ] = true;
-				$unique[]                   = $r;
-			}
-			if ( count( $unique ) >= $review_count ) {
-				break;
-			}
-		}
-		$all_reviews = $unique;
-
-		if ( ! empty( $all_reviews ) ) :
-			// Calculate aggregate stats.
-			$total_rating = 0;
-			$rating_count = 0;
-			foreach ( $all_reviews as $rev ) {
-				$rating = (int) get_comment_meta( $rev->comment_ID, 'edd_rating', true );
-				if ( $rating > 0 ) {
-					$total_rating += $rating;
-					++$rating_count;
-				}
-			}
-			$avg_rating = $rating_count > 0 ? round( $total_rating / $rating_count, 1 ) : 0;
-			?>
-			<div class="wbcom-edd-checkout__reviews">
-				<div class="wbcom-edd-checkout__reviews-header">
-					<h3 class="wbcom-edd-checkout__reviews-title"><?php esc_html_e( 'What Our Customers Say', 'wbcom-essential' ); ?></h3>
-					<?php if ( $avg_rating > 0 ) : ?>
-						<div class="wbcom-edd-checkout__reviews-aggregate">
-							<div class="wbcom-edd-checkout__reviews-stars" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: average review rating, e.g. 4.5. */ __( '%s out of 5 stars', 'wbcom-essential' ), $avg_rating ) ); ?>">
-								<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
-									<?php if ( $i <= floor( $avg_rating ) ) : ?>
-										<svg class="wbcom-edd-checkout__star wbcom-edd-checkout__star--filled" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
-									<?php elseif ( $i - $avg_rating < 1 ) : ?>
-										<svg class="wbcom-edd-checkout__star wbcom-edd-checkout__star--half" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><defs><linearGradient id="half-<?php echo esc_attr( $block_id ); ?>"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="#e2e8f0"/></linearGradient></defs><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="url(#half-<?php echo esc_attr( $block_id ); ?>)"/></svg>
-									<?php else : ?>
-										<svg class="wbcom-edd-checkout__star wbcom-edd-checkout__star--empty" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
-									<?php endif; ?>
-								<?php endfor; ?>
-							</div>
-							<span class="wbcom-edd-checkout__reviews-avg"><?php echo esc_html( $avg_rating ); ?>/5</span>
-							<span class="wbcom-edd-checkout__reviews-count">
-								<?php
-								printf(
-									/* translators: %d: Number of reviews. */
-									esc_html( _n( 'from %d review', 'from %d reviews', $rating_count, 'wbcom-essential' ) ),
-									(int) $rating_count
-								);
-								?>
-							</span>
-						</div>
-					<?php endif; ?>
-				</div>
-
-				<div class="wbcom-edd-checkout__reviews-grid">
-					<?php
-					foreach ( $all_reviews as $review ) :
-						$rating       = (int) get_comment_meta( $review->comment_ID, 'edd_rating', true );
-						$review_title = get_comment_meta( $review->comment_ID, 'edd_review_title', true );
-						$author       = $review->comment_author;
-						$content      = wp_trim_words( $review->comment_content, 25, '...' );
-						$product      = get_the_title( $review->comment_post_ID );
-						?>
-						<div class="wbcom-edd-checkout__review-card">
-							<div class="wbcom-edd-checkout__review-stars" aria-label="<?php echo esc_attr( sprintf( /* translators: %d: review rating from 1 to 5. */ __( '%d out of 5 stars', 'wbcom-essential' ), $rating ) ); ?>">
-								<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
-									<svg class="wbcom-edd-checkout__star <?php echo $i <= $rating ? 'wbcom-edd-checkout__star--filled' : 'wbcom-edd-checkout__star--empty'; ?>" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
-								<?php endfor; ?>
-							</div>
-							<?php if ( $review_title ) : ?>
-								<p class="wbcom-edd-checkout__review-title"><?php echo esc_html( $review_title ); ?></p>
-							<?php endif; ?>
-							<p class="wbcom-edd-checkout__review-text"><?php echo esc_html( $content ); ?></p>
-							<div class="wbcom-edd-checkout__review-meta">
-								<span class="wbcom-edd-checkout__review-author"><?php echo esc_html( $author ); ?></span>
-								<?php if ( $product ) : ?>
-									<span class="wbcom-edd-checkout__review-product"><?php echo esc_html( $product ); ?></span>
+		$avg_rating = $rating_count > 0 ? round( $total_rating / $rating_count, 1 ) : 0;
+		?>
+		<div class="wbcom-edd-checkout__reviews">
+			<div class="wbcom-edd-checkout__reviews-header">
+				<h3 class="wbcom-edd-checkout__reviews-title"><?php esc_html_e( 'What Our Customers Say', 'wbcom-essential' ); ?></h3>
+				<?php if ( $avg_rating > 0 ) : ?>
+					<div class="wbcom-edd-checkout__reviews-aggregate">
+						<div class="wbcom-edd-checkout__reviews-stars" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: average review rating, e.g. 4.5. */ __( '%s out of 5 stars', 'wbcom-essential' ), $avg_rating ) ); ?>">
+							<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
+								<?php if ( $i <= floor( $avg_rating ) ) : ?>
+									<svg class="wbcom-edd-checkout__star wbcom-edd-checkout__star--filled" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
+								<?php elseif ( $i - $avg_rating < 1 ) : ?>
+									<svg class="wbcom-edd-checkout__star wbcom-edd-checkout__star--half" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><defs><linearGradient id="half-<?php echo esc_attr( $block_id ); ?>"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="#e2e8f0"/></linearGradient></defs><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="url(#half-<?php echo esc_attr( $block_id ); ?>)"/></svg>
+								<?php else : ?>
+									<svg class="wbcom-edd-checkout__star wbcom-edd-checkout__star--empty" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
 								<?php endif; ?>
-							</div>
+							<?php endfor; ?>
 						</div>
-					<?php endforeach; ?>
-				</div>
+						<span class="wbcom-edd-checkout__reviews-avg"><?php echo esc_html( $avg_rating ); ?>/5</span>
+						<span class="wbcom-edd-checkout__reviews-count">
+							<?php
+							printf(
+								/* translators: %d: Number of reviews. */
+								esc_html( _n( 'from %d review', 'from %d reviews', $rating_count, 'wbcom-essential' ) ),
+								(int) $rating_count
+							);
+							?>
+						</span>
+					</div>
+				<?php endif; ?>
 			</div>
-		<?php endif; ?>
+
+			<div class="wbcom-edd-checkout__reviews-grid">
+				<?php
+				foreach ( $all_reviews as $review ) :
+					$rating       = (int) get_comment_meta( $review->comment_ID, 'edd_rating', true );
+					$review_title = get_comment_meta( $review->comment_ID, 'edd_review_title', true );
+					$author       = $review->comment_author;
+					$content      = wp_trim_words( $review->comment_content, 25, '...' );
+					$product      = get_the_title( $review->comment_post_ID );
+					?>
+					<div class="wbcom-edd-checkout__review-card">
+						<div class="wbcom-edd-checkout__review-stars" aria-label="<?php echo esc_attr( sprintf( /* translators: %d: review rating from 1 to 5. */ __( '%d out of 5 stars', 'wbcom-essential' ), $rating ) ); ?>">
+							<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
+								<svg class="wbcom-edd-checkout__star <?php echo $i <= $rating ? 'wbcom-edd-checkout__star--filled' : 'wbcom-edd-checkout__star--empty'; ?>" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
+							<?php endfor; ?>
+						</div>
+						<?php if ( $review_title ) : ?>
+							<p class="wbcom-edd-checkout__review-title"><?php echo esc_html( $review_title ); ?></p>
+						<?php endif; ?>
+						<p class="wbcom-edd-checkout__review-text"><?php echo esc_html( $content ); ?></p>
+						<div class="wbcom-edd-checkout__review-meta">
+							<span class="wbcom-edd-checkout__review-author"><?php echo esc_html( $author ); ?></span>
+							<?php if ( $product ) : ?>
+								<span class="wbcom-edd-checkout__review-product"><?php echo esc_html( $product ); ?></span>
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
 	<?php endif; ?>
 </div>

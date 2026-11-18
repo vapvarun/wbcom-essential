@@ -207,7 +207,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						{ __( 'EDD Checkout Social Proof', 'wbcom-essential' ) }
 					</p>
 					<p style={ { margin: '4px 0 0', fontSize: 12, color: '#94a3b8' } }>
-						{ __( 'Shown on the checkout only when Trustpilot reviews are entered in this block\'s settings or the EDD Reviews add-on is active.', 'wbcom-essential' ) }
+						{ showTrustpilot && trustpilotReviews.length > 0
+							? __( 'Shows your Trustpilot review cards, plus recent approved reviews when the EDD Reviews add-on is active.', 'wbcom-essential' )
+							: __( 'Nothing to show yet. Add review cards under Trustpilot in the block settings, or activate EDD Reviews and approve some reviews. Visitors see nothing until then.', 'wbcom-essential' ) }
 					</p>
 				</div>
 			</div>

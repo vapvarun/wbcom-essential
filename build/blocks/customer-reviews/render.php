@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'WooCommerce' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'WooCommerce plugin is required for this block.', 'wbcom-essential' ) . '</p>';
+	wbcom_essential_block_owner_notice( __( 'WooCommerce plugin is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 

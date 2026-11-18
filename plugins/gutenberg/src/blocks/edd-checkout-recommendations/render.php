@@ -21,9 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Bail early if EDD is not active.
 if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-	echo '<div class="wbcom-edd-checkout__notice">';
-	echo '<p>' . esc_html__( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) . '</p>';
-	echo '</div>';
+	wbcom_essential_block_owner_notice( __( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 
@@ -34,6 +32,25 @@ $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attr
 
 $block_id = ! empty( $unique_id ) ? 'wbcom-edd-checkout-recommendations-' . $unique_id : wp_unique_id( 'wbcom-edd-checkout-recommendations-' );
 
+$recommendation_count = $attributes['recommendationCount'] ?? 3;
+$recommendations      = array();
+$cart_contents        = edd_get_cart_contents();
+
+// Suggestions come from the EDD Recommended Products add-on and need a cart to base them on.
+if ( function_exists( 'edd_rp_get_multi_suggestions' ) && ! empty( $cart_contents ) ) {
+	$cart_ids        = wp_list_pluck( $cart_contents, 'id' );
+	$user_id         = is_user_logged_in() ? get_current_user_id() : false;
+	$recommendations = (array) edd_rp_get_multi_suggestions( $cart_ids, $user_id, $recommendation_count );
+}
+
+// Nothing to show: no wrapper for visitors, a pointer for the owner.
+if ( empty( $recommendations ) ) {
+	if ( ! function_exists( 'edd_rp_get_multi_suggestions' ) ) {
+		wbcom_essential_block_owner_notice( __( 'Checkout Recommendations needs the EDD Recommended Products add-on. Visitors see nothing until it is active.', 'wbcom-essential' ) );
+	}
+	return;
+}
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbcom-edd-checkout ' . $vis_classes ),
@@ -42,116 +59,96 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes() ?>>
+	<div class="wbcom-edd-checkout__recommendations">
+		<h3 class="wbcom-edd-checkout__recommendations-title"><?php esc_html_e( 'Customers Also Purchased', 'wbcom-essential' ); ?></h3>
+		<div class="wbcom-edd-checkout__recommendations-grid">
+			<?php
+			foreach ( $recommendations as $download_id => $count ) :
+				$download = edd_get_download( $download_id );
+				if ( ! $download ) {
+					continue;
+				}
+				$price     = edd_price( $download_id, false );
+				$thumbnail = get_the_post_thumbnail( $download_id, 'thumbnail' );
+				$permalink = get_permalink( $download_id );
 
-<?php
-$recommendation_count = $attributes['recommendationCount'] ?? 3;
-?>
-	<?php
-	// Product recommendations section.
-	if ( function_exists( 'edd_rp_get_multi_suggestions' ) ) :
-		$cart_contents = edd_get_cart_contents();
+				// Get review data if EDD Reviews is active.
+				$rec_rating = 0;
+				$rec_count  = 0;
+				if ( function_exists( 'edd_reviews' ) && edd_reviews() ) {
+					// Detach EDD Reviews' pre_get_comments filter that
+					// globally adds edd_review to type__not_in.
+					$rec_rev_obj  = edd_reviews();
+					$rec_has_hide = $rec_rev_obj && has_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
+					if ( $rec_has_hide ) {
+						remove_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
+					}
 
-		if ( ! empty( $cart_contents ) ) :
-			$cart_ids        = wp_list_pluck( $cart_contents, 'id' );
-			$user_id         = is_user_logged_in() ? get_current_user_id() : false;
-			$recommendations = edd_rp_get_multi_suggestions( $cart_ids, $user_id, $recommendation_count );
+					$rec_reviews = get_comments(
+						array(
+							'post_id' => $download_id,
+							'type'    => 'edd_review',
+							'status'  => 'approve',
+							'count'   => true,
+						)
+					);
+					$rec_count   = (int) $rec_reviews;
+					if ( $rec_count > 0 ) {
+						$ratings_sum = 0;
+						$review_objs = get_comments(
+							array(
+								'post_id' => $download_id,
+								'type'    => 'edd_review',
+								'status'  => 'approve',
+								'number'  => 100,
+							)
+						);
+						foreach ( $review_objs as $ro ) {
+							$ratings_sum += (int) get_comment_meta( $ro->comment_ID, 'edd_rating', true );
+						}
+						$rec_rating = round( $ratings_sum / $rec_count, 1 );
+					}
 
-			if ( ! empty( $recommendations ) ) :
+					if ( $rec_has_hide ) {
+						add_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
+					}
+				}
 				?>
-				<div class="wbcom-edd-checkout__recommendations">
-					<h3 class="wbcom-edd-checkout__recommendations-title"><?php esc_html_e( 'Customers Also Purchased', 'wbcom-essential' ); ?></h3>
-					<div class="wbcom-edd-checkout__recommendations-grid">
-						<?php
-						foreach ( $recommendations as $download_id => $count ) :
-							$download = edd_get_download( $download_id );
-							if ( ! $download ) {
-								continue;
-							}
-							$price     = edd_price( $download_id, false );
-							$thumbnail = get_the_post_thumbnail( $download_id, 'thumbnail' );
-							$permalink = get_permalink( $download_id );
-
-							// Get review data if EDD Reviews is active.
-							$rec_rating = 0;
-							$rec_count  = 0;
-							if ( function_exists( 'edd_reviews' ) && edd_reviews() ) {
-								// Detach EDD Reviews' pre_get_comments filter that
-								// globally adds edd_review to type__not_in.
-								$rec_rev_obj  = edd_reviews();
-								$rec_has_hide = $rec_rev_obj && has_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
-								if ( $rec_has_hide ) {
-									remove_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
-								}
-
-								$rec_reviews = get_comments(
-									array(
-										'post_id' => $download_id,
-										'type'    => 'edd_review',
-										'status'  => 'approve',
-										'count'   => true,
-									)
-								);
-								$rec_count   = (int) $rec_reviews;
-								if ( $rec_count > 0 ) {
-									$ratings_sum = 0;
-									$review_objs = get_comments(
-										array(
-											'post_id' => $download_id,
-											'type'    => 'edd_review',
-											'status'  => 'approve',
-											'number'  => 100,
-										)
-									);
-									foreach ( $review_objs as $ro ) {
-										$ratings_sum += (int) get_comment_meta( $ro->comment_ID, 'edd_rating', true );
-									}
-									$rec_rating = round( $ratings_sum / $rec_count, 1 );
-								}
-
-								if ( $rec_has_hide ) {
-									add_action( 'pre_get_comments', array( $rec_rev_obj, 'hide_reviews' ) );
-								}
-							}
-							?>
-							<div class="wbcom-edd-checkout__rec-card">
-								<?php if ( $thumbnail ) : ?>
-									<a href="<?php echo esc_url( $permalink ); ?>" class="wbcom-edd-checkout__rec-thumb">
-										<?php echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress core function ?>
-									</a>
-								<?php endif; ?>
-								<div class="wbcom-edd-checkout__rec-info">
-									<a href="<?php echo esc_url( $permalink ); ?>" class="wbcom-edd-checkout__rec-name"><?php echo esc_html( get_the_title( $download_id ) ); ?></a>
-									<?php if ( $rec_rating > 0 ) : ?>
-										<div class="wbcom-edd-checkout__rec-rating">
-											<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
-												<svg class="wbcom-edd-checkout__star <?php echo $i <= round( $rec_rating ) ? 'wbcom-edd-checkout__star--filled' : 'wbcom-edd-checkout__star--empty'; ?>" viewBox="0 0 20 20" width="12" height="12" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
-											<?php endfor; ?>
-											<span class="wbcom-edd-checkout__rec-review-count">(<?php echo esc_html( $rec_count ); ?>)</span>
-										</div>
-									<?php endif; ?>
-									<div class="wbcom-edd-checkout__rec-price"><?php echo wp_kses_post( $price ); ?></div>
-								</div>
-								<div class="wbcom-edd-checkout__rec-action">
-									<?php
-									// edd_get_purchase_link() returns escaped HTML built by EDD core.
-									echo wp_kses_post(
-										edd_get_purchase_link(
-											array(
-												'download_id' => $download_id,
-												'text'  => __( 'Add to Cart', 'wbcom-essential' ),
-												'style' => 'button',
-												'class' => 'wbcom-edd-checkout__rec-btn',
-											)
-										)
-									);
-									?>
-								</div>
+				<div class="wbcom-edd-checkout__rec-card">
+					<?php if ( $thumbnail ) : ?>
+						<a href="<?php echo esc_url( $permalink ); ?>" class="wbcom-edd-checkout__rec-thumb">
+							<?php echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress core function ?>
+						</a>
+					<?php endif; ?>
+					<div class="wbcom-edd-checkout__rec-info">
+						<a href="<?php echo esc_url( $permalink ); ?>" class="wbcom-edd-checkout__rec-name"><?php echo esc_html( get_the_title( $download_id ) ); ?></a>
+						<?php if ( $rec_rating > 0 ) : ?>
+							<div class="wbcom-edd-checkout__rec-rating">
+								<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
+									<svg class="wbcom-edd-checkout__star <?php echo $i <= round( $rec_rating ) ? 'wbcom-edd-checkout__star--filled' : 'wbcom-edd-checkout__star--empty'; ?>" viewBox="0 0 20 20" width="12" height="12" aria-hidden="true"><path d="M10 1l2.4 5.5L18 7.3l-4 4.2 1 5.9L10 14.8l-5 2.6 1-5.9-4-4.2 5.6-.8z" fill="currentColor"/></svg>
+								<?php endfor; ?>
+								<span class="wbcom-edd-checkout__rec-review-count">(<?php echo esc_html( $rec_count ); ?>)</span>
 							</div>
-						<?php endforeach; ?>
+						<?php endif; ?>
+						<div class="wbcom-edd-checkout__rec-price"><?php echo wp_kses_post( $price ); ?></div>
+					</div>
+					<div class="wbcom-edd-checkout__rec-action">
+						<?php
+						// edd_get_purchase_link() returns escaped HTML built by EDD core.
+						echo wp_kses_post(
+							edd_get_purchase_link(
+								array(
+									'download_id' => $download_id,
+									'text'  => __( 'Add to Cart', 'wbcom-essential' ),
+									'style' => 'button',
+									'class' => 'wbcom-edd-checkout__rec-btn',
+								)
+							)
+						);
+						?>
 					</div>
 				</div>
-			<?php endif; ?>
-		<?php endif; ?>
-	<?php endif; ?>
-
+			<?php endforeach; ?>
+		</div>
+	</div>
 </div>

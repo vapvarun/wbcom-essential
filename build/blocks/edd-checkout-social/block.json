@@ -6,7 +6,7 @@
   "title": "EDD Checkout Social Proof",
   "category": "essential-edd",
   "icon": "cart",
-  "description": "Trustpilot rating and customer reviews shown as social proof. Designed for the EDD Checkout block, but works on product and landing pages too.",
+  "description": "Trustpilot review cards you enter, plus recent EDD Reviews when that add-on is active. Built for the EDD Checkout block; also works on product and landing pages. Shows nothing until it has reviews.",
   "keywords": [
     "edd",
     "checkout",

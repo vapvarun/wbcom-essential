@@ -17,8 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'buddypress' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
+if ( wbcom_essential_bp_block_unavailable( 'groups' ) ) {
 	return;
 }
 
@@ -36,7 +35,7 @@ $show_dots       = ! empty( $attributes['showDots'] );
 $show_arrows     = ! empty( $attributes['showArrows'] );
 $show_desc       = ! empty( $attributes['showDescription'] );
 $show_count      = ! empty( $attributes['showMemberCount'] );
-$show_join       = ! empty( $attributes['showJoinButton'] ) && bp_is_active( 'groups' );
+$show_join       = ! empty( $attributes['showJoinButton'] );
 $space_between   = absint( $attributes['spaceBetween'] ?? 24 );
 $avatar_size     = absint( $attributes['avatarSize'] ?? 80 );
 $card_bg         = sanitize_hex_color( $attributes['cardBg'] ?? '' );

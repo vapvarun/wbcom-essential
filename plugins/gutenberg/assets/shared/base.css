@@ -76,14 +76,14 @@
 	border-width: 0;
 }
 
-/* Dependency notice — shown when required plugin is deactivated */
+/* Owner-only notice: why a block shows nothing (missing plugin, component or content). */
 .wbe-block-notice {
 	padding: 16px 20px;
 	margin: 12px 0;
-	background: #fef3cd;
-	border: 1px solid #ffc107;
-	border-radius: 6px;
-	color: #856404;
+	background: var(--wbe-color-warning-bg);
+	border: 1px solid var(--wbe-color-warning);
+	border-radius: var(--wbe-radius-md, 6px);
+	color: var(--wbe-color-text);
 	font-size: 14px;
 	text-align: center;
 }
