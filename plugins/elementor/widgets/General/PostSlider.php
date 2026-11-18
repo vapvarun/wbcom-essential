@@ -822,7 +822,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-color-base, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-slider-title' => 'color: {{VALUE}};',
 				),
@@ -844,8 +844,9 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Content Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#333333',
+				'default'   => 'var(--wbcom-color-base, #ffffff)',
 				'selectors' => array(
+					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-desc' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-desc p' => 'color: {{VALUE}};',
 				),
 			)
@@ -866,7 +867,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Date Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#333333',
+				'default'   => 'var(--wbcom-color-base, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-date' => 'color: {{VALUE}};',
 				),

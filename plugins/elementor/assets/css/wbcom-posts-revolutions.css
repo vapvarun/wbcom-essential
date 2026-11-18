@@ -460,7 +460,7 @@
     font-size: 14px;
     line-height: 1.75em;
     margin: 0 0 25px;
-    color: #808291;
+    color: var(--wbcom-color-contrast-2, #5c6472);
     text-align: justify;
 }
 
@@ -852,7 +852,7 @@
     font-size: 13px;
     line-height: 1.75em;
     margin: 0 0 15px;
-    color: #808291;
+    color: var(--wbcom-color-contrast-2, #5c6472);
     text-align: justify;
 }
 
@@ -1409,7 +1409,7 @@
     height: 40px;
     line-height: 40px;
     text-align: center;
-    color: #808291;
+    color: var(--wbcom-color-contrast-2, #5c6472);
     border: 1px solid #e3e3e3;
     font-weight: 300;
 }
@@ -1585,7 +1585,7 @@
     font-size: 13px;
     line-height: 1.75em;
     margin: 0 0 15px;
-    color: #808291;
+    color: var(--wbcom-color-contrast-2, #5c6472);
     text-align: justify;
 }
 

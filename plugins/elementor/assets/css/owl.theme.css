@@ -20,18 +20,18 @@
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;
-	border: 2px solid #869791;
+	border: 2px solid var(--wbcom-color-contrast-2, #5c6472);
 	opacity: 1;
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 1px;
-	color: #869791;
+	color: var(--wbcom-color-contrast-2, #5c6472);
 }
 /* Clickable class fix problem with hover on touch devices */
 /* Use it for non-touch hover action */
 .owl-theme .owl-controls.clickable .owl-buttons div:hover{
-	background: #869791;
-	color: #ffffff;
+	background: var(--wbcom-color-contrast-2, #5c6472);
+	color: var(--wbcom-color-base, #ffffff);
 }
 
 /* Styling Pagination*/
@@ -47,12 +47,12 @@
 	height: 12px;
 	margin: 5px 7px;
 	border-radius: 50%;
-	border: 2px solid #869791;
+	border: 2px solid var(--wbcom-color-contrast-2, #5c6472);
 }
 
 .owl-theme .owl-controls .owl-page.active span,
 .owl-theme .owl-controls.clickable .owl-page:hover span{
-	background: #869791;
+	background: var(--wbcom-color-contrast-2, #5c6472);
 }
 
 /* If PaginationNumbers is true */

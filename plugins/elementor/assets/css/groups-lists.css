@@ -84,7 +84,7 @@
 }
 
 .wbcom-essential-groups div.item-options a {
-	color: #9c9c9c;
+	color: var(--wbcom-color-contrast-2, #5c6472);
 	font-size: .875rem;
 	font-weight: 500;
 	display: inline-block;
@@ -179,7 +179,7 @@
 }
 
 .wbcom-essential-groups-list #groups-list li span.activity {
-	color: #a3a5a9;
+	color: var(--wbcom-color-contrast-2, #5c6472);
 	font-size: 12px;
 	line-height: 1.2;
 }
