@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`static block countdown-timer saves an owner-picked colour 1`] = `
 "<div class="wbe-block-snap1234 wbe-countdown-timer wbe-countdown-timer--boxes" data-target-date="" data-expire-message="This offer has expired!" data-show-days="true" data-show-hours="true" data-show-minutes="true" data-show-seconds="true" data-separator="colon"><style>.wbe-block-snap1234 {

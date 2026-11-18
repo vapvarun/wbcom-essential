@@ -114,7 +114,7 @@ module.exports = function (grunt) {
 								'!webpack.config.*.js',
 								'!rollup.config.js',
 								'!babel.config.js',
-								'!jest.config.js',
+								'!jest.config.*',
 								'!playwright.config.*',
 
 								// --- Blacklist: docs/markdown anywhere in tree ---

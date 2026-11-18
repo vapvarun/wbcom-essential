@@ -12,7 +12,7 @@
     "makepot": "wp i18n make-pot . languages/wbcom-essential.pot --slug=wbcom-essential --domain=wbcom-essential --exclude=vendor,node_modules,.phpstan-stubs,plugins/gutenberg/src,docs,plan,marketing,tests,audit,bin,scripts,dist",
     "dist": "npm run build:blocks && grunt dist",
     "release": "npm run build:blocks && npm run i18n && grunt dist",
-    "test:unit": "wp-scripts test-unit-js plugins/gutenberg/tests"
+    "test:unit": "wp-scripts test-unit-jest plugins/gutenberg/tests"
   },
   "devDependencies": {
     "@babel/core": "^7.22.0",
@@ -20,10 +20,13 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.20.0",
     "@babel/preset-env": "^7.22.0",
     "@babel/preset-react": "^7.22.0",
+    "@wordpress/babel-preset-default": "^8.55.0",
     "@wordpress/element": "^6.46.0",
     "@wordpress/i18n": "^5.26.0",
     "@wordpress/icons": "^9.49.0",
-    "@wordpress/scripts": "^30.15.0",
+    "@wordpress/jest-preset-default": "^14.2.0",
+    "@wordpress/scripts": "^37.1.0",
+    "babel-jest": "^30.5.0",
     "babel-loader": "^9.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.0",
@@ -34,6 +37,9 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-webpack": "^5.0.0",
     "grunt-wp-i18n": "^1.0.3",
+    "jest": "^30.5.0",
+    "jest-environment-jsdom": "^30.5.0",
+    "load-grunt-tasks": "^3.5.2",
     "mini-css-extract-plugin": "^2.7.0",
     "sass": "^1.63.0",
     "sass-loader": "^13.3.0",
@@ -42,23 +48,23 @@
     "webpack-cli": "^5.1.0"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vapvarun/wbcom-essential"
   },
-  "dependencies": {
-    "fix": "^0.0.3",
-    "load-grunt-tasks": "^3.5.2"
-  },
   "overrides": {
     "lodash": "^4.18.1",
-    "minimatch": "^3.1.5",
-    "picomatch": "^2.3.2",
-    "brace-expansion": "^1.1.14",
-    "js-yaml": "^3.14.2",
-    "tmp": "^0.2.5",
-    "serialize-javascript": "^6.0.2"
+    "@babel/runtime": "^7.29.14",
+    "adm-zip": "^0.6.1",
+    "serialize-javascript": "^7.1.4",
+    "katex": "^0.18.11",
+    "glob@>=9.0.0 <14.0.2": "^14.0.6",
+    "minimatch@>=7.0.0 <11.0.1": "^11.0.9",
+    "markdownlint-cli": {
+      "js-yaml": "^5.5.0",
+      "smol-toml": "^1.9.1"
+    }
   }
 }
