@@ -225,6 +225,7 @@ endif;
 		<?php
 		$swiper_slides = ( 'slider' === $display_mode ) ? 1 : $slides;
 		?>
+		<div class="wbe-post-carousel__stage">
 		<div
 			class="swiper"
 			data-autoplay="<?php echo $autoplay ? 'true' : 'false'; ?>"
@@ -245,8 +246,9 @@ endif;
 			</div>
 
 			<div class="swiper-pagination" aria-label="<?php esc_attr_e( 'Post carousel navigation', 'wbcom-essential' ); ?>"></div>
-			<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous post', 'wbcom-essential' ); ?>"></button>
-			<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next post', 'wbcom-essential' ); ?>"></button>
+		</div>
+		<button class="swiper-button-prev" aria-label="<?php esc_attr_e( 'Previous post', 'wbcom-essential' ); ?>"></button>
+		<button class="swiper-button-next" aria-label="<?php esc_attr_e( 'Next post', 'wbcom-essential' ); ?>"></button>
 		</div>
 
 	<?php else : ?>

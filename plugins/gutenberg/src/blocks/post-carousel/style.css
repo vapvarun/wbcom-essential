@@ -24,9 +24,25 @@
 }
 
 /* ── Swiper container ─────────────────────────────────────────────────────── */
+/* The arrows sit in the stage, beside the cards, not on top of them. */
+.wbe-post-carousel__stage {
+	position: relative;
+}
+
 .wbe-post-carousel .swiper {
 	overflow: hidden;
 	padding-bottom: 52px;
+}
+
+/* Every card in a row as tall as the tallest one. */
+.wbe-post-carousel .swiper-slide {
+	height: auto;
+}
+
+@media ( min-width: 1025px ) {
+	.wbe-post-carousel--carousel .swiper {
+		margin-inline: 52px;
+	}
 }
 
 .wbe-post-carousel--slider .swiper {
@@ -42,6 +58,7 @@
 
 /* ── Card ─────────────────────────────────────────────────────────────────── */
 .wbe-post-carousel__card {
+	box-sizing: border-box;
 	background: var( --wbe-pc-card-bg );
 	border-radius: var( --wbe-pc-card-radius );
 	box-shadow: var( --wbe-pc-card-shadow );
