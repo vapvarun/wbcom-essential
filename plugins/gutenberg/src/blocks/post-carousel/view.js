@@ -9,6 +9,7 @@
 import { __ } from '@wordpress/i18n';
 import swiperA11y from '../../shared/utils/swiper-a11y';
 import guardLoop from '../../shared/utils/swiper-loop';
+import initFitCarousel from '../../shared/utils/fit-carousel';
 
 ( function () {
 	'use strict';
@@ -61,19 +62,22 @@ import guardLoop from '../../shared/utils/swiper-loop';
 				),
 			};
 
-			if ( isSlider ) {
-				// Full-width 1-at-a-time slider.
-				swiperConfig.slidesPerView = 1;
-				swiperConfig.spaceBetween = 0;
-				swiperConfig.effect = 'slide';
-			} else {
-				// Responsive carousel.
+			if ( ! isSlider ) {
+				// Responsive carousel: the owner's count per screen size is the maximum, and the
+				// container decides how many cards of at least 160px fit (Columns, sidebars).
 				swiperConfig.breakpoints = {
 					0: { slidesPerView: 1, spaceBetween: 16 },
 					640: { slidesPerView: Math.min( slides, 2 ), spaceBetween: 20 },
 					1024: { slidesPerView: slides, spaceBetween: 28 },
 				};
+				initFitCarousel( el, swiperConfig, 160, true );
+				return;
 			}
+
+			// Full-width 1-at-a-time slider.
+			swiperConfig.slidesPerView = 1;
+			swiperConfig.spaceBetween = 0;
+			swiperConfig.effect = 'slide';
 
 			// Respect prefers-reduced-motion.
 			if ( window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
