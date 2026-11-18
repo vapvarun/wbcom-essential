@@ -118,21 +118,14 @@
 	color: var(--wbe-pcar-star-filled);
 }
 
+/* The half is painted on the same glyph, so it cannot sit off the line. */
 .wbe-product-carousel__star--half::before {
-	color: var(--wbe-pcar-star-empty);
+	background: linear-gradient(90deg, var(--wbe-pcar-star-filled) 50%, var(--wbe-pcar-star-empty) 50%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
 }
 
-.wbe-product-carousel__star--half::after {
-	content: '\2605';
-	font-size: 13px;
-	line-height: 1;
-	color: var(--wbe-pcar-star-filled);
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 50%;
-	overflow: hidden;
-}
 
 /* ── Price ────────────────────────────────────────────────────────────────── */
 .wbe-product-carousel__price {

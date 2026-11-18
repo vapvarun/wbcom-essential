@@ -142,25 +142,14 @@
 	color: var(--wbe-pg-star-filled);
 }
 
-.wbe-product-grid__star--half {
-	position: relative;
-}
-
+/* The half is painted on the same glyph, so it cannot sit off the line. */
 .wbe-product-grid__star--half::before {
-	color: var(--wbe-pg-star-empty);
+	background: linear-gradient(90deg, var(--wbe-pg-star-filled) 50%, var(--wbe-pg-star-empty) 50%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
 }
 
-.wbe-product-grid__star--half::after {
-	content: '\2605';
-	font-size: 14px;
-	line-height: 1;
-	color: var(--wbe-pg-star-filled);
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 50%;
-	overflow: hidden;
-}
 
 /* ── Price ────────────────────────────────────────────────────────────────── */
 .wbe-product-grid__price {
