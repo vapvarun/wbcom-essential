@@ -30,9 +30,8 @@ function wbcom_essential_elementor_load() {
 		return;
 	}
 
-	// Check required version.
-	$elementor_version_required = '3.5.0';
-	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
+	// Check required version (one value, shared with the notice text).
+	if ( ! version_compare( ELEMENTOR_VERSION, \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::$minimum_elementor_version, '>=' ) ) {
 		add_action( 'admin_notices', 'wbcom_essential_elementor_fail_load_out_of_date' );
 	}
 }
@@ -156,7 +155,7 @@ function wbcom_essential_elementor_fail_load_out_of_date() {
 		__( '%1$s requires %2$s version %3$s or higher. Please update to continue using all features.', 'wbcom-essential' ),
 		'<strong>Wbcom Essential</strong>',
 		'<strong>Elementor</strong>',
-		'<strong>3.0.0</strong>'
+		'<strong>' . esc_html( \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::$minimum_elementor_version ) . '</strong>'
 	);
 
 	?>
