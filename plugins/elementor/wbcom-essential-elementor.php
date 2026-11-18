@@ -87,9 +87,15 @@ function wbcom_essential_elementor_fail_load() {
 		$button_url  = $install_url;
 	}
 
+	// Remember the dismissal. 'common' prints in the admin footer, so the handler is attached after the notice exists.
+	wp_add_inline_script(
+		'common',
+		"jQuery( function( $ ) { $( '#wbcom-essential-elementor-notice' ).on( 'click', '.notice-dismiss', function() { $.post( ajaxurl, { action: 'wbcom_essential_dismiss_elementor_notice', _wpnonce: $( '#wbcom-essential-elementor-notice' ).data( 'nonce' ) } ); } ); } );"
+	);
+
 	// Display the informational notice.
 	?>
-	<div class="notice notice-info is-dismissible" id="wbcom-essential-elementor-notice">
+	<div class="notice notice-info is-dismissible" id="wbcom-essential-elementor-notice" data-nonce="<?php echo esc_attr( wp_create_nonce( 'wbcom_essential_dismiss_notice' ) ); ?>">
 		<p>
 			<strong><?php esc_html_e( 'Wbcom Essential', 'wbcom-essential' ); ?></strong> —
 			<?php esc_html_e( 'Gutenberg blocks are ready to use! Want even more options? Install Elementor to unlock 43+ additional widgets.', 'wbcom-essential' ); ?>
@@ -103,16 +109,6 @@ function wbcom_essential_elementor_fail_load() {
 			</a>
 		</p>
 	</div>
-	<script>
-	jQuery(document).ready(function($) {
-		$('#wbcom-essential-elementor-notice').on('click', '.notice-dismiss', function() {
-			$.post(ajaxurl, {
-				action: 'wbcom_essential_dismiss_elementor_notice',
-				_wpnonce: '<?php echo esc_js( wp_create_nonce( 'wbcom_essential_dismiss_notice' ) ); ?>'
-			});
-		});
-	});
-	</script>
 	<?php
 }
 
