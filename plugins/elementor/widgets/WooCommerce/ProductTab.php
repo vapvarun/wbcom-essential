@@ -104,6 +104,48 @@ class ProductTab extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Print a product's attributes (label and terms) for the tab card.
+	 *
+	 * Terms come from get_the_terms(), which reads the term cache WP_Query already
+	 * primed for every product in the loop, so a tab of N products costs no extra
+	 * query per product and attribute (wc_get_product_terms() ran one each).
+	 * Same order (by name) and the same woocommerce_get_product_terms filter.
+	 *
+	 * @param \WC_Product $product Product in the loop.
+	 * @return void
+	 */
+	private function render_product_attributes( $product ) {
+		$attributes = $product ? $product->get_attributes() : array();
+		if ( ! $attributes ) {
+			return;
+		}
+		global $wc_product_attributes;
+		echo '<div class="product_attribute">';
+		foreach ( $attributes as $attribute ) {
+			$name = $attribute->get_name();
+			echo '<ul>';
+			echo '<li class="attribute_label">' . esc_html( wc_attribute_label( $name ) ) . esc_html__( ':', 'wbcom-essential' ) . '</li>';
+			if ( $attribute->is_taxonomy() && taxonomy_exists( $name ) ) {
+				$terms = get_the_terms( $product->get_id(), $name );
+				$terms = is_array( $terms ) ? wp_list_sort( $terms, 'name' ) : array();
+				$terms = apply_filters( 'woocommerce_get_product_terms', $terms, $product->get_id(), $name, array( 'fields' => 'all' ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WooCommerce's own filter, kept so its listeners still apply.
+				foreach ( $terms as $product_term ) {
+					$color = get_term_meta( $product_term->term_id, 'color', true );
+					if ( ! empty( $wc_product_attributes[ $name ]->attribute_public ) ) {
+						echo '<li><a href="' . esc_url( get_term_link( $product_term ) ) . '" rel="tag">' . esc_html( $product_term->name ) . '</a></li>';
+					} elseif ( ! empty( $color ) ) {
+						echo '<li class="color_attribute" style="background-color: ' . esc_attr( $color ) . ';">&nbsp;</li>';
+					} else {
+						echo '<li>' . esc_html( $product_term->name ) . '</li>';
+					}
+				}
+			}
+			echo '</ul>';
+		}
+		echo '</div>';
+	}
+
+	/**
 	 * Register Controls.
 	 */
 	protected function register_controls() {
@@ -1560,37 +1602,7 @@ class ProductTab extends \Elementor\Widget_Base {
 
 													<?php
 														global $product;
-														$attributes = $product->get_attributes();
-													if ( $attributes ) :
-														echo '<div class="product_attribute">';
-														foreach ( $attributes as $attribute ) :
-															$name = $attribute->get_name();
-															?>
-															<ul>
-															<?php
-																echo '<li class="attribute_label">' . esc_html( wc_attribute_label( $attribute->get_name() ) ) . esc_html__( ':', 'wbcom-essential' ) . '</li>';
-															if ( $attribute->is_taxonomy() ) {
-																global $wc_product_attributes;
-																$product_terms = wc_get_product_terms( $product->get_id(), $name, array( 'fields' => 'all' ) );
-																foreach ( $product_terms as $product_term ) {
-																	$product_term_name = esc_html( $product_term->name );
-																	$link              = get_term_link( $product_term->term_id, $name );
-																	$color             = get_term_meta( $product_term->term_id, 'color', true );
-																	if ( ! empty( $wc_product_attributes[ $name ]->attribute_public ) ) {
-																		echo '<li><a href="' . esc_url( $link ) . '" rel="tag">' . esc_html( $product_term_name ) . '</a></li>';
-																	} elseif ( ! empty( $color ) ) {
-																			echo '<li class="color_attribute" style="background-color: ' . esc_attr( $color ) . ';">&nbsp;</li>';
-																	} else {
-																		echo '<li>' . esc_html( $product_term_name ) . '</li>';
-																	}
-																}
-															}
-															?>
-															</ul>
-															<?php
-													endforeach;
-														echo '</div>';
-													endif;
+														$this->render_product_attributes( $product );
 													?>
 
 													<div class="content">
@@ -1689,37 +1701,7 @@ class ProductTab extends \Elementor\Widget_Base {
 
 													<?php
 														global $product;
-														$attributes = $product->get_attributes();
-													if ( $attributes ) :
-														echo '<div class="product_attribute">';
-														foreach ( $attributes as $attribute ) :
-															$name = $attribute->get_name();
-															?>
-															<ul>
-															<?php
-																echo '<li class="attribute_label">' . esc_html( wc_attribute_label( $attribute->get_name() ) ) . esc_html__( ':', 'wbcom-essential' ) . '</li>';
-															if ( $attribute->is_taxonomy() ) {
-																global $wc_product_attributes;
-																$product_terms = wc_get_product_terms( $product->get_id(), $name, array( 'fields' => 'all' ) );
-																foreach ( $product_terms as $product_term ) {
-																	$product_term_name = esc_html( $product_term->name );
-																	$link              = get_term_link( $product_term->term_id, $name );
-																	$color             = get_term_meta( $product_term->term_id, 'color', true );
-																	if ( ! empty( $wc_product_attributes[ $name ]->attribute_public ) ) {
-																		echo '<li><a href="' . esc_url( $link ) . '" rel="tag">' . esc_html( $product_term_name ) . '</a></li>';
-																	} elseif ( ! empty( $color ) ) {
-																			echo '<li class="color_attribute" style="background-color: ' . esc_attr( $color ) . ';">&nbsp;</li>';
-																	} else {
-																		echo '<li>' . esc_html( $product_term_name ) . '</li>';
-																	}
-																}
-															}
-															?>
-															</ul>
-															<?php
-													endforeach;
-														echo '</div>';
-													endif;
+														$this->render_product_attributes( $product );
 													?>
 
 													<div class="actions style_two">

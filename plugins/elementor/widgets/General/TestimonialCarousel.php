@@ -1502,6 +1502,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			wbcom_essential_elementor_empty_state( __( 'Add testimonials to show the carousel.', 'wbcom-essential' ) );
 			return;
 		}
+		wbcom_essential_prime_repeater_images( $settings['testimonials'], array( 'image' ) );
 		$widget_id = $this->get_id();
 
 		$columns_map    = array( 'one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5 );

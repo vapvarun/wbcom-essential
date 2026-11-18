@@ -1032,3 +1032,28 @@ function wbcom_essential_elementor_empty_state( $message ) {
 	}
 	echo '<p class="wbcom-essential-empty-state" style="margin:0;padding:16px;border:1px dashed currentColor;border-radius:4px;opacity:.75;text-align:center;">' . esc_html( $message ) . '</p>';
 }
+
+/**
+ * Load the attachment posts and meta for a widget's repeater images in two queries.
+ *
+ * Repeater widgets (slides, team members, timeline items, portfolio items) look up
+ * each item's image while rendering; without this every item costs its own post
+ * and meta query.
+ *
+ * @param array    $items Repeater rows from the widget settings.
+ * @param string[] $keys  Row keys that hold an Elementor media value ( array( 'id' => ... ) ).
+ * @return void
+ */
+function wbcom_essential_prime_repeater_images( $items, $keys = array( 'image' ) ) {
+	$ids = array();
+	foreach ( (array) $items as $item ) {
+		foreach ( (array) $keys as $key ) {
+			if ( ! empty( $item[ $key ]['id'] ) ) {
+				$ids[] = absint( $item[ $key ]['id'] );
+			}
+		}
+	}
+	if ( $ids ) {
+		_prime_post_caches( array_unique( $ids ), false, true );
+	}
+}

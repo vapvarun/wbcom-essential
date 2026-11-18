@@ -1649,6 +1649,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 			wbcom_essential_elementor_empty_state( __( 'Add team members to show the carousel.', 'wbcom-essential' ) );
 			return;
 		}
+		wbcom_essential_prime_repeater_images( $settings['gallery'], array( 'image', 'lightbox_image' ) );
 		$widget_id = $this->get_id();
 
 		if ( $settings['gallery'] ) {

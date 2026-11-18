@@ -692,6 +692,7 @@ class Timeline extends \Elementor\Widget_Base {
 			wbcom_essential_elementor_empty_state( __( 'Add timeline items to show the timeline.', 'wbcom-essential' ) );
 			return;
 		}
+		wbcom_essential_prime_repeater_images( $settings['list'], array( 'image' ) );
 		if ( $settings['list'] ) { ?>
 		<div class="wbcom-timeline <?php echo esc_attr( $settings['layout'] ); ?>">
 			<div class="wbcom-timeline__container">

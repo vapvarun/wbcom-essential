@@ -2205,6 +2205,7 @@ class PostCarousel extends \Elementor\Widget_Base {
 			)
 		);
 
+        update_post_thumbnail_cache( $custom_query ); // One query for every post's featured image.
         if ($custom_query->have_posts()) {
 			$columns_map = array( 'one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5 );
 			$slides_to_show = isset( $columns_map[ $settings['columns'] ] ) ? $columns_map[ $settings['columns'] ] : 3;

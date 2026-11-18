@@ -2033,6 +2033,7 @@ class PostSlider extends \Elementor\Widget_Base {
 			)
 		);
 
+		update_post_thumbnail_cache( $custom_query ); // One query for every post's featured image.
 		if ( $custom_query->have_posts() ) {
 			// Build Swiper settings JSON.
 			$swiper_settings = array(

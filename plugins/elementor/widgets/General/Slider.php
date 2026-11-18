@@ -2045,6 +2045,7 @@ class Slider extends \Elementor\Widget_Base {
 			wbcom_essential_elementor_empty_state( __( 'Add slides in the Slides section to show the slider.', 'wbcom-essential' ) );
 			return;
 		}
+		wbcom_essential_prime_repeater_images( $settings['list'], array( 'image' ) );
 
 		$autoplay   = ! empty( $settings['autoplay'] ) ? 'yes' : 'no';
 		$duration   = isset( $settings['autoplay_duration'] ) ? intval( $settings['autoplay_duration'] ) * 1000 : 5000;

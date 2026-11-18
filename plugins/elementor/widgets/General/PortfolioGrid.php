@@ -1716,6 +1716,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 			wbcom_essential_elementor_empty_state( __( 'Add portfolio items in the Grid Items section to show the grid.', 'wbcom-essential' ) );
 			return;
 		}
+		wbcom_essential_prime_repeater_images( $settings['list'], array( 'image' ) );
 		$settings_id = $this->get_id();
         if ( $settings['list2'] ) { ?>
 
