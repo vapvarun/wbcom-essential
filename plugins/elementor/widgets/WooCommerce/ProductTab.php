@@ -1392,6 +1392,14 @@ class ProductTab extends \Elementor\Widget_Base {
 			}
 		}
 
+		// Leave out what the shop itself hides: catalog-hidden and search-only products, and out-of-stock
+		// ones when WooCommerce hides them. The category tabs below rebuild tax_query, so they add it again.
+		$visibility      = wbcom_essential_product_visibility_tax_query();
+		$first_tab_done  = false; // The first tab that has products is the active one (an earlier one may be empty).
+		$first_pane_done = false;
+		if ( $visibility ) {
+			$args['tax_query'][] = $visibility;
+		}
 		$products = new \WP_Query( $args );
 
 		$tabmenu = 'yes';
@@ -1451,13 +1459,17 @@ class ProductTab extends \Elementor\Widget_Base {
 										'operator' => 'IN',
 									);
 								}
+								if ( $visibility ) {
+									$args['tax_query'][] = $visibility;
+								}
 								$fetchproduct = new \WP_Query( $args );
 
 								if ( $fetchproduct->have_posts() ) {
 									?>
 											<li><a class="
 											<?php
-											if ( $m == 1 ) {
+											if ( ! $first_tab_done ) {
+												$first_tab_done = true;
 												echo esc_attr( 'htactive' );}
 											?>
 											" href="#wbcomtab<?php echo esc_attr( $tabuniqid . $m ); ?>">
@@ -1503,13 +1515,17 @@ class ProductTab extends \Elementor\Widget_Base {
 							'operator' => 'IN',
 						);
 					}
+					if ( $visibility ) {
+						$args['tax_query'][] = $visibility;
+					}
 					$products = new \WP_Query( $args );
 
 					if ( $products->have_posts() ) :
 						?>
 					<div class="wb-tab-pane
 						<?php
-						if ( $j == 1 ) {
+						if ( ! $first_pane_done ) {
+							$first_pane_done = true;
 							echo esc_attr( 'htactive' );}
 						?>
 					" id="<?php echo esc_attr( 'wbcomtab' . $tabuniqid . $j ); ?>">

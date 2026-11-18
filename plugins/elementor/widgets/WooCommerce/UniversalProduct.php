@@ -254,15 +254,6 @@ class UniversalProduct extends \Elementor\Widget_Base {
 					'default'      => 'no',
 				)
 			);
-			$this->add_control(
-				'hidden_item',
-				array(
-					'label'        => esc_html__( 'Exclude Hidden Item', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'return_value' => 'yes',
-					'default'      => 'no',
-				)
-			);
 
 			$this->add_control(
 				'wbcom_custom_order',
@@ -2011,7 +2002,6 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			);
 		}
 
-		$query_args['hidden']            = ( 'yes' === $settings['hidden_item'] );
 		$query_args['hide_out_of_stock'] = ( 'yes' === $settings['hidden_outofstock'] );
 
 		$args = wbcom_product_query( $query_args );

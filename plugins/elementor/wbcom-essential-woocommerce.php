@@ -243,15 +243,15 @@ function wbcom_product_query( $query_args = array() ) {
 		);
 	}
 
-	// Hide hidden items (if specified).
-	if ( ! empty( $query_args['hidden'] ) && $query_args['hidden'] === true ) {
-		$tax_query[] = array(
-			'taxonomy'         => 'product_visibility',
-			'field'            => 'name',
-			'terms'            => array( 'exclude-from-search', 'exclude-from-catalog' ),
-			'operator'         => 'NOT IN',
-			'include_children' => false,
-		);
+	// List what the shop lists: catalog-hidden and search-only products stay out (and out-of-stock ones when
+	// WooCommerce hides them), the same rule as the shop and the Product Grid/Carousel blocks. Products the owner
+	// picked by ID are shown as picked.
+	$product_type = isset( $query_args['product_type'] ) ? $query_args['product_type'] : '';
+	if ( ! in_array( $product_type, array( 'show_byid', 'show_byid_manually' ), true ) ) {
+		$visibility = wbcom_essential_product_visibility_tax_query();
+		if ( $visibility ) {
+			$tax_query[] = $visibility;
+		}
 	}
 
 	// Meta Query for hiding out of stock items.
