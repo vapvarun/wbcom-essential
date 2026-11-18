@@ -113,7 +113,7 @@
 }
 
 .wbe-portfolio-grid__image--placeholder {
-	background: #e9ecef;
+	background: var( --wbe-surface-alt, #e9ecef );
 }
 
 /* Full-area transparent link */
@@ -178,11 +178,11 @@
 	transition:  transform var( --wbe-pg-transition );
 }
 
-.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay {
+.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay {
 	opacity: 1;
 }
 
-.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay-inner {
+.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay-inner {
 	transform: translateY( 0 );
 }
 
@@ -193,7 +193,7 @@
 	transition: transform 0.45s ease;
 }
 
-.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__image {
+.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__image {
 	transform: scale( 1.07 );
 }
 
@@ -209,11 +209,11 @@
 	opacity:     0;
 }
 
-.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay {
+.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay {
 	opacity: 1;
 }
 
-.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay-inner {
+.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay-inner {
 	transform: scale( 1 );
 	opacity:   1;
 }
@@ -235,8 +235,35 @@
 	padding:    20px 16px 14px;
 }
 
-.wbe-portfolio-grid--hover-slide .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay {
+.wbe-portfolio-grid--hover-slide .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay {
 	transform: translateY( 0 );
+}
+
+/* ── Keyboard focus: the same reveal as hover (selectors above) plus a ring the overlay cannot hide.
+   The link covers the card inside an overflow-hidden box, so the ring is drawn inside it, in the title
+   colour that the overlay is designed to contrast with. */
+.wbe-portfolio-grid__link:focus-visible {
+	outline:        2px solid var( --wbe-pg-title-color );
+	outline-offset: -4px;
+}
+
+/* ── Touch screens have no hover: every effect rests in the slide-up state, a caption on a bottom
+   gradient inside the image, so the title is always readable and the card height does not change. */
+@media ( hover: none ), ( pointer: coarse ) {
+	.wbe-portfolio-grid .wbe-portfolio-grid__overlay {
+		align-items: flex-end;
+		background:  linear-gradient( to top, var( --wbe-pg-overlay ) 0%, transparent 100% );
+		opacity:     1;
+		transform:   none;
+	}
+
+	.wbe-portfolio-grid .wbe-portfolio-grid__overlay-inner {
+		width:      100%;
+		text-align: left;
+		padding:    20px 16px 14px;
+		opacity:    1;
+		transform:  none;
+	}
 }
 
 /* ── Accessibility: reduced motion ───────────────────────────────────────── */
