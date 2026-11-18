@@ -31,12 +31,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					<?php
 					/**
-					 * Fires inside the listing of an individual group listing item.
-					 * Added by Reign Theme
+					 * Fires before the group avatar in each group listing item, as in Reign's own groups loop.
+					 * Reign forwards it to the old wbtm_before_group_avatar_group_directory name (deprecated), so
+					 * code hooked to either name runs.
 					 *
 					 * @since 1.0.7
 					 */
-					// do_action( 'wbtm_before_group_avatar_group_directory' );
+					do_action( 'reign_before_group_avatar_group_directory' );
 					if ( 'wbtm-group-directory-type-1' !== $group_directory_type ) {
 						$args = array(
 							'object_dir' => 'groups',

@@ -115,7 +115,8 @@ add_filter( 'wbcom_essential_locate_template', function ( $template, $template_n
 | `wbcom_essential/groups-loop/before/template` | Filter | Settings passed to the groups loop before it renders. |
 | `wbcom_essential/groups-loop/after/template` | Filter | Settings passed to the groups loop after it renders. |
 | `reign_wp_menu_elementor_controls` | Action | Add controls to the Notification Area and Group Carousel widgets. Receives the widget. The name comes from the Reign theme, but it fires with any theme. |
-| `reign_notification_area_output` | Filter | The finished HTML of the Notification Area widget. Receives `$html`, two visibility values (`yes` or `no`) and the widget `$settings`. In 4.7.2 both visibility values hold the desktop setting. |
+| `reign_notification_area_output` | Filter | The finished HTML of the Notification Area widget. Receives `$html`, the desktop and tablet notification visibility (`yes` or `no`), the widget `$settings`, and (from 4.7.3) the mobile visibility. Before 4.7.3 the tablet argument repeated the desktop value. |
+| `reign_before_group_avatar_group_directory` | Action | In each group card of the Groups Grid widget, before the avatar, when the theme is Reign (the same hook Reign's own groups directory fires). No arguments. Reign also fires the old name `wbtm_before_group_avatar_group_directory` for code still hooked to it. Before 4.7.3 the widget did not fire it. |
 | `wbtm_bp_directory_groups_data` | Action | Inside each group card of the Groups Grid widget, when the theme is Reign. No arguments. Runs in the group loop, so `bp_get_group_*()` functions work. |
 
 Add a switch to the Members Grid and Members Carousel widgets. Read it in your own code with `$widget->get_settings_for_display( 'my_show_badge' )`.
