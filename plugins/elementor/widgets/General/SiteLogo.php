@@ -27,6 +27,26 @@ class SiteLogo extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Constructor: registers the stylesheet for the site-title fallback.
+	 *
+	 * @param array      $data Widget data.
+	 * @param array|null $args Widget arguments.
+	 */
+	public function __construct( $data = array(), $args = null ) {
+		parent::__construct( $data, $args );
+		wp_register_style( 'wb-site-logo', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/site-logo.css', array(), WBCOM_ESSENTIAL_VERSION );
+	}
+
+	/**
+	 * Get style dependencies.
+	 *
+	 * @return array Style handles.
+	 */
+	public function get_style_depends() {
+		return array( 'wb-site-logo' );
+	}
+
+	/**
 	 * Get Title.
 	 */
 	public function get_title() {
@@ -406,11 +426,12 @@ class SiteLogo extends \Elementor\Widget_Base {
 		?>
 		<div class="wba-site-logo-container" style="display:flex;flex-direction:column;">
 		<?php
-		if ( $settings['logo_source'] == 'customizer' ) {
+		if ( 'customizer' === $settings['logo_source'] || empty( $settings['before_image']['url'] ) ) {
+			// No logo chosen in the widget: use the Customizer logo, else the site title linked home (as theme headers do).
 			if ( has_custom_logo() ) {
 				the_custom_logo();
 			} else {
-				echo '<strong>' . esc_html__( 'Please add a logo from customizer.', 'wbcom-essential' ) . '</strong>';
+				echo '<a class="wba-site-logo-title" href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>';
 			}
 		} elseif ( $settings['link']['url'] ) {
 				if ( $settings['before_image']['url'] ) {
