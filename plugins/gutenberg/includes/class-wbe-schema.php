@@ -29,7 +29,8 @@ class WBE_Schema {
 			self::$items['faq'] = array();
 		}
 
-		self::$items['faq'][] = array(
+		// Keyed by question, so a block rendered twice or a question repeated across blocks is listed once.
+		self::$items['faq'][ md5( wp_strip_all_tags( $question ) ) ] = array(
 			'@type'          => 'Question',
 			'name'           => wp_strip_all_tags( $question ),
 			'acceptedAnswer' => array(
@@ -67,12 +68,13 @@ class WBE_Schema {
 
 		$schemas = array();
 
-		// FAQ schema.
-		if ( ! empty( self::$items['faq'] ) ) {
+		// FAQ schema: one FAQPage for the whole page. Skipped when a Yoast or Rank Math FAQ block on the same
+		// page already prints its own FAQPage, so the page never carries two.
+		if ( ! empty( self::$items['faq'] ) && ! has_block( 'yoast/faq-block' ) && ! has_block( 'rank-math/faq-block' ) ) {
 			$schemas[] = array(
 				'@context'   => 'https://schema.org',
 				'@type'      => 'FAQPage',
-				'mainEntity' => self::$items['faq'],
+				'mainEntity' => array_values( self::$items['faq'] ),
 			);
 		}
 
@@ -94,9 +96,43 @@ class WBE_Schema {
 	}
 
 	/**
+	 * Move a FAQ Accordion's saved FAQPage JSON-LD into the page-wide collector.
+	 *
+	 * Each block saves its own FAQPage script, so a page with several FAQ blocks printed several FAQPage
+	 * objects, which search engines report as duplicates. The script stays in the saved content (the block
+	 * still validates); only the rendered page drops it and lists its questions in the one footer FAQPage.
+	 *
+	 * @param string $block_content Rendered block HTML.
+	 * @return string
+	 */
+	public static function collect_faq_block( $block_content ) {
+		if ( false === strpos( $block_content, 'application/ld+json' ) ) {
+			return $block_content;
+		}
+
+		return (string) preg_replace_callback(
+			'#<script type="application/ld\+json">(.*?)</script>#s',
+			static function ( $match ) {
+				$schema = json_decode( $match[1], true );
+				if ( ! is_array( $schema ) || 'FAQPage' !== ( $schema['@type'] ?? '' ) || empty( $schema['mainEntity'] ) ) {
+					return $match[0];
+				}
+				foreach ( (array) $schema['mainEntity'] as $item ) {
+					if ( ! empty( $item['name'] ) ) {
+						self::add_faq( (string) $item['name'], (string) ( $item['acceptedAnswer']['text'] ?? '' ) );
+					}
+				}
+				return '';
+			},
+			$block_content
+		);
+	}
+
+	/**
 	 * Initialize -- hook output to footer.
 	 */
 	public static function init() {
+		add_filter( 'render_block_wbcom-essential/faq-accordion', array( __CLASS__, 'collect_faq_block' ) );
 		add_action( 'wp_footer', array( __CLASS__, 'output' ), 20 );
 	}
 }
