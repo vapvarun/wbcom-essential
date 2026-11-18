@@ -4,7 +4,17 @@
 
 /* Always show desktop column count in editor */
 .wp-block-wbcom-essential-feature-grid .wbe-feature-grid__grid {
-	grid-template-columns: repeat(var(--wbe-feature-cols, 3), 1fr) !important;
+	/* Desktop count, with the same 175px floor as the page so a grid inside Columns matches. */
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( 175px, 100% ),
+				calc( ( 100% - ( var( --wbe-feature-cols, 3 ) - 1 ) * var( --wbe-fg-gap ) ) / var( --wbe-feature-cols, 3 ) )
+			),
+			1fr
+		)
+	) !important;
 }
 
 /* RichText fields are inline — force block rendering */

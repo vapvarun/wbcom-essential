@@ -11,8 +11,9 @@
 /* Grid container — 1 column base, scales up via --wbe-feature-cols */
 .wbe-feature-grid__grid {
 	display: grid;
+	--wbe-fg-gap: var(--wbe-space-xl, 32px);
 	grid-template-columns: 1fr;
-	gap: var(--wbe-space-xl, 32px);
+	gap: var(--wbe-fg-gap);
 	width: 100%;
 	box-sizing: border-box;
 }
@@ -94,10 +95,21 @@
 }
 
 /* Visibility utility classes */
-/* Tablet — 2 columns */
+/* Tablet — 2 columns, desktop — --wbe-feature-cols. The count is the maximum: in a narrow container (Columns,
+   sidebar) a column drops only when a card would fall below 175px. Phones keep 1 column. */
 @media (min-width: 768px) {
 	.wbe-feature-grid__grid {
-		grid-template-columns: repeat(2, 1fr);
+		--wbe-fg-cols-now: 2;
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(
+				max(
+					min( 175px, 100% ),
+					calc( ( 100% - ( var( --wbe-fg-cols-now ) - 1 ) * var( --wbe-fg-gap ) ) / var( --wbe-fg-cols-now ) )
+				),
+				1fr
+			)
+		);
 	}
 
 	/* An odd last card spans the row so tablet never shows a lone orphan. */
@@ -109,7 +121,7 @@
 /* Desktop — honour --wbe-feature-cols */
 @media (min-width: 1025px) {
 	.wbe-feature-grid__grid {
-		grid-template-columns: repeat(var(--wbe-feature-cols, 3), 1fr);
+		--wbe-fg-cols-now: var(--wbe-feature-cols, 3);
 	}
 
 	.wbe-feature-grid__grid > :last-child:nth-child(odd) {

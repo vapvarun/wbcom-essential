@@ -18,10 +18,48 @@
 }
 
 /* ---- Grid ---- */
+/* The owner's count is the maximum (2 at most on tablets). In a narrow container (Columns, sidebar) the
+   container queries below drop a column whenever an item would fall below 135px. Columns stay 1fr, so a wide
+   number still widens its own column as before. Under 540px the number also shrinks to fit its column, and
+   the separator of an item that starts a wrapped row is hidden. */
+.wbe-stats-counter {
+	container-type: inline-size;
+}
+
 .wbe-stats-counter__grid {
+	--wbe-sc-cap: var( --wbe-sc-columns );
+	--wbe-sc-cols-now: var( --wbe-sc-cap );
 	display: grid;
-	grid-template-columns: repeat( var( --wbe-sc-columns ), 1fr );
+	grid-template-columns: repeat( var( --wbe-sc-cols-now ), 1fr );
 	gap: 0;
+}
+
+@container ( max-width: 809.98px ) {
+	.wbe-stats-counter__grid { --wbe-sc-cols-now: min( var( --wbe-sc-cap ), 5 ); }
+}
+
+@container ( max-width: 674.98px ) {
+	.wbe-stats-counter__grid { --wbe-sc-cols-now: min( var( --wbe-sc-cap ), 4 ); }
+}
+
+@container ( max-width: 539.98px ) {
+	.wbe-stats-counter__grid { --wbe-sc-cols-now: min( var( --wbe-sc-cap ), 3 ); }
+}
+
+@container ( max-width: 404.98px ) {
+	.wbe-stats-counter__grid { --wbe-sc-cols-now: min( var( --wbe-sc-cap ), 2 ); }
+
+	.wbe-stats-counter__item:nth-child( 2n + 1 )::before {
+		display: none;
+	}
+}
+
+@container ( max-width: 269.98px ) {
+	.wbe-stats-counter__grid { --wbe-sc-cols-now: 1; }
+
+	.wbe-stats-counter__item::before {
+		display: none;
+	}
 }
 
 /* ---- Individual stat item ---- */
@@ -87,12 +125,11 @@
 /* Tablet: max 2 columns */
 @media ( max-width: 1024px ) {
 	.wbe-stats-counter {
-		--wbe-sc-columns: min( var( --wbe-sc-columns ), 2 );
 		--wbe-sc-number-size: clamp( 2rem, 4vw, 3rem );
 	}
 
 	.wbe-stats-counter__grid {
-		grid-template-columns: repeat( min( var( --wbe-sc-columns ), 2 ), 1fr );
+		--wbe-sc-cap: min( var( --wbe-sc-columns ), 2 );
 	}
 
 	/* Re-draw separators for 2-column layout */
@@ -125,3 +162,10 @@
 	}
 }
 
+/* Narrow containers (under 540px): a "1,500+" is about 3.3em wide plus 48px of padding, so the number shrinks
+   to fit its column. After the base number rule so it wins. */
+@container ( max-width: 539.98px ) {
+	.wbe-stats-counter__number {
+		font-size: min( var( --wbe-sc-number-size ), calc( ( 100cqi / var( --wbe-sc-cols-now ) - 48px ) / 3.3 ) );
+	}
+}

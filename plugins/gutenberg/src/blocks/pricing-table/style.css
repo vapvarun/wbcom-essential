@@ -12,8 +12,9 @@
 /* Grid — 1 column on mobile, flows up via --wbe-pricing-cols custom prop */
 .wbe-pricing-cards__grid {
 	display: grid;
+	--wbe-pt-gap: var(--wbe-space-xl, 32px);
 	grid-template-columns: 1fr;
-	gap: var(--wbe-space-xl, 32px);
+	gap: var(--wbe-pt-gap);
 	width: 100%;
 	box-sizing: border-box;
 }
@@ -83,6 +84,7 @@
 
 .wbe-pricing-cards__price {
 	display: flex;
+	flex-wrap: wrap; /* "/month" drops a line in a narrow card instead of being clipped. */
 	align-items: baseline;
 	gap: 2px;
 	color: var(--wbcom-heading-color, var(--wbe-text, #1e1e2e));
@@ -198,17 +200,28 @@
 }
 
 /* Visibility utility classes */
-/* Tablet — 2 columns */
+/* Tablet — 2 columns, desktop — --wbe-pricing-cols. The count is the maximum: in a narrow container (Columns,
+   sidebar) a column drops only when a card would fall below 175px. Phones keep 1 column. */
 @media (min-width: 768px) {
 	.wbe-pricing-cards__grid {
-		grid-template-columns: repeat(2, 1fr);
+		--wbe-pt-cols-now: 2;
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(
+				max(
+					min( 175px, 100% ),
+					calc( ( 100% - ( var( --wbe-pt-cols-now ) - 1 ) * var( --wbe-pt-gap ) ) / var( --wbe-pt-cols-now ) )
+				),
+				1fr
+			)
+		);
 	}
 }
 
 /* Desktop — use --wbe-pricing-cols */
 @media (min-width: 1025px) {
 	.wbe-pricing-cards__grid {
-		grid-template-columns: repeat(var(--wbe-pricing-cols, 3), 1fr);
+		--wbe-pt-cols-now: var(--wbe-pricing-cols, 3);
 	}
 }
 
