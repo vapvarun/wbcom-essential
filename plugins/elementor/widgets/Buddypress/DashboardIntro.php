@@ -322,7 +322,8 @@ class DashboardIntro extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Description Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#4D5C6D',
+				// The theme's muted text colour (light and dark mode); the fixed grey stays as the fallback.
+				'default'   => 'var(--wbcom-color-contrast-2, #4D5C6D)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-essential-dash__brief' => 'color: {{VALUE}};',
 				),
