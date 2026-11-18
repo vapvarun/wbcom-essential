@@ -68,14 +68,14 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	const tokenPropsCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-tr-text-color: ${ textColor };`,
-		`  --wbe-tr-rotating-color: ${ rotatingColor };`,
+		textColor && `  --wbe-tr-text-color: ${ textColor };`,
+		rotatingColor && `  --wbe-tr-rotating-color: ${ rotatingColor };`,
 		`  --wbe-tr-font-size: ${ fontSize }${ fontSizeUnit };`,
 		`  --wbe-tr-font-size-tablet: ${ fontSizeTablet }${ fontSizeUnit };`,
 		`  --wbe-tr-font-size-mobile: ${ fontSizeMobile }${ fontSizeUnit };`,
 		`  --wbe-tr-text-align: ${ textAlign };`,
 		`}`,
-	].join( '\n' );
+	].filter( Boolean ).join( '\n' );
 
 	const blockProps = useBlockProps( {
 		className: `wbe-block-${ uniqueId } wbe-text-rotator`,

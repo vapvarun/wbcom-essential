@@ -6,13 +6,13 @@
 
 /* ---- Design tokens ---- */
 .wbe-timeline {
-	--wbe-tl-line-color: #e9ecef;
-	--wbe-tl-dot-color: #667eea;
+	--wbe-tl-line-color: var( --wbe-border, #e9ecef );
+	--wbe-tl-dot-color: var( --wbcom-button-bg, var( --wbe-color-accent ) );
 	--wbe-tl-dot-size: 40px;
-	--wbe-tl-card-bg: #ffffff;
-	--wbe-tl-date-color: #667eea;
-	--wbe-tl-title-color: #1e1e2e;
-	--wbe-tl-desc-color: #6c757d;
+	--wbe-tl-card-bg: var( --wbe-surface, #ffffff );
+	--wbe-tl-date-color: var( --wbe-color-accent );
+	--wbe-tl-title-color: var( --wbcom-heading-color, var( --wbe-text, #1e1e2e ) );
+	--wbe-tl-desc-color: var( --wbe-text-muted, #6c757d );
 	--wbe-tl-card-radius: 8px;
 	--wbe-tl-card-shadow: none;
 	--wbe-tl-gap: 48px;

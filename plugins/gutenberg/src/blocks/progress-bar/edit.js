@@ -65,13 +65,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	const tokenPropsCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-pb-track-color: ${ trackColor };`,
-		`  --wbe-pb-label-color: ${ labelColor };`,
-		`  --wbe-pb-percent-color: ${ percentColor };`,
+		trackColor && `  --wbe-pb-track-color: ${ trackColor };`,
+		labelColor && `  --wbe-pb-label-color: ${ labelColor };`,
+		percentColor && `  --wbe-pb-percent-color: ${ percentColor };`,
 		`  --wbe-pb-height: ${ height }px;`,
 		`  --wbe-pb-radius: ${ barBorderRadius }px;`,
 		`}`,
-	].join( '\n' );
+	].filter( Boolean ).join( '\n' );
 
 	const blockProps = useBlockProps( {
 		className: `wbe-block-${ uniqueId } wbe-progress-bar`,

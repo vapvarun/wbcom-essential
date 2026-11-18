@@ -6,10 +6,10 @@
 
 /* ---- Design tokens ---- */
 .wbe-flip-box {
-	--wbe-flip-front-bg: #667eea;
-	--wbe-flip-front-color: #ffffff;
-	--wbe-flip-back-bg: #764ba2;
-	--wbe-flip-back-color: #ffffff;
+	--wbe-flip-front-bg: var( --wbcom-button-bg, var( --wbe-color-accent ) );
+	--wbe-flip-front-color: var( --wbcom-button-color, #ffffff );
+	--wbe-flip-back-bg: var( --wbcom-color-primary-hover, var( --wbe-color-accent-hover ) );
+	--wbe-flip-back-color: var( --wbcom-button-color, #ffffff );
 	--wbe-flip-height: 300px;
 	--wbe-flip-radius: 12px;
 	--wbe-flip-shadow: none;
@@ -50,7 +50,7 @@
 
 /* Keyboard focus ring on the flip box container */
 .wbe-flip-box:focus-visible {
-	outline: 2px solid var( --wbe-flip-front-bg, #667eea );
+	outline: 2px solid var( --wbe-flip-front-bg );
 	outline-offset: 4px;
 	border-radius: var( --wbe-flip-radius, 12px );
 }

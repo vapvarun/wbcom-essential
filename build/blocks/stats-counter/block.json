@@ -93,15 +93,15 @@
     },
     "numberColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "labelColor": {
       "type": "string",
-      "default": "#6c757d"
+      "default": ""
     },
     "separatorColor": {
       "type": "string",
-      "default": "#e9ecef"
+      "default": ""
     },
     "padding": {
       "type": "object",
@@ -225,5 +225,19 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "viewScript": "file:./view.js",
+  "wbeLegacyColors": {
+    "numberColor": [
+      "--wbe-sc-number-color",
+      "#1e1e2e"
+    ],
+    "labelColor": [
+      "--wbe-sc-label-color",
+      "#6c757d"
+    ],
+    "separatorColor": [
+      "--wbe-sc-sep-color",
+      "#e9ecef"
+    ]
+  }
 }

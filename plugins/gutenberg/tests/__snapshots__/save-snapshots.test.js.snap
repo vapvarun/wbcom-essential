@@ -93,10 +93,10 @@ exports[`static block flip-box saves an owner-picked colour 1`] = `
   border-radius: 12px 12px 12px 12px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-flip-front-bg: #667eea;
-  --wbe-flip-front-color: #ffffff;
-  --wbe-flip-back-bg: #764ba2;
-  --wbe-flip-back-color: #ffffff;
+  --wbe-flip-front-bg: #123456;
+  --wbe-flip-front-color: #123456;
+  --wbe-flip-back-bg: #123456;
+  --wbe-flip-back-color: #123456;
   --wbe-flip-height: 300px;
   --wbe-flip-radius: 12px 12px 12px 12px;
   --wbe-flip-shadow: none;
@@ -110,10 +110,6 @@ exports[`static block flip-box saves the same markup at its defaults 1`] = `
   border-radius: 12px 12px 12px 12px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-flip-front-bg: #667eea;
-  --wbe-flip-front-color: #ffffff;
-  --wbe-flip-back-bg: #764ba2;
-  --wbe-flip-back-color: #ffffff;
   --wbe-flip-height: 300px;
   --wbe-flip-radius: 12px 12px 12px 12px;
   --wbe-flip-shadow: none;
@@ -144,7 +140,7 @@ exports[`static block pricing-table saves an owner-picked colour 1`] = `
   margin: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
 }
-</style><div class="wbe-pricing-cards__grid" style="--wbe-pricing-cols:3"><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Basic</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">9</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>5 Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>10GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Email Support</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Basic</a></div></div><div class="wbe-pricing-cards__card wbe-pricing-cards__card--featured" style="background-color:#667eea;color:#ffffff"><div class="wbe-pricing-cards__badge">Most Popular</div><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Pro</div><div class="wbe-pricing-cards__price" style="color:#ffffff"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">29</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>25 Projects</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>100GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Priority Support</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#ffffff;color:#667eea">Choose Pro</a></div></div><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Enterprise</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">99</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Unlimited Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>1TB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>24/7 Support</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Custom Domain</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Enterprise</a></div></div></div></div>"
+</style><div class="wbe-pricing-cards__grid" style="--wbe-pricing-cols:3"><div class="wbe-pricing-cards__card" style="background-color:#123456;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Basic</div><div class="wbe-pricing-cards__price" style="color:#123456"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">9</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>5 Projects</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>10GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Email Support</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#123456;color:#123456">Choose Basic</a></div></div><div class="wbe-pricing-cards__card wbe-pricing-cards__card--featured" style="background-color:#123456;color:#123456"><div class="wbe-pricing-cards__badge">Most Popular</div><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Pro</div><div class="wbe-pricing-cards__price" style="color:#123456"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">29</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>25 Projects</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>100GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Priority Support</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#ffffff;color:#123456">Choose Pro</a></div></div><div class="wbe-pricing-cards__card" style="background-color:#123456;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Enterprise</div><div class="wbe-pricing-cards__price" style="color:#123456"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">99</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Unlimited Projects</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>1TB Storage</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>24/7 Support</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li><li class="wbe-pricing-cards__feature" style="color:#123456"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Custom Domain</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#123456;color:#123456">Choose Enterprise</a></div></div></div></div>"
 `;
 
 exports[`static block pricing-table saves the same markup at its defaults 1`] = `
@@ -153,7 +149,7 @@ exports[`static block pricing-table saves the same markup at its defaults 1`] = 
   margin: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
 }
-</style><div class="wbe-pricing-cards__grid" style="--wbe-pricing-cols:3"><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Basic</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">9</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>5 Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>10GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Email Support</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Basic</a></div></div><div class="wbe-pricing-cards__card wbe-pricing-cards__card--featured" style="background-color:#667eea;color:#ffffff"><div class="wbe-pricing-cards__badge">Most Popular</div><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Pro</div><div class="wbe-pricing-cards__price" style="color:#ffffff"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">29</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>25 Projects</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>100GB Storage</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Priority Support</li><li class="wbe-pricing-cards__feature" style="color:#ffffff"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#ffffff;color:#667eea">Choose Pro</a></div></div><div class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Enterprise</div><div class="wbe-pricing-cards__price" style="color:#1e1e2e"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">99</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Unlimited Projects</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>1TB Storage</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>24/7 Support</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li><li class="wbe-pricing-cards__feature" style="color:#6c757d"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Custom Domain</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button" style="background-color:#667eea;color:#ffffff">Choose Enterprise</a></div></div></div></div>"
+</style><div class="wbe-pricing-cards__grid" style="--wbe-pricing-cols:3"><div class="wbe-pricing-cards__card" style="color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Basic</div><div class="wbe-pricing-cards__price"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">9</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>5 Projects</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>10GB Storage</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Email Support</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button">Choose Basic</a></div></div><div class="wbe-pricing-cards__card wbe-pricing-cards__card--featured"><div class="wbe-pricing-cards__badge">Most Popular</div><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Pro</div><div class="wbe-pricing-cards__price"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">29</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>25 Projects</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>100GB Storage</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Priority Support</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button">Choose Pro</a></div></div><div class="wbe-pricing-cards__card" style="color:inherit"><div class="wbe-pricing-cards__header"><div class="wbe-pricing-cards__name">Enterprise</div><div class="wbe-pricing-cards__price"><span class="wbe-pricing-cards__currency">$</span><span class="wbe-pricing-cards__amount">99</span><span class="wbe-pricing-cards__period">/mo</span></div></div><ul class="wbe-pricing-cards__features"><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Unlimited Projects</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>1TB Storage</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>24/7 Support</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>API Access</li><li class="wbe-pricing-cards__feature"><span class="wbe-pricing-cards__feature-check" aria-hidden="true">✓</span>Custom Domain</li></ul><div class="wbe-pricing-cards__footer"><a class="wbe-pricing-cards__btn" href="#" role="button">Choose Enterprise</a></div></div></div></div>"
 `;
 
 exports[`static block progress-bar saves an owner-picked colour 1`] = `
@@ -163,9 +159,9 @@ exports[`static block progress-bar saves an owner-picked colour 1`] = `
   border-radius: 0px 0px 0px 0px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-pb-track-color: #e9ecef;
-  --wbe-pb-label-color: #1e1e2e;
-  --wbe-pb-percent-color: #6c757d;
+  --wbe-pb-track-color: #123456;
+  --wbe-pb-label-color: #123456;
+  --wbe-pb-percent-color: #123456;
   --wbe-pb-height: 12px;
   --wbe-pb-radius: 6px;
 }</style><div class="wbe-progress-bar__list"><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">HTML/CSS</span><span class="wbe-progress-bar__percent">95%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="HTML/CSS"><div class="wbe-progress-bar__fill" data-percentage="95" style="width:0;background:#667eea"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">JavaScript</span><span class="wbe-progress-bar__percent">85%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript"><div class="wbe-progress-bar__fill" data-percentage="85" style="width:0;background:#764ba2"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">React</span><span class="wbe-progress-bar__percent">75%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="React"><div class="wbe-progress-bar__fill" data-percentage="75" style="width:0;background:#f5576c"></div></div></div></div></div>"
@@ -178,9 +174,6 @@ exports[`static block progress-bar saves the same markup at its defaults 1`] = `
   border-radius: 0px 0px 0px 0px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-pb-track-color: #e9ecef;
-  --wbe-pb-label-color: #1e1e2e;
-  --wbe-pb-percent-color: #6c757d;
   --wbe-pb-height: 12px;
   --wbe-pb-radius: 6px;
 }</style><div class="wbe-progress-bar__list"><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">HTML/CSS</span><span class="wbe-progress-bar__percent">95%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="HTML/CSS"><div class="wbe-progress-bar__fill" data-percentage="95" style="width:0;background:#667eea"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">JavaScript</span><span class="wbe-progress-bar__percent">85%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript"><div class="wbe-progress-bar__fill" data-percentage="85" style="width:0;background:#764ba2"></div></div></div><div class="wbe-progress-bar__item"><div class="wbe-progress-bar__meta"><span class="wbe-progress-bar__label">React</span><span class="wbe-progress-bar__percent">75%</span></div><div class="wbe-progress-bar__track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="React"><div class="wbe-progress-bar__fill" data-percentage="75" style="width:0;background:#f5576c"></div></div></div></div></div>"
@@ -211,9 +204,9 @@ exports[`static block stats-counter saves an owner-picked colour 1`] = `
   border-radius: 0px 0px 0px 0px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-sc-number-color: #1e1e2e;
-  --wbe-sc-label-color: #6c757d;
-  --wbe-sc-sep-color: #e9ecef;
+  --wbe-sc-number-color: #123456;
+  --wbe-sc-label-color: #123456;
+  --wbe-sc-sep-color: #123456;
   --wbe-sc-columns: 4;
 }</style><div class="wbe-stats-counter__grid"><div class="wbe-stats-counter__item" data-target="1500" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="1500">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Happy Clients</div></div><div class="wbe-stats-counter__item" data-target="200" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="200">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Projects Done</div></div><div class="wbe-stats-counter__item" data-target="99" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="99">0</span><span class="wbe-stats-counter__suffix">%</span></div><div class="wbe-stats-counter__label">Satisfaction</div></div><div class="wbe-stats-counter__item" data-target="24" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="24">0</span><span class="wbe-stats-counter__suffix">/7</span></div><div class="wbe-stats-counter__label">Support</div></div></div></div>"
 `;
@@ -225,9 +218,6 @@ exports[`static block stats-counter saves the same markup at its defaults 1`] = 
   border-radius: 0px 0px 0px 0px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-sc-number-color: #1e1e2e;
-  --wbe-sc-label-color: #6c757d;
-  --wbe-sc-sep-color: #e9ecef;
   --wbe-sc-columns: 4;
 }</style><div class="wbe-stats-counter__grid"><div class="wbe-stats-counter__item" data-target="1500" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="1500">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Happy Clients</div></div><div class="wbe-stats-counter__item" data-target="200" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="200">0</span><span class="wbe-stats-counter__suffix">+</span></div><div class="wbe-stats-counter__label">Projects Done</div></div><div class="wbe-stats-counter__item" data-target="99" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="99">0</span><span class="wbe-stats-counter__suffix">%</span></div><div class="wbe-stats-counter__label">Satisfaction</div></div><div class="wbe-stats-counter__item" data-target="24" data-duration="2000"><div class="wbe-stats-counter__number-wrap"><span class="wbe-stats-counter__number" aria-label="24">0</span><span class="wbe-stats-counter__suffix">/7</span></div><div class="wbe-stats-counter__label">Support</div></div></div></div>"
 `;
@@ -239,10 +229,10 @@ exports[`static block tabs saves an owner-picked colour 1`] = `
   border-radius: 0px 0px 0px 0px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-tabs-active-color: #667eea;
-  --wbe-tabs-inactive-color: #6c757d;
-  --wbe-tabs-content-bg: #ffffff;
-  --wbe-tabs-border-color: #e9ecef;
+  --wbe-tabs-active-color: #123456;
+  --wbe-tabs-inactive-color: #123456;
+  --wbe-tabs-content-bg: #123456;
+  --wbe-tabs-border-color: #123456;
 }</style><div class="wbe-tabs__nav" role="tablist"><button id="wbe-tab-snap1234-0" role="tab" type="button" class="wbe-tabs__tab components-button is-active" aria-selected="true" aria-controls="wbe-panel-snap1234-0" tabindex="0">Features</button><button id="wbe-tab-snap1234-1" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-1" tabindex="-1">Benefits</button><button id="wbe-tab-snap1234-2" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-2" tabindex="-1">Pricing</button></div><div class="wbe-tabs__panels"><div id="wbe-panel-snap1234-0" role="tabpanel" aria-labelledby="wbe-tab-snap1234-0" class="wbe-tabs__panel is-active" tabindex="0"><p>Discover our powerful features designed to help you succeed.</p></div><div id="wbe-panel-snap1234-1" role="tabpanel" aria-labelledby="wbe-tab-snap1234-1" class="wbe-tabs__panel" hidden tabindex="0"><p>Experience the benefits of choosing our solution.</p></div><div id="wbe-panel-snap1234-2" role="tabpanel" aria-labelledby="wbe-tab-snap1234-2" class="wbe-tabs__panel" hidden tabindex="0"><p>Flexible pricing plans for businesses of all sizes.</p></div></div></div>"
 `;
 
@@ -253,10 +243,6 @@ exports[`static block tabs saves the same markup at its defaults 1`] = `
   border-radius: 0px 0px 0px 0px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-tabs-active-color: #667eea;
-  --wbe-tabs-inactive-color: #6c757d;
-  --wbe-tabs-content-bg: #ffffff;
-  --wbe-tabs-border-color: #e9ecef;
 }</style><div class="wbe-tabs__nav" role="tablist"><button id="wbe-tab-snap1234-0" role="tab" type="button" class="wbe-tabs__tab components-button is-active" aria-selected="true" aria-controls="wbe-panel-snap1234-0" tabindex="0">Features</button><button id="wbe-tab-snap1234-1" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-1" tabindex="-1">Benefits</button><button id="wbe-tab-snap1234-2" role="tab" type="button" class="wbe-tabs__tab components-button" aria-selected="false" aria-controls="wbe-panel-snap1234-2" tabindex="-1">Pricing</button></div><div class="wbe-tabs__panels"><div id="wbe-panel-snap1234-0" role="tabpanel" aria-labelledby="wbe-tab-snap1234-0" class="wbe-tabs__panel is-active" tabindex="0"><p>Discover our powerful features designed to help you succeed.</p></div><div id="wbe-panel-snap1234-1" role="tabpanel" aria-labelledby="wbe-tab-snap1234-1" class="wbe-tabs__panel" hidden tabindex="0"><p>Experience the benefits of choosing our solution.</p></div><div id="wbe-panel-snap1234-2" role="tabpanel" aria-labelledby="wbe-tab-snap1234-2" class="wbe-tabs__panel" hidden tabindex="0"><p>Flexible pricing plans for businesses of all sizes.</p></div></div></div>"
 `;
 
@@ -307,8 +293,8 @@ exports[`static block text-rotator saves an owner-picked colour 1`] = `
   }
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-tr-text-color: #1e1e2e;
-  --wbe-tr-rotating-color: #667eea;
+  --wbe-tr-text-color: #123456;
+  --wbe-tr-rotating-color: #123456;
   --wbe-tr-font-size: 36px;
   --wbe-tr-font-size-tablet: 28px;
   --wbe-tr-font-size-mobile: 22px;
@@ -334,8 +320,6 @@ exports[`static block text-rotator saves the same markup at its defaults 1`] = `
   }
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-tr-text-color: #1e1e2e;
-  --wbe-tr-rotating-color: #667eea;
   --wbe-tr-font-size: 36px;
   --wbe-tr-font-size-tablet: 28px;
   --wbe-tr-font-size-mobile: 22px;
@@ -350,13 +334,13 @@ exports[`static block timeline saves an owner-picked colour 1`] = `
   border-radius: 8px 8px 8px 8px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-tl-line-color: #e9ecef;
-  --wbe-tl-dot-color: #667eea;
+  --wbe-tl-line-color: #123456;
+  --wbe-tl-dot-color: #123456;
   --wbe-tl-dot-size: 40px;
-  --wbe-tl-card-bg: #ffffff;
-  --wbe-tl-date-color: #667eea;
-  --wbe-tl-title-color: #1e1e2e;
-  --wbe-tl-desc-color: #6c757d;
+  --wbe-tl-card-bg: #123456;
+  --wbe-tl-date-color: #123456;
+  --wbe-tl-title-color: #123456;
+  --wbe-tl-desc-color: #123456;
   --wbe-tl-card-radius: 8px 8px 8px 8px;
   --wbe-tl-card-shadow: none;
 }</style><div class="wbe-timeline__track"><div class="wbe-timeline__item wbe-timeline__item--1"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">🚀</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2024">2024</time><h3 class="wbe-timeline__title">Founded</h3><p class="wbe-timeline__description">Our company was founded with a vision.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--2"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">📈</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2025">2025</time><h3 class="wbe-timeline__title">Growth</h3><p class="wbe-timeline__description">Expanded to serve thousands of customers.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--3"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">💡</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2026">2026</time><h3 class="wbe-timeline__title">Innovation</h3><p class="wbe-timeline__description">Launched groundbreaking new features.</p></div></div></div></div>"
@@ -369,13 +353,7 @@ exports[`static block timeline saves the same markup at its defaults 1`] = `
   border-radius: 8px 8px 8px 8px;
 }
 </style><style>.wbe-block-snap1234 {
-  --wbe-tl-line-color: #e9ecef;
-  --wbe-tl-dot-color: #667eea;
   --wbe-tl-dot-size: 40px;
-  --wbe-tl-card-bg: #ffffff;
-  --wbe-tl-date-color: #667eea;
-  --wbe-tl-title-color: #1e1e2e;
-  --wbe-tl-desc-color: #6c757d;
   --wbe-tl-card-radius: 8px 8px 8px 8px;
   --wbe-tl-card-shadow: none;
 }</style><div class="wbe-timeline__track"><div class="wbe-timeline__item wbe-timeline__item--1"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">🚀</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2024">2024</time><h3 class="wbe-timeline__title">Founded</h3><p class="wbe-timeline__description">Our company was founded with a vision.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--2"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">📈</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2025">2025</time><h3 class="wbe-timeline__title">Growth</h3><p class="wbe-timeline__description">Expanded to serve thousands of customers.</p></div></div><div class="wbe-timeline__item wbe-timeline__item--3"><div class="wbe-timeline__dot" aria-hidden="true"><span class="wbe-timeline__dot-icon">💡</span></div><div class="wbe-timeline__card"><time class="wbe-timeline__date" datetime="2026">2026</time><h3 class="wbe-timeline__title">Innovation</h3><p class="wbe-timeline__description">Launched groundbreaking new features.</p></div></div></div></div>"

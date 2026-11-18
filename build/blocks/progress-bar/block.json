@@ -82,15 +82,15 @@
     },
     "trackColor": {
       "type": "string",
-      "default": "#e9ecef"
+      "default": ""
     },
     "labelColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "percentColor": {
       "type": "string",
-      "default": "#6c757d"
+      "default": ""
     },
     "barBorderRadius": {
       "type": "number",
@@ -218,5 +218,19 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "viewScript": "file:./view.js",
+  "wbeLegacyColors": {
+    "trackColor": [
+      "--wbe-pb-track-color",
+      "#e9ecef"
+    ],
+    "labelColor": [
+      "--wbe-pb-label-color",
+      "#1e1e2e"
+    ],
+    "percentColor": [
+      "--wbe-pb-percent-color",
+      "#6c757d"
+    ]
+  }
 }

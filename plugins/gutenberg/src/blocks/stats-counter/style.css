@@ -6,9 +6,9 @@
 
 /* Design tokens */
 .wbe-stats-counter {
-	--wbe-sc-number-color: #1e1e2e;
-	--wbe-sc-label-color: #6c757d;
-	--wbe-sc-sep-color: #e9ecef;
+	--wbe-sc-number-color: var( --wbcom-heading-color, var( --wbe-text, #1e1e2e ) );
+	--wbe-sc-label-color: var( --wbe-text-muted, #6c757d );
+	--wbe-sc-sep-color: var( --wbe-border, #e9ecef );
 	--wbe-sc-columns: 4;
 	--wbe-sc-number-size: clamp( 2.5rem, 5vw, 3.5rem );
 	--wbe-sc-label-size: 0.875rem;

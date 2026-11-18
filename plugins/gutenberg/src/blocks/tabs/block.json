@@ -73,19 +73,19 @@
 		},
 		"activeColor": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"inactiveColor": {
 			"type": "string",
-			"default": "#6c757d"
+			"default": ""
 		},
 		"contentBg": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"borderColor": {
 			"type": "string",
-			"default": "#e9ecef"
+			"default": ""
 		},
 		"padding": {
 			"type": "object",
@@ -197,5 +197,11 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"wbeLegacyColors": {
+		"activeColor": ["--wbe-tabs-active-color", "#667eea", "keep"],
+		"inactiveColor": ["--wbe-tabs-inactive-color", "#6c757d"],
+		"contentBg": ["--wbe-tabs-content-bg", "#ffffff"],
+		"borderColor": ["--wbe-tabs-border-color", "#e9ecef"]
+	}
 }

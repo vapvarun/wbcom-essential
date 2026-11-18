@@ -32,6 +32,14 @@ final class BlockRegistrar {
 	private static $registered_blocks = array();
 
 	/**
+	 * Old fixed colour lines per block, from each block.json "wbeLegacyColors" (block name => list of
+	 * "  --var: value;" lines). Filled while the blocks register.
+	 *
+	 * @var array<string, string[]>
+	 */
+	private static $legacy_colour_lines = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string $build_dir Absolute path to build/blocks/.
@@ -47,10 +55,57 @@ final class BlockRegistrar {
 		add_action( 'init', array( $this, 'register_blocks' ) );
 		add_filter( 'block_type_metadata', array( $this, 'translate_text_defaults' ) );
 		add_filter( 'block_type_metadata', array( $this, 'version_assets_by_release' ) );
+		add_filter( 'block_type_metadata', array( $this, 'collect_legacy_colours' ) );
+		add_filter( 'render_block', array( $this, 'drop_legacy_colours' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/countdown-timer', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/pricing-table', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/testimonial-carousel', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block', array( $this, 'drop_zero_margin' ), 10, 2 );
+	}
+
+	/**
+	 * Remember the old fixed colours a block lists in block.json "wbeLegacyColors".
+	 *
+	 * Each entry is attribute => [ css variable, old default, optional "keep" ]. Accents and the text on
+	 * them are marked "keep": pages already built keep that look, only new blocks follow the theme accent.
+	 *
+	 * @param array $metadata Block metadata read from block.json.
+	 * @return array
+	 */
+	public function collect_legacy_colours( $metadata ) {
+		$name = $metadata['name'] ?? '';
+		if ( 0 === strpos( $name, 'wbcom-essential/' ) && ! empty( $metadata['wbeLegacyColors'] ) && is_array( $metadata['wbeLegacyColors'] ) ) {
+			$lines = array();
+			foreach ( $metadata['wbeLegacyColors'] as $entry ) {
+				// An empty variable name marks a colour saved as an inline style (handled in translate_saved_markup()).
+				if ( is_array( $entry ) && ! empty( $entry[0] ) && isset( $entry[1] ) && 'keep' !== ( $entry[2] ?? '' ) ) {
+					$lines[] = '  ' . $entry[0] . ': ' . $entry[1] . ';';
+				}
+			}
+			self::$legacy_colour_lines[ $name ] = $lines;
+		}
+		return $metadata;
+	}
+
+	/**
+	 * Drop neutral colour lines saved with the old fixed defaults, so the theme colours apply.
+	 *
+	 * Text, card and border colours used to default to fixed light values (#1e1e2e, #ffffff, #e9ecef ...) and
+	 * static blocks wrote them into the page, so they stayed light in dark mode. A default is never stored as
+	 * a block attribute, so a line with the old value can only come from the old default; a colour the owner
+	 * picked is a different value and is never matched. The saved markup is not changed (blocks still
+	 * validate); the editor migrates the block on its next save.
+	 *
+	 * @param string $block_content Rendered block HTML.
+	 * @param array  $block         Parsed block.
+	 * @return string
+	 */
+	public function drop_legacy_colours( $block_content, $block ) {
+		$lines = self::$legacy_colour_lines[ $block['blockName'] ?? '' ] ?? array();
+		if ( ! $lines || false === strpos( $block_content, '<style>' ) ) {
+			return $block_content;
+		}
+		return str_replace( $lines, '', $block_content );
 	}
 
 	/**
@@ -100,15 +155,15 @@ final class BlockRegistrar {
 					$map[ 'aria-label="' . $english . '"' ]                    = 'aria-label="' . esc_attr( $translated ) . '"';
 					$map[ 'wbe-countdown-timer__label">' . $english . '<' ] = 'wbe-countdown-timer__label">' . esc_html( $translated ) . '<';
 				}
-				// Colour lines saved with the old fixed defaults: dropped so the theme colours apply (light and
-				// dark). The editor migrates the block on its next save; a colour the owner picked never matches.
-				foreach ( array( 'number-color: #1e1e2e', 'label-color: #6c757d', 'box-bg: #f8f9fa', 'box-border: #e9ecef' ) as $line ) {
-					$map[ '  --wbe-cd-' . $line . ';' ] = '';
-				}
 				break;
 			case 'wbcom-essential/pricing-table':
 				$map = array(
 					'wbe-pricing-cards__badge">Most Popular<' => 'wbe-pricing-cards__badge">' . esc_html__( 'Most Popular', 'wbcom-essential' ) . '<',
+					// Card, price and feature colours saved as inline styles with the old fixed defaults: dropped so
+					// the theme colours apply in light and dark mode. Accent colours stay as saved.
+					'class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"' => 'class="wbe-pricing-cards__card" style="color:inherit"',
+					'class="wbe-pricing-cards__price" style="color:#1e1e2e"' => 'class="wbe-pricing-cards__price"',
+					'class="wbe-pricing-cards__feature" style="color:#6c757d"' => 'class="wbe-pricing-cards__feature"',
 				);
 				break;
 			case 'wbcom-essential/testimonial-carousel':
@@ -116,8 +171,6 @@ final class BlockRegistrar {
 					'aria-label="Testimonial navigation"' => 'aria-label="' . esc_attr__( 'Testimonial navigation', 'wbcom-essential' ) . '"',
 					'aria-label="Previous testimonial"'   => 'aria-label="' . esc_attr__( 'Previous testimonial', 'wbcom-essential' ) . '"',
 					'aria-label="Next testimonial"'       => 'aria-label="' . esc_attr__( 'Next testimonial', 'wbcom-essential' ) . '"',
-					// The old fixed accent, dropped so the theme accent applies (the editor migrates on save).
-					'  --wbe-tc-accent: #667eea;'         => '',
 				);
 				break;
 			default:

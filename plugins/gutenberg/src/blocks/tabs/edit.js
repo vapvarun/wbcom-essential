@@ -72,12 +72,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	const tokenPropsCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-tabs-active-color: ${ activeColor };`,
-		`  --wbe-tabs-inactive-color: ${ inactiveColor };`,
-		`  --wbe-tabs-content-bg: ${ contentBg };`,
-		`  --wbe-tabs-border-color: ${ borderColor };`,
+		activeColor && `  --wbe-tabs-active-color: ${ activeColor };`,
+		inactiveColor && `  --wbe-tabs-inactive-color: ${ inactiveColor };`,
+		contentBg && `  --wbe-tabs-content-bg: ${ contentBg };`,
+		borderColor && `  --wbe-tabs-border-color: ${ borderColor };`,
 		`}`,
-	].join( '\n' );
+	].filter( Boolean ).join( '\n' );
 
 	const addTab = () => {
 		const newTabs = [

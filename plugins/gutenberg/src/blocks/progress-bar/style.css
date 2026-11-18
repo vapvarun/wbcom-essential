@@ -6,9 +6,9 @@
 
 /* Design tokens */
 .wbe-progress-bar {
-	--wbe-pb-track-color: #e9ecef;
-	--wbe-pb-label-color: #1e1e2e;
-	--wbe-pb-percent-color: #6c757d;
+	--wbe-pb-track-color: var( --wbe-border, #e9ecef );
+	--wbe-pb-label-color: var( --wbe-text, #1e1e2e );
+	--wbe-pb-percent-color: var( --wbe-text-muted, #6c757d );
 	--wbe-pb-height: 12px;
 	--wbe-pb-radius: 6px;
 	--wbe-pb-gap: 20px;

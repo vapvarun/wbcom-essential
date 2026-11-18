@@ -85,31 +85,31 @@
 		},
 		"cardBg": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"featuredBg": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"featuredColor": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"priceColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"featureColor": {
 			"type": "string",
-			"default": "#6c757d"
+			"default": ""
 		},
 		"buttonBg": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"buttonColor": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"padding": {
 			"type": "object",
@@ -214,5 +214,14 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"wbeLegacyColors": {
+		"cardBg": ["", "#ffffff"],
+		"priceColor": ["", "#1e1e2e"],
+		"featureColor": ["", "#6c757d"],
+		"featuredBg": ["", "#667eea", "keep"],
+		"featuredColor": ["", "#ffffff", "keep"],
+		"buttonBg": ["", "#667eea", "keep"],
+		"buttonColor": ["", "#ffffff", "keep"]
+	}
 }

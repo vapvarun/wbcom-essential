@@ -6,8 +6,8 @@
 
 /* Design tokens */
 .wbe-text-rotator {
-	--wbe-tr-text-color: #1e1e2e;
-	--wbe-tr-rotating-color: #667eea;
+	--wbe-tr-text-color: var( --wbcom-heading-color, var( --wbe-text, #1e1e2e ) );
+	--wbe-tr-rotating-color: var( --wbe-color-accent );
 	--wbe-tr-font-size: 36px;
 	--wbe-tr-font-size-tablet: 28px;
 	--wbe-tr-font-size-mobile: 22px;

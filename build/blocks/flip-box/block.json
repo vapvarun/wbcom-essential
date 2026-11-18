@@ -45,11 +45,11 @@
     },
     "frontBg": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "frontColor": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "backTitle": {
       "type": "string",
@@ -69,11 +69,11 @@
     },
     "backBg": {
       "type": "string",
-      "default": "#764ba2"
+      "default": ""
     },
     "backColor": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "flipDirection": {
       "type": "string",
@@ -209,5 +209,27 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "viewScript": "file:./view.js",
+  "wbeLegacyColors": {
+    "frontBg": [
+      "--wbe-flip-front-bg",
+      "#667eea",
+      "keep"
+    ],
+    "frontColor": [
+      "--wbe-flip-front-color",
+      "#ffffff",
+      "keep"
+    ],
+    "backBg": [
+      "--wbe-flip-back-bg",
+      "#764ba2",
+      "keep"
+    ],
+    "backColor": [
+      "--wbe-flip-back-color",
+      "#ffffff",
+      "keep"
+    ]
+  }
 }

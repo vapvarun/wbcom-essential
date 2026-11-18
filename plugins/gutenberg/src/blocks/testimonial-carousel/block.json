@@ -220,5 +220,12 @@
 	"viewScript": [
 		"file:./view.js",
 		"swiper"
-	]
+	],
+	"wbeLegacyColors": {
+		"quoteBg": ["--wbe-tc-quote-bg", "#ffffff"],
+		"quoteColor": ["--wbe-tc-quote-color", "#1e1e2e"],
+		"nameColor": ["--wbe-tc-name-color", "#1e1e2e"],
+		"roleColor": ["--wbe-tc-role-color", "#6c757d"],
+		"accentColor": ["--wbe-tc-accent", "#667eea"]
+	}
 }

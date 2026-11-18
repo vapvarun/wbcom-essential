@@ -23,12 +23,6 @@ registerBlockType( metadata.name, {
 			accentColor: '#667eea',
 		} ),
 		// Saved before that, with every colour at its old fixed default.
-		legacyColorDeprecation( metadata, save, {
-			quoteBg: '#ffffff',
-			quoteColor: '#1e1e2e',
-			nameColor: '#1e1e2e',
-			roleColor: '#6c757d',
-			accentColor: '#667eea',
-		} ),
+		legacyColorDeprecation( metadata, save ),
 	],
 } );
