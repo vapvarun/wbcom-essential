@@ -53,7 +53,11 @@
 	                  color     var( --wbe-pg-transition ),
 	                  border-color var( --wbe-pg-transition ),
 	                  transform var( --wbe-pg-transition );
-	white-space:      nowrap;
+	/* A label wider than the whole bar wraps inside its pill; shorter labels move to the next row first. */
+	max-width:        100%;
+	white-space:      normal;
+	overflow-wrap:    anywhere;
+	text-align:       start;
 }
 
 .wbe-portfolio-grid__filter-btn:hover {
@@ -140,9 +144,13 @@
 }
 
 .wbe-portfolio-grid__overlay-inner {
+	box-sizing: border-box;
+	max-width: 100%;
 	padding: 16px;
 	text-align: center;
 	color: var( --wbe-pg-title-color );
+	/* Long unbroken titles (URLs, SKUs, compounds) wrap inside the card. */
+	overflow-wrap: anywhere;
 }
 
 .wbe-portfolio-grid__title {
