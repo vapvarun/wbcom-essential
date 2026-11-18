@@ -14,6 +14,9 @@
 	--wbe-tk-bg:          var(--wbe-color-surface-alt, #f8f9fa);
 	--wbe-tk-text:        var(--wbcom-text-color, #1e1e2e);
 	--wbe-tk-link:        var(--wbe-color-accent, #667eea);
+	/* Small text defaults that hold 4.5:1; render.php writes the owner's link / text colour here when set. */
+	--wbe-tk-cat-color:   var(--wbe-color-accent-text);
+	--wbe-tk-date-color:  var(--wbe-color-text-muted);
 	--wbe-tk-height:      44px;
 	--wbe-tk-duration:    30s;
 	--wbe-tk-shadow:      none;
@@ -129,7 +132,7 @@
 	align-items:     center;
 	padding:         2px 8px;
 	background:      color-mix( in srgb, var( --wbe-tk-link ) 12%, transparent );
-	color:           var( --wbe-tk-link );
+	color:           var( --wbe-tk-cat-color );
 	border-radius:   50px;
 	font-size:       0.75rem;
 	font-weight:     600;
@@ -158,7 +161,7 @@
 /* ── Date ────────────────────────────────────────────────────────────────── */
 .wbe-posts-ticker__date {
 	font-size:  0.75rem;
-	color:      color-mix( in srgb, var( --wbe-tk-text ) 55%, transparent );
+	color:      var( --wbe-tk-date-color );
 	white-space: nowrap;
 }
 

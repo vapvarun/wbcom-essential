@@ -14,7 +14,7 @@
 	--wbe-gg-card-radius: 12px;
 	--wbe-gg-name-color: var( --wbe-text, #1e1e2e );
 	--wbe-gg-desc-color: var( --wbe-text-muted, #6c757d );
-	--wbe-gg-join-accent: var( --wbcom-color-primary, #3182ce );
+	--wbe-gg-join-accent: var( --wbe-color-accent );
 }
 
 /* Grid list */

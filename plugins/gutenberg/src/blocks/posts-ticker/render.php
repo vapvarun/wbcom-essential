@@ -143,6 +143,14 @@ if ( $unique_id ) {
 		esc_attr( $box_shadow_val ),
 		esc_attr( $radius_val )
 	);
+	// Owner-picked colours keep the exact look they had: the link colour on the category chip, the text
+	// colour at 55% on the date.
+	if ( sanitize_hex_color( $attributes['linkColor'] ?? '' ) ) {
+		$token_css .= sprintf( '.wbe-block-%1$s { --wbe-tk-cat-color: %2$s; }', esc_attr( $unique_id ), esc_attr( $link_color ) );
+	}
+	if ( sanitize_hex_color( $attributes['textColor'] ?? '' ) ) {
+		$token_css .= sprintf( '.wbe-block-%1$s { --wbe-tk-date-color: color-mix( in srgb, %2$s 55%%, transparent ); }', esc_attr( $unique_id ), esc_attr( $text_color ) );
+	}
 }
 
 // ── Wrapper ───────────────────────────────────────────────────────────────────

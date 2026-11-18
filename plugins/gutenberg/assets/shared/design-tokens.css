@@ -106,6 +106,9 @@
 	--wbe-color-accent-ring: color-mix(in srgb, var(--wbe-color-accent) 20%, transparent);
 	/* Keyboard focus ring: the theme's link colour (Reign's own ring colour), else the control's own colour. */
 	--wbe-focus-ring: var(--wbcom-link-color, currentColor);
+	/* Accent as small text on its own tint: the theme's text colour pulls it darker in light mode and lighter
+	   in dark mode, so it holds 4.5:1 where the raw accent may not. */
+	--wbe-color-accent-text: color-mix(in srgb, var(--wbe-color-accent) 50%, var(--wbe-text));
 	/* Status fills are a tint of their status colour, so they sit on light and dark surfaces alike. */
 	--wbe-color-success-bg: color-mix(in srgb, var(--wbe-color-success) 14%, transparent);
 	--wbe-color-warning-bg: color-mix(in srgb, var(--wbe-color-warning) 16%, transparent);

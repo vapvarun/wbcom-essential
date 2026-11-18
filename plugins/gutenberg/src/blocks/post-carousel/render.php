@@ -129,6 +129,10 @@ if ( $unique_id ) {
 		esc_attr( $box_shadow_val ),
 		esc_attr( $ratio_css )
 	);
+	// An owner-picked accent colours the category badge exactly as picked.
+	if ( ! empty( $attributes['accentColor'] ) && sanitize_hex_color( $attributes['accentColor'] ) ) {
+		$token_css .= sprintf( '.wbe-block-%1$s { --wbe-pc-badge-color: %2$s; }', esc_attr( $unique_id ), esc_attr( $accent_color ) );
+	}
 }
 
 // ── Helper: build a post card ─────────────────────────────────────────────────

@@ -43,7 +43,8 @@ $title_color    = sanitize_hex_color( $attributes['titleColor'] ?? '' ) ?: 'var(
 $price_color    = sanitize_hex_color( $attributes['priceColor'] ?? '' ) ?: 'var(--wbe-color-accent, #667eea)';
 $atc_bg         = sanitize_hex_color( $attributes['atcBg'] ?? '' ) ?: 'var(--wbcom-button-bg, var(--wbe-color-accent, #667eea))';
 $atc_color      = sanitize_hex_color( $attributes['atcColor'] ?? '' ) ?: 'var(--wbcom-button-color, #ffffff)';
-$sale_color     = sanitize_hex_color( $attributes['saleBadgeColor'] ?? '#e74c3c' ) ?: '#e74c3c';
+// Unset: the danger colour darkened so the white label holds 4.5:1 (the old #e74c3c gave 3.82:1).
+$sale_color     = sanitize_hex_color( $attributes['saleBadgeColor'] ?? '' ) ?: 'color-mix(in srgb, var(--wbe-color-danger) 80%, black)';
 
 // Visibility classes.
 $visibility_classes = '';

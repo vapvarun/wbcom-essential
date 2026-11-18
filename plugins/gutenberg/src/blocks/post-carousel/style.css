@@ -17,7 +17,9 @@
 	--wbe-pc-grid-cols: var( --wbe-pc-cols, 3 );
 	--wbe-pc-card-hover-shadow: 0 8px 32px rgba( 0, 0, 0, 0.12 );
 	--wbe-pc-badge-bg: color-mix( in srgb, var( --wbe-pc-accent ) 12%, transparent );
-	--wbe-pc-badge-color: var( --wbe-pc-accent );
+	/* Default badge text follows the theme accent, darkened or lightened for contrast; render.php writes the
+	   owner's accent here when one is picked. */
+	--wbe-pc-badge-color: var( --wbe-color-accent-text );
 
 	width: 100%;
 	position: relative;

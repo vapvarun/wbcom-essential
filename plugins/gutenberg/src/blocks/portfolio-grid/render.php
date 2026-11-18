@@ -48,10 +48,13 @@ if ( $overlay_color && ! preg_match( '/^(#[0-9a-f]{3,8}|(rgb|hsl)a?\(\s*[\d.\s,%
 }
 $title_color       = sanitize_hex_color( $attributes['titleColor'] ?? '' );
 $filter_active_clr = sanitize_hex_color( $attributes['filterActiveColor'] ?? '' );
+// The hover label colour follows a picked filter colour; the fixed default keeps the theme text (style.css).
+$filter_hover_text = $filter_active_clr;
 if ( ! $follow_theme ) {
 	$overlay_color     = $overlay_color ? $overlay_color : 'rgba(102, 126, 234, 0.85)';
 	$title_color       = $title_color ? $title_color : '#ffffff';
-	$filter_active_clr = $filter_active_clr ? $filter_active_clr : '#667eea';
+	// Same indigo as before, darkened so the white label holds 4.5:1 (#667eea gave 3.66:1).
+	$filter_active_clr = $filter_active_clr ? $filter_active_clr : '#5265bb';
 }
 $color_vars = array_filter(
 	array(
@@ -61,7 +64,7 @@ $color_vars = array_filter(
 		// A fixed or picked filter colour keeps the white label it was designed with (the theme's button text
 		// colour is dark in dark mode).
 		'--wbe-pg-filter-active-text' => $filter_active_clr ? '#ffffff' : '',
-		'--wbe-pg-filter-hover-text'  => $filter_active_clr,
+		'--wbe-pg-filter-hover-text'  => $filter_hover_text,
 	)
 );
 $color_style = '';

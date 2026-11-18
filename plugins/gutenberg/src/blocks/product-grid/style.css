@@ -13,7 +13,7 @@
 	--wbe-pg-card-bg: var(--wbcom-card-bg, #ffffff);
 	--wbe-pg-title-color: var(--wbcom-heading-color, #1e1e2e);
 	--wbe-pg-price-color: var(--wbe-color-accent, #667eea);
-	--wbe-pg-sale-color: #e74c3c;
+	--wbe-pg-sale-color: color-mix( in srgb, var( --wbe-color-danger ) 80%, black );
 	--wbe-pg-card-radius: 8px;
 	--wbe-pg-card-shadow: none;
 	--wbe-pg-image-ratio: 1 / 1;

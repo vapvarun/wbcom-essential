@@ -10,7 +10,7 @@
 	--wbe-gc-card-bg: var( --wbe-surface, #ffffff );
 	--wbe-gc-name-color: var( --wbe-text, #1e1e2e );
 	--wbe-gc-meta-color: var( --wbe-text-muted, #6c757d );
-	--wbe-gc-accent: var( --wbcom-color-primary, #667eea );
+	--wbe-gc-accent: var( --wbe-color-accent );
 	--wbe-gc-card-radius: 12px;
 	--wbe-gc-badge-bg: color-mix( in srgb, var( --wbe-gc-accent ) 12%, transparent );
 	--wbe-gc-card-hover-shadow: 0 8px 24px rgba( 0, 0, 0, 0.12 );
@@ -104,7 +104,7 @@
 	display: inline-block;
 	padding: 3px 12px;
 	background: var( --wbe-gc-badge-bg );
-	color: var( --wbe-gc-accent );
+	color: var( --wbe-color-accent-text );
 	border-radius: 999px;
 	font-size: 0.72rem;
 	font-weight: 700;

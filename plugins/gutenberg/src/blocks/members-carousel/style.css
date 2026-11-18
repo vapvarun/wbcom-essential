@@ -11,7 +11,7 @@
 	--wbe-mc-card-radius: 12px;
 	--wbe-mc-name-color: var( --wbe-text, #1e1e2e );
 	--wbe-mc-meta-color: var( --wbe-text-muted, #6c757d );
-	--wbe-mc-accent: var( --wbcom-color-primary, #3182ce );
+	--wbe-mc-accent: var( --wbe-color-accent );
 }
 
 /* Swiper container */

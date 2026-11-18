@@ -243,7 +243,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					/>
 					<p><strong>{ __( 'Filter Active Color', 'wbcom-essential' ) }</strong></p>
 					<ColorPicker
-						color={ filterActiveColor || ( followTheme ? undefined : '#667eea' ) }
+						color={ filterActiveColor || ( followTheme ? undefined : '#5265bb' ) }
 						onChange={ ( val ) => setAttributes( { filterActiveColor: val } ) }
 						enableAlpha
 					/>

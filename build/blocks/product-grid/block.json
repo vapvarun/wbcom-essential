@@ -99,7 +99,7 @@
     },
     "saleBadgeColor": {
       "type": "string",
-      "default": "#e74c3c"
+      "default": ""
     },
     "padding": {
       "type": "object",
