@@ -177,13 +177,12 @@ $wrapper_attrs = get_block_wrapper_attributes( $wrapper_extra );
 	<?php endif; ?>
 
 	<?php if ( $show_filter && count( $all_filter_cats ) > 1 ) : ?>
-	<div class="wbe-portfolio-grid__filter" role="tablist" aria-label="<?php esc_attr_e( 'Portfolio filter', 'wbcom-essential' ); ?>">
+	<div class="wbe-portfolio-grid__filter" role="group" aria-label="<?php esc_attr_e( 'Portfolio filter', 'wbcom-essential' ); ?>">
 		<?php foreach ( $all_filter_cats as $term_id => $label ) : ?>
 		<button
 			class="wbe-portfolio-grid__filter-btn<?php echo 0 === $term_id ? ' is-active' : ''; ?>"
 			data-filter="<?php echo 0 === $term_id ? 'all' : esc_attr( 'cat-' . $term_id ); ?>"
-			role="tab"
-			aria-selected="<?php echo 0 === $term_id ? 'true' : 'false'; ?>"
+			aria-pressed="<?php echo 0 === $term_id ? 'true' : 'false'; ?>"
 		>
 			<?php echo esc_html( $label ); ?>
 		</button>

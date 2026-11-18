@@ -83,10 +83,10 @@
 				// Update active state + aria.
 				buttons.forEach( ( b ) => {
 					b.classList.remove( 'is-active' );
-					b.setAttribute( 'aria-selected', 'false' );
+					b.setAttribute( 'aria-pressed', 'false' );
 				} );
 				btn.classList.add( 'is-active' );
-				btn.setAttribute( 'aria-selected', 'true' );
+				btn.setAttribute( 'aria-pressed', 'true' );
 
 				applyFilter( filter );
 			} );
