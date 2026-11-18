@@ -61,8 +61,10 @@
 	font-weight: var(--wbe-weight-semibold, 600);
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
-	background-color: rgba(255, 255, 255, 0.2);
-	border: 1px solid rgba(255, 255, 255, 0.4);
+	/* Outline only: a white fill lightened the card under the white label (3.25:1 on Reign). The outline follows
+	   the label colour, so it is the same 40% white on a dark card and darkens on a light one. */
+	background-color: transparent;
+	border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
 	border-radius: var(--wbe-radius-full, 9999px);
 	padding: 4px 12px;
 	white-space: nowrap;
