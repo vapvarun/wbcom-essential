@@ -36,7 +36,26 @@ function wbcom_essential_get_upgrade_routines() {
 	return array(
 		'4.7.0' => 'wbcom_essential_upgrade_470_checkout_block',
 		'4.7.1' => 'wbcom_essential_upgrade_471_template_library_cache',
+		'4.7.3' => 'wbcom_essential_upgrade_473_elementor_css',
 	);
+}
+
+/**
+ * 4.7.3: rebuild Elementor's generated CSS once.
+ *
+ * Elementor writes each page's widget styles, including control defaults, into a cached CSS file and does not
+ * rebuild it when an add-on updates. 4.7.3 changes text-colour defaults to the theme's tokens (Dashboard Intro
+ * description, Forums meta), so without this the old fixed greys would stay on pages built before the update.
+ * Elementor regenerates each file on the page's next view. Safe to run twice; does nothing without Elementor.
+ *
+ * @since 4.7.3
+ *
+ * @return void
+ */
+function wbcom_essential_upgrade_473_elementor_css() {
+	if ( class_exists( 'Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
 }
 
 /**
