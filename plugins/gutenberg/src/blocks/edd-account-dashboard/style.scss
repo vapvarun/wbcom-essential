@@ -772,14 +772,16 @@
 		font-size: var( --edd-font-sm );
 	}
 
+	// A filled button takes the theme's button colours: the link colour is a text colour (white in Reign's
+	// dark mode), so as a fill it put white text on a white button.
 	&--primary {
-		background: var( --edd-nav-active-color );
-		color: var(--wbe-color-white);
-		border-color: var( --edd-nav-active-color );
+		background: var( --wbcom-button-bg, var( --edd-nav-active-color ) );
+		color: var( --wbcom-button-color, var(--wbe-color-white) );
+		border-color: var( --wbcom-button-bg, var( --edd-nav-active-color ) );
 
 		&:hover {
 			opacity: 0.9;
-			color: var(--wbe-color-white);
+			color: var( --wbcom-button-color, var(--wbe-color-white) );
 			text-decoration: none;
 		}
 	}
@@ -904,6 +906,7 @@
 
 .wbcom-edd-subs__actions {
 	display: flex;
+	flex-wrap: wrap; // Three actions (Upgrade, Update Payment Method, Cancel) do not fit one row on a phone.
 	align-items: center;
 	gap: 0.625rem;
 	padding: 0 1.25rem 1.25rem;
@@ -1072,7 +1075,7 @@
 
 .wbcom-edd-license__progress-bar {
 	height: 100%;
-	background: var( --edd-nav-active-color );
+	background: var( --wbcom-button-bg, var( --edd-nav-active-color ) );
 	border-radius: 999px;
 	transition: width 0.4s ease;
 }
