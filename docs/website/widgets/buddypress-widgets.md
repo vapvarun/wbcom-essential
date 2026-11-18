@@ -83,6 +83,8 @@ This widget has no Style tab sections.
 
 Use it for a grid of your community groups (a group directory block). Needs the Groups component.
 
+On Reign 8.1.1 or later with BuddyPress Nouveau, the cards are Reign's own group directory cards, so the widget matches your Groups page. Older Reign versions keep the widget's previous cards.
+
 ### Content settings
 
 | Setting | What it does |
@@ -160,6 +162,8 @@ This widget has no Style tab sections.
 ## Members Grid
 
 Use it for a grid of members (a member directory block).
+
+On Reign 8.1.1 or later with BuddyPress Nouveau, the cards are Reign's own member directory cards, so the widget matches your Members page. Older Reign versions keep the widget's previous cards.
 
 ### Content settings
 

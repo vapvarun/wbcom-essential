@@ -109,6 +109,10 @@ Wbcom Essential connects to the Wbcom Designs update server (https://updates.wbc
 
 == Changelog ==
 
+= 4.7.3 - November 2026 =
+
+* Improve  - On Reign 8.1.1+ the Members Grid and Groups Grid widgets use Reign's own member and group cards.
+
 = 4.7.2 - November 2026 =
 
 Blocks follow your theme's colours and spacing in light and dark mode, and updates move to the signed update flow.

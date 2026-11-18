@@ -499,6 +499,9 @@ function wbcom_direct_check_elementor_data() {
 						return false;
 					}
 				);
+				// Reign 8.1.1+ cards need Reign's BuddyPress stylesheet too.
+				// ponytail: only sees widgets in the page's own _elementor_data; header/footer templates and popups are missed (same as the BuddyPress CSS check).
+				add_filter( 'reign_load_buddypress_assets', '__return_true' );
 			}
 		}
 	}

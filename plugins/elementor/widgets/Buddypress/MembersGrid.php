@@ -83,6 +83,10 @@ class MembersGrid extends \Elementor\Widget_Base {
 	 * Get dependent styles.
 	 */
 	public function get_style_depends() {
+		// Reign 8.1.1+ styles its own cards; member-grid.css carries unscoped rules that fight them.
+		if ( function_exists( 'reign_bp_card_grid' ) && ! reign_is_buddyboss() && 'nouveau' === get_option( '_bp_theme_package_id' ) ) {
+			return array();
+		}
 		return array( 'member-grid' );
 	}
 
@@ -252,6 +256,16 @@ class MembersGrid extends \Elementor\Widget_Base {
 					remove_filter( 'bp_nouveau_get_loop_classes', $loop_classes );
 
 				} elseif ( wbcom_essential_is_theme_active( 'reign' ) ) {
+					// Reign 8.1.1+ prints its own directory cards; older Reign keeps the bundled template.
+					$done = function_exists( 'reign_bp_card_grid' ) && reign_bp_card_grid(
+						'members',
+						array(
+							'layout'  => $member_directory_type,
+							'query'   => bp_ajax_querystring( 'members' ) . $query_string,
+							'classes' => $col_class,
+						)
+					);
+					if ( ! $done ) {
 						wbcom_essential_get_template(
 							'members/members-loop.php',
 							array(
@@ -262,6 +276,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 							),
 							'reign/buddypress/nouveau'
 						);
+					}
 				} else {
 					$loop_classes = static function () use ( $settings ) {
 						return array(

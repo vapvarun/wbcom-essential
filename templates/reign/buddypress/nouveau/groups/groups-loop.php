@@ -2,6 +2,9 @@
 /**
  * Display BuddyPress Groups.
  *
+ * Fallback only: Reign 8.1.1+ renders the widget through reign_bp_card_grid().
+ * This template serves Reign older than 8.1.1 and BuddyBoss.
+ *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
