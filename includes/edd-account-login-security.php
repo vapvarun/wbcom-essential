@@ -6,8 +6,8 @@
  * work when our block form and core's form coexist):
  *
  * 1. Honeypot — if the hidden `wbcom_edd_hp_url` field has any value, the
- *    attempt is treated as bot traffic and rejected silently with the
- *    generic "incorrect username or password" message.
+ *    attempt is treated as bot traffic and rejected with "Login attempt
+ *    rejected." (error code wbcom_essential_honeypot), before any password check.
  *
  * 2. Rate limit — track failed attempts per IP in a 15-minute window. After
  *    WBCOM_ESSENTIAL_LOGIN_MAX_ATTEMPTS failures the IP is locked out for
