@@ -166,7 +166,8 @@ class Timeline extends \Elementor\Widget_Base {
 			array(
 				'label'   => esc_html__( 'Date', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Jan 14', 'wbcom-essential' ),
+				'default' => '',
+				'placeholder' => esc_html__( 'Date or year', 'wbcom-essential' ),
 			)
 		);
 
@@ -194,7 +195,8 @@ class Timeline extends \Elementor\Widget_Base {
 			array(
 				'label'       => esc_html__( 'Title', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Title', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'Milestone title', 'wbcom-essential' ),
 				'label_block' => true,
 			)
 		);
@@ -204,7 +206,8 @@ class Timeline extends \Elementor\Widget_Base {
 			array(
 				'label'      => esc_html__( 'Content', 'wbcom-essential' ),
 				'type'       => \Elementor\Controls_Manager::WYSIWYG,
-				'default'    => esc_html__( 'Enim ad commodo do est proident excepteur nulla enim pariatur. Proident et laborum reprehenderit voluptate velit Lorem culpa ullamco.', 'wbcom-essential' ),
+				'default'    => '',
+				'placeholder'    => esc_html__( 'What happened', 'wbcom-essential' ),
 				'show_label' => false,
 			)
 		);
@@ -216,20 +219,7 @@ class Timeline extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'date'           => esc_html__( 'Jan 14', 'wbcom-essential' ),
-						'title'          => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'title_html_tag' => 'h3',
-						'text'           => esc_html__( 'Enim ad commodo do est proident excepteur nulla enim pariatur. Proident et laborum reprehenderit voluptate velit Lorem culpa ullamco.', 'wbcom-essential' ),
-					),
-					array(
-						'date'           => esc_html__( 'Jan 14', 'wbcom-essential' ),
-						'title'          => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'title_html_tag' => 'h3',
-						'text'           => esc_html__( 'Enim ad commodo do est proident excepteur nulla enim pariatur. Proident et laborum reprehenderit voluptate velit Lorem culpa ullamco.', 'wbcom-essential' ),
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -697,6 +687,11 @@ class Timeline extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		if ( empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add timeline items to show the timeline.', 'wbcom-essential' ) );
+			return;
+		}
 		if ( $settings['list'] ) { ?>
 		<div class="wbcom-timeline <?php echo esc_attr( $settings['layout'] ); ?>">
 			<div class="wbcom-timeline__container">

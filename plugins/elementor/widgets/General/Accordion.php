@@ -214,22 +214,7 @@ class Accordion extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'title_icon' => '',
-						'title'      => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'text'       => esc_html__( 'Item content...', 'wbcom-essential' ),
-						'status'     => 'is-default',
-						'self_block' => 'false',
-					),
-					array(
-						'title_icon' => '',
-						'title'      => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'text'       => esc_html__( 'Item content...', 'wbcom-essential' ),
-						'status'     => 'is-default',
-						'self_block' => 'false',
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -955,6 +940,11 @@ class Accordion extends \Elementor\Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		if ( empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add accordion items in the Content section to show them here.', 'wbcom-essential' ) );
+			return;
+		}
 		$rand     = '-' . wp_rand();
 
 		if ( ! empty( $settings['list'] ) ) { ?>

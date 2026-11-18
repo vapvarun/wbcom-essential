@@ -138,7 +138,8 @@ class CustomerReview extends \Elementor\Widget_Base {
 				array(
 					'label'   => __( 'Name', 'wbcom-essential' ),
 					'type'    => Controls_Manager::TEXT,
-					'default' => __( 'Carolina Monntoya', 'wbcom-essential' ),
+					'default' => '',
+					'placeholder' => __( 'Customer name', 'wbcom-essential' ),
 				)
 			);
 
@@ -147,7 +148,8 @@ class CustomerReview extends \Elementor\Widget_Base {
 				array(
 					'label'   => __( 'Designation', 'wbcom-essential' ),
 					'type'    => Controls_Manager::TEXT,
-					'default' => __( 'Managing Director', 'wbcom-essential' ),
+					'default' => '',
+					'placeholder' => __( 'Role or company', 'wbcom-essential' ),
 				)
 			);
 
@@ -184,7 +186,8 @@ class CustomerReview extends \Elementor\Widget_Base {
 				array(
 					'label'   => __( 'Client Say', 'wbcom-essential' ),
 					'type'    => Controls_Manager::TEXTAREA,
-					'default' => __( 'Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'wbcom-essential' ),
+					'default' => '',
+					'placeholder' => __( 'What the customer said', 'wbcom-essential' ),
 				)
 			);
 
@@ -196,29 +199,7 @@ class CustomerReview extends \Elementor\Widget_Base {
 						'review_type' => 'custom',
 					),
 					'fields'      => $repeater->get_controls(),
-					'default'     => array(
-
-						array(
-							'client_name'        => __( 'Carolina Monntoya', 'wbcom-essential' ),
-							'client_designation' => __( 'Managing Director', 'wbcom-essential' ),
-							'client_rating'      => '5',
-							'client_say'         => __( 'Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'wbcom-essential' ),
-						),
-
-						array(
-							'client_name'        => __( 'Peter Rose', 'wbcom-essential' ),
-							'client_designation' => __( 'Manager', 'wbcom-essential' ),
-							'client_rating'      => '5',
-							'client_say'         => __( 'Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'wbcom-essential' ),
-						),
-
-						array(
-							'client_name'        => __( 'Gerald Gilbert', 'wbcom-essential' ),
-							'client_designation' => __( 'Developer', 'wbcom-essential' ),
-							'client_rating'      => '5',
-							'client_say'         => __( 'Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'wbcom-essential' ),
-						),
-					),
+					'default'     => array(),
 					'title_field' => '{{{ client_name }}}',
 				)
 			);
@@ -639,6 +620,11 @@ class CustomerReview extends \Elementor\Widget_Base {
 	protected function render( $instance = array() ) {
 
 		$settings = $this->get_settings_for_display();
+
+		if ( 'custom' === $settings['review_type'] && empty( $settings['review_list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add reviews in the Review section to show them here.', 'wbcom-essential' ) );
+			return;
+		}
 		$column   = $this->get_settings_for_display( 'column' );
 
 		$this->add_render_attribute( 'review_area_attr', 'class', 'wb-customer-review wb-review-style-' . $settings['review_layout'] );

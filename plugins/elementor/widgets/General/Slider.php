@@ -356,30 +356,7 @@ class Slider extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'image_position'  => 'center center',
-						'image_repeat'    => 'no-repeat',
-						'image_img_size'  => 'cover',
-						'title'           => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'desc'            => esc_html__( 'Content here...', 'wbcom-essential' ),
-						'text_box_align'  => 'center',
-						'text_box_valign' => 'center',
-						'text_align'      => 'left',
-					),
-					array(
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'image_position'  => 'center center',
-						'image_repeat'    => 'no-repeat',
-						'image_img_size'  => 'cover',
-						'title'           => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'desc'            => esc_html__( 'Content here...', 'wbcom-essential' ),
-						'text_box_align'  => 'center',
-						'text_box_valign' => 'center',
-						'text_align'      => 'left',
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -818,7 +795,7 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-color-base, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-slider-title' => 'color: {{VALUE}};',
 				),
@@ -840,8 +817,9 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Content Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#333333',
+				'default'   => 'var(--wbcom-color-base, #ffffff)',
 				'selectors' => array(
+					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-desc' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-desc p' => 'color: {{VALUE}};',
 				),
 			)
@@ -2062,6 +2040,11 @@ class Slider extends \Elementor\Widget_Base {
 	protected function render() {
 		$wbcomslider_slider_id = $this->get_id();
 		$settings = $this->get_settings_for_display();
+
+		if ( empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add slides in the Slides section to show the slider.', 'wbcom-essential' ) );
+			return;
+		}
 
 		$autoplay   = ! empty( $settings['autoplay'] ) ? 'yes' : 'no';
 		$duration   = isset( $settings['autoplay_duration'] ) ? intval( $settings['autoplay_duration'] ) * 1000 : 5000;

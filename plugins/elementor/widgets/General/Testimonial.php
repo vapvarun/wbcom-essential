@@ -100,7 +100,8 @@ class Testimonial extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Name', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'John Doe', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'Name', 'wbcom-essential' ),
 			)
 		);
 
@@ -110,7 +111,8 @@ class Testimonial extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Info', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Web Designer', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'Role or company', 'wbcom-essential' ),
 			)
 		);
 
@@ -128,7 +130,8 @@ class Testimonial extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Content', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::WYSIWYG,
 				'label_block' => true,
-				'default'     => esc_html__( 'Enim ad commodo do est proident excepteur nulla enim pariatur. Proident et laborum reprehenderit voluptate velit Lorem culpa ullamco.', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'What they said', 'wbcom-essential' ),
 			)
 		);
 
@@ -1113,6 +1116,11 @@ class Testimonial extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		if ( '' === trim( $settings['title'] . $settings['subtitle'] . $settings['content'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add a name and quote to show this testimonial.', 'wbcom-essential' ) );
+			return;
+		}
 		?>
 		<?php
 		$img_url = wp_get_attachment_image_url( $settings['image']['id'], $settings['img_size'] );

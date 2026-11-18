@@ -206,32 +206,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'title'           => esc_html__( 'Title 1', 'wbcom-essential' ),
-						'info'            => esc_html__( 'Lorem ipsum dolor...', 'wbcom-essential' ),
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'item_filter_ids' => 'filter-1 filter-2',
-					),
-					array(
-						'title'           => esc_html__( 'Title 2', 'wbcom-essential' ),
-						'info'            => esc_html__( 'Lorem ipsum dolor...', 'wbcom-essential' ),
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'item_filter_ids' => 'filter-2',
-					),
-					array(
-						'title'           => esc_html__( 'Title 3', 'wbcom-essential' ),
-						'info'            => esc_html__( 'Lorem ipsum dolor...', 'wbcom-essential' ),
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'item_filter_ids' => 'filter-3',
-					),
-					array(
-						'title'           => esc_html__( 'Title 4', 'wbcom-essential' ),
-						'info'            => esc_html__( 'Lorem ipsum dolor...', 'wbcom-essential' ),
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'item_filter_ids' => 'filter-2 filter-3',
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -383,25 +358,7 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater2->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'filter_name'    => esc_html__( 'All', 'wbcom-essential' ),
-						'filter_id'      => esc_html__( 'all', 'wbcom-essential' ),
-						'filter_default' => 'yes',
-					),
-					array(
-						'filter_name' => esc_html__( 'Filter 1', 'wbcom-essential' ),
-						'filter_id'   => esc_html__( 'filter-1', 'wbcom-essential' ),
-					),
-					array(
-						'filter_name' => esc_html__( 'Filter 2', 'wbcom-essential' ),
-						'filter_id'   => esc_html__( 'filter-2', 'wbcom-essential' ),
-					),
-					array(
-						'filter_name' => esc_html__( 'Filter 3', 'wbcom-essential' ),
-						'filter_id'   => esc_html__( 'filter-3', 'wbcom-essential' ),
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ filter_name }}}',
 			)
 		);
@@ -1754,6 +1711,11 @@ class PortfolioGrid extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		if ( empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add portfolio items in the Grid Items section to show the grid.', 'wbcom-essential' ) );
+			return;
+		}
 		$settings_id = $this->get_id();
         if ( $settings['list2'] ) { ?>
 
