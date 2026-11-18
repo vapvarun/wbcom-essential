@@ -34,6 +34,7 @@ $show_content       = ! empty( $attributes['showContent'] );
 $show_type_icon     = ! empty( $attributes['showTypeIcon'] );
 $show_fav_btn       = ! empty( $attributes['showFavoriteBtn'] );
 $show_comment_count = ! empty( $attributes['showCommentCount'] );
+$show_media         = $attributes['showMediaPreview'] ?? true;
 $avatar_size        = absint( $attributes['avatarSize'] ?? 44 );
 $accent_color       = sanitize_text_field( $attributes['accentColor'] ?? '' );
 $icon_bg            = sanitize_text_field( $attributes['iconBg'] ?? '' );
@@ -50,7 +51,7 @@ $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attr
 $layout_class = 'wbe-af--' . esc_attr( $layout );
 $wrapper      = get_block_wrapper_attributes(
 	array(
-		'class' => trim( "wbe-activity-feed {$layout_class}" . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
+		'class' => trim( "wbe-activity-feed {$layout_class}" . ( $show_media ? '' : ' wbe-af--no-media' ) . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
 	)
 );
 
