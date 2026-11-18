@@ -292,7 +292,8 @@
 
 	// Logout link - red tint
 	&--logout {
-		color: var(--wbe-color-danger);
+		// The danger text token, not the bright danger fill colour: 3.4-3.6:1 as text on the light panel.
+		color: var(--wbe-color-danger-text);
 
 		&:hover {
 			background: var(--wbe-color-danger-bg);
@@ -785,7 +786,7 @@
 
 	&--danger-outline {
 		background: transparent;
-		color: var(--wbe-color-danger);
+		color: var(--wbe-color-danger-text);
 		border-color: color-mix(in srgb, var(--wbe-color-danger) 35%, transparent);
 
 		&:hover {
@@ -1350,7 +1351,7 @@
 .wbcom-edd-license__site-remove {
 	flex-shrink: 0;
 	font-weight: 600;
-	color: var( --edd-danger, #dc2626 );
+	color: var(--wbe-color-danger-text);
 	text-decoration: none;
 
 	&:hover,
