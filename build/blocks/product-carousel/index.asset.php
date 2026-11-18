@@ -11,5 +11,5 @@
 		'wp-primitives',
 		'wp-server-side-render'
 	),
-	'version' => '16c098ae135b19179578'
+	'version' => '01532b7dd34f396a23f8'
 );

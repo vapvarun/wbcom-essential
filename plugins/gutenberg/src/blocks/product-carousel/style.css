@@ -193,7 +193,7 @@
 .wbe-product-carousel .swiper-button-next {
 	width: 40px;
 	height: 40px;
-	background-color: #ffffff;
+	background-color: var( --wbe-pcar-card-bg ); /* follows the card, so dark mode gets a dark button under the light accent icon */
 	border: none;
 	border-radius: 50%;
 	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.15 );
@@ -216,8 +216,8 @@
 
 .wbe-product-carousel .swiper-button-prev:hover,
 .wbe-product-carousel .swiper-button-next:hover {
-	background-color: rgba(102, 126, 234, 0.5);
-	color: #ffffff;
+	background-color: var( --wbe-pcar-accent );
+	color: var( --wbe-pcar-card-bg );
 }
 
 .wbe-product-carousel .swiper-button-prev {

@@ -233,7 +233,7 @@
 .wbe-post-carousel .swiper-button-prev:hover,
 .wbe-post-carousel .swiper-button-next:hover {
 	background-color: var( --wbe-pc-accent );
-	color: #ffffff;
+	color: var( --wbe-pc-card-bg ); /* white on the light dark-mode accent was unreadable */
 }
 
 .wbe-post-carousel .swiper-button-prev {
