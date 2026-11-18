@@ -53,8 +53,8 @@
 		cursor: pointer;
 		border-radius: 6px;
 
-		&:hover { background: #f1f5f9; color: #0f172a; }
-		&:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+		&:hover { background: var( --wbe-color-surface-alt, #f1f5f9 ); color: var( --wbe-color-text, #0f172a ); }
+		&:focus-visible { outline: 2px solid var( --wbe-color-accent, #2563eb ); outline-offset: 2px; }
 	}
 
 	&__title {
@@ -113,7 +113,7 @@
 		color: var(--wbe-color-text, #334155);
 		transition: border-color 0.12s ease, background 0.12s ease;
 
-		&:hover { border-color: #cbd5e1; background: #f8fafc; }
+		&:hover { border-color: var( --wbe-color-border, #cbd5e1 ); background: var( --wbe-color-surface, #f8fafc ); }
 
 		input[type="radio"] {
 			margin: 0;

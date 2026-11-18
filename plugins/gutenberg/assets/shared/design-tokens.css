@@ -97,7 +97,7 @@
 	--wbcom-color-base: var(--reign-site-body-bg-color, var(--bx-color-bg));
 	--wbcom-color-base-2: var(--reign-site-secondary-bg-color, var(--bx-color-bg-muted));
 	--wbcom-color-contrast: var(--reign-site-headings-color, var(--bx-color-heading, var(--bx-color-fg)));
-	--wbcom-color-contrast-2: var(--reign-site-alternate-text-color);
+	--wbcom-color-contrast-2: var(--reign-site-alternate-text-color, var(--bx-color-fg-muted));
 
 	/* Accent, surface and text colours the blocks use until an owner picks their own. */
 	--wbe-color-accent: var(--wbcom-color-primary, var(--wbcom-link-color, #0073aa));
