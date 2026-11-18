@@ -22,5 +22,11 @@ registerBlockType( metadata.name, {
 		legacyColorDeprecation( metadata, save, null, true ),
 		// Saved before 4.7.2: every colour fixed.
 		legacyColorDeprecation( metadata, save ),
+		// Inserted from the Newsletter CTA pattern before 4.7.3, which wrote a
+		// self-closing comment with no HTML. Opening the page rebuilds the markup.
+		{
+			attributes: metadata.attributes,
+			save: () => null,
+		},
 	],
 } );

@@ -104,3 +104,26 @@ describe( 'SpacingControl gets the block attribute itself', () => {
 		expect( uses.filter( ( u ) => ! /^(attributes\.)?(padding|margin)$/.test( u.values ) ) ).toEqual( [] );
 	} );
 } );
+
+// A static block (no render callback) is checked against its save() output when the editor parses it. A
+// self-closing comment has no HTML to check, so a pattern written that way inserts a block the editor calls invalid.
+describe( 'Patterns give static blocks their saved markup', () => {
+	const PATTERNS = path.join( ROOT, 'plugins/gutenberg/patterns' );
+	const staticBlocks = blocks.filter( ( slug ) => ! JSON.parse( fs.readFileSync( path.join( SRC, slug, 'block.json' ), 'utf8' ) ).render );
+
+	it( 'finds the static blocks', () => {
+		expect( staticBlocks ).toContain( 'cta' );
+	} );
+
+	it( 'never self-closes a static block', () => {
+		const found = fs.readdirSync( PATTERNS )
+			.filter( ( file ) => file.endsWith( '.php' ) )
+			.flatMap( ( file ) => {
+				const code = fs.readFileSync( path.join( PATTERNS, file ), 'utf8' );
+				return [ ...code.matchAll( /<!-- wp:wbcom-essential\/([a-z0-9-]+)\b[^>]*?\/-->/g ) ]
+					.filter( ( m ) => staticBlocks.includes( m[ 1 ] ) )
+					.map( ( m ) => `${ file }: ${ m[ 1 ] }` );
+			} );
+		expect( found ).toEqual( [] );
+	} );
+} );
