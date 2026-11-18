@@ -28,6 +28,7 @@
 
 /* ── Card ─────────────────────────────────────────────────────────────────── */
 .wbe-customer-reviews__card {
+	box-sizing: border-box;
 	background: var(--wbe-cr-quote-bg);
 	border-radius: var(--wbe-cr-card-radius);
 	box-shadow: var(--wbe-cr-card-shadow);
