@@ -117,21 +117,21 @@ exports[`static block flip-box saves the same markup at its defaults 1`] = `
 `;
 
 exports[`static block hero saves an owner-picked colour 1`] = `
-"<div class="wbe-block-snap1234 wbe-hero" style="min-height:500px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><style>.wbe-block-snap1234 {
+"<div class="wbe-block-snap1234 wbe-hero" style="min-height:500px;background:linear-gradient(135deg, #5a6fce 0%, #68428f 100%)"><style>.wbe-block-snap1234 {
   padding: 80px 24px 80px 24px;
   margin: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
 }
-</style><div class="wbe-hero__content wbe-hero__content--center"><h1 class="wbe-hero__heading" style="color:#ffffff">Build Something Amazing</h1><p class="wbe-hero__subheading" style="color:rgba(255,255,255,0.8)">Create beautiful websites with powerful tools</p><div class="wbe-hero__buttons"><a class="wbe-hero__btn wbe-hero__btn--primary" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Get Started</div></a><a class="wbe-hero__btn wbe-hero__btn--secondary" href="#" style="background-color:transparent;color:#ffffff;border:2px solid #ffffff"><div>Learn More</div></a></div></div></div>"
+</style><div class="wbe-hero__content wbe-hero__content--center"><h1 class="wbe-hero__heading" style="color:#ffffff">Build Something Amazing</h1><p class="wbe-hero__subheading" style="color:#ffffff">Create beautiful websites with powerful tools</p><div class="wbe-hero__buttons"><a class="wbe-hero__btn wbe-hero__btn--primary" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Get Started</div></a><a class="wbe-hero__btn wbe-hero__btn--secondary" href="#" style="background-color:transparent;color:#ffffff;border:2px solid #ffffff"><div>Learn More</div></a></div></div></div>"
 `;
 
 exports[`static block hero saves the same markup at its defaults 1`] = `
-"<div class="wbe-block-snap1234 wbe-hero" style="min-height:500px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><style>.wbe-block-snap1234 {
+"<div class="wbe-block-snap1234 wbe-hero" style="min-height:500px;background:linear-gradient(135deg, #5a6fce 0%, #68428f 100%)"><style>.wbe-block-snap1234 {
   padding: 80px 24px 80px 24px;
   margin: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
 }
-</style><div class="wbe-hero__content wbe-hero__content--center"><h1 class="wbe-hero__heading" style="color:#ffffff">Build Something Amazing</h1><p class="wbe-hero__subheading" style="color:rgba(255,255,255,0.8)">Create beautiful websites with powerful tools</p><div class="wbe-hero__buttons"><a class="wbe-hero__btn wbe-hero__btn--primary" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Get Started</div></a><a class="wbe-hero__btn wbe-hero__btn--secondary" href="#" style="background-color:transparent;color:#ffffff;border:2px solid #ffffff"><div>Learn More</div></a></div></div></div>"
+</style><div class="wbe-hero__content wbe-hero__content--center"><h1 class="wbe-hero__heading" style="color:#ffffff">Build Something Amazing</h1><p class="wbe-hero__subheading" style="color:#ffffff">Create beautiful websites with powerful tools</p><div class="wbe-hero__buttons"><a class="wbe-hero__btn wbe-hero__btn--primary" href="#" style="background-color:#ffffff;color:#1e1e2e"><div>Get Started</div></a><a class="wbe-hero__btn wbe-hero__btn--secondary" href="#" style="background-color:transparent;color:#ffffff;border:2px solid #ffffff"><div>Learn More</div></a></div></div></div>"
 `;
 
 exports[`static block pricing-table saves an owner-picked colour 1`] = `

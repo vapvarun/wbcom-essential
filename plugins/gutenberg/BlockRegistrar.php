@@ -62,6 +62,7 @@ final class BlockRegistrar {
 		add_filter( 'render_block_wbcom-essential/cta', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/feature-grid', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/testimonial-carousel', array( $this, 'translate_saved_markup' ), 10, 2 );
+		add_filter( 'render_block_wbcom-essential/hero', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block', array( $this, 'drop_zero_margin' ), 10, 2 );
 	}
 
@@ -194,6 +195,19 @@ final class BlockRegistrar {
 					'aria-label="Testimonial navigation"' => 'aria-label="' . esc_attr__( 'Testimonial navigation', 'wbcom-essential' ) . '"',
 					'aria-label="Previous testimonial"'   => 'aria-label="' . esc_attr__( 'Previous testimonial', 'wbcom-essential' ) . '"',
 					'aria-label="Next testimonial"'       => 'aria-label="' . esc_attr__( 'Next testimonial', 'wbcom-essential' ) . '"',
+				);
+				break;
+			case 'wbcom-essential/hero':
+				// Heroes saved with the pre-4.7.3 default gradient and 80% white subheading (2.93:1) get the
+				// darker default gradient and a solid white subheading (4.57:1). A hero on the owner's own
+				// background is left exactly as saved.
+				$attrs = $block['attrs'] ?? array();
+				if ( isset( $attrs['backgroundType'] ) || isset( $attrs['gradientStart'] ) || isset( $attrs['gradientEnd'] ) ) {
+					return $block_content;
+				}
+				$map = array(
+					'background:linear-gradient(135deg, #667eea 0%, #764ba2 100%)' => 'background:linear-gradient(135deg, #5a6fce 0%, #68428f 100%)',
+					'class="wbe-hero__subheading" style="color:rgba(255,255,255,0.8)"' => 'class="wbe-hero__subheading" style="color:#ffffff"',
 				);
 				break;
 			default:

@@ -173,14 +173,14 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							<BaseControl label={ __( 'Gradient Start Color', 'wbcom-essential' ) }>
 								<ColorPalette
 									value={ gradientStart }
-									onChange={ ( value ) => setAttributes( { gradientStart: value || '#667eea' } ) }
+									onChange={ ( value ) => setAttributes( { gradientStart: value || '#5a6fce' } ) }
 									clearable={ false }
 								/>
 							</BaseControl>
 							<BaseControl label={ __( 'Gradient End Color', 'wbcom-essential' ) }>
 								<ColorPalette
 									value={ gradientEnd }
-									onChange={ ( value ) => setAttributes( { gradientEnd: value || '#764ba2' } ) }
+									onChange={ ( value ) => setAttributes( { gradientEnd: value || '#68428f' } ) }
 									clearable={ false }
 								/>
 							</BaseControl>
@@ -272,7 +272,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					<BaseControl label={ __( 'Subheading Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ subheadingColor }
-							onChange={ ( value ) => setAttributes( { subheadingColor: value || 'rgba(255,255,255,0.8)' } ) }
+							onChange={ ( value ) => setAttributes( { subheadingColor: value || '#ffffff' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>
