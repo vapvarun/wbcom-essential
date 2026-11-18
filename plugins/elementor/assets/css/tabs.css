@@ -162,3 +162,10 @@
 	margin-bottom: -1px;
 	width: 100%;
 }
+
+/* Keyboard focus on a tab or an accordion title (mouse clicks show nothing new). */
+.wbcom_tab_head li:focus-visible,
+.wbaccordion-mobile-title:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
+}
