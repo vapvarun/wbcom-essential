@@ -37,9 +37,37 @@ $show_category     = ! empty( $attributes['showCategory'] );
 $image_ratio       = sanitize_text_field( $attributes['imageRatio'] ?? '1/1' );
 $gap               = absint( $attributes['gap'] ?? 16 );
 $hover_effect      = sanitize_key( $attributes['hoverEffect'] ?? 'overlay' );
-$overlay_color     = sanitize_text_field( $attributes['overlayColor'] ?? 'rgba(102, 126, 234, 0.85)' );
-$title_color       = sanitize_hex_color( $attributes['titleColor'] ?? '#ffffff' ) ?: '#ffffff';
-$filter_active_clr = sanitize_hex_color( $attributes['filterActiveColor'] ?? '#667eea' ) ?: '#667eea';
+// Colours: the owner's pick wins. Grids inserted from 4.7.3 on carry followTheme and fall back to the theme's
+// button colours (style.css). Older grids never stored their defaults, so they keep the fixed colours they were
+// built with; the owner can switch them to the theme in the block's Style panel.
+$follow_theme      = ! empty( $attributes['followTheme'] );
+$overlay_color     = sanitize_text_field( $attributes['overlayColor'] ?? '' );
+// The overlay may carry alpha (rgba from the picker); anything that is not a plain colour value is dropped.
+if ( $overlay_color && ! preg_match( '/^(#[0-9a-f]{3,8}|(rgb|hsl)a?\(\s*[\d.\s,%deg\/]+\))$/i', $overlay_color ) ) {
+	$overlay_color = '';
+}
+$title_color       = sanitize_hex_color( $attributes['titleColor'] ?? '' );
+$filter_active_clr = sanitize_hex_color( $attributes['filterActiveColor'] ?? '' );
+if ( ! $follow_theme ) {
+	$overlay_color     = $overlay_color ? $overlay_color : 'rgba(102, 126, 234, 0.85)';
+	$title_color       = $title_color ? $title_color : '#ffffff';
+	$filter_active_clr = $filter_active_clr ? $filter_active_clr : '#667eea';
+}
+$color_vars = array_filter(
+	array(
+		'--wbe-pg-overlay'            => $overlay_color,
+		'--wbe-pg-title-color'        => $title_color,
+		'--wbe-pg-filter-active'      => $filter_active_clr,
+		// A fixed or picked filter colour keeps the white label it was designed with (the theme's button text
+		// colour is dark in dark mode).
+		'--wbe-pg-filter-active-text' => $filter_active_clr ? '#ffffff' : '',
+		'--wbe-pg-filter-hover-text'  => $filter_active_clr,
+	)
+);
+$color_style = '';
+foreach ( $color_vars as $var => $value ) {
+	$color_style .= $var . ':' . $value . ';';
+}
 $card_radius       = absint( $attributes['cardBorderRadius'] ?? 8 );
 
 // ── Box shadow ────────────────────────────────────────────────────────────────
@@ -103,10 +131,7 @@ if ( $unique_id ) {
 			--wbe-pg-gap: %5$dpx;
 			--wbe-pg-ratio: %6$s;
 			--wbe-pg-card-radius: %7$dpx;
-			--wbe-pg-overlay: %8$s;
-			--wbe-pg-title-color: %9$s;
-			--wbe-pg-filter-active: %10$s;
-			--wbe-pg-card-shadow: %11$s;
+			--wbe-pg-card-shadow: %8$s;
 		}',
 		esc_attr( $unique_id ),
 		$columns,
@@ -115,9 +140,6 @@ if ( $unique_id ) {
 		$gap,
 		esc_attr( $ratio_css ),
 		$card_radius,
-		esc_attr( $overlay_color ),
-		esc_attr( $title_color ),
-		esc_attr( $filter_active_clr ),
 		esc_attr( $box_shadow_val )
 	);
 
@@ -142,7 +164,12 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	$vis_classes,
 ) ) ) );
 
-$wrapper_attrs = get_block_wrapper_attributes( array( 'class' => $wrapper_class ) );
+$wrapper_extra = array( 'class' => $wrapper_class );
+if ( $color_style ) {
+	// Inline on the wrapper, so grids saved without a uniqueId keep their colours too.
+	$wrapper_extra['style'] = $color_style;
+}
+$wrapper_attrs = get_block_wrapper_attributes( $wrapper_extra );
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<?php if ( $token_css ) : ?>

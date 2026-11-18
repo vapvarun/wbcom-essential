@@ -17,7 +17,8 @@ import {
 	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
-import { useSelect } from '@wordpress/data';
+import { useSelect, dispatch } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 
 import {
 	SpacingControl,
@@ -45,6 +46,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		overlayColor,
 		titleColor,
 		filterActiveColor,
+		followTheme,
 		cardBorderRadius,
 		padding,
 		paddingTablet,
@@ -66,6 +68,19 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		hideOnTablet,
 		hideOnMobile,
 	} = attributes;
+
+	// A grid inserted now (no uniqueId yet on its first render) follows the theme colours. Grids built before
+	// keep the fixed colours they were made with until the owner switches them, and a duplicate of an older
+	// grid stays like its original (it copies the uniqueId).
+	useEffect( () => {
+		if ( ! uniqueId ) {
+			const { __unstableMarkNextChangeAsNotPersistent: notPersistent } = dispatch( 'core/block-editor' );
+			if ( notPersistent ) {
+				notPersistent();
+			}
+			setAttributes( { followTheme: true } );
+		}
+	}, [] ); // eslint-disable-line react-hooks/exhaustive-deps -- first render only.
 
 	useUniqueId( clientId, uniqueId, setAttributes );
 	const blockCSS = generateBlockCSS( uniqueId, attributes );
@@ -208,21 +223,27 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					title={ __( 'Style', 'wbcom-essential' ) }
 					initialOpen={ false }
 				>
+					<ToggleControl
+						label={ __( 'Use theme colours', 'wbcom-essential' ) }
+						help={ __( 'Overlay, title and active filter take your theme\'s button colours in light and dark mode. Turning this on clears the three colours below.', 'wbcom-essential' ) }
+						checked={ !! followTheme }
+						onChange={ ( on ) => setAttributes( on ? { followTheme: true, overlayColor: '', titleColor: '', filterActiveColor: '' } : { followTheme: false } ) }
+					/>
 					<p><strong>{ __( 'Overlay Color', 'wbcom-essential' ) }</strong></p>
 					<ColorPicker
-						color={ overlayColor }
+						color={ overlayColor || ( followTheme ? undefined : 'rgba(102, 126, 234, 0.85)' ) }
 						onChange={ ( val ) => setAttributes( { overlayColor: val } ) }
 						enableAlpha
 					/>
 					<p><strong>{ __( 'Title Color (on hover)', 'wbcom-essential' ) }</strong></p>
 					<ColorPicker
-						color={ titleColor }
+						color={ titleColor || ( followTheme ? undefined : '#ffffff' ) }
 						onChange={ ( val ) => setAttributes( { titleColor: val } ) }
 						enableAlpha
 					/>
 					<p><strong>{ __( 'Filter Active Color', 'wbcom-essential' ) }</strong></p>
 					<ColorPicker
-						color={ filterActiveColor }
+						color={ filterActiveColor || ( followTheme ? undefined : '#667eea' ) }
 						onChange={ ( val ) => setAttributes( { filterActiveColor: val } ) }
 						enableAlpha
 					/>

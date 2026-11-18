@@ -26,6 +26,10 @@
     }
   },
   "attributes": {
+    "followTheme": {
+      "type": "boolean",
+      "default": false
+    },
     "uniqueId": {
       "type": "string",
       "default": ""
@@ -80,15 +84,15 @@
     },
     "overlayColor": {
       "type": "string",
-      "default": "rgba(102, 126, 234, 0.85)"
+      "default": ""
     },
     "titleColor": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "filterActiveColor": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "cardBorderRadius": {
       "type": "number",

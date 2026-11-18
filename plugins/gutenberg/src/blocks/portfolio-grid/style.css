@@ -15,9 +15,13 @@
 	--wbe-pg-gap:            16px;
 	--wbe-pg-ratio:          1 / 1;
 	--wbe-pg-card-radius:    8px;
-	--wbe-pg-overlay:        rgba( 102, 126, 234, 0.85 );
-	--wbe-pg-title-color:    #ffffff;
-	--wbe-pg-filter-active:  #667eea;
+	/* Theme colours for grids inserted from 4.7.3 on; render.php sets fixed or owner colours inline. */
+	--wbe-pg-overlay:        color-mix( in srgb, var( --wbcom-button-bg, var( --wbe-color-accent ) ) 85%, transparent );
+	--wbe-pg-title-color:    var( --wbcom-button-color, var( --wbe-color-white, #ffffff ) );
+	--wbe-pg-filter-active:  var( --wbcom-button-bg, var( --wbe-color-accent ) );
+	--wbe-pg-filter-active-text: var( --wbcom-button-color, var( --wbe-color-white, #ffffff ) );
+	/* Hover label on the light tint: body text holds 4.5:1 where the accent as text may not. */
+	--wbe-pg-filter-hover-text: var( --wbe-text, inherit );
 	--wbe-pg-card-shadow:    none;
 	--wbe-pg-transition:     0.3s ease;
 
@@ -54,13 +58,13 @@
 
 .wbe-portfolio-grid__filter-btn:hover {
 	background:  color-mix( in srgb, var( --wbe-pg-filter-active ) 12%, transparent );
-	color:       var( --wbe-pg-filter-active );
+	color:       var( --wbe-pg-filter-hover-text );
 	border-color: color-mix( in srgb, var( --wbe-pg-filter-active ) 30%, transparent );
 }
 
 .wbe-portfolio-grid__filter-btn.is-active {
 	background:   var( --wbe-pg-filter-active );
-	color:        #fff;
+	color:        var( --wbe-pg-filter-active-text );
 	border-color: var( --wbe-pg-filter-active );
 }
 
