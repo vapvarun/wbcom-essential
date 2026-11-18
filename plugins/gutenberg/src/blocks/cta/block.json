@@ -62,15 +62,15 @@
 		},
 		"buttonBg": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"buttonColor": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"buttonBgHover": {
 			"type": "string",
-			"default": "#5a6fd6"
+			"default": ""
 		},
 		"contentAlign": {
 			"type": "string",
@@ -179,5 +179,13 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"wbeLegacyColors": {
+		"backgroundColor": ["", "#f8f9fa"],
+		"headingColor": ["", "#1e1e2e"],
+		"descriptionColor": ["", "#6c757d"],
+		"buttonBg": ["", "#667eea", "keep"],
+		"buttonColor": ["", "#ffffff", "keep"],
+		"buttonBgHover": ["--wbe-cta-btn-hover-bg", "#5a6fd6", "keep"]
+	}
 }

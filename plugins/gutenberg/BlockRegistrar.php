@@ -59,6 +59,8 @@ final class BlockRegistrar {
 		add_filter( 'render_block', array( $this, 'drop_legacy_colours' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/countdown-timer', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/pricing-table', array( $this, 'translate_saved_markup' ), 10, 2 );
+		add_filter( 'render_block_wbcom-essential/cta', array( $this, 'translate_saved_markup' ), 10, 2 );
+		add_filter( 'render_block_wbcom-essential/feature-grid', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/testimonial-carousel', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block', array( $this, 'drop_zero_margin' ), 10, 2 );
 	}
@@ -164,6 +166,22 @@ final class BlockRegistrar {
 					'class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"' => 'class="wbe-pricing-cards__card" style="color:inherit"',
 					'class="wbe-pricing-cards__price" style="color:#1e1e2e"' => 'class="wbe-pricing-cards__price"',
 					'class="wbe-pricing-cards__feature" style="color:#6c757d"' => 'class="wbe-pricing-cards__feature"',
+				);
+				break;
+			case 'wbcom-essential/cta':
+				// Pages saved before 4.7.2 wrote the old fixed neutral colours inline: dropped so the theme
+				// colours apply (light and dark). Button colours stay as saved.
+				$block_content = (string) preg_replace( '/(class="wp-block-wbcom-essential-cta [^"]*") style="background-color:#f8f9fa;/', '$1 style="', $block_content, 1 );
+				$map           = array(
+					'class="wbe-cta__heading" style="color:#1e1e2e"'     => 'class="wbe-cta__heading"',
+					'class="wbe-cta__description" style="color:#6c757d"' => 'class="wbe-cta__description"',
+				);
+				break;
+			case 'wbcom-essential/feature-grid':
+				$block_content = (string) preg_replace( '/(class="wbe-feature-grid__card wbe-feature-grid__card--[a-z0-9-]+") style="background-color:#ffffff"/', '$1', $block_content );
+				$map           = array(
+					'class="wbe-feature-grid__title" style="color:#1e1e2e"'       => 'class="wbe-feature-grid__title"',
+					'class="wbe-feature-grid__description" style="color:#6c757d"' => 'class="wbe-feature-grid__description"',
 				);
 				break;
 			case 'wbcom-essential/testimonial-carousel':

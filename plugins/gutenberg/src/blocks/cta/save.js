@@ -39,7 +39,7 @@ export default function save( { attributes } ) {
 		className: `wbe-block-${ uniqueId } wbe-cta wbe-cta--${ layout } wbe-cta--align-${ contentAlign }${ visibilityClasses ? ' ' + visibilityClasses : '' }`,
 		style: {
 			backgroundColor,
-			'--wbe-cta-btn-hover-bg': buttonBgHover,
+			'--wbe-cta-btn-hover-bg': buttonBgHover || undefined,
 		},
 	} );
 
@@ -67,7 +67,7 @@ export default function save( { attributes } ) {
 					<a
 						className="wbe-cta__btn"
 						href={ buttonUrl }
-						style={ { backgroundColor: buttonBg, color: buttonColor } }
+						style={ { backgroundColor: buttonBg || undefined, color: buttonColor || undefined } }
 					>
 						<RichText.Content value={ buttonText } />
 					</a>

@@ -25,21 +25,21 @@ exports[`static block countdown-timer saves the same markup at its defaults 1`] 
 `;
 
 exports[`static block cta saves an owner-picked colour 1`] = `
-"<div class="wbe-block-snap1234 wbe-cta wbe-cta--stacked wbe-cta--align-center" style="background-color:#123456;--wbe-cta-btn-hover-bg:#5a6fd6"><style>.wbe-block-snap1234 {
+"<div class="wbe-block-snap1234 wbe-cta wbe-cta--stacked wbe-cta--align-center" style="background-color:#123456"><style>.wbe-block-snap1234 {
   padding: 60px 32px 60px 32px;
   margin: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
 }
-</style><div class="wbe-cta__body"><h2 class="wbe-cta__heading" style="color:#123456">Ready to Get Started?</h2><p class="wbe-cta__description" style="color:#123456">Join thousands of satisfied customers today.</p></div><div class="wbe-cta__action"><a class="wbe-cta__btn" href="#" style="background-color:#667eea;color:#ffffff"><div>Get Started Now</div></a></div></div>"
+</style><div class="wbe-cta__body"><h2 class="wbe-cta__heading" style="color:#123456">Ready to Get Started?</h2><p class="wbe-cta__description" style="color:#123456">Join thousands of satisfied customers today.</p></div><div class="wbe-cta__action"><a class="wbe-cta__btn" href="#" style="background-color:#123456;color:#123456"><div>Get Started Now</div></a></div></div>"
 `;
 
 exports[`static block cta saves the same markup at its defaults 1`] = `
-"<div class="wbe-block-snap1234 wbe-cta wbe-cta--stacked wbe-cta--align-center" style="background-color:;--wbe-cta-btn-hover-bg:#5a6fd6"><style>.wbe-block-snap1234 {
+"<div class="wbe-block-snap1234 wbe-cta wbe-cta--stacked wbe-cta--align-center" style="background-color:"><style>.wbe-block-snap1234 {
   padding: 60px 32px 60px 32px;
   margin: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
 }
-</style><div class="wbe-cta__body"><h2 class="wbe-cta__heading" style="color:">Ready to Get Started?</h2><p class="wbe-cta__description" style="color:">Join thousands of satisfied customers today.</p></div><div class="wbe-cta__action"><a class="wbe-cta__btn" href="#" style="background-color:#667eea;color:#ffffff"><div>Get Started Now</div></a></div></div>"
+</style><div class="wbe-cta__body"><h2 class="wbe-cta__heading" style="color:">Ready to Get Started?</h2><p class="wbe-cta__description" style="color:">Join thousands of satisfied customers today.</p></div><div class="wbe-cta__action"><a class="wbe-cta__btn" href="#"><div>Get Started Now</div></a></div></div>"
 `;
 
 exports[`static block faq-accordion saves an owner-picked colour 1`] = `

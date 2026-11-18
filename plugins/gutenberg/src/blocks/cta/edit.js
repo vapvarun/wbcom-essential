@@ -139,21 +139,21 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					<BaseControl label={ __( 'Button Background', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ buttonBg }
-							onChange={ ( value ) => setAttributes( { buttonBg: value || '#667eea' } ) }
+							onChange={ ( value ) => setAttributes( { buttonBg: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Button Text Color', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ buttonColor }
-							onChange={ ( value ) => setAttributes( { buttonColor: value || '#ffffff' } ) }
+							onChange={ ( value ) => setAttributes( { buttonColor: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>
 					<BaseControl label={ __( 'Button Hover Background', 'wbcom-essential' ) }>
 						<ColorPalette
 							value={ buttonBgHover }
-							onChange={ ( value ) => setAttributes( { buttonBgHover: value || '#5a6fd6' } ) }
+							onChange={ ( value ) => setAttributes( { buttonBgHover: value || '' } ) }
 							clearable={ false }
 						/>
 					</BaseControl>

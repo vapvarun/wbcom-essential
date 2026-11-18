@@ -79,7 +79,7 @@
 	font-size: var(--wbe-font-xl, 20px);
 	font-weight: var(--wbe-weight-semibold, 600);
 	line-height: var(--wbe-leading-tight, 1.25);
-	color: var(--wbe-text, inherit);
+	color: var(--wbcom-heading-color, var(--wbe-text, inherit));
 }
 
 /* ---- Description ---- */

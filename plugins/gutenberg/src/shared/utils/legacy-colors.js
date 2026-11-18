@@ -13,12 +13,16 @@
  * @param {Object}   metadata   The block.json metadata.
  * @param {Function} save       The block's save function (its output is unchanged).
  * @param {Object}   oldDefault Optional map of attribute name to old default (blocks without wbeLegacyColors).
+ * @param {boolean}  keptOnly   Read only the "keep" entries: content saved after the neutral colours were
+ *                              already emptied but while the accents still had fixed defaults.
  * @return {Object} Block deprecation definition.
  */
-export function legacyColorDeprecation( metadata, save, oldDefault ) {
+export function legacyColorDeprecation( metadata, save, oldDefault, keptOnly = false ) {
 	const entries = oldDefault
 		? Object.entries( oldDefault ).map( ( [ name, value ] ) => [ name, value, false ] )
-		: Object.entries( metadata.wbeLegacyColors || {} ).map( ( [ name, [ , value, keep ] ] ) => [ name, value, 'keep' === keep ] );
+		: Object.entries( metadata.wbeLegacyColors || {} )
+			.map( ( [ name, [ , value, keep ] ] ) => [ name, value, 'keep' === keep ] )
+			.filter( ( [ , , keep ] ) => ! keptOnly || keep );
 
 	const legacy = {};
 	entries.forEach( ( [ name, value ] ) => {
