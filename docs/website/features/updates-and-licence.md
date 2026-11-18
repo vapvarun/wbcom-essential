@@ -14,13 +14,16 @@ Wbcom Essential is free. It still has a licence key behind the scenes, but only 
 
 ## What is sent, and when
 
-Shortly after you activate the plugin, it contacts the Wbcom Designs update server once in the background to authorise updates. It sends these three things.
+The plugin talks to the Wbcom Designs update server at four moments. None of them sends visitor or user data.
 
-- the plugin's licence key
-- the product id
-- your site address (home URL)
+| When | What is sent |
+|---|---|
+| Once, shortly after you activate the plugin (to authorise updates) | licence key, product id, site address (home URL), environment type |
+| Once a week while the plugin is active (licence check, from WP-Cron) | licence key, product id, plugin version, site address, environment type |
+| Each time WordPress checks for updates | licence key, product id, plugin version, plugin slug, PHP version, WordPress version, site address, environment type (production, staging or development) |
+| When an update installs and the download has no signature header | a request for the release signature at `wbcomdesigns.com/package-signatures/`; nothing about your site beyond a normal web request |
 
-It sends nothing else, and no visitor or user data. The same list is in the plugin's External Services section in `readme.txt`. See the [privacy policy](https://wbcomdesigns.com/privacy-policy/).
+The same list is in the plugin's External Services section in `readme.txt`. See the [privacy policy](https://wbcomdesigns.com/privacy-policy/).
 
 If the server cannot be reached, the plugin tries again every hour, up to 24 times. If the server says no, it stops.
 

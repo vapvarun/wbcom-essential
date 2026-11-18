@@ -99,9 +99,11 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 Wbcom Essential connects to the Wbcom Designs update server (https://updates.wbcomdesigns.com, falling back to the store at https://wbcomdesigns.com) so your site can receive plugin updates.
 
-* When: in the background shortly after the plugin is activated. If the server cannot be reached it tries again hourly, at most 24 times; if it answers no, it stops and an admin notice explains why.
-* What is sent: the licence key, the product id and your site address (home URL). Nothing else, and no visitor or user data.
-* Update checks: WordPress asks the same server for new versions, as for any plugin update, and each downloaded update is checked against its release signature (for now a failed check is logged and the update still installs).
+* Licence activation: once, in the background shortly after the plugin is activated. If the server cannot be reached it tries again hourly, at most 24 times; if it answers no, it stops and an admin notice explains why. Sent: the licence key, the product id, your site address (home URL) and the environment type (production, staging or development).
+* Weekly licence check: while the plugin is active, WordPress cron checks the licence once a week. Sent: the licence key, product id, plugin version, site address and environment type.
+* Update checks: when WordPress looks for plugin updates it asks the same server for the latest version. Sent: the licence key, product id, plugin version, plugin slug, PHP version, WordPress version, site address and the environment type (production, staging or development).
+* Update signature: when an update is installed and the download has no signature header, the plugin fetches the release signature from https://wbcomdesigns.com/package-signatures/. For now a failed check is logged and the update still installs.
+* None of these requests sends visitor or user data or email addresses.
 * Why: the licence is used only to deliver updates. No feature is locked or limited by it, and the plugin works the same if the request fails.
 * Privacy policy: https://wbcomdesigns.com/privacy-policy/
 
