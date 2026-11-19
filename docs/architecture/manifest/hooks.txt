@@ -35,7 +35,7 @@
 - action wbcom_universal_after_title | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2325
 - action wbcom_universal_before_price | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2326
 - action wbcom_universal_before_title | plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2323
-- action wbtm_before_group_avatar_group_directory | templates/reign/buddypress/nouveau/groups/groups-loop.php:39
+- action reign_before_group_avatar_group_directory | templates/reign/buddypress/nouveau/groups/groups-loop.php:40
 - action wbtm_bp_directory_groups_data | templates/reign/buddypress/legacy/groups/groups-loop.php:97
 - filter bb_theme_topic_link_attribute_change | includes/wbcom-essential-function.php:467
 - filter bp_core_get_table_prefix | plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:128

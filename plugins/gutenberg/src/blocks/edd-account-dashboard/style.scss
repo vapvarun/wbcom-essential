@@ -53,8 +53,8 @@
 		cursor: pointer;
 		border-radius: 6px;
 
-		&:hover { background: #f1f5f9; color: #0f172a; }
-		&:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+		&:hover { background: var( --wbe-color-surface-alt, #f1f5f9 ); color: var( --wbe-color-text, #0f172a ); }
+		&:focus-visible { outline: 2px solid var( --wbe-color-accent, #2563eb ); outline-offset: 2px; }
 	}
 
 	&__title {
@@ -113,7 +113,7 @@
 		color: var(--wbe-color-text, #334155);
 		transition: border-color 0.12s ease, background 0.12s ease;
 
-		&:hover { border-color: #cbd5e1; background: #f8fafc; }
+		&:hover { border-color: var( --wbe-color-border, #cbd5e1 ); background: var( --wbe-color-surface, #f8fafc ); }
 
 		input[type="radio"] {
 			margin: 0;
@@ -292,7 +292,8 @@
 
 	// Logout link - red tint
 	&--logout {
-		color: var(--wbe-color-danger);
+		// The danger text token, not the bright danger fill colour: 3.4-3.6:1 as text on the light panel.
+		color: var(--wbe-color-danger-text);
 
 		&:hover {
 			background: var(--wbe-color-danger-bg);
@@ -486,6 +487,12 @@
 // button) belongs to a left-aligned form — override to match the input edge.
 .wbcom-edd-account__login-card form {
 	text-align: left;
+}
+
+// The field rows set their own gap: theme paragraph margins no longer reach
+// inside the block (theme-isolation.css).
+.wbcom-edd-account__login-card :is(.login-username, .login-password) {
+	margin: 0 0 var( --wbe-space-md );
 }
 
 .wbcom-edd-account__login-card .login-username label,
@@ -771,21 +778,23 @@
 		font-size: var( --edd-font-sm );
 	}
 
+	// A filled button takes the theme's button colours: the link colour is a text colour (white in Reign's
+	// dark mode), so as a fill it put white text on a white button.
 	&--primary {
-		background: var( --edd-nav-active-color );
-		color: var(--wbe-color-white);
-		border-color: var( --edd-nav-active-color );
+		background: var( --wbcom-button-bg, var( --edd-nav-active-color ) );
+		color: var( --wbcom-button-color, var(--wbe-color-white) );
+		border-color: var( --wbcom-button-bg, var( --edd-nav-active-color ) );
 
 		&:hover {
 			opacity: 0.9;
-			color: var(--wbe-color-white);
+			color: var( --wbcom-button-color, var(--wbe-color-white) );
 			text-decoration: none;
 		}
 	}
 
 	&--danger-outline {
 		background: transparent;
-		color: var(--wbe-color-danger);
+		color: var(--wbe-color-danger-text);
 		border-color: color-mix(in srgb, var(--wbe-color-danger) 35%, transparent);
 
 		&:hover {
@@ -903,6 +912,7 @@
 
 .wbcom-edd-subs__actions {
 	display: flex;
+	flex-wrap: wrap; // Three actions (Upgrade, Update Payment Method, Cancel) do not fit one row on a phone.
 	align-items: center;
 	gap: 0.625rem;
 	padding: 0 1.25rem 1.25rem;
@@ -1071,7 +1081,7 @@
 
 .wbcom-edd-license__progress-bar {
 	height: 100%;
-	background: var( --edd-nav-active-color );
+	background: var( --wbcom-button-bg, var( --edd-nav-active-color ) );
 	border-radius: 999px;
 	transition: width 0.4s ease;
 }
@@ -1350,7 +1360,7 @@
 .wbcom-edd-license__site-remove {
 	flex-shrink: 0;
 	font-weight: 600;
-	color: var( --edd-danger, #dc2626 );
+	color: var(--wbe-color-danger-text);
 	text-decoration: none;
 
 	&:hover,

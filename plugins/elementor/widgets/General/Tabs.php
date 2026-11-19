@@ -32,7 +32,7 @@ class Tabs extends \Elementor\Widget_Base {
 		wp_register_style( 'wb-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/tabs.css', array(), WBCOM_ESSENTIAL_VERSION );
 
 		wp_register_script( 'wb-lib-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/library/tabs.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
-		wp_register_script( 'wb-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/tabs.min.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
+		wp_register_script( 'wb-tabs', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/tabs.js', array( 'jquery' ), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -147,20 +147,7 @@ class Tabs extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'title_icon' => '',
-						'title'      => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'image'      => '',
-						'text'       => esc_html__( 'Item content...', 'wbcom-essential' ),
-					),
-					array(
-						'title_icon' => '',
-						'title'      => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'image'      => '',
-						'text'       => esc_html__( 'Item content...', 'wbcom-essential' ),
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -773,18 +760,30 @@ class Tabs extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		if ( empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add tabs in the Content section to show them here.', 'wbcom-essential' ) );
+			return;
+		}
 		$rand     = '-' . wp_rand();
 
 		if ( ! empty( $settings['list'] ) ) { ?>
 			<div class="wbcom-tabs <?php echo esc_attr( $settings['tab_layout'] ); ?>">
-				<ul class="wbcom_tab_head <?php echo esc_attr( $settings['icon_block'] === 'true' ? 'wbcom-tabs-block-icon' : '' ); ?>">
+				<?php // Tabs pattern (WAI-ARIA): a tablist of tabs, each controlling one tabpanel; keys in assets/js/tabs.js. ?>
+				<ul class="wbcom_tab_head <?php echo esc_attr( $settings['icon_block'] === 'true' ? 'wbcom-tabs-block-icon' : '' ); ?>" role="tablist"<?php echo in_array( $settings['tab_layout'], array( 't-vertical', 't-vertical-reverse' ), true ) ? ' aria-orientation="vertical"' : ''; ?>>
 					<?php
 					$menu_count = 0;
 					$tab_count  = 0;
 					foreach ( $settings['list'] as $item ) {
+						$panel_id = 'wbcom-' . $item['_id'] . $rand;
 						?>
-						<li 
-							class="<?php echo $menu_count === 0 ? 'is-open' : ''; ?>" 
+						<li
+							class="<?php echo $menu_count === 0 ? 'is-open' : ''; ?>"
+							role="tab"
+							id="<?php echo esc_attr( 'tab-' . $panel_id ); ?>"
+							aria-controls="<?php echo esc_attr( $panel_id ); ?>"
+							aria-selected="<?php echo 0 === $menu_count ? 'true' : 'false'; ?>"
+							tabindex="<?php echo 0 === $menu_count ? '0' : '-1'; ?>"
 							data-opentab="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>">
 							<?php
 							\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );
@@ -798,14 +797,14 @@ class Tabs extends \Elementor\Widget_Base {
 				</ul>
 	
 				<?php foreach ( $settings['list'] as $item ) { ?>	
-					<div class="wbaccordion-mobile-title <?php echo esc_attr( $tab_count === 0 ? 'is-open' : '' ); ?>" data-opentab="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>">
+					<div class="wbaccordion-mobile-title <?php echo esc_attr( $tab_count === 0 ? 'is-open' : '' ); ?>" role="button" tabindex="0" aria-expanded="<?php echo 0 === $tab_count ? 'true' : 'false'; ?>" aria-controls="<?php echo esc_attr( 'wbcom-' . $item['_id'] . $rand ); ?>" data-opentab="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>">
 						<?php
 						\Elementor\Icons_Manager::render_icon( $item['title_icon'], array( 'aria-hidden' => 'true' ) );
 						echo esc_html( $item['title'] );
 						?>
 					</div>	
 	
-					<div class="wbaccordion wbcom_tab_item <?php echo esc_attr( $tab_count === 0 ? 'is-open' : '' ); ?>" id="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>" <?php echo $settings['hash'] ? 'data-hash="#wbcom-' . esc_attr( $item['_id'] . $rand ) . '"' : ''; ?>>
+					<div class="wbaccordion wbcom_tab_item <?php echo esc_attr( $tab_count === 0 ? 'is-open' : '' ); ?>" id="wbcom-<?php echo esc_attr( $item['_id'] . $rand ); ?>" role="tabpanel" aria-labelledby="<?php echo esc_attr( 'tab-wbcom-' . $item['_id'] . $rand ); ?>" <?php echo $settings['hash'] ? 'data-hash="#wbcom-' . esc_attr( $item['_id'] . $rand ) . '"' : ''; ?>>
 						<div class="wbaccordion__body">
 							<div class="wbaccordion-inner">
 								<?php if ( ! empty( $item['image']['url'] ) ) { ?>

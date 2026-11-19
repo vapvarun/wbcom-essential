@@ -226,6 +226,10 @@ import { memberFriendshipStatus, memberLastActive } from '../../shared/utils/bp-
 		url.searchParams.set( 'per_page', cfg.perPage );
 		url.searchParams.set( 'page', 1 );
 		url.searchParams.set( 'type', cfg.sortType || 'newest' );
+		if ( cfg.showLastActive ) {
+			// BuddyPress returns last_activity only with the extras (BuddyBoss always does).
+			url.searchParams.set( 'populate_extras', 'true' );
+		}
 
 		const headers = { 'Content-Type': 'application/json' };
 		if ( cfg.restNonce ) {

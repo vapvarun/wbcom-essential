@@ -187,5 +187,11 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"wbeLegacyColors": {
+		"numberColor": ["--wbe-cd-number-color", "#1e1e2e"],
+		"labelColor": ["--wbe-cd-label-color", "#6c757d"],
+		"boxBg": ["--wbe-cd-box-bg", "#f8f9fa"],
+		"boxBorderColor": ["--wbe-cd-box-border", "#e9ecef"]
+	}
 }

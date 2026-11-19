@@ -1,0 +1,14 @@
+/* Site Logo widget: site-title fallback when no logo image is set. */
+.wba-site-logo-container .wba-site-logo-title {
+	font-size: 1.5em;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--wbcom-heading-color, inherit);
+	text-decoration: none;
+	overflow-wrap: anywhere;
+}
+
+.wba-site-logo-container .wba-site-logo-title:hover,
+.wba-site-logo-container .wba-site-logo-title:focus-visible {
+	color: var(--wbcom-color-primary, #0073aa);
+}

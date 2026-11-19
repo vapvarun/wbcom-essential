@@ -21,9 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Bail early if EDD is not active.
 if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-	echo '<div class="wbcom-edd-checkout__notice">';
-	echo '<p>' . esc_html__( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) . '</p>';
-	echo '</div>';
+	wbcom_essential_block_owner_notice( __( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 

@@ -30,9 +30,8 @@ function wbcom_essential_elementor_load() {
 		return;
 	}
 
-	// Check required version.
-	$elementor_version_required = '3.5.0';
-	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
+	// Check required version (one value, shared with the notice text).
+	if ( ! version_compare( ELEMENTOR_VERSION, \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::$minimum_elementor_version, '>=' ) ) {
 		add_action( 'admin_notices', 'wbcom_essential_elementor_fail_load_out_of_date' );
 	}
 }
@@ -88,9 +87,15 @@ function wbcom_essential_elementor_fail_load() {
 		$button_url  = $install_url;
 	}
 
+	// Remember the dismissal. 'common' prints in the admin footer, so the handler is attached after the notice exists.
+	wp_add_inline_script(
+		'common',
+		"jQuery( function( $ ) { $( '#wbcom-essential-elementor-notice' ).on( 'click', '.notice-dismiss', function() { $.post( ajaxurl, { action: 'wbcom_essential_dismiss_elementor_notice', _wpnonce: $( '#wbcom-essential-elementor-notice' ).data( 'nonce' ) } ); } ); } );"
+	);
+
 	// Display the informational notice.
 	?>
-	<div class="notice notice-info is-dismissible" id="wbcom-essential-elementor-notice">
+	<div class="notice notice-info is-dismissible" id="wbcom-essential-elementor-notice" data-nonce="<?php echo esc_attr( wp_create_nonce( 'wbcom_essential_dismiss_notice' ) ); ?>">
 		<p>
 			<strong><?php esc_html_e( 'Wbcom Essential', 'wbcom-essential' ); ?></strong> —
 			<?php esc_html_e( 'Gutenberg blocks are ready to use! Want even more options? Install Elementor to unlock 43+ additional widgets.', 'wbcom-essential' ); ?>
@@ -104,16 +109,6 @@ function wbcom_essential_elementor_fail_load() {
 			</a>
 		</p>
 	</div>
-	<script>
-	jQuery(document).ready(function($) {
-		$('#wbcom-essential-elementor-notice').on('click', '.notice-dismiss', function() {
-			$.post(ajaxurl, {
-				action: 'wbcom_essential_dismiss_elementor_notice',
-				_wpnonce: '<?php echo esc_js( wp_create_nonce( 'wbcom_essential_dismiss_notice' ) ); ?>'
-			});
-		});
-	});
-	</script>
 	<?php
 }
 
@@ -156,7 +151,7 @@ function wbcom_essential_elementor_fail_load_out_of_date() {
 		__( '%1$s requires %2$s version %3$s or higher. Please update to continue using all features.', 'wbcom-essential' ),
 		'<strong>Wbcom Essential</strong>',
 		'<strong>Elementor</strong>',
-		'<strong>3.0.0</strong>'
+		'<strong>' . esc_html( \WBCOM_ESSENTIAL\ELEMENTOR\Plugin::$minimum_elementor_version ) . '</strong>'
 	);
 
 	?>

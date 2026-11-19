@@ -356,30 +356,7 @@ class Slider extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'image_position'  => 'center center',
-						'image_repeat'    => 'no-repeat',
-						'image_img_size'  => 'cover',
-						'title'           => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'desc'            => esc_html__( 'Content here...', 'wbcom-essential' ),
-						'text_box_align'  => 'center',
-						'text_box_valign' => 'center',
-						'text_align'      => 'left',
-					),
-					array(
-						'image'           => \Elementor\Utils::get_placeholder_image_src(),
-						'image_position'  => 'center center',
-						'image_repeat'    => 'no-repeat',
-						'image_img_size'  => 'cover',
-						'title'           => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'desc'            => esc_html__( 'Content here...', 'wbcom-essential' ),
-						'text_box_align'  => 'center',
-						'text_box_valign' => 'center',
-						'text_align'      => 'left',
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -818,7 +795,7 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Title Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#111111',
+				'default'   => 'var(--wbcom-color-base, #ffffff)',
 				'selectors' => array(
 					'{{WRAPPER}} .wbcom-slider-title' => 'color: {{VALUE}};',
 				),
@@ -840,8 +817,9 @@ class Slider extends \Elementor\Widget_Base {
 			array(
 				'label'     => esc_html__( 'Content Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#333333',
+				'default'   => 'var(--wbcom-color-base, #ffffff)',
 				'selectors' => array(
+					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-desc' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .wbcom-slider-text-box .wbcom-slider-desc p' => 'color: {{VALUE}};',
 				),
 			)
@@ -2063,6 +2041,12 @@ class Slider extends \Elementor\Widget_Base {
 		$wbcomslider_slider_id = $this->get_id();
 		$settings = $this->get_settings_for_display();
 
+		if ( empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add slides in the Slides section to show the slider.', 'wbcom-essential' ) );
+			return;
+		}
+		wbcom_essential_prime_repeater_images( $settings['list'], array( 'image' ) );
+
 		$autoplay   = ! empty( $settings['autoplay'] ) ? 'yes' : 'no';
 		$duration   = isset( $settings['autoplay_duration'] ) ? intval( $settings['autoplay_duration'] ) * 1000 : 5000;
 		$nav        = ! empty( $settings['nav_arrows'] ) ? 'yes' : 'no';
@@ -2081,7 +2065,7 @@ class Slider extends \Elementor\Widget_Base {
 			'speed'          => $speed,
 		);
 
-		if ( $settings['list'] ) { ?>
+		?>
 		<div class="wbcom-slider-wrapper <?php if ( $settings['hide_nav'] ) { echo esc_attr( 'hide-nav' ); } ?>">
 			<div class="wbcom-slider-loader <?php if ( empty( $settings['loader_image']['url'] ) ) { ?>wbcom-css3-loader<?php } ?>" style="<?php if ( ! empty( $settings['loader_image']['url'] ) ) { echo 'background-image:url(' . esc_url( $settings['loader_image']['url'] ) . ');'; } ?>"></div>
 				<div id="wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?>"
@@ -2091,7 +2075,7 @@ class Slider extends \Elementor\Widget_Base {
 				<div class="swiper-wrapper">
 				<?php foreach ( $settings['list'] as $item ) { ?>
 					<div class="swiper-slide">
-					<div class="wbcom-slider-inner animated none <?php echo esc_attr( $item['bg_entrance_animation'] ); ?>" style="background-image:url(<?php echo esc_url( $item['image']['url'] ); ?>);background-position:<?php echo esc_attr( $item['image_position'] ); ?>;background-repeat:<?php echo esc_attr( $item['image_repeat'] ); ?>;background-size:<?php echo esc_attr( $item['image_bg_size'] ); ?>;transition-duration:<?php echo esc_attr( $item['bg_entrance_animation_duration'] ); ?>s;"></div>
+					<div class="wbcom-slider-inner animated none <?php echo esc_attr( $item['bg_entrance_animation'] ); ?>" style="background-image:url(<?php echo esc_url( wbcom_essential_widget_image_url( $item['image'] ) ); ?>);background-position:<?php echo esc_attr( $item['image_position'] ); ?>;background-repeat:<?php echo esc_attr( $item['image_repeat'] ); ?>;background-size:<?php echo esc_attr( $item['image_bg_size'] ); ?>;transition-duration:<?php echo esc_attr( $item['bg_entrance_animation_duration'] ); ?>s;"></div>
 					<?php if ( $item['website_link']['url'] ) { ?>
 					<a class="wbcom-slider-url" href="<?php echo esc_url( $item['website_link']['url'] ); ?>" <?php if ( $item['website_link']['is_external'] ) { ?>target="_blank"<?php } ?> <?php if ( $item['website_link']['nofollow'] ) { ?>rel="nofollow"<?php } ?>></a>
 					<?php } ?>
@@ -2232,6 +2216,5 @@ class Slider extends \Elementor\Widget_Base {
 				}
 			</style>
 		<?php
-        }
 	}
 }

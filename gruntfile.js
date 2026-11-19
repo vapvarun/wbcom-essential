@@ -9,9 +9,10 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-webpack');
 
 	// Project configuration.
-	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
+	// The zip version comes from package.json, which the release bumps with loader.php and readme.txt
+	// (local-ci Q2 checks those three agree), so there is no fourth copy to forget.
 	var pluginSlug    = 'wbcom-essential';
-	var pluginVersion = '4.7.2';
+	var pluginVersion = grunt.file.readJSON( 'package.json' ).version;
 
 	grunt.initConfig(
 		{
@@ -78,6 +79,7 @@ module.exports = function (grunt) {
 								'!phpstan.neon',
 								'!phpstan-baseline.neon',
 								'!phpstan-constants.php',
+								'!phpstan-edd-stubs.php',
 								'!.phpstan-stubs/**',
 								'!composer.json',
 								'!composer.lock',
@@ -114,7 +116,7 @@ module.exports = function (grunt) {
 								'!webpack.config.*.js',
 								'!rollup.config.js',
 								'!babel.config.js',
-								'!jest.config.js',
+								'!jest.config.*',
 								'!playwright.config.*',
 
 								// --- Blacklist: docs/markdown anywhere in tree ---
@@ -221,6 +223,7 @@ module.exports = function (grunt) {
 	// The POT file is built by WP-CLI (`npm run makepot`); grunt-wp-i18n's makepot
 	// misses the JS and block.json strings.
 	grunt.registerTask( 'i18n', ['checktextdomain'] );
-	grunt.registerTask( 'dist', ['clean:dist', 'copy:dist', 'compress:dist', 'clean:post'] );
-	grunt.registerTask( 'release', ['dist'] );
+	// Ungated packager. Called only by bin/build-release.sh after its gates pass;
+	// build a release with `npm run dist` / `npm run release`, never this task directly.
+	grunt.registerTask( 'internal-package', ['clean:dist', 'copy:dist', 'compress:dist', 'clean:post'] );
 };

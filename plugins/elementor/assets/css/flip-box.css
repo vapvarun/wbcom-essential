@@ -246,8 +246,8 @@
 .wba-flip-card-wrapper .wba-flip-card-inner {
     position: relative;
     cursor: pointer;
-    -webkit-transition-duration: .4s;
-    transition-duration: .4s;
+    -webkit-transition-duration: var(--wba-flip-duration, .4s);
+    transition-duration: var(--wba-flip-duration, .4s);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     width: 100%;
@@ -328,72 +328,107 @@
 
 .wba-flip-card-wrapper .wba-flip-card-inner .front {
     z-index: 2;
-    color: #111;
-    background: #eee
+    color: var(--wbcom-color-contrast, #212529);
+    background: var(--wbcom-color-base-2, #f8f9fa)
 }
 
 .wba-flip-card-wrapper .wba-flip-card-inner .front .wba-flip-card-front-title,
 .wba-flip-card-wrapper .wba-flip-card-inner .front p {
-    color: #111
+    color: var(--wbcom-color-contrast, #212529)
 }
 
 .wba-flip-card-wrapper .wba-flip-card-inner .back {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
-    color: #fff;
-    background: #FC545E
+    color: var(--wbcom-color-base, #fff);
+    background: var(--wbcom-color-contrast, #212529)
 }
 
 .wba-flip-card-wrapper .wba-flip-card-inner .back .wba-flip-card-back-title,
 .wba-flip-card-wrapper .wba-flip-card-inner .back p {
-    color: #fff
+    color: var(--wbcom-color-base, #fff)
 }
 
 .wba-flip-card-wrapper.flip-right .wba-flip-card-inner .back,
 .wba-flip-card-wrapper.flip-right:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-right.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-right:focus-within:not(:focus) .wba-flip-card-inner,
 .wba-flip-card-wrapper:hover .wba-flip-card-inner .back {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg)
 }
 
 .wba-flip-card-wrapper.flip-left .wba-flip-card-inner .back,
-.wba-flip-card-wrapper.flip-left:hover .wba-flip-card-inner {
+.wba-flip-card-wrapper.flip-left:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-left.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-left:focus-within:not(:focus) .wba-flip-card-inner {
     -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg)
 }
 
 .wba-flip-card-wrapper.flip-up .wba-flip-card-inner .back,
-.wba-flip-card-wrapper.flip-up:hover .wba-flip-card-inner {
+.wba-flip-card-wrapper.flip-up:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-up.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-up:focus-within:not(:focus) .wba-flip-card-inner {
     -webkit-transform: rotateX(180deg);
     transform: rotateX(180deg)
 }
 
 .wba-flip-card-wrapper.flip-down .wba-flip-card-inner .back,
-.wba-flip-card-wrapper.flip-down:hover .wba-flip-card-inner {
+.wba-flip-card-wrapper.flip-down:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-down.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-down:focus-within:not(:focus) .wba-flip-card-inner {
     -webkit-transform: rotateX(-180deg);
     transform: rotateX(-180deg)
 }
 
 .wba-flip-card-wrapper.flip-diagonal-right .wba-flip-card-inner .back,
-.wba-flip-card-wrapper.flip-diagonal-right:hover .wba-flip-card-inner {
+.wba-flip-card-wrapper.flip-diagonal-right:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-diagonal-right.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-diagonal-right:focus-within:not(:focus) .wba-flip-card-inner {
     -webkit-transform: rotate3d(1, 1, 0, 180deg);
     transform: rotate3d(1, 1, 0, 180deg)
 }
 
 .wba-flip-card-wrapper.flip-diagonal-left .wba-flip-card-inner .back,
-.wba-flip-card-wrapper.flip-diagonal-left:hover .wba-flip-card-inner {
+.wba-flip-card-wrapper.flip-diagonal-left:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-diagonal-left.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-diagonal-left:focus-within:not(:focus) .wba-flip-card-inner {
     -webkit-transform: rotate3d(1, 1, 0, -180deg);
     transform: rotate3d(1, 1, 0, -180deg)
 }
 
 .wba-flip-card-wrapper.flip-inverted-diagonal-right .wba-flip-card-inner .back,
-.wba-flip-card-wrapper.flip-inverted-diagonal-right:hover .wba-flip-card-inner {
+.wba-flip-card-wrapper.flip-inverted-diagonal-right:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-inverted-diagonal-right.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-inverted-diagonal-right:focus-within:not(:focus) .wba-flip-card-inner {
     -webkit-transform: rotate3d(-1, 1, 0, 180deg);
     transform: rotate3d(-1, 1, 0, 180deg)
 }
 
 .wba-flip-card-wrapper.flip-inverted-diagonal-left .wba-flip-card-inner .back,
-.wba-flip-card-wrapper.flip-inverted-diagonal-left:hover .wba-flip-card-inner {
+.wba-flip-card-wrapper.flip-inverted-diagonal-left:hover .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-inverted-diagonal-left.is-flipped .wba-flip-card-inner,
+.wba-flip-card-wrapper.flip-inverted-diagonal-left:focus-within:not(:focus) .wba-flip-card-inner {
     -webkit-transform: rotate3d(1, -1, 0, 180deg);
     transform: rotate3d(1, -1, 0, 180deg)
+}
+
+/* Keyboard: the card is focusable (tabindex=0); Enter or Space flips it, Escape flips it back. */
+.wba-flip-card-wrapper:focus-visible {
+    outline: 2px solid var(--wbcom-color-primary, #0073aa);
+    outline-offset: 4px;
+    border-radius: 4px
+}
+
+.wba-flip-card-wrapper .back a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wba-flip-card-wrapper .wba-flip-card-inner {
+        -webkit-transition-duration: 0s;
+        transition-duration: 0s
+    }
 }

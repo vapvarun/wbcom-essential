@@ -7,6 +7,7 @@
 .prettierrc*
 .stylelintrc*
 .babelrc
+jest.config.*
 
 # Node / Build tooling
 node_modules
@@ -41,9 +42,12 @@ phpstan-baseline.neon
 .phpstan-stubs
 bin/
 
-# Documentation & meta
+# Documentation & meta (audit reports and planning notes are dev-only)
+audit/
+plan/
 docs/
 CLAUDE.md
+CAPABILITIES.md
 README.md
 marketing/
 

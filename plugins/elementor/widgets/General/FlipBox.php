@@ -33,6 +33,7 @@ class FlipBox extends \Elementor\Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'wb-flip-box', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/css/flip-box.css', array(), WBCOM_ESSENTIAL_VERSION );
+		wp_register_script( 'wb-flip-box', WBCOM_ESSENTIAL_ELEMENTOR_URL . 'assets/js/flip-box.js', array(), WBCOM_ESSENTIAL_VERSION, true );
 	}
 
 	/**
@@ -74,6 +75,15 @@ class FlipBox extends \Elementor\Widget_Base {
 	 * Get dependent style.
 	 */
 	public function get_style_depends() {
+		return array( 'wb-flip-box' );
+	}
+
+	/**
+	 * Get script dependencies.
+	 *
+	 * @return array Script handles.
+	 */
+	public function get_script_depends() {
 		return array( 'wb-flip-box' );
 	}
 
@@ -149,7 +159,8 @@ class FlipBox extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Title', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Title Here...', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder' => esc_html__( 'Enter a title', 'wbcom-essential' ),
 			)
 		);
 
@@ -158,7 +169,8 @@ class FlipBox extends \Elementor\Widget_Base {
 			array(
 				'label'   => esc_html__( 'Content', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Content Here...', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder' => esc_html__( 'Enter the text', 'wbcom-essential' ),
 			)
 		);
 
@@ -204,7 +216,8 @@ class FlipBox extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Title', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Title Here...', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder' => esc_html__( 'Enter a title', 'wbcom-essential' ),
 			)
 		);
 
@@ -213,7 +226,8 @@ class FlipBox extends \Elementor\Widget_Base {
 			array(
 				'label'   => esc_html__( 'Content', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Content Here...', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder' => esc_html__( 'Enter the text', 'wbcom-essential' ),
 			)
 		);
 
@@ -382,7 +396,7 @@ class FlipBox extends \Elementor\Widget_Base {
 				'step'      => 0.1,
 				'default'   => 0.4,
 				'selectors' => array(
-					'{{WRAPPER}} .wba-flip-card-inner' => 'transition-duration: {{VALUE}}s;',
+					'{{WRAPPER}}' => '--wba-flip-duration: {{VALUE}}s;',
 				),
 			)
 		);
@@ -1654,10 +1668,18 @@ class FlipBox extends \Elementor\Widget_Base {
 		$settings      = $this->get_settings_for_display();
 		$target        = $settings['btn_website_link']['is_external'] ? ' target="' . esc_attr( '_blank' ) . '"' : '';
 		$nofollow      = $settings['btn_website_link']['nofollow'] ? ' rel="' . esc_attr( 'nofollow' ) . '"' : '';
-		$icon_position = $settings['btn_icon_position'];        
+		$icon_position = $settings['btn_icon_position'];
+
+		if ( '' === trim( $settings['front_title'] . $settings['front_content'] . $settings['back_title'] . $settings['back_content'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add a title or text for the front and back of this flip box.', 'wbcom-essential' ) );
+			return;
+		}
+
+		$card_label = $settings['front_title'] ? $settings['front_title'] : wp_strip_all_tags( $settings['front_content'] );
 		?>
 		<div class="wba-flip-card-outer" style="display:flex;">
-			<div class="wba-flip-card-wrapper <?php echo esc_attr( $settings['direction'] ); ?>">
+			<div class="wba-flip-card-wrapper <?php echo esc_attr( $settings['direction'] ); ?>" tabindex="0" role="group" aria-roledescription="<?php esc_attr_e( 'flip card', 'wbcom-essential' ); ?>" aria-label="<?php echo esc_attr( wp_trim_words( $card_label, 12 ) ); ?>" aria-describedby="<?php echo esc_attr( 'wba-flip-hint-' . $this->get_id() ); ?>">
+				<span id="<?php echo esc_attr( 'wba-flip-hint-' . $this->get_id() ); ?>" class="elementor-screen-only"><?php esc_html_e( 'Press Enter or Space to turn the card over, Escape to turn it back.', 'wbcom-essential' ); ?></span>
 				<div class="wba-flip-card-inner" style="transition-timing-function: 
                 <?php
                 if ( $settings['custom_timing'] ) { echo esc_attr( $settings['custom_timing'] );

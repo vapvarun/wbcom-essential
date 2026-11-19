@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Bail early if EDD is not active.
 if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-	echo '<p>' . esc_html__( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) . '</p>';
+	wbcom_essential_block_owner_notice( __( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 
@@ -61,6 +61,40 @@ if ( empty( $account_page_url ) ) {
 
 $account_page_url = esc_url( $account_page_url );
 
+// ── Which order is this page about? ─────────────────────────────────────────
+// Resolved the way EDD's [edd_receipt] does, so the header never contradicts
+// the receipt below it. Read only: EDD verifies and acts on these values.
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- EDD's receipt links carry no nonce; the payment key / order hash is the proof.
+$order_key = '';
+if ( isset( $_GET['payment_key'] ) ) {
+	$order_key = sanitize_text_field( urldecode( wp_unslash( $_GET['payment_key'] ) ) );
+} elseif ( ! empty( $_GET['order'] ) && ! empty( $_GET['id'] ) && is_string( $_GET['order'] ) ) {
+	$requested_order = edd_get_order( absint( $_GET['id'] ) );
+	$requested_hash  = sanitize_text_field( urldecode( wp_unslash( $_GET['order'] ) ) );
+	if ( $requested_order instanceof \EDD\Orders\Order && $requested_order->is_receipt_hash_valid( $requested_hash ) ) {
+		$order_key = $requested_order->payment_key;
+	}
+} else {
+	$purchase_session = edd_get_purchase_session();
+	$order_key        = ! empty( $purchase_session['purchase_key'] ) ? $purchase_session['purchase_key'] : '';
+}
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+$wbe_order   = $order_key ? edd_get_order_by( 'payment_key', $order_key ) : false;
+$is_preview  = defined( 'REST_REQUEST' ) && REST_REQUEST;
+$order_state = 'none'; // No order, or not this visitor's: EDD's receipt shows its own message.
+if ( $is_preview ) {
+	$order_state = 'confirmed';
+} elseif ( $wbe_order && edd_can_view_receipt( $wbe_order ) ) {
+	if ( in_array( $wbe_order->status, array( 'complete', 'publish' ), true ) ) {
+		$order_state = 'confirmed';
+	} elseif ( in_array( $wbe_order->status, array( 'pending', 'processing' ), true ) ) {
+		$order_state = 'pending';
+	} else {
+		$order_state = 'incomplete';
+	}
+}
+
 // Unique ID for animation scoping.
 $unique_block_id = ! empty( $unique_id ) ? 'wbcom-edd-success-' . $unique_id : wp_unique_id( 'wbcom-edd-success-' );
 
@@ -81,7 +115,22 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		</a>
 	</div>
 
-	<?php if ( $show_success_header ) : ?>
+	<?php if ( $show_success_header && 'pending' === $order_state ) : ?>
+		<div class="wbcom-edd-success__header">
+			<h2 class="wbcom-edd-success__title">
+				<?php esc_html_e( "We've received your order", 'wbcom-essential' ); ?>
+			</h2>
+			<p class="wbcom-edd-success__subtitle">
+				<?php esc_html_e( 'Your payment is being confirmed. This page shows the order once it is complete.', 'wbcom-essential' ); ?>
+			</p>
+		</div>
+	<?php elseif ( $show_success_header && 'incomplete' === $order_state ) : ?>
+		<div class="wbcom-edd-success__header">
+			<h2 class="wbcom-edd-success__title">
+				<?php esc_html_e( 'This order was not completed', 'wbcom-essential' ); ?>
+			</h2>
+		</div>
+	<?php elseif ( $show_success_header && 'confirmed' === $order_state ) : ?>
 		<div class="wbcom-edd-success__header">
 			<div class="wbcom-edd-success__checkmark" aria-hidden="true">
 				<svg
@@ -115,7 +164,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		<?php echo do_shortcode( '[edd_receipt]' ); ?>
 	</div>
 
-	<?php if ( $show_next_steps ) : ?>
+	<?php if ( $show_next_steps && 'confirmed' === $order_state ) : ?>
 		<div class="wbcom-edd-success__next-steps">
 			<h3 class="wbcom-edd-success__next-steps-title">
 				<?php esc_html_e( "What's Next?", 'wbcom-essential' ); ?>

@@ -155,7 +155,8 @@ class WcTestimonial extends \Elementor\Widget_Base {
 				array(
 					'label'   => __( 'Name', 'wbcom-essential' ),
 					'type'    => Controls_Manager::TEXT,
-					'default' => __( 'Anna Miller', 'wbcom-essential' ),
+					'default' => '',
+					'placeholder' => __( 'Customer name', 'wbcom-essential' ),
 				)
 			);
 
@@ -164,7 +165,8 @@ class WcTestimonial extends \Elementor\Widget_Base {
 				array(
 					'label'   => __( 'Designation', 'wbcom-essential' ),
 					'type'    => Controls_Manager::TEXT,
-					'default' => __( 'Designer', 'wbcom-essential' ),
+					'default' => '',
+					'placeholder' => __( 'Role or company', 'wbcom-essential' ),
 				)
 			);
 
@@ -201,7 +203,8 @@ class WcTestimonial extends \Elementor\Widget_Base {
 				array(
 					'label'   => __( 'Client Say', 'wbcom-essential' ),
 					'type'    => Controls_Manager::TEXTAREA,
-					'default' => __( '“ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris consequat. ”', 'wbcom-essential' ),
+					'default' => '',
+					'placeholder' => __( 'What the customer said', 'wbcom-essential' ),
 				)
 			);
 
@@ -213,26 +216,7 @@ class WcTestimonial extends \Elementor\Widget_Base {
 						'testimonial_type' => 'custom',
 					),
 					'fields'      => $repeater->get_controls(),
-					'default'     => array(
-
-						array(
-							'client_name'        => __( 'Anna Miller', 'wbcom-essential' ),
-							'client_designation' => __( 'Designer', 'wbcom-essential' ),
-							'client_say'         => __( '“ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris consequat. ”', 'wbcom-essential' ),
-						),
-
-						array(
-							'client_name'        => __( 'Kevin Walker', 'wbcom-essential' ),
-							'client_designation' => __( 'Developer', 'wbcom-essential' ),
-							'client_say'         => __( '“ Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore Lorem ipsum dolor sit amet, consectetur adipisicing elit ”', 'wbcom-essential' ),
-						),
-
-						array(
-							'client_name'        => __( 'Ruth Pierce', 'wbcom-essential' ),
-							'client_designation' => __( 'Customer', 'wbcom-essential' ),
-							'client_say'         => __( '“ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris consequat. ”', 'wbcom-essential' ),
-						),
-					),
+					'default'     => array(),
 					'title_field' => '{{{ client_name }}}',
 				)
 			);
@@ -266,6 +250,9 @@ class WcTestimonial extends \Elementor\Widget_Base {
 					'label'        => esc_html__( 'Columns', 'wbcom-essential' ),
 					'type'         => Controls_Manager::SELECT,
 					'default'      => '3',
+					// Phones and tablets get their own count unless the owner sets one: three 110px cards do not fit 390.
+					'tablet_default' => '2',
+					'mobile_default' => '1',
 					'options'      => array(
 						'1'  => esc_html__( 'One', 'wbcom-essential' ),
 						'2'  => esc_html__( 'Two', 'wbcom-essential' ),
@@ -1136,6 +1123,11 @@ class WcTestimonial extends \Elementor\Widget_Base {
 	protected function render( $instance = array() ) {
 
 		$settings = $this->get_settings_for_display();
+
+		if ( 'custom' === $settings['testimonial_type'] && empty( $settings['testimonial_list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add testimonials in the Testimonial section to show them here.', 'wbcom-essential' ) );
+			return;
+		}
 		$column   = $this->get_settings_for_display( 'column' );
 
 		$collumval = 'wb-col-1';

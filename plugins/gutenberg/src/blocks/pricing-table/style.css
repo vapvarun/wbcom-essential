@@ -12,8 +12,9 @@
 /* Grid — 1 column on mobile, flows up via --wbe-pricing-cols custom prop */
 .wbe-pricing-cards__grid {
 	display: grid;
+	--wbe-pt-gap: var(--wbe-space-xl, 32px);
 	grid-template-columns: 1fr;
-	gap: var(--wbe-space-xl, 32px);
+	gap: var(--wbe-pt-gap);
 	width: 100%;
 	box-sizing: border-box;
 }
@@ -26,7 +27,7 @@
 	border-radius: var(--wbe-radius-lg, 12px);
 	box-shadow: var(--wbe-shadow-md, 0 4px 6px -1px rgba(0,0,0,0.1));
 	padding: var(--wbe-space-2xl, 48px) var(--wbe-space-xl, 32px);
-	background-color: #ffffff;
+	background-color: var(--wbe-surface, #ffffff);
 	transition: transform var(--wbe-transition-normal, 300ms ease),
 	            box-shadow var(--wbe-transition-normal, 300ms ease);
 	box-sizing: border-box;
@@ -43,6 +44,8 @@
 	transform: scale(1.03);
 	box-shadow: var(--wbe-shadow-xl, 0 20px 25px -5px rgba(0,0,0,0.1));
 	z-index: 1;
+	background-color: var(--wbcom-button-bg, var(--wbe-color-accent));
+	color: var(--wbcom-button-color, #ffffff);
 }
 
 .wbe-pricing-cards__card--featured:hover {
@@ -58,8 +61,10 @@
 	font-weight: var(--wbe-weight-semibold, 600);
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
-	background-color: rgba(255, 255, 255, 0.2);
-	border: 1px solid rgba(255, 255, 255, 0.4);
+	/* Outline only: a white fill lightened the card under the white label (3.25:1 on Reign). The outline follows
+	   the label colour, so it is the same 40% white on a dark card and darkens on a light one. */
+	background-color: transparent;
+	border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
 	border-radius: var(--wbe-radius-full, 9999px);
 	padding: 4px 12px;
 	white-space: nowrap;
@@ -81,9 +86,10 @@
 
 .wbe-pricing-cards__price {
 	display: flex;
+	flex-wrap: wrap; /* "/month" drops a line in a narrow card instead of being clipped. */
 	align-items: baseline;
 	gap: 2px;
-	color: #1e1e2e;
+	color: var(--wbcom-heading-color, var(--wbe-text, #1e1e2e));
 }
 
 .wbe-pricing-cards__currency {
@@ -107,7 +113,7 @@
 /* Features list */
 .wbe-pricing-cards__features {
 	list-style: none;
-	margin: 0 0 var(--wbe-space-2xl, 48px);
+	margin: 0;
 	padding: 0;
 	flex: 1;
 	display: flex;
@@ -121,7 +127,7 @@
 	gap: var(--wbe-space-sm, 8px);
 	font-size: var(--wbe-font-sm, 14px);
 	line-height: var(--wbe-leading-normal, 1.5);
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 }
 
 .wbe-pricing-cards__feature-check {
@@ -131,8 +137,8 @@
 	width: 18px;
 	height: 18px;
 	border-radius: 50%;
-	background-color: rgba(102, 126, 234, 0.12);
-	color: #667eea;
+	background-color: var(--wbe-color-accent-light);
+	color: var(--wbe-color-accent);
 	font-size: 11px;
 	flex-shrink: 0;
 }
@@ -142,9 +148,16 @@
 	color: inherit;
 }
 
+/* Featured card: price and features take the card's text colour. */
+.wbe-pricing-cards__card--featured :is(.wbe-pricing-cards__price, .wbe-pricing-cards__feature) {
+	color: inherit;
+}
+
 /* Footer / CTA */
 .wbe-pricing-cards__footer {
 	margin-top: auto;
+	/* The gap above the button is padding: the shared theme-isolation rule resets list margins. */
+	padding-top: var(--wbe-space-xl, 32px);
 }
 
 .wbe-pricing-cards__btn {
@@ -158,6 +171,8 @@
 	font-weight: var(--wbe-weight-semibold, 600);
 	text-decoration: none;
 	cursor: pointer;
+	background-color: var(--wbcom-button-bg, var(--wbe-color-accent));
+	color: var(--wbcom-button-color, #ffffff);
 	transition: opacity var(--wbe-transition-normal, 300ms ease),
 	            transform var(--wbe-transition-normal, 300ms ease);
 }
@@ -169,18 +184,46 @@
 	text-decoration: none;
 }
 
+/*
+ * Button text keeps the button colour in every link state. It must outrank the shared theme-isolation rule
+ * that makes links inside blocks inherit (specificity 0,4,1), so the selector follows the card structure.
+ */
+.wbe-pricing-cards .wbe-pricing-cards__card .wbe-pricing-cards__footer > a.wbe-pricing-cards__btn:is(:link, :visited, :hover, :focus) {
+	color: var(--wbcom-button-color, #ffffff);
+}
+
+.wbe-pricing-cards .wbe-pricing-cards__card--featured .wbe-pricing-cards__footer > a.wbe-pricing-cards__btn:is(:link, :visited, :hover, :focus) {
+	color: var(--wbcom-button-bg, var(--wbe-color-accent));
+}
+
+/* Featured card button: the card's colours inverted. */
+.wbe-pricing-cards__card--featured .wbe-pricing-cards__btn {
+	background-color: var(--wbcom-button-color, #ffffff);
+}
+
 /* Visibility utility classes */
-/* Tablet — 2 columns */
+/* Tablet — 2 columns, desktop — --wbe-pricing-cols. The count is the maximum: in a narrow container (Columns,
+   sidebar) a column drops only when a card would fall below 175px. Phones keep 1 column. */
 @media (min-width: 768px) {
 	.wbe-pricing-cards__grid {
-		grid-template-columns: repeat(2, 1fr);
+		--wbe-pt-cols-now: 2;
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(
+				max(
+					min( 175px, 100% ),
+					calc( ( 100% - ( var( --wbe-pt-cols-now ) - 1 ) * var( --wbe-pt-gap ) ) / var( --wbe-pt-cols-now ) )
+				),
+				1fr
+			)
+		);
 	}
 }
 
 /* Desktop — use --wbe-pricing-cols */
 @media (min-width: 1025px) {
 	.wbe-pricing-cards__grid {
-		grid-template-columns: repeat(var(--wbe-pricing-cols, 3), 1fr);
+		--wbe-pt-cols-now: var(--wbe-pricing-cols, 3);
 	}
 }
 

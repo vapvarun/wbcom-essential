@@ -59,6 +59,8 @@
 	font-weight: var(--wbe-weight-bold, 700);
 	line-height: var(--wbe-leading-tight, 1.25);
 	color: #ffffff;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* Subheading */
@@ -66,8 +68,9 @@
 	margin: 0 0 var(--wbe-space-xl, 32px);
 	font-size: clamp(var(--wbe-font-md, 16px), 2vw, var(--wbe-font-xl, 20px));
 	line-height: var(--wbe-leading-relaxed, 1.75);
-	color: rgba(255, 255, 255, 0.8);
+	color: var(--wbe-color-white, #ffffff);
 	max-width: 640px;
+	overflow-wrap: anywhere;
 }
 
 /* Buttons row */

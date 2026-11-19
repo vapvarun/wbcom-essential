@@ -60,6 +60,8 @@ One My Account page for customers, with a sidebar menu, downloads, order history
 
 ![The Account Dashboard Edit Profile tab](../images/edd-account-edit-profile-tab.webp)
 
+Order, sale, subscription and licence dates show in your site's timezone (**Settings > General > Timezone**).
+
 Search, filter and sort update the list without reloading the page. If a search finds nothing, customers see "No items match your search or filter. Try clearing them."
 
 ### Tips

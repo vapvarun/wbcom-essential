@@ -14,6 +14,9 @@
 	--wbe-tk-bg:          var(--wbe-color-surface-alt, #f8f9fa);
 	--wbe-tk-text:        var(--wbcom-text-color, #1e1e2e);
 	--wbe-tk-link:        var(--wbe-color-accent, #667eea);
+	/* Small text defaults that hold 4.5:1; render.php writes the owner's link / text colour here when set. */
+	--wbe-tk-cat-color:   var(--wbe-color-accent-text);
+	--wbe-tk-date-color:  var(--wbe-color-text-muted);
 	--wbe-tk-height:      44px;
 	--wbe-tk-duration:    30s;
 	--wbe-tk-shadow:      none;
@@ -22,7 +25,10 @@
 	display:       flex;
 	align-items:   stretch;
 	width:         100%;
-	height:        var( --wbe-tk-height );
+	/* Border-box keeps the owner's padding inside the bar width. The lane below carries the height, so the padding
+	   adds to the bar height instead of squeezing the headlines to 0px. */
+	box-sizing:    border-box;
+	height:        auto;
 	background:    var( --wbe-tk-bg );
 	color:         var( --wbe-tk-text );
 	overflow:      hidden;
@@ -30,6 +36,11 @@
 	box-shadow:    var( --wbe-tk-shadow );
 	font-size:     0.875rem;
 	line-height:   1.4;
+}
+
+/* An owner-picked text colour sets the date at 55% of that colour, as it always looked. */
+.wbe-posts-ticker--text-picked {
+	--wbe-tk-date-color: color-mix( in srgb, var( --wbe-tk-text ) 55%, transparent );
 }
 
 /* ── Label (sticky left) ─────────────────────────────────────────────────── */
@@ -57,6 +68,7 @@
 	overflow:  hidden;
 	position:  relative;
 	min-width: 0;
+	height:    var( --wbe-tk-height );
 }
 
 /* Fade-out edge masks */
@@ -125,7 +137,7 @@
 	align-items:     center;
 	padding:         2px 8px;
 	background:      color-mix( in srgb, var( --wbe-tk-link ) 12%, transparent );
-	color:           var( --wbe-tk-link );
+	color:           var( --wbe-tk-cat-color );
 	border-radius:   50px;
 	font-size:       0.75rem;
 	font-weight:     600;
@@ -154,7 +166,7 @@
 /* ── Date ────────────────────────────────────────────────────────────────── */
 .wbe-posts-ticker__date {
 	font-size:  0.75rem;
-	color:      color-mix( in srgb, var( --wbe-tk-text ) 55%, transparent );
+	color:      var( --wbe-tk-date-color );
 	white-space: nowrap;
 }
 
@@ -178,7 +190,9 @@
 }
 
 .wbe-posts-ticker--static .wbe-posts-ticker__viewport {
-	overflow: visible;
+	overflow:   visible;
+	height:     auto;
+	min-height: var( --wbe-tk-height );
 }
 
 .wbe-posts-ticker--static .wbe-posts-ticker__viewport::before,

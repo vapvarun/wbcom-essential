@@ -86,3 +86,44 @@ describe( 'T0.7 Elementor widget names are unique', () => {
 		expect( duplicates ).toEqual( [] );
 	} );
 } );
+
+// SpacingControl finds the tablet and mobile attributes by object identity with the block's padding or margin, so a
+// block that passes a copy (a spread, a fallback literal) silently loses its responsive spacing controls.
+describe( 'SpacingControl gets the block attribute itself', () => {
+	const uses = blocks.flatMap( ( slug ) => {
+		const file = path.join( SRC, slug, 'edit.js' );
+		const code = fs.existsSync( file ) ? fs.readFileSync( file, 'utf8' ) : '';
+		return [ ...code.matchAll( /<SpacingControl[\s\S]*?values=\{\s*([^}]+?)\s*\}/g ) ].map( ( m ) => ( { slug, values: m[ 1 ] } ) );
+	} );
+
+	it( 'finds the controls', () => {
+		expect( uses.length ).toBeGreaterThanOrEqual( 60 );
+	} );
+
+	it( 'passes padding or margin unchanged', () => {
+		expect( uses.filter( ( u ) => ! /^(attributes\.)?(padding|margin)$/.test( u.values ) ) ).toEqual( [] );
+	} );
+} );
+
+// A static block (no render callback) is checked against its save() output when the editor parses it. A
+// self-closing comment has no HTML to check, so a pattern written that way inserts a block the editor calls invalid.
+describe( 'Patterns give static blocks their saved markup', () => {
+	const PATTERNS = path.join( ROOT, 'plugins/gutenberg/patterns' );
+	const staticBlocks = blocks.filter( ( slug ) => ! JSON.parse( fs.readFileSync( path.join( SRC, slug, 'block.json' ), 'utf8' ) ).render );
+
+	it( 'finds the static blocks', () => {
+		expect( staticBlocks ).toContain( 'cta' );
+	} );
+
+	it( 'never self-closes a static block', () => {
+		const found = fs.readdirSync( PATTERNS )
+			.filter( ( file ) => file.endsWith( '.php' ) )
+			.flatMap( ( file ) => {
+				const code = fs.readFileSync( path.join( PATTERNS, file ), 'utf8' );
+				return [ ...code.matchAll( /<!-- wp:wbcom-essential\/([a-z0-9-]+)\b[^>]*?\/-->/g ) ]
+					.filter( ( m ) => staticBlocks.includes( m[ 1 ] ) )
+					.map( ( m ) => `${ file }: ${ m[ 1 ] }` );
+			} );
+		expect( found ).toEqual( [] );
+	} );
+} );

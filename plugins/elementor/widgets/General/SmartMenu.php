@@ -1159,6 +1159,30 @@ class SmartMenu extends \Elementor\Widget_Base {
 		if ( is_rtl() ) {
 			$rtl = 'sm-rtl';
 		}
+
+		// Build the menu first. Without a fallback, a site with no menu (or an empty one) gets nothing instead of
+		// core's list of every published page, which was printed into a hidden container and broke the script.
+		// No menu chosen at all: wp_nav_menu() would print the site's first menu that has items, so stop here.
+		$menu_html = empty( $settings['menu'] ) ? '' : wp_nav_menu(
+			array(
+				'menu'            => $settings['menu'],
+				'container'       => 'nav',
+				'container_id'    => 'wba-smart-menu-wrapper-' . esc_attr( $menu_id ),
+				'container_class' => 'wba-smart-menu-wrapper',
+				'menu_id'         => 'wba-smart-menu-' . esc_attr( $menu_id ),
+				'menu_class'      => 'wba-smart-menu sm wba-sm-skin animated ' . esc_attr( $settings['menu_layout'] ) . ' ' . esc_attr( $settings['main_menu_icon'] ) . ' ' . esc_attr( $rtl ),
+				'depth'           => 99,
+				'fallback_cb'     => false,
+				'echo'            => false,
+			)
+		);
+
+		if ( ! $menu_html ) {
+			if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+				echo '<p class="wba-smart-menu-empty">' . esc_html__( 'Choose a menu that has items (Appearance > Menus) to show it here.', 'wbcom-essential' ) . '</p>';
+			}
+			return;
+		}
 		?>
 		<div style="display:none;" class="wba-smart-menu-container
 		<?php
@@ -1173,19 +1197,7 @@ class SmartMenu extends \Elementor\Widget_Base {
 				</div>
 			</div>
 		<?php } ?>
-			<?php
-			wp_nav_menu(
-				array(
-					'menu'            => $settings['menu'],
-					'container'       => 'nav',
-					'container_id'    => 'wba-smart-menu-wrapper-' . esc_attr($menu_id),
-					'container_class' => 'wba-smart-menu-wrapper',
-					'menu_id'         => 'wba-smart-menu-' . esc_attr($menu_id),
-					'menu_class'      => 'wba-smart-menu sm wba-sm-skin animated ' . esc_attr($settings['menu_layout']) . ' ' . esc_attr($settings['main_menu_icon']) . ' ' . esc_attr($rtl),
-					'depth'           => 99,
-				)
-			);
-			?>
+			<?php echo $menu_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built by wp_nav_menu(), which escapes its own output. ?>
 		</div>
 		<?php
 	}

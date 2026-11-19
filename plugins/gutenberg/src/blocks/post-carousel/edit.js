@@ -38,6 +38,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		order,
 		displayMode,
 		slidesPerView,
+		gridColumns,
 		autoplay,
 		autoplayDelay,
 		showImage,
@@ -89,6 +90,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	const blockProps = useBlockProps( {
 		className: `wbe-block-${ uniqueId } wbe-post-carousel-editor`,
+		// Slides per view for the editor preview (editor.css); Swiper only runs on the front end.
+		style: { '--wbe-ed-slides': slidesPerView },
 	} );
 
 	return (
@@ -152,6 +155,17 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						] }
 						onChange={ ( val ) => setAttributes( { displayMode: val } ) }
 					/>
+
+					{ displayMode === 'grid' && (
+						<RangeControl
+							label={ __( 'Columns (desktop)', 'wbcom-essential' ) }
+							value={ gridColumns }
+							onChange={ ( val ) => setAttributes( { gridColumns: val } ) }
+							min={ 1 }
+							max={ 4 }
+							step={ 1 }
+						/>
+					) }
 
 					{ ( displayMode === 'carousel' || displayMode === 'slider' ) && (
 						<>

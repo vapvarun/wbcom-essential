@@ -130,7 +130,7 @@ class AddBanner extends \Elementor\Widget_Base {
 					'label'   => __( 'Banner image', 'wbcom-essential' ),
 					'type'    => Controls_Manager::MEDIA,
 					'default' => array(
-						'url' => \Elementor\Utils::get_placeholder_image_src(),
+						'url' => '',
 					),
 				)
 			);
@@ -324,7 +324,12 @@ class AddBanner extends \Elementor\Widget_Base {
 
 	protected function render( $instance = array() ) {
 
-		$settings = $this->get_settings_for_display();
+		$settings  = $this->get_settings_for_display();
+		$has_image = ! empty( $settings['bannerimage']['url'] );
+		if ( ! $has_image && empty( $settings['bannertitle'] ) && empty( $settings['bannersubtitle'] ) && empty( $settings['buttontxt'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add a banner image or a title in the Content panel.', 'wbcom-essential' ) );
+			return;
+		}
 		$this->add_render_attribute( 'area_attr', 'class', 'wbcom-banner' );
 		$this->add_render_attribute( 'area_attr', 'class', 'wbcom-content-align-' . $settings['content_alignment'] );
 		$this->add_render_attribute( 'area_attr', 'class', 'wbcom-banner-layout-' . $settings['banner_layout'] );
@@ -350,6 +355,7 @@ class AddBanner extends \Elementor\Widget_Base {
 					}
 					?>
 				</div>
+				<?php if ( $has_image ) : ?>
 				<div class="wbcom-banner-img">
 					<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $target and $nofollow are hardcoded safe strings ?>
 					<a href="<?php echo esc_url( $settings['buttonlink']['url'] ); ?>" <?php echo $target . $nofollow; ?> >
@@ -357,6 +363,7 @@ class AddBanner extends \Elementor\Widget_Base {
 						<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'bannerimagesize', 'bannerimage' ); ?>
 					</a>
 				</div>
+				<?php endif; ?>
 			</div>
 		<?php
 	}

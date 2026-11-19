@@ -119,7 +119,8 @@ class TextRotator extends \Elementor\Widget_Base {
 			array(
 				'label'       => esc_html__( 'Text', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXTAREA,
-				'default'     => esc_html__( 'Animated Text', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'A word or phrase', 'wbcom-essential' ),
 				'label_block' => true,
 			)
 		);
@@ -131,14 +132,7 @@ class TextRotator extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'title' => esc_html__( 'Animated Text #1', 'wbcom-essential' ),
-					),
-					array(
-						'title' => esc_html__( 'Animated Text #2', 'wbcom-essential' ),
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -437,7 +431,11 @@ class TextRotator extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if ( $settings['list'] ) {
+
+		if ( empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add the words to rotate in the Text Rotator section.', 'wbcom-essential' ) );
+			return;
+		}
 			?>
 			<?php echo '<' . esc_attr( $settings['html_tag'] ) . ' class="wbcom-anim-text-wrapper">'; ?>
 			<span class="wbcom-anim-text-prefix"><?php echo esc_html( $settings['prefix_text'] ); ?></span>
@@ -454,6 +452,5 @@ class TextRotator extends \Elementor\Widget_Base {
 			<span class="wbcom-anim-text-suffix"><?php echo esc_html( $settings['suffix_text'] ); ?></span>
 				<?php echo '</' . esc_attr( $settings['html_tag'] ) . '>'; ?>
 			<?php
-		}
 	}
 }

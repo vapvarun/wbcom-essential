@@ -71,11 +71,11 @@
 		},
 		"lineColor": {
 			"type": "string",
-			"default": "#e9ecef"
+			"default": ""
 		},
 		"dotColor": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"dotSize": {
 			"type": "number",
@@ -83,19 +83,19 @@
 		},
 		"cardBg": {
 			"type": "string",
-			"default": "#ffffff"
+			"default": ""
 		},
 		"dateColor": {
 			"type": "string",
-			"default": "#667eea"
+			"default": ""
 		},
 		"titleColor": {
 			"type": "string",
-			"default": "#1e1e2e"
+			"default": ""
 		},
 		"descriptionColor": {
 			"type": "string",
-			"default": "#6c757d"
+			"default": ""
 		},
 		"padding": {
 			"type": "object",
@@ -206,5 +206,13 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"wbeLegacyColors": {
+		"lineColor": ["--wbe-tl-line-color", "#e9ecef"],
+		"dotColor": ["--wbe-tl-dot-color", "#667eea", "keep"],
+		"cardBg": ["--wbe-tl-card-bg", "#ffffff"],
+		"dateColor": ["--wbe-tl-date-color", "#667eea", "keep"],
+		"titleColor": ["--wbe-tl-title-color", "#1e1e2e"],
+		"descriptionColor": ["--wbe-tl-desc-color", "#6c757d"]
+	}
 }

@@ -14,7 +14,7 @@
  * Plugin Name:       Wbcom Essential
  * Plugin URI:        https://wbcomdesigns.com/downloads/wbcom-essential/
  * Description:       43 Elementor widgets and 35 Gutenberg blocks for BuddyPress, WooCommerce, EDD, and WordPress. Built on a shared infrastructure for responsive, accessible, theme-aware design.
- * Version:           4.7.2
+ * Version:           4.7.3
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            Wbcom Designs
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'WBCOM_ESSENTIAL_VERSION', '4.7.2' );
+define( 'WBCOM_ESSENTIAL_VERSION', '4.7.3' );
 define( 'WBCOM_ESSENTIAL_PREVIOUS_STABLE_VERSION', '4.7.0' );
 
 define( 'WBCOM_ESSENTIAL_FILE', __FILE__ );
@@ -132,6 +132,7 @@ require_once WBCOM_ESSENTIAL_PATH . 'includes/class-wbcom-essential-preset-activ
 \WBCOM_ESSENTIAL\Preset_Activation::register();
 
 require_once WBCOM_ESSENTIAL_PATH . 'wbcom-essential.php';
+require_once WBCOM_ESSENTIAL_PATH . 'includes/time-functions.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/wbcom-essential-function.php';
 require_once WBCOM_ESSENTIAL_PATH . 'includes/edd-account-login-security.php';
 require_once WBCOM_ESSENTIAL_PATH . 'plugins/elementor/wbcom-essential-elementor.php';

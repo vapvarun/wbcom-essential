@@ -208,7 +208,8 @@ function wbcom_custom_product_badge( $show = 'yes' ) {
  */
 function wbcom_product_query( $query_args = array() ) {
 
-	$meta_query = $tax_query = array();
+	$meta_query = array();
+	$tax_query  = array();
 
 	// Sanitize input values.
 	$per_page = isset( $query_args['per_page'] ) ? absint( $query_args['per_page'] ) : 3;
@@ -243,15 +244,15 @@ function wbcom_product_query( $query_args = array() ) {
 		);
 	}
 
-	// Hide hidden items (if specified).
-	if ( ! empty( $query_args['hidden'] ) && $query_args['hidden'] === true ) {
-		$tax_query[] = array(
-			'taxonomy'         => 'product_visibility',
-			'field'            => 'name',
-			'terms'            => array( 'exclude-from-search', 'exclude-from-catalog' ),
-			'operator'         => 'NOT IN',
-			'include_children' => false,
-		);
+	// List what the shop lists: catalog-hidden and search-only products stay out (and out-of-stock ones when
+	// WooCommerce hides them), the same rule as the shop and the Product Grid/Carousel blocks. Products the owner
+	// picked by ID are shown as picked.
+	$product_type = isset( $query_args['product_type'] ) ? $query_args['product_type'] : '';
+	if ( ! in_array( $product_type, array( 'show_byid', 'show_byid_manually' ), true ) ) {
+		$visibility = wbcom_essential_product_visibility_tax_query();
+		if ( $visibility ) {
+			$tax_query[] = $visibility;
+		}
 	}
 
 	// Meta Query for hiding out of stock items.
@@ -499,6 +500,9 @@ function wbcom_direct_check_elementor_data() {
 						return false;
 					}
 				);
+				// Reign 8.1.1+ cards need Reign's BuddyPress stylesheet too.
+				// ponytail: only sees widgets in the page's own _elementor_data; header/footer templates and popups are missed (same as the BuddyPress CSS check).
+				add_filter( 'reign_load_buddypress_assets', '__return_true' );
 			}
 		}
 	}

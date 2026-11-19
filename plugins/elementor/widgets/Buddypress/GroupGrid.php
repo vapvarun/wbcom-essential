@@ -83,6 +83,10 @@ class GroupGrid extends \Elementor\Widget_Base {
 	 * Get Style depends.
 	 */
 	public function get_style_depends() {
+		// Reign 8.1.1+ styles its own cards; group-grid.css carries unscoped rules that fight them.
+		if ( function_exists( 'reign_bp_card_grid' ) && function_exists( 'reign_is_buddyboss' ) && ! reign_is_buddyboss() && 'nouveau' === get_option( '_bp_theme_package_id' ) ) {
+			return array();
+		}
 		return array( 'group-grid' );
 	}
 
@@ -249,17 +253,33 @@ class GroupGrid extends \Elementor\Widget_Base {
 		} elseif ( wbcom_essential_is_theme_active( 'reign' ) ) {
 			$col_class = isset( $settings['columns'] ) ? $settings['columns'] : 'three';
 
-			wbcom_essential_get_template(
-				'groups/groups-loop.php',
+			// Reign 8.1.1+ prints its own directory cards; older Reign keeps the bundled template.
+			ob_start();
+			$done  = function_exists( 'reign_bp_card_grid' ) && reign_bp_card_grid(
+				'groups',
 				array(
-					'query_string'         => $query_string,
-					'column_class'         => $col_class,
-					'addition_class'       => $addition_class,
-					'group_directory_type' => $group_directory_type,
-					'img_class'            => $img_class,
-				),
-				'reign/buddypress/nouveau'
+					'layout'  => $group_directory_type,
+					'query'   => bp_ajax_querystring( 'groups' ) . $query_string,
+					'classes' => $col_class,
+				)
 			);
+			$cards = ob_get_clean();
+			if ( $done ) {
+				// The bundled template printed this wrapper; Reign's helper prints only the list. An empty data-bp-list lets Nouveau's Join/Leave click handler reach the cards without reloading the list.
+				echo '<div id="groups-dir-list" class="groups dir-list" data-bp-list="">' . $cards . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- theme template output, escaped there.
+			} else {
+				wbcom_essential_get_template(
+					'groups/groups-loop.php',
+					array(
+						'query_string'         => $query_string,
+						'column_class'         => $col_class,
+						'addition_class'       => $addition_class,
+						'group_directory_type' => $group_directory_type,
+						'img_class'            => $img_class,
+					),
+					'reign/buddypress/nouveau'
+				);
+			}
 		} else {
 			$loop_classes = static function () use ( $settings ) {
 				return array(

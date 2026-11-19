@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Without EDD there is no checkout to fall back to, and [download_checkout] would print as text.
 if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-	echo '<div class="wbcom-edd-checkout__notice"><p>' . esc_html__( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) . '</p></div>';
+	wbcom_essential_block_owner_notice( __( 'Easy Digital Downloads is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 

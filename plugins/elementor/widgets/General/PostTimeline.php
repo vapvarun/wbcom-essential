@@ -1701,6 +1701,7 @@ class PostTimeline extends \Elementor\Widget_Base {
 					'paged'               => $paged,
 				)
 			);
+		update_post_thumbnail_cache( $custom_query ); // One query for every post's featured image.
 		if ( $custom_query->have_posts() ) { ?>
 			<div class="wbcom-post-timeline <?php echo esc_attr( $settings['layout'] ); ?>">
 				<div class="wbcom-post-timeline__container wbcom-post-ajax-id-<?php echo esc_attr( $this->get_id() ); ?>" data-ajaxid="<?php echo esc_attr( $this->get_id() ); ?>" data-pageid="<?php echo esc_attr( $paged ); ?>" data-maxpage="<?php echo esc_attr( $custom_query->max_num_pages ); ?>">

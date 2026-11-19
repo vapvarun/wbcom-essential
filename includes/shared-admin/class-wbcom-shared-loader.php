@@ -675,7 +675,7 @@ class Wbcom_Shared_Loader {
     private function show_fallback_dashboard()
     {
     ?>
-        <div class="wrap">
+        <div class="wrap wbcom-fallback-dashboard">
             <h1>🌟 Wbcom Designs</h1>
 
             <div class="notice notice-info">
@@ -711,19 +711,6 @@ class Wbcom_Shared_Loader {
             </div>
         </div>
 
-        <style>
-            .card {
-                background: #fff;
-                border: 1px solid #c3c4c7;
-                padding: 20px;
-                margin: 20px 0;
-                border-radius: 4px;
-            }
-
-            .card h2 {
-                margin-top: 0;
-            }
-        </style>
     <?php
     }
 
@@ -783,7 +770,7 @@ class Wbcom_Shared_Loader {
                 'wbcom-shared-admin',
                 $assets_url . 'wbcom-shared-admin.css',
                 array(),
-                $version
+                $version . '.' . filemtime($css_file) // Busts browser caches when the stylesheet changes inside one shared-system version.
             );
         }
 

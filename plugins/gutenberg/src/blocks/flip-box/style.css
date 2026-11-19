@@ -6,10 +6,10 @@
 
 /* ---- Design tokens ---- */
 .wbe-flip-box {
-	--wbe-flip-front-bg: #667eea;
-	--wbe-flip-front-color: #ffffff;
-	--wbe-flip-back-bg: #764ba2;
-	--wbe-flip-back-color: #ffffff;
+	--wbe-flip-front-bg: var( --wbcom-button-bg, var( --wbe-color-accent ) );
+	--wbe-flip-front-color: var( --wbcom-button-color, #ffffff );
+	--wbe-flip-back-bg: var( --wbcom-color-primary-hover, var( --wbe-color-accent-hover ) );
+	--wbe-flip-back-color: var( --wbcom-button-color, #ffffff );
 	--wbe-flip-height: 300px;
 	--wbe-flip-radius: 12px;
 	--wbe-flip-shadow: none;
@@ -37,22 +37,39 @@
 
 /* ---- Flip on hover, focus-within, and JS toggle ---- */
 .wbe-flip-box--horizontal:hover .wbe-flip-box__inner,
-.wbe-flip-box--horizontal:focus-within .wbe-flip-box__inner,
+.wbe-flip-box--horizontal:where( :not( .wbe-flip-box--js ) ):focus-within .wbe-flip-box__inner,
 .wbe-flip-box--horizontal.is-flipped .wbe-flip-box__inner {
 	transform: rotateY( 180deg );
 }
 
 .wbe-flip-box--vertical:hover .wbe-flip-box__inner,
-.wbe-flip-box--vertical:focus-within .wbe-flip-box__inner,
+.wbe-flip-box--vertical:where( :not( .wbe-flip-box--js ) ):focus-within .wbe-flip-box__inner,
 .wbe-flip-box--vertical.is-flipped .wbe-flip-box__inner {
 	transform: rotateX( 180deg );
 }
 
-/* Keyboard focus ring on the flip box container */
-.wbe-flip-box:focus-visible {
-	outline: 2px solid var( --wbe-flip-front-bg, #667eea );
+/* Keyboard focus: without JavaScript focus inside the card flips it (above). With it, view.js adds a toggle
+   button that sits behind the faces and covers the card, so its focus ring outlines the card. (0,3,0) beats the
+   theme-isolation button reset without !important. */
+.wbe-flip-box--js {
+	position: relative;
+}
+
+.wp-block-wbcom-essential-flip-box.wbe-flip-box .wbe-flip-box__toggle {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	box-shadow: none;
+	border-radius: var( --wbe-flip-radius );
+	cursor: pointer;
+}
+
+.wp-block-wbcom-essential-flip-box.wbe-flip-box .wbe-flip-box__toggle:focus-visible {
+	outline: 2px solid var( --wbe-flip-front-bg );
 	outline-offset: 4px;
-	border-radius: var( --wbe-flip-radius, 12px );
 }
 
 /* ---- Shared face styles ---- */
@@ -106,6 +123,8 @@
 	font-weight: 700;
 	line-height: 1.3;
 	color: inherit;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* ---- Description ---- */
@@ -115,6 +134,7 @@
 	line-height: 1.6;
 	opacity: 0.9;
 	color: inherit;
+	overflow-wrap: anywhere;
 }
 
 /* ---- Button ---- */

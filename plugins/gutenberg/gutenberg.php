@@ -21,6 +21,56 @@ require_once __DIR__ . '/includes/class-wbe-schema.php';
 require_once __DIR__ . '/includes/class-wbe-fonts.php';
 require_once __DIR__ . '/patterns/wbcom-patterns.php';
 
+/**
+ * Tells the site owner why a block shows nothing. Visitors get no output.
+ *
+ * Used by dynamic blocks whose plugin, add-on or component is missing, or
+ * that have nothing to show yet. Runs in the editor too (ServerSideRender
+ * renders as the logged-in owner), so one call covers both surfaces.
+ *
+ * @param string $message   What is missing and what to do, already translated.
+ * @param string $link_url  Optional admin URL where the owner can fix it.
+ * @param string $link_text Optional link label, already translated.
+ * @return void
+ */
+function wbcom_essential_block_owner_notice( $message, $link_url = '', $link_text = '' ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$link = ( $link_url && $link_text ) ? ' <a href="' . esc_url( $link_url ) . '">' . esc_html( $link_text ) . '</a>' : '';
+	echo '<p class="wbe-block-notice" role="note">' . esc_html( $message ) . $link . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $link is escaped above.
+}
+
+/**
+ * Whether a BuddyPress block cannot run: BuddyPress or the component it reads is off.
+ *
+ * Prints the owner notice when it returns true, so a render.php only needs
+ * `if ( wbcom_essential_bp_block_unavailable( 'groups' ) ) { return; }`.
+ * Returning early also keeps the block's script from calling a REST route
+ * that BuddyPress does not register while the component is off.
+ *
+ * @param string $component BuddyPress component slug, e.g. 'groups' or 'activity'. Empty checks BuddyPress only.
+ * @return bool True when the block should render nothing.
+ */
+function wbcom_essential_bp_block_unavailable( $component = '' ) {
+	if ( ! function_exists( 'buddypress' ) ) {
+		wbcom_essential_block_owner_notice( __( 'This block needs BuddyPress. Activate BuddyPress to use it.', 'wbcom-essential' ) );
+		return true;
+	}
+	if ( '' === $component || bp_is_active( $component ) ) {
+		return false;
+	}
+	$components = function_exists( 'bp_core_get_components' ) ? bp_core_get_components() : array();
+	$label      = $components[ $component ]['title'] ?? ucfirst( $component );
+	wbcom_essential_block_owner_notice(
+		/* translators: %s: BuddyPress component name, e.g. "User Groups". */
+		sprintf( __( 'Turn on the BuddyPress %s component to use this block. Visitors see nothing until then.', 'wbcom-essential' ), $label ),
+		bp_get_admin_url( add_query_arg( 'page', 'bp-components', 'admin.php' ) ),
+		__( 'Open BuddyPress Components', 'wbcom-essential' )
+	);
+	return true;
+}
+
 // Initialize shared infrastructure.
 \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::init();
 \WBCOM_ESSENTIAL\Gutenberg\WBE_Schema::init();

@@ -1,0 +1,83 @@
+{
+	"$schema": "https://wpmediaverse.com/schemas/wp-plugin-qa-config-v1.json",
+	"slug": "wbcom-essential",
+	"name": "Wbcom Essential",
+	"base_url": "http://localhost:10048",
+	"autologin_param": "autologin",
+	"personas": {
+		"admin": {
+			"autologin": "1",
+			"login": "admin",
+			"role": "administrator"
+		},
+		"member": {
+			"autologin": "alice",
+			"login": "alice",
+			"role": "subscriber"
+		},
+		"member2": {
+			"autologin": "bob",
+			"login": "bob",
+			"role": "subscriber"
+		}
+	},
+	"modes": [
+		"single"
+	],
+	"report_path": "docs/qa/.last-smoke-pass.json",
+	"checks": {
+		"release": {
+			"domain": "wbcom-essential",
+			"excluded": [
+				"plugins/gutenberg/src",
+				"docs",
+				"plan",
+				"audit",
+				"marketing",
+				"scripts",
+				"bin"
+			]
+		},
+		"crawl": [
+			{
+				"url": "/",
+				"persona": "admin",
+				"root": "main"
+			}
+		],
+		"static": [
+			{
+				"id": "ticker-phone-titles",
+				"run": "python3 -c \"import re,sys;s=open('plugins/elementor/assets/css/wbcom-posts-revolutions.css').read();m=re.search(r'@media screen and \\(max-width: 450px\\)\\s*\\{(.*?)\\n\\}',s,re.S);b=m.group(1) if m else '';bad=re.search(r'(?<!:has\\(\\.mega-thumb\\) )\\.posts_newsticker_type1 \\.mega-title\\s*\\{\\s*display:\\s*none',b);print('FAIL: Posts Ticker hides every title at 450px and below, so posts without a featured image become empty cards') if bad else None\""
+			},
+			{
+				"id": "elementor-icon-defaults",
+				"run": "bad=$(grep -rnE \"'value' *=> *'fa[srbl]? +[a-z]\" plugins/elementor/widgets | grep -vE \"'fa[srbl]? +fa-\"); [ -z \"$bad\" ] || echo \"FAIL: Elementor icon default without the fa- prefix draws nothing: $bad\""
+			},
+			{
+				"id": "block-scope-without-id",
+				"run": "grep -q \"add_filter( 'render_block', array( \\$this, 'scope_blocks_without_id' )\" plugins/gutenberg/BlockRegistrar.php || echo 'FAIL: blocks saved without a uniqueId are not scoped at render, so their .wbe-block- rules bleed into each other'"
+			},
+			{
+				"id": "bp-user-domain-helper",
+				"run": "bad=$(grep -rn 'bp_core_get_user_domain(' --include='*.php' --exclude-dir=.phpstan-stubs --exclude-dir=vendor --exclude-dir=node_modules . | grep -v 'includes/wbcom-essential-function.php'); [ -z \"$bad\" ] || echo \"FAIL: deprecated bp_core_get_user_domain() called outside wbcom_essential_get_user_domain(): $bad\""
+			},
+			{
+				"id": "ticker-css-scoped",
+				"run": "bad=$(grep -nE '^(\\*|a|html|body)[ ,{]|^\\*,' plugins/elementor/assets/css/acmeticker.css); [ -z \"$bad\" ] || echo \"FAIL: acmeticker.css has unscoped page-wide rules: $bad\""
+			},
+			{
+				"id": "elementor-no-visitor-placeholders",
+				"run": "bad=''; grep -q \"'url' => \\\\\\\\Elementor\\\\\\\\Utils::get_placeholder_image_src()\" plugins/elementor/widgets/WooCommerce/AddBanner.php && bad=\"$bad AddBanner-default-image\"; grep -q 'Menu Item #1' plugins/elementor/widgets/General/DropdownButton.php && bad=\"$bad Dropdown-sample-items\"; grep -q \"empty( \\$settings\\['menu'\\] ) ? ''\" plugins/elementor/widgets/General/SmartMenu.php || bad=\"$bad SmartMenu-first-menu-fallback\"; for f in Slider TeamCarousel PortfolioGrid; do grep -q 'wbcom_essential_widget_image_url' plugins/elementor/widgets/General/$f.php || bad=\"$bad $f-placeholder-image\"; done; [ -z \"$bad\" ] || echo \"FAIL: Elementor widgets publish placeholder content to visitors:$bad\""
+			},
+			{
+				"id": "block-placeholder-surface",
+				"run": "bad=''; grep -q 'html\\[data-bx-mode=\"dark\"\\] .wbe-post-carousel__image--placeholder' plugins/gutenberg/src/blocks/post-carousel/style.css || bad=\"$bad post-carousel\"; for b in product-grid product-carousel; do grep -q 'is-placeholder' plugins/gutenberg/src/blocks/$b/render.php && grep -q \"html\\[data-bx-mode=\\\"dark\\\"\\] .wbe-${b}__image.is-placeholder\" plugins/gutenberg/src/blocks/$b/style.css || bad=\"$bad $b\"; grep -qE \"^\\.wbe-${b}__image\\.is-placeholder\" plugins/gutenberg/src/blocks/$b/style.css && bad=\"$bad $b-light-changed\"; done; [ -z \"$bad\" ] || echo \"FAIL: block image placeholders are a light tile in dark mode, or light mode was changed:$bad\""
+			},
+			{
+				"id": "wb-columns-phone-default",
+				"run": "bad=''; for f in $(grep -rl \"'prefix_class' => 'wb-columns%s-'\" plugins/elementor/widgets); do grep -q \"'mobile_default'\" $f || bad=\"$bad $f\"; done; [ -z \"$bad\" ] || echo \"FAIL: column widgets keep their desktop count on phones (no mobile_default):$bad\""
+			}
+		]
+	}
+}

@@ -118,21 +118,14 @@
 	color: var(--wbe-pcar-star-filled);
 }
 
+/* The half is painted on the same glyph, so it cannot sit off the line. */
 .wbe-product-carousel__star--half::before {
-	color: var(--wbe-pcar-star-empty);
+	background: linear-gradient(90deg, var(--wbe-pcar-star-filled) 50%, var(--wbe-pcar-star-empty) 50%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
 }
 
-.wbe-product-carousel__star--half::after {
-	content: '\2605';
-	font-size: 13px;
-	line-height: 1;
-	color: var(--wbe-pcar-star-filled);
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 50%;
-	overflow: hidden;
-}
 
 /* ── Price ────────────────────────────────────────────────────────────────── */
 .wbe-product-carousel__price {
@@ -146,7 +139,7 @@
 }
 
 .wbe-product-carousel__price del {
-	color: #999;
+	color: var(--wbe-text-muted, #6c757d);
 	font-weight: 400;
 	font-size: 0.85em;
 	margin-right: 4px;
@@ -200,7 +193,7 @@
 .wbe-product-carousel .swiper-button-next {
 	width: 40px;
 	height: 40px;
-	background-color: #ffffff;
+	background-color: var( --wbe-pcar-card-bg ); /* follows the card, so dark mode gets a dark button under the light accent icon */
 	border: none;
 	border-radius: 50%;
 	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.15 );
@@ -223,8 +216,8 @@
 
 .wbe-product-carousel .swiper-button-prev:hover,
 .wbe-product-carousel .swiper-button-next:hover {
-	background-color: rgba(102, 126, 234, 0.5);
-	color: #ffffff;
+	background-color: var( --wbe-pcar-accent );
+	color: var( --wbe-pcar-card-bg );
 }
 
 .wbe-product-carousel .swiper-button-prev {
@@ -241,7 +234,7 @@
 .wbe-product-carousel__error {
 	padding: 32px;
 	text-align: center;
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 	border: 2px dashed #e9ecef;
 	border-radius: 8px;
 }
@@ -263,4 +256,16 @@
 	.wbe-product-carousel__title {
 		font-size: 0.875rem;
 	}
+}
+
+/* Dark mode: WooCommerce's placeholder image is a light tile, so it sits faintly on the theme's dark
+   surface instead. Light mode shows it as WooCommerce ships it. Real product photos are never marked. */
+html[data-bx-mode="dark"] .wbe-product-carousel__image-wrap:has(> .is-placeholder),
+html[data-bx-mode="dark"] .wbe-product-carousel__image-wrap:has(a > .is-placeholder) {
+	background: var(--wbe-color-surface-alt);
+}
+
+html[data-bx-mode="dark"] .wbe-product-carousel__image.is-placeholder {
+	mix-blend-mode: luminosity;
+	opacity: 0.15;
 }

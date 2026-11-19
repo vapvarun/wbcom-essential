@@ -200,5 +200,11 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"wbeLegacyColors": {
+		"questionColor": ["--wbe-faq-question-color", "#1e1e2e"],
+		"answerColor": ["--wbe-faq-answer-color", "#6c757d"],
+		"questionBg": ["--wbe-faq-question-bg", "#f8f9fa"],
+		"borderColor": ["--wbe-faq-border-color", "#e9ecef"]
+	}
 }

@@ -1,0 +1,29 @@
+{
+  "slug": "wbcom-essential",
+  "version": "4.7.3",
+  "branch": "4.7.3",
+  "generated_at": "2026-11-19",
+  "generator": "wp-plugin-qa-mcp write-manifest.mjs (stub packs excluded)",
+  "counts": {
+    "blocks": 35,
+    "elementor_widgets": 43,
+    "rest_routes": 6,
+    "ajax_actions": 2,
+    "admin_pages": 6,
+    "cron": 3,
+    "shortcodes": 1,
+    "tables": 0,
+    "hooks_fired": 108
+  },
+  "count_notes": {
+    "admin_pages": "6 static registrations; 2 more submenus are added in loops (shared dashboard and loader)",
+    "hooks_fired": "includes dynamic and slash-named hooks a literal grep misses (grep finds 76 literal names)",
+    "ajax_actions": "own actions only; the vendored EDD SL SDK adds its own"
+  },
+  "see": {
+    "manifest": "audit/manifest.json",
+    "capabilities": "CAPABILITIES.md",
+    "roles": "audit/ROLE_MATRIX.md",
+    "qa": "docs/qa/"
+  }
+}

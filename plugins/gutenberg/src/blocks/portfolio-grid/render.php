@@ -29,7 +29,7 @@ $columns           = max( 1, absint( $attributes['columns'] ?? 3 ) );
 $columns_tablet    = max( 1, absint( $attributes['columnsTablet'] ?? 2 ) );
 $columns_mobile    = max( 1, absint( $attributes['columnsMobile'] ?? 1 ) );
 $posts_per         = max( 1, absint( $attributes['postsPerPage'] ?? 9 ) );
-$post_type         = sanitize_key( $attributes['postType'] ?? 'post' );
+$query_post_type   = sanitize_key( $attributes['postType'] ?? 'post' );
 $cat_ids           = array_map( 'absint', (array) ( $attributes['categories'] ?? array() ) );
 $show_filter       = ! empty( $attributes['showFilter'] );
 $show_excerpt      = ! empty( $attributes['showExcerpt'] );
@@ -37,9 +37,40 @@ $show_category     = ! empty( $attributes['showCategory'] );
 $image_ratio       = sanitize_text_field( $attributes['imageRatio'] ?? '1/1' );
 $gap               = absint( $attributes['gap'] ?? 16 );
 $hover_effect      = sanitize_key( $attributes['hoverEffect'] ?? 'overlay' );
-$overlay_color     = sanitize_text_field( $attributes['overlayColor'] ?? 'rgba(102, 126, 234, 0.85)' );
-$title_color       = sanitize_hex_color( $attributes['titleColor'] ?? '#ffffff' ) ?: '#ffffff';
-$filter_active_clr = sanitize_hex_color( $attributes['filterActiveColor'] ?? '#667eea' ) ?: '#667eea';
+// Colours: the owner's pick wins. Grids inserted from 4.7.3 on carry followTheme and fall back to the theme's
+// button colours (style.css). Older grids never stored their defaults, so they keep the fixed colours they were
+// built with; the owner can switch them to the theme in the block's Style panel.
+$follow_theme      = ! empty( $attributes['followTheme'] );
+$overlay_color     = sanitize_text_field( $attributes['overlayColor'] ?? '' );
+// The overlay may carry alpha (rgba from the picker); anything that is not a plain colour value is dropped.
+if ( $overlay_color && ! preg_match( '/^(#[0-9a-f]{3,8}|(rgb|hsl)a?\(\s*[\d.\s,%deg\/]+\))$/i', $overlay_color ) ) {
+	$overlay_color = '';
+}
+$title_color       = sanitize_hex_color( $attributes['titleColor'] ?? '' );
+$filter_active_clr = sanitize_hex_color( $attributes['filterActiveColor'] ?? '' );
+// The hover label colour follows a picked filter colour; the fixed default keeps the theme text (style.css).
+$filter_hover_text = $filter_active_clr;
+if ( ! $follow_theme ) {
+	$overlay_color     = $overlay_color ? $overlay_color : 'rgba(102, 126, 234, 0.85)';
+	$title_color       = $title_color ? $title_color : '#ffffff';
+	// Same indigo as before, darkened so the white label holds 4.5:1 (#667eea gave 3.66:1).
+	$filter_active_clr = $filter_active_clr ? $filter_active_clr : '#5265bb';
+}
+$color_vars = array_filter(
+	array(
+		'--wbe-pg-overlay'            => $overlay_color,
+		'--wbe-pg-title-color'        => $title_color,
+		'--wbe-pg-filter-active'      => $filter_active_clr,
+		// A fixed or picked filter colour keeps the white label it was designed with (the theme's button text
+		// colour is dark in dark mode).
+		'--wbe-pg-filter-active-text' => $filter_active_clr ? '#ffffff' : '',
+		'--wbe-pg-filter-hover-text'  => $filter_hover_text,
+	)
+);
+$color_style = '';
+foreach ( $color_vars as $var => $value ) {
+	$color_style .= $var . ':' . $value . ';';
+}
 $card_radius       = absint( $attributes['cardBorderRadius'] ?? 8 );
 
 // ── Box shadow ────────────────────────────────────────────────────────────────
@@ -60,7 +91,7 @@ $ratio_css = esc_attr( str_replace( '/', ' / ', $image_ratio ) );
 
 // ── WP_Query ─────────────────────────────────────────────────────────────────
 $query_args = array(
-	'post_type'      => $post_type,
+	'post_type'      => $query_post_type,
 	'posts_per_page' => $posts_per,
 	'orderby'        => 'date',
 	'order'          => 'DESC',
@@ -68,7 +99,7 @@ $query_args = array(
 	'no_found_rows'  => true,
 );
 
-if ( ! empty( $cat_ids ) && 'post' === $post_type ) {
+if ( ! empty( $cat_ids ) && 'post' === $query_post_type ) {
 	$query_args['category__in'] = $cat_ids;
 }
 
@@ -84,53 +115,28 @@ $all_filter_cats = array( 0 => __( 'All', 'wbcom-essential' ) );
 while ( $query->have_posts() ) {
 	$query->the_post();
 	$post_cats = get_the_category( get_the_ID() );
-	foreach ( $post_cats as $cat ) {
-		if ( ! isset( $all_filter_cats[ $cat->term_id ] ) ) {
-			$all_filter_cats[ $cat->term_id ] = $cat->name;
+	foreach ( $post_cats as $filter_cat ) {
+		if ( ! isset( $all_filter_cats[ $filter_cat->term_id ] ) ) {
+			$all_filter_cats[ $filter_cat->term_id ] = $filter_cat->name;
 		}
 	}
 }
 $query->rewind_posts();
 
-// ── Scoped token CSS ──────────────────────────────────────────────────────────
-$token_css = '';
+// ── Design tokens ─────────────────────────────────────────────────────────────
+// Set on the wrapper's style attribute instead of a printed style element. style.css switches the
+// column count to the tablet / mobile values at its breakpoints.
+$token_style = '';
 if ( $unique_id ) {
-	$token_css = sprintf(
-		'.wbe-block-%1$s {
-			--wbe-pg-columns: %2$d;
-			--wbe-pg-columns-tablet: %3$d;
-			--wbe-pg-columns-mobile: %4$d;
-			--wbe-pg-gap: %5$dpx;
-			--wbe-pg-ratio: %6$s;
-			--wbe-pg-card-radius: %7$dpx;
-			--wbe-pg-overlay: %8$s;
-			--wbe-pg-title-color: %9$s;
-			--wbe-pg-filter-active: %10$s;
-			--wbe-pg-card-shadow: %11$s;
-		}',
-		esc_attr( $unique_id ),
+	$token_style = sprintf(
+		'--wbe-pg-columns: %1$d; --wbe-pg-columns-tablet: %2$d; --wbe-pg-columns-mobile: %3$d; --wbe-pg-gap: %4$dpx; --wbe-pg-ratio: %5$s; --wbe-pg-card-radius: %6$dpx; --wbe-pg-card-shadow: %7$s;',
 		$columns,
 		$columns_tablet,
 		$columns_mobile,
 		$gap,
 		esc_attr( $ratio_css ),
 		$card_radius,
-		esc_attr( $overlay_color ),
-		esc_attr( $title_color ),
-		esc_attr( $filter_active_clr ),
 		esc_attr( $box_shadow_val )
-	);
-
-	// Responsive columns via media queries in the scoped token CSS.
-	$token_css .= sprintf(
-		'@media (max-width: 1024px) { .wbe-block-%1$s { --wbe-pg-columns: %2$d; } }',
-		esc_attr( $unique_id ),
-		$columns_tablet
-	);
-	$token_css .= sprintf(
-		'@media (max-width: 640px) { .wbe-block-%1$s { --wbe-pg-columns: %2$d; } }',
-		esc_attr( $unique_id ),
-		$columns_mobile
 	);
 }
 
@@ -142,21 +148,22 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	$vis_classes,
 ) ) ) );
 
-$wrapper_attrs = get_block_wrapper_attributes( array( 'class' => $wrapper_class ) );
+// Colours are not gated on uniqueId, so grids saved without one keep their colours too.
+$wrapper_attrs = get_block_wrapper_attributes(
+	array(
+		'class' => $wrapper_class,
+		'style' => trim( $token_style . ' ' . $color_style ),
+	)
+);
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<?php if ( $token_css ) : ?>
-	<style><?php echo esc_html( $token_css ); ?></style>
-	<?php endif; ?>
-
 	<?php if ( $show_filter && count( $all_filter_cats ) > 1 ) : ?>
-	<div class="wbe-portfolio-grid__filter" role="tablist" aria-label="<?php esc_attr_e( 'Portfolio filter', 'wbcom-essential' ); ?>">
+	<div class="wbe-portfolio-grid__filter" role="group" aria-label="<?php esc_attr_e( 'Portfolio filter', 'wbcom-essential' ); ?>">
 		<?php foreach ( $all_filter_cats as $term_id => $label ) : ?>
 		<button
 			class="wbe-portfolio-grid__filter-btn<?php echo 0 === $term_id ? ' is-active' : ''; ?>"
 			data-filter="<?php echo 0 === $term_id ? 'all' : esc_attr( 'cat-' . $term_id ); ?>"
-			role="tab"
-			aria-selected="<?php echo 0 === $term_id ? 'true' : 'false'; ?>"
+			aria-pressed="<?php echo 0 === $term_id ? 'true' : 'false'; ?>"
 		>
 			<?php echo esc_html( $label ); ?>
 		</button>
@@ -169,26 +176,26 @@ $wrapper_attrs = get_block_wrapper_attributes( array( 'class' => $wrapper_class 
 		while ( $query->have_posts() ) :
 			$query->the_post();
 
-			$post_id    = get_the_ID();
-			$permalink  = get_permalink( $post_id );
-			$title      = get_the_title( $post_id );
-			$thumb_id   = get_post_thumbnail_id( $post_id );
+			$item_id    = get_the_ID();
+			$permalink  = get_permalink( $item_id );
+			$item_title = get_the_title( $item_id );
+			$thumb_id   = get_post_thumbnail_id( $item_id );
 			$thumb_url  = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : '';
-			$post_cats  = get_the_category( $post_id );
-			$cat_slugs  = array_map( function( $c ) { return 'cat-' . $c->term_id; }, $post_cats );
+			$post_cats  = get_the_category( $item_id );
+			$cat_slugs  = array_map( static fn( $c ) => 'cat-' . $c->term_id, $post_cats );
 			$data_cats  = implode( ' ', $cat_slugs );
 
 			// Excerpt.
 			$excerpt = '';
 			if ( $show_excerpt ) {
-				$raw     = get_the_excerpt( $post_id );
-				$excerpt = wp_trim_words( $raw ?: get_the_content( null, false, $post_id ), 20, '&hellip;' );
+				$raw     = get_the_excerpt( $item_id );
+				$excerpt = wp_trim_words( $raw ?: get_the_content( null, false, $item_id ), 20, '&hellip;' );
 			}
 			?>
 		<article
 			class="wbe-portfolio-grid__item"
 			data-category="<?php echo esc_attr( $data_cats ?: 'uncategorized' ); ?>"
-			aria-label="<?php echo esc_attr( $title ); ?>"
+			aria-label="<?php echo esc_attr( $item_title ); ?>"
 		>
 			<div class="wbe-portfolio-grid__image-wrap">
 				<?php if ( $thumb_url ) : ?>
@@ -206,7 +213,7 @@ $wrapper_attrs = get_block_wrapper_attributes( array( 'class' => $wrapper_class 
 				<div class="wbe-portfolio-grid__overlay" aria-hidden="true">
 					<div class="wbe-portfolio-grid__overlay-inner">
 						<h3 class="wbe-portfolio-grid__title">
-							<?php echo esc_html( $title ); ?>
+							<?php echo esc_html( $item_title ); ?>
 						</h3>
 						<?php if ( $show_category && ! empty( $post_cats ) ) : ?>
 						<span class="wbe-portfolio-grid__cat-label">
@@ -222,10 +229,7 @@ $wrapper_attrs = get_block_wrapper_attributes( array( 'class' => $wrapper_class 
 				<a
 					href="<?php echo esc_url( $permalink ); ?>"
 					class="wbe-portfolio-grid__link"
-					aria-label="<?php
-						/* translators: %s: post title */
-						echo esc_attr( sprintf( __( 'View %s', 'wbcom-essential' ), $title ) );
-					?>"
+					aria-label="<?php /* translators: %s: post title */ echo esc_attr( sprintf( __( 'View %s', 'wbcom-essential' ), $item_title ) ); ?>"
 				></a>
 			</div>
 		</article>

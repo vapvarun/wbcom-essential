@@ -9,6 +9,7 @@
 
 import { __ } from '@wordpress/i18n';
 import swiperA11y from '../../shared/utils/swiper-a11y';
+import guardLoop from '../../shared/utils/swiper-loop';
 
 ( function () {
 	'use strict';
@@ -91,7 +92,7 @@ import swiperA11y from '../../shared/utils/swiper-a11y';
 				};
 			}
 
-			const instance = new Swiper( el, swiperConfig );
+			const instance = new Swiper( el, guardLoop( el, swiperConfig ) );
 			el._swiperInstance = instance;
 		} );
 	}

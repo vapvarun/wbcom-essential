@@ -32,6 +32,14 @@ final class BlockRegistrar {
 	private static $registered_blocks = array();
 
 	/**
+	 * Old fixed colour lines per block, from each block.json "wbeLegacyColors" (block name => list of
+	 * "  --var: value;" lines). Filled while the blocks register.
+	 *
+	 * @var array<string, string[]>
+	 */
+	private static $legacy_colour_lines = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string $build_dir Absolute path to build/blocks/.
@@ -47,10 +55,82 @@ final class BlockRegistrar {
 		add_action( 'init', array( $this, 'register_blocks' ) );
 		add_filter( 'block_type_metadata', array( $this, 'translate_text_defaults' ) );
 		add_filter( 'block_type_metadata', array( $this, 'version_assets_by_release' ) );
+		add_filter( 'block_type_metadata', array( $this, 'collect_legacy_colours' ) );
+		add_filter( 'render_block', array( $this, 'drop_legacy_colours' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/countdown-timer', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/pricing-table', array( $this, 'translate_saved_markup' ), 10, 2 );
+		add_filter( 'render_block_wbcom-essential/cta', array( $this, 'translate_saved_markup' ), 10, 2 );
+		add_filter( 'render_block_wbcom-essential/feature-grid', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/testimonial-carousel', array( $this, 'translate_saved_markup' ), 10, 2 );
+		add_filter( 'render_block_wbcom-essential/hero', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block', array( $this, 'drop_zero_margin' ), 10, 2 );
+		add_filter( 'render_block', array( $this, 'scope_blocks_without_id' ), 10, 2 );
+	}
+
+	/**
+	 * Give a block saved without a uniqueId its own scope on the page.
+	 *
+	 * The editor assigns every block a uniqueId, but content made outside it (REST, WP-CLI, import and AI
+	 * tools, pasted markup) saves an empty one: the block prints the bare class "wbe-block-" and a
+	 * ".wbe-block- { ... }" rule, so every such block on the page shares one selector and the last one's
+	 * settings win. Changing save() would fail validation on existing content, so the bare token is given a
+	 * per-render id here instead. Children render first, so a parent only touches its own bare tokens.
+	 *
+	 * @param string $block_content Rendered block HTML.
+	 * @param array  $block         Parsed block.
+	 * @return string
+	 */
+	public function scope_blocks_without_id( $block_content, $block ) {
+		if ( empty( $block['blockName'] ) || 0 !== strpos( $block['blockName'], 'wbcom-essential/' ) || ! empty( $block['attrs']['uniqueId'] ) || false === strpos( $block_content, 'wbe-block-' ) ) {
+			return $block_content;
+		}
+		// "wbe-block-" not followed by an id character is the empty scope; "wbe-block-notice" and the like are left alone.
+		return (string) preg_replace( '/wbe-block-(?![A-Za-z0-9_-])/', 'wbe-block-' . wp_unique_id( 'auto-' ), $block_content );
+	}
+
+	/**
+	 * Remember the old fixed colours a block lists in block.json "wbeLegacyColors".
+	 *
+	 * Each entry is attribute => [ css variable, old default, optional "keep" ]. Accents and the text on
+	 * them are marked "keep": pages already built keep that look, only new blocks follow the theme accent.
+	 *
+	 * @param array $metadata Block metadata read from block.json.
+	 * @return array
+	 */
+	public function collect_legacy_colours( $metadata ) {
+		$name = $metadata['name'] ?? '';
+		if ( 0 === strpos( $name, 'wbcom-essential/' ) && ! empty( $metadata['wbeLegacyColors'] ) && is_array( $metadata['wbeLegacyColors'] ) ) {
+			$lines = array();
+			foreach ( $metadata['wbeLegacyColors'] as $entry ) {
+				// An empty variable name marks a colour saved as an inline style (handled in translate_saved_markup()).
+				if ( is_array( $entry ) && ! empty( $entry[0] ) && isset( $entry[1] ) && 'keep' !== ( $entry[2] ?? '' ) ) {
+					$lines[] = '  ' . $entry[0] . ': ' . $entry[1] . ';';
+				}
+			}
+			self::$legacy_colour_lines[ $name ] = $lines;
+		}
+		return $metadata;
+	}
+
+	/**
+	 * Drop neutral colour lines saved with the old fixed defaults, so the theme colours apply.
+	 *
+	 * Text, card and border colours used to default to fixed light values (#1e1e2e, #ffffff, #e9ecef ...) and
+	 * static blocks wrote them into the page, so they stayed light in dark mode. A default is never stored as
+	 * a block attribute, so a line with the old value can only come from the old default; a colour the owner
+	 * picked is a different value and is never matched. The saved markup is not changed (blocks still
+	 * validate); the editor migrates the block on its next save.
+	 *
+	 * @param string $block_content Rendered block HTML.
+	 * @param array  $block         Parsed block.
+	 * @return string
+	 */
+	public function drop_legacy_colours( $block_content, $block ) {
+		$lines = self::$legacy_colour_lines[ $block['blockName'] ?? '' ] ?? array();
+		if ( ! $lines || false === strpos( $block_content, '<style>' ) ) {
+			return $block_content;
+		}
+		return str_replace( $lines, '', $block_content );
 	}
 
 	/**
@@ -89,6 +169,11 @@ final class BlockRegistrar {
 	public function translate_saved_markup( $block_content, $block ) {
 		switch ( $block['blockName'] ) {
 			case 'wbcom-essential/countdown-timer':
+				// No target date: the boxes would read 00 forever and the expiry message never shows, so the
+				// block prints nothing (the editor already shows a "set a date" placeholder).
+				if ( empty( $block['attrs']['targetDate'] ) ) {
+					return '';
+				}
 				$labels = array(
 					'Days'  => __( 'Days', 'wbcom-essential' ),
 					'Hours' => __( 'Hours', 'wbcom-essential' ),
@@ -100,15 +185,31 @@ final class BlockRegistrar {
 					$map[ 'aria-label="' . $english . '"' ]                    = 'aria-label="' . esc_attr( $translated ) . '"';
 					$map[ 'wbe-countdown-timer__label">' . $english . '<' ] = 'wbe-countdown-timer__label">' . esc_html( $translated ) . '<';
 				}
-				// Colour lines saved with the old fixed defaults: dropped so the theme colours apply (light and
-				// dark). The editor migrates the block on its next save; a colour the owner picked never matches.
-				foreach ( array( 'number-color: #1e1e2e', 'label-color: #6c757d', 'box-bg: #f8f9fa', 'box-border: #e9ecef' ) as $line ) {
-					$map[ '  --wbe-cd-' . $line . ';' ] = '';
-				}
 				break;
 			case 'wbcom-essential/pricing-table':
 				$map = array(
 					'wbe-pricing-cards__badge">Most Popular<' => 'wbe-pricing-cards__badge">' . esc_html__( 'Most Popular', 'wbcom-essential' ) . '<',
+					// Card, price and feature colours saved as inline styles with the old fixed defaults: dropped so
+					// the theme colours apply in light and dark mode. Accent colours stay as saved.
+					'class="wbe-pricing-cards__card" style="background-color:#ffffff;color:inherit"' => 'class="wbe-pricing-cards__card" style="color:inherit"',
+					'class="wbe-pricing-cards__price" style="color:#1e1e2e"' => 'class="wbe-pricing-cards__price"',
+					'class="wbe-pricing-cards__feature" style="color:#6c757d"' => 'class="wbe-pricing-cards__feature"',
+				);
+				break;
+			case 'wbcom-essential/cta':
+				// Pages saved before 4.7.2 wrote the old fixed neutral colours inline: dropped so the theme
+				// colours apply (light and dark). Button colours stay as saved.
+				$block_content = (string) preg_replace( '/(class="wp-block-wbcom-essential-cta [^"]*") style="background-color:#f8f9fa;/', '$1 style="', $block_content, 1 );
+				$map           = array(
+					'class="wbe-cta__heading" style="color:#1e1e2e"'     => 'class="wbe-cta__heading"',
+					'class="wbe-cta__description" style="color:#6c757d"' => 'class="wbe-cta__description"',
+				);
+				break;
+			case 'wbcom-essential/feature-grid':
+				$block_content = (string) preg_replace( '/(class="wbe-feature-grid__card wbe-feature-grid__card--[a-z0-9-]+") style="background-color:#ffffff"/', '$1', $block_content );
+				$map           = array(
+					'class="wbe-feature-grid__title" style="color:#1e1e2e"'       => 'class="wbe-feature-grid__title"',
+					'class="wbe-feature-grid__description" style="color:#6c757d"' => 'class="wbe-feature-grid__description"',
 				);
 				break;
 			case 'wbcom-essential/testimonial-carousel':
@@ -116,8 +217,19 @@ final class BlockRegistrar {
 					'aria-label="Testimonial navigation"' => 'aria-label="' . esc_attr__( 'Testimonial navigation', 'wbcom-essential' ) . '"',
 					'aria-label="Previous testimonial"'   => 'aria-label="' . esc_attr__( 'Previous testimonial', 'wbcom-essential' ) . '"',
 					'aria-label="Next testimonial"'       => 'aria-label="' . esc_attr__( 'Next testimonial', 'wbcom-essential' ) . '"',
-					// The old fixed accent, dropped so the theme accent applies (the editor migrates on save).
-					'  --wbe-tc-accent: #667eea;'         => '',
+				);
+				break;
+			case 'wbcom-essential/hero':
+				// Heroes saved with the pre-4.7.3 default gradient and 80% white subheading (2.93:1) get the
+				// darker default gradient and a solid white subheading (4.57:1). A hero on the owner's own
+				// background is left exactly as saved.
+				$attrs = $block['attrs'] ?? array();
+				if ( isset( $attrs['backgroundType'] ) || isset( $attrs['gradientStart'] ) || isset( $attrs['gradientEnd'] ) ) {
+					return $block_content;
+				}
+				$map = array(
+					'background:linear-gradient(135deg, #667eea 0%, #764ba2 100%)' => 'background:linear-gradient(135deg, #5a6fce 0%, #68428f 100%)',
+					'class="wbe-hero__subheading" style="color:rgba(255,255,255,0.8)"' => 'class="wbe-hero__subheading" style="color:#ffffff"',
 				);
 				break;
 			default:

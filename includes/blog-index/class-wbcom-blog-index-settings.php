@@ -353,9 +353,9 @@ class Wbcom_Blog_Index_Settings {
 		</div>
 
 		<!-- Hidden template for adding new sections via JS -->
-		<script type="text/html" id="tmpl-wbcom-section-row">
+		<template id="tmpl-wbcom-section-row">
 			<?php $this->render_section_row( '{{INDEX}}', array(), $categories ); ?>
-		</script>
+		</template>
 		<?php
 	}
 

@@ -63,11 +63,11 @@
     },
     "gradientStart": {
       "type": "string",
-      "default": "#667eea"
+      "default": "#5a6fce"
     },
     "gradientEnd": {
       "type": "string",
-      "default": "#764ba2"
+      "default": "#68428f"
     },
     "backgroundImage": {
       "type": "object",
@@ -87,7 +87,7 @@
     },
     "subheadingColor": {
       "type": "string",
-      "default": "rgba(255,255,255,0.8)"
+      "default": "#ffffff"
     },
     "buttonOneBg": {
       "type": "string",

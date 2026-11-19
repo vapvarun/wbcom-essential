@@ -566,7 +566,7 @@ class PostsCarousel extends Widget_Base {
 			array(
 				'label'     => esc_html__( 'Heading Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#000',
+				'default'   => 'var(--wbcom-heading-color, #000)',
 				'condition' => array(
 					'wbcom_custom_style' => 'on',
 				),
@@ -578,7 +578,7 @@ class PostsCarousel extends Widget_Base {
 			array(
 				'label'     => esc_html__( 'Content Color', 'wbcom-essential' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
-				'default'   => '#808291',
+				'default'   => 'var(--wbcom-color-contrast-2, #5c6472)',
 				'condition' => array(
 					'wbcom_custom_style' => 'on',
 				),

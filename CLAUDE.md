@@ -1,11 +1,13 @@
 # Wbcom Essential - Claude Code Instructions
 
+> **READ FIRST:** `audit/manifest.summary.json` (counts and pointers), then `audit/manifest.json` for the category you need, `CAPABILITIES.md` (what the plugin can do) and `audit/ROLE_MATRIX.md`. Trust order: summary > CAPABILITIES > code. QA data lives in `docs/qa/` (PRODUCT_PROFILE, FIRST_HOUR, CORE_PATHS, SURFACES, AGENT_SMOKE_RUNBOOK) and `audit/escapes.json`; `bash bin/local-ci.sh` is the gate.
+
 ## Project Overview
 
 **Plugin**: Wbcom Essential
-**Version**: 4.7.2
+**Version**: 4.7.3
 **Purpose**: Companion plugin for BuddyX theme providing Elementor widgets and Gutenberg blocks for BuddyPress, WooCommerce, and general WordPress functionality.
-**Branch**: `4.5.0` — V2 block rebuild (competitive audit-driven quality standard)
+**Branch**: one development branch per release, named for the version (currently `4.7.3`); main changes only through the release PR
 
 ## Architecture Documentation
 

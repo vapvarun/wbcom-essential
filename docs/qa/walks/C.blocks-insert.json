@@ -1,0 +1,40 @@
+{
+  "journey": "C.blocks-insert",
+  "free": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20T01:30:00Z",
+  "env": {
+    "base": "http://localhost:10048",
+    "essential": "4.7.3 (936b59f6, symlinked)",
+    "reign": "8.1.1 (5b6a55613)",
+    "elementor": "3.29.1 via qa_add=esse",
+    "bp": "14.5.4",
+    "edd": "3.7.2 via qa_add=edd",
+    "wp": "7.1.4",
+    "php": "8.4 (Local)",
+    "viewports": "1440 + 390 (768/1024 where noted)",
+    "walker": "QA final pre-zip walk (verification only)"
+  },
+  "checks": {
+    "blocks.insert-all": {
+      "result": "pass",
+      "evidence": "New page 1898 in the block editor: all 35 registered wbcom-essential blocks created with wp.blocks.createBlock and inserted, saved, reloaded: 35 blocks, 0 isValid=false, 0 core/missing, 0 .block-editor-warning. Insert was programmatic (not 35 inserter clicks). Editor console: one 500 from core block-directory search for edd/checkout (bench outbound HTTP blocked), not Essential. Page deleted afterwards."
+    },
+    "blocks.front-all": {
+      "result": "pass",
+      "evidence": "Guest, fixture page 1754 (28 Essential roots) at 1440 and 390, Reign light+dark and TT5 light: scrollWidth==viewport, 0 overflowing blocks, 0 empty roots, no console errors/warnings. Fresh default page 1898 front end: 13 static blocks render; dynamic blocks and EDD/product-catalog print per their off-state; a Countdown Timer with an empty date prints nothing (server HTML has 0 occurrences) by design."
+    },
+    "blocks.duplicate": {
+      "result": "pass",
+      "evidence": "Page 1754 front end: hero ee076dac keeps linear-gradient(135deg,#5a6fce..), copy 7ebd154a has rgb(255,0,0)."
+    },
+    "blocks.no-id": {
+      "result": "pass",
+      "evidence": "Page 1866 (two Hero blocks, no uniqueId) front end: wbe-block-auto-1 bg rgb(0,170,0) pad 20px, wbe-block-auto-2 bg rgb(0,0,255) pad 90px."
+    },
+    "blocks.editor-only": {
+      "result": "pass",
+      "evidence": "alice (subscriber, X-WP-Nonce) GET /wp-json/wbcom-essential/v1/xprofile-groups and ?rest_route= form -> 403 rest_forbidden."
+    }
+  },
+  "proposed_checks": []
+}

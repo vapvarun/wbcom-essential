@@ -17,8 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'buddypress' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
+if ( wbcom_essential_bp_block_unavailable( 'members' ) ) {
 	return;
 }
 
@@ -81,6 +80,7 @@ if ( $show_dots ) {
 $wrapper = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbe-members-carousel ' . $vis_classes ),
+		'style' => '--wbe-mc-avatar-size: ' . $avatar_size . 'px;',
 	)
 );
 
@@ -90,6 +90,9 @@ if ( $card_bg ) {
 }
 if ( $name_color ) {
 	$card_style .= '--wbe-mc-name-color: ' . esc_attr( $name_color ) . '; ';
+}
+if ( $meta_color ) {
+	$card_style .= '--wbe-mc-meta-color: ' . esc_attr( $meta_color ) . '; ';
 }
 if ( $card_radius ) {
 	$card_style .= '--wbe-mc-card-radius: ' . absint( $card_radius ) . 'px; ';
@@ -186,12 +189,6 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 			'swiperOptions'    => $swiper_options,
 			'loggedIn'         => is_user_logged_in(),
 			'currentUserId'    => get_current_user_id(),
-			'colors'           => array(
-				'cardBg'    => $card_bg,
-				'nameColor' => $name_color,
-				'metaColor' => $meta_color,
-			),
-			'cardRadius'       => $card_radius,
 			'i18n'             => array(
 				'loading'   => __( 'Loading members...', 'wbcom-essential' ),
 				'empty'     => __( 'No members found.', 'wbcom-essential' ),

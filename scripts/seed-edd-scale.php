@@ -38,14 +38,14 @@ for ( $i = 1; $i <= $total; $i++ ) {
 	$noun   = $nouns[ ( $i * 3 ) % count( $nouns ) ];
 	$suffix = $suffixes[ ( $i * 5 ) % count( $suffixes ) ];
 	$num    = str_pad( (string) $i, 3, '0', STR_PAD_LEFT );
-	$title  = "{$prefix} {$noun} {$suffix} {$num}";
+	$download_title  = "{$prefix} {$noun} {$suffix} {$num}";
 	$slug   = sanitize_title( "scale-{$prefix}-{$noun}-{$suffix}-{$num}" );
 	$price  = 19 + ( $i % 8 ) * 10; // 19..89
 
 	$existing = get_page_by_path( $slug, OBJECT, 'download' );
-	$post_id  = $existing ? $existing->ID : wp_insert_post(
+	$download_id  = $existing ? $existing->ID : wp_insert_post(
 		array(
-			'post_title'   => $title,
+			'post_title'   => $download_title,
 			'post_name'    => $slug,
 			'post_type'    => 'download',
 			'post_status'  => 'publish',
@@ -53,26 +53,26 @@ for ( $i = 1; $i <= $total; $i++ ) {
 			'post_content' => 'Seeded scale test product.',
 		)
 	);
-	if ( ! $post_id || is_wp_error( $post_id ) ) {
+	if ( ! $download_id || is_wp_error( $download_id ) ) {
 		continue;
 	}
 
-	update_post_meta( $post_id, 'edd_price', edd_sanitize_amount( $price ) );
-	update_post_meta( $post_id, '_edd_sl_enabled', 1 );
-	update_post_meta( $post_id, '_edd_sl_version', '1.0.0' );
-	update_post_meta( $post_id, '_edd_sl_limit', 5 );
-	update_post_meta( $post_id, '_edd_sl_exp_unit', 'years' );
-	update_post_meta( $post_id, '_edd_sl_exp_length', 1 );
+	update_post_meta( $download_id, 'edd_price', edd_sanitize_amount( $price ) );
+	update_post_meta( $download_id, '_edd_sl_enabled', 1 );
+	update_post_meta( $download_id, '_edd_sl_version', '1.0.0' );
+	update_post_meta( $download_id, '_edd_sl_limit', 5 );
+	update_post_meta( $download_id, '_edd_sl_exp_unit', 'years' );
+	update_post_meta( $download_id, '_edd_sl_exp_length', 1 );
 
 	$zip_path = trailingslashit( $upload_dir['basedir'] ) . 'edd/' . $slug . '.zip';
 	if ( ! file_exists( $zip_path ) && class_exists( 'ZipArchive' ) ) {
 		$zip = new ZipArchive();
 		$zip->open( $zip_path, ZipArchive::CREATE );
-		$zip->addFromString( 'readme.txt', $title . ' test package' );
+		$zip->addFromString( 'readme.txt', $download_title . ' test package' );
 		$zip->close();
 	}
 	update_post_meta(
-		$post_id,
+		$download_id,
 		'edd_download_files',
 		array(
 			1 => array(
@@ -88,7 +88,7 @@ for ( $i = 1; $i <= $total; $i++ ) {
 	++$created;
 
 	// One completed order per product (license auto-generates on completion).
-	if ( edd_has_user_purchased( $user->ID, array( $post_id ) ) ) {
+	if ( edd_has_user_purchased( $user->ID, array( $download_id ) ) ) {
 		continue;
 	}
 
@@ -98,7 +98,7 @@ for ( $i = 1; $i <= $total; $i++ ) {
 		'user_email'   => $user->user_email,
 		'purchase_key' => strtolower( md5( uniqid( '', true ) ) ),
 		'currency'     => edd_get_currency(),
-		'downloads'    => array( array( 'id' => $post_id, 'options' => array(), 'quantity' => 1 ) ),
+		'downloads'    => array( array( 'id' => $download_id, 'options' => array(), 'quantity' => 1 ) ),
 		'user_info'    => array(
 			'id'         => $user->ID,
 			'email'      => $user->user_email,
@@ -109,9 +109,9 @@ for ( $i = 1; $i <= $total; $i++ ) {
 		),
 		'cart_details' => array(
 			array(
-				'name'        => $title,
-				'id'          => $post_id,
-				'item_number' => array( 'id' => $post_id, 'options' => array(), 'quantity' => 1 ),
+				'name'        => $download_title,
+				'id'          => $download_id,
+				'item_number' => array( 'id' => $download_id, 'options' => array(), 'quantity' => 1 ),
 				'item_price'  => (float) $price,
 				'quantity'    => 1,
 				'discount'    => 0.00,

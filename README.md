@@ -116,11 +116,14 @@ npm run dev:blocks       # Watch mode for development
 npm run clean:blocks     # Remove build/blocks/
 
 # --- Distribution zip ---
-# Builds blocks, then runs grunt to assemble a clean plugin zip in dist/
-# excluding /docs, /marketing, /plan, /scripts, /node_modules, *.md,
-# composer/grunt/phpcs/phpstan/phpunit tooling, and block source files.
-npm run dist             # dist/wbcom-essential-<version>.zip
-npm run release          # Same as dist, but also regenerates .pot/i18n
+# Both run bin/build-release.sh, the one packaging path: clean tree, local CI,
+# docs lint and browser smoke report must pass before the blocks build and
+# grunt assemble dist/wbcom-essential-<version>.zip (no /docs, /audit, /plan,
+# /scripts, /bin, /node_modules, *.md, tooling or block sources).
+npm run dist             # gated build; pass flags after --, e.g. npm run dist -- --allow-dirty
+npm run release          # checktextdomain, then the same gated build
+# Regenerate the .pot (npm run makepot) and commit it before a release;
+# the gated build refuses a dirty tree.
 
 # --- i18n only ---
 npm run i18n             # checktextdomain + makepot

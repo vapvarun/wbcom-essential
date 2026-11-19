@@ -180,12 +180,7 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 					$link = bp_get_group_permalink( $group );
 				}
 			} else {
-				$user = new WP_User( $item_id );
-				if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
-					$link = bp_members_get_user_url( $user->ID );
-				} else {
-					$link = bp_core_get_user_domain( $user->ID, $user->user_nicename, $user->user_login );
-				}
+				$link = wbcom_essential_get_user_domain( $item_id );
 			}
 
 			?>
@@ -199,7 +194,7 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 					)
 				);
 				?>
-				<?php ( isset( $user ) ? wbcom_essential_user_status( $user->ID ) : '' ); ?>
+				<?php ( 'group' !== $object ? wbcom_essential_user_status( $item_id ) : '' ); ?>
 			</a>
 			<?php
 		}
@@ -624,9 +619,23 @@ function wbcom_essential_posts_revolution_elementor_format_icon() {
 	return apply_filters( 'wbcom_essential_posts_revolution_elementor_format_icon', $return, $format );
 }
 
+/**
+ * Cut a post excerpt to the widget's Excerpt Length (bytes, as before).
+ *
+ * The length is a text field: a value like "20 words" or "abc" used to reach substr() as a string and stop the
+ * whole page with a fatal error. Numbers behave as before; leading digits are used ("20 words" is 20); anything
+ * else falls back to 50, the widgets' default. The cut never splits a multibyte character.
+ *
+ * @param mixed $excerpt Excerpt length setting.
+ * @return string
+ */
 function wbcom_essential_posts_revolution_elementor_excerpt( $excerpt ) {
-	$return = substr( get_the_excerpt(), 0, $excerpt );
-	return $return;
+	$length = absint( $excerpt );
+	if ( ! is_numeric( $excerpt ) && 0 === $length ) {
+		$length = 50;
+	}
+	$text = get_the_excerpt();
+	return function_exists( 'mb_strcut' ) ? mb_strcut( $text, 0, $length ) : substr( $text, 0, $length );
 }
 
 function wbcom_essential_posts_revolution_elementor_category( $wbcom_query_source, $wbcom_query_posts_type ) {
@@ -1000,4 +1009,63 @@ function wbcom_essential_product_visibility_tax_query() {
 			'operator' => 'NOT IN',
 		)
 		: array();
+}
+
+/**
+ * Image URL a widget may show: Elementor's grey placeholder only ever appears in the editor.
+ *
+ * Widgets default their image controls to Elementor's placeholder so the editor preview has
+ * something to show; an item the owner never gave an image must not publish it to visitors.
+ *
+ * @param array|string $image Elementor media control value, or a URL.
+ * @return string The URL to print, or '' for nothing.
+ */
+function wbcom_essential_widget_image_url( $image ) {
+	$url = is_array( $image ) ? (string) ( $image['url'] ?? '' ) : (string) $image;
+	if ( '' === $url || ! class_exists( '\Elementor\Utils' ) || \Elementor\Utils::get_placeholder_image_src() !== $url ) {
+		return $url;
+	}
+	return \Elementor\Plugin::instance()->editor->is_edit_mode() ? $url : '';
+}
+
+/**
+ * Editor-only empty state for an Elementor widget that has no content yet.
+ *
+ * Widgets start with empty content instead of sample copy, so nothing placeholder-like
+ * reaches visitors. In the Elementor editor this prints a short prompt telling the
+ * owner what to fill in; on the live page it prints nothing.
+ *
+ * @param string $message What the owner should add, already translated.
+ * @return void
+ */
+function wbcom_essential_elementor_empty_state( $message ) {
+	if ( ! class_exists( '\Elementor\Plugin' ) || ! \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+		return;
+	}
+	echo '<p class="wbcom-essential-empty-state" style="margin:0;padding:16px;border:1px dashed currentColor;border-radius:4px;opacity:.75;text-align:center;">' . esc_html( $message ) . '</p>';
+}
+
+/**
+ * Load the attachment posts and meta for a widget's repeater images in two queries.
+ *
+ * Repeater widgets (slides, team members, timeline items, portfolio items) look up
+ * each item's image while rendering; without this every item costs its own post
+ * and meta query.
+ *
+ * @param array    $items Repeater rows from the widget settings.
+ * @param string[] $keys  Row keys that hold an Elementor media value ( array( 'id' => ... ) ).
+ * @return void
+ */
+function wbcom_essential_prime_repeater_images( $items, $keys = array( 'image' ) ) {
+	$ids = array();
+	foreach ( (array) $items as $item ) {
+		foreach ( (array) $keys as $key ) {
+			if ( ! empty( $item[ $key ]['id'] ) ) {
+				$ids[] = absint( $item[ $key ]['id'] );
+			}
+		}
+	}
+	if ( $ids ) {
+		_prime_post_caches( array_unique( $ids ), false, true );
+	}
 }

@@ -18,10 +18,15 @@ registerBlockType( metadata.name, {
 	edit: Edit,
 	save,
 	deprecated: [
-		legacyColorDeprecation( metadata, save, {
-			backgroundColor: '#f8f9fa',
-			headingColor: '#1e1e2e',
-			descriptionColor: '#6c757d',
-		} ),
+		// Saved by 4.7.2: neutral colours already empty, button colours still fixed.
+		legacyColorDeprecation( metadata, save, null, true ),
+		// Saved before 4.7.2: every colour fixed.
+		legacyColorDeprecation( metadata, save ),
+		// Inserted from the Newsletter CTA pattern before 4.7.3, which wrote a
+		// self-closing comment with no HTML. Opening the page rebuilds the markup.
+		{
+			attributes: metadata.attributes,
+			save: () => null,
+		},
 	],
 } );

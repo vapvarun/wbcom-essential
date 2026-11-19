@@ -14,7 +14,7 @@
 	--wbe-gg-card-radius: 12px;
 	--wbe-gg-name-color: var( --wbe-text, #1e1e2e );
 	--wbe-gg-desc-color: var( --wbe-text-muted, #6c757d );
-	--wbe-gg-join-accent: var( --wbcom-color-primary, #3182ce );
+	--wbe-gg-join-accent: var( --wbe-color-accent );
 }
 
 /* Grid list */
@@ -73,8 +73,8 @@
 
 .wbe-groups-grid__avatar-img,
 .wbe-groups-grid__avatar img {
-	width: 80px;
-	height: 80px;
+	width: var( --wbe-gg-avatar-size, 80px );
+	height: var( --wbe-gg-avatar-size, 80px );
 	border-radius: 10px;
 	object-fit: cover;
 	display: block;
@@ -201,6 +201,17 @@
 	cursor: default;
 }
 
+/* Why a join did not go through, in BuddyPress's words. */
+.wbe-groups-grid__join-status {
+	margin: 12px 0 0;
+	font-size: 14px;
+	color: var( --wbe-text, inherit );
+}
+
+.wbe-groups-grid__join-status:empty {
+	margin: 0;
+}
+
 .wbe-groups-grid__action .group-button.leave-group,
 .wbe-groups-grid__action .generic-button.leave-group a,
 .wbe-groups-grid__action .group-button.membership-requested,
@@ -248,8 +259,8 @@
 
 	.wbe-groups-grid__avatar-img,
 	.wbe-groups-grid__avatar img {
-		width: 56px;
-		height: 56px;
+		width: min( var( --wbe-gg-avatar-size, 80px ), 56px );
+		height: min( var( --wbe-gg-avatar-size, 80px ), 56px );
 	}
 
 	.wbe-groups-grid__name a {

@@ -58,17 +58,17 @@ export default function save( { attributes } ) {
 
 	const tokenCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-tl-line-color: ${ lineColor };`,
-		`  --wbe-tl-dot-color: ${ dotColor };`,
+		lineColor && `  --wbe-tl-line-color: ${ lineColor };`,
+		dotColor && `  --wbe-tl-dot-color: ${ dotColor };`,
 		`  --wbe-tl-dot-size: ${ dotSize }px;`,
-		`  --wbe-tl-card-bg: ${ cardBg };`,
-		`  --wbe-tl-date-color: ${ dateColor };`,
-		`  --wbe-tl-title-color: ${ titleColor };`,
-		`  --wbe-tl-desc-color: ${ descriptionColor };`,
+		cardBg && `  --wbe-tl-card-bg: ${ cardBg };`,
+		dateColor && `  --wbe-tl-date-color: ${ dateColor };`,
+		titleColor && `  --wbe-tl-title-color: ${ titleColor };`,
+		descriptionColor && `  --wbe-tl-desc-color: ${ descriptionColor };`,
 		`  --wbe-tl-card-radius: ${ cardBorderRadius };`,
 		`  --wbe-tl-card-shadow: ${ cardShadow };`,
 		`}`,
-	].join( '\n' );
+	].filter( Boolean ).join( '\n' );
 
 	return (
 		<div { ...blockProps }>

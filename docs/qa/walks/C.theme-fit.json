@@ -1,0 +1,36 @@
+{
+  "journey": "C.theme-fit",
+  "free": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20T01:30:00Z",
+  "env": {
+    "base": "http://localhost:10048",
+    "essential": "4.7.3 (936b59f6, symlinked)",
+    "reign": "8.1.1 (5b6a55613)",
+    "elementor": "3.29.1 via qa_add=esse",
+    "bp": "14.5.4",
+    "edd": "3.7.2 via qa_add=edd",
+    "wp": "7.1.4",
+    "php": "8.4 (Local)",
+    "viewports": "1440 + 390 (768/1024 where noted)",
+    "walker": "QA final pre-zip walk (verification only)"
+  },
+  "checks": {
+    "fit.reign-dark": {
+      "result": "pass",
+      "evidence": "Reign dark loaded with localStorage bx-color-mode=dark, page 1754, 1440 and 390: no overflow; scan of 522 text nodes found no real sub-4.5 text (hits were decorative letters, quote marks, hover overlays and owner-set fixture colours); no white panel tiles (Post Carousel placeholder now rgb(43,50,60), Woo placeholder images at opacity .15 on a dark card, category-grid tiles show their gradient). Previous fail cleared."
+    },
+    "fit.tt5": {
+      "result": "pass",
+      "evidence": "Twenty Twenty-Five (qa_tt cookie, confirmed themes/twentytwentyfive in HTML), 1440 and 390: scrollWidth==viewport, 0 overflow, 0 underlined links inside Essential blocks, 28 roots render. TT5 header printing every page is TT5's own page-list fallback. Light only (TT5 has no dark mode)."
+    },
+    "fit.owner-colour": {
+      "result": "pass",
+      "evidence": "CTA block fixture: bg rgb(122,31,61), heading rgb(255,224,138), button bg rgb(18,52,86) / text white, identical in Reign light and Reign dark loads. Picked in the editor on the earlier walk; this walk re-measured the saved front end."
+    },
+    "fit.placeholder-dark": {
+      "result": "pass",
+      "evidence": "Reign dark, page 1754: Post Carousel placeholder bg rgb(43,50,60); Product Grid/Carousel Woo placeholder img opacity .15 on dark card (screenshot); no #f0f0f0/white tile."
+    }
+  },
+  "proposed_checks": []
+}

@@ -17,8 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'buddypress' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
+if ( wbcom_essential_bp_block_unavailable( 'groups' ) ) {
 	return;
 }
 
@@ -36,7 +35,7 @@ $show_dots       = ! empty( $attributes['showDots'] );
 $show_arrows     = ! empty( $attributes['showArrows'] );
 $show_desc       = ! empty( $attributes['showDescription'] );
 $show_count      = ! empty( $attributes['showMemberCount'] );
-$show_join       = ! empty( $attributes['showJoinButton'] ) && bp_is_active( 'groups' );
+$show_join       = ! empty( $attributes['showJoinButton'] );
 $space_between   = absint( $attributes['spaceBetween'] ?? 24 );
 $avatar_size     = absint( $attributes['avatarSize'] ?? 80 );
 $card_bg         = sanitize_hex_color( $attributes['cardBg'] ?? '' );
@@ -85,6 +84,7 @@ if ( $show_dots ) {
 $wrapper = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-group-carousel' . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
+		'style' => '--wbe-gc-avatar-size: ' . $avatar_size . 'px;',
 	)
 );
 
@@ -211,15 +211,16 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 				'nameColor' => $name_color,
 			),
 			'i18n'            => array(
-				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
-				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
-				'members'     => __( 'Members', 'wbcom-essential' ),
-				'previous'    => __( 'Previous', 'wbcom-essential' ),
-				'next'        => __( 'Next', 'wbcom-essential' ),
-				'joinGroup'   => __( 'Join Group', 'wbcom-essential' ),
-				'leaveGroup'  => __( 'Leave', 'wbcom-essential' ),
-				'joined'      => __( 'Joined', 'wbcom-essential' ),
-				'pending'     => __( 'Pending', 'wbcom-essential' ),
+				'loading'           => __( 'Loading groups...', 'wbcom-essential' ),
+				'empty'             => __( 'No groups found.', 'wbcom-essential' ),
+				'members'           => __( 'Members', 'wbcom-essential' ),
+				'previous'          => __( 'Previous', 'wbcom-essential' ),
+				'next'              => __( 'Next', 'wbcom-essential' ),
+				'joinGroup'         => __( 'Join Group', 'wbcom-essential' ),
+				'joined'            => __( 'Joined', 'wbcom-essential' ),
+				'requestMembership' => __( 'Request Membership', 'wbcom-essential' ),
+				'requestSent'       => __( 'Request Sent', 'wbcom-essential' ),
+				'joinError'         => __( 'Could not send your request. Please try again.', 'wbcom-essential' ),
 			),
 		);
 		?>

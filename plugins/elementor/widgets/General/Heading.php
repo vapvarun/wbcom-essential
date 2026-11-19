@@ -100,7 +100,7 @@ class Heading extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Heading Text', 'wbcom-essential' ),
 				'type'        => Controls_Manager::TEXTAREA,
 				'placeholder' => esc_html__( 'Enter your title', 'wbcom-essential' ),
-				'default'     => esc_html__( 'Add Your Heading Text Here', 'wbcom-essential' ),
+				'default'     => '',
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -677,6 +677,7 @@ class Heading extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display();      
 		if ( '' === $settings['heading_text'] ) {
+			wbcom_essential_elementor_empty_state( __( 'Type your heading in the Heading field.', 'wbcom-essential' ) );
 			return;
 		}
 

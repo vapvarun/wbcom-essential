@@ -1372,13 +1372,13 @@ function wbcom_essential_edd_render_subscriptions_tab( $customer = false ) {
 				</div>
 				<div class="wbcom-edd-subs__detail">
 					<span class="wbcom-edd-subs__detail-label"><?php esc_html_e( 'Started', 'wbcom-essential' ); ?></span>
-					<span class="wbcom-edd-subs__detail-value"><?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $created ) ) ); ?></span>
+					<span class="wbcom-edd-subs__detail-value"><?php echo esc_html( wbcom_essential_date_label( $created ) ); ?></span>
 				</div>
 				<?php if ( $expiry && 'active' === $status ) : ?>
 				<div class="wbcom-edd-subs__detail">
 					<span class="wbcom-edd-subs__detail-label"><?php esc_html_e( 'Next Renewal', 'wbcom-essential' ); ?></span>
 					<span class="wbcom-edd-subs__detail-value">
-						<?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $expiry ) ) ); ?>
+						<?php echo esc_html( wbcom_essential_date_label( $expiry ) ); ?>
 						<?php if ( $days_left ) : ?>
 							<span class="wbcom-edd-subs__countdown wbcom-edd-subs__countdown--<?php echo esc_attr( $urgency ); ?>">
 								<?php
@@ -2004,7 +2004,7 @@ function wbcom_essential_edd_render_downloads_tab( $customer = false ) {
 					<?php endif; ?>
 				</div>
 				<span class="wbcom-edd-dl-card__date">
-					<?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $product['order_date'] ) ) ); ?>
+					<?php echo esc_html( wbcom_essential_date_label( $product['order_date'] ) ); ?>
 				</span>
 			</div>
 			<div class="wbcom-edd-dl-card__files">
@@ -2205,7 +2205,7 @@ function wbcom_essential_edd_render_licenses_tab( $customer = false ) {
 		if ( $is_lifetime ) {
 			$expiry_text = __( 'Lifetime', 'wbcom-essential' );
 		} elseif ( $expiry ) {
-			$expiry_text = date_i18n( get_option( 'date_format' ), $expiry );
+			$expiry_text = wbcom_essential_date_label( $expiry );
 			$diff        = ( $expiry - time() ) / DAY_IN_SECONDS;
 			if ( $diff > 0 ) {
 				$days_left = (int) ceil( $diff );

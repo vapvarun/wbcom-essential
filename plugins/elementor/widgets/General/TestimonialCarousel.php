@@ -138,7 +138,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 			array(
 				'label'       => esc_html__( 'Content', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::WYSIWYG,
-				'default'     => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
+				'default'     => '',
 				'label_block' => true,
 			)
 		);
@@ -150,32 +150,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'title'    => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'subtitle' => esc_html__( 'Subtitle #1', 'wbcom-essential' ),
-						'image'    => '',
-						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
-					),
-					array(
-						'title'    => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'subtitle' => esc_html__( 'Subtitle #2', 'wbcom-essential' ),
-						'image'    => '',
-						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
-					),
-					array(
-						'title'    => esc_html__( 'Title #3', 'wbcom-essential' ),
-						'subtitle' => esc_html__( 'Subtitle #3', 'wbcom-essential' ),
-						'image'    => '',
-						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
-					),
-					array(
-						'title'    => esc_html__( 'Title #4', 'wbcom-essential' ),
-						'subtitle' => esc_html__( 'Subtitle #4', 'wbcom-essential' ),
-						'image'    => '',
-						'content'  => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pugnant Stoici cum Peripateticis. Et quidem, inquit, vehementer errat; Quamquam id quidem, infinitum est in hac urbe; Duo Reges: constructio interrete.</p>',
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -1522,6 +1497,12 @@ class TestimonialCarousel extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings  = $this->get_settings_for_display();
+
+		if ( empty( $settings['testimonials'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add testimonials to show the carousel.', 'wbcom-essential' ) );
+			return;
+		}
+		wbcom_essential_prime_repeater_images( $settings['testimonials'], array( 'image' ) );
 		$widget_id = $this->get_id();
 
 		$columns_map    = array( 'one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5 );

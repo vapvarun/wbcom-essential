@@ -9,6 +9,7 @@
 
 import { __ } from '@wordpress/i18n';
 import swiperA11y from '../../shared/utils/swiper-a11y';
+import initFitCarousel from '../../shared/utils/fit-carousel';
 
 ( function () {
 	'use strict';
@@ -93,8 +94,9 @@ import swiperA11y from '../../shared/utils/swiper-a11y';
 				};
 			}
 
-			const instance = new Swiper( el, swiperConfig );
-			el._swiperInstance = instance;
+			// The owner's count per screen size is the maximum; the container decides how many
+			// cards of at least 130px fit (Columns, sidebars).
+			initFitCarousel( el, swiperConfig, 130, true );
 		} );
 	}
 

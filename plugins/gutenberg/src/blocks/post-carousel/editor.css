@@ -16,3 +16,18 @@
 	align-items: center;
 	justify-content: center;
 }
+
+/*
+ * Swiper only runs on the front end, so the preview lays the slides out in a row with the chosen slides per
+ * view and the same 160px minimum as the front end. The .swiper clips the rest. Slider mode keeps one slide.
+ */
+.wbe-post-carousel-editor .wbe-post-carousel--carousel .swiper-wrapper {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: max( min( 160px, 100% ), calc( ( 100% - ( var( --wbe-ed-slides, 3 ) - 1 ) * 28px ) / var( --wbe-ed-slides, 3 ) ) );
+	gap: 28px;
+}
+
+.wbe-post-carousel-editor .wbe-post-carousel--carousel .swiper-slide {
+	width: auto;
+}

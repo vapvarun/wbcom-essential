@@ -63,7 +63,9 @@
 	font-size: clamp(var(--wbe-font-2xl, 24px), 3.5vw, var(--wbe-font-4xl, 36px));
 	font-weight: var(--wbe-weight-bold, 700);
 	line-height: var(--wbe-leading-tight, 1.25);
-	color: var(--wbe-text, #1e1e2e);
+	color: var(--wbcom-heading-color, var(--wbe-text, #1e1e2e));
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* Description */
@@ -72,6 +74,7 @@
 	font-size: var(--wbe-font-md, 16px);
 	line-height: var(--wbe-leading-relaxed, 1.75);
 	color: var(--wbe-text-muted, #6c757d);
+	overflow-wrap: anywhere;
 }
 
 /* Action area */
@@ -93,24 +96,24 @@
 	text-decoration: none;
 	cursor: pointer;
 	white-space: nowrap;
-	background-color: #667eea;
-	color: #ffffff;
+	background-color: var(--wbcom-button-bg, var(--wbe-color-accent));
+	color: var(--wbcom-button-color, #ffffff);
 	transition: background-color var(--wbe-transition-normal, 300ms ease),
 	            transform var(--wbe-transition-normal, 300ms ease),
 	            box-shadow var(--wbe-transition-normal, 300ms ease);
 }
 
 .wbe-cta__btn:hover {
-	background-color: var(--wbe-cta-btn-hover-bg, #5a6fd6);
+	background-color: var(--wbe-cta-btn-hover-bg, var(--wbcom-color-primary-hover, var(--wbe-color-accent-hover)));
 	transform: translateY(-2px);
-	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+	box-shadow: 0 6px 20px color-mix(in srgb, var(--wbcom-button-bg, var(--wbe-color-accent)) 40%, transparent);
 	text-decoration: none;
 }
 
 .wbe-cta__btn:focus-visible {
-	background-color: var(--wbe-cta-btn-hover-bg, #5a6fd6);
+	background-color: var(--wbe-cta-btn-hover-bg, var(--wbcom-color-primary-hover, var(--wbe-color-accent-hover)));
 	transform: translateY(-2px);
-	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+	box-shadow: 0 6px 20px color-mix(in srgb, var(--wbcom-button-bg, var(--wbe-color-accent)) 40%, transparent);
 	text-decoration: none;
 	outline: 2px solid currentColor;
 	outline-offset: 3px;
@@ -118,6 +121,14 @@
 
 .wbe-cta__btn:active {
 	transform: translateY(0);
+}
+
+/*
+ * Button text keeps the button colour in every link state. It must outrank the shared theme-isolation rule
+ * that makes links inside blocks inherit (specificity 0,4,1), so the selector names the block wrapper.
+ */
+.wp-block-wbcom-essential-cta.wbe-cta .wbe-cta__action > a.wbe-cta__btn:is(:link, :visited, :hover, :focus) {
+	color: var(--wbcom-button-color, #ffffff);
 }
 
 /* Visibility utility classes */

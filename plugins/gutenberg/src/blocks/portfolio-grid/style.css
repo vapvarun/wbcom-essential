@@ -15,9 +15,13 @@
 	--wbe-pg-gap:            16px;
 	--wbe-pg-ratio:          1 / 1;
 	--wbe-pg-card-radius:    8px;
-	--wbe-pg-overlay:        rgba( 102, 126, 234, 0.85 );
-	--wbe-pg-title-color:    #ffffff;
-	--wbe-pg-filter-active:  #667eea;
+	/* Theme colours for grids inserted from 4.7.3 on; render.php sets fixed or owner colours inline. */
+	--wbe-pg-overlay:        color-mix( in srgb, var( --wbcom-button-bg, var( --wbe-color-accent ) ) 85%, transparent );
+	--wbe-pg-title-color:    var( --wbcom-button-color, var( --wbe-color-white, #ffffff ) );
+	--wbe-pg-filter-active:  var( --wbcom-button-bg, var( --wbe-color-accent ) );
+	--wbe-pg-filter-active-text: var( --wbcom-button-color, var( --wbe-color-white, #ffffff ) );
+	/* Hover label on the light tint: body text holds 4.5:1 where the accent as text may not. */
+	--wbe-pg-filter-hover-text: var( --wbe-text, inherit );
 	--wbe-pg-card-shadow:    none;
 	--wbe-pg-transition:     0.3s ease;
 
@@ -39,8 +43,8 @@
 	padding:          6px 18px;
 	border:           2px solid transparent;
 	border-radius:    50px;
-	background:       #f1f3f4;
-	color:            #444;
+	background:       var(--wbe-surface-alt, #f1f3f4);
+	color:            var(--wbe-text, #444);
 	font-size:        0.875rem;
 	font-weight:      500;
 	line-height:      1.4;
@@ -49,18 +53,22 @@
 	                  color     var( --wbe-pg-transition ),
 	                  border-color var( --wbe-pg-transition ),
 	                  transform var( --wbe-pg-transition );
-	white-space:      nowrap;
+	/* A label wider than the whole bar wraps inside its pill; shorter labels move to the next row first. */
+	max-width:        100%;
+	white-space:      normal;
+	overflow-wrap:    anywhere;
+	text-align:       start;
 }
 
 .wbe-portfolio-grid__filter-btn:hover {
 	background:  color-mix( in srgb, var( --wbe-pg-filter-active ) 12%, transparent );
-	color:       var( --wbe-pg-filter-active );
+	color:       var( --wbe-pg-filter-hover-text );
 	border-color: color-mix( in srgb, var( --wbe-pg-filter-active ) 30%, transparent );
 }
 
 .wbe-portfolio-grid__filter-btn.is-active {
 	background:   var( --wbe-pg-filter-active );
-	color:        #fff;
+	color:        var( --wbe-pg-filter-active-text );
 	border-color: var( --wbe-pg-filter-active );
 }
 
@@ -70,9 +78,23 @@
 }
 
 /* ── Grid ────────────────────────────────────────────────────────────────── */
+/*
+ * The owner's column count for the screen size is the maximum. In a narrow container (a Columns block, a
+ * sidebar) columns drop only when a card would fall under 130px. Phones keep the saved mobile count.
+ */
 .wbe-portfolio-grid__grid {
+	--wbe-pg-columns-now:  var( --wbe-pg-columns );
 	display:               grid;
-	grid-template-columns: repeat( var( --wbe-pg-columns ), 1fr );
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( 130px, 100% ),
+				calc( ( 100% - ( var( --wbe-pg-columns-now ) - 1 ) * var( --wbe-pg-gap ) ) / var( --wbe-pg-columns-now ) )
+			),
+			1fr
+		)
+	);
 	gap:                   var( --wbe-pg-gap );
 }
 
@@ -113,7 +135,7 @@
 }
 
 .wbe-portfolio-grid__image--placeholder {
-	background: #e9ecef;
+	background: var( --wbe-surface-alt, #e9ecef );
 }
 
 /* Full-area transparent link */
@@ -136,9 +158,13 @@
 }
 
 .wbe-portfolio-grid__overlay-inner {
+	box-sizing: border-box;
+	max-width: 100%;
 	padding: 16px;
 	text-align: center;
 	color: var( --wbe-pg-title-color );
+	/* Long unbroken titles (URLs, SKUs, compounds) wrap inside the card. */
+	overflow-wrap: anywhere;
 }
 
 .wbe-portfolio-grid__title {
@@ -178,11 +204,11 @@
 	transition:  transform var( --wbe-pg-transition );
 }
 
-.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay {
+.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay {
 	opacity: 1;
 }
 
-.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay-inner {
+.wbe-portfolio-grid--hover-overlay .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay-inner {
 	transform: translateY( 0 );
 }
 
@@ -193,7 +219,7 @@
 	transition: transform 0.45s ease;
 }
 
-.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__image {
+.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__image {
 	transform: scale( 1.07 );
 }
 
@@ -209,11 +235,11 @@
 	opacity:     0;
 }
 
-.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay {
+.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay {
 	opacity: 1;
 }
 
-.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay-inner {
+.wbe-portfolio-grid--hover-zoom .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay-inner {
 	transform: scale( 1 );
 	opacity:   1;
 }
@@ -235,8 +261,35 @@
 	padding:    20px 16px 14px;
 }
 
-.wbe-portfolio-grid--hover-slide .wbe-portfolio-grid__item:hover .wbe-portfolio-grid__overlay {
+.wbe-portfolio-grid--hover-slide .wbe-portfolio-grid__item:is( :hover, :focus-within ) .wbe-portfolio-grid__overlay {
 	transform: translateY( 0 );
+}
+
+/* ── Keyboard focus: the same reveal as hover (selectors above) plus a ring the overlay cannot hide.
+   The link covers the card inside an overflow-hidden box, so the ring is drawn inside it, in the title
+   colour that the overlay is designed to contrast with. */
+.wbe-portfolio-grid__link:focus-visible {
+	outline:        2px solid var( --wbe-pg-title-color );
+	outline-offset: -4px;
+}
+
+/* ── Touch screens have no hover: every effect rests in the slide-up state, a caption on a bottom
+   gradient inside the image, so the title is always readable and the card height does not change. */
+@media ( hover: none ), ( pointer: coarse ) {
+	.wbe-portfolio-grid .wbe-portfolio-grid__overlay {
+		align-items: flex-end;
+		background:  linear-gradient( to top, var( --wbe-pg-overlay ) 0%, transparent 100% );
+		opacity:     1;
+		transform:   none;
+	}
+
+	.wbe-portfolio-grid .wbe-portfolio-grid__overlay-inner {
+		width:      100%;
+		text-align: left;
+		padding:    20px 16px 14px;
+		opacity:    1;
+		transform:  none;
+	}
 }
 
 /* ── Accessibility: reduced motion ───────────────────────────────────────── */
@@ -266,7 +319,7 @@
 /* ── Responsive columns ──────────────────────────────────────────────────── */
 @media ( max-width: 1024px ) {
 	.wbe-portfolio-grid__grid {
-		grid-template-columns: repeat( var( --wbe-pg-columns-tablet ), 1fr );
+		--wbe-pg-columns-now: var( --wbe-pg-columns-tablet );
 	}
 }
 

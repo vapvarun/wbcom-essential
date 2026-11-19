@@ -63,15 +63,15 @@ export default function save( { attributes } ) {
 
 	const tokenCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-flip-front-bg: ${ frontBg };`,
-		`  --wbe-flip-front-color: ${ frontColor };`,
-		`  --wbe-flip-back-bg: ${ backBg };`,
-		`  --wbe-flip-back-color: ${ backColor };`,
+		frontBg && `  --wbe-flip-front-bg: ${ frontBg };`,
+		frontColor && `  --wbe-flip-front-color: ${ frontColor };`,
+		backBg && `  --wbe-flip-back-bg: ${ backBg };`,
+		backColor && `  --wbe-flip-back-color: ${ backColor };`,
 		`  --wbe-flip-height: ${ height }${ heightUnit };`,
 		`  --wbe-flip-radius: ${ borderRadiusVal };`,
 		`  --wbe-flip-shadow: ${ shadowVal };`,
 		`}`,
-	].join( '\n' );
+	].filter( Boolean ).join( '\n' );
 
 	return (
 		<div { ...blockProps }>

@@ -17,8 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'buddypress' ) || ! bp_is_active( 'activity' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
+if ( wbcom_essential_bp_block_unavailable( 'activity' ) ) {
 	return;
 }
 
@@ -34,6 +33,7 @@ $show_content       = ! empty( $attributes['showContent'] );
 $show_type_icon     = ! empty( $attributes['showTypeIcon'] );
 $show_fav_btn       = ! empty( $attributes['showFavoriteBtn'] );
 $show_comment_count = ! empty( $attributes['showCommentCount'] );
+$show_media         = $attributes['showMediaPreview'] ?? true;
 $avatar_size        = absint( $attributes['avatarSize'] ?? 44 );
 $accent_color       = sanitize_text_field( $attributes['accentColor'] ?? '' );
 $icon_bg            = sanitize_text_field( $attributes['iconBg'] ?? '' );
@@ -47,10 +47,32 @@ $border_color       = sanitize_text_field( $attributes['borderColor'] ?? '' );
 $vis_classes = \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::get_visibility_classes( $attributes );
 \WBCOM_ESSENTIAL\Gutenberg\WBE_CSS::add( $unique_id, $attributes );
 
+// ── Design tokens ────────────────────────────────────────────────────────────
+// Only colours the owner picked (a colour value, nothing that can close the declaration); empty ones
+// follow the theme in light and dark mode (style.css). Set on the wrapper's style attribute instead of a printed style element.
+$token_style = '';
+foreach (
+	array(
+		'--wbe-af-card-bg' => $card_bg,
+		'--wbe-af-name'    => $name_color,
+		'--wbe-af-content' => $content_color,
+		'--wbe-af-time'    => $time_color,
+		'--wbe-af-border'  => $border_color,
+		'--wbe-af-accent'  => $accent_color,
+		'--wbe-af-icon-bg' => $icon_bg,
+	) as $wbe_af_property => $wbe_af_value
+) {
+	if ( '' !== $wbe_af_value && preg_match( '/^[#a-zA-Z0-9(),.%\s-]+$/', $wbe_af_value ) ) {
+		$token_style .= $wbe_af_property . ': ' . $wbe_af_value . '; ';
+	}
+}
+$token_style .= '--wbe-af-avatar: ' . absint( $avatar_size ) . 'px;';
+
 $layout_class = 'wbe-af--' . esc_attr( $layout );
 $wrapper      = get_block_wrapper_attributes(
 	array(
-		'class' => trim( "wbe-activity-feed {$layout_class}" . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
+		'class' => trim( "wbe-activity-feed {$layout_class}" . ( $show_media ? '' : ' wbe-af--no-media' ) . ( $unique_id ? ' wbe-block-' . esc_attr( $unique_id ) : '' ) . ( $vis_classes ? ' ' . $vis_classes : '' ) ),
+		'style' => $token_style,
 	)
 );
 
@@ -114,30 +136,6 @@ $config = array(
 ?>
 
 <div <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<style>
-		.wbe-block-<?php echo esc_attr( $unique_id ); ?> {
-			<?php
-			// Only colours the owner picked (a colour value, nothing that can close the rule); empty ones
-			// follow the theme in light and dark mode (style.css).
-			foreach (
-				array(
-					'--wbe-af-card-bg' => $card_bg,
-					'--wbe-af-name'    => $name_color,
-					'--wbe-af-content' => $content_color,
-					'--wbe-af-time'    => $time_color,
-					'--wbe-af-border'  => $border_color,
-					'--wbe-af-accent'  => $accent_color,
-					'--wbe-af-icon-bg' => $icon_bg,
-				) as $wbe_af_property => $wbe_af_value
-			) {
-				if ( '' !== $wbe_af_value && preg_match( '/^[#a-zA-Z0-9(),.%\s-]+$/', $wbe_af_value ) ) {
-					echo esc_html( $wbe_af_property . ': ' . $wbe_af_value . ';' ) . "\n";
-				}
-			}
-			?>
-			--wbe-af-avatar: <?php echo absint( $avatar_size ); ?>px;
-		}
-	</style>
 
 	<?php if ( $is_editor ) : ?>
 		<?php

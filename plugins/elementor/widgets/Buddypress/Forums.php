@@ -477,7 +477,7 @@ class Forums extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Meta Data Color', 'wbcom-essential' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#A3A5A9',
+				'default'   => 'var(--wbcom-color-contrast-2, #6c757d)',
 				'selectors' => array(
 					'{{WRAPPER}} .item-meta' => 'color: {{VALUE}};',
 				),

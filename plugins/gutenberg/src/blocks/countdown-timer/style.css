@@ -116,7 +116,7 @@
 .wbe-countdown-timer__placeholder {
 	text-align: center;
 	padding: 24px;
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 	font-style: italic;
 	border: 2px dashed #e9ecef;
 	border-radius: 6px;

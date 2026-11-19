@@ -10,7 +10,7 @@
 	--wbe-gc-card-bg: var( --wbe-surface, #ffffff );
 	--wbe-gc-name-color: var( --wbe-text, #1e1e2e );
 	--wbe-gc-meta-color: var( --wbe-text-muted, #6c757d );
-	--wbe-gc-accent: var( --wbcom-color-primary, #667eea );
+	--wbe-gc-accent: var( --wbe-color-accent );
 	--wbe-gc-card-radius: 12px;
 	--wbe-gc-badge-bg: color-mix( in srgb, var( --wbe-gc-accent ) 12%, transparent );
 	--wbe-gc-card-hover-shadow: 0 8px 24px rgba( 0, 0, 0, 0.12 );
@@ -57,8 +57,8 @@
 
 .wbe-group-carousel__avatar-img,
 .wbe-group-carousel__avatar img {
-	width: 80px;
-	height: 80px;
+	width: var( --wbe-gc-avatar-size, 80px );
+	height: var( --wbe-gc-avatar-size, 80px );
 	border-radius: 50%;
 	object-fit: cover;
 	display: block;
@@ -104,7 +104,7 @@
 	display: inline-block;
 	padding: 3px 12px;
 	background: var( --wbe-gc-badge-bg );
-	color: var( --wbe-gc-accent );
+	color: var( --wbe-color-accent-text );
 	border-radius: 999px;
 	font-size: 0.72rem;
 	font-weight: 700;
@@ -199,6 +199,17 @@
 
 .wbe-group-carousel__join-btn:disabled {
 	cursor: default;
+}
+
+/* Why a join did not go through, in BuddyPress's words. */
+.wbe-group-carousel__join-status {
+	margin: 12px 0 0;
+	font-size: 14px;
+	color: var( --wbe-text, inherit );
+}
+
+.wbe-group-carousel__join-status:empty {
+	margin: 0;
 }
 
 /* ── Navigation arrows ────────────────────────────────────────────────────── */
@@ -343,6 +354,11 @@
 	.wbe-group-carousel .wbe-group-carousel__swiper .swiper-button-next {
 		right: 0;
 	}
+
+	/* The arrows sit on the edge of the clipped slider here, so the focus ring is drawn inside them. */
+	.wbe-group-carousel .wbe-group-carousel__swiper :is( .swiper-button-prev, .swiper-button-next ):focus-visible {
+		outline-offset: -2px;
+	}
 }
 
 /* ── Empty state ──────────────────────────────────────────────────────────── */
@@ -377,8 +393,8 @@
 @media ( max-width: 640px ) {
 	.wbe-group-carousel__avatar-img,
 	.wbe-group-carousel__avatar img {
-		width: 64px;
-		height: 64px;
+		width: min( var( --wbe-gc-avatar-size, 80px ), 64px );
+		height: min( var( --wbe-gc-avatar-size, 80px ), 64px );
 	}
 
 	.wbe-group-carousel__name {

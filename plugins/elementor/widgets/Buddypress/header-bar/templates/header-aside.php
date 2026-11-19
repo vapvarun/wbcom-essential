@@ -34,16 +34,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php if ( $profile_dropdown ) : ?>
 				<div class="user-wrap user-wrap-container menu-item-has-children">
 					<?php
-					global $current_user;
-					$current_user = wp_get_current_user();
+					$wbcom_user = wp_get_current_user();
 
 					if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
-						$user_link = function_exists( 'bp_members_get_user_url' ) ? bp_members_get_user_url( $current_user->ID ) : get_author_posts_url( $current_user->ID );
+						$user_link = function_exists( 'bp_members_get_user_url' ) ? bp_members_get_user_url( $wbcom_user->ID ) : get_author_posts_url( $wbcom_user->ID );
 					} else {
-						$user_link = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( $current_user->ID ) : get_author_posts_url( $current_user->ID );
+						$user_link = wbcom_essential_get_user_domain( $wbcom_user->ID );
 					}
 
-					$display_name = function_exists( 'bp_core_get_user_displayname' ) ? bp_core_get_user_displayname( $current_user->ID ) : $current_user->display_name;
+					$display_name = function_exists( 'bp_core_get_user_displayname' ) ? bp_core_get_user_displayname( $wbcom_user->ID ) : $wbcom_user->display_name;
 					?>
 
 					<a class="user-link" href="<?php echo esc_url( $user_link ); ?>">
@@ -58,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<div class="wrapper">
 							<?php
 							if ( function_exists( 'bp_is_active' ) && ! empty( $profile_dropdown_menu ) ) {
-								$menu = wp_nav_menu(
+								$wbcom_menu = wp_nav_menu(
 									array(
 										'menu'        => $profile_dropdown_menu,
 										'echo'        => false,
@@ -66,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									)
 								);
 
-								if ( ! empty( $menu ) ) {
+								if ( ! empty( $wbcom_menu ) ) {
 									wp_nav_menu(
 										array(
 											'menu'       => $profile_dropdown_menu,

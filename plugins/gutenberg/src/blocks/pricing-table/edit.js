@@ -247,27 +247,27 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				{ /* Style Panel */ }
 				<PanelBody title={ __( 'Style', 'wbcom-essential' ) } initialOpen={ false }>
 					<BaseControl label={ __( 'Card Background', 'wbcom-essential' ) }>
-						<ColorPalette value={ cardBg } onChange={ ( v ) => setAttributes( { cardBg: v || '#ffffff' } ) } clearable={ false } />
+						<ColorPalette value={ cardBg } onChange={ ( v ) => setAttributes( { cardBg: v || '' } ) } />
 					</BaseControl>
 					<BaseControl label={ __( 'Featured Card Background', 'wbcom-essential' ) }>
-						<ColorPalette value={ featuredBg } onChange={ ( v ) => setAttributes( { featuredBg: v || '#667eea' } ) } clearable={ false } />
+						<ColorPalette value={ featuredBg } onChange={ ( v ) => setAttributes( { featuredBg: v || '' } ) } />
 					</BaseControl>
 					<BaseControl label={ __( 'Featured Card Text Color', 'wbcom-essential' ) }>
-						<ColorPalette value={ featuredColor } onChange={ ( v ) => setAttributes( { featuredColor: v || '#ffffff' } ) } clearable={ false } />
+						<ColorPalette value={ featuredColor } onChange={ ( v ) => setAttributes( { featuredColor: v || '' } ) } />
 					</BaseControl>
 					<Divider />
 					<BaseControl label={ __( 'Price Color', 'wbcom-essential' ) }>
-						<ColorPalette value={ priceColor } onChange={ ( v ) => setAttributes( { priceColor: v || '#1e1e2e' } ) } clearable={ false } />
+						<ColorPalette value={ priceColor } onChange={ ( v ) => setAttributes( { priceColor: v || '' } ) } />
 					</BaseControl>
 					<BaseControl label={ __( 'Feature Text Color', 'wbcom-essential' ) }>
-						<ColorPalette value={ featureColor } onChange={ ( v ) => setAttributes( { featureColor: v || '#6c757d' } ) } clearable={ false } />
+						<ColorPalette value={ featureColor } onChange={ ( v ) => setAttributes( { featureColor: v || '' } ) } />
 					</BaseControl>
 					<Divider />
 					<BaseControl label={ __( 'Button Background', 'wbcom-essential' ) }>
-						<ColorPalette value={ buttonBg } onChange={ ( v ) => setAttributes( { buttonBg: v || '#667eea' } ) } clearable={ false } />
+						<ColorPalette value={ buttonBg } onChange={ ( v ) => setAttributes( { buttonBg: v || '' } ) } />
 					</BaseControl>
 					<BaseControl label={ __( 'Button Text Color', 'wbcom-essential' ) }>
-						<ColorPalette value={ buttonColor } onChange={ ( v ) => setAttributes( { buttonColor: v || '#ffffff' } ) } clearable={ false } />
+						<ColorPalette value={ buttonColor } onChange={ ( v ) => setAttributes( { buttonColor: v || '' } ) } />
 					</BaseControl>
 				</PanelBody>
 
@@ -368,7 +368,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 									className="wbe-pricing-cards__btn"
 									href={ plan.buttonUrl }
 									style={ {
-										backgroundColor: plan.featured ? '#ffffff' : buttonBg,
+										backgroundColor: plan.featured ? featuredBg && '#ffffff' : buttonBg,
 										color: plan.featured ? featuredBg : buttonColor,
 									} }
 								>

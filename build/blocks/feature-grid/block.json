@@ -203,5 +203,19 @@
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "style": "file:./style-index.css",
+  "wbeLegacyColors": {
+    "cardBg": [
+      "",
+      "#ffffff"
+    ],
+    "titleColor": [
+      "",
+      "#1e1e2e"
+    ],
+    "descriptionColor": [
+      "",
+      "#6c757d"
+    ]
+  }
 }

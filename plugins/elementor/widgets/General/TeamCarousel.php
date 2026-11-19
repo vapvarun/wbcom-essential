@@ -202,7 +202,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Name', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'John Doe', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'Name', 'wbcom-essential' ),
 			)
 		);
 
@@ -212,7 +213,8 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'label'       => esc_html__( 'Info', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Web Designer', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'Role', 'wbcom-essential' ),
 			)
 		);
 
@@ -337,32 +339,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'title'            => esc_html__( 'Title #1', 'wbcom-essential' ),
-						'subtitle'         => esc_html__( 'Subtitle #1', 'wbcom-essential' ),
-						'image'            => \Elementor\Utils::get_placeholder_image_src(),
-						'lightbox_image'   => '',
-						'oembed'           => '',
-						'lightbox_content' => '',
-					),
-					array(
-						'title'            => esc_html__( 'Title #2', 'wbcom-essential' ),
-						'subtitle'         => esc_html__( 'Subtitle #2', 'wbcom-essential' ),
-						'image'            => \Elementor\Utils::get_placeholder_image_src(),
-						'lightbox_image'   => '',
-						'oembed'           => '',
-						'lightbox_content' => '',
-					),
-					array(
-						'title'            => esc_html__( 'Title #3', 'wbcom-essential' ),
-						'subtitle'         => esc_html__( 'Subtitle #3', 'wbcom-essential' ),
-						'image'            => \Elementor\Utils::get_placeholder_image_src(),
-						'lightbox_image'   => '',
-						'oembed'           => '',
-						'lightbox_content' => '',
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -1667,9 +1644,14 @@ class TeamCarousel extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings  = $this->get_settings_for_display();
+
+		if ( empty( $settings['gallery'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add team members to show the carousel.', 'wbcom-essential' ) );
+			return;
+		}
+		wbcom_essential_prime_repeater_images( $settings['gallery'], array( 'image', 'lightbox_image' ) );
 		$widget_id = $this->get_id();
 
-		if ( $settings['gallery'] ) {
 			$columns_map    = array( 'one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5 );
 			$slides_to_show = isset( $columns_map[ $settings['columns'] ] ) ? $columns_map[ $settings['columns'] ] : 3;
 
@@ -1702,7 +1684,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php
             $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] );
             if (!$img_url) {
-            $img_url = $item['image']['url'];
+            $img_url = wbcom_essential_widget_image_url( $item['image'] );
             }
             ?>
             <div class="swiper-slide">
@@ -1719,7 +1701,9 @@ class TeamCarousel extends \Elementor\Widget_Base {
                         <?php } elseif ($item['lightbox_style'] != 'none') { ?>
                         <a href="#wbcom-lightbox-<?php echo esc_attr($item['_id']); ?>" data-elementor-open-lightbox="no" class="has-lightbox <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } ?>
+                            <?php if ( $img_url ) { ?>
                             <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($item['title']); ?>" />
+                            <?php } ?>
                             <?php if (($settings['caption_style'] == 'name') && (($item['title']) || ($item['subtitle']))) { ?>
                             <div class="wbcom-team-overlay elementor-animation-<?php echo esc_attr($settings['box_content_animation']); ?>  <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                                 <div class="wbcom-team-texts">
@@ -1805,6 +1789,5 @@ class TeamCarousel extends \Elementor\Widget_Base {
     <?php } ?>
     <?php } ?>
     <?php
-    }
 	}
 }

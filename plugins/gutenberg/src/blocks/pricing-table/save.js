@@ -51,8 +51,8 @@ export default function save( { attributes } ) {
 						key={ index }
 						className={ `wbe-pricing-cards__card${ plan.featured ? ' wbe-pricing-cards__card--featured' : '' }` }
 						style={ {
-							backgroundColor: plan.featured ? featuredBg : cardBg,
-							color: plan.featured ? featuredColor : 'inherit',
+							backgroundColor: ( plan.featured ? featuredBg : cardBg ) || undefined,
+							color: ( plan.featured ? featuredColor : 'inherit' ) || undefined,
 						} }
 					>
 						{ plan.featured && (
@@ -62,7 +62,7 @@ export default function save( { attributes } ) {
 							<div className="wbe-pricing-cards__name">{ plan.name }</div>
 							<div
 								className="wbe-pricing-cards__price"
-								style={ { color: plan.featured ? featuredColor : priceColor } }
+								style={ { color: ( plan.featured ? featuredColor : priceColor ) || undefined } }
 							>
 								<span className="wbe-pricing-cards__currency">{ currency }</span>
 								<span className="wbe-pricing-cards__amount">{ plan.price }</span>
@@ -74,7 +74,7 @@ export default function save( { attributes } ) {
 								<li
 									key={ fi }
 									className="wbe-pricing-cards__feature"
-									style={ { color: plan.featured ? featuredColor : featureColor } }
+									style={ { color: ( plan.featured ? featuredColor : featureColor ) || undefined } }
 								>
 									<span className="wbe-pricing-cards__feature-check" aria-hidden="true">&#10003;</span>
 									{ feat }
@@ -87,8 +87,10 @@ export default function save( { attributes } ) {
 								href={ plan.buttonUrl }
 								role="button"
 								style={ {
-									backgroundColor: plan.featured ? '#ffffff' : buttonBg,
-									color: plan.featured ? featuredBg : buttonColor,
+									// The fixed white was only written while the featured colour was fixed too; with the theme accent
+									// the stylesheet draws the inverted button (light and dark).
+									backgroundColor: ( plan.featured ? featuredBg && '#ffffff' : buttonBg ) || undefined,
+									color: ( plan.featured ? featuredBg : buttonColor ) || undefined,
 								} }
 							>
 								{ plan.buttonText }

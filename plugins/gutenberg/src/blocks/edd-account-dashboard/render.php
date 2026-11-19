@@ -15,11 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Guard: EDD must be active.
 if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-	?>
-	<div class="wbcom-edd-account-notice">
-		<p><?php esc_html_e( 'Easy Digital Downloads is required to display this block.', 'wbcom-essential' ); ?></p>
-	</div>
-	<?php
+	wbcom_essential_block_owner_notice( __( 'Easy Digital Downloads is required to display this block.', 'wbcom-essential' ) );
 	return;
 }
 

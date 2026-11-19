@@ -254,15 +254,6 @@ class UniversalProduct extends \Elementor\Widget_Base {
 					'default'      => 'no',
 				)
 			);
-			$this->add_control(
-				'hidden_item',
-				array(
-					'label'        => esc_html__( 'Exclude Hidden Item', 'wbcom-essential' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'return_value' => 'yes',
-					'default'      => 'no',
-				)
-			);
 
 			$this->add_control(
 				'wbcom_custom_order',
@@ -2011,7 +2002,6 @@ class UniversalProduct extends \Elementor\Widget_Base {
 			);
 		}
 
-		$query_args['hidden']            = ( 'yes' === $settings['hidden_item'] );
 		$query_args['hide_out_of_stock'] = ( 'yes' === $settings['hidden_outofstock'] );
 
 		$args = wbcom_product_query( $query_args );
@@ -2212,9 +2202,9 @@ class UniversalProduct extends \Elementor\Widget_Base {
 
 									// Sale Schedule.
 									$offer_start_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_from', true );
-									$offer_start_date           = $offer_start_date_timestamp ? date_i18n( 'Y/m/d', $offer_start_date_timestamp ) : '';
+									$offer_start_date           = wbcom_essential_date_label( $offer_start_date_timestamp, '', 'Y/m/d' );
 									$offer_end_date_timestamp   = get_post_meta( get_the_ID(), '_sale_price_dates_to', true );
-									$offer_end_date             = $offer_end_date_timestamp ? date_i18n( 'Y/m/d', $offer_end_date_timestamp ) : '';
+									$offer_end_date             = wbcom_essential_date_label( $offer_end_date_timestamp, '', 'Y/m/d' );
 
 									// Gallery Image.
 									global $product;
@@ -2405,9 +2395,9 @@ endforeach;
 
 								// Sale Schedule.
 								$offer_start_date_timestamp = get_post_meta( get_the_ID(), '_sale_price_dates_from', true );
-								$offer_start_date           = $offer_start_date_timestamp ? date_i18n( 'Y/m/d', $offer_start_date_timestamp ) : '';
+								$offer_start_date           = wbcom_essential_date_label( $offer_start_date_timestamp, '', 'Y/m/d' );
 								$offer_end_date_timestamp   = get_post_meta( get_the_ID(), '_sale_price_dates_to', true );
-								$offer_end_date             = $offer_end_date_timestamp ? date_i18n( 'Y/m/d', $offer_end_date_timestamp ) : '';
+								$offer_end_date             = wbcom_essential_date_label( $offer_end_date_timestamp, '', 'Y/m/d' );
 
 								// Gallery Image.
 								global $product;

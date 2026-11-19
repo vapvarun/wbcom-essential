@@ -281,7 +281,7 @@ class Shape extends \Elementor\Widget_Base {
 				'label'   => esc_html__( 'Icon', 'wbcom-essential' ),
 				'type'    => \Elementor\Controls_Manager::ICONS,
 				'default' => array(
-					'value'   => 'fas long-arrow-alt-down',
+					'value'   => 'fas fa-long-arrow-alt-down',
 					'library' => 'solid',
 				),
 			)

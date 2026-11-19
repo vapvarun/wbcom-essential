@@ -73,7 +73,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						{ __( 'EDD Checkout Recommendations', 'wbcom-essential' ) }
 					</p>
 					<p style={ { margin: '4px 0 0', fontSize: 12, color: '#94a3b8' } }>
-						{ __( 'Cart-based product suggestions render here on the frontend.', 'wbcom-essential' ) }
+						{ __( 'Shown on the checkout only when the EDD Recommended Products add-on is active and the cart has suggestions.', 'wbcom-essential' ) }
 					</p>
 				</div>
 			</div>

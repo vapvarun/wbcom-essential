@@ -1,1 +1,1 @@
-.wbe-product-carousel-editor .wp-block-wbcom-essential-product-carousel{pointer-events:none}
+.wbe-product-carousel-editor .wp-block-wbcom-essential-product-carousel{pointer-events:none}.wbe-product-carousel-editor .swiper-wrapper{display:grid;gap:var( --wbe-ed-gap,24px );grid-auto-columns:max(min(130px,100%),calc((100% - (var( --wbe-ed-slides, 4 ) - 1)*var(--wbe-ed-gap, 24px))/var( --wbe-ed-slides, 4 )));grid-auto-flow:column}.wbe-product-carousel-editor .swiper-slide{width:auto}

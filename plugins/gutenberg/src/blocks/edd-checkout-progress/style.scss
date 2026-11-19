@@ -138,7 +138,8 @@
 	&__step--upcoming {
 		.wbcom-edd-checkout__step-circle {
 			background-color: var(--wbe-color-border);
-			color: var(--wbe-color-text-light, #94a3b8);
+			// Full text colour on the border fill: the muted grey measured 4.41:1 there.
+			color: var(--wbe-color-text, #1e293b);
 			border: 2px solid var(--wbe-color-border);
 		}
 

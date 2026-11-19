@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'WooCommerce' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'WooCommerce plugin is required for this block.', 'wbcom-essential' ) . '</p>';
+	wbcom_essential_block_owner_notice( __( 'WooCommerce plugin is required for this block.', 'wbcom-essential' ) );
 	return;
 }
 
@@ -43,7 +43,8 @@ $title_color    = sanitize_hex_color( $attributes['titleColor'] ?? '' ) ?: 'var(
 $price_color    = sanitize_hex_color( $attributes['priceColor'] ?? '' ) ?: 'var(--wbe-color-accent, #667eea)';
 $atc_bg         = sanitize_hex_color( $attributes['atcBg'] ?? '' ) ?: 'var(--wbcom-button-bg, var(--wbe-color-accent, #667eea))';
 $atc_color      = sanitize_hex_color( $attributes['atcColor'] ?? '' ) ?: 'var(--wbcom-button-color, #ffffff)';
-$sale_color     = sanitize_hex_color( $attributes['saleBadgeColor'] ?? '#e74c3c' ) ?: '#e74c3c';
+// Unset: the danger colour darkened so the white label holds 4.5:1 (the old #e74c3c gave 3.82:1).
+$sale_color     = sanitize_hex_color( $attributes['saleBadgeColor'] ?? '' ) ?: 'color-mix(in srgb, var(--wbe-color-danger) 80%, black)';
 
 // Visibility classes.
 $visibility_classes = '';
@@ -139,16 +140,13 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	$visibility_classes,
 ) ) ) );
 
-$wrapper_attrs = get_block_wrapper_attributes( array(
-	'class' => $wrapper_class,
-) );
-
-// ── Token CSS ─────────────────────────────────────────────────────────────────
-$token_css = '';
+// ── Design tokens ─────────────────────────────────────────────────────────────
+// Set on the wrapper's style attribute instead of a printed style element. style.css switches the
+// column count to the tablet / mobile values at its breakpoints.
+$token_style = '';
 if ( $unique_id ) {
-	$token_css = sprintf(
-		'.wbe-block-%1$s { --wbe-pg-cols: %2$d; --wbe-pg-cols-tablet: %3$d; --wbe-pg-cols-mobile: %4$d; --wbe-pg-gap: %5$dpx; --wbe-pg-card-bg: %6$s; --wbe-pg-title-color: %7$s; --wbe-pg-price-color: %8$s; --wbe-pg-sale-color: %9$s; --wbe-pg-card-radius: %10$s; --wbe-pg-card-shadow: %11$s; --wbe-pg-image-ratio: %12$s; --wbe-pg-atc-bg: %13$s; --wbe-pg-atc-color: %14$s; }',
-		esc_attr( $unique_id ),
+	$token_style = sprintf(
+		'--wbe-pg-cols: %1$d; --wbe-pg-cols-tablet: %2$d; --wbe-pg-cols-mobile: %3$d; --wbe-pg-gap: %4$dpx; --wbe-pg-card-bg: %5$s; --wbe-pg-title-color: %6$s; --wbe-pg-price-color: %7$s; --wbe-pg-sale-color: %8$s; --wbe-pg-card-radius: %9$s; --wbe-pg-card-shadow: %10$s; --wbe-pg-image-ratio: %11$s; --wbe-pg-atc-bg: %12$s; --wbe-pg-atc-color: %13$s;',
 		$columns,
 		$cols_tablet,
 		$cols_mobile,
@@ -163,26 +161,15 @@ if ( $unique_id ) {
 		esc_attr( $atc_bg ),
 		esc_attr( $atc_color )
 	);
-
-	// Responsive column overrides scoped to this block instance.
-	$token_css .= sprintf(
-		'@media (max-width:1024px){ .wbe-block-%1$s { --wbe-pg-cols: %2$d; } }',
-		esc_attr( $unique_id ),
-		$cols_tablet
-	);
-	$token_css .= sprintf(
-		'@media (max-width:640px){ .wbe-block-%1$s { --wbe-pg-cols: %2$d; } }',
-		esc_attr( $unique_id ),
-		$cols_mobile
-	);
 }
+
+$wrapper_attrs = get_block_wrapper_attributes( array(
+	'class' => $wrapper_class,
+	'style' => $token_style,
+) );
 
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<?php if ( $token_css ) : ?>
-	<style><?php echo esc_html( $token_css ); ?></style>
-	<?php endif; ?>
-
 	<div class="wbe-product-grid__inner">
 		<?php
 		while ( $query->have_posts() ) :
@@ -209,7 +196,7 @@ if ( $unique_id ) {
 						<img
 							src="<?php echo esc_url( $thumb_url ); ?>"
 							alt=""
-							class="wbe-product-grid__image"
+							class="wbe-product-grid__image<?php echo $thumb_id ? '' : ' is-placeholder'; ?>"
 							loading="lazy"
 							decoding="async"
 						/>

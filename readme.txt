@@ -4,7 +4,7 @@ Donate link: https://wbcomdesigns.com/contact/
 Tags: elementor, gutenberg, buddypress, woocommerce, blocks
 Requires at least: 6.0
 Tested up to: 7.1
-Stable tag: 4.7.2
+Stable tag: 4.7.3
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -99,13 +99,51 @@ Yes. All blocks work in the Site Editor, post editor, and widget areas.
 
 Wbcom Essential connects to the Wbcom Designs update server (https://updates.wbcomdesigns.com, falling back to the store at https://wbcomdesigns.com) so your site can receive plugin updates.
 
-* When: in the background shortly after the plugin is activated. If the server cannot be reached it tries again hourly, at most 24 times; if it answers no, it stops and an admin notice explains why.
-* What is sent: the licence key, the product id and your site address (home URL). Nothing else, and no visitor or user data.
-* Update checks: WordPress asks the same server for new versions, as for any plugin update, and each downloaded update is checked against its release signature (for now a failed check is logged and the update still installs).
+* Licence activation: once, in the background shortly after the plugin is activated. If the server cannot be reached it tries again hourly, at most 24 times; if it answers no, it stops and an admin notice explains why. Sent: the licence key, the product id, your site address (home URL) and the environment type (production, staging or development).
+* Weekly licence check: while the plugin is active, WordPress cron checks the licence once a week. Sent: the licence key, product id, plugin version, site address and environment type.
+* Update checks: when WordPress looks for plugin updates it asks the same server for the latest version. Sent: the licence key, product id, plugin version, plugin slug, PHP version, WordPress version, site address and the environment type (production, staging or development).
+* Update signature: when an update is installed and the download has no signature header, the plugin fetches the release signature from https://wbcomdesigns.com/package-signatures/. For now a failed check is logged and the update still installs.
+* None of these requests sends visitor or user data or email addresses.
 * Why: the licence is used only to deliver updates. No feature is locked or limited by it, and the plugin works the same if the request fails.
 * Privacy policy: https://wbcomdesigns.com/privacy-policy/
 
 == Changelog ==
+
+= 4.7.3 - November 2026 =
+
+Blocks and widgets keep their own spacing and colours on every theme, read clearly in dark mode, work with a keyboard, and stop leaking styles into the page.
+
+* Improve  - On Reign 8.1.1 or later the Members Grid and Groups Grid widgets print Reign's own directory cards; older Reign keeps the bundled cards.
+* Improve  - Block Padding and Margin controls have Desktop, Tablet and Mobile tabs, and unlinked sides show two by two with labels.
+* Improve  - Checkout Recommendations and Checkout Social placeholders say when the block will show.
+* Fix      - A duplicated, copied or imported block gets its own styles, so editing one copy no longer changes another.
+* Fix      - Theme isolation reaches the dynamic blocks, so Reign and block themes no longer leak paragraph, list and link styles into them.
+* Fix      - Posts Ticker keeps its styles to itself, keeps the owner's padding inside the bar, and keeps post titles on phones when a post has no featured image.
+* Fix      - Shape widget draws its default arrow icon.
+* Fix      - Feature Grid, Pricing Table, Stats Counter, Product Grid, Category Grid, Portfolio Grid and carousels drop columns in narrow containers instead of crushing their cards.
+* Fix      - Post Carousel and Product Carousel show as many slides as fit, and carousels with too few slides stop repeating cards and hide their arrows.
+* Fix      - Long words and links wrap inside Hero, CTA, Feature Grid, Promo Banner, Stats Counter, Progress Bar, Timeline, FAQ, Flip Box and Portfolio Grid.
+* Fix      - Default badges, buttons, carousel arrows, sale prices and muted text reach AA contrast in light and dark mode, while colours owners picked stay as saved.
+* Fix      - Flip Box, Portfolio Grid filter and the Elementor Tabs widget work with a keyboard and screen readers, and carousel arrows and join buttons show a focus ring.
+* Fix      - FAQ Accordion blocks share one FAQPage schema per page.
+* Fix      - Blocks with nothing to show render nothing for visitors and tell the owner why, and Countdown Timer with no date prints nothing.
+* Fix      - Elementor widgets no longer publish placeholder copy or images: Add Banner, Dropdown Button, Slider, Team Carousel and Portfolio Grid show nothing to visitors until filled in, and Smart Menu with no menu prints nothing.
+* Fix      - Post Carousel, Product Grid and Product Carousel image placeholders sit on the theme's surface in dark mode instead of showing white tiles.
+* Fix      - WC Testimonial and Customer Review show one column on phones and two on tablets unless the owner sets a count.
+* Fix      - Groups Grid and Group Carousel join buttons follow the group type: Join Group, Request Membership, or none for hidden groups.
+* Fix      - Activity Feed photos and videos are capped at 360px tall, and Show Media Preview off hides them.
+* Fix      - EDD Order Success shows the right message for completed, pending and failed orders, and EDD account buttons are readable in dark mode.
+* Fix      - Sale, order, subscription and licence dates show in the site timezone.
+* Fix      - Posts Revolution, Posts Carousel and Product Tab no longer stop the page with a fatal error on an empty or text setting.
+* Fix      - The Header Bar no longer logs a BuddyPress deprecation notice on BuddyPress 12 or later.
+* Fix      - Product Tab and repeater widgets no longer run a query per item.
+* Fix      - Site Logo widget falls back to the Customizer logo, then the site title.
+* Dev      - reign_notification_area_output receives the real tablet visibility and, as a new last argument, the mobile visibility.
+* Dev      - Groups Grid widget fires reign_before_group_avatar_group_directory again.
+* Dev      - The update rebuilds Elementor's generated CSS once, so the new colour defaults reach pages built before the update.
+* Dev      - Admin screens print no inline styles or scripts.
+* Dev      - npm run dist and npm run release build through bin/build-release.sh, so every zip passes the release gates.
+* Dev      - Build tools move to @wordpress/scripts 37.
 
 = 4.7.2 - November 2026 =
 

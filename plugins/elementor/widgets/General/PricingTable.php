@@ -131,7 +131,8 @@ class PricingTable extends \Elementor\Widget_Base {
 			array(
 				'label'       => esc_html__( 'Title', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Enter your title', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'Plan name', 'wbcom-essential' ),
 				'label_block' => true,
 				'dynamic'     => array(
 					'active' => true,
@@ -144,7 +145,8 @@ class PricingTable extends \Elementor\Widget_Base {
 			array(
 				'label'       => esc_html__( 'Description', 'wbcom-essential' ),
 				'type'        => \Elementor\Controls_Manager::TEXTAREA,
-				'default'     => esc_html__( 'Enter your description', 'wbcom-essential' ),
+				'default'     => '',
+				'placeholder'     => esc_html__( 'Who this plan is for', 'wbcom-essential' ),
 				'label_block' => true,
 				'dynamic'     => array(
 					'active' => true,
@@ -380,16 +382,7 @@ class PricingTable extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'item_text' => esc_html__( 'List Item #1', 'wbcom-essential' ),
-						'item_icon' => $default_icon,
-					),
-					array(
-						'item_text' => esc_html__( 'List Item #2', 'wbcom-essential' ),
-						'item_icon' => $default_icon,
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ item_text }}}',
 			)
 		);
@@ -2082,6 +2075,11 @@ class PricingTable extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		if ( '' === trim( $settings['title'] . $settings['desc'] ) && empty( $settings['list'] ) ) {
+			wbcom_essential_elementor_empty_state( __( 'Add a plan name, description or features to show this pricing table.', 'wbcom-essential' ) );
+			return;
+		}
 		$target   = $settings['btn_link']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['btn_link']['nofollow'] ? ' rel="nofollow"' : '';
 		?>    

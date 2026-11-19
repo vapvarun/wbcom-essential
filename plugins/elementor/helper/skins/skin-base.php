@@ -610,8 +610,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'name'      => 'meta_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'global' => [
-			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
-		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 				'selector'  => '{{WRAPPER}} .elementor-post__meta-data',
 				'condition' => array(
 					$this->get_control_id( 'meta_data!' ) => array(),
@@ -670,8 +670,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'name'      => 'excerpt_typography',
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'global' => [
-			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
-		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector'  => '{{WRAPPER}} .elementor-post__excerpt',
 				'condition' => array(
 					$this->get_control_id( 'show_excerpt' ) => 'yes',
@@ -734,8 +734,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label'     => __( 'Typography', 'wbcom-essential' ),
 				'selector'  => '{{WRAPPER}} .elementor-post__read-more',
 				'global' => [
-			'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
-		],
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 				'condition' => array(
 					$this->get_control_id( 'show_read_more' ) => 'yes',
 				),

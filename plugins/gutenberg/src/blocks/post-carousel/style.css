@@ -14,19 +14,37 @@
 	--wbe-pc-card-radius: 8px;
 	--wbe-pc-card-shadow: none;
 	--wbe-pc-image-ratio: 16 / 9;
-	--wbe-pc-grid-cols: 3;
+	--wbe-pc-grid-cols: var( --wbe-pc-cols, 3 );
 	--wbe-pc-card-hover-shadow: 0 8px 32px rgba( 0, 0, 0, 0.12 );
 	--wbe-pc-badge-bg: color-mix( in srgb, var( --wbe-pc-accent ) 12%, transparent );
-	--wbe-pc-badge-color: var( --wbe-pc-accent );
+	/* Default badge text follows the theme accent, darkened or lightened for contrast; render.php writes the
+	   owner's accent here when one is picked. */
+	--wbe-pc-badge-color: var( --wbe-color-accent-text );
 
 	width: 100%;
 	position: relative;
 }
 
 /* ── Swiper container ─────────────────────────────────────────────────────── */
+/* The arrows sit in the stage, beside the cards, not on top of them. */
+.wbe-post-carousel__stage {
+	position: relative;
+}
+
 .wbe-post-carousel .swiper {
 	overflow: hidden;
 	padding-bottom: 52px;
+}
+
+/* Every card in a row as tall as the tallest one. */
+.wbe-post-carousel .swiper-slide {
+	height: auto;
+}
+
+@media ( min-width: 1025px ) {
+	.wbe-post-carousel--carousel .swiper {
+		margin-inline: 52px;
+	}
 }
 
 .wbe-post-carousel--slider .swiper {
@@ -34,14 +52,29 @@
 }
 
 /* ── Grid layout ─────────────────────────────────────────────────────────── */
+/*
+ * The owner's column count for the screen size is the maximum. In a narrow container (a Columns block, a
+ * sidebar) columns drop only when a card would fall under 130px. Phones keep one column (the mobile count is 1).
+ */
 .wbe-post-carousel__grid {
+	--wbe-pc-grid-gap: 28px;
 	display: grid;
-	grid-template-columns: repeat( var( --wbe-pc-grid-cols ), 1fr );
-	gap: 28px;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( 130px, 100% ),
+				calc( ( 100% - ( var( --wbe-pc-grid-cols ) - 1 ) * var( --wbe-pc-grid-gap ) ) / var( --wbe-pc-grid-cols ) )
+			),
+			1fr
+		)
+	);
+	gap: var( --wbe-pc-grid-gap );
 }
 
 /* ── Card ─────────────────────────────────────────────────────────────────── */
 .wbe-post-carousel__card {
+	box-sizing: border-box;
 	background: var( --wbe-pc-card-bg );
 	border-radius: var( --wbe-pc-card-radius );
 	box-shadow: var( --wbe-pc-card-shadow );
@@ -79,6 +112,11 @@
 
 .wbe-post-carousel__image--placeholder {
 	background: #f0f0f0;
+}
+
+/* Dark mode: the theme's secondary surface instead of a light tile. Light mode is unchanged. */
+html[data-bx-mode="dark"] .wbe-post-carousel__image--placeholder {
+	background: var(--wbe-color-surface-alt);
 }
 
 /* ── Card body ────────────────────────────────────────────────────────────── */
@@ -200,7 +238,7 @@
 .wbe-post-carousel .swiper-button-prev:hover,
 .wbe-post-carousel .swiper-button-next:hover {
 	background-color: var( --wbe-pc-accent );
-	color: #ffffff;
+	color: var( --wbe-pc-card-bg ); /* white on the light dark-mode accent was unreadable */
 }
 
 .wbe-post-carousel .swiper-button-prev {
@@ -217,7 +255,7 @@
 .wbe-post-carousel__error {
 	padding: 32px;
 	text-align: center;
-	color: #6c757d;
+	color: var(--wbe-text-muted, #6c757d);
 	border: 2px dashed #e9ecef;
 	border-radius: 8px;
 }
@@ -235,7 +273,7 @@
 	}
 
 	.wbe-post-carousel__grid {
-		gap: 20px;
+		--wbe-pc-grid-gap: 20px;
 	}
 
 	.wbe-post-carousel .swiper-button-prev,
@@ -251,7 +289,7 @@
 	}
 
 	.wbe-post-carousel__grid {
-		gap: 16px;
+		--wbe-pc-grid-gap: 16px;
 	}
 
 	.wbe-post-carousel__body {

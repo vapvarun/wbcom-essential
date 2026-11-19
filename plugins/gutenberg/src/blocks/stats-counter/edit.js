@@ -65,12 +65,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	const tokenPropsCss = [
 		`.wbe-block-${ uniqueId } {`,
-		`  --wbe-sc-number-color: ${ numberColor };`,
-		`  --wbe-sc-label-color: ${ labelColor };`,
-		`  --wbe-sc-sep-color: ${ separatorColor };`,
+		numberColor && `  --wbe-sc-number-color: ${ numberColor };`,
+		labelColor && `  --wbe-sc-label-color: ${ labelColor };`,
+		separatorColor && `  --wbe-sc-sep-color: ${ separatorColor };`,
 		`  --wbe-sc-columns: ${ columns };`,
 		`}`,
-	].join( '\n' );
+	].filter( Boolean ).join( '\n' );
 
 	const addStat = () => {
 		setAttributes( {

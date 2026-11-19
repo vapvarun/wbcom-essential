@@ -4,7 +4,17 @@
 
 /* Editor always shows the cards at desktop layout for preview */
 .wp-block-wbcom-essential-pricing-cards .wbe-pricing-cards__grid {
-	grid-template-columns: repeat(var(--wbe-pricing-cols, 3), 1fr) !important;
+	/* Desktop count, with the same 175px floor as the page so a grid inside Columns matches. */
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(
+			max(
+				min( 175px, 100% ),
+				calc( ( 100% - ( var( --wbe-pricing-cols, 3 ) - 1 ) * var( --wbe-pt-gap ) ) / var( --wbe-pricing-cols, 3 ) )
+			),
+			1fr
+		)
+	) !important;
 }
 
 /* Featured card scale is reduced in editor to fit the block panel */

@@ -6,13 +6,13 @@
 
 /* ---- Design tokens ---- */
 .wbe-timeline {
-	--wbe-tl-line-color: #e9ecef;
-	--wbe-tl-dot-color: #667eea;
+	--wbe-tl-line-color: var( --wbe-border, #e9ecef );
+	--wbe-tl-dot-color: var( --wbcom-button-bg, var( --wbe-color-accent ) );
 	--wbe-tl-dot-size: 40px;
-	--wbe-tl-card-bg: #ffffff;
-	--wbe-tl-date-color: #667eea;
-	--wbe-tl-title-color: #1e1e2e;
-	--wbe-tl-desc-color: #6c757d;
+	--wbe-tl-card-bg: var( --wbe-surface, #ffffff );
+	--wbe-tl-date-color: var( --wbe-color-accent );
+	--wbe-tl-title-color: var( --wbcom-heading-color, var( --wbe-text, #1e1e2e ) );
+	--wbe-tl-desc-color: var( --wbe-text-muted, #6c757d );
 	--wbe-tl-card-radius: 8px;
 	--wbe-tl-card-shadow: none;
 	--wbe-tl-gap: 48px;
@@ -87,7 +87,7 @@
 .wbe-timeline__dot-icon {
 	font-size: calc( var( --wbe-tl-dot-size ) * 0.45 );
 	line-height: 1;
-	color: #ffffff;
+	color: var( --wbe-color-white, #ffffff );
 }
 
 /* ---- Card ---- */
@@ -155,6 +155,8 @@
 	letter-spacing: 0.08em;
 	color: var( --wbe-tl-date-color );
 	margin-bottom: 6px;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* ---- Title ---- */
@@ -164,6 +166,7 @@
 	font-weight: 700;
 	color: var( --wbe-tl-title-color );
 	line-height: 1.4;
+	overflow-wrap: anywhere;
 }
 
 /* ---- Description ---- */
@@ -172,6 +175,7 @@
 	font-size: 0.9rem;
 	line-height: 1.65;
 	color: var( --wbe-tl-desc-color );
+	overflow-wrap: anywhere;
 }
 
 /* ---- Visibility utilities ---- */
@@ -223,3 +227,10 @@
 	}
 }
 
+/* A text or number icon is black on a light dot colour (Reign and BuddyX dark mode, a pale owner colour) and
+   white on a dark one: the dot colour's own lightness picks it. Browsers without relative colours keep white. */
+@supports ( color: oklch( from red clamp( 0, ( 0.6 - l ) * 999, 1 ) 0 0 ) ) {
+	.wbe-timeline__dot-icon {
+		color: oklch( from var( --wbe-tl-dot-color ) clamp( 0, ( 0.6 - l ) * 999, 1 ) 0 0 );
+	}
+}

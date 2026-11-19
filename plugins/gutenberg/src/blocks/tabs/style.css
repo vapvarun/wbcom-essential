@@ -6,10 +6,10 @@
 
 /* Design tokens */
 .wbe-tabs {
-	--wbe-tabs-active-color: #667eea;
-	--wbe-tabs-inactive-color: #6c757d;
-	--wbe-tabs-content-bg: #ffffff;
-	--wbe-tabs-border-color: #e9ecef;
+	--wbe-tabs-active-color: var( --wbe-color-accent );
+	--wbe-tabs-inactive-color: var( --wbe-text-muted, #6c757d );
+	--wbe-tabs-content-bg: var( --wbe-surface, #ffffff );
+	--wbe-tabs-border-color: var( --wbe-border, #e9ecef );
 	--wbe-tabs-transition: 200ms ease;
 	--wbe-tabs-tab-padding: 12px 20px;
 	--wbe-tabs-content-padding: 24px;
@@ -110,7 +110,7 @@
 	background: transparent;
 	gap: 2px;
 	padding: 6px 6px 0;
-	background: #f8f9fa;
+	background: var( --wbe-surface-alt, #f8f9fa );
 }
 
 .wbe-tabs--boxed .wbe-tabs__tab {

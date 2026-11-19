@@ -62,11 +62,11 @@
     },
     "textColor": {
       "type": "string",
-      "default": "#1e1e2e"
+      "default": ""
     },
     "rotatingColor": {
       "type": "string",
-      "default": "#667eea"
+      "default": ""
     },
     "fontSize": {
       "type": "number",
@@ -210,5 +210,16 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "viewScript": "file:./view.js",
+  "wbeLegacyColors": {
+    "textColor": [
+      "--wbe-tr-text-color",
+      "#1e1e2e"
+    ],
+    "rotatingColor": [
+      "--wbe-tr-rotating-color",
+      "#667eea",
+      "keep"
+    ]
+  }
 }

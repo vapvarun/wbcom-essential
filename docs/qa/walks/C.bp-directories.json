@@ -1,0 +1,40 @@
+{
+  "journey": "C.bp-directories",
+  "free": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20T01:30:00Z",
+  "env": {
+    "base": "http://localhost:10048",
+    "essential": "4.7.3 (936b59f6, symlinked)",
+    "reign": "8.1.1 (5b6a55613)",
+    "elementor": "3.29.1 via qa_add=esse",
+    "bp": "14.5.4",
+    "edd": "3.7.2 via qa_add=edd",
+    "wp": "7.1.4",
+    "php": "8.4 (Local)",
+    "viewports": "1440 + 390 (768/1024 where noted)",
+    "walker": "QA final pre-zip walk (verification only)"
+  },
+  "checks": {
+    "bp.members-grid": {
+      "result": "pass",
+      "evidence": "Guest, page 1754 at 1440: Members Grid 12 cards, each with avatar, name and 'x ago' last active, 4 columns (lefts 190/399/607/816); Members Carousel 20 slides. 390 was not re-measured this walk (the all-blocks page at 390 had no overflow)."
+    },
+    "bp.groups-hidden": {
+      "result": "pass",
+      "evidence": "bob (id 3, not in group 5): Groups Grid lists QA-RFT Group Cards, Test Group, Design Critique Circle, Chapter Leads; hidden group Moderators never listed. (Note: autologin only works for a logged-out context, so an earlier read was alice.)"
+    },
+    "bp.join-buttons": {
+      "result": "pass",
+      "evidence": "bob: public groups 'Join Group', own group 'Joined', private 'Request Membership', hidden none."
+    },
+    "bp.join-state": {
+      "result": "pass",
+      "evidence": "bob clicked Request Membership on Chapter Leads: button became 'Request Sent', still 'Request Sent' after reload; DB invitation row confirmed then removed with groups_delete_membership_request. Pre-existing request row for user 316 left as found."
+    },
+    "bp.header-bar": {
+      "result": "pass",
+      "evidence": "bob, page 1758: user-link /members/bob/, messages /members/bob/messages/, notifications and friends under /members/bob/. 10 bp_core_get_user_domain deprecations still appear per load; backtrace via a temporary cookie-gated mu-plugin (removed) shows the caller is bbPress includes/extend/buddypress/members.php:259, not Essential or Reign (both guard on bp_members_get_user_url)."
+    }
+  },
+  "proposed_checks": []
+}

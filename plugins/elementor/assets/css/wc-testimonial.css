@@ -41,7 +41,7 @@
 }
 
 .wb-single-testimonial-wrap .wb-client-content p {
-    color: #6d6d6d;
+    color: var(--wbcom-color-contrast-2, #5c6472);
     font-size: 16px;
     line-height: 30px;
     margin: 0;

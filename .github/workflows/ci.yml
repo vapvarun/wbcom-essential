@@ -129,9 +129,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # @wordpress/scripts 37 needs Node ^22.22.2.
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       # npm install, not npm ci, and deliberately. playwright (transitive via
       # @wordpress/scripts) carries a nested fsevents that npm resolves
@@ -143,12 +144,10 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      # Blocking at CRITICAL only, on purpose. The tree still carries high and
-      # moderate advisories that need semver-major upgrades
-      # (@wordpress/scripts 30 -> 34, grunt-contrib-compress), and those change
-      # the block build, so they get their own PR with a build check rather
-      # than being rushed to make a gate green. Criticals were cleared, so this
-      # blocks a regression back to critical starting from a clean line.
+      # Blocking at CRITICAL only, on purpose. After the @wordpress/scripts 37
+      # upgrade the only advisory left is picomatch ReDoS (GHSA-fc5q-39xc-vjpf),
+      # which has no patched release yet; every high in the report is a package
+      # that depends on it. Raise the level once picomatch ships a fix.
       #
       # Everything here is a devDependency: .distignore keeps node_modules out
       # of the release zip, so the exposure is developer machines and CI, not

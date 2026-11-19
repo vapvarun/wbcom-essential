@@ -17,12 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'buddypress' ) ) {
-	echo '<p class="wbe-block-notice">' . esc_html__( 'BuddyPress is required for this block.', 'wbcom-essential' ) . '</p>';
-	return;
-}
-
-if ( ! bp_is_active( 'groups' ) ) {
+if ( wbcom_essential_bp_block_unavailable( 'groups' ) ) {
 	return;
 }
 
@@ -46,12 +41,13 @@ $wrapper = get_block_wrapper_attributes(
 	array(
 		'class' => trim( 'wbe-block-' . esc_attr( $unique_id ) . ' wbe-groups-grid ' . $vis_classes ),
 		'style' => sprintf(
-			'--wbe-gg-cols: %d; --wbe-gg-cols-tab: %d; --wbe-gg-cols-mob: %d; --wbe-gg-gap: %dpx; --wbe-gg-card-radius: %dpx;',
+			'--wbe-gg-cols: %d; --wbe-gg-cols-tab: %d; --wbe-gg-cols-mob: %d; --wbe-gg-gap: %dpx; --wbe-gg-card-radius: %dpx; --wbe-gg-avatar-size: %dpx;',
 			$cols,
 			$cols_tab,
 			$cols_mob,
 			$gap,
-			$card_radius
+			$card_radius,
+			$avatar_size
 		),
 	)
 );
@@ -177,15 +173,17 @@ $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
 				'descColor' => $desc_color,
 			),
 			'i18n'             => array(
-				'loading'     => __( 'Loading groups...', 'wbcom-essential' ),
-				'empty'       => __( 'No groups found.', 'wbcom-essential' ),
-				'member'      => __( 'Member', 'wbcom-essential' ),
-				'members'     => __( 'Members', 'wbcom-essential' ),
+				'loading'           => __( 'Loading groups...', 'wbcom-essential' ),
+				'empty'             => __( 'No groups found.', 'wbcom-essential' ),
+				'member'            => __( 'Member', 'wbcom-essential' ),
+				'members'           => __( 'Members', 'wbcom-essential' ),
 				/* translators: %s: time since the group was last active, e.g. "2 hours ago". */
-				'activeAgo'   => __( 'Active %s', 'wbcom-essential' ),
-				'joinGroup'   => __( 'Join Group', 'wbcom-essential' ),
-				'joined'      => __( 'Joined', 'wbcom-essential' ),
-				'pending'     => __( 'Pending', 'wbcom-essential' ),
+				'activeAgo'         => __( 'Active %s', 'wbcom-essential' ),
+				'joinGroup'         => __( 'Join Group', 'wbcom-essential' ),
+				'joined'            => __( 'Joined', 'wbcom-essential' ),
+				'requestMembership' => __( 'Request Membership', 'wbcom-essential' ),
+				'requestSent'       => __( 'Request Sent', 'wbcom-essential' ),
+				'joinError'         => __( 'Could not send your request. Please try again.', 'wbcom-essential' ),
 			),
 		);
 		?>

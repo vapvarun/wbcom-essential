@@ -80,6 +80,8 @@
 
 .wbe-faq-accordion__question-text {
 	flex: 1;
+	/* Long words, URLs and compounds wrap inside the block instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 /* ---- Icon ---- */
@@ -101,6 +103,7 @@
 	overflow: hidden;
 	max-height: 0;
 	/* Transition is applied dynamically by view.js */
+	overflow-wrap: anywhere;
 }
 
 /* When hidden attr is removed, allow natural height */

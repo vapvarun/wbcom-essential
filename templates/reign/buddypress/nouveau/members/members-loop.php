@@ -2,6 +2,9 @@
 /**
  * Display BuddyPress members.
  *
+ * Fallback only: Reign 8.1.1+ renders the widget through reign_bp_card_grid().
+ * This template serves Reign older than 8.1.1 and BuddyBoss.
+ *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
@@ -78,11 +81,6 @@ bp_nouveau_before_loop(); ?>
 								<?php bp_nouveau_member_meta(); ?>
 							</p><!-- #item-meta -->
 						<?php endif; ?>
-						<?php
-						if ( 'wbtm-member-directory-type-2' === $member_directory_type || 'wbtm-member-directory-type-3' === $member_directory_type ) {
-							// $this->wbtm_get_members_directory_meta();
-						}
-						?>
 					</div>
 						<?php
 						if ( false && bp_get_member_latest_update() && ! bp_nouveau_loop_is_grid() ) :
