@@ -489,6 +489,12 @@
 	text-align: left;
 }
 
+// The field rows set their own gap: theme paragraph margins no longer reach
+// inside the block (theme-isolation.css).
+.wbcom-edd-account__login-card :is(.login-username, .login-password) {
+	margin: 0 0 var( --wbe-space-md );
+}
+
 .wbcom-edd-account__login-card .login-username label,
 .wbcom-edd-account__login-card .login-password label {
 	display: block;

@@ -1,12 +1,12 @@
 /* Block reset — prevent theme interference. The wrapper's outer margin is left to the theme, as for core
    blocks: zeroing it made stacked blocks touch. */
-[class^="wp-block-wbcom-essential"] {
+[class*="wp-block-wbcom-essential-"] {
 	box-sizing: border-box;
 }
 
-[class^="wp-block-wbcom-essential"] *,
-[class^="wp-block-wbcom-essential"] *::before,
-[class^="wp-block-wbcom-essential"] *::after {
+[class*="wp-block-wbcom-essential-"] *,
+[class*="wp-block-wbcom-essential-"] *::before,
+[class*="wp-block-wbcom-essential-"] *::after {
 	box-sizing: inherit;
 }
 
@@ -46,9 +46,9 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-	[class^="wp-block-wbcom-essential"] *,
-	[class^="wp-block-wbcom-essential"] *::before,
-	[class^="wp-block-wbcom-essential"] *::after {
+	[class*="wp-block-wbcom-essential-"] *,
+	[class*="wp-block-wbcom-essential-"] *::before,
+	[class*="wp-block-wbcom-essential-"] *::after {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
