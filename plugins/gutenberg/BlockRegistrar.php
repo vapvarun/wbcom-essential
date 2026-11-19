@@ -64,6 +64,28 @@ final class BlockRegistrar {
 		add_filter( 'render_block_wbcom-essential/testimonial-carousel', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block_wbcom-essential/hero', array( $this, 'translate_saved_markup' ), 10, 2 );
 		add_filter( 'render_block', array( $this, 'drop_zero_margin' ), 10, 2 );
+		add_filter( 'render_block', array( $this, 'scope_blocks_without_id' ), 10, 2 );
+	}
+
+	/**
+	 * Give a block saved without a uniqueId its own scope on the page.
+	 *
+	 * The editor assigns every block a uniqueId, but content made outside it (REST, WP-CLI, import and AI
+	 * tools, pasted markup) saves an empty one: the block prints the bare class "wbe-block-" and a
+	 * ".wbe-block- { ... }" rule, so every such block on the page shares one selector and the last one's
+	 * settings win. Changing save() would fail validation on existing content, so the bare token is given a
+	 * per-render id here instead. Children render first, so a parent only touches its own bare tokens.
+	 *
+	 * @param string $block_content Rendered block HTML.
+	 * @param array  $block         Parsed block.
+	 * @return string
+	 */
+	public function scope_blocks_without_id( $block_content, $block ) {
+		if ( empty( $block['blockName'] ) || 0 !== strpos( $block['blockName'], 'wbcom-essential/' ) || ! empty( $block['attrs']['uniqueId'] ) || false === strpos( $block_content, 'wbe-block-' ) ) {
+			return $block_content;
+		}
+		// "wbe-block-" not followed by an id character is the empty scope; "wbe-block-notice" and the like are left alone.
+		return (string) preg_replace( '/wbe-block-(?![A-Za-z0-9_-])/', 'wbe-block-' . wp_unique_id( 'auto-' ), $block_content );
 	}
 
 	/**
