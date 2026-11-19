@@ -221,6 +221,7 @@ module.exports = function (grunt) {
 	// The POT file is built by WP-CLI (`npm run makepot`); grunt-wp-i18n's makepot
 	// misses the JS and block.json strings.
 	grunt.registerTask( 'i18n', ['checktextdomain'] );
-	grunt.registerTask( 'dist', ['clean:dist', 'copy:dist', 'compress:dist', 'clean:post'] );
-	grunt.registerTask( 'release', ['dist'] );
+	// Ungated packager. Called only by bin/build-release.sh after its gates pass;
+	// build a release with `npm run dist` / `npm run release`, never this task directly.
+	grunt.registerTask( 'internal-package', ['clean:dist', 'copy:dist', 'compress:dist', 'clean:post'] );
 };

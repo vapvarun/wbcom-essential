@@ -112,6 +112,7 @@ Wbcom Essential connects to the Wbcom Designs update server (https://updates.wbc
 = 4.7.3 - November 2026 =
 
 * Improve  - On Reign 8.1.1+ the Members Grid and Groups Grid widgets use Reign's own member and group cards.
+* Dev      - npm run dist and npm run release now build through bin/build-release.sh, so every zip passes the release gates.
 
 = 4.7.2 - November 2026 =
 

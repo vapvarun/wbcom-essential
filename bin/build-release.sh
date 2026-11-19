@@ -12,7 +12,7 @@
 #   [25] docs truth: wbcom-documentation lint on docs/website
 #   [30] browser smoke report docs/qa/.last-smoke-pass.json exists, is for this
 #        version, and lists no failures (written by the wp-plugin-smoke skill)
-#   [40] packaging: blocks build + grunt dist (the one packager; it owns the
+#   [40] packaging: blocks build + grunt internal-package (the one packager; it owns the
 #        file exclusion list, see gruntfile.js)
 #   [50] the zip holds no dev folders or files, and every PHP file in it lints
 #
@@ -99,7 +99,7 @@ fi
 echo "==> package"
 [ -d node_modules ] || npm ci --silent
 npm run build:blocks || { echo "FAIL: block build failed." >&2; exit 40; }
-npx grunt dist || { echo "FAIL: grunt dist failed." >&2; exit 40; }
+npx grunt internal-package || { echo "FAIL: grunt internal-package failed." >&2; exit 40; }
 [ -f "$ZIP" ] || { echo "FAIL: $ZIP was not produced." >&2; exit 40; }
 
 # [50] zip contents.
