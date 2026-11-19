@@ -94,16 +94,12 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	$show_arrows ? 'has-arrows' : '',
 ) ) ) );
 
-$wrapper_attrs = get_block_wrapper_attributes( array(
-	'class' => $wrapper_class,
-) );
-
-// ── Token CSS ─────────────────────────────────────────────────────────────────
-$token_css = '';
+// ── Design tokens ─────────────────────────────────────────────────────────────
+// Set on the wrapper's style attribute instead of a printed style element, so the editor preview gets them too.
+$token_style = '';
 if ( $unique_id ) {
-	$token_css = sprintf(
-		'.wbe-block-%1$s { --wbe-cr-quote-bg: %2$s; --wbe-cr-quote-color: %3$s; --wbe-cr-name-color: %4$s; --wbe-cr-rating-color: %5$s; --wbe-cr-card-radius: %6$s; --wbe-cr-card-shadow: %7$s; }',
-		esc_attr( $unique_id ),
+	$token_style = sprintf(
+		'--wbe-cr-quote-bg: %1$s; --wbe-cr-quote-color: %2$s; --wbe-cr-name-color: %3$s; --wbe-cr-rating-color: %4$s; --wbe-cr-card-radius: %5$s; --wbe-cr-card-shadow: %6$s;',
 		esc_attr( $quote_bg ),
 		esc_attr( $quote_color ),
 		esc_attr( $name_color ),
@@ -112,6 +108,11 @@ if ( $unique_id ) {
 		esc_attr( $box_shadow_val )
 	);
 }
+
+$wrapper_attrs = get_block_wrapper_attributes( array(
+	'class' => $wrapper_class,
+	'style' => $token_style,
+) );
 
 // ── Swiper options ────────────────────────────────────────────────────────────
 $swiper_options = array(
@@ -127,9 +128,6 @@ $swiper_options = array(
 
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<?php if ( $token_css ) : ?>
-	<style><?php echo esc_html( $token_css ); ?></style>
-	<?php endif; ?>
 
 	<div
 		class="swiper wbe-customer-reviews__swiper"

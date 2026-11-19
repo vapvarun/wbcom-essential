@@ -38,6 +38,11 @@
 	line-height:   1.4;
 }
 
+/* An owner-picked text colour sets the date at 55% of that colour, as it always looked. */
+.wbe-posts-ticker--text-picked {
+	--wbe-tk-date-color: color-mix( in srgb, var( --wbe-tk-text ) 55%, transparent );
+}
+
 /* ── Label (sticky left) ─────────────────────────────────────────────────── */
 .wbe-posts-ticker__label {
 	flex-shrink:     0;

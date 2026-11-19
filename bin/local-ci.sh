@@ -31,10 +31,10 @@ echo "header=$HEADER_V const=$CONST_V readme=$README_V"
 if [ "$HEADER_V" = "$CONST_V" ] && [ "$HEADER_V" = "$README_V" ]; then echo "ok"; else echo "FAIL: version mismatch"; FAIL=1; fi
 
 section "F1/F2 - no inline <style>/<script> in PHP"
-# Same scope as the release gate (gate-check.sh F1/F2): admin and shared PHP. Block
-# render.php files print scoped token CSS on the front end and are tracked separately.
-HITS=$(grep -rn -E '<style|<script' --include='*.php' includes admin templates 2>/dev/null \
-	| grep -vE ':[[:space:]]*(//|#|\*|/\*)' | grep -viE 'email|mail-template' || true)
+# Admin and shared PHP, plus block render.php files: a block's per-instance tokens go on
+# its wrapper's style attribute (get_block_wrapper_attributes), never a printed <style>.
+HITS=$(grep -rn -E '<style|<script' --include='*.php' includes admin templates plugins/gutenberg/src/blocks 2>/dev/null \
+	| grep -vE ':[[:space:]]*(//|#|\*|/\*)' | grep -viE 'email|mail-template|application/json' || true)
 if [ -z "$HITS" ]; then echo "ok"; else echo "FAIL: use wp_enqueue_* / wp_add_inline_*:"; echo "$HITS"; FAIL=1; fi
 
 section "B1 - blocks build"

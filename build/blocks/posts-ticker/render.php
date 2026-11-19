@@ -117,22 +117,12 @@ wp_reset_postdata();
 $item_count    = count( $ticker_posts );
 $anim_duration = round( ( $item_count * 250 ) / $speed, 2 );
 
-// ── Scoped token CSS ──────────────────────────────────────────────────────────
-$token_css = '';
+// ── Design tokens ─────────────────────────────────────────────────────────────
+// Set on the wrapper's style attribute instead of a printed style element, so the editor preview gets them too.
+$token_style = '';
 if ( $unique_id ) {
-	$token_css = sprintf(
-		'.wbe-block-%1$s {
-			--wbe-tk-label-bg:    %2$s;
-			--wbe-tk-label-color: %3$s;
-			--wbe-tk-bg:          %4$s;
-			--wbe-tk-text:        %5$s;
-			--wbe-tk-link:        %6$s;
-			--wbe-tk-height:      %7$dpx;
-			--wbe-tk-duration:    %8$ss;
-			--wbe-tk-shadow:      %9$s;
-			--wbe-tk-radius:      %10$s;
-		}',
-		esc_attr( $unique_id ),
+	$token_style = sprintf(
+		'--wbe-tk-label-bg: %1$s; --wbe-tk-label-color: %2$s; --wbe-tk-bg: %3$s; --wbe-tk-text: %4$s; --wbe-tk-link: %5$s; --wbe-tk-height: %6$dpx; --wbe-tk-duration: %7$ss; --wbe-tk-shadow: %8$s; --wbe-tk-radius: %9$s;',
 		esc_attr( $label_bg ),
 		esc_attr( $label_color ),
 		esc_attr( $ticker_bg ),
@@ -144,12 +134,10 @@ if ( $unique_id ) {
 		esc_attr( $radius_val )
 	);
 	// Owner-picked colours keep the exact look they had: the link colour on the category chip, the text
-	// colour at 55% on the date.
+	// colour at 55% on the date (style.css, .wbe-posts-ticker--text-picked; core strips color-mix() from
+	// a style attribute).
 	if ( sanitize_hex_color( $attributes['linkColor'] ?? '' ) ) {
-		$token_css .= sprintf( '.wbe-block-%1$s { --wbe-tk-cat-color: %2$s; }', esc_attr( $unique_id ), esc_attr( $link_color ) );
-	}
-	if ( sanitize_hex_color( $attributes['textColor'] ?? '' ) ) {
-		$token_css .= sprintf( '.wbe-block-%1$s { --wbe-tk-date-color: color-mix( in srgb, %2$s 55%%, transparent ); }', esc_attr( $unique_id ), esc_attr( $text_color ) );
+		$token_style .= ' --wbe-tk-cat-color: ' . esc_attr( $link_color ) . ';';
 	}
 }
 
@@ -157,6 +145,7 @@ if ( $unique_id ) {
 $wrapper_class = trim( implode( ' ', array_filter( array(
 	'wbe-posts-ticker',
 	'wbe-posts-ticker--dir-' . $direction,
+	$unique_id && sanitize_hex_color( $attributes['textColor'] ?? '' ) ? 'wbe-posts-ticker--text-picked' : '',
 	$pause_on_hover ? 'wbe-posts-ticker--pause-hover' : '',
 	$unique_id ? 'wbe-block-' . $unique_id : '',
 	$vis_classes,
@@ -164,6 +153,7 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 
 $wrapper_attrs = get_block_wrapper_attributes( array(
 	'class'            => $wrapper_class,
+	'style'            => $token_style,
 	'role'             => 'region',
 	'aria-label'       => esc_attr( $label ),
 	'data-pause-hover' => $pause_on_hover ? 'true' : 'false',
@@ -223,10 +213,6 @@ function wbe_ticker_item( $post_data, $show_date, $show_category, $sep_char ) {
 endif;
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<?php if ( $token_css ) : ?>
-	<style><?php echo esc_html( $token_css ); ?></style>
-	<?php endif; ?>
-
 	<?php if ( $label ) : ?>
 	<div class="wbe-posts-ticker__label" aria-hidden="true">
 		<?php echo esc_html( $label ); ?>

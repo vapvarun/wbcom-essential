@@ -139,16 +139,12 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	$visibility_classes,
 ) ) ) );
 
-$wrapper_attrs = get_block_wrapper_attributes( array(
-	'class' => $wrapper_class,
-) );
-
-// ── Token CSS ─────────────────────────────────────────────────────────────────
-$token_css = '';
+// ── Design tokens ─────────────────────────────────────────────────────────────
+// Set on the wrapper's style attribute instead of a printed style element, so the editor preview gets them too.
+$token_style = '';
 if ( $unique_id ) {
-	$token_css = sprintf(
-		'.wbe-block-%1$s { --wbe-pcar-card-bg: %2$s; --wbe-pcar-title-color: %3$s; --wbe-pcar-price-color: %4$s; --wbe-pcar-card-radius: %5$s; --wbe-pcar-card-shadow: %6$s; --wbe-pcar-atc-bg: %7$s; --wbe-pcar-atc-color: %8$s; }',
-		esc_attr( $unique_id ),
+	$token_style = sprintf(
+		'--wbe-pcar-card-bg: %1$s; --wbe-pcar-title-color: %2$s; --wbe-pcar-price-color: %3$s; --wbe-pcar-card-radius: %4$s; --wbe-pcar-card-shadow: %5$s; --wbe-pcar-atc-bg: %6$s; --wbe-pcar-atc-color: %7$s;',
 		esc_attr( $card_bg ),
 		esc_attr( $title_color ),
 		esc_attr( $price_color ),
@@ -158,6 +154,11 @@ if ( $unique_id ) {
 		esc_attr( $atc_color )
 	);
 }
+
+$wrapper_attrs = get_block_wrapper_attributes( array(
+	'class' => $wrapper_class,
+	'style' => $token_style,
+) );
 
 // ── Swiper options data attribute ─────────────────────────────────────────────
 $swiper_options = array(
@@ -174,10 +175,6 @@ $swiper_options = array(
 
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<?php if ( $token_css ) : ?>
-	<style><?php echo esc_html( $token_css ); ?></style>
-	<?php endif; ?>
-
 	<div
 		class="swiper wbe-product-carousel__swiper"
 		data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>"

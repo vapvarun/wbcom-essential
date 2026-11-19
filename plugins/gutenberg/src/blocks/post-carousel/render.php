@@ -109,17 +109,12 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	$visibility_classes,
 ) ) ) );
 
-$wrapper_attrs = get_block_wrapper_attributes( array(
-	'class' => $wrapper_class,
-	'style' => 'grid' === $display_mode ? '--wbe-pc-cols: ' . $grid_cols . ';' : '',
-) );
-
-// ── Token CSS ────────────────────────────────────────────────────────────────
-$token_css = '';
+// ── Design tokens ────────────────────────────────────────────────────────────
+// Set on the wrapper's style attribute instead of a printed style element, so the editor preview gets them too.
+$token_style = 'grid' === $display_mode ? '--wbe-pc-cols: ' . $grid_cols . ';' : '';
 if ( $unique_id ) {
-	$token_css = sprintf(
-		'.wbe-block-%1$s { --wbe-pc-card-bg: %2$s; --wbe-pc-title-color: %3$s; --wbe-pc-excerpt-color: %4$s; --wbe-pc-meta-color: %5$s; --wbe-pc-accent: %6$s; --wbe-pc-card-radius: %7$s; --wbe-pc-card-shadow: %8$s; --wbe-pc-image-ratio: %9$s; }',
-		esc_attr( $unique_id ),
+	$token_style .= sprintf(
+		' --wbe-pc-card-bg: %1$s; --wbe-pc-title-color: %2$s; --wbe-pc-excerpt-color: %3$s; --wbe-pc-meta-color: %4$s; --wbe-pc-accent: %5$s; --wbe-pc-card-radius: %6$s; --wbe-pc-card-shadow: %7$s; --wbe-pc-image-ratio: %8$s;',
 		esc_attr( $card_bg ),
 		esc_attr( $title_color ),
 		esc_attr( $excerpt_color ),
@@ -131,9 +126,14 @@ if ( $unique_id ) {
 	);
 	// An owner-picked accent colours the category badge exactly as picked.
 	if ( ! empty( $attributes['accentColor'] ) && sanitize_hex_color( $attributes['accentColor'] ) ) {
-		$token_css .= sprintf( '.wbe-block-%1$s { --wbe-pc-badge-color: %2$s; }', esc_attr( $unique_id ), esc_attr( $accent_color ) );
+		$token_style .= ' --wbe-pc-badge-color: ' . esc_attr( $accent_color ) . ';';
 	}
 }
+
+$wrapper_attrs = get_block_wrapper_attributes( array(
+	'class' => $wrapper_class,
+	'style' => trim( $token_style ),
+) );
 
 // ── Helper: build a post card ─────────────────────────────────────────────────
 if ( ! function_exists( 'wbe_post_carousel_card' ) ) :
@@ -223,10 +223,6 @@ endif;
 // ── Output ───────────────────────────────────────────────────────────────────
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<?php if ( $token_css ) : ?>
-	<style><?php echo esc_html( $token_css ); ?></style>
-	<?php endif; ?>
-
 	<?php if ( in_array( $display_mode, array( 'carousel', 'slider' ), true ) ) : ?>
 		<?php
 		$swiper_slides = ( 'slider' === $display_mode ) ? 1 : $slides;

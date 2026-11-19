@@ -123,20 +123,13 @@ while ( $query->have_posts() ) {
 }
 $query->rewind_posts();
 
-// ── Scoped token CSS ──────────────────────────────────────────────────────────
-$token_css = '';
+// ── Design tokens ─────────────────────────────────────────────────────────────
+// Set on the wrapper's style attribute instead of a printed style element. style.css switches the
+// column count to the tablet / mobile values at its breakpoints.
+$token_style = '';
 if ( $unique_id ) {
-	$token_css = sprintf(
-		'.wbe-block-%1$s {
-			--wbe-pg-columns: %2$d;
-			--wbe-pg-columns-tablet: %3$d;
-			--wbe-pg-columns-mobile: %4$d;
-			--wbe-pg-gap: %5$dpx;
-			--wbe-pg-ratio: %6$s;
-			--wbe-pg-card-radius: %7$dpx;
-			--wbe-pg-card-shadow: %8$s;
-		}',
-		esc_attr( $unique_id ),
+	$token_style = sprintf(
+		'--wbe-pg-columns: %1$d; --wbe-pg-columns-tablet: %2$d; --wbe-pg-columns-mobile: %3$d; --wbe-pg-gap: %4$dpx; --wbe-pg-ratio: %5$s; --wbe-pg-card-radius: %6$dpx; --wbe-pg-card-shadow: %7$s;',
 		$columns,
 		$columns_tablet,
 		$columns_mobile,
@@ -144,18 +137,6 @@ if ( $unique_id ) {
 		esc_attr( $ratio_css ),
 		$card_radius,
 		esc_attr( $box_shadow_val )
-	);
-
-	// Responsive columns via media queries in the scoped token CSS.
-	$token_css .= sprintf(
-		'@media (max-width: 1024px) { .wbe-block-%1$s { --wbe-pg-columns: %2$d; } }',
-		esc_attr( $unique_id ),
-		$columns_tablet
-	);
-	$token_css .= sprintf(
-		'@media (max-width: 640px) { .wbe-block-%1$s { --wbe-pg-columns: %2$d; } }',
-		esc_attr( $unique_id ),
-		$columns_mobile
 	);
 }
 
@@ -167,18 +148,15 @@ $wrapper_class = trim( implode( ' ', array_filter( array(
 	$vis_classes,
 ) ) ) );
 
-$wrapper_extra = array( 'class' => $wrapper_class );
-if ( $color_style ) {
-	// Inline on the wrapper, so grids saved without a uniqueId keep their colours too.
-	$wrapper_extra['style'] = $color_style;
-}
-$wrapper_attrs = get_block_wrapper_attributes( $wrapper_extra );
+// Colours are not gated on uniqueId, so grids saved without one keep their colours too.
+$wrapper_attrs = get_block_wrapper_attributes(
+	array(
+		'class' => $wrapper_class,
+		'style' => trim( $token_style . ' ' . $color_style ),
+	)
+);
 ?>
 <div <?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<?php if ( $token_css ) : ?>
-	<style><?php echo esc_html( $token_css ); ?></style>
-	<?php endif; ?>
-
 	<?php if ( $show_filter && count( $all_filter_cats ) > 1 ) : ?>
 	<div class="wbe-portfolio-grid__filter" role="group" aria-label="<?php esc_attr_e( 'Portfolio filter', 'wbcom-essential' ); ?>">
 		<?php foreach ( $all_filter_cats as $term_id => $label ) : ?>
