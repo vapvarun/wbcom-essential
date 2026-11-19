@@ -5,7 +5,21 @@
 	"base_url": "http://localhost:10048",
 	"autologin_param": "autologin",
 	"personas": {
-		"admin": "1"
+		"admin": {
+			"autologin": "1",
+			"login": "admin",
+			"role": "administrator"
+		},
+		"member": {
+			"autologin": "alice",
+			"login": "alice",
+			"role": "subscriber"
+		},
+		"member2": {
+			"autologin": "bob",
+			"login": "bob",
+			"role": "subscriber"
+		}
 	},
 	"modes": [
 		"single"
@@ -14,10 +28,44 @@
 	"checks": {
 		"release": {
 			"domain": "wbcom-essential",
-			"excluded": [ "plugins/gutenberg/src", "docs", "plan", "audit", "marketing", "scripts", "bin" ]
+			"excluded": [
+				"plugins/gutenberg/src",
+				"docs",
+				"plan",
+				"audit",
+				"marketing",
+				"scripts",
+				"bin"
+			]
 		},
 		"crawl": [
-			{ "url": "/", "persona": "admin", "root": "main" }
+			{
+				"url": "/",
+				"persona": "admin",
+				"root": "main"
+			}
+		],
+		"static": [
+			{
+				"id": "ticker-phone-titles",
+				"run": "python3 -c \"import re,sys;s=open('plugins/elementor/assets/css/wbcom-posts-revolutions.css').read();m=re.search(r'@media screen and \\(max-width: 450px\\)\\s*\\{(.*?)\\n\\}',s,re.S);b=m.group(1) if m else '';bad=re.search(r'(?<!:has\\(\\.mega-thumb\\) )\\.posts_newsticker_type1 \\.mega-title\\s*\\{\\s*display:\\s*none',b);print('FAIL: Posts Ticker hides every title at 450px and below, so posts without a featured image become empty cards') if bad else None\""
+			},
+			{
+				"id": "elementor-icon-defaults",
+				"run": "bad=$(grep -rnE \"'value' *=> *'fa[srbl]? +[a-z]\" plugins/elementor/widgets | grep -vE \"'fa[srbl]? +fa-\"); [ -z \"$bad\" ] || echo \"FAIL: Elementor icon default without the fa- prefix draws nothing: $bad\""
+			},
+			{
+				"id": "block-scope-without-id",
+				"run": "grep -q \"add_filter( 'render_block', array( \\$this, 'scope_blocks_without_id' )\" plugins/gutenberg/BlockRegistrar.php || echo 'FAIL: blocks saved without a uniqueId are not scoped at render, so their .wbe-block- rules bleed into each other'"
+			},
+			{
+				"id": "bp-user-domain-helper",
+				"run": "bad=$(grep -rn 'bp_core_get_user_domain(' --include='*.php' --exclude-dir=.phpstan-stubs --exclude-dir=vendor --exclude-dir=node_modules . | grep -v 'includes/wbcom-essential-function.php'); [ -z \"$bad\" ] || echo \"FAIL: deprecated bp_core_get_user_domain() called outside wbcom_essential_get_user_domain(): $bad\""
+			},
+			{
+				"id": "ticker-css-scoped",
+				"run": "bad=$(grep -nE '^(\\*|a|html|body)[ ,{]|^\\*,' plugins/elementor/assets/css/acmeticker.css); [ -z \"$bad\" ] || echo \"FAIL: acmeticker.css has unscoped page-wide rules: $bad\""
+			}
 		]
 	}
 }

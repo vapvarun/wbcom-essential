@@ -6,6 +6,41 @@
 			"class": 12,
 			"guard": "release:pot",
 			"added": "2026-11-19"
+		},
+		{
+			"card": "10526932897",
+			"title": "Posts Ticker (Elementor) showed empty cards on phones when posts had no featured image",
+			"class": 11,
+			"guard": "static:ticker-phone-titles",
+			"added": "2026-11-19"
+		},
+		{
+			"card": "10526933067",
+			"title": "Shape widget showed no icon on defaults: default icon class missing the fa- prefix",
+			"class": 4,
+			"guard": "static:elementor-icon-defaults",
+			"added": "2026-11-19"
+		},
+		{
+			"card": "10526057464",
+			"title": "Static blocks saved without a uniqueId shared one .wbe-block- rule and bled settings into each other",
+			"class": 1,
+			"guard": "static:block-scope-without-id",
+			"added": "2026-11-19"
+		},
+		{
+			"card": "10526057418",
+			"title": "Header Bar called deprecated bp_core_get_user_domain() on BuddyPress 12+",
+			"class": 2,
+			"guard": "static:bp-user-domain-helper",
+			"added": "2026-11-19"
+		},
+		{
+			"card": "10526057369",
+			"title": "Posts Ticker stylesheet reset margin and padding on every element of the page",
+			"class": 5,
+			"guard": "static:ticker-css-scoped",
+			"added": "2026-11-19"
 		}
 	]
 }

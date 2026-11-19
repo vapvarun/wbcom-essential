@@ -3,7 +3,8 @@
 #
 # Gates: Q1 PHP lint · Q2 version triangulation · F1/F2 no inline <style>/<script>
 #        in PHP · B1 blocks build · J1 block unit tests · Q3 WPCS (errors block) ·
-#        Q4 PHPStan · W1 wppqa_run_checks (fast) against a WordPress install.
+#        Q4 PHPStan · D1 journey depth · I1 translations · G1 escape guards and
+#        release checks · W1 wppqa_run_checks (fast) against a WordPress install.
 #
 # W1 needs a site with this plugin active: WP_ROOT=/path/to/wordpress bin/local-ci.sh
 # Without WP_ROOT it is reported as SKIPPED, never as passed.
@@ -13,6 +14,7 @@ cd "$(dirname "$0")/.."
 FAIL=0
 SKIPPED=""
 section() { printf '\n\033[1m== %s ==\033[0m\n' "$1"; }
+WPPQA_RUN_DEFAULT="$HOME/.mcp-servers/wp-plugin-qa-mcp-server/bin/wppqa-run.mjs"
 PHP_DIRS=(loader.php wbcom-essential.php uninstall.php admin includes plugins templates)
 
 section "Q1 - PHP lint"
@@ -63,6 +65,32 @@ if [ -x vendor/bin/phpstan ]; then
 	php -n -d memory_limit=2G vendor/bin/phpstan analyse --no-progress || { echo "FAIL: PHPStan"; FAIL=1; }
 else
 	echo "SKIPPED: run composer install"; SKIPPED="$SKIPPED Q4"
+fi
+
+section "D1 - journey depth (every escape has a journey check)"
+php bin/check-journey-depth.php 2>&1 | grep -Ev 'Xdebug|Zend Engine|imagick|Derick|opcache|PHP Startup|^$' | tail -3
+[ "${PIPESTATUS[0]}" -eq 0 ] || { echo "FAIL: php bin/check-journey-depth.php"; FAIL=1; }
+
+section "I1 - translations (0 untranslated, 0 fuzzy, placeholders, block JSON)"
+for po in languages/*.po; do
+	[ -e "$po" ] || continue
+	loc=$(basename "$po" .po); loc=${loc#wbcom-essential-}
+	untr=$(msgattrib --untranslated --no-obsolete "$po" | grep -c '^msgid' || true)
+	fuzz=$(msgattrib --only-fuzzy --no-obsolete "$po" | grep -c '^msgid' || true)
+	# The header entry counts as one untranslated msgid.
+	[ "$untr" -le 1 ] || { echo "FAIL: $loc has $((untr - 1)) untranslated strings"; FAIL=1; }
+	[ "$fuzz" -eq 0 ] || { echo "FAIL: $loc has $fuzz fuzzy strings"; FAIL=1; }
+	msgfmt --check-format -o /dev/null "$po" 2>/dev/null || { echo "FAIL: $loc placeholder mismatch (msgfmt --check-format)"; FAIL=1; }
+	ls languages/wbcom-essential-"$loc"-*.json >/dev/null 2>&1 || { echo "FAIL: $loc has no block/script JSON translations (wp i18n make-json languages/ --no-purge)"; FAIL=1; }
+done
+
+section "G1 - escape guards and release checks (wppqa static + release)"
+GUARD_WP="${WP_ROOT:-$HOME/Local Sites/reign-theme/app/public}"
+if [ -f "$WPPQA_RUN_DEFAULT" ] && [ -f "$GUARD_WP/wp-load.php" ]; then
+	node "$WPPQA_RUN_DEFAULT" --plugin "$(pwd)" --wp "wp --path=$GUARD_WP" --only release,static 2>&1 | grep -Ev 'Xdebug|Zend|imagick|Derick' | tail -6
+	[ "${PIPESTATUS[0]}" -eq 0 ] || { echo "FAIL: escape guards"; FAIL=1; }
+else
+	echo "SKIPPED: needs the wppqa CLI and a WordPress install (WP_ROOT)"; SKIPPED="$SKIPPED G1"
 fi
 
 section "W1 - wppqa_run_checks (fast)"

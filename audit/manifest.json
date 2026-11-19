@@ -1,0 +1,6040 @@
+{
+  "header": {
+    "name": "EDD SL SDK",
+    "slug": "wbcom-essential",
+    "version": "1.0.4.3",
+    "textDomain": "edd-sl-sdk",
+    "domainPath": "/languages",
+    "requiresWP": "6.0",
+    "requiresPHP": "7.4",
+    "description": "The Software Licensing SDK for plugins and themes using Software Licensing.",
+    "author": "Easy Digital Downloads",
+    "pluginURI": "https://easydigitaldownloads.com",
+    "network": false
+  },
+  "pluginPath": "wbcom-essential",
+  "cssPrefix": "wbe",
+  "hasEnqueueCalls": true,
+  "hasIntegrationConditionals": true,
+  "features": {
+    "cpts": [],
+    "taxonomies": [],
+    "shortcodes": [
+      {
+        "tag": "wbcombtn",
+        "callback": "wbcombtn",
+        "file": "plugins/elementor/wbcom-essential-elementor.php",
+        "line": 245
+      }
+    ],
+    "blocks": [
+      {
+        "name": "wbcom-essential/activity-feed",
+        "title": "Activity Feed",
+        "category": "essential-buddypress",
+        "attributes": [
+          "uniqueId",
+          "totalActivities",
+          "activityType",
+          "layout",
+          "showAvatar",
+          "showTime",
+          "showAction",
+          "showContent",
+          "showTypeIcon",
+          "showFavoriteBtn",
+          "showCommentCount",
+          "showMediaPreview",
+          "avatarSize",
+          "cardBg",
+          "nameColor",
+          "contentColor",
+          "timeColor",
+          "borderColor",
+          "accentColor",
+          "iconBg",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/activity-feed/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/category-grid",
+        "title": "Category Grid",
+        "category": "essential-blog",
+        "attributes": [
+          "useThemeColors",
+          "columns",
+          "columnsTablet",
+          "columnsMobile",
+          "selectedCategories",
+          "excludeEmpty",
+          "maxCategories",
+          "showPostCount",
+          "showImage",
+          "imageRatio",
+          "gap",
+          "cardBorderRadius",
+          "cardBgColor",
+          "nameColor",
+          "countColor",
+          "overlayColor",
+          "orderBy",
+          "order",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/category-grid/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/countdown-timer",
+        "title": "Countdown Timer",
+        "category": "essential-marketing",
+        "attributes": [
+          "uniqueId",
+          "targetDate",
+          "expireMessage",
+          "showDays",
+          "showHours",
+          "showMinutes",
+          "showSeconds",
+          "separatorStyle",
+          "layout",
+          "numberColor",
+          "labelColor",
+          "boxBg",
+          "boxBorderColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/countdown-timer/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/cta",
+        "title": "CTA Section",
+        "category": "essential-marketing",
+        "attributes": [
+          "uniqueId",
+          "heading",
+          "description",
+          "buttonText",
+          "buttonUrl",
+          "layout",
+          "backgroundColor",
+          "headingColor",
+          "descriptionColor",
+          "buttonBg",
+          "buttonColor",
+          "buttonBgHover",
+          "contentAlign",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/cta/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/customer-reviews",
+        "title": "Customer Reviews",
+        "category": "essential-woocommerce",
+        "attributes": [
+          "uniqueId",
+          "reviewCount",
+          "slidesPerView",
+          "autoplay",
+          "autoplayDelay",
+          "loop",
+          "showDots",
+          "showArrows",
+          "showRating",
+          "showProduct",
+          "showAvatar",
+          "quoteBg",
+          "quoteColor",
+          "nameColor",
+          "ratingColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/customer-reviews/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/edd-account-dashboard",
+        "title": "EDD Account Dashboard",
+        "category": "essential-edd",
+        "attributes": [
+          "showSupport",
+          "showOffers",
+          "showWhatsNew",
+          "showRecommendations",
+          "supportUrl",
+          "supportLabel",
+          "defaultTab",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/edd-checkout-enhanced",
+        "title": "EDD Enhanced Checkout (legacy)",
+        "category": "essential-edd",
+        "attributes": [
+          "showProgressBar",
+          "showTrustBadges",
+          "trustBadgeText",
+          "guaranteeDays",
+          "guaranteeText",
+          "showReviews",
+          "reviewCount",
+          "showRecommendations",
+          "recommendationCount",
+          "showTrustpilot",
+          "trustpilotRating",
+          "trustpilotCount",
+          "trustpilotUrl",
+          "trustpilotReviews",
+          "paymentIcons",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/edd-checkout-enhanced/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/edd-checkout-progress",
+        "title": "EDD Checkout Progress",
+        "category": "essential-edd",
+        "attributes": [
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/edd-checkout-progress/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/edd-checkout-recommendations",
+        "title": "EDD Checkout Recommendations",
+        "category": "essential-edd",
+        "attributes": [
+          "recommendationCount",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/edd-checkout-recommendations/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/edd-checkout-social",
+        "title": "EDD Checkout Social Proof",
+        "category": "essential-edd",
+        "attributes": [
+          "showReviews",
+          "reviewCount",
+          "showTrustpilot",
+          "trustpilotRating",
+          "trustpilotCount",
+          "trustpilotUrl",
+          "trustpilotReviews",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/edd-checkout-social/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/edd-checkout-trust",
+        "title": "EDD Checkout Trust Badges",
+        "category": "essential-edd",
+        "attributes": [
+          "trustBadgeText",
+          "showSecureBadge",
+          "secureBadgeText",
+          "guaranteeDays",
+          "guaranteeText",
+          "showGuaranteeBadge",
+          "showSupportBadge",
+          "supportBadgeTitle",
+          "supportBadgeText",
+          "paymentIcons",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/edd-checkout-trust/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/edd-order-success",
+        "title": "EDD Order Success",
+        "category": "essential-edd",
+        "attributes": [
+          "showSuccessHeader",
+          "successMessage",
+          "showNextSteps",
+          "accountPageUrl",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/edd-order-success/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/faq-accordion",
+        "title": "FAQ Accordion",
+        "category": "essential-content",
+        "attributes": [
+          "uniqueId",
+          "faqs",
+          "allowMultiOpen",
+          "iconStyle",
+          "firstOpen",
+          "enableSchema",
+          "questionColor",
+          "answerColor",
+          "questionBg",
+          "borderColor",
+          "iconColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/faq-accordion/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/feature-grid",
+        "title": "Feature Grid",
+        "category": "essential-marketing",
+        "attributes": [
+          "uniqueId",
+          "columns",
+          "cardStyle",
+          "features",
+          "cardBg",
+          "titleColor",
+          "descriptionColor",
+          "iconSize",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/feature-grid/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/flip-box",
+        "title": "Flip Box",
+        "category": "essential-design",
+        "attributes": [
+          "uniqueId",
+          "frontTitle",
+          "frontDescription",
+          "frontIcon",
+          "frontBg",
+          "frontColor",
+          "backTitle",
+          "backDescription",
+          "backButtonText",
+          "backButtonUrl",
+          "backBg",
+          "backColor",
+          "flipDirection",
+          "height",
+          "heightUnit",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/flip-box/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/group-carousel",
+        "title": "Group Carousel",
+        "category": "essential-buddypress",
+        "attributes": [
+          "uniqueId",
+          "totalGroups",
+          "sortType",
+          "slidesPerView",
+          "slidesPerViewTablet",
+          "slidesPerViewMobile",
+          "autoplay",
+          "autoplayDelay",
+          "loop",
+          "showDots",
+          "showArrows",
+          "showDescription",
+          "showMemberCount",
+          "spaceBetween",
+          "cardBg",
+          "nameColor",
+          "avatarSize",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "showJoinButton",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/group-carousel/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/groups-grid",
+        "title": "Groups Grid",
+        "category": "essential-buddypress",
+        "attributes": [
+          "uniqueId",
+          "totalGroups",
+          "columns",
+          "columnsTablet",
+          "columnsMobile",
+          "sortType",
+          "showDescription",
+          "showMemberCount",
+          "showLastActive",
+          "showJoinButton",
+          "gap",
+          "cardBg",
+          "nameColor",
+          "descColor",
+          "avatarSize",
+          "cardBorderRadius",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/groups-grid/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/hero",
+        "title": "Hero Section",
+        "category": "essential-marketing",
+        "attributes": [
+          "uniqueId",
+          "heading",
+          "subheading",
+          "buttonOneText",
+          "buttonOneUrl",
+          "buttonTwoText",
+          "buttonTwoUrl",
+          "backgroundType",
+          "backgroundColor",
+          "gradientStart",
+          "gradientEnd",
+          "backgroundImage",
+          "overlayColor",
+          "overlayOpacity",
+          "headingColor",
+          "subheadingColor",
+          "buttonOneBg",
+          "buttonOneColor",
+          "buttonTwoBg",
+          "buttonTwoColor",
+          "contentAlign",
+          "minHeight",
+          "minHeightUnit",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/hero/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/login-form",
+        "title": "Login Form",
+        "category": "essential-content",
+        "attributes": [
+          "uniqueId",
+          "redirectUrl",
+          "showRememberMe",
+          "showRegisterLink",
+          "showLostPassword",
+          "buttonText",
+          "loggedInView",
+          "loggedInMessage",
+          "formBg",
+          "buttonBg",
+          "buttonColor",
+          "labelColor",
+          "linkColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/login-form/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/members-carousel",
+        "title": "Members Carousel",
+        "category": "essential-buddypress",
+        "attributes": [
+          "uniqueId",
+          "totalMembers",
+          "sortType",
+          "slidesPerView",
+          "slidesPerViewTablet",
+          "slidesPerViewMobile",
+          "autoplay",
+          "autoplayDelay",
+          "loop",
+          "showDots",
+          "showArrows",
+          "showLastActive",
+          "showFriendButton",
+          "spaceBetween",
+          "cardBg",
+          "nameColor",
+          "metaColor",
+          "avatarSize",
+          "cardBorderRadius",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/members-carousel/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/members-grid",
+        "title": "Members Grid",
+        "category": "essential-buddypress",
+        "attributes": [
+          "uniqueId",
+          "totalMembers",
+          "columns",
+          "columnsTablet",
+          "columnsMobile",
+          "sortType",
+          "showLastActive",
+          "showFriendButton",
+          "gap",
+          "cardBg",
+          "nameColor",
+          "metaColor",
+          "avatarSize",
+          "cardBorderRadius",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/members-grid/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/portfolio-grid",
+        "title": "Portfolio Grid",
+        "category": "essential-content",
+        "attributes": [
+          "followTheme",
+          "uniqueId",
+          "columns",
+          "columnsTablet",
+          "columnsMobile",
+          "postsPerPage",
+          "postType",
+          "categories",
+          "showFilter",
+          "showExcerpt",
+          "showCategory",
+          "imageRatio",
+          "gap",
+          "hoverEffect",
+          "overlayColor",
+          "titleColor",
+          "filterActiveColor",
+          "cardBorderRadius",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/portfolio-grid/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/post-carousel",
+        "title": "Post Carousel",
+        "category": "essential-blog",
+        "attributes": [
+          "uniqueId",
+          "postType",
+          "postsPerPage",
+          "categories",
+          "orderBy",
+          "order",
+          "displayMode",
+          "slidesPerView",
+          "gridColumns",
+          "autoplay",
+          "autoplayDelay",
+          "showImage",
+          "showExcerpt",
+          "showDate",
+          "showCategory",
+          "showAuthor",
+          "excerptLength",
+          "imageRatio",
+          "cardBg",
+          "titleColor",
+          "excerptColor",
+          "metaColor",
+          "accentColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/post-carousel/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/posts-ticker",
+        "title": "Posts Ticker",
+        "category": "essential-blog",
+        "attributes": [
+          "uniqueId",
+          "postsPerPage",
+          "categories",
+          "speed",
+          "direction",
+          "pauseOnHover",
+          "showDate",
+          "showCategory",
+          "label",
+          "labelBg",
+          "labelColor",
+          "tickerBg",
+          "textColor",
+          "linkColor",
+          "separatorStyle",
+          "height",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/posts-ticker/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/pricing-table",
+        "title": "Pricing Table",
+        "category": "essential-marketing",
+        "attributes": [
+          "uniqueId",
+          "columns",
+          "plans",
+          "currency",
+          "cardBg",
+          "featuredBg",
+          "featuredColor",
+          "priceColor",
+          "featureColor",
+          "buttonBg",
+          "buttonColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/pricing-table/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/product-carousel",
+        "title": "Product Carousel",
+        "category": "essential-woocommerce",
+        "attributes": [
+          "uniqueId",
+          "postsPerPage",
+          "categories",
+          "orderBy",
+          "order",
+          "slidesPerView",
+          "slidesPerViewTablet",
+          "slidesPerViewMobile",
+          "autoplay",
+          "autoplayDelay",
+          "loop",
+          "showDots",
+          "showArrows",
+          "showImage",
+          "showPrice",
+          "showRating",
+          "showAddToCart",
+          "spaceBetween",
+          "cardBg",
+          "titleColor",
+          "priceColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile",
+          "atcBg",
+          "atcColor"
+        ],
+        "file": "plugins/gutenberg/src/blocks/product-carousel/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/product-catalog",
+        "title": "Product Catalog",
+        "category": "essential-edd",
+        "attributes": [
+          "columns",
+          "perPage",
+          "showSearch",
+          "showCategoryFilter",
+          "showPriceFilter",
+          "showSort",
+          "defaultCategory",
+          "defaultSort",
+          "uniqueId",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/product-catalog/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/product-grid",
+        "title": "Product Grid",
+        "category": "essential-woocommerce",
+        "attributes": [
+          "uniqueId",
+          "columns",
+          "columnsTablet",
+          "columnsMobile",
+          "postsPerPage",
+          "categories",
+          "orderBy",
+          "order",
+          "showImage",
+          "showPrice",
+          "showRating",
+          "showAddToCart",
+          "showSaleBadge",
+          "imageRatio",
+          "gap",
+          "cardBg",
+          "titleColor",
+          "priceColor",
+          "saleBadgeColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile",
+          "atcBg",
+          "atcColor"
+        ],
+        "file": "plugins/gutenberg/src/blocks/product-grid/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/progress-bar",
+        "title": "Progress Bar",
+        "category": "essential-design",
+        "attributes": [
+          "uniqueId",
+          "bars",
+          "height",
+          "showPercentage",
+          "showLabel",
+          "animateOnScroll",
+          "trackColor",
+          "labelColor",
+          "percentColor",
+          "barBorderRadius",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/progress-bar/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/promo-banner",
+        "title": "Promo Banner",
+        "category": "essential-marketing",
+        "attributes": [
+          "uniqueId",
+          "heading",
+          "description",
+          "buttonText",
+          "buttonUrl",
+          "backgroundImage",
+          "overlayColor",
+          "headingColor",
+          "descriptionColor",
+          "buttonBg",
+          "buttonColor",
+          "contentAlign",
+          "minHeight",
+          "bannerStyle",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/promo-banner/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/stats-counter",
+        "title": "Stats Counter",
+        "category": "essential-design",
+        "attributes": [
+          "uniqueId",
+          "columns",
+          "stats",
+          "duration",
+          "numberColor",
+          "labelColor",
+          "separatorColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/stats-counter/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/tabs",
+        "title": "Tabs",
+        "category": "essential-content",
+        "attributes": [
+          "uniqueId",
+          "tabs",
+          "tabStyle",
+          "tabAlign",
+          "activeColor",
+          "inactiveColor",
+          "contentBg",
+          "borderColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/tabs/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/testimonial-carousel",
+        "title": "Testimonial Carousel",
+        "category": "essential-marketing",
+        "attributes": [
+          "uniqueId",
+          "testimonials",
+          "slidesPerView",
+          "autoplay",
+          "autoplayDelay",
+          "showDots",
+          "showArrows",
+          "loop",
+          "quoteBg",
+          "quoteColor",
+          "nameColor",
+          "roleColor",
+          "accentColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/testimonial-carousel/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/text-rotator",
+        "title": "Text Rotator",
+        "category": "essential-design",
+        "attributes": [
+          "uniqueId",
+          "beforeText",
+          "rotatingTexts",
+          "afterText",
+          "animationType",
+          "speed",
+          "textColor",
+          "rotatingColor",
+          "fontSize",
+          "fontSizeTablet",
+          "fontSizeMobile",
+          "fontSizeUnit",
+          "textAlign",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/text-rotator/block.json",
+        "line": 1
+      },
+      {
+        "name": "wbcom-essential/timeline",
+        "title": "Timeline",
+        "category": "essential-content",
+        "attributes": [
+          "uniqueId",
+          "items",
+          "layout",
+          "lineColor",
+          "dotColor",
+          "dotSize",
+          "cardBg",
+          "dateColor",
+          "titleColor",
+          "descriptionColor",
+          "padding",
+          "paddingTablet",
+          "paddingMobile",
+          "paddingUnit",
+          "margin",
+          "marginTablet",
+          "marginMobile",
+          "marginUnit",
+          "boxShadow",
+          "shadowHorizontal",
+          "shadowVertical",
+          "shadowBlur",
+          "shadowSpread",
+          "shadowColor",
+          "borderRadius",
+          "borderRadiusUnit",
+          "hideOnDesktop",
+          "hideOnTablet",
+          "hideOnMobile"
+        ],
+        "file": "plugins/gutenberg/src/blocks/timeline/block.json",
+        "line": 1
+      }
+    ],
+    "restRoutes": [
+      {
+        "namespace": "wbcom/v1",
+        "route": "/edd-account/(?P<tab>[a-z-]+)",
+        "methods": [
+          "GET"
+        ],
+        "permissionCallback": "closure",
+        "file": "includes/edd-account-dashboard-functions.php",
+        "line": 245,
+        "requestArgs": []
+      },
+      {
+        "namespace": "wbcom/v1",
+        "route": "/edd-account/states/(?P<country>[A-Z]{2})",
+        "methods": [
+          "GET"
+        ],
+        "permissionCallback": "closure",
+        "file": "includes/edd-account-dashboard-functions.php",
+        "line": 270,
+        "requestArgs": []
+      },
+      {
+        "namespace": "wbcom/v1",
+        "route": "/edd-account/claim-free",
+        "methods": [
+          "POST"
+        ],
+        "permissionCallback": "closure",
+        "file": "includes/edd-account-marketing-functions.php",
+        "line": 581,
+        "requestArgs": []
+      },
+      {
+        "namespace": "wbcom/v1",
+        "route": "/products",
+        "methods": [
+          "GET"
+        ],
+        "permissionCallback": "wbcom_essential_product_catalog_public_permission",
+        "file": "includes/edd-product-catalog-rest.php",
+        "line": 31,
+        "requestArgs": [
+          {
+            "name": "search",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "orderby",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "price_range",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "namespace": "wbcom/v1",
+        "route": "/product-categories",
+        "methods": [
+          "GET"
+        ],
+        "permissionCallback": "wbcom_essential_product_catalog_public_permission",
+        "file": "includes/edd-product-catalog-rest.php",
+        "line": 78,
+        "requestArgs": []
+      },
+      {
+        "namespace": "wbcom-essential/v1",
+        "route": "/xprofile-groups",
+        "methods": [
+          "GET"
+        ],
+        "permissionCallback": "closure",
+        "file": "plugins/gutenberg/gutenberg.php",
+        "line": 248,
+        "requestArgs": []
+      }
+    ],
+    "ajaxHandlers": [
+      {
+        "action": "wbcom_essential_dismiss_elementor_notice",
+        "callback": "wbcom_essential_dismiss_elementor_notice",
+        "loggedIn": true,
+        "loggedOut": false,
+        "hasNonceCheck": true,
+        "file": "plugins/elementor/wbcom-essential-elementor.php",
+        "line": 127
+      },
+      {
+        "action": "wbcom_ajax_login",
+        "callback": "wbcom_ajax_login",
+        "loggedIn": false,
+        "loggedOut": true,
+        "hasNonceCheck": true,
+        "file": "plugins/elementor/wbcom-essential-elementor.php",
+        "line": 496
+      }
+    ],
+    "adminPages": [
+      {
+        "slug": "wbcom-designs",
+        "title": "Wbcom Designs",
+        "capability": "manage_options",
+        "callback": "render_page",
+        "file": "admin/class-wbcom-essential-widget-showcase.php",
+        "line": 64
+      },
+      {
+        "slug": "wbcom-essential",
+        "title": "Essential",
+        "capability": "manage_options",
+        "callback": "render_page",
+        "parentSlug": "wbcom-designs",
+        "file": "admin/class-wbcom-essential-widget-showcase.php",
+        "line": 74
+      },
+      {
+        "slug": "wbcom-designs",
+        "title": "Wbcom Designs",
+        "capability": "manage_options",
+        "callback": "render_dashboard",
+        "file": "includes/shared-admin/class-wbcom-shared-dashboard.php",
+        "line": 45
+      },
+      {
+        "slug": "wbcom-designs",
+        "title": "Dashboard",
+        "capability": "manage_options",
+        "callback": "render_dashboard",
+        "parentSlug": "wbcom-designs",
+        "file": "includes/shared-admin/class-wbcom-shared-dashboard.php",
+        "line": 56
+      },
+      {
+        "slug": "wbcom-designs",
+        "title": "Wbcom Designs",
+        "capability": "manage_options",
+        "callback": "show_dashboard",
+        "file": "includes/shared-admin/class-wbcom-shared-loader.php",
+        "line": 421
+      },
+      {
+        "slug": "wbcom-designs",
+        "title": "Dashboard",
+        "capability": "manage_options",
+        "callback": "show_dashboard",
+        "parentSlug": "wbcom-designs",
+        "file": "includes/shared-admin/class-wbcom-shared-loader.php",
+        "line": 433
+      }
+    ],
+    "settings": [
+      {
+        "optionName": "wbcom_essential_blog_index_layout",
+        "group": "wbcom_essential_settings",
+        "sanitizeCallback": "absint",
+        "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+        "line": 158
+      },
+      {
+        "optionName": "wbcom_essential_blog_posts_per_page",
+        "group": "wbcom_essential_settings",
+        "sanitizeCallback": "absint",
+        "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+        "line": 168
+      },
+      {
+        "optionName": "wbcom_essential_blog_show_ticker",
+        "group": "wbcom_essential_settings",
+        "sanitizeCallback": "rest_sanitize_boolean",
+        "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+        "line": 178
+      },
+      {
+        "optionName": "wbcom_essential_blog_show_category_nav",
+        "group": "wbcom_essential_settings",
+        "sanitizeCallback": "rest_sanitize_boolean",
+        "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+        "line": 188
+      },
+      {
+        "optionName": "wbcom_essential_blog_show_slider",
+        "group": "wbcom_essential_settings",
+        "sanitizeCallback": "rest_sanitize_boolean",
+        "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+        "line": 198
+      },
+      {
+        "optionName": "wbcom_essential_blog_sections",
+        "group": "wbcom_essential_settings",
+        "sanitizeCallback": "",
+        "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+        "line": 208
+      },
+      {
+        "optionName": "wbcom_essential_single_post_template",
+        "group": "wbcom_essential_settings",
+        "sanitizeCallback": "",
+        "file": "includes/single-post/class-wbcom-single-post-settings.php",
+        "line": 60
+      }
+    ],
+    "optionsWiring": [
+      {
+        "optionName": "wbcom_essential_blog_index_layout",
+        "defaultValue": "''",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 269,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 319,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-templates.php",
+            "line": 46,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_blog_posts_per_page",
+        "defaultValue": "0",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 282,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-templates.php",
+            "line": 174,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_blog_show_ticker",
+        "defaultValue": "true",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 291,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "templates/blog-index/template-newspaper.php",
+            "line": 20,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_blog_show_category_nav",
+        "defaultValue": "true",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 292,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "templates/blog-index/template-magazine.php",
+            "line": 20,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_blog_show_slider",
+        "defaultValue": "true",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 293,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "templates/blog-index/template-newspaper.php",
+            "line": 21,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_blog_sections",
+        "defaultValue": "array()",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 320,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-templates.php",
+            "line": 403,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "default_category",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+            "line": 567,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "page_for_posts",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/blog-index/class-wbcom-blog-index-templates.php",
+            "line": 205,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_license_key",
+        "defaultValue": "''",
+        "writtenAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 194,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 107,
+            "kind": "read",
+            "enforces": true
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 107,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "wbcom_essential_license_key_license",
+        "defaultValue": "",
+        "writtenAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 217,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 112,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_preset_activated",
+        "defaultValue": "",
+        "writtenAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 130,
+            "kind": "write",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 190,
+            "kind": "write",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 218,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 125,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 185,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 276,
+            "kind": "read",
+            "enforces": true
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 125,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 185,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 276,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "wbcom_essential_preset_activation_gave_up",
+        "defaultValue": "0",
+        "writtenAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 220,
+            "kind": "delete",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 230,
+            "kind": "write",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 248,
+            "kind": "write",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 335,
+            "kind": "delete",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 125,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 280,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 125,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "wbcom_essential_preset_activation_attempts",
+        "defaultValue": "0",
+        "writtenAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 219,
+            "kind": "delete",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 238,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 237,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_preset_activation_refused",
+        "defaultValue": "''",
+        "writtenAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 221,
+            "kind": "delete",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 229,
+            "kind": "write",
+            "enforces": false
+          },
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 235,
+            "kind": "delete",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "includes/class-wbcom-essential-preset-activation.php",
+            "line": 300,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "admin_email",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/edd-account-dashboard-functions.php",
+            "line": 356,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "blogname",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/edd-account-dashboard-functions.php",
+            "line": 357,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_single_post_template",
+        "defaultValue": "''",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/single-post/class-wbcom-single-post-settings.php",
+            "line": 97,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "includes/single-post/class-wbcom-single-post-settings.php",
+            "line": 215,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "includes/single-post/class-wbcom-single-post-templates.php",
+            "line": 71,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "date_format",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/time-functions.php",
+            "line": 57,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "libs/edd-sl-sdk/src/Licensing/Messages.php",
+            "line": 175,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "plugins/elementor/helper/skins/skin-base.php",
+            "line": 1053,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "plugins/elementor/widgets/General/PostCarousel.php",
+            "line": 2324,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "plugins/elementor/widgets/General/PostSlider.php",
+            "line": 2075,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "plugins/elementor/widgets/General/PostTimeline.php",
+            "line": 1728,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_version",
+        "defaultValue": "''",
+        "writtenAt": [
+          {
+            "file": "includes/upgrades.php",
+            "line": 86,
+            "kind": "write",
+            "enforces": false
+          },
+          {
+            "file": "includes/upgrades.php",
+            "line": 107,
+            "kind": "write",
+            "enforces": false
+          },
+          {
+            "file": "loader.php",
+            "line": 172,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "includes/upgrades.php",
+            "line": 77,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "loader.php",
+            "line": 170,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "sticky_posts",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/wbcom-essential-function.php",
+            "line": 868,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "woocommerce_hide_out_of_stock_items",
+        "defaultValue": "'no'",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "includes/wbcom-essential-function.php",
+            "line": 1001,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+            "line": 261,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "includes/wbcom-essential-function.php",
+            "line": 1001,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "active_plugins",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "libs/edd-sl-sdk/src/Updaters/Plugin.php",
+            "line": 407,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "edd_tokenizer_signing_key",
+        "defaultValue": "",
+        "writtenAt": [
+          {
+            "file": "libs/edd-sl-sdk/src/Utilities/Tokenizer.php",
+            "line": 71,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "libs/edd-sl-sdk/src/Utilities/Tokenizer.php",
+            "line": 43,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "package_signatures_log",
+        "defaultValue": "array()",
+        "writtenAt": [
+          {
+            "file": "libs/package-signatures/src/class-guard.php",
+            "line": 221,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "libs/package-signatures/src/class-guard.php",
+            "line": 212,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "wbcom_essential_activated_at",
+        "defaultValue": "0",
+        "writtenAt": [
+          {
+            "file": "loader.php",
+            "line": 175,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "loader.php",
+            "line": 174,
+            "kind": "read",
+            "enforces": true
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "loader.php",
+            "line": 174,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "wbcom_essential_elementor_notice_dismissed",
+        "defaultValue": "false",
+        "writtenAt": [
+          {
+            "file": "plugins/elementor/wbcom-essential-elementor.php",
+            "line": 122,
+            "kind": "write",
+            "enforces": false
+          }
+        ],
+        "readAt": [
+          {
+            "file": "plugins/elementor/wbcom-essential-elementor.php",
+            "line": 56,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "woocommerce_currency_pos",
+        "defaultValue": "'left'",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+            "line": 353,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "woocommerce_enable_review_rating",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+            "line": 428,
+            "kind": "read",
+            "enforces": true
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+            "line": 428,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "_bp_theme_package_id",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+            "line": 87,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+            "line": 182,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+            "line": 87,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+            "line": 197,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+            "line": 87,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+            "line": 87,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "template",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php",
+            "line": 22,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "users_can_register",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php",
+            "line": 157,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php",
+            "line": 166,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/General/LoginForm.php",
+            "line": 1718,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/General/NotificationArea.php",
+            "line": 645,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/gutenberg/src/blocks/login-form/render.php",
+            "line": 129,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": [
+          {
+            "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php",
+            "line": 157,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php",
+            "line": 166,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/General/LoginForm.php",
+            "line": 1718,
+            "kind": "read",
+            "enforces": true
+          },
+          {
+            "file": "plugins/elementor/widgets/General/NotificationArea.php",
+            "line": 645,
+            "kind": "read",
+            "enforces": true
+          }
+        ]
+      },
+      {
+        "optionName": "gmt_offset",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/widgets/General/Countdown.php",
+            "line": 115,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "elementor_viewport_lg",
+        "defaultValue": "true",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/widgets/General/SiteLogo.php",
+            "line": 231,
+            "kind": "read",
+            "enforces": false
+          },
+          {
+            "file": "plugins/elementor/widgets/General/SmartMenu.php",
+            "line": 222,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      },
+      {
+        "optionName": "elementor_viewport_md",
+        "defaultValue": "",
+        "writtenAt": [],
+        "readAt": [
+          {
+            "file": "plugins/elementor/widgets/General/Tabs.php",
+            "line": 825,
+            "kind": "read",
+            "enforces": false
+          }
+        ],
+        "enforcedAt": []
+      }
+    ],
+    "hookListeners": [
+      {
+        "hook": "wbcom_essential_wp_cron_disabled",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_cancel_feedback_email",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_edd_dashboard_top",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_edd_dashboard_after_greeting",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_login_security_enabled",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_login_security_trusted_proxies",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_login_security_client_ip",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_edd_free_download_ids",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_edd_offers_shop_url",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_edd_free_plugins_top",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_edd_free_claim_limit",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_free_claim",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_product_catalog_public_permission",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_submenu_label",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_display_timezone",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_upgraded",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_locate_template",
+        "listeners": []
+      },
+      {
+        "hook": "bb_notification_avatar_",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_friend_requests_data",
+        "listeners": []
+      },
+      {
+        "hook": "bb_theme_topic_link_attribute_change",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_posts_revolution_elementor_thumbs",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_posts_revolution_elementor_format_icon",
+        "listeners": []
+      },
+      {
+        "hook": "edd_sl_sdk_registry",
+        "listeners": [
+          {
+            "callback": "function ( $registry",
+            "file": "loader.php",
+            "line": 93
+          }
+        ]
+      },
+      {
+        "hook": "edd_sl_sdk_allowed_overlay_templates",
+        "listeners": []
+      },
+      {
+        "hook": "edd_sl_sdk_translate_string",
+        "listeners": []
+      },
+      {
+        "hook": "https_ssl_verify",
+        "listeners": []
+      },
+      {
+        "hook": "edd_sl_sdk_templates_path",
+        "listeners": []
+      },
+      {
+        "hook": "in_plugin_update_message-{$file}",
+        "listeners": []
+      },
+      {
+        "hook": "edd_sl_sdk_license_control_before_{$args[",
+        "listeners": []
+      },
+      {
+        "hook": "edd_sl_sdk_license_control_after_{$args[",
+        "listeners": []
+      },
+      {
+        "hook": "package_signatures_checked",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_activated",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_deactivated",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/init",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/get_elements",
+        "listeners": []
+      },
+      {
+        "hook": "excerpt_length",
+        "listeners": [
+          {
+            "callback": "array( $this",
+            "file": "plugins/elementor/helper/skins/skin-base.php",
+            "line": 780
+          }
+        ]
+      },
+      {
+        "hook": "the_date",
+        "listeners": []
+      },
+      {
+        "hook": "wba_number_of_users_per_query",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_taxonomy_list_options",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_post_name_query_args",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_post_name_options",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_allowed_html_tags",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_default_html_tag",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_show_custom_product_badge",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_custom_saleflash_text",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_product_query_args",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_sale_badge_text",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_shop_out_of_stock_text",
+        "listeners": []
+      },
+      {
+        "hook": "bbp_template_before_topics_loop",
+        "listeners": []
+      },
+      {
+        "hook": "bbp_template_after_topics_loop",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/widget/groups-listing/settings",
+        "listeners": []
+      },
+      {
+        "hook": "reign_wp_menu_elementor_controls",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/widget/groups-grid/settings",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/groups-loop/before/template",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/groups-loop/after/template",
+        "listeners": []
+      },
+      {
+        "hook": "bp_group_widget_user_id",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/widget/members-listing/settings",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/members-loop/before/template",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/members-loop/after/template",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_user_progress_formatted",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_header_user_menu_items",
+        "listeners": []
+      },
+      {
+        "hook": "bp_core_get_table_prefix",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential/widget/branding/settings",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_branding_elementor_controls",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_btn_skins",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_recaptcha_login_form",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_ele_notification_login_url",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_ele_notification_registration_url",
+        "listeners": []
+      },
+      {
+        "hook": "reign_notification_area_output",
+        "listeners": []
+      },
+      {
+        "hook": "woocommerce_get_product_terms",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_addon_after_price",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_universal_before_title",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_universal_after_title",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_universal_before_price",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_universal_after_price",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_essential_edd_login_icon_html",
+        "listeners": []
+      },
+      {
+        "hook": "login_form",
+        "listeners": []
+      },
+      {
+        "hook": "wbcom_edd_checkout_trustpilot",
+        "listeners": []
+      },
+      {
+        "hook": "bp_before_directory_groups_list",
+        "listeners": []
+      },
+      {
+        "hook": "bp_directory_groups_item",
+        "listeners": []
+      },
+      {
+        "hook": "wbtm_bp_directory_groups_data",
+        "listeners": []
+      },
+      {
+        "hook": "bp_directory_groups_actions",
+        "listeners": []
+      },
+      {
+        "hook": "bp_after_directory_groups_list",
+        "listeners": []
+      },
+      {
+        "hook": "bp_before_directory_members_list",
+        "listeners": []
+      },
+      {
+        "hook": "bp_directory_members_item",
+        "listeners": []
+      },
+      {
+        "hook": "bp_directory_members_actions",
+        "listeners": []
+      },
+      {
+        "hook": "bp_after_directory_members_list",
+        "listeners": []
+      },
+      {
+        "hook": "reign_before_group_avatar_group_directory",
+        "listeners": []
+      },
+      {
+        "hook": "the_content",
+        "listeners": [
+          {
+            "callback": "'wbcom_content_filter'",
+            "file": "plugins/elementor/wbcom-essential-elementor.php",
+            "line": 247
+          },
+          {
+            "callback": "function ( $content",
+            "file": "templates/single-post/template-modern.php",
+            "line": 23
+          }
+        ]
+      },
+      {
+        "hook": "wbcom_essential_single_post_sidebars",
+        "listeners": []
+      }
+    ],
+    "featureGroups": [],
+    "frontendJs": [],
+    "widgets": [],
+    "metaBoxes": [],
+    "cronJobs": [
+      {
+        "hook": "wbcom_essential_activate_preset_key",
+        "recurrence": "single",
+        "callback": "wbcom_essential_activate_preset_key",
+        "engine": "wp-cron",
+        "file": "includes/class-wbcom-essential-preset-activation.php",
+        "line": 142
+      },
+      {
+        "hook": "wbcom_essential_activate_preset_key",
+        "recurrence": "single",
+        "callback": "wbcom_essential_activate_preset_key",
+        "engine": "wp-cron",
+        "file": "includes/class-wbcom-essential-preset-activation.php",
+        "line": 243
+      },
+      {
+        "hook": "edd_sl_sdk_weekly_license_check_",
+        "recurrence": "weekly",
+        "callback": "edd_sl_sdk_weekly_license_check_",
+        "engine": "wp-cron",
+        "file": "libs/edd-sl-sdk/src/Handlers/Handler.php",
+        "line": 194
+      }
+    ],
+    "cliCommands": [],
+    "dbTables": [],
+    "templates": [
+      {
+        "file": "templates/blog-index/template-grid.php",
+        "overridePath": "theme/wbcom-essential/blog-index/template-grid.php",
+        "hooksInTemplate": [],
+        "varsUsed": [],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/blog-index/template-list.php",
+        "overridePath": "theme/wbcom-essential/blog-index/template-list.php",
+        "hooksInTemplate": [],
+        "varsUsed": [],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/blog-index/template-magazine.php",
+        "overridePath": "theme/wbcom-essential/blog-index/template-magazine.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_sections",
+          "wbcom_show_cat_nav",
+          "wbcom_last",
+          "wbcom_index",
+          "wbcom_section",
+          "wbcom_paginate"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/blog-index/template-newspaper.php",
+        "overridePath": "theme/wbcom-essential/blog-index/template-newspaper.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_sections",
+          "wbcom_show_ticker",
+          "wbcom_show_slider",
+          "wbcom_last",
+          "wbcom_index",
+          "wbcom_section",
+          "wbcom_paginate"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/buddypress/groups/groups-loop.php",
+        "overridePath": "theme/wbcom-essential/buddypress/groups/groups-loop.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "query_string",
+          "s"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column",
+          "column_class",
+          "addition_class",
+          "group_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/buddypress/members/members-loop.php",
+        "overridePath": "theme/wbcom-essential/buddypress/members/members-loop.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "query_string"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column_class",
+          "member_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/buddyx/buddypress/groups/groups-loop.php",
+        "overridePath": "theme/wbcom-essential/buddyx/buddypress/groups/groups-loop.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "query_string"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column",
+          "column_class",
+          "addition_class",
+          "group_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/buddyx/buddypress/members/members-loop.php",
+        "overridePath": "theme/wbcom-essential/buddyx/buddypress/members/members-loop.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "query_string"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column_class",
+          "member_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/reign/buddypress/legacy/groups/groups-loop.php",
+        "overridePath": "theme/wbcom-essential/reign/buddypress/legacy/groups/groups-loop.php",
+        "hooksInTemplate": [
+          "bp_before_directory_groups_list",
+          "bp_directory_groups_item",
+          "wbtm_bp_directory_groups_data",
+          "bp_directory_groups_actions",
+          "bp_after_directory_groups_list"
+        ],
+        "varsUsed": [
+          "query_string",
+          "group_directory_type",
+          "column",
+          "addition_class",
+          "group_id",
+          "cover_img_url",
+          "wbtm_reign_settings",
+          "img_class"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column",
+          "column_class",
+          "addition_class",
+          "group_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/reign/buddypress/legacy/members/members-loop.php",
+        "overridePath": "theme/wbcom-essential/reign/buddypress/legacy/members/members-loop.php",
+        "hooksInTemplate": [
+          "bp_before_directory_members_list",
+          "bp_directory_members_item",
+          "bp_directory_members_actions",
+          "bp_after_directory_members_list"
+        ],
+        "varsUsed": [
+          "query_string",
+          "member_directory_type",
+          "user_id",
+          "settings",
+          "cover_img_url",
+          "wbtm_reign_settings",
+          "img_class"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column_class",
+          "member_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/reign/buddypress/nouveau/groups/groups-loop.php",
+        "overridePath": "theme/wbcom-essential/reign/buddypress/nouveau/groups/groups-loop.php",
+        "hooksInTemplate": [
+          "reign_before_group_avatar_group_directory",
+          "wbtm_bp_directory_groups_data"
+        ],
+        "varsUsed": [
+          "query_string",
+          "column_class",
+          "group_directory_type",
+          "group_id",
+          "cover_img_url",
+          "wbtm_reign_settings",
+          "img_class"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column",
+          "column_class",
+          "addition_class",
+          "group_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/reign/buddypress/nouveau/members/members-loop.php",
+        "overridePath": "theme/wbcom-essential/reign/buddypress/nouveau/members/members-loop.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "query_string",
+          "column_class",
+          "member_directory_type",
+          "cover_img_url",
+          "wbtm_reign_settings",
+          "img_class"
+        ],
+        "loaderArgs": [
+          "query_string",
+          "column_class",
+          "member_directory_type",
+          "img_class"
+        ],
+        "argsConfidence": "high"
+      },
+      {
+        "file": "templates/single-post/partials/author-bio.php",
+        "overridePath": "theme/wbcom-essential/single-post/partials/author-bio.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_author_bio",
+          "wbcom_author_id",
+          "wbcom_author_name",
+          "wbcom_author_url"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/partials/post-navigation.php",
+        "overridePath": "theme/wbcom-essential/single-post/partials/post-navigation.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_prev",
+          "wbcom_next"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/partials/related-posts.php",
+        "overridePath": "theme/wbcom-essential/single-post/partials/related-posts.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_categories",
+          "wbcom_related"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/partials/share-buttons.php",
+        "overridePath": "theme/wbcom-essential/single-post/partials/share-buttons.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_share_url",
+          "wbcom_share_title"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/partials/toc.php",
+        "overridePath": "theme/wbcom-essential/single-post/partials/toc.php",
+        "hooksInTemplate": [
+          "the_content"
+        ],
+        "varsUsed": [
+          "wbcom_toc_content",
+          "wbcom_toc_matches",
+          "wbcom_toc_items",
+          "wbcom_match",
+          "wbcom_text",
+          "wbcom_id",
+          "wbcom_id_match",
+          "wbcom_item"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/template-classic.php",
+        "overridePath": "theme/wbcom-essential/single-post/template-classic.php",
+        "hooksInTemplate": [
+          "wbcom_essential_single_post_sidebars"
+        ],
+        "varsUsed": [
+          "wbcom_partials",
+          "wbcom_sidebars",
+          "wbcom_sidebar",
+          "wbcom_sidebar_ids",
+          "wbcom_sidebar_id",
+          "wbcom_has_sidebar",
+          "wbcom_categories_list",
+          "wbcom_word_count",
+          "wbcom_read_time",
+          "wbcom_tags_list"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/template-magazine.php",
+        "overridePath": "theme/wbcom-essential/single-post/template-magazine.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_partials",
+          "wbcom_thumb_url",
+          "wbcom_word_count",
+          "wbcom_read_time",
+          "wbcom_categories_list",
+          "wbcom_tags_list"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/template-minimal.php",
+        "overridePath": "theme/wbcom-essential/single-post/template-minimal.php",
+        "hooksInTemplate": [],
+        "varsUsed": [
+          "wbcom_partials",
+          "wbcom_word_count",
+          "wbcom_read_time",
+          "wbcom_caption",
+          "wbcom_tags_list"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      },
+      {
+        "file": "templates/single-post/template-modern.php",
+        "overridePath": "theme/wbcom-essential/single-post/template-modern.php",
+        "hooksInTemplate": [
+          "the_content"
+        ],
+        "varsUsed": [
+          "wbcom_partials",
+          "content",
+          "existing",
+          "used",
+          "matches",
+          "base",
+          "id",
+          "i",
+          "wbcom_raw_content",
+          "wbcom_heading_check",
+          "wbcom_has_toc",
+          "wbcom_thumb_url",
+          "wbcom_word_count",
+          "wbcom_read_time",
+          "wbcom_categories_list",
+          "wbcom_tags_list"
+        ],
+        "loaderArgs": [],
+        "argsConfidence": "low"
+      }
+    ],
+    "hooks": {
+      "provided": [
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_wp_cron_disabled",
+          "file": "includes/class-wbcom-essential-preset-activation.php",
+          "line": 173
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_cancel_feedback_email",
+          "file": "includes/edd-account-dashboard-functions.php",
+          "line": 395
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_edd_dashboard_top",
+          "file": "includes/edd-account-dashboard-functions.php",
+          "line": 987
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_edd_dashboard_after_greeting",
+          "file": "includes/edd-account-dashboard-functions.php",
+          "line": 1007
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_login_security_enabled",
+          "file": "includes/edd-account-login-security.php",
+          "line": 51
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_login_security_trusted_proxies",
+          "file": "includes/edd-account-login-security.php",
+          "line": 75
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_login_security_client_ip",
+          "file": "includes/edd-account-login-security.php",
+          "line": 96
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_edd_free_download_ids",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 54
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_edd_offers_shop_url",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 327
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_edd_free_plugins_top",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 520
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_edd_free_claim_limit",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 639
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_free_claim",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 702
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_product_catalog_public_permission",
+          "file": "includes/edd-product-catalog-rest.php",
+          "line": 100
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_submenu_label",
+          "file": "includes/shared-admin/class-wbcom-shared-loader.php",
+          "line": 463
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_display_timezone",
+          "file": "includes/time-functions.php",
+          "line": 29
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_upgraded",
+          "file": "includes/upgrades.php",
+          "line": 117
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_locate_template",
+          "file": "includes/wbcom-essential-function.php",
+          "line": 65
+        },
+        {
+          "type": "action",
+          "hookName": "bb_notification_avatar_",
+          "file": "includes/wbcom-essential-function.php",
+          "line": 160
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_friend_requests_data",
+          "file": "includes/wbcom-essential-function.php",
+          "line": 414
+        },
+        {
+          "type": "filter",
+          "hookName": "bb_theme_topic_link_attribute_change",
+          "file": "includes/wbcom-essential-function.php",
+          "line": 479
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_posts_revolution_elementor_thumbs",
+          "file": "includes/wbcom-essential-function.php",
+          "line": 581
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_posts_revolution_elementor_format_icon",
+          "file": "includes/wbcom-essential-function.php",
+          "line": 619
+        },
+        {
+          "type": "action",
+          "hookName": "edd_sl_sdk_registry",
+          "file": "libs/edd-sl-sdk/edd-sl-sdk.php",
+          "line": 72
+        },
+        {
+          "type": "filter",
+          "hookName": "edd_sl_sdk_allowed_overlay_templates",
+          "file": "libs/edd-sl-sdk/src/Handlers/Handler.php",
+          "line": 213
+        },
+        {
+          "type": "filter",
+          "hookName": "edd_sl_sdk_translate_string",
+          "file": "libs/edd-sl-sdk/src/Messenger.php",
+          "line": 603
+        },
+        {
+          "type": "filter",
+          "hookName": "https_ssl_verify",
+          "file": "libs/edd-sl-sdk/src/Requests/API.php",
+          "line": 111
+        },
+        {
+          "type": "filter",
+          "hookName": "edd_sl_sdk_templates_path",
+          "file": "libs/edd-sl-sdk/src/Templates.php",
+          "line": 47
+        },
+        {
+          "type": "action",
+          "hookName": "in_plugin_update_message-{$file}",
+          "file": "libs/edd-sl-sdk/src/Updaters/Plugin.php",
+          "line": 180
+        },
+        {
+          "type": "action",
+          "hookName": "edd_sl_sdk_license_control_before_{$args[",
+          "file": "libs/edd-sl-sdk/templates/license-control.php",
+          "line": 11
+        },
+        {
+          "type": "action",
+          "hookName": "edd_sl_sdk_license_control_after_{$args[",
+          "file": "libs/edd-sl-sdk/templates/license-control.php",
+          "line": 47
+        },
+        {
+          "type": "action",
+          "hookName": "package_signatures_checked",
+          "file": "libs/package-signatures/src/class-guard.php",
+          "line": 228
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_activated",
+          "file": "loader.php",
+          "line": 185
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_deactivated",
+          "file": "loader.php",
+          "line": 207
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential/init",
+          "file": "plugins/elementor/Plugins.php",
+          "line": 217
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential/get_elements",
+          "file": "plugins/elementor/Plugins.php",
+          "line": 536
+        },
+        {
+          "type": "filter",
+          "hookName": "excerpt_length",
+          "file": "plugins/elementor/helper/skins/skin-base.php",
+          "line": 278
+        },
+        {
+          "type": "filter",
+          "hookName": "the_date",
+          "file": "plugins/elementor/helper/skins/skin-base.php",
+          "line": 1052
+        },
+        {
+          "type": "filter",
+          "hookName": "the_date",
+          "file": "plugins/elementor/helper/skins/skin-base.php",
+          "line": 1053
+        },
+        {
+          "type": "filter",
+          "hookName": "wba_number_of_users_per_query",
+          "file": "plugins/elementor/wbcom-essential-elementor.php",
+          "line": 372
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_taxonomy_list_options",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 54
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_post_name_query_args",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 81
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_post_name_options",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 97
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_allowed_html_tags",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 142
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_default_html_tag",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 168
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_show_custom_product_badge",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 188
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_custom_saleflash_text",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 192
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_product_query_args",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 325
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_sale_badge_text",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 379
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_shop_out_of_stock_text",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 384
+        },
+        {
+          "type": "action",
+          "hookName": "bbp_template_before_topics_loop",
+          "file": "plugins/elementor/widgets/Buddypress/Forums.php",
+          "line": 536
+        },
+        {
+          "type": "action",
+          "hookName": "bbp_template_after_topics_loop",
+          "file": "plugins/elementor/widgets/Buddypress/Forums.php",
+          "line": 659
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential/widget/groups-listing/settings",
+          "file": "plugins/elementor/widgets/Buddypress/GroupCarousel.php",
+          "line": 122
+        },
+        {
+          "type": "action",
+          "hookName": "reign_wp_menu_elementor_controls",
+          "file": "plugins/elementor/widgets/Buddypress/GroupCarousel.php",
+          "line": 342
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential/widget/groups-grid/settings",
+          "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+          "line": 98
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential/groups-loop/before/template",
+          "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+          "line": 204
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential/groups-loop/after/template",
+          "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+          "line": 317
+        },
+        {
+          "type": "filter",
+          "hookName": "bp_group_widget_user_id",
+          "file": "plugins/elementor/widgets/Buddypress/GroupsLists.php",
+          "line": 594
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential/widget/members-listing/settings",
+          "file": "plugins/elementor/widgets/Buddypress/MemberCarousel.php",
+          "line": 122
+        },
+        {
+          "type": "action",
+          "hookName": "reign_wp_menu_elementor_controls",
+          "file": "plugins/elementor/widgets/Buddypress/MemberCarousel.php",
+          "line": 350
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential/widget/members-listing/settings",
+          "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+          "line": 98
+        },
+        {
+          "type": "action",
+          "hookName": "reign_wp_menu_elementor_controls",
+          "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+          "line": 165
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential/members-loop/before/template",
+          "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+          "line": 192
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential/members-loop/after/template",
+          "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+          "line": 316
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_user_progress_formatted",
+          "file": "plugins/elementor/widgets/Buddypress/ProfileCompletion.php",
+          "line": 1225
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_header_user_menu_items",
+          "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php",
+          "line": 78
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_header_user_menu_items",
+          "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php",
+          "line": 81
+        },
+        {
+          "type": "filter",
+          "hookName": "bp_core_get_table_prefix",
+          "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php",
+          "line": 126
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential/widget/branding/settings",
+          "file": "plugins/elementor/widgets/General/Branding.php",
+          "line": 94
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_essential_branding_elementor_controls",
+          "file": "plugins/elementor/widgets/General/Branding.php",
+          "line": 325
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_btn_skins",
+          "file": "plugins/elementor/widgets/General/DropdownButton.php",
+          "line": 94
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_btn_skins",
+          "file": "plugins/elementor/widgets/General/FlipBox.php",
+          "line": 94
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_recaptcha_login_form",
+          "file": "plugins/elementor/widgets/General/LoginForm.php",
+          "line": 1704
+        },
+        {
+          "type": "action",
+          "hookName": "reign_wp_menu_elementor_controls",
+          "file": "plugins/elementor/widgets/General/NotificationArea.php",
+          "line": 310
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_ele_notification_login_url",
+          "file": "plugins/elementor/widgets/General/NotificationArea.php",
+          "line": 636
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_ele_notification_registration_url",
+          "file": "plugins/elementor/widgets/General/NotificationArea.php",
+          "line": 637
+        },
+        {
+          "type": "filter",
+          "hookName": "reign_notification_area_output",
+          "file": "plugins/elementor/widgets/General/NotificationArea.php",
+          "line": 672
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_btn_skins",
+          "file": "plugins/elementor/widgets/General/PostTimeline.php",
+          "line": 105
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_btn_skins",
+          "file": "plugins/elementor/widgets/General/PricingTable.php",
+          "line": 84
+        },
+        {
+          "type": "filter",
+          "hookName": "woocommerce_get_product_terms",
+          "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php",
+          "line": 131
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_addon_after_price",
+          "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php",
+          "line": 1611
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_addon_after_price",
+          "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php",
+          "line": 1639
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_addon_after_price",
+          "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php",
+          "line": 1716
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_addon_after_price",
+          "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php",
+          "line": 1744
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_before_title",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2313
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_after_title",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2315
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_before_price",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2316
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_after_price",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2318
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_before_title",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2506
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_after_title",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2508
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_before_price",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2509
+        },
+        {
+          "type": "action",
+          "hookName": "wbcom_universal_after_price",
+          "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php",
+          "line": 2511
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_edd_login_icon_html",
+          "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/render.php",
+          "line": 74
+        },
+        {
+          "type": "action",
+          "hookName": "login_form",
+          "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/render.php",
+          "line": 95
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_edd_checkout_trustpilot",
+          "file": "plugins/gutenberg/src/blocks/edd-checkout-social/render.php",
+          "line": 42
+        },
+        {
+          "type": "action",
+          "hookName": "bp_before_directory_groups_list",
+          "file": "templates/reign/buddypress/legacy/groups/groups-loop.php",
+          "line": 28
+        },
+        {
+          "type": "action",
+          "hookName": "bp_directory_groups_item",
+          "file": "templates/reign/buddypress/legacy/groups/groups-loop.php",
+          "line": 92
+        },
+        {
+          "type": "action",
+          "hookName": "wbtm_bp_directory_groups_data",
+          "file": "templates/reign/buddypress/legacy/groups/groups-loop.php",
+          "line": 97
+        },
+        {
+          "type": "action",
+          "hookName": "bp_directory_groups_actions",
+          "file": "templates/reign/buddypress/legacy/groups/groups-loop.php",
+          "line": 115
+        },
+        {
+          "type": "action",
+          "hookName": "bp_after_directory_groups_list",
+          "file": "templates/reign/buddypress/legacy/groups/groups-loop.php",
+          "line": 137
+        },
+        {
+          "type": "action",
+          "hookName": "bp_before_directory_members_list",
+          "file": "templates/reign/buddypress/legacy/members/members-loop.php",
+          "line": 27
+        },
+        {
+          "type": "action",
+          "hookName": "bp_directory_members_item",
+          "file": "templates/reign/buddypress/legacy/members/members-loop.php",
+          "line": 97
+        },
+        {
+          "type": "action",
+          "hookName": "bp_directory_members_actions",
+          "file": "templates/reign/buddypress/legacy/members/members-loop.php",
+          "line": 103
+        },
+        {
+          "type": "action",
+          "hookName": "bp_after_directory_members_list",
+          "file": "templates/reign/buddypress/legacy/members/members-loop.php",
+          "line": 122
+        },
+        {
+          "type": "action",
+          "hookName": "reign_before_group_avatar_group_directory",
+          "file": "templates/reign/buddypress/nouveau/groups/groups-loop.php",
+          "line": 43
+        },
+        {
+          "type": "action",
+          "hookName": "wbtm_bp_directory_groups_data",
+          "file": "templates/reign/buddypress/nouveau/groups/groups-loop.php",
+          "line": 123
+        },
+        {
+          "type": "filter",
+          "hookName": "the_content",
+          "file": "templates/single-post/partials/toc.php",
+          "line": 18
+        },
+        {
+          "type": "filter",
+          "hookName": "wbcom_essential_single_post_sidebars",
+          "file": "templates/single-post/template-classic.php",
+          "line": 28
+        },
+        {
+          "type": "filter",
+          "hookName": "the_content",
+          "file": "templates/single-post/template-modern.php",
+          "line": 53
+        }
+      ],
+      "consumed": [
+        {
+          "type": "action",
+          "hookName": "rest_api_init",
+          "callback": "wbcom_essential_edd_account_rest_routes",
+          "file": "includes/edd-account-dashboard-functions.php",
+          "line": 282,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "edd_subscription_cancelled",
+          "callback": "wbcom_essential_edd_capture_cancel_reason",
+          "file": "includes/edd-account-dashboard-functions.php",
+          "line": 411,
+          "priority": 20,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "template_redirect",
+          "callback": "wbcom_essential_edd_redirect_legacy_license_urls",
+          "file": "includes/edd-account-dashboard-functions.php",
+          "line": 462,
+          "priority": 5,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "template_redirect",
+          "callback": "wbcom_essential_edd_keep_dashboard_shell_for_sl_views",
+          "file": "includes/edd-account-dashboard-functions.php",
+          "line": 605,
+          "priority": 20,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "authenticate",
+          "callback": "wbcom_essential_login_security_gate",
+          "file": "includes/edd-account-login-security.php",
+          "line": 212,
+          "priority": 20,
+          "acceptedArgs": 2
+        },
+        {
+          "type": "action",
+          "hookName": "wp_login_failed",
+          "callback": "wbcom_essential_login_security_record_failure",
+          "file": "includes/edd-account-login-security.php",
+          "line": 248,
+          "priority": 10,
+          "acceptedArgs": 2
+        },
+        {
+          "type": "action",
+          "hookName": "wp_login",
+          "callback": "wbcom_essential_login_security_on_success",
+          "file": "includes/edd-account-login-security.php",
+          "line": 270,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "edd_edit_discount_form_bottom",
+          "callback": "wbcom_essential_edd_discount_account_field",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 179,
+          "priority": 10,
+          "acceptedArgs": 2
+        },
+        {
+          "type": "action",
+          "hookName": "edd_post_insert_discount",
+          "callback": "wbcom_essential_edd_save_discount_account_flag",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 204,
+          "priority": 10,
+          "acceptedArgs": 2
+        },
+        {
+          "type": "action",
+          "hookName": "edd_post_update_discount",
+          "callback": "wbcom_essential_edd_save_discount_account_flag",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 205,
+          "priority": 10,
+          "acceptedArgs": 2
+        },
+        {
+          "type": "action",
+          "hookName": "edd_meta_box_settings_fields",
+          "callback": "wbcom_essential_edd_render_pro_counterpart_row",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 287,
+          "priority": 35,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "edd_metabox_fields_save",
+          "callback": "wbcom_essential_edd_register_counterpart_save",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 299,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "edd_metabox_save__wbcom_pro_counterpart",
+          "callback": "wbcom_essential_edd_sanitize_counterpart",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 310,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "rest_api_init",
+          "callback": "wbcom_essential_edd_claim_rest_route",
+          "file": "includes/edd-account-marketing-functions.php",
+          "line": 600,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "rest_api_init",
+          "callback": "wbcom_essential_product_catalog_register_routes",
+          "file": "includes/edd-product-catalog-rest.php",
+          "line": 88,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "wp_loaded",
+          "callback": "wbcom_essential_maybe_upgrade",
+          "file": "includes/upgrades.php",
+          "line": 119,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "woocommerce_add_to_cart_fragments",
+          "callback": "wbcom_essential_header_cart_fragment",
+          "file": "includes/wbcom-essential-function.php",
+          "line": 560,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "after_setup_theme",
+          "callback": "edd_sl_sdk_register_1_0_4_3",
+          "file": "libs/edd-sl-sdk/edd-sl-sdk.php",
+          "line": 50,
+          "priority": 0,
+          "acceptedArgs": 0
+        },
+        {
+          "type": "action",
+          "hookName": "after_setup_theme",
+          "callback": "package_signatures_boot",
+          "file": "libs/package-signatures/package-signatures.php",
+          "line": 56,
+          "priority": 1,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "buddy_builder/has_template/pre",
+          "callback": "__return_true",
+          "file": "plugins/elementor/hooks/ElementorHooks.php",
+          "line": 81,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "admin_notices",
+          "callback": "wbcom_essential_elementor_fail_load_out_of_date",
+          "file": "plugins/elementor/wbcom-essential-elementor.php",
+          "line": 35,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "wp_ajax_wbcom_essential_dismiss_elementor_notice",
+          "callback": "wbcom_essential_dismiss_elementor_notice",
+          "file": "plugins/elementor/wbcom-essential-elementor.php",
+          "line": 127,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "init",
+          "callback": "wbcom_essential_elementor_load",
+          "file": "plugins/elementor/wbcom-essential-elementor.php",
+          "line": 129,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "the_content",
+          "callback": "wbcom_content_filter",
+          "file": "plugins/elementor/wbcom-essential-elementor.php",
+          "line": 247,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "wp_ajax_nopriv_wbcom_ajax_login",
+          "callback": "wbcom_ajax_login",
+          "file": "plugins/elementor/wbcom-essential-elementor.php",
+          "line": 496,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "reign_load_buddypress_assets",
+          "callback": "__return_true",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 505,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "wp",
+          "callback": "wbcom_direct_check_elementor_data",
+          "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+          "line": 510,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "bbp_get_topic_reply_link",
+          "callback": "wbcom_essential_theme_elementor_topic_link_attribute_change",
+          "file": "plugins/elementor/widgets/Buddypress/Forums.php",
+          "line": 621,
+          "priority": 9999,
+          "acceptedArgs": 3
+        },
+        {
+          "type": "filter",
+          "hookName": "bbp_get_reply_to_link",
+          "callback": "wbcom_essential_theme_elementor_reply_link_attribute_change",
+          "file": "plugins/elementor/widgets/Buddypress/Forums.php",
+          "line": 632,
+          "priority": 9999,
+          "acceptedArgs": 3
+        },
+        {
+          "type": "filter",
+          "hookName": "bbp_get_topic_reply_link",
+          "callback": "wbcom_essential_theme_elementor_topic_link_attribute_change",
+          "file": "plugins/elementor/widgets/Buddypress/ForumsActivity.php",
+          "line": 958,
+          "priority": 9999,
+          "acceptedArgs": 3
+        },
+        {
+          "type": "filter",
+          "hookName": "bbp_get_reply_to_link",
+          "callback": "wbcom_essential_theme_elementor_reply_link_attribute_change",
+          "file": "plugins/elementor/widgets/Buddypress/ForumsActivity.php",
+          "line": 970,
+          "priority": 9999,
+          "acceptedArgs": 3
+        },
+        {
+          "type": "filter",
+          "hookName": "buddy_builder/has_template/pre",
+          "callback": "__return_true",
+          "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+          "line": 200,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "bp_get_groups_pagination_count",
+          "callback": "__return_zero",
+          "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+          "line": 206,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "bp_get_groups_pagination_links",
+          "callback": "__return_zero",
+          "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php",
+          "line": 207,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "buddy_builder/has_template/pre",
+          "callback": "__return_true",
+          "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+          "line": 188,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "bp_members_pagination_count",
+          "callback": "__return_zero",
+          "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+          "line": 194,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "filter",
+          "hookName": "bp_get_members_pagination_links",
+          "callback": "__return_zero",
+          "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php",
+          "line": 195,
+          "priority": 10,
+          "acceptedArgs": 1
+        },
+        {
+          "type": "action",
+          "hookName": "init",
+          "callback": "wbcom_essential_register_block_patterns",
+          "file": "plugins/gutenberg/patterns/wbcom-patterns.php",
+          "line": 60,
+          "priority": 10,
+          "acceptedArgs": 1
+        }
+      ]
+    },
+    "activationHooks": [
+      {
+        "type": "activation",
+        "callback": "wbcom_essential_activate",
+        "file": "loader.php",
+        "line": 187
+      },
+      {
+        "type": "deactivation",
+        "callback": "wbcom_essential_deactivate",
+        "file": "loader.php",
+        "line": 209
+      }
+    ],
+    "customRoles": [],
+    "imageSizes": [
+      {
+        "name": "wbcom-essential-elementor-normal",
+        "width": 800,
+        "height": 800,
+        "crop": true,
+        "file": "wbcom-essential.php",
+        "line": 179
+      },
+      {
+        "name": "wbcom-essential-elementor-type1",
+        "width": 800,
+        "height": 500,
+        "crop": true,
+        "file": "wbcom-essential.php",
+        "line": 180
+      }
+    ],
+    "blockPatterns": [
+      {
+        "name": "wbcom-essential/blog-editorial",
+        "title": "Blog Editorial",
+        "file": "plugins/gutenberg/patterns/blog-editorial.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/blog-featured-list",
+        "title": "Blog Featured List",
+        "file": "plugins/gutenberg/patterns/blog-featured-list.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/blog-listing",
+        "title": "Blog Listing",
+        "file": "plugins/gutenberg/patterns/blog-listing.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/blog-masonry",
+        "title": "Blog Masonry",
+        "file": "plugins/gutenberg/patterns/blog-masonry.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/category-archive",
+        "title": "Category Archive",
+        "file": "plugins/gutenberg/patterns/category-archive.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/magazine-homepage",
+        "title": "Magazine Homepage",
+        "file": "plugins/gutenberg/patterns/magazine-homepage.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/news-dashboard",
+        "title": "News Dashboard",
+        "file": "plugins/gutenberg/patterns/news-dashboard.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/single-post-newsletter-cta",
+        "title": "Newsletter CTA",
+        "file": "plugins/gutenberg/patterns/single-post-newsletter-cta.php",
+        "line": 22
+      },
+      {
+        "name": "wbcom-essential/single-post-related-posts",
+        "title": "Related Posts Carousel",
+        "file": "plugins/gutenberg/patterns/single-post-related-posts.php",
+        "line": 16
+      },
+      {
+        "name": "wbcom-essential/single-post-share-section",
+        "title": "Share Section",
+        "file": "plugins/gutenberg/patterns/single-post-share-section.php",
+        "line": 16
+      }
+    ],
+    "integrations": [
+      {
+        "type": "woocommerce",
+        "hooks": [
+          "add_filter( 'woocommerce_add_to_cart_fragments'"
+        ],
+        "file": "includes/wbcom-essential-function.php",
+        "line": 560
+      },
+      {
+        "type": "buddypress",
+        "hooks": [
+          "add_filter(\n\t\t\t\t\t'bp_enqueue_assets_in_bp_pages_only'",
+          "add_filter( 'bp_current_component'",
+          "add_filter( 'bp_get_groups_pagination_count'",
+          "add_filter( 'bp_get_groups_pagination_links'",
+          "add_filter( 'bp_nouveau_get_loop_classes'",
+          "add_filter( 'bp_nouveau_get_loop_classes'",
+          "add_filter( 'bp_current_component'",
+          "add_filter( 'bp_members_pagination_count'",
+          "add_filter( 'bp_get_members_pagination_links'",
+          "add_filter( 'bp_nouveau_get_loop_classes'",
+          "add_filter( 'bp_nouveau_get_loop_classes'"
+        ],
+        "file": "plugins/elementor/wbcom-essential-woocommerce.php",
+        "line": 497
+      },
+      {
+        "type": "elementor",
+        "hooks": [
+          "add_action( 'elementor/frontend/after_enqueue_styles'",
+          "add_action( 'elementor/editor/after_enqueue_styles'",
+          "add_action( 'elementor/preview/enqueue_styles'",
+          "add_action( 'elementor/element/wbcom-posts/section_layout/before_section_end'",
+          "add_action( 'elementor/element/wbcom-posts/section_query/after_section_end'",
+          "add_action( 'elementor/element/wbcom-posts/cards_section_design_image/before_section_end'",
+          "add_action( 'elementor/elements/categories_registered'",
+          "add_action( 'elementor/widgets/register'",
+          "add_action( 'elementor/controls/register'",
+          "add_action( 'elementor/editor/after_save'",
+          "class DashboardIntro extends \\Elementor\\Widget_Base",
+          "class Forums extends \\Elementor\\Widget_Base",
+          "class ForumsActivity extends \\Elementor\\Widget_Base",
+          "class GroupCarousel extends \\Elementor\\Widget_Base",
+          "class GroupGrid extends \\Elementor\\Widget_Base",
+          "class GroupsLists extends \\Elementor\\Widget_Base",
+          "class HeaderBar extends \\Elementor\\Widget_Base",
+          "class MemberCarousel extends \\Elementor\\Widget_Base",
+          "class MembersGrid extends \\Elementor\\Widget_Base",
+          "class MembersLists extends \\Elementor\\Widget_Base"
+        ],
+        "file": "plugins/elementor/Plugins.php",
+        "line": 189
+      },
+      {
+        "type": "bbpress",
+        "hooks": [
+          "add_filter( 'bbp_get_topic_reply_link'",
+          "add_filter( 'bbp_get_reply_to_link'",
+          "add_filter( 'bbp_get_topic_reply_link'",
+          "add_filter( 'bbp_get_reply_to_link'"
+        ],
+        "file": "plugins/elementor/widgets/Buddypress/Forums.php",
+        "line": 621
+      }
+    ]
+  },
+  "wiring": {
+    "jsAjaxCalls": [
+      {
+        "action": "edd_sl_sdk_update_tracking_",
+        "nonceKey": "nonce",
+        "file": "libs/edd-sl-sdk/assets/src/js/data.js",
+        "line": 39
+      }
+    ],
+    "jsEventHandlers": [
+      {
+        "selector": "document",
+        "event": "scroll",
+        "file": "assets/single-post/js/reading-progress.js",
+        "line": 40
+      },
+      {
+        "selector": ".filter-btn",
+        "event": "click",
+        "file": "includes/shared-admin/wbcom-shared-admin.js",
+        "line": 39
+      },
+      {
+        "selector": ".refresh-news",
+        "event": "click",
+        "file": "includes/shared-admin/wbcom-shared-admin.js",
+        "line": 42
+      },
+      {
+        "selector": "a[href^=",
+        "event": "click",
+        "file": "includes/shared-admin/wbcom-shared-admin.js",
+        "line": 45
+      },
+      {
+        "selector": ".filter-btn",
+        "event": "click",
+        "file": "includes/shared-admin/wbcom-shared-admin.js",
+        "line": 39
+      },
+      {
+        "selector": ".refresh-news",
+        "event": "click",
+        "file": "includes/shared-admin/wbcom-shared-admin.js",
+        "line": 42
+      },
+      {
+        "selector": "a[href^=",
+        "event": "click",
+        "file": "includes/shared-admin/wbcom-shared-admin.js",
+        "line": 45
+      },
+      {
+        "selector": "document",
+        "event": "change",
+        "file": "libs/edd-sl-sdk/assets/src/js/data.js",
+        "line": 9
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "libs/edd-sl-sdk/assets/src/js/utils/overlay.js",
+        "line": 14
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "libs/edd-sl-sdk/assets/src/js/utils/overlay.js",
+        "line": 53
+      },
+      {
+        "selector": "document",
+        "event": "transitionend",
+        "file": "libs/edd-sl-sdk/assets/src/js/utils/overlay.js",
+        "line": 100
+      },
+      {
+        "selector": "document",
+        "event": "keydown",
+        "file": "plugins/elementor/assets/js/flip-box.js",
+        "line": 11
+      },
+      {
+        "selector": "document",
+        "event": "focusout",
+        "file": "plugins/elementor/assets/js/flip-box.js",
+        "line": 29
+      },
+      {
+        "selector": ".header-cart-drawer-trigger",
+        "event": "click",
+        "file": "plugins/elementor/assets/js/header-bar.js",
+        "line": 55
+      },
+      {
+        "selector": ".header-cart-drawer__overlay",
+        "event": "click",
+        "file": "plugins/elementor/assets/js/header-bar.js",
+        "line": 69
+      },
+      {
+        "selector": ".header-cart-drawer__close",
+        "event": "click",
+        "file": "plugins/elementor/assets/js/header-bar.js",
+        "line": 83
+      },
+      {
+        "selector": ".header-aside div.menu-item-has-children > a",
+        "event": "click",
+        "file": "plugins/elementor/assets/js/header-bar.js",
+        "line": 96
+      },
+      {
+        "selector": "document",
+        "event": "testPassiveListener",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 997
+      },
+      {
+        "selector": "document",
+        "event": "transitionend",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 1988
+      },
+      {
+        "selector": "document",
+        "event": "webkitTransitionEnd",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 1989
+      },
+      {
+        "selector": "document",
+        "event": "transitionend",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 2207
+      },
+      {
+        "selector": "document",
+        "event": "webkitTransitionEnd",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 2208
+      },
+      {
+        "selector": "document",
+        "event": "touchstart",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 3485
+      },
+      {
+        "selector": "document",
+        "event": "mousedown",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 3490
+      },
+      {
+        "selector": "document",
+        "event": "mousemove",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 3491
+      },
+      {
+        "selector": "document",
+        "event": "mouseup",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 3492
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 3497
+      },
+      {
+        "selector": "document",
+        "event": "scroll",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 3500
+      },
+      {
+        "selector": "document",
+        "event": "resize",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 4483
+      },
+      {
+        "selector": "document",
+        "event": "orientationchange",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 4486
+      },
+      {
+        "selector": "document",
+        "event": "popstate",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 7533
+      },
+      {
+        "selector": "document",
+        "event": "transitionend",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 7818
+      },
+      {
+        "selector": "document",
+        "event": "webkitTransitionEnd",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 7819
+      },
+      {
+        "selector": "document",
+        "event": "visibilitychange",
+        "file": "plugins/elementor/assets/js/swiper.js",
+        "line": 7875
+      },
+      {
+        "selector": "document",
+        "event": "input",
+        "file": "plugins/gutenberg/src/blocks/activity-feed/view.js",
+        "line": 387
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/activity-feed/view.js",
+        "line": 459
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/activity-feed/view.js",
+        "line": 559
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/countdown-timer/view.js",
+        "line": 128
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/customer-reviews/view.js",
+        "line": 101
+      },
+      {
+        "selector": "document",
+        "event": "change",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 213
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 299
+      },
+      {
+        "selector": "document",
+        "event": "keydown",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 382
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 395
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 403
+      },
+      {
+        "selector": "document",
+        "event": "submit",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 411
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 607
+      },
+      {
+        "selector": "document",
+        "event": "input",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 803
+      },
+      {
+        "selector": "document",
+        "event": "change",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 815
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 825
+      },
+      {
+        "selector": "document",
+        "event": "submit",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 857
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 877
+      },
+      {
+        "selector": "document",
+        "event": "popstate",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 898
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/view.js",
+        "line": 911
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/faq-accordion/view.js",
+        "line": 155
+      },
+      {
+        "selector": "document",
+        "event": "keydown",
+        "file": "plugins/gutenberg/src/blocks/faq-accordion/view.js",
+        "line": 185
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/faq-accordion/view.js",
+        "line": 236
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/flip-box/view.js",
+        "line": 63
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/flip-box/view.js",
+        "line": 75
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/group-carousel/view.js",
+        "line": 229
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/groups-grid/view.js",
+        "line": 218
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/members-carousel/view.js",
+        "line": 288
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/members-carousel/view.js",
+        "line": 303
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/members-grid/view.js",
+        "line": 266
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/members-grid/view.js",
+        "line": 281
+      },
+      {
+        "selector": "document",
+        "event": "transitionend",
+        "file": "plugins/gutenberg/src/blocks/portfolio-grid/view.js",
+        "line": 66
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/portfolio-grid/view.js",
+        "line": 80
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/portfolio-grid/view.js",
+        "line": 108
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/post-carousel/view.js",
+        "line": 94
+      },
+      {
+        "selector": "document",
+        "event": "mouseenter",
+        "file": "plugins/gutenberg/src/blocks/posts-ticker/view.js",
+        "line": 57
+      },
+      {
+        "selector": "document",
+        "event": "mouseleave",
+        "file": "plugins/gutenberg/src/blocks/posts-ticker/view.js",
+        "line": 60
+      },
+      {
+        "selector": "document",
+        "event": "focusin",
+        "file": "plugins/gutenberg/src/blocks/posts-ticker/view.js",
+        "line": 67
+      },
+      {
+        "selector": "document",
+        "event": "focusout",
+        "file": "plugins/gutenberg/src/blocks/posts-ticker/view.js",
+        "line": 70
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/posts-ticker/view.js",
+        "line": 83
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/product-carousel/view.js",
+        "line": 104
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/product-catalog/view.js",
+        "line": 265
+      },
+      {
+        "selector": "document",
+        "event": "input",
+        "file": "plugins/gutenberg/src/blocks/product-catalog/view.js",
+        "line": 369
+      },
+      {
+        "selector": "document",
+        "event": "change",
+        "file": "plugins/gutenberg/src/blocks/product-catalog/view.js",
+        "line": 381
+      },
+      {
+        "selector": "document",
+        "event": "change",
+        "file": "plugins/gutenberg/src/blocks/product-catalog/view.js",
+        "line": 393
+      },
+      {
+        "selector": "document",
+        "event": "change",
+        "file": "plugins/gutenberg/src/blocks/product-catalog/view.js",
+        "line": 405
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/product-catalog/view.js",
+        "line": 417
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/product-catalog/view.js",
+        "line": 570
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/progress-bar/view.js",
+        "line": 111
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/stats-counter/view.js",
+        "line": 114
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/blocks/tabs/view.js",
+        "line": 55
+      },
+      {
+        "selector": "document",
+        "event": "keydown",
+        "file": "plugins/gutenberg/src/blocks/tabs/view.js",
+        "line": 61
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/tabs/view.js",
+        "line": 104
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/testimonial-carousel/view.js",
+        "line": 83
+      },
+      {
+        "selector": "document",
+        "event": "DOMContentLoaded",
+        "file": "plugins/gutenberg/src/blocks/text-rotator/view.js",
+        "line": 224
+      },
+      {
+        "selector": "document",
+        "event": "click",
+        "file": "plugins/gutenberg/src/shared/utils/bp-group-join.js",
+        "line": 132
+      }
+    ],
+    "localizeScripts": [
+      {
+        "handle": "wbcom-essential-blog-index-settings",
+        "objectName": "wbcomBlogIndexSettings",
+        "data": {},
+        "file": "includes/blog-index/class-wbcom-blog-index-settings.php",
+        "line": 453
+      },
+      {
+        "handle": "wbcom-shared-admin",
+        "objectName": "wbcomShared",
+        "data": {
+          "ajaxUrl": "admin-ajax.php",
+          "nonce": "wbcom_shared_nonce"
+        },
+        "file": "includes/shared-admin/class-wbcom-shared-loader.php",
+        "line": 788
+      },
+      {
+        "handle": "edd-sdk-notice",
+        "objectName": "edd_sdk_notice",
+        "data": {},
+        "file": "libs/edd-sl-sdk/src/Handlers/Handler.php",
+        "line": 98
+      },
+      {
+        "handle": "wbcom-ajax-login",
+        "objectName": "wbcom_ajax_login_params",
+        "data": {
+          "ajax_url": "admin-ajax.php",
+          "security": "wbcom-ajax-login-nonce"
+        },
+        "file": "plugins/elementor/widgets/General/LoginForm.php",
+        "line": 39
+      }
+    ],
+    "issues": [
+      {
+        "type": "broken-ajax",
+        "severity": "critical",
+        "source": "libs/edd-sl-sdk/assets/src/js/data.js:39",
+        "target": "wp_ajax_edd_sl_sdk_update_tracking_",
+        "details": "JS calls action \"edd_sl_sdk_update_tracking_\" but no wp_ajax_edd_sl_sdk_update_tracking_ handler exists",
+        "file": "libs/edd-sl-sdk/assets/src/js/data.js",
+        "line": 39
+      },
+      {
+        "type": "dead-handler",
+        "severity": "medium",
+        "source": "plugins/elementor/wbcom-essential-elementor.php:127",
+        "target": "wbcom_essential_dismiss_elementor_notice",
+        "details": "PHP handler \"wbcom_essential_dismiss_elementor_notice\" registered but never called from JS",
+        "file": "plugins/elementor/wbcom-essential-elementor.php",
+        "line": 127
+      },
+      {
+        "type": "dead-handler",
+        "severity": "medium",
+        "source": "plugins/elementor/wbcom-essential-elementor.php:496",
+        "target": "wbcom_ajax_login",
+        "details": "PHP handler \"wbcom_ajax_login\" registered but never called from JS",
+        "file": "plugins/elementor/wbcom-essential-elementor.php",
+        "line": 496
+      },
+      {
+        "type": "orphaned-selector",
+        "severity": "high",
+        "source": "libs/edd-sl-sdk/src/Licensing/License.php:95",
+        "target": "[data-action=\"<?php echo esc_attr( $button[\"]",
+        "details": "Template has data-action=\"<?php echo esc_attr( $button[\" but no JS handler listens for it",
+        "file": "libs/edd-sl-sdk/src/Licensing/License.php",
+        "line": 95
+      },
+      {
+        "type": "orphaned-selector",
+        "severity": "high",
+        "source": "libs/edd-sl-sdk/src/Licensing/License.php:105",
+        "target": "[data-action=\"delete\"]",
+        "details": "Template has data-action=\"delete\" but no JS handler listens for it",
+        "file": "libs/edd-sl-sdk/src/Licensing/License.php",
+        "line": 105
+      }
+    ]
+  },
+  "stats": {
+    "phpFiles": 165,
+    "jsFiles": 165,
+    "cssFiles": 116,
+    "totalLines": 108560
+  },
+  "generated": {
+    "generator": "wp-plugin-qa scanner",
+    "schema": "v3-functional"
+  },
+  "rest": {
+    "namespace": "wbcom/v1",
+    "endpoints": [
+      {
+        "route": "/wbcom/v1/edd-account/(?P<tab>[a-z-]+)",
+        "methods": [
+          "GET"
+        ],
+        "permission": "closure",
+        "gated_by": null,
+        "file": "includes/edd-account-dashboard-functions.php:245"
+      },
+      {
+        "route": "/wbcom/v1/edd-account/states/(?P<country>[A-Z]{2})",
+        "methods": [
+          "GET"
+        ],
+        "permission": "closure",
+        "gated_by": null,
+        "file": "includes/edd-account-dashboard-functions.php:270"
+      },
+      {
+        "route": "/wbcom/v1/edd-account/claim-free",
+        "methods": [
+          "POST"
+        ],
+        "permission": "closure",
+        "gated_by": null,
+        "file": "includes/edd-account-marketing-functions.php:581"
+      },
+      {
+        "route": "/wbcom/v1/products",
+        "methods": [
+          "GET"
+        ],
+        "permission": "wbcom_essential_product_catalog_public_permission",
+        "gated_by": null,
+        "file": "includes/edd-product-catalog-rest.php:31"
+      },
+      {
+        "route": "/wbcom/v1/product-categories",
+        "methods": [
+          "GET"
+        ],
+        "permission": "wbcom_essential_product_catalog_public_permission",
+        "gated_by": null,
+        "file": "includes/edd-product-catalog-rest.php:78"
+      },
+      {
+        "route": "/wbcom-essential/v1/xprofile-groups",
+        "methods": [
+          "GET"
+        ],
+        "permission": "closure",
+        "gated_by": null,
+        "file": "plugins/gutenberg/gutenberg.php:248"
+      }
+    ]
+  },
+  "ajax": [
+    {
+      "action": "wbcom_essential_dismiss_elementor_notice",
+      "callback": "wbcom_essential_dismiss_elementor_notice",
+      "loggedIn": true,
+      "loggedOut": false,
+      "hasNonceCheck": true,
+      "file": "plugins/elementor/wbcom-essential-elementor.php",
+      "line": 127
+    },
+    {
+      "action": "wbcom_ajax_login",
+      "callback": "wbcom_ajax_login",
+      "loggedIn": false,
+      "loggedOut": true,
+      "hasNonceCheck": true,
+      "file": "plugins/elementor/wbcom-essential-elementor.php",
+      "line": 496
+    }
+  ],
+  "admin_pages": [
+    {
+      "page": "wbcom-designs",
+      "type": "menu",
+      "capability": "manage_options",
+      "title": "Wbcom Designs",
+      "file": "admin/class-wbcom-essential-widget-showcase.php:64"
+    },
+    {
+      "page": "wbcom-essential",
+      "type": "submenu",
+      "capability": "manage_options",
+      "title": "Essential",
+      "file": "admin/class-wbcom-essential-widget-showcase.php:74"
+    },
+    {
+      "page": "wbcom-designs",
+      "type": "menu",
+      "capability": "manage_options",
+      "title": "Wbcom Designs",
+      "file": "includes/shared-admin/class-wbcom-shared-dashboard.php:45"
+    },
+    {
+      "page": "wbcom-designs",
+      "type": "submenu",
+      "capability": "manage_options",
+      "title": "Dashboard",
+      "file": "includes/shared-admin/class-wbcom-shared-dashboard.php:56"
+    },
+    {
+      "page": "wbcom-designs",
+      "type": "menu",
+      "capability": "manage_options",
+      "title": "Wbcom Designs",
+      "file": "includes/shared-admin/class-wbcom-shared-loader.php:421"
+    },
+    {
+      "page": "wbcom-designs",
+      "type": "submenu",
+      "capability": "manage_options",
+      "title": "Dashboard",
+      "file": "includes/shared-admin/class-wbcom-shared-loader.php:433"
+    }
+  ],
+  "tables": [],
+  "hooks_fired": [
+    {
+      "hook": "wbcom_essential_wp_cron_disabled",
+      "type": "filter",
+      "file": "includes/class-wbcom-essential-preset-activation.php:173"
+    },
+    {
+      "hook": "wbcom_essential_cancel_feedback_email",
+      "type": "filter",
+      "file": "includes/edd-account-dashboard-functions.php:395"
+    },
+    {
+      "hook": "wbcom_essential_edd_dashboard_top",
+      "type": "action",
+      "file": "includes/edd-account-dashboard-functions.php:987"
+    },
+    {
+      "hook": "wbcom_essential_edd_dashboard_after_greeting",
+      "type": "action",
+      "file": "includes/edd-account-dashboard-functions.php:1007"
+    },
+    {
+      "hook": "wbcom_essential_login_security_enabled",
+      "type": "filter",
+      "file": "includes/edd-account-login-security.php:51"
+    },
+    {
+      "hook": "wbcom_essential_login_security_trusted_proxies",
+      "type": "filter",
+      "file": "includes/edd-account-login-security.php:75"
+    },
+    {
+      "hook": "wbcom_essential_login_security_client_ip",
+      "type": "filter",
+      "file": "includes/edd-account-login-security.php:96"
+    },
+    {
+      "hook": "wbcom_essential_edd_free_download_ids",
+      "type": "filter",
+      "file": "includes/edd-account-marketing-functions.php:54"
+    },
+    {
+      "hook": "wbcom_essential_edd_offers_shop_url",
+      "type": "filter",
+      "file": "includes/edd-account-marketing-functions.php:327"
+    },
+    {
+      "hook": "wbcom_essential_edd_free_plugins_top",
+      "type": "action",
+      "file": "includes/edd-account-marketing-functions.php:520"
+    },
+    {
+      "hook": "wbcom_essential_edd_free_claim_limit",
+      "type": "filter",
+      "file": "includes/edd-account-marketing-functions.php:639"
+    },
+    {
+      "hook": "wbcom_essential_free_claim",
+      "type": "action",
+      "file": "includes/edd-account-marketing-functions.php:702"
+    },
+    {
+      "hook": "wbcom_essential_product_catalog_public_permission",
+      "type": "filter",
+      "file": "includes/edd-product-catalog-rest.php:100"
+    },
+    {
+      "hook": "wbcom_submenu_label",
+      "type": "filter",
+      "file": "includes/shared-admin/class-wbcom-shared-loader.php:463"
+    },
+    {
+      "hook": "wbcom_essential_display_timezone",
+      "type": "filter",
+      "file": "includes/time-functions.php:29"
+    },
+    {
+      "hook": "wbcom_essential_upgraded",
+      "type": "action",
+      "file": "includes/upgrades.php:117"
+    },
+    {
+      "hook": "wbcom_essential_locate_template",
+      "type": "filter",
+      "file": "includes/wbcom-essential-function.php:65"
+    },
+    {
+      "hook": "bb_notification_avatar_",
+      "type": "action",
+      "file": "includes/wbcom-essential-function.php:160"
+    },
+    {
+      "hook": "wbcom_essential_friend_requests_data",
+      "type": "filter",
+      "file": "includes/wbcom-essential-function.php:414"
+    },
+    {
+      "hook": "bb_theme_topic_link_attribute_change",
+      "type": "filter",
+      "file": "includes/wbcom-essential-function.php:479"
+    },
+    {
+      "hook": "wbcom_essential_posts_revolution_elementor_thumbs",
+      "type": "filter",
+      "file": "includes/wbcom-essential-function.php:581"
+    },
+    {
+      "hook": "wbcom_essential_posts_revolution_elementor_format_icon",
+      "type": "filter",
+      "file": "includes/wbcom-essential-function.php:619"
+    },
+    {
+      "hook": "edd_sl_sdk_registry",
+      "type": "action",
+      "file": "libs/edd-sl-sdk/edd-sl-sdk.php:72"
+    },
+    {
+      "hook": "edd_sl_sdk_allowed_overlay_templates",
+      "type": "filter",
+      "file": "libs/edd-sl-sdk/src/Handlers/Handler.php:213"
+    },
+    {
+      "hook": "edd_sl_sdk_translate_string",
+      "type": "filter",
+      "file": "libs/edd-sl-sdk/src/Messenger.php:603"
+    },
+    {
+      "hook": "https_ssl_verify",
+      "type": "filter",
+      "file": "libs/edd-sl-sdk/src/Requests/API.php:111"
+    },
+    {
+      "hook": "edd_sl_sdk_templates_path",
+      "type": "filter",
+      "file": "libs/edd-sl-sdk/src/Templates.php:47"
+    },
+    {
+      "hook": "in_plugin_update_message-{$file}",
+      "type": "action",
+      "file": "libs/edd-sl-sdk/src/Updaters/Plugin.php:180"
+    },
+    {
+      "hook": "edd_sl_sdk_license_control_before_{$args[",
+      "type": "action",
+      "file": "libs/edd-sl-sdk/templates/license-control.php:11"
+    },
+    {
+      "hook": "edd_sl_sdk_license_control_after_{$args[",
+      "type": "action",
+      "file": "libs/edd-sl-sdk/templates/license-control.php:47"
+    },
+    {
+      "hook": "package_signatures_checked",
+      "type": "action",
+      "file": "libs/package-signatures/src/class-guard.php:228"
+    },
+    {
+      "hook": "wbcom_essential_activated",
+      "type": "action",
+      "file": "loader.php:185"
+    },
+    {
+      "hook": "wbcom_essential_deactivated",
+      "type": "action",
+      "file": "loader.php:207"
+    },
+    {
+      "hook": "wbcom_essential/init",
+      "type": "action",
+      "file": "plugins/elementor/Plugins.php:217"
+    },
+    {
+      "hook": "wbcom_essential/get_elements",
+      "type": "filter",
+      "file": "plugins/elementor/Plugins.php:536"
+    },
+    {
+      "hook": "excerpt_length",
+      "type": "filter",
+      "file": "plugins/elementor/helper/skins/skin-base.php:278"
+    },
+    {
+      "hook": "the_date",
+      "type": "filter",
+      "file": "plugins/elementor/helper/skins/skin-base.php:1052"
+    },
+    {
+      "hook": "the_date",
+      "type": "filter",
+      "file": "plugins/elementor/helper/skins/skin-base.php:1053"
+    },
+    {
+      "hook": "wba_number_of_users_per_query",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-elementor.php:372"
+    },
+    {
+      "hook": "wbcom_taxonomy_list_options",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:54"
+    },
+    {
+      "hook": "wbcom_post_name_query_args",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:81"
+    },
+    {
+      "hook": "wbcom_post_name_options",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:97"
+    },
+    {
+      "hook": "wbcom_allowed_html_tags",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:142"
+    },
+    {
+      "hook": "wbcom_default_html_tag",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:168"
+    },
+    {
+      "hook": "wbcom_show_custom_product_badge",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:188"
+    },
+    {
+      "hook": "wbcom_custom_saleflash_text",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:192"
+    },
+    {
+      "hook": "wbcom_product_query_args",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:325"
+    },
+    {
+      "hook": "wbcom_sale_badge_text",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:379"
+    },
+    {
+      "hook": "wbcom_shop_out_of_stock_text",
+      "type": "filter",
+      "file": "plugins/elementor/wbcom-essential-woocommerce.php:384"
+    },
+    {
+      "hook": "bbp_template_before_topics_loop",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/Forums.php:536"
+    },
+    {
+      "hook": "bbp_template_after_topics_loop",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/Forums.php:659"
+    },
+    {
+      "hook": "wbcom_essential/widget/groups-listing/settings",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/GroupCarousel.php:122"
+    },
+    {
+      "hook": "reign_wp_menu_elementor_controls",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/GroupCarousel.php:342"
+    },
+    {
+      "hook": "wbcom_essential/widget/groups-grid/settings",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php:98"
+    },
+    {
+      "hook": "wbcom_essential/groups-loop/before/template",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php:204"
+    },
+    {
+      "hook": "wbcom_essential/groups-loop/after/template",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/Buddypress/GroupGrid.php:317"
+    },
+    {
+      "hook": "bp_group_widget_user_id",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/Buddypress/GroupsLists.php:594"
+    },
+    {
+      "hook": "wbcom_essential/widget/members-listing/settings",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/MemberCarousel.php:122"
+    },
+    {
+      "hook": "reign_wp_menu_elementor_controls",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/MemberCarousel.php:350"
+    },
+    {
+      "hook": "wbcom_essential/widget/members-listing/settings",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php:98"
+    },
+    {
+      "hook": "reign_wp_menu_elementor_controls",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php:165"
+    },
+    {
+      "hook": "wbcom_essential/members-loop/before/template",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php:192"
+    },
+    {
+      "hook": "wbcom_essential/members-loop/after/template",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/Buddypress/MembersGrid.php:316"
+    },
+    {
+      "hook": "wbcom_essential_user_progress_formatted",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/Buddypress/ProfileCompletion.php:1225"
+    },
+    {
+      "hook": "wbcom_essential_header_user_menu_items",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:78"
+    },
+    {
+      "hook": "wbcom_essential_header_user_menu_items",
+      "type": "action",
+      "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/header-aside.php:81"
+    },
+    {
+      "hook": "bp_core_get_table_prefix",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/Buddypress/header-bar/templates/messages-dropdown.php:126"
+    },
+    {
+      "hook": "wbcom_essential/widget/branding/settings",
+      "type": "action",
+      "file": "plugins/elementor/widgets/General/Branding.php:94"
+    },
+    {
+      "hook": "wbcom_essential_branding_elementor_controls",
+      "type": "action",
+      "file": "plugins/elementor/widgets/General/Branding.php:325"
+    },
+    {
+      "hook": "wbcom_btn_skins",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/General/DropdownButton.php:94"
+    },
+    {
+      "hook": "wbcom_btn_skins",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/General/FlipBox.php:94"
+    },
+    {
+      "hook": "wbcom_recaptcha_login_form",
+      "type": "action",
+      "file": "plugins/elementor/widgets/General/LoginForm.php:1704"
+    },
+    {
+      "hook": "reign_wp_menu_elementor_controls",
+      "type": "action",
+      "file": "plugins/elementor/widgets/General/NotificationArea.php:310"
+    },
+    {
+      "hook": "wbcom_ele_notification_login_url",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/General/NotificationArea.php:636"
+    },
+    {
+      "hook": "wbcom_ele_notification_registration_url",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/General/NotificationArea.php:637"
+    },
+    {
+      "hook": "reign_notification_area_output",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/General/NotificationArea.php:672"
+    },
+    {
+      "hook": "wbcom_btn_skins",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/General/PostTimeline.php:105"
+    },
+    {
+      "hook": "wbcom_btn_skins",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/General/PricingTable.php:84"
+    },
+    {
+      "hook": "woocommerce_get_product_terms",
+      "type": "filter",
+      "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php:131"
+    },
+    {
+      "hook": "wbcom_addon_after_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php:1611"
+    },
+    {
+      "hook": "wbcom_addon_after_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php:1639"
+    },
+    {
+      "hook": "wbcom_addon_after_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php:1716"
+    },
+    {
+      "hook": "wbcom_addon_after_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/ProductTab.php:1744"
+    },
+    {
+      "hook": "wbcom_universal_before_title",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2313"
+    },
+    {
+      "hook": "wbcom_universal_after_title",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2315"
+    },
+    {
+      "hook": "wbcom_universal_before_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2316"
+    },
+    {
+      "hook": "wbcom_universal_after_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2318"
+    },
+    {
+      "hook": "wbcom_universal_before_title",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2506"
+    },
+    {
+      "hook": "wbcom_universal_after_title",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2508"
+    },
+    {
+      "hook": "wbcom_universal_before_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2509"
+    },
+    {
+      "hook": "wbcom_universal_after_price",
+      "type": "action",
+      "file": "plugins/elementor/widgets/WooCommerce/UniversalProduct.php:2511"
+    },
+    {
+      "hook": "wbcom_essential_edd_login_icon_html",
+      "type": "filter",
+      "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:74"
+    },
+    {
+      "hook": "login_form",
+      "type": "action",
+      "file": "plugins/gutenberg/src/blocks/edd-account-dashboard/render.php:95"
+    },
+    {
+      "hook": "wbcom_edd_checkout_trustpilot",
+      "type": "filter",
+      "file": "plugins/gutenberg/src/blocks/edd-checkout-social/render.php:42"
+    },
+    {
+      "hook": "bp_before_directory_groups_list",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/groups/groups-loop.php:28"
+    },
+    {
+      "hook": "bp_directory_groups_item",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/groups/groups-loop.php:92"
+    },
+    {
+      "hook": "wbtm_bp_directory_groups_data",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/groups/groups-loop.php:97"
+    },
+    {
+      "hook": "bp_directory_groups_actions",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/groups/groups-loop.php:115"
+    },
+    {
+      "hook": "bp_after_directory_groups_list",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/groups/groups-loop.php:137"
+    },
+    {
+      "hook": "bp_before_directory_members_list",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/members/members-loop.php:27"
+    },
+    {
+      "hook": "bp_directory_members_item",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/members/members-loop.php:97"
+    },
+    {
+      "hook": "bp_directory_members_actions",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/members/members-loop.php:103"
+    },
+    {
+      "hook": "bp_after_directory_members_list",
+      "type": "action",
+      "file": "templates/reign/buddypress/legacy/members/members-loop.php:122"
+    },
+    {
+      "hook": "reign_before_group_avatar_group_directory",
+      "type": "action",
+      "file": "templates/reign/buddypress/nouveau/groups/groups-loop.php:43"
+    },
+    {
+      "hook": "wbtm_bp_directory_groups_data",
+      "type": "action",
+      "file": "templates/reign/buddypress/nouveau/groups/groups-loop.php:123"
+    },
+    {
+      "hook": "the_content",
+      "type": "filter",
+      "file": "templates/single-post/partials/toc.php:18"
+    },
+    {
+      "hook": "wbcom_essential_single_post_sidebars",
+      "type": "filter",
+      "file": "templates/single-post/template-classic.php:28"
+    },
+    {
+      "hook": "the_content",
+      "type": "filter",
+      "file": "templates/single-post/template-modern.php:53"
+    }
+  ],
+  "cron": [
+    "wbcom_essential_activate_preset_key",
+    "wbcom_essential_activate_preset_key",
+    "edd_sl_sdk_weekly_license_check_"
+  ],
+  "blocks": [
+    "wbcom-essential/activity-feed",
+    "wbcom-essential/category-grid",
+    "wbcom-essential/countdown-timer",
+    "wbcom-essential/cta",
+    "wbcom-essential/customer-reviews",
+    "wbcom-essential/edd-account-dashboard",
+    "wbcom-essential/edd-checkout-enhanced",
+    "wbcom-essential/edd-checkout-progress",
+    "wbcom-essential/edd-checkout-recommendations",
+    "wbcom-essential/edd-checkout-social",
+    "wbcom-essential/edd-checkout-trust",
+    "wbcom-essential/edd-order-success",
+    "wbcom-essential/faq-accordion",
+    "wbcom-essential/feature-grid",
+    "wbcom-essential/flip-box",
+    "wbcom-essential/group-carousel",
+    "wbcom-essential/groups-grid",
+    "wbcom-essential/hero",
+    "wbcom-essential/login-form",
+    "wbcom-essential/members-carousel",
+    "wbcom-essential/members-grid",
+    "wbcom-essential/portfolio-grid",
+    "wbcom-essential/post-carousel",
+    "wbcom-essential/posts-ticker",
+    "wbcom-essential/pricing-table",
+    "wbcom-essential/product-carousel",
+    "wbcom-essential/product-catalog",
+    "wbcom-essential/product-grid",
+    "wbcom-essential/progress-bar",
+    "wbcom-essential/promo-banner",
+    "wbcom-essential/stats-counter",
+    "wbcom-essential/tabs",
+    "wbcom-essential/testimonial-carousel",
+    "wbcom-essential/text-rotator",
+    "wbcom-essential/timeline"
+  ],
+  "shortcodes": [
+    "wbcombtn"
+  ],
+  "frontend_assets": {
+    "js": [],
+    "css": []
+  },
+  "template_contract": {
+    "mode": "wc-loader",
+    "checked": 0,
+    "pass": 0,
+    "fail": 0,
+    "skipped": 0,
+    "findings": []
+  },
+  "template_zero_logic": {
+    "checked_files": 21,
+    "fail": 0,
+    "findings": []
+  },
+  "template_components": {
+    "checked_files": 0,
+    "fail": 0,
+    "findings": []
+  },
+  "readiness": {
+    "score": 87,
+    "requiredMet": false,
+    "barVerdict": "below-bar",
+    "counts": {
+      "pass": 13,
+      "missing": 2,
+      "fail": 0,
+      "na": 1
+    },
+    "groups": {
+      "Standards": {
+        "pass": 3,
+        "total": 3
+      },
+      "CI & Quality": {
+        "pass": 3,
+        "total": 3
+      },
+      "Architecture": {
+        "pass": 1,
+        "total": 1
+      },
+      "Contracts": {
+        "pass": 2,
+        "total": 2
+      },
+      "QA system": {
+        "pass": 3,
+        "total": 5
+      },
+      "Docs": {
+        "pass": 1,
+        "total": 1
+      }
+    },
+    "items": [
+      {
+        "id": "uninstall",
+        "group": "Standards",
+        "label": "uninstall.php / uninstall hook",
+        "required": true,
+        "status": "pass",
+        "detail": "cleanup on delete present"
+      },
+      {
+        "id": "readme",
+        "group": "Standards",
+        "label": "readme.txt with changelog",
+        "required": true,
+        "status": "pass",
+        "detail": "changelog present"
+      },
+      {
+        "id": "i18n",
+        "group": "Standards",
+        "label": "i18n: .pot file",
+        "required": true,
+        "status": "pass",
+        "detail": "translation template present"
+      },
+      {
+        "id": "wpcs",
+        "group": "CI & Quality",
+        "label": "WPCS config (phpcs.xml)",
+        "required": true,
+        "status": "pass",
+        "detail": "phpcs config present"
+      },
+      {
+        "id": "phpstan",
+        "group": "CI & Quality",
+        "label": "PHPStan config",
+        "required": true,
+        "status": "pass",
+        "detail": "phpstan config present"
+      },
+      {
+        "id": "ci",
+        "group": "CI & Quality",
+        "label": "CI pipeline (workflow or local-ci)",
+        "required": true,
+        "status": "pass",
+        "detail": "CI gate present"
+      },
+      {
+        "id": "rest",
+        "group": "Architecture",
+        "label": "REST API (app/integration surface)",
+        "required": false,
+        "status": "pass",
+        "detail": "6 routes"
+      },
+      {
+        "id": "caps",
+        "group": "Architecture",
+        "label": "Custom capabilities registered",
+        "required": false,
+        "status": "n/a",
+        "detail": "no custom roles"
+      },
+      {
+        "id": "template-contract",
+        "group": "Contracts",
+        "label": "Template contract (TC2) clean",
+        "required": true,
+        "status": "pass",
+        "detail": "0 templates, 0 drift"
+      },
+      {
+        "id": "template-zero-logic",
+        "group": "Contracts",
+        "label": "Templates are logic-free (TC1)",
+        "required": false,
+        "status": "pass",
+        "detail": "no data fetching in templates"
+      },
+      {
+        "id": "qa-runbook",
+        "group": "QA system",
+        "label": "docs/qa smoke runbook",
+        "required": true,
+        "status": "missing",
+        "detail": "no docs/qa/AGENT_SMOKE_RUNBOOK.md"
+      },
+      {
+        "id": "qa-config",
+        "group": "QA system",
+        "label": "docs/qa/qa-config.json",
+        "required": true,
+        "status": "pass",
+        "detail": "qa-config present"
+      },
+      {
+        "id": "manifest",
+        "group": "QA system",
+        "label": "audit/manifest.json",
+        "required": true,
+        "status": "pass",
+        "detail": "manifest present"
+      },
+      {
+        "id": "contract-baseline",
+        "group": "QA system",
+        "label": "contract-audit baseline",
+        "required": false,
+        "status": "pass",
+        "detail": "baseline present"
+      },
+      {
+        "id": "journeys",
+        "group": "QA system",
+        "label": "audit/journeys catalogue",
+        "required": false,
+        "status": "missing",
+        "detail": "no audit/journeys"
+      },
+      {
+        "id": "docs",
+        "group": "Docs",
+        "label": "docs/ tree",
+        "required": false,
+        "status": "pass",
+        "detail": "docs/ present"
+      }
+    ]
+  }
+}
