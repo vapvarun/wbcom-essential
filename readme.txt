@@ -127,7 +127,9 @@ Blocks and widgets keep their own spacing and colours on every theme, read clear
 * Fix      - Flip Box, Portfolio Grid filter and the Elementor Tabs widget work with a keyboard and screen readers, and carousel arrows and join buttons show a focus ring.
 * Fix      - FAQ Accordion blocks share one FAQPage schema per page.
 * Fix      - Blocks with nothing to show render nothing for visitors and tell the owner why, and Countdown Timer with no date prints nothing.
-* Fix      - Elementor widgets no longer publish placeholder copy, and Smart Menu with no menu prints nothing.
+* Fix      - Elementor widgets no longer publish placeholder copy or images: Add Banner, Dropdown Button, Slider, Team Carousel and Portfolio Grid show nothing to visitors until filled in, and Smart Menu with no menu prints nothing.
+* Fix      - Post Carousel, Product Grid and Product Carousel image placeholders sit on the theme's surface in dark mode instead of showing white tiles.
+* Fix      - WC Testimonial and Customer Review show one column on phones and two on tablets unless the owner sets a count.
 * Fix      - Groups Grid and Group Carousel join buttons follow the group type: Join Group, Request Membership, or none for hidden groups.
 * Fix      - Activity Feed photos and videos are capped at 360px tall, and Show Media Preview off hides them.
 * Fix      - EDD Order Success shows the right message for completed, pending and failed orders, and EDD account buttons are readable in dark mode.
