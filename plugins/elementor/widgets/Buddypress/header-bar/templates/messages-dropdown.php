@@ -297,7 +297,7 @@ $messages_icon        = ( isset( $settings['messages_icon']['value'] ) && '' !==
 											<?php bp_message_thread_avatar(); ?>
 										</a>
 									<?php else : ?>
-										<a href="<?php echo esc_url( bp_core_get_user_domain( $messages_template->thread->last_sender_id ) ); ?>">
+										<a href="<?php echo esc_url( wbcom_essential_get_user_domain( $messages_template->thread->last_sender_id ) ); ?>">
 											<?php bp_message_thread_avatar(); ?>
 										</a>
 									<?php endif; ?>

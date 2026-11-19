@@ -180,12 +180,7 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 					$link = bp_get_group_permalink( $group );
 				}
 			} else {
-				$user = new WP_User( $item_id );
-				if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
-					$link = bp_members_get_user_url( $user->ID );
-				} else {
-					$link = bp_core_get_user_domain( $user->ID, $user->user_nicename, $user->user_login );
-				}
+				$link = wbcom_essential_get_user_domain( $item_id );
 			}
 
 			?>
@@ -199,7 +194,7 @@ if ( ! function_exists( 'wbcom_essential_notification_avatar' ) ) {
 					)
 				);
 				?>
-				<?php ( isset( $user ) ? wbcom_essential_user_status( $user->ID ) : '' ); ?>
+				<?php ( 'group' !== $object ? wbcom_essential_user_status( $item_id ) : '' ); ?>
 			</a>
 			<?php
 		}

@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					if ( function_exists( 'buddypress' ) && version_compare( buddypress()->version, '12.0', '>=' ) ) {
 						$user_link = function_exists( 'bp_members_get_user_url' ) ? bp_members_get_user_url( $wbcom_user->ID ) : get_author_posts_url( $wbcom_user->ID );
 					} else {
-						$user_link = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( $wbcom_user->ID ) : get_author_posts_url( $wbcom_user->ID );
+						$user_link = wbcom_essential_get_user_domain( $wbcom_user->ID );
 					}
 
 					$display_name = function_exists( 'bp_core_get_user_displayname' ) ? bp_core_get_user_displayname( $wbcom_user->ID ) : $wbcom_user->display_name;
