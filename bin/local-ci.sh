@@ -72,18 +72,30 @@ section "D1 - journey depth (every escape has a journey check)"
 php bin/check-journey-depth.php 2>&1 | grep -Ev 'Xdebug|Zend Engine|imagick|Derick|opcache|PHP Startup|^$' | tail -3
 [ "${PIPESTATUS[0]}" -eq 0 ] || { echo "FAIL: php bin/check-journey-depth.php"; FAIL=1; }
 
-section "I1 - translations (0 untranslated, 0 fuzzy, placeholders, block JSON)"
+section "I1 - translations (current POT: 0 untranslated, 0 fuzzy, placeholders, JSON per block script)"
+# Every built script with translatable strings, by the name core gives its JSON:
+# {domain}-{locale}-{md5 of the script path relative to the plugin}.json.
+SCRIPTS=$(grep -E '^#: ' languages/wbcom-essential.pot | tr ' ' '\n' | grep -E '^build/blocks/.+\.js(:[0-9]+)?$' | sed 's/:[0-9]*$//' | sort -u)
+MERGED=$(mktemp -d)
 for po in languages/*.po; do
 	[ -e "$po" ] || continue
 	loc=$(basename "$po" .po); loc=${loc#wbcom-essential-}
-	untr=$(msgattrib --untranslated --no-obsolete "$po" | grep -c '^msgid' || true)
+	# Count against the current POT: a .po never merged with new strings looks complete otherwise.
+	msgmerge --quiet --no-fuzzy-matching --no-wrap -o "$MERGED/$loc.po" "$po" languages/wbcom-essential.pot
+	untr=$(msgattrib --untranslated --no-obsolete "$MERGED/$loc.po" | grep -c '^msgid' || true)
 	fuzz=$(msgattrib --only-fuzzy --no-obsolete "$po" | grep -c '^msgid' || true)
 	# The header entry counts as one untranslated msgid.
 	[ "$untr" -le 1 ] || { echo "FAIL: $loc has $((untr - 1)) untranslated strings"; FAIL=1; }
-	[ "$fuzz" -eq 0 ] || { echo "FAIL: $loc has $fuzz fuzzy strings"; FAIL=1; }
+	[ "$fuzz" -eq 0 ] || { echo "FAIL: $loc has $fuzz fuzzy strings (retranslate, never ship the guesses)"; FAIL=1; }
 	msgfmt --check-format -o /dev/null "$po" 2>/dev/null || { echo "FAIL: $loc placeholder mismatch (msgfmt --check-format)"; FAIL=1; }
-	ls languages/wbcom-essential-"$loc"-*.json >/dev/null 2>&1 || { echo "FAIL: $loc has no block/script JSON translations (wp i18n make-json languages/ --no-purge)"; FAIL=1; }
+	missing=0
+	for js in $SCRIPTS; do
+		md5=$(printf '%s' "$js" | md5 -q 2>/dev/null || printf '%s' "$js" | md5sum | cut -d' ' -f1)
+		[ -f "languages/wbcom-essential-$loc-$md5.json" ] || missing=$((missing + 1))
+	done
+	[ "$missing" -eq 0 ] || { echo "FAIL: $loc lacks JSON for $missing of $(echo "$SCRIPTS" | wc -l | tr -d ' ') block scripts, so block editor and front-end strings stay English (wp i18n make-json languages --no-purge)"; FAIL=1; }
 done
+rm -rf "$MERGED"
 
 section "G1 - escape guards and release checks (wppqa static + release)"
 GUARD_WP="${WP_ROOT:-$HOME/Local Sites/reign-theme/app/public}"
