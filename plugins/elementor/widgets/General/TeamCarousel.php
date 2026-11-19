@@ -1684,7 +1684,7 @@ class TeamCarousel extends \Elementor\Widget_Base {
             <?php
             $img_url = wp_get_attachment_image_url( $item['image']['id'], $settings['img_size'] );
             if (!$img_url) {
-            $img_url = $item['image']['url'];
+            $img_url = wbcom_essential_widget_image_url( $item['image'] );
             }
             ?>
             <div class="swiper-slide">
@@ -1701,7 +1701,9 @@ class TeamCarousel extends \Elementor\Widget_Base {
                         <?php } elseif ($item['lightbox_style'] != 'none') { ?>
                         <a href="#wbcom-lightbox-<?php echo esc_attr($item['_id']); ?>" data-elementor-open-lightbox="no" class="has-lightbox <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                         <?php } ?>
+                            <?php if ( $img_url ) { ?>
                             <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($item['title']); ?>" />
+                            <?php } ?>
                             <?php if (($settings['caption_style'] == 'name') && (($item['title']) || ($item['subtitle']))) { ?>
                             <div class="wbcom-team-overlay elementor-animation-<?php echo esc_attr($settings['box_content_animation']); ?>  <?php if ($settings['overflow_hidden']) { echo 'no-overlay'; } ?>">
                                 <div class="wbcom-team-texts">

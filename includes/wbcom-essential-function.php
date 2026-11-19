@@ -1012,6 +1012,23 @@ function wbcom_essential_product_visibility_tax_query() {
 }
 
 /**
+ * Image URL a widget may show: Elementor's grey placeholder only ever appears in the editor.
+ *
+ * Widgets default their image controls to Elementor's placeholder so the editor preview has
+ * something to show; an item the owner never gave an image must not publish it to visitors.
+ *
+ * @param array|string $image Elementor media control value, or a URL.
+ * @return string The URL to print, or '' for nothing.
+ */
+function wbcom_essential_widget_image_url( $image ) {
+	$url = is_array( $image ) ? (string) ( $image['url'] ?? '' ) : (string) $image;
+	if ( '' === $url || ! class_exists( '\Elementor\Utils' ) || \Elementor\Utils::get_placeholder_image_src() !== $url ) {
+		return $url;
+	}
+	return \Elementor\Plugin::instance()->editor->is_edit_mode() ? $url : '';
+}
+
+/**
  * Editor-only empty state for an Elementor widget that has no content yet.
  *
  * Widgets start with empty content instead of sample copy, so nothing placeholder-like

@@ -220,6 +220,9 @@ class CustomerReview extends \Elementor\Widget_Base {
 					'label'        => esc_html__( 'Columns', 'wbcom-essential' ),
 					'type'         => Controls_Manager::SELECT,
 					'default'      => '3',
+					// Phones and tablets get their own count unless the owner sets one: three 110px cards do not fit 390.
+					'tablet_default' => '2',
+					'mobile_default' => '1',
 					'options'      => array(
 						'1'  => esc_html__( 'One', 'wbcom-essential' ),
 						'2'  => esc_html__( 'Two', 'wbcom-essential' ),

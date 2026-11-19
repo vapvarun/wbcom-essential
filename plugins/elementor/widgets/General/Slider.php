@@ -2075,7 +2075,7 @@ class Slider extends \Elementor\Widget_Base {
 				<div class="swiper-wrapper">
 				<?php foreach ( $settings['list'] as $item ) { ?>
 					<div class="swiper-slide">
-					<div class="wbcom-slider-inner animated none <?php echo esc_attr( $item['bg_entrance_animation'] ); ?>" style="background-image:url(<?php echo esc_url( $item['image']['url'] ); ?>);background-position:<?php echo esc_attr( $item['image_position'] ); ?>;background-repeat:<?php echo esc_attr( $item['image_repeat'] ); ?>;background-size:<?php echo esc_attr( $item['image_bg_size'] ); ?>;transition-duration:<?php echo esc_attr( $item['bg_entrance_animation_duration'] ); ?>s;"></div>
+					<div class="wbcom-slider-inner animated none <?php echo esc_attr( $item['bg_entrance_animation'] ); ?>" style="background-image:url(<?php echo esc_url( wbcom_essential_widget_image_url( $item['image'] ) ); ?>);background-position:<?php echo esc_attr( $item['image_position'] ); ?>;background-repeat:<?php echo esc_attr( $item['image_repeat'] ); ?>;background-size:<?php echo esc_attr( $item['image_bg_size'] ); ?>;transition-duration:<?php echo esc_attr( $item['bg_entrance_animation_duration'] ); ?>s;"></div>
 					<?php if ( $item['website_link']['url'] ) { ?>
 					<a class="wbcom-slider-url" href="<?php echo esc_url( $item['website_link']['url'] ); ?>" <?php if ( $item['website_link']['is_external'] ) { ?>target="_blank"<?php } ?> <?php if ( $item['website_link']['nofollow'] ) { ?>rel="nofollow"<?php } ?>></a>
 					<?php } ?>

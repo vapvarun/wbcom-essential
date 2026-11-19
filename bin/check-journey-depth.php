@@ -44,7 +44,7 @@
  * @package Wbcom_Essential
  */
 
-// phpcs:disable WordPress.WP.AlternativeFunctions
+// phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI report to the terminal, not HTML.
 
 $jd_root = dirname( __DIR__ );
 chdir( $jd_root );

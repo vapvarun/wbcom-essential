@@ -196,7 +196,7 @@ $wrapper_attrs = get_block_wrapper_attributes( array(
 						<img
 							src="<?php echo esc_url( $thumb_url ); ?>"
 							alt=""
-							class="wbe-product-grid__image"
+							class="wbe-product-grid__image<?php echo $thumb_id ? '' : ' is-placeholder'; ?>"
 							loading="lazy"
 							decoding="async"
 						/>

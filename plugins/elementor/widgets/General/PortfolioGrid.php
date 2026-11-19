@@ -1769,8 +1769,8 @@ class PortfolioGrid extends \Elementor\Widget_Base {
                     $img_array = wp_get_attachment_image_src($item['image']['id'], $settings['img_size'], true);
                     $img_url = $img_array[0];
                     $img_alt = get_post_meta( $item['image']['id'], '_wp_attachment_image_alt', true );
-                } elseif ($item['image']['url'] == \Elementor\Utils::get_placeholder_image_src()) {
-                    $img_url = \Elementor\Utils::get_placeholder_image_src();
+                } else {
+                    $img_url = wbcom_essential_widget_image_url( $item['image'] );
                 }
                 if (!empty($img_url)) {
                     echo '<img src="' . esc_url($img_url) . '" alt="' . esc_attr($img_alt) . '" />';

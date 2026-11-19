@@ -41,6 +41,27 @@
 			"class": 5,
 			"guard": "static:ticker-css-scoped",
 			"added": "2026-11-19"
+		},
+		{
+			"card": "10528306878",
+			"title": "Add Banner, Dropdown Button, Smart Menu and image items published placeholder content (placeholder.png, Menu Item #1, the site's first menu)",
+			"class": 4,
+			"guard": "static:elementor-no-visitor-placeholders",
+			"added": "2026-11-19"
+		},
+		{
+			"card": "10528307412",
+			"title": "Post Carousel and Woo product placeholders were a white or #f0f0f0 tile in dark mode",
+			"class": 5,
+			"guard": "static:block-placeholder-surface",
+			"added": "2026-11-19"
+		},
+		{
+			"card": "10528307821",
+			"title": "WC Testimonial and Customer Review kept 3 columns at 390 (84-114px cards)",
+			"class": 11,
+			"guard": "static:wb-columns-phone-default",
+			"added": "2026-11-19"
 		}
 	]
 }

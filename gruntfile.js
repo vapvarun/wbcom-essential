@@ -9,9 +9,10 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-webpack');
 
 	// Project configuration.
-	// Keep pluginVersion in sync with loader.php / readme.txt when releasing.
+	// The zip version comes from package.json, which the release bumps with loader.php and readme.txt
+	// (local-ci Q2 checks those three agree), so there is no fourth copy to forget.
 	var pluginSlug    = 'wbcom-essential';
-	var pluginVersion = '4.7.2';
+	var pluginVersion = grunt.file.readJSON( 'package.json' ).version;
 
 	grunt.initConfig(
 		{

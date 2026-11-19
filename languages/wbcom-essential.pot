@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Wbcom Essential 4.7.2\n"
+"Project-Id-Version: Wbcom Essential 4.7.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wbcom-essential\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-19T12:08:36+00:00\n"
+"POT-Creation-Date: 2026-11-19T16:44:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wbcom-essential\n"
@@ -650,7 +650,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:475
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:484
 #: plugins/elementor/widgets/General/PostCarousel.php:2342
-#: plugins/elementor/widgets/General/TeamCarousel.php:1737
+#: plugins/elementor/widgets/General/TeamCarousel.php:1739
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1565
 msgid "Previous"
 msgstr ""
@@ -665,7 +665,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/GroupCarousel.php:479
 #: plugins/elementor/widgets/Buddypress/MemberCarousel.php:488
 #: plugins/elementor/widgets/General/PostCarousel.php:2346
-#: plugins/elementor/widgets/General/TeamCarousel.php:1741
+#: plugins/elementor/widgets/General/TeamCarousel.php:1743
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1569
 msgid "Next"
 msgstr ""
@@ -2779,7 +2779,7 @@ msgid "Image Position"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:99
-#: plugins/elementor/widgets/General/DropdownButton.php:802
+#: plugins/elementor/widgets/General/DropdownButton.php:789
 #: plugins/elementor/widgets/General/PostCarousel.php:1299
 #: plugins/elementor/widgets/General/Testimonial.php:759
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:896
@@ -2836,7 +2836,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Branding.php:124
 #: plugins/elementor/widgets/General/DropdownButton.php:188
 #: plugins/elementor/widgets/General/DropdownButton.php:214
-#: plugins/elementor/widgets/General/DropdownButton.php:804
+#: plugins/elementor/widgets/General/DropdownButton.php:791
 #: plugins/elementor/widgets/General/FlipBox.php:295
 #: plugins/elementor/widgets/General/PortfolioGrid.php:581
 #: plugins/elementor/widgets/General/PortfolioGrid.php:879
@@ -2857,7 +2857,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:778
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:898
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:120
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:330
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:333
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:337
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1056
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1135
@@ -2921,7 +2921,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Branding.php:132
 #: plugins/elementor/widgets/General/DropdownButton.php:196
 #: plugins/elementor/widgets/General/DropdownButton.php:222
-#: plugins/elementor/widgets/General/DropdownButton.php:803
+#: plugins/elementor/widgets/General/DropdownButton.php:790
 #: plugins/elementor/widgets/General/FlipBox.php:303
 #: plugins/elementor/widgets/General/PortfolioGrid.php:589
 #: plugins/elementor/widgets/General/PortfolioGrid.php:887
@@ -2942,7 +2942,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:786
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:899
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:121
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:338
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:341
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:345
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1064
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1143
@@ -3369,7 +3369,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Heading.php:615
 #: plugins/elementor/widgets/General/PostTimeline.php:1242
 #: plugins/elementor/widgets/General/PostTimeline.php:1580
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:326
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:329
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:333
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1052
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1131
@@ -3466,7 +3466,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:782
 #: plugins/elementor/widgets/General/TextRotator.php:190
 #: plugins/elementor/widgets/General/Timeline.php:149
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:334
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:337
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:341
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1060
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1139
@@ -3487,9 +3487,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Timeline.php:133
 #: plugins/elementor/widgets/General/Timeline.php:501
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:170
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:401
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:404
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:187
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:588
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:591
 #: build/blocks/hero/index.js:2
 msgid "Image"
 msgstr ""
@@ -3513,9 +3513,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:844
 #: plugins/elementor/widgets/General/Branding.php:314
 #: plugins/elementor/widgets/General/Countdown.php:368
-#: plugins/elementor/widgets/General/DropdownButton.php:457
-#: plugins/elementor/widgets/General/DropdownButton.php:539
-#: plugins/elementor/widgets/General/DropdownButton.php:672
+#: plugins/elementor/widgets/General/DropdownButton.php:444
+#: plugins/elementor/widgets/General/DropdownButton.php:526
+#: plugins/elementor/widgets/General/DropdownButton.php:659
 #: plugins/elementor/widgets/General/FlipBox.php:684
 #: plugins/elementor/widgets/General/FlipBox.php:752
 #: plugins/elementor/widgets/General/FlipBox.php:1121
@@ -3593,8 +3593,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Timeline.php:345
 #: plugins/elementor/widgets/General/Timeline.php:449
 #: plugins/elementor/widgets/General/Timeline.php:532
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:385
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:418
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:388
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:421
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:417
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:497
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:781
@@ -3609,12 +3609,12 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1734
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1857
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1937
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:549
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:605
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:932
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1006
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1066
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1105
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:552
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:608
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:935
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1009
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1069
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1108
 #: build/blocks/activity-feed/index.js:2
 #: build/blocks/category-grid/index.js:2
 #: build/blocks/countdown-timer/index.js:2
@@ -3849,10 +3849,10 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:208
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:250
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:292
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:440
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:497
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:553
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:608
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:443
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:500
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:556
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:611
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:384
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:462
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:748
@@ -3865,12 +3865,12 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1660
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1824
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1902
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:641
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:698
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:754
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:810
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:901
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1035
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:644
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:701
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:757
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:813
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:904
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1038
 msgid "Color"
 msgstr ""
 
@@ -3919,8 +3919,8 @@ msgstr ""
 
 #: plugins/elementor/helper/skins/skin-base.php:596
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:449
-#: plugins/elementor/widgets/General/DropdownButton.php:733
-#: plugins/elementor/widgets/General/DropdownButton.php:776
+#: plugins/elementor/widgets/General/DropdownButton.php:720
+#: plugins/elementor/widgets/General/DropdownButton.php:763
 #: build/blocks/stats-counter/index.js:2
 msgid "Separator Color"
 msgstr ""
@@ -4003,12 +4003,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:229
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:355
 #: plugins/elementor/widgets/General/Timeline.php:415
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:245
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:248
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:569
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:143
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:643
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:275
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:391
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:278
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:394
 msgid "Yes"
 msgstr ""
 
@@ -4077,12 +4077,12 @@ msgstr ""
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:230
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:356
 #: plugins/elementor/widgets/General/Timeline.php:416
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:246
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:249
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:568
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:144
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:642
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:276
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:390
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:279
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:393
 msgid "No"
 msgstr ""
 
@@ -4109,10 +4109,10 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:602
 #: plugins/elementor/widgets/General/Accordion.php:655
 #: plugins/elementor/widgets/General/Accordion.php:902
-#: plugins/elementor/widgets/General/DropdownButton.php:426
-#: plugins/elementor/widgets/General/DropdownButton.php:498
-#: plugins/elementor/widgets/General/DropdownButton.php:721
-#: plugins/elementor/widgets/General/DropdownButton.php:764
+#: plugins/elementor/widgets/General/DropdownButton.php:413
+#: plugins/elementor/widgets/General/DropdownButton.php:485
+#: plugins/elementor/widgets/General/DropdownButton.php:708
+#: plugins/elementor/widgets/General/DropdownButton.php:751
 #: plugins/elementor/widgets/General/FlipBox.php:740
 #: plugins/elementor/widgets/General/FlipBox.php:871
 #: plugins/elementor/widgets/General/FlipBox.php:935
@@ -4196,9 +4196,9 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1531
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1610
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1712
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:912
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:986
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1085
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:915
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:989
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1088
 #: build/blocks/cta/index.js:2
 #: build/blocks/flip-box/index.js:2
 #: build/blocks/hero/index.js:2
@@ -4206,10 +4206,10 @@ msgid "Background Color"
 msgstr ""
 
 #: plugins/elementor/helper/skins/skin-cards.php:257
-#: plugins/elementor/widgets/General/DropdownButton.php:414
-#: plugins/elementor/widgets/General/DropdownButton.php:487
-#: plugins/elementor/widgets/General/DropdownButton.php:709
-#: plugins/elementor/widgets/General/DropdownButton.php:753
+#: plugins/elementor/widgets/General/DropdownButton.php:401
+#: plugins/elementor/widgets/General/DropdownButton.php:474
+#: plugins/elementor/widgets/General/DropdownButton.php:696
+#: plugins/elementor/widgets/General/DropdownButton.php:740
 #: plugins/elementor/widgets/General/FlipBox.php:1464
 #: plugins/elementor/widgets/General/FlipBox.php:1537
 #: plugins/elementor/widgets/General/Heading.php:159
@@ -4257,7 +4257,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:507
 #: plugins/elementor/widgets/General/Accordion.php:856
 #: plugins/elementor/widgets/General/Countdown.php:408
-#: plugins/elementor/widgets/General/DropdownButton.php:871
+#: plugins/elementor/widgets/General/DropdownButton.php:858
 #: plugins/elementor/widgets/General/FlipBox.php:894
 #: plugins/elementor/widgets/General/FlipBox.php:958
 #: plugins/elementor/widgets/General/FlipBox.php:1331
@@ -4329,20 +4329,20 @@ msgstr ""
 #: plugins/elementor/widgets/General/Timeline.php:667
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:220
 #: plugins/elementor/widgets/WooCommerce/AddBanner.php:271
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:460
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:516
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:572
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:463
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:519
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:575
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:809
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:990
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1044
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1107
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1153
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1326
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:573
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:661
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:717
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:773
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:833
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:576
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:664
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:720
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:776
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:836
 #: build/blocks/activity-feed/index.js:2
 #: build/blocks/category-grid/index.js:2
 #: build/blocks/countdown-timer/index.js:2
@@ -4436,9 +4436,9 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:429
 #: plugins/elementor/widgets/General/Accordion.php:479
 #: plugins/elementor/widgets/General/Countdown.php:381
-#: plugins/elementor/widgets/General/DropdownButton.php:470
-#: plugins/elementor/widgets/General/DropdownButton.php:552
-#: plugins/elementor/widgets/General/DropdownButton.php:685
+#: plugins/elementor/widgets/General/DropdownButton.php:457
+#: plugins/elementor/widgets/General/DropdownButton.php:539
+#: plugins/elementor/widgets/General/DropdownButton.php:672
 #: plugins/elementor/widgets/General/FlipBox.php:765
 #: plugins/elementor/widgets/General/FlipBox.php:1202
 #: plugins/elementor/widgets/General/FlipBox.php:1520
@@ -4696,8 +4696,8 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:454
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1492
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1583
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:878
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:963
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:881
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:966
 msgid "Position"
 msgstr ""
 
@@ -4752,8 +4752,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:914
 #: plugins/elementor/widgets/General/Branding.php:305
 #: plugins/elementor/widgets/General/Countdown.php:360
-#: plugins/elementor/widgets/General/DropdownButton.php:449
-#: plugins/elementor/widgets/General/DropdownButton.php:531
+#: plugins/elementor/widgets/General/DropdownButton.php:436
+#: plugins/elementor/widgets/General/DropdownButton.php:518
 #: plugins/elementor/widgets/General/FlipBox.php:676
 #: plugins/elementor/widgets/General/FlipBox.php:1113
 #: plugins/elementor/widgets/General/FlipBox.php:1499
@@ -4831,8 +4831,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/TextRotator.php:384
 #: plugins/elementor/widgets/General/Timeline.php:337
 #: plugins/elementor/widgets/General/Timeline.php:441
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:377
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:410
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:380
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:413
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:409
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:489
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:773
@@ -4849,12 +4849,12 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1726
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1849
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1929
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:541
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:597
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:924
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:998
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1058
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1097
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:544
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:600
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:927
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1001
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1061
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1100
 msgid "Border"
 msgstr ""
 
@@ -4864,8 +4864,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:929
 #: plugins/elementor/widgets/General/Countdown.php:396
 #: plugins/elementor/widgets/General/Countdown.php:602
-#: plugins/elementor/widgets/General/DropdownButton.php:605
-#: plugins/elementor/widgets/General/DropdownButton.php:859
+#: plugins/elementor/widgets/General/DropdownButton.php:592
+#: plugins/elementor/widgets/General/DropdownButton.php:846
 #: plugins/elementor/widgets/General/FlipBox.php:628
 #: plugins/elementor/widgets/General/FlipBox.php:882
 #: plugins/elementor/widgets/General/FlipBox.php:946
@@ -4941,21 +4941,21 @@ msgstr ""
 #: plugins/elementor/widgets/General/TextRotator.php:411
 #: plugins/elementor/widgets/General/Timeline.php:254
 #: plugins/elementor/widgets/General/Timeline.php:477
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:353
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:473
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:529
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:585
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:356
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:476
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:532
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:588
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:792
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:797
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:851
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:935
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1314
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1563
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:561
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:674
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:730
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:786
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:943
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:564
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:677
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:733
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:789
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:946
 #: build/blocks/activity-feed/index.js:2
 #: build/blocks/category-grid/index.js:2
 #: build/blocks/countdown-timer/index.js:2
@@ -5124,8 +5124,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Countdown.php:767
 #: plugins/elementor/widgets/General/Countdown.php:870
 #: plugins/elementor/widgets/General/Countdown.php:973
-#: plugins/elementor/widgets/General/DropdownButton.php:439
-#: plugins/elementor/widgets/General/DropdownButton.php:510
+#: plugins/elementor/widgets/General/DropdownButton.php:426
+#: plugins/elementor/widgets/General/DropdownButton.php:497
 #: plugins/elementor/widgets/General/FlipBox.php:648
 #: plugins/elementor/widgets/General/FlipBox.php:1085
 #: plugins/elementor/widgets/General/FlipBox.php:1489
@@ -5149,14 +5149,14 @@ msgstr ""
 #: plugins/elementor/widgets/General/SmartMenu.php:1017
 #: plugins/elementor/widgets/General/TeamCarousel.php:853
 #: plugins/elementor/widgets/General/TeamCarousel.php:908
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:367
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:370
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:874
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1177
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1217
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1305
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1438
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1672
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1046
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1049
 msgid "Background"
 msgstr ""
 
@@ -5193,8 +5193,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:583
 #: plugins/elementor/widgets/General/Accordion.php:772
 #: plugins/elementor/widgets/General/DropdownButton.php:147
-#: plugins/elementor/widgets/General/DropdownButton.php:407
-#: plugins/elementor/widgets/General/DropdownButton.php:702
+#: plugins/elementor/widgets/General/DropdownButton.php:394
+#: plugins/elementor/widgets/General/DropdownButton.php:689
 #: plugins/elementor/widgets/General/FlipBox.php:281
 #: plugins/elementor/widgets/General/FlipBox.php:1457
 #: plugins/elementor/widgets/General/Heading.php:190
@@ -5235,7 +5235,7 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1229
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1477
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1809
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:863
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:866
 msgid "Normal"
 msgstr ""
 
@@ -5258,8 +5258,8 @@ msgstr ""
 #: plugins/elementor/widgets/General/Accordion.php:636
 #: plugins/elementor/widgets/General/Accordion.php:803
 #: plugins/elementor/widgets/General/Branding.php:172
-#: plugins/elementor/widgets/General/DropdownButton.php:480
-#: plugins/elementor/widgets/General/DropdownButton.php:746
+#: plugins/elementor/widgets/General/DropdownButton.php:467
+#: plugins/elementor/widgets/General/DropdownButton.php:733
 #: plugins/elementor/widgets/General/FlipBox.php:1530
 #: plugins/elementor/widgets/General/LoginForm.php:1313
 #: plugins/elementor/widgets/General/PortfolioGrid.php:1187
@@ -5290,7 +5290,7 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1417
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1645
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1895
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1020
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1023
 msgid "Hover"
 msgstr ""
 
@@ -5426,7 +5426,7 @@ msgstr ""
 #: plugins/elementor/widgets/Buddypress/ForumsActivity.php:504
 #: plugins/elementor/widgets/Buddypress/ProfileCompletion.php:697
 #: plugins/elementor/widgets/General/DropdownButton.php:126
-#: plugins/elementor/widgets/General/DropdownButton.php:363
+#: plugins/elementor/widgets/General/DropdownButton.php:350
 #: plugins/elementor/widgets/General/FlipBox.php:239
 #: plugins/elementor/widgets/General/FlipBox.php:1413
 #: plugins/elementor/widgets/General/PostSlider.php:980
@@ -5575,7 +5575,7 @@ msgstr ""
 #: plugins/elementor/widgets/General/PostsCarousel.php:283
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:854
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1652
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1027
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1030
 msgid "Navigation"
 msgstr ""
 
@@ -6191,7 +6191,7 @@ msgid "Double"
 msgstr ""
 
 #: plugins/elementor/widgets/Buddypress/HeaderBar.php:842
-#: plugins/elementor/widgets/General/DropdownButton.php:647
+#: plugins/elementor/widgets/General/DropdownButton.php:634
 msgid "Dropdown"
 msgstr ""
 
@@ -6347,11 +6347,11 @@ msgstr ""
 #: plugins/elementor/widgets/General/Testimonial.php:875
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:1012
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:139
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:432
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:435
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:265
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:278
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:156
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:633
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:636
 #: build/blocks/category-grid/index.js:2
 #: build/blocks/testimonial-carousel/index.js:2
 msgid "Name"
@@ -7219,15 +7219,7 @@ msgstr ""
 msgid "Menu Items"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:343
-msgid "Menu Item #1"
-msgstr ""
-
-#: plugins/elementor/widgets/General/DropdownButton.php:349
-msgid "Menu Item #2"
-msgstr ""
-
-#: plugins/elementor/widgets/General/DropdownButton.php:388
+#: plugins/elementor/widgets/General/DropdownButton.php:375
 #: plugins/elementor/widgets/General/FlipBox.php:364
 #: plugins/elementor/widgets/General/FlipBox.php:1438
 #: plugins/elementor/widgets/General/PostTimeline.php:1001
@@ -7241,7 +7233,7 @@ msgstr ""
 msgid "Animation"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:519
+#: plugins/elementor/widgets/General/DropdownButton.php:506
 #: plugins/elementor/widgets/General/FlipBox.php:1569
 #: plugins/elementor/widgets/General/PostTimeline.php:1132
 #: plugins/elementor/widgets/General/PostTimeline.php:1470
@@ -7249,12 +7241,12 @@ msgstr ""
 msgid "Animation Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:570
+#: plugins/elementor/widgets/General/DropdownButton.php:557
 msgid "Icon Background Color"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:581
-#: plugins/elementor/widgets/General/DropdownButton.php:847
+#: plugins/elementor/widgets/General/DropdownButton.php:568
+#: plugins/elementor/widgets/General/DropdownButton.php:834
 #: plugins/elementor/widgets/General/FlipBox.php:338
 #: plugins/elementor/widgets/General/PostCarousel.php:1742
 #: plugins/elementor/widgets/General/PostCarousel.php:1861
@@ -7263,11 +7255,11 @@ msgstr ""
 msgid "Icon Padding"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:593
+#: plugins/elementor/widgets/General/DropdownButton.php:580
 msgid "Icon Margin"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:617
+#: plugins/elementor/widgets/General/DropdownButton.php:604
 #: plugins/elementor/widgets/General/FlipBox.php:1632
 #: plugins/elementor/widgets/General/LoginForm.php:1406
 #: plugins/elementor/widgets/General/PostTimeline.php:1195
@@ -7276,11 +7268,11 @@ msgstr ""
 msgid "Button Width"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:797
+#: plugins/elementor/widgets/General/DropdownButton.php:784
 msgid "Dropdown Position"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:801
+#: plugins/elementor/widgets/General/DropdownButton.php:788
 #: plugins/elementor/widgets/General/PostCarousel.php:1300
 #: plugins/elementor/widgets/General/Testimonial.php:760
 #: plugins/elementor/widgets/General/TestimonialCarousel.php:897
@@ -7324,8 +7316,12 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
-#: plugins/elementor/widgets/General/DropdownButton.php:812
+#: plugins/elementor/widgets/General/DropdownButton.php:799
 msgid "Dropdown Width"
+msgstr ""
+
+#: plugins/elementor/widgets/General/DropdownButton.php:875
+msgid "Add menu items in the Content panel."
 msgstr ""
 
 #: plugins/elementor/widgets/General/FlipBox.php:50
@@ -8293,8 +8289,8 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:906
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1575
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1704
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:955
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1077
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:958
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1080
 msgid "Navigation Dots"
 msgstr ""
 
@@ -10175,7 +10171,7 @@ msgstr ""
 msgid "Sub Menu Items"
 msgstr ""
 
-#: plugins/elementor/widgets/General/SmartMenu.php:1181
+#: plugins/elementor/widgets/General/SmartMenu.php:1182
 msgid "Choose a menu that has items (Appearance > Menus) to show it here."
 msgstr ""
 
@@ -10559,6 +10555,10 @@ msgstr ""
 msgid "Button Link"
 msgstr ""
 
+#: plugins/elementor/widgets/WooCommerce/AddBanner.php:330
+msgid "Add a banner image or a title in the Content panel."
+msgstr ""
+
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:62
 msgid "Customer Review"
 msgstr ""
@@ -10594,9 +10594,9 @@ msgid "Customer name"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:149
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:489
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:492
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:166
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:690
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:693
 msgid "Designation"
 msgstr ""
 
@@ -10619,88 +10619,88 @@ msgstr ""
 msgid "Option"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:224
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:254
-msgid "One"
-msgstr ""
-
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:225
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:255
-msgid "Two"
-msgstr ""
-
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:226
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:256
-msgid "Three"
-msgstr ""
-
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:227
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:257
-msgid "Four"
+msgid "One"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:228
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:258
-msgid "Five"
+msgid "Two"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:229
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:259
-msgid "Six"
+msgid "Three"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:230
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:260
-msgid "Seven"
+msgid "Four"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:231
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:261
-msgid "Eight"
+msgid "Five"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:232
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:262
-msgid "Nine"
+msgid "Six"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/CustomerReview.php:233
 #: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:263
+msgid "Seven"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:234
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:264
+msgid "Eight"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:235
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:265
+msgid "Nine"
+msgstr ""
+
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:236
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:266
 msgid "Ten"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:243
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:273
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:246
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:276
 msgid "No Gutters"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:255
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:285
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:258
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:288
 msgid "Space"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:285
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:315
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:288
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:318
 msgid "Bottom Space"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:318
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:321
 msgid "Area"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:545
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:746
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:548
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:749
 msgid "Client say"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:601
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:802
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:604
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:805
 #: build/blocks/product-carousel/index.js:2
 #: build/blocks/product-grid/index.js:2
 msgid "Rating"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:625
+#: plugins/elementor/widgets/WooCommerce/CustomerReview.php:628
 msgid "Add reviews in the Review section to show them here."
 msgstr ""
 
@@ -10853,7 +10853,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:516
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:599
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:348
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:351
 msgid "Slider Option"
 msgstr ""
 
@@ -10863,45 +10863,45 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:609
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:709
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:752
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:358
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:456
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:497
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:361
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:459
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:500
 msgid "Slider Items"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:541
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:621
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:369
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:372
 msgid "Slider Arrow"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:554
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:631
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:379
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:382
 msgid "Slider dots"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:572
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:646
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:394
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:397
 msgid "Pause on Hover?"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:579
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:653
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:401
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:404
 msgid "Slider autoplay"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:593
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:664
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:412
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:415
 msgid "Autoplay speed"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:605
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:676
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:424
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:427
 msgid "Autoplay animation speed"
 msgstr ""
 
@@ -10911,15 +10911,15 @@ msgstr ""
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:688
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:721
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:764
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:436
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:467
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:508
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:439
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:470
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:511
 msgid "Slider item to scroll"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:629
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:700
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:447
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:450
 #: build/blocks/activity-feed/index.js:1
 #: build/blocks/category-grid/index.js:1
 #: build/blocks/countdown-timer/index.js:1
@@ -10960,43 +10960,43 @@ msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:662
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:733
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:478
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:481
 msgid "Tablet Resolution"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:663
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:734
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:479
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:482
 msgid "The resolution to the tablet."
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:672
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:743
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:488
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:491
 msgid "Mobile Phone"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:705
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:776
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:519
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:522
 msgid "Mobile Resolution"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:706
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:777
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:520
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:523
 msgid "The resolution to mobile."
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:718
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1463
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:849
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:852
 msgid "Slider Controller Style"
 msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:740
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1484
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:870
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:873
 msgid "Navigation Arrow"
 msgstr ""
 
@@ -11045,7 +11045,7 @@ msgstr ""
 
 #: plugins/elementor/widgets/WooCommerce/ProductTab.php:1256
 #: plugins/elementor/widgets/WooCommerce/UniversalProduct.php:1248
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:821
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:824
 msgid "Font Size"
 msgstr ""
 
@@ -11281,15 +11281,15 @@ msgstr ""
 msgid "Slider On"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:532
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:535
 msgid "Item"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:616
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:619
 msgid "Image Area Border Color"
 msgstr ""
 
-#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1125
+#: plugins/elementor/widgets/WooCommerce/WcTestimonial.php:1128
 msgid "Add testimonials in the Testimonial section to show them here."
 msgstr ""
 

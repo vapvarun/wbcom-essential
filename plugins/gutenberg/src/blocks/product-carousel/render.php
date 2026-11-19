@@ -205,7 +205,7 @@ $swiper_options = array(
 								<img
 									src="<?php echo esc_url( $thumb_url ); ?>"
 									alt=""
-									class="wbe-product-carousel__image"
+									class="wbe-product-carousel__image<?php echo $thumb_id ? '' : ' is-placeholder'; ?>"
 									loading="lazy"
 									decoding="async"
 								/>

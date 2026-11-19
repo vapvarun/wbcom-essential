@@ -336,20 +336,7 @@ class DropdownButton extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'show_label'  => false,
-				'default'     => array(
-					array(
-						'title_icon'          => '',
-						'title_icon_position' => 'before',
-						'title'               => esc_html__( 'Menu Item #1', 'wbcom-essential' ),
-						'website_link'        => '',
-					),
-					array(
-						'title_icon'          => '',
-						'title_icon_position' => 'before',
-						'title'               => esc_html__( 'Menu Item #2', 'wbcom-essential' ),
-						'website_link'        => '',
-					),
-				),
+				'default'     => array(),
 				'title_field' => '{{{ title }}}',
 			)
 		);
@@ -883,6 +870,11 @@ class DropdownButton extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings      = $this->get_settings_for_display();
 		$icon_position = $settings['icon_position'];
+		$items         = array_filter( (array) $settings['list'], static fn( $item ) => '' !== trim( (string) ( $item['title'] ?? '' ) ) );
+		if ( ! $items ) {
+			wbcom_essential_elementor_empty_state( __( 'Add menu items in the Content panel.', 'wbcom-essential' ) );
+			return;
+		}
 		?>
 		<div class="wbcom-btn-wrapper wbcom-dropdown-wrapper">
 			<div class="wbcom-dropdown">
@@ -897,10 +889,9 @@ class DropdownButton extends \Elementor\Widget_Base {
 					}
 					?>
 				</div>
-				<?php if ( $settings['list'] ) { ?>
 				<ul class="wbcom-dd-menu <?php echo esc_attr( $settings['dropdown_position'] ); ?>">
 					<?php
-					foreach ( $settings['list'] as $item ) {
+					foreach ( $items as $item ) {
 						// Elementor's link API: URL, new tab, nofollow and the owner's custom attributes, escaped.
 						$link_key = 'wbcom_dd_link_' . $item['_id'];
 						$this->add_link_attributes( $link_key, $item['website_link'] );
@@ -920,7 +911,6 @@ class DropdownButton extends \Elementor\Widget_Base {
 					</li>
 					<?php } ?>
 				</ul>
-				<?php } ?>
 			</div>
 		</div>
 		<?php

@@ -1162,7 +1162,8 @@ class SmartMenu extends \Elementor\Widget_Base {
 
 		// Build the menu first. Without a fallback, a site with no menu (or an empty one) gets nothing instead of
 		// core's list of every published page, which was printed into a hidden container and broke the script.
-		$menu_html = wp_nav_menu(
+		// No menu chosen at all: wp_nav_menu() would print the site's first menu that has items, so stop here.
+		$menu_html = empty( $settings['menu'] ) ? '' : wp_nav_menu(
 			array(
 				'menu'            => $settings['menu'],
 				'container'       => 'nav',

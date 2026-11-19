@@ -38,6 +38,7 @@ Blocks and widgets follow the theme unless the owner picks a colour.
 - `fit.reign-dark` @guest #ui +dark: Reign dark mode, the all-blocks page -> text reaches 4.5:1, no white panels.
 - `fit.tt5` @guest #ui: Twenty Twenty-Five, same page -> blocks keep their spacing; theme paragraph and link styles do not leak into dynamic blocks.
 - `fit.owner-colour` @admin #block: Pick a custom colour on a CTA, save -> the front end shows exactly that colour in light and dark.
+- `fit.placeholder-dark` @guest #ui +dark card:10528307412: Post Carousel posts and Product Grid / Carousel products with no image, in dark mode -> the placeholder tile uses the theme's dark surface, no white or #f0f0f0 tile.
 
 ### C.ticker
 
@@ -50,6 +51,7 @@ Posts Ticker block and Elementor widget.
 - `ticker.phone-image` @guest #ui +narrow: Same with featured images -> rows show the image; title hidden as before.
 - `ticker.page-spacing` @guest #ui card:10526057369: A page with the ticker widget plus a header, a form and buttons -> their margins and padding match the same page without the ticker.
 - `ticker.padding` @admin #block: Give the Posts Ticker block 40px padding -> the bar stays inside its container; first headline not cut.
+- `woo.testimonial-phone` @guest #ui +narrow card:10528307821: WC Testimonial and Customer Review widgets on defaults at 390 -> one card per row (two at tablet width).
 
 ### E.defaults
 
@@ -58,7 +60,8 @@ Elementor widgets dropped in with default settings.
 **Checks:**
 - `defaults.shape-icon` @admin #ui card:10526933067: Add a Shape widget with defaults -> the down arrow icon shows (not 0px wide).
 - `defaults.no-placeholder` @guest #ui: Widgets left on defaults never publish placeholder copy to visitors.
-- `defaults.smart-menu` @admin #ui +empty: Smart Menu with no menu chosen -> nothing printed for visitors; the editor shows "choose a menu".
+- `defaults.smart-menu` @admin #ui +empty card:10528306878: Smart Menu with no menu chosen, on a site that has menus -> nothing printed for visitors (not the site's first menu); the editor shows "choose a menu".
+- `defaults.placeholder-sweep` @guest #ui card:10528306878: Add Banner, Dropdown Button, and Slider / Team Carousel / Portfolio items without an image, all on defaults -> no placeholder.png, no "Menu Item #1", nothing empty printed for visitors.
 - `defaults.editor-only` @member #admin !refuse: A subscriber cannot open the Elementor editor for that page.
 
 ### C.bp-directories
@@ -89,7 +92,7 @@ Login Form block and widget.
 
 **Checks:**
 - `login.ok` @member #ui: Correct password signs in and lands where the block says.
-- `login.wrong` @guest #ui !refuse: Unknown user and wrong password give the same message.
+- `login.wrong` @guest #ui !refuse: Elementor Login Form (AJAX): unknown user and wrong password give the same message. Login Form block: it posts to WordPress's wp-login.php, so the messages are WordPress core's own (core tells them apart); check the error shows and nothing else leaks. With LearnDash active a failed block login lands on `?login=failed` with no message: that is LearnDash's redirect, not Essential.
 - `login.lockout` @guest #ui +repeated !refuse: Too many failures -> locked out with a calm message.
 
 ### R.release

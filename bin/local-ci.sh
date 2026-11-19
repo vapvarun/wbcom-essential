@@ -29,8 +29,9 @@ section "Q2 - version triangulation"
 HEADER_V=$(grep -m1 -E '^\s*\*?\s*Version:' loader.php | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
 CONST_V=$(grep -m1 -oE "WBCOM_ESSENTIAL_VERSION', '[0-9]+\.[0-9]+\.[0-9]+" loader.php | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
 README_V=$(grep -m1 -E '^Stable tag:' readme.txt | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-echo "header=$HEADER_V const=$CONST_V readme=$README_V"
-if [ "$HEADER_V" = "$CONST_V" ] && [ "$HEADER_V" = "$README_V" ]; then echo "ok"; else echo "FAIL: version mismatch"; FAIL=1; fi
+PKG_V=$(grep -m1 -oE '"version": *"[0-9]+\.[0-9]+\.[0-9]+"' package.json | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+echo "header=$HEADER_V const=$CONST_V readme=$README_V package=$PKG_V"
+if [ "$HEADER_V" = "$CONST_V" ] && [ "$HEADER_V" = "$README_V" ] && [ "$HEADER_V" = "$PKG_V" ]; then echo "ok"; else echo "FAIL: version mismatch"; FAIL=1; fi
 
 section "F1/F2 - no inline <style>/<script> in PHP"
 # Admin and shared PHP, plus block render.php files: a block's per-instance tokens go on

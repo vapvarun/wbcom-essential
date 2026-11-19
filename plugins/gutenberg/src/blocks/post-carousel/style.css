@@ -111,7 +111,7 @@
 }
 
 .wbe-post-carousel__image--placeholder {
-	background: #f0f0f0;
+	background: var(--wbe-color-surface-alt, #f0f0f0);
 }
 
 /* ── Card body ────────────────────────────────────────────────────────────── */

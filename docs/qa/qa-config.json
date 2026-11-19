@@ -65,6 +65,18 @@
 			{
 				"id": "ticker-css-scoped",
 				"run": "bad=$(grep -nE '^(\\*|a|html|body)[ ,{]|^\\*,' plugins/elementor/assets/css/acmeticker.css); [ -z \"$bad\" ] || echo \"FAIL: acmeticker.css has unscoped page-wide rules: $bad\""
+			},
+			{
+				"id": "elementor-no-visitor-placeholders",
+				"run": "bad=''; grep -q \"'url' => \\\\\\\\Elementor\\\\\\\\Utils::get_placeholder_image_src()\" plugins/elementor/widgets/WooCommerce/AddBanner.php && bad=\"$bad AddBanner-default-image\"; grep -q 'Menu Item #1' plugins/elementor/widgets/General/DropdownButton.php && bad=\"$bad Dropdown-sample-items\"; grep -q \"empty( \\$settings\\['menu'\\] ) ? ''\" plugins/elementor/widgets/General/SmartMenu.php || bad=\"$bad SmartMenu-first-menu-fallback\"; for f in Slider TeamCarousel PortfolioGrid; do grep -q 'wbcom_essential_widget_image_url' plugins/elementor/widgets/General/$f.php || bad=\"$bad $f-placeholder-image\"; done; [ -z \"$bad\" ] || echo \"FAIL: Elementor widgets publish placeholder content to visitors:$bad\""
+			},
+			{
+				"id": "block-placeholder-surface",
+				"run": "bad=$(grep -rnE '#f0f0f0|#eeeeee|#eee;' plugins/gutenberg/src/blocks --include='*.css' | grep -v 'var(--'); grep -q 'is-placeholder' plugins/gutenberg/src/blocks/product-grid/render.php || bad=\"$bad product-grid-woo-placeholder\"; [ -z \"$bad\" ] || echo \"FAIL: block image placeholders use a fixed light colour (white tile in dark mode): $bad\""
+			},
+			{
+				"id": "wb-columns-phone-default",
+				"run": "bad=''; for f in $(grep -rl \"'prefix_class' => 'wb-columns%s-'\" plugins/elementor/widgets); do grep -q \"'mobile_default'\" $f || bad=\"$bad $f\"; done; [ -z \"$bad\" ] || echo \"FAIL: column widgets keep their desktop count on phones (no mobile_default):$bad\""
 			}
 		]
 	}

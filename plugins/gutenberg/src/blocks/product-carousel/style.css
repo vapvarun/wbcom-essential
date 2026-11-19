@@ -257,3 +257,14 @@
 		font-size: 0.875rem;
 	}
 }
+
+/* WooCommerce's placeholder image is a light tile; on the theme surface it stays quiet in dark mode too. */
+.wbe-product-carousel__image-wrap:has(> .is-placeholder),
+.wbe-product-carousel__image-wrap:has(a > .is-placeholder) {
+	background: var(--wbe-color-surface-alt, #f1f5f9);
+}
+
+.wbe-product-carousel__image.is-placeholder {
+	mix-blend-mode: luminosity;
+	opacity: 0.15;
+}
