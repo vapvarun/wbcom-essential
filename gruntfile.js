@@ -78,6 +78,7 @@ module.exports = function (grunt) {
 								'!phpstan.neon',
 								'!phpstan-baseline.neon',
 								'!phpstan-constants.php',
+								'!phpstan-edd-stubs.php',
 								'!.phpstan-stubs/**',
 								'!composer.json',
 								'!composer.lock',
