@@ -1,0 +1,32 @@
+{
+  "journey": "R.release",
+  "free": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20T01:30:00Z",
+  "env": {
+    "base": "http://localhost:10048",
+    "essential": "4.7.3 (936b59f6, symlinked)",
+    "reign": "8.1.1 (5b6a55613)",
+    "elementor": "3.29.1 via qa_add=esse",
+    "bp": "14.5.4",
+    "edd": "3.7.2 via qa_add=edd",
+    "wp": "7.1.4",
+    "php": "8.4 (Local)",
+    "viewports": "1440 + 390 (768/1024 where noted)",
+    "walker": "QA final pre-zip walk (verification only)"
+  },
+  "checks": {
+    "release.pot": {
+      "result": "pass",
+      "evidence": "wp i18n make-pot with the package.json makepot flags into a temp file: 2554 msgids fresh vs 2554 committed, 0 missing, 0 stale."
+    },
+    "release.locales": {
+      "result": "pass",
+      "evidence": "fr_FR and nl_NL .po: msgfmt reports 2553 translated, 0 fuzzy, 0 untranslated; 43 block JSON files per locale. Block JSON loaded in the browser (wp.i18n locale data 625 keys, 36 inline setLocaleData scripts). Previous fail cleared. DEFECT: both .po and .mo lack a Plural-Forms header (msgfmt -c: 2 fatal errors), so plural entries use English rules (fr_FR 0 would read as plural)."
+    },
+    "release.zip": {
+      "result": "pass",
+      "evidence": "bin/build-release.sh itself exits 30 at gate [30]: docs/qa/.last-smoke-pass.json is not in the repo (written after the smoke, QA does not write repo files); local CI, docs lint and clean-tree gates before it passed. Packaging stages [40]+[50] run from a git archive of HEAD in a scratch dir (npm run build:blocks + npx grunt internal-package): wbcom-essential-4.7.3.zip, 812 entries, 223 PHP files all pass php -l, no dev files. Installed on a clean WP 7.1.4 / PHP 8.3 / WP_DEBUG container: activates, 35 blocks register, no debug.log. dist/ is gitignored; repo tree clean."
+    }
+  },
+  "proposed_checks": []
+}

@@ -1,0 +1,63 @@
+{
+  "release_version": "4.7.3",
+  "walked_commit": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20",
+  "walker": "QA session (independent of the developer), final pre-release walk",
+  "runbook": "docs/qa/AGENT_SMOKE_RUNBOOK.md",
+  "records": "docs/qa/walks/",
+  "journeys": {
+    "C.blocks-insert": {
+      "pass": 5,
+      "fail": 0,
+      "untested": 0
+    },
+    "C.bp-directories": {
+      "pass": 5,
+      "fail": 0,
+      "untested": 0
+    },
+    "C.edd-account": {
+      "pass": 5,
+      "fail": 0,
+      "untested": 0
+    },
+    "C.login": {
+      "pass": 3,
+      "fail": 0,
+      "untested": 0
+    },
+    "C.theme-fit": {
+      "pass": 4,
+      "fail": 0,
+      "untested": 0
+    },
+    "C.ticker": {
+      "pass": 5,
+      "fail": 0,
+      "untested": 0
+    },
+    "E.defaults": {
+      "pass": 5,
+      "fail": 0,
+      "untested": 0
+    },
+    "R.release": {
+      "pass": 3,
+      "fail": 0,
+      "untested": 0
+    }
+  },
+  "totals": {
+    "pass": 35,
+    "fail": 0,
+    "untested": 0
+  },
+  "failures": [],
+  "fixed_before_tag": [
+    "F1: fr_FR and nl_NL had no Plural-Forms header; added, .mo and block JSON rebuilt; local-ci I1 now runs msgfmt -c"
+  ],
+  "notes": [
+    "F4 login form shows core's messages (info)",
+    "F5 block default content stays English in fr/nl editors (info, 4.7.4)"
+  ]
+}

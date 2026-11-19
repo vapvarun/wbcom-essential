@@ -32,7 +32,7 @@ A BuddyPress activity stream with cards, type icons, relative timestamps and int
 | Display | Show Type Icon | Shows an icon for the activity type. | On |
 | Display | Show Action Text | Shows the action line, such as who did what. | On |
 | Display | Show Content | Shows the activity text. | On |
-| Display | Show Media Preview | Shows attached media. | On |
+| Display | Show Media Preview | Shows attached photos and videos, up to 360px tall. Turn it off to hide them. | On |
 | Display | Show Timestamp | Shows how long ago it happened. | On |
 | Display | Show Favorite Button | Shows the favorite button to logged-in members. | On |
 | Display | Show Comment Count | Shows the number of comments. | On |
@@ -69,7 +69,7 @@ BuddyPress groups in a Swiper carousel with autoplay, arrows, dots and a join bu
 | Content | Sort By | Most Active, Newest, Most Members, Alphabetical or Random. | Most Active |
 | Content | Show Member Count | Shows the member count. | On |
 | Content | Show Description | Shows the group description. | Off |
-| Content | Show Join Button | Shows a Join Group button to logged-in members. | On |
+| Content | Show Join Button | Shows a join button to logged-in members: Join Group for public groups, Request Membership for private groups, and none for hidden groups. | On |
 | Carousel | Slides Per View (Desktop) | Cards visible on desktop. | 3 |
 | Carousel | Slides Per View (Tablet) | Cards visible on tablets. | 2 |
 | Carousel | Slides Per View (Mobile) | Cards visible on phones. | 1 |
@@ -110,7 +110,7 @@ BuddyPress groups in a responsive grid.
 | Content | Show Description | Shows the group description. | On |
 | Content | Show Member Count | Shows the member count. | On |
 | Content | Show Last Active | Shows when the group was last active. | On |
-| Content | Show Join Button | Shows a join button to logged-in members. | On |
+| Content | Show Join Button | Shows a join button to logged-in members: Join Group for public groups, Request Membership for private groups, and none for hidden groups. | On |
 | Layout | Columns (Desktop) | Columns on desktop. | 3 |
 | Layout | Columns (Tablet) | Columns on tablets. | 2 |
 | Layout | Columns (Mobile) | Columns on phones. | 1 |

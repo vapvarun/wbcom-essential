@@ -1,0 +1,40 @@
+{
+  "journey": "C.edd-account",
+  "free": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20T01:30:00Z",
+  "env": {
+    "base": "http://localhost:10048",
+    "essential": "4.7.3 (936b59f6, symlinked)",
+    "reign": "8.1.1 (5b6a55613)",
+    "elementor": "3.29.1 via qa_add=esse",
+    "bp": "14.5.4",
+    "edd": "3.7.2 via qa_add=edd",
+    "wp": "7.1.4",
+    "php": "8.4 (Local)",
+    "viewports": "1440 + 390 (768/1024 where noted)",
+    "walker": "QA final pre-zip walk (verification only)"
+  },
+  "checks": {
+    "edd.own-orders": {
+      "result": "pass",
+      "evidence": "alice Account Dashboard: 2 Total Orders, $78.00, Recent Orders #6 #7; bob's own dashboard: 1 order $19. REST purchases html lists only own ids."
+    },
+    "edd.other-orders": {
+      "result": "pass",
+      "evidence": "bob GET /wbcom/v1/edd-account/purchases with ?user_id=2&customer_id=2&id=6&order_id=6 -> only #8; alice with user_id=3.. -> only #6 #7."
+    },
+    "edd.guest": {
+      "result": "pass",
+      "evidence": "Guest (qa_add=edd) GET /wp-json/wbcom/v1/edd-account/purchases and ?rest_route= form -> 401 rest_forbidden. (Without the edd cookie the route 404s because EDD is off.)"
+    },
+    "edd.order-success": {
+      "result": "pass",
+      "evidence": "Order Success page 1885 with alice's real payment_key: guest sees 'You must be logged in to view this payment receipt' + login form, no data; bob sees 'Sorry, trouble viewing order receipt.'; alice sees Order 6 Completed."
+    },
+    "edd.dark": {
+      "result": "pass",
+      "evidence": "alice Account Dashboard in Reign dark (shot): nav, cards, buttons readable on dark surfaces; judged visually, scripted contrast could not parse color() values. 390 dark not separately walked."
+    }
+  },
+  "proposed_checks": []
+}

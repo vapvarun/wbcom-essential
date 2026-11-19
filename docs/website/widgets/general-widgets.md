@@ -375,7 +375,7 @@ Use it for a decorative shape on the page, such as a slanted block or badge, wit
 
 ## Site Logo
 
-Use it to show your logo, with a different logo for mobile if you want.
+Use it to show your logo, with a different logo for mobile if you want. If you pick no logo in the widget, it shows the logo from **Appearance > Customize > Site Identity**, and if there is none, your site title linked to the home page.
 
 ### Content settings
 

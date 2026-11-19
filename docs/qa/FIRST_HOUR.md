@@ -6,7 +6,7 @@
 > Standard: `~/.claude/skills/wp-card-qa/references/first-hour-walk.md`.
 > Every escaped defect adds a step or a check line here, tagged `card:<id>`.
 
-Last confirmed: DRAFT 2026-11-19, awaiting the owner.
+Last confirmed: 2026-11-20 by the owner (Varun), as drafted.
 
 ## Site admin (minutes 0-60)
 

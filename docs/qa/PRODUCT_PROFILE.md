@@ -2,7 +2,7 @@
 
 Every product is a tool a site owner runs their own site with: meet what owners expect and beat the best competitor at it. Used by the product self-audit (`~/.claude/skills/wp-card-qa/references/product-audit.md`). Built from evidence, confirmed once by the owner, then grown by every audit and escape.
 
-Last confirmed: DRAFT 2026-11-19 (built from code, docs and competitor pages), awaiting the owner.
+Last confirmed: 2026-11-20 by the owner (Varun), as drafted from code, docs and competitor pages on 2026-11-19.
 
 ## What it is
 

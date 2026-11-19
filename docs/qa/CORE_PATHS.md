@@ -7,7 +7,7 @@
 > docs reading order and the Basecamp ledger (most cards: carousels, grids, colours in dark mode,
 > BuddyPress blocks).
 
-Last confirmed: DRAFT 2026-11-19, awaiting the owner.
+Last confirmed: 2026-11-20 by the owner (Varun), as drafted.
 
 | # | Flow (owner's words) | Role | Surface | Why it is core (evidence) | Journey | Free/Pro |
 |---|---|---|---|---|---|---|

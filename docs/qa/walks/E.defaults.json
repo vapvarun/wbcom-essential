@@ -1,0 +1,40 @@
+{
+  "journey": "E.defaults",
+  "free": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20T01:30:00Z",
+  "env": {
+    "base": "http://localhost:10048",
+    "essential": "4.7.3 (936b59f6, symlinked)",
+    "reign": "8.1.1 (5b6a55613)",
+    "elementor": "3.29.1 via qa_add=esse",
+    "bp": "14.5.4",
+    "edd": "3.7.2 via qa_add=edd",
+    "wp": "7.1.4",
+    "php": "8.4 (Local)",
+    "viewports": "1440 + 390 (768/1024 where noted)",
+    "walker": "QA final pre-zip walk (verification only)"
+  },
+  "checks": {
+    "defaults.shape-icon": {
+      "result": "pass",
+      "evidence": "Page 1758 Shape widget: i.fas.fa-long-arrow-alt-down, width 10px."
+    },
+    "defaults.no-placeholder": {
+      "result": "pass",
+      "evidence": "Guest page 1758 (Add Banner, Dropdown Button, Smart Menu on defaults): no .elementor-widget-wbcom-add-banner / dropdown-button / smart-menu wrapper printed, no placeholder.png, no 'Click Here'. Remaining text 'Example topic' is bbPress site data. Previous fail cleared."
+    },
+    "defaults.smart-menu": {
+      "result": "pass",
+      "evidence": "Guest page 1758: no Smart Menu wrapper in DOM (site has menus, none leaks). Elementor editor on page 1611: widget shows 'Choose a menu that has items (Appearance > Menus) to show it here.' Previous fail cleared."
+    },
+    "defaults.placeholder-sweep": {
+      "result": "pass",
+      "evidence": "Guest page 1891 (slider, team carousel, portfolio without images): placeholder img 0, placeholder bg 0, 'Menu Item #' 0, 'placeholder.png' not in HTML; slider prints its slide title on brand colour (shot)."
+    },
+    "defaults.editor-only": {
+      "result": "pass",
+      "evidence": "alice fetch of /wp-admin/post.php?post=1758&action=elementor follows to /my-account/ (no editor markup); admin opened the Elementor editor on 1611."
+    }
+  },
+  "proposed_checks": []
+}

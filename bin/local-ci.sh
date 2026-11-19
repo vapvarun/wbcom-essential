@@ -72,7 +72,7 @@ section "D1 - journey depth (every escape has a journey check)"
 php bin/check-journey-depth.php 2>&1 | grep -Ev 'Xdebug|Zend Engine|imagick|Derick|opcache|PHP Startup|^$' | tail -3
 [ "${PIPESTATUS[0]}" -eq 0 ] || { echo "FAIL: php bin/check-journey-depth.php"; FAIL=1; }
 
-section "I1 - translations (current POT: 0 untranslated, 0 fuzzy, placeholders, JSON per block script)"
+section "I1 - translations (current POT: 0 untranslated, 0 fuzzy, msgfmt -c header and placeholders, JSON per block script)"
 # Every built script with translatable strings, by the name core gives its JSON:
 # {domain}-{locale}-{md5 of the script path relative to the plugin}.json.
 SCRIPTS=$(grep -E '^#: ' languages/wbcom-essential.pot | tr ' ' '\n' | grep -E '^build/blocks/.+\.js(:[0-9]+)?$' | sed 's/:[0-9]*$//' | sort -u)
@@ -87,7 +87,7 @@ for po in languages/*.po; do
 	# The header entry counts as one untranslated msgid.
 	[ "$untr" -le 1 ] || { echo "FAIL: $loc has $((untr - 1)) untranslated strings"; FAIL=1; }
 	[ "$fuzz" -eq 0 ] || { echo "FAIL: $loc has $fuzz fuzzy strings (retranslate, never ship the guesses)"; FAIL=1; }
-	msgfmt --check-format -o /dev/null "$po" 2>/dev/null || { echo "FAIL: $loc placeholder mismatch (msgfmt --check-format)"; FAIL=1; }
+	msgfmt -c -o /dev/null "$po" 2>/dev/null || { echo "FAIL: $loc header or placeholder error (msgfmt -c: Plural-Forms, format strings)"; FAIL=1; }
 	missing=0
 	for js in $SCRIPTS; do
 		md5=$(printf '%s' "$js" | md5 -q 2>/dev/null || printf '%s' "$js" | md5sum | cut -d' ' -f1)

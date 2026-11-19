@@ -1,0 +1,32 @@
+{
+  "journey": "C.login",
+  "free": "936b59f609153f2de6d1248298604ded47145b84",
+  "walked_at": "2026-11-20T01:30:00Z",
+  "env": {
+    "base": "http://localhost:10048",
+    "essential": "4.7.3 (936b59f6, symlinked)",
+    "reign": "8.1.1 (5b6a55613)",
+    "elementor": "3.29.1 via qa_add=esse",
+    "bp": "14.5.4",
+    "edd": "3.7.2 via qa_add=edd",
+    "wp": "7.1.4",
+    "php": "8.4 (Local)",
+    "viewports": "1440 + 390 (768/1024 where noted)",
+    "walker": "QA final pre-zip walk (verification only)"
+  },
+  "checks": {
+    "login.ok": {
+      "result": "pass",
+      "evidence": "Login Form block page 1887 (redirectUrl set): alice with a temporary known password submits the real form and lands on /qa-rft-login-landing/ logged in. Original password hash restored afterwards (verified identical)."
+    },
+    "login.wrong": {
+      "result": "pass",
+      "evidence": "Elementor widget (AJAX): unknown user and wrong password both give 'The username or password is incorrect. Please try again.' Block form posts to wp-login.php (LearnDash off via qa_off): core's own messages ('The username X is not registered...' vs 'The password you entered for the username alice is incorrect.'), the error shows and nothing else leaks. Per the reworded check that is WordPress core, informational. LearnDash-on variant (?login=failed, no message) not re-walked."
+    },
+    "login.lockout": {
+      "result": "pass",
+      "evidence": "Elementor widget: attempts 1-3 normal message, 4th onward 'Too many login attempts. Try again in 15 minutes.' (DB transient count 12, locked_until set); transient deleted afterwards."
+    }
+  },
+  "proposed_checks": []
+}
