@@ -1,0 +1,11 @@
+{
+	"escapes": [
+		{
+			"card": "regression-4.7.3-pot",
+			"title": "languages/wbcom-essential.pot was 44 strings behind the source at release time (licence and update messages), so translators would have missed them",
+			"class": 12,
+			"guard": "release:pot",
+			"added": "2026-11-19"
+		}
+	]
+}
