@@ -1729,11 +1729,12 @@ ul#wb-newsticker-type1-1 {
         overflow: hidden;
     }
 
-    .posts_newsticker_type1 .wb-category {
+    /* The thumbnail carries the row on phones; rows without one keep their title. */
+    .posts_newsticker_type1 li:has(.mega-thumb) .wb-category {
         display: none;
     }
 
-    .posts_newsticker_type1 .mega-title {
+    .posts_newsticker_type1 li:has(.mega-thumb) .mega-title {
         display: none;
     }
 
