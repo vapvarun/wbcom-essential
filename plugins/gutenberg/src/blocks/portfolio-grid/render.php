@@ -29,7 +29,7 @@ $columns           = max( 1, absint( $attributes['columns'] ?? 3 ) );
 $columns_tablet    = max( 1, absint( $attributes['columnsTablet'] ?? 2 ) );
 $columns_mobile    = max( 1, absint( $attributes['columnsMobile'] ?? 1 ) );
 $posts_per         = max( 1, absint( $attributes['postsPerPage'] ?? 9 ) );
-$post_type         = sanitize_key( $attributes['postType'] ?? 'post' );
+$query_post_type   = sanitize_key( $attributes['postType'] ?? 'post' );
 $cat_ids           = array_map( 'absint', (array) ( $attributes['categories'] ?? array() ) );
 $show_filter       = ! empty( $attributes['showFilter'] );
 $show_excerpt      = ! empty( $attributes['showExcerpt'] );
@@ -91,7 +91,7 @@ $ratio_css = esc_attr( str_replace( '/', ' / ', $image_ratio ) );
 
 // ── WP_Query ─────────────────────────────────────────────────────────────────
 $query_args = array(
-	'post_type'      => $post_type,
+	'post_type'      => $query_post_type,
 	'posts_per_page' => $posts_per,
 	'orderby'        => 'date',
 	'order'          => 'DESC',
@@ -99,7 +99,7 @@ $query_args = array(
 	'no_found_rows'  => true,
 );
 
-if ( ! empty( $cat_ids ) && 'post' === $post_type ) {
+if ( ! empty( $cat_ids ) && 'post' === $query_post_type ) {
 	$query_args['category__in'] = $cat_ids;
 }
 
@@ -115,9 +115,9 @@ $all_filter_cats = array( 0 => __( 'All', 'wbcom-essential' ) );
 while ( $query->have_posts() ) {
 	$query->the_post();
 	$post_cats = get_the_category( get_the_ID() );
-	foreach ( $post_cats as $cat ) {
-		if ( ! isset( $all_filter_cats[ $cat->term_id ] ) ) {
-			$all_filter_cats[ $cat->term_id ] = $cat->name;
+	foreach ( $post_cats as $filter_cat ) {
+		if ( ! isset( $all_filter_cats[ $filter_cat->term_id ] ) ) {
+			$all_filter_cats[ $filter_cat->term_id ] = $filter_cat->name;
 		}
 	}
 }
@@ -198,26 +198,26 @@ $wrapper_attrs = get_block_wrapper_attributes( $wrapper_extra );
 		while ( $query->have_posts() ) :
 			$query->the_post();
 
-			$post_id    = get_the_ID();
-			$permalink  = get_permalink( $post_id );
-			$title      = get_the_title( $post_id );
-			$thumb_id   = get_post_thumbnail_id( $post_id );
+			$item_id    = get_the_ID();
+			$permalink  = get_permalink( $item_id );
+			$item_title = get_the_title( $item_id );
+			$thumb_id   = get_post_thumbnail_id( $item_id );
 			$thumb_url  = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : '';
-			$post_cats  = get_the_category( $post_id );
-			$cat_slugs  = array_map( function( $c ) { return 'cat-' . $c->term_id; }, $post_cats );
+			$post_cats  = get_the_category( $item_id );
+			$cat_slugs  = array_map( static fn( $c ) => 'cat-' . $c->term_id, $post_cats );
 			$data_cats  = implode( ' ', $cat_slugs );
 
 			// Excerpt.
 			$excerpt = '';
 			if ( $show_excerpt ) {
-				$raw     = get_the_excerpt( $post_id );
-				$excerpt = wp_trim_words( $raw ?: get_the_content( null, false, $post_id ), 20, '&hellip;' );
+				$raw     = get_the_excerpt( $item_id );
+				$excerpt = wp_trim_words( $raw ?: get_the_content( null, false, $item_id ), 20, '&hellip;' );
 			}
 			?>
 		<article
 			class="wbe-portfolio-grid__item"
 			data-category="<?php echo esc_attr( $data_cats ?: 'uncategorized' ); ?>"
-			aria-label="<?php echo esc_attr( $title ); ?>"
+			aria-label="<?php echo esc_attr( $item_title ); ?>"
 		>
 			<div class="wbe-portfolio-grid__image-wrap">
 				<?php if ( $thumb_url ) : ?>
@@ -235,7 +235,7 @@ $wrapper_attrs = get_block_wrapper_attributes( $wrapper_extra );
 				<div class="wbe-portfolio-grid__overlay" aria-hidden="true">
 					<div class="wbe-portfolio-grid__overlay-inner">
 						<h3 class="wbe-portfolio-grid__title">
-							<?php echo esc_html( $title ); ?>
+							<?php echo esc_html( $item_title ); ?>
 						</h3>
 						<?php if ( $show_category && ! empty( $post_cats ) ) : ?>
 						<span class="wbe-portfolio-grid__cat-label">
@@ -251,10 +251,7 @@ $wrapper_attrs = get_block_wrapper_attributes( $wrapper_extra );
 				<a
 					href="<?php echo esc_url( $permalink ); ?>"
 					class="wbe-portfolio-grid__link"
-					aria-label="<?php
-						/* translators: %s: post title */
-						echo esc_attr( sprintf( __( 'View %s', 'wbcom-essential' ), $title ) );
-					?>"
+					aria-label="<?php /* translators: %s: post title */ echo esc_attr( sprintf( __( 'View %s', 'wbcom-essential' ), $item_title ) ); ?>"
 				></a>
 			</div>
 		</article>

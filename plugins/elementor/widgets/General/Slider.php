@@ -2065,7 +2065,7 @@ class Slider extends \Elementor\Widget_Base {
 			'speed'          => $speed,
 		);
 
-		if ( $settings['list'] ) { ?>
+		?>
 		<div class="wbcom-slider-wrapper <?php if ( $settings['hide_nav'] ) { echo esc_attr( 'hide-nav' ); } ?>">
 			<div class="wbcom-slider-loader <?php if ( empty( $settings['loader_image']['url'] ) ) { ?>wbcom-css3-loader<?php } ?>" style="<?php if ( ! empty( $settings['loader_image']['url'] ) ) { echo 'background-image:url(' . esc_url( $settings['loader_image']['url'] ) . ');'; } ?>"></div>
 				<div id="wbcom-slider-<?php echo esc_attr( $wbcomslider_slider_id ); ?>"
@@ -2216,6 +2216,5 @@ class Slider extends \Elementor\Widget_Base {
 				}
 			</style>
 		<?php
-        }
 	}
 }

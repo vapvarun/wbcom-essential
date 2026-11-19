@@ -1652,7 +1652,6 @@ class TeamCarousel extends \Elementor\Widget_Base {
 		wbcom_essential_prime_repeater_images( $settings['gallery'], array( 'image', 'lightbox_image' ) );
 		$widget_id = $this->get_id();
 
-		if ( $settings['gallery'] ) {
 			$columns_map    = array( 'one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5 );
 			$slides_to_show = isset( $columns_map[ $settings['columns'] ] ) ? $columns_map[ $settings['columns'] ] : 3;
 
@@ -1788,6 +1787,5 @@ class TeamCarousel extends \Elementor\Widget_Base {
     <?php } ?>
     <?php } ?>
     <?php
-    }
 	}
 }

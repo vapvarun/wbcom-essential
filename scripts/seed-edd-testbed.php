@@ -110,9 +110,9 @@ function wbe_seed_order( $user, $download_id, $price ) {
 }
 
 // --- 1. Categories.
-foreach ( array( 'BuddyPress Addons', 'Themes', 'WooCommerce Addons' ) as $cat ) {
-	if ( ! term_exists( $cat, 'download_category' ) ) {
-		wp_insert_term( $cat, 'download_category' );
+foreach ( array( 'BuddyPress Addons', 'Themes', 'WooCommerce Addons' ) as $cat_name ) {
+	if ( ! term_exists( $cat_name, 'download_category' ) ) {
+		wp_insert_term( $cat_name, 'download_category' );
 	}
 }
 
@@ -124,9 +124,9 @@ $pairs = array(
 );
 $ids = array();
 foreach ( $pairs as $p ) {
-	list( $free_title, $free_slug, $pro_title, $pro_slug, $pro_price, $cat ) = $p;
-	$free_id = wbe_seed_download( $free_title, $free_slug, 0, array( 'category' => $cat ) );
-	$pro_id  = wbe_seed_download( $pro_title, $pro_slug, $pro_price, array( 'category' => $cat, 'licensing' => true ) );
+	list( $free_title, $free_slug, $pro_title, $pro_slug, $pro_price, $cat_name ) = $p;
+	$free_id = wbe_seed_download( $free_title, $free_slug, 0, array( 'category' => $cat_name ) );
+	$pro_id  = wbe_seed_download( $pro_title, $pro_slug, $pro_price, array( 'category' => $cat_name, 'licensing' => true ) );
 	update_post_meta( $free_id, '_wbcom_pro_counterpart', $pro_id );
 	$ids[ $free_slug ] = $free_id;
 	$ids[ $pro_slug ]  = $pro_id;

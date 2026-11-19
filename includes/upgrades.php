@@ -53,6 +53,8 @@ function wbcom_essential_get_upgrade_routines() {
  * @return void
  */
 function wbcom_essential_upgrade_473_elementor_css() {
+	// Elementor documents files_manager as non-null, but assigns it in Plugin::init(); before that it is null.
+	// @phpstan-ignore isset.property
 	if ( class_exists( 'Elementor\\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) ) {
 		\Elementor\Plugin::$instance->files_manager->clear_cache();
 	}

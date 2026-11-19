@@ -36,6 +36,10 @@ parameters:
 		# Bundled licensing SDK and package signatures: read for their symbols only, never analysed as our code.
 		- libs
 
+	# EDD 3 classes used by the EDD blocks; EDD is optional and not installed for analysis.
+	scanFiles:
+		- phpstan-edd-stubs.php
+
 	bootstrapFiles:
 		- phpstan-constants.php
 		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php

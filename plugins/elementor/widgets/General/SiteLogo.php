@@ -434,19 +434,15 @@ class SiteLogo extends \Elementor\Widget_Base {
 				echo '<a class="wba-site-logo-title" href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>';
 			}
 		} elseif ( $settings['link']['url'] ) {
-				if ( $settings['before_image']['url'] ) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<a class="wba-logo-desktop" ' . $this->get_render_attribute_string( 'wba_logo_link' ) . '><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></a>';
-				}
 				if ( $settings['after_image']['url'] && $settings['breakpoint'] ) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<a class="wba-logo-mobile" ' . $this->get_render_attribute_string( 'wba_logo_link' ) . '><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></a>';
 				}
 			} else {
-				if ( $settings['before_image']['url'] ) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<div class="wba-logo-desktop"><span>' . wp_get_attachment_image( $settings['before_image']['id'], $settings['img_size'] ) . '</span></div>';
-				}
 				if ( $settings['after_image']['url'] && $settings['breakpoint'] ) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image is safe
 					echo '<div class="wba-logo-mobile"><span>' . wp_get_attachment_image( $settings['after_image']['id'], $settings['mobile_img_size'] ) . '</span></div>';

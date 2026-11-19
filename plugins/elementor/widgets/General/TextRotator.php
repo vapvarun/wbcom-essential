@@ -436,7 +436,6 @@ class TextRotator extends \Elementor\Widget_Base {
 			wbcom_essential_elementor_empty_state( __( 'Add the words to rotate in the Text Rotator section.', 'wbcom-essential' ) );
 			return;
 		}
-		if ( $settings['list'] ) {
 			?>
 			<?php echo '<' . esc_attr( $settings['html_tag'] ) . ' class="wbcom-anim-text-wrapper">'; ?>
 			<span class="wbcom-anim-text-prefix"><?php echo esc_html( $settings['prefix_text'] ); ?></span>
@@ -453,6 +452,5 @@ class TextRotator extends \Elementor\Widget_Base {
 			<span class="wbcom-anim-text-suffix"><?php echo esc_html( $settings['suffix_text'] ); ?></span>
 				<?php echo '</' . esc_attr( $settings['html_tag'] ) . '>'; ?>
 			<?php
-		}
 	}
 }

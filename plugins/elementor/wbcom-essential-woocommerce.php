@@ -208,7 +208,8 @@ function wbcom_custom_product_badge( $show = 'yes' ) {
  */
 function wbcom_product_query( $query_args = array() ) {
 
-	$meta_query = $tax_query = array();
+	$meta_query = array();
+	$tax_query  = array();
 
 	// Sanitize input values.
 	$per_page = isset( $query_args['per_page'] ) ? absint( $query_args['per_page'] ) : 3;

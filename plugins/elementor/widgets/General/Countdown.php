@@ -1071,7 +1071,7 @@ class Countdown extends \Elementor\Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$settings = $this->get_settings_for_display();	
+		$settings = $this->get_settings_for_display();
 		?>
 		<div class="wbcom-countdown <?php echo esc_attr( $settings['content_layout'] ); ?>" data-duedate="<?php echo esc_attr( $settings['due_date'] ); ?>">
 			<?php if ( $settings['days_switcher'] ) { ?>

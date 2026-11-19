@@ -1747,7 +1747,6 @@ class PortfolioGrid extends \Elementor\Widget_Base {
           </form>
         <?php } ?>
 
-        <?php if ( $settings['list'] ) { ?>
           <ol class="wba-fpg-container <?php echo esc_attr($settings['layout_default'] . ' ' . $settings['grid_txt_placement']); ?> wba-fpg-zoom-in" style="display:none;">
           <?php foreach ( $settings['list'] as $item ) { ?>
             <li data-filter="<?php echo esc_attr($item['item_filter_ids']); ?>" class="elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
@@ -1794,6 +1793,5 @@ class PortfolioGrid extends \Elementor\Widget_Base {
           <?php } ?>
           </ol>
     <?php
-    } 
 	}
 }

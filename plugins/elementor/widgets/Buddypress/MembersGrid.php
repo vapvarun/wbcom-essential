@@ -84,7 +84,7 @@ class MembersGrid extends \Elementor\Widget_Base {
 	 */
 	public function get_style_depends() {
 		// Reign 8.1.1+ styles its own cards; member-grid.css carries unscoped rules that fight them.
-		if ( function_exists( 'reign_bp_card_grid' ) && ! reign_is_buddyboss() && 'nouveau' === get_option( '_bp_theme_package_id' ) ) {
+		if ( function_exists( 'reign_bp_card_grid' ) && function_exists( 'reign_is_buddyboss' ) && ! reign_is_buddyboss() && 'nouveau' === get_option( '_bp_theme_package_id' ) ) {
 			return array();
 		}
 		return array( 'member-grid' );

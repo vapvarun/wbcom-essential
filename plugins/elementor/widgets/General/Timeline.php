@@ -693,7 +693,7 @@ class Timeline extends \Elementor\Widget_Base {
 			return;
 		}
 		wbcom_essential_prime_repeater_images( $settings['list'], array( 'image' ) );
-		if ( $settings['list'] ) { ?>
+		?>
 		<div class="wbcom-timeline <?php echo esc_attr( $settings['layout'] ); ?>">
 			<div class="wbcom-timeline__container">
 				<?php foreach ( $settings['list'] as $item ) { ?>
@@ -726,6 +726,5 @@ class Timeline extends \Elementor\Widget_Base {
 			</div>
 		</div>
 			<?php
-		}
 	}
 }
