@@ -111,7 +111,12 @@
 }
 
 .wbe-post-carousel__image--placeholder {
-	background: var(--wbe-color-surface-alt, #f0f0f0);
+	background: #f0f0f0;
+}
+
+/* Dark mode: the theme's secondary surface instead of a light tile. Light mode is unchanged. */
+html[data-bx-mode="dark"] .wbe-post-carousel__image--placeholder {
+	background: var(--wbe-color-surface-alt);
 }
 
 /* ── Card body ────────────────────────────────────────────────────────────── */

@@ -255,13 +255,14 @@
 }
 
 
-/* WooCommerce's placeholder image is a light tile; on the theme surface it stays quiet in dark mode too. */
-.wbe-product-grid__image-wrap:has(> .is-placeholder),
-.wbe-product-grid__image-wrap:has(a > .is-placeholder) {
-	background: var(--wbe-color-surface-alt, #f1f5f9);
+/* Dark mode: WooCommerce's placeholder image is a light tile, so it sits faintly on the theme's dark
+   surface instead. Light mode shows it as WooCommerce ships it. Real product photos are never marked. */
+html[data-bx-mode="dark"] .wbe-product-grid__image-wrap:has(> .is-placeholder),
+html[data-bx-mode="dark"] .wbe-product-grid__image-wrap:has(a > .is-placeholder) {
+	background: var(--wbe-color-surface-alt);
 }
 
-.wbe-product-grid__image.is-placeholder {
+html[data-bx-mode="dark"] .wbe-product-grid__image.is-placeholder {
 	mix-blend-mode: luminosity;
 	opacity: 0.15;
 }

@@ -72,7 +72,7 @@
 			},
 			{
 				"id": "block-placeholder-surface",
-				"run": "bad=$(grep -rnE '#f0f0f0|#eeeeee|#eee;' plugins/gutenberg/src/blocks --include='*.css' | grep -v 'var(--'); grep -q 'is-placeholder' plugins/gutenberg/src/blocks/product-grid/render.php || bad=\"$bad product-grid-woo-placeholder\"; [ -z \"$bad\" ] || echo \"FAIL: block image placeholders use a fixed light colour (white tile in dark mode): $bad\""
+				"run": "bad=''; grep -q 'html\\[data-bx-mode=\"dark\"\\] .wbe-post-carousel__image--placeholder' plugins/gutenberg/src/blocks/post-carousel/style.css || bad=\"$bad post-carousel\"; for b in product-grid product-carousel; do grep -q 'is-placeholder' plugins/gutenberg/src/blocks/$b/render.php && grep -q \"html\\[data-bx-mode=\\\"dark\\\"\\] .wbe-${b}__image.is-placeholder\" plugins/gutenberg/src/blocks/$b/style.css || bad=\"$bad $b\"; grep -qE \"^\\.wbe-${b}__image\\.is-placeholder\" plugins/gutenberg/src/blocks/$b/style.css && bad=\"$bad $b-light-changed\"; done; [ -z \"$bad\" ] || echo \"FAIL: block image placeholders are a light tile in dark mode, or light mode was changed:$bad\""
 			},
 			{
 				"id": "wb-columns-phone-default",
