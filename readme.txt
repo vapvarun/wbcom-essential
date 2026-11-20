@@ -134,7 +134,7 @@ Blocks and widgets keep their own spacing and colours on every theme, read clear
 * Fix      - Activity Feed photos and videos are capped at 360px tall, and Show Media Preview off hides them.
 * Fix      - EDD Order Success shows the right message for completed, pending and failed orders, and EDD account buttons are readable in dark mode.
 * Fix      - Sale, order, subscription and licence dates show in the site timezone.
-* Fix      - Posts Revolution, Posts Carousel and Product Tab no longer stop the page with a fatal error on an empty or text setting.
+* Fix      - Posts Revolution, Posts Carousel, Posts Ticker and Product Tab no longer stop the page with a fatal error on an empty or text setting.
 * Fix      - The Header Bar no longer logs a BuddyPress deprecation notice on BuddyPress 12 or later.
 * Fix      - Product Tab and repeater widgets no longer run a query per item.
 * Fix      - Site Logo widget falls back to the Customizer logo, then the site title.

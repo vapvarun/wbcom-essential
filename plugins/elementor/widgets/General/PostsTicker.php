@@ -627,15 +627,8 @@ class PostsTicker extends Widget_Base {
 		$wbcom_query_posts_type   = esc_html( $settings['wbcom_query_posts_type'] );
 		$wbcom_query_categories   = '';
 		if ( ! empty( $settings['wbcom_query_categories'] ) ) {
-			$num_cat = count( $settings['wbcom_query_categories'] );
-			$i       = 1;
-			foreach ( $settings['wbcom_query_categories'] as $element ) {
-				$wbcom_query_categories .= $element;
-				if ( $i != $num_cat ) {
-					$wbcom_query_categories .= ',';
-				}
-				$i++;
-			}
+			// A legacy or imported widget can hold one slug as text instead of an array.
+			$wbcom_query_categories = implode( ',', wp_parse_slug_list( $settings['wbcom_query_categories'] ) );
 		}
 		$wbcom_query_order           = esc_html( $settings['wbcom_query_order'] );
 		$wbcom_query_orderby         = esc_html( $settings['wbcom_query_orderby'] );
