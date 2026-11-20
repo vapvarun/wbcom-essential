@@ -4,6 +4,32 @@
  * @package WBCOM_Essential
  */
 
+:root {
+	/* Essential admin colour tokens (widget showcase). */
+	--wbe-admin-white: #fff;
+	--wbe-admin-gray-50: #f9fafb;
+	--wbe-admin-gray-100: #f3f4f6;
+	--wbe-admin-gray-200: #e5e7eb;
+	--wbe-admin-gray-300: #d1d5db;
+	--wbe-admin-gray-400: #9ca3af;
+	--wbe-admin-gray-500: #6b7280;
+	--wbe-admin-gray-600: #4b5563;
+	--wbe-admin-gray-700: #374151;
+	--wbe-admin-gray-800: #1f2937;
+	--wbe-admin-brand: #2c5282;
+	--wbe-admin-brand-dark: #1e3a5f;
+	--wbe-admin-link: #2563eb;
+	--wbe-admin-accent-indigo: #6366f1;
+	--wbe-admin-accent-pink: #ec4899;
+	--wbe-admin-accent-green: #10b981;
+	--wbe-admin-success: #22c55e;
+	--wbe-admin-success-bg: #f0fdf4;
+	--wbe-admin-success-text: #166534;
+	--wbe-admin-warning: #f59e0b;
+	--wbe-admin-warning-bg: #fef3c7;
+	--wbe-admin-warning-text: #92400e;
+}
+
 /* Reset & Base */
 .wbcom-essential-wrap {
 	max-width: 1200px;
@@ -13,10 +39,10 @@
 
 /* Header */
 .wbcom-header {
-	background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+	background: linear-gradient(135deg, var(--wbe-admin-brand-dark) 0%, var(--wbe-admin-brand) 100%);
 	padding: 32px 40px;
 	border-radius: 12px;
-	color: #fff;
+	color: var(--wbe-admin-white);
 	margin-bottom: 0;
 }
 
@@ -31,7 +57,7 @@
 	margin: 0;
 	font-size: 28px;
 	font-weight: 600;
-	color: #fff;
+	color: var(--wbe-admin-white);
 }
 
 .wbcom-version {
@@ -50,14 +76,14 @@
 
 .wbcom-tagline a,
 .wbcom-tagline a:visited {
-	color: #fff;
+	color: var(--wbe-admin-white);
 	font-weight: 600;
 	margin-inline-start: 8px;
 }
 
 .wbcom-tagline a:hover,
 .wbcom-tagline a:focus {
-	color: #fff;
+	color: var(--wbe-admin-white);
 	text-decoration: none;
 }
 
@@ -85,12 +111,12 @@
 
 .wbcom-tab:hover {
 	background: rgba(255, 255, 255, 0.25);
-	color: #fff;
+	color: var(--wbe-admin-white);
 }
 
 .wbcom-tab.active {
-	background: #fff;
-	color: #1e3a5f;
+	background: var(--wbe-admin-white);
+	color: var(--wbe-admin-brand-dark);
 }
 
 .wbcom-tab .dashicons {
@@ -110,10 +136,10 @@
 	display: flex;
 	align-items: center;
 	gap: 16px;
-	background: #fff;
+	background: var(--wbe-admin-white);
 	padding: 24px;
 	border-radius: 10px;
-	border: 1px solid #e5e7eb;
+	border: 1px solid var(--wbe-admin-gray-200);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -125,15 +151,15 @@
 }
 
 .wbcom-stat-blocks .wbcom-stat-icon {
-	color: #6366f1;
+	color: var(--wbe-admin-accent-indigo);
 }
 
 .wbcom-stat-widgets .wbcom-stat-icon {
-	color: #ec4899;
+	color: var(--wbe-admin-accent-pink);
 }
 
 .wbcom-stat-price .wbcom-stat-icon {
-	color: #10b981;
+	color: var(--wbe-admin-accent-green);
 }
 
 .wbcom-stat-info {
@@ -144,13 +170,13 @@
 .wbcom-stat-number {
 	font-size: 32px;
 	font-weight: 700;
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 	line-height: 1.2;
 }
 
 .wbcom-stat-label {
 	font-size: 14px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 }
 
 /* Main Content */
@@ -161,10 +187,10 @@
 }
 
 .wbcom-section {
-	background: #fff;
+	background: var(--wbe-admin-white);
 	padding: 28px;
 	border-radius: 10px;
-	border: 1px solid #e5e7eb;
+	border: 1px solid var(--wbe-admin-gray-200);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -172,9 +198,9 @@
 	margin: 0 0 20px;
 	font-size: 18px;
 	font-weight: 600;
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 	padding-bottom: 12px;
-	border-bottom: 1px solid #e5e7eb;
+	border-bottom: 1px solid var(--wbe-admin-gray-200);
 }
 
 /* Features Grid */
@@ -186,9 +212,9 @@
 
 .wbcom-feature {
 	padding: 20px;
-	background: #f9fafb;
+	background: var(--wbe-admin-gray-50);
 	border-radius: 8px;
-	border: 1px solid #e5e7eb;
+	border: 1px solid var(--wbe-admin-gray-200);
 }
 
 .wbcom-feature .dashicons {
@@ -199,24 +225,24 @@
 }
 
 .wbcom-feature:first-child .dashicons {
-	color: #6366f1;
+	color: var(--wbe-admin-accent-indigo);
 }
 
 .wbcom-feature:last-child .dashicons {
-	color: #ec4899;
+	color: var(--wbe-admin-accent-pink);
 }
 
 .wbcom-feature h3 {
 	margin: 0 0 8px;
 	font-size: 16px;
 	font-weight: 600;
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 }
 
 .wbcom-feature > p {
 	margin: 0 0 16px;
 	font-size: 14px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 	line-height: 1.5;
 }
 
@@ -228,7 +254,7 @@
 
 .wbcom-feature li {
 	font-size: 13px;
-	color: #4b5563;
+	color: var(--wbe-admin-gray-600);
 	margin-bottom: 6px;
 	line-height: 1.4;
 }
@@ -245,15 +271,15 @@
 	align-items: flex-start;
 	gap: 16px;
 	padding: 16px;
-	background: #f9fafb;
+	background: var(--wbe-admin-gray-50);
 	border-radius: 8px;
 }
 
 .wbcom-howto-step {
 	width: 32px;
 	height: 32px;
-	background: #2c5282;
-	color: #fff;
+	background: var(--wbe-admin-brand);
+	color: var(--wbe-admin-white);
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
@@ -267,13 +293,13 @@
 	margin: 0 0 4px;
 	font-size: 15px;
 	font-weight: 600;
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 }
 
 .wbcom-howto-item p {
 	margin: 0;
 	font-size: 13px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 }
 
 /* Requirements */
@@ -288,26 +314,26 @@
 	align-items: center;
 	gap: 8px;
 	padding: 12px 16px;
-	background: #f0fdf4;
+	background: var(--wbe-admin-success-bg);
 	border-radius: 6px;
 	font-size: 14px;
-	color: #166534;
+	color: var(--wbe-admin-success-text);
 }
 
 .wbcom-req-item .dashicons {
 	font-size: 18px;
 	width: 18px;
 	height: 18px;
-	color: #22c55e;
+	color: var(--wbe-admin-success);
 }
 
 .wbcom-req-item.wbcom-req-optional {
-	background: #fef3c7;
-	color: #92400e;
+	background: var(--wbe-admin-warning-bg);
+	color: var(--wbe-admin-warning-text);
 }
 
 .wbcom-req-item.wbcom-req-optional .dashicons {
-	color: #f59e0b;
+	color: var(--wbe-admin-warning);
 }
 
 /* Sidebar */
@@ -318,10 +344,10 @@
 }
 
 .wbcom-sidebar-card {
-	background: #fff;
+	background: var(--wbe-admin-white);
 	padding: 24px;
 	border-radius: 10px;
-	border: 1px solid #e5e7eb;
+	border: 1px solid var(--wbe-admin-gray-200);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -329,7 +355,7 @@
 	margin: 0 0 16px;
 	font-size: 16px;
 	font-weight: 600;
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 }
 
 .wbcom-sidebar-card ul {
@@ -350,7 +376,7 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	color: #2563eb;
+	color: var(--wbe-admin-link);
 	text-decoration: none;
 	font-size: 14px;
 	padding: 8px 12px;
@@ -359,21 +385,21 @@
 }
 
 .wbcom-sidebar-card a:hover {
-	background: #f3f4f6;
+	background: var(--wbe-admin-gray-100);
 }
 
 .wbcom-sidebar-card .dashicons {
 	font-size: 18px;
 	width: 18px;
 	height: 18px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 }
 
 /* Themes Card */
 .wbcom-themes p {
 	margin: 0 0 12px;
 	font-size: 13px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 }
 
 .wbcom-themes ul {
@@ -382,9 +408,9 @@
 
 .wbcom-themes li {
 	font-size: 13px;
-	color: #4b5563;
+	color: var(--wbe-admin-gray-600);
 	padding: 6px 0;
-	border-bottom: 1px solid #e5e7eb;
+	border-bottom: 1px solid var(--wbe-admin-gray-200);
 }
 
 .wbcom-themes li:last-child {
@@ -392,13 +418,13 @@
 }
 
 .wbcom-themes strong {
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 }
 
 .wbcom-btn {
 	display: inline-block;
-	background: #2c5282;
-	color: #fff !important;
+	background: var(--wbe-admin-brand);
+	color: var(--wbe-admin-white) !important;
 	padding: 10px 20px;
 	border-radius: 6px;
 	font-size: 14px;
@@ -409,7 +435,7 @@
 }
 
 .wbcom-btn:hover {
-	background: #1e3a5f;
+	background: var(--wbe-admin-brand-dark);
 }
 
 /* License Page */
@@ -418,10 +444,10 @@
 }
 
 .wbcom-license-content {
-	background: #fff;
+	background: var(--wbe-admin-white);
 	padding: 32px;
 	border-radius: 10px;
-	border: 1px solid #e5e7eb;
+	border: 1px solid var(--wbe-admin-gray-200);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 	max-width: 800px;
 }
@@ -430,12 +456,12 @@
 	margin: 0 0 8px;
 	font-size: 20px;
 	font-weight: 600;
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 }
 
 .wbcom-license-content > p:first-of-type {
 	margin: 0 0 24px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 	font-size: 14px;
 }
 
@@ -449,7 +475,7 @@
 	text-align: left;
 	padding: 12px 16px;
 	font-weight: 600;
-	color: #374151;
+	color: var(--wbe-admin-gray-700);
 	width: 150px;
 	vertical-align: top;
 }
@@ -462,7 +488,7 @@
 	width: 100%;
 	max-width: 320px;
 	padding: 10px 14px;
-	border: 1px solid #d1d5db;
+	border: 1px solid var(--wbe-admin-gray-300);
 	border-radius: 6px;
 	font-size: 14px;
 }
@@ -470,7 +496,7 @@
 /* Single focus ring via box-shadow — visible to keyboard + mouse, clears WCAG 2.4.7. */
 .wbcom-license-content input[type="text"]:focus {
 	outline: none;
-	border-color: #2c5282;
+	border-color: var(--wbe-admin-brand);
 	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.25);
 }
 
@@ -478,7 +504,7 @@
 	display: block;
 	margin-top: 6px;
 	font-size: 13px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 }
 
 .wbcom-license-content .button {
@@ -491,32 +517,32 @@
 }
 
 .wbcom-license-content .button-primary {
-	background: #2c5282;
-	border-color: #2c5282;
-	color: #fff;
+	background: var(--wbe-admin-brand);
+	border-color: var(--wbe-admin-brand);
+	color: var(--wbe-admin-white);
 }
 
 .wbcom-license-content .button-primary:hover {
-	background: #1e3a5f;
-	border-color: #1e3a5f;
+	background: var(--wbe-admin-brand-dark);
+	border-color: var(--wbe-admin-brand-dark);
 }
 
 .wbcom-license-content .button-secondary {
-	background: #fff;
-	border: 1px solid #d1d5db;
-	color: #374151;
+	background: var(--wbe-admin-white);
+	border: 1px solid var(--wbe-admin-gray-300);
+	color: var(--wbe-admin-gray-700);
 }
 
 .wbcom-license-content .button-secondary:hover {
-	background: #f9fafb;
-	border-color: #9ca3af;
+	background: var(--wbe-admin-gray-50);
+	border-color: var(--wbe-admin-gray-400);
 }
 
 .wbcom-license-content h3 {
 	margin: 32px 0 16px;
 	font-size: 16px;
 	font-weight: 600;
-	color: #1f2937;
+	color: var(--wbe-admin-gray-800);
 }
 
 .wbcom-license-content ul {
@@ -531,8 +557,8 @@
 	gap: 10px;
 	padding: 10px 0;
 	font-size: 14px;
-	color: #4b5563;
-	border-bottom: 1px solid #f3f4f6;
+	color: var(--wbe-admin-gray-600);
+	border-bottom: 1px solid var(--wbe-admin-gray-100);
 }
 
 .wbcom-license-content ul li:last-child {
@@ -540,7 +566,7 @@
 }
 
 .wbcom-license-content ul li .dashicons {
-	color: #10b981;
+	color: var(--wbe-admin-accent-green);
 	font-size: 18px;
 	width: 18px;
 	height: 18px;
@@ -554,7 +580,7 @@
 .wbcom-tab-content select {
 	min-width: 280px;
 	padding: 8px 12px;
-	border: 1px solid #d1d5db;
+	border: 1px solid var(--wbe-admin-gray-300);
 	border-radius: 6px;
 	font-size: 14px;
 }
@@ -562,7 +588,7 @@
 /* Single focus ring via box-shadow — visible to keyboard + mouse, clears WCAG 2.4.7. */
 .wbcom-tab-content select:focus {
 	outline: none;
-	border-color: #2c5282;
+	border-color: var(--wbe-admin-brand);
 	box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.25);
 }
 
@@ -570,7 +596,7 @@
 	display: block;
 	margin-top: 6px;
 	font-size: 13px;
-	color: #6b7280;
+	color: var(--wbe-admin-gray-500);
 }
 
 /* Responsive */
