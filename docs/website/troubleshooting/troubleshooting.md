@@ -109,12 +109,12 @@ Find your problem below. Each item lists the cause and the fix.
 
 ## Checkout blocks show nothing on the EDD checkout
 
-**Cause:** The Checkout Recommendations block shows nothing when the cart is empty. Other checkout blocks need Easy Digital Downloads active.
+**Cause:** The Checkout Recommendations block shows nothing when the cart is empty or the EDD Recommended Products add-on is not active. Other checkout blocks need Easy Digital Downloads active.
 
 **Fix:**
 
 1. Confirm Easy Digital Downloads is active.
-2. Add a download to the cart, then open the checkout page.
+2. For Recommendations, activate the EDD Recommended Products add-on. Add a download to the cart, then open the checkout page.
 3. Place the blocks inside the EDD Checkout block. Use the Checkout Progress, Trust Badges, Social Proof and Recommendations blocks instead of the legacy Enhanced Checkout block.
 
 ## Someone cannot sign in and sees "Too many login attempts"

@@ -43,6 +43,10 @@ Widgets with a link field use Elementor's link options: the URL, **Open in new w
 
 ![The Shape widget Link control with Open in new window and Add nofollow](../images/elementor-shape-link-options.webp)
 
+### Why does a widget show nothing on the page?
+
+Add Banner, Dropdown Button, Slider, Team Carousel and Portfolio Grid show nothing to visitors until you fill in their content, and Smart Menu prints nothing when its menu is empty. Wbcom Essential no longer publishes placeholder text or images. In the Elementor editor, Smart Menu tells you to choose a menu that has items.
+
 ### Will many widgets slow down my pages?
 
 No. A widget's stylesheet loads only on pages that use that widget. A page without the Header Bar, the WooCommerce widgets or Forums Activity loads none of their styles.

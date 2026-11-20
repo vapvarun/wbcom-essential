@@ -23,7 +23,7 @@ In the block editor, switch device with the preview buttons in the toolbar. Resp
 | Setting | Where it appears |
 |---------|------------------|
 | Device Visibility | All 35 blocks. |
-| Padding and margin per device | Blocks with a spacing control, such as Hero, Promo Banner, Timeline, Category Grid, Groups Grid and Activity Feed. |
+| Padding and margin per device | Blocks with a spacing control, such as Hero, Promo Banner, Timeline, Category Grid, Groups Grid and Activity Feed. The control has Desktop, Tablet and Mobile tabs; a smaller screen follows the larger one until you set its own value. With the sides unlinked, the four sides show two by two with labels. |
 | Columns per device | The grid blocks: Category Grid, Groups Grid, Members Grid, Portfolio Grid and Product Grid. |
 
 ### Phone layouts
@@ -40,6 +40,10 @@ On phones the blocks are laid out to read well without any setting:
 ![At 390 pixels wide: Countdown Timer boxes on one row and the carousel dots](../images/mobile-countdown-and-testimonial-carousel.webp)
 
 You can still change the columns per device in the block settings.
+
+### Narrow columns and sidebars
+
+Placed in a narrow column or sidebar, Feature Grid, Pricing Table, Stats Counter, Product Grid, Category Grid and Portfolio Grid drop to fewer columns instead of squeezing their cards. Post Carousel and Product Carousel show as many slides as fit. A carousel with too few slides stops repeating cards and hides its arrows. Long words and links wrap inside the cards instead of running out of them.
 
 ### How do I hide a block on some devices?
 
@@ -58,6 +62,7 @@ Some widgets add their own device options:
 - Post Carousel can hide its arrows, dots, categories, excerpt and card footer on desktop, tablet or mobile.
 - Post Slider and Slider can hide their dots and arrows on desktop, tablet or mobile.
 - Site Logo and Smart Menu have a Mobile Breakpoint setting.
+- WC Testimonial and Customer Review show one column on phones and two on tablets unless you set a column count for that device.
 - Product Tab, Universal Product and WooCommerce Testimonial set how many slider items show on tablet and on mobile phones.
 
 ## Reduced motion

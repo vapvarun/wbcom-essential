@@ -111,7 +111,7 @@ To set a page, choose it in the dropdown next to the setting and click **Save Ch
 
 **You'll know it worked when:**
 
-1. Open your checkout page with a download in the cart. The checkout blocks show. With an empty cart, Checkout Recommendations shows nothing.
+1. Open your checkout page with a download in the cart. The checkout blocks show. Checkout Recommendations also needs the EDD Recommended Products add-on and a cart with suggestions; without them it shows nothing.
 2. Buy a free download. Open the Receipt Page from the purchase confirmation. The Order Success block shows the receipt.
 3. Log in and open the page with the Account Dashboard block. You see Dashboard, Downloads and Order History.
 
