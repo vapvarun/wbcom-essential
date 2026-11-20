@@ -4,6 +4,11 @@
 
 35 production-grade Gutenberg blocks. 43 Elementor widgets (42 on any theme, plus a Reign-only Notification Area). 5 BuddyPress blocks. A free plugin that makes Theme Reign, BuddyX, and BuddyX Pro even more powerful.
 
+It is for owners and builders of community, store and content sites on Reign, BuddyX, BuddyX Pro or any other theme who want ready-made, theme-matched sections in the block editor or Elementor.
+
+**Get it:** free from the [Wbcom store](https://wbcomdesigns.com/downloads/wbcom-essential/) (it is not on WordPress.org), or install it from **Reign Settings > Extend**.
+**Docs:** [Wbcom Essential docs](https://docs.wbcomdesigns.com/wordpress-family/wbcom-essential/) | **Release notes:** [wbcomdesigns.com/release-notes/wbcom-essential](https://wbcomdesigns.com/release-notes/wbcom-essential/)
+
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-purple.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-GPL--2.0%2B-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -19,7 +24,7 @@ WBcom Essential provides production-ready blocks and widgets that inherit your t
 - **5 BuddyPress Blocks** - Built specifically for community sites (activity, members, groups)
 - **3 WooCommerce Blocks** + **8 EDD Blocks** - Show their content when WooCommerce or Easy Digital Downloads is active
 - **Responsive 3-Breakpoint** - Desktop/Tablet/Mobile controls on every block
-- **Theme Colors** - Blocks read your theme's `--wbcom-*` CSS custom properties, with built-in fallbacks
+- **Theme Colors** - Blocks and widgets take their colours from Reign, BuddyX and BuddyX Pro in light and dark mode, unless you pick a colour
 - **Accessibility Built-in** - ARIA, keyboard navigation, `prefers-reduced-motion`
 - **Conditional Loading** - Only loads assets when needed
 - **RTL Support** - Full right-to-left language support
@@ -89,7 +94,7 @@ You can also download it from the [Wbcom store](https://wbcomdesigns.com/downloa
 
 ### Universal Compatibility
 
-Works with any properly coded WordPress theme. Blocks pick up theme colours from the `--wbcom-*` CSS custom properties that Reign, BuddyX and BuddyX Pro set; other themes can define the same properties.
+Works with any properly coded WordPress theme. Blocks and widgets follow the colour variables Reign (`--reign-*`) and BuddyX and BuddyX Pro (`--bx-color-*`) publish, through the plugin's own `--wbcom-*` variables; other themes use the built-in colours, or a theme can define the `--wbcom-*` variables itself. See the [Theme colors guide](docs/website/features/theme-colors.md).
 
 ## Documentation
 
@@ -174,10 +179,3 @@ This plugin is licensed under the [GPL-2.0+](https://www.gnu.org/licenses/gpl-2.
 ## Credits
 
 Built with care by [Wbcom Designs](https://wbcomdesigns.com/) - the team behind Theme Reign, BuddyX, and BuddyX Pro themes.
-
----
-
-**Version**: 4.7.1
-**Requires WordPress**: 6.0+
-**Requires PHP**: 8.0+
-**Tested up to**: WordPress 7.1
