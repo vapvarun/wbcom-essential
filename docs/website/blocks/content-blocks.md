@@ -180,7 +180,7 @@ View the page. Questions open and close, tabs switch when clicked, the portfolio
 
 ### Does the FAQ help with Google search?
 
-Yes. **Enable FAQ Schema (JSON-LD)** is on by default and tells search engines about your questions.
+Yes. **Enable FAQ Schema (JSON-LD)** is on by default and tells search engines about your questions. If a page has several FAQ Accordion blocks, all their questions go into one FAQPage in the page footer. If a Yoast or Rank Math FAQ block is on the same page, Wbcom Essential prints none, so the page never carries two.
 
 ### What does a logged-in member see in the Login Form?
 

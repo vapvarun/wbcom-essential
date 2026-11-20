@@ -52,6 +52,10 @@ You search for a block name in the inserter and it appears. After you add it, th
 
 BuddyPress, WooCommerce and EDD blocks need their own plugin. The other 19 blocks work alone.
 
+### Why does a block show a short note in the editor and nothing on the page?
+
+A block with nothing to show prints nothing for visitors. Administrators see a short note that says why, such as a missing plugin, an empty cart or no reviews yet. Countdown Timer with no date also prints nothing.
+
 ### Where did the EDD Enhanced Checkout block go?
 
 It is hidden from the inserter. It stays only so pages saved before version 4.7.0 keep working.

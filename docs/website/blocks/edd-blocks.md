@@ -124,7 +124,7 @@ A "Customers Also Purchased" list of products based on what is in the cart.
 
 ### Tips
 
-- The block shows nothing when the cart is empty.
+- The block needs the **EDD Recommended Products** add-on. Without it, or with an empty cart, or when the cart has no suggestions, visitors see nothing; administrators see a note that names the add-on.
 
 ## EDD Checkout Social Proof
 
@@ -156,6 +156,7 @@ Customer reviews and a Trustpilot rating with your own review cards. It works on
 
 - Customer reviews come from the EDD Reviews extension.
 - The Trustpilot section stays hidden until you add at least one review card.
+- With no review cards and no approved reviews, visitors see nothing; administrators see a note that says how to add reviews.
 
 ## EDD Checkout Trust Badges
 
@@ -216,6 +217,7 @@ A purchase confirmation page with a success header, the order receipt and next-s
 ### Tips
 
 - The receipt is the standard EDD receipt.
+- The header follows the order. A completed order shows the success message. A pending or processing order shows "We've received your order" and says the payment is being confirmed. A failed or cancelled order shows "This order was not completed". A visitor who cannot view the receipt gets EDD's own message.
 - The What's Next cards link to downloads and the account page. A license card appears when EDD Software Licensing is active.
 
 ## Product Catalog
